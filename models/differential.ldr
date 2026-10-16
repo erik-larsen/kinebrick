@@ -7,12 +7,13 @@
 0 // can turn at different speeds: turning the input turns both the same way, and holding the
 0 // input still lets one output turn the other the opposite way.
 
-0 // Step 1: a 6x8 plate with two 1x6 bricks and two Technic 1x6 bricks on top
+0 // Step 1: a 6x8 plate with two 1x6 bricks and two Technic 1x6 bricks on top, on the plate's
+0 // second stud rows from each end (z = +-50), against the ends of the housing
 1 71 0 0 0 0 0 1 0 1 0 -1 0 0 3036.dat
-1 14 0 -24 60 1 0 0 0 1 0 0 0 1 3009.dat
-1 14 0 -24 -60 1 0 0 0 1 0 0 0 1 3009.dat
-1 14 0 -48 60 1 0 0 0 1 0 0 0 1 3894.dat
-1 14 0 -48 -60 1 0 0 0 1 0 0 0 1 3894.dat
+1 14 0 -24 50 1 0 0 0 1 0 0 0 1 3009.dat
+1 14 0 -24 -50 1 0 0 0 1 0 0 0 1 3009.dat
+1 14 0 -48 50 1 0 0 0 1 0 0 0 1 3894.dat
+1 14 0 -48 -50 1 0 0 0 1 0 0 0 1 3894.dat
 0 STEP
 
 0 // Step 2: the differential housing, centred between the bricks at hole height
