@@ -77,6 +77,9 @@ export function setUpInteraction(s: InteractionSetup) {
   s.ldrawSpace.add(arrow);
 
   let drag: Drag | null = null;
+  // True while the label shows a message (such as "Holding ... still") rather than the
+  // hovered part's name, until the pointer next moves.
+  let showingMessage = false;
 
   // ---------------------------------------------------------------------------
   // Coordinates
@@ -140,6 +143,12 @@ export function setUpInteraction(s: InteractionSetup) {
     placeLabel(clientX, clientY);
   }
 
+  // A message in the label, kept until the pointer next moves.
+  function showMessage(text: string, clientX: number, clientY: number) {
+    showLabel(text, clientX, clientY);
+    showingMessage = true;
+  }
+
   function hideLabel() {
     label.style.display = 'none';
   }
@@ -148,6 +157,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // Hover
 
   function hover(clientX: number, clientY: number) {
+    showingMessage = false;
     const hit = hitAt(clientX, clientY);
     const part = hit ? hit.part : -1;
     if (part !== s.appearance.hoveredPart) {
@@ -164,7 +174,7 @@ export function setUpInteraction(s: InteractionSetup) {
     const body = s.mech.bodies[s.mech.bodyOf[part]].name;
     showLabel(`${number} · ${role} · ${body}`, clientX, clientY);
     s.partTitle(name).then((title) => {
-      if (s.appearance.hoveredPart === part && !drag) showLabel(`${number} ${title} · ${role} · ${body}`, clientX, clientY);
+      if (s.appearance.hoveredPart === part && !drag && !showingMessage) showLabel(`${number} ${title} · ${role} · ${body}`, clientX, clientY);
     });
   }
 
@@ -269,13 +279,13 @@ export function setUpInteraction(s: InteractionSetup) {
   function toggleHold(body: number, clientX: number, clientY: number) {
     const name = s.mech.bodies[body].name;
     if (body === 0 && s.kin.frameHeld()) {
-      showLabel(`The ${name} is already held still, since nothing touches the ground`, clientX, clientY);
+      showMessage(`The ${name} is already held still, since nothing touches the ground`, clientX, clientY);
       return;
     }
     s.kin.toggleHold(body);
     s.onHoldChanged();
     const text = s.kin.isHeld(body) ? `Holding ${name} still · Alt-click again to let go` : `Let go of ${name}`;
-    showLabel(text, clientX, clientY);
+    showMessage(text, clientX, clientY);
   }
 
   // ---------------------------------------------------------------------------
@@ -321,7 +331,7 @@ export function setUpInteraction(s: InteractionSetup) {
       hideLabel();
 
       if (s.kin.freeMotions().length === 0) {
-        showLabel("Can't move: the mechanism is jammed", e.clientX, e.clientY);
+        showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {
         const { hub } = turnAxis(drag);
         const radius = Math.max(hit.point.distanceTo(hub), MIN_ARC_RADIUS);
@@ -330,7 +340,7 @@ export function setUpInteraction(s: InteractionSetup) {
         updateArc(drag);
       } else if (!updateArrow(drag)) {
         const why = s.kin.frameHeld() ? 'held still, since nothing touches the ground' : 'jammed';
-        showLabel(`This part can't move: it's ${why}`, e.clientX, e.clientY);
+        showMessage(`This part can't move: it's ${why}`, e.clientX, e.clientY);
       }
     },
     { capture: true },

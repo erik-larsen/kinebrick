@@ -19,6 +19,7 @@ import {
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
+import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { ConnectionTable, normalizePartName } from './connections.ts';
 import { setUpInteraction } from './interaction.ts';
@@ -26,6 +27,7 @@ import { makeJointAxes } from './jointAxes.ts';
 import { Kinematics } from './kinematics.ts';
 import { parseLdr } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
+import { Outlines } from './outlines.ts';
 
 // The test models in models/, and their names in the picker.
 const MODELS: [string, string][] = [
@@ -66,15 +68,25 @@ const ldrawSpace = new Group();
 ldrawSpace.rotation.x = Math.PI;
 scene.add(ldrawSpace);
 
+// Outlines are drawn after the scene; badges are HTML laid over it.
+const outlines = new Outlines(renderer, scene, camera);
+const badgeRenderer = new CSS2DRenderer();
+badgeRenderer.setSize(window.innerWidth, window.innerHeight);
+badgeRenderer.domElement.className = 'badges';
+document.body.appendChild(badgeRenderer.domElement);
+
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  outlines.setSize(window.innerWidth, window.innerHeight);
+  badgeRenderer.setSize(window.innerWidth, window.innerHeight);
 });
 
 renderer.setAnimationLoop(() => {
   controls.update();
-  renderer.render(scene, camera);
+  outlines.render();
+  badgeRenderer.render(scene, camera);
 });
 
 // ---------------------------------------------------------------------------
@@ -128,7 +140,7 @@ async function start() {
     obj.userData.startMatrix = obj.matrix.clone();
   });
 
-  const appearance = new Appearance(partObjects, mech);
+  const appearance = new Appearance(partObjects, mech, outlines);
   appearance.looseParts = new Set(mech.loose);
   appearance.update();
   showLooseWarning(parts.map((p) => p.name), mech.loose);
@@ -186,7 +198,7 @@ async function start() {
     showPoses();
   });
 
-  // Held parts glow cyan, and "Let go of all" shows while any are held.
+  // Held parts get a cyan outline and a pin badge, and "Let go of all" shows while any are held.
   const letGo = document.getElementById('letGo') as HTMLButtonElement;
   function showHolds() {
     appearance.heldBodies = new Set(kin.heldBodies());
@@ -231,14 +243,14 @@ function frameCamera(model: Object3D, groundY: number | null) {
   scene.add(grid);
 }
 
-// Lists the parts that aren't attached to the rest of the model (drawn in red), if any.
+// Lists the parts that aren't attached to the rest of the model (outlined red, marked ⚠), if any.
 async function showLooseWarning(names: string[], loose: number[]) {
   const warning = document.getElementById('warning')!;
   if (loose.length === 0) return;
   const shown = await Promise.all(loose.slice(0, 3).map(async (i) => `${names[i].replace(/\.dat$/, '')} ${await partTitle(names[i])}`));
   const more = loose.length > 3 ? `, and ${loose.length - 3} more` : '';
   const what = loose.length === 1 ? "1 part isn't" : `${loose.length} parts aren't`;
-  warning.textContent = `${what} attached to the rest of the model (shown in red): ${shown.join(', ')}${more}`;
+  warning.textContent = `${what} attached to the rest of the model (marked ⚠): ${shown.join(', ')}${more}`;
   warning.style.display = 'block';
 }
 

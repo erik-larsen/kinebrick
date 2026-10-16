@@ -29,7 +29,7 @@ The viewer draws each body in its own colour, each joint's axis and each gear me
 2. **Assign roles.** Each part is looked up in KineBrick's role list (see [Part roles](#part-roles)). Parts not in the list are `structure`.
 3. **Look up connection points.** Each part's connection points come from KineBrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
 4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too. A stud sitting in an anti-stud (the socket under a brick or plate) attaches two parts as well.
-5. **Check.** Every part should be attached to the rest of the model through some chain of connections. Parts that aren't are drawn in red and listed in the viewer, since they're usually in the wrong place: a brick half a stud off, sitting between the studs instead of on them, or floating above the plate.
+5. **Check.** Every part should be attached to the rest of the model through some chain of connections. Parts that aren't get a red outline and a ⚠ badge, and are listed in the viewer, since they're usually in the wrong place: a brick half a stud off, sitting between the studs instead of on them, or floating above the plate.
 6. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
 7. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. Two meshing gears say their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts; that works the same for spur gears side by side and bevel gears at an angle. A part the user holds still says its body doesn't turn. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; if no tyre touches it, the frame is held still instead. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
 8. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
@@ -66,15 +66,17 @@ More roles arrive with each milestone: gears, the differential, the rack, the wo
 
 All manipulation happens directly in the 3D view, by dragging parts with the mouse or a finger. There are no dialogs for moving parts, and no free xyz gizmo: a part can only move the ways its mechanism allows, so the view only offers those.
 
-1. **Hover.** The part under the cursor is highlighted, and the rest of its body (the parts that would move with it) gets a faint tint. A label shows the part's number, name, role and body, for example "3701 Technic Brick 1 x 4 with Holes · structure · frame".
+1. **Hover.** The part under the cursor glows yellow, and the rest of its body (the parts that would move with it) glows faintly. A label shows the part's number, name, role and body, for example "3701 Technic Brick 1 x 4 with Holes · structure · frame".
 2. **Press.** Pressing on a part fixes a grab point where the cursor touched it. The view shows how that point can move. Pressing a frame part shows an arrow for its straight-line motion (the car rolling). Pressing a part that spins on an axle (a gear, a crank, a tyre) shows an arc around the axle: dragging it turns the part, and everything connected follows. A tyre on the ground turns the same way, and the car rolls as it turns, so to push the car, grab the frame. The arc is measured against whatever the axle is mounted in, so it travels with a moving car and stays in step with the part. A part that can't move shows no handle, and a brief cue says why: it's jammed, or it's part of a frame held still because nothing touches the ground.
 3. **Drag.** Pushing a frame part: as the cursor moves, the mechanism moves as far along its allowed motion as needed to bring the grab point as close to the cursor as it can get. Every body moves with it. Dragging either 1x4 brick of the test car rolls the car in the direction of the drag. Turning a part that spins on an axle: the part turns like a knob, by the angle the cursor sweeps around its axle, and everything connected follows. A cursor that stops moving stops the turn, even if the axle is still being carried along (the car rolling), and close to the axle the turn is damped, so a short drag never gives a big turn. Gearing can still make the rest of the model move further than the cursor: on the geared car, turning the small 8 tooth gear rolls the car about three times as far, the other way.
 4. **Release.** The model stays where it was left. Momentum waits for forces in M7.
-5. **Hold.** Alt-clicking (Option-clicking on a Mac) a part holds its body still, and it glows cyan; Alt-clicking it again lets go, and "Let go of all" lets go of everything. A held part that turns on an axle stops turning; a held frame stops moving. This matters when a mechanism can move more than one way: a differential's two outputs can turn independently, so turning one alone leaves it open how the other and the housing share the motion. Hold the input still, and the other output must turn the opposite way.
+5. **Hold.** Alt-clicking (Option-clicking on a Mac) a part holds its body still: its parts get a cyan outline and the body a 📌 badge, like a grounded part in Fusion 360; Alt-clicking it again lets go, and "Let go of all" lets go of everything. A held part that turns on an axle stops turning; a held frame stops moving. This matters when a mechanism can move more than one way: a differential's two outputs can turn independently, so turning one alone leaves it open how the other and the housing share the motion. Hold the input still, and the other output must turn the opposite way.
 
 While dragging, a small readout shows the numbers, such as "moved 40 LDU · wheels 74°", so the motion can be checked by eye.
 
 Dragging on a part moves the mechanism; dragging on empty space turns the camera.
+
+Each kind of information has its own channel, so they never fight: fill colour says which body a part belongs to (or shows its own LEGO colours), a yellow glow shows what the pointer is on, and status gets an outline and a badge pinned to the part (📌 held in cyan, ⚠ loose in red). Outlines show through other parts in a darker shade.
 
 ## Milestones
 
@@ -95,6 +97,7 @@ A car with two fixed axles can't turn without its tyres sliding sideways, which 
 
 ### Later
 
+- **Marching ants for loose parts.** A loose part's own edge lines drawn dashed and crawling, on top of its red outline. Motion draws the eye, and it would only appear when something's wrong.
 - **Suggest a fix for a loose part.** For a part that isn't attached, find the nearest position where its anti-studs would land on studs, and suggest moving it there ("move 10 LDU along z to sit on the plate"). Suggest only; KineBrick doesn't edit models.
 - **Clips, hinges and ball joints.** The LDCad shadow library describes these with their own kinds of snap line, which KineBrick doesn't read yet, so a part held only by a clip or hinge is wrongly reported as loose.
 
@@ -136,7 +139,8 @@ Other commands:
 | `src/interaction.ts` | Hover, press, drag (see [Interaction](#interaction)) |
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
 | `src/turn.test.ts` | Tests for the above |
-| `src/appearance.ts` | Body colours and hover highlighting |
+| `src/appearance.ts` | How parts look: fill colour for which body, yellow glow for hover, outlines and badges for status |
+| `src/outlines.ts` | Outlines drawn around parts after the scene renders |
 | `src/jointAxes.ts` | Draws joint axes |
 | `src/connections.ts` | What a connection point looks like in the table |
 | `scripts/build-connections.ts` | Builds the connection table |
