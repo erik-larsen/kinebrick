@@ -279,7 +279,7 @@ export function setUpInteraction(s: InteractionSetup) {
   function toggleHold(body: number, clientX: number, clientY: number) {
     const name = s.mech.bodies[body].name;
     if (body === 0 && s.kin.frameHeld()) {
-      showMessage(`The ${name} is already held still, since nothing touches the ground`, clientX, clientY);
+      showMessage(`The ${name} already stays put: the model has no means of locomotion`, clientX, clientY);
       return;
     }
     s.kin.toggleHold(body);
@@ -291,8 +291,21 @@ export function setUpInteraction(s: InteractionSetup) {
   // ---------------------------------------------------------------------------
   // Press, move, release
 
+  // In how many independent directions the grabbed point can move.
+  function grabDirections(d: Drag): number {
+    const g = grabPoint(d);
+    const basis: Vector3[] = [];
+    for (const m of s.kin.freeMotions()) {
+      const v = s.kin.pointVelocity(m, d.body, g);
+      for (const b of basis) v.addScaledVector(b, -v.dot(b));
+      if (v.length() > 1e-6) basis.push(v.normalize());
+    }
+    return basis.length;
+  }
+
   function endDrag() {
     if (!drag) return;
+    s.kin.letGoAfterDrag();
     if (canvas.hasPointerCapture(drag.pointerId)) canvas.releasePointerCapture(drag.pointerId);
     if (drag.arc) {
       s.ldrawSpace.remove(drag.arc);
@@ -330,6 +343,15 @@ export function setUpInteraction(s: InteractionSetup) {
       drag = { pointerId: e.pointerId, body, grabStart, joint: link ? link.joint : -1, arc: null, lastX: e.clientX, lastY: e.clientY };
       hideLabel();
 
+      // Hold still whatever this drag doesn't need to move.
+      const d = drag;
+      if (d.joint >= 0) {
+        s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null);
+      } else {
+        const directions = grabDirections(d);
+        if (directions > 0) s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
+      }
+
       if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {
@@ -339,8 +361,8 @@ export function setUpInteraction(s: InteractionSetup) {
         s.ldrawSpace.add(drag.arc);
         updateArc(drag);
       } else if (!updateArrow(drag)) {
-        const why = s.kin.frameHeld() ? 'held still, since nothing touches the ground' : 'jammed';
-        showMessage(`This part can't move: it's ${why}`, e.clientX, e.clientY);
+        const why = s.kin.frameHeld() ? 'the model has no means of locomotion' : "it's jammed";
+        showMessage(`This part can't move: ${why}`, e.clientX, e.clientY);
       }
     },
     { capture: true },

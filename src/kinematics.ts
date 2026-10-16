@@ -37,6 +37,10 @@ export class Kinematics {
   poses: Matrix4[] = [];
   // Each joint's angle in radians, measured from the start. Only joints in the tree are used.
   jointAngles: number[] = [];
+  // How far each tyre's hub has rolled since the start, in LDU, forwards positive (forwards is
+  // the way the tyre rolls when it turns positive about its axis). Rolling without slipping,
+  // the tyre turns by this ÷ its radius.
+  treadTravel: number[] = [];
   // The ground's height (LDraw y), or null if no tyre touches it.
   groundY: number | null = null;
 
@@ -47,8 +51,9 @@ export class Kinematics {
   private parentJoint: number[] = [];
   private order: number[] = []; // bodies, parents before children
   private rootPoses = new Map<number, Matrix4>();
-  private fixedBody = -1; // held still when nothing touches the ground
+  private fixedBody = -1; // held still when the model has no tyres on the ground
   private held = new Set<number>(); // bodies the user is holding still
+  private dragHeld = new Set<number>(); // bodies held still for the length of one drag
   private contactTreads: number[] = []; // indices into mech.treads
 
   constructor(mech: Mechanism) {
@@ -62,6 +67,7 @@ export class Kinematics {
   // Back to the starting position.
   reset() {
     this.jointAngles = this.mech.joints.map(() => 0);
+    this.treadTravel = this.mech.treads.map(() => 0);
     for (const root of this.rootPoses.keys()) this.rootPoses.set(root, new Matrix4());
     this.updatePoses();
   }
@@ -153,7 +159,7 @@ export class Kinematics {
     return { point: j.from.clone().applyMatrix4(pose), dir: axisOf(j.from, j.to).transformDirection(pose) };
   }
 
-  // Whether the frame is held still (nothing touches the ground).
+  // Whether the frame is held still (the model has no tyres on the ground).
   frameHeld(): boolean {
     return this.fixedBody >= 0;
   }
@@ -177,6 +183,31 @@ export class Kinematics {
     this.held.clear();
   }
 
+  // Before a drag: holds still everything the drag doesn't need to move, so that pushing a
+  // car leaves its steering alone and turning its steering wheel leaves the car where it is.
+  // Tries holding each body that turns on a joint, deepest in the mechanism first (a planet
+  // gear before its differential), and keeps each hold for which `stillPossible` says the drag
+  // can still happen. `grabbed` is never held, and nor are wheels with tyres: rolling is their
+  // job (holding one front wheel would let the car pivot round it while the steering moves).
+  holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean) {
+    this.dragHeld.clear();
+    const depth = (body: number): number => {
+      const link = this.parentLink(body);
+      return link ? 1 + depth(link.parent) : 0;
+    };
+    const wheels = new Set(this.mech.treads.map((t) => t.body));
+    const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.held.has(b) && !wheels.has(b));
+    candidates.sort((a, b) => depth(b) - depth(a) || a - b);
+    for (const body of candidates) {
+      this.dragHeld.add(body);
+      if (!stillPossible()) this.dragHeld.delete(body);
+    }
+  }
+
+  letGoAfterDrag() {
+    this.dragHeld.clear();
+  }
+
   // ---------------------------------------------------------------------------
   // The equations
 
@@ -184,7 +215,7 @@ export class Kinematics {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
 
-    const fixed = new Set(this.held);
+    const fixed = new Set([...this.held, ...this.dragHeld]);
     if (this.fixedBody >= 0) fixed.add(this.fixedBody);
     for (const body of fixed) {
       const j = this.parentJoint[body];
@@ -301,8 +332,10 @@ export class Kinematics {
 
   // The motions the mechanism allows right now, as motion vectors (6 numbers per body).
   // An empty list means it's jammed.
+  // They're made orthonormal, so that mixing them by least squares gives the smallest overall
+  // motion (turning the steering wheel shouldn't also roll the car).
   freeMotions(): number[][] {
-    return nullSpace(this.equations(), 6 * this.bodyCount);
+    return orthonormalize(nullSpace(this.equations(), 6 * this.bodyCount));
   }
 
   // How fast a point on a body moves under a motion vector.
@@ -338,22 +371,66 @@ export class Kinematics {
   }
 
   // The motion vector that turns a joint at rate 1 (one radian per unit), with the rest of
-  // the mechanism following: the smallest mix of the free motions that does it. Null if the
-  // joint can't turn.
+  // the mechanism following. If the joint can turn with the frame standing still, it does
+  // (turning a steering wheel turns the front axle without rolling the car); otherwise the
+  // frame moves too. Among the motions that qualify, it picks the smallest. Null if the joint
+  // can't turn.
   jointMotion(joint: number): number[] | null {
-    const motions = this.freeMotions();
-    // Each motion's share is proportional to how fast it turns the joint.
-    const rates = motions.map((m) => this.jointRate(m, joint));
-    const total = rates.reduce((sum, r) => sum + r * r, 0);
-    if (total < EPSILON) return null;
-    const combined = new Array(6 * this.bodyCount).fill(0);
-    motions.forEach((m, k) => m.forEach((x, idx) => (combined[idx] += (x * rates[k]) / total)));
-    return combined;
+    const all = this.freeMotions();
+    return smallestTurning(this.frameStill(all), (m) => this.jointRate(m, joint)) ?? smallestTurning(all, (m) => this.jointRate(m, joint));
+  }
+
+  // The radius of the circle the frame's origin is driving round right now, Infinity when
+  // it's driving straight, or null if the frame can't move. (Only steering and rolling move a
+  // car's frame, so this takes the free motion that moves the frame, if there's one.)
+  frameTurningRadius(): number | null {
+    const all = this.freeMotions();
+    const still = this.frameStill(all);
+    let best: number[] | null = null;
+    let bestSpeed = EPSILON;
+    for (const m of all) {
+      // Take out any part of it that leaves the frame where it is.
+      const moving = m.slice();
+      for (const b of still) {
+        const d = moving.reduce((sum, x, i) => sum + x * b[i], 0);
+        for (let i = 0; i < moving.length; i++) moving[i] -= d * b[i];
+      }
+      const speed = this.pointVelocity(moving, 0, new Vector3().applyMatrix4(this.poses[0])).length();
+      if (speed > bestSpeed) {
+        best = moving;
+        bestSpeed = speed;
+      }
+    }
+    if (!best) return null;
+    const turnRate = new Vector3(best[0], best[1], best[2]).length();
+    return turnRate < EPSILON ? Infinity : bestSpeed / turnRate;
+  }
+
+  // The free motions that leave the frame (body 0) where it is, made orthonormal.
+  private frameStill(motions: number[][]): number[][] {
+    if (motions.length === 0) return [];
+    // Mixes a of the motions with  Σ a_k · (frame part of m_k) = 0.
+    const rows: number[][] = [];
+    for (let c = 0; c < 6; c++) rows.push(motions.map((m) => m[c]));
+    const mixes = nullSpace(rows, motions.length);
+    const combined = mixes.map((a) => {
+      const v = new Array(motions[0].length).fill(0);
+      a.forEach((ak, k) => motions[k].forEach((x, i) => (v[i] += ak * x)));
+      return v;
+    });
+    return orthonormalize(combined);
   }
 
   // Moves the mechanism along a motion vector, scaled by `amount`. Keep steps small (a few
   // LDU, a few degrees): the motion is only exact at the start of the step.
   advance(motion: number[], amount: number) {
+    this.mech.treads.forEach((t, i) => {
+      const pose = this.poses[t.body];
+      const hub = t.center.clone().applyMatrix4(pose);
+      // Turning positive about the axis a, with the ground below, carries the hub along down × a.
+      const forward = new Vector3().crossVectors(DOWN, t.axis.clone().transformDirection(pose)).normalize();
+      this.treadTravel[i] += this.pointVelocity(motion, t.body, hub).dot(forward) * amount;
+    });
     this.mech.joints.forEach((_, j) => {
       this.jointAngles[j] += this.jointRate(motion, j) * amount;
     });
@@ -422,6 +499,33 @@ function screwMotion(w: Vector3, v: Vector3): Matrix4 {
   const pointOnAxis = new Vector3().crossVectors(w, v).divideScalar(angle * angle);
   const slide = axis.clone().multiplyScalar(v.dot(axis));
   return new Matrix4().makeTranslation(slide.x, slide.y, slide.z).multiply(rotationAbout(pointOnAxis, axis, angle));
+}
+
+// Of orthonormal motions, the smallest mix that turns at rate 1 (by `rate`), or null if none
+// of them turns at all. With orthonormal motions, each one's share is proportional to its rate.
+function smallestTurning(motions: number[][], rate: (m: number[]) => number): number[] | null {
+  const rates = motions.map(rate);
+  const total = rates.reduce((sum, r) => sum + r * r, 0);
+  if (total < EPSILON) return null;
+  const combined = new Array(motions[0].length).fill(0);
+  motions.forEach((m, k) => m.forEach((x, i) => (combined[i] += (x * rates[k]) / total)));
+  return combined;
+}
+
+// The same vectors made orthonormal (unit length, at right angles to each other), by
+// Gram-Schmidt.
+function orthonormalize(vectors: number[][]): number[][] {
+  const result: number[][] = [];
+  for (const v of vectors) {
+    const u = v.slice();
+    for (const b of result) {
+      const d = u.reduce((sum, x, i) => sum + x * b[i], 0);
+      for (let i = 0; i < u.length; i++) u[i] -= d * b[i];
+    }
+    const len = Math.sqrt(u.reduce((sum, x) => sum + x * x, 0));
+    if (len > EPSILON) result.push(u.map((x) => x / len));
+  }
+  return result;
 }
 
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).

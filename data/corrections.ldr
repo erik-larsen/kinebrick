@@ -13,6 +13,10 @@
 0 // Tyre 56 x 17 Offset Tread: sits on a 22 LDU radius rim seat, 18 LDU wide
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 22 18] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 3634.dat
+0 // Tyre 10/130 x 17 Offset Tread: a big tyre for the same rims (3482), its tread offset towards -z
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 22 18] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 // Spur gears. Pitch radius is 1.25 LDU per tooth, so two meshing gears' axles are
 0 // (teeth1 + teeth2) x 1.25 LDU apart. Every gear's axis runs along z, teeth 9.5 LDU wide.
 

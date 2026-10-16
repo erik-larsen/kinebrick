@@ -22,8 +22,7 @@ interface WorldCylinder {
 
 // rigid     the parts turn together (an axle in an axle hole, a tyre on a rim)
 // revolute  the parts can turn about the shared axis (an axle in a round hole)
-// stud      a stud in an anti-stud: the parts are attached, and all structure parts move as
-//           one frame anyway, so it's only used to check that every part is attached
+// stud      a stud in an anti-stud: the parts are attached and move together
 export type ConnectionKind = 'rigid' | 'revolute' | 'stud';
 
 // Two parts joined at one pair of connection points.
@@ -334,8 +333,9 @@ function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
   };
 }
 
-// Step 6: all structure parts form one body, the frame; rigid connections merge more parts
-// into bodies. Returns the body index of each part.
+// Step 6: parts that are rigidly connected (an axle in an axle hole, a tyre on a rim) or
+// attached by studs move as one body. The frame is the body with the most structure parts
+// (bricks, plates, beams), and is numbered 0. Returns the body index of each part.
 function groupIntoBodies(count: number, roles: string[], connections: Connection[]): number[] {
   // Union-find: each part points towards a representative part of its group.
   const leader = Array.from({ length: count }, (_, i) => i);
@@ -343,23 +343,21 @@ function groupIntoBodies(count: number, roles: string[], connections: Connection
     while (leader[i] !== i) i = leader[i];
     return i;
   };
-  const merge = (a: number, b: number) => {
-    leader[find(a)] = find(b);
-  };
-
-  let firstStructure = -1;
-  for (let i = 0; i < count; i++) {
-    if (roles[i] !== 'structure') continue;
-    if (firstStructure < 0) firstStructure = i;
-    else merge(i, firstStructure);
-  }
   for (const c of connections) {
-    if (c.kind === 'rigid') merge(c.male, c.female);
+    if (c.kind === 'rigid' || c.kind === 'stud') leader[find(c.male)] = find(c.female);
   }
+
+  // The frame: the group with the most structure parts.
+  const structureCount = new Map<number, number>();
+  for (let i = 0; i < count; i++) {
+    if (roles[i] === 'structure') structureCount.set(find(i), (structureCount.get(find(i)) ?? 0) + 1);
+  }
+  let frame = -1;
+  for (const [group, n] of structureCount) if (frame < 0 || n > structureCount.get(frame)!) frame = group;
 
   // Number the groups 0, 1, 2, ... with the frame (if any) first.
   const bodyOfLeader = new Map<number, number>();
-  if (firstStructure >= 0) bodyOfLeader.set(find(firstStructure), 0);
+  if (frame >= 0) bodyOfLeader.set(frame, 0);
   const bodyOf: number[] = [];
   for (let i = 0; i < count; i++) {
     const l = find(i);
@@ -371,6 +369,7 @@ function groupIntoBodies(count: number, roles: string[], connections: Connection
 
 // Bodies are named after their most telling part: "frame", "wheels 1", "gear 2", ...
 const BODY_NOUNS: [string, string][] = [
+  ['steering wheel', 'steering wheel'],
   ['tyre', 'wheels'],
   ['rim', 'wheels'],
   ['differential', 'differential'],
@@ -385,16 +384,17 @@ function nameBodies(bodyOf: number[], roles: string[]): Body[] {
     bodies[b].parts.push(part);
   });
   const counts = new Map<string, number>();
-  for (const body of bodies) {
+  bodies.forEach((body, i) => {
     const bodyRoles = body.parts.map((p) => roles[p]);
-    if (bodyRoles.includes('structure')) {
+    if (i === 0 && bodyRoles.includes('structure')) {
       body.name = 'frame';
-      continue;
+      return;
     }
-    const noun = BODY_NOUNS.find(([role]) => bodyRoles.includes(role))?.[1] ?? 'body';
+    // Other bodies with bricks or beams in them are assemblies (a steering axle's carrier).
+    const noun = bodyRoles.includes('structure') ? 'assembly' : (BODY_NOUNS.find(([role]) => bodyRoles.includes(role))?.[1] ?? 'body');
     counts.set(noun, (counts.get(noun) ?? 0) + 1);
     body.name = `${noun} ${counts.get(noun)}`;
-  }
+  });
   return bodies;
 }
 

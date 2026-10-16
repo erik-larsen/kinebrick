@@ -10,7 +10,9 @@ import { Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 
 // One colour per body; the frame is first. Repeats if there are more bodies than colours.
-const BODY_COLOURS = [0x8a94a6, 0xe8833a, 0x2a9d8f, 0x7b5ea7, 0x5b8e7d, 0x9c6644, 0x8ab547, 0xedae49];
+const BODY_COLOURS = [
+  0x8a94a6, 0xe8833a, 0x2a9d8f, 0x7b5ea7, 0x5b8e7d, 0x9c6644, 0x8ab547, 0xedae49, 0x6b705c, 0xcb997e, 0x264653, 0xb5838d,
+];
 const HOVER_GLOW = new Color(0xffd23f);
 const GLOW_STRENGTH = { part: 0.55, body: 0.15 };
 

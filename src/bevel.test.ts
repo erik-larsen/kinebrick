@@ -86,6 +86,17 @@ describe('differential', () => {
     expect(Math.abs(turnAboutZ(housing))).toBeCloseTo(0.4, 6);
   });
 
+  it('as a drag would, turning the input with nothing held keeps the outputs together', () => {
+    kin.reset();
+    kin.letGoOfAll();
+    const j = jointOf(input);
+    kin.holdWhatTheDragDoesntNeed(input, () => kin.jointMotion(j) !== null);
+    kin.turnJoint(j, 1.5);
+    kin.letGoAfterDrag();
+    expect(turnAboutZ(left)).toBeCloseTo(turnAboutZ(right), 6);
+    expect(Math.abs(turnAboutZ(housing))).toBeCloseTo(0.5, 6);
+  });
+
   it('jams when the input and one output are both held', () => {
     kin.reset();
     kin.letGoOfAll();

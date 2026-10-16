@@ -36,6 +36,8 @@ const MODELS: [string, string][] = [
   ['gear-train', 'Gear train'],
   ['right-angle', 'Right-angle drive'],
   ['differential', 'Differential'],
+  ['steering-car', 'Steering car'],
+  ['steering-car-solid', 'Steering car, solid rear axle'],
 ];
 const modelParam = new URLSearchParams(window.location.search).get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
@@ -261,10 +263,13 @@ async function showLooseWarning(names: string[], loose: number[]) {
 function updateReadout(mech: Mechanism, kin: Kinematics) {
   const readout = document.getElementById('readout')!;
   const lines: string[] = [];
-  let distance = 0;
   if (kin.groundY !== null) {
-    distance = new Vector3(0, 0, 0).applyMatrix4(kin.poses[0]).length();
-    lines.push(`frame moved ${distance.toFixed(1)} LDU`);
+    const moved = new Vector3(0, 0, 0).applyMatrix4(kin.poses[0]).length();
+    const radius = kin.frameTurningRadius();
+    let line = `frame moved ${moved.toFixed(1)} LDU`;
+    if (radius === Infinity) line += ', driving straight';
+    else if (radius !== null) line += `, turning circle radius ${radius.toFixed(0)} LDU`;
+    lines.push(line);
   }
   // One line per body that turns on a joint: how far it has turned relative to what it's
   // mounted on (the frame, unless it says otherwise).
@@ -278,10 +283,12 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     let line = `${name} turned ${degrees.toFixed(1)}°`;
     if (turn.mount !== 0) line += ` in ${mech.bodies[turn.mount].name}`;
     if (kin.isHeld(b)) line += ' (held)';
-    const tread = mech.treads.find((t) => t.body === b);
-    if (tread && kin.groundY !== null) {
-      const expected = ((distance / tread.radius) * 180) / Math.PI;
-      line += ` (expected ${distance.toFixed(1)} ÷ ${tread.radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
+    // A wheel on the ground: its turn should match how far it rolled ÷ its radius.
+    const t = mech.treads.findIndex((tr) => tr.body === b);
+    if (t >= 0 && kin.groundY !== null) {
+      const rolled = Math.abs(kin.treadTravel[t]);
+      const expected = ((rolled / mech.treads[t].radius) * 180) / Math.PI;
+      line += ` (rolled ${rolled.toFixed(1)} ÷ ${mech.treads[t].radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
     }
     lines.push(line);
   });
