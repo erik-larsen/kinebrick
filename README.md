@@ -19,12 +19,23 @@ Planning. Nothing runs yet. The first test model is [models/simple-car.ldr](mode
 
 1. **Load.** `LDrawLoader` reads the model and the official LDraw parts library. Each part becomes its own 3D object that can be moved on its own.
 2. **Assign roles.** Each part is looked up in kinebrick's role list (see [Part roles](#part-roles)). Parts not in the list are `structure`.
-3. **Connect the moving parts.** LDraw parts are built from shared pieces of geometry called primitives, and some primitives mark connection points: a Technic brick's round holes are copies of `peghole.dat`, a rim's centre is a copy of `axlehol5.dat`. Where these primitives sit tells us where a part can connect and how. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on a rim is rigid too; no primitive marks that, so the `tyre` role supplies it.
-4. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
-5. **Solve.** Joints and ground contact become equations between the bodies' speeds. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
-6. **Animate.** The user pushes the model; the solver works out how every body moves; the viewer moves each body's parts.
+3. **Look up connection points.** Each part's connection points come from kinebrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
+4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too.
+5. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
+6. **Solve.** Joints and ground contact become equations between the bodies' speeds. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
+7. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
 
-Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then kinebrick will need to know how structure parts attach to each other, for example through the stud connection data in the LDCad shadow library.
+Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then kinebrick will need to know how structure parts attach to each other. The connection table already lists studs, so the data will be there.
+
+## The connection table
+
+The connection table lists the connection points of every part kinebrick knows about. The viewer only reads the table; a script builds it from three sources:
+
+1. **The LDraw parts library.** Parts are built from shared pieces of geometry called primitives, and the library says which primitives each part uses and where they sit. Many parts reuse the same primitives for the same features: a rim's centre is a copy of `axlehol5.dat`, a stud is a copy of `stud.dat`.
+2. **The [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary).** LDCad is a LEGO CAD program, and its shadow library adds connection data to LDraw parts and primitives: each hole, axle, pin or stud with its position, direction, length and cross-section (round, axle-shaped, or a pin's ridges and collars). Data on a primitive carries into every part that uses it, so describing `axlehol5.dat` once covers every rim built from it. It's called a shadow library because its files mirror the LDraw library's folders and file names, and LDCad loads each one alongside the LDraw file of the same name, as if its lines were part of that file, without changing the official file.
+3. **kinebrick's own corrections.** A short hand-written file adds what neither source covers: where a tyre sits on its rim, gear tooth counts, and whether a pin turns freely or holds by friction (the shadow library treats both kinds of pin the same).
+
+The table is committed to the repository so that changes to it can be reviewed. When the LDraw or shadow library updates, we rebuild it and check the diff. It only covers parts that matter for movement: parts with a role, and parts with Technic holes that axles and pins can go through. It grows with each milestone's test models.
 
 ## Part roles
 
@@ -39,14 +50,27 @@ A role is a short label for what a part does in a mechanism. It tells kinebrick 
 
 More roles arrive with each milestone: gears, the differential, the rack, the worm gear, clutch gears, driving rings, pins, linkages, springs.
 
+## Interaction
+
+All manipulation happens directly in the 3D view, by dragging parts with the mouse or a finger. There are no dialogs for moving parts, and no free xyz gizmo: a part can only move the ways its mechanism allows, so the view only offers those.
+
+1. **Hover.** The part under the cursor is highlighted, and the rest of its body (the parts that would move with it) gets a faint tint. A label shows the part's number, name, role and body, for example "3701 Technic Brick 1 x 4 with Holes · structure · frame".
+2. **Press.** Pressing on a part fixes a grab point where the cursor touched it. The view shows how that point can move: an arrow for a straight-line motion (the car rolling), an arc for a turning one (a crank). A part that can't move shows no handle, and a brief cue says it's jammed.
+3. **Drag.** As the cursor moves, the mechanism moves as far along its allowed motion as needed to bring the grab point as close to the cursor as it can get. Every body moves with it. Dragging either 1x4 brick of the test car rolls the car in the direction of the drag.
+4. **Release.** The model stays where it was left. Momentum waits for forces in M7.
+
+While dragging, a small readout shows the numbers, such as "moved 40 LDU · wheels 74°", so the motion can be checked by eye.
+
+Dragging on a part moves the mechanism; dragging on empty space turns the camera.
+
 ## Milestones
 
 Each milestone ends with a model that moves correctly and a test that checks it.
 
 | # | Milestone | Done when |
 |---|---|---|
-| M0 | Viewer and connection debug view | The test car loads. Each body is drawn in its own colour and each joint shows its axis. |
-| M1 | Rolling car | Pushing either 1x4 brick of the test car rolls the car in the direction of the push, and all four wheels turn by the right amount (distance ÷ tyre radius). Straight line only. |
+| M0 | Viewer and connection debug view | The test car loads. Each body is drawn in its own colour and each joint shows its axis. Hovering a part highlights it, tints its body, and labels it with its number, name, role and body. |
+| M1 | Rolling car | Pressing a frame part of the test car shows an arrow along the car's length. Dragging either 1x4 brick rolls the car in the direction of the drag, and all four wheels turn by the right amount (distance ÷ tyre radius), shown in the readout. Straight line only. |
 | M2 | Spur gears | Gear trains on parallel axles turn at the right ratios. Pushing the car can drive a gear train. |
 | M3 | Bevel gears and differential | Right-angle drives work. A differential lets the two wheels on one axle turn at different speeds. |
 | M4 | Steering | Rack and pinion steering turns the front wheels, and the car follows a curve. |
@@ -78,15 +102,15 @@ The project uses plain TypeScript, and [Vite](https://vite.dev) as its developme
 |---|---|---|
 | [LDraw parts library](https://library.ldraw.org) | Part shapes and connection primitives | CC BY 4.0 |
 | [three.js](https://threejs.org) | Rendering and LDraw loading | MIT |
-| [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Possible later source of stud connection data (see [How it works](#how-it-works)) | CC BY-SA 4.0: anything derived from it must be shared under the same license |
+| [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Connection points in the [connection table](#the-connection-table) | CC BY-SA 4.0 |
 
 ## Prior art
 
 - **[SR 3D Builder](https://wiki.ldraw.org/wiki/Sr3d).** Windows LEGO CAD that could animate gears, hinges and pistons. Discontinued, and its own website is gone, so this links to the LDraw wiki.
 - **[LDCad](https://www.melkert.net/LDCad).** LEGO CAD whose animations are written by hand in Lua for each model.
 - **[TechnicBrickPower gear calculator](https://www.eurobricks.com/forum/forums/topic/186656-new-technic-gear-ratio-calculator-tool).** Web tool that finds the gear trains in an LDraw file and shows their ratios. Gears only, and no live animation.
-- **[yoff/LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation).** Python tool that finds bodies, joints and gear meshes in an LDraw file and exports them to Blender or MuJoCo. kinebrick borrows its approach of reading connection points from primitives. Its code can't be reused directly: it's Python, and it has no license.
+- **[yoff/LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation).** Python tool that finds bodies, joints and gear meshes in an LDraw file and exports them to Blender or MuJoCo. Like kinebrick's connection table, it gets connection points from LDraw primitives. Its code can't be reused directly: it's Python, and it has no license.
 
 ## License
 
-[MIT](LICENSE).
+The code is [MIT](LICENSE). The connection table is derived from the LDCad shadow library, so it is shared under the same license, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
