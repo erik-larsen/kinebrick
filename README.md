@@ -6,7 +6,13 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model of a simpl
 
 ## Status
 
-M1 works: drag any part of the test car, [models/simple-car.ldr](models/simple-car.ldr), and it rolls along its length, its wheels turning by distance ÷ tyre radius. The viewer also draws each body in its own colour and each joint's axis, and labels the part under the pointer (M0). Next is M2, spur gears.
+M2 works. Three test models, picked from a menu in the viewer:
+
+- [Simple car](models/simple-car.ldr): drag the frame and it rolls along its length, its wheels turning by distance ÷ tyre radius; turn a tyre and the car rolls with it.
+- [Geared car](models/geared-car.ldr): the same car with two 8 tooth gears inside, so rolling the car spins a second axle the other way.
+- [Gear train](models/gear-train.ldr): 8, 24 and 40 tooth gears on a Technic brick. Turning any gear turns the others at the right ratios (the 40 tooth gear turns 1/5 as far as the 8 tooth gear).
+
+The viewer draws each body in its own colour, each joint's axis and each gear mesh, and labels the part under the pointer. Next is M3, bevel gears and the differential.
 
 ## What KineBrick is, and isn't
 
@@ -22,7 +28,7 @@ M1 works: drag any part of the test car, [models/simple-car.ldr](models/simple-c
 3. **Look up connection points.** Each part's connection points come from KineBrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
 4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too.
 5. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
-6. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; if no tyre touches it, the frame is held still instead. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
+6. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. Two meshing gears say their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; if no tyre touches it, the frame is held still instead. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
 7. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
 
 Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then KineBrick will need to know how structure parts attach to each other. The connection table already lists studs, so the data will be there.
@@ -47,6 +53,7 @@ A role is a short label for what a part does in a mechanism. It tells KineBrick 
 | `axle` | 3706 Technic Axle 6 | Locks into axle holes, turns freely in round holes. |
 | `rim` | 3482 Wheel Rim 8 x 17.5 | Carries a tyre. Locks onto an axle through its axle hole. |
 | `tyre` | 3483 Tyre 56 x 17 | Locks onto the rim it sits on. Rolls on the ground without slipping. |
+| `gear` | 3647, 4019, 3648, 3649 Technic Gear 8, 16, 24, 40 Tooth | Locks onto an axle through its axle hole. Meshes with a gear whose axle is parallel and exactly the two gears' pitch radii away (1.25 LDU per tooth). |
 
 More roles arrive with each milestone: gears, the differential, the rack, the worm gear, clutch gears, driving rings, pins, linkages, springs.
 
@@ -55,8 +62,8 @@ More roles arrive with each milestone: gears, the differential, the rack, the wo
 All manipulation happens directly in the 3D view, by dragging parts with the mouse or a finger. There are no dialogs for moving parts, and no free xyz gizmo: a part can only move the ways its mechanism allows, so the view only offers those.
 
 1. **Hover.** The part under the cursor is highlighted, and the rest of its body (the parts that would move with it) gets a faint tint. A label shows the part's number, name, role and body, for example "3701 Technic Brick 1 x 4 with Holes · structure · frame".
-2. **Press.** Pressing on a part fixes a grab point where the cursor touched it. The view shows how that point can move. Pressing a frame part shows an arrow for its straight-line motion (the car rolling). Pressing a part that spins on an axle (a gear, a crank, a tyre) shows an arc around the axle: dragging it turns the part, and everything connected follows. A tyre on the ground turns the same way, and the car rolls as it turns, so to push the car, grab the frame. The arc is measured against whatever the axle is mounted in, so it travels with a moving car and stays in step with the part. A part that can't move shows no handle, and a brief cue says it's jammed. (Until M2, a tyre instead pushes the car through its axle.)
-3. **Drag.** As the cursor moves, the mechanism moves as far along its allowed motion as needed to bring the grab point as close to the cursor as it can get. Every body moves with it. Dragging either 1x4 brick of the test car rolls the car in the direction of the drag.
+2. **Press.** Pressing on a part fixes a grab point where the cursor touched it. The view shows how that point can move. Pressing a frame part shows an arrow for its straight-line motion (the car rolling). Pressing a part that spins on an axle (a gear, a crank, a tyre) shows an arc around the axle: dragging it turns the part, and everything connected follows. A tyre on the ground turns the same way, and the car rolls as it turns, so to push the car, grab the frame. The arc is measured against whatever the axle is mounted in, so it travels with a moving car and stays in step with the part. A part that can't move shows no handle, and a brief cue says why: it's jammed, or it's part of a frame held still because nothing touches the ground.
+3. **Drag.** Pushing a frame part: as the cursor moves, the mechanism moves as far along its allowed motion as needed to bring the grab point as close to the cursor as it can get. Every body moves with it. Dragging either 1x4 brick of the test car rolls the car in the direction of the drag. Turning a part that spins on an axle: the part turns like a knob, by the angle the cursor sweeps around its axle, and everything connected follows. A cursor that stops moving stops the turn, even if the axle is still being carried along (the car rolling), and close to the axle the turn is damped, so a short drag never gives a big turn. Gearing can still make the rest of the model move further than the cursor: on the geared car, turning the small 8 tooth gear rolls the car about three times as far, the other way.
 4. **Release.** The model stays where it was left. Momentum waits for forces in M7.
 
 While dragging, a small readout shows the numbers, such as "moved 40 LDU · wheels 74°", so the motion can be checked by eye.
@@ -92,7 +99,7 @@ You need [Node.js](https://nodejs.org) (which comes with `npm`) and the LDraw pa
 
 1. Download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) from LDraw.org and unzip it into the project folder, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`. The `ldraw/` folder is not committed to git.
 2. Install the dependencies: `npm install`
-3. Start the viewer: `npm run dev`, then open the address it prints.
+3. Start the viewer: `npm run dev`, then open the address it prints. Pick a test model from the menu at the top left.
 
 The project uses plain TypeScript, and [Vite](https://vite.dev) as its development server: Vite serves the code to the browser, converts TypeScript to JavaScript as it goes, and reloads the page whenever a file is saved.
 
@@ -106,13 +113,16 @@ Other commands:
 | Path | What's in it |
 |---|---|
 | `models/` | Test models |
-| `src/main.ts` | The viewer: loading, camera, readout |
+| `src/main.ts` | The viewer: model picker, loading, camera, readout |
 | `src/ldr.ts` | Reads the parts of an LDraw model file |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 5) |
 | `src/mechanism.test.ts` | Tests for the above, using the test car |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 6) |
 | `src/kinematics.test.ts` | Tests for the above: the car rolls the right distance per wheel turn and stays on the ground |
+| `src/gears.test.ts` | Tests for gear trains: ratios, direction, and the geared car |
 | `src/interaction.ts` | Hover, press, drag (see [Interaction](#interaction)) |
+| `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
+| `src/turn.test.ts` | Tests for the above |
 | `src/appearance.ts` | Body colours and hover highlighting |
 | `src/jointAxes.ts` | Draws joint axes |
 | `src/connections.ts` | What a connection point looks like in the table |

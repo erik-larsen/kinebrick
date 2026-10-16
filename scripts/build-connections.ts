@@ -90,7 +90,7 @@ function readCorrections(): Map<string, string[]> {
     if (trimmed.startsWith('0 FILE ')) {
       current = [];
       result.set(normalizePartName(trimmed.slice(7)), current);
-    } else if (current && trimmed.startsWith('0 !LDCAD')) {
+    } else if (current && (trimmed.startsWith('0 !LDCAD') || trimmed.startsWith('0 !KINEBRICK'))) {
       current.push(trimmed);
     }
   }
@@ -117,7 +117,7 @@ interface Meta {
 }
 
 function parseMeta(line: string): Meta | null {
-  const match = line.match(/^0\s+!LDCAD\s+(\w+)(.*)$/);
+  const match = line.match(/^0\s+!(?:LDCAD|KINEBRICK)\s+(\w+)(.*)$/);
   if (!match) return null;
   const params = new Map<string, string>();
   for (const p of match[2].matchAll(/\[(\w+)=([^\]]*)\]/g)) {
@@ -129,6 +129,19 @@ function parseMeta(line: string): Meta | null {
 function numbers(text: string | undefined, fallback: number[]): number[] {
   if (!text) return fallback;
   return text.split(/\s+/).map(Number);
+}
+
+// A GEAR line from data/corrections.ldr, e.g.
+//   "0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=...]"
+// as a cylinder with one G section, placed the same way as a SNAP_CYL.
+function gearFromMeta(meta: Meta): WorkingCylinder[] {
+  const p = meta.params;
+  p.set('secs', `G ${p.get('radius')} ${p.get('width')}`);
+  p.set('gender', 'M');
+  p.set('caps', 'none');
+  const cyls = cylindersFromMeta(meta);
+  for (const c of cyls) c.secs[0].teeth = Number(p.get('teeth'));
+  return cyls;
 }
 
 // "R 8 2 R 6 16 R 8 2" -> three sections. "_L" and "L_" (flexible pin tips) are skipped.
@@ -227,7 +240,7 @@ function transformCylinder(cyl: WorkingCylinder, tr: Transform): WorkingCylinder
     ...cyl,
     start: applyTransform(tr, cyl.start),
     dir: scaleVec(along, 1 / newTotal),
-    secs: cyl.secs.map((s) => ({ shape: s.shape, radius: s.radius * radialScale, length: s.length * alongScale })),
+    secs: cyl.secs.map((s) => ({ ...s, radius: s.radius * radialScale, length: s.length * alongScale })),
   };
 }
 
@@ -270,6 +283,8 @@ function fileCylinders(name: string): WorkingCylinder[] {
       result = id ? result.filter((c) => c.id.toLowerCase() !== id.toLowerCase()) : [];
     } else if (meta.kind === 'SNAP_CYL') {
       result.push(...cylindersFromMeta(meta));
+    } else if (meta.kind === 'GEAR') {
+      result.push(...gearFromMeta(meta));
     } else if (meta.kind === 'SNAP_INCL') {
       const ref = normalizePartName(meta.params.get('ref') ?? '');
       const pos = numbers(meta.params.get('pos'), [0, 0, 0]) as Vec3;
@@ -381,7 +396,7 @@ function cylinderJson(c: Cylinder): string {
     caps: c.caps,
     start: c.start.map(round) as Vec3,
     dir: c.dir.map(round) as Vec3,
-    secs: c.secs.map((s) => ({ shape: s.shape, radius: round(s.radius), length: round(s.length) })),
+    secs: c.secs.map((s) => ({ ...s, radius: round(s.radius), length: round(s.length) })),
   };
   return JSON.stringify(clean);
 }

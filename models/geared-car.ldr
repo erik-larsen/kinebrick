@@ -1,0 +1,37 @@
+0 Geared Four-Wheeled Car
+0 Name: geared-car.ldr
+0 Author: erik-larsen
+0 // Plate top at y=0 (LDraw -y is up). Tyres touch the ground at y=17.
+0 // Wheelbase 80 LDU (axles at x=+-40), track 100 LDU (wheel centres at z=+-50).
+
+0 // Step 1: chassis -- 4x8 plate, 1x4 Technic bricks front and back, 1x6 Technic bricks left and right
+1 0 0 0 0 1 0 0 0 1 0 0 0 1 3035.dat
+1 14 70 -24 0 0 0 1 0 1 0 -1 0 0 3701.dat
+1 14 -70 -24 0 0 0 1 0 1 0 -1 0 0 3701.dat
+1 14 0 -24 30 1 0 0 0 1 0 0 0 1 3894.dat
+1 14 0 -24 -30 1 0 0 0 1 0 0 0 1 3894.dat
+0 STEP
+
+0 // Step 2: 6L axles through the outermost holes of the 1x6 bricks, protruding 1 stud each side
+1 0 40 -14 0 0 0 1 0 1 0 -1 0 0 3706.dat
+1 0 -40 -14 0 0 0 1 0 1 0 -1 0 0 3706.dat
+0 STEP
+
+0 // Step 3: rim + tyre on each protruding axle end; left-side wheels turned 180 degrees to face outward
+1 71 40 -14 50 1 0 0 0 1 0 0 0 1 3482.dat
+1 0 40 -14 50 1 0 0 0 1 0 0 0 1 3483.dat
+1 71 -40 -14 50 1 0 0 0 1 0 0 0 1 3482.dat
+1 0 -40 -14 50 1 0 0 0 1 0 0 0 1 3483.dat
+1 71 40 -14 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
+1 0 40 -14 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
+1 71 -40 -14 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
+1 0 -40 -14 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
+0 STEP
+
+0 // Step 4: an 8 tooth gear on the rear axle, meshing with an 8 tooth gear on a 4L axle
+0 // through the next holes of the 1x6 bricks. Rolling the car spins the second axle the
+0 // other way. The second gear is turned half a tooth (22.5 degrees) to mesh.
+1 72 -40 -14 0 1 0 0 0 1 0 0 0 1 3647.dat
+1 0 -20 -14 0 0 0 1 0 1 0 -1 0 0 3705.dat
+1 72 -20 -14 0 0.92388 -0.382683 0 0.382683 0.92388 0 0 0 1 3647.dat
+0 STEP

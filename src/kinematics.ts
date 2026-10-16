@@ -24,6 +24,8 @@ import { Mechanism } from './mechanism.ts';
 const GROUND_TOLERANCE = 0.5;
 // Numbers smaller than this count as zero when solving the equations.
 const EPSILON = 1e-9;
+// Largest turn per step in turnJoint, in radians (about 2 degrees).
+const MAX_TURN_STEP = 0.035;
 
 const DOWN = new Vector3(0, 1, 0); // LDraw's y axis points down
 
@@ -142,6 +144,19 @@ export class Kinematics {
     return from.addScaledVector(d, new Vector3().subVectors(p, from).dot(d));
   }
 
+  // A joint's axis where it is now: a point on it and its direction (bodyB turns about it
+  // relative to bodyA by the right-hand rule).
+  jointAxisNow(joint: number): { point: Vector3; dir: Vector3 } {
+    const j = this.mech.joints[joint];
+    const pose = this.poses[j.bodyA];
+    return { point: j.from.clone().applyMatrix4(pose), dir: axisOf(j.from, j.to).transformDirection(pose) };
+  }
+
+  // Whether the frame is held still (nothing touches the ground).
+  frameHeld(): boolean {
+    return this.fixedBody >= 0;
+  }
+
   // ---------------------------------------------------------------------------
   // The equations
 
@@ -177,6 +192,28 @@ export class Kinematics {
         }
         rows.push(row);
       }
+    }
+
+    // Meshing gears: where their pitch circles touch, both gears' teeth move at the same speed
+    // across the line between their centres. (Moving along that line would pull the teeth apart,
+    // which the joints already prevent.)
+    for (const mesh of this.mech.meshes) {
+      const a = this.mech.gears[mesh.gearA];
+      const b = this.mech.gears[mesh.gearB];
+      const ca = a.center.clone().applyMatrix4(this.poses[a.body]);
+      const cb = b.center.clone().applyMatrix4(this.poses[b.body]);
+      const axis = a.axis.clone().transformDirection(this.poses[a.body]);
+      const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));
+      const across = new Vector3().crossVectors(axis, new Vector3().subVectors(cb, ca)).normalize();
+      const row = new Array(n).fill(0);
+      for (let k = 0; k < 3; k++) {
+        const ra = new Array(n).fill(0);
+        const rb = new Array(n).fill(0);
+        addPointVelocity(ra, a.body, pitchPoint, k, 1);
+        addPointVelocity(rb, b.body, pitchPoint, k, -1);
+        for (let i = 0; i < n; i++) row[i] += across.getComponent(k) * (ra[i] + rb[i]);
+      }
+      rows.push(row);
     }
 
     // A tyre on the ground rolls without slipping: the point touching the ground doesn't move.
@@ -216,15 +253,50 @@ export class Kinematics {
     return v.add(w.cross(point));
   }
 
+  // How fast a joint turns under a motion vector: how much faster bodyB turns than bodyA
+  // about the joint's axis.
+  jointRate(motion: number[], joint: number): number {
+    const j = this.mech.joints[joint];
+    const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+    const wA = new Vector3(motion[6 * j.bodyA], motion[6 * j.bodyA + 1], motion[6 * j.bodyA + 2]);
+    const wB = new Vector3(motion[6 * j.bodyB], motion[6 * j.bodyB + 1], motion[6 * j.bodyB + 2]);
+    return wB.sub(wA).dot(d);
+  }
+
+  // Turns a joint by `angle` radians (bodyB relative to bodyA), letting the rest of the
+  // mechanism follow, in steps of at most MAX_TURN_STEP. Returns how far it actually turned,
+  // which is less if the joint can't turn (jammed).
+  turnJoint(joint: number, angle: number): number {
+    let turned = 0;
+    const steps = Math.ceil(Math.abs(angle) / MAX_TURN_STEP);
+    for (let i = 0; i < steps; i++) {
+      const motion = this.jointMotion(joint);
+      if (!motion) break;
+      this.advance(motion, angle / steps);
+      turned += angle / steps;
+    }
+    return turned;
+  }
+
+  // The motion vector that turns a joint at rate 1 (one radian per unit), with the rest of
+  // the mechanism following: the smallest mix of the free motions that does it. Null if the
+  // joint can't turn.
+  jointMotion(joint: number): number[] | null {
+    const motions = this.freeMotions();
+    // Each motion's share is proportional to how fast it turns the joint.
+    const rates = motions.map((m) => this.jointRate(m, joint));
+    const total = rates.reduce((sum, r) => sum + r * r, 0);
+    if (total < EPSILON) return null;
+    const combined = new Array(6 * this.bodyCount).fill(0);
+    motions.forEach((m, k) => m.forEach((x, idx) => (combined[idx] += (x * rates[k]) / total)));
+    return combined;
+  }
+
   // Moves the mechanism along a motion vector, scaled by `amount`. Keep steps small (a few
   // LDU, a few degrees): the motion is only exact at the start of the step.
   advance(motion: number[], amount: number) {
-    this.mech.joints.forEach((joint, j) => {
-      // Joint angle changes by how much faster bodyB turns than bodyA about the axis.
-      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
-      const wA = new Vector3(motion[6 * joint.bodyA], motion[6 * joint.bodyA + 1], motion[6 * joint.bodyA + 2]);
-      const wB = new Vector3(motion[6 * joint.bodyB], motion[6 * joint.bodyB + 1], motion[6 * joint.bodyB + 2]);
-      this.jointAngles[j] += wB.sub(wA).dot(d) * amount;
+    this.mech.joints.forEach((_, j) => {
+      this.jointAngles[j] += this.jointRate(motion, j) * amount;
     });
     for (const [root, pose] of this.rootPoses) {
       const w = new Vector3(motion[6 * root], motion[6 * root + 1], motion[6 * root + 2]).multiplyScalar(amount);

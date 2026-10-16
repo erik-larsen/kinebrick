@@ -52,6 +52,23 @@ export interface Tread {
   radius: number;
 }
 
+// A gear ring on a part, in model coordinates.
+export interface Gear {
+  part: number;
+  body: number;
+  center: Vector3; // middle of the teeth, on the gear's axis
+  axis: Vector3; // unit vector
+  radius: number; // pitch radius
+  width: number; // of the teeth, along the axis
+  teeth: number;
+}
+
+// Two gears whose teeth mesh: where their pitch circles touch, both move at the same speed.
+export interface Mesh {
+  gearA: number; // index into gears
+  gearB: number;
+}
+
 export interface Mechanism {
   roles: string[]; // role of each part
   bodyOf: number[]; // body index of each part
@@ -59,6 +76,8 @@ export interface Mechanism {
   joints: Joint[];
   connections: Connection[];
   treads: Tread[];
+  gears: Gear[];
+  meshes: Mesh[];
 }
 
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>): Mechanism {
@@ -69,7 +88,9 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
   const treads = findTreads(cyls, bodyOf);
-  return { roles, bodyOf, bodies, joints, connections, treads };
+  const gears = findGears(cyls, bodyOf);
+  const meshes = findMeshes(gears);
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes };
 }
 
 // Step 3: every part's connection points, moved into model coordinates. Only open-ended
@@ -97,6 +118,46 @@ function findTreads(cyls: WorldCylinder[], bodyOf: number[]): Tread[] {
     treads.push({ part: c.part, body: bodyOf[c.part], center, axis: c.dir.clone(), radius: sec.radius });
   }
   return treads;
+}
+
+function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
+  const gears: Gear[] = [];
+  for (const c of cyls) {
+    const sec = c.secs[0];
+    if (c.secs.length !== 1 || sec.shape !== 'G') continue;
+    const center = c.start.clone().addScaledVector(c.dir, sec.length / 2);
+    gears.push({
+      part: c.part,
+      body: bodyOf[c.part],
+      center,
+      axis: c.dir.clone(),
+      radius: sec.radius,
+      width: sec.length,
+      teeth: sec.teeth ?? 0,
+    });
+  }
+  return gears;
+}
+
+// Spur gears mesh when their axes are parallel, their teeth line up along the axis, and
+// their axes are exactly their two pitch radii apart.
+function findMeshes(gears: Gear[]): Mesh[] {
+  const meshes: Mesh[] = [];
+  for (let a = 0; a < gears.length; a++) {
+    for (let b = a + 1; b < gears.length; b++) {
+      const ga = gears[a];
+      const gb = gears[b];
+      if (ga.body === gb.body) continue;
+      if (new Vector3().crossVectors(ga.axis, gb.axis).length() > 0.01) continue;
+      const offset = new Vector3().subVectors(gb.center, ga.center);
+      const along = offset.dot(ga.axis);
+      const across = offset.clone().addScaledVector(ga.axis, -along).length();
+      if ((ga.width + gb.width) / 2 - Math.abs(along) < MIN_OVERLAP) continue; // teeth don't face each other
+      if (Math.abs(across - (ga.radius + gb.radius)) > AXIS_TOLERANCE) continue;
+      meshes.push({ gearA: a, gearB: b });
+    }
+  }
+  return meshes;
 }
 
 // What happens when a male section sits inside a female section of the same radius.
@@ -200,16 +261,31 @@ function groupIntoBodies(count: number, roles: string[], connections: Connection
   return bodyOf;
 }
 
+// Bodies are named after their most telling part: "frame", "wheels 1", "gear 2", ...
+const BODY_NOUNS: [string, string][] = [
+  ['tyre', 'wheels'],
+  ['gear', 'gear'],
+  ['rim', 'wheels'],
+  ['axle', 'axle'],
+];
+
 function nameBodies(bodyOf: number[], roles: string[]): Body[] {
   const bodies: Body[] = [];
   bodyOf.forEach((b, part) => {
     if (!bodies[b]) bodies[b] = { name: '', parts: [] };
     bodies[b].parts.push(part);
   });
-  const hasFrame = roles.some((r) => r === 'structure');
-  bodies.forEach((body, i) => {
-    body.name = hasFrame && i === 0 ? 'frame' : `body ${hasFrame ? i : i + 1}`;
-  });
+  const counts = new Map<string, number>();
+  for (const body of bodies) {
+    const bodyRoles = body.parts.map((p) => roles[p]);
+    if (bodyRoles.includes('structure')) {
+      body.name = 'frame';
+      continue;
+    }
+    const noun = BODY_NOUNS.find(([role]) => bodyRoles.includes(role))?.[1] ?? 'body';
+    counts.set(noun, (counts.get(noun) ?? 0) + 1);
+    body.name = `${noun} ${counts.get(noun)}`;
+  }
   return bodies;
 }
 

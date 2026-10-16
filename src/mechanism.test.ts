@@ -13,7 +13,7 @@ describe('simple car', () => {
   const partNames = (body: number) => mech.bodies[body].parts.map((i) => parts[i].name).sort();
 
   it('has a frame and two wheel-and-axle bodies', () => {
-    expect(mech.bodies.map((b) => b.name)).toEqual(['frame', 'body 1', 'body 2']);
+    expect(mech.bodies.map((b) => b.name)).toEqual(['frame', 'wheels 1', 'wheels 2']);
     expect(partNames(0)).toEqual(['3035.dat', '3701.dat', '3701.dat', '3894.dat', '3894.dat']);
     for (const body of [1, 2]) {
       expect(partNames(body)).toEqual(['3482.dat', '3482.dat', '3483.dat', '3483.dat', '3706.dat']);

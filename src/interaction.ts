@@ -1,19 +1,28 @@
 // Pointer interaction in the 3D view (see "Interaction" in the README):
 //   hover    highlight the part under the pointer, tint its body, label it
-//   press    show the directions the grabbed point can move
+//   press    show how the grabbed point can move: an arrow (push) or an arc (turn)
 //   drag     move the mechanism so the grabbed point follows the pointer
 //   release  leave the model where it is
 // Dragging on empty space turns the camera instead.
+//
+// There are two kinds of drag:
+//   push  for parts that don't spin on an axle (the frame): the grabbed point follows the
+//         pointer along whatever straight-line motion the mechanism allows.
+//   turn  for parts that spin on an axle (gears, cranks, tyres): the part turns about its
+//         axle, relative to whatever the axle is mounted in, to follow the pointer around.
 
 import {
   Camera,
   ConeGeometry,
   CylinderGeometry,
   Group,
+  Matrix4,
   Mesh,
   MeshBasicMaterial,
   Object3D,
+  Ray,
   Raycaster,
+  TorusGeometry,
   Vector2,
   Vector3,
   WebGLRenderer,
@@ -22,12 +31,15 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
 import { Mechanism } from './mechanism.ts';
+import { knobTurn } from './turn.ts';
 
+const HANDLE_COLOUR = 0x1d6fe0;
 const ARROW_LENGTH = 40; // LDU, each way
-const ARROW_COLOUR = 0x1d6fe0;
-// Largest distance the grabbed point moves in one solver step, in LDU. Smaller is more exact.
+const ARC_ANGLE = 1.8; // radians covered by the turning arc (about 100 degrees)
+const MIN_ARC_RADIUS = 10; // LDU, so an arc grabbed near the axle is still visible
+// Largest distance the grabbed point moves in one push step, in LDU. Smaller is more exact.
 const MAX_STEP = 1;
-// Most solver steps per pointer movement.
+// Most push steps per pointer movement.
 const MAX_STEPS = 60;
 
 export interface InteractionSetup {
@@ -44,17 +56,26 @@ export interface InteractionSetup {
   onMoved: () => void; // called after the mechanism moves
 }
 
+interface Drag {
+  pointerId: number;
+  body: number;
+  grabStart: Vector3; // the grabbed point, in the body's starting position
+  joint: number; // the joint the body turns on (turn), or -1 (push)
+  arc: Group | null; // turn only
+  lastX: number; // the pointer's previous position (turn only)
+  lastY: number;
+}
+
 export function setUpInteraction(s: InteractionSetup) {
   const canvas = s.renderer.domElement;
   const label = document.getElementById('label')!;
   const raycaster = new Raycaster();
 
-  const arrows = makeDoubleArrow();
-  arrows.visible = false;
-  s.ldrawSpace.add(arrows);
+  const arrow = makeDoubleArrow();
+  arrow.visible = false;
+  s.ldrawSpace.add(arrow);
 
-  // The drag in progress, if any.
-  let drag: { pointerId: number; body: number; grabStart: Vector3 } | null = null;
+  let drag: Drag | null = null;
 
   // ---------------------------------------------------------------------------
   // Coordinates
@@ -63,6 +84,14 @@ export function setUpInteraction(s: InteractionSetup) {
   function toScreen(p: Vector3): Vector2 {
     const ndc = s.ldrawSpace.localToWorld(p.clone()).project(s.camera);
     return new Vector2(((ndc.x + 1) / 2) * window.innerWidth, ((1 - ndc.y) / 2) * window.innerHeight);
+  }
+
+  // The ray from the camera through a pixel, in LDraw coordinates.
+  function rayAt(clientX: number, clientY: number): Ray {
+    const ndc = new Vector2((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
+    raycaster.setFromCamera(ndc, s.camera);
+    const toLdraw = new Matrix4().copy(s.ldrawSpace.matrixWorld).invert();
+    return raycaster.ray.clone().applyMatrix4(toLdraw);
   }
 
   // The part under the pointer and where the pointer touches it (LDraw coordinates), if any.
@@ -79,8 +108,18 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // The grabbed point where it is now.
-  function grabPoint(): Vector3 {
-    return drag!.grabStart.clone().applyMatrix4(s.kin.poses[drag!.body]);
+  function grabPoint(d: Drag): Vector3 {
+    return d.grabStart.clone().applyMatrix4(s.kin.poses[d.body]);
+  }
+
+  // For a turn: the axle's direction (the way the body turns positive about it, relative to
+  // its parent) and the point on the axle level with the grabbed point.
+  function turnAxis(d: Drag): { hub: Vector3; dir: Vector3 } {
+    const { point, dir } = s.kin.jointAxisNow(d.joint);
+    if (s.mech.joints[d.joint].bodyA === d.body) dir.negate();
+    const g = grabPoint(d);
+    const hub = point.addScaledVector(dir, new Vector3().subVectors(g, point).dot(dir));
+    return { hub, dir };
   }
 
   // ---------------------------------------------------------------------------
@@ -129,48 +168,34 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // ---------------------------------------------------------------------------
-  // Press and drag
+  // Push: arrow and drag
 
-  // Which body a press drags. A part that turns on an axle which is itself moving (a tyre
-  // of a rolling car) is grabbed by its axle: pressing it pushes whatever the axle is
-  // mounted in, at the pressed point. Otherwise the part's own body is grabbed, so a part on
-  // an axle that stays still turns.
-  function grabbedBody(body: number, point: Vector3): number {
-    const link = s.kin.parentLink(body);
-    if (!link) return body;
-    const hub = s.kin.nearestOnAxis(link.joint, point);
-    for (const m of s.kin.freeMotions()) {
-      const hubSpeed = s.kin.pointVelocity(m, body, hub).length();
-      const pointSpeed = s.kin.pointVelocity(m, body, point).length();
-      if (hubSpeed > 1e-3 * Math.max(pointSpeed, 1e-9)) return grabbedBody(link.parent, point);
-    }
-    return body;
-  }
-
-  // Points the arrows along the grabbed point's allowed motion (the first one, if several).
-  function updateArrows() {
+  // Points the arrow along the grabbed point's allowed motion (the first one, if several).
+  // Returns false if the point can't move.
+  function updateArrow(d: Drag): boolean {
     const motions = s.kin.freeMotions();
-    const g = grabPoint();
-    const direction = motions.length ? s.kin.pointVelocity(motions[0], drag!.body, g) : new Vector3();
+    const g = grabPoint(d);
+    const direction = motions.length ? s.kin.pointVelocity(motions[0], d.body, g) : new Vector3();
     if (direction.length() < 1e-9) {
-      arrows.visible = false;
-      return;
+      arrow.visible = false;
+      return false;
     }
-    arrows.position.copy(g);
-    arrows.quaternion.setFromUnitVectors(new Vector3(0, 1, 0), direction.normalize()); // built along y
-    arrows.visible = true;
+    arrow.position.copy(g);
+    arrow.quaternion.setFromUnitVectors(new Vector3(0, 1, 0), direction.normalize()); // built along y
+    arrow.visible = true;
+    return true;
   }
 
   // Moves the mechanism, in small steps, so the grabbed point gets as close as it can to the
   // pointer on screen. Each step works out, for every allowed motion, how far the grabbed
   // point would move on screen, and picks the mix of motions that best closes the gap
   // (least squares).
-  function dragTowards(clientX: number, clientY: number) {
+  function pushTowards(d: Drag, clientX: number, clientY: number) {
     const target = new Vector2(clientX, clientY);
     for (let step = 0; step < MAX_STEPS; step++) {
       const motions = s.kin.freeMotions();
       if (motions.length === 0) return;
-      const g = grabPoint();
+      const g = grabPoint(d);
       const gScreen = toScreen(g);
       const gap = target.clone().sub(gScreen);
       if (gap.length() < 0.5) return;
@@ -179,7 +204,7 @@ export function setUpInteraction(s: InteractionSetup) {
       const speeds: Vector3[] = [];
       const screenSpeeds: Vector2[] = [];
       for (const m of motions) {
-        const v = s.kin.pointVelocity(m, drag!.body, g);
+        const v = s.kin.pointVelocity(m, d.body, g);
         speeds.push(v);
         const h = 1 / Math.max(v.length(), 1e-9); // a nudge that moves the point 1 LDU
         screenSpeeds.push(toScreen(g.clone().addScaledVector(v, h)).sub(gScreen).divideScalar(h));
@@ -198,11 +223,57 @@ export function setUpInteraction(s: InteractionSetup) {
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // Turn: arc and drag
+
+  // Places the arc around the axle, centred on the grabbed point, so it turns with the part
+  // and travels with whatever the axle is mounted in.
+  function updateArc(d: Drag) {
+    const { hub, dir } = turnAxis(d);
+    const outward = new Vector3().subVectors(grabPoint(d), hub);
+    if (outward.length() < 1e-6) outward.copy(perpendicularTo(dir));
+    outward.normalize();
+    const side = new Vector3().crossVectors(dir, outward);
+    d.arc!.position.copy(hub);
+    d.arc!.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(outward, side, dir)); // arc built in its x-y plane
+    d.arc!.visible = true;
+  }
+
+  // Turns the part about its axle like a knob, by the angle the pointer swept around the axle
+  // since its last position (see turn.ts). Seen side-on, where that doesn't work, it instead
+  // turns by how far the pointer moved along the way the grabbed point turns on screen.
+  function turnTowards(d: Drag, clientX: number, clientY: number) {
+    const { hub, dir } = turnAxis(d);
+    const grab = grabPoint(d);
+    const outward = new Vector3().subVectors(grab, hub);
+    const minRadius = Math.max(outward.length() / 2, 1);
+    let angle = knobTurn({ hub, dir, from: rayAt(d.lastX, d.lastY), to: rayAt(clientX, clientY), minRadius });
+    if (angle === null) {
+      // Where the grabbed point would move per radian, turning about a still axle.
+      const perRadian = new Vector3().crossVectors(dir, outward).setLength(Math.max(outward.length(), MIN_ARC_RADIUS));
+      const gScreen = toScreen(grab);
+      const screenPerRadian = toScreen(grab.clone().add(perRadian)).sub(gScreen);
+      if (screenPerRadian.lengthSq() < 1e-6) return;
+      const moved = new Vector2(clientX - d.lastX, clientY - d.lastY);
+      angle = Math.max(-0.5, Math.min(0.5, moved.dot(screenPerRadian) / screenPerRadian.lengthSq()));
+    }
+    // The joint's angle is bodyB relative to bodyA, so flip it if we're turning bodyA.
+    const sign = s.mech.joints[d.joint].bodyB === d.body ? 1 : -1;
+    s.kin.turnJoint(d.joint, sign * angle);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Press, move, release
+
   function endDrag() {
     if (!drag) return;
     if (canvas.hasPointerCapture(drag.pointerId)) canvas.releasePointerCapture(drag.pointerId);
+    if (drag.arc) {
+      s.ldrawSpace.remove(drag.arc);
+      drag.arc.traverse((o) => (o as Mesh).geometry?.dispose());
+    }
     drag = null;
-    arrows.visible = false;
+    arrow.visible = false;
     s.controls.enabled = true;
   }
 
@@ -211,6 +282,7 @@ export function setUpInteraction(s: InteractionSetup) {
   canvas.addEventListener(
     'pointerdown',
     (e) => {
+      if (drag) return; // already dragging with another finger or pointer
       hover(e.clientX, e.clientY);
       const hit = hitAt(e.clientX, e.clientY);
       if (!hit) return; // empty space: let the camera turn
@@ -219,15 +291,25 @@ export function setUpInteraction(s: InteractionSetup) {
       try {
         canvas.setPointerCapture(e.pointerId);
       } catch {}
-      const body = grabbedBody(s.mech.bodyOf[hit.part], hit.point);
+
+      const body = s.mech.bodyOf[hit.part];
       const grabStart = hit.point.clone().applyMatrix4(s.kin.poses[body].clone().invert());
-      drag = { pointerId: e.pointerId, body, grabStart };
+      const link = s.kin.parentLink(body);
+      drag = { pointerId: e.pointerId, body, grabStart, joint: link ? link.joint : -1, arc: null, lastX: e.clientX, lastY: e.clientY };
+      hideLabel();
+
       if (s.kin.freeMotions().length === 0) {
         showLabel("Can't move: the mechanism is jammed", e.clientX, e.clientY);
-        return;
+      } else if (drag.joint >= 0) {
+        const { hub } = turnAxis(drag);
+        const radius = Math.max(hit.point.distanceTo(hub), MIN_ARC_RADIUS);
+        drag.arc = makeArc(radius);
+        s.ldrawSpace.add(drag.arc);
+        updateArc(drag);
+      } else if (!updateArrow(drag)) {
+        const why = s.kin.frameHeld() ? 'held still, since nothing touches the ground' : 'jammed';
+        showLabel(`This part can't move: it's ${why}`, e.clientX, e.clientY);
       }
-      hideLabel();
-      updateArrows();
     },
     { capture: true },
   );
@@ -238,8 +320,15 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     if (e.pointerId !== drag.pointerId) return; // another finger or pointer
-    dragTowards(e.clientX, e.clientY);
-    updateArrows();
+    if (drag.joint >= 0) {
+      turnTowards(drag, e.clientX, e.clientY);
+      drag.lastX = e.clientX;
+      drag.lastY = e.clientY;
+      updateArc(drag);
+    } else {
+      pushTowards(drag, e.clientX, e.clientY);
+      updateArrow(drag);
+    }
     s.onMoved();
   });
 
@@ -257,22 +346,50 @@ export function setUpInteraction(s: InteractionSetup) {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Handles
+
+const handleMaterial = new MeshBasicMaterial({ color: HANDLE_COLOUR, depthTest: false, transparent: true, opacity: 0.9 });
+
 // A two-headed arrow through the origin along y, drawn on top of the parts.
 function makeDoubleArrow(): Group {
-  const material = new MeshBasicMaterial({ color: ARROW_COLOUR, depthTest: false, transparent: true, opacity: 0.9 });
   const headLength = 10;
-  const shaft = new Mesh(new CylinderGeometry(1.5, 1.5, 2 * (ARROW_LENGTH - headLength), 12), material);
-  const tip = new Mesh(new ConeGeometry(5, headLength, 16), material);
+  const shaft = new Mesh(new CylinderGeometry(1.5, 1.5, 2 * (ARROW_LENGTH - headLength), 12), handleMaterial);
+  const tip = new Mesh(new ConeGeometry(5, headLength, 16), handleMaterial);
   tip.position.y = ARROW_LENGTH - headLength / 2;
-  const tail = new Mesh(new ConeGeometry(5, headLength, 16), material);
+  const tail = new Mesh(new ConeGeometry(5, headLength, 16), handleMaterial);
   tail.position.y = -(ARROW_LENGTH - headLength / 2);
   tail.rotation.x = Math.PI; // point the other way
-  const arrow = new Group();
-  for (const piece of [shaft, tip, tail]) {
-    piece.renderOrder = 20;
-    arrow.add(piece);
+  return onTop(new Group().add(shaft, tip, tail));
+}
+
+// An arc of a circle around the origin in the x-y plane, centred on the +x axis, with an
+// arrowhead at each end pointing on around the circle.
+function makeArc(radius: number): Group {
+  const ring = new Mesh(new TorusGeometry(radius, 1.5, 8, 48, ARC_ANGLE), handleMaterial);
+  ring.rotation.z = -ARC_ANGLE / 2; // the torus starts at +x; centre it there
+  const group = new Group().add(ring);
+  for (const end of [1, -1]) {
+    const angle = (end * ARC_ANGLE) / 2;
+    const head = new Mesh(new ConeGeometry(5, 10, 16), handleMaterial);
+    head.position.set(radius * Math.cos(angle), radius * Math.sin(angle), 0);
+    // The cone points along +y; turn it to point along the circle, away from the arc.
+    head.rotation.z = angle + (end > 0 ? 0 : Math.PI);
+    group.add(head);
   }
-  return arrow;
+  return onTop(group);
+}
+
+// Draws a handle after the parts, through them.
+function onTop(group: Group): Group {
+  group.traverse((o) => (o.renderOrder = 20));
+  return group;
+}
+
+// Any unit vector at right angles to `d`.
+function perpendicularTo(d: Vector3): Vector3 {
+  const helper = Math.abs(d.x) < 0.9 ? new Vector3(1, 0, 0) : new Vector3(0, 1, 0);
+  return new Vector3().crossVectors(d, helper).normalize();
 }
 
 // The amounts a_i that make  Σ a_i · columns_i  as close as possible to `target`, slightly

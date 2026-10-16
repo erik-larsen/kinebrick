@@ -13,10 +13,13 @@ export type Vec3 = [number, number, number];
 //   S  square
 //   T  tyre seat (where a tyre sits on a rim)
 //   W  tread (where a tyre touches the ground; worked out from the tyre's shape)
+//   G  gear: radius is the pitch radius (where the teeth of two meshing gears meet),
+//      length is the width of the teeth
 export interface Section {
   shape: string;
   radius: number;
   length: number;
+  teeth?: number; // gears only
 }
 
 export interface Cylinder {

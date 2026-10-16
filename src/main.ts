@@ -7,9 +7,12 @@ import {
   GridHelper,
   Group,
   HemisphereLight,
+  Mesh,
+  MeshBasicMaterial,
   Object3D,
   PerspectiveCamera,
   Scene,
+  SphereGeometry,
   Vector3,
   WebGLRenderer,
 } from 'three';
@@ -24,7 +27,15 @@ import { Kinematics } from './kinematics.ts';
 import { parseLdr } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
 
-const MODEL_URL = '/models/simple-car.ldr';
+// The test models in models/, and their names in the picker.
+const MODELS: [string, string][] = [
+  ['simple-car', 'Simple car'],
+  ['geared-car', 'Geared car'],
+  ['gear-train', 'Gear train'],
+];
+const modelParam = new URLSearchParams(window.location.search).get('model');
+const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
+const MODEL_URL = `/models/${MODEL}.ldr`;
 const CONNECTIONS_URL = '/data/connections.json';
 const ROLES_URL = '/data/roles.json';
 const LDRAW_URL = '/ldraw/';
@@ -120,10 +131,32 @@ async function start() {
 
   const axes = makeJointAxes(mech.joints);
   ldrawSpace.add(axes);
+  // A dot where each pair of meshing gears touch. It stays put relative to what the gears'
+  // axles are mounted in.
+  const meshMaterial = new MeshBasicMaterial({ color: 0xe0218a, depthTest: false });
+  for (const m of mech.meshes) {
+    const a = mech.gears[m.gearA];
+    const b = mech.gears[m.gearB];
+    const dot = new Mesh(new SphereGeometry(3, 16, 8), meshMaterial);
+    dot.position.copy(a.center).lerp(b.center, a.radius / (a.radius + b.radius));
+    dot.renderOrder = 10;
+    dot.updateMatrix();
+    dot.userData.body = kin.parentLink(a.body)?.parent ?? a.body;
+    dot.userData.startMatrix = dot.matrix.clone();
+    axes.add(dot);
+  }
 
   frameCamera(model, kin.groundY);
 
-  summary.textContent = `${parts.length} parts · ${mech.bodies.length} bodies · ${mech.joints.length} joints`;
+  summary.textContent =
+    `${parts.length} parts · ${mech.bodies.length} bodies · ${mech.joints.length} joints` +
+    (mech.meshes.length ? ` · ${mech.meshes.length} gear meshes` : '');
+
+  const picker = document.getElementById('model') as HTMLSelectElement;
+  for (const [file, name] of MODELS) picker.add(new Option(name, file, false, file === MODEL));
+  picker.addEventListener('change', () => {
+    window.location.search = '?model=' + picker.value;
+  });
 
   // Moves every part and joint axis to where the kinematics says its body is.
   function showPoses() {
@@ -192,12 +225,15 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     lines.push(`frame moved ${distance.toFixed(1)} LDU`);
   }
   mech.joints.forEach((joint, j) => {
-    const degrees = Math.abs((kin.jointAngles[j] * 180) / Math.PI);
-    let line = `${mech.bodies[joint.bodyB].name} turned ${degrees.toFixed(1)}°`;
+    const degrees = (kin.jointAngles[j] * 180) / Math.PI;
+    let name = mech.bodies[joint.bodyB].name;
+    const gear = mech.gears.find((g) => g.body === joint.bodyB);
+    if (gear) name += ` (${gear.teeth} teeth)`;
+    let line = `${name} turned ${degrees.toFixed(1)}°`;
     const tread = mech.treads.find((t) => t.body === joint.bodyB);
     if (tread && kin.groundY !== null) {
       const expected = ((distance / tread.radius) * 180) / Math.PI;
-      line += ` (expected ${distance.toFixed(1)} ÷ ${tread.radius.toFixed(1)} = ${expected.toFixed(1)}°)`;
+      line += ` (expected ${distance.toFixed(1)} ÷ ${tread.radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
     }
     lines.push(line);
   });
