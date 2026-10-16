@@ -11,6 +11,7 @@
       #panel label { display: block; margin-top: 4px; cursor: pointer; }
       #summary, #hint { color: #5a6475; }
       #hint { margin-top: 6px; font-size: 12px; }
+      #warning { display: none; margin-top: 6px; max-width: 260px; color: #b3261e; font-size: 12px; }
       #panel select { font: inherit; margin: 2px 0 4px; }
       #panel button { margin-top: 8px; font: inherit; padding: 2px 10px; cursor: pointer; }
       #readout { position: fixed; bottom: 12px; left: 12px; background: rgba(255, 255, 255, 0.9); border-radius: 8px; padding: 8px 12px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); white-space: pre; font-variant-numeric: tabular-nums; }
@@ -23,6 +24,7 @@
       <h1>KineBrick</h1>
       <select id="model"></select>
       <div id="summary">Loading…</div>
+      <div id="warning"></div>
       <label><input type="checkbox" id="bodyColours" checked /> Body colours</label>
       <label><input type="checkbox" id="jointAxes" checked /> Joints and gear meshes</label>
       <div id="hint">Alt-click (Option-click on a Mac) a part to hold it still</div>

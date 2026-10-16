@@ -28,12 +28,13 @@ The viewer draws each body in its own colour, each joint's axis and each gear me
 1. **Load.** `LDrawLoader` reads the model and the official LDraw parts library. Each part becomes its own 3D object that can be moved on its own.
 2. **Assign roles.** Each part is looked up in KineBrick's role list (see [Part roles](#part-roles)). Parts not in the list are `structure`.
 3. **Look up connection points.** Each part's connection points come from KineBrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
-4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too.
-5. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
-6. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. Two meshing gears say their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts; that works the same for spur gears side by side and bevel gears at an angle. A part the user holds still says its body doesn't turn. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; if no tyre touches it, the frame is held still instead. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
-7. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
+4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too. A stud sitting in an anti-stud (the socket under a brick or plate) attaches two parts as well.
+5. **Check.** Every part should be attached to the rest of the model through some chain of connections. Parts that aren't are drawn in red and listed in the viewer, since they're usually in the wrong place: a brick half a stud off, sitting between the studs instead of on them, or floating above the plate.
+6. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
+7. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. Two meshing gears say their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts; that works the same for spur gears side by side and bevel gears at an angle. A part the user holds still says its body doesn't turn. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; if no tyre touches it, the frame is held still instead. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
+8. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
 
-Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then KineBrick will need to know how structure parts attach to each other. The connection table already lists studs, so the data will be there.
+Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then KineBrick will need to know how structure parts attach to each other. Stud connections are already found for the check in step 5, so the data will be there.
 
 ## The connection table
 
@@ -43,7 +44,7 @@ The connection table lists the connection points of every part KineBrick knows a
 2. **The [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary).** LDCad is a LEGO CAD program, and its shadow library adds connection data to LDraw parts and primitives: each hole, axle, pin or stud with its position, direction, length and cross-section (round, axle-shaped, or a pin's ridges and collars). Data on a primitive carries into every part that uses it, so describing `axlehol5.dat` once covers every rim built from it. It's called a shadow library because its files mirror the LDraw library's folders and file names, and LDCad loads each one alongside the LDraw file of the same name, as if its lines were part of that file, without changing the official file.
 3. **KineBrick's own corrections.** A short hand-written file adds what neither source covers: where a tyre sits on its rim, gear tooth counts, and whether a pin turns freely or holds by friction (the shadow library treats both kinds of pin the same). The script also measures each tyre's outer radius from its shape, since that sets how far it rolls per turn.
 
-The table is committed to the repository so that changes to it can be reviewed. When the LDraw or shadow library updates, we rebuild it and check the diff. It only covers parts that matter for movement: parts with a role, and parts with Technic holes that axles and pins can go through. It grows with each milestone's test models.
+The table is committed to the repository so that changes to it can be reviewed. When the LDraw or shadow library updates, we rebuild it and check the diff. It covers every part used by the test models, and grows with each milestone's test models.
 
 ## Part roles
 
@@ -92,6 +93,11 @@ Each milestone ends with a model that moves correctly and a test that checks it.
 
 A car with two fixed axles can't turn without its tyres sliding sideways, which is why M1 is straight-line only and turning waits for steering in M4.
 
+### Later
+
+- **Suggest a fix for a loose part.** For a part that isn't attached, find the nearest position where its anti-studs would land on studs, and suggest moving it there ("move 10 LDU along z to sit on the plate"). Suggest only; KineBrick doesn't edit models.
+- **Clips, hinges and ball joints.** The LDCad shadow library describes these with their own kinds of snap line, which KineBrick doesn't read yet, so a part held only by a clip or hinge is wrongly reported as loose.
+
 ## Conventions
 
 - **Units.** LDraw units (LDU). 1 stud = 20 LDU, a brick is 24 LDU tall, a plate is 8 LDU.
@@ -120,12 +126,13 @@ Other commands:
 | `models/` | Test models |
 | `src/main.ts` | The viewer: model picker, loading, camera, readout |
 | `src/ldr.ts` | Reads the parts of an LDraw model file |
-| `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 5) |
+| `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/mechanism.test.ts` | Tests for the above, using the test car |
-| `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 6) |
+| `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7) |
 | `src/kinematics.test.ts` | Tests for the above: the car rolls the right distance per wheel turn and stays on the ground |
 | `src/gears.test.ts` | Tests for gear trains: ratios, direction, and the geared car |
 | `src/bevel.test.ts` | Tests for the right-angle drive and the differential, with and without parts held |
+| `src/attachment.test.ts` | Tests that every test model is fully attached, and that misplaced parts are caught |
 | `src/interaction.ts` | Hover, press, drag (see [Interaction](#interaction)) |
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
 | `src/turn.test.ts` | Tests for the above |

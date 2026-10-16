@@ -1,5 +1,5 @@
 // Works out a model's mechanism: which parts move together (bodies) and how bodies can
-// move relative to each other (joints). See "How it works" in the README, steps 2 to 5.
+// move relative to each other (joints). See "How it works" in the README, steps 2 to 6.
 
 import { Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
@@ -14,12 +14,17 @@ const MIN_OVERLAP = 1;
 interface WorldCylinder {
   part: number; // index into the model's parts
   gender: 'M' | 'F';
+  caps: string;
   start: Vector3;
   dir: Vector3; // unit vector
   secs: Section[];
 }
 
-export type ConnectionKind = 'rigid' | 'revolute';
+// rigid     the parts turn together (an axle in an axle hole, a tyre on a rim)
+// revolute  the parts can turn about the shared axis (an axle in a round hole)
+// stud      a stud in an anti-stud: the parts are attached, and all structure parts move as
+//           one frame anyway, so it's only used to check that every part is attached
+export type ConnectionKind = 'rigid' | 'revolute' | 'stud';
 
 // Two parts joined at one pair of connection points.
 export interface Connection {
@@ -84,6 +89,10 @@ export interface Mechanism {
   treads: Tread[];
   gears: Gear[];
   meshes: Mesh[];
+  // Parts not attached to the rest of the model (by any connection, gear meshes aside):
+  // everything outside the largest group of parts attached to each other. Usually a sign
+  // that a part is in the wrong place.
+  loose: number[];
 }
 
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>): Mechanism {
@@ -96,20 +105,18 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
   const treads = findTreads(cyls, bodyOf);
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes };
+  const loose = findLooseParts(parts.length, connections);
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose };
 }
 
-// Step 3: every part's connection points, moved into model coordinates. Only open-ended
-// cylinders (Technic holes, axles, pins, tyre seats) are used; studs aren't needed while
-// all structure parts move together as one frame.
+// Step 3: every part's connection points, moved into model coordinates.
 function worldCylinders(parts: PlacedPart[], table: ConnectionTable): WorldCylinder[] {
   const result: WorldCylinder[] = [];
   parts.forEach((part, index) => {
     for (const cyl of table.parts[part.name] ?? []) {
-      if (cyl.caps !== 'none') continue;
       const start = new Vector3(...cyl.start).applyMatrix4(part.matrix);
       const dir = new Vector3(...cyl.dir).transformDirection(part.matrix);
-      result.push({ part: index, gender: cyl.gender, start, dir, secs: cyl.secs });
+      result.push({ part: index, gender: cyl.gender, caps: cyl.caps, start, dir, secs: cyl.secs });
     }
   });
   return result;
@@ -218,17 +225,70 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
 }
 
 // Step 4: pairs of connection points that line up.
+// Open-ended cylinders (Technic holes, axles, pins, tyre seats) make rigid and revolute
+// connections; studs in anti-studs make stud connections.
 function findConnections(cyls: WorldCylinder[]): Connection[] {
   const connections: Connection[] = [];
-  for (const m of cyls) {
-    if (m.gender !== 'M') continue;
-    for (const f of cyls) {
-      if (f.gender !== 'F' || f.part === m.part) continue;
-      const c = connect(m, f);
+  const males = cyls.filter((c) => c.gender === 'M');
+  const females = cyls.filter((c) => c.gender === 'F');
+  for (const m of males) {
+    for (const f of females) {
+      if (f.part === m.part) continue;
+      const c = m.caps === 'none' && f.caps === 'none' ? connect(m, f) : isStud(m) && isAntiStud(f) ? studConnect(m, f) : null;
       if (c) connections.push(c);
     }
   }
   return connections;
+}
+
+// A stud: a short round peg, closed at one end, on top of a brick or plate.
+function isStud(c: WorldCylinder): boolean {
+  return c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 6) < AXIS_TOLERANCE;
+}
+
+// An anti-stud: the socket for a stud, underneath a brick or plate.
+function isAntiStud(c: WorldCylinder): boolean {
+  const sec = c.secs[0];
+  return c.caps === 'one' && c.secs.length === 1 && (sec.shape === 'R' || sec.shape === 'S') && Math.abs(sec.radius - 6) < AXIS_TOLERANCE;
+}
+
+// A stud sitting in an anti-stud: on the same axis, overlapping along it.
+function studConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
+  const overlap = axialOverlap(m, f);
+  if (!overlap) return null;
+  return { male: m.part, female: f.part, kind: 'stud', from: overlap.from, to: overlap.to };
+}
+
+// Where two cylinders on the same axis overlap, or null if they're not on the same axis or
+// overlap by less than MIN_OVERLAP.
+function axialOverlap(m: WorldCylinder, f: WorldCylinder): { from: Vector3; to: Vector3 } | null {
+  if (new Vector3().crossVectors(m.dir, f.dir).length() > 0.01) return null;
+  const offset = new Vector3().subVectors(f.start, m.start);
+  const along = offset.dot(m.dir);
+  if (offset.clone().addScaledVector(m.dir, -along).length() > AXIS_TOLERANCE) return null;
+  const mLength = m.secs.reduce((sum, s) => sum + s.length, 0);
+  const fEnd = along + Math.sign(f.dir.dot(m.dir)) * f.secs.reduce((sum, s) => sum + s.length, 0);
+  const lo = Math.max(0, Math.min(along, fEnd));
+  const hi = Math.min(mLength, Math.max(along, fEnd));
+  if (hi - lo < MIN_OVERLAP) return null;
+  return { from: m.start.clone().addScaledVector(m.dir, lo), to: m.start.clone().addScaledVector(m.dir, hi) };
+}
+
+// Step 5: parts outside the largest group of parts that are attached to each other.
+function findLooseParts(count: number, connections: Connection[]): number[] {
+  const leader = Array.from({ length: count }, (_, i) => i);
+  const find = (i: number): number => {
+    while (leader[i] !== i) i = leader[i];
+    return i;
+  };
+  for (const c of connections) leader[find(c.male)] = find(c.female);
+  const sizes = new Map<number, number>();
+  for (let i = 0; i < count; i++) sizes.set(find(i), (sizes.get(find(i)) ?? 0) + 1);
+  let biggest = -1;
+  for (const [group, size] of sizes) if (biggest < 0 || size > sizes.get(biggest)!) biggest = group;
+  const loose: number[] = [];
+  for (let i = 0; i < count; i++) if (find(i) !== biggest) loose.push(i);
+  return loose;
 }
 
 function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
@@ -274,7 +334,7 @@ function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
   };
 }
 
-// Step 5: all structure parts form one body, the frame; rigid connections merge more parts
+// Step 6: all structure parts form one body, the frame; rigid connections merge more parts
 // into bodies. Returns the body index of each part.
 function groupIntoBodies(count: number, roles: string[], connections: Connection[]): number[] {
   // Union-find: each part points towards a representative part of its group.

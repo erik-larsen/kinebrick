@@ -129,7 +129,9 @@ async function start() {
   });
 
   const appearance = new Appearance(partObjects, mech);
+  appearance.looseParts = new Set(mech.loose);
   appearance.update();
+  showLooseWarning(parts.map((p) => p.name), mech.loose);
 
   const axes = makeJointAxes(mech.joints);
   ldrawSpace.add(axes);
@@ -227,6 +229,17 @@ function frameCamera(model: Object3D, groundY: number | null) {
   // The scene is the right way up, so LDraw's y is flipped.
   grid.position.set(center.x, groundY !== null ? -groundY : box.min.y, center.z);
   scene.add(grid);
+}
+
+// Lists the parts that aren't attached to the rest of the model (drawn in red), if any.
+async function showLooseWarning(names: string[], loose: number[]) {
+  const warning = document.getElementById('warning')!;
+  if (loose.length === 0) return;
+  const shown = await Promise.all(loose.slice(0, 3).map(async (i) => `${names[i].replace(/\.dat$/, '')} ${await partTitle(names[i])}`));
+  const more = loose.length > 3 ? `, and ${loose.length - 3} more` : '';
+  const what = loose.length === 1 ? "1 part isn't" : `${loose.length} parts aren't`;
+  warning.textContent = `${what} attached to the rest of the model (shown in red): ${shown.join(', ')}${more}`;
+  warning.style.display = 'block';
 }
 
 // ---------------------------------------------------------------------------

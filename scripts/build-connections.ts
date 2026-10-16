@@ -385,11 +385,6 @@ function partsInModels(): string[] {
   return [...parts].sort();
 }
 
-// Parts that matter for movement: those with a role, or with Technic connections
-// (open-ended cylinders: holes, axles, pins).
-function belongsInTable(name: string, cyls: Cylinder[], roles: Record<string, string>): boolean {
-  return name in roles || cyls.some((c) => c.caps === 'none');
-}
 
 // ---------------------------------------------------------------------------
 // Writing the table, one cylinder per line so diffs stay readable.
@@ -417,7 +412,6 @@ let out = '{\n  "about": ' + JSON.stringify(about) + ',\n  "parts": {';
 let first = true;
 for (const name of partsInModels()) {
   const cyls: Cylinder[] = [...fileCylinders(name)];
-  if (!belongsInTable(name, cyls, roles)) continue;
   if (roles[name] === 'tyre') {
     const seat = cyls.find((c) => c.gender === 'F' && c.secs.some((sec) => sec.shape === 'T'));
     if (seat) cyls.push(treadCylinder(name, seat));

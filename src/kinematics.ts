@@ -1,5 +1,5 @@
 // Moves a mechanism: works out which motions its joints and ground contacts allow, and
-// carries them out. See "How it works" in the README, step 6.
+// carries them out. See "How it works" in the README, step 7.
 //
 // How the motion is described
 // ---------------------------
