@@ -32,6 +32,8 @@ const MODELS: [string, string][] = [
   ['simple-car', 'Simple car'],
   ['geared-car', 'Geared car'],
   ['gear-train', 'Gear train'],
+  ['right-angle', 'Right-angle drive'],
+  ['differential', 'Differential'],
 ];
 const modelParam = new URLSearchParams(window.location.search).get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
@@ -182,6 +184,20 @@ async function start() {
     showPoses();
   });
 
+  // Held parts glow cyan, and "Let go of all" shows while any are held.
+  const letGo = document.getElementById('letGo') as HTMLButtonElement;
+  function showHolds() {
+    appearance.heldBodies = new Set(kin.heldBodies());
+    appearance.update();
+    letGo.style.display = kin.heldBodies().length ? '' : 'none';
+    updateReadout(mech, kin);
+  }
+  letGo.addEventListener('click', () => {
+    kin.letGoOfAll();
+    showHolds();
+  });
+  showHolds();
+
   setUpInteraction({
     renderer,
     camera,
@@ -194,6 +210,7 @@ async function start() {
     appearance,
     partTitle,
     onMoved: showPoses,
+    onHoldChanged: showHolds,
   });
   showPoses();
 }
@@ -224,13 +241,19 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     distance = new Vector3(0, 0, 0).applyMatrix4(kin.poses[0]).length();
     lines.push(`frame moved ${distance.toFixed(1)} LDU`);
   }
-  mech.joints.forEach((joint, j) => {
-    const degrees = (kin.jointAngles[j] * 180) / Math.PI;
-    let name = mech.bodies[joint.bodyB].name;
-    const gear = mech.gears.find((g) => g.body === joint.bodyB);
-    if (gear) name += ` (${gear.teeth} teeth)`;
+  // One line per body that turns on a joint: how far it has turned relative to what it's
+  // mounted on (the frame, unless it says otherwise).
+  mech.bodies.forEach((body, b) => {
+    const turn = turnOnAxis(mech, kin, b);
+    if (!turn) return;
+    const degrees = (turn.radians * 180) / Math.PI;
+    let name = body.name;
+    const gear = mech.gears.find((g) => g.body === b);
+    if (gear && !name.startsWith('wheels') && !name.startsWith('differential')) name += ` (${gear.teeth} teeth)`;
     let line = `${name} turned ${degrees.toFixed(1)}°`;
-    const tread = mech.treads.find((t) => t.body === joint.bodyB);
+    if (turn.mount !== 0) line += ` in ${mech.bodies[turn.mount].name}`;
+    if (kin.isHeld(b)) line += ' (held)';
+    const tread = mech.treads.find((t) => t.body === b);
     if (tread && kin.groundY !== null) {
       const expected = ((distance / tread.radius) * 180) / Math.PI;
       line += ` (expected ${distance.toFixed(1)} ÷ ${tread.radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
@@ -238,6 +261,29 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     lines.push(line);
   });
   readout.textContent = lines.join('\n');
+}
+
+// How far a body has turned about its axle, and the body that's measured against. Bodies on
+// the same line of axles add up: a differential's housing turns on an output axle, which
+// turns in the frame, so the housing's turn is measured against the frame.
+function turnOnAxis(mech: Mechanism, kin: Kinematics, body: number): { radians: number; mount: number } | null {
+  let link = kin.parentLink(body);
+  if (!link) return null;
+  const axis = kin.jointAxisNow(link.joint);
+  let radians = 0;
+  let current = body;
+  while (link) {
+    const joint = mech.joints[link.joint];
+    const here = kin.jointAxisNow(link.joint);
+    const sameLine = Math.abs(here.dir.dot(axis.dir)) > 0.999 && new Vector3().subVectors(here.point, axis.point).cross(axis.dir).length() < 0.5;
+    if (!sameLine) break;
+    // The joint angle is bodyB's turn relative to bodyA about the joint's own direction.
+    const sign = (joint.bodyB === current ? 1 : -1) * Math.sign(here.dir.dot(axis.dir));
+    radians += sign * kin.jointAngles[link.joint];
+    current = link.parent;
+    link = kin.parentLink(current);
+  }
+  return { radians, mount: current };
 }
 
 start().catch((err) => {

@@ -61,12 +61,18 @@ export interface Gear {
   radius: number; // pitch radius
   width: number; // of the teeth, along the axis
   teeth: number;
+  spur: boolean; // straight teeth, for meshing on parallel axes
+  bevel: string; // bevel teeth facing '+' (along axis), '-', 'both', or '' for none
+  apex: number; // bevel teeth: distance from center to the tip of the pitch cone
 }
 
-// Two gears whose teeth mesh: where their pitch circles touch, both move at the same speed.
+// Two gears whose teeth mesh: where their teeth touch, both move at the same speed.
+//   spur   axes parallel, side by side
+//   bevel  axes crossing; the tips of their bevel cones meet where the axes cross
 export interface Mesh {
   gearA: number; // index into gears
   gearB: number;
+  kind: 'spur' | 'bevel';
 }
 
 export interface Mechanism {
@@ -134,13 +140,14 @@ function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
       radius: sec.radius,
       width: sec.length,
       teeth: sec.teeth ?? 0,
+      spur: sec.spur !== false,
+      bevel: sec.bevel ?? '',
+      apex: sec.apex ?? 0,
     });
   }
   return gears;
 }
 
-// Spur gears mesh when their axes are parallel, their teeth line up along the axis, and
-// their axes are exactly their two pitch radii apart.
 function findMeshes(gears: Gear[]): Mesh[] {
   const meshes: Mesh[] = [];
   for (let a = 0; a < gears.length; a++) {
@@ -148,24 +155,65 @@ function findMeshes(gears: Gear[]): Mesh[] {
       const ga = gears[a];
       const gb = gears[b];
       if (ga.body === gb.body) continue;
-      if (new Vector3().crossVectors(ga.axis, gb.axis).length() > 0.01) continue;
-      const offset = new Vector3().subVectors(gb.center, ga.center);
-      const along = offset.dot(ga.axis);
-      const across = offset.clone().addScaledVector(ga.axis, -along).length();
-      if ((ga.width + gb.width) / 2 - Math.abs(along) < MIN_OVERLAP) continue; // teeth don't face each other
-      if (Math.abs(across - (ga.radius + gb.radius)) > AXIS_TOLERANCE) continue;
-      meshes.push({ gearA: a, gearB: b });
+      const parallel = new Vector3().crossVectors(ga.axis, gb.axis).length() < 0.01;
+      if (parallel && spurMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'spur' });
+      if (!parallel && bevelMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'bevel' });
     }
   }
   return meshes;
 }
 
-// What happens when a male section sits inside a female section of the same radius.
-function sectionFit(male: string, female: string): ConnectionKind | null {
-  if (male === 'A' && female === 'A') return 'rigid'; // axle in axle hole
-  if (male === 'T' && female === 'T') return 'rigid'; // tyre on rim
-  if (male === 'A' && female === 'R') return 'revolute'; // axle in round hole
-  if (male === 'R' && female === 'R') return 'revolute'; // pin in round hole
+// Spur gears on parallel axes mesh when their teeth are the same size, line up along the
+// axis, and their axes are exactly their two pitch radii apart.
+function spurMesh(ga: Gear, gb: Gear): boolean {
+  if (!ga.spur || !gb.spur) return false;
+  if (Math.abs(ga.radius / ga.teeth - gb.radius / gb.teeth) > 0.01) return false; // different tooth sizes
+  const offset = new Vector3().subVectors(gb.center, ga.center);
+  const along = offset.dot(ga.axis);
+  const across = offset.clone().addScaledVector(ga.axis, -along).length();
+  if ((ga.width + gb.width) / 2 - Math.abs(along) < MIN_OVERLAP) return false; // teeth don't face each other
+  return Math.abs(across - (ga.radius + gb.radius)) < AXIS_TOLERANCE;
+}
+
+// Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross.
+function bevelMesh(ga: Gear, gb: Gear): boolean {
+  if (!ga.bevel || !gb.bevel) return false;
+  const crossing = axesCrossing(ga.center, ga.axis, gb.center, gb.axis);
+  if (!crossing) return false;
+  return coneTipAt(ga, crossing) && coneTipAt(gb, crossing);
+}
+
+// Whether one of a gear's bevel cones has its tip at `point`.
+function coneTipAt(g: Gear, point: Vector3): boolean {
+  const sides = g.bevel === 'both' ? [1, -1] : g.bevel === '+' ? [1] : [-1];
+  return sides.some((side) => g.center.clone().addScaledVector(g.axis, side * g.apex).distanceTo(point) < 1);
+}
+
+// Where two axes cross: the midpoint of their closest approach, or null if they're parallel
+// or pass more than AXIS_TOLERANCE apart.
+export function axesCrossing(pa: Vector3, da: Vector3, pb: Vector3, db: Vector3): Vector3 | null {
+  const n = new Vector3().crossVectors(da, db);
+  const nn = n.lengthSq();
+  if (nn < 1e-6) return null;
+  const w = new Vector3().subVectors(pb, pa);
+  if (Math.abs(w.dot(n)) / Math.sqrt(nn) > AXIS_TOLERANCE) return null;
+  // Closest points pa + s·da and pb + t·db.
+  const s = new Vector3().crossVectors(w, db).dot(n) / nn;
+  const t = new Vector3().crossVectors(w, da).dot(n) / nn;
+  const onA = pa.clone().addScaledVector(da, s);
+  const onB = pb.clone().addScaledVector(db, t);
+  return onA.add(onB).multiplyScalar(0.5);
+}
+
+// What happens when a male section sits inside a female section, or null if they don't fit.
+// Most fits need the same radius; a thinner round pin turns loosely inside an axle hole.
+function sectionFit(male: Section, female: Section): ConnectionKind | null {
+  const same = Math.abs(male.radius - female.radius) < AXIS_TOLERANCE;
+  if (male.shape === 'A' && female.shape === 'A' && same) return 'rigid'; // axle in axle hole
+  if (male.shape === 'T' && female.shape === 'T' && same) return 'rigid'; // tyre on rim
+  if (male.shape === 'A' && female.shape === 'R' && same) return 'revolute'; // axle in round hole
+  if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole
+  if (male.shape === 'R' && female.shape === 'A' && male.radius < female.radius) return 'revolute'; // thin pin in axle hole
   return null;
 }
 
@@ -204,8 +252,8 @@ function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
     for (const fs of f.secs) {
       const fEnd = fPos + sign * fs.length;
       const overlap = Math.min(mEnd, Math.max(fPos, fEnd)) - Math.max(mPos, Math.min(fPos, fEnd));
-      const fit = sectionFit(ms.shape, fs.shape);
-      if (overlap > 0 && fit && Math.abs(ms.radius - fs.radius) < AXIS_TOLERANCE) {
+      const fit = sectionFit(ms, fs);
+      if (overlap > 0 && fit) {
         total += overlap;
         if (fit === 'rigid') kind = 'rigid';
         lo = Math.min(lo, Math.max(mPos, Math.min(fPos, fEnd)));
@@ -264,8 +312,9 @@ function groupIntoBodies(count: number, roles: string[], connections: Connection
 // Bodies are named after their most telling part: "frame", "wheels 1", "gear 2", ...
 const BODY_NOUNS: [string, string][] = [
   ['tyre', 'wheels'],
-  ['gear', 'gear'],
   ['rim', 'wheels'],
+  ['differential', 'differential'],
+  ['gear', 'gear'],
   ['axle', 'axle'],
 ];
 

@@ -19,7 +19,12 @@ export interface Section {
   shape: string;
   radius: number;
   length: number;
-  teeth?: number; // gears only
+  // Gears only:
+  teeth?: number;
+  spur?: boolean; // has straight teeth around its edge, for gears on parallel axles (default true)
+  bevel?: string; // has bevel teeth facing along the axis: '+' (the way dir points), '-', or 'both'
+  apex?: number; // for bevel teeth: how far from the gear's middle, along the axis, the
+  //               tip of its 45 degree pitch cone is. Two bevel gears mesh when their tips meet.
 }
 
 export interface Cylinder {

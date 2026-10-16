@@ -18,7 +18,7 @@
 // long the model is dragged.
 
 import { Matrix4, Vector3 } from 'three';
-import { Mechanism } from './mechanism.ts';
+import { axesCrossing, Gear, Mechanism, Mesh } from './mechanism.ts';
 
 // How close a tyre must be to the ground to count as touching it, in LDU.
 const GROUND_TOLERANCE = 0.5;
@@ -48,6 +48,7 @@ export class Kinematics {
   private order: number[] = []; // bodies, parents before children
   private rootPoses = new Map<number, Matrix4>();
   private fixedBody = -1; // held still when nothing touches the ground
+  private held = new Set<number>(); // bodies the user is holding still
   private contactTreads: number[] = []; // indices into mech.treads
 
   constructor(mech: Mechanism) {
@@ -157,6 +158,25 @@ export class Kinematics {
     return this.fixedBody >= 0;
   }
 
+  // Holding a body still: a body that turns on a joint stops turning on it; a root body (the
+  // frame) stops moving altogether. Everything else moves only in ways that allow that.
+  toggleHold(body: number) {
+    if (this.held.has(body)) this.held.delete(body);
+    else this.held.add(body);
+  }
+
+  isHeld(body: number): boolean {
+    return this.held.has(body);
+  }
+
+  heldBodies(): number[] {
+    return [...this.held];
+  }
+
+  letGoOfAll() {
+    this.held.clear();
+  }
+
   // ---------------------------------------------------------------------------
   // The equations
 
@@ -164,11 +184,26 @@ export class Kinematics {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
 
-    if (this.fixedBody >= 0) {
-      for (let k = 0; k < 6; k++) {
+    const fixed = new Set(this.held);
+    if (this.fixedBody >= 0) fixed.add(this.fixedBody);
+    for (const body of fixed) {
+      const j = this.parentJoint[body];
+      if (j >= 0 && body !== this.fixedBody) {
+        // Held on its joint: no turning relative to the body it turns on.
+        const joint = this.mech.joints[j];
+        const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
         const row = new Array(n).fill(0);
-        row[6 * this.fixedBody + k] = 1;
+        for (let k = 0; k < 3; k++) {
+          row[6 * joint.bodyB + k] += d.getComponent(k);
+          row[6 * joint.bodyA + k] -= d.getComponent(k);
+        }
         rows.push(row);
+      } else {
+        for (let k = 0; k < 6; k++) {
+          const row = new Array(n).fill(0);
+          row[6 * body + k] = 1;
+          rows.push(row);
+        }
       }
     }
 
@@ -194,17 +229,13 @@ export class Kinematics {
       }
     }
 
-    // Meshing gears: where their pitch circles touch, both gears' teeth move at the same speed
-    // across the line between their centres. (Moving along that line would pull the teeth apart,
-    // which the joints already prevent.)
+    // Meshing gears: where their teeth touch (the pitch point), both gears' teeth move at the
+    // same speed across the mesh. (Moving the other ways would pull the teeth apart, which the
+    // joints already prevent.)
     for (const mesh of this.mech.meshes) {
-      const a = this.mech.gears[mesh.gearA];
-      const b = this.mech.gears[mesh.gearB];
-      const ca = a.center.clone().applyMatrix4(this.poses[a.body]);
-      const cb = b.center.clone().applyMatrix4(this.poses[b.body]);
-      const axis = a.axis.clone().transformDirection(this.poses[a.body]);
-      const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));
-      const across = new Vector3().crossVectors(axis, new Vector3().subVectors(cb, ca)).normalize();
+      const contact = this.meshContact(mesh);
+      if (!contact) continue;
+      const { a, b, pitchPoint, across } = contact;
       const row = new Array(n).fill(0);
       for (let k = 0; k < 3; k++) {
         const ra = new Array(n).fill(0);
@@ -228,6 +259,34 @@ export class Kinematics {
       }
     }
     return rows;
+  }
+
+  // Where two meshing gears' teeth touch now (the pitch point), and the direction their teeth
+  // move there. Recomputed from where the gears are, since in a differential the gears'
+  // axles themselves go round.
+  private meshContact(mesh: Mesh): { a: Gear; b: Gear; pitchPoint: Vector3; across: Vector3 } | null {
+    const a = this.mech.gears[mesh.gearA];
+    const b = this.mech.gears[mesh.gearB];
+    const ca = a.center.clone().applyMatrix4(this.poses[a.body]);
+    const cb = b.center.clone().applyMatrix4(this.poses[b.body]);
+    const axisA = a.axis.clone().transformDirection(this.poses[a.body]);
+    const axisB = b.axis.clone().transformDirection(this.poses[b.body]);
+    if (mesh.kind === 'spur') {
+      // On the line between the centres, split in the ratio of the pitch radii.
+      const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));
+      const across = new Vector3().crossVectors(axisA, new Vector3().subVectors(cb, ca)).normalize();
+      return { a, b, pitchPoint, across };
+    }
+    // Bevel: from where the axes cross, out towards each gear in the ratio of the *other*
+    // gear's teeth, so that each gear's teeth move at (its turning speed) x (its tooth count)
+    // there, which makes the speeds come out in the ratio of the tooth counts.
+    const crossing = axesCrossing(ca, axisA, cb, axisB);
+    if (!crossing) return null;
+    const towardA = new Vector3().subVectors(ca, crossing).normalize();
+    const towardB = new Vector3().subVectors(cb, crossing).normalize();
+    const pitchPoint = crossing.clone().addScaledVector(towardA, b.teeth).addScaledVector(towardB, a.teeth);
+    const across = new Vector3().crossVectors(towardA, towardB).normalize();
+    return { a, b, pitchPoint, across };
   }
 
   // Where a tyre touches the ground now.

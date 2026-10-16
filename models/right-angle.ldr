@@ -1,0 +1,23 @@
+0 Right-Angle Drive
+0 Name: right-angle.ldr
+0 Author: erik-larsen
+0 // Two 12 tooth double bevel gears meshing at a right angle, one on a horizontal axle and one
+0 // on a vertical axle. The axles cross at x = -60, y = -38, z = 0, and each gear's middle is
+0 // 20 LDU from there, where the tips of their bevel cones meet.
+
+0 // Step 1: a Technic plate with holes, and a 1x2 brick with a Technic 1x2 brick on top,
+0 // turned so its hole runs along x
+1 71 0 0 0 1 0 0 0 1 0 0 0 1 3738.dat
+1 14 -20 -24 0 0 0 1 0 1 0 -1 0 0 3004.dat
+1 14 -20 -48 0 0 0 1 0 1 0 -1 0 0 3700.dat
+0 STEP
+
+0 // Step 2: a 4L axle through the Technic brick, and a 2L axle standing in the plate's end hole
+1 0 -50 -38 0 1 0 0 0 1 0 0 0 1 3705.dat
+1 0 -60 -10 0 0 -1 0 1 0 0 0 0 1 3704.dat
+0 STEP
+
+0 // Step 3: the gears
+1 72 -80 -38 0 0 0 1 0 1 0 -1 0 0 32270.dat
+1 72 -60 -18 0 1 0 0 0 0 1 0 -1 0 32270.dat
+0 STEP

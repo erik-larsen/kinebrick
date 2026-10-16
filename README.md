@@ -6,13 +6,15 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model of a simpl
 
 ## Status
 
-M2 works. Three test models, picked from a menu in the viewer:
+M3 works. Five test models, picked from a menu in the viewer:
 
 - [Simple car](models/simple-car.ldr): drag the frame and it rolls along its length, its wheels turning by distance ÷ tyre radius; turn a tyre and the car rolls with it.
 - [Geared car](models/geared-car.ldr): the same car with two 8 tooth gears inside, so rolling the car spins a second axle the other way.
 - [Gear train](models/gear-train.ldr): 8, 24 and 40 tooth gears on a Technic brick. Turning any gear turns the others at the right ratios (the 40 tooth gear turns 1/5 as far as the 8 tooth gear).
+- [Right-angle drive](models/right-angle.ldr): two 12 tooth double bevel gears meshing at a right angle, one on a horizontal axle and one on a vertical axle.
+- [Differential](models/differential.ldr): a differential on a stand, driven by an 8 tooth gear. Turning the input turns both outputs together. Hold the input still (Alt-click it) and turning one output turns the other the opposite way.
 
-The viewer draws each body in its own colour, each joint's axis and each gear mesh, and labels the part under the pointer. Next is M3, bevel gears and the differential.
+The viewer draws each body in its own colour, each joint's axis and each gear mesh, and labels the part under the pointer. Next is M4, steering.
 
 ## What KineBrick is, and isn't
 
@@ -28,7 +30,7 @@ The viewer draws each body in its own colour, each joint's axis and each gear me
 3. **Look up connection points.** Each part's connection points come from KineBrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
 4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too.
 5. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
-6. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. Two meshing gears say their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; if no tyre touches it, the frame is held still instead. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
+6. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. Two meshing gears say their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts; that works the same for spur gears side by side and bevel gears at an angle. A part the user holds still says its body doesn't turn. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; if no tyre touches it, the frame is held still instead. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
 7. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
 
 Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then KineBrick will need to know how structure parts attach to each other. The connection table already lists studs, so the data will be there.
@@ -54,6 +56,8 @@ A role is a short label for what a part does in a mechanism. It tells KineBrick 
 | `rim` | 3482 Wheel Rim 8 x 17.5 | Carries a tyre. Locks onto an axle through its axle hole. |
 | `tyre` | 3483 Tyre 56 x 17 | Locks onto the rim it sits on. Rolls on the ground without slipping. |
 | `gear` | 3647, 4019, 3648, 3649 Technic Gear 8, 16, 24, 40 Tooth | Locks onto an axle through its axle hole. Meshes with a gear whose axle is parallel and exactly the two gears' pitch radii away (1.25 LDU per tooth). |
+| `gear` (bevel) | 32270, 32269 Technic Gear 12, 20 Tooth Double Bevel; 6589 Technic Gear 12 Tooth Bevel | Bevel teeth lie on a 45 degree cone. Meshes with another bevel gear whose axle crosses its own, when the tips of their cones meet where the axles cross. Double bevel gears also mesh side by side, like spur gears. |
+| `differential` | 6573 Technic Differential with Gear 16 Tooth and 24 Tooth | Turns on the two output axles that pass into it. Carries a 16 and a 24 tooth gear ring outside, and a post inside for the middle (planet) bevel gear, which meshes with a bevel gear on each output. |
 
 More roles arrive with each milestone: gears, the differential, the rack, the worm gear, clutch gears, driving rings, pins, linkages, springs.
 
@@ -65,6 +69,7 @@ All manipulation happens directly in the 3D view, by dragging parts with the mou
 2. **Press.** Pressing on a part fixes a grab point where the cursor touched it. The view shows how that point can move. Pressing a frame part shows an arrow for its straight-line motion (the car rolling). Pressing a part that spins on an axle (a gear, a crank, a tyre) shows an arc around the axle: dragging it turns the part, and everything connected follows. A tyre on the ground turns the same way, and the car rolls as it turns, so to push the car, grab the frame. The arc is measured against whatever the axle is mounted in, so it travels with a moving car and stays in step with the part. A part that can't move shows no handle, and a brief cue says why: it's jammed, or it's part of a frame held still because nothing touches the ground.
 3. **Drag.** Pushing a frame part: as the cursor moves, the mechanism moves as far along its allowed motion as needed to bring the grab point as close to the cursor as it can get. Every body moves with it. Dragging either 1x4 brick of the test car rolls the car in the direction of the drag. Turning a part that spins on an axle: the part turns like a knob, by the angle the cursor sweeps around its axle, and everything connected follows. A cursor that stops moving stops the turn, even if the axle is still being carried along (the car rolling), and close to the axle the turn is damped, so a short drag never gives a big turn. Gearing can still make the rest of the model move further than the cursor: on the geared car, turning the small 8 tooth gear rolls the car about three times as far, the other way.
 4. **Release.** The model stays where it was left. Momentum waits for forces in M7.
+5. **Hold.** Alt-clicking (Option-clicking on a Mac) a part holds its body still, and it glows cyan; Alt-clicking it again lets go, and "Let go of all" lets go of everything. A held part that turns on an axle stops turning; a held frame stops moving. This matters when a mechanism can move more than one way: a differential's two outputs can turn independently, so turning one alone leaves it open how the other and the housing share the motion. Hold the input still, and the other output must turn the opposite way.
 
 While dragging, a small readout shows the numbers, such as "moved 40 LDU · wheels 74°", so the motion can be checked by eye.
 
@@ -120,6 +125,7 @@ Other commands:
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 6) |
 | `src/kinematics.test.ts` | Tests for the above: the car rolls the right distance per wheel turn and stays on the ground |
 | `src/gears.test.ts` | Tests for gear trains: ratios, direction, and the geared car |
+| `src/bevel.test.ts` | Tests for the right-angle drive and the differential, with and without parts held |
 | `src/interaction.ts` | Hover, press, drag (see [Interaction](#interaction)) |
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
 | `src/turn.test.ts` | Tests for the above |

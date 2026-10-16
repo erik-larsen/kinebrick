@@ -54,6 +54,7 @@ export interface InteractionSetup {
   appearance: Appearance;
   partTitle: (name: string) => Promise<string>;
   onMoved: () => void; // called after the mechanism moves
+  onHoldChanged: () => void; // called after a part is held or let go
 }
 
 interface Drag {
@@ -263,6 +264,21 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // ---------------------------------------------------------------------------
+  // Holding parts still
+
+  function toggleHold(body: number, clientX: number, clientY: number) {
+    const name = s.mech.bodies[body].name;
+    if (body === 0 && s.kin.frameHeld()) {
+      showLabel(`The ${name} is already held still, since nothing touches the ground`, clientX, clientY);
+      return;
+    }
+    s.kin.toggleHold(body);
+    s.onHoldChanged();
+    const text = s.kin.isHeld(body) ? `Holding ${name} still · Alt-click again to let go` : `Let go of ${name}`;
+    showLabel(text, clientX, clientY);
+  }
+
+  // ---------------------------------------------------------------------------
   // Press, move, release
 
   function endDrag() {
@@ -286,6 +302,12 @@ export function setUpInteraction(s: InteractionSetup) {
       hover(e.clientX, e.clientY);
       const hit = hitAt(e.clientX, e.clientY);
       if (!hit) return; // empty space: let the camera turn
+      if (e.altKey) {
+        // Alt-click: hold the part's body still, or let go of it. Keep the camera from turning.
+        e.stopImmediatePropagation();
+        toggleHold(s.mech.bodyOf[hit.part], e.clientX, e.clientY);
+        return;
+      }
       s.controls.enabled = false;
       // Keep receiving moves when the pointer leaves the canvas. (Can fail for synthetic events.)
       try {

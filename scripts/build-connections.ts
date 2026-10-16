@@ -133,14 +133,23 @@ function numbers(text: string | undefined, fallback: number[]): number[] {
 
 // A GEAR line from data/corrections.ldr, e.g.
 //   "0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=...]"
-// as a cylinder with one G section, placed the same way as a SNAP_CYL.
+// as a cylinder with one G section, placed the same way as a SNAP_CYL. Bevel gears add
+// [bevel=+|-|both] [apex=...], and [spur=false] if they have no straight teeth.
 function gearFromMeta(meta: Meta): WorkingCylinder[] {
   const p = meta.params;
   p.set('secs', `G ${p.get('radius')} ${p.get('width')}`);
   p.set('gender', 'M');
   p.set('caps', 'none');
   const cyls = cylindersFromMeta(meta);
-  for (const c of cyls) c.secs[0].teeth = Number(p.get('teeth'));
+  for (const c of cyls) {
+    const sec = c.secs[0];
+    sec.teeth = Number(p.get('teeth'));
+    if (p.get('spur') === 'false') sec.spur = false;
+    if (p.has('bevel')) {
+      sec.bevel = p.get('bevel');
+      sec.apex = Number(p.get('apex'));
+    }
+  }
   return cyls;
 }
 
