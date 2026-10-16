@@ -1,0 +1,12 @@
+0 kinebrick corrections to the connection table
+0 // Snap lines for what neither the LDraw parts nor the LDCad shadow library describe.
+0 // Each "0 FILE" block applies to one part, after that part's shadow lines.
+0 // Same syntax as the LDCad shadow library, plus one extra section shape: T, a tyre seat.
+
+0 FILE 3482.dat
+0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 22 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 3483.dat
+0 // Tyre 56 x 17 Offset Tread: sits on a 22 LDU radius rim seat, 18 LDU wide
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 22 18] [center=true] [ori=1 0 0 0 0 1 0 -1 0]

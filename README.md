@@ -6,7 +6,7 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model of a simpl
 
 ## Status
 
-Planning. Nothing runs yet. The first test model is [models/simple-car.ldr](models/simple-car.ldr).
+M0 works: the viewer loads the test car, [models/simple-car.ldr](models/simple-car.ldr), draws each body in its own colour and each joint's axis, and labels the part under the pointer. Nothing moves yet; that's M1.
 
 ## What kinebrick is, and isn't
 
@@ -95,6 +95,28 @@ You need [Node.js](https://nodejs.org) (which comes with `npm`) and the LDraw pa
 3. Start the viewer: `npm run dev`, then open the address it prints.
 
 The project uses plain TypeScript, and [Vite](https://vite.dev) as its development server: Vite serves the code to the browser, converts TypeScript to JavaScript as it goes, and reloads the page whenever a file is saved.
+
+Other commands:
+
+- `npm test` runs the tests.
+- `npm run connections` rebuilds the [connection table](#the-connection-table). It needs the LDCad shadow library in the project folder, in `ldcad-shadow/` (also not committed): `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`
+
+## Project layout
+
+| Path | What's in it |
+|---|---|
+| `models/` | Test models |
+| `src/main.ts` | The viewer: loading, camera, hover |
+| `src/ldr.ts` | Reads the parts of an LDraw model file |
+| `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 5) |
+| `src/mechanism.test.ts` | Tests for the above, using the test car |
+| `src/appearance.ts` | Body colours and hover highlighting |
+| `src/jointAxes.ts` | Draws joint axes |
+| `src/connections.ts` | What a connection point looks like in the table |
+| `scripts/build-connections.ts` | Builds the connection table |
+| `data/connections.json` | The connection table (generated, don't edit) |
+| `data/corrections.ldr` | kinebrick's own additions to the connection table |
+| `data/roles.json` | Each part's role; parts not listed are `structure` |
 
 ## Data sources and licenses
 
