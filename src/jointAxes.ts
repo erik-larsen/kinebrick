@@ -17,6 +17,10 @@ export function makeJointAxes(joints: Joint[]): Group {
     rod.position.addVectors(joint.from, joint.to).multiplyScalar(0.5);
     rod.quaternion.setFromUnitVectors(new Vector3(0, 1, 0), dir); // the geometry runs along y
     rod.renderOrder = 10; // draw after the parts so it shows through them
+    // The axis moves with the joint's first body (it's fixed in both).
+    rod.updateMatrix();
+    rod.userData.body = joint.bodyA;
+    rod.userData.startMatrix = rod.matrix.clone();
     group.add(rod);
   }
   return group;

@@ -12,6 +12,7 @@ export type Vec3 = [number, number, number];
 //   A  axle-shaped (cross)
 //   S  square
 //   T  tyre seat (where a tyre sits on a rim)
+//   W  tread (where a tyre touches the ground; worked out from the tyre's shape)
 export interface Section {
   shape: string;
   radius: number;

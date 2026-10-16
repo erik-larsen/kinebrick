@@ -43,21 +43,33 @@ export interface Joint {
   to: Vector3;
 }
 
+// A tyre's tread: the part of a tyre that can touch the ground.
+export interface Tread {
+  part: number;
+  body: number;
+  center: Vector3; // middle of the tread, on the tyre's axis
+  axis: Vector3; // unit vector
+  radius: number;
+}
+
 export interface Mechanism {
   roles: string[]; // role of each part
   bodyOf: number[]; // body index of each part
   bodies: Body[];
   joints: Joint[];
   connections: Connection[];
+  treads: Tread[];
 }
 
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>): Mechanism {
   const roles = parts.map((p) => roleList[p.name] ?? 'structure');
-  const connections = findConnections(worldCylinders(parts, table));
+  const cyls = worldCylinders(parts, table);
+  const connections = findConnections(cyls);
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
-  return { roles, bodyOf, bodies, joints, connections };
+  const treads = findTreads(cyls, bodyOf);
+  return { roles, bodyOf, bodies, joints, connections, treads };
 }
 
 // Step 3: every part's connection points, moved into model coordinates. Only open-ended
@@ -74,6 +86,17 @@ function worldCylinders(parts: PlacedPart[], table: ConnectionTable): WorldCylin
     }
   });
   return result;
+}
+
+function findTreads(cyls: WorldCylinder[], bodyOf: number[]): Tread[] {
+  const treads: Tread[] = [];
+  for (const c of cyls) {
+    const sec = c.secs[0];
+    if (c.secs.length !== 1 || sec.shape !== 'W') continue;
+    const center = c.start.clone().addScaledVector(c.dir, sec.length / 2);
+    treads.push({ part: c.part, body: bodyOf[c.part], center, axis: c.dir.clone(), radius: sec.radius });
+  }
+  return treads;
 }
 
 // What happens when a male section sits inside a female section of the same radius.

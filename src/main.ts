@@ -1,4 +1,4 @@
-// The viewer: loads the test car, works out its mechanism, and shows it.
+// The viewer: loads the test car, works out its mechanism, shows it, and lets you drag it.
 
 import {
   Box3,
@@ -7,12 +7,9 @@ import {
   GridHelper,
   Group,
   HemisphereLight,
-  Mesh,
   Object3D,
   PerspectiveCamera,
-  Raycaster,
   Scene,
-  Vector2,
   Vector3,
   WebGLRenderer,
 } from 'three';
@@ -21,9 +18,11 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { Appearance } from './appearance.ts';
 import { ConnectionTable, normalizePartName } from './connections.ts';
+import { setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
+import { Kinematics } from './kinematics.ts';
 import { parseLdr } from './ldr.ts';
-import { inferMechanism } from './mechanism.ts';
+import { inferMechanism, Mechanism } from './mechanism.ts';
 
 const MODEL_URL = '/models/simple-car.ldr';
 const CONNECTIONS_URL = '/data/connections.json';
@@ -92,6 +91,7 @@ async function start() {
   const table: ConnectionTable = await (await fetch(CONNECTIONS_URL)).json();
   const roles: Record<string, string> = await (await fetch(ROLES_URL)).json();
   const mech = inferMechanism(parts, table, roles);
+  const kin = new Kinematics(mech);
 
   const loader = new LDrawLoader();
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);
@@ -111,6 +111,8 @@ async function start() {
       throw new Error(`Part ${i}: loader has ${obj.name}, model has ${parts[i].name}`);
     }
     obj.userData.partIndex = i;
+    obj.updateMatrix();
+    obj.userData.startMatrix = obj.matrix.clone();
   });
 
   const appearance = new Appearance(partObjects, mech);
@@ -119,9 +121,19 @@ async function start() {
   const axes = makeJointAxes(mech.joints);
   ldrawSpace.add(axes);
 
-  frameCamera(model);
+  frameCamera(model, kin.groundY);
 
   summary.textContent = `${parts.length} parts · ${mech.bodies.length} bodies · ${mech.joints.length} joints`;
+
+  // Moves every part and joint axis to where the kinematics says its body is.
+  function showPoses() {
+    for (const obj of [...partObjects, ...axes.children]) {
+      const body = obj.userData.partIndex !== undefined ? mech.bodyOf[obj.userData.partIndex] : obj.userData.body;
+      obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
+      obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
+    }
+    updateReadout(mech, kin);
+  }
 
   const bodyColours = document.getElementById('bodyColours') as HTMLInputElement;
   bodyColours.addEventListener('change', () => {
@@ -132,82 +144,64 @@ async function start() {
   jointAxes.addEventListener('change', () => {
     axes.visible = jointAxes.checked;
   });
+  document.getElementById('reset')!.addEventListener('click', () => {
+    kin.reset();
+    showPoses();
+  });
 
-  setUpHover(model, parts.map((p) => p.name), mech, appearance);
+  setUpInteraction({
+    renderer,
+    camera,
+    controls,
+    ldrawSpace,
+    model,
+    partNames: parts.map((p) => p.name),
+    mech,
+    kin,
+    appearance,
+    partTitle,
+    onMoved: showPoses,
+  });
+  showPoses();
 }
 
-// Point the camera at the model from above and to one side, and put a grid under it.
-function frameCamera(model: Object3D) {
+// Point the camera at the model from above and to one side, and put a grid on the ground
+// (or under the model, if nothing touches the ground).
+function frameCamera(model: Object3D, groundY: number | null) {
   const box = new Box3().setFromObject(model);
   const center = box.getCenter(new Vector3());
   const size = box.getSize(new Vector3()).length();
   controls.target.copy(center);
   camera.position.copy(center).add(new Vector3(0.9, 0.7, 1.1).multiplyScalar(size));
-  const grid = new GridHelper(size * 4, 40, 0x9aa3b0, 0xc4cad3);
-  grid.position.set(center.x, box.min.y, center.z);
+  const grid = new GridHelper(size * 6, 60, 0x9aa3b0, 0xc4cad3);
+  // The scene is the right way up, so LDraw's y is flipped.
+  grid.position.set(center.x, groundY !== null ? -groundY : box.min.y, center.z);
   scene.add(grid);
 }
 
 // ---------------------------------------------------------------------------
-// Hover: highlight the part under the pointer, tint its body, and label it.
+// Readout: how far the frame has moved and how far each joint has turned, so the motion can
+// be checked by eye. For a wheel, the expected turn is distance ÷ tyre radius.
 
-function setUpHover(model: Object3D, names: string[], mech: ReturnType<typeof inferMechanism>, appearance: Appearance) {
-  const label = document.getElementById('label')!;
-  const raycaster = new Raycaster();
-  const pointer = new Vector2();
-
-  // The index of the part under the pointer, or -1.
-  function partAt(clientX: number, clientY: number): number {
-    pointer.set((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
-    raycaster.setFromCamera(pointer, camera);
-    for (const hit of raycaster.intersectObject(model, true)) {
-      if (!(hit.object as Mesh).isMesh) continue; // skip edge lines
-      let obj: Object3D | null = hit.object;
-      while (obj && obj.userData.partIndex === undefined) obj = obj.parent;
-      if (obj) return obj.userData.partIndex;
-    }
-    return -1;
+function updateReadout(mech: Mechanism, kin: Kinematics) {
+  const readout = document.getElementById('readout')!;
+  const lines: string[] = [];
+  let distance = 0;
+  if (kin.groundY !== null) {
+    distance = new Vector3(0, 0, 0).applyMatrix4(kin.poses[0]).length();
+    lines.push(`frame moved ${distance.toFixed(1)} LDU`);
   }
-
-  // Next to the pointer, flipped to the other side when it would run off the window.
-  function placeLabel(clientX: number, clientY: number) {
-    const gap = 14;
-    const fitsRight = clientX + gap + label.offsetWidth < window.innerWidth;
-    const fitsBelow = clientY + gap + label.offsetHeight < window.innerHeight;
-    label.style.left = (fitsRight ? clientX + gap : clientX - gap - label.offsetWidth) + 'px';
-    label.style.top = (fitsBelow ? clientY + gap : clientY - gap - label.offsetHeight) + 'px';
-  }
-
-  function show(clientX: number, clientY: number) {
-    const part = partAt(clientX, clientY);
-    if (part !== appearance.hoveredPart) {
-      appearance.hoveredPart = part;
-      appearance.update();
+  mech.joints.forEach((joint, j) => {
+    const degrees = Math.abs((kin.jointAngles[j] * 180) / Math.PI);
+    let line = `${mech.bodies[joint.bodyB].name} turned ${degrees.toFixed(1)}°`;
+    const tread = mech.treads.find((t) => t.body === joint.bodyB);
+    if (tread && kin.groundY !== null) {
+      const expected = ((distance / tread.radius) * 180) / Math.PI;
+      line += ` (expected ${distance.toFixed(1)} ÷ ${tread.radius.toFixed(1)} = ${expected.toFixed(1)}°)`;
     }
-    if (part < 0) {
-      label.style.display = 'none';
-      return;
-    }
-    const number = names[part].replace(/\.dat$/, '');
-    const role = mech.roles[part];
-    const body = mech.bodies[mech.bodyOf[part]].name;
-    label.style.display = 'block';
-    label.textContent = `${number} · ${role} · ${body}`;
-    placeLabel(clientX, clientY);
-    partTitle(names[part]).then((title) => {
-      if (appearance.hoveredPart !== part) return;
-      label.textContent = `${number} ${title} · ${role} · ${body}`;
-      placeLabel(clientX, clientY);
-    });
-  }
-
-  renderer.domElement.addEventListener('pointermove', (e) => show(e.clientX, e.clientY));
-  renderer.domElement.addEventListener('pointerdown', (e) => show(e.clientX, e.clientY)); // touch: tap to inspect
-  renderer.domElement.addEventListener('pointerleave', () => {
-    appearance.hoveredPart = -1;
-    appearance.update();
-    label.style.display = 'none';
+    lines.push(line);
   });
+  readout.textContent = lines.join('\n');
 }
 
 start().catch((err) => {

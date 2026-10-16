@@ -290,6 +290,59 @@ function fileCylinders(name: string): WorkingCylinder[] {
 }
 
 // ---------------------------------------------------------------------------
+// Tyre treads, worked out from the tyre's shape
+
+function compose(parent: Transform, child: Transform): Transform {
+  const a = parent.m;
+  const b = child.m;
+  const m = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 3; col++) {
+      m[row * 3 + col] = a[row * 3] * b[col] + a[row * 3 + 1] * b[3 + col] + a[row * 3 + 2] * b[6 + col];
+    }
+  }
+  return { m, t: applyTransform(parent, child.t) };
+}
+
+// Every corner of every triangle and quad in an LDraw file, in that file's coordinates.
+function collectVertices(name: string, tr: Transform, out: Vec3[]) {
+  for (const line of (readLdrawFile(name) ?? '').split(/\r?\n/)) {
+    const tokens = line.trim().split(/\s+/);
+    if (tokens[0] === '1') {
+      const ref = parseReference(line);
+      if (ref) collectVertices(ref.name, compose(tr, ref.transform), out);
+    } else if (tokens[0] === '3' || tokens[0] === '4') {
+      const n = tokens.slice(2).map(Number);
+      for (let i = 0; i + 2 < n.length; i += 3) out.push(applyTransform(tr, [n[i], n[i + 1], n[i + 2]]));
+    }
+  }
+}
+
+// A tyre's tread: the cylinder around its seat axis that encloses the whole tyre. Its radius
+// is how far the tyre reaches from its axle, which sets how far the tyre rolls per turn.
+function treadCylinder(name: string, seat: Cylinder): Cylinder {
+  const vertices: Vec3[] = [];
+  collectVertices(name, IDENTITY, vertices);
+  let radius = 0;
+  let lo = Infinity;
+  let hi = -Infinity;
+  for (const v of vertices) {
+    const offset: Vec3 = [v[0] - seat.start[0], v[1] - seat.start[1], v[2] - seat.start[2]];
+    const along = offset[0] * seat.dir[0] + offset[1] * seat.dir[1] + offset[2] * seat.dir[2];
+    radius = Math.max(radius, length(add(offset, scaleVec(seat.dir, -along))));
+    lo = Math.min(lo, along);
+    hi = Math.max(hi, along);
+  }
+  return {
+    gender: 'M',
+    caps: 'none',
+    start: add(seat.start, scaleVec(seat.dir, lo)),
+    dir: seat.dir,
+    secs: [{ shape: 'W', radius, length: hi - lo }],
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Which parts go in the table
 
 // Every part referenced by the models in models/, looking inside multi-part (MPD) files.
@@ -339,8 +392,13 @@ const about =
 let out = '{\n  "about": ' + JSON.stringify(about) + ',\n  "parts": {';
 let first = true;
 for (const name of partsInModels()) {
-  const cyls = fileCylinders(name);
+  const cyls: Cylinder[] = [...fileCylinders(name)];
   if (!belongsInTable(name, cyls, roles)) continue;
+  if (roles[name] === 'tyre') {
+    const seat = cyls.find((c) => c.gender === 'F' && c.secs.some((sec) => sec.shape === 'T'));
+    if (seat) cyls.push(treadCylinder(name, seat));
+    else console.warn(`${name}: tyre without a tyre seat in data/corrections.ldr`);
+  }
   out += (first ? '\n' : ',\n') + '    ' + JSON.stringify(name) + ': [';
   out += cyls.map((c) => '\n      ' + cylinderJson(c)).join(',');
   out += cyls.length ? '\n    ]' : ']';

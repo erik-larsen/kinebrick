@@ -6,7 +6,8 @@
       {"gender":"M","caps":"none","start":[0,0,-10],"dir":[0,0,1],"secs":[{"shape":"T","radius":22,"length":20}]}
     ],
     "3483.dat": [
-      {"gender":"F","caps":"none","start":[0,0,-9],"dir":[0,0,1],"secs":[{"shape":"T","radius":22,"length":18}]}
+      {"gender":"F","caps":"none","start":[0,0,-9],"dir":[0,0,1],"secs":[{"shape":"T","radius":22,"length":18}]},
+      {"gender":"M","caps":"none","start":[0,0,-9],"dir":[0,0,1],"secs":[{"shape":"W","radius":31.002,"length":18}]}
     ],
     "3701.dat": [
       {"gender":"M","caps":"one","start":[30,0,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
