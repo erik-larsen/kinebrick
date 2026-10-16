@@ -7,7 +7,7 @@
 
 export type Vec3 = [number, number, number];
 
-// Cross-section shapes. R, A and S come from the LDCad shadow library; T is kinebrick's own.
+// Cross-section shapes. R, A and S come from the LDCad shadow library; T is KineBrick's own.
 //   R  round (Technic hole, pin, stud)
 //   A  axle-shaped (cross)
 //   S  square

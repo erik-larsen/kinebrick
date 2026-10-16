@@ -1,6 +1,6 @@
-# kinebrick
+# KineBrick
 
-A web viewer that makes LEGO Technic models move. Load an LDraw model of a simple car, push the chassis, and the car rolls: the tyres turn against the ground, the rims and axles turn with them, and the bricks ride along. kinebrick works this out from the parts themselves, with no hand-made animation.
+A web viewer that makes LEGO Technic models move. Load an LDraw model of a simple car, push the chassis, and the car rolls: the tyres turn against the ground, the rims and axles turn with them, and the bricks ride along. KineBrick works this out from the parts themselves, with no hand-made animation.
 
 ![The simple car test model: a black 4x8 plate with yellow Technic bricks on all four sides, two black axles through the side bricks, and four grey rims with black tyres](media/screenshot.jpeg)
 
@@ -8,9 +8,9 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model of a simpl
 
 M0 works: the viewer loads the test car, [models/simple-car.ldr](models/simple-car.ldr), draws each body in its own colour and each joint's axis, and labels the part under the pointer. Nothing moves yet; that's M1.
 
-## What kinebrick is, and isn't
+## What KineBrick is, and isn't
 
-- **It is** a mechanism inferrer. Each LEGO part gets a description of what it can do (an axle turns in a round hole, a tyre rolls on the ground). kinebrick reads where the parts sit in the model, decides how they connect, and solves how they move together.
+- **It is** a mechanism inferrer. Each LEGO part gets a description of what it can do (an axle turns in a round hole, a tyre rolls on the ground). KineBrick reads where the parts sit in the model, decides how they connect, and solves how they move together.
 - **It is** iterative. Part types are added one at a time, starting with the ones that move. A brick that only holds things together needs no special treatment: it moves with whatever it's attached to.
 - **It isn't** a new 3D viewer. Rendering comes from [three.js](https://threejs.org) and its `LDrawLoader`.
 - **It isn't** a general physics engine. Movement comes from the mechanism's geometry (kinematics). Forces, springs and mass come later, through an existing physics engine rather than our own.
@@ -18,28 +18,28 @@ M0 works: the viewer loads the test car, [models/simple-car.ldr](models/simple-c
 ## How it works
 
 1. **Load.** `LDrawLoader` reads the model and the official LDraw parts library. Each part becomes its own 3D object that can be moved on its own.
-2. **Assign roles.** Each part is looked up in kinebrick's role list (see [Part roles](#part-roles)). Parts not in the list are `structure`.
-3. **Look up connection points.** Each part's connection points come from kinebrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
+2. **Assign roles.** Each part is looked up in KineBrick's role list (see [Part roles](#part-roles)). Parts not in the list are `structure`.
+3. **Look up connection points.** Each part's connection points come from KineBrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
 4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too.
 5. **Group.** All `structure` parts together form one body, the *frame*. Every other part joins a body through its rigid connections. The test car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it.
 6. **Solve.** Joints and ground contact become equations between the bodies' speeds. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
 7. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
 
-Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then kinebrick will need to know how structure parts attach to each other. The connection table already lists studs, so the data will be there.
+Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with steering knuckles (M4) and suspension arms (M6). By then KineBrick will need to know how structure parts attach to each other. The connection table already lists studs, so the data will be there.
 
 ## The connection table
 
-The connection table lists the connection points of every part kinebrick knows about. The viewer only reads the table; a script builds it from three sources:
+The connection table lists the connection points of every part KineBrick knows about. The viewer only reads the table; a script builds it from three sources:
 
 1. **The LDraw parts library.** Parts are built from shared pieces of geometry called primitives, and the library says which primitives each part uses and where they sit. Many parts reuse the same primitives for the same features: a rim's centre is a copy of `axlehol5.dat`, a stud is a copy of `stud.dat`.
 2. **The [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary).** LDCad is a LEGO CAD program, and its shadow library adds connection data to LDraw parts and primitives: each hole, axle, pin or stud with its position, direction, length and cross-section (round, axle-shaped, or a pin's ridges and collars). Data on a primitive carries into every part that uses it, so describing `axlehol5.dat` once covers every rim built from it. It's called a shadow library because its files mirror the LDraw library's folders and file names, and LDCad loads each one alongside the LDraw file of the same name, as if its lines were part of that file, without changing the official file.
-3. **kinebrick's own corrections.** A short hand-written file adds what neither source covers: where a tyre sits on its rim, gear tooth counts, and whether a pin turns freely or holds by friction (the shadow library treats both kinds of pin the same).
+3. **KineBrick's own corrections.** A short hand-written file adds what neither source covers: where a tyre sits on its rim, gear tooth counts, and whether a pin turns freely or holds by friction (the shadow library treats both kinds of pin the same).
 
 The table is committed to the repository so that changes to it can be reviewed. When the LDraw or shadow library updates, we rebuild it and check the diff. It only covers parts that matter for movement: parts with a role, and parts with Technic holes that axles and pins can go through. It grows with each milestone's test models.
 
 ## Part roles
 
-A role is a short label for what a part does in a mechanism. It tells kinebrick which connections the part makes and how it may move. Each part has exactly one role, and parts nobody has described yet get `structure`.
+A role is a short label for what a part does in a mechanism. It tells KineBrick which connections the part makes and how it may move. Each part has exactly one role, and parts nobody has described yet get `structure`.
 
 | Role | Examples | What it does |
 |---|---|---|
@@ -115,7 +115,7 @@ Other commands:
 | `src/connections.ts` | What a connection point looks like in the table |
 | `scripts/build-connections.ts` | Builds the connection table |
 | `data/connections.json` | The connection table (generated, don't edit) |
-| `data/corrections.ldr` | kinebrick's own additions to the connection table |
+| `data/corrections.ldr` | KineBrick's own additions to the connection table |
 | `data/roles.json` | Each part's role; parts not listed are `structure` |
 
 ## Data sources and licenses
@@ -131,7 +131,7 @@ Other commands:
 - **[SR 3D Builder](https://wiki.ldraw.org/wiki/Sr3d).** Windows LEGO CAD that could animate gears, hinges and pistons. Discontinued, and its own website is gone, so this links to the LDraw wiki.
 - **[LDCad](https://www.melkert.net/LDCad).** LEGO CAD whose animations are written by hand in Lua for each model.
 - **[TechnicBrickPower gear calculator](https://www.eurobricks.com/forum/forums/topic/186656-new-technic-gear-ratio-calculator-tool).** Web tool that finds the gear trains in an LDraw file and shows their ratios. Gears only, and no live animation.
-- **[yoff/LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation).** Python tool that finds bodies, joints and gear meshes in an LDraw file and exports them to Blender or MuJoCo. Like kinebrick's connection table, it gets connection points from LDraw primitives. Its code can't be reused directly: it's Python, and it has no license.
+- **[yoff/LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation).** Python tool that finds bodies, joints and gear meshes in an LDraw file and exports them to Blender or MuJoCo. Like KineBrick's connection table, it gets connection points from LDraw primitives. Its code can't be reused directly: it's Python, and it has no license.
 
 ## License
 
