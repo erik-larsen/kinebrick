@@ -2,6 +2,8 @@
 
 A web viewer that makes LEGO Technic models move. Load an LDraw model of a simple car, push the chassis, and the car rolls: the tyres turn against the ground, the rims and axles turn with them, and the bricks ride along. KineBrick works this out from the parts themselves, with no hand-made animation.
 
+**Try it: [erik-larsen.github.io/kinebrick](https://erik-larsen.github.io/kinebrick/)**
+
 ![The simple car test model: a black 4x8 plate with yellow Technic bricks on all four sides, two black axles through the side bricks, and four grey rims with black tyres](media/screenshot.jpeg)
 
 ## Status
@@ -112,18 +114,22 @@ A car with two fixed axles can't turn without its tyres sliding sideways, which 
 
 ## Getting started
 
-You need [Node.js](https://nodejs.org) (which comes with `npm`) and the LDraw parts library.
+You need [Node.js](https://nodejs.org) (which comes with `npm`).
 
-1. Download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) from LDraw.org and unzip it into the project folder, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`. The `ldraw/` folder is not committed to git.
-2. Install the dependencies: `npm install`
-3. Start the viewer: `npm run dev`, then open the address it prints. Pick a test model from the menu at the top left.
+1. Install the dependencies: `npm install`
+2. Start the viewer: `npm run dev`, then open the address it prints. Pick a test model from the menu at the top left.
+
+The viewer doesn't need the LDraw parts library: each test model is packed, with every part it uses, into one file in `packed/`. The libraries are only needed to rebuild the data after changing a test model (see below).
 
 The project uses plain TypeScript, and [Vite](https://vite.dev) as its development server: Vite serves the code to the browser, converts TypeScript to JavaScript as it goes, and reloads the page whenever a file is saved.
 
 Other commands:
 
 - `npm test` runs the tests.
-- `npm run connections` rebuilds the [connection table](#the-connection-table). It needs the LDCad shadow library in the project folder, in `ldcad-shadow/` (also not committed): `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`
+- `npm run build` builds the site into `dist/`. Every push to `main` builds and publishes it to GitHub Pages (see `.github/workflows/pages.yml`).
+- `npm run data` rebuilds the [connection table](#the-connection-table) and the packed models, after adding or changing a test model. It needs both libraries in the project folder (neither is committed):
+  - the LDraw parts library: download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) and unzip it, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`;
+  - the LDCad shadow library: `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`.
 
 ## Project layout
 
@@ -147,7 +153,9 @@ Other commands:
 | `src/outlines.ts` | Outlines drawn around parts after the scene renders |
 | `src/jointAxes.ts` | Draws joint axes |
 | `src/connections.ts` | What a connection point looks like in the table |
-| `scripts/build-connections.ts` | Builds the connection table |
+| `scripts/build-connections.ts` | Builds the connection table (`npm run connections`) |
+| `scripts/pack-models.ts` | Packs each test model with the LDraw parts it uses (`npm run pack`) |
+| `packed/` | The packed models and part titles the viewer loads (generated, don't edit) |
 | `data/connections.json` | The connection table (generated, don't edit) |
 | `data/corrections.ldr` | KineBrick's own additions to the connection table |
 | `data/roles.json` | Each part's role; parts not listed are `structure` |
@@ -156,7 +164,7 @@ Other commands:
 
 | Source | Used for | License |
 |---|---|---|
-| [LDraw parts library](https://library.ldraw.org) | Part shapes and connection primitives | CC BY 4.0 |
+| [LDraw parts library](https://library.ldraw.org) | Part shapes and connection primitives; the packed models in `packed/` include the parts they use | CC BY 4.0 |
 | [three.js](https://threejs.org) | Rendering and LDraw loading | MIT |
 | [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Connection points in the [connection table](#the-connection-table) | CC BY-SA 4.0 |
 

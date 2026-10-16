@@ -28,6 +28,9 @@ import { Kinematics } from './kinematics.ts';
 import { parseLdr } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
+import connectionsUrl from '../data/connections.json?url';
+import rolesUrl from '../data/roles.json?url';
+import titlesUrl from '../packed/titles.json?url';
 
 // The test models in models/, and their names in the picker.
 const MODELS: [string, string][] = [
@@ -41,10 +44,14 @@ const MODELS: [string, string][] = [
 ];
 const modelParam = new URLSearchParams(window.location.search).get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
-const MODEL_URL = `/models/${MODEL}.ldr`;
-const CONNECTIONS_URL = '/data/connections.json';
-const ROLES_URL = '/data/roles.json';
-const LDRAW_URL = '/ldraw/';
+
+// The files the viewer loads. Vite bundles them, so they're found both in development and on
+// the published site. The packed files (made by npm run pack) hold each model with every LDraw
+// part it uses, so the viewer needs no LDraw parts library.
+const modelUrls: Record<string, string> = import.meta.glob('../models/*.ldr', { query: '?url', import: 'default', eager: true });
+const packedUrls: Record<string, string> = import.meta.glob('../packed/*.mpd', { query: '?url', import: 'default', eager: true });
+const MODEL_URL = modelUrls[`../models/${MODEL}.ldr`];
+const PACKED_URL = packedUrls[`../packed/${MODEL}.mpd`];
 
 // ---------------------------------------------------------------------------
 // Scene
@@ -92,19 +99,12 @@ renderer.setAnimationLoop(() => {
 });
 
 // ---------------------------------------------------------------------------
-// Part titles, read from the first line of each LDraw part file ("0 Technic Brick 1 x 4 with Holes").
+// Part titles ("Technic Brick 1 x 4 with Holes"), from packed/titles.json.
 
-const titles = new Map<string, Promise<string>>();
+const titles: Promise<Record<string, string>> = fetch(titlesUrl).then((r) => r.json());
 
 function partTitle(name: string): Promise<string> {
-  let title = titles.get(name);
-  if (!title) {
-    title = fetch(LDRAW_URL + 'parts/' + name)
-      .then((r) => (r.ok ? r.text() : ''))
-      .then((text) => text.split(/\r?\n/)[0].replace(/^0\s+/, '').replace(/\s+/g, ' ').trim());
-    titles.set(name, title);
-  }
-  return title;
+  return titles.then((t) => t[name] ?? '');
 }
 
 // ---------------------------------------------------------------------------
@@ -115,17 +115,15 @@ async function start() {
 
   const modelText = await (await fetch(MODEL_URL)).text();
   const parts = parseLdr(modelText);
-  const table: ConnectionTable = await (await fetch(CONNECTIONS_URL)).json();
-  const roles: Record<string, string> = await (await fetch(ROLES_URL)).json();
+  const table: ConnectionTable = await (await fetch(connectionsUrl)).json();
+  const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
   const mech = inferMechanism(parts, table, roles);
   const kin = new Kinematics(mech);
 
   const loader = new LDrawLoader();
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);
-  loader.setPartsLibraryPath(LDRAW_URL);
   loader.smoothNormals = true;
-  await loader.preloadMaterials(LDRAW_URL + 'LDConfig.ldr');
-  const model = await loader.loadAsync(MODEL_URL);
+  const model = await loader.loadAsync(PACKED_URL);
   ldrawSpace.add(model);
 
   // The loader makes one child group per part line, in file order.
