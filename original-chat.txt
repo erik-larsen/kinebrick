@@ -1,0 +1,47 @@
+thinking of doing a lego set viewer with working physics for wheels, gears, axles, springs, etc.  wouldn't need to be a full physics sim; it could be specialized to the domain of lego parts, and just what each part was capable of and how it interacted with other parts.   such that a complex technic model, like a car with working gearbox, differential, rack & pinion steering,  etc. would animate properly given force inputs.  has anyone done or is doing something like this already?   of course we'd start with an existing lego viewer with the full lego parts library, and then iteratively add physics capabilities as we worked our way through the lego parts catalog
+
+Short answer: nobody has finished this, but pieces of it exist. Some tools find the gear trains in a model and animate them. Older desktop CADs let you drive mechanisms by hand. One new, very small project goes from LDraw to a physics simulation. None of them is a web viewer that infers the whole mechanism from the parts library and drives it with forces. The gap you’re describing is real.
+
+What exists
+
+SR 3D Builder (Sergio Reano). This is the closest older tool. It’s a CAD to create and animate LEGO models, with support for piston/rod mechanisms, linear actuators, shock absorbers, hinges and gears, plus an animation console. It’s Windows-only, discontinued, and its website is down. 
+alternativeto
+alternativeto
+LDCad. Mechanisms are animated by hand-written Lua scripts, not inferred from the parts. Even its author says combining several mechanical modes in one animation is a major shortcoming of the scripting engine. Its shadow library does hold per-part connection data (snap points for axles, pins and holes). That data would be very useful to you. 
+ldraw
+TechnicBrickPower gear calculator (2021, web). You upload an .ldr file and it simulates and visualizes the gearing, showing ratios relative to the input. It only supports gearing parts such as axles, gears, differentials, driving rings and worm gears, and users praised its jamming prediction. It covers your rotational subset, but only kinematics. 
+186656 new technic gear ratio calculator tool +2
+yoff/LegoTechnicSimulation (recent, 0 stars). This is the most similar in architecture to your idea. It groups parts joined by friction pins and axles in axle holes into rigid bodies, detects revolute joints where frictionless pins or axles sit in round holes, and finds parallel and bevel gear pairs at the correct centre distances. It then exports to Blender or MuJoCo, where gear meshes become joint equality constraints with the right ratio. It’s offline Python, not an interactive viewer. 
+github
+github
+A 2014 LDraw forum proposal for a standard set of mechanics tags. It got the reply “you’re trying to define an animation system and a kinematic solver”, and no standard came out of it. 
+ldraw
+
+Where I’d push on the design
+
+“Specialized, not a full physics sim” splits into two very different problems:
+
+Kinematics covers gears, differentials, rack and pinion, worm drives, clutches and gearbox selectors. These are linear constraints between joint velocities, so they’re cheap and exact. A differential is just one extra degree of freedom. Linkages (steering knuckles, suspension, pistons) add nonlinear position solving, but that’s still not dynamics.
+Dynamics covers springs and shocks, and anything where “given force inputs” really means torque, mass and friction. This is where you need an actual solver. Writing your own is a rabbit hole. MuJoCo already handles closed loops and gear-ratio equality constraints, and it builds to WASM, which fits your Emscripten pipeline.
+
+The hard part won’t be the physics. It will be inferring connections reliably from LDraw part placement: which axle is in which hole, whether a pin is friction or frictionless, which gears actually mesh, and real-world tolerances and backlash. Use LDCad’s shadow-library snap data, or Studio’s connectivity data, as your connection layer instead of writing your own. Then the “catalog work” you’re planning becomes tagging each part with its mechanical role.
+
+A reasonable first milestone: load a single-gearbox model in a web LDraw viewer, solve its gear graph, and spin it from a draggable input axle. That’s the TechnicBrickPower scope, but live. Once that works, add the dynamics backend.
+
+Sources:
+
+SR 3D Builder (AlternativeTo)
+LDCad animation thread
+TechnicBrickPower gear tool (Eurobricks)
+yoff/LegoTechnicSimulation
+LDraw mechanics tags proposal
+
+let's move this to a code session
+
+Figuring out how to shift into a coding session.
+
+I can’t open a Claude Code session from here, but I can give you a handoff brief to paste into it or drop into the new repo as CLAUDE.md.
+
+CLAUDE.md covers the prior art, the kinematics/dynamics split, the connection-inference risk and the staged plan. Put it in the new repo root and Claude Code will read it automatically.
+
+Alternatively, I can start the work in this session, since I have a shell and file tools. To do that I need two things: the LDraw viewer you want to build on (or I can propose candidates), and whether to work in a new folder on your computer or here in the cloud workspace.
