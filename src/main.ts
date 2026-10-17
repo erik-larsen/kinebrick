@@ -48,6 +48,7 @@ const MODELS: [string, string][] = [
   ['engine', 'Single-cylinder engine'],
   ['four-bar', 'Four-bar linkage'],
   ['rack-and-pinion', 'Rack and pinion'],
+  ['8448-engine', 'V8 engine (LEGO 8448)'],
 ];
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');

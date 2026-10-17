@@ -3,16 +3,17 @@
 
 import { Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
+import { Kinematics } from './kinematics.ts';
 import { PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
 // Minimum length two connection points must overlap along their axis, in LDU.
 const MIN_OVERLAP = 1;
-// How far the shorter of two sliding parts may stick out of the longer, in LDU (see slideRange).
-const SLIDE_SLACK = 2;
-// How much a part sliding on a plain surface (a plate on tiles) must still overlap it, in LDU.
-const SLIDE_OVERLAP = 20;
+// How much two sliding parts must still overlap, in LDU (see slideRange): a plate on tiles a
+// stud, so it rests on them; a piston in its bore half a stud, so it stays in it.
+const SURFACE_OVERLAP = 20;
+const BORE_OVERLAP = 10;
 
 // A connection point in model coordinates.
 interface WorldCylinder {
@@ -40,10 +41,11 @@ export interface Connection {
   from: Vector3; // where the overlap starts, on the shared axis (for a ball: its centre)
   to: Vector3; // where it ends (for a ball: its centre again)
   stiff?: boolean; // turns on a friction pin
+  held?: boolean; // would turn on a friction pin, but the pin holds it (see inferMechanism)
   // A slide: where the male and female sections lie, as distances along the male's axis
-  // (from -> to), and whether it's on a plain surface (P) rather than in a bore (B). How far it
-  // may slide follows from them (see slideRange).
-  extents?: { male: [number, number]; female: [number, number]; surface: boolean };
+  // (from -> to), and how much they must still overlap. How far it may slide follows from
+  // them (see slideRange).
+  extents?: { male: [number, number]; female: [number, number]; overlap: number };
 }
 
 export interface Body {
@@ -121,10 +123,20 @@ export interface Mechanism {
 }
 
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>): Mechanism {
+  // Friction pins hold what they join in place, unless they're the only way the model can
+  // move (a linkage built on friction pins). So first try them as rigid: if the model can
+  // still move, that's it; if not, they stay joints, stiff ones.
+  const rigid = buildMechanism(parts, table, roleList, true);
+  if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
+  return buildMechanism(parts, table, roleList, false);
+}
+
+// The mechanism, with friction pins treated as rigid or as stiff joints.
+function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean): Mechanism {
   const roles = parts.map((p) => roleList[p.name] ?? 'structure');
   const cyls = worldCylinders(parts, table);
   const connections = findConnections(cyls);
-  fixPins(connections, roles);
+  fixPins(connections, roles, frictionRigid);
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
@@ -335,13 +347,14 @@ function findConnections(cyls: WorldCylinder[]): Connection[] {
       if (f.part === m.part) continue;
       let c: Connection | null = null;
       if (isBall(m) && isBall(f)) c = ballConnect(m, f);
-      else if (m.caps === 'none' && opensForTechnic(f)) c = connect(m, f);
-      else if (isStud(m) && isAntiStud(f)) c = studConnect(m, f);
+      else if (goesInForTechnic(m) && opensForTechnic(f)) c = connect(m, f);
+      else if ((isStud(m) && isAntiStud(f)) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f);
       if (c) connections.push(c);
     }
   }
   return connections;
 }
+
 
 // A towball or a ball socket.
 function isBall(c: WorldCylinder): boolean {
@@ -360,8 +373,8 @@ function ballConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
 // A pin joins two parts through round holes, and both turn on it. Which of them the pin turns
 // with doesn't matter, so it's locked to one (the one it goes furthest into, or the first in
 // the model), saving a body that only spins to no purpose. A friction pin's other joints are
-// stiff.
-function fixPins(connections: Connection[], roles: string[]) {
+// stiff, or, if `frictionRigid`, rigid too (marked `held`, so inferMechanism knows).
+function fixPins(connections: Connection[], roles: string[], frictionRigid: boolean) {
   roles.forEach((role, pin) => {
     if (role !== 'pin' && role !== 'friction pin') return;
     const turning = connections.filter((c) => c.male === pin && c.kind === 'revolute');
@@ -369,19 +382,47 @@ function fixPins(connections: Connection[], roles: string[]) {
     const length = (c: Connection) => c.from.distanceTo(c.to);
     turning.sort((a, b) => length(b) - length(a) || a.female - b.female);
     turning[0].kind = 'rigid';
-    if (role === 'friction pin') for (const c of turning.slice(1)) c.stiff = true;
+    if (role !== 'friction pin') return;
+    for (const c of turning.slice(1)) {
+      if (frictionRigid) {
+        c.kind = 'rigid';
+        c.held = true;
+      } else {
+        c.stiff = true;
+      }
+    }
   });
 }
 
+// A male connection point that goes into Technic holes: open at both ends (an axle, a pin),
+// or an axle stub fixed to a part at one end (a connector's, a crankshaft's). Studs, closed
+// at one end too, have no axle shape, so they don't count.
+function goesInForTechnic(m: WorldCylinder): boolean {
+  return m.caps === 'none' || (m.caps === 'one' && m.secs.some((s) => s.shape === 'A'));
+}
+
 // A female connection point that takes Technic axles and pins: open at both ends, or an axle
-// hole closed at the far end (such as the ends of an axle joiner).
+// hole closed at the far end (such as the ends of an axle joiner, or an angle connector's,
+// which have a thin round lip at the mouth). Anti-studs, closed at one end too, have no axle
+// shape, so they don't count.
 function opensForTechnic(f: WorldCylinder): boolean {
-  return f.caps === 'none' || (f.caps === 'one' && f.secs.every((s) => s.shape === 'A'));
+  return f.caps === 'none' || (f.caps === 'one' && f.secs.some((s) => s.shape === 'A'));
 }
 
 // A stud: a short round peg, closed at one end, on top of a brick or plate.
 function isStud(c: WorldCylinder): boolean {
   return c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 6) < AXIS_TOLERANCE;
+}
+
+// A bottom pin: the small peg under a 1-wide plate or tile, between its anti-studs.
+function isBottomPin(c: WorldCylinder): boolean {
+  return c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 4) < AXIS_TOLERANCE;
+}
+
+// The hole inside a hollow stud (on Technic bricks): a bottom pin plugs into it, so a 1-wide
+// tile can sit half a stud off the grid, crosswise over a row of Technic bricks.
+function isHollowStud(c: WorldCylinder): boolean {
+  return c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 4) < AXIS_TOLERANCE;
 }
 
 // An anti-stud: the socket for a stud, underneath a brick or plate.
@@ -469,22 +510,19 @@ function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
     // Measured along from -> to, from `from`.
     const length = (c: WorldCylinder) => c.secs.reduce((sum, sec) => sum + sec.length, 0);
     const fEnd = along + sign * length(f);
-    const surface = f.secs.some((sec) => sec.shape === 'P');
-    extents = { male: [-lo, length(m) - lo], female: [Math.min(along, fEnd) - lo, Math.max(along, fEnd) - lo], surface };
+    const overlap = f.secs.some((sec) => sec.shape === 'P') ? SURFACE_OVERLAP : BORE_OVERLAP;
+    extents = { male: [-lo, length(m) - lo], female: [Math.min(along, fEnd) - lo, Math.max(along, fEnd) - lo], overlap };
   }
   return { male: m.part, female: f.part, kind, from, to: m.start.clone().addScaledVector(m.dir, hi), extents };
 }
 
-// How far a slide's male part may slide from where it is, relative to the female. In a bore,
-// as far as the shorter of the two stays within the longer (to within SLIDE_SLACK), as a piston
-// stays in its bore. On a plain surface, for as long as they still overlap by SLIDE_OVERLAP, as
-// a plate may overhang the end of its row of tiles.
-function slideRange(e: { male: [number, number]; female: [number, number]; surface: boolean }): [number, number] {
+// How far a slide's male part may slide from where it is, relative to the female: for as long
+// as they still overlap by `overlap`, as a plate may overhang the end of its row of tiles, and
+// a piston's skirt come out of the bottom of its cylinder.
+function slideRange(e: { male: [number, number]; female: [number, number]; overlap: number }): [number, number] {
   const [mLo, mHi] = e.male;
   const [fLo, fHi] = e.female;
-  if (e.surface) return [fLo - mHi + SLIDE_OVERLAP, fHi - mLo - SLIDE_OVERLAP];
-  if (mHi - mLo <= fHi - fLo) return [fLo - mLo - SLIDE_SLACK, fHi - mHi + SLIDE_SLACK];
-  return [fHi - mHi - SLIDE_SLACK, fLo - mLo + SLIDE_SLACK];
+  return [fLo - mHi + e.overlap, fHi - mLo - e.overlap];
 }
 
 // Step 6: parts that are rigidly connected (an axle in an axle hole, a tyre on a rim) or
@@ -569,9 +607,9 @@ function nameBodies(bodyOf: number[], roles: string[]): Body[] {
       return;
     }
     // Other bodies with bricks or beams in them are assemblies (a steering axle's carrier),
-    // unless they carry a rack (racks on a plate).
+    // unless they carry a rack (racks on a plate) or a crankshaft (with a fan on it).
     let noun = BODY_NOUNS.find(([role]) => bodyRoles.includes(role))?.[1] ?? 'body';
-    if (bodyRoles.includes('structure') && !bodyRoles.includes('rack')) noun = 'assembly';
+    if (bodyRoles.includes('structure') && !bodyRoles.includes('rack') && !bodyRoles.includes('crankshaft')) noun = 'assembly';
     counts.set(noun, (counts.get(noun) ?? 0) + 1);
     body.name = `${noun} ${counts.get(noun)}`;
   });
@@ -606,7 +644,7 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
     let male: [number, number] = [Infinity, -Infinity];
     let female: [number, number] = [Infinity, -Infinity];
     let maleBody = -1;
-    let surface = false;
+    let overlap = 0;
     for (const c of connections) {
       if (c.kind !== 'slide' || !c.extents || !sameBodies(joint, bodyOf[c.male], bodyOf[c.female]) || !onSameAxis(joint, c)) continue;
       // Move the connection's extents to be measured from the joint's `from`, along its axis.
@@ -618,12 +656,12 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
       male = [Math.min(male[0], m0), Math.max(male[1], m1)];
       female = [Math.min(female[0], f0), Math.max(female[1], f1)];
       maleBody = bodyOf[c.male];
-      surface = c.extents.surface;
+      overlap = c.extents.overlap;
       joint.sliding = [c.male, c.female];
     }
     if (maleBody < 0) continue;
     // How far the male may slide; the joint measures bodyB relative to bodyA.
-    const range = slideRange({ male, female, surface });
+    const range = slideRange({ male, female, overlap });
     joint.range = joint.bodyB === maleBody ? range : [-range[1], -range[0]];
   }
   return joints;

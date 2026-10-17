@@ -6,7 +6,7 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model and drag i
 
 ## Status
 
-M6.2 works: a gear drives a rack, and closed loops of parts, such as an engine's crank, connecting rod and piston, stay together however long they run. Parts can't pass through each other. Twelve test models, picked from a menu in the viewer:
+M6.2 works: a gear drives a rack, and closed loops of parts, such as an engine's crank, connecting rod and piston, stay together however long they run. Parts can't pass through each other. Thirteen test models, picked from a menu in the viewer, including a V8 engine from a real LEGO set:
 
 - [Simple car](models/simple-car.ldr): drag the frame and it rolls along its length, its wheels turning by distance ÷ tyre radius; turn a tyre and the car rolls with it.
 - [Geared car](models/geared-car.ldr): the same car with two 8 tooth gears inside, so rolling the car spins a second axle the other way.
@@ -19,6 +19,7 @@ M6.2 works: a gear drives a rack, and closed loops of parts, such as an engine's
 - [Single-cylinder engine](models/engine.ldr): a crank on an axle drives a piston up and down its cylinder through a connecting rod. Turning the crank once moves the piston down its one-stud stroke and back; pushing the piston turns the crank, except at the top and bottom of its stroke.
 - [Four-bar linkage](models/four-bar.ldr): four beams pinned in a loop on a Technic brick. The short crank turns all the way round, rocking the far beam to and fro through about 63 degrees.
 - [Rack and pinion](models/rack-and-pinion.ldr): an 8 tooth gear on two 1x4 racks, which ride on a plate that slides along a row of tiles between rails. A quarter turn of the gear moves the rack 2 teeth; pushing the rack turns the gear. The rack travels 80 LDU either way, until the gear reaches the end of the teeth, its plate overhanging the tiles.
+- [V8 engine (LEGO 8448)](models/8448-engine.ldr): the engine from LEGO set 8448, Super Street Sensation, as built in the LDraw Official Model Repository. Eight pistons in two banks run on a flat-plane crankshaft; turning the crankshaft, by its 24 tooth gear or its fan, takes all eight through their strokes.
 - [Steering car, solid rear axle](models/steering-car-solid.ldr): the same car with one solid axle at the back. It rolls straight ahead, but once steered it jams, because the inner and outer rear wheels would have to roll different distances.
 
 The viewer labels the part under the pointer, and can draw each body in its own colour, each joint's axis, and where each pair of gears meet (see [Options](#options)). Next is M6.3: Ackermann steering.
@@ -117,6 +118,7 @@ Other commands:
 | [three.js](https://threejs.org) | Rendering and LDraw loading | MIT |
 | [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh) | Fast tests of whether two parts' shapes overlap | MIT |
 | [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Connection points in the [connection table](ARCHITECTURE.md#the-connection-table) | CC BY-SA 4.0 |
+| [LDraw Official Model Repository](https://library.ldraw.org/omr) | The V8 engine test model: "8448 - box5.ldr" by Orion Pobursky, flattened into one file (`models/8448-engine.ldr`) | CC BY 2.0 (CCAL 2.0) |
 
 ## Prior art
 
@@ -127,4 +129,4 @@ Other commands:
 
 ## License
 
-The code is [MIT](LICENSE). The connection table is derived from the LDCad shadow library, so it is shared under the same license, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+The code is [MIT](LICENSE). The connection table is derived from the LDCad shadow library, so it is shared under the same license, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The V8 engine model is by Orion Pobursky, from the LDraw Official Model Repository, under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).

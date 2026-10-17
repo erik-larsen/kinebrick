@@ -495,13 +495,18 @@ export class Kinematics {
   // slide and ball joint) back together. Small steps let them drift apart; this moves every
   // body by the smallest motion that closes the gaps while keeping every other equation, and
   // without turning `keep` (the joint a drag is turning, so it turns by exactly what the drag
-  // asked). A few rounds, since each is only exact for small gaps.
+  // asked). A few rounds, since each is only exact for small gaps; it stops early once a round
+  // no longer halves the biggest gap (a model whose positions are rounded off, as LDraw files
+  // are, can't always close its loops quite exactly).
   private closeLoops(keep: number) {
     if (this.mech.joints.every((_, j) => this.inTree(j))) return;
+    let previous = Infinity;
     for (let round = 0; round < 8; round++) {
       const gaps: number[] = [];
       const rows = this.buildEquations(gaps);
-      if (gaps.every((g) => Math.abs(g) < LOOP_TOLERANCE)) return;
+      const biggest = gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
+      if (biggest < LOOP_TOLERANCE || biggest > previous / 2) return;
+      previous = biggest;
       if (keep >= 0) {
         const row = new Array(6 * this.bodyCount).fill(0);
         const j = this.mech.joints[keep];
@@ -797,12 +802,15 @@ function smallestSolution(rows: Row[], values: number[]): number[] | null {
   const m = rows.length;
   if (m === 0) return null;
   const n = rows[0].length;
+  // Each row is mostly zeros (it involves one or two bodies), so only its non-zero places are
+  // multiplied.
+  const nonZero = rows.map((row) => row.flatMap((x, k) => (x !== 0 ? [k] : [])));
   const a: number[][] = [];
   for (let i = 0; i < m; i++) {
     a.push([]);
     for (let j = 0; j < m; j++) {
       let dot = 0;
-      for (let k = 0; k < n; k++) dot += rows[i][k] * rows[j][k];
+      for (const k of nonZero[i]) dot += rows[i][k] * rows[j][k];
       a[i].push(dot);
     }
   }
@@ -827,7 +835,7 @@ function smallestSolution(rows: Row[], values: number[]): number[] | null {
     y[c] /= a[c][c];
   }
   const x = new Array(n).fill(0);
-  for (let i = 0; i < m; i++) for (let k = 0; k < n; k++) x[k] += rows[i][k] * y[i];
+  for (let i = 0; i < m; i++) for (const k of nonZero[i]) x[k] += rows[i][k] * y[i];
   return x;
 }
 

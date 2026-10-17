@@ -113,6 +113,9 @@ export function setUpInteraction(s: InteractionSetup) {
   let shifting: Shift | null = null;
   let motorPart = -1; // the part kept turning (Ctrl-click), or -1
   let motorDirection = 1; // 1, or -1 for the other way (Shift-Ctrl-click)
+  // The kinematics the motor's holds were worked out for, or null if they need working out
+  // again (after a drag, a freeze, a shift).
+  let motorHeldIn: Kinematics | null = null;
   let ctrlHeld = false; // the Ctrl key is down (see the contextmenu handler)
   let ctrlClickHandled = false; // a press already handled the Ctrl-click a context menu follows
   // True while the label shows a message (such as "Froze ...") rather than the
@@ -375,6 +378,7 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     s.kin.toggleFreeze(body);
+    motorHeldIn = null; // the motor's holds need working out again
     s.onFreezeChanged();
     const text = s.kin.isFrozen(body) ? `Froze ${name} · Alt-click again to unfreeze` : `Unfroze ${name}`;
     showMessage(text, clientX, clientY);
@@ -384,6 +388,8 @@ export function setUpInteraction(s: InteractionSetup) {
   // Motor: a part kept turning
 
   function setMotor(part: number) {
+    if (motorHeldIn === s.kin) s.kin.letGoAfterDrag();
+    motorHeldIn = null;
     motorPart = part;
     s.appearance.drivenPart = part;
     s.appearance.update();
@@ -424,7 +430,9 @@ export function setUpInteraction(s: InteractionSetup) {
 
   // Turns the driven part on by however far it goes in `seconds`, as a turn drag would. Waits
   // while the user drags something else. Stops for good if it can't turn (it's run into
-  // something, or a frozen part jams it).
+  // something, or a frozen part jams it). Its holds are worked out once and kept while it
+  // runs (working them out takes longer than the step itself on a big model), and again if a
+  // step fails with them, before giving up.
   function runMotor(seconds: number) {
     if (motorPart < 0 || drag) return;
     const body = s.mech.bodyOf[motorPart];
@@ -435,13 +443,20 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     const sign = s.mech.joints[link.joint].bodyB === body ? 1 : -1;
     const angle = sign * motorDirection * MOTOR_SPEED * seconds;
-    s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
-    const turned = s.kin.turnJoint(link.joint, angle, () => {
-      const pair = s.blockedBy();
-      if (pair) s.appearance.flashBlocked(pair);
-      return !pair;
-    });
-    s.kin.letGoAfterDrag();
+    let turned = 0;
+    let blocked = false;
+    for (let attempt = 0; attempt < 2 && !blocked && Math.abs(turned - angle) > 1e-9; attempt++) {
+      if (motorHeldIn !== s.kin || attempt > 0) {
+        s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
+        motorHeldIn = s.kin;
+      }
+      turned += s.kin.turnJoint(link.joint, angle - turned, () => {
+        const pair = s.blockedBy();
+        if (pair) s.appearance.flashBlocked(pair);
+        blocked = pair !== null; // ran into something: fresh holds won't help
+        return !pair;
+      });
+    }
     if (Math.abs(turned - angle) > 1e-9) setMotor(-1);
     s.onMoved();
   }
@@ -462,6 +477,7 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   function endDrag() {
+    motorHeldIn = null; // the drag replaced the motor's holds with its own
     if (shifting) {
       if (canvas.hasPointerCapture(shifting.pointerId)) canvas.releasePointerCapture(shifting.pointerId);
       shifting = null;
