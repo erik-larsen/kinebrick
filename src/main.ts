@@ -97,7 +97,14 @@ window.addEventListener('resize', () => {
   badgeRenderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+// Called every frame with the seconds since the last one, once the model has loaded.
+let onFrame = (_seconds: number) => {};
+let lastFrame = performance.now();
+
 renderer.setAnimationLoop(() => {
+  const now = performance.now();
+  onFrame(Math.min((now - lastFrame) / 1000, 0.1)); // a hidden tab pauses frames; don't jump
+  lastFrame = now;
   controls.update();
   outlines.render();
   badgeRenderer.render(scene, camera);
@@ -271,15 +278,6 @@ async function start() {
   jointAxes.addEventListener('change', () => {
     axes.visible = jointAxes.checked;
   });
-  // Back to the model as loaded, shifted back too.
-  document.getElementById('reset')!.addEventListener('click', () => {
-    partObjects.forEach((obj, i) => {
-      obj.matrix.copy(loadedMatrices[i]);
-      obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
-    });
-    read(startParts);
-    showPoses();
-  });
 
   // Held parts get a cyan outline and a pin badge, and "Let go of all" shows while any are held.
   const letGo = document.getElementById('letGo') as HTMLButtonElement;
@@ -314,8 +312,20 @@ async function start() {
   read(startParts);
   showLooseWarning(startParts.map((p) => p.name), mech.loose);
   frameCamera(model, kin.groundY);
-  setUpInteraction(setup);
+  const interaction = setUpInteraction(setup);
+  onFrame = interaction.runMotor;
   showPoses();
+
+  // Back to the model as loaded, shifted back too, with nothing turning.
+  document.getElementById('reset')!.addEventListener('click', () => {
+    interaction.stopMotor();
+    partObjects.forEach((obj, i) => {
+      obj.matrix.copy(loadedMatrices[i]);
+      obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
+    });
+    read(startParts);
+    showPoses();
+  });
 }
 
 // Point the camera at the model from above and to one side, and put a grid on the ground

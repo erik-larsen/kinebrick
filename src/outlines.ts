@@ -21,6 +21,7 @@ const STYLES = {
   held: { colour: 0x00b4ff, hiddenColour: 0x006a96, strength: 10, thickness: 2.5 },
   loose: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
   blocked: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
+  driven: { colour: 0x22b14c, hiddenColour: 0x146b2e, strength: 10, thickness: 2.5 },
 };
 
 export type OutlineKind = keyof typeof STYLES;

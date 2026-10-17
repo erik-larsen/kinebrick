@@ -20,6 +20,7 @@
       .badge { font-size: 18px; line-height: 1; padding: 3px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35); }
       .badge-loose { border: 2px solid #d00000; }
       .badge-held { border: 2px solid #00a6d6; }
+      .badge-driven { border: 2px solid #22b14c; }
       #label { z-index: 10; position: fixed; pointer-events: none; background: #1d2430; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; display: none; }
     </style>
   </head>
@@ -31,7 +32,7 @@
       <div id="warning"></div>
       <label><input type="checkbox" id="bodyColours" checked /> Body colours</label>
       <label><input type="checkbox" id="jointAxes" checked /> Joints and gear meshes</label>
-      <div id="hint">Alt-click (Option-click on a Mac) a part to hold it still</div>
+      <div id="hint">Alt-click (Option-click on a Mac) a part to hold it still, Ctrl-click a spinning part to keep it turning</div>
       <button id="reset">Reset</button>
       <button id="letGo">Let go of all</button>
     </div>

@@ -3,6 +3,8 @@
 //   press    show how the grabbed point can move: an arrow (push) or an arc (turn)
 //   drag     move the mechanism so the grabbed point follows the pointer
 //   release  leave the model where it is
+//   Alt-click   hold a part still, or let go of it
+//   Ctrl-click  keep a part that spins on an axle turning on its own (a motor), or stop it
 // Dragging on empty space turns the camera instead.
 //
 // There are three kinds of drag:
@@ -44,6 +46,8 @@ const MIN_ARC_RADIUS = 10; // LDU, so an arc grabbed near the axle is still visi
 const MAX_STEP = 1;
 // Most push steps per pointer movement.
 const MAX_STEPS = 60;
+// How fast a part driven by Ctrl-click turns, relative to what its axle is mounted in.
+const MOTOR_SPEED = Math.PI / 2; // radians per second: a quarter turn
 
 export interface InteractionSetup {
   renderer: WebGLRenderer;
@@ -101,6 +105,7 @@ export function setUpInteraction(s: InteractionSetup) {
 
   let drag: Drag | null = null;
   let shifting: Shift | null = null;
+  let motorPart = -1; // the part kept turning (Ctrl-click), or -1
   // True while the label shows a message (such as "Holding ... still") rather than the
   // hovered part's name, until the pointer next moves.
   let showingMessage = false;
@@ -356,6 +361,64 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // ---------------------------------------------------------------------------
+  // Motor: a part kept turning
+
+  function setMotor(part: number) {
+    motorPart = part;
+    s.appearance.drivenPart = part;
+    s.appearance.update();
+  }
+
+  function toggleMotor(part: number, clientX: number, clientY: number) {
+    const body = s.mech.bodyOf[part];
+    const name = s.mech.bodies[body].name;
+    if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
+      setMotor(-1);
+      showMessage(`Stopped ${name}`, clientX, clientY);
+      return;
+    }
+    const link = s.kin.parentLink(body);
+    if (!link) {
+      showMessage('Only a part that spins on an axle can be kept turning', clientX, clientY);
+      return;
+    }
+    const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
+    const canTurn = s.kin.jointMotion(link.joint) !== null;
+    s.kin.letGoAfterDrag();
+    if (!canTurn) {
+      const why = wormLocked ? 'a worm gear can only be turned from the worm' : "it's jammed";
+      showMessage(`This part can't turn: ${why}`, clientX, clientY);
+      return;
+    }
+    setMotor(part);
+    showMessage(`Turning ${name} · Ctrl-click again to stop`, clientX, clientY);
+  }
+
+  // Turns the driven part on by however far it goes in `seconds`, as a turn drag would. Waits
+  // while the user drags something else. Stops for good if it can't turn (it's run into
+  // something, or a part held still jams it).
+  function runMotor(seconds: number) {
+    if (motorPart < 0 || drag) return;
+    const body = s.mech.bodyOf[motorPart];
+    const link = s.kin.parentLink(body);
+    if (!link) {
+      setMotor(-1);
+      return;
+    }
+    const sign = s.mech.joints[link.joint].bodyB === body ? 1 : -1;
+    const angle = sign * MOTOR_SPEED * seconds;
+    s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
+    const turned = s.kin.turnJoint(link.joint, angle, () => {
+      const pair = s.blockedBy();
+      if (pair) s.appearance.flashBlocked(pair);
+      return !pair;
+    });
+    s.kin.letGoAfterDrag();
+    if (Math.abs(turned - angle) > 1e-9) setMotor(-1);
+    s.onMoved();
+  }
+
+  // ---------------------------------------------------------------------------
   // Press, move, release
 
   // In how many independent directions the grabbed point can move.
@@ -402,6 +465,12 @@ export function setUpInteraction(s: InteractionSetup) {
         // Alt-click: hold the part's body still, or let go of it. Keep the camera from turning.
         e.stopImmediatePropagation();
         toggleHold(s.mech.bodyOf[hit.part], e.clientX, e.clientY);
+        return;
+      }
+      if (e.ctrlKey) {
+        // Ctrl-click: keep the part turning, or stop it. Keep the camera from moving.
+        e.stopImmediatePropagation();
+        toggleMotor(hit.part, e.clientX, e.clientY);
         return;
       }
       s.controls.enabled = false;
@@ -487,6 +556,11 @@ export function setUpInteraction(s: InteractionSetup) {
     s.appearance.update();
     hideLabel();
   });
+
+  return {
+    runMotor, // call every frame with the seconds since the last
+    stopMotor: () => setMotor(-1),
+  };
 }
 
 // ---------------------------------------------------------------------------
