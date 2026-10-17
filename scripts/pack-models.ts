@@ -9,7 +9,7 @@
 //
 // Needs the LDraw parts library in ldraw/. Run with: npm run pack
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { normalizePartName } from '../src/connections.ts';
 import { embeddedParts, modelTitle, parseModel, partLine } from '../src/ldr.ts';
@@ -92,6 +92,13 @@ for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f))
 }
 
 writeFileSync(join(OUT_DIR, 'models.json'), JSON.stringify(modelTitles, null, 2) + '\n');
+// Packed files of models no longer in models/ (renamed or removed) go too.
+for (const file of readdirSync(OUT_DIR).filter((f) => f.endsWith('.mpd'))) {
+  if (!(file.replace(/\.mpd$/, '') in modelTitles)) {
+    rmSync(join(OUT_DIR, file));
+    console.log(`Removed ${file}: no such model`);
+  }
+}
 const sorted = Object.fromEntries(Object.entries(titles).sort(([a], [b]) => a.localeCompare(b)));
 writeFileSync(join(OUT_DIR, 'titles.json'), JSON.stringify(sorted, null, 2) + '\n');
 console.log(`Wrote ${OUT_DIR}/titles.json`);

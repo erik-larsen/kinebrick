@@ -26,7 +26,7 @@ function jointGap(mech: Mechanism, kin: Kinematics, joint: number): number {
 }
 
 describe('single-cylinder engine', () => {
-  const { mech, kin, bodyOf } = load('models/engine.ldr');
+  const { mech, kin, bodyOf } = load('models/single-piston-engine.ldr');
   const crank = bodyOf('2853a.dat');
   const rod = bodyOf('2852.dat');
   const piston = bodyOf('2851.dat');

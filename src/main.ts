@@ -49,17 +49,17 @@ const NAMED_MODELS: [string, string][] = [
   ['ackermann-car', 'Ackermann car'],
   ['worm-drive', 'Worm drive'],
   ['gearbox', 'Two-speed gearbox'],
-  ['engine', 'Single-cylinder engine'],
+  ['single-piston-engine', 'Single-cylinder engine'],
   ['four-bar', 'Four-bar linkage'],
   ['rack-and-pinion', 'Rack and pinion'],
-  ['8448-engine', 'V8 engine (LEGO 8448)'],
-  ['8448-1', 'Super Street Sensation (LEGO 8448)'],
+  ['8448 - Super Car - V8 engine', 'V8 engine (LEGO 8448)'],
+  ['8448 - Super Car', 'Super Street Sensation (LEGO 8448)'],
 ];
 const MODELS: [string, string][] = [
   ...NAMED_MODELS,
   ...Object.entries(modelTitles as Record<string, string>)
     .filter(([file]) => !NAMED_MODELS.some(([named]) => named === file))
-    .map(([file, title]): [string, string] => [file, title && title !== file ? `${file}: ${title}` : file]),
+    .map(([file, title]): [string, string] => [file, title && title !== file && !/^untitled/i.test(title) ? `${file}: ${title}` : file]),
 ];
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');
