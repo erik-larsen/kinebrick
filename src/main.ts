@@ -23,7 +23,7 @@ import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { collisionGeometry, Collisions, PartMesh } from './collisions.ts';
 import { ConnectionTable, normalizePartName } from './connections.ts';
-import { InteractionSetup, setUpInteraction } from './interaction.ts';
+import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
 import { Kinematics } from './kinematics.ts';
 import { parseLdr, PlacedPart } from './ldr.ts';
@@ -59,6 +59,14 @@ const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODEL
 //   axes         each joint's axis
 //   contacts     a dot where each pair of gears' teeth meet
 const OPTIONS = params.getAll('option').join(',').split(',');
+// How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
+const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
+
+// A whole number of at least 1 from text, or null if it isn't one.
+function whole(text: string | null): number | null {
+  const n = Number(text);
+  return text && Number.isInteger(n) && n >= 1 ? n : null;
+}
 
 // The files the viewer loads. Vite bundles them, so they're found both in development and on
 // the published site. The packed files (made by npm run pack) hold each model with every LDraw
@@ -342,6 +350,21 @@ async function start() {
   showLooseWarning(startParts.map((p) => p.name), mech.loose);
   const grid = frameCamera(model, kin.groundY);
   const interaction = setUpInteraction(setup);
+  // The spin speed, set in the panel and kept in the address (so switching model keeps it).
+  const rpmBox = document.getElementById('rpm') as HTMLInputElement;
+  rpmBox.value = String(RPM);
+  interaction.setMotorRpm(RPM);
+  rpmBox.addEventListener('change', () => {
+    const rpm = whole(rpmBox.value);
+    if (rpm === null) {
+      rpmBox.value = String(whole(params.get('rpm')) ?? DEFAULT_RPM);
+      return;
+    }
+    interaction.setMotorRpm(rpm);
+    if (rpm === DEFAULT_RPM) params.delete('rpm');
+    else params.set('rpm', String(rpm));
+    history.replaceState(null, '', '?' + params.toString());
+  });
   // While a part is kept turning, the camera follows the model: it moves by however far the
   // frame's middle moved, so the model stays in view while you still orbit and zoom around it.
   const frameMiddle = ldrawSpace.worldToLocal(new Box3().setFromObject(model).getCenter(new Vector3())); // LDraw coordinates

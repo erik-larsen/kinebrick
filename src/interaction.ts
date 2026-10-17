@@ -53,7 +53,8 @@ const MAX_STEPS = 60;
 const MESSAGE_TIME = 2000;
 const MESSAGE_MOVE = 40;
 // How fast a part driven by Ctrl-click turns, relative to what its axle is mounted in.
-const MOTOR_SPEED = Math.PI / 2; // radians per second: a quarter turn
+// How fast a part kept turning turns at first, in revolutions per minute (a quarter turn a second).
+export const DEFAULT_RPM = 15;
 
 export interface InteractionSetup {
   renderer: WebGLRenderer;
@@ -113,6 +114,7 @@ export function setUpInteraction(s: InteractionSetup) {
   let shifting: Shift | null = null;
   let motorPart = -1; // the part kept turning (Ctrl-click), or -1
   let motorDirection = 1; // 1, or -1 for the other way (Shift-Ctrl-click)
+  let motorSpeed = (DEFAULT_RPM / 60) * 2 * Math.PI; // radians per second
   // The kinematics the motor's holds were worked out for, or null if they need working out
   // again (after a drag, a freeze, a shift).
   let motorHeldIn: Kinematics | null = null;
@@ -442,7 +444,7 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const sign = s.mech.joints[link.joint].bodyB === body ? 1 : -1;
-    const angle = sign * motorDirection * MOTOR_SPEED * seconds;
+    const angle = sign * motorDirection * motorSpeed * seconds;
     let turned = 0;
     let blocked = false;
     for (let attempt = 0; attempt < 2 && !blocked && Math.abs(turned - angle) > 1e-9; attempt++) {
@@ -631,6 +633,7 @@ export function setUpInteraction(s: InteractionSetup) {
   return {
     runMotor, // call every frame with the seconds since the last
     stopMotor: () => setMotor(-1),
+    setMotorRpm: (rpm: number) => (motorSpeed = (rpm / 60) * 2 * Math.PI),
     motorRunning: () => motorPart >= 0,
   };
 }
