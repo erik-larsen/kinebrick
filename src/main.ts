@@ -43,6 +43,7 @@ const MODELS: [string, string][] = [
   ['differential', 'Differential'],
   ['steering-car', 'Steering car'],
   ['steering-car-solid', 'Steering car, solid rear axle'],
+  ['ackermann-car', 'Ackermann car'],
   ['worm-drive', 'Worm drive'],
   ['gearbox', 'Two-speed gearbox'],
   ['engine', 'Single-cylinder engine'],
@@ -349,6 +350,8 @@ async function start() {
   read(startParts);
   showLooseWarning(startParts.map((p) => p.name), mech.loose);
   const grid = frameCamera(model, kin.groundY);
+  // Where the camera starts, for Reset (the camera follows the model while a part turns).
+  const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
   // The spin speed, set in the panel and kept in the address (so switching model keeps it).
   const rpmBox = document.getElementById('rpm') as HTMLInputElement;
@@ -384,9 +387,14 @@ async function start() {
   };
   showPoses();
 
-  // Back to the model as loaded, shifted back too, with nothing turning.
+  // Back to the model as loaded, shifted back too, with nothing turning, and the camera and
+  // grid back where they started.
   document.getElementById('reset')!.addEventListener('click', () => {
     interaction.stopMotor();
+    camera.position.copy(startCamera.position);
+    controls.target.copy(startCamera.target);
+    controls.update();
+    grid.position.copy(grid.userData.home);
     partObjects.forEach((obj, i) => {
       obj.matrix.copy(loadedMatrices[i]);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
@@ -460,6 +468,8 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
       const rolled = Math.abs(kin.treadTravel[t]);
       const expected = ((rolled / mech.treads[t].radius) * 180) / Math.PI;
       line += ` (rolled ${rolled.toFixed(1)} ÷ ${mech.treads[t].radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
+      // How far it has scrubbed sideways (see SCRUB in kinematics.ts), once it's noticeable.
+      if (kin.treadScrub[t] >= 0.05) line += `, scrubbed ${kin.treadScrub[t].toFixed(1)} sideways`;
     }
     lines.push(line);
   });

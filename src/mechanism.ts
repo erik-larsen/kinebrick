@@ -585,6 +585,7 @@ const BODY_NOUNS: [string, string][] = [
   ['connecting rod', 'connecting rod'],
   ['crankshaft', 'crankshaft'],
   ['rack', 'rack'],
+  ['steering link', 'steering link'],
   ['tyre', 'wheels'],
   ['rim', 'wheels'],
   ['differential', 'differential'],

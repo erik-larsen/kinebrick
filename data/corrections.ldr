@@ -142,3 +142,18 @@
 0 FILE 2431.dat
 0 // Tile 1 x 4 with Groove
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=P 10 80] [center=true] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 FILE 3710.dat
+0 // Plate 1 x 4
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=S 10 80] [center=true] [pos=0 8 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 FILE 3070b.dat
+0 // Tile 1 x 1 with Groove
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=P 10 20] [center=true] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 // Towballs.
+
+0 FILE 6628.dat
+0 // Technic Pin Towball with Friction: the shadow library closes its pin at the ball end, so it
+0 // would only fit a hole as a stud does. It's a pin like any other, so here it's open-ended too.
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 8 2   R 6 16   L 6.25 2] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]

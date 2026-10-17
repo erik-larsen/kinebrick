@@ -27,6 +27,9 @@ import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh } from './mec
 const GROUND_TOLERANCE = 0.5;
 // Numbers smaller than this count as zero when solving the equations.
 const EPSILON = 1e-9;
+// How far a tyre may scrub sideways, as a fraction of how far it rolls (see freeMotions): real
+// steering only approximates every wheel turning round one centre, and real tyres scrub.
+const SCRUB = 0.02;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
@@ -48,6 +51,14 @@ export interface KinematicsState {
   roots: Map<number, Matrix4>;
   jointAngles: number[];
   treadTravel: number[];
+  treadScrub: number[];
+}
+
+// For each tyre on the ground, a row for how fast it scrubs sideways, and one for how fast it
+// travels (see Kinematics.freeMotions).
+interface Slip {
+  sideways: Row[];
+  travel: Row[];
 }
 
 export class Kinematics {
@@ -59,6 +70,8 @@ export class Kinematics {
   // the way the tyre rolls when it turns positive about its axis). Rolling without slipping,
   // the tyre turns by this ÷ its radius.
   treadTravel: number[] = [];
+  // How far each tyre has scrubbed sideways since the start, in LDU (see freeMotions).
+  treadScrub: number[] = [];
   // The ground's height (LDraw y), or null if no tyre touches it.
   groundY: number | null = null;
 
@@ -73,10 +86,13 @@ export class Kinematics {
   private frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
   private dragHeld = new Set<number>(); // bodies held still for the length of one drag
   private contactTreads: number[] = []; // indices into mech.treads
+  // Bodies held only by a ball joint at each end (a steering link), and those two joints.
+  private links: { body: number; balls: [number, number] }[] = [];
 
   constructor(mech: Mechanism) {
     this.mech = mech;
     this.bodyCount = mech.bodies.length;
+    this.findLinks();
     this.findGround();
     this.buildTree();
     this.reset();
@@ -86,8 +102,21 @@ export class Kinematics {
   reset() {
     this.jointAngles = this.mech.joints.map(() => 0);
     this.treadTravel = this.mech.treads.map(() => 0);
+    this.treadScrub = this.mech.treads.map(() => 0);
     for (const root of this.rootPoses.keys()) this.rootPoses.set(root, new Matrix4());
     this.updatePoses();
+  }
+
+  // A body joined to the rest only by two ball joints could spin about the line through the
+  // balls without moving anything else. Nothing would make it, so equations() doesn't let it.
+  private findLinks() {
+    for (let body = 1; body < this.bodyCount; body++) {
+      const joints = this.mech.joints.flatMap((j, i) => (j.bodyA === body || j.bodyB === body ? [i] : []));
+      const balls = joints.filter((i) => this.mech.joints[i].kind === 'ball');
+      const geared = this.mech.gears.some((g) => g.body === body);
+      const tyred = this.mech.treads.some((t) => t.body === body);
+      if (joints.length === 2 && balls.length === 2 && !geared && !tyred) this.links.push({ body, balls: [balls[0], balls[1]] });
+    }
   }
 
   // The ground is level with the lowest tyre. Tyres within GROUND_TOLERANCE of it touch it.
@@ -298,7 +327,13 @@ export class Kinematics {
       return link ? 1 + depth(link.parent) : 0;
     };
     const wheels = new Set(this.mech.treads.map((t) => t.body));
-    const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b));
+    // A car stays where it is unless the drag needs it to move: pushing it, or turning a wheel
+    // (which drives it). Steering doesn't.
+    if (this.contactTreads.length > 0 && grabbed !== 0 && !wheels.has(grabbed)) {
+      this.dragHeld.add(0);
+      if (!stillPossible()) this.dragHeld.delete(0);
+    }
+    const candidates =this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b));
     // Friction pins first, then the deepest parts.
     const stiff = (body: number) => (this.mech.joints[this.parentJoint[body]].stiff ? 1 : 0);
     candidates.sort((a, b) => stiff(b) - stiff(a) || depth(b) - depth(a) || a - b);
@@ -364,13 +399,16 @@ export class Kinematics {
   // The equations
 
   private equations(): Row[] {
-    return this.buildEquations(null);
+    return this.buildEquations(null, null);
   }
+
 
   // The equations, as rows. If `gaps` is given, it also gets, for each row, the value its
   // motion should take to close the gap in a joint the tree doesn't follow (how far the joint
   // has come apart), or 0 for every other row (see closeLoops).
-  private buildEquations(gaps: number[] | null): Row[] {
+  // If `slip` is given, it gets, for each tyre on the ground, a row for how fast it scrubs
+  // sideways and one for how fast it travels.
+  private buildEquations(gaps: number[] | null, slip: Slip | null): Row[] {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
     const add = (row: Row, gap = 0) => {
@@ -438,6 +476,20 @@ export class Kinematics {
       if (joint.kind === 'slide') for (const dir of xyz) turnRow(dir);
     });
 
+    // A link between two balls turns about its length as the bodies at its ends do, on average.
+    for (const { body, balls } of this.links) {
+      const [a, b] = balls.map((i) => this.mech.joints[i]);
+      const ends = [a, b].map((j) => j.from.clone().applyMatrix4(this.poses[j.bodyA]));
+      const d = ends[1].sub(ends[0]).normalize();
+      const row = new Array(n).fill(0);
+      for (const j of [a, b]) {
+        const other = j.bodyA === body ? j.bodyB : j.bodyA;
+        for (let k = 0; k < 3; k++) row[6 * other + k] -= d.getComponent(k) / 2;
+      }
+      for (let k = 0; k < 3; k++) row[6 * body + k] += d.getComponent(k);
+      add(row);
+    }
+
     // Meshing gears: where their teeth touch (the pitch point), both gears' teeth move at the
     // same speed across the mesh. (Moving the other ways would pull the teeth apart, which the
     // joints already prevent.)
@@ -456,15 +508,26 @@ export class Kinematics {
       add(row);
     }
 
-    // A tyre on the ground rolls without slipping: the point touching the ground doesn't move.
+    // A tyre on the ground rolls without slipping: the point touching the ground doesn't move
+    // up or down, or along the way the tyre rolls. Sideways it may scrub a little, which
+    // freeMotions sees to, from the rows in `slip`.
     for (const i of this.contactTreads) {
       const p = this.contactPoint(i);
       if (!p) continue;
-      const body = this.mech.treads[i].body;
-      for (let k = 0; k < 3; k++) {
+      const tread = this.mech.treads[i];
+      const pose = this.poses[tread.body];
+      const forward = new Vector3().crossVectors(DOWN, tread.axis.clone().transformDirection(pose)).normalize();
+      const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
+      const along = (point: Vector3, dir: Vector3) => {
         const row = new Array(n).fill(0);
-        addPointVelocity(row, body, p, k, 1);
-        add(row);
+        for (let k = 0; k < 3; k++) addPointVelocity(row, tread.body, point, k, dir.getComponent(k));
+        return row;
+      };
+      add(along(p, DOWN));
+      add(along(p, forward));
+      if (slip) {
+        slip.sideways.push(along(p, sideways));
+        slip.travel.push(along(tread.center.clone().applyMatrix4(pose), forward));
       }
     }
     return rows;
@@ -503,7 +566,7 @@ export class Kinematics {
     let previous = Infinity;
     for (let round = 0; round < 8; round++) {
       const gaps: number[] = [];
-      const rows = this.buildEquations(gaps);
+      const rows = this.buildEquations(gaps, null);
       const biggest = gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
       if (biggest < LOOP_TOLERANCE || biggest > previous / 2) return;
       previous = biggest;
@@ -588,8 +651,16 @@ export class Kinematics {
   // An empty list means it's jammed.
   // They're made orthonormal, so that mixing them by least squares gives the smallest overall
   // motion (turning the steering wheel shouldn't also roll the car).
+  //
+  // Tyres on the ground may scrub sideways a little: of the motions the equations allow, the
+  // ones kept are those where the tyres scrub sideways by at most SCRUB of how fast they
+  // travel (rolling straight, steering on its own, and a steered car turning round the centre
+  // that needs the least scrub), and not, say, sliding the car across its length.
   freeMotions(): number[][] {
-    return orthonormalize(nullSpace(this.equations(), 6 * this.bodyCount));
+    const slip: Slip = { sideways: [], travel: [] };
+    const motions = orthonormalize(nullSpace(this.buildEquations(null, slip), 6 * this.bodyCount));
+    if (slip.sideways.length === 0 || motions.length === 0) return motions;
+    return leastScrub(motions, slip);
   }
 
   // How fast a point on a body moves under a motion vector.
@@ -637,13 +708,14 @@ export class Kinematics {
   snapshot(): KinematicsState {
     const roots = new Map<number, Matrix4>();
     for (const [root, pose] of this.rootPoses) roots.set(root, pose.clone());
-    return { roots, jointAngles: this.jointAngles.slice(), treadTravel: this.treadTravel.slice() };
+    return { roots, jointAngles: this.jointAngles.slice(), treadTravel: this.treadTravel.slice(), treadScrub: this.treadScrub.slice() };
   }
 
   restore(state: KinematicsState) {
     for (const [root, pose] of state.roots) this.rootPoses.set(root, pose.clone());
     this.jointAngles = state.jointAngles.slice();
     this.treadTravel = state.treadTravel.slice();
+    this.treadScrub = state.treadScrub.slice();
     this.updatePoses();
   }
 
@@ -713,6 +785,11 @@ export class Kinematics {
       // Turning positive about the axis a, with the ground below, carries the hub along down × a.
       const forward = new Vector3().crossVectors(DOWN, t.axis.clone().transformDirection(pose)).normalize();
       this.treadTravel[i] += this.pointVelocity(motion, t.body, hub).dot(forward) * amount;
+      const contact = this.contactTreads.includes(i) ? this.contactPoint(i) : null;
+      if (contact) {
+        const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
+        this.treadScrub[i] += Math.abs(this.pointVelocity(motion, t.body, contact).dot(sideways) * amount);
+      }
     });
     this.mech.joints.forEach((joint, j) => {
       if (joint.kind === 'revolute') this.jointAngles[j] += this.jointRate(motion, j) * amount;
@@ -777,7 +854,11 @@ function rotationAbout(point: Vector3, axis: Vector3, angle: number): Matrix4 {
 // unit of time: a turn about the twist's axis plus a slide along it.
 function screwMotion(w: Vector3, v: Vector3): Matrix4 {
   const angle = w.length();
-  if (angle < EPSILON) return new Matrix4().makeTranslation(v.x, v.y, v.z);
+  if (angle === 0) return new Matrix4().makeTranslation(v.x, v.y, v.z);
+  // A tiny turn: its axis can't be found accurately, but turning about the origin then moving
+  // by v is the same to within angle². (Leaving out the turn would move a body far from the
+  // origin by as much as angle × its distance, which closeLoops couldn't then close.)
+  if (angle < EPSILON) return new Matrix4().makeTranslation(v.x, v.y, v.z).multiply(new Matrix4().makeRotationAxis(w.clone().divideScalar(angle), angle));
   const axis = w.clone().divideScalar(angle);
   const pointOnAxis = new Vector3().crossVectors(w, v).divideScalar(angle * angle);
   const slide = axis.clone().multiplyScalar(v.dot(axis));
@@ -793,6 +874,118 @@ function smallestTurning(motions: number[][], rate: (m: number[]) => number): nu
   const combined = new Array(motions[0].length).fill(0);
   motions.forEach((m, k) => m.forEach((x, i) => (combined[i] += (x * rates[k]) / total)));
   return combined;
+}
+
+// Of orthonormal motions, the mixes in which the tyres scrub sideways by at most SCRUB of how
+// far they travel, as orthonormal motions. Worked out in the motions' own coordinates:
+//   - mixes in which no tyre travels are kept only if no tyre scrubs (steering on its own);
+//   - mixes in which tyres travel may add any of those, to scrub as little as they can; then
+//     the directions whose scrub per unit of travel is at most SCRUB are kept (rolling
+//     straight, and a steered car turning round the centre that needs the least scrub).
+function leastScrub(motions: number[][], slip: Slip): number[][] {
+  const k = motions.length;
+  const dot = (a: number[], b: number[]) => a.reduce((sum, x, i) => sum + x * b[i], 0);
+  // Each row applied to each motion: rows × k.
+  const scrub = slip.sideways.map((row) => motions.map((m) => dot(row, m)));
+  const travel = slip.travel.map((row) => motions.map((m) => dot(row, m)));
+  const gram = (a: number[][]) => Array.from({ length: k }, (_, i) => Array.from({ length: k }, (_, j) => a.reduce((sum, row) => sum + row[i] * row[j], 0)));
+  const travelGram = gram(travel);
+  const scale = Math.max(1, ...travelGram.map((row, i) => row[i]), ...gram(scrub).map((row, i) => row[i]));
+  const tiny = 1e-9 * scale;
+
+  // Directions (in the motions' coordinates) with no travel, Z, and with unit travel, C.
+  const { values: tv, vectors: tvecs } = symmetricEigen(travelGram);
+  const still = tvecs.filter((_, e) => tv[e] <= tiny);
+  const moving = tvecs.flatMap((v, e) => (tv[e] > tiny ? [v.map((x) => x / Math.sqrt(tv[e]))] : []));
+  // How much each tyre scrubs under a direction (in the motions' coordinates).
+  const scrubOf = (d: number[]) => scrub.map((row) => dot(row, d));
+  const kept: number[][] = [];
+
+  // Still directions that don't scrub.
+  const stillScrub = still.map(scrubOf);
+  const stillGram = still.map((_, i) => still.map((_, j) => dot(stillScrub[i], stillScrub[j])));
+  const { values: sv, vectors: svecs } = symmetricEigen(stillGram);
+  svecs.forEach((y, e) => {
+    if (sv[e] <= tiny) kept.push(combine(still, y));
+  });
+
+  // Moving directions, each with the still mix that cancels most of its scrub: z = -(YᵀY)⁻¹ Yᵀ x.
+  const best = moving.map((c) => {
+    if (still.length === 0) return c;
+    const x = scrubOf(c);
+    const z = combine(still, solveSymmetric(stillGram, still.map((_, i) => -dot(stillScrub[i], x)), tiny));
+    return c.map((value, i) => value + z[i]);
+  });
+  const left = best.map(scrubOf);
+  const leftGram = best.map((_, i) => best.map((_, j) => dot(left[i], left[j])));
+  const { values: mv, vectors: mvecs } = symmetricEigen(leftGram);
+  mvecs.forEach((y, e) => {
+    if (mv[e] <= SCRUB * SCRUB) kept.push(combine(best, y));
+  });
+
+  return orthonormalize(kept.map((a) => combine(motions, a)));
+}
+
+// The mix of `vectors` with these amounts.
+function combine(vectors: number[][], amounts: number[]): number[] {
+  const out = new Array(vectors[0]?.length ?? 0).fill(0);
+  vectors.forEach((v, i) => v.forEach((x, j) => (out[j] += amounts[i] * x)));
+  return out;
+}
+
+// The x with  a · x = b  for a small symmetric a, ignoring directions with eigenvalues below
+// `tiny` (least squares, if a is singular).
+function solveSymmetric(a: number[][], b: number[], tiny: number): number[] {
+  if (a.length === 0) return [];
+  const { values, vectors } = symmetricEigen(a);
+  const x = new Array(a.length).fill(0);
+  vectors.forEach((v, e) => {
+    if (values[e] <= tiny) return;
+    const amount = v.reduce((sum, vi, i) => sum + vi * b[i], 0) / values[e];
+    v.forEach((vi, i) => (x[i] += amount * vi));
+  });
+  return x;
+}
+
+// The eigenvalues and eigenvectors of a small symmetric matrix (Jacobi's method: rotate away
+// the off-diagonal entries one pair at a time until they're negligible).
+export function symmetricEigen(matrix: number[][]): { values: number[]; vectors: number[][] } {
+  const n = matrix.length;
+  const a = matrix.map((row) => row.slice());
+  const v: number[][] = a.map((_, i) => a.map((_, j) => (i === j ? 1 : 0))); // columns are eigenvectors
+  for (let sweep = 0; sweep < 50; sweep++) {
+    let off = 0;
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) off += a[i][j] * a[i][j];
+    if (off < 1e-24) break;
+    for (let p = 0; p < n; p++) {
+      for (let q = p + 1; q < n; q++) {
+        if (Math.abs(a[p][q]) < 1e-30) continue;
+        const theta = (a[q][q] - a[p][p]) / (2 * a[p][q]);
+        const t = Math.sign(theta || 1) / (Math.abs(theta) + Math.sqrt(theta * theta + 1));
+        const c = 1 / Math.sqrt(t * t + 1);
+        const s = t * c;
+        for (let k = 0; k < n; k++) {
+          const akp = a[k][p];
+          const akq = a[k][q];
+          a[k][p] = c * akp - s * akq;
+          a[k][q] = s * akp + c * akq;
+        }
+        for (let k = 0; k < n; k++) {
+          const apk = a[p][k];
+          const aqk = a[q][k];
+          a[p][k] = c * apk - s * aqk;
+          a[q][k] = s * apk + c * aqk;
+        }
+        for (let k = 0; k < n; k++) {
+          const vkp = v[k][p];
+          const vkq = v[k][q];
+          v[k][p] = c * vkp - s * vkq;
+          v[k][q] = s * vkp + c * vkq;
+        }
+      }
+    }
+  }
+  return { values: a.map((row, i) => row[i]), vectors: a.map((_, e) => v.map((row) => row[e])) };
 }
 
 // The smallest x with  rows · x = values  (least squares, if they can't all hold): x is a mix
@@ -859,12 +1052,40 @@ function orthonormalize(vectors: number[][]): number[][] {
 export function nullSpace(rows: Row[], n: number): number[][] {
   const a = rows.map((r) => r.slice());
   const pivotColumns: number[] = [];
-  let r = 0;
-  for (let c = 0; c < n && r < a.length; c++) {
-    // Use the row with the largest entry in this column, for accuracy.
+  const used = new Array(n).fill(false);
+  for (let r = 0; r < a.length; r++) {
+    // Pivot on an entry that's the largest in both its row and its column ("rook pivoting"),
+    // for accuracy: picking only down a column lets rounding errors grow until an equation
+    // implied by the others looks independent. If that finds nothing, look everywhere left.
+    const largestInRow = (i: number) => {
+      let best = -1;
+      for (let k = 0; k < n; k++) if (!used[k] && (best < 0 || Math.abs(a[i][k]) > Math.abs(a[i][best]))) best = k;
+      return best;
+    };
+    const largestInColumn = (k: number) => {
+      let best = r;
+      for (let i = r + 1; i < a.length; i++) if (Math.abs(a[i][k]) > Math.abs(a[best][k])) best = i;
+      return best;
+    };
     let best = r;
-    for (let i = r + 1; i < a.length; i++) if (Math.abs(a[i][c]) > Math.abs(a[best][c])) best = i;
-    if (Math.abs(a[best][c]) < RANK_TOLERANCE) continue;
+    let c = largestInRow(r);
+    if (c < 0) break;
+    for (;;) {
+      const i = largestInColumn(c);
+      const k = largestInRow(i);
+      const done = Math.abs(a[i][k]) <= Math.abs(a[i][c]);
+      best = i;
+      if (done) break;
+      c = k;
+    }
+    if (Math.abs(a[best][c]) < RANK_TOLERANCE) {
+      for (let i = r; i < a.length; i++) {
+        const k = largestInRow(i);
+        if (Math.abs(a[i][k]) > Math.abs(a[best][c])) [best, c] = [i, k];
+      }
+      if (Math.abs(a[best][c]) < RANK_TOLERANCE) break;
+    }
+    used[c] = true;
     [a[r], a[best]] = [a[best], a[r]];
     const pivot = a[r][c];
     for (let k = 0; k < n; k++) a[r][k] /= pivot;
@@ -874,7 +1095,6 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       for (let k = 0; k < n; k++) a[i][k] -= factor * a[r][k];
     }
     pivotColumns.push(c);
-    r++;
   }
   const basis: number[][] = [];
   for (let free = 0; free < n; free++) {
