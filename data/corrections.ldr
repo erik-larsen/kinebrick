@@ -61,3 +61,12 @@
 0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [pos=0 0 30] [ori=1 0 0 0 0 1 0 -1 0]
 0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [pos=0 0 -30] [ori=1 0 0 0 0 1 0 -1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 8] [pos=0 20 0]
+
+0 // Worm gears. A worm's thread is a single right-handed helix; each turn moves a meshing gear
+0 // on by one tooth, so its lead (how far the thread advances per turn) is one gear tooth:
+0 // 2 x pi x 1.25 = 7.853982 LDU. Measured from the LDraw shape. It meshes like an 8 tooth gear
+0 // (pitch radius 10) with a spur gear whose axle crosses it at right angles.
+
+0 FILE 4716.dat
+0 // Technic Worm Gear 2L
+0 !KINEBRICK GEAR [teeth=1] [radius=10] [width=40] [spur=false] [worm=7.853982] [center=true] [ori=1 0 0 0 0 1 0 -1 0]

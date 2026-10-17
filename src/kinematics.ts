@@ -18,7 +18,7 @@
 // long the model is dragged.
 
 import { Matrix4, Vector3 } from 'three';
-import { axesCrossing, Gear, Mechanism, Mesh } from './mechanism.ts';
+import { axesCrossing, closestPoints, Gear, Mechanism, Mesh } from './mechanism.ts';
 
 // How close a tyre must be to the ground to count as touching it, in LDU.
 const GROUND_TOLERANCE = 0.5;
@@ -196,8 +196,17 @@ export class Kinematics {
   // gear before its differential), and keeps each hold for which `stillPossible` says the drag
   // can still happen. `grabbed` is never held, and nor are wheels with tyres: rolling is their
   // job (holding one front wheel would let the car pivot round it while the steering moves).
-  holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean) {
+  //
+  // Worms lock: a worm gear can't be driven from its gear. So first, any worm the drag would
+  // drive from its gear's side is held still. Returns true if that was needed, so the caller
+  // can say why a part won't move.
+  holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean): boolean {
     this.dragHeld.clear();
+    let wormLocked = false;
+    for (const worm of this.wormsAgainst(grabbed)) {
+      this.dragHeld.add(worm);
+      wormLocked = true;
+    }
     const depth = (body: number): number => {
       const link = this.parentLink(body);
       return link ? 1 + depth(link.parent) : 0;
@@ -206,9 +215,44 @@ export class Kinematics {
     const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.held.has(b) && !wheels.has(b));
     candidates.sort((a, b) => depth(b) - depth(a) || a - b);
     for (const body of candidates) {
+      if (this.dragHeld.has(body)) continue;
       this.dragHeld.add(body);
       if (!stillPossible()) this.dragHeld.delete(body);
     }
+    return wormLocked;
+  }
+
+  // The worms that a drag of `grabbed` would drive from the gear side. The worm's side is
+  // everything geared to the worm without going through its worm mesh (a crank geared to the
+  // worm's axle, say); a drag from anywhere else can only reach the worm through its gear.
+  private wormsAgainst(grabbed: number): number[] {
+    const worms: number[] = [];
+    for (const mesh of this.mech.meshes) {
+      if (mesh.kind !== 'worm') continue;
+      const wormBody = this.mech.gears[mesh.gearA].body;
+      if (!this.gearedTo(wormBody).has(grabbed)) worms.push(wormBody);
+    }
+    return worms;
+  }
+
+  // Bodies connected to `body` through gear meshes other than worm meshes.
+  private gearedTo(body: number): Set<number> {
+    const found = new Set([body]);
+    const queue = [body];
+    while (queue.length) {
+      const b = queue.shift()!;
+      for (const mesh of this.mech.meshes) {
+        if (mesh.kind === 'worm') continue;
+        const x = this.mech.gears[mesh.gearA].body;
+        const y = this.mech.gears[mesh.gearB].body;
+        const other = x === b ? y : y === b ? x : -1;
+        if (other >= 0 && !found.has(other)) {
+          found.add(other);
+          queue.push(other);
+        }
+      }
+    }
+    return found;
   }
 
   letGoAfterDrag() {
@@ -309,6 +353,21 @@ export class Kinematics {
     const cb = b.center.clone().applyMatrix4(this.poses[b.body]);
     const axisA = a.axis.clone().transformDirection(this.poses[a.body]);
     const axisB = b.axis.clone().transformDirection(this.poses[b.body]);
+    if (mesh.kind === 'worm') {
+      // a is the worm. Where it meets the gear: from the worm's axis towards the gear's, out
+      // by the worm's pitch radius. There the worm's thread surface and the gear's tooth must
+      // move together across that surface. The thread is a helix leaning at the lead angle λ
+      // (tan λ = lead ÷ circumference), so the surface faces mostly along the worm's axis,
+      // tipped by λ towards the way the worm's surface moves: as the worm turns once, the gear's
+      // tooth is pushed one lead along.
+      const closest = closestPoints(ca, axisA, cb, axisB);
+      const out = new Vector3().subVectors(closest.onB, closest.onA).normalize();
+      const pitchPoint = closest.onA.clone().addScaledVector(out, a.radius);
+      const surface = new Vector3().crossVectors(axisA, out); // how the worm's surface moves there
+      const lean = Math.atan(a.worm / (2 * Math.PI * a.radius));
+      const across = axisA.clone().multiplyScalar(Math.cos(lean)).addScaledVector(surface, -Math.sin(lean));
+      return { a, b, pitchPoint, across };
+    }
     if (mesh.kind === 'spur') {
       // On the line between the centres, split in the ratio of the pitch radii.
       const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));

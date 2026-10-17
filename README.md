@@ -1,14 +1,12 @@
-# KineBrick
+# [KineBrick](https://erik-larsen.github.io/kinebrick/)
 
 A web viewer that makes LEGO Technic models move. Load an LDraw model of a simple car, push the chassis, and the car rolls: the tyres turn against the ground, the rims and axles turn with them, and the bricks ride along. KineBrick works this out from the parts themselves, with no hand-made animation.
-
-**Try it: [erik-larsen.github.io/kinebrick](https://erik-larsen.github.io/kinebrick/)**
 
 ![The simple car test model: a black 4x8 plate with yellow Technic bricks on all four sides, two black axles through the side bricks, and four grey rims with black tyres](media/screenshot.jpeg)
 
 ## Status
 
-M4 works, and parts can't pass through each other. Seven test models, picked from a menu in the viewer:
+M4 works, parts can't pass through each other, and M5 is under way with worm gears. Eight test models, picked from a menu in the viewer:
 
 - [Simple car](models/simple-car.ldr): drag the frame and it rolls along its length, its wheels turning by distance ÷ tyre radius; turn a tyre and the car rolls with it.
 - [Geared car](models/geared-car.ldr): the same car with two 8 tooth gears inside, so rolling the car spins a second axle the other way.
@@ -16,6 +14,7 @@ M4 works, and parts can't pass through each other. Seven test models, picked fro
 - [Right-angle drive](models/right-angle.ldr): two 12 tooth double bevel gears meshing at a right angle, one on a horizontal axle and one on a vertical axle.
 - [Differential](models/differential.ldr): a differential on a stand, driven by an 8 tooth gear. Turning the input turns both outputs together. Hold the input still (Alt-click it) and turning one output turns the other the opposite way.
 - [Steering car](models/steering-car.ldr): a car whose front axle pivots in the middle, turned by a steering wheel through 8 and 24 tooth gears, with big tyres and the differential at the back. Turn the steering wheel, then push the car: it drives round a circle, every wheel at its own speed. The steering stops at about 20 degrees either way, where the front tyres meet the chassis.
+- [Worm drive](models/worm-drive.ldr): a worm driving a 24 tooth gear, one tooth per turn of the worm. Turning the gear does nothing: a worm can't be driven from its gear.
 - [Steering car, solid rear axle](models/steering-car-solid.ldr): the same car with one solid axle at the back. It rolls straight ahead, but once steered it jams, because the inner and outer rear wheels would have to roll different distances.
 
 The viewer draws each body in its own colour, each joint's axis and each gear mesh, and labels the part under the pointer. Next is M5: worm gears, clutches and gearboxes.
@@ -62,6 +61,7 @@ A role is a short label for what a part does in a mechanism. It tells KineBrick 
 | `tyre` | 3483 Tyre 56 x 17; 3634 Tyre 10/130 x 17 (a bigger tyre for the same rim) | Locks onto the rim it sits on. Rolls on the ground without slipping. |
 | `gear` | 3647, 4019, 3648, 3649 Technic Gear 8, 16, 24, 40 Tooth | Locks onto an axle through its axle hole. Meshes with a gear whose axle is parallel and exactly the two gears' pitch radii away (1.25 LDU per tooth). |
 | `gear` (bevel) | 32270, 32269 Technic Gear 12, 20 Tooth Double Bevel; 6589 Technic Gear 12 Tooth Bevel | Bevel teeth lie on a 45 degree cone. Meshes with another bevel gear whose axle crosses its own, when the tips of their cones meet where the axles cross. Double bevel gears also mesh side by side, like spur gears. |
+| `worm` | 4716 Technic Worm Gear 2L | Locks onto an axle through its axle hole. Meshes with a spur gear whose axle crosses its own at right angles, the two pitch radii apart (2 studs for a 24 tooth gear); each turn of the worm moves the gear on one tooth. Can't be driven from the gear: it locks. |
 | `steering wheel` | 2819 Technic Steering Wheel Small | Locks onto an axle through its axle hole. Like `structure`, but the body it's on is named after it. |
 | `differential` | 6573 Technic Differential with Gear 16 Tooth and 24 Tooth | Turns on the two output axles that pass into it. Carries a 16 and a 24 tooth gear ring outside, and a post inside for the middle (planet) bevel gear, which meshes with a bevel gear on each output. |
 
@@ -73,7 +73,7 @@ All manipulation happens directly in the 3D view, by dragging parts with the mou
 
 1. **Hover.** The part under the cursor glows yellow, and the rest of its body (the parts that would move with it) glows faintly. A label shows the part's number, name, role and body, for example "3701 Technic Brick 1 x 4 with Holes · structure · frame".
 2. **Press.** Pressing on a part fixes a grab point where the cursor touched it. The view shows how that point can move. Pressing a frame part shows an arrow for its straight-line motion (the car rolling). Pressing a part that spins on an axle (a gear, a crank, a tyre) shows an arc around the axle: dragging it turns the part, and everything connected follows. A tyre on the ground turns the same way, and the car rolls as it turns, so to push the car, grab the frame. The arc is measured against whatever the axle is mounted in, so it travels with a moving car and stays in step with the part. A part that can't move shows no handle, and a brief cue says why: it's jammed, or it's part of a frame that stays put because the model has no means of locomotion (only wheels so far; tracks and legs would count too).
-3. **Drag.** Pushing a frame part: as the cursor moves, the mechanism moves as far along its allowed motion as needed to bring the grab point as close to the cursor as it can get. Every body moves with it. Dragging either 1x4 brick of the test car rolls the car in the direction of the drag. Turning a part that spins on an axle: the part turns like a knob, by the angle the cursor sweeps around its axle, and everything connected follows. A cursor that stops moving stops the turn, even if the axle is still being carried along (the car rolling), and close to the axle the turn is damped, so a short drag never gives a big turn. Gearing can still make the rest of the model move further than the cursor: on the geared car, turning the small 8 tooth gear rolls the car about three times as far, the other way. Anything the drag doesn't need to move stays put: pushing a car leaves its steering alone, and turning its steering wheel leaves the car where it is. For the length of a drag, KineBrick holds still every part it can without stopping the drag, trying the deepest parts of the mechanism first (a differential's planet gear before the differential). Wheels on the ground are never held this way, since rolling is their job.
+3. **Drag.** Pushing a frame part: as the cursor moves, the mechanism moves as far along its allowed motion as needed to bring the grab point as close to the cursor as it can get. Every body moves with it. Dragging either 1x4 brick of the test car rolls the car in the direction of the drag. Turning a part that spins on an axle: the part turns like a knob, by the angle the cursor sweeps around its axle, and everything connected follows. A cursor that stops moving stops the turn, even if the axle is still being carried along (the car rolling), and close to the axle the turn is damped, so a short drag never gives a big turn. Gearing can still make the rest of the model move further than the cursor: on the geared car, turning the small 8 tooth gear rolls the car about three times as far, the other way. Anything the drag doesn't need to move stays put: pushing a car leaves its steering alone, and turning its steering wheel leaves the car where it is. For the length of a drag, KineBrick holds still every part it can without stopping the drag, trying the deepest parts of the mechanism first (a differential's planet gear before the differential). Wheels on the ground are never held this way, since rolling is their job. Worms lock: a worm is held still during any drag that would drive it from its gear's side, so turning the gear of a worm drive does nothing, as on the real thing.
 4. **Release.** The model stays where it was left. Momentum waits for forces in M7.
 5. **Hold.** Alt-clicking (Option-clicking on a Mac) a part holds its body still: its parts get a cyan outline and the body a 📌 badge, like a grounded part in Fusion 360; Alt-clicking it again lets go, and "Let go of all" lets go of everything. A held part that turns on an axle stops turning; a held frame stops moving. This matters when a mechanism can move more than one way: a differential's two outputs can turn independently, so turning one alone leaves it open how the other and the housing share the motion. Hold the input still, and the other output must turn the opposite way.
 
@@ -145,6 +145,7 @@ Other commands:
 | `src/kinematics.test.ts` | Tests for the above: the car rolls the right distance per wheel turn and stays on the ground |
 | `src/gears.test.ts` | Tests for gear trains: ratios, direction, and the geared car |
 | `src/bevel.test.ts` | Tests for the right-angle drive and the differential, with and without parts held |
+| `src/worm.test.ts` | Tests for the worm drive: one tooth per turn, and locking when driven from the gear |
 | `src/steering.test.ts` | Tests for the steering car: steering without rolling, the turning circle, inner and outer wheels, the solid axle jamming |
 | `src/collisions.ts` | Stops parts passing through each other |
 | `src/collisions.test.ts` | Tests for the above, on simple shapes |

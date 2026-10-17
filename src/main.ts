@@ -43,6 +43,7 @@ const MODELS: [string, string][] = [
   ['differential', 'Differential'],
   ['steering-car', 'Steering car'],
   ['steering-car-solid', 'Steering car, solid rear axle'],
+  ['worm-drive', 'Worm drive'],
 ];
 const modelParam = new URLSearchParams(window.location.search).get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
@@ -303,7 +304,7 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     const degrees = (turn.radians * 180) / Math.PI;
     let name = body.name;
     const gear = mech.gears.find((g) => g.body === b);
-    if (gear && !name.startsWith('wheels') && !name.startsWith('differential')) name += ` (${gear.teeth} teeth)`;
+    if (gear && !gear.worm && !name.startsWith('wheels') && !name.startsWith('differential')) name += ` (${gear.teeth} teeth)`;
     let line = `${name} turned ${degrees.toFixed(1)}°`;
     if (turn.mount !== 0) line += ` in ${mech.bodies[turn.mount].name}`;
     if (kin.isHeld(b)) line += ' (held)';

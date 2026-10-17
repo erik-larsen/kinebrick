@@ -25,6 +25,8 @@ export interface Section {
   bevel?: string; // has bevel teeth facing along the axis: '+' (the way dir points), '-', or 'both'
   apex?: number; // for bevel teeth: how far from the gear's middle, along the axis, the
   //               tip of its 45 degree pitch cone is. Two bevel gears mesh when their tips meet.
+  worm?: number; // a worm: how far its thread advances along the axis per turn (positive for a
+  //               right-handed thread about dir). Meshes with a spur gear at right angles.
 }
 
 export interface Cylinder {

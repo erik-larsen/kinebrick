@@ -149,6 +149,7 @@ function gearFromMeta(meta: Meta): WorkingCylinder[] {
       sec.bevel = p.get('bevel');
       sec.apex = Number(p.get('apex'));
     }
+    if (p.has('worm')) sec.worm = Number(p.get('worm'));
   }
   return cyls;
 }

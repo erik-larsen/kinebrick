@@ -68,15 +68,17 @@ export interface Gear {
   spur: boolean; // straight teeth, for meshing on parallel axes
   bevel: string; // bevel teeth facing '+' (along axis), '-', 'both', or '' for none
   apex: number; // bevel teeth: distance from center to the tip of the pitch cone
+  worm: number; // a worm: its thread's advance per turn (right-handed about axis), else 0
 }
 
 // Two gears whose teeth mesh: where their teeth touch, both move at the same speed.
 //   spur   axes parallel, side by side
 //   bevel  axes crossing; the tips of their bevel cones meet where the axes cross
+//   worm   a worm (gearA) and a spur gear (gearB) on axes at right angles that don't meet
 export interface Mesh {
   gearA: number; // index into gears
   gearB: number;
-  kind: 'spur' | 'bevel';
+  kind: 'spur' | 'bevel' | 'worm';
 }
 
 export interface Mechanism {
@@ -149,6 +151,7 @@ function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
       spur: sec.spur !== false,
       bevel: sec.bevel ?? '',
       apex: sec.apex ?? 0,
+      worm: sec.worm ?? 0,
     });
   }
   return gears;
@@ -162,6 +165,11 @@ function findMeshes(gears: Gear[]): Mesh[] {
       const gb = gears[b];
       if (ga.body === gb.body) continue;
       const parallel = new Vector3().crossVectors(ga.axis, gb.axis).length() < 0.01;
+      if (ga.worm || gb.worm) {
+        if (ga.worm && wormMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'worm' });
+        if (gb.worm && wormMesh(gb, ga)) meshes.push({ gearA: b, gearB: a, kind: 'worm' });
+        continue;
+      }
       if (parallel && spurMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'spur' });
       if (!parallel && bevelMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'bevel' });
     }
@@ -179,6 +187,34 @@ function spurMesh(ga: Gear, gb: Gear): boolean {
   const across = offset.clone().addScaledVector(ga.axis, -along).length();
   if ((ga.width + gb.width) / 2 - Math.abs(along) < MIN_OVERLAP) return false; // teeth don't face each other
   return Math.abs(across - (ga.radius + gb.radius)) < AXIS_TOLERANCE;
+}
+
+// A worm meshes with a spur gear of the same tooth size when their axes are at right angles,
+// exactly their two pitch radii apart where they pass closest, and that closest point lies
+// along both the worm and the gear's teeth.
+function wormMesh(worm: Gear, gear: Gear): boolean {
+  if (!gear.spur || gear.worm) return false;
+  if (Math.abs(worm.axis.dot(gear.axis)) > 0.01) return false;
+  if (Math.abs(worm.worm - 2 * Math.PI * (gear.radius / gear.teeth)) > 0.01) return false; // tooth size
+  const closest = closestPoints(worm.center, worm.axis, gear.center, gear.axis);
+  if (Math.abs(closest.distance - (worm.radius + gear.radius)) > AXIS_TOLERANCE) return false;
+  const alongWorm = new Vector3().subVectors(closest.onA, worm.center).dot(worm.axis);
+  const alongGear = new Vector3().subVectors(closest.onB, gear.center).dot(gear.axis);
+  return Math.abs(alongWorm) <= worm.width / 2 && Math.abs(alongGear) <= gear.width / 2;
+}
+
+// The closest points of two lines (each a point and a unit direction), and how far apart they are.
+export function closestPoints(pa: Vector3, da: Vector3, pb: Vector3, db: Vector3): { onA: Vector3; onB: Vector3; distance: number } {
+  const w = new Vector3().subVectors(pa, pb);
+  const b = da.dot(db);
+  const d = da.dot(w);
+  const e = db.dot(w);
+  const denominator = 1 - b * b;
+  const s = denominator > 1e-9 ? (b * e - d) / denominator : 0;
+  const t = denominator > 1e-9 ? (e - b * d) / denominator : e;
+  const onA = pa.clone().addScaledVector(da, s);
+  const onB = pb.clone().addScaledVector(db, t);
+  return { onA, onB, distance: onA.distanceTo(onB) };
 }
 
 // Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross.
@@ -373,6 +409,7 @@ const BODY_NOUNS: [string, string][] = [
   ['tyre', 'wheels'],
   ['rim', 'wheels'],
   ['differential', 'differential'],
+  ['worm', 'worm'],
   ['gear', 'gear'],
   ['axle', 'axle'],
 ];

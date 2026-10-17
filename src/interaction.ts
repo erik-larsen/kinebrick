@@ -362,14 +362,18 @@ export function setUpInteraction(s: InteractionSetup) {
 
       // Hold still whatever this drag doesn't need to move.
       const d = drag;
+      let wormLocked = false;
       if (d.joint >= 0) {
-        s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null);
+        wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null);
       } else {
         const directions = grabDirections(d);
-        if (directions > 0) s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
+        if (directions > 0) wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
       }
+      const canMove = d.joint >= 0 ? s.kin.jointMotion(d.joint) !== null : grabDirections(d) > 0;
 
-      if (s.kin.freeMotions().length === 0) {
+      if (!canMove && wormLocked) {
+        showMessage("This part can't move: a worm gear can only be turned from the worm", e.clientX, e.clientY);
+      } else if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {
         const { hub } = turnAxis(drag);
