@@ -32,6 +32,13 @@ const DOWN = new Vector3(0, 1, 0); // LDraw's y axis points down
 // A row of the equations: coefficients for the motion vector, all equal to zero.
 type Row = number[];
 
+// Everything that says where the mechanism is (see Kinematics.snapshot).
+export interface KinematicsState {
+  roots: Map<number, Matrix4>;
+  jointAngles: number[];
+  treadTravel: number[];
+}
+
 export class Kinematics {
   // Each body's pose: from its starting position (model coordinates) to where it is now.
   poses: Matrix4[] = [];
@@ -358,16 +365,39 @@ export class Kinematics {
   // Turns a joint by `angle` radians (bodyB relative to bodyA), letting the rest of the
   // mechanism follow, in steps of at most MAX_TURN_STEP. Returns how far it actually turned,
   // which is less if the joint can't turn (jammed).
-  turnJoint(joint: number, angle: number): number {
+  //
+  // If `allowed` is given, it's asked after each step whether the mechanism may be where it
+  // now is (no parts passing through each other); if not, that step is undone and the turn
+  // stops there.
+  turnJoint(joint: number, angle: number, allowed?: () => boolean): number {
     let turned = 0;
     const steps = Math.ceil(Math.abs(angle) / MAX_TURN_STEP);
     for (let i = 0; i < steps; i++) {
       const motion = this.jointMotion(joint);
       if (!motion) break;
+      const before = this.snapshot();
       this.advance(motion, angle / steps);
+      if (allowed && !allowed()) {
+        this.restore(before);
+        break;
+      }
       turned += angle / steps;
     }
     return turned;
+  }
+
+  // Where everything is, so it can be put back (to undo a step).
+  snapshot(): KinematicsState {
+    const roots = new Map<number, Matrix4>();
+    for (const [root, pose] of this.rootPoses) roots.set(root, pose.clone());
+    return { roots, jointAngles: this.jointAngles.slice(), treadTravel: this.treadTravel.slice() };
+  }
+
+  restore(state: KinematicsState) {
+    for (const [root, pose] of state.roots) this.rootPoses.set(root, pose.clone());
+    this.jointAngles = state.jointAngles.slice();
+    this.treadTravel = state.treadTravel.slice();
+    this.updatePoses();
   }
 
   // The motion vector that turns a joint at rate 1 (one radian per unit), with the rest of

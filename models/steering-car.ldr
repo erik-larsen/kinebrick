@@ -23,10 +23,10 @@
 1 71 -80 -21 0 1 0 0 0 0 -1 0 1 0 6589.dat
 0 STEP
 
-0 // Step 3: two Technic plates across the front of the base, with holes for the pivot (x = 80)
-0 // and the steering column (x = 40)
-1 71 80 -8 0 0 0 1 0 1 0 -1 0 0 3738.dat
-1 71 40 -8 0 0 0 1 0 1 0 -1 0 0 3738.dat
+0 // Step 3: two short Technic plates across the front of the base, with holes for the pivot
+0 // (x = 80) and the steering column (x = 40), short enough for the front tyres to swing past
+1 71 80 -8 0 0 0 1 0 1 0 -1 0 0 3709b.dat
+1 71 40 -8 0 0 0 1 0 1 0 -1 0 0 3709b.dat
 0 STEP
 
 0 // Step 4: the front axle carrier: a Technic plate, a round 2x2 plate with an axle hole over

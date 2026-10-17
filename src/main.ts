@@ -2,6 +2,7 @@
 
 import {
   Box3,
+  BufferGeometry,
   Color,
   DirectionalLight,
   GridHelper,
@@ -21,6 +22,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
+import { Collisions, PartMesh } from './collisions.ts';
 import { ConnectionTable, normalizePartName } from './connections.ts';
 import { setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -212,6 +214,29 @@ async function start() {
   });
   showHolds();
 
+  // Collision checks: each part's meshes in the part's own coordinates, and which parts are
+  // directly connected (they may touch).
+  model.updateMatrixWorld(true);
+  const shapes: PartMesh[][] = partObjects.map((obj) => {
+    const toPart = obj.matrixWorld.clone().invert();
+    const list: PartMesh[] = [];
+    obj.traverse((child) => {
+      const mesh = child as Mesh;
+      if (!mesh.isMesh) return;
+      const geometry = new BufferGeometry();
+      geometry.setAttribute('position', mesh.geometry.getAttribute('position').clone());
+      if (mesh.geometry.index) geometry.setIndex(mesh.geometry.index.clone());
+      list.push({ geometry, matrix: toPart.clone().multiply(mesh.matrixWorld) });
+    });
+    return list;
+  });
+  const connected = new Set<string>();
+  const pairKey = (a: number, b: number) => (a < b ? `${a},${b}` : `${b},${a}`);
+  for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
+  for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
+  const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
+  const collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
+
   setUpInteraction({
     renderer,
     camera,
@@ -225,6 +250,7 @@ async function start() {
     partTitle,
     onMoved: showPoses,
     onHoldChanged: showHolds,
+    blockedBy: () => collisions.check(partMatrices()),
   });
   showPoses();
 }

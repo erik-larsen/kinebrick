@@ -30,6 +30,7 @@ export class Appearance {
   private outlines: Outlines;
   private badges: CSS2DObject[] = [];
   private glowCache = new Map<string, Material>();
+  private blockedTimer: ReturnType<typeof setTimeout> | undefined;
 
   constructor(partObjects: Object3D[], mech: Mechanism, outlines: Outlines) {
     this.partObjects = partObjects;
@@ -73,6 +74,13 @@ export class Appearance {
     this.badges = [];
     for (const part of this.looseParts) this.addBadge(part, '⚠', 'loose');
     for (const body of this.heldBodies) this.addBadge(this.biggestPart(body), '📌', 'held');
+  }
+
+  // Outlines two parts in red for a moment: they'd have run into each other, so the drag stopped.
+  flashBlocked(parts: number[]) {
+    this.outlines.set('blocked', parts.map((p) => this.partObjects[p]));
+    clearTimeout(this.blockedTimer);
+    this.blockedTimer = setTimeout(() => this.outlines.set('blocked', []), 700);
   }
 
   // A copy of the material that glows yellow, a lot (part) or a little (body). Copies are cached.

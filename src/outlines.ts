@@ -1,6 +1,7 @@
 // Outlines drawn around parts after the scene is rendered: one style per kind of status.
 //   held       parts of bodies the user is holding still (cyan)
 //   loose      parts not attached to the rest of the model (red)
+//   blocked    two parts that would have run into each other, shown briefly (red)
 // Each style is its own outline pass; a pass with nothing to outline is switched off.
 
 import { Camera, Color, HalfFloatType, NormalBlending, Object3D, Scene, Vector2, WebGLRenderer, WebGLRenderTarget } from 'three';
@@ -19,6 +20,7 @@ interface OutlineStyle {
 const STYLES = {
   held: { colour: 0x00b4ff, hiddenColour: 0x006a96, strength: 10, thickness: 2.5 },
   loose: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
+  blocked: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
 };
 
 export type OutlineKind = keyof typeof STYLES;

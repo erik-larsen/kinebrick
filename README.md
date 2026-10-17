@@ -8,14 +8,14 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model of a simpl
 
 ## Status
 
-M4 works. Seven test models, picked from a menu in the viewer:
+M4 works, and parts can't pass through each other. Seven test models, picked from a menu in the viewer:
 
 - [Simple car](models/simple-car.ldr): drag the frame and it rolls along its length, its wheels turning by distance ÷ tyre radius; turn a tyre and the car rolls with it.
 - [Geared car](models/geared-car.ldr): the same car with two 8 tooth gears inside, so rolling the car spins a second axle the other way.
 - [Gear train](models/gear-train.ldr): 8, 24 and 40 tooth gears on a Technic brick. Turning any gear turns the others at the right ratios (the 40 tooth gear turns 1/5 as far as the 8 tooth gear).
 - [Right-angle drive](models/right-angle.ldr): two 12 tooth double bevel gears meshing at a right angle, one on a horizontal axle and one on a vertical axle.
 - [Differential](models/differential.ldr): a differential on a stand, driven by an 8 tooth gear. Turning the input turns both outputs together. Hold the input still (Alt-click it) and turning one output turns the other the opposite way.
-- [Steering car](models/steering-car.ldr): a car whose front axle pivots in the middle, turned by a steering wheel through 8 and 24 tooth gears, with big tyres and the differential at the back. Turn the steering wheel, then push the car: it drives round a circle, every wheel at its own speed.
+- [Steering car](models/steering-car.ldr): a car whose front axle pivots in the middle, turned by a steering wheel through 8 and 24 tooth gears, with big tyres and the differential at the back. Turn the steering wheel, then push the car: it drives round a circle, every wheel at its own speed. The steering stops at about 20 degrees either way, where the front tyres meet the chassis.
 - [Steering car, solid rear axle](models/steering-car-solid.ldr): the same car with one solid axle at the back. It rolls straight ahead, but once steered it jams, because the inner and outer rear wheels would have to roll different distances.
 
 The viewer draws each body in its own colour, each joint's axis and each gear mesh, and labels the part under the pointer. Next is M5: worm gears, clutches and gearboxes.
@@ -36,7 +36,7 @@ The viewer draws each body in its own colour, each joint's axis and each gear me
 5. **Check.** Every part should be attached to the rest of the model through some chain of connections. Parts that aren't get a red outline and a ⚠ badge, and are listed in the viewer, since they're usually in the wrong place: a brick half a stud off, sitting between the studs instead of on them, or floating above the plate.
 6. **Group.** Parts that are rigidly connected (an axle in an axle hole, a tyre on a rim) or attached by studs move as one *body*. The body with the most `structure` parts is the *frame*. The simple car has three bodies: the frame (plate plus bricks), and two axles, each with its two rims and tyres locked onto it. The steering car's pivoting front axle carrier, a few bricks and plates of its own, is a separate body that turns on the frame.
 7. **Solve.** Joints and ground contact become equations between the bodies' speeds. A joint says two bodies move together except for turning about its axis. Two meshing gears say their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts; that works the same for spur gears side by side and bevel gears at an angle. A part the user holds still says its body doesn't turn. A tyre on the ground says the point touching the ground doesn't move, so the tyre rolls without slipping. The ground is level with the lowest tyre; a model with no tyres has no means of locomotion, so its frame stays put, as if standing on a table. Whatever motion the equations leave free is what the user can drive. If no motion is left free, the mechanism is jammed.
-8. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves; the viewer moves each body's parts.
+8. **Animate.** The user drags a part (see [Interaction](#interaction)); the solver works out how every body moves, in small steps; the viewer moves each body's parts. After each step, KineBrick checks whether any two parts have started to pass through each other; if so, it undoes the step and the drag stops there, like a steering wheel turned until the front tyres meet the chassis. It only checks parts that aren't directly connected (an axle in a hole, a tyre on its rim and meshing gear teeth all touch legitimately) and that don't already touch when the model loads. The shapes are the parts' own LDraw meshes, tested with [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh).
 
 Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with a steering front axle (M4) and suspension arms (M6). From M4, structure parts form bodies by how they're attached, through stud and rigid connections (already found for the check in step 5), and the frame is the largest of those bodies.
 
@@ -81,7 +81,7 @@ While dragging, a small readout shows the numbers, so the motion can be checked 
 
 Dragging on a part moves the mechanism; dragging on empty space turns the camera.
 
-Each kind of information has its own channel, so they never fight: fill colour says which body a part belongs to (or shows its own LEGO colours), a yellow glow shows what the pointer is on, and status gets an outline and a badge pinned to the part (📌 held in cyan, ⚠ loose in red). Outlines show through other parts in a darker shade.
+Each kind of information has its own channel, so they never fight: fill colour says which body a part belongs to (or shows its own LEGO colours), a yellow glow shows what the pointer is on, and status gets an outline and a badge pinned to the part (📌 held in cyan, ⚠ loose in red). When a drag stops because two parts would run into each other, those two parts flash a red outline. Outlines show through other parts in a darker shade.
 
 ## Milestones
 
@@ -94,6 +94,7 @@ Each milestone ends with a model that moves correctly and a test that checks it.
 | M2 | Spur gears | Gear trains on parallel axles turn at the right ratios. Pushing the car can drive a gear train. Dragging any spinning part (a gear, a crank, a tyre) turns it along an arc about its axle, and the rest of the mechanism follows. |
 | M3 | Bevel gears and differential | Right-angle drives work. A differential lets the two wheels on one axle turn at different speeds. |
 | M4 | Steering | The front axle pivots in the middle, like a wagon's, turned by a gear on a steering column. Pushing the steered car makes it follow a curve, each wheel turning at its own speed; the rear wheels are on a differential. The same car with a solid rear axle jams when steered. |
+| M4.5 | Collisions | Parts stop when they'd run into each other: the steering car's front wheels stop at the chassis, about 20 degrees either way. No part of any test model passes through another. |
 | M5 | Worm gears, clutches, gearboxes | Connections that change while the model runs, such as shifting gears. |
 | M6 | Linkages | Rack and pinion steering with tie rods and Ackermann geometry (each front wheel pivots on its own, the inside one turning further). Pistons, crankshafts and suspension arms move through their full range. These need sliding joints, ball joints, and closed loops of parts kept together. |
 | M7 | Forces | Springs, shock absorbers and pushes or torques as input, through the MuJoCo physics engine. |
@@ -145,6 +146,8 @@ Other commands:
 | `src/gears.test.ts` | Tests for gear trains: ratios, direction, and the geared car |
 | `src/bevel.test.ts` | Tests for the right-angle drive and the differential, with and without parts held |
 | `src/steering.test.ts` | Tests for the steering car: steering without rolling, the turning circle, inner and outer wheels, the solid axle jamming |
+| `src/collisions.ts` | Stops parts passing through each other |
+| `src/collisions.test.ts` | Tests for the above, on simple shapes |
 | `src/attachment.test.ts` | Tests that every test model is fully attached, and that misplaced parts are caught |
 | `src/interaction.ts` | Hover, press, drag (see [Interaction](#interaction)) |
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
@@ -166,6 +169,7 @@ Other commands:
 |---|---|---|
 | [LDraw parts library](https://library.ldraw.org) | Part shapes and connection primitives; the packed models in `packed/` include the parts they use | CC BY 4.0 |
 | [three.js](https://threejs.org) | Rendering and LDraw loading | MIT |
+| [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh) | Fast tests of whether two parts' shapes overlap | MIT |
 | [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Connection points in the [connection table](#the-connection-table) | CC BY-SA 4.0 |
 
 ## Prior art

@@ -55,6 +55,7 @@ export interface InteractionSetup {
   partTitle: (name: string) => Promise<string>;
   onMoved: () => void; // called after the mechanism moves
   onHoldChanged: () => void; // called after a part is held or let go
+  blockedBy: () => [number, number] | null; // two parts now passing through each other, if any
 }
 
 interface Drag {
@@ -230,7 +231,9 @@ export function setUpInteraction(s: InteractionSetup) {
       const scale = Math.min(1, MAX_STEP / move.length());
       const combined = new Array(motions[0].length).fill(0);
       motions.forEach((m, i) => m.forEach((x, k) => (combined[k] += x * amounts[i] * scale)));
+      const before = s.kin.snapshot();
       s.kin.advance(combined, 1);
+      if (stopIfBlocked(before)) return;
     }
   }
 
@@ -270,7 +273,21 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     // The joint's angle is bodyB relative to bodyA, so flip it if we're turning bodyA.
     const sign = s.mech.joints[d.joint].bodyB === d.body ? 1 : -1;
-    s.kin.turnJoint(d.joint, sign * angle);
+    s.kin.turnJoint(d.joint, sign * angle, () => {
+      const pair = s.blockedBy();
+      if (pair) s.appearance.flashBlocked(pair);
+      return !pair;
+    });
+  }
+
+  // If the last step made two parts pass through each other, puts everything back where it
+  // was before the step, outlines the two parts in red, and says so.
+  function stopIfBlocked(before: ReturnType<Kinematics['snapshot']>): boolean {
+    const pair = s.blockedBy();
+    if (!pair) return false;
+    s.kin.restore(before);
+    s.appearance.flashBlocked(pair);
+    return true;
   }
 
   // ---------------------------------------------------------------------------
