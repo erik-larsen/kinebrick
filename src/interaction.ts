@@ -4,8 +4,8 @@
 //   drag     move the mechanism so the grabbed point follows the pointer
 //   release  leave the model where it is
 //   Alt-click   freeze a part, or unfreeze it
-//   Ctrl-click  keep a part that spins on an axle turning on its own (a motor), or stop it;
-//               with Shift, it turns the other way
+//   Ctrl-click  keep a part that spins on an axle turning on its own (a motor); again, turn
+//               it the other way; again, stop it
 // Dragging on empty space turns the camera instead.
 //
 // There are three kinds of drag:
@@ -118,7 +118,7 @@ export function setUpInteraction(s: InteractionSetup) {
   let drag: Drag | null = null;
   let shifting: Shift | null = null;
   let motorPart = -1; // the part kept turning (Ctrl-click), or -1
-  let motorDirection = 1; // 1, or -1 for the other way (Shift-Ctrl-click)
+  let motorDirection = 1; // 1, or -1 for the other way (a second Ctrl-click)
   let motorSpeed = (DEFAULT_RPM / 60) * 2 * Math.PI; // radians per second
   // The kinematics the motor's holds were worked out for, or null if they need working out
   // again (after a drag, a freeze, a shift).
@@ -402,18 +402,18 @@ export function setUpInteraction(s: InteractionSetup) {
     s.appearance.update();
   }
 
-  // Starts the part turning (direction 1, or -1 for the other way). If its body is already
-  // turning that way, stops it; if the other way, turns it round.
-  function toggleMotor(part: number, direction: number, clientX: number, clientY: number) {
+  // Ctrl-click: starts the part turning; on a part already turning, turns it the other way;
+  // on one already turned round, stops it.
+  function cycleMotor(part: number, clientX: number, clientY: number) {
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
-      if (direction === motorDirection) {
+      if (motorDirection === 1) {
+        motorDirection = -1;
+        showMessage(`Turning ${name} the other way · Ctrl-click again to stop`, clientX, clientY);
+      } else {
         setMotor(-1);
         showMessage(`Stopped ${name}`, clientX, clientY);
-      } else {
-        motorDirection = direction;
-        showMessage(`Turning ${name} the other way`, clientX, clientY);
       }
       return;
     }
@@ -430,9 +430,9 @@ export function setUpInteraction(s: InteractionSetup) {
       showMessage(`This part can't turn: ${why}`, clientX, clientY);
       return;
     }
-    motorDirection = direction;
+    motorDirection = 1;
     setMotor(part);
-    showMessage(`Turning ${name} · Ctrl-click again to stop`, clientX, clientY);
+    showMessage(`Turning ${name} · Ctrl-click again to reverse`, clientX, clientY);
   }
 
   // Turns the driven part on by however far it goes in `seconds`, as a turn drag would but in
@@ -524,11 +524,11 @@ export function setUpInteraction(s: InteractionSetup) {
         return;
       }
       if (e.ctrlKey || ctrlHeld) {
-        // Ctrl-click: keep the part turning, or stop it; Shift-Ctrl-click the other way. Keep
-        // the camera from moving.
+        // Ctrl-click: keep the part turning, turn it the other way, or stop it. Keep the camera
+        // from moving.
         e.stopImmediatePropagation();
         ctrlClickHandled = true;
-        toggleMotor(hit.part, e.shiftKey ? -1 : 1, e.clientX, e.clientY);
+        cycleMotor(hit.part, e.clientX, e.clientY);
         return;
       }
       s.controls.enabled = false;
@@ -601,7 +601,7 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const hit = hitAt(e.clientX, e.clientY);
-    if (hit) toggleMotor(hit.part, e.shiftKey ? -1 : 1, e.clientX, e.clientY);
+    if (hit) cycleMotor(hit.part, e.clientX, e.clientY);
   });
 
   canvas.addEventListener('pointermove', (e) => {
