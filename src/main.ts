@@ -2,7 +2,6 @@
 
 import {
   Box3,
-  BufferGeometry,
   Color,
   DirectionalLight,
   GridHelper,
@@ -22,7 +21,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { Collisions, PartMesh } from './collisions.ts';
+import { collisionGeometry, Collisions, PartMesh } from './collisions.ts';
 import { ConnectionTable, normalizePartName } from './connections.ts';
 import { InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -46,6 +45,8 @@ const MODELS: [string, string][] = [
   ['steering-car-solid', 'Steering car, solid rear axle'],
   ['worm-drive', 'Worm drive'],
   ['gearbox', 'Two-speed gearbox'],
+  ['engine', 'Single-cylinder engine'],
+  ['four-bar', 'Four-bar linkage'],
 ];
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');
@@ -165,10 +166,7 @@ async function start() {
     obj.traverse((child) => {
       const mesh = child as Mesh;
       if (!mesh.isMesh) return;
-      const geometry = new BufferGeometry();
-      geometry.setAttribute('position', mesh.geometry.getAttribute('position').clone());
-      if (mesh.geometry.index) geometry.setIndex(mesh.geometry.index.clone());
-      list.push({ geometry, matrix: toPart.clone().multiply(mesh.matrixWorld) });
+      list.push({ geometry: collisionGeometry(mesh.geometry), matrix: toPart.clone().multiply(mesh.matrixWorld) });
     });
     return list;
   });
@@ -221,10 +219,16 @@ async function start() {
       contacts.add(dot);
     }
 
-    // Which parts are directly connected (they may touch).
+    // Which parts are directly connected, or sit on the same pin or axle (they may touch:
+    // two beams on one pin lie face to face).
     const connected = new Set<string>();
     const pairKey = (a: number, b: number) => (a < b ? `${a},${b}` : `${b},${a}`);
     for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
+    for (const a of mech.connections) {
+      for (const b of mech.connections) {
+        if (a.male === b.male && a.female !== b.female && a.kind !== 'stud' && b.kind !== 'stud') connected.add(pairKey(a.female, b.female));
+      }
+    }
     for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
     else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
@@ -333,9 +337,25 @@ async function start() {
   };
   read(startParts);
   showLooseWarning(startParts.map((p) => p.name), mech.loose);
-  frameCamera(model, kin.groundY);
+  const grid = frameCamera(model, kin.groundY);
   const interaction = setUpInteraction(setup);
-  onFrame = interaction.runMotor;
+  // While a part is kept turning, the camera follows the model: it moves by however far the
+  // frame's middle moved, so the model stays in view while you still orbit and zoom around it.
+  const frameMiddle = ldrawSpace.worldToLocal(new Box3().setFromObject(model).getCenter(new Vector3())); // LDraw coordinates
+  const frameMiddleNow = () => ldrawSpace.localToWorld(frameMiddle.clone().applyMatrix4(kin.poses[0]));
+  onFrame = (seconds) => {
+    if (!interaction.motorRunning()) return;
+    const before = frameMiddleNow();
+    interaction.runMotor(seconds);
+    const moved = frameMiddleNow().sub(before);
+    camera.position.add(moved);
+    controls.target.add(moved);
+    // Keep the grid under the model, moving it in whole grid squares so it looks endless and
+    // its lines still slide past.
+    const { cell, home } = grid.userData;
+    grid.position.x = home.x + Math.round((controls.target.x - home.x) / cell) * cell;
+    grid.position.z = home.z + Math.round((controls.target.z - home.z) / cell) * cell;
+  };
   showPoses();
 
   // Back to the model as loaded, shifted back too, with nothing turning.
@@ -352,16 +372,20 @@ async function start() {
 
 // Point the camera at the model from above and to one side, and put a grid on the ground
 // (or under the model, if nothing touches the ground).
-function frameCamera(model: Object3D, groundY: number | null) {
+// Returns the grid.
+function frameCamera(model: Object3D, groundY: number | null): GridHelper {
   const box = new Box3().setFromObject(model);
   const center = box.getCenter(new Vector3());
   const size = box.getSize(new Vector3()).length();
   controls.target.copy(center);
   camera.position.copy(center).add(new Vector3(0.9, 0.7, 1.1).multiplyScalar(size));
   const grid = new GridHelper(size * 6, 60, 0x9aa3b0, 0xc4cad3);
+  grid.userData.cell = (size * 6) / 60;
+  grid.userData.home = grid.position.clone(); // where it starts, under the camera's target
   // The scene is the right way up, so LDraw's y is flipped.
   grid.position.set(center.x, groundY !== null ? -groundY : box.min.y, center.z);
   scene.add(grid);
+  return grid;
 }
 
 // Lists the parts that aren't attached to the rest of the model (outlined red, marked ⚠), if any.
@@ -390,9 +414,11 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     else if (radius !== null) line += `, turning circle radius ${radius.toFixed(0)} LDU`;
     lines.push(line);
   }
-  // One line per body that turns on a joint: how far it has turned relative to what it's
-  // mounted on (the frame, unless it says otherwise).
+  // One line per body that turns on a joint like a knob: how far it has turned relative to
+  // what it's mounted on (the frame, unless it says otherwise). Parts that turn and travel at
+  // once (a connecting rod) are left out: their turn follows from the rest.
   mech.bodies.forEach((body, b) => {
+    if (!kin.turnsLikeAKnob(b)) return;
     const turn = turnOnAxis(mech, kin, b);
     if (!turn) return;
     const degrees = (turn.radians * 180) / Math.PI;
@@ -409,6 +435,13 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
       const expected = ((rolled / mech.treads[t].radius) * 180) / Math.PI;
       line += ` (rolled ${rolled.toFixed(1)} ÷ ${mech.treads[t].radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
     }
+    lines.push(line);
+  });
+  // One line per slide joint: how far its part has slid (a piston in its cylinder).
+  mech.joints.forEach((joint, index) => {
+    if (joint.kind !== 'slide') return;
+    let line = `${mech.bodies[joint.bodyB].name} moved ${kin.slideOffset(index).toFixed(1)} LDU`;
+    if (joint.bodyA !== 0) line += ` in ${mech.bodies[joint.bodyA].name}`;
     lines.push(line);
   });
   readout.textContent = lines.join('\n');

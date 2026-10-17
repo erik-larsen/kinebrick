@@ -1,10 +1,10 @@
 import { readFileSync } from 'node:fs';
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { ConnectionTable } from './connections.ts';
-import { Kinematics } from './kinematics.ts';
-import { parseLdr, PlacedPart } from './ldr.ts';
-import { inferMechanism, Mechanism } from './mechanism.ts';
+import { ConnectionTable } from '../src/connections.ts';
+import { Kinematics } from '../src/kinematics.ts';
+import { parseLdr, PlacedPart } from '../src/ldr.ts';
+import { inferMechanism, Mechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));

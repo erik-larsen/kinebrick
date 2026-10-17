@@ -7,13 +7,17 @@
 
 export type Vec3 = [number, number, number];
 
-// Cross-section shapes. R, A and S come from the LDCad shadow library; T is KineBrick's own.
+// Cross-section shapes. R, A and S come from the LDCad shadow library; the rest are KineBrick's own.
 //   R  round (Technic hole, pin, stud)
 //   A  axle-shaped (cross)
 //   S  square
 //   T  tyre seat (where a tyre sits on a rim)
 //   W  tread (where a tyre touches the ground; worked out from the tyre's shape)
 //   L  a flexible bit (a pin's springy tip, a driving ring's click-bump): fits nothing
+//   B  bore: a round bore a part may slide along (an engine cylinder's, which a piston slides
+//      in). KineBrick only lets parts slide where its corrections say so.
+//   O  ball: a towball (M) or ball socket (F), from the shadow library's spheres; the
+//      cylinder is as long as the ball is wide, centred on the ball
 //   K  clutch: a driving ring's clutch teeth (M) and a clutch gear's clutch face (F); where
 //      they overlap, the gear turns with the ring
 //   G  gear: radius is the pitch radius (where the teeth of two meshing gears meet),

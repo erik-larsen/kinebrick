@@ -1,5 +1,5 @@
 // Works out a model's mechanism: which parts move together (bodies) and how bodies can
-// move relative to each other (joints). See "How it works" in the README, steps 2 to 6.
+// move relative to each other (joints). See "How it works" in ARCHITECTURE.md, steps 2 to 6.
 
 import { Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
@@ -22,16 +22,19 @@ interface WorldCylinder {
 
 // rigid     the parts turn together (an axle in an axle hole, a tyre on a rim)
 // revolute  the parts can turn about the shared axis (an axle in a round hole)
+// slide     the parts can slide along the shared axis, but not turn (a piston in its bore)
+// ball      the parts can turn any way about a shared point (a towball in a ball socket)
 // stud      a stud in an anti-stud: the parts are attached and move together
-export type ConnectionKind = 'rigid' | 'revolute' | 'stud';
+export type ConnectionKind = 'rigid' | 'revolute' | 'slide' | 'ball' | 'stud';
 
 // Two parts joined at one pair of connection points.
 export interface Connection {
   male: number; // part index (axle, pin)
   female: number; // part index (hole)
   kind: ConnectionKind;
-  from: Vector3; // where the overlap starts, on the shared axis
-  to: Vector3; // where it ends
+  from: Vector3; // where the overlap starts, on the shared axis (for a ball: its centre)
+  to: Vector3; // where it ends (for a ball: its centre again)
+  stiff?: boolean; // turns on a friction pin
 }
 
 export interface Body {
@@ -39,12 +42,15 @@ export interface Body {
   parts: number[]; // part indices
 }
 
-// Two bodies that can turn relative to each other about an axis.
+// Two bodies that can move relative to each other: turn about an axis (revolute), slide
+// along one (slide), or turn any way about a point (ball).
 export interface Joint {
+  kind: 'revolute' | 'slide' | 'ball';
   bodyA: number;
   bodyB: number;
-  from: Vector3; // the axis, as a segment covering every connection behind this joint
-  to: Vector3;
+  from: Vector3; // the axis, as a segment covering every connection behind this joint (for a
+  to: Vector3; //   ball, both are its centre)
+  stiff: boolean; // turns on a friction pin, so a drag turns it only if nothing else can move
 }
 
 // A tyre's tread: the part of a tyre that can touch the ground.
@@ -100,6 +106,7 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
   const roles = parts.map((p) => roleList[p.name] ?? 'structure');
   const cyls = worldCylinders(parts, table);
   const connections = findConnections(cyls);
+  fixPins(connections, roles);
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
@@ -256,6 +263,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
   if (male.shape === 'K' && female.shape === 'K' && same) return 'rigid'; // driving ring in a clutch gear
   if (male.shape === 'A' && female.shape === 'R' && same) return 'revolute'; // axle in round hole
   if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole
+  if (male.shape === 'R' && female.shape === 'B' && same) return 'slide'; // piston in its bore
   if (male.shape === 'R' && female.shape === 'A' && male.radius < female.radius) return 'revolute'; // thin pin in axle hole
   return null;
 }
@@ -270,11 +278,44 @@ function findConnections(cyls: WorldCylinder[]): Connection[] {
   for (const m of males) {
     for (const f of females) {
       if (f.part === m.part) continue;
-      const c = m.caps === 'none' && opensForTechnic(f) ? connect(m, f) : isStud(m) && isAntiStud(f) ? studConnect(m, f) : null;
+      let c: Connection | null = null;
+      if (isBall(m) && isBall(f)) c = ballConnect(m, f);
+      else if (m.caps === 'none' && opensForTechnic(f)) c = connect(m, f);
+      else if (isStud(m) && isAntiStud(f)) c = studConnect(m, f);
       if (c) connections.push(c);
     }
   }
   return connections;
+}
+
+// A towball or a ball socket.
+function isBall(c: WorldCylinder): boolean {
+  return c.secs.length === 1 && c.secs[0].shape === 'O';
+}
+
+// A towball in a ball socket: same size, centred on the same point.
+function ballConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
+  if (Math.abs(m.secs[0].radius - f.secs[0].radius) > AXIS_TOLERANCE) return null;
+  const centre = (c: WorldCylinder) => c.start.clone().addScaledVector(c.dir, c.secs[0].length / 2);
+  const point = centre(m);
+  if (point.distanceTo(centre(f)) > AXIS_TOLERANCE) return null;
+  return { male: m.part, female: f.part, kind: 'ball', from: point, to: point.clone() };
+}
+
+// A pin joins two parts through round holes, and both turn on it. Which of them the pin turns
+// with doesn't matter, so it's locked to one (the one it goes furthest into, or the first in
+// the model), saving a body that only spins to no purpose. A friction pin's other joints are
+// stiff.
+function fixPins(connections: Connection[], roles: string[]) {
+  roles.forEach((role, pin) => {
+    if (role !== 'pin' && role !== 'friction pin') return;
+    const turning = connections.filter((c) => c.male === pin && c.kind === 'revolute');
+    if (turning.length === 0) return;
+    const length = (c: Connection) => c.from.distanceTo(c.to);
+    turning.sort((a, b) => length(b) - length(a) || a.female - b.female);
+    turning[0].kind = 'rigid';
+    if (role === 'friction pin') for (const c of turning.slice(1)) c.stiff = true;
+  });
 }
 
 // A female connection point that takes Technic axles and pins: open at both ends, or an axle
@@ -357,7 +398,7 @@ function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
       const fit = sectionFit(ms, fs);
       if (overlap > 0 && fit) {
         total += overlap;
-        if (fit === 'rigid') kind = 'rigid';
+        if (fit === 'rigid' || (fit === 'slide' && kind === 'revolute')) kind = fit;
         lo = Math.min(lo, Math.max(mPos, Math.min(fPos, fEnd)));
         hi = Math.max(hi, Math.min(mEnd, Math.max(fPos, fEnd)));
       }
@@ -389,6 +430,25 @@ function groupIntoBodies(count: number, roles: string[], connections: Connection
   for (const c of connections) {
     if (c.kind === 'rigid' || c.kind === 'stud') leader[find(c.male)] = find(c.female);
   }
+  // Two groups joined on two different axes can't turn on either, so they're one body (a
+  // part pinned on at two places). Repeat, since each merge can make more.
+  let merged = true;
+  while (merged) {
+    merged = false;
+    const turning = connections.filter((c) => c.kind === 'revolute' && find(c.male) !== find(c.female));
+    for (const a of turning) {
+      const other = turning.find((b) => b !== a && sameGroups(a, b) && !coaxial(a, b));
+      if (other) {
+        leader[find(a.male)] = find(a.female);
+        merged = true;
+        break;
+      }
+    }
+  }
+  function sameGroups(a: Connection, b: Connection): boolean {
+    const [a1, a2, b1, b2] = [find(a.male), find(a.female), find(b.male), find(b.female)];
+    return (a1 === b1 && a2 === b2) || (a1 === b2 && a2 === b1);
+  }
 
   // The frame: the group with the most structure parts.
   const structureCount = new Map<number, number>();
@@ -413,6 +473,9 @@ function groupIntoBodies(count: number, roles: string[], connections: Connection
 // Bodies are named after their most telling part: "frame", "wheels 1", "gear 2", ...
 const BODY_NOUNS: [string, string][] = [
   ['steering wheel', 'steering wheel'],
+  ['piston', 'piston'],
+  ['connecting rod', 'connecting rod'],
+  ['crankshaft', 'crankshaft'],
   ['tyre', 'wheels'],
   ['rim', 'wheels'],
   ['differential', 'differential'],
@@ -442,24 +505,40 @@ function nameBodies(bodyOf: number[], roles: string[]): Body[] {
   return bodies;
 }
 
-// Revolute connections between different bodies, merged when they share both bodies and
-// an axis (an axle passing through two holes of the frame is one joint).
+// Revolute, slide and ball connections between different bodies, merged when they're the
+// same kind and share both bodies and an axis (an axle passing through two holes of the
+// frame is one joint) or, for balls, a centre.
 function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
   const joints: Joint[] = [];
   for (const c of connections) {
-    if (c.kind !== 'revolute') continue;
+    if (c.kind !== 'revolute' && c.kind !== 'slide' && c.kind !== 'ball') continue;
     const a = bodyOf[c.male];
     const b = bodyOf[c.female];
     if (a === b) continue;
-    const existing = joints.find((j) => sameBodies(j, a, b) && onSameAxis(j, c));
-    if (existing) extendJoint(existing, c);
-    else joints.push({ bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone() });
+    const kind = c.kind;
+    const existing = joints.find((j) => j.kind === kind && sameBodies(j, a, b) && (kind === 'ball' ? j.from.distanceTo(c.from) < AXIS_TOLERANCE : onSameAxis(j, c)));
+    if (existing) {
+      if (kind !== 'ball') extendJoint(existing, c);
+      existing.stiff = existing.stiff || c.stiff === true;
+    } else {
+      joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true });
+    }
   }
   return joints;
 }
 
 function sameBodies(j: Joint, a: number, b: number): boolean {
   return (j.bodyA === a && j.bodyB === b) || (j.bodyA === b && j.bodyB === a);
+}
+
+// Whether two connections lie on the same axis.
+function coaxial(a: Connection, b: Connection): boolean {
+  const dir = new Vector3().subVectors(a.to, a.from).normalize();
+  const distance = (p: Vector3) => {
+    const offset = new Vector3().subVectors(p, a.from);
+    return offset.addScaledVector(dir, -offset.dot(dir)).length();
+  };
+  return distance(b.from) < AXIS_TOLERANCE && distance(b.to) < AXIS_TOLERANCE;
 }
 
 function onSameAxis(j: Joint, c: Connection): boolean {

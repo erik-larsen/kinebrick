@@ -1,10 +1,11 @@
 0 KineBrick corrections to the connection table
 0 // Snap lines for what neither the LDraw parts nor the LDCad shadow library describe.
 0 // Each "0 FILE" block applies to one part, after that part's shadow lines.
-0 // Same syntax as the LDCad shadow library, plus one extra section shape (T, a tyre seat)
-0 // and one extra line type (!KINEBRICK GEAR: a gear's tooth count, pitch radius and tooth width,
-0 // and for bevel gears which side its bevel teeth face and how far away its pitch cone's tip is),
-0 // a clutch section shape (K), and !KINEBRICK SLIDE for parts that click into set places.
+0 // Same syntax as the LDCad shadow library, plus extra section shapes (T, a tyre seat; K, a
+0 // clutch; B, a bore a part may slide along) and extra line types (!KINEBRICK GEAR: a gear's
+0 // tooth count, pitch radius and tooth width, and for bevel gears which side its bevel teeth
+0 // face and how far away its pitch cone's tip is; !KINEBRICK SLIDE for parts that click into
+0 // set places).
 
 0 FILE 3482.dat
 0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
@@ -97,3 +98,23 @@
 0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 -10] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 // Engine parts.
+
+0 FILE 2850a.dat
+0 // Technic Engine Cylinder Head with Side Slots: the shadow library's lines, with the bore
+0 // (where the piston goes) marked as one a part may slide along (B) instead of round (R).
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 4   R 6 16   R 8 2] [center=true] [pos=0 26 0] [ori=1 0 0 0 0 -1 0 1 0] [grid=C 2 1 40 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=one] [secs=R 6 4] [grid=C 2 C 2 20 20]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=B 12 47] [pos=0 43 0]
+
+0 FILE 2853a.dat
+0 // Technic Engine Crankshaft with Slot: an axle hole at x = 0 (z from -20 to -10, through
+0 // the crank's plate), and the crank pin, an axle stub half a stud away at x = -10 (z from
+0 // -10 to 20). Measured from the LDraw shape. The shadow library has no file for this part;
+0 // the primitives it's built from would give the crank pin a closed end, so no rod could
+0 // go on it, so those are cleared.
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 10] [center=true] [pos=0 0 -15] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 30] [center=true] [pos=-10 0 5] [ori=1 0 0 0 0 1 0 -1 0]

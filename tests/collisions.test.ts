@@ -1,6 +1,6 @@
 import { BoxGeometry, BufferGeometry, Matrix4 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { Collisions, PartMesh } from './collisions.ts';
+import { Collisions, PartMesh } from '../src/collisions.ts';
 
 // A 20 LDU cube, as a part with one mesh.
 function cube(): PartMesh[] {

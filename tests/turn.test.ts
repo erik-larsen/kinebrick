@@ -1,6 +1,6 @@
 import { Ray, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { knobTurn } from './turn.ts';
+import { knobTurn } from '../src/turn.ts';
 
 // An axle along z through the origin, seen from in front (looking along -z).
 const hub = new Vector3(0, 0, 0);

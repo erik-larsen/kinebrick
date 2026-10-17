@@ -8,14 +8,53 @@
 //
 // The shapes are the parts' own LDraw meshes, tested with three-mesh-bvh, a library that
 // sorts each mesh's triangles into a tree of boxes so two meshes can be tested quickly. A
-// cheap box check first skips pairs that aren't near each other.
+// cheap box check first skips pairs that aren't near each other. Each shape is shrunk a
+// little towards its middle (by INSET at each face of its box), so parts that only touch,
+// face to face, don't count.
 
-import { Box3, BufferGeometry, Matrix4 } from 'three';
+import { Box3, BufferAttribute, BufferGeometry, Matrix4, Vector3 } from 'three';
+
+// How far each part's shape is pulled in at each face of its box for collision checks, in
+// LDU. Faces that merely touch (a beam sliding across the flush head of a pin) then don't
+// count as overlapping; anything that really passes through still does.
+const INSET = 0.25;
+
+// A copy of a mesh's geometry for collision checks: its positions and its index.
+export function collisionGeometry(source: BufferGeometry): BufferGeometry {
+  const geometry = new BufferGeometry();
+  geometry.setAttribute('position', new BufferAttribute(new Float32Array(source.getAttribute('position').array), 3));
+  if (source.index) geometry.setIndex(source.index.clone());
+  return geometry;
+}
+
+// Pulls a part's meshes in towards the middle of their box, by INSET at each face.
+function shrink(list: PartMesh[]) {
+  const box = new Box3();
+  for (const m of list) {
+    m.geometry.computeBoundingBox();
+    box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
+  }
+  const middle = box.getCenter(new Vector3());
+  const size = box.getSize(new Vector3());
+  const scale = new Vector3(1, 1, 1);
+  for (let k = 0; k < 3; k++) {
+    if (size.getComponent(k) > 4 * INSET) scale.setComponent(k, 1 - (2 * INSET) / size.getComponent(k));
+  }
+  for (const m of list) {
+    const toMesh = m.matrix.clone().invert();
+    const position = m.geometry.getAttribute('position');
+    const v = new Vector3();
+    for (let i = 0; i < position.count; i++) {
+      v.fromBufferAttribute(position, i).applyMatrix4(m.matrix).sub(middle).multiply(scale).add(middle).applyMatrix4(toMesh);
+      position.setXYZ(i, v.x, v.y, v.z);
+    }
+  }
+}
 import { MeshBVH } from 'three-mesh-bvh';
 
 // One mesh of a part, in the part's own coordinates.
 export interface PartMesh {
-  geometry: BufferGeometry; // positions (and index, if any) only; the BVH reorders the index
+  geometry: BufferGeometry; // from collisionGeometry; the BVH reorders the index
   matrix: Matrix4; // mesh -> part
 }
 
@@ -36,6 +75,7 @@ export class Collisions {
   // placement (part -> model coordinates).
   constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]) {
     this.shapes = meshes.map((list) => {
+      shrink(list);
       const box = new Box3();
       const built = list.map((m) => {
         const bvh = new MeshBVH(m.geometry);

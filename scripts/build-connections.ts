@@ -154,6 +154,20 @@ function gearFromMeta(meta: Meta): WorkingCylinder[] {
   return cyls;
 }
 
+// A SNAP_GEN line shaped as a sphere ([bounding=sph 8]): a towball (M) or a ball socket (F).
+// Stored as a cylinder with one O section, as long as the ball is wide and centred on it,
+// so it can be placed like any other cylinder. Other SNAP_GEN shapes aren't used yet.
+function ballFromMeta(meta: Meta): WorkingCylinder[] {
+  const p = meta.params;
+  const bounding = (p.get('bounding') ?? '').split(/\s+/);
+  if (bounding[0] !== 'sph') return [];
+  const radius = Number(bounding[1]);
+  p.set('secs', `O ${radius} ${2 * radius}`);
+  p.set('center', 'true');
+  p.set('caps', 'none');
+  return cylindersFromMeta(meta);
+}
+
 // "R 8 2 R 6 16 R 8 2" -> three sections. "_L" and "L_" (a flexible bit, such as a pin's
 // springy tip or a driving ring's click-bump) keep their length but become shape "L", which
 // fits nothing.
@@ -258,12 +272,14 @@ function transformCylinder(cyl: WorkingCylinder, tr: Transform): WorkingCylinder
 const corrections = readCorrections();
 const cache = new Map<string, WorkingCylinder[]>();
 
-// The SNAP_CYL lines in a file's shadow file, without anything inherited (used by SNAP_INCL).
+// The SNAP_CYL and SNAP_GEN lines in a file's shadow file, without anything inherited (used
+// by SNAP_INCL).
 function ownShadowCylinders(name: string): WorkingCylinder[] {
   const result: WorkingCylinder[] = [];
   for (const line of (readShadowFile(name) ?? '').split(/\r?\n/)) {
     const meta = parseMeta(line.trim());
     if (meta && meta.kind === 'SNAP_CYL') result.push(...cylindersFromMeta(meta));
+    if (meta && meta.kind === 'SNAP_GEN') result.push(...ballFromMeta(meta));
   }
   return result;
 }
@@ -296,6 +312,8 @@ function fileCylinders(name: string): WorkingCylinder[] {
       result.push(...cylindersFromMeta(meta));
     } else if (meta.kind === 'GEAR') {
       result.push(...gearFromMeta(meta));
+    } else if (meta.kind === 'SNAP_GEN') {
+      result.push(...ballFromMeta(meta));
     } else if (meta.kind === 'SNAP_INCL') {
       const ref = normalizePartName(meta.params.get('ref') ?? '');
       const pos = numbers(meta.params.get('pos'), [0, 0, 0]) as Vec3;
@@ -308,7 +326,7 @@ function fileCylinders(name: string): WorkingCylinder[] {
         }
       }
     }
-    // SNAP_CLP, SNAP_FGR, SNAP_GEN and SNAP_SPH (clips, hinge fingers, plugs, ball joints) aren't used yet.
+    // SNAP_CLP, SNAP_FGR and SNAP_SPH (clips, hinge fingers, and so on) aren't used yet.
   }
 
   cache.set(name, result);

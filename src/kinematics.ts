@@ -13,12 +13,15 @@
 // them (the equations' null space) are the motions the user can drive. The car has exactly
 // one: rolling along its length.
 //
-// Positions are kept as one pose per *root* body (the frame) plus an angle per joint, and
-// every other body's pose is rebuilt from those. That keeps joints exactly together however
-// long the model is dragged.
+// Positions are kept as one pose per *root* body (the frame) plus an angle per turning joint,
+// and every other body's pose is rebuilt from those, following a tree of turning joints out
+// from the root. That keeps those joints exactly together however long the model is dragged.
+// The joints the tree doesn't follow (one per closed loop of parts, and every slide and ball
+// joint) are pulled back together after each step (see closeLoops). A body reached only
+// through those, such as a piston, is a root of its own.
 
-import { Matrix4, Vector3 } from 'three';
-import { axesCrossing, closestPoints, Gear, Mechanism, Mesh } from './mechanism.ts';
+import { Matrix4, Quaternion, Vector3 } from 'three';
+import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh } from './mechanism.ts';
 
 // How close a tyre must be to the ground to count as touching it, in LDU.
 const GROUND_TOLERANCE = 0.5;
@@ -26,6 +29,14 @@ const GROUND_TOLERANCE = 0.5;
 const EPSILON = 1e-9;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
+// How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
+const LOOP_TOLERANCE = 1e-11;
+// When solving for the free motions, an equation counts as already implied by the others if
+// what's left of it after elimination is smaller than this. It must be well above how far
+// apart closeLoops leaves a loop's joints: a planar linkage moves only because some of its
+// joints' equations repeat each other, and a tiny misalignment would make them look
+// independent, jamming it.
+const RANK_TOLERANCE = 1e-6;
 
 const DOWN = new Vector3(0, 1, 0); // LDraw's y axis points down
 
@@ -98,9 +109,9 @@ export class Kinematics {
     });
   }
 
-  // A spanning tree over the joints, starting from the frame (body 0). Joints that close a
-  // loop aren't in the tree; they still constrain the motion, but nothing keeps them exactly
-  // together yet (linkages, M6).
+  // A spanning tree over the turning joints, starting from the frame (body 0). Joints that
+  // close a loop aren't in the tree, nor are slide and ball joints: closeLoops keeps those
+  // together.
   private buildTree() {
     this.parentJoint = new Array(this.bodyCount).fill(-1);
     const visited = new Array(this.bodyCount).fill(false);
@@ -113,6 +124,7 @@ export class Kinematics {
         const body = queue.shift()!;
         this.order.push(body);
         this.mech.joints.forEach((j, index) => {
+          if (j.kind !== 'revolute') return;
           const other = j.bodyA === body ? j.bodyB : j.bodyB === body ? j.bodyA : -1;
           if (other >= 0 && !visited[other]) {
             visited[other] = true;
@@ -147,6 +159,49 @@ export class Kinematics {
     if (j < 0) return null;
     const joint = this.mech.joints[j];
     return { parent: joint.bodyA === body ? joint.bodyB : joint.bodyA, joint: j };
+  }
+
+  // Whether a joint is in the tree that places the bodies.
+  private inTree(joint: number): boolean {
+    const j = this.mech.joints[joint];
+    return this.parentJoint[j.bodyA] === joint || this.parentJoint[j.bodyB] === joint;
+  }
+
+  // Whether a joint is part of a closed loop of joints: its two bodies are joined some other
+  // way too.
+  private inLoop(joint: number): boolean {
+    const { bodyA, bodyB } = this.mech.joints[joint];
+    const seen = new Set([bodyA]);
+    const queue = [bodyA];
+    while (queue.length) {
+      const body = queue.shift()!;
+      this.mech.joints.forEach((j, index) => {
+        if (index === joint) return;
+        const other = j.bodyA === body ? j.bodyB : j.bodyB === body ? j.bodyA : -1;
+        if (other >= 0 && !seen.has(other)) {
+          seen.add(other);
+          queue.push(other);
+        }
+      });
+    }
+    return seen.has(bodyB);
+  }
+
+  // Whether a body turns like a knob: on a joint whose axis stays put in what it's mounted on
+  // (a gear, a crank, a wheel), rather than turning and travelling at once as part of a loop
+  // (a connecting rod, the middle beam of a linkage). Drags turn the first kind and push the rest.
+  turnsLikeAKnob(body: number): boolean {
+    const link = this.parentLink(body);
+    if (!link) return false;
+    return this.parentJoint[link.parent] < 0 || !this.inLoop(link.joint);
+  }
+
+  // How far a slide joint's bodyB has slid along it, relative to bodyA, since the start, in LDU.
+  slideOffset(joint: number): number {
+    const j = this.mech.joints[joint];
+    const onA = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+    const onB = j.from.clone().applyMatrix4(this.poses[j.bodyB]);
+    return onB.sub(onA).dot(axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]));
   }
 
   // The point on a joint's axis nearest to `p`, where the joint is now.
@@ -192,8 +247,9 @@ export class Kinematics {
 
   // Before a drag: holds still everything the drag doesn't need to move, so that pushing a
   // car leaves its steering alone and turning its steering wheel leaves the car where it is.
-  // Tries holding each body that turns on a joint, deepest in the mechanism first (a planet
-  // gear before its differential), and keeps each hold for which `stillPossible` says the drag
+  // Tries holding each body that turns on a joint, those on friction pins first, then the
+  // deepest in the mechanism (a planet gear before its differential), and keeps each hold for
+  // which `stillPossible` says the drag
   // can still happen. `grabbed` is never held, and nor are wheels with tyres: rolling is their
   // job (holding one front wheel would let the car pivot round it while the steering moves).
   // These holds last only for the drag, and are separate from the bodies the user freezes.
@@ -214,7 +270,9 @@ export class Kinematics {
     };
     const wheels = new Set(this.mech.treads.map((t) => t.body));
     const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b));
-    candidates.sort((a, b) => depth(b) - depth(a) || a - b);
+    // Friction pins first, then the deepest parts.
+    const stiff = (body: number) => (this.mech.joints[this.parentJoint[body]].stiff ? 1 : 0);
+    candidates.sort((a, b) => stiff(b) - stiff(a) || depth(b) - depth(a) || a - b);
     for (const body of candidates) {
       if (this.dragHeld.has(body)) continue;
       // A hold mustn't carry along what the body turns on, if that could have stayed still:
@@ -277,8 +335,19 @@ export class Kinematics {
   // The equations
 
   private equations(): Row[] {
+    return this.buildEquations(null);
+  }
+
+  // The equations, as rows. If `gaps` is given, it also gets, for each row, the value its
+  // motion should take to close the gap in a joint the tree doesn't follow (how far the joint
+  // has come apart), or 0 for every other row (see closeLoops).
+  private buildEquations(gaps: number[] | null): Row[] {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
+    const add = (row: Row, gap = 0) => {
+      rows.push(row);
+      gaps?.push(gap);
+    };
 
     const fixed = new Set([...this.frozen, ...this.dragHeld]);
     if (this.fixedBody >= 0) fixed.add(this.fixedBody);
@@ -293,37 +362,52 @@ export class Kinematics {
           row[6 * joint.bodyB + k] += d.getComponent(k);
           row[6 * joint.bodyA + k] -= d.getComponent(k);
         }
-        rows.push(row);
+        add(row);
       } else {
         for (let k = 0; k < 6; k++) {
           const row = new Array(n).fill(0);
           row[6 * body + k] = 1;
-          rows.push(row);
+          add(row);
         }
       }
     }
 
-    // A turning joint: both bodies move the same at a point on the axis, and turn at the same
-    // rate about any direction across the axis.
-    for (const joint of this.mech.joints) {
-      const pose = this.poses[joint.bodyA];
-      const c = joint.from.clone().applyMatrix4(pose);
-      const d = axisOf(joint.from, joint.to).transformDirection(pose);
-      for (let k = 0; k < 3; k++) {
-        const row = new Array(n).fill(0);
-        addPointVelocity(row, joint.bodyA, c, k, 1);
-        addPointVelocity(row, joint.bodyB, c, k, -1);
-        rows.push(row);
-      }
-      for (const across of acrossDirections(d)) {
+    // Joints. Each row says how bodyA moves relative to bodyB in some way must be zero:
+    //   revolute  the same at a point on the axis, and no turning about any direction across it
+    //   slide     the same across the axis, and no turning at all
+    //   ball      the same at the ball's centre
+    this.mech.joints.forEach((joint, index) => {
+      const poseA = this.poses[joint.bodyA];
+      const c = joint.from.clone().applyMatrix4(poseA);
+      const d = joint.kind === 'ball' ? new Vector3(0, 1, 0) : axisOf(joint.from, joint.to).transformDirection(poseA);
+      // How far the joint has come apart, if it's not in the tree (else it can't have).
+      const loose = gaps !== null && !this.inTree(index);
+      const gap = loose ? joint.from.clone().applyMatrix4(this.poses[joint.bodyB]).sub(c) : new Vector3();
+      const twist = loose ? this.misalignment(joint) : new Vector3();
+
+      const pointRow = (dir: Vector3) => {
         const row = new Array(n).fill(0);
         for (let k = 0; k < 3; k++) {
-          row[6 * joint.bodyA + k] += across.getComponent(k);
-          row[6 * joint.bodyB + k] -= across.getComponent(k);
+          addPointVelocity(row, joint.bodyA, c, k, dir.getComponent(k));
+          addPointVelocity(row, joint.bodyB, c, k, -dir.getComponent(k));
         }
-        rows.push(row);
-      }
-    }
+        add(row, gap.dot(dir));
+      };
+      const turnRow = (dir: Vector3) => {
+        const row = new Array(n).fill(0);
+        for (let k = 0; k < 3; k++) {
+          row[6 * joint.bodyA + k] += dir.getComponent(k);
+          row[6 * joint.bodyB + k] -= dir.getComponent(k);
+        }
+        add(row, -twist.dot(dir));
+      };
+      const xyz = [new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1)];
+
+      if (joint.kind === 'revolute' || joint.kind === 'ball') for (const dir of xyz) pointRow(dir);
+      if (joint.kind === 'slide') for (const dir of acrossDirections(d)) pointRow(dir);
+      if (joint.kind === 'revolute') for (const dir of acrossDirections(d)) turnRow(dir);
+      if (joint.kind === 'slide') for (const dir of xyz) turnRow(dir);
+    });
 
     // Meshing gears: where their teeth touch (the pitch point), both gears' teeth move at the
     // same speed across the mesh. (Moving the other ways would pull the teeth apart, which the
@@ -340,7 +424,7 @@ export class Kinematics {
         addPointVelocity(rb, b.body, pitchPoint, k, -1);
         for (let i = 0; i < n; i++) row[i] += across.getComponent(k) * (ra[i] + rb[i]);
       }
-      rows.push(row);
+      add(row);
     }
 
     // A tyre on the ground rolls without slipping: the point touching the ground doesn't move.
@@ -351,10 +435,59 @@ export class Kinematics {
       for (let k = 0; k < 3; k++) {
         const row = new Array(n).fill(0);
         addPointVelocity(row, body, p, k, 1);
-        rows.push(row);
+        add(row);
       }
     }
     return rows;
+  }
+
+  // How far bodyA has turned out of line with bodyB at a joint, as a small turn (its axis is
+  // the direction, its length the angle in radians): for a revolute joint, how far its axis
+  // as carried by bodyA has tipped away from its axis as carried by bodyB; for a slide joint,
+  // which mustn't turn at all, bodyA's whole turn relative to bodyB.
+  private misalignment(joint: Joint): Vector3 {
+    const poseA = this.poses[joint.bodyA];
+    const poseB = this.poses[joint.bodyB];
+    if (joint.kind === 'revolute') {
+      const dA = axisOf(joint.from, joint.to).transformDirection(poseA);
+      const dB = axisOf(joint.from, joint.to).transformDirection(poseB);
+      return new Vector3().crossVectors(dB, dA);
+    }
+    if (joint.kind === 'slide') {
+      const relative = new Matrix4().extractRotation(poseA).multiply(new Matrix4().extractRotation(poseB).transpose());
+      const q = new Quaternion().setFromRotationMatrix(relative);
+      const sign = q.w < 0 ? -1 : 1;
+      return new Vector3(q.x, q.y, q.z).multiplyScalar(2 * sign);
+    }
+    return new Vector3();
+  }
+
+  // After a step: pulls the joints the tree doesn't follow (one per closed loop, and every
+  // slide and ball joint) back together. Small steps let them drift apart; this moves every
+  // body by the smallest motion that closes the gaps while keeping every other equation, and
+  // without turning `keep` (the joint a drag is turning, so it turns by exactly what the drag
+  // asked). A few rounds, since each is only exact for small gaps.
+  private closeLoops(keep: number) {
+    if (this.mech.joints.every((_, j) => this.inTree(j))) return;
+    for (let round = 0; round < 8; round++) {
+      const gaps: number[] = [];
+      const rows = this.buildEquations(gaps);
+      if (gaps.every((g) => Math.abs(g) < LOOP_TOLERANCE)) return;
+      if (keep >= 0) {
+        const row = new Array(6 * this.bodyCount).fill(0);
+        const j = this.mech.joints[keep];
+        const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+        for (let k = 0; k < 3; k++) {
+          row[6 * j.bodyB + k] += d.getComponent(k);
+          row[6 * j.bodyA + k] -= d.getComponent(k);
+        }
+        rows.push(row);
+        gaps.push(0);
+      }
+      const motion = smallestSolution(rows, gaps);
+      if (!motion) return;
+      this.move(motion, 1);
+    }
   }
 
   // Where two meshing gears' teeth touch now (the pitch point), and the direction their teeth
@@ -449,7 +582,7 @@ export class Kinematics {
       const motion = this.jointMotion(joint);
       if (!motion) break;
       const before = this.snapshot();
-      this.advance(motion, angle / steps);
+      this.advance(motion, angle / steps, joint);
       if (allowed && !allowed()) {
         this.restore(before);
         break;
@@ -524,9 +657,15 @@ export class Kinematics {
     return orthonormalize(combined);
   }
 
-  // Moves the mechanism along a motion vector, scaled by `amount`. Keep steps small (a few
-  // LDU, a few degrees): the motion is only exact at the start of the step.
-  advance(motion: number[], amount: number) {
+  // Moves the mechanism along a motion vector, scaled by `amount`, then closes any loops
+  // (without turning the joint `keep`, if given). Keep steps small (a few LDU, a few
+  // degrees): the motion is only exact at the start of the step.
+  advance(motion: number[], amount: number, keep = -1) {
+    this.move(motion, amount);
+    this.closeLoops(keep);
+  }
+
+  private move(motion: number[], amount: number) {
     this.mech.treads.forEach((t, i) => {
       const pose = this.poses[t.body];
       const hub = t.center.clone().applyMatrix4(pose);
@@ -534,8 +673,8 @@ export class Kinematics {
       const forward = new Vector3().crossVectors(DOWN, t.axis.clone().transformDirection(pose)).normalize();
       this.treadTravel[i] += this.pointVelocity(motion, t.body, hub).dot(forward) * amount;
     });
-    this.mech.joints.forEach((_, j) => {
-      this.jointAngles[j] += this.jointRate(motion, j) * amount;
+    this.mech.joints.forEach((joint, j) => {
+      if (joint.kind === 'revolute') this.jointAngles[j] += this.jointRate(motion, j) * amount;
     });
     for (const [root, pose] of this.rootPoses) {
       const w = new Vector3(motion[6 * root], motion[6 * root + 1], motion[6 * root + 2]).multiplyScalar(amount);
@@ -615,6 +754,47 @@ function smallestTurning(motions: number[][], rate: (m: number[]) => number): nu
   return combined;
 }
 
+// The smallest x with  rows · x = values  (least squares, if they can't all hold): x is a mix
+// of the rows, x = rowsᵀ · y, where (rows · rowsᵀ) · y = values, solved by Gaussian
+// elimination with a little damping so repeated rows don't make it fail.
+function smallestSolution(rows: Row[], values: number[]): number[] | null {
+  const m = rows.length;
+  if (m === 0) return null;
+  const n = rows[0].length;
+  const a: number[][] = [];
+  for (let i = 0; i < m; i++) {
+    a.push([]);
+    for (let j = 0; j < m; j++) {
+      let dot = 0;
+      for (let k = 0; k < n; k++) dot += rows[i][k] * rows[j][k];
+      a[i].push(dot);
+    }
+  }
+  const scale = Math.max(...a.map((r, i) => r[i]), 1);
+  for (let i = 0; i < m; i++) a[i][i] += 1e-13 * scale;
+  const y = values.slice();
+  for (let c = 0; c < m; c++) {
+    let best = c;
+    for (let r = c + 1; r < m; r++) if (Math.abs(a[r][c]) > Math.abs(a[best][c])) best = r;
+    if (Math.abs(a[best][c]) < 1e-30) return null;
+    [a[c], a[best]] = [a[best], a[c]];
+    [y[c], y[best]] = [y[best], y[c]];
+    for (let r = c + 1; r < m; r++) {
+      const f = a[r][c] / a[c][c];
+      if (f === 0) continue;
+      for (let k = c; k < m; k++) a[r][k] -= f * a[c][k];
+      y[r] -= f * y[c];
+    }
+  }
+  for (let c = m - 1; c >= 0; c--) {
+    for (let k = c + 1; k < m; k++) y[c] -= a[c][k] * y[k];
+    y[c] /= a[c][c];
+  }
+  const x = new Array(n).fill(0);
+  for (let i = 0; i < m; i++) for (let k = 0; k < n; k++) x[k] += rows[i][k] * y[i];
+  return x;
+}
+
 // The same vectors made orthonormal (unit length, at right angles to each other), by
 // Gram-Schmidt.
 function orthonormalize(vectors: number[][]): number[][] {
@@ -640,7 +820,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     // Use the row with the largest entry in this column, for accuracy.
     let best = r;
     for (let i = r + 1; i < a.length; i++) if (Math.abs(a[i][c]) > Math.abs(a[best][c])) best = i;
-    if (Math.abs(a[best][c]) < EPSILON) continue;
+    if (Math.abs(a[best][c]) < RANK_TOLERANCE) continue;
     [a[r], a[best]] = [a[best], a[r]];
     const pivot = a[r][c];
     for (let k = 0; k < n; k++) a[r][k] /= pivot;

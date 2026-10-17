@@ -405,7 +405,7 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const link = s.kin.parentLink(body);
-    if (!link) {
+    if (!link || !s.kin.turnsLikeAKnob(body)) {
       showMessage('Only a part that spins on an axle can be kept turning', clientX, clientY);
       return;
     }
@@ -520,8 +520,11 @@ export function setUpInteraction(s: InteractionSetup) {
 
       const body = s.mech.bodyOf[hit.part];
       const grabStart = hit.point.clone().applyMatrix4(s.kin.poses[body].clone().invert());
+      // A part that turns like a knob is turned; anything else (a frame, a piston, a connecting
+      // rod) is pushed.
       const link = s.kin.parentLink(body);
-      drag = { pointerId: e.pointerId, body, grabStart, joint: link ? link.joint : -1, arc: null, lastX: e.clientX, lastY: e.clientY };
+      const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
+      drag = { pointerId: e.pointerId, body, grabStart, joint, arc: null, lastX: e.clientX, lastY: e.clientY };
       hideLabel();
 
       // Hold still whatever this drag doesn't need to move.
@@ -612,6 +615,7 @@ export function setUpInteraction(s: InteractionSetup) {
   return {
     runMotor, // call every frame with the seconds since the last
     stopMotor: () => setMotor(-1),
+    motorRunning: () => motorPart >= 0,
   };
 }
 

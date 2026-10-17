@@ -1,0 +1,26 @@
+0 Four-Bar Linkage
+0 Name: four-bar.ldr
+0 Author: erik-larsen
+0 // Four beams pinned in a loop: the frame (a 1x8 Technic brick, its end holes 6 studs
+0 // apart), a 3L crank that turns all the way round, a 7L coupler, and a 5L rocker that
+0 // rocks to and fro. Link lengths 2, 6 and 4 studs on a 6 stud base: the shortest link plus
+0 // the longest (2 + 6) is less than the other two (6 + 4), so the shortest, next to the
+0 // base, turns all the way round. Shown with the crank pointing straight up. The crank and
+0 // rocker are in the layer in front of the brick, the coupler in the layer in front of them.
+
+0 // Step 1: the frame, with pins in its end holes
+1 14 0 0 0 -1 0 0 0 1 0 0 0 -1 3702.dat
+1 0 60 10 -10 0 0 -1 0 1 0 1 0 0 3673.dat
+1 0 -60 10 -10 0 0 -1 0 1 0 1 0 0 3673.dat
+0 STEP
+
+0 // Step 2: the crank and the rocker on those pins, each with a pin at its far end
+1 4 60 -10 -20 -1 0 0 0 0 -1 0 -1 0 32523.dat
+1 1 -56.61895 -29.85685 -20 -0.996421 0 0.084526 -0.084526 0 -0.996421 0 -1 0 32316.dat
+1 0 60 -30 -30 0 0 -1 0 1 0 1 0 0 3673.dat
+1 0 -53.2379 -69.7137 -30 0 0 -1 0 1 0 1 0 0 3673.dat
+0 STEP
+
+0 // Step 3: the coupler, across the two far ends
+1 71 3.38105 -49.85685 -40 -0.330948 0 -0.943649 0.943649 0 -0.330948 0 -1 0 32524.dat
+0 STEP

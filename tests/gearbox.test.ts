@@ -1,11 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { Quaternion } from 'three';
 import { describe, expect, it } from 'vitest';
-import { ConnectionTable } from './connections.ts';
-import { Kinematics } from './kinematics.ts';
-import { parseLdr, PlacedPart } from './ldr.ts';
-import { inferMechanism } from './mechanism.ts';
-import { findSliders, nearestPosition, sliderMovedTo, sliderPosition } from './shift.ts';
+import { ConnectionTable } from '../src/connections.ts';
+import { Kinematics } from '../src/kinematics.ts';
+import { parseLdr, PlacedPart } from '../src/ldr.ts';
+import { inferMechanism } from '../src/mechanism.ts';
+import { findSliders, nearestPosition, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
