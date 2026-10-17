@@ -2,7 +2,8 @@
 //   fill colour  which body a part belongs to (body colours), or its own LEGO colours
 //   yellow glow  what the pointer is on: the hovered part, and faintly the rest of its body
 //   outline      status: frozen (cyan), driven (green) and loose (red)
-//   badge        status, as an icon pinned to the part: 📌 frozen, 🔄 driven, ⚠ loose
+//   badge        status, as an icon pinned to the part: 📌 frozen, ⚠ loose (a part kept
+//                turning has no badge: its turning shows it)
 
 import { Box3, Color, Material, Mesh, MeshStandardMaterial, Object3D, Vector3 } from 'three';
 import { CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
@@ -82,12 +83,11 @@ export class Appearance {
     const drivenBody = this.drivenPart >= 0 ? this.mech.bodyOf[this.drivenPart] : -1;
     this.outlines.set('driven', partsOf((p) => this.mech.bodyOf[p] === drivenBody));
 
-    // Badges: one ⚠ per loose part, one 📌 per frozen body and 🔄 on the driven body (on its biggest part).
+    // Badges: one ⚠ per loose part, one 📌 per frozen body (on its biggest part).
     for (const badge of this.badges) badge.removeFromParent();
     this.badges = [];
     for (const part of this.looseParts) this.addBadge(part, '⚠', 'loose');
     for (const body of this.frozenBodies) this.addBadge(this.biggestPart(body), '📌', 'frozen');
-    if (drivenBody >= 0) this.addBadge(this.biggestPart(drivenBody), '🔄', 'driven');
   }
 
   // Outlines two parts in red for a moment: they'd have run into each other, so the drag stopped.
