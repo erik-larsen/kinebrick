@@ -610,15 +610,15 @@ export class Kinematics {
   }
 
   // Turns a joint by `angle` radians (bodyB relative to bodyA), letting the rest of the
-  // mechanism follow, in steps of at most MAX_TURN_STEP. Returns how far it actually turned,
-  // which is less if the joint can't turn (jammed).
+  // mechanism follow, in steps of at most `maxStep` (MAX_TURN_STEP unless given). Returns how
+  // far it actually turned, which is less if the joint can't turn (jammed).
   //
   // If `allowed` is given, it's asked after each step whether the mechanism may be where it
   // now is (no parts passing through each other); if not, that step is undone and the turn
   // stops there.
-  turnJoint(joint: number, angle: number, allowed?: () => boolean): number {
+  turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     let turned = 0;
-    const steps = Math.ceil(Math.abs(angle) / MAX_TURN_STEP);
+    const steps = Math.ceil(Math.abs(angle) / maxStep);
     for (let i = 0; i < steps; i++) {
       const motion = this.jointMotion(joint);
       if (!motion) break;

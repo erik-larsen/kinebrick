@@ -55,6 +55,10 @@ const MESSAGE_MOVE = 40;
 // How fast a part driven by Ctrl-click turns, relative to what its axle is mounted in.
 // How fast a part kept turning turns at first, in revolutions per minute (a quarter turn a second).
 export const DEFAULT_RPM = 15;
+// Largest step a part kept turning takes, in radians (10 degrees): one frame's turn up to
+// 100 rpm. Bigger than a drag's steps, to keep up on big models; it's just as exact, except
+// where it runs into something, so it creeps up to that in a drag's steps.
+const MOTOR_MAX_STEP = (10 * Math.PI) / 180;
 
 export interface InteractionSetup {
   renderer: WebGLRenderer;
@@ -430,11 +434,11 @@ export function setUpInteraction(s: InteractionSetup) {
     showMessage(`Turning ${name} · Ctrl-click again to stop`, clientX, clientY);
   }
 
-  // Turns the driven part on by however far it goes in `seconds`, as a turn drag would. Waits
-  // while the user drags something else. Stops for good if it can't turn (it's run into
-  // something, or a frozen part jams it). Its holds are worked out once and kept while it
-  // runs (working them out takes longer than the step itself on a big model), and again if a
-  // step fails with them, before giving up.
+  // Turns the driven part on by however far it goes in `seconds`, as a turn drag would but in
+  // steps of up to MOTOR_MAX_STEP. Waits while the user drags something else. Stops for good if
+  // it can't turn (it's run into something, or a frozen part jams it). Its holds are worked out
+  // once and kept while it runs (working them out takes longer than the step itself on a big
+  // model), and again if a step fails with them, before giving up.
   function runMotor(seconds: number) {
     if (motorPart < 0 || drag) return;
     const body = s.mech.bodyOf[motorPart];
@@ -447,18 +451,22 @@ export function setUpInteraction(s: InteractionSetup) {
     const angle = sign * motorDirection * motorSpeed * seconds;
     let turned = 0;
     let blocked = false;
+    const allowed = () => {
+      const pair = s.blockedBy();
+      if (pair) s.appearance.flashBlocked(pair);
+      blocked = pair !== null; // ran into something: fresh holds won't help
+      return !pair;
+    };
     for (let attempt = 0; attempt < 2 && !blocked && Math.abs(turned - angle) > 1e-9; attempt++) {
       if (motorHeldIn !== s.kin || attempt > 0) {
         s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
         motorHeldIn = s.kin;
       }
-      turned += s.kin.turnJoint(link.joint, angle - turned, () => {
-        const pair = s.blockedBy();
-        if (pair) s.appearance.flashBlocked(pair);
-        blocked = pair !== null; // ran into something: fresh holds won't help
-        return !pair;
-      });
+      turned += s.kin.turnJoint(link.joint, angle - turned, allowed, MOTOR_MAX_STEP);
     }
+    // A big step that ran into something: creep up to it in a drag's small steps, so the
+    // motor stops where a drag would.
+    if (blocked) turned += s.kin.turnJoint(link.joint, angle - turned, allowed);
     if (Math.abs(turned - angle) > 1e-9) setMotor(-1);
     s.onMoved();
   }
