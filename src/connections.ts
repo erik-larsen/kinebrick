@@ -13,6 +13,9 @@ export type Vec3 = [number, number, number];
 //   S  square
 //   T  tyre seat (where a tyre sits on a rim)
 //   W  tread (where a tyre touches the ground; worked out from the tyre's shape)
+//   L  a flexible bit (a pin's springy tip, a driving ring's click-bump): fits nothing
+//   K  clutch: a driving ring's clutch teeth (M) and a clutch gear's clutch face (F); where
+//      they overlap, the gear turns with the ring
 //   G  gear: radius is the pitch radius (where the teeth of two meshing gears meet),
 //      length is the width of the teeth
 export interface Section {
@@ -40,6 +43,15 @@ export interface Cylinder {
 export interface ConnectionTable {
   about: string;
   parts: Record<string, Cylinder[]>;
+  // Parts that slide along something they sit on, into set positions (a gearbox's driving
+  // ring): the direction they slide (in the part's own coordinates), and the positions, as
+  // distances of the part's middle from the middle of what it sits on, along that direction.
+  slides?: Record<string, Slide>;
+}
+
+export interface Slide {
+  dir: Vec3;
+  positions: number[];
 }
 
 export function cylinderLength(cyl: Cylinder): number {

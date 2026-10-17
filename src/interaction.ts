@@ -5,11 +5,14 @@
 //   release  leave the model where it is
 // Dragging on empty space turns the camera instead.
 //
-// There are two kinds of drag:
+// There are three kinds of drag:
 //   push  for parts that don't spin on an axle (the frame): the grabbed point follows the
 //         pointer along whatever straight-line motion the mechanism allows.
 //   turn  for parts that spin on an axle (gears, cranks, tyres): the part turns about its
 //         axle, relative to whatever the axle is mounted in, to follow the pointer around.
+//   shift  for parts that slide into set positions (a gearbox's driving ring): the part jumps
+//          to the position nearest the pointer along its slide, and the mechanism is worked
+//          out afresh.
 
 import {
   Camera,
@@ -56,6 +59,25 @@ export interface InteractionSetup {
   onMoved: () => void; // called after the mechanism moves
   onHoldChanged: () => void; // called after a part is held or let go
   blockedBy: () => [number, number] | null; // two parts now passing through each other, if any
+  slideOf: (part: number) => Slide | null; // how a part slides, if it does
+  shift: (part: number, position: number) => void; // slides a part to one of its positions
+}
+
+// A part that slides into set positions, as it is now (LDraw coordinates, LDU).
+export interface Slide {
+  at: Vector3; // where the part is
+  dir: Vector3; // the way it slides
+  position: number; // how far along its slide it is
+  positions: number[]; // where it can click in
+}
+
+// Shifting a sliding part.
+interface Shift {
+  pointerId: number;
+  part: number;
+  startX: number; // where the pointer was pressed
+  startY: number;
+  startPosition: number; // where the part was then
 }
 
 interface Drag {
@@ -78,6 +100,7 @@ export function setUpInteraction(s: InteractionSetup) {
   s.ldrawSpace.add(arrow);
 
   let drag: Drag | null = null;
+  let shifting: Shift | null = null;
   // True while the label shows a message (such as "Holding ... still") rather than the
   // hovered part's name, until the pointer next moves.
   let showingMessage = false;
@@ -243,14 +266,15 @@ export function setUpInteraction(s: InteractionSetup) {
   // Places the arc around the axle, centred on the grabbed point, so it turns with the part
   // and travels with whatever the axle is mounted in.
   function updateArc(d: Drag) {
+    if (!d.arc) return; // the part can't turn, so there's no arc
     const { hub, dir } = turnAxis(d);
     const outward = new Vector3().subVectors(grabPoint(d), hub);
     if (outward.length() < 1e-6) outward.copy(perpendicularTo(dir));
     outward.normalize();
     const side = new Vector3().crossVectors(dir, outward);
-    d.arc!.position.copy(hub);
-    d.arc!.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(outward, side, dir)); // arc built in its x-y plane
-    d.arc!.visible = true;
+    d.arc.position.copy(hub);
+    d.arc.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(outward, side, dir)); // arc built in its x-y plane
+    d.arc.visible = true;
   }
 
   // Turns the part about its axle like a knob, by the angle the pointer swept around the axle
@@ -291,6 +315,32 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // ---------------------------------------------------------------------------
+  // Shift: arrow and drag
+
+  // Points the arrow along the way the part slides.
+  function showSlideArrow(slide: Slide) {
+    arrow.position.copy(slide.at);
+    arrow.quaternion.setFromUnitVectors(new Vector3(0, 1, 0), slide.dir); // built along y
+    arrow.visible = true;
+  }
+
+  // Slides the part to the position nearest to where the pointer has dragged it, if that's
+  // not where it is.
+  function shiftTowards(sh: Shift, clientX: number, clientY: number) {
+    const slide = s.slideOf(sh.part)!;
+    // How far the part's middle moves on screen per LDU of slide.
+    const atScreen = toScreen(slide.at);
+    const perLdu = toScreen(slide.at.clone().add(slide.dir)).sub(atScreen);
+    if (perLdu.lengthSq() < 1e-6) return; // sliding straight towards the camera
+    const moved = new Vector2(clientX - sh.startX, clientY - sh.startY);
+    const wanted = sh.startPosition + moved.dot(perLdu) / perLdu.lengthSq();
+    const nearest = slide.positions.reduce((best, p) => (Math.abs(p - wanted) < Math.abs(best - wanted) ? p : best));
+    if (Math.abs(nearest - slide.position) < 1e-6) return;
+    s.shift(sh.part, nearest);
+    showSlideArrow(s.slideOf(sh.part)!);
+  }
+
+  // ---------------------------------------------------------------------------
   // Holding parts still
 
   function toggleHold(body: number, clientX: number, clientY: number) {
@@ -321,6 +371,12 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   function endDrag() {
+    if (shifting) {
+      if (canvas.hasPointerCapture(shifting.pointerId)) canvas.releasePointerCapture(shifting.pointerId);
+      shifting = null;
+      arrow.visible = false;
+      s.controls.enabled = true;
+    }
     if (!drag) return;
     s.kin.letGoAfterDrag();
     if (canvas.hasPointerCapture(drag.pointerId)) canvas.releasePointerCapture(drag.pointerId);
@@ -338,7 +394,7 @@ export function setUpInteraction(s: InteractionSetup) {
   canvas.addEventListener(
     'pointerdown',
     (e) => {
-      if (drag) return; // already dragging with another finger or pointer
+      if (drag || shifting) return; // already dragging with another finger or pointer
       hover(e.clientX, e.clientY);
       const hit = hitAt(e.clientX, e.clientY);
       if (!hit) return; // empty space: let the camera turn
@@ -353,6 +409,14 @@ export function setUpInteraction(s: InteractionSetup) {
       try {
         canvas.setPointerCapture(e.pointerId);
       } catch {}
+
+      const slide = s.slideOf(hit.part);
+      if (slide) {
+        shifting = { pointerId: e.pointerId, part: hit.part, startX: e.clientX, startY: e.clientY, startPosition: slide.position };
+        hideLabel();
+        showSlideArrow(slide);
+        return;
+      }
 
       const body = s.mech.bodyOf[hit.part];
       const grabStart = hit.point.clone().applyMatrix4(s.kin.poses[body].clone().invert());
@@ -390,6 +454,10 @@ export function setUpInteraction(s: InteractionSetup) {
   );
 
   canvas.addEventListener('pointermove', (e) => {
+    if (shifting) {
+      if (e.pointerId === shifting.pointerId) shiftTowards(shifting, e.clientX, e.clientY);
+      return;
+    }
     if (!drag) {
       hover(e.clientX, e.clientY);
       return;
@@ -408,13 +476,13 @@ export function setUpInteraction(s: InteractionSetup) {
   });
 
   canvas.addEventListener('pointerup', (e) => {
-    if (drag && e.pointerId === drag.pointerId) endDrag();
+    if (e.pointerId === drag?.pointerId || e.pointerId === shifting?.pointerId) endDrag();
   });
   canvas.addEventListener('pointercancel', (e) => {
-    if (drag && e.pointerId === drag.pointerId) endDrag();
+    if (e.pointerId === drag?.pointerId || e.pointerId === shifting?.pointerId) endDrag();
   });
   canvas.addEventListener('pointerleave', () => {
-    if (drag) return;
+    if (drag || shifting) return;
     s.appearance.hoveredPart = -1;
     s.appearance.update();
     hideLabel();

@@ -46,9 +46,19 @@ export class Appearance {
       });
       this.meshesOfPart[i] = meshes;
     });
-    this.bodyMaterials = mech.bodies.map(
-      (_, i) => new MeshStandardMaterial({ color: BODY_COLOURS[i % BODY_COLOURS.length], roughness: 0.6 }),
-    );
+    this.bodyMaterials = [];
+    this.setMechanism(mech);
+  }
+
+  // Switches to a mechanism worked out afresh (after a shift): the bodies may have changed.
+  setMechanism(mech: Mechanism) {
+    this.mech = mech;
+    while (this.bodyMaterials.length < mech.bodies.length) {
+      const i = this.bodyMaterials.length;
+      this.bodyMaterials.push(new MeshStandardMaterial({ color: BODY_COLOURS[i % BODY_COLOURS.length], roughness: 0.6 }));
+    }
+    this.heldBodies.clear();
+    this.looseParts = new Set(mech.loose);
   }
 
   // Applies everything above. Call after changing any of the public fields.

@@ -46,8 +46,16 @@ export class Collisions {
       });
       return { meshes: built, box };
     });
-    for (let a = 0; a < meshes.length; a++) {
-      for (let b = a + 1; b < meshes.length; b++) {
+    this.watch(bodyOf, connected, partMatrices);
+  }
+
+  // Works out which pairs of parts to watch, for a mechanism worked out afresh (after a shift).
+  // Same arguments as the constructor.
+  watch(bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]) {
+    this.pairs = [];
+    this.lastClear.clear();
+    for (let a = 0; a < this.shapes.length; a++) {
+      for (let b = a + 1; b < this.shapes.length; b++) {
         if (bodyOf[a] === bodyOf[b] || connected.has(`${a},${b}`)) continue;
         if (this.overlap(a, b, partMatrices)) continue; // already touching at the start
         this.pairs.push([a, b]);

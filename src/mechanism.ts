@@ -253,6 +253,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
   const same = Math.abs(male.radius - female.radius) < AXIS_TOLERANCE;
   if (male.shape === 'A' && female.shape === 'A' && same) return 'rigid'; // axle in axle hole
   if (male.shape === 'T' && female.shape === 'T' && same) return 'rigid'; // tyre on rim
+  if (male.shape === 'K' && female.shape === 'K' && same) return 'rigid'; // driving ring in a clutch gear
   if (male.shape === 'A' && female.shape === 'R' && same) return 'revolute'; // axle in round hole
   if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole
   if (male.shape === 'R' && female.shape === 'A' && male.radius < female.radius) return 'revolute'; // thin pin in axle hole
@@ -269,11 +270,17 @@ function findConnections(cyls: WorldCylinder[]): Connection[] {
   for (const m of males) {
     for (const f of females) {
       if (f.part === m.part) continue;
-      const c = m.caps === 'none' && f.caps === 'none' ? connect(m, f) : isStud(m) && isAntiStud(f) ? studConnect(m, f) : null;
+      const c = m.caps === 'none' && opensForTechnic(f) ? connect(m, f) : isStud(m) && isAntiStud(f) ? studConnect(m, f) : null;
       if (c) connections.push(c);
     }
   }
   return connections;
+}
+
+// A female connection point that takes Technic axles and pins: open at both ends, or an axle
+// hole closed at the far end (such as the ends of an axle joiner).
+function opensForTechnic(f: WorldCylinder): boolean {
+  return f.caps === 'none' || (f.caps === 'one' && f.secs.every((s) => s.shape === 'A'));
 }
 
 // A stud: a short round peg, closed at one end, on top of a brick or plate.

@@ -3,7 +3,8 @@
 0 // Each "0 FILE" block applies to one part, after that part's shadow lines.
 0 // Same syntax as the LDCad shadow library, plus one extra section shape (T, a tyre seat)
 0 // and one extra line type (!KINEBRICK GEAR: a gear's tooth count, pitch radius and tooth width,
-0 // and for bevel gears which side its bevel teeth face and how far away its pitch cone's tip is).
+0 // and for bevel gears which side its bevel teeth face and how far away its pitch cone's tip is),
+0 // a clutch section shape (K), and !KINEBRICK SLIDE for parts that click into set places.
 
 0 FILE 3482.dat
 0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
@@ -70,3 +71,29 @@
 0 FILE 4716.dat
 0 // Technic Worm Gear 2L
 0 !KINEBRICK GEAR [teeth=1] [radius=10] [width=40] [spur=false] [worm=7.853982] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 // Gearboxes (the 3L driving ring system). A ridged 3L axle joiner (18948) joins two axles;
+0 // clutch gears spin freely on those axles either side of it. A 3L driving ring (18947) slides
+0 // on the joiner, locked to it for turning, and clicks into three places: centred (neutral) or
+0 // half a stud (10 LDU) either way. Shifted, the clutch teeth at one end reach 8 LDU into the
+0 // neighbouring gear's clutch face, and that gear turns with the joiner. Measured from the LDraw
+0 // shapes: the ring's teeth fill its last 8 LDU at each end; a gear's clutch face is the outer
+0 // 4 LDU of each side.
+
+0 FILE 18947.dat
+0 // Technic Transmission Driving Ring 3L: clutch teeth at both ends, and its three places
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 28] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 -28] [ori=1 0 0 0 0 1 0 -1 0]
+0 !KINEBRICK SLIDE [positions=-10 0 10] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 18946.dat
+0 // Technic Gear 16 Tooth with Clutch on Both Sides
+0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 -10] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2471.dat
+0 // Technic Gear 24 Tooth with Clutch on Both Sides
+0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 -10] [ori=1 0 0 0 0 1 0 -1 0]

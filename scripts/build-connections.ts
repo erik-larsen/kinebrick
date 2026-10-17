@@ -10,7 +10,7 @@
 
 import { readFileSync, readdirSync, existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { Cylinder, Section, Vec3, normalizePartName } from '../src/connections.ts';
+import { Cylinder, Section, Slide, Vec3, normalizePartName } from '../src/connections.ts';
 
 const LDRAW_DIR = 'ldraw';
 const SHADOW_DIR = 'ldcad-shadow';
@@ -154,13 +154,14 @@ function gearFromMeta(meta: Meta): WorkingCylinder[] {
   return cyls;
 }
 
-// "R 8 2 R 6 16 R 8 2" -> three sections. "_L" and "L_" (flexible pin tips) are skipped.
+// "R 8 2 R 6 16 R 8 2" -> three sections. "_L" and "L_" (a flexible bit, such as a pin's
+// springy tip or a driving ring's click-bump) keep their length but become shape "L", which
+// fits nothing.
 function parseSections(text: string): Section[] {
   const tokens = text.split(/\s+/);
   const secs: Section[] = [];
   for (let i = 0; i + 2 < tokens.length; i += 3) {
-    const shape = tokens[i];
-    if (shape === '_L' || shape === 'L_') continue;
+    const shape = tokens[i] === '_L' || tokens[i] === 'L_' ? 'L' : tokens[i];
     secs.push({ shape, radius: Number(tokens[i + 1]), length: Number(tokens[i + 2]) });
   }
   return secs;
@@ -387,6 +388,21 @@ function partsInModels(): string[] {
 }
 
 
+// SLIDE lines in data/corrections.ldr: parts that slide into set positions, e.g.
+//   "0 !KINEBRICK SLIDE [positions=-10 0 10] [ori=...]"   (the part slides along the meta's -y)
+function slidesFromCorrections(): Record<string, Slide> {
+  const slides: Record<string, Slide> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (!meta || meta.kind !== 'SLIDE') continue;
+      const ori = numbers(meta.params.get('ori'), IDENTITY.m);
+      slides[name] = { dir: applyMatrix(ori, [0, -1, 0]).map(round) as Vec3, positions: numbers(meta.params.get('positions'), [0]) };
+    }
+  }
+  return slides;
+}
+
 // ---------------------------------------------------------------------------
 // Writing the table, one cylinder per line so diffs stay readable.
 
@@ -424,6 +440,6 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-out += '\n  }\n}\n';
+out += '\n  },\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);

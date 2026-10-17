@@ -216,10 +216,23 @@ export class Kinematics {
     candidates.sort((a, b) => depth(b) - depth(a) || a - b);
     for (const body of candidates) {
       if (this.dragHeld.has(body)) continue;
+      // A hold mustn't carry along what the body turns on, if that could have stayed still:
+      // locking a gear that freewheels on a shaft would turn the shaft.
+      const shaft = this.parentLink(body)!.parent;
+      const shaftCouldStay = this.couldStayStill(shaft, stillPossible);
       this.dragHeld.add(body);
-      if (!stillPossible()) this.dragHeld.delete(body);
+      if (!stillPossible() || (shaftCouldStay && !this.couldStayStill(shaft, stillPossible))) this.dragHeld.delete(body);
     }
     return wormLocked;
+  }
+
+  // Whether the drag could still happen with `body` not turning on its joint.
+  private couldStayStill(body: number, stillPossible: () => boolean): boolean {
+    if (this.parentJoint[body] < 0 || this.dragHeld.has(body) || this.held.has(body)) return true;
+    this.dragHeld.add(body);
+    const possible = stillPossible();
+    this.dragHeld.delete(body);
+    return possible;
   }
 
   // The worms that a drag of `grabbed` would drive from the gear side. The worm's side is

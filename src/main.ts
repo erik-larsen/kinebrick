@@ -24,12 +24,13 @@ import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { Collisions, PartMesh } from './collisions.ts';
 import { ConnectionTable, normalizePartName } from './connections.ts';
-import { setUpInteraction } from './interaction.ts';
+import { InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
 import { Kinematics } from './kinematics.ts';
-import { parseLdr } from './ldr.ts';
+import { parseLdr, PlacedPart } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
+import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
 import connectionsUrl from '../data/connections.json?url';
 import rolesUrl from '../data/roles.json?url';
 import titlesUrl from '../packed/titles.json?url';
@@ -44,6 +45,7 @@ const MODELS: [string, string][] = [
   ['steering-car', 'Steering car'],
   ['steering-car-solid', 'Steering car, solid rear axle'],
   ['worm-drive', 'Worm drive'],
+  ['gearbox', 'Two-speed gearbox'],
 ];
 const modelParam = new URLSearchParams(window.location.search).get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
@@ -117,11 +119,9 @@ async function start() {
   const summary = document.getElementById('summary')!;
 
   const modelText = await (await fetch(MODEL_URL)).text();
-  const parts = parseLdr(modelText);
+  const startParts = parseLdr(modelText);
   const table: ConnectionTable = await (await fetch(connectionsUrl)).json();
   const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
-  const mech = inferMechanism(parts, table, roles);
-  const kin = new Kinematics(mech);
 
   const loader = new LDrawLoader();
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);
@@ -131,51 +131,91 @@ async function start() {
 
   // The loader makes one child group per part line, in file order.
   const partObjects: Object3D[] = model.children;
-  if (partObjects.length !== parts.length) {
-    throw new Error(`Loader made ${partObjects.length} parts, model has ${parts.length}`);
+  if (partObjects.length !== startParts.length) {
+    throw new Error(`Loader made ${partObjects.length} parts, model has ${startParts.length}`);
   }
   partObjects.forEach((obj, i) => {
-    if (normalizePartName(obj.name) !== parts[i].name) {
-      throw new Error(`Part ${i}: loader has ${obj.name}, model has ${parts[i].name}`);
+    if (normalizePartName(obj.name) !== startParts[i].name) {
+      throw new Error(`Part ${i}: loader has ${obj.name}, model has ${startParts[i].name}`);
     }
     obj.userData.partIndex = i;
     obj.updateMatrix();
-    obj.userData.startMatrix = obj.matrix.clone();
+  });
+  const loadedMatrices = partObjects.map((obj) => obj.matrix.clone());
+
+  // Collision checks: each part's meshes in the part's own coordinates.
+  model.updateMatrixWorld(true);
+  const shapes: PartMesh[][] = partObjects.map((obj) => {
+    const toPart = obj.matrixWorld.clone().invert();
+    const list: PartMesh[] = [];
+    obj.traverse((child) => {
+      const mesh = child as Mesh;
+      if (!mesh.isMesh) return;
+      const geometry = new BufferGeometry();
+      geometry.setAttribute('position', mesh.geometry.getAttribute('position').clone());
+      if (mesh.geometry.index) geometry.setIndex(mesh.geometry.index.clone());
+      list.push({ geometry, matrix: toPart.clone().multiply(mesh.matrixWorld) });
+    });
+    return list;
   });
 
-  const appearance = new Appearance(partObjects, mech, outlines);
-  appearance.looseParts = new Set(mech.loose);
-  appearance.update();
-  showLooseWarning(parts.map((p) => p.name), mech.loose);
-
-  const axes = makeJointAxes(mech.joints);
+  // The mechanism, and everything worked out from it. read() sets these, at the start and
+  // again after each shift, when the mechanism is worked out afresh from where the parts are.
+  let parts = startParts;
+  let mech = inferMechanism(parts, table, roles);
+  let kin = new Kinematics(mech);
+  let sliders: Slider[] = [];
+  let axes = new Group();
   ldrawSpace.add(axes);
-  // A dot where each pair of meshing gears touch. It stays put relative to what the gears'
-  // axles are mounted in.
-  const meshMaterial = new MeshBasicMaterial({ color: 0xe0218a, depthTest: false });
-  for (const m of mech.meshes) {
-    const a = mech.gears[m.gearA];
-    const b = mech.gears[m.gearB];
-    const dot = new Mesh(new SphereGeometry(3, 16, 8), meshMaterial);
-    dot.position.copy(a.center).lerp(b.center, a.radius / (a.radius + b.radius));
-    dot.renderOrder = 10;
-    dot.updateMatrix();
-    dot.userData.body = kin.parentLink(a.body)?.parent ?? a.body;
-    dot.userData.startMatrix = dot.matrix.clone();
-    axes.add(dot);
+  const appearance = new Appearance(partObjects, mech, outlines);
+  const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
+  let collisions: Collisions | null = null;
+
+  // Works out the mechanism from parts placed as given, with partObjects already there.
+  function read(placed: PlacedPart[]) {
+    parts = placed;
+    mech = inferMechanism(parts, table, roles);
+    kin = new Kinematics(mech);
+    sliders = findSliders(parts, mech, table);
+    partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
+
+    appearance.setMechanism(mech);
+    appearance.update();
+
+    const showAxes = axes.visible;
+    ldrawSpace.remove(axes);
+    axes = makeJointAxes(mech.joints);
+    axes.visible = showAxes;
+    ldrawSpace.add(axes);
+    // A dot where each pair of meshing gears touch. It stays put relative to what the gears'
+    // axles are mounted in.
+    for (const m of mech.meshes) {
+      const a = mech.gears[m.gearA];
+      const b = mech.gears[m.gearB];
+      const dot = new Mesh(new SphereGeometry(3, 16, 8), meshMaterial);
+      dot.position.copy(a.center).lerp(b.center, a.radius / (a.radius + b.radius));
+      dot.renderOrder = 10;
+      dot.updateMatrix();
+      dot.userData.body = kin.parentLink(a.body)?.parent ?? a.body;
+      dot.userData.startMatrix = dot.matrix.clone();
+      axes.add(dot);
+    }
+
+    // Which parts are directly connected (they may touch).
+    const connected = new Set<string>();
+    const pairKey = (a: number, b: number) => (a < b ? `${a},${b}` : `${b},${a}`);
+    for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
+    for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
+    if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
+    else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
+
+    summary.textContent =
+      `${parts.length} parts · ${mech.bodies.length} bodies · ${mech.joints.length} joints` +
+      (mech.meshes.length ? ` · ${mech.meshes.length} gear meshes` : '');
+    setup.mech = mech;
+    setup.kin = kin;
+    showHolds();
   }
-
-  frameCamera(model, kin.groundY);
-
-  summary.textContent =
-    `${parts.length} parts · ${mech.bodies.length} bodies · ${mech.joints.length} joints` +
-    (mech.meshes.length ? ` · ${mech.meshes.length} gear meshes` : '');
-
-  const picker = document.getElementById('model') as HTMLSelectElement;
-  for (const [file, name] of MODELS) picker.add(new Option(name, file, false, file === MODEL));
-  picker.addEventListener('change', () => {
-    window.location.search = '?model=' + picker.value;
-  });
 
   // Moves every part and joint axis to where the kinematics says its body is.
   function showPoses() {
@@ -187,6 +227,41 @@ async function start() {
     updateReadout(mech, kin);
   }
 
+  // Slides a part (a driving ring) to one of its click-in positions, then works the mechanism
+  // out afresh from where everything now is.
+  function shift(part: number, position: number) {
+    const slider = sliders.find((sl) => sl.part === part)!;
+    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const moved = sliderMovedTo(now, table, slider, position);
+    const by = moved.clone().multiply(now[part].matrix.clone().invert());
+    now[part] = { ...now[part], matrix: moved };
+    partObjects[part].matrix.premultiply(by);
+    partObjects[part].matrix.decompose(partObjects[part].position, partObjects[part].quaternion, partObjects[part].scale);
+    read(now);
+    showPoses();
+  }
+
+  // Where a sliding part is and how it slides, or null if it doesn't.
+  function slideOf(part: number) {
+    const slider = sliders.find((sl) => sl.part === part);
+    if (!slider) return null;
+    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    return {
+      at: new Vector3().setFromMatrixPosition(now[part].matrix),
+      dir: slideDirection(now, table, slider),
+      position: sliderPosition(now, table, slider),
+      positions: slider.positions,
+    };
+  }
+
+  const meshMaterial = new MeshBasicMaterial({ color: 0xe0218a, depthTest: false });
+
+  const picker = document.getElementById('model') as HTMLSelectElement;
+  for (const [file, name] of MODELS) picker.add(new Option(name, file, false, file === MODEL));
+  picker.addEventListener('change', () => {
+    window.location.search = '?model=' + picker.value;
+  });
+
   const bodyColours = document.getElementById('bodyColours') as HTMLInputElement;
   bodyColours.addEventListener('change', () => {
     appearance.showBodyColours = bodyColours.checked;
@@ -196,8 +271,13 @@ async function start() {
   jointAxes.addEventListener('change', () => {
     axes.visible = jointAxes.checked;
   });
+  // Back to the model as loaded, shifted back too.
   document.getElementById('reset')!.addEventListener('click', () => {
-    kin.reset();
+    partObjects.forEach((obj, i) => {
+      obj.matrix.copy(loadedMatrices[i]);
+      obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
+    });
+    read(startParts);
     showPoses();
   });
 
@@ -213,46 +293,28 @@ async function start() {
     kin.letGoOfAll();
     showHolds();
   });
-  showHolds();
 
-  // Collision checks: each part's meshes in the part's own coordinates, and which parts are
-  // directly connected (they may touch).
-  model.updateMatrixWorld(true);
-  const shapes: PartMesh[][] = partObjects.map((obj) => {
-    const toPart = obj.matrixWorld.clone().invert();
-    const list: PartMesh[] = [];
-    obj.traverse((child) => {
-      const mesh = child as Mesh;
-      if (!mesh.isMesh) return;
-      const geometry = new BufferGeometry();
-      geometry.setAttribute('position', mesh.geometry.getAttribute('position').clone());
-      if (mesh.geometry.index) geometry.setIndex(mesh.geometry.index.clone());
-      list.push({ geometry, matrix: toPart.clone().multiply(mesh.matrixWorld) });
-    });
-    return list;
-  });
-  const connected = new Set<string>();
-  const pairKey = (a: number, b: number) => (a < b ? `${a},${b}` : `${b},${a}`);
-  for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
-  for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
-  const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
-  const collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
-
-  setUpInteraction({
+  const setup: InteractionSetup = {
     renderer,
     camera,
     controls,
     ldrawSpace,
     model,
-    partNames: parts.map((p) => p.name),
+    partNames: startParts.map((p) => p.name),
     mech,
     kin,
     appearance,
     partTitle,
     onMoved: showPoses,
     onHoldChanged: showHolds,
-    blockedBy: () => collisions.check(partMatrices()),
-  });
+    blockedBy: () => collisions!.check(partMatrices()),
+    slideOf,
+    shift,
+  };
+  read(startParts);
+  showLooseWarning(startParts.map((p) => p.name), mech.loose);
+  frameCamera(model, kin.groundY);
+  setUpInteraction(setup);
   showPoses();
 }
 
