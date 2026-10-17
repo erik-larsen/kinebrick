@@ -10,7 +10,7 @@ const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json',
 const TURN = 2 * Math.PI;
 
 describe('V8 engine from LEGO 8448', () => {
-  const parts = parseLdr(readFileSync('models/8448-engine.ldr', 'utf-8'));
+  const parts = parseLdr(readFileSync('models/8448-engine.mpd', 'utf-8'));
   const mech = inferMechanism(parts, table, roles);
   const kin = new Kinematics(mech);
   const bodyOf = (name: string) => mech.bodyOf[parts.findIndex((p) => p.name === name)];

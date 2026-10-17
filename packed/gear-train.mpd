@@ -321,29 +321,13 @@
 0 !COLOUR Electric_Contact_Alloy                                CODE 494   VALUE #D0D0D0   EDGE #333333                               METAL
 0 !COLOUR Electric_Contact_Copper                               CODE 495   VALUE #AE7A59   EDGE #333333                               METAL
 0 !COLOUR Trans_Sticker                                         CODE 10047 VALUE #FFFFFF   EDGE #FFFFFF   ALPHA 16
-0 Gear Train
-0 Name: gear-train.ldr
-0 Author: erik-larsen
-0 // A 1x8 Technic brick holding three gears on 2L axles: 8 tooth, 24 tooth, 40 tooth.
-0 // Turning the 8 tooth gear once turns the 40 tooth gear 1/5 of a turn, the same way.
-0 // Holes are 10 LDU below the brick's top; gears sit in front of the brick, at z = -20.
-
-0 // Step 1: the brick
 1 14 0 0 0 1 0 0 0 1 0 0 0 1 3702.dat
-0 STEP
-
-0 // Step 2: 2L axles through holes 1, 3 and 7, sticking out in front
 1 0 -60 10 -10 0 0 1 0 1 0 -1 0 0 3704.dat
 1 0 -20 10 -10 0 0 1 0 1 0 -1 0 0 3704.dat
 1 0 60 10 -10 0 0 1 0 1 0 -1 0 0 3704.dat
-0 STEP
-
-0 // Step 3: gears, 40 LDU (8 + 24 teeth) and 80 LDU (24 + 40 teeth) apart.
-0 // The 24 tooth gear is turned half a tooth (7.5 degrees) so its teeth fall between its neighbours'.
 1 72 -60 10 -20 1 0 0 0 1 0 0 0 1 3647.dat
 1 71 -20 10 -20 0.991445 -0.130526 0 0.130526 0.991445 0 0 0 1 3648.dat
 1 71 60 10 -20 1 0 0 0 1 0 0 0 1 3649.dat
-0 STEP
 
 0 NOFILE
 0 FILE 3702.dat

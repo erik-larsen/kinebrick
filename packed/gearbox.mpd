@@ -321,43 +321,20 @@
 0 !COLOUR Electric_Contact_Alloy                                CODE 494   VALUE #D0D0D0   EDGE #333333                               METAL
 0 !COLOUR Electric_Contact_Copper                               CODE 495   VALUE #AE7A59   EDGE #333333                               METAL
 0 !COLOUR Trans_Sticker                                         CODE 10047 VALUE #FFFFFF   EDGE #FFFFFF   ALPHA 16
-0 Two-Speed Gearbox
-0 Name: gearbox.ldr
-0 Author: erik-larsen
-0 // A two-speed gearbox using the 3L driving ring system. The output shaft is a ridged 3L axle
-0 // joiner (18948) with an axle in each end; a 24 tooth and a 16 tooth clutch gear spin freely
-0 // on those axles, one each side of it. The driving ring (18947) slides on the joiner: shifted
-0 // towards the 24 tooth gear it locks that gear to the shaft (first gear, 1:3, driven by the
-0 // input's 8 tooth gear); towards the 16 tooth gear, second gear (1:1, driven by the input's
-0 // 16 tooth gear); centred, neutral. The input axle is 2 studs (40 LDU) from the output shaft.
-
-0 // Step 1: a 6x8 plate, with a 1x6 brick and a Technic 1x6 brick on top at each end
 1 72 0 0 0 0 0 1 0 1 0 -1 0 0 3036.dat
 1 14 0 -24 70 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 0 -24 -70 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 0 -48 70 1 0 0 0 1 0 0 0 1 3894.dat
 1 14 0 -48 -70 1 0 0 0 1 0 0 0 1 3894.dat
-0 STEP
-
-0 // Step 2: the output shaft: the joiner with the driving ring on it (centred: neutral), and
-0 // a 4L axle in each end through the bricks
 1 72 -20 -38 0 1 0 0 0 1 0 0 0 1 18948.dat
 1 0 -20 -38 0 1 0 0 0 1 0 0 0 1 18947.dat
 1 0 -20 -38 -50 0 0 1 0 1 0 -1 0 0 3705.dat
 1 0 -20 -38 50 0 0 1 0 1 0 -1 0 0 3705.dat
-0 STEP
-
-0 // Step 3: the clutch gears, free on the axles either side of the joiner
 1 71 -20 -38 -40 1 0 0 0 1 0 0 0 1 2471.dat
 1 71 -20 -38 40 1 0 0 0 1 0 0 0 1 18946.dat
-0 STEP
-
-0 // Step 4: the input axle with an 8 tooth gear (meshing the 24 tooth clutch gear) and a 16
-0 // tooth gear (meshing the 16 tooth clutch gear), each turned half a tooth to mesh
 1 0 20 -38 0 0 0 1 0 1 0 -1 0 0 3707.dat
 1 72 20 -38 -40 0.92388 -0.382683 0 0.382683 0.92388 0 0 0 1 3647.dat
 1 71 20 -38 40 0.980785 -0.19509 0 0.19509 0.980785 0 0 0 1 4019.dat
-0 STEP
 
 0 NOFILE
 0 FILE 3036.dat

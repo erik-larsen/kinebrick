@@ -321,21 +321,7 @@
 0 !COLOUR Electric_Contact_Alloy                                CODE 494   VALUE #D0D0D0   EDGE #333333                               METAL
 0 !COLOUR Electric_Contact_Copper                               CODE 495   VALUE #AE7A59   EDGE #333333                               METAL
 0 !COLOUR Trans_Sticker                                         CODE 10047 VALUE #FFFFFF   EDGE #FFFFFF   ALPHA 16
-0 Ackermann Car
-0 Name: ackermann-car.ldr
-0 Author: erik-larsen
-0 // A wide car with Ackermann steering. Each front wheel turns on its own kingpin, steered by an
-0 // arm that points back and in, at the middle of the rear axle; links on ball joints join the
-0 // arms to a rack, moved by a pinion on the steering column. On a turn the inner wheel turns
-0 // further than the outer one, so all four wheels roll round the same centre. The rear wheels
-0 // are on a differential. Front is +x. Wheelbase 400 LDU, track 487 LDU, hubs at y = -38.
-
-0 // Step 1: the chassis, a 6x24 plate
 1 72 180 0 0 1 0 0 0 1 0 0 0 1 3026.dat
-0 STEP
-
-0 // Step 2: the rear differential, its output axles and bevel gears (as in differential.ldr),
-0 // on a 1x6 brick with a Technic 1x6 brick on top each side
 1 14 20 -24 50 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 20 -24 -50 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 20 -48 50 1 0 0 0 1 0 0 0 1 3894.dat
@@ -346,56 +332,29 @@
 1 71 0 -38 -17 1 0 0 0 1 0 0 0 1 6589.dat
 1 71 0 -38 17 -1 0 0 0 1 0 0 0 -1 6589.dat
 1 71 0 -21 0 1 0 0 0 0 -1 0 1 0 6589.dat
-0 STEP
-
-0 // Step 3: the front cross member: a Technic 2x6 plate in the middle, a Technic 2x8 plate each
-0 // side with the kingpin in its end hole (z = 200), and a 2x4 plate bridging each join
 1 71 400 -8 0 0 0 1 0 1 0 -1 0 0 32001.dat
 1 71 400 -8 140 0 0 1 0 1 0 -1 0 0 3738.dat
 1 71 400 -8 -140 0 0 1 0 1 0 -1 0 0 3738.dat
 1 72 400 -16 60 0 0 1 0 1 0 -1 0 0 3020.dat
 1 72 400 -16 -60 0 0 1 0 1 0 -1 0 0 3020.dat
-0 STEP
-
-0 // Step 4: the left knuckle. A round 2x2 plate on the kingpin (a 2L axle turning in the Technic
-0 // plate's hole, a plate's height clear of it), a Technic 1x2 brick on it whose hole is over the
-0 // kingpin, and the steering arm: a 2x4 plate and a Technic 2x4 plate, with a pin towball in
-0 // the end hole, 80 LDU back and 40 in from the kingpin
 1 0 400 -8 200 0 -1 0 1 0 0 0 0 1 3704.dat
 1 71 400 -24 200 1 0 0 0 1 0 0 0 1 4032a.dat
 1 14 400 -48 190 1 0 0 0 1 0 0 0 1 3700.dat
 1 72 380 -56 180 1 0 0 0 1 0 0 0 1 3020.dat
 1 71 340 -64 160 1 0 0 0 1 0 0 0 1 3709b.dat
 1 0 320 -68 160 0 -1 0 1 0 0 0 0 1 6628.dat
-0 STEP
-
-0 // Step 5: the left front wheel, on a 4L axle turning in the Technic brick, with a bush and a half bush
 1 0 400 -38 210 0 0 1 0 1 0 -1 0 0 3705.dat
 1 0 400 -38 210 1 0 0 0 1 0 0 0 1 3713.dat
 1 0 400 -38 225 1 0 0 0 1 0 0 0 1 32123a.dat
-0 STEP
-
-0 // Step 6: the right knuckle. A round 2x2 plate on the kingpin (a 2L axle turning in the Technic
-0 // plate's hole, a plate's height clear of it), a Technic 1x2 brick on it whose hole is over the
-0 // kingpin, and the steering arm: a 2x4 plate and a Technic 2x4 plate, with a pin towball in
-0 // the end hole, 80 LDU back and 40 in from the kingpin
 1 0 400 -8 -200 0 -1 0 1 0 0 0 0 1 3704.dat
 1 71 400 -24 -200 1 0 0 0 1 0 0 0 1 4032a.dat
 1 14 400 -48 -190 1 0 0 0 1 0 0 0 1 3700.dat
 1 72 380 -56 -180 1 0 0 0 1 0 0 0 1 3020.dat
 1 71 340 -64 -160 1 0 0 0 1 0 0 0 1 3709b.dat
 1 0 320 -68 -160 0 -1 0 1 0 0 0 0 1 6628.dat
-0 STEP
-
-0 // Step 7: the right front wheel, on a 4L axle turning in the Technic brick, with a bush and a half bush
 1 0 400 -38 -210 0 0 1 0 1 0 -1 0 0 3705.dat
 1 0 400 -38 -210 -1 0 0 0 1 0 0 0 -1 3713.dat
 1 0 400 -38 -225 -1 0 0 0 1 0 0 0 -1 32123a.dat
-0 STEP
-
-0 // Step 8: the rack. A 1x4 plate slides along a 1x1 tile (on a jumper plate, so it's centred), as far
-0 // as it still overlaps it: 30 LDU either way. On it a Technic 2x8 plate carries a 1x4 rack and a
-0 // pin towball in each end hole (z = +-60)
 1 72 330 -8 0 0 0 1 0 1 0 -1 0 0 3023b.dat
 1 72 330 -32 0 0 0 1 0 1 0 -1 0 0 3004.dat
 1 72 330 -40 0 0 0 1 0 1 0 -1 0 0 3794b.dat
@@ -405,15 +364,8 @@
 1 4 330 -72 0 0 0 1 0 1 0 -1 0 0 3743.dat
 1 0 320 -68 60 0 -1 0 1 0 0 0 0 1 6628.dat
 1 0 320 -68 -60 0 -1 0 1 0 0 0 0 1 6628.dat
-0 STEP
-
-0 // Step 9: the steering links, each from a towball on the rack to one on a steering arm
 1 4 320 -78 60 1 0 0 0 1 0 0 0 1 2739a.dat
 1 4 320 -78 -60 -1 0 0 0 1 0 0 0 -1 2739a.dat
-0 STEP
-
-0 // Step 10: the steering column, an 8L axle turning in a Technic 1x2 brick on a tower of 1x2 bricks,
-0 // with an 8 tooth pinion on the rack, and the steering wheel
 1 14 270 -24 0 0 0 1 0 1 0 -1 0 0 3004.dat
 1 14 270 -48 0 0 0 1 0 1 0 -1 0 0 3004.dat
 1 14 270 -72 0 0 0 1 0 1 0 -1 0 0 3004.dat
@@ -421,9 +373,6 @@
 1 0 260 -86 0 1 0 0 0 1 0 0 0 1 3707.dat
 1 71 330 -86 0 0 0 1 0 1 0 -1 0 0 3647.dat
 1 0 170 -86 0 0 1 0 1 0 0 0 0 -1 2819.dat
-0 STEP
-
-0 // Step 11: wheels: a rim and a big tyre at each corner, the tyre's offset side facing out
 1 71 0 -38 240 1 0 0 0 1 0 0 0 1 3482.dat
 1 0 0 -38 240 -1 0 0 0 1 0 0 0 -1 3634.dat
 1 71 0 -38 -240 -1 0 0 0 1 0 0 0 -1 3482.dat
@@ -432,7 +381,6 @@
 1 0 400 -38 240 -1 0 0 0 1 0 0 0 -1 3634.dat
 1 71 400 -38 -240 -1 0 0 0 1 0 0 0 -1 3482.dat
 1 0 400 -38 -240 1 0 0 0 1 0 0 0 1 3634.dat
-0 STEP
 
 0 NOFILE
 0 FILE 3026.dat

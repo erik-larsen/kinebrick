@@ -26,16 +26,18 @@ import { ConnectionTable, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
 import { Kinematics } from './kinematics.ts';
-import { parseLdr, PlacedPart } from './ldr.ts';
+import { parseModel, PlacedPart } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
 import connectionsUrl from '../data/connections.json?url';
 import rolesUrl from '../data/roles.json?url';
 import titlesUrl from '../packed/titles.json?url';
+import modelTitles from '../packed/models.json';
 
-// The test models in models/, and their names in the picker.
-const MODELS: [string, string][] = [
+// The test models in models/, and their names in the picker. Any other model in models/ comes
+// after them, under its file name and title.
+const NAMED_MODELS: [string, string][] = [
   ['simple-car', 'Simple car'],
   ['geared-car', 'Geared car'],
   ['gear-train', 'Gear train'],
@@ -50,6 +52,13 @@ const MODELS: [string, string][] = [
   ['four-bar', 'Four-bar linkage'],
   ['rack-and-pinion', 'Rack and pinion'],
   ['8448-engine', 'V8 engine (LEGO 8448)'],
+  ['8448-1', 'Super Street Sensation (LEGO 8448)'],
+];
+const MODELS: [string, string][] = [
+  ...NAMED_MODELS,
+  ...Object.entries(modelTitles as Record<string, string>)
+    .filter(([file]) => !NAMED_MODELS.some(([named]) => named === file))
+    .map(([file, title]): [string, string] => [file, title && title !== file ? `${file}: ${title}` : file]),
 ];
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');
@@ -72,9 +81,9 @@ function whole(text: string | null): number | null {
 // The files the viewer loads. Vite bundles them, so they're found both in development and on
 // the published site. The packed files (made by npm run pack) hold each model with every LDraw
 // part it uses, so the viewer needs no LDraw parts library.
-const modelUrls: Record<string, string> = import.meta.glob('../models/*.ldr', { query: '?url', import: 'default', eager: true });
+const modelUrls: Record<string, string> = import.meta.glob('../models/*.{ldr,mpd}', { query: '?url', import: 'default', eager: true });
 const packedUrls: Record<string, string> = import.meta.glob('../packed/*.mpd', { query: '?url', import: 'default', eager: true });
-const MODEL_URL = modelUrls[`../models/${MODEL}.ldr`];
+const MODEL_URL = modelUrls[`../models/${MODEL}.ldr`] ?? modelUrls[`../models/${MODEL}.mpd`];
 const PACKED_URL = packedUrls[`../packed/${MODEL}.mpd`];
 
 // ---------------------------------------------------------------------------
@@ -145,7 +154,7 @@ async function start() {
   const summary = document.getElementById('summary')!;
 
   const modelText = await (await fetch(MODEL_URL)).text();
-  const startParts = parseLdr(modelText);
+  const { parts: startParts, shapes: drawnShapes } = parseModel(modelText);
   const table: ConnectionTable = await (await fetch(connectionsUrl)).json();
   const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
 
@@ -155,11 +164,19 @@ async function start() {
   const model = await loader.loadAsync(PACKED_URL);
   ldrawSpace.add(model);
 
-  // The loader makes one child group per part line, in file order.
-  const partObjects: Object3D[] = model.children;
-  if (partObjects.length !== startParts.length) {
-    throw new Error(`Loader made ${partObjects.length} parts, model has ${startParts.length}`);
+  // The loader makes one child group per line of the packed model, in file order: the parts,
+  // then the shapes submodels draw without parts (see scripts/pack-models.ts). A shape moves
+  // with the body of a part from the same submodel, or else the frame.
+  const partObjects: Object3D[] = model.children.slice(0, startParts.length);
+  const shapeObjects: Object3D[] = model.children.slice(startParts.length);
+  if (model.children.length !== startParts.length + drawnShapes.length) {
+    throw new Error(`Loader made ${model.children.length} parts and shapes, model has ${startParts.length} and ${drawnShapes.length}`);
   }
+  shapeObjects.forEach((obj, i) => {
+    obj.userData.nearPart = drawnShapes[i].nearPart;
+    obj.updateMatrix();
+  });
+  const loadedShapeMatrices = shapeObjects.map((obj) => obj.matrix.clone());
   partObjects.forEach((obj, i) => {
     if (normalizePartName(obj.name) !== startParts[i].name) {
       throw new Error(`Part ${i}: loader has ${obj.name}, model has ${startParts[i].name}`);
@@ -206,6 +223,7 @@ async function start() {
     kin = new Kinematics(mech);
     sliders = findSliders(parts, mech, table);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
+    shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
 
     appearance.setMechanism(mech);
     appearance.update();
@@ -255,8 +273,10 @@ async function start() {
 
   // Moves every part and joint axis to where the kinematics says its body is.
   function showPoses() {
-    for (const obj of [...partObjects, ...axes.children, ...contacts.children]) {
-      const body = obj.userData.partIndex !== undefined ? mech.bodyOf[obj.userData.partIndex] : obj.userData.body;
+    for (const obj of [...partObjects, ...shapeObjects, ...axes.children, ...contacts.children]) {
+      const near = obj.userData.nearPart;
+      const body =
+        obj.userData.partIndex !== undefined ? mech.bodyOf[obj.userData.partIndex] : near !== undefined ? (near >= 0 ? mech.bodyOf[near] : 0) : obj.userData.body;
       obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     }
@@ -397,6 +417,10 @@ async function start() {
     grid.position.copy(grid.userData.home);
     partObjects.forEach((obj, i) => {
       obj.matrix.copy(loadedMatrices[i]);
+      obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
+    });
+    shapeObjects.forEach((obj, i) => {
+      obj.matrix.copy(loadedShapeMatrices[i]);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     });
     read(startParts);

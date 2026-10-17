@@ -321,64 +321,30 @@
 0 !COLOUR Electric_Contact_Alloy                                CODE 494   VALUE #D0D0D0   EDGE #333333                               METAL
 0 !COLOUR Electric_Contact_Copper                               CODE 495   VALUE #AE7A59   EDGE #333333                               METAL
 0 !COLOUR Trans_Sticker                                         CODE 10047 VALUE #FFFFFF   EDGE #FFFFFF   ALPHA 16
-0 Steering Car
-0 Name: steering-car.ldr
-0 Author: erik-larsen
-0 // A car whose front axle pivots in the middle, like a wagon's, turned by a steering wheel
-0 // through an 8 tooth gear driving a 24 tooth gear on the pivot. Each front wheel spins on
-0 // its own stub axle, and the rear wheels are on a differential, so in a turn every wheel can
-0 // roll at its own speed. Front is +x. Wheelbase 160 LDU, track 180 LDU.
-
-0 // Step 1: the base, and the rear supports: a 1x6 brick with a Technic 1x6 brick on top, each side
 1 72 0 0 0 1 0 0 0 1 0 0 0 1 3028.dat
 1 14 -60 -24 50 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 -60 -24 -50 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 -60 -48 50 1 0 0 0 1 0 0 0 1 3894.dat
 1 14 -60 -48 -50 1 0 0 0 1 0 0 0 1 3894.dat
-0 STEP
-
-0 // Step 2: the rear differential, its output axles and bevel gears (as in differential.ldr)
 1 71 -80 -38 0 1 0 0 0 1 0 0 0 1 6573.dat
 1 0 -80 -38 -55 0 0 1 0 1 0 -1 0 0 32073.dat
 1 71 -80 -38 -17 1 0 0 0 1 0 0 0 1 6589.dat
 1 0 -80 -38 55 0 0 1 0 1 0 -1 0 0 32073.dat
 1 71 -80 -38 17 -1 0 0 0 1 0 0 0 -1 6589.dat
 1 71 -80 -21 0 1 0 0 0 0 -1 0 1 0 6589.dat
-0 STEP
-
-0 // Step 3: two short Technic plates across the front of the base, with holes for the pivot
-0 // (x = 80) and the steering column (x = 40), short enough for the front tyres to swing past
 1 71 80 -8 0 0 0 1 0 1 0 -1 0 0 3709b.dat
 1 71 40 -8 0 0 0 1 0 1 0 -1 0 0 3709b.dat
-0 STEP
-
-0 // Step 4: the front axle carrier: a Technic plate, a round 2x2 plate with an axle hole over
-0 // its middle hole, and a Technic 1x2 brick at each end for a stub axle
 1 71 80 -24 0 0 0 1 0 1 0 -1 0 0 3738.dat
 1 71 80 -32 0 1 0 0 0 1 0 0 0 1 4032a.dat
 1 14 80 -48 70 1 0 0 0 1 0 0 0 1 3700.dat
 1 14 80 -48 -70 1 0 0 0 1 0 0 0 1 3700.dat
-0 STEP
-
-0 // Step 5: the pivot, a 3L axle locked in the round plate and turning in the base plate's hole,
-0 // with a 24 tooth gear on top (turned half a tooth to mesh)
 1 0 80 -30 0 0 -1 0 1 0 0 0 0 1 4519.dat
 1 71 80 -44 0 0.991445 -0.130526 0 0 0 1 -0.130526 -0.991445 0 3648.dat
-0 STEP
-
-0 // Step 6: the steering column, a 4L axle with an 8 tooth gear meshing the 24 tooth gear,
-0 // and a steering wheel on top
 1 0 40 -40 0 0 -1 0 1 0 0 0 0 1 3705.dat
 1 72 40 -44 0 1 0 0 0 0 1 0 -1 0 3647.dat
 1 0 40 -90 0 1 0 0 0 1 0 0 0 1 2819.dat
-0 STEP
-
-0 // Step 7: front stub axles through the carrier's Technic bricks
 1 0 80 -38 80 0 0 1 0 1 0 -1 0 0 3704.dat
 1 0 80 -38 -80 0 0 1 0 1 0 -1 0 0 3704.dat
-0 STEP
-
-0 // Step 8: wheels: a rim and a big tyre at each corner, the tyre's offset side facing out
 1 71 -80 -38 90 1 0 0 0 1 0 0 0 1 3482.dat
 1 0 -80 -38 90 -1 0 0 0 1 0 0 0 -1 3634.dat
 1 71 -80 -38 -90 -1 0 0 0 1 0 0 0 -1 3482.dat
@@ -387,7 +353,6 @@
 1 0 80 -38 90 -1 0 0 0 1 0 0 0 -1 3634.dat
 1 71 80 -38 -90 -1 0 0 0 1 0 0 0 -1 3482.dat
 1 0 80 -38 -90 1 0 0 0 1 0 0 0 1 3634.dat
-0 STEP
 
 0 NOFILE
 0 FILE 3028.dat

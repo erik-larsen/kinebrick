@@ -11,6 +11,7 @@
 import { readFileSync, readdirSync, existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Cylinder, Section, Slide, Vec3, normalizePartName } from '../src/connections.ts';
+import { embeddedParts, parseLdr } from '../src/ldr.ts';
 
 const LDRAW_DIR = 'ldraw';
 const SHADOW_DIR = 'ldcad-shadow';
@@ -72,9 +73,10 @@ function readText(path: string): string | null {
   return existsSync(path) ? readFileSync(path, 'utf-8') : null;
 }
 
-// LDraw looks up a referenced file in parts/ first, then p/ (primitives).
+// LDraw looks up a referenced file in parts/ first, then p/ (primitives), and failing those,
+// among the parts a model file brings with it.
 function readLdrawFile(name: string): string | null {
-  return readText(join(LDRAW_DIR, 'parts', name)) ?? readText(join(LDRAW_DIR, 'p', name));
+  return readText(join(LDRAW_DIR, 'parts', name)) ?? readText(join(LDRAW_DIR, 'p', name)) ?? embedded.get(name) ?? null;
 }
 
 function readShadowFile(name: string): string | null {
@@ -413,22 +415,22 @@ function treadCylinder(name: string, seat: Cylinder): Cylinder {
 // ---------------------------------------------------------------------------
 // Which parts go in the table
 
-// Every part referenced by the models in models/, looking inside multi-part (MPD) files.
-function partsInModels(): string[] {
-  const parts = new Set<string>();
-  for (const file of readdirSync(MODELS_DIR)) {
-    if (!/\.(ldr|mpd)$/i.test(file)) continue;
-    const text = readFileSync(join(MODELS_DIR, file), 'utf-8');
-    const submodels = new Set<string>();
-    for (const m of text.matchAll(/^\s*0\s+FILE\s+(.+)$/gim)) submodels.add(normalizePartName(m[1]));
-    for (const line of text.split(/\r?\n/)) {
-      const ref = parseReference(line);
-      if (ref && !submodels.has(ref.name)) parts.add(ref.name);
-    }
-  }
-  return [...parts].sort();
+// The model files in models/.
+function modelTexts(): string[] {
+  return readdirSync(MODELS_DIR)
+    .filter((file) => /\.(ldr|mpd)$/i.test(file))
+    .map((file) => readFileSync(join(MODELS_DIR, file), 'utf-8'));
 }
 
+// Parts that model files bring with them (unofficial parts, in the official model repository).
+const embedded = new Map(modelTexts().flatMap((text) => [...embeddedParts(text)]));
+
+// Every part used by the models in models/, with their submodels flattened.
+function partsInModels(): string[] {
+  const parts = new Set<string>();
+  for (const text of modelTexts()) for (const p of parseLdr(text)) parts.add(p.name);
+  return [...parts].sort();
+}
 
 // SLIDE lines in data/corrections.ldr: parts that slide into set positions, e.g.
 //   "0 !KINEBRICK SLIDE [positions=-10 0 10] [ori=...]"   (the part slides along the meta's -y)

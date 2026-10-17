@@ -12,8 +12,12 @@ function looseParts(text: string): string[] {
   return inferMechanism(parts, table, roles).loose.map((i) => parts[i].name);
 }
 
+// Real models KineBrick can't fully read yet: they have parts it doesn't know (hinges,
+// universal joints, its tyres).
+const NOT_YET = ['8448-1.mpd'];
+
 describe('every test model is fully attached', () => {
-  for (const file of readdirSync('models').filter((f) => f.endsWith('.ldr'))) {
+  for (const file of readdirSync('models').filter((f) => /\.(ldr|mpd)$/.test(f) && !NOT_YET.includes(f))) {
     it(file, () => {
       expect(looseParts(readFileSync(`models/${file}`, 'utf-8'))).toEqual([]);
     });

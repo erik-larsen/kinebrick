@@ -6,7 +6,7 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model and drag i
 
 ## Status
 
-M6.3 works: a car with rack and pinion steering turns each front wheel on its own kingpin, the inside one further, so it drives round a curve with its tyres hardly scrubbing. Closed loops of parts, such as an engine's crank, connecting rod and piston, stay together however long they run, and parts can't pass through each other. Fourteen test models, picked from a menu in the viewer, including a V8 engine from a real LEGO set. Each link below opens that model in the viewer; their files are in [`models/`](models/).
+M6.3 works: a car with rack and pinion steering turns each front wheel on its own kingpin, the inside one further, so it drives round a curve with its tyres hardly scrubbing. Closed loops of parts, such as an engine's crank, connecting rod and piston, stay together however long they run, and parts can't pass through each other. Fifteen test models, picked from a menu in the viewer, including a V8 engine and a whole car from a real LEGO set, read straight from their multi-part LDraw files. Each link below opens that model in the viewer; their files are in [`models/`](models/).
 
 - [Simple car](https://erik-larsen.github.io/kinebrick/?model=simple-car): drag the frame and it rolls along its length, its wheels turning by distance ÷ tyre radius; turn a tyre and the car rolls with it.
 - [Geared car](https://erik-larsen.github.io/kinebrick/?model=geared-car): the same car with two 8 tooth gears inside, so rolling the car spins a second axle the other way.
@@ -21,16 +21,17 @@ M6.3 works: a car with rack and pinion steering turns each front wheel on its ow
 - [Four-bar linkage](https://erik-larsen.github.io/kinebrick/?model=four-bar): four beams pinned in a loop on a Technic brick. The short crank turns all the way round, rocking the far beam to and fro through about 63 degrees.
 - [Rack and pinion](https://erik-larsen.github.io/kinebrick/?model=rack-and-pinion): an 8 tooth gear on two 1x4 racks, which ride on a plate that slides along a row of tiles between rails. A quarter turn of the gear moves the rack 2 teeth; pushing the rack turns the gear. The rack travels 80 LDU either way, until the gear reaches the end of the teeth, its plate overhanging the tiles.
 - [V8 engine (LEGO 8448)](https://erik-larsen.github.io/kinebrick/?model=8448-engine): the engine from LEGO set 8448, Super Street Sensation, as built in the LDraw Official Model Repository. Eight pistons in two banks run on a flat-plane crankshaft; turning the crankshaft, by its 24 tooth gear or its fan, takes all eight through their strokes.
+- [Super Street Sensation (LEGO 8448)](https://erik-larsen.github.io/kinebrick/?model=8448-1): the whole car from the same set, 1290 parts, its hoses and shock absorber springs included. It loads, but KineBrick doesn't understand it yet: 83 parts it can't attach (hinges, universal joints and others), and tyres it doesn't know. It's the first real model for M7 to work through.
 - [Steering car, solid rear axle](https://erik-larsen.github.io/kinebrick/?model=steering-car-solid): the same car with one solid axle at the back. It rolls straight ahead, but once steered it jams, because the inner and outer rear wheels would have to roll different distances.
 
-The viewer labels the part under the pointer, and can draw each body in its own colour, each joint's axis, and where each pair of gears meet (see [Options](#options)). Next is M7: forces.
+The viewer labels the part under the pointer, and can draw each body in its own colour, each joint's axis, and where each pair of gears meet (see [Options](#options)). Next is M7: real models, oldest first.
 
 ## What KineBrick is, and isn't
 
 - **It is** a mechanism inferrer. Each LEGO part gets a description of what it can do (an axle turns in a round hole, a tyre rolls on the ground). KineBrick reads where the parts sit in the model, decides how they connect, and solves how they move together.
 - **It is** iterative. Part types are added one at a time, starting with the ones that move. A brick that only holds things together needs no special treatment: it moves with whatever it's attached to.
 - **It isn't** a new 3D viewer. Rendering comes from [three.js](https://threejs.org) and its `LDrawLoader`.
-- **It isn't** a general physics engine. Movement comes from the mechanism's geometry (kinematics). Forces, springs and mass come later, through an existing physics engine rather than our own.
+- **It isn't** a general physics engine. Movement comes from the mechanism's geometry (kinematics). Forces, springs and mass come in version 2.0, through an existing physics engine rather than our own.
 
 ## How it works
 
@@ -52,7 +53,7 @@ Everything happens in the 3D view: drag parts with the mouse or a finger. A part
 | Alt-click (Option-click on a Mac) a part | Its body is frozen until you Alt-click it again, or click **Unfreeze all**. Useful where a mechanism can move more than one way: freeze a differential's input, and turning one output turns the other the opposite way. |
 | Click **Reset** | The model goes back as it was loaded, any motor stops, and the camera goes back to where it started. |
 
-Parts a drag doesn't need stay put: pushing a car leaves its steering alone, and turning its steering wheel leaves the car where it is. Motion stops where two parts would run into each other, or at the end of a slide's travel or a rack's teeth, and those two parts flash red. A part that can't move at all says why: the mechanism is jammed, a worm can't be driven from its gear, or the model has no wheels to roll on. Let go, and the model stays where it is; momentum waits for forces in M7.
+Parts a drag doesn't need stay put: pushing a car leaves its steering alone, and turning its steering wheel leaves the car where it is. Motion stops where two parts would run into each other, or at the end of a slide's travel or a rack's teeth, and those two parts flash red. A part that can't move at all says why: the mechanism is jammed, a worm can't be driven from its gear, or the model has no wheels to roll on. Let go, and the model stays where it is; momentum waits for forces in 2.0.
 
 A readout shows how far the frame has moved and each body has turned or slid, so the motion can be checked by eye. A wheel on the ground also shows how far it rolled ÷ its radius, which its turn should match.
 
@@ -81,12 +82,16 @@ Each milestone ends with a model that moves correctly and a test that checks it.
 | M3 | Bevel gears and differential | Right-angle drives work. A differential lets the two wheels on one axle turn at different speeds. |
 | M4 | Steering | The front axle pivots in the middle, like a wagon's, turned by a gear on a steering column. Pushing the steered car makes it follow a curve, each wheel turning at its own speed; the rear wheels are on a differential. The same car with a solid rear axle jams when steered. |
 | M4.5 | Collisions | Parts stop when they'd run into each other: the steering car's front wheels stop at the chassis, about 20 degrees either way. No part of any test model passes through another. |
-| M5 | Worm gears, clutches, gearboxes | A worm turns its gear one tooth per turn and locks when driven from the gear. A two-speed gearbox shifts by sliding its driving ring: first gear turns the output a third as far as the input, second as far, and in neutral the output stays put. Clutches that slip under load wait for forces in M7. |
+| M5 | Worm gears, clutches, gearboxes | A worm turns its gear one tooth per turn and locks when driven from the gear. A two-speed gearbox shifts by sliding its driving ring: first gear turns the output a third as far as the input, second as far, and in neutral the output stays put. Clutches that slip under load wait for forces in 2.0. |
 | M6 | Linkages | In three parts, below. These need sliding joints, ball joints, and closed loops of parts kept together. |
 | M6.1 | Loops | A single-cylinder engine runs: turning its crank all the way round moves the piston up and down its cylinder, and pushing the piston turns the crank until dead centre. A four-bar linkage of beams on pins (a crank that turns all the way round, rocking a beam to and fro) moves through its full range. After many turns, no joint has drifted apart. |
 | M6.2 | Rack and pinion | Turning a gear slides a rack along: a quarter turn of an 8 tooth gear moves the rack 2 teeth. Pushing the rack turns the gear. The racks ride on a plate sliding along tiles between rails, which may overhang them, and stop when the gear reaches the end of the teeth. |
 | M6.3 | Ackermann steering | Rack and pinion steering, with steering links on ball joints to a steering arm at each front wheel. Each front wheel pivots on its own, the inside one turning further, so pushing the steered car makes every wheel roll round about the same centre. Tyres may scrub sideways a little, as real ones do. |
-| M7 | Forces | Springs, shock absorbers, suspension arms (which need springs to hold the car up; without them the frame's height is one more free motion), clutches that slip under load, and pushes or torques as input, through the MuJoCo physics engine. |
+| M7 | Real models, oldest first | LEGO Technic sets from the LDraw Official Model Repository load and move as they should, taken in the order they came out, starting with the first Technic sets of 1977, so the basic parts are covered before later ones. Models load straight from multi-part files (MPD), with their submodels and the parts they bring with them. Each set that works joins the tests. |
+| M8 | Chains and tracks | A chain or track couples its sprockets like gears that turn the same way, its links moving round the loop. A tracked vehicle turns by skidding its tracks sideways. |
+| M9 | Belts, pulleys and strings | A rubber band couples its pulleys by their sizes, and a crossed one reverses them. A string wound on a winch drum and run over pulleys raises a hook as the drum turns, by less through a block and tackle. The hook hangs straight down. |
+
+With M9 the kinematics is complete: version 1.0. Version 2.0 adds forces, through the [MuJoCo](https://mujoco.org) physics engine: momentum, springs that spring, clutches that slip under load.
 
 A car with two fixed axles can't turn without its tyres sliding sideways, which is why M1 is straight-line only and turning waits for steering in M4. Steering alone isn't enough either: in a turn the inside wheels travel a shorter path than the outside ones, so two wheels on one solid axle can't both roll without slipping. Real LEGO cars just scrub their tyres. KineBrick's tyres never slip along the way they roll, so the M4 car has a differential at the back and each front wheel spinning on its own stub axle. Sideways, a tyre may scrub by up to 2% of how far it rolls, since real steering only gets close to every wheel rolling round one centre (Ackermann steering, M6.3); a car whose tyres would scrub more than that won't roll.
 
@@ -111,7 +116,7 @@ Other commands:
 
 - `npm test` runs the tests.
 - `npm run build` builds the site into `dist/`. Every push to `main` builds and publishes it to GitHub Pages (see `.github/workflows/pages.yml`).
-- `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) and the packed models, after adding or changing a test model. It needs both libraries in the project folder (neither is committed):
+- `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) and the packed models, after adding or changing a test model (an `.ldr`, or an `.mpd` with submodels, in `models/`). It needs both libraries in the project folder (neither is committed):
   - the LDraw parts library: download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) and unzip it, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`;
   - the LDCad shadow library: `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`.
 
@@ -123,7 +128,7 @@ Other commands:
 | [three.js](https://threejs.org) | Rendering and LDraw loading | MIT |
 | [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh) | Fast tests of whether two parts' shapes overlap | MIT |
 | [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Connection points in the [connection table](ARCHITECTURE.md#the-connection-table) | CC BY-SA 4.0 |
-| [LDraw Official Model Repository](https://library.ldraw.org/omr) | The V8 engine test model: "8448 - box5.ldr" by Orion Pobursky, flattened into one file (`models/8448-engine.ldr`) | CC BY 2.0 (CCAL 2.0) |
+| [LDraw Official Model Repository](https://library.ldraw.org/omr) | The models from set 8448 by Orion Pobursky: the whole car, "8448 - main.ldr" (`models/8448-1.mpd`), and its V8 engine, "8448 - box5.ldr" (`models/8448-engine.mpd`) | CC BY 2.0 (CCAL 2.0) |
 
 ## Prior art
 

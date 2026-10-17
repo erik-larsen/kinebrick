@@ -321,48 +321,21 @@
 0 !COLOUR Electric_Contact_Alloy                                CODE 494   VALUE #D0D0D0   EDGE #333333                               METAL
 0 !COLOUR Electric_Contact_Copper                               CODE 495   VALUE #AE7A59   EDGE #333333                               METAL
 0 !COLOUR Trans_Sticker                                         CODE 10047 VALUE #FFFFFF   EDGE #FFFFFF   ALPHA 16
-0 Differential
-0 Name: differential.ldr
-0 Author: erik-larsen
-0 // A differential on a stand. An 8 tooth gear on the input axle drives the housing's 24 tooth
-0 // ring. Inside, a bevel gear on each output axle meshes with a third (planet) bevel gear on a
-0 // post in the housing. With nothing on the ground the stand is held still, and the two outputs
-0 // can turn at different speeds: turning the input turns both the same way, and holding the
-0 // input still lets one output turn the other the opposite way.
-
-0 // Step 1: a 6x8 plate with two 1x6 bricks and two Technic 1x6 bricks on top, on the plate's
-0 // second stud rows from each end (z = +-50), against the ends of the housing
 1 71 0 0 0 0 0 1 0 1 0 -1 0 0 3036.dat
 1 14 0 -24 50 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 0 -24 -50 1 0 0 0 1 0 0 0 1 3009.dat
 1 14 0 -48 50 1 0 0 0 1 0 0 0 1 3894.dat
 1 14 0 -48 -50 1 0 0 0 1 0 0 0 1 3894.dat
-0 STEP
-
-0 // Step 2: the differential housing, centred between the bricks at hole height
 1 71 0 -38 0 1 0 0 0 1 0 0 0 1 6573.dat
-0 STEP
-
-0 // Step 3: output axles with a bevel gear each, teeth facing the middle (17 LDU out)
 1 0 0 -38 -55 0 0 1 0 1 0 -1 0 0 32073.dat
 1 71 0 -38 -17 1 0 0 0 1 0 0 0 1 6589.dat
 1 0 0 -38 55 0 0 1 0 1 0 -1 0 0 32073.dat
 1 71 0 -38 17 -1 0 0 0 1 0 0 0 -1 6589.dat
-0 STEP
-
-0 // Step 4: the planet bevel gear on the housing's post, teeth facing up into the middle
 1 71 0 -21 0 1 0 0 0 0 -1 0 1 0 6589.dat
-0 STEP
-
-0 // Step 5: input axle with an 8 tooth gear meshing the 24 tooth ring (turned half a tooth)
 1 0 40 -38 0 0 0 1 0 1 0 -1 0 0 3707.dat
 1 72 40 -38 30 0.92388 -0.382683 0 0.382683 0.92388 0 0 0 1 3647.dat
-0 STEP
-
-0 // Step 6: a wheel rim on each output
 1 71 0 -38 90 1 0 0 0 1 0 0 0 1 3482.dat
 1 71 0 -38 -90 -1 0 0 0 1 0 0 0 -1 3482.dat
-0 STEP
 
 0 NOFILE
 0 FILE 3036.dat

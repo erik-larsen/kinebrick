@@ -4,7 +4,7 @@ How KineBrick works inside, for anyone changing the code. What it does, and how 
 
 ## How it works
 
-1. **Load.** `LDrawLoader` reads the model and the official LDraw parts library. Each part becomes its own 3D object that can be moved on its own.
+1. **Load.** `LDrawLoader` reads the model and the official LDraw parts library. Each part becomes its own 3D object that can be moved on its own. A model may be a multi-part file (MPD), made of submodels; KineBrick flattens it, placing each submodel's parts where the submodel puts them, and uses any unofficial parts the file brings with it. Shapes a submodel draws directly rather than with parts (hoses and springs bent to fit, as CAD programs generate them) are drawn, moving with a part placed by the same submodel line, but take no part in the mechanism.
 2. **Assign roles.** Each part is looked up in KineBrick's role list (see [Part roles](#part-roles)). Parts not in the list are `structure`.
 3. **Look up connection points.** Each part's connection points come from KineBrick's [connection table](#the-connection-table): where the part's holes, axles, pins and studs are, which way they point, how long they are, and what shape they are.
 4. **Connect.** Connection points from different parts that line up become connections. An axle passing through a round hole becomes a *joint* (it can turn). An axle passing through an axle hole becomes a *rigid* connection (the parts turn together). A tyre sitting on its rim is rigid too. A stud sitting in an anti-stud (the socket under a brick or plate) attaches two parts as well, as does the small pin under a 1-wide plate or tile plugged into a hollow stud (a tile running crosswise over Technic bricks, half a stud off the grid). An axle stub fixed to a part (a connector's, a crankshaft's) goes into holes like an axle, and an axle hole closed at one end takes an axle even with a thin round lip at its mouth. A pin through round holes in two parts is a joint between them: the parts turn on it. A piston in the bore of its cylinder, or a plate resting on smooth tiles, is a *sliding* joint. A piston slides along its bore for as long as the two still overlap by half a stud (its skirt may come out of the bottom, as on a real engine); a plate slides along its row of tiles for as long as it still overlaps them by a stud, overhanging the end. (A plate on tiles could really slide any way across them; rails either side keep it in line, and KineBrick takes them as read.) (Being round, a real piston could also turn in its bore, but that can't be seen, so KineBrick doesn't let it.) A towball in a ball socket (where a connecting rod meets its piston, or a steering link meets a steering arm) is a *ball* joint: it turns any way about the ball's centre.
@@ -137,7 +137,7 @@ Browser-level tests for these paths can come later.
 |---|---|
 | `models/` | Test models |
 | `src/main.ts` | The viewer: model picker, loading, camera, readout, re-reading after a shift |
-| `src/ldr.ts` | Reads the parts of an LDraw model file |
+| `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
 | `src/shift.ts` | Finds the parts that slide into set positions (driving rings) and moves them |
@@ -150,8 +150,8 @@ Browser-level tests for these paths can come later.
 | `src/connections.ts` | What a connection point looks like in the table |
 | `tests/` | The tests (see [Testing](#testing)) |
 | `scripts/build-connections.ts` | Builds the connection table (`npm run connections`) |
-| `scripts/pack-models.ts` | Packs each test model with the LDraw parts it uses (`npm run pack`) |
-| `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr, as test models must be |
+| `scripts/pack-models.ts` | Packs each test model, flattened, with the LDraw parts it uses (`npm run pack`) |
+| `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |
 | `packed/` | The packed models and part titles the viewer loads (generated, don't edit) |
 | `data/connections.json` | The connection table (generated, don't edit) |
 | `data/corrections.ldr` | KineBrick's own additions to the connection table |
