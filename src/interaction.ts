@@ -55,10 +55,11 @@ const MESSAGE_MOVE = 40;
 // How fast a part driven by Ctrl-click turns, relative to what its axle is mounted in.
 // How fast a part kept turning turns at first, in revolutions per minute (a quarter turn a second).
 export const DEFAULT_RPM = 15;
-// Largest step a part kept turning takes, in radians (10 degrees): one frame's turn up to
-// 100 rpm. Bigger than a drag's steps, to keep up on big models; it's just as exact, except
-// where it runs into something, so it creeps up to that in a drag's steps.
-const MOTOR_MAX_STEP = (10 * Math.PI) / 180;
+// Largest step a part kept turning takes, in radians (15 degrees): one frame's turn up to
+// 150 rpm at 60 frames a second, with room to spare at 100 rpm when a frame runs long. Bigger
+// than a drag's steps, to keep up on big models; it's just as exact, except where it runs into
+// something, so it creeps up to that in a drag's steps.
+const MOTOR_MAX_STEP = (15 * Math.PI) / 180;
 
 export interface InteractionSetup {
   renderer: WebGLRenderer;
