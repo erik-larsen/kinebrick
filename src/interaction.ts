@@ -74,6 +74,7 @@ export interface InteractionSetup {
   partTitle: (name: string) => Promise<string>;
   onMoved: () => void; // called after the mechanism moves
   onFreezeChanged: () => void; // called after a part is frozen or unfrozen
+  onMotorChanged: () => void; // called after a part starts or stops being kept turning
   blockedBy: () => [number, number] | null; // two parts now passing through each other, or slid to the end of their travel, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
   shift: (part: number, position: number) => void; // slides a part to one of its positions
@@ -400,6 +401,7 @@ export function setUpInteraction(s: InteractionSetup) {
     motorPart = part;
     s.appearance.drivenPart = part;
     s.appearance.update();
+    s.onMotorChanged();
   }
 
   // Ctrl-click: starts the part turning; on a part already turning, turns it the other way;
@@ -642,6 +644,7 @@ export function setUpInteraction(s: InteractionSetup) {
   return {
     runMotor, // call every frame with the seconds since the last
     stopMotor: () => setMotor(-1),
+    reverseMotor: () => (motorDirection = -motorDirection),
     setMotorRpm: (rpm: number) => (motorSpeed = (rpm / 60) * 2 * Math.PI),
     motorRunning: () => motorPart >= 0,
   };

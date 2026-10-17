@@ -49,19 +49,19 @@ Everything happens in the 3D view: drag parts with the mouse or a finger. A part
 | Drag a part that spins on an axle (a gear, a crank, a wheel) | It turns like a knob, following the pointer round its axle. |
 | Drag any other part (a frame, a piston, a rack, a linkage's middle beam) | It's pushed along the way it can move: a car rolls, a piston turns its crank (except at dead centre, top and bottom of its stroke). |
 | Drag a gearbox's driving ring | It clicks into the nearest gear. |
-| Ctrl-click a part that spins on an axle | It keeps turning on its own, like a motor, at the panel's **Spin speed** (whole rpm, 15 unless set). Ctrl-click it again to reverse, a third time to stop. One part turns at a time, and the camera follows the model while it turns. |
-| Alt-click (Option-click on a Mac) a part | Its body is frozen until you Alt-click it again, or click **Unfreeze all**. Useful where a mechanism can move more than one way: freeze a differential's input, and turning one output turns the other the opposite way. |
-| Click **Reset** | The model goes back as it was loaded, any motor stops, and the camera goes back to where it started. |
+| Ctrl-click a part that spins on an axle | It keeps turning on its own, like a motor, at the **Spin speed** set in the Options panel (whole rpm, 15 unless set). Ctrl-click it again to reverse, a third time to stop, or use **Reverse** and **Stop**, which show in the Options panel while it turns. One part turns at a time, and the camera follows the model while it turns. |
+| Alt-click (Option-click on a Mac) a part | Its body is frozen until you Alt-click it again, or click **Unfreeze all** in the Options panel. Useful where a mechanism can move more than one way: freeze a differential's input, and turning one output turns the other the opposite way. |
+| Click **Reset** in the Options panel | The model goes back as it was loaded, any motor stops, and the camera goes back to where it started. |
 
 Parts a drag doesn't need stay put: pushing a car leaves its steering alone, and turning its steering wheel leaves the car where it is. Motion stops where two parts would run into each other, or at the end of a slide's travel or a rack's teeth, and those two parts flash red. A part that can't move at all says why: the mechanism is jammed, a worm can't be driven from its gear, or the model has no wheels to roll on. Let go, and the model stays where it is; momentum waits for forces in 2.0.
 
-A readout shows how far the frame has moved and each body has turned or slid, so the motion can be checked by eye. A wheel on the ground also shows how far it rolled ÷ its radius, which its turn should match.
+The **Readout**, which opens under the model's summary, shows how far the frame has moved and each body has turned or slid, so the motion can be checked by eye. A wheel on the ground also shows how far it rolled ÷ its radius, which its turn should match.
 
 Each kind of information has its own channel: fill colour shows the parts' LEGO colours, a yellow glow what the pointer is on, and an outline their status (cyan frozen, green kept turning, red loose), with a 📌 or ⚠ badge pinned to frozen and loose parts. Outlines show through other parts in a darker shade.
 
 ### Options
 
-These are off unless you set them, in the panel or in the address, so the published viewer shows the plain model. Switching model keeps them.
+These are off unless you set them, in the Options panel at the top right or in the address, so the published viewer shows the plain model. Switching model keeps them.
 
 - **Body colours** (`option=bodycolours`): each body in its own colour instead of the parts' LEGO colours, the frame grey.
 - **Joint axes** (`option=axes`): each joint's axis as a thin pink rod.

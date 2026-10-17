@@ -16,6 +16,7 @@ import {
   Vector3,
   WebGLRenderer,
 } from 'three';
+import GUI, { Controller } from 'lil-gui';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
@@ -320,35 +321,48 @@ async function start() {
     window.location.search = params.toString();
   });
 
-  const bodyColours = document.getElementById('bodyColours') as HTMLInputElement;
-  bodyColours.checked = appearance.showBodyColours;
-  bodyColours.addEventListener('change', () => {
-    appearance.showBodyColours = bodyColours.checked;
+  // The options panel, upper right. Each option is kept in the address, so switching model
+  // keeps it.
+  const gui = new GUI({ title: 'Options' });
+  const settings = {
+    bodyColours: appearance.showBodyColours,
+    axes: axes.visible,
+    contacts: contacts.visible,
+    rpm: RPM,
+  };
+  const keepOption = (name: string, on: boolean) => {
+    const options = new Set(OPTIONS.filter((o) => o));
+    if (on) options.add(name);
+    else options.delete(name);
+    OPTIONS.splice(0, OPTIONS.length, ...options);
+    if (options.size) params.set('option', [...options].join(','));
+    else params.delete('option');
+    history.replaceState(null, '', '?' + params.toString());
+  };
+  gui.add(settings, 'bodyColours').name('Body colours').onChange((on: boolean) => {
+    appearance.showBodyColours = on;
     appearance.update();
+    keepOption('bodycolours', on);
   });
-  const axesBox = document.getElementById('axes') as HTMLInputElement;
-  axesBox.checked = axes.visible;
-  axesBox.addEventListener('change', () => {
-    axes.visible = axesBox.checked;
+  gui.add(settings, 'axes').name('Joint axes').onChange((on: boolean) => {
+    axes.visible = on;
+    keepOption('axes', on);
   });
-  const contactsBox = document.getElementById('contacts') as HTMLInputElement;
-  contactsBox.checked = contacts.visible;
-  contactsBox.addEventListener('change', () => {
-    contacts.visible = contactsBox.checked;
+  gui.add(settings, 'contacts').name('Gear contacts').onChange((on: boolean) => {
+    contacts.visible = on;
+    keepOption('contacts', on);
   });
 
-  // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" shows while any are frozen.
-  const unfreeze = document.getElementById('unfreeze') as HTMLButtonElement;
+  // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" (in the options panel,
+  // added below) shows while any are frozen.
+  let unfreezeButton: Controller | undefined;
+  let showMotor = () => {}; // shows the motor's buttons, once they're made (below)
   function showFrozen() {
     appearance.frozenBodies = new Set(kin.frozenBodies());
     appearance.update();
-    unfreeze.style.display = kin.frozenBodies().length ? '' : 'none';
+    unfreezeButton?.show(kin.frozenBodies().length > 0);
     updateReadout(mech, kin);
   }
-  unfreeze.addEventListener('click', () => {
-    kin.unfreezeAll();
-    showFrozen();
-  });
 
   const setup: InteractionSetup = {
     renderer,
@@ -363,6 +377,7 @@ async function start() {
     partTitle,
     onMoved: showPoses,
     onFreezeChanged: showFrozen,
+    onMotorChanged: () => showMotor(),
     blockedBy: () => collisions!.check(partMatrices()) ?? kin.atLimit(),
     slideOf,
     shift,
@@ -373,16 +388,10 @@ async function start() {
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
-  // The spin speed, set in the panel and kept in the address (so switching model keeps it).
-  const rpmBox = document.getElementById('rpm') as HTMLInputElement;
-  rpmBox.value = String(RPM);
+  // The spin speed for Ctrl-click, in whole rpm, kept in the address too.
   interaction.setMotorRpm(RPM);
-  rpmBox.addEventListener('change', () => {
-    const rpm = whole(rpmBox.value);
-    if (rpm === null) {
-      rpmBox.value = String(whole(params.get('rpm')) ?? DEFAULT_RPM);
-      return;
-    }
+  gui.add(settings, 'rpm', 1, 300, 1).name('Spin speed (rpm)').onFinishChange((value: number) => {
+    const rpm = Math.max(1, Math.round(value));
     interaction.setMotorRpm(rpm);
     if (rpm === DEFAULT_RPM) params.delete('rpm');
     else params.set('rpm', String(rpm));
@@ -409,7 +418,7 @@ async function start() {
 
   // Back to the model as loaded, shifted back too, with nothing turning, and the camera and
   // grid back where they started.
-  document.getElementById('reset')!.addEventListener('click', () => {
+  const reset = () => {
     interaction.stopMotor();
     camera.position.copy(startCamera.position);
     controls.target.copy(startCamera.target);
@@ -425,7 +434,22 @@ async function start() {
     });
     read(startParts);
     showPoses();
-  });
+  };
+  const unfreezeAll = () => {
+    kin.unfreezeAll();
+    showFrozen();
+  };
+  // Reverse and Stop show while a part is kept turning (Ctrl-click).
+  const reverseButton = gui.add({ reverse: () => interaction.reverseMotor() }, 'reverse').name('Reverse');
+  const stopButton = gui.add({ stop: () => interaction.stopMotor() }, 'stop').name('Stop');
+  showMotor = () => {
+    reverseButton.show(interaction.motorRunning());
+    stopButton.show(interaction.motorRunning());
+  };
+  showMotor();
+  unfreezeButton = gui.add({ unfreezeAll }, 'unfreezeAll').name('Unfreeze all');
+  gui.add({ reset }, 'reset').name('Reset');
+  showFrozen();
 }
 
 // Point the camera at the model from above and to one side, and put a grid on the ground
@@ -460,6 +484,18 @@ async function showLooseWarning(names: string[], loose: number[]) {
 // ---------------------------------------------------------------------------
 // Readout: how far the frame has moved and how far each joint has turned, so the motion can
 // be checked by eye. For a wheel, the expected turn is distance ÷ tyre radius.
+
+// Fades the readout's right edge while some of it is hidden to the right, short of the
+// scrollbars (see index.html).
+function showReadoutFade() {
+  const readout = document.getElementById('readout')!;
+  const box = document.getElementById('readoutBox')!;
+  box.classList.toggle('more', readout.scrollLeft + readout.clientWidth < readout.scrollWidth - 1);
+  box.style.setProperty('--bar-v', `${readout.offsetWidth - readout.clientWidth}px`);
+  box.style.setProperty('--bar-h', `${readout.offsetHeight - readout.clientHeight}px`);
+}
+document.getElementById('readout')!.addEventListener('scroll', showReadoutFade);
+document.getElementById('details')!.addEventListener('toggle', showReadoutFade);
 
 function updateReadout(mech: Mechanism, kin: Kinematics) {
   const readout = document.getElementById('readout')!;
@@ -505,6 +541,7 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     lines.push(line);
   });
   readout.textContent = lines.join('\n');
+  showReadoutFade();
 }
 
 // How far a body has turned about its axle, and the body that's measured against. Bodies on

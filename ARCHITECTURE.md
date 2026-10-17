@@ -2,6 +2,8 @@
 
 How KineBrick works inside, for anyone changing the code. What it does, and how to use it, is in the [README](README.md).
 
+Everything here is kinematics: how a mechanism can move, worked out from its geometry, with no masses or forces. That's version 1.0. Forces (momentum, springs that spring, clutches that slip) are for version 2.0, which will hand the same bodies and joints to the [MuJoCo](https://mujoco.org) physics engine rather than add physics of KineBrick's own.
+
 ## How it works
 
 1. **Load.** `LDrawLoader` reads the model and the official LDraw parts library. Each part becomes its own 3D object that can be moved on its own. A model may be a multi-part file (MPD), made of submodels; KineBrick flattens it, placing each submodel's parts where the submodel puts them, and uses any unofficial parts the file brings with it. Shapes a submodel draws directly rather than with parts (hoses and springs bent to fit, as CAD programs generate them) are drawn, moving with a part placed by the same submodel line, but take no part in the mechanism.
@@ -15,7 +17,7 @@ How KineBrick works inside, for anyone changing the code. What it does, and how 
 
 ### Bodies and the frame
 
-Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with a steering front axle (M4), linkages (M6) and suspension arms (M7). From M4, structure parts form bodies by how they're attached, through stud and rigid connections (already found for the check in step 5), and the frame is the largest of those bodies.
+Treating every `structure` part as one frame only works while no group of structure parts moves against the rest. That stops being true with a steering front axle (M4), linkages (M6) and suspension arms. From M4, structure parts form bodies by how they're attached, through stud and rigid connections (already found for the check in step 5), and the frame is the largest of those bodies.
 
 ## The solver
 
@@ -81,7 +83,7 @@ A role is a short label for what a part does in a mechanism. It tells KineBrick 
 | `steering wheel` | 2819 Technic Steering Wheel Small | Locks onto an axle through its axle hole. Like `structure`, but the body it's on is named after it. |
 | `differential` | 6573 Technic Differential with Gear 16 Tooth and 24 Tooth | Turns on the two output axles that pass into it. Carries a 16 and a 24 tooth gear ring outside, and a post inside for the middle (planet) bevel gear, which meshes with a bevel gear on each output. |
 
-More roles arrive with each milestone: springs, shock absorbers. A steering arm needs no role of its own: it's plates and a towball on the part a wheel turns on.
+More roles arrive with each milestone, as real models need them: hinges, universal joints, sprockets and chains, pulleys. Shock absorbers come as sliding joints that keep their length unless a drag needs them to move; their springs, like everything to do with forces, wait for version 2.0. A steering arm needs no role of its own: it's plates and a towball on the part a wheel turns on.
 
 ## Drags
 
