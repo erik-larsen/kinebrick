@@ -68,7 +68,7 @@ export interface InteractionSetup {
   partTitle: (name: string) => Promise<string>;
   onMoved: () => void; // called after the mechanism moves
   onFreezeChanged: () => void; // called after a part is frozen or unfrozen
-  blockedBy: () => [number, number] | null; // two parts now passing through each other, if any
+  blockedBy: () => [number, number] | null; // two parts now passing through each other, or slid to the end of their travel, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
   shift: (part: number, position: number) => void; // slides a part to one of its positions
 }

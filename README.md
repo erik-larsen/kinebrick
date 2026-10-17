@@ -6,7 +6,7 @@ A web viewer that makes LEGO Technic models move. Load an LDraw model and drag i
 
 ## Status
 
-M6.1 works: closed loops of parts, such as an engine's crank, connecting rod and piston, stay together however long they run. Parts can't pass through each other. Eleven test models, picked from a menu in the viewer:
+M6.2 works: a gear drives a rack, and closed loops of parts, such as an engine's crank, connecting rod and piston, stay together however long they run. Parts can't pass through each other. Twelve test models, picked from a menu in the viewer:
 
 - [Simple car](models/simple-car.ldr): drag the frame and it rolls along its length, its wheels turning by distance ÷ tyre radius; turn a tyre and the car rolls with it.
 - [Geared car](models/geared-car.ldr): the same car with two 8 tooth gears inside, so rolling the car spins a second axle the other way.
@@ -18,9 +18,10 @@ M6.1 works: closed loops of parts, such as an engine's crank, connecting rod and
 - [Two-speed gearbox](models/gearbox.ldr): an input axle with 8 and 16 tooth gears, driving a 24 and a 16 tooth clutch gear that freewheel on the output shaft, with a driving ring between them. Slide the ring towards the 24 tooth gear for first gear (the output turns a third as far as the input), towards the 16 tooth gear for second (as far as the input), or to the middle for neutral (the output stays put).
 - [Single-cylinder engine](models/engine.ldr): a crank on an axle drives a piston up and down its cylinder through a connecting rod. Turning the crank once moves the piston down its one-stud stroke and back; pushing the piston turns the crank, except at the top and bottom of its stroke.
 - [Four-bar linkage](models/four-bar.ldr): four beams pinned in a loop on a Technic brick. The short crank turns all the way round, rocking the far beam to and fro through about 63 degrees.
+- [Rack and pinion](models/rack-and-pinion.ldr): an 8 tooth gear on two 1x4 racks, which ride on a plate that slides along a row of tiles between rails. A quarter turn of the gear moves the rack 2 teeth; pushing the rack turns the gear. The rack travels 80 LDU either way, until the gear reaches the end of the teeth, its plate overhanging the tiles.
 - [Steering car, solid rear axle](models/steering-car-solid.ldr): the same car with one solid axle at the back. It rolls straight ahead, but once steered it jams, because the inner and outer rear wheels would have to roll different distances.
 
-The viewer labels the part under the pointer, and can draw each body in its own colour, each joint's axis, and where each pair of gears meet (see [Options](#options)). Next is M6.2: rack and pinion.
+The viewer labels the part under the pointer, and can draw each body in its own colour, each joint's axis, and where each pair of gears meet (see [Options](#options)). Next is M6.3: Ackermann steering.
 
 ## What KineBrick is, and isn't
 
@@ -77,7 +78,7 @@ Each milestone ends with a model that moves correctly and a test that checks it.
 | M5 | Worm gears, clutches, gearboxes | A worm turns its gear one tooth per turn and locks when driven from the gear. A two-speed gearbox shifts by sliding its driving ring: first gear turns the output a third as far as the input, second as far, and in neutral the output stays put. Clutches that slip under load wait for forces in M7. |
 | M6 | Linkages | In three parts, below. These need sliding joints, ball joints, and closed loops of parts kept together. |
 | M6.1 | Loops | A single-cylinder engine runs: turning its crank all the way round moves the piston up and down its cylinder, and pushing the piston turns the crank until dead centre. A four-bar linkage of beams on pins (a crank that turns all the way round, rocking a beam to and fro) moves through its full range. After many turns, no joint has drifted apart. |
-| M6.2 | Rack and pinion | Turning a gear slides a rack along its housing: a full turn of a 12 tooth gear moves the rack 12 teeth. Pushing the rack turns the gear. |
+| M6.2 | Rack and pinion | Turning a gear slides a rack along: a quarter turn of an 8 tooth gear moves the rack 2 teeth. Pushing the rack turns the gear. The racks ride on a plate sliding along tiles between rails, which may overhang them, and stop when the gear reaches the end of the teeth. |
 | M6.3 | Ackermann steering | Rack and pinion steering, with steering links on ball joints to a steering arm at each front wheel. Each front wheel pivots on its own, the inside one turning further, so pushing the steered car makes every wheel roll round the same centre. |
 | M7 | Forces | Springs, shock absorbers, suspension arms (which need springs to hold the car up; without them the frame's height is one more free motion), clutches that slip under load, and pushes or torques as input, through the MuJoCo physics engine. |
 

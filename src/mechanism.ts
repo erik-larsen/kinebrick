@@ -9,6 +9,10 @@ import { PlacedPart } from './ldr.ts';
 const AXIS_TOLERANCE = 0.5;
 // Minimum length two connection points must overlap along their axis, in LDU.
 const MIN_OVERLAP = 1;
+// How far the shorter of two sliding parts may stick out of the longer, in LDU (see slideRange).
+const SLIDE_SLACK = 2;
+// How much a part sliding on a plain surface (a plate on tiles) must still overlap it, in LDU.
+const SLIDE_OVERLAP = 20;
 
 // A connection point in model coordinates.
 interface WorldCylinder {
@@ -18,6 +22,7 @@ interface WorldCylinder {
   start: Vector3;
   dir: Vector3; // unit vector
   secs: Section[];
+  face?: Vector3; // a rack: the way its teeth face
 }
 
 // rigid     the parts turn together (an axle in an axle hole, a tyre on a rim)
@@ -35,6 +40,10 @@ export interface Connection {
   from: Vector3; // where the overlap starts, on the shared axis (for a ball: its centre)
   to: Vector3; // where it ends (for a ball: its centre again)
   stiff?: boolean; // turns on a friction pin
+  // A slide: where the male and female sections lie, as distances along the male's axis
+  // (from -> to), and whether it's on a plain surface (P) rather than in a bore (B). How far it
+  // may slide follows from them (see slideRange).
+  extents?: { male: [number, number]; female: [number, number]; surface: boolean };
 }
 
 export interface Body {
@@ -51,6 +60,10 @@ export interface Joint {
   from: Vector3; // the axis, as a segment covering every connection behind this joint (for a
   to: Vector3; //   ball, both are its centre)
   stiff: boolean; // turns on a friction pin, so a drag turns it only if nothing else can move
+  // A slide joint: how far bodyB may slide relative to bodyA from where it starts (along
+  // from -> to), and two parts that slide, which meet at either end of that.
+  range?: [number, number];
+  sliding?: [number, number];
 }
 
 // A tyre's tread: the part of a tyre that can touch the ground.
@@ -75,16 +88,21 @@ export interface Gear {
   bevel: string; // bevel teeth facing '+' (along axis), '-', 'both', or '' for none
   apex: number; // bevel teeth: distance from center to the tip of the pitch cone
   worm: number; // a worm: its thread's advance per turn (right-handed about axis), else 0
+  // A rack: the way its teeth face, else null. For a rack, center is the middle of its pitch
+  // line, axis the way that line runs, length its length, and radius 0.
+  face: Vector3 | null;
+  length: number;
 }
 
 // Two gears whose teeth mesh: where their teeth touch, both move at the same speed.
 //   spur   axes parallel, side by side
 //   bevel  axes crossing; the tips of their bevel cones meet where the axes cross
 //   worm   a worm (gearA) and a spur gear (gearB) on axes at right angles that don't meet
+//   rack   a spur gear (gearA) whose pitch circle touches a rack's pitch line (gearB)
 export interface Mesh {
   gearA: number; // index into gears
   gearB: number;
-  kind: 'spur' | 'bevel' | 'worm';
+  kind: 'spur' | 'bevel' | 'worm' | 'rack';
 }
 
 export interface Mechanism {
@@ -124,7 +142,9 @@ function worldCylinders(parts: PlacedPart[], table: ConnectionTable): WorldCylin
     for (const cyl of table.parts[part.name] ?? []) {
       const start = new Vector3(...cyl.start).applyMatrix4(part.matrix);
       const dir = new Vector3(...cyl.dir).transformDirection(part.matrix);
-      result.push({ part: index, gender: cyl.gender, caps: cyl.caps, start, dir, secs: cyl.secs });
+      const rack = cyl.secs[0].rack;
+      const face = rack ? new Vector3(...rack).transformDirection(part.matrix) : undefined;
+      result.push({ part: index, gender: cyl.gender, caps: cyl.caps, start, dir, secs: cyl.secs, face });
     }
   });
   return result;
@@ -147,18 +167,21 @@ function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
     const sec = c.secs[0];
     if (c.secs.length !== 1 || sec.shape !== 'G') continue;
     const center = c.start.clone().addScaledVector(c.dir, sec.length / 2);
+    const width = sec.rack ? (sec.width ?? 0) : sec.length;
     gears.push({
       part: c.part,
       body: bodyOf[c.part],
       center,
       axis: c.dir.clone(),
       radius: sec.radius,
-      width: sec.length,
+      width,
       teeth: sec.teeth ?? 0,
-      spur: sec.spur !== false,
+      spur: sec.spur !== false && !sec.rack,
       bevel: sec.bevel ?? '',
       apex: sec.apex ?? 0,
       worm: sec.worm ?? 0,
+      face: c.face ?? null,
+      length: sec.rack ? sec.length : 0,
     });
   }
   return gears;
@@ -172,6 +195,11 @@ function findMeshes(gears: Gear[]): Mesh[] {
       const gb = gears[b];
       if (ga.body === gb.body) continue;
       const parallel = new Vector3().crossVectors(ga.axis, gb.axis).length() < 0.01;
+      if (ga.face || gb.face) {
+        if (gb.face && rackMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'rack' });
+        if (ga.face && rackMesh(gb, ga)) meshes.push({ gearA: b, gearB: a, kind: 'rack' });
+        continue;
+      }
       if (ga.worm || gb.worm) {
         if (ga.worm && wormMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'worm' });
         if (gb.worm && wormMesh(gb, ga)) meshes.push({ gearA: b, gearB: a, kind: 'worm' });
@@ -180,6 +208,17 @@ function findMeshes(gears: Gear[]): Mesh[] {
       if (parallel && spurMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'spur' });
       if (!parallel && bevelMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'bevel' });
     }
+  }
+  // Racks lined up end to end on one body (two 1x4 racks on a plate) make one long row of
+  // teeth: a gear meshing with one of them also meshes with the rest, though it isn't over
+  // them yet, so it can roll from one to the next.
+  for (const mesh of meshes.slice()) {
+    if (mesh.kind !== 'rack') continue;
+    gears.forEach((other, r) => {
+      if (!other.face || other.body !== gears[mesh.gearB].body) return;
+      if (meshes.some((m) => m.gearA === mesh.gearA && m.gearB === r)) return;
+      if (rackMesh(gears[mesh.gearA], other, false)) meshes.push({ gearA: mesh.gearA, gearB: r, kind: 'rack' });
+    });
   }
   return meshes;
 }
@@ -208,6 +247,22 @@ function wormMesh(worm: Gear, gear: Gear): boolean {
   const alongWorm = new Vector3().subVectors(closest.onA, worm.center).dot(worm.axis);
   const alongGear = new Vector3().subVectors(closest.onB, gear.center).dot(gear.axis);
   return Math.abs(alongWorm) <= worm.width / 2 && Math.abs(alongGear) <= gear.width / 2;
+}
+
+// A spur gear meshes with a rack of the same tooth size when its axis lies across the rack
+// (at right angles both to the way the rack runs and to the way its teeth face), its pitch
+// circle touches the rack's pitch line, within the rack's length (unless `within` is false),
+// and their teeth overlap across their widths.
+function rackMesh(gear: Gear, rack: Gear, within = true): boolean {
+  if (!gear.spur || gear.worm || gear.face) return false;
+  const face = rack.face!;
+  // Tooth size: the distance between teeth along the pitch line.
+  if (Math.abs((2 * Math.PI * gear.radius) / gear.teeth - rack.length / rack.teeth) > 0.25) return false;
+  if (Math.abs(gear.axis.dot(rack.axis)) > 0.01 || Math.abs(gear.axis.dot(face)) > 0.01) return false;
+  const offset = new Vector3().subVectors(gear.center, rack.center);
+  if (within && Math.abs(offset.dot(rack.axis)) > rack.length / 2) return false;
+  if (Math.abs(offset.dot(face) - gear.radius) > AXIS_TOLERANCE) return false;
+  return (gear.width + rack.width) / 2 - Math.abs(offset.dot(gear.axis)) >= MIN_OVERLAP;
 }
 
 // The closest points of two lines (each a point and a unit direction), and how far apart they are.
@@ -263,7 +318,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
   if (male.shape === 'K' && female.shape === 'K' && same) return 'rigid'; // driving ring in a clutch gear
   if (male.shape === 'A' && female.shape === 'R' && same) return 'revolute'; // axle in round hole
   if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole
-  if (male.shape === 'R' && female.shape === 'B' && same) return 'slide'; // piston in its bore
+  if ((male.shape === 'R' || male.shape === 'S') && (female.shape === 'B' || female.shape === 'P') && same) return 'slide'; // piston in its bore, plate on a tile
   if (male.shape === 'R' && female.shape === 'A' && male.radius < female.radius) return 'revolute'; // thin pin in axle hole
   return null;
 }
@@ -408,13 +463,28 @@ function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
   }
   if (total < MIN_OVERLAP) return null;
 
-  return {
-    male: m.part,
-    female: f.part,
-    kind,
-    from: m.start.clone().addScaledVector(m.dir, lo),
-    to: m.start.clone().addScaledVector(m.dir, hi),
-  };
+  const from = m.start.clone().addScaledVector(m.dir, lo);
+  let extents: Connection['extents'];
+  if (kind === 'slide') {
+    // Measured along from -> to, from `from`.
+    const length = (c: WorldCylinder) => c.secs.reduce((sum, sec) => sum + sec.length, 0);
+    const fEnd = along + sign * length(f);
+    const surface = f.secs.some((sec) => sec.shape === 'P');
+    extents = { male: [-lo, length(m) - lo], female: [Math.min(along, fEnd) - lo, Math.max(along, fEnd) - lo], surface };
+  }
+  return { male: m.part, female: f.part, kind, from, to: m.start.clone().addScaledVector(m.dir, hi), extents };
+}
+
+// How far a slide's male part may slide from where it is, relative to the female. In a bore,
+// as far as the shorter of the two stays within the longer (to within SLIDE_SLACK), as a piston
+// stays in its bore. On a plain surface, for as long as they still overlap by SLIDE_OVERLAP, as
+// a plate may overhang the end of its row of tiles.
+function slideRange(e: { male: [number, number]; female: [number, number]; surface: boolean }): [number, number] {
+  const [mLo, mHi] = e.male;
+  const [fLo, fHi] = e.female;
+  if (e.surface) return [fLo - mHi + SLIDE_OVERLAP, fHi - mLo - SLIDE_OVERLAP];
+  if (mHi - mLo <= fHi - fLo) return [fLo - mLo - SLIDE_SLACK, fHi - mHi + SLIDE_SLACK];
+  return [fHi - mHi - SLIDE_SLACK, fLo - mLo + SLIDE_SLACK];
 }
 
 // Step 6: parts that are rigidly connected (an axle in an axle hole, a tyre on a rim) or
@@ -476,6 +546,7 @@ const BODY_NOUNS: [string, string][] = [
   ['piston', 'piston'],
   ['connecting rod', 'connecting rod'],
   ['crankshaft', 'crankshaft'],
+  ['rack', 'rack'],
   ['tyre', 'wheels'],
   ['rim', 'wheels'],
   ['differential', 'differential'],
@@ -497,8 +568,10 @@ function nameBodies(bodyOf: number[], roles: string[]): Body[] {
       body.name = 'frame';
       return;
     }
-    // Other bodies with bricks or beams in them are assemblies (a steering axle's carrier).
-    const noun = bodyRoles.includes('structure') ? 'assembly' : (BODY_NOUNS.find(([role]) => bodyRoles.includes(role))?.[1] ?? 'body');
+    // Other bodies with bricks or beams in them are assemblies (a steering axle's carrier),
+    // unless they carry a rack (racks on a plate).
+    let noun = BODY_NOUNS.find(([role]) => bodyRoles.includes(role))?.[1] ?? 'body';
+    if (bodyRoles.includes('structure') && !bodyRoles.includes('rack')) noun = 'assembly';
     counts.set(noun, (counts.get(noun) ?? 0) + 1);
     body.name = `${noun} ${counts.get(noun)}`;
   });
@@ -523,6 +596,35 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
     } else {
       joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true });
     }
+  }
+
+  // A slide joint's travel, from all the slide connections behind it together (a plate on a
+  // row of tiles: it may slide as far as it stays over the row, not over each tile).
+  for (const joint of joints) {
+    if (joint.kind !== 'slide') continue;
+    const dir = new Vector3().subVectors(joint.to, joint.from).normalize();
+    let male: [number, number] = [Infinity, -Infinity];
+    let female: [number, number] = [Infinity, -Infinity];
+    let maleBody = -1;
+    let surface = false;
+    for (const c of connections) {
+      if (c.kind !== 'slide' || !c.extents || !sameBodies(joint, bodyOf[c.male], bodyOf[c.female]) || !onSameAxis(joint, c)) continue;
+      // Move the connection's extents to be measured from the joint's `from`, along its axis.
+      const sign = new Vector3().subVectors(c.to, c.from).dot(dir) >= 0 ? 1 : -1;
+      const shift = new Vector3().subVectors(c.from, joint.from).dot(dir);
+      const place = ([lo, hi]: [number, number]): [number, number] => [Math.min(shift + sign * lo, shift + sign * hi), Math.max(shift + sign * lo, shift + sign * hi)];
+      const [m0, m1] = place(c.extents.male);
+      const [f0, f1] = place(c.extents.female);
+      male = [Math.min(male[0], m0), Math.max(male[1], m1)];
+      female = [Math.min(female[0], f0), Math.max(female[1], f1)];
+      maleBody = bodyOf[c.male];
+      surface = c.extents.surface;
+      joint.sliding = [c.male, c.female];
+    }
+    if (maleBody < 0) continue;
+    // How far the male may slide; the joint measures bodyB relative to bodyA.
+    const range = slideRange({ male, female, surface });
+    joint.range = joint.bodyB === maleBody ? range : [-range[1], -range[0]];
   }
   return joints;
 }

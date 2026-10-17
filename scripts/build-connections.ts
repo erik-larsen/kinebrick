@@ -154,6 +154,28 @@ function gearFromMeta(meta: Meta): WorkingCylinder[] {
   return cyls;
 }
 
+// A RACK line from data/corrections.ldr: a rack's pitch line, given directly in the part's
+// coordinates, e.g.
+//   "0 !KINEBRICK RACK [teeth=32] [length=256] [width=20] [pos=-116 -25 0] [dir=1 0 0] [face=0 -1 0]"
+// Stored as a cylinder along the pitch line with one G section of radius 0: its length is the
+// pitch line's, and it also keeps the tooth count, the way the teeth face, and their width.
+function rackFromMeta(meta: Meta): WorkingCylinder[] {
+  const p = meta.params;
+  const length = Number(p.get('length'));
+  return [
+    {
+      id: '',
+      gender: 'M',
+      caps: 'none',
+      start: numbers(p.get('pos'), [0, 0, 0]) as Vec3,
+      dir: numbers(p.get('dir'), [1, 0, 0]) as Vec3,
+      secs: [{ shape: 'G', radius: 0, length, teeth: Number(p.get('teeth')), rack: numbers(p.get('face'), [0, -1, 0]) as Vec3, width: Number(p.get('width')) }],
+      scaleRule: 'none',
+      mirrorRule: 'none',
+    },
+  ];
+}
+
 // A SNAP_GEN line shaped as a sphere ([bounding=sph 8]): a towball (M) or a ball socket (F).
 // Stored as a cylinder with one O section, as long as the ball is wide and centred on it,
 // so it can be placed like any other cylinder. Other SNAP_GEN shapes aren't used yet.
@@ -312,6 +334,8 @@ function fileCylinders(name: string): WorkingCylinder[] {
       result.push(...cylindersFromMeta(meta));
     } else if (meta.kind === 'GEAR') {
       result.push(...gearFromMeta(meta));
+    } else if (meta.kind === 'RACK') {
+      result.push(...rackFromMeta(meta));
     } else if (meta.kind === 'SNAP_GEN') {
       result.push(...ballFromMeta(meta));
     } else if (meta.kind === 'SNAP_INCL') {

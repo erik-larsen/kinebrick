@@ -14,8 +14,11 @@ export type Vec3 = [number, number, number];
 //   T  tyre seat (where a tyre sits on a rim)
 //   W  tread (where a tyre touches the ground; worked out from the tyre's shape)
 //   L  a flexible bit (a pin's springy tip, a driving ring's click-bump): fits nothing
-//   B  bore: a round bore a part may slide along (an engine cylinder's, which a piston slides
-//      in). KineBrick only lets parts slide where its corrections say so.
+//   B  bore: a bore a part may slide along (an engine cylinder's, which a piston slides in),
+//      for as long as the shorter of the two stays within the longer
+//   P  plain surface: a smooth surface a part may slide along (a tile's top, which a plate
+//      slides on), for as long as they still overlap by a stud. KineBrick only lets parts slide
+//      (B or P) where its corrections say so.
 //   O  ball: a towball (M) or ball socket (F), from the shadow library's spheres; the
 //      cylinder is as long as the ball is wide, centred on the ball
 //   K  clutch: a driving ring's clutch teeth (M) and a clutch gear's clutch face (F); where
@@ -34,6 +37,9 @@ export interface Section {
   //               tip of its 45 degree pitch cone is. Two bevel gears mesh when their tips meet.
   worm?: number; // a worm: how far its thread advances along the axis per turn (positive for a
   //               right-handed thread about dir). Meshes with a spur gear at right angles.
+  rack?: Vec3; // a rack: the way its teeth face, in the part's own coordinates. The cylinder
+  //              is its pitch line, the section's length the length of its teeth, radius 0.
+  width?: number; // a rack: how wide its teeth are
 }
 
 export interface Cylinder {

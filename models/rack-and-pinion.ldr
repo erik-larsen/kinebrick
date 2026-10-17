@@ -1,0 +1,34 @@
+0 Rack and Pinion
+0 Name: rack-and-pinion.ldr
+0 Author: erik-larsen
+0 // An 8 tooth gear on two 1x4 racks, which ride on a 1x8 plate that slides along a row of
+0 // three 1x4 tiles between two rails. Turning the gear slides the rack; a full turn moves it
+0 // 8 teeth (62.8 LDU). The rack travels 80 LDU either way, until the gear reaches the end of
+0 // the teeth; the plate may overhang the tiles that far.
+0 // The near rail is a single brick, low enough to show the rack and gear; the far rail has a
+0 // Technic brick on top, and the gear's axle turns in its middle hole. Heights: base
+0 // plate top y = 0, tiles to -8, plate to -16, racks to -24 (pitch line -28), gear centre -38.
+
+0 // Step 1: a 4x12 base plate, with a row of three 1x4 tiles along its middle
+1 72 0 0 -10 1 0 0 0 1 0 0 0 1 3029.dat
+1 71 -80 -8 0 1 0 0 0 1 0 0 0 1 2431.dat
+1 71 0 -8 0 1 0 0 0 1 0 0 0 1 2431.dat
+1 71 80 -8 0 1 0 0 0 1 0 0 0 1 2431.dat
+0 STEP
+
+0 // Step 2: the rails: a 1x12 brick near, and far a 1x12 brick with a 1x12 Technic brick on top
+1 14 0 -24 -20 1 0 0 0 1 0 0 0 1 6112.dat
+1 14 0 -24 20 1 0 0 0 1 0 0 0 1 6112.dat
+1 14 0 -48 20 1 0 0 0 1 0 0 0 1 3895.dat
+0 STEP
+
+0 // Step 3: the rack: a 1x8 plate on the tiles, with two 1x4 racks on it
+1 0 0 -16 0 1 0 0 0 1 0 0 0 1 3460.dat
+1 4 -40 -24 0 1 0 0 0 1 0 0 0 1 3743.dat
+1 4 40 -24 0 1 0 0 0 1 0 0 0 1 3743.dat
+0 STEP
+
+0 // Step 4: the gear on a 3L axle through the Technic brick's middle hole
+1 0 0 -38 10 0 0 1 0 1 0 -1 0 0 4519.dat
+1 71 0 -38 0 1 0 0 0 1 0 0 0 1 3647.dat
+0 STEP

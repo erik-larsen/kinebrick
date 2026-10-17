@@ -42,15 +42,16 @@
 0 // when their cones' tips meet where the axles cross. Measured from the LDraw shapes: for
 0 // double bevel gears, tooth radius + distance along the axle is constant (the cone),
 0 // reaching the axle 20, 30, 40, 50 LDU from the middle for 12, 20, 28, 36 teeth.
-0 // Double bevel gears also mesh side by side like spur gears, at 0.625 LDU pitch radius per tooth.
+0 // Double bevel gears also mesh side by side like spur gears, with the same size of tooth:
+0 // 1.25 LDU pitch radius per tooth (their teeth reach 17 and 27 LDU out for 12 and 20 teeth).
 
 0 FILE 32270.dat
 0 // Technic Gear 12 Tooth Double Bevel
-0 !KINEBRICK GEAR [teeth=12] [radius=7.5] [width=20] [bevel=both] [apex=20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !KINEBRICK GEAR [teeth=12] [radius=15] [width=20] [bevel=both] [apex=20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 32269.dat
 0 // Technic Gear 20 Tooth Double Bevel
-0 !KINEBRICK GEAR [teeth=20] [radius=12.5] [width=20] [bevel=both] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=20] [bevel=both] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 6589.dat
 0 // Technic Gear 12 Tooth Bevel: teeth face +z, cone tip 17 LDU out (where it sits in a differential)
@@ -118,3 +119,26 @@
 0 !LDCAD SNAP_CLEAR
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 10] [center=true] [pos=0 0 -15] [ori=1 0 0 0 0 1 0 -1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 30] [center=true] [pos=-10 0 5] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 // Racks. A rack's teeth are the same size as a spur gear's: one gear tooth (2 x pi x 1.25 =
+0 // 7.854 LDU) apart, though the LDraw shapes draw them 8 LDU apart. !KINEBRICK RACK gives the
+0 // pitch line (where a gear's pitch circle touches it): where it starts [pos], which way it
+0 // runs [dir] and how long it is, which way the teeth face [face], and how wide they are.
+
+0 FILE 3743.dat
+0 // Technic Gear Rack 1 x 4: a plate with ten teeth along its top, their tips 6 LDU above it. Its pitch line is 4 LDU above its top, so an 8 tooth gear in a Technic brick's hole
+0 // meshes with a rack lying on plates, as LEGO designed it.
+0 !KINEBRICK RACK [teeth=10] [length=80] [width=20] [pos=-40 -4 0] [dir=1 0 0] [face=0 -1 0]
+
+0 // Sliding on tiles. A plate resting on smooth tiles slides along them (rails either side keep
+0 // it in line; KineBrick doesn't check for those), for as long as it still overlaps the row of
+0 // tiles by a stud. The plate's underside is a slider (S) along its length, and each tile's top
+0 // a plain surface (P) it may slide on.
+
+0 FILE 3460.dat
+0 // Plate 1 x 8
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=S 10 160] [center=true] [pos=0 8 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 FILE 2431.dat
+0 // Tile 1 x 4 with Groove
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=P 10 80] [center=true] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]

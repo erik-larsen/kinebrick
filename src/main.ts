@@ -47,6 +47,7 @@ const MODELS: [string, string][] = [
   ['gearbox', 'Two-speed gearbox'],
   ['engine', 'Single-cylinder engine'],
   ['four-bar', 'Four-bar linkage'],
+  ['rack-and-pinion', 'Rack and pinion'],
 ];
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');
@@ -211,7 +212,8 @@ async function start() {
       const a = mech.gears[m.gearA];
       const b = mech.gears[m.gearB];
       const dot = new Mesh(new SphereGeometry(3, 16, 8), meshMaterial);
-      dot.position.copy(a.center).lerp(b.center, a.radius / (a.radius + b.radius));
+      if (m.kind === 'rack') dot.position.copy(a.center).addScaledVector(b.face!, -a.radius);
+      else dot.position.copy(a.center).lerp(b.center, a.radius / (a.radius + b.radius));
       dot.renderOrder = 10;
       dot.updateMatrix();
       dot.userData.body = kin.parentLink(a.body)?.parent ?? a.body;
@@ -331,7 +333,7 @@ async function start() {
     partTitle,
     onMoved: showPoses,
     onFreezeChanged: showFrozen,
-    blockedBy: () => collisions!.check(partMatrices()),
+    blockedBy: () => collisions!.check(partMatrices()) ?? kin.atLimit(),
     slideOf,
     shift,
   };

@@ -204,6 +204,35 @@ export class Kinematics {
     return onB.sub(onA).dot(axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]));
   }
 
+  // Two parts that have gone past the end of their travel, or null if none have: a slide
+  // joint slid past either end (a plate run off its row of tiles), or a gear run off the end of
+  // a rack's teeth.
+  atLimit(): [number, number] | null {
+    for (let j = 0; j < this.mech.joints.length; j++) {
+      const { range, sliding } = this.mech.joints[j];
+      if (!range || !sliding) continue;
+      const offset = this.slideOffset(j);
+      if (offset < range[0] - 1e-9 || offset > range[1] + 1e-9) return sliding;
+    }
+    // A gear on a rack (or on a row of racks): where it touches must be within the teeth of
+    // one of them.
+    const rackMeshes = this.mech.meshes.filter((m) => m.kind === 'rack');
+    for (const gearIndex of new Set(rackMeshes.map((m) => m.gearA))) {
+      let nearest: [number, number] | null = null;
+      let onTeeth = false;
+      for (const mesh of rackMeshes.filter((m) => m.gearA === gearIndex)) {
+        const contact = this.meshContact(mesh)!;
+        const rack = contact.b;
+        const middle = rack.center.clone().applyMatrix4(this.poses[rack.body]);
+        const along = Math.abs(new Vector3().subVectors(contact.pitchPoint, middle).dot(contact.across));
+        if (along <= rack.length / 2 + 1e-9) onTeeth = true;
+        nearest = nearest ?? [contact.a.part, rack.part];
+      }
+      if (!onTeeth && nearest) return nearest;
+    }
+    return null;
+  }
+
   // The point on a joint's axis nearest to `p`, where the joint is now.
   nearestOnAxis(joint: number, p: Vector3): Vector3 {
     const j = this.mech.joints[joint];
@@ -514,6 +543,13 @@ export class Kinematics {
       const lean = Math.atan(a.worm / (2 * Math.PI * a.radius));
       const across = axisA.clone().multiplyScalar(Math.cos(lean)).addScaledVector(surface, -Math.sin(lean));
       return { a, b, pitchPoint, across };
+    }
+    if (mesh.kind === 'rack') {
+      // b is the rack. Where the gear's pitch circle touches the rack's pitch line, the gear's
+      // teeth and the rack move at the same speed along the rack.
+      const face = b.face!.clone().transformDirection(this.poses[b.body]);
+      const pitchPoint = ca.clone().addScaledVector(face, -a.radius);
+      return { a, b, pitchPoint, across: axisB };
     }
     if (mesh.kind === 'spur') {
       // On the line between the centres, split in the ratio of the pitch radii.
