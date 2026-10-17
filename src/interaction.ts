@@ -47,6 +47,11 @@ const MIN_ARC_RADIUS = 10; // LDU, so an arc grabbed near the axle is still visi
 const MAX_STEP = 1;
 // Most push steps per pointer movement.
 const MAX_STEPS = 60;
+// A message in the label (such as "Froze gear 1") stays up this long, in milliseconds, unless
+// the pointer moves this far away, in pixels. (A click nearly always moves the pointer a
+// little, so a message that went at the first move would hardly be seen.)
+const MESSAGE_TIME = 2000;
+const MESSAGE_MOVE = 40;
 // How fast a part driven by Ctrl-click turns, relative to what its axle is mounted in.
 const MOTOR_SPEED = Math.PI / 2; // radians per second: a quarter turn
 
@@ -108,9 +113,14 @@ export function setUpInteraction(s: InteractionSetup) {
   let shifting: Shift | null = null;
   let motorPart = -1; // the part kept turning (Ctrl-click), or -1
   let motorDirection = 1; // 1, or -1 for the other way (Shift-Ctrl-click)
+  let ctrlHeld = false; // the Ctrl key is down (see the contextmenu handler)
+  let ctrlClickHandled = false; // a press already handled the Ctrl-click a context menu follows
   // True while the label shows a message (such as "Froze ...") rather than the
-  // hovered part's name, until the pointer next moves.
+  // hovered part's name; when and where it was shown.
   let showingMessage = false;
+  let messageTime = 0;
+  let messageX = 0;
+  let messageY = 0;
 
   // ---------------------------------------------------------------------------
   // Coordinates
@@ -174,10 +184,13 @@ export function setUpInteraction(s: InteractionSetup) {
     placeLabel(clientX, clientY);
   }
 
-  // A message in the label, kept until the pointer next moves.
+  // A message in the label, kept for MESSAGE_TIME or until the pointer moves MESSAGE_MOVE away.
   function showMessage(text: string, clientX: number, clientY: number) {
     showLabel(text, clientX, clientY);
     showingMessage = true;
+    messageTime = performance.now();
+    messageX = clientX;
+    messageY = clientY;
   }
 
   function hideLabel() {
@@ -188,12 +201,17 @@ export function setUpInteraction(s: InteractionSetup) {
   // Hover
 
   function hover(clientX: number, clientY: number) {
-    showingMessage = false;
     const hit = hitAt(clientX, clientY);
     const part = hit ? hit.part : -1;
     if (part !== s.appearance.hoveredPart) {
       s.appearance.hoveredPart = part;
       s.appearance.update();
+    }
+    if (showingMessage) {
+      const recent = performance.now() - messageTime < MESSAGE_TIME;
+      const near = Math.hypot(clientX - messageX, clientY - messageY) < MESSAGE_MOVE;
+      if (recent && near) return; // leave the message up
+      showingMessage = false;
     }
     if (part < 0) {
       hideLabel();
@@ -468,6 +486,7 @@ export function setUpInteraction(s: InteractionSetup) {
     'pointerdown',
     (e) => {
       if (drag || shifting) return; // already dragging with another finger or pointer
+      ctrlClickHandled = false;
       hover(e.clientX, e.clientY);
       const hit = hitAt(e.clientX, e.clientY);
       if (!hit) return; // empty space: let the camera turn
@@ -477,10 +496,11 @@ export function setUpInteraction(s: InteractionSetup) {
         toggleFreeze(s.mech.bodyOf[hit.part], e.clientX, e.clientY);
         return;
       }
-      if (e.ctrlKey) {
+      if (e.ctrlKey || ctrlHeld) {
         // Ctrl-click: keep the part turning, or stop it; Shift-Ctrl-click the other way. Keep
         // the camera from moving.
         e.stopImmediatePropagation();
+        ctrlClickHandled = true;
         toggleMotor(hit.part, e.shiftKey ? -1 : 1, e.clientX, e.clientY);
         return;
       }
@@ -532,6 +552,27 @@ export function setUpInteraction(s: InteractionSetup) {
     },
     { capture: true },
   );
+
+  // On a Mac, Ctrl-click is the system's right click, and browsers report it in different
+  // ways: as a right-button press, sometimes without the Ctrl flag, or mainly as a context
+  // menu event. So the Ctrl key is also tracked on its own, and a Ctrl context menu event on a
+  // part counts as a Ctrl-click if no press already did.
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Control') ctrlHeld = true;
+  });
+  window.addEventListener('keyup', (e) => {
+    if (e.key === 'Control') ctrlHeld = false;
+  });
+  window.addEventListener('blur', () => (ctrlHeld = false));
+  canvas.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (ctrlClickHandled || !(e.ctrlKey || ctrlHeld)) {
+      ctrlClickHandled = false;
+      return;
+    }
+    const hit = hitAt(e.clientX, e.clientY);
+    if (hit) toggleMotor(hit.part, e.shiftKey ? -1 : 1, e.clientX, e.clientY);
+  });
 
   canvas.addEventListener('pointermove', (e) => {
     if (shifting) {
