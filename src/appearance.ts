@@ -1,7 +1,7 @@
 // How parts look. Each kind of information gets its own channel, so they never fight:
 //   fill colour  which body a part belongs to (body colours), or its own LEGO colours
 //   yellow glow  what the pointer is on: the hovered part, and faintly the rest of its body
-//   outline      status: frozen (cyan), driven (green) and loose (red)
+//   outline      status: frozen (cyan), the part kept turning (green) and loose (red)
 //   badge        status, as an icon pinned to the part: 📌 frozen, ⚠ loose (a part kept
 //                turning has no badge: its turning shows it)
 
@@ -80,8 +80,8 @@ export class Appearance {
     const partsOf = (test: (part: number) => boolean) => this.partObjects.filter((_, part) => test(part));
     this.outlines.set('frozen', partsOf((p) => this.frozenBodies.has(this.mech.bodyOf[p])));
     this.outlines.set('loose', partsOf((p) => this.looseParts.has(p)));
-    const drivenBody = this.drivenPart >= 0 ? this.mech.bodyOf[this.drivenPart] : -1;
-    this.outlines.set('driven', partsOf((p) => this.mech.bodyOf[p] === drivenBody));
+    // Only the part that was Ctrl-clicked, not the rest of its body.
+    this.outlines.set('driven', partsOf((p) => p === this.drivenPart));
 
     // Badges: one ⚠ per loose part, one 📌 per frozen body (on its biggest part).
     for (const badge of this.badges) badge.removeFromParent();
