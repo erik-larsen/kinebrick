@@ -9,8 +9,8 @@
       #panel { z-index: 10; position: fixed; top: 12px; left: 12px; background: rgba(255, 255, 255, 0.9); border-radius: 8px; padding: 10px 12px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); }
       #panel h1 { font-size: 15px; margin: 0 0 4px; }
       #panel label { display: block; margin-top: 4px; cursor: pointer; }
-      #summary, #hint { color: #5a6475; }
-      #hint { margin-top: 6px; font-size: 12px; }
+      #summary, .hint { color: #5a6475; }
+      .hint { margin-top: 4px; font-size: 12px; }
       #warning { display: none; margin-top: 6px; max-width: 260px; color: #b3261e; font-size: 12px; }
       #panel select { font: inherit; margin: 2px 0 4px; }
       #panel button { margin-top: 8px; font: inherit; padding: 2px 10px; cursor: pointer; }
@@ -19,7 +19,7 @@
       .badges { position: fixed; top: 0; left: 0; pointer-events: none; }
       .badge { font-size: 18px; line-height: 1; padding: 3px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35); }
       .badge-loose { border: 2px solid #d00000; }
-      .badge-held { border: 2px solid #00a6d6; }
+      .badge-frozen { border: 2px solid #00a6d6; }
       .badge-driven { border: 2px solid #22b14c; }
       #label { z-index: 10; position: fixed; pointer-events: none; background: #1d2430; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; display: none; }
     </style>
@@ -30,11 +30,14 @@
       <select id="model"></select>
       <div id="summary">Loading…</div>
       <div id="warning"></div>
-      <label><input type="checkbox" id="bodyColours" checked /> Body colours</label>
-      <label><input type="checkbox" id="jointAxes" checked /> Joints and gear meshes</label>
-      <div id="hint">Alt-click (Option-click on a Mac) a part to hold it still, Ctrl-click a spinning part to keep it turning</div>
+      <label><input type="checkbox" id="bodyColours" /> Body colours</label>
+      <label><input type="checkbox" id="axes" /> Joint axes</label>
+      <label><input type="checkbox" id="contacts" /> Gear contacts</label>
+      <div class="hint">Drag to move/spin part</div>
+      <div class="hint">Ctrl-click to spin axled part (shift-ctrl to reverse)</div>
+      <div class="hint">Alt-click/Option-click to freeze part</div>
       <button id="reset">Reset</button>
-      <button id="letGo">Let go of all</button>
+      <button id="unfreeze">Unfreeze all</button>
     </div>
     <div id="readout"></div>
     <div id="label"></div>

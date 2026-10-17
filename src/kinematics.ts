@@ -58,8 +58,8 @@ export class Kinematics {
   private parentJoint: number[] = [];
   private order: number[] = []; // bodies, parents before children
   private rootPoses = new Map<number, Matrix4>();
-  private fixedBody = -1; // held still when the model has no tyres on the ground
-  private held = new Set<number>(); // bodies the user is holding still
+  private fixedBody = -1; // kept still when the model has no tyres on the ground
+  private frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
   private dragHeld = new Set<number>(); // bodies held still for the length of one drag
   private contactTreads: number[] = []; // indices into mech.treads
 
@@ -80,7 +80,7 @@ export class Kinematics {
   }
 
   // The ground is level with the lowest tyre. Tyres within GROUND_TOLERANCE of it touch it.
-  // With no tyres, the frame (or the first body) is held still instead.
+  // With no tyres, the frame (or the first body) is kept still instead.
   private findGround() {
     let lowest = -Infinity;
     for (const t of this.mech.treads) {
@@ -166,28 +166,28 @@ export class Kinematics {
     return { point: j.from.clone().applyMatrix4(pose), dir: axisOf(j.from, j.to).transformDirection(pose) };
   }
 
-  // Whether the frame is held still (the model has no tyres on the ground).
-  frameHeld(): boolean {
+  // Whether the frame is kept still (the model has no tyres on the ground).
+  frameFixed(): boolean {
     return this.fixedBody >= 0;
   }
 
-  // Holding a body still: a body that turns on a joint stops turning on it; a root body (the
+  // Freezing a body: a body that turns on a joint stops turning on it; a root body (the
   // frame) stops moving altogether. Everything else moves only in ways that allow that.
-  toggleHold(body: number) {
-    if (this.held.has(body)) this.held.delete(body);
-    else this.held.add(body);
+  toggleFreeze(body: number) {
+    if (this.frozen.has(body)) this.frozen.delete(body);
+    else this.frozen.add(body);
   }
 
-  isHeld(body: number): boolean {
-    return this.held.has(body);
+  isFrozen(body: number): boolean {
+    return this.frozen.has(body);
   }
 
-  heldBodies(): number[] {
-    return [...this.held];
+  frozenBodies(): number[] {
+    return [...this.frozen];
   }
 
-  letGoOfAll() {
-    this.held.clear();
+  unfreezeAll() {
+    this.frozen.clear();
   }
 
   // Before a drag: holds still everything the drag doesn't need to move, so that pushing a
@@ -196,6 +196,7 @@ export class Kinematics {
   // gear before its differential), and keeps each hold for which `stillPossible` says the drag
   // can still happen. `grabbed` is never held, and nor are wheels with tyres: rolling is their
   // job (holding one front wheel would let the car pivot round it while the steering moves).
+  // These holds last only for the drag, and are separate from the bodies the user freezes.
   //
   // Worms lock: a worm gear can't be driven from its gear. So first, any worm the drag would
   // drive from its gear's side is held still. Returns true if that was needed, so the caller
@@ -212,7 +213,7 @@ export class Kinematics {
       return link ? 1 + depth(link.parent) : 0;
     };
     const wheels = new Set(this.mech.treads.map((t) => t.body));
-    const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.held.has(b) && !wheels.has(b));
+    const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b));
     candidates.sort((a, b) => depth(b) - depth(a) || a - b);
     for (const body of candidates) {
       if (this.dragHeld.has(body)) continue;
@@ -228,7 +229,7 @@ export class Kinematics {
 
   // Whether the drag could still happen with `body` not turning on its joint.
   private couldStayStill(body: number, stillPossible: () => boolean): boolean {
-    if (this.parentJoint[body] < 0 || this.dragHeld.has(body) || this.held.has(body)) return true;
+    if (this.parentJoint[body] < 0 || this.dragHeld.has(body) || this.frozen.has(body)) return true;
     this.dragHeld.add(body);
     const possible = stillPossible();
     this.dragHeld.delete(body);
@@ -279,12 +280,12 @@ export class Kinematics {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
 
-    const fixed = new Set([...this.held, ...this.dragHeld]);
+    const fixed = new Set([...this.frozen, ...this.dragHeld]);
     if (this.fixedBody >= 0) fixed.add(this.fixedBody);
     for (const body of fixed) {
       const j = this.parentJoint[body];
       if (j >= 0 && body !== this.fixedBody) {
-        // Held on its joint: no turning relative to the body it turns on.
+        // Frozen, or held for a drag, on its joint: no turning relative to the body it turns on.
         const joint = this.mech.joints[j];
         const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
         const row = new Array(n).fill(0);

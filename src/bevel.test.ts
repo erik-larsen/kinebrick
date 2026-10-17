@@ -57,7 +57,7 @@ describe('differential', () => {
 
   it('turning the input turns the housing a third as far, and both outputs with it', () => {
     kin.reset();
-    kin.letGoOfAll();
+    kin.unfreezeAll();
     kin.turnJoint(jointOf(input), 1.5);
     const h = turnAboutZ(housing);
     expect(Math.abs(h)).toBeCloseTo(0.5, 6); // 8 teeth driving 24
@@ -65,10 +65,10 @@ describe('differential', () => {
     expect(turnAboutZ(right)).toBeCloseTo(h, 6);
   });
 
-  it('with the input held, turning one output turns the other the opposite way', () => {
+  it('with the input frozen, turning one output turns the other the opposite way', () => {
     kin.reset();
-    kin.letGoOfAll();
-    kin.toggleHold(input);
+    kin.unfreezeAll();
+    kin.toggleFreeze(input);
     kin.turnJoint(jointOf(left), 0.8);
     const l = turnAboutZ(left);
     expect(Math.abs(l)).toBeCloseTo(0.8, 6);
@@ -76,19 +76,19 @@ describe('differential', () => {
     expect(turnAboutZ(housing)).toBeCloseTo(0, 6);
   });
 
-  it('with one output held, turning the other turns the housing half as far', () => {
+  it('with one output frozen, turning the other turns the housing half as far', () => {
     kin.reset();
-    kin.letGoOfAll();
-    kin.toggleHold(right);
+    kin.unfreezeAll();
+    kin.toggleFreeze(right);
     kin.turnJoint(jointOf(left), 0.8);
     expect(turnAboutZ(right)).toBeCloseTo(0, 6);
     expect(turnAboutZ(housing)).toBeCloseTo(turnAboutZ(left) / 2, 6);
     expect(Math.abs(turnAboutZ(housing))).toBeCloseTo(0.4, 6);
   });
 
-  it('as a drag would, turning the input with nothing held keeps the outputs together', () => {
+  it('as a drag would, turning the input with nothing frozen keeps the outputs together', () => {
     kin.reset();
-    kin.letGoOfAll();
+    kin.unfreezeAll();
     const j = jointOf(input);
     kin.holdWhatTheDragDoesntNeed(input, () => kin.jointMotion(j) !== null);
     kin.turnJoint(j, 1.5);
@@ -97,11 +97,11 @@ describe('differential', () => {
     expect(Math.abs(turnAboutZ(housing))).toBeCloseTo(0.5, 6);
   });
 
-  it('jams when the input and one output are both held', () => {
+  it('jams when the input and one output are both frozen', () => {
     kin.reset();
-    kin.letGoOfAll();
-    kin.toggleHold(input);
-    kin.toggleHold(right);
+    kin.unfreezeAll();
+    kin.toggleFreeze(input);
+    kin.toggleFreeze(right);
     expect(kin.freeMotions()).toHaveLength(0);
   });
 });

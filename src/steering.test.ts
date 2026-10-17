@@ -43,7 +43,7 @@ describe('steering car', () => {
 
   it('turning the steering wheel turns the front axle a third as far, without moving the car', () => {
     kin.reset();
-    kin.letGoOfAll();
+    kin.unfreezeAll();
     kin.turnJoint(jointOf(column), 1.5);
     expect(Math.abs(kin.jointAngles[jointOf(carrier)])).toBeCloseTo(0.5, 6); // 8 teeth driving 24
     const moved = kin.poses[0].elements.slice(12, 15);
@@ -52,8 +52,8 @@ describe('steering car', () => {
 
   it('driving straight, both rear wheels turn the same', () => {
     kin.reset();
-    kin.letGoOfAll();
-    kin.toggleHold(column);
+    kin.unfreezeAll();
+    kin.toggleFreeze(column);
     kin.turnJoint(jointOf(rearLeft), 1);
     expect(Math.abs(kin.treadTravel[treadOf(rearLeft)])).toBeCloseTo(Math.abs(kin.treadTravel[treadOf(rearRight)]), 6);
     expect(yaw(kin)).toBeCloseTo(0, 6);
@@ -62,10 +62,10 @@ describe('steering car', () => {
 
   it('steered, it drives round a circle, the outer rear wheel rolling further than the inner one', () => {
     kin.reset();
-    kin.letGoOfAll();
+    kin.unfreezeAll();
     kin.turnJoint(jointOf(column), 1.5); // front axle turned 0.5 radians
     const steer = Math.abs(kin.jointAngles[jointOf(carrier)]);
-    kin.toggleHold(column);
+    kin.toggleFreeze(column);
     // The car's centre (the frame's origin, 80 LDU ahead of the rear axle) drives round a
     // circle of radius √(R² + 80²), where R is the rear axle's radius.
     const rearRadius = WHEELBASE / Math.tan(steer);
@@ -89,7 +89,7 @@ describe('steering car', () => {
 
   it('pushing the steered car rolls it without changing the steering', () => {
     kin.reset();
-    kin.letGoOfAll();
+    kin.unfreezeAll();
     kin.turnJoint(jointOf(column), 1.5);
     const steer = kin.jointAngles[jointOf(carrier)];
     // As a push on the frame does: hold whatever the push doesn't need, then move the frame.
@@ -104,7 +104,7 @@ describe('steering car', () => {
 
   it('turning a rear wheel rolls the car without changing the steering', () => {
     kin.reset();
-    kin.letGoOfAll();
+    kin.unfreezeAll();
     kin.turnJoint(jointOf(column), 1.5);
     const steer = kin.jointAngles[jointOf(carrier)];
     const j = jointOf(rearLeft);
@@ -120,7 +120,7 @@ describe('steering car', () => {
     const col = bodyOf(car.parts, car.mech, '2819.dat');
     expect(car.kin.freeMotions()).toHaveLength(2); // straight ahead it can still roll
     car.kin.turnJoint(car.kin.parentLink(col)!.joint, 1.5);
-    car.kin.toggleHold(col);
-    expect(car.kin.freeMotions()).toHaveLength(0); // steered and held: jammed
+    car.kin.toggleFreeze(col);
+    expect(car.kin.freeMotions()).toHaveLength(0); // steered and frozen: jammed
   });
 });

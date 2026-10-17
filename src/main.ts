@@ -47,8 +47,15 @@ const MODELS: [string, string][] = [
   ['worm-drive', 'Worm drive'],
   ['gearbox', 'Two-speed gearbox'],
 ];
-const modelParam = new URLSearchParams(window.location.search).get('model');
+const params = new URLSearchParams(window.location.search);
+const modelParam = params.get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
+// Views for checking the mechanism, off unless the address turns them on, e.g.
+// ?model=gearbox&option=bodycolours,axes,contacts
+//   bodycolours  each body in its own colour, instead of the parts' LEGO colours
+//   axes         each joint's axis
+//   contacts     a dot where each pair of gears' teeth meet
+const OPTIONS = params.getAll('option').join(',').split(',');
 
 // The files the viewer loads. Vite bundles them, so they're found both in development and on
 // the published site. The packed files (made by npm run pack) hold each model with every LDraw
@@ -173,8 +180,13 @@ async function start() {
   let kin = new Kinematics(mech);
   let sliders: Slider[] = [];
   let axes = new Group();
+  axes.visible = OPTIONS.includes('axes');
   ldrawSpace.add(axes);
+  const contacts = new Group();
+  contacts.visible = OPTIONS.includes('contacts');
+  ldrawSpace.add(contacts);
   const appearance = new Appearance(partObjects, mech, outlines);
+  appearance.showBodyColours = OPTIONS.includes('bodycolours');
   const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
   let collisions: Collisions | null = null;
 
@@ -196,6 +208,7 @@ async function start() {
     ldrawSpace.add(axes);
     // A dot where each pair of meshing gears touch. It stays put relative to what the gears'
     // axles are mounted in.
+    contacts.clear();
     for (const m of mech.meshes) {
       const a = mech.gears[m.gearA];
       const b = mech.gears[m.gearB];
@@ -205,7 +218,7 @@ async function start() {
       dot.updateMatrix();
       dot.userData.body = kin.parentLink(a.body)?.parent ?? a.body;
       dot.userData.startMatrix = dot.matrix.clone();
-      axes.add(dot);
+      contacts.add(dot);
     }
 
     // Which parts are directly connected (they may touch).
@@ -221,12 +234,12 @@ async function start() {
       (mech.meshes.length ? ` · ${mech.meshes.length} gear meshes` : '');
     setup.mech = mech;
     setup.kin = kin;
-    showHolds();
+    showFrozen();
   }
 
   // Moves every part and joint axis to where the kinematics says its body is.
   function showPoses() {
-    for (const obj of [...partObjects, ...axes.children]) {
+    for (const obj of [...partObjects, ...axes.children, ...contacts.children]) {
       const body = obj.userData.partIndex !== undefined ? mech.bodyOf[obj.userData.partIndex] : obj.userData.body;
       obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
@@ -265,31 +278,40 @@ async function start() {
 
   const picker = document.getElementById('model') as HTMLSelectElement;
   for (const [file, name] of MODELS) picker.add(new Option(name, file, false, file === MODEL));
+  // Switching model keeps the options.
   picker.addEventListener('change', () => {
-    window.location.search = '?model=' + picker.value;
+    params.set('model', picker.value);
+    window.location.search = params.toString();
   });
 
   const bodyColours = document.getElementById('bodyColours') as HTMLInputElement;
+  bodyColours.checked = appearance.showBodyColours;
   bodyColours.addEventListener('change', () => {
     appearance.showBodyColours = bodyColours.checked;
     appearance.update();
   });
-  const jointAxes = document.getElementById('jointAxes') as HTMLInputElement;
-  jointAxes.addEventListener('change', () => {
-    axes.visible = jointAxes.checked;
+  const axesBox = document.getElementById('axes') as HTMLInputElement;
+  axesBox.checked = axes.visible;
+  axesBox.addEventListener('change', () => {
+    axes.visible = axesBox.checked;
+  });
+  const contactsBox = document.getElementById('contacts') as HTMLInputElement;
+  contactsBox.checked = contacts.visible;
+  contactsBox.addEventListener('change', () => {
+    contacts.visible = contactsBox.checked;
   });
 
-  // Held parts get a cyan outline and a pin badge, and "Let go of all" shows while any are held.
-  const letGo = document.getElementById('letGo') as HTMLButtonElement;
-  function showHolds() {
-    appearance.heldBodies = new Set(kin.heldBodies());
+  // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" shows while any are frozen.
+  const unfreeze = document.getElementById('unfreeze') as HTMLButtonElement;
+  function showFrozen() {
+    appearance.frozenBodies = new Set(kin.frozenBodies());
     appearance.update();
-    letGo.style.display = kin.heldBodies().length ? '' : 'none';
+    unfreeze.style.display = kin.frozenBodies().length ? '' : 'none';
     updateReadout(mech, kin);
   }
-  letGo.addEventListener('click', () => {
-    kin.letGoOfAll();
-    showHolds();
+  unfreeze.addEventListener('click', () => {
+    kin.unfreezeAll();
+    showFrozen();
   });
 
   const setup: InteractionSetup = {
@@ -304,7 +326,7 @@ async function start() {
     appearance,
     partTitle,
     onMoved: showPoses,
-    onHoldChanged: showHolds,
+    onFreezeChanged: showFrozen,
     blockedBy: () => collisions!.check(partMatrices()),
     slideOf,
     shift,
@@ -379,7 +401,7 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     if (gear && !gear.worm && !name.startsWith('wheels') && !name.startsWith('differential')) name += ` (${gear.teeth} teeth)`;
     let line = `${name} turned ${degrees.toFixed(1)}°`;
     if (turn.mount !== 0) line += ` in ${mech.bodies[turn.mount].name}`;
-    if (kin.isHeld(b)) line += ' (held)';
+    if (kin.isFrozen(b)) line += ' (frozen)';
     // A wheel on the ground: its turn should match how far it rolled ÷ its radius.
     const t = mech.treads.findIndex((tr) => tr.body === b);
     if (t >= 0 && kin.groundY !== null) {

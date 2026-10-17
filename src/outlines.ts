@@ -1,5 +1,5 @@
 // Outlines drawn around parts after the scene is rendered: one style per kind of status.
-//   held       parts of bodies the user is holding still (cyan)
+//   frozen     parts of bodies the user has frozen (cyan)
 //   loose      parts not attached to the rest of the model (red)
 //   blocked    two parts that would have run into each other, shown briefly (red)
 // Each style is its own outline pass; a pass with nothing to outline is switched off.
@@ -18,7 +18,7 @@ interface OutlineStyle {
 }
 
 const STYLES = {
-  held: { colour: 0x00b4ff, hiddenColour: 0x006a96, strength: 10, thickness: 2.5 },
+  frozen: { colour: 0x00b4ff, hiddenColour: 0x006a96, strength: 10, thickness: 2.5 },
   loose: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
   blocked: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
   driven: { colour: 0x22b14c, hiddenColour: 0x146b2e, strength: 10, thickness: 2.5 },
@@ -53,6 +53,9 @@ export class Outlines {
       this.composer.addPass(pass);
     }
     this.composer.addPass(new OutputPass());
+    // The composer takes the target's size as given; this sizes it, and every pass, for the
+    // screen's pixel ratio (else a 2x screen renders at half resolution until a resize).
+    this.composer.setSize(size.x, size.y);
   }
 
   // Which objects get this kind of outline (replacing any before).

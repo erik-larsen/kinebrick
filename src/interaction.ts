@@ -3,8 +3,9 @@
 //   press    show how the grabbed point can move: an arrow (push) or an arc (turn)
 //   drag     move the mechanism so the grabbed point follows the pointer
 //   release  leave the model where it is
-//   Alt-click   hold a part still, or let go of it
-//   Ctrl-click  keep a part that spins on an axle turning on its own (a motor), or stop it
+//   Alt-click   freeze a part, or unfreeze it
+//   Ctrl-click  keep a part that spins on an axle turning on its own (a motor), or stop it;
+//               with Shift, it turns the other way
 // Dragging on empty space turns the camera instead.
 //
 // There are three kinds of drag:
@@ -61,7 +62,7 @@ export interface InteractionSetup {
   appearance: Appearance;
   partTitle: (name: string) => Promise<string>;
   onMoved: () => void; // called after the mechanism moves
-  onHoldChanged: () => void; // called after a part is held or let go
+  onFreezeChanged: () => void; // called after a part is frozen or unfrozen
   blockedBy: () => [number, number] | null; // two parts now passing through each other, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
   shift: (part: number, position: number) => void; // slides a part to one of its positions
@@ -106,7 +107,8 @@ export function setUpInteraction(s: InteractionSetup) {
   let drag: Drag | null = null;
   let shifting: Shift | null = null;
   let motorPart = -1; // the part kept turning (Ctrl-click), or -1
-  // True while the label shows a message (such as "Holding ... still") rather than the
+  let motorDirection = 1; // 1, or -1 for the other way (Shift-Ctrl-click)
+  // True while the label shows a message (such as "Froze ...") rather than the
   // hovered part's name, until the pointer next moves.
   let showingMessage = false;
 
@@ -346,17 +348,17 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // ---------------------------------------------------------------------------
-  // Holding parts still
+  // Freezing parts
 
-  function toggleHold(body: number, clientX: number, clientY: number) {
+  function toggleFreeze(body: number, clientX: number, clientY: number) {
     const name = s.mech.bodies[body].name;
-    if (body === 0 && s.kin.frameHeld()) {
+    if (body === 0 && s.kin.frameFixed()) {
       showMessage(`The ${name} already stays put: the model has no means of locomotion`, clientX, clientY);
       return;
     }
-    s.kin.toggleHold(body);
-    s.onHoldChanged();
-    const text = s.kin.isHeld(body) ? `Holding ${name} still · Alt-click again to let go` : `Let go of ${name}`;
+    s.kin.toggleFreeze(body);
+    s.onFreezeChanged();
+    const text = s.kin.isFrozen(body) ? `Froze ${name} · Alt-click again to unfreeze` : `Unfroze ${name}`;
     showMessage(text, clientX, clientY);
   }
 
@@ -369,12 +371,19 @@ export function setUpInteraction(s: InteractionSetup) {
     s.appearance.update();
   }
 
-  function toggleMotor(part: number, clientX: number, clientY: number) {
+  // Starts the part turning (direction 1, or -1 for the other way). If its body is already
+  // turning that way, stops it; if the other way, turns it round.
+  function toggleMotor(part: number, direction: number, clientX: number, clientY: number) {
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
-      setMotor(-1);
-      showMessage(`Stopped ${name}`, clientX, clientY);
+      if (direction === motorDirection) {
+        setMotor(-1);
+        showMessage(`Stopped ${name}`, clientX, clientY);
+      } else {
+        motorDirection = direction;
+        showMessage(`Turning ${name} the other way`, clientX, clientY);
+      }
       return;
     }
     const link = s.kin.parentLink(body);
@@ -390,13 +399,14 @@ export function setUpInteraction(s: InteractionSetup) {
       showMessage(`This part can't turn: ${why}`, clientX, clientY);
       return;
     }
+    motorDirection = direction;
     setMotor(part);
     showMessage(`Turning ${name} · Ctrl-click again to stop`, clientX, clientY);
   }
 
   // Turns the driven part on by however far it goes in `seconds`, as a turn drag would. Waits
   // while the user drags something else. Stops for good if it can't turn (it's run into
-  // something, or a part held still jams it).
+  // something, or a frozen part jams it).
   function runMotor(seconds: number) {
     if (motorPart < 0 || drag) return;
     const body = s.mech.bodyOf[motorPart];
@@ -406,7 +416,7 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const sign = s.mech.joints[link.joint].bodyB === body ? 1 : -1;
-    const angle = sign * MOTOR_SPEED * seconds;
+    const angle = sign * motorDirection * MOTOR_SPEED * seconds;
     s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
     const turned = s.kin.turnJoint(link.joint, angle, () => {
       const pair = s.blockedBy();
@@ -462,15 +472,16 @@ export function setUpInteraction(s: InteractionSetup) {
       const hit = hitAt(e.clientX, e.clientY);
       if (!hit) return; // empty space: let the camera turn
       if (e.altKey) {
-        // Alt-click: hold the part's body still, or let go of it. Keep the camera from turning.
+        // Alt-click: freeze the part's body, or unfreeze it. Keep the camera from turning.
         e.stopImmediatePropagation();
-        toggleHold(s.mech.bodyOf[hit.part], e.clientX, e.clientY);
+        toggleFreeze(s.mech.bodyOf[hit.part], e.clientX, e.clientY);
         return;
       }
       if (e.ctrlKey) {
-        // Ctrl-click: keep the part turning, or stop it. Keep the camera from moving.
+        // Ctrl-click: keep the part turning, or stop it; Shift-Ctrl-click the other way. Keep
+        // the camera from moving.
         e.stopImmediatePropagation();
-        toggleMotor(hit.part, e.clientX, e.clientY);
+        toggleMotor(hit.part, e.shiftKey ? -1 : 1, e.clientX, e.clientY);
         return;
       }
       s.controls.enabled = false;
@@ -515,7 +526,7 @@ export function setUpInteraction(s: InteractionSetup) {
         s.ldrawSpace.add(drag.arc);
         updateArc(drag);
       } else if (!updateArrow(drag)) {
-        const why = s.kin.frameHeld() ? 'the model has no means of locomotion' : "it's jammed";
+        const why = s.kin.frameFixed() ? 'the model has no means of locomotion' : "it's jammed";
         showMessage(`This part can't move: ${why}`, e.clientX, e.clientY);
       }
     },

@@ -325,169 +325,66 @@
 0 Name: geared-car.ldr
 0 Author: erik-larsen
 0 // The simple car with two 8 tooth gears inside: rolling the car spins a second axle the
-0 // other way. The bricks sit one plate higher than the simple car's, on 1x6 and 1x4 plates,
-0 // so the gears clear the base plate's studs (an 8 tooth gear 14 LDU above a plate catches
-0 // its studs). Plate top at y=0 (LDraw -y is up); axles at y=-22; tyres touch the ground at
-0 // y=9. Wheelbase 80 LDU (axles at x=+-40), track 100 LDU (wheel centres at z=+-50).
+0 // other way. The base is two 1x8 plates under the side bricks, with nothing between them,
+0 // so the gears don't catch a plate's studs (an 8 tooth gear 14 LDU above a plate would).
+0 // The 1x4 bricks at each end tie the two plates together. Plate top at y=0 (LDraw -y is
+0 // up); axles at y=-14; tyres touch the ground at y=17. Wheelbase 80 LDU (axles at x=+-40),
+0 // track 100 LDU (wheel centres at z=+-50).
 
-0 // Step 1: chassis: a 4x8 plate, 1x4 and 1x6 plates around its edge, and Technic bricks on top:
-0 // 1x4 front and back, 1x6 left and right
-1 0 0 0 0 1 0 0 0 1 0 0 0 1 3035.dat
-1 0 70 -8 0 0 0 1 0 1 0 -1 0 0 3710.dat
-1 0 -70 -8 0 0 0 1 0 1 0 -1 0 0 3710.dat
-1 0 0 -8 30 1 0 0 0 1 0 0 0 1 3666.dat
-1 0 0 -8 -30 1 0 0 0 1 0 0 0 1 3666.dat
-1 14 70 -32 0 0 0 1 0 1 0 -1 0 0 3701.dat
-1 14 -70 -32 0 0 0 1 0 1 0 -1 0 0 3701.dat
-1 14 0 -32 30 1 0 0 0 1 0 0 0 1 3894.dat
-1 14 0 -32 -30 1 0 0 0 1 0 0 0 1 3894.dat
+0 // Step 1: chassis: two 1x8 plates, 1x6 Technic bricks on them left and right, and 1x4
+0 // Technic bricks front and back, across both plates
+1 0 0 0 30 1 0 0 0 1 0 0 0 1 3460.dat
+1 0 0 0 -30 1 0 0 0 1 0 0 0 1 3460.dat
+1 14 70 -24 0 0 0 1 0 1 0 -1 0 0 3701.dat
+1 14 -70 -24 0 0 0 1 0 1 0 -1 0 0 3701.dat
+1 14 0 -24 30 1 0 0 0 1 0 0 0 1 3894.dat
+1 14 0 -24 -30 1 0 0 0 1 0 0 0 1 3894.dat
 0 STEP
 
 0 // Step 2: 6L axles through the outermost holes of the 1x6 bricks, protruding 1 stud each side
-1 0 40 -22 0 0 0 1 0 1 0 -1 0 0 3706.dat
-1 0 -40 -22 0 0 0 1 0 1 0 -1 0 0 3706.dat
+1 0 40 -14 0 0 0 1 0 1 0 -1 0 0 3706.dat
+1 0 -40 -14 0 0 0 1 0 1 0 -1 0 0 3706.dat
 0 STEP
 
 0 // Step 3: rim + tyre on each protruding axle end; left-side wheels turned 180 degrees to face outward
-1 71 40 -22 50 1 0 0 0 1 0 0 0 1 3482.dat
-1 0 40 -22 50 1 0 0 0 1 0 0 0 1 3483.dat
-1 71 -40 -22 50 1 0 0 0 1 0 0 0 1 3482.dat
-1 0 -40 -22 50 1 0 0 0 1 0 0 0 1 3483.dat
-1 71 40 -22 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
-1 0 40 -22 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
-1 71 -40 -22 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
-1 0 -40 -22 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
+1 71 40 -14 50 1 0 0 0 1 0 0 0 1 3482.dat
+1 0 40 -14 50 1 0 0 0 1 0 0 0 1 3483.dat
+1 71 -40 -14 50 1 0 0 0 1 0 0 0 1 3482.dat
+1 0 -40 -14 50 1 0 0 0 1 0 0 0 1 3483.dat
+1 71 40 -14 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
+1 0 40 -14 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
+1 71 -40 -14 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
+1 0 -40 -14 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
 0 STEP
 
 0 // Step 4: an 8 tooth gear on the rear axle, meshing with an 8 tooth gear on a 4L axle
 0 // through the next holes of the 1x6 bricks. The second gear is turned half a tooth
 0 // (22.5 degrees) to mesh.
-1 72 -40 -22 0 1 0 0 0 1 0 0 0 1 3647.dat
-1 0 -20 -22 0 0 0 1 0 1 0 -1 0 0 3705.dat
-1 72 -20 -22 0 0.92388 -0.382683 0 0.382683 0.92388 0 0 0 1 3647.dat
+1 72 -40 -14 0 1 0 0 0 1 0 0 0 1 3647.dat
+1 0 -20 -14 0 0 0 1 0 1 0 -1 0 0 3705.dat
+1 72 -20 -14 0 0.92388 -0.382683 0 0.382683 0.92388 0 0 0 1 3647.dat
 0 STEP
 
 0 NOFILE
-0 FILE 3035.dat
-0 Plate  4 x  8
-0 Name: 3035.dat
+0 FILE 3460.dat
+0 Plate  1 x  8
+0 Name: 3460.dat
 0 Author: James Jessiman
-0 !LDRAW_ORG Part UPDATE 2025-09
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 2001-10-26 [PTadmin] Official Update 2001-01
-0 !HISTORY 2004-07-26 [guyvivan] Made BFC Compliant
-0 !HISTORY 2004-11-06 [PTadmin] Official Update 2004-04
-0 !HISTORY 2007-06-07 [PTadmin] Header formatted for Contributor Agreement
-0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
-0 !HISTORY 2025-09-27 [OrionP] Changed winding to CCW
-0 !HISTORY 2025-09-29 [OrionP] Official Update 2025-09
-
-1 16 60 4 20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 40 4 20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 20 4 20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 0 4 20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -20 4 20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -40 4 20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -60 4 20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 60 4 0 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 40 4 0 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 20 4 0 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 0 4 0 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -20 4 0 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -40 4 0 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -60 4 0 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 60 4 -20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 40 4 -20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 20 4 -20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 0 4 -20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -20 4 -20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -40 4 -20 1 0 0 0 -1 0 0 0 1 stud4.dat
-1 16 -60 4 -20 1 0 0 0 -1 0 0 0 1 stud4.dat
-0 BFC INVERTNEXT
-1 16 0 8 0 76 0 0 0 -4 0 0 0 36 box5.dat
-4 16 -80 8 -40 -76 8 -36 76 8 -36 80 8 -40
-4 16 80 8 -40 76 8 -36 76 8 36 80 8 40
-4 16 -80 8 -40 -80 8 40 -76 8 36 -76 8 -36
-4 16 -80 8 40 80 8 40 76 8 36 -76 8 36
-1 16 0 8 0 80 0 0 0 -8 0 0 0 40 box5.dat
-1 16 70 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 50 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 30 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 10 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -10 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -30 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -50 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -70 0 30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 70 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 50 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 30 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 10 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -10 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -30 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -50 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -70 0 10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 70 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 50 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 30 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 10 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -10 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -30 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -50 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -70 0 -10 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 70 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 50 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 30 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 10 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -10 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -30 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -50 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -70 0 -30 1 0 0 0 1 0 0 0 1 stud.dat
-0
-
-0 NOFILE
-0 FILE 3710.dat
-0 Plate  1 x  4
-0 Name: 3710.dat
-0 Author: James Jessiman
-0 !LDRAW_ORG Part UPDATE 2023-06
+0 !LDRAW_ORG Part UPDATE 2024-01
 0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
 
 0 BFC CERTIFY CCW
 
 0 !HISTORY 2004-07-25 [guyvivan] Made BFC Compliant
 0 !HISTORY 2004-11-06 [PTadmin] Official Update 2004-04
-0 !HISTORY 2007-06-29 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2007-06-25 [PTadmin] Header formatted for Contributor Agreement
 0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
 0 !HISTORY 2023-03-28 [Sirio] Introduced use of subpart
-0 !HISTORY 2023-11-19 [OrionP] Official Update 2023-06
+0 !HISTORY 2024-01-29 [OrionP] Official Update 2024-01
 
 
-1 16 0 0 0 1 0 0 0 1 0 0 0 1 s\3710s01.dat
-4 16 -40 0 -10 -40 8 -10 40 8 -10 40 0 -10
-
-0 NOFILE
-0 FILE 3666.dat
-0 Plate  1 x  6
-0 Name: 3666.dat
-0 Author: James Jessiman
-0 !LDRAW_ORG Part UPDATE 2023-02
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 2004-07-25 [guyvivan] Made BFC Compliant
-0 !HISTORY 2004-11-06 [PTadmin] Official Update 2004-04
-0 !HISTORY 2007-06-29 [PTadmin] Header formatted for Contributor Agreement
-0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
-0 !HISTORY 2023-03-22 [Sirio] Introduced use of subpart
-0 !HISTORY 2023-04-17 [OrionP] Official Update 2023-02
-
-
-1 16 0 0 0 1 0 0 0 1 0 0 0 1 s\3666s01.dat
-4 16 -60 8 -10 60 8 -10 60 0 -10 -60 0 -10
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 s\3460s01.dat
+4 16 -80 0 -10 -80 8 -10 80 8 -10 80 0 -10
 
 0 NOFILE
 0 FILE 3701.dat
@@ -2056,138 +1953,27 @@
 1 16 37.5 0 0 0 -75 0 1 0 0 0 0 1 axlehol8.dat
 
 0 NOFILE
-0 FILE stud4.dat
-0 Stud Tube Open
-0 Name: stud4.dat
-0 Author: James Jessiman
-0 !LDRAW_ORG Primitive UPDATE 2009-02
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 1999-07-05 [PTadmin] Official Update 1999-05
-0 !HISTORY 2002-04-04 [sbliss] Modified for BFC compliance
-0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
-0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
-0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
-0 !HISTORY 2009-06-21 [cwdee] Update ring references to 4-4ring
-0 !HISTORY 2009-09-03 [PTadmin] Official Update 2009-02
-
-
-1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
-1 16 0 -4 0 8 0 0 0 1 0 0 0 8 4-4edge.dat
-1 16 0 0 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
-1 16 0 0 0 8 0 0 0 1 0 0 0 8 4-4edge.dat
-0 BFC INVERTNEXT
-1 16 0 -4 0 6 0 0 0 4 0 0 0 6 4-4cyli.dat
-1 16 0 -4 0 8 0 0 0 4 0 0 0 8 4-4cyli.dat
-1 16 0 -4 0 2 0 0 0 1 0 0 0 2 4-4ring3.dat
-0
-
-0 NOFILE
-0 FILE box5.dat
-0 Box with 5 Faces and All Edges
-0 Name: box5.dat
-0 Author: James Jessiman
-0 !LDRAW_ORG Primitive UPDATE 2012-01
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 2002-04-03 [sbliss] Modified for BFC compliance
-0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
-0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
-0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
-0 !HISTORY 2012-02-16 [Philo] Changed to CCW
-0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
-
-
-2 24 1 1 1 -1 1 1
-2 24 -1 1 1 -1 1 -1
-2 24 -1 1 -1 1 1 -1
-2 24 1 1 -1 1 1 1
-2 24 1 0 1 -1 0 1
-2 24 -1 0 1 -1 0 -1
-2 24 -1 0 -1 1 0 -1
-2 24 1 0 -1 1 0 1
-2 24 1 0 1 1 1 1
-2 24 -1 0 1 -1 1 1
-2 24 1 0 -1 1 1 -1
-2 24 -1 0 -1 -1 1 -1
-4 16 -1 1 1 1 1 1 1 1 -1 -1 1 -1
-4 16 -1 1 1 -1 0 1 1 0 1 1 1 1
-4 16 -1 1 -1 -1 0 -1 -1 0 1 -1 1 1
-4 16 1 1 -1 1 0 -1 -1 0 -1 -1 1 -1
-4 16 1 1 1 1 0 1 1 0 -1 1 1 -1
-
-0 NOFILE
-0 FILE stud.dat
-0 Stud
-0 Name: stud.dat
-0 Author: James Jessiman
-0 !LDRAW_ORG Primitive UPDATE 2012-01
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 2002-04-04 [sbliss] Modified for BFC compliance
-0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
-0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
-0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
-0 !HISTORY 2012-02-16 [Philo] Changed to CCW
-0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
-
-
-1 16 0 0 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
-1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
-1 16 0 0 0 6 0 0 0 -4 0 0 0 6 4-4cyli.dat
-1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4disc.dat
-
-0 NOFILE
-0 FILE parts/s/3710s01.dat
-0 ~Plate  1 x  4 without Front Face
-0 Name: s\3710s01.dat
+0 FILE parts/s/3460s01.dat
+0 ~Plate  1 x  8 without Front Face
+0 Name: s\3460s01.dat
 0 Author: Massimo Maso [Sirio]
-0 !LDRAW_ORG Subpart UPDATE 2023-06
+0 !LDRAW_ORG Subpart UPDATE 2024-01
 0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
 
 0 BFC CERTIFY CCW
 
-0 !HISTORY 2023-11-19 [OrionP] Official Update 2023-06
+0 !HISTORY 2024-01-29 [OrionP] Official Update 2024-01
 
 
-1 16 0 4 0 1 0 0 0 -1 0 0 0 1 stug3-1x3.dat
+1 16 0 4 0 1 0 0 0 -1 0 0 0 1 stug3-1x7.dat
 0 BFC INVERTNEXT
-1 16 0 8 0 36 0 0 0 -4 0 0 0 6 box5.dat
-4 16 40 8 10 36 8 6 -36 8 6 -40 8 10
-4 16 -40 8 10 -36 8 6 -36 8 -6 -40 8 -10
-4 16 -40 8 -10 -36 8 -6 36 8 -6 40 8 -10
-4 16 40 8 -10 36 8 -6 36 8 6 40 8 10
-1 16 0 8 0 40 0 0 0 -8 0 0 0 10 box4t.dat
-1 16 0 0 0 1 0 0 0 1 0 0 0 1 stug-1x4.dat
-
-0 NOFILE
-0 FILE parts/s/3666s01.dat
-0 ~Plate  1 x  6 without Front Face
-0 Name: s\3666s01.dat
-0 Author: Massimo Maso [Sirio]
-0 !LDRAW_ORG Subpart UPDATE 2023-02
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 2023-04-17 [OrionP] Official Update 2023-02
-
-
-1 16 0 4 0 1 0 0 0 -1 0 0 0 1 stug3-1x5.dat
-0 BFC INVERTNEXT
-1 16 0 8 0 56 0 0 0 -4 0 0 0 6 box5.dat
-4 16 60 8 10 56 8 6 -56 8 6 -60 8 10
-4 16 -60 8 10 -56 8 6 -56 8 -6 -60 8 -10
-4 16 -60 8 -10 -56 8 -6 56 8 -6 60 8 -10
-4 16 60 8 -10 56 8 -6 56 8 6 60 8 10
-1 16 0 8 0 60 0 0 0 -8 0 0 0 10 box4t.dat
-1 16 0 0 0 1 0 0 0 1 0 0 0 1 stug-1x6.dat
+1 16 0 8 0 76 0 0 0 -4 0 0 0 6 box5.dat
+4 16 80 8 10 76 8 6 -76 8 6 -80 8 10
+4 16 -80 8 10 -76 8 6 -76 8 -6 -80 8 -10
+4 16 -80 8 -10 -76 8 -6 76 8 -6 80 8 -10
+4 16 80 8 -10 76 8 -6 76 8 6 80 8 10
+1 16 0 8 0 80 0 0 0 -8 0 0 0 10 box4t.dat
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 stug-1x8.dat
 
 0 NOFILE
 0 FILE stud3a.dat
@@ -3413,56 +3199,61 @@
 0
 
 0 NOFILE
-0 FILE 4-4disc.dat
-0 Disc 1.0
-0 Name: 4-4disc.dat
-0 Author: James Jessiman
-0 !LDRAW_ORG Primitive UPDATE 2002-02
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
-0 !HISTORY 2002-03-23 [sbliss] Added BFC statement
-0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
-0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
-0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
-
-
-3 16 0 0 0 1 0 0 0.9239 0 0.3827
-3 16 0 0 0 0.9239 0 0.3827 0.7071 0 0.7071
-3 16 0 0 0 0.7071 0 0.7071 0.3827 0 0.9239
-3 16 0 0 0 0.3827 0 0.9239 0 0 1
-3 16 0 0 0 0 0 1 -0.3827 0 0.9239
-3 16 0 0 0 -0.3827 0 0.9239 -0.7071 0 0.7071
-3 16 0 0 0 -0.7071 0 0.7071 -0.9239 0 0.3827
-3 16 0 0 0 -0.9239 0 0.3827 -1 0 -0
-3 16 0 0 0 -1 0 -0 -0.9239 0 -0.3827
-3 16 0 0 0 -0.9239 0 -0.3827 -0.7071 0 -0.7071
-3 16 0 0 0 -0.7071 0 -0.7071 -0.3827 0 -0.9239
-3 16 0 0 0 -0.3827 0 -0.9239 0 0 -1
-3 16 0 0 0 0 0 -1 0.3827 0 -0.9239
-3 16 0 0 0 0.3827 0 -0.9239 0.7071 0 -0.7071
-3 16 0 0 0 0.7071 0 -0.7071 0.9239 0 -0.3827
-3 16 0 0 0 0.9239 0 -0.3827 1 0 0
-0
-
-0 NOFILE
-0 FILE stug3-1x3.dat
-0 Stud Tube Solid Group  1 x  3
-0 Name: stug3-1x3.dat
+0 FILE stug3-1x7.dat
+0 Stud Tube Solid Group  1 x  7
+0 Name: stug3-1x7.dat
 0 Author: Steffen [Steffen]
-0 !LDRAW_ORG Primitive UPDATE 2012-02
+0 !LDRAW_ORG Primitive UPDATE 2012-01
 0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
 
 0 BFC CERTIFY CCW
 
-0 !HISTORY 2012-08-09 [PTadmin] Official Update 2012-02
+0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
 
 
+1 16 -60 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
+1 16 -40 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
 1 16 -20 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
 1 16 0 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
 1 16 20 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
+1 16 40 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
+1 16 60 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
+
+0 NOFILE
+0 FILE box5.dat
+0 Box with 5 Faces and All Edges
+0 Name: box5.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2012-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-04-03 [sbliss] Modified for BFC compliance
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2012-02-16 [Philo] Changed to CCW
+0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
+
+
+2 24 1 1 1 -1 1 1
+2 24 -1 1 1 -1 1 -1
+2 24 -1 1 -1 1 1 -1
+2 24 1 1 -1 1 1 1
+2 24 1 0 1 -1 0 1
+2 24 -1 0 1 -1 0 -1
+2 24 -1 0 -1 1 0 -1
+2 24 1 0 -1 1 0 1
+2 24 1 0 1 1 1 1
+2 24 -1 0 1 -1 1 1
+2 24 1 0 -1 1 1 -1
+2 24 -1 0 -1 -1 1 -1
+4 16 -1 1 1 1 1 1 1 1 -1 -1 1 -1
+4 16 -1 1 1 -1 0 1 1 0 1 1 1 1
+4 16 -1 1 -1 -1 0 -1 -1 0 1 -1 1 1
+4 16 1 1 -1 1 0 -1 -1 0 -1 -1 1 -1
+4 16 1 1 1 1 0 1 1 0 -1 1 1 -1
 
 0 NOFILE
 0 FILE box4t.dat
@@ -3501,9 +3292,9 @@
 0
 
 0 NOFILE
-0 FILE stug-1x4.dat
-0 Stud Group  1 x  4
-0 Name: stug-1x4.dat
+0 FILE stug-1x8.dat
+0 Stud Group  1 x  8
+0 Name: stug-1x8.dat
 0 Author: Steffen [Steffen]
 0 !LDRAW_ORG Primitive UPDATE 2011-01
 0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
@@ -3513,49 +3304,49 @@
 0 !HISTORY 2011-07-25 [PTadmin] Official Update 2011-01
 
 
-1 16 -30 0 0 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 -10 0 0 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 10 0 0 1 0 0 0 1 0 0 0 1 stud.dat
-1 16 30 0 0 1 0 0 0 1 0 0 0 1 stud.dat
-
-0 NOFILE
-0 FILE stug3-1x5.dat
-0 Stud Tube Solid Group  1 x  5
-0 Name: stug3-1x5.dat
-0 Author: Steffen [Steffen]
-0 !LDRAW_ORG Primitive UPDATE 2013-01
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 2013-07-21 [PTadmin] Official Update 2013-01
-
-
-1 16 -40 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
-1 16 -20 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
-1 16 0 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
-1 16 20 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
-1 16 40 0 0 1 0 0 0 1 0 0 0 1 stud3.dat
-
-0 NOFILE
-0 FILE stug-1x6.dat
-0 Stud Group  1 x  6
-0 Name: stug-1x6.dat
-0 Author: Steffen [Steffen]
-0 !LDRAW_ORG Primitive UPDATE 2011-01
-0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
-
-0 BFC CERTIFY CCW
-
-0 !HISTORY 2011-07-25 [PTadmin] Official Update 2011-01
-
-
+1 16 -70 0 0 1 0 0 0 1 0 0 0 1 stud.dat
 1 16 -50 0 0 1 0 0 0 1 0 0 0 1 stud.dat
 1 16 -30 0 0 1 0 0 0 1 0 0 0 1 stud.dat
 1 16 -10 0 0 1 0 0 0 1 0 0 0 1 stud.dat
 1 16 10 0 0 1 0 0 0 1 0 0 0 1 stud.dat
 1 16 30 0 0 1 0 0 0 1 0 0 0 1 stud.dat
 1 16 50 0 0 1 0 0 0 1 0 0 0 1 stud.dat
+1 16 70 0 0 1 0 0 0 1 0 0 0 1 stud.dat
+
+0 NOFILE
+0 FILE 4-4disc.dat
+0 Disc 1.0
+0 Name: 4-4disc.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2002-02
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 1998-12-15 [PTadmin] Official Update 1998-10
+0 !HISTORY 2002-03-23 [sbliss] Added BFC statement
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+
+
+3 16 0 0 0 1 0 0 0.9239 0 0.3827
+3 16 0 0 0 0.9239 0 0.3827 0.7071 0 0.7071
+3 16 0 0 0 0.7071 0 0.7071 0.3827 0 0.9239
+3 16 0 0 0 0.3827 0 0.9239 0 0 1
+3 16 0 0 0 0 0 1 -0.3827 0 0.9239
+3 16 0 0 0 -0.3827 0 0.9239 -0.7071 0 0.7071
+3 16 0 0 0 -0.7071 0 0.7071 -0.9239 0 0.3827
+3 16 0 0 0 -0.9239 0 0.3827 -1 0 -0
+3 16 0 0 0 -1 0 -0 -0.9239 0 -0.3827
+3 16 0 0 0 -0.9239 0 -0.3827 -0.7071 0 -0.7071
+3 16 0 0 0 -0.7071 0 -0.7071 -0.3827 0 -0.9239
+3 16 0 0 0 -0.3827 0 -0.9239 0 0 -1
+3 16 0 0 0 0 0 -1 0.3827 0 -0.9239
+3 16 0 0 0 0.3827 0 -0.9239 0.7071 0 -0.7071
+3 16 0 0 0 0.7071 0 -0.7071 0.9239 0 -0.3827
+3 16 0 0 0 0.9239 0 -0.3827 1 0 0
+0
 
 0 NOFILE
 0 FILE 4-4ring2.dat
@@ -3906,6 +3697,29 @@
 1 16 0 0 0 4 0 0 0 1 0 0 0 4 4-4edge.dat
 1 16 0 -4 0 4 0 0 0 1 0 0 0 4 4-4disc.dat
 1 16 0 -4 0 4 0 0 0 4 0 0 0 4 4-4cyli.dat
+
+0 NOFILE
+0 FILE stud.dat
+0 Stud
+0 Name: stud.dat
+0 Author: James Jessiman
+0 !LDRAW_ORG Primitive UPDATE 2012-01
+0 !LICENSE Licensed under CC BY 4.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+0 !HISTORY 2002-04-04 [sbliss] Modified for BFC compliance
+0 !HISTORY 2002-04-25 [PTadmin] Official Update 2002-02
+0 !HISTORY 2007-06-24 [PTadmin] Header formatted for Contributor Agreement
+0 !HISTORY 2008-07-01 [PTadmin] Official Update 2008-01
+0 !HISTORY 2012-02-16 [Philo] Changed to CCW
+0 !HISTORY 2012-03-30 [PTadmin] Official Update 2012-01
+
+
+1 16 0 0 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
+1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4edge.dat
+1 16 0 0 0 6 0 0 0 -4 0 0 0 6 4-4cyli.dat
+1 16 0 -4 0 6 0 0 0 1 0 0 0 6 4-4disc.dat
 
 0 NOFILE
 0 FILE 1-8chrd.dat

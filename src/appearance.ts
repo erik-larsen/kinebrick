@@ -1,8 +1,8 @@
 // How parts look. Each kind of information gets its own channel, so they never fight:
 //   fill colour  which body a part belongs to (body colours), or its own LEGO colours
 //   yellow glow  what the pointer is on: the hovered part, and faintly the rest of its body
-//   outline      status: held (cyan), driven (green) and loose (red)
-//   badge        status, as an icon pinned to the part: 📌 held, 🔄 driven, ⚠ loose
+//   outline      status: frozen (cyan), driven (green) and loose (red)
+//   badge        status, as an icon pinned to the part: 📌 frozen, 🔄 driven, ⚠ loose
 
 import { Box3, Color, Material, Mesh, MeshStandardMaterial, Object3D, Vector3 } from 'three';
 import { CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
@@ -19,7 +19,7 @@ const GLOW_STRENGTH = { part: 0.55, body: 0.15 };
 export class Appearance {
   showBodyColours = true;
   hoveredPart = -1;
-  heldBodies = new Set<number>();
+  frozenBodies = new Set<number>();
   looseParts = new Set<number>();
   drivenPart = -1; // the part kept turning (Ctrl-click), or -1
 
@@ -58,7 +58,7 @@ export class Appearance {
       const i = this.bodyMaterials.length;
       this.bodyMaterials.push(new MeshStandardMaterial({ color: BODY_COLOURS[i % BODY_COLOURS.length], roughness: 0.6 }));
     }
-    this.heldBodies.clear();
+    this.frozenBodies.clear();
     this.looseParts = new Set(mech.loose);
   }
 
@@ -77,16 +77,16 @@ export class Appearance {
 
     // Outlines
     const partsOf = (test: (part: number) => boolean) => this.partObjects.filter((_, part) => test(part));
-    this.outlines.set('held', partsOf((p) => this.heldBodies.has(this.mech.bodyOf[p])));
+    this.outlines.set('frozen', partsOf((p) => this.frozenBodies.has(this.mech.bodyOf[p])));
     this.outlines.set('loose', partsOf((p) => this.looseParts.has(p)));
     const drivenBody = this.drivenPart >= 0 ? this.mech.bodyOf[this.drivenPart] : -1;
     this.outlines.set('driven', partsOf((p) => this.mech.bodyOf[p] === drivenBody));
 
-    // Badges: one ⚠ per loose part, one 📌 per held body and 🔄 on the driven body (on its biggest part).
+    // Badges: one ⚠ per loose part, one 📌 per frozen body and 🔄 on the driven body (on its biggest part).
     for (const badge of this.badges) badge.removeFromParent();
     this.badges = [];
     for (const part of this.looseParts) this.addBadge(part, '⚠', 'loose');
-    for (const body of this.heldBodies) this.addBadge(this.biggestPart(body), '📌', 'held');
+    for (const body of this.frozenBodies) this.addBadge(this.biggestPart(body), '📌', 'frozen');
     if (drivenBody >= 0) this.addBadge(this.biggestPart(drivenBody), '🔄', 'driven');
   }
 

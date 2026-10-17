@@ -2,44 +2,42 @@
 0 Name: geared-car.ldr
 0 Author: erik-larsen
 0 // The simple car with two 8 tooth gears inside: rolling the car spins a second axle the
-0 // other way. The bricks sit one plate higher than the simple car's, on 1x6 and 1x4 plates,
-0 // so the gears clear the base plate's studs (an 8 tooth gear 14 LDU above a plate catches
-0 // its studs). Plate top at y=0 (LDraw -y is up); axles at y=-22; tyres touch the ground at
-0 // y=9. Wheelbase 80 LDU (axles at x=+-40), track 100 LDU (wheel centres at z=+-50).
+0 // other way. The base is two 1x8 plates under the side bricks, with nothing between them,
+0 // so the gears don't catch a plate's studs (an 8 tooth gear 14 LDU above a plate would).
+0 // The 1x4 bricks at each end tie the two plates together. Plate top at y=0 (LDraw -y is
+0 // up); axles at y=-14; tyres touch the ground at y=17. Wheelbase 80 LDU (axles at x=+-40),
+0 // track 100 LDU (wheel centres at z=+-50).
 
-0 // Step 1: chassis: a 4x8 plate, 1x4 and 1x6 plates around its edge, and Technic bricks on top:
-0 // 1x4 front and back, 1x6 left and right
-1 0 0 0 0 1 0 0 0 1 0 0 0 1 3035.dat
-1 0 70 -8 0 0 0 1 0 1 0 -1 0 0 3710.dat
-1 0 -70 -8 0 0 0 1 0 1 0 -1 0 0 3710.dat
-1 0 0 -8 30 1 0 0 0 1 0 0 0 1 3666.dat
-1 0 0 -8 -30 1 0 0 0 1 0 0 0 1 3666.dat
-1 14 70 -32 0 0 0 1 0 1 0 -1 0 0 3701.dat
-1 14 -70 -32 0 0 0 1 0 1 0 -1 0 0 3701.dat
-1 14 0 -32 30 1 0 0 0 1 0 0 0 1 3894.dat
-1 14 0 -32 -30 1 0 0 0 1 0 0 0 1 3894.dat
+0 // Step 1: chassis: two 1x8 plates, 1x6 Technic bricks on them left and right, and 1x4
+0 // Technic bricks front and back, across both plates
+1 0 0 0 30 1 0 0 0 1 0 0 0 1 3460.dat
+1 0 0 0 -30 1 0 0 0 1 0 0 0 1 3460.dat
+1 14 70 -24 0 0 0 1 0 1 0 -1 0 0 3701.dat
+1 14 -70 -24 0 0 0 1 0 1 0 -1 0 0 3701.dat
+1 14 0 -24 30 1 0 0 0 1 0 0 0 1 3894.dat
+1 14 0 -24 -30 1 0 0 0 1 0 0 0 1 3894.dat
 0 STEP
 
 0 // Step 2: 6L axles through the outermost holes of the 1x6 bricks, protruding 1 stud each side
-1 0 40 -22 0 0 0 1 0 1 0 -1 0 0 3706.dat
-1 0 -40 -22 0 0 0 1 0 1 0 -1 0 0 3706.dat
+1 0 40 -14 0 0 0 1 0 1 0 -1 0 0 3706.dat
+1 0 -40 -14 0 0 0 1 0 1 0 -1 0 0 3706.dat
 0 STEP
 
 0 // Step 3: rim + tyre on each protruding axle end; left-side wheels turned 180 degrees to face outward
-1 71 40 -22 50 1 0 0 0 1 0 0 0 1 3482.dat
-1 0 40 -22 50 1 0 0 0 1 0 0 0 1 3483.dat
-1 71 -40 -22 50 1 0 0 0 1 0 0 0 1 3482.dat
-1 0 -40 -22 50 1 0 0 0 1 0 0 0 1 3483.dat
-1 71 40 -22 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
-1 0 40 -22 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
-1 71 -40 -22 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
-1 0 -40 -22 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
+1 71 40 -14 50 1 0 0 0 1 0 0 0 1 3482.dat
+1 0 40 -14 50 1 0 0 0 1 0 0 0 1 3483.dat
+1 71 -40 -14 50 1 0 0 0 1 0 0 0 1 3482.dat
+1 0 -40 -14 50 1 0 0 0 1 0 0 0 1 3483.dat
+1 71 40 -14 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
+1 0 40 -14 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
+1 71 -40 -14 -50 -1 0 0 0 1 0 0 0 -1 3482.dat
+1 0 -40 -14 -50 -1 0 0 0 1 0 0 0 -1 3483.dat
 0 STEP
 
 0 // Step 4: an 8 tooth gear on the rear axle, meshing with an 8 tooth gear on a 4L axle
 0 // through the next holes of the 1x6 bricks. The second gear is turned half a tooth
 0 // (22.5 degrees) to mesh.
-1 72 -40 -22 0 1 0 0 0 1 0 0 0 1 3647.dat
-1 0 -20 -22 0 0 0 1 0 1 0 -1 0 0 3705.dat
-1 72 -20 -22 0 0.92388 -0.382683 0 0.382683 0.92388 0 0 0 1 3647.dat
+1 72 -40 -14 0 1 0 0 0 1 0 0 0 1 3647.dat
+1 0 -20 -14 0 0 0 1 0 1 0 -1 0 0 3705.dat
+1 72 -20 -14 0 0.92388 -0.382683 0 0.382683 0.92388 0 0 0 1 3647.dat
 0 STEP
