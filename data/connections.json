@@ -2593,6 +2593,12 @@
       {"gender":"M","caps":"one","start":[0,0,-20],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
       {"gender":"F","caps":"A","start":[0,0,-20],"dir":[0,-1,0],"secs":[{"shape":"R","radius":4,"length":4}]}
     ],
+    "3665b.dat": [
+      {"gender":"M","caps":"one","start":[0,0,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"M","caps":"one","start":[0,0,-20],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[0,24,0],"dir":[0,-1,0],"secs":[{"shape":"S","radius":6,"length":20}]},
+      {"gender":"F","caps":"A","start":[0,0,-20],"dir":[0,-1,0],"secs":[{"shape":"R","radius":4,"length":4}]}
+    ],
     "3666.dat": [
       {"gender":"M","caps":"one","start":[-40,4,0],"dir":[0,1,0],"secs":[{"shape":"R","radius":4,"length":4}]},
       {"gender":"M","caps":"one","start":[-20,4,0],"dir":[0,1,0],"secs":[{"shape":"R","radius":4,"length":4}]},
@@ -2825,6 +2831,14 @@
       {"gender":"F","caps":"none","start":[-10,0,-30],"dir":[1,0,0],"secs":[{"shape":"R","radius":6,"length":20}]}
     ],
     "3712c01.dat": [
+      {"gender":"F","caps":"one","start":[0,0,40],"dir":[0,0,-1],"secs":[{"shape":"A","radius":6,"length":20}]},
+      {"gender":"F","caps":"none","start":[-10,0,0],"dir":[1,0,0],"secs":[{"shape":"R","radius":6,"length":20}]},
+      {"gender":"F","caps":"one","start":[0,0,-40],"dir":[0,0,1],"secs":[{"shape":"A","radius":6,"length":20}]},
+      {"gender":"F","caps":"none","start":[0,-10,0],"dir":[0,1,0],"secs":[{"shape":"R","radius":6,"length":20}]},
+      {"gender":"M","caps":"two","start":[-10,0,0],"dir":[1,0,0],"secs":[{"shape":"R","radius":6,"length":20}]},
+      {"gender":"M","caps":"two","start":[0,-10,0],"dir":[0,1,0],"secs":[{"shape":"R","radius":6,"length":20}]}
+    ],
+    "3712c03.dat": [
       {"gender":"F","caps":"one","start":[0,0,40],"dir":[0,0,-1],"secs":[{"shape":"A","radius":6,"length":20}]},
       {"gender":"F","caps":"none","start":[-10,0,0],"dir":[1,0,0],"secs":[{"shape":"R","radius":6,"length":20}]},
       {"gender":"F","caps":"one","start":[0,0,-40],"dir":[0,0,1],"secs":[{"shape":"A","radius":6,"length":20}]},
