@@ -14,10 +14,10 @@ function looseParts(text: string): string[] {
 
 // Real models KineBrick can't fully read yet, and what they need (M7 works through them).
 const NOT_YET = [
-  '855 - Mobile Crane.mpd', // its hook, which hangs on a string over pulleys (M9)
-  '856 - Bulldozer.mpd', // chain tread tracks
-  '8880 - Super Car.mpd', // hinge plates, chain, towballs
-  '8448 - Super Car.mpd', // hinges, universal joints, its tyres
+  '855-Mobile Crane.mpd', // its hook, which hangs on a string over pulleys (M9)
+  '856-Bulldozer.mpd', // chain tread tracks
+  '8880-Super Car.mpd', // hinge plates, chain, towballs
+  '8448-Super Car.mpd', // hinges, universal joints, its tyres
 ];
 
 describe('every test model is fully attached', () => {

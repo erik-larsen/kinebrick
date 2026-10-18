@@ -1,21 +1,17 @@
 {
-  "8448 - Super Car - V8 engine": {
-    "title": "box5",
+  "8448-Super Car-V8 engine": {
     "primitives": [],
     "pieces": {}
   },
-  "8448 - Super Car": {
-    "title": "main",
+  "8448-Super Car": {
     "primitives": [],
     "pieces": {}
   },
-  "854 - Go Kart": {
-    "title": "Main",
+  "854-Go Kart": {
     "primitives": [],
     "pieces": {}
   },
-  "855 - Mobile Crane": {
-    "title": "Main",
+  "855-Mobile Crane": {
     "primitives": [
       "4-4cyli.dat"
     ],
@@ -26,95 +22,77 @@
       ]
     }
   },
-  "856 - Bulldozer": {
-    "title": "Main",
+  "856-Bulldozer": {
     "primitives": [],
     "pieces": {}
   },
-  "8880 - Super Car": {
-    "title": "main",
+  "8880-Super Car": {
     "primitives": [
       "box5-12.dat"
     ],
     "pieces": {}
   },
-  "950 - Fork Lift": {
-    "title": "Fork-Lift Truck",
+  "950-Fork Lift": {
     "primitives": [],
     "pieces": {}
   },
-  "952 - Tractor": {
-    "title": "main",
+  "952-Tractor": {
     "primitives": [],
     "pieces": {}
   },
-  "956 - Auto Chassis": {
-    "title": "main",
+  "956-Auto Chassis": {
     "primitives": [],
     "pieces": {}
   },
   "ackermann-car": {
-    "title": "Ackermann Car",
     "primitives": [],
     "pieces": {}
   },
   "differential": {
-    "title": "Differential",
     "primitives": [],
     "pieces": {}
   },
   "four-bar": {
-    "title": "Four-Bar Linkage",
     "primitives": [],
     "pieces": {}
   },
   "gear-train": {
-    "title": "Gear Train",
     "primitives": [],
     "pieces": {}
   },
   "gearbox": {
-    "title": "Two-Speed Gearbox",
     "primitives": [],
     "pieces": {}
   },
   "geared-car": {
-    "title": "Geared Four-Wheeled Car",
     "primitives": [],
     "pieces": {}
   },
   "rack-and-pinion": {
-    "title": "Rack and Pinion",
     "primitives": [],
     "pieces": {}
   },
   "right-angle": {
-    "title": "Right-Angle Drive",
     "primitives": [],
     "pieces": {}
   },
   "simple-car": {
-    "title": "Simple Four-Wheeled Car",
     "primitives": [],
     "pieces": {}
   },
   "single-piston-engine": {
-    "title": "Single-Cylinder Engine",
     "primitives": [],
     "pieces": {}
   },
   "steering-car-solid": {
-    "title": "Steering Car with a Solid Rear Axle",
     "primitives": [],
     "pieces": {}
   },
   "steering-car": {
-    "title": "Steering Car",
     "primitives": [],
     "pieces": {}
   },
   "worm-drive": {
-    "title": "Worm Drive",
     "primitives": [],
     "pieces": {}
   }

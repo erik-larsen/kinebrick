@@ -1,6 +1,6 @@
-0 FILE 950 - Fork-Lift Truck.ldr
+0 FILE 950-Fork-Lift Truck.ldr
 0 Fork-Lift Truck
-0 Name: 950 - Fork-Lift Truck
+0 Name: 950-Fork-Lift Truck
 0 Author: Merlijn Wissink [legolijntje]
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 
@@ -49,7 +49,7 @@
 1 7 0 -38 -30 1 0 0 0 1 0 0 0 1 3713.dat
 1 7 0 -38 10 1 0 0 0 1 0 0 0 1 3648a.dat
 1 7 0 -38 70 1 0 0 0 1 0 0 0 1 3647.dat
-1 7 0 16 140 1 0 0 0 1 0 0 0 1 950 - Steering.ldr
+1 7 0 16 140 1 0 0 0 1 0 0 0 1 950-Steering.ldr
 1 14 70 -64 140 0 0 -1 0 1 0 1 0 0 3004.dat
 1 14 -70 -64 140 0 0 -1 0 1 0 1 0 0 3004.dat
 1 14 0 -64 -10 -1 0 0 0 1 0 0 0 -1 3023.dat
@@ -158,11 +158,11 @@
 1 7 -30 -238 -100 0 0 1 0 1 0 -1 0 0 3647.dat
 1 7 -90 -238 -100 0 0 1 0 -1 0 1 0 0 3736.dat
 1 7 -100 -238 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
-1 7 0 -62 -88 1 0 0 0 1 0 0 0 1 950 - Forks.ldr
+1 7 0 -62 -88 1 0 0 0 1 0 0 0 1 950-Forks.ldr
 
-0 FILE 950 - Forks.ldr
+0 FILE 950-Forks.ldr
 0 Forks
-0 Name: 950 - Forks.ldr
+0 Name: 950-Forks.ldr
 0 Author: Merlijn Wissink [legolijntje]
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 1 14 0 0 0 1 0 0 0 0 -1 0 1 0 3020.dat
@@ -190,9 +190,9 @@
 1 14 50 -10 -114 0 0 1 0 1 0 -1 0 0 3703.dat
 1 14 -50 -10 -114 0 0 1 0 1 0 -1 0 0 3703.dat
 
-0 FILE 950 - Steering.ldr
+0 FILE 950-Steering.ldr
 0 Steering
-0 Name: 950 - Steering.ldr
+0 Name: 950-Steering.ldr
 0 Author: Merlijn Wissink [legolijntje]
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 1 14 0 0 0 1 0 0 0 1 0 0 0 1 3034.dat

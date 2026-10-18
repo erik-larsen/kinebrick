@@ -1,16 +1,16 @@
-0 FILE 854 - Main.ldr
+0 FILE 854-Main.ldr
 0 Main
-0 Name: 854 - Main.ldr
+0 Name: 854-Main.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 
-1 1 0 0 0 1 0 0 0 1 -0.024 0 0.024 1 854 - Go Kart.ldr
+1 1 0 0 0 1 0 0 0 1 -0.024 0 0.024 1 854-Go Kart.ldr
 
 
-0 FILE 854 - Go Kart.ldr
+0 FILE 854-Go Kart.ldr
 0 Go Kart
-0 Name: 854 - Go Kart.ldr
+0 Name: 854-Go Kart.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -37,8 +37,8 @@
 1 1 50 0 -250 -1 0 0 0 1 0 0 0 -1 3004.dat
 1 1 50 24 -60 -1 0 0 0 1 0 0 0 -1 3030.dat
 0 STEP
-1 7 130 16 -320 1 0 0 0 1 0 0 0 1 854 - Turntable.ldr
-1 7 -30 16 -320 1 0 0 0 1 0 0 0 1 854 - Turntable.ldr
+1 7 130 16 -320 1 0 0 0 1 0 0 0 1 854-Turntable.ldr
+1 7 -30 16 -320 1 0 0 0 1 0 0 0 1 854-Turntable.ldr
 1 0 50 10 -380 1 0 0 0 0.899 0.438 0 -0.438 0.899 3706.dat
 1 7 100 10 -380 0 0 -1 0.438 0.899 0 0.899 -0.438 0 3713.dat
 1 7 0 10 -380 0 0 1 -0.438 0.899 0 -0.899 -0.438 0 3713.dat
@@ -97,8 +97,8 @@
 1 1 50 -24 -320 1 0 0 0 1 0 0 0 1 3001.dat
 1 1 130 -16 -300 0 0 -1 0 1 0 1 0 0 3020.dat
 1 1 -30 -16 -300 0 0 -1 0 1 0 1 0 0 3020.dat
-1 7 130 -24 -320 1 0 0 0 1 0 0 0 1 854 - Turntable.ldr
-1 7 -30 -24 -320 1 0 0 0 1 0 0 0 1 854 - Turntable.ldr
+1 7 130 -24 -320 1 0 0 0 1 0 0 0 1 854-Turntable.ldr
+1 7 -30 -24 -320 1 0 0 0 1 0 0 0 1 854-Turntable.ldr
 1 1 50 -16 -280 1 0 0 0 1 0 0 0 1 3068b.dat
 1 7 100 -7.321 -230 1 0 0 0 0.5 -0.866 0 0.866 0.5 3651.dat
 1 7 100 0 -137.321 1 0 0 0 -0.866 -0.5 0 0.5 -0.866 3651.dat
@@ -124,8 +124,8 @@
 1 7 10 -32 -330 1 0 0 0 1 0 0 0 1 3666.dat
 1 1 50 -32 -310 1 0 0 0 1 0 0 0 1 3710.dat
 1 1 50 -24 -270 1 0 0 0 1 0 0 0 1 3710.dat
-1 7 130 -24 -280 1 0 0 0 1 0 0 0 1 854 - Turntable.ldr
-1 7 -30 -24 -280 1 0 0 0 1 0 0 0 1 854 - Turntable.ldr
+1 7 130 -24 -280 1 0 0 0 1 0 0 0 1 854-Turntable.ldr
+1 7 -30 -24 -280 1 0 0 0 1 0 0 0 1 854-Turntable.ldr
 1 1 110 -32 -270 1 0 0 0 1 0 0 0 1 3710.dat
 1 1 10 -32 -270 1 0 0 0 1 0 0 0 1 3666.dat
 1 7 100 -59.282 -200 1 0 0 0 0.5 -0.866 0 0.866 0.5 3713.dat
@@ -162,7 +162,7 @@
 1 0 50 -54 -280 0 0 1 0 1 0 -1 0 0 3706.dat
 1 7 50 -54 -270 1 0 0 0 1 0 0 0 1 3647.dat
 1 1 50 -124.904 -173.66 1 0 0 0 0.5 -0.866 0 0.866 0.5 3700.dat
-1 1 50 -54 -200 1 0 0 0 1 0 0 0 1 854 - Angled Universal Joint.ldr
+1 1 50 -54 -200 1 0 0 0 1 0 0 0 1 854-Angled Universal Joint.ldr
 1 0 50 -126.015 -161.6 0 0 1 0.882 0.471 0 -0.471 0.882 0 3706.dat
 1 7 50 -137.837 -155.294 -1 0 0 0 0.471 0.882 0 0.882 -0.471 3713.dat
 1 7 50 -98.664 -176.191 -1 0 0 0 0.471 0.882 0 0.882 -0.471 3713.dat
@@ -184,10 +184,10 @@
 1 0 50 -72 30 1 0 0 0 1 0 0 0 1 3023.dat
 1 4 60 -64 110 1 0 0 0 1 0 0 0 1 3062a.dat
 1 4 40 -64 110 1 0 0 0 1 0 0 0 1 3062a.dat
-1 256 80 -54 20 1 0 0 0 1 0 0 0 1 854 - Hose Left.ldr
-1 256 20 -54 20 1 0 0 0 1 0 0 0 1 854 - Hose Right.ldr
+1 256 80 -54 20 1 0 0 0 1 0 0 0 1 854-Hose Left.ldr
+1 256 20 -54 20 1 0 0 0 1 0 0 0 1 854-Hose Right.ldr
 0 STEP
-1 1 50 -6 -30 1 0 0 0 1 0 0 0 1 854 - Angled Hinge Plate.ldr
+1 1 50 -6 -30 1 0 0 0 1 0 0 0 1 854-Angled Hinge Plate.ldr
 1 7 50 -27.294 -107.14 1 0 0 0 0.97 0.242 0 -0.242 0.97 3023.dat
 1 7 50 -19.532 -109.075 1 0 0 0 0.97 0.242 0 -0.242 0.97 3023.dat
 1 7 90 -80 60 1 0 0 0 1 0 0 0 1 3022.dat
@@ -198,19 +198,19 @@
 1 0 80 -88 60 0 0 1 0 1 0 -1 0 0 3710.dat
 1 0 50 -88 30 -1 0 0 0 1 0 0 0 -1 3023.dat
 0 STEP
-1 1 50 -35.561 -74.16 1 0 0 0 0.97 0.242 0 -0.242 0.97 854 - Seat.ldr
-1 7 180 2 -320 0 0 -1 0 1 0 1 0 0 854 - Wheel.ldr
-1 7 -80 2 -320 0 0 1 0 -1 0 1 0 0 854 - Wheel.ldr
-1 7 -60 10 20 0 0 1 0 -1 0 1 0 0 854 - Wheel.ldr
-1 7 -86 10 20 0 0 1 0 -1 0 1 0 0 854 - Wheel.ldr
-1 7 160 10 20 0 0 -1 0 1 0 1 0 0 854 - Wheel.ldr
-1 7 186 10 20 0 0 -1 0 1 0 1 0 0 854 - Wheel.ldr
-1 15 50 -46.397 -374.74 1 0 0 0 0.438 -0.899 0 0.899 0.438 854 - Sticker.dat
+1 1 50 -35.561 -74.16 1 0 0 0 0.97 0.242 0 -0.242 0.97 854-Seat.ldr
+1 7 180 2 -320 0 0 -1 0 1 0 1 0 0 854-Wheel.ldr
+1 7 -80 2 -320 0 0 1 0 -1 0 1 0 0 854-Wheel.ldr
+1 7 -60 10 20 0 0 1 0 -1 0 1 0 0 854-Wheel.ldr
+1 7 -86 10 20 0 0 1 0 -1 0 1 0 0 854-Wheel.ldr
+1 7 160 10 20 0 0 -1 0 1 0 1 0 0 854-Wheel.ldr
+1 7 186 10 20 0 0 -1 0 1 0 1 0 0 854-Wheel.ldr
+1 15 50 -46.397 -374.74 1 0 0 0 0.438 -0.899 0 0.899 0.438 854-Sticker.dat
 
 
-0 FILE 854 - Turntable.ldr
+0 FILE 854-Turntable.ldr
 0 Turntable
-0 Name: 854 - Turntable.ldr
+0 Name: 854-Turntable.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -219,9 +219,9 @@
 1 7 0 0 0 1 0 0 0 1 0 0 0 1 3679.dat
 
 
-0 FILE 854 - Angled Universal Joint.ldr
+0 FILE 854-Angled Universal Joint.ldr
 0 Angled Universal Joint
-0 Name: 854 - Angled Universal Joint.ldr
+0 Name: 854-Angled Universal Joint.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -231,9 +231,9 @@
 1 7 0 0 0 1 0 0 0 1 0 0 0 1 3326b.dat
 
 
-0 FILE 854 - Angled Hinge Plate.ldr
+0 FILE 854-Angled Hinge Plate.ldr
 0 Angled Hinge Plate
-0 Name: 854 - Angled Hinge Plate.ldr
+0 Name: 854-Angled Hinge Plate.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -243,9 +243,9 @@
 1 7 0 0 0 1 0 0 0 1 0 0 0 1 3149e.dat
 
 
-0 FILE 854 - Seat.ldr
+0 FILE 854-Seat.ldr
 0 Seat
-0 Name: 854 - Seat.ldr
+0 Name: 854-Seat.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -270,9 +270,9 @@
 1 0 -30 -128 50 0 0 1 0 1 0 -1 0 0 3040a.dat
 
 
-0 FILE 854 - Wheel.ldr
+0 FILE 854-Wheel.ldr
 0 Wheel
-0 Name: 854 - Wheel.ldr
+0 Name: 854-Wheel.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -281,9 +281,9 @@
 1 256 0 0 0 1 0 0 0 1 0 0 0 1 3634.dat
 
 
-0 FILE 854 - Hose Left.ldr
+0 FILE 854-Hose Left.ldr
 0 Hose Left
-0 Name: 854 - Hose Left.ldr
+0 Name: 854-Hose Left.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -377,9 +377,9 @@
 1 16 -20.025287 11.323373 89.999493 -0.9993 0.149947 -0.00213 0.037345 4.012178 0.00083 0.00216 0.003009 -0.999997 166.dat
 
 
-0 FILE 854 - Sticker.dat
+0 FILE 854-Sticker.dat
 0 Sticker
-0 Name: 854 - Sticker.dat
+0 Name: 854-Sticker.dat
 0 Author: Stefan Frenz [smf]
 0 !LDRAW_ORG Unofficial_Part
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -575,9 +575,9 @@
 4 15 -28 0 -18.4 -28 -.25 -18.4 -30.5 -.25 -14.6 -30.5 0 -14.6
 
 
-0 FILE 854 - Hose Right.ldr
+0 FILE 854-Hose Right.ldr
 0 Hose Right
-0 Name: 854 - Hose Right.ldr
+0 Name: 854-Hose Right.ldr
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt

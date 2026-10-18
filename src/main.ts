@@ -36,8 +36,8 @@ import rolesUrl from '../data/roles.json?url';
 import titlesUrl from '../packed/titles.json?url';
 import packedModels from '../packed/models.json';
 
-// The test models in models/, and their names in the picker. Any other model in models/ comes
-// after them, under its file name and title.
+// The test models in models/, and their names in the picker. Any other model in models/ (the
+// real LEGO sets) comes after them, under its file name.
 const NAMED_MODELS: [string, string][] = [
   ['simple-car', 'Simple car'],
   ['geared-car', 'Geared car'],
@@ -52,14 +52,12 @@ const NAMED_MODELS: [string, string][] = [
   ['single-piston-engine', 'Single-cylinder engine'],
   ['four-bar', 'Four-bar linkage'],
   ['rack-and-pinion', 'Rack and pinion'],
-  ['8448 - Super Car - V8 engine', 'V8 engine (LEGO 8448)'],
-  ['8448 - Super Car', 'Super Street Sensation (LEGO 8448)'],
 ];
 const MODELS: [string, string][] = [
   ...NAMED_MODELS,
-  ...Object.entries(packedModels as Record<string, { title: string }>)
-    .filter(([file]) => !NAMED_MODELS.some(([named]) => named === file))
-    .map(([file, { title }]): [string, string] => [file, title && title !== file && !/^untitled/i.test(title) ? `${file}: ${title}` : file]),
+  ...Object.keys(packedModels)
+    .filter((file) => !NAMED_MODELS.some(([named]) => named === file))
+    .map((file): [string, string] => [file, file]),
 ];
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');

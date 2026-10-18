@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { embeddedParts, modelTitle, parseLdr, parseModel, partLine, PlacedPart } from '../src/ldr.ts';
+import { embeddedParts, parseLdr, parseModel, partLine, PlacedPart } from '../src/ldr.ts';
 
 // A main model placing a wheel submodel twice (once turned half round), which holds an axle
 // and another submodel, a hub; a shape drawn without parts; and a part the file brings with it.
@@ -75,8 +75,7 @@ describe('reading model files', () => {
     expect(parts[1].submodel).toBeUndefined(); // in the main model, as the part was
   });
 
-  it("names a model by its first line, and writes a part back as the line it'd be without submodels", () => {
-    expect(modelTitle(MPD)).toBe('Little car');
+  it("writes a part back as the line it'd be without submodels", () => {
     const hub = parseLdr(MPD)[4];
     expect(parseLdr(partLine(hub))[0]).toMatchObject({ name: '3482.dat', color: 1 });
     expect(at(parseLdr(partLine(hub))[0]).z).toBeCloseTo(-120, 6);

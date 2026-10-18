@@ -56,12 +56,6 @@ export function embeddedParts(text: string): Map<string, string> {
   return parts;
 }
 
-// The model's title: its first line, a comment.
-export function modelTitle(text: string): string {
-  const first = [...modelFiles(text).values()][0]?.find((line) => line.trim() !== '') ?? '';
-  return first.trim().replace(/^0\s+/, '').replace(/^(Title|Name):\s*/i, '');
-}
-
 // Shapes a submodel draws directly, with lines of types 2 to 5, rather than with parts: a hose
 // or a spring bent to fit, as CAD programs generate them. They have no connections, so they
 // don't take part in the mechanism, but they're drawn.

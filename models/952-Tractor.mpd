@@ -1,6 +1,6 @@
-0 FILE 952 - main
+0 FILE 952-main
 0 main
-0 Name: 952 - main
+0 Name: 952-main
 0 Author: Nathan Perry
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -166,7 +166,7 @@
 1 4 -70 -232 160.0006 0 0 1 0 1 0 -1 0 0 3710.dat
 1 4 70 -232 160.0006 0 0 1 0 1 0 -1 0 0 3710.dat
 0 STEP
-1 16 0 -24 -160 1 0 0 0 1 0 0 0 1 952 - Steering assy
+1 16 0 -24 -160 1 0 0 0 1 0 0 0 1 952-Steering assy
 0 STEP
 1 47 -30 -120 -210 1 0 0 0 1 0 0 0 1 3024.dat
 1 47 -30 -136 -210 1 0 0 0 1 0 0 0 1 3024.dat
@@ -244,12 +244,12 @@
 1 7 110 -54 -160 0 0 1 -1 0 0 0 -1 0 3482.dat
 1 256 -110 -54 -159.5 0 0 1 1 0 0 0 1 0 3634.dat
 1 256 110 -54 -160.5 -0.000001 0 -1 1 0 -0.000001 0 -1 0 3634.dat
-1 7 -120 -101.98 160 0 0 1 -1 0 0 0 -1 0 952 - 3739c01.dat
-1 7 120 -102 160 0 0 -1 -1 0 0 0 1 0 952 - 3739c01.dat
+1 7 -120 -101.98 160 0 0 1 -1 0 0 0 -1 0 952-3739c01.dat
+1 7 120 -102 160 0 0 -1 -1 0 0 0 1 0 952-3739c01.dat
 1 7 -150 -101.9802 160 0 0 1 1 0 0 0 1 0 3713.dat
 1 7 150 -102 160 0 0 -1 -1 0 0 0 1 0 3713.dat
 0 STEP
-1 16 0 -90.537 337.31 -1 0 0 0 0.983 0.182 0 0.182 -0.983 952 - Thresher Attachment
+1 16 0 -90.537 337.31 -1 0 0 0 0.983 0.182 0 0.182 -0.983 952-Thresher Attachment
 1 0 0 -164.1627 262.6432 1 0 0 0 0.855362 -0.518026 0 0.518026 0.855362 3707.dat
 1 7 70 -164.1627 262.6431 0 0 -1 0.855361 0.518026 0 0.518026 -0.855362 0 3713.dat
 1 0 0 -258.5552 245.1488 1 0 0 0 0.983255 -0.182235 0 0.182235 0.983255 3706.dat
@@ -257,9 +257,9 @@
 0 STEP
 
 
-0 FILE 952 - Steering assy
+0 FILE 952-Steering assy
 0 Steering assy
-0 Name: 952 - Steering assy
+0 Name: 952-Steering assy
 0 Author: Nathan Perry
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -326,9 +326,9 @@
 
 
 
-0 FILE 952 - Thresher Attachment
+0 FILE 952-Thresher Attachment
 0 Thresher Attachment
-0 Name: 952 - Thresher Attachment
+0 Name: 952-Thresher Attachment
 0 Author: Nathan Perry
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -405,9 +405,9 @@
 
 
 
-0 FILE 952 - 3739c01.dat
+0 FILE 952-3739c01.dat
 0 3739c01
-0 Name: 952 - 3739c01.dat
+0 Name: 952-3739c01.dat
 0 Author: Steffen [Steffen]
 0 !LDRAW_ORG Unofficial_Shortcut
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt

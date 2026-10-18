@@ -1,19 +1,19 @@
-0 FILE 956 - main.ldr
+0 FILE 956-main.ldr
 0 main
-0 Name: 956 - main.ldr
+0 Name: 956-main.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 
-1 14 0 -114.415 211.231 1 0 0 0 1 0.01 0 -0.01 1 956 - chassis.ldr
+1 14 0 -114.415 211.231 1 0 0 0 1 0.01 0 -0.01 1 956-chassis.ldr
 
 
 
 
 
-0 FILE 956 - chassis.ldr
+0 FILE 956-chassis.ldr
 0 chassis
-0 Name: 956 - chassis.ldr
+0 Name: 956-chassis.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -353,7 +353,7 @@
 1 0 230 -24 430 0 0 -1 0 1 0 1 0 0 3010.dat
 1 7 230 0 430 0 0 -1 0 1 0 1 0 0 3023.dat
 0 STEP
-1 14 80 64 -590 1 0 0 0 1 0 0 0 1 956 - steer.ldr
+1 14 80 64 -590 1 0 0 0 1 0 0 0 1 956-steer.ldr
 1 4 -120 -48 -590 1 0 0 0 1 0 0 0 1 3709b.dat
 1 4 120 -48 -590 1 0 0 0 1 0 0 0 1 3709b.dat
 1 7 -140 -58 -590 1 0 0 0 0 1 0 -1 0 3713.dat
@@ -389,10 +389,10 @@
 0 !LDCAD GROUP_NXT [ids=15] [nrs=-1]
 1 7 80 -155.759 -255.524 0.924 -0.383 0 0.322 0.778 -0.539 0.206 0.498 0.842 3736.dat
 0 !LDCAD GROUP_NXT [ids=20] [nrs=2]
-1 14 -90 -50.786 -204.669 1 0 0 0 0.974 0.225 0 -0.225 0.974 956 - fseatr.ldr
+1 14 -90 -50.786 -204.669 1 0 0 0 0.974 0.225 0 -0.225 0.974 956-fseatr.ldr
 0 !LDCAD GROUP_NXT [ids=19] [nrs=2]
-1 14 90 -50.79 -204.694 1 0 0 0 0.974 0.225 0 -0.225 0.974 956 - fseatl.ldr
-1 14 0 -42.786 15.331 1 0 0 0 0.974 0.225 0 -0.225 0.974 956 - rseat.ldr
+1 14 90 -50.79 -204.694 1 0 0 0 0.974 0.225 0 -0.225 0.974 956-fseatl.ldr
+1 14 0 -42.786 15.331 1 0 0 0 0.974 0.225 0 -0.225 0.974 956-rseat.ldr
 0 !LDCAD GROUP_NXT [ids=10] [nrs=3]
 1 7 -250 10 170 -1 0 0 0 -0.757 0.654 0 0.654 0.757 3739.dat
 0 !LDCAD GROUP_NXT [ids=10] [nrs=2]
@@ -402,13 +402,13 @@
 0 !LDCAD GROUP_NXT [ids=10] [nrs=5]
 1 256 220 10 170 0 0 1 -0.654 0.757 0 -0.757 -0.654 0 3740.dat
 0 STEP
-1 7 -20 -72 -575 1 0 0 0 1 0 0 0 1 956 - engine.ldr
+1 7 -20 -72 -575 1 0 0 0 1 0 0 0 1 956-engine.ldr
 
 
 
-0 FILE 956 - engine.ldr
+0 FILE 956-engine.ldr
 0 engine
-0 Name: 956 - engine.ldr
+0 Name: 956-engine.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -520,7 +520,7 @@
 1 1 0 -48 35 1 0 0 0 1 0 0 0 1 3023.dat
 1 1 0 -48 95 1 0 0 0 1 0 0 0 1 3023.dat
 0 STEP
-1 16 20 32 155 1 0 0 0 1 0 0 0 1 956 - power.ldr
+1 16 20 32 155 1 0 0 0 1 0 0 0 1 956-power.ldr
 0 STEP
 1 1 20 56 115 1 0 0 0 1 0 0 0 1 3710.dat
 1 1 20 56 155 1 0 0 0 1 0 0 0 1 3710.dat
@@ -555,9 +555,9 @@
 
 
 
-0 FILE 956 - power.ldr
+0 FILE 956-power.ldr
 0 power
-0 Name: 956 - power.ldr
+0 Name: 956-power.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -607,26 +607,26 @@
 0 STEP
 0 !LDCAD GROUP_NXT [ids=0] [nrs=5]
 1 0 -28.36 -3.642 -90 0 0.972 0.233 0 0.233 -0.972 -1 0 0 3705.dat
-1 0 -24.18 -33.35 -90 0.99 -0.139 0 0.139 0.99 0 0 0 1 956 - prod.ldr
+1 0 -24.18 -33.35 -90 0.99 -0.139 0 0.139 0.99 0 0 0 1 956-prod.ldr
 1 7 -20 -63.057 -90 1 0 0 0 1 0 0 0 1 3652.dat
 0 !LDCAD GROUP_NXT [ids=0] [nrs=6]
 1 7 -20 10 -120 0.522 0.853 0 0.853 -0.522 0 0 0 -1 3648a.dat
 0 !LDCAD GROUP_NXT [ids=0] [nrs=7]
 1 0 -11.64 23.642 -150 0 0.972 0.233 0 0.233 -0.972 -1 0 0 3705.dat
-1 0 -15.82 -6.065 -150 0.99 0.139 0 -0.139 0.99 0 0 0 1 956 - prod.ldr
+1 0 -15.82 -6.065 -150 0.99 0.139 0 -0.139 0.99 0 0 0 1 956-prod.ldr
 1 7 -20 -35.772 -150 1 0 0 0 1 0 0 0 1 3652.dat
 0 STEP
 0 !LDCAD GROUP_NXT [ids=0] [nrs=8]
 1 7 -20 10 -180 0.522 0.853 0 0.853 -0.522 0 0 0 -1 3648a.dat
 0 !LDCAD GROUP_NXT [ids=0] [nrs=9]
 1 0 -28.36 -3.642 -210 0 0.972 0.233 0 0.233 -0.972 -1 0 0 3705.dat
-1 0 -24.18 -33.35 -210 0.99 -0.139 0 0.139 0.99 0 0 0 1 956 - prod.ldr
+1 0 -24.18 -33.35 -210 0.99 -0.139 0 0.139 0.99 0 0 0 1 956-prod.ldr
 1 7 -20 -63.057 -210 1 0 0 0 1 0 0 0 1 3652.dat
 0 !LDCAD GROUP_NXT [ids=0] [nrs=10]
 1 7 -20 10 -240 0.522 0.853 0 0.853 -0.522 0 0 0 -1 3648a.dat
 0 !LDCAD GROUP_NXT [ids=0] [nrs=11]
 1 0 -11.64 23.642 -270 0 0.972 0.233 0 0.233 -0.972 -1 0 0 3705.dat
-1 0 -15.82 -6.065 -270 0.99 0.139 0 -0.139 0.99 0 0 0 1 956 - prod.ldr
+1 0 -15.82 -6.065 -270 0.99 0.139 0 -0.139 0.99 0 0 0 1 956-prod.ldr
 1 7 -20 -35.772 -270 1 0 0 0 1 0 0 0 1 3652.dat
 0 !LDCAD GROUP_NXT [ids=0] [nrs=12]
 1 7 -20 10 -300 0.522 0.853 0 0.853 -0.522 0 0 0 -1 3648a.dat
@@ -639,9 +639,9 @@
 
 
 
-0 FILE 956 - prod.ldr
+0 FILE 956-prod.ldr
 0 prod
-0 Name: 956 - prod.ldr
+0 Name: 956-prod.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -652,9 +652,9 @@
 
 
 
-0 FILE 956 - steer.ldr
+0 FILE 956-steer.ldr
 0 steer
-0 Name: 956 - steer.ldr
+0 Name: 956-steer.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -737,7 +737,7 @@
 0 !LDCAD GROUP_NXT [ids=1] [nrs=3]
 1 4 -240 -32 0 1 0 0 0 1 0 0 0 1 3709b.dat
 0 STEP
-1 16 -80 -24 -50 1 0 0 0 1 0 0 0 1 956 - rack.ldr
+1 16 -80 -24 -50 1 0 0 0 1 0 0 0 1 956-rack.ldr
 0 STEP
 0 !LDCAD GROUP_NXT [ids=0] [nrs=4]
 1 4 110 -56 0 0 0 1 0 1 0 -1 0 0 3700.dat
@@ -793,9 +793,9 @@
 
 
 
-0 FILE 956 - trod.ldr
+0 FILE 956-trod.ldr
 0 trod
-0 Name: 956 - trod.ldr
+0 Name: 956-trod.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -808,9 +808,9 @@
 
 
 
-0 FILE 956 - rseat.ldr
+0 FILE 956-rseat.ldr
 0 rseat
-0 Name: 956 - rseat.ldr
+0 Name: 956-rseat.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -917,9 +917,9 @@
 
 
 
-0 FILE 956 - fseatr.ldr
+0 FILE 956-fseatr.ldr
 0 fseatr
-0 Name: 956 - fseatr.ldr
+0 Name: 956-fseatr.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -976,9 +976,9 @@
 
 
 
-0 FILE 956 - fseatl.ldr
+0 FILE 956-fseatl.ldr
 0 fseatl
-0 Name: 956 - fseatl.ldr
+0 Name: 956-fseatl.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -1035,9 +1035,9 @@
 
 
 
-0 FILE 956 - rack.ldr
+0 FILE 956-rack.ldr
 0 rack
-0 Name: 956 - rack.ldr
+0 Name: 956-rack.ldr
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -1049,8 +1049,8 @@
 1 4 -60 -8 10 1 0 0 0 1 0 0 0 1 3709b.dat
 1 7 20 -16 0 1 0 0 0 1 0 0 0 1 3743.dat
 1 4 0 -16 20 1 0 0 0 1 0 0 0 1 3666.dat
-1 7 110 -22 10 1 0 0 0 1 0 0 0 1 956 - trod.ldr
-1 7 -110 -22 10 1 0 0 0 1 0 0 0 1 956 - trod.ldr
+1 7 110 -22 10 1 0 0 0 1 0 0 0 1 956-trod.ldr
+1 7 -110 -22 10 1 0 0 0 1 0 0 0 1 956-trod.ldr
 
 
 

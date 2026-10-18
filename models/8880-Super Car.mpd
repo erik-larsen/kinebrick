@@ -1,6 +1,6 @@
-0 FILE 8880 - main.ldr
+0 FILE 8880-main.ldr
 0 main
-0 Name: 8880 - main.ldr
+0 Name: 8880-main.ldr
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -28,16 +28,16 @@
 1 7 0 -14 203 -1 0 0 0 1 0 0 0 -1 4143.dat
 1 7 0 3 220 0 -1 0 0 0 1 -1 0 0 4143.dat
 0 STEP
-1 0 -110 -24 160 0 0 -1 0 1 0 1 0 0 8880 - step4sub1.ldr
-1 0 110 -24 160 0 0 -1 0 1 0 1 0 0 8880 - step4sub2.ldr
+1 0 -110 -24 160 0 0 -1 0 1 0 1 0 0 8880-step4sub1.ldr
+1 0 110 -24 160 0 0 -1 0 1 0 1 0 0 8880-step4sub2.ldr
 1 7 -60 -14 80 -1 0 0 0 1 0 0 0 -1 6538a.dat
 1 7 0 -14 -20 -1 0 0 0 1 0 0 0 -1 6538a.dat
 0 STEP
-1 7 0 0 430 0 0 1 0 1 0 -1 0 0 8880 - step5.ldr
+1 7 0 0 430 0 0 1 0 1 0 -1 0 0 8880-step5.ldr
 1 0 0 -14 -80 0 0 -1 0 1 0 1 0 0 3706.dat
 1 0 130 -64 30 0 0 -1 0 1 0 1 0 0 3737.dat
 0 STEP
-1 14 0 0 -110 0 0 1 0 1 0 -1 0 0 8880 - step6.ldr
+1 14 0 0 -110 0 0 1 0 1 0 -1 0 0 8880-step6.ldr
 1 7 -60 -14 -70 -1 0 0 0 1 0 0 0 -1 3647.dat
 1 7 0 -14 445 1 0 0 0 1 0 0 0 1 4265b.dat
 1 0 130 -24 10 0 0 -1 0 1 0 1 0 0 4287a.dat
@@ -65,8 +65,8 @@
 1 0 -120 -32 200 -1 0 0 0 1 0 0 0 -1 3022.dat
 1 0 100 -32 290 0 0 1 0 1 0 -1 0 0 3021.dat
 1 0 -100 -32 290 0 0 1 0 1 0 -1 0 0 3021.dat
-1 0 0 -14 -150 1 0 0 0 1 0 0 0 1 8880 - step8sub1.ldr
-1 0 0 -14 470 1 0 0 0 1 0 0 0 1 8880 - step8sub2.ldr
+1 0 0 -14 -150 1 0 0 0 1 0 0 0 1 8880-step8sub1.ldr
+1 0 0 -14 470 1 0 0 0 1 0 0 0 1 8880-step8sub2.ldr
 0 STEP
 1 0 180 -32 140 0 0 1 0 1 0 -1 0 0 4282.dat
 1 0 -180 -32 140 0 0 1 0 1 0 -1 0 0 4282.dat
@@ -74,13 +74,13 @@
 1 0 60 -24 -190 0 0 1 0 1 0 -1 0 0 3002.dat
 1 0 -60 -24 510 0 0 1 0 1 0 -1 0 0 3002.dat
 1 0 60 -24 510 0 0 1 0 1 0 -1 0 0 3002.dat
-1 0 -150 -14 -180 0 0 1 0 1 0 -1 0 0 8880 - step9.ldr
-1 0 -150 -14 500 0 0 1 0 1 0 -1 0 0 8880 - step9.ldr
-1 0 150 -14 -180 0 0 -1 0 1 0 1 0 0 8880 - step9.ldr
-1 0 150 -14 500 0 0 -1 0 1 0 1 0 0 8880 - step9.ldr
+1 0 -150 -14 -180 0 0 1 0 1 0 -1 0 0 8880-step9.ldr
+1 0 -150 -14 500 0 0 1 0 1 0 -1 0 0 8880-step9.ldr
+1 0 150 -14 -180 0 0 -1 0 1 0 1 0 0 8880-step9.ldr
+1 0 150 -14 500 0 0 -1 0 1 0 1 0 0 8880-step9.ldr
 0 STEP
-1 0 0 0 -280 0 0 1 0 1 0 -1 0 0 8880 - step10sub2.ldr
-1 0 0 0 600 0 0 1 0 1 0 -1 0 0 8880 - step10sub1.ldr
+1 0 0 0 -280 0 0 1 0 1 0 -1 0 0 8880-step10sub2.ldr
+1 0 0 0 600 0 0 1 0 1 0 -1 0 0 8880-step10sub1.ldr
 1 0 -80 -40 10 -1 0 0 0 1 0 0 0 -1 4477.dat
 1 0 100 -40 10 -1 0 0 0 1 0 0 0 -1 3460.dat
 1 0 100 -40 270 -1 0 0 0 1 0 0 0 -1 3460.dat
@@ -131,7 +131,7 @@
 1 7 -80 -64 270 -1 0 0 0 1 0 0 0 -1 3700.dat
 1 7 -90 -64 300 0 0 1 0 1 0 -1 0 0 3700.dat
 1 7 90 -64 300 0 0 1 0 1 0 -1 0 0 3700.dat
-1 7 -50 -54 180 0 0 1 0 1 0 -1 0 0 8880 - step12.ldr
+1 7 -50 -54 180 0 0 1 0 1 0 -1 0 0 8880-step12.ldr
 0 STEP
 1 0 -160 -40 -380 0 0 1 0 1 0 -1 0 0 3933.dat
 1 0 160 -40 -380 0 0 -1 0 1 0 1 0 0 3934.dat
@@ -140,7 +140,7 @@
 1 14 0 -28 -110 1 0 0 0 -1 0 0 0 -1 3701.dat
 1 0 160 -40 680 0 0 -1 0 1 0 1 0 0 3933.dat
 1 0 -160 -40 680 0 0 1 0 1 0 -1 0 0 3934.dat
-1 0 0 -64 10 1 0 0 0 1 0 0 0 1 8880 - step13.ldr
+1 0 0 -64 10 1 0 0 0 1 0 0 0 1 8880-step13.ldr
 0 STEP
 1 7 0 -64 -230 -1 0 0 0 1 0 0 0 -1 3702.dat
 1 7 0 -64 -130 -1 0 0 0 1 0 0 0 -1 3702.dat
@@ -185,8 +185,8 @@
 1 0 150 -64 270 -1 0 0 0 1 0 0 0 -1 3622.dat
 1 0 -150 -64 10 -1 0 0 0 1 0 0 0 -1 3622.dat
 1 0 -150 -64 270 -1 0 0 0 1 0 0 0 -1 3622.dat
-1 7 0 -54 -180 0 0 -1 0 1 0 1 0 0 8880 - step15.ldr
-1 7 0 -54 500 0 0 1 0 1 0 -1 0 0 8880 - step15.ldr
+1 7 0 -54 -180 0 0 -1 0 1 0 1 0 0 8880-step15.ldr
+1 7 0 -54 500 0 0 1 0 1 0 -1 0 0 8880-step15.ldr
 0 STEP
 0 // Angle 43.105
 1 0 100 -74 -180 0 -0.683 -0.73 0 0.73 -0.683 1 0 0 4519.dat
@@ -197,10 +197,10 @@
 1 7 -100 -74 500 0.73 0.683 0 -0.683 0.73 0 0 0 1 3713.dat
 1 7 -100 -74 -180 0.73 0.683 0 -0.683 0.73 0 0 0 1 3713.dat
 1 7 100 -74 -180 0.73 -0.683 0 0.683 0.73 0 0 0 1 3713.dat
-1 7 100 -74 -180 0.683 0 -0.73 -0.73 0 -0.683 0 1 0 8880 - step16.ldr
-1 7 100 -74 500 0.683 0 -0.73 -0.73 0 -0.683 0 1 0 8880 - step16.ldr
-1 7 -100 -74 500 -0.683 0 0.73 -0.73 0 -0.683 0 -1 0 8880 - step16.ldr
-1 7 -100 -74 -180 -0.683 0 0.73 -0.73 0 -0.683 0 -1 0 8880 - step16.ldr
+1 7 100 -74 -180 0.683 0 -0.73 -0.73 0 -0.683 0 1 0 8880-step16.ldr
+1 7 100 -74 500 0.683 0 -0.73 -0.73 0 -0.683 0 1 0 8880-step16.ldr
+1 7 -100 -74 500 -0.683 0 0.73 -0.73 0 -0.683 0 -1 0 8880-step16.ldr
+1 7 -100 -74 -180 -0.683 0 0.73 -0.73 0 -0.683 0 -1 0 8880-step16.ldr
 1 0 -90 -64 -430 1 0 0 0 1 0 0 0 1 3665a.dat
 1 0 90 -64 -430 1 0 0 0 1 0 0 0 1 3665a.dat
 1 0 90 -64 710 -1 0 0 0 1 0 0 0 -1 3665a.dat
@@ -245,8 +245,8 @@
 1 7 -212 -54 500 0 -1 0 -1 0 0 0 0 -1 2907.dat
 1 7 -212 -54 -180 0 -1 0 -1 0 0 0 0 -1 2907.dat
 1 7 212 -54 -180 0 -1 0 -1 0 0 0 0 -1 2907.dat
-1 0 220 -54 200 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880 - step17sub2.ldr
-1 0 -220 -50.633 219.715 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880 - step17sub1.ldr
+1 0 220 -54 200 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880-step17sub2.ldr
+1 0 -220 -50.633 219.715 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880-step17sub1.ldr
 1 0 220 -72 -340 1 0 0 0 1 0 0 0 1 4730.dat
 1 0 -220 -72 -340 -1 0 0 0 1 0 0 0 -1 4730.dat
 0 STEP
@@ -268,10 +268,10 @@
 1 0 -90 -80 640 0 0 -1 0 1 0 1 0 0 4477.dat
 1 0 -160 -80 -340 1 0 0 0 1 0 0 0 1 3738.dat
 1 0 160 -80 -340 1 0 0 0 1 0 0 0 1 3738.dat
-1 0 -210 -54 -180 0 0 -1 0 1 0 1 0 0 8880 - step18sub1.ldr
-1 7 210 -54 500 0 0 1 0 1 0 -1 0 0 8880 - step18sub1.ldr
-1 7 -210 -54 500 0 0 1 0 1 0 -1 0 0 8880 - step18sub2.ldr
-1 7 210 -54 -180 0 0 -1 0 1 0 1 0 0 8880 - step18sub2.ldr
+1 0 -210 -54 -180 0 0 -1 0 1 0 1 0 0 8880-step18sub1.ldr
+1 7 210 -54 500 0 0 1 0 1 0 -1 0 0 8880-step18sub1.ldr
+1 7 -210 -54 500 0 0 1 0 1 0 -1 0 0 8880-step18sub2.ldr
+1 7 210 -54 -180 0 0 -1 0 1 0 1 0 0 8880-step18sub2.ldr
 0 STEP
 1 15 -30 -104 110 1 0 0 0 1 0 0 0 1 3005.dat
 1 7 -30 -104 270 1 0 0 0 1 0 0 0 1 3005.dat
@@ -293,9 +293,9 @@
 1 0 0 -93.996 269.991 0 0 1 0 1 0 -1 0 0 4519.dat
 1 7 0 -93.996 249.988 1 0 0 0 1 0 0 0 1 3647.dat
 1 7 0 -93.996 282.99 -1 0 0 0 1 0 0 0 -1 4143.dat
-1 8 0 -60 -110 1 0 0 0 1 0 0 0 1 8880 - step19.ldr
-1 8 0 -64 430 1 0 0 0 1 0 0 0 1 8880 - step19.ldr
-1 0 70 -54 380 -1 0 0 0 1 0 0 0 -1 8880 - step19ch.ldr
+1 8 0 -60 -110 1 0 0 0 1 0 0 0 1 8880-step19.ldr
+1 8 0 -64 430 1 0 0 0 1 0 0 0 1 8880-step19.ldr
+1 0 70 -54 380 -1 0 0 0 1 0 0 0 -1 8880-step19ch.ldr
 0 STEP
 1 7 -30 -104 -130 1 0 0 0 1 0 0 0 1 6541.dat
 1 7 -60 -104 -130 1 0 0 0 1 0 0 0 1 3700.dat
@@ -308,7 +308,7 @@
 1 0 90 -112 600 0 0 -1 0 1 0 1 0 0 2744.dat
 1 7 90 -104 -350 1 0 0 0 1 0 0 0 1 3665a.dat
 1 7 -90 -104 -350 1 0 0 0 1 0 0 0 1 3665a.dat
-1 7 30 -94 120 0 0 -1 0 1 0 1 0 0 8880 - step20.ldr
+1 7 30 -94 120 0 0 -1 0 1 0 1 0 0 8880-step20.ldr
 0 STEP
 1 7 -70 -104 -230 -1 0 0 0 1 0 0 0 -1 3622.dat
 1 7 90 -104 -230 -1 0 0 0 1 0 0 0 -1 3005.dat
@@ -344,8 +344,8 @@
 1 1 -160 -54 -152 0 0 1 -1 0 0 0 -1 0 2711.dat
 1 7 160 -94 -150 0 0 1 0 -1 0 1 0 0 4274.dat
 1 1 160 -54 -152 0 0 1 -1 0 0 0 -1 0 2711.dat
-1 7 0 -104 -330 1 0 0 0 1 0 0 0 1 8880 - step21sub1.ldr
-1 7 60 -94 -180 1 0 0 0 1 0 0 0 1 8880 - step21sub2.ldr
+1 7 0 -104 -330 1 0 0 0 1 0 0 0 1 8880-step21sub1.ldr
+1 7 60 -94 -180 1 0 0 0 1 0 0 0 1 8880-step21sub2.ldr
 0 STEP
 1 7 -90 -112 -370 1 0 0 0 1 0 0 0 1 3024.dat
 1 7 90 -112 -370 1 0 0 0 1 0 0 0 1 3024.dat
@@ -367,7 +367,7 @@
 1 0 0 -89 60 -1 0 0 0 1 0 0 0 -1 6549.dat
 1 15 0 -112 130 1 0 0 0 1 0 0 0 1 3710.dat
 0 STEP
-1 14 0 -80 -450 1 0 0 0 1 0 0 0 1 8880 - step23.ldr
+1 14 0 -80 -450 1 0 0 0 1 0 0 0 1 8880-step23.ldr
 1 7 -90 -120 290 1 0 0 0 1 0 0 0 1 3024.dat
 1 7 90 -120 290 1 0 0 0 1 0 0 0 1 3024.dat
 1 7 0 -120 -330 1 0 0 0 1 0 0 0 1 3023.dat
@@ -390,16 +390,16 @@
 1 1 0 -180 60 0 0 1 0 1 0 -1 0 0 4589.dat
 1 7 -10 -120 120 0 0 1 0 1 0 -1 0 0 2412b.dat
 1 7 10.001 -120 120.001 0 0 1 0 1 0 -1 0 0 2412b.dat
-1 7 0 -120 300 0 0 1 0 1 0 -1 0 0 8880 - step23sub2.ldr
+1 7 0 -120 300 0 0 1 0 1 0 -1 0 0 8880-step23sub2.ldr
 0 STEP
-1 7 140 -4 -220 -1 0 0 0 -1 0 0 0 1 8880 - step24shock.ldr
-1 7 140 -4 -140 -1 0 0 0 -1 0 0 0 1 8880 - step24shock.ldr
-1 7 140 -4 540 -1 0 0 0 -1 0 0 0 1 8880 - step24shock.ldr
-1 7 140 -4 460 -1 0 0 0 -1 0 0 0 1 8880 - step24shock.ldr
-1 7 -140 -4 460 1 0 0 0 -1 0 0 0 -1 8880 - step24shock.ldr
-1 7 -140 -4 540 1 0 0 0 -1 0 0 0 -1 8880 - step24shock.ldr
-1 7 -140 -4 -220 1 0 0 0 -1 0 0 0 -1 8880 - step24shock.ldr
-1 7 -140 -4 -140 1 0 0 0 -1 0 0 0 -1 8880 - step24shock.ldr
+1 7 140 -4 -220 -1 0 0 0 -1 0 0 0 1 8880-step24shock.ldr
+1 7 140 -4 -140 -1 0 0 0 -1 0 0 0 1 8880-step24shock.ldr
+1 7 140 -4 540 -1 0 0 0 -1 0 0 0 1 8880-step24shock.ldr
+1 7 140 -4 460 -1 0 0 0 -1 0 0 0 1 8880-step24shock.ldr
+1 7 -140 -4 460 1 0 0 0 -1 0 0 0 -1 8880-step24shock.ldr
+1 7 -140 -4 540 1 0 0 0 -1 0 0 0 -1 8880-step24shock.ldr
+1 7 -140 -4 -220 1 0 0 0 -1 0 0 0 -1 8880-step24shock.ldr
+1 7 -140 -4 -140 1 0 0 0 -1 0 0 0 -1 8880-step24shock.ldr
 1 7 110 -144 -80 0 0 1 0 1 0 -1 0 0 3700.dat
 1 7 -110 -144 -80 0 0 1 0 1 0 -1 0 0 3700.dat
 1 7 0 -144 -330 1 0 0 0 1 0 0 0 1 3700.dat
@@ -445,16 +445,16 @@
 1 7 -160 -14 -235 -0.986 -0.164 0 -0.164 0.986 0 0 0 -1 4265b.dat
 1 7 -160 -14 -125 0.986 -0.164 0 0.164 0.986 0 0 0 1 4265b.dat
 1 7 -120 -134 -235 -1 0 0 0 1 0 0 0 -1 4265b.dat
-1 7 -120 -134 -180 0 0 -1 0 -1 0 -1 0 0 8880 - step25.ldr
+1 7 -120 -134 -180 0 0 -1 0 -1 0 -1 0 0 8880-step25.ldr
 1 7 -120 -134 -125 1 0 0 0 1 0 0 0 1 4265b.dat
 1 7 -120 -134 555 1 0 0 0 1 0 0 0 1 4265b.dat
-1 7 -120 -134 500 0 0 -1 0 -1 0 -1 0 0 8880 - step25.ldr
+1 7 -120 -134 500 0 0 -1 0 -1 0 -1 0 0 8880-step25.ldr
 1 7 -120 -134 445 -1 0 0 0 1 0 0 0 -1 4265b.dat
 1 7 120 -134 -125 -1 0 0 0 -1 0 0 0 1 4265b.dat
-1 7 120 -134 -180 0 0 1 0 1 0 -1 0 0 8880 - step25.ldr
+1 7 120 -134 -180 0 0 1 0 1 0 -1 0 0 8880-step25.ldr
 1 7 120 -134 -235 1 0 0 0 -1 0 0 0 -1 4265b.dat
 1 7 120 -134 555 -1 0 0 0 -1 0 0 0 1 4265b.dat
-1 7 120 -134 500 0 0 1 0 1 0 -1 0 0 8880 - step25.ldr
+1 7 120 -134 500 0 0 1 0 1 0 -1 0 0 8880-step25.ldr
 1 7 120 -134 445 1 0 0 0 -1 0 0 0 -1 4265b.dat
 0 STEP
 1 7 75 -134 480 0 0 -1 0 -1 0 -1 0 0 4265b.dat
@@ -473,34 +473,34 @@
 1 0 90 -160 310 0 0 -1 0 1 0 1 0 0 3623.dat
 1 15 0 -152 270 1 0 0 0 1 0 0 0 1 3297.dat
 1 7 120 -94 580 1 0 0 0 0.891 0.453 0 -0.453 0.891 3749.dat
-1 7 0 -134 -360 1 0 0 0 0.707 0.707 0 -0.707 0.707 8880 - step26.ldr
+1 7 0 -134 -360 1 0 0 0 0.707 0.707 0 -0.707 0.707 8880-step26.ldr
 0 STEP
-1 14 0 -134 500 1 0 0 0 1 0 0 0 1 8880 - step27.ldr
-1 0 0 -136.116 -356.101 0 0 -1 -0.477 0.879 0 0.879 0.477 0 8880 - step27combo.ldr
+1 14 0 -134 500 1 0 0 0 1 0 0 0 1 8880-step27.ldr
+1 0 0 -136.116 -356.101 0 0 -1 -0.477 0.879 0 0.879 0.477 0 8880-step27combo.ldr
 0 STEP
-1 14 0 -94 -80 -1 0 0 0 0.83 0.558 0 0.558 -0.83 8880 - step28.ldr
-1 15 0 -88.962 -19.393 0 0 1 -0.963 0.27 0 -0.27 -0.963 0 8880 - step28sub3.ldr
+1 14 0 -94 -80 -1 0 0 0 0.83 0.558 0 0.558 -0.83 8880-step28.ldr
+1 15 0 -88.962 -19.393 0 0 1 -0.963 0.27 0 -0.27 -0.963 0 8880-step28sub3.ldr
 1 0 -90 -184 300 0 0 -1 0 1 0 1 0 0 3660.dat
 1 0 90 -184 300 0 0 1 0 1 0 -1 0 0 3660.dat
 1 7 0 -174 300 0 -1 0 0 0 1 -1 0 0 3648a.dat
 0 STEP
-1 7 0 -192 300 1 0 0 0 1 0 0 0 1 8880 - step29sub1.ldr
-1 7 130 -134 -360 1 0 0 0 0.707 0.707 0 -0.707 0.707 8880 - step29sub3.ldr
-1 7 -130 -134 -360 1 0 0 0 0.707 0.707 0 -0.707 0.707 8880 - step29sub2.ldr
+1 7 0 -192 300 1 0 0 0 1 0 0 0 1 8880-step29sub1.ldr
+1 7 130 -134 -360 1 0 0 0 0.707 0.707 0 -0.707 0.707 8880-step29sub3.ldr
+1 7 -130 -134 -360 1 0 0 0 0.707 0.707 0 -0.707 0.707 8880-step29sub2.ldr
 1 7 0 -144.21 -5.308 0 0 -1 0.558 -0.83 0 -0.83 -0.558 0 6553.dat
 0 STEP
 1 7 0 -209 300 1 0 0 0 0 -1 0 1 0 4265b.dat
-1 7 0 -280 290 1 0 0 0 1 0 0 0 1 8880 - step30sub1.ldr
-1 0 0 -211.415 -87.296 1 0 0 0 0.989 -0.151 0 0.151 0.989 8880 - step30sub2.ldr
+1 7 0 -280 290 1 0 0 0 1 0 0 0 1 8880-step30sub1.ldr
+1 0 0 -211.415 -87.296 1 0 0 0 0.989 -0.151 0 0.151 0.989 8880-step30sub2.ldr
 0 STEP
-1 7 190 -174 290 0 0 1 1 0 0 0 1 0 8880 - step31sub2.ldr
-1 7 -190 -174 290 0 0 1 1 0 0 0 1 0 8880 - step31sub1.ldr
+1 7 190 -174 290 0 0 1 1 0 0 0 1 0 8880-step31sub2.ldr
+1 7 -190 -174 290 0 0 1 1 0 0 0 1 0 8880-step31sub1.ldr
 1 7 -70 -186.878 -248.353 0 -1 0 0.473 0 0.881 -0.881 0 0.473 2825.dat
 1 7 70 -186.879 -248.353 0 1 0 -0.473 0 0.881 0.881 0 0.473 2825.dat
 0 STEP
-1 15 120 -72 180 1 0 0 0 1 0 0 0 1 8880 - step32.ldr
-1 15 -120 -72 180 1 0 0 0 1 0 0 0 1 8880 - step32.ldr
-1 0 0 -294 140 0 0 1 0.341 0.94 0 -0.94 0.341 0 8880 - step32sub3.ldr
+1 15 120 -72 180 1 0 0 0 1 0 0 0 1 8880-step32.ldr
+1 15 -120 -72 180 1 0 0 0 1 0 0 0 1 8880-step32.ldr
+1 0 0 -294 140 0 0 1 0.341 0.94 0 -0.94 0.341 0 8880-step32sub3.ldr
 0 STEP
 1 0 210 -119.112 -47.543 0 0 1 0.875 -0.485 0 0.485 0.875 0 3895.dat
 1 0 -210 -119.112 -47.543 0 0 1 0.875 -0.485 0 0.485 0.875 0 3895.dat
@@ -512,12 +512,12 @@
 1 0 -250 -117.893 -316.002 0 0 1 0.842 0.54 0 -0.54 0.842 0 3702.dat
 1 0 -240 -162.982 -275.173 1 0 0 0 0.842 0.54 0 -0.54 0.842 2780.dat
 1 0 240 -162.982 -275.173 1 0 0 0 0.842 0.54 0 -0.54 0.842 2780.dat
-1 0 0 -194 300 1 0 0 0 0.995 -0.103 0 0.103 0.995 8880 - step33.ldr
+1 0 0 -194 300 1 0 0 0 0.995 -0.103 0 0.103 0.995 8880-step33.ldr
 0 STEP
-1 0 230 -194 300 -1 0 0 0 0.995 0.097 0 0.097 -0.995 8880 - step34sub1.ldr
-1 0 -230 -194 300 -1 0 0 0 0.995 0.097 0 0.097 -0.995 8880 - step34sub1.ldr
-1 0 190.56 -230.712 -34.458 -0.075 0.385 0.92 -0.983 0.128 -0.134 -0.169 -0.914 0.368 8880 - step34sub3.ldr
-1 0 -190.56 -230.712 -34.458 -0.134 -0.368 -0.92 0.991 -0.026 -0.134 0.026 -0.929 0.368 8880 - step34sub2.ldr
+1 0 230 -194 300 -1 0 0 0 0.995 0.097 0 0.097 -0.995 8880-step34sub1.ldr
+1 0 -230 -194 300 -1 0 0 0 0.995 0.097 0 0.097 -0.995 8880-step34sub1.ldr
+1 0 190.56 -230.712 -34.458 -0.075 0.385 0.92 -0.983 0.128 -0.134 -0.169 -0.914 0.368 8880-step34sub3.ldr
+1 0 -190.56 -230.712 -34.458 -0.134 -0.368 -0.92 0.991 -0.026 -0.134 0.026 -0.929 0.368 8880-step34sub2.ldr
 1 0 230 -188.353 -177.935 0 0 1 0.155 0.988 0 -0.988 0.155 0 3895.dat
 1 0 -230 -188.353 -177.935 0 0 1 0.155 0.988 0 -0.988 0.155 0 3895.dat
 0 STEP
@@ -526,10 +526,10 @@
 0 STEP
 1 7 265 -194 300 0 0 1 0 1 0 -1 0 0 4265b.dat
 1 7 -265 -194 300 0 0 -1 0 1 0 1 0 0 4265b.dat
-1 0 251 -54 -180 0 0 -1 -1 0 0 0 1 0 8880 - step36.ldr
-1 0 251 -54 500 0 0 -1 -1 0 0 0 1 0 8880 - step36.ldr
-1 0 -251 -54 500 0 0 1 -1 0 0 0 -1 0 8880 - step36.ldr
-1 0 -251 -54 -180 0 0 1 -1 0 0 0 -1 0 8880 - step36.ldr
+1 0 251 -54 -180 0 0 -1 -1 0 0 0 1 0 8880-step36.ldr
+1 0 251 -54 500 0 0 -1 -1 0 0 0 1 0 8880-step36.ldr
+1 0 -251 -54 500 0 0 1 -1 0 0 0 -1 0 8880-step36.ldr
+1 0 -251 -54 -180 0 0 1 -1 0 0 0 -1 0 8880-step36.ldr
 
 
 
@@ -538,13 +538,13 @@
 1 7 30 -112 60 -1 0 0 0 1 0 0 0 -1 168315b.dat
 
 
-0 FILE 8880 - step4sub1.ldr
+0 FILE 8880-step4sub1.ldr
 0 step4sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step4sub1.ldr
+0 Name: 8880-step4sub1.ldr
 1 0 -120 0 0 1 0 0 0 1 0 0 0 1 3703.dat
 1 0 160 0 0 1 0 0 0 1 0 0 0 1 3895.dat
 1 0 20 10 10 0 0 1 0 1 0 -1 0 0 2780.dat
@@ -560,13 +560,13 @@
 
 
 
-0 FILE 8880 - step4sub2.ldr
+0 FILE 8880-step4sub2.ldr
 0 step4sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step4sub2.ldr
+0 Name: 8880-step4sub2.ldr
 1 0 -120 0 0 -1 0 0 0 1 0 0 0 -1 3703.dat
 1 0 160 0 0 -1 0 0 0 1 0 0 0 -1 3895.dat
 1 0 20 10 -10 0 0 1 0 1 0 -1 0 0 2780.dat
@@ -582,13 +582,13 @@
 
 
 
-0 FILE 8880 - step5.ldr
+0 FILE 8880-step5.ldr
 0 step5
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step5.ldr
+0 Name: 8880-step5.ldr
 1 0 -50 0 60 1 0 0 0 1 0 0 0 1 3738.dat
 1 0 -50 0 -60 1 0 0 0 1 0 0 0 1 3738.dat
 1 0 0 0 -100 1 0 0 0 1 0 0 0 1 3021.dat
@@ -604,13 +604,13 @@
 
 
 
-0 FILE 8880 - step6.ldr
+0 FILE 8880-step6.ldr
 0 step6
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step6.ldr
+0 Name: 8880-step6.ldr
 1 0 50 0 60 1 0 0 0 1 0 0 0 1 3738.dat
 1 0 50 0 -60 1 0 0 0 1 0 0 0 1 3738.dat
 1 0 0 0 -100 1 0 0 0 1 0 0 0 1 3021.dat
@@ -626,13 +626,13 @@
 
 
 
-0 FILE 8880 - step8sub1.ldr
+0 FILE 8880-step8sub1.ldr
 0 step8sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step8sub1.ldr
+0 Name: 8880-step8sub1.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3706.dat
 1 7 30 0 0 0 0 -1 0 1 0 1 0 0 3713.dat
 1 7 -30 0 0 0 0 -1 0 1 0 1 0 0 4019.dat
@@ -644,13 +644,13 @@
 
 
 
-0 FILE 8880 - step8sub2.ldr
+0 FILE 8880-step8sub2.ldr
 0 step8sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step8sub2.ldr
+0 Name: 8880-step8sub2.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3706.dat
 1 7 -30 0 0 0 0 1 0 1 0 -1 0 0 3713.dat
 1 7 30 0 0 0 0 1 0 1 0 -1 0 0 4019.dat
@@ -662,13 +662,13 @@
 
 
 
-0 FILE 8880 - step9.ldr
+0 FILE 8880-step9.ldr
 0 step9
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step9.ldr
+0 Name: 8880-step9.ldr
 1 1 0 0 0 -1 0 0 0 -1 0 0 0 1 2738.dat
 0 //Angle 9.45
 1 7 0 0 -10 -1 0 0 0 -0.986 0.164 0 0.164 0.986 6536.dat
@@ -683,13 +683,13 @@
 
 
 
-0 FILE 8880 - step10sub1.ldr
+0 FILE 8880-step10sub1.ldr
 0 step10sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step10sub1.ldr
+0 Name: 8880-step10sub1.ldr
 1 0 0 0 90 1 0 0 0 1 0 0 0 1 3666.dat
 1 0 0 0 -90 1 0 0 0 1 0 0 0 1 3666.dat
 0 STEP
@@ -713,13 +713,13 @@
 
 
 
-0 FILE 8880 - step10sub2.ldr
+0 FILE 8880-step10sub2.ldr
 0 step10sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step10sub2.ldr
+0 Name: 8880-step10sub2.ldr
 1 0 0 0 -90 1 0 0 0 1 0 0 0 1 3666.dat
 1 0 0 0 90 1 0 0 0 1 0 0 0 1 3666.dat
 1 0 70 0 -160 0 0 1 0 1 0 -1 0 0 3460.dat
@@ -747,13 +747,13 @@
 
 
 
-0 FILE 8880 - step12.ldr
+0 FILE 8880-step12.ldr
 0 step12
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step12.ldr
+0 Name: 8880-step12.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3737.dat
 1 7 -90 -10 0 0 0 -1 0 1 0 1 0 0 6541.dat
 1 7 70 -10 0 0 0 -1 0 1 0 1 0 0 6541.dat
@@ -763,13 +763,13 @@
 
 
 
-0 FILE 8880 - step13.ldr
+0 FILE 8880-step13.ldr
 0 step13
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step13.ldr
+0 Name: 8880-step13.ldr
 1 0 -20 10 10 0 0 1 0 1 0 -1 0 0 3705.dat
 1 0 20 10 10 0 0 1 0 1 0 -1 0 0 3705.dat
 1 7 -20 10 50 1 0 0 0 1 0 0 0 1 6538a.dat
@@ -804,13 +804,13 @@
 
 
 
-0 FILE 8880 - step15.ldr
+0 FILE 8880-step15.ldr
 0 step15
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step15.ldr
+0 Name: 8880-step15.ldr
 1 8 0 0 0 1 0 0 0 1 0 0 0 1 6573.dat
 0 STEP
 1 0 0 0 40 0 0 1 0 1 0 -1 0 0 3705.dat
@@ -837,13 +837,13 @@
 
 
 
-0 FILE 8880 - step16.ldr
+0 FILE 8880-step16.ldr
 0 step16
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step16.ldr
+0 Name: 8880-step16.ldr
 1 7 0 10 -60 1 0 0 0 1 0 0 0 1 2825.dat
 1 0 0 0 -60 0 -1 0 1 0 0 0 0 1 3704.dat
 1 7 0 -10 -60 -1 0 0 0 -1 0 0 0 1 2825.dat
@@ -851,13 +851,13 @@
 
 
 
-0 FILE 8880 - step17sub1.ldr
+0 FILE 8880-step17sub1.ldr
 0 step17sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step17sub1.ldr
+0 Name: 8880-step17sub1.ldr
 1 0 60 -10 -10 1 0 0 0 1 0 0 0 1 3702.dat
 1 0 60 14 -10 1 0 0 0 1 0 0 0 1 3460.dat
 1 14 60 22 -10 1 0 0 0 1 0 0 0 1 3460.dat
@@ -866,13 +866,13 @@
 
 
 
-0 FILE 8880 - step17sub2.ldr
+0 FILE 8880-step17sub2.ldr
 0 step17sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step17sub2.ldr
+0 Name: 8880-step17sub2.ldr
 1 0 60 -10 10 -1 0 0 0 1 0 0 0 -1 3702.dat
 1 0 60 14 10 -1 0 0 0 1 0 0 0 -1 3460.dat
 1 14 60 22 10 -1 0 0 0 1 0 0 0 -1 3460.dat
@@ -881,13 +881,13 @@
 
 
 
-0 FILE 8880 - step18sub1.ldr
+0 FILE 8880-step18sub1.ldr
 0 step18sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step18sub1.ldr
+0 Name: 8880-step18sub1.ldr
 1 15 0 0 0 1 0 0 0 -1 0 0 0 -1 6540b.dat
 1 0 70 -10 -22 0 -1 0 1 0 0 0 0 1 6628.dat
 1 7 0 0 16 0 0 1 1 0 0 0 1 0 2999.dat
@@ -895,13 +895,13 @@
 
 
 
-0 FILE 8880 - step18sub2.ldr
+0 FILE 8880-step18sub2.ldr
 0 step18sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step18sub2.ldr
+0 Name: 8880-step18sub2.ldr
 1 15 0 0 0 1 0 0 0 1 0 0 0 1 6540b.dat
 1 0 70 -10 22 0 -1 0 1 0 0 0 0 1 6628.dat
 1 7 0 0 -16 0 0 1 -1 0 0 0 -1 0 2999.dat
@@ -909,13 +909,13 @@
 
 
 
-0 FILE 8880 - step19.ldr
+0 FILE 8880-step19.ldr
 0 step19
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step19.ldr
+0 Name: 8880-step19.ldr
 1 7 0 0 0 1 0 0 0 1 0 0 0 1 2719.dat
 1 7 90 0 0 0 -1 0 1 0 0 0 0 1 2736.dat
 1 7 -90 0 0 0 -1 0 1 0 0 0 0 1 2736.dat
@@ -931,13 +931,13 @@
 
 
 
-0 FILE 8880 - step20.ldr
+0 FILE 8880-step20.ldr
 0 step20
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step20.ldr
+0 Name: 8880-step20.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3707.dat
 1 7 -80 0 0 0 0 1 0 1 0 -1 0 0 6538a.dat
 1 7 80 0 0 0 0 1 0 1 0 -1 0 0 6538a.dat
@@ -958,13 +958,13 @@
 
 
 
-0 FILE 8880 - step21sub1.ldr
+0 FILE 8880-step21sub1.ldr
 0 step21sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step21sub1.ldr
+0 Name: 8880-step21sub1.ldr
 1 0 0 10 110 0 0 1 0 1 0 -1 0 0 3708.dat
 1 7 0 10 180 1 0 0 0 1 0 0 0 1 3713.dat
 1 7 0 10 20 1 0 0 0 1 0 0 0 1 4019.dat
@@ -979,13 +979,13 @@
 
 
 
-0 FILE 8880 - step21sub2.ldr
+0 FILE 8880-step21sub2.ldr
 0 step21sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step21sub2.ldr
+0 Name: 8880-step21sub2.ldr
 1 0 0 0 0 0 0 -1 0 1 0 1 0 0 3707.dat
 1 7 0 0 30 -1 0 0 0 1 0 0 0 -1 3647.dat
 1 7 0 -10 50 -1 0 0 0 1 0 0 0 -1 3700.dat
@@ -1001,13 +1001,13 @@
 
 
 
-0 FILE 8880 - step23.ldr
+0 FILE 8880-step23.ldr
 0 step23
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step23.ldr
+0 Name: 8880-step23.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3666.dat
 0 //Angle 29.745
 1 0 -100 0 10 -1 0 0 0 1 0 0 0 -1 2429.dat
@@ -1038,13 +1038,13 @@
 
 
 
-0 FILE 8880 - step23sub2.ldr
+0 FILE 8880-step23sub2.ldr
 0 step23sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step23sub2.ldr
+0 Name: 8880-step23sub2.ldr
 1 7 0 0 0 1 0 0 0 1 0 0 0 1 3709b.dat
 1 7 0 8 0 1 0 0 0 0 -1 0 1 0 4143.dat
 1 0 0 -48 0 0 0 1 1 0 0 0 1 0 3706.dat
@@ -1053,7 +1053,7 @@
 
 
 
-0 FILE 8880 - step24shock.ldr
+0 FILE 8880-step24shock.ldr
 0 step24shock
 0 Author: Orion Pobursky [OrionP]
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -1061,7 +1061,7 @@
 0 !THEME Technic
 0 !KEYWORDS spring, shock
 0 !LDCAD CONTENT [type=spring] [addFallBack=default] [cRes=16] [cResLD=16] [cDia=20] [cRoll=0] [wRes=8] [wResLD=8] [wDia=0.75mm] [wCol=494] [sepMesh=false]
-0 Name: 8880 - step24shock.ldr
+0 Name: 8880-step24shock.ldr
 0 !LDRAW_ORG Model
 
 0 !LDCAD SPRING_CAP [group=start] [color=16] [posOri=6.296 46.173 0 0.986 0.164 0 -0.164 0.986 0 0 0 1] [part=2909.dat] [inlineRef=false]
@@ -1092,21 +1092,21 @@
 1 16 20 130 0 0.986 0.164 0 -0.164 0.986 0 0 0 1 2910.dat
 
 0 //Spring mesh reference
-1 494 4.654 36.309 0 0.987043 0.160457 0 -0.160457 0.987043 0 0 0 1 8880 - step24shock_springMesh.ldr
+1 494 4.654 36.309 0 0.987043 0.160457 0 -0.160457 0.987043 0 0 0 1 8880-step24shock_springMesh.ldr
 
 
 
 
 
-0 FILE 8880 - step24shock_springMesh.ldr
+0 FILE 8880-step24shock_springMesh.ldr
 0 step24shock_springMesh
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step24shock_springMesh.ldr
+0 Name: 8880-step24shock_springMesh.ldr
 
-0 !LDCAD GENERATED [generator=LDCad 1.6b] [master=8880 - step24shock.ldr]
+0 !LDCAD GENERATED [generator=LDCad 1.6b] [master=8880-step24shock.ldr]
 0 //This is additional fallback LDraw content for the "step24shock.ldr" SPRING configuration.
 0 // Do not edit, any changes will be lost upon regeneration.
 0 // The spring is approx 25.98 mm (64.94), exists out of 3 section(s) and uses 16.00 windings.
@@ -7311,10 +7311,10 @@
 5 24 -10.9375 64.008369 0.234287 -10.274588 63.339272 0.018197 -10.9375 63.064785 0.025734 -10 64.00193 0
 
 
-0 FILE 8880 - step25.ldr
+0 FILE 8880-step25.ldr
 0 step25
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
-0 Name: 8880 - step25.ldr
+0 Name: 8880-step25.ldr
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !THEME Technic
@@ -7326,13 +7326,13 @@
 
 
 
-0 FILE 8880 - step26.ldr
+0 FILE 8880-step26.ldr
 0 step26
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step26.ldr
+0 Name: 8880-step26.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3706.dat
 1 7 60 0 0 0 0 -1 0 1 0 1 0 0 6538a.dat
 1 7 -60 0 0 0 0 -1 0 1 0 1 0 0 6538a.dat
@@ -7343,13 +7343,13 @@
 
 
 
-0 FILE 8880 - step27-1-5.ldr
+0 FILE 8880-step27-1-5.ldr
 0 step27-1-5
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27-1-5.ldr
+0 Name: 8880-step27-1-5.ldr
 1 7 0 0 -60 -1 0 0 0 -1 0 0 0 1 2853.dat
 1 0 0 0 -100 0 0 1 0 -1 0 1 0 0 4519.dat
 1 7 10 0 -60 0.589 -0.808 0 0.808 0.589 0 0 0 1 2852.dat
@@ -7383,13 +7383,13 @@
 
 
 
-0 FILE 8880 - step27-6.ldr
+0 FILE 8880-step27-6.ldr
 0 step27-6
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27-6.ldr
+0 Name: 8880-step27-6.ldr
 1 7 -20 -26 -60 1 0 0 0 1 0 0 0 1 2850a.dat
 1 0 0 0 -80 0 0 1 0 1 0 -1 0 0 2780.dat
 1 7 -40 0 -80 0 0 1 0 1 0 -1 0 0 4274.dat
@@ -7408,13 +7408,13 @@
 
 
 
-0 FILE 8880 - step27-7.ldr
+0 FILE 8880-step27-7.ldr
 0 step27-7
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27-7.ldr
+0 Name: 8880-step27-7.ldr
 1 7 20 -26 -60 1 0 0 0 1 0 0 0 1 2850a.dat
 1 0 0 0 -80 0 0 -1 0 1 0 1 0 0 2780.dat
 1 7 40 0 -80 0 0 1 0 1 0 -1 0 0 4274.dat
@@ -7433,13 +7433,13 @@
 
 
 
-0 FILE 8880 - step27-8.ldr
+0 FILE 8880-step27-8.ldr
 0 step27-8
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27-8.ldr
+0 Name: 8880-step27-8.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 4477.dat
 1 0 -30 -32 0 1 0 0 0 1 0 0 0 1 6541.dat
 1 0 0 -32 0 1 0 0 0 1 0 0 0 1 3700.dat
@@ -7450,13 +7450,13 @@
 
 
 
-0 FILE 8880 - step27-9.ldr
+0 FILE 8880-step27-9.ldr
 0 step27-9
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27-9.ldr
+0 Name: 8880-step27-9.ldr
 1 14 0 0 0 1 0 0 0 1 0 0 0 1 4477.dat
 1 0 0 -16 0 1 0 0 0 1 0 0 0 1 3794a.dat
 1 14 -30 -32 0 1 0 0 0 1 0 0 0 1 6541.dat
@@ -7467,22 +7467,22 @@
 
 
 
-0 FILE 8880 - step27.ldr
+0 FILE 8880-step27.ldr
 0 step27
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27.ldr
-1 8 0 0 0 1 0 0 0 1 0 0 0 1 8880 - step27-1-5.ldr
+0 Name: 8880-step27.ldr
+1 8 0 0 0 1 0 0 0 1 0 0 0 1 8880-step27-1-5.ldr
 0 STEP
-1 8 -30 -40 0 0.4 0.917 0 -0.917 0.4 0 0 0 1 8880 - step27-6.ldr
+1 8 -30 -40 0 0.4 0.917 0 -0.917 0.4 0 0 0 1 8880-step27-6.ldr
 0 STEP
-1 8 30 -40 0 0.4 -0.917 0 0.917 0.4 0 0 0 1 8880 - step27-7.ldr
+1 8 30 -40 0 0.4 -0.917 0 0.917 0.4 0 0 0 1 8880-step27-7.ldr
 0 STEP
-1 8 0 -18 -90 1 0 0 0 1 0 0 0 1 8880 - step27-8.ldr
+1 8 0 -18 -90 1 0 0 0 1 0 0 0 1 8880-step27-8.ldr
 0 STEP
-1 8 0 -18 90 1 0 0 0 1 0 0 0 1 8880 - step27-9.ldr
+1 8 0 -18 90 1 0 0 0 1 0 0 0 1 8880-step27-9.ldr
 1 7 0 0 -110 1 0 0 0 1 0 0 0 1 4019.dat
 0 STEP
 1 14 -30 -58 0 0 0 -1 0 1 0 1 0 0 4477.dat
@@ -7512,13 +7512,13 @@
 
 
 
-0 FILE 8880 - step27sub1.ldr
+0 FILE 8880-step27sub1.ldr
 0 step27sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27sub1.ldr
+0 Name: 8880-step27sub1.ldr
 1 0 -30 14 10 1 0 0 0 1 0 0 0 1 3623.dat
 1 0 -50 -10 10 0 0 1 0 1 0 -1 0 0 3676.dat
 1 0 40 -10 10 1 0 0 0 1 0 0 0 1 3702.dat
@@ -7528,13 +7528,13 @@
 
 
 
-0 FILE 8880 - step27sub2.ldr
+0 FILE 8880-step27sub2.ldr
 0 step27sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27sub2.ldr
+0 Name: 8880-step27sub2.ldr
 1 0 -30 14 -10 -1 0 0 0 1 0 0 0 -1 3623.dat
 1 0 -50 -10 -10 -1 0 0 0 1 0 0 0 -1 3676.dat
 1 0 40 -10 -10 -1 0 0 0 1 0 0 0 -1 3702.dat
@@ -7544,13 +7544,13 @@
 
 
 
-0 FILE 8880 - step28.ldr
+0 FILE 8880-step28.ldr
 0 step28
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step28.ldr
+0 Name: 8880-step28.ldr
 1 7 -120 14 -90 1 0 0 0 1 0 0 0 1 2419.dat
 1 7 -170 14 -40 0 0 1 0 1 0 -1 0 0 3023.dat
 1 7 170 14 -70 0 0 -1 0 1 0 1 0 0 2420.dat
@@ -7616,13 +7616,13 @@
 1 0 -120 -38 -80 1 0 0 0 0 -1 0 1 0 168315g.dat
 
 
-0 FILE 8880 - step28-4sub1.ldr
+0 FILE 8880-step28-4sub1.ldr
 0 step28-4sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step28-4sub1.ldr
+0 Name: 8880-step28-4sub1.ldr
 1 7 20 -10 10 1 0 0 0 1 0 0 0 1 3701.dat
 1 0 0 0 0 0 0 -1 0 1 0 1 0 0 2780.dat
 1 15 40 -18 10 1 0 0 0 1 0 0 0 1 2412b.dat
@@ -7630,13 +7630,13 @@
 
 
 
-0 FILE 8880 - step28-4sub2.ldr
+0 FILE 8880-step28-4sub2.ldr
 0 step28-4sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step28-4sub2.ldr
+0 Name: 8880-step28-4sub2.ldr
 1 7 20 -10 -10 -1 0 0 0 1 0 0 0 -1 3701.dat
 1 0 0 0 0 0 0 -1 0 1 0 1 0 0 2780.dat
 1 15 40 -18 -10 -1 0 0 0 1 0 0 0 -1 2412b.dat
@@ -7644,13 +7644,13 @@
 
 
 
-0 FILE 8880 - step29sub1.ldr
+0 FILE 8880-step29sub1.ldr
 0 step29sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step29sub1.ldr
+0 Name: 8880-step29sub1.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3738.dat
 1 0 0 0 80 0 0 1 0 1 0 -1 0 0 3709b.dat
 1 0 -90 0 0 0 0 1 0 1 0 -1 0 0 3023.dat
@@ -7677,13 +7677,13 @@
 
 
 
-0 FILE 8880 - step29sub2.ldr
+0 FILE 8880-step29sub2.ldr
 0 step29sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step29sub2.ldr
+0 Name: 8880-step29sub2.ldr
 1 0 -30 20 0 1 0 0 0 1 0 0 0 1 4263.dat
 0 STEP
 1 0 -40 10 -10 -1 0 0 0 0 1 0 1 0 4070.dat
@@ -7702,13 +7702,13 @@
 
 
 
-0 FILE 8880 - step29sub3.ldr
+0 FILE 8880-step29sub3.ldr
 0 step29sub3
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step29sub3.ldr
+0 Name: 8880-step29sub3.ldr
 1 0 30 20 0 1 0 0 0 1 0 0 0 1 4263.dat
 0 STEP
 1 0 40 10 -10 -1 0 0 0 0 1 0 1 0 4070.dat
@@ -7727,28 +7727,28 @@
 
 
 
-0 FILE 8880 - step27combo.ldr
+0 FILE 8880-step27combo.ldr
 0 step27combo
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step27combo.ldr
-1 14 0 0 100 1 0 0 0 1 0 0 0 1 8880 - step27sub1.ldr
-1 14 0 0 -100 1 0 0 0 1 0 0 0 1 8880 - step27sub2.ldr
+0 Name: 8880-step27combo.ldr
+1 14 0 0 100 1 0 0 0 1 0 0 0 1 8880-step27sub1.ldr
+1 14 0 0 -100 1 0 0 0 1 0 0 0 1 8880-step27sub2.ldr
 0 // These parts moved from main model for ease of rotation
 1 0 -60 -18 0 0 0 1 0 1 0 -1 0 0 3832.dat
 1 0 -60 -26 0 1 0 0 0 1 0 0 0 1 3068b.dat
-1 0 -60 -26 0 0 0 1 0 1 0 -1 0 0 8880 - 168315i.dat
+1 0 -60 -26 0 0 0 1 0 1 0 -1 0 0 8880-168315i.dat
 
 
-0 FILE 8880 - step30sub1.ldr
+0 FILE 8880-step30sub1.ldr
 0 step30sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step30sub1.ldr
+0 Name: 8880-step30sub1.ldr
 1 0 -80 8 10 1 0 0 0 1 0 0 0 1 3022.dat
 1 0 80 8 10 1 0 0 0 1 0 0 0 1 3022.dat
 0 STEP
@@ -7803,13 +7803,13 @@
 
 
 
-0 FILE 8880 - step30sub2.ldr
+0 FILE 8880-step30sub2.ldr
 0 step30sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step30sub2.ldr
+0 Name: 8880-step30sub2.ldr
 1 0 100 14 -82.915 -0.75 0 0.661 0 1 0 -0.661 0 -0.75 2429.dat
 1 0 100 14 -82.915 -1 0 0 0 1 0 0 0 -1 2430.dat
 1 0 -100 14 -82.915 -1 0 0 0 1 0 0 0 -1 2429.dat
@@ -7846,13 +7846,13 @@
 
 
 
-0 FILE 8880 - step31sub1.ldr
+0 FILE 8880-step31sub1.ldr
 0 step31sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step31sub1.ldr
+0 Name: 8880-step31sub1.ldr
 1 0 -120 24 70 -0.8 0 -0.6 0 1 0 0.6 0 -0.8 2429.dat
 1 0 -120 24 70 1 0 0 0 1 0 0 0 1 2430.dat
 1 0 -40 24 10 -0.8 0 -0.6 0 1 0 0.6 0 -0.8 2430.dat
@@ -7887,13 +7887,13 @@
 
 
 
-0 FILE 8880 - step31sub2.ldr
+0 FILE 8880-step31sub2.ldr
 0 step31sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step31sub2.ldr
+0 Name: 8880-step31sub2.ldr
 1 0 -120 24 -70 0.8 0 -0.6 0 1 0 0.6 0 0.8 2430.dat
 1 0 -120 24 -70 -1 0 0 0 1 0 0 0 -1 2429.dat
 1 0 -40 24 -10 0.8 0 -0.6 0 1 0 0.6 0 0.8 2429.dat
@@ -7928,13 +7928,13 @@
 
 
 
-0 FILE 8880 - step32.ldr
+0 FILE 8880-step32.ldr
 0 step32
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step32.ldr
+0 Name: 8880-step32.ldr
 1 7 0 0 0 0 0 -1 0 1 0 1 0 0 3032.dat
 0 STEP
 1 15 0 -8 -10 1 0 0 0 1 0 0 0 1 3666.dat
@@ -7979,13 +7979,13 @@
 
 
 
-0 FILE 8880 - step32sub1.ldr
+0 FILE 8880-step32sub1.ldr
 0 step32sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step32sub1.ldr
+0 Name: 8880-step32sub1.ldr
 1 0 20 14 -20 1 0 0 0 1 0 0 0 1 2429.dat
 1 0 20 14 -20 0.92 0 0.392 0 1 0 -0.392 0 0.92 2430.dat
 1 0 211.833 14 -80.001 -1 0 0 0 1 0 0 0 -1 2429.dat
@@ -8005,13 +8005,13 @@
 
 
 
-0 FILE 8880 - step32sub2.ldr
+0 FILE 8880-step32sub2.ldr
 0 step32sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step32sub2.ldr
+0 Name: 8880-step32sub2.ldr
 1 0 20 14 20 -1 0 0 0 1 0 0 0 -1 2430.dat
 1 0 20 14 20 -0.92 0 0.392 0 1 0 -0.392 0 -0.92 2429.dat
 1 0 211.833 14 80.001 1 0 0 0 1 0 0 0 1 2430.dat
@@ -8031,39 +8031,39 @@
 
 
 
-0 FILE 8880 - step32sub3.ldr
+0 FILE 8880-step32sub3.ldr
 0 step32sub3
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step32sub3.ldr
-1 0 0 0 -100 1 0 0 0 1 0 0 0 1 8880 - step32sub1.ldr
-1 0 0 0 100 1 0 0 0 1 0 0 0 1 8880 - step32sub2.ldr
+0 Name: 8880-step32sub3.ldr
+1 0 0 0 -100 1 0 0 0 1 0 0 0 1 8880-step32sub1.ldr
+1 0 0 0 100 1 0 0 0 1 0 0 0 1 8880-step32sub2.ldr
 
 
 
 
-0 FILE 8880 - step28sub3.ldr
+0 FILE 8880-step28sub3.ldr
 0 step28sub3
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step28sub3.ldr
-1 0 0 0 -200 1 0 0 0 1 0 0 0 1 8880 - step28-4sub1.ldr
-1 0 0 0 200 1 0 0 0 1 0 0 0 1 8880 - step28-4sub2.ldr
+0 Name: 8880-step28sub3.ldr
+1 0 0 0 -200 1 0 0 0 1 0 0 0 1 8880-step28-4sub1.ldr
+1 0 0 0 200 1 0 0 0 1 0 0 0 1 8880-step28-4sub2.ldr
 
 
 
 
-0 FILE 8880 - step33-1-8.ldr
+0 FILE 8880-step33-1-8.ldr
 0 step33-1-8
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-1-8.ldr
+0 Name: 8880-step33-1-8.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 3704.dat
 1 7 -20 0 0 0 0 1 0.945 0.328 0 -0.328 0.945 0 6538a.dat
 1 7 20 0 0 0 0 1 0.945 0.328 0 -0.328 0.945 0 6538a.dat
@@ -8099,11 +8099,11 @@
 1 7 50 -40 -40 0 0 1 0 1 0 -1 0 0 4274.dat
 1 7 50 0 -40 0 0 1 0 1 0 -1 0 0 4274.dat
 0 STEP
-1 7 0 0 -56 1 0 0 0 0 -1 0 1 0 8880 - step35.ldr
+1 7 0 0 -56 1 0 0 0 0 -1 0 1 0 8880-step35.ldr
 1 7 0 -58 0 -1 0 0 0 1 0 0 0 -1 168315a.dat
 
 
-0 FILE 8880 - step19ch.ldr
+0 FILE 8880-step19ch.ldr
 0 step19ch
 0 Author: Orion Pobursky [OrionP]
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
@@ -8111,7 +8111,7 @@
 0 !THEME Technic
 0 !KEYWORDS flexible, chain
 0 !LDCAD CONTENT [type=path] [addFallBack=default] [looped=true] [displayKind=links] [curveStep=16] [displayLenCor=0]
-0 Name: 8880 - step19ch.ldr
+0 Name: 8880-step19ch.ldr
 0 !LDRAW_ORG Model
 
 0 !LDCAD PATH_POINT [type=circle] [posOri=10 -40 -10 0.980785 -0.19509 0 0.19509 0.980785 0 0 0 1] [prevCPDist=25] [nextCPDist=25] [cirR=20.5] [cirDir=xyCW] [prevYRoll=0] [nextYRoll=0]
@@ -8154,33 +8154,33 @@
 1 16 -10.21943 -43.233465 -10 0 0.97071 0.240254 0 -0.240254 0.97071 1 0 0 3711.dat
 
 
-0 FILE 8880 - step33.ldr
+0 FILE 8880-step33.ldr
 0 step33
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33.ldr
-1 7 0 0 325 1 0 0 0 0 1 0 -1 0 8880 - step33-1-8.ldr
-1 7 -90 59.902 335.572 -1 0 0 0 -0.333 0.943 0 0.943 0.333 8880 - step33-7sub1.ldr
-1 7 90 59.902 335.572 -1 0 0 0 -0.333 0.943 0 0.943 0.333 8880 - step33-7sub2.ldr
+0 Name: 8880-step33.ldr
+1 7 0 0 325 1 0 0 0 0 1 0 -1 0 8880-step33-1-8.ldr
+1 7 -90 59.902 335.572 -1 0 0 0 -0.333 0.943 0 0.943 0.333 8880-step33-7sub1.ldr
+1 7 90 59.902 335.572 -1 0 0 0 -0.333 0.943 0 0.943 0.333 8880-step33-7sub2.ldr
 0 STEP
-1 7 0 53.235 394.427 1 0 0 0 0.333 0.943 0 -0.943 0.333 8880 - step33-8.ldr
+1 7 0 53.235 394.427 1 0 0 0 0.333 0.943 0 -0.943 0.333 8880-step33-8.ldr
 1 0 90 0 365 -1 0 0 0 0.711 -0.703 0 -0.703 -0.711 6558.dat
 1 0 -90 6.286 367.222 1 0 0 0 -0.111 0.994 0 -0.994 -0.111 6558.dat
 0 STEP
-1 0 90 -95.338 50.106 1 0 0 0 0.945 0.328 0 -0.328 0.945 8880 - step33-9.ldr
-1 0 -90 -95.338 50.106 1 0 0 0 0.945 0.328 0 -0.328 0.945 8880 - step33-9.ldr
+1 0 90 -95.338 50.106 1 0 0 0 0.945 0.328 0 -0.328 0.945 8880-step33-9.ldr
+1 0 -90 -95.338 50.106 1 0 0 0 0.945 0.328 0 -0.328 0.945 8880-step33-9.ldr
 0 STEP
-1 0 250 108.292 418.322 1 0 0 0 1 0 0 0 1 8880 - step33-10sub2.ldr
-1 0 -250 108.281 418.333 1 0 0 0 1 0 0 0 1 8880 - step33-10sub1.ldr
+1 0 250 108.292 418.322 1 0 0 0 1 0 0 0 1 8880-step33-10sub2.ldr
+1 0 -250 108.281 418.333 1 0 0 0 1 0 0 0 1 8880-step33-10sub1.ldr
 0 STEP
-1 7 110 56.569 345 1 0 0 0 0.993 0.115 0 -0.115 0.993 8880 - step33-11sub1.ldr
-1 7 130 128.36 268.186 1 0 0 0 -0.84 -0.543 0 0.543 -0.84 8880 - step33-11sub2.ldr
+1 7 110 56.569 345 1 0 0 0 0.993 0.115 0 -0.115 0.993 8880-step33-11sub1.ldr
+1 7 130 128.36 268.186 1 0 0 0 -0.84 -0.543 0 0.543 -0.84 8880-step33-11sub2.ldr
 0 STEP
-1 0 110 -10 340 1 0 0 0 1 0 0 0 1 8880 - step33-12.ldr
+1 0 110 -10 340 1 0 0 0 1 0 0 0 1 8880-step33-12.ldr
 0 STEP
-1 0 -110 -10 340 1 0 0 0 1 0 0 0 1 8880 - step33-13.ldr
+1 0 -110 -10 340 1 0 0 0 1 0 0 0 1 8880-step33-13.ldr
 0 STEP
 1 0 250 41.211 304.067 0 0 1 -0.795 0.607 0 -0.607 -0.795 0 3702.dat
 1 0 -250 41.211 304.067 0 0 1 -0.795 0.607 0 -0.607 -0.795 0 3702.dat
@@ -8196,13 +8196,13 @@
 
 
 
-0 FILE 8880 - step33-7sub1.ldr
+0 FILE 8880-step33-7sub1.ldr
 0 step33-7sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-7sub1.ldr
+0 Name: 8880-step33-7sub1.ldr
 1 0 0 0 0 0 0 -1 0 1 0 1 0 0 3702.dat
 1 0 0 10 40 1 0 0 0 0.778 -0.629 0 0.629 0.778 6558.dat
 0 STEP
@@ -8213,13 +8213,13 @@
 
 
 
-0 FILE 8880 - step33-7sub2.ldr
+0 FILE 8880-step33-7sub2.ldr
 0 step33-7sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-7sub2.ldr
+0 Name: 8880-step33-7sub2.ldr
 1 0 0 0 0 0 0 1 0 1 0 -1 0 0 3702.dat
 1 0 0 10 40 -1 0 0 0 0.778 0.629 0 0.629 -0.778 6558.dat
 1 7 -10 10 0 1 0 0 0 1 0 0 0 1 3673.dat
@@ -8230,13 +8230,13 @@
 
 
 
-0 FILE 8880 - step33-8.ldr
+0 FILE 8880-step33-8.ldr
 0 step33-8
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-8.ldr
+0 Name: 8880-step33-8.ldr
 1 0 90 0 0 0 0 1 0 1 0 -1 0 0 3702.dat
 1 0 -90 0 0 0 0 1 0 1 0 -1 0 0 3702.dat
 1 0 0 -8 50 1 0 0 0 1 0 0 0 1 4477.dat
@@ -8254,13 +8254,13 @@
 
 
 
-0 FILE 8880 - step33-9.ldr
+0 FILE 8880-step33-9.ldr
 0 step33-9
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-9.ldr
+0 Name: 8880-step33-9.ldr
 1 0 0 -10 0 0 0 -1 0 1 0 1 0 0 6541.dat
 0 STEP
 1 0 0 -10 130 0 0 -1 0 1 0 1 0 0 3895.dat
@@ -8270,13 +8270,13 @@
 
 
 
-0 FILE 8880 - step33-10sub2.ldr
+0 FILE 8880-step33-10sub2.ldr
 0 step33-10sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-10sub2.ldr
+0 Name: 8880-step33-10sub2.ldr
 1 0 -30 0 -66.292 0 0 1 0 1 0 -1 0 0 2430.dat
 1 0 -30 0 -66.332 0.833 0 0.553 0 1 0 -0.553 0 0.833 2429.dat
 1 0 -130 0 0 0.833 0 0.553 0 1 0 -0.553 0 0.833 2430.dat
@@ -8299,13 +8299,13 @@
 
 
 
-0 FILE 8880 - step33-11sub1.ldr
+0 FILE 8880-step33-11sub1.ldr
 0 step33-11sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-11sub1.ldr
+0 Name: 8880-step33-11sub1.ldr
 1 7 0 0 -20 1 0 0 0 -1 0 0 0 -1 3651.dat
 1 0 0 0 -70 0 0 -1 0 -1 0 -1 0 0 3706.dat
 1 7 0 0 -120 1 0 0 0 1 0 0 0 1 3651.dat
@@ -8313,13 +8313,13 @@
 
 
 
-0 FILE 8880 - step33-11sub2.ldr
+0 FILE 8880-step33-11sub2.ldr
 0 step33-11sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-11sub2.ldr
+0 Name: 8880-step33-11sub2.ldr
 1 7 0 40 80 1 0 0 0 -1 0 0 0 -1 3651.dat
 1 7 -10 40 100 1 0 0 0 -1 0 0 0 -1 3673.dat
 1 0 0 40 50 0 0 -1 0 -1 0 -1 0 0 3705.dat
@@ -8331,13 +8331,13 @@
 
 
 
-0 FILE 8880 - step33-12.ldr
+0 FILE 8880-step33-12.ldr
 0 step33-12
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-12.ldr
+0 Name: 8880-step33-12.ldr
 1 0 10 24 -53.726 0 0 -1 0 1 0 1 0 0 2429.dat
 1 0 10.001 24 -53.726 0.333 0 0.943 0 1 0 -0.943 0 0.333 2430.dat
 1 0 10 24 46.274 0 0 -1 0 1 0 1 0 0 2429.dat
@@ -8379,13 +8379,13 @@
 
 
 
-0 FILE 8880 - step34sub1.ldr
+0 FILE 8880-step34sub1.ldr
 0 step34sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step34sub1.ldr
+0 Name: 8880-step34sub1.ldr
 1 0 0 -10 20 0 0 -1 0 1 0 1 0 0 3701.dat
 0 STEP
 1 0 0 -10 220 0 0 -1 0 1 0 1 0 0 3703.dat
@@ -8395,13 +8395,13 @@
 
 
 
-0 FILE 8880 - step33-13.ldr
+0 FILE 8880-step33-13.ldr
 0 step33-13
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-13.ldr
+0 Name: 8880-step33-13.ldr
 1 0 -10 24 -53.726 0 0 1 0 1 0 -1 0 0 2430.dat
 1 0 -10.001 24 -53.726 0.333 0 -0.943 0 1 0 0.943 0 0.333 2429.dat
 1 0 -10 24 46.274 0 0 1 0 1 0 -1 0 0 2430.dat
@@ -8443,13 +8443,13 @@
 
 
 
-0 FILE 8880 - step33-10sub1.ldr
+0 FILE 8880-step33-10sub1.ldr
 0 step33-10sub1
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step33-10sub1.ldr
+0 Name: 8880-step33-10sub1.ldr
 1 0 30 0 -66.292 0 0 -1 0 1 0 1 0 0 2429.dat
 1 0 30 0 -66.332 0.833 0 -0.553 0 1 0 0.553 0 0.833 2430.dat
 1 0 130 0 0 0.833 0 -0.553 0 1 0 0.553 0 0.833 2429.dat
@@ -8472,13 +8472,13 @@
 
 
 
-0 FILE 8880 - step34sub2.ldr
+0 FILE 8880-step34sub2.ldr
 0 step34sub2
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step34sub2.ldr
+0 Name: 8880-step34sub2.ldr
 1 0 10 14 20 1 0 0 0 1 0 0 0 1 3022.dat
 1 0 0 -10 10 1 0 0 0 1 0 0 0 1 6541.dat
 1 0 20 -10 10 1 0 0 0 1 0 0 0 1 3005.dat
@@ -8490,13 +8490,13 @@
 1 0 10 -18 45 0 0 -1 0 1 0 1 0 0 168315e.dat
 
 
-0 FILE 8880 - step34sub3.ldr
+0 FILE 8880-step34sub3.ldr
 0 step34sub3
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step34sub3.ldr
+0 Name: 8880-step34sub3.ldr
 1 0 -10 14 20 1 0 0 0 1 0 0 0 1 3022.dat
 1 0 0 -10 10 1 0 0 0 1 0 0 0 1 6541.dat
 1 0 -20 -10 10 1 0 0 0 1 0 0 0 1 3005.dat
@@ -8508,13 +8508,13 @@
 1 0 -10 -18 45 0 0 1 0 1 0 -1 0 0 168315e.dat
 
 
-0 FILE 8880 - step35.ldr
+0 FILE 8880-step35.ldr
 0 step35
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step35.ldr
+0 Name: 8880-step35.ldr
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 4504.dat
 1 0 -140 0 0 1 0 0 0 1 0 0 0 1 4504.dat
 1 0 140 0 0 1 0 0 0 1 0 0 0 1 4504.dat
@@ -8539,21 +8539,21 @@
 
 
 
-0 FILE 8880 - step36.ldr
+0 FILE 8880-step36.ldr
 0 step36
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 0 !THEME Technic
-0 Name: 8880 - step36.ldr
+0 Name: 8880-step36.ldr
 1 15 0 0 0 1 0 0 0 1 0 0 0 1 2998.dat
 1 256 0 0 0 1 0 0 0 1 0 0 0 1 2997.dat
 
 
 
-0 FILE 8880 - 168315i.dat
+0 FILE 8880-168315i.dat
 0 Sticker 1.8 x  1.8 with Yellow "LT" in Elliptical Shape on Black Background
-0 Name: 8880 - 168315i.dat
+0 Name: 8880-168315i.dat
 0 Author: Max Martin Richter [MMR1988]
 0 !LDRAW_ORG Unofficial_Part
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt

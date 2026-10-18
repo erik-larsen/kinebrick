@@ -1,4 +1,4 @@
-0 FILE 8880 - Super Car.ldr
+0 FILE 8880-Super Car.ldr
 0 !COLOUR Black                                                 CODE     0   VALUE #1B2A34   EDGE #808080
 0 !COLOUR Blue                                                  CODE     1   VALUE #1E5AA8   EDGE #333333
 0 !COLOUR Green                                                 CODE     2   VALUE #00852B   EDGE #333333
@@ -1167,7 +1167,7 @@
 1 0 100 -183.816 -268.201 -1 0 0 0 0.879 0.477 0 0.477 -0.879 2780.dat
 1 0 0 -123.318 -417.427 1 0 0 0 0.879 -0.477 0 0.477 0.879 3832.dat
 1 0 0 -130.35 -421.243 0 0 -1 -0.477 0.879 0 0.879 0.477 0 3068b.dat
-1 0 0 -130.35 -421.243 1 0 0 0 0.879 -0.477 0 0.477 0.879 8880 - 168315i.dat
+1 0 0 -130.35 -421.243 1 0 0 0 0.879 -0.477 0 0.477 0.879 8880-168315i.dat
 1 7 120 -132.6 2.512 -1 0 0 0 0.83 0.558 0 0.558 -0.83 2419.dat
 1 7 170 -104.7 -38.988 0 0 -1 -0.558 0.83 0 0.83 0.558 0 3023.dat
 1 7 -170 -121.44 -14.088 0 0 1 0.558 0.83 0 -0.83 0.558 0 2420.dat
@@ -1731,17 +1731,17 @@
 1 256 -251 -54 -180 0 0 1 -1 0 0 0 -1 0 2997.dat
 1 7 -30 -112 60 -1 0 0 0 1 0 0 0 -1 168315c.dat
 1 7 30 -112 60 -1 0 0 0 1 0 0 0 -1 168315b.dat
-1 494 135.346 -40.309 -220 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880 - step24shock_springmesh.ldr
-1 494 135.346 -40.309 -140 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880 - step24shock_springmesh.ldr
-1 494 135.346 -40.309 540 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880 - step24shock_springmesh.ldr
-1 494 135.346 -40.309 460 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880 - step24shock_springmesh.ldr
-1 494 -135.346 -40.309 460 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880 - step24shock_springmesh.ldr
-1 494 -135.346 -40.309 540 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880 - step24shock_springmesh.ldr
-1 494 -135.346 -40.309 -220 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880 - step24shock_springmesh.ldr
-1 494 -135.346 -40.309 -140 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880 - step24shock_springmesh.ldr
+1 494 135.346 -40.309 -220 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880-step24shock_springmesh.ldr
+1 494 135.346 -40.309 -140 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880-step24shock_springmesh.ldr
+1 494 135.346 -40.309 540 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880-step24shock_springmesh.ldr
+1 494 135.346 -40.309 460 -0.987043 -0.160457 0 0.160457 -0.987043 0 0 0 1 kinebrick-shape/8880-step24shock_springmesh.ldr
+1 494 -135.346 -40.309 460 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880-step24shock_springmesh.ldr
+1 494 -135.346 -40.309 540 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880-step24shock_springmesh.ldr
+1 494 -135.346 -40.309 -220 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880-step24shock_springmesh.ldr
+1 494 -135.346 -40.309 -140 0.987043 0.160457 0 0.160457 -0.987043 0 0 0 -1 kinebrick-shape/8880-step24shock_springmesh.ldr
 
 0 NOFILE
-0 FILE kinebrick-shape/8880 - step24shock_springmesh.ldr
+0 FILE kinebrick-shape/8880-step24shock_springmesh.ldr
 3 16 -10.9375 0.9375 -0.234375 -10 0.9375 0 -10.274588 0.274587 0
 2 24 -10.274588 0.274587 0 -10 0.9375 0
 5 24 -10.9375 0.9375 -0.234375 -10 0.9375 0 -10.274588 0.274587 0 -10.274588 1.600413 0
@@ -17799,9 +17799,9 @@
 4 16 -20 0 -20 20 0 -20 20 0 20 -20 0 20
 
 0 NOFILE
-0 FILE 8880 - 168315i.dat
+0 FILE 8880-168315i.dat
 0 Sticker 1.8 x  1.8 with Yellow "LT" in Elliptical Shape on Black Background
-0 Name: 8880 - 168315i.dat
+0 Name: 8880-168315i.dat
 0 Author: Max Martin Richter [MMR1988]
 0 !LDRAW_ORG Unofficial_Part
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt

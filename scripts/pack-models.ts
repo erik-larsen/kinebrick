@@ -5,14 +5,15 @@
 // any shapes its submodels draw without parts (hoses, springs), each as a file of its own.
 // Parts the model file brings with it (unofficial ones) are used where the library has none.
 // Also writes packed/titles.json, the LDraw title of every part the models use, and
-// packed/models.json, each model's title.
+// packed/models.json, which files each model places are primitives (drawn shapes) and which
+// parts are read as their pieces.
 //
 // Needs the LDraw parts library in ldraw/. Run with: npm run pack
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { normalizePartName } from '../src/connections.ts';
-import { embeddedParts, modelFiles, modelTitle, parseModel, partLine } from '../src/ldr.ts';
+import { embeddedParts, modelFiles, parseModel, partLine } from '../src/ldr.ts';
 
 const LDRAW_DIR = 'ldraw';
 const MODELS_DIR = 'models';
@@ -55,7 +56,7 @@ const colours = readFileSync(join(LDRAW_DIR, 'LDConfig.ldr'), 'utf-8')
 mkdirSync(OUT_DIR, { recursive: true });
 const titles: Record<string, string> = {};
 
-const modelTitles: Record<string, { title: string; primitives: string[]; pieces: Record<string, string[]> }> = {};
+const models: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = {};
 
 // An LDraw primitive (a piece of shape, such as a cylinder), rather than a part.
 const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
@@ -91,7 +92,7 @@ for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f))
   const base = file.replace(/\.(ldr|mpd)$/, '');
   const placed = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)))].sort();
   const pieces = Object.fromEntries(placed.flatMap((name) => (piecesOf(name) ? [[name, piecesOf(name)!]] : [])));
-  modelTitles[base] = { title: modelTitle(source), primitives: placed.filter(isPrimitive), pieces };
+  models[base] = { primitives: placed.filter(isPrimitive), pieces };
   let out = `0 FILE ${base}.ldr\n${colours}\n${model}\n`;
   for (const [name, text] of included) out += `\n0 NOFILE\n0 FILE ${packedName(name)}\n${text.trimEnd()}\n`;
   writeFileSync(join(OUT_DIR, `${base}.mpd`), out);
@@ -99,10 +100,10 @@ for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f))
   console.log(`${base}.mpd: ${parts.length} parts${shapeNote}, ${included.size} files, ${(out.length / 1024).toFixed(0)} KB`);
 }
 
-writeFileSync(join(OUT_DIR, 'models.json'), JSON.stringify(modelTitles, null, 2) + '\n');
+writeFileSync(join(OUT_DIR, 'models.json'), JSON.stringify(models, null, 2) + '\n');
 // Packed files of models no longer in models/ (renamed or removed) go too.
 for (const file of readdirSync(OUT_DIR).filter((f) => f.endsWith('.mpd'))) {
-  if (!(file.replace(/\.mpd$/, '') in modelTitles)) {
+  if (!(file.replace(/\.mpd$/, '') in models)) {
     rmSync(join(OUT_DIR, file));
     console.log(`Removed ${file}: no such model`);
   }

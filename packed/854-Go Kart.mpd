@@ -1,4 +1,4 @@
-0 FILE 854 - Go Kart.ldr
+0 FILE 854-Go Kart.ldr
 0 !COLOUR Black                                                 CODE     0   VALUE #1B2A34   EDGE #808080
 0 !COLOUR Blue                                                  CODE     1   VALUE #1E5AA8   EDGE #333333
 0 !COLOUR Green                                                 CODE     2   VALUE #00852B   EDGE #333333
@@ -651,7 +651,7 @@
 1 256 160 9.52 20.24 0 0 -1 -0.024 1 0 1 0.024 0 3634.dat
 1 7 186 9.52 20.24 0 0 -1 -0.024 1 0 1 0.024 0 3482.dat
 1 256 186 9.52 20.24 0 0 -1 -0.024 1 0 1 0.024 0 3634.dat
-1 15 50 -37.40324 -375.853528 1 0 0 0 0.416424 -0.909512 0 0.909512 0.416424 854 - sticker.dat
+1 15 50 -37.40324 -375.853528 1 0 0 0 0.416424 -0.909512 0 0.909512 0.416424 854-sticker.dat
 
 0 NOFILE
 0 FILE 3702.dat
@@ -4118,9 +4118,9 @@
 1 16 0 0 -3.5 0.866 -0.5 0 0.5 0.866 0 0 0 1 s\3634c.dat
 
 0 NOFILE
-0 FILE 854 - sticker.dat
+0 FILE 854-sticker.dat
 0 Sticker
-0 Name: 854 - Sticker.dat
+0 Name: 854-Sticker.dat
 0 Author: Stefan Frenz [smf]
 0 !LDRAW_ORG Unofficial_Part
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt

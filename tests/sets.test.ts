@@ -40,7 +40,7 @@ function load(file: string) {
 }
 
 describe('854 Go-Kart', () => {
-  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/854 - Go Kart.mpd');
+  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/854-Go Kart.mpd');
   const knuckles = turntables();
 
   it('is fully attached: its hoses are decoration, its seat sits on a hinge, its steering column bends through a universal joint', () => {
@@ -78,12 +78,12 @@ describe('854 Go-Kart', () => {
 });
 
 describe('855 Mobile Crane', () => {
-  const { parts, mech, kin, bodyOf, turn, frameMoved } = load('models/855 - Mobile Crane.mpd');
+  const { parts, mech, kin, bodyOf, turn, frameMoved } = load('models/855-Mobile Crane.mpd');
   const outriggers = mech.joints.flatMap((j, i) => (j.kind === 'slide' && j.bodyA === 0 && (j.range![0] === -120 || j.range![0] === -40) ? [i] : []));
   const cab = bodyOf('3404.dat');
 
   it("is attached except its hook, which hangs on a string (M9): the cab turns on a 4x4 turntable, read as its base and top, and the outriggers slide out on tiles", () => {
-    expect(new Set(mech.loose.map((i) => parts[i].submodel))).toEqual(new Set(['855 - hook.ldr']));
+    expect(new Set(mech.loose.map((i) => parts[i].submodel))).toEqual(new Set(['855-hook.ldr']));
     expect(mech.joints.some((j) => j.kind === 'revolute' && j.bodyA === 0 && j.bodyB === cab)).toBe(true);
     expect(outriggers).toHaveLength(4);
   });
@@ -128,7 +128,7 @@ describe('855 Mobile Crane', () => {
 });
 
 describe('950 Fork-Lift Truck', () => {
-  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/950 - Fork Lift.mpd');
+  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/950-Fork Lift.mpd');
   const carriage = bodyOf('3703.dat', 2);
   const shaft = bodyOf('3737.dat', 1);
 
@@ -164,7 +164,7 @@ describe('950 Fork-Lift Truck', () => {
 });
 
 describe('952 Tractor', () => {
-  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/952 - Tractor.mpd');
+  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/952-Tractor.mpd');
 
   it('is fully attached: its big rear wheels are tyres, and two plates stand on edge between studs', () => {
     expect(mech.loose).toEqual([]);
@@ -183,7 +183,7 @@ describe('952 Tractor', () => {
 
   it('a turn of the rear wheels rolls it one big tyre round, and the assembly hung on the rear axle stays level', () => {
     kin.reset();
-    const wheel = bodyOf('952 - 3739c01.dat');
+    const wheel = bodyOf('952-3739c01.dat');
     const joint = kin.parentLink(wheel)!.joint;
     kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
     let turned = 0;
@@ -197,7 +197,7 @@ describe('952 Tractor', () => {
 });
 
 describe('956 Auto Chassis', () => {
-  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/956 - Auto Chassis.mpd');
+  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
 
   it('is fully attached: its steering column bends through a double universal joint, and its steering rack is guided', () => {
     expect(mech.loose).toEqual([]);
