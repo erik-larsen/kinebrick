@@ -4,7 +4,7 @@
 import { Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
 import { Kinematics } from './kinematics.ts';
-import { PlacedPart } from './ldr.ts';
+import { PlacedPath, PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
@@ -86,6 +86,28 @@ export interface Tread {
   center: Vector3; // middle of the tread, on the tyre's axis
   axis: Vector3; // unit vector
   radius: number;
+  track?: number; // for a track's wheel, the track (an index into Mechanism.loops)
+  // For a track's wheel, the radius it rolls at: its path's. The track's run along the ground
+  // moves at the path's speed, though its links reach further out (to `radius`) under the wheel.
+  rollRadius?: number;
+}
+
+// A chain, track or rubber band looped round wheels (a looped path, see PlacedPath). It makes
+// the wheels it wraps turn together, their rims all moving at its speed.
+export interface Loop {
+  path: PlacedPath;
+  wheels: LoopWheel[];
+  links: number[]; // its parts
+  depth: number | null; // a track's: how far its links reach out beyond its path; else null
+}
+
+// A wheel a loop wraps: the body that turns on `joint`, in `mount`, where the path goes round
+// the circle `point` (an index into the path's points).
+export interface LoopWheel {
+  body: number;
+  joint: number;
+  mount: number;
+  point: number;
 }
 
 // A gear ring on a part, in model coordinates.
@@ -136,6 +158,7 @@ export interface Mechanism {
   loose: number[];
   // Universal joints: the shafts on either side turn together (see universalJoints).
   couplings: Coupling[];
+  loops: Loop[]; // chains, tracks and rubber bands looped round wheels
 }
 
 // A universal joint: bodyA and bodyB, each a shaft turning in something, turn at the same rate
@@ -189,8 +212,10 @@ function racksToGuide(mech: Mechanism): Set<number> {
 
 // The mechanism, with friction pins treated as rigid or as stiff joints.
 function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide = new Set<number>()): Mechanism {
-  const roles = parts.map((p) => roleList[p.name] ?? 'structure');
-  const cyls = worldCylinders(parts, table);
+  // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
+  // move with what's nearest (see decorations), or round their loop (see findLoops).
+  const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? 'structure'));
+  const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path');
   const connections = findConnections(cyls);
   fixPins(connections, roles, frictionRigid);
   connections.push(...platesOnEdge(cyls));
@@ -200,16 +225,19 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
   const joined = universalJoints(parts, roles, cyls, connections);
+  const loose = findLooseParts(parts.length, connections);
+  connections.push(...rideAlong(parts, cyls, connections, loose));
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
   const treads = findTreads(cyls, bodyOf);
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
-  const loose = findLooseParts(parts.length, connections);
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
   const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center, axisA, axisB, atA: at(partA), atB: at(partB) }));
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings };
+  const loops = findLoops(parts, roles, bodyOf, joints, table);
+  treads.push(...trackTreads(loops));
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops };
 }
 
 // A piston with no cylinder of its own to slide in, such as the old 2x2 piston block, whose
@@ -382,7 +410,7 @@ function platesOnEdge(cyls: WorldCylinder[]): Connection[] {
 // such as stickers and the old pneumatic hoses models use for exhausts and cables. Each moves
 // with the part whose connection point (stud, hole, axle) is nearest to it.
 function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]): Connection[] {
-  const isDecoration = (i: number) => roles[i] === 'decoration' || parts[i].name.includes('sticker');
+  const isDecoration = (i: number) => roles[i] === 'decoration' || roles[i] === 'path' || parts[i].name.includes('sticker');
   const anchors = cyls.filter((c) => !isDecoration(c.part));
   const result: Connection[] = [];
   parts.forEach((p, i) => {
@@ -393,6 +421,56 @@ function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]
     if (nearest) result.push({ male: i, female: nearest.part, kind: 'rigid', from: at, to: at.clone() });
   });
   return result;
+}
+
+// The chains, tracks and rubber bands looped round wheels: each looped path, with the wheels
+// it goes round. A circle of the path is on a wheel if a turning joint's axis runs along the
+// circle's axis, through its middle (within AXIS_TOLERANCE); of the joint's two bodies, the
+// wheel is the one with a part nearest the circle's middle (a 40 tooth gear a track runs
+// round, say), and the other is what it turns in. A circle on nothing that turns (a peg a
+// rubber band is hooked round) is left out: the band slides round it.
+function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], table: ConnectionTable): Loop[] {
+  const paths = [...new Set(parts.flatMap((p) => (p.path?.looped ? [p.path] : [])))];
+  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  return paths.map((path) => {
+    const wheels: LoopWheel[] = [];
+    path.points.forEach((point, index) => {
+      if (!point.circle) return;
+      let best: LoopWheel | null = null;
+      let bestDistance = point.radius;
+      joints.forEach((joint, j) => {
+        if (joint.kind !== 'revolute') return;
+        const d = new Vector3().subVectors(joint.to, joint.from).normalize();
+        if (Math.abs(Math.abs(d.dot(point.axis)) - 1) > 1e-3) return;
+        const off = new Vector3().subVectors(point.center, joint.from);
+        if (off.addScaledVector(d, -off.dot(d)).length() > AXIS_TOLERANCE) return;
+        parts.forEach((_, i) => {
+          if (roles[i] === 'path' || (bodyOf[i] !== joint.bodyA && bodyOf[i] !== joint.bodyB)) return;
+          const distance = at[i].distanceTo(point.center);
+          if (distance >= bestDistance) return;
+          bestDistance = distance;
+          const mount = bodyOf[i] === joint.bodyA ? joint.bodyB : joint.bodyA;
+          best = { body: bodyOf[i], joint: j, mount, point: index };
+        });
+      });
+      if (best) wheels.push(best);
+    });
+    const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
+    return { path, wheels, links, depth: table.tracks?.[path.skin]?.depth ?? null };
+  });
+}
+
+// A track touches the ground under its wheels, its links reaching `depth` beyond its path: so
+// each wheel of a track rolls on the ground like a tyre that reaches as far.
+function trackTreads(loops: Loop[]): Tread[] {
+  return loops.flatMap((loop, track) =>
+    loop.depth === null
+      ? []
+      : loop.wheels.map((w) => {
+          const point = loop.path.points[w.point];
+          return { part: loop.links[0], body: w.body, center: point.center.clone(), axis: point.axis.clone(), radius: point.radius + loop.depth!, track, rollRadius: point.radius };
+        }),
+  );
 }
 
 // A rack held by nothing but the gear it meshes with, such as a fork-lift's carriage riding up
@@ -784,6 +862,38 @@ function axialOverlap(m: WorldCylinder, f: WorldCylinder): { from: Vector3; to: 
 }
 
 // Step 5: parts outside the largest group of parts that are attached to each other.
+// Loose parts ride along with the part nearest to them: each group of loose parts attached to
+// each other is fixed to the part whose connection point (stud, hole, axle) is nearest one of
+// them, preferring a part of the same submodel (a bucket's plates ride with the bucket, not
+// with a lever arm that happens to pass close by). They're still listed as loose, but the model can move: left where they were, they'd
+// stand in the way of everything moving past them (an official bulldozer's bucket plates,
+// which slot into grooves no connection data describes, stopped its tracks).
+function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[]): Connection[] {
+  if (loose.length === 0) return [];
+  const isLoose = new Set(loose);
+  const leader = new Map(loose.map((i) => [i, i]));
+  const find = (i: number): number => {
+    while (leader.get(i) !== i) i = leader.get(i)!;
+    return i;
+  };
+  for (const c of connections) if (isLoose.has(c.male) && isLoose.has(c.female)) leader.set(find(c.male), find(c.female));
+  const anchors = cyls.filter((c) => !isLoose.has(c.part));
+  const nearest = new Map<number, { part: number; anchor: number; distance: number }>(); // for each group
+  for (const i of loose) {
+    const at = new Vector3().setFromMatrixPosition(parts[i].matrix);
+    for (const c of anchors) {
+      // Another submodel's part counts as much further away.
+      const distance = c.start.distanceTo(at) + (parts[c.part].submodel === parts[i].submodel ? 0 : 1e6);
+      const best = nearest.get(find(i));
+      if (!best || distance < best.distance) nearest.set(find(i), { part: i, anchor: c.part, distance });
+    }
+  }
+  return [...nearest.values()].map(({ part, anchor }) => {
+    const at = new Vector3().setFromMatrixPosition(parts[part].matrix);
+    return { male: part, female: anchor, kind: 'rigid' as ConnectionKind, from: at, to: at.clone() };
+  });
+}
+
 function findLooseParts(count: number, connections: Connection[]): number[] {
   const leader = Array.from({ length: count }, (_, i) => i);
   const find = (i: number): number => {

@@ -5,7 +5,8 @@
 0 // clutch; B, a bore a part may slide along) and extra line types (!KINEBRICK GEAR: a gear's
 0 // tooth count, pitch radius and tooth width, and for bevel gears which side its bevel teeth
 0 // face and how far away its pitch cone's tip is; !KINEBRICK SLIDE for parts that click into
-0 // set places).
+0 // set places; !KINEBRICK TRACK for track links, and how far they reach out beyond the line
+0 // through their pins).
 
 0 FILE 3482.dat
 0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
@@ -226,3 +227,10 @@
 0 FILE 3641.dat
 0 // Tyre 6/50 x 8 Offset Tread: sits on the small wheel centre (3464b)
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 10 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 // Tracks.
+
+0 FILE 3873.dat
+0 // Technic Chain Tread 2.5 Wide: its grousers reach 8 LDU out beyond the line through its pins
+0 // (its -y), which is the path a track of them runs round its wheels along.
+0 !KINEBRICK TRACK [depth=8]

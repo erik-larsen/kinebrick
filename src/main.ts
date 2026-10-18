@@ -7,6 +7,7 @@ import {
   GridHelper,
   Group,
   HemisphereLight,
+  Matrix4,
   Mesh,
   MeshBasicMaterial,
   Object3D,
@@ -30,6 +31,7 @@ import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
+import { loopLinks } from './paths.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
 import connectionsUrl from '../data/connections.json?url';
 import rolesUrl from '../data/roles.json?url';
@@ -209,9 +211,11 @@ async function start() {
   });
   const loadedMatrices = partObjects.map((obj) => obj.matrix.clone());
 
-  // Collision checks: each part's meshes in the part's own coordinates.
+  // Collision checks: each part's meshes in the part's own coordinates. A path's parts (a
+  // chain's links) aren't checked: they only show where it runs.
   model.updateMatrixWorld(true);
-  const shapes: PartMesh[][] = partObjects.map((obj) => {
+  const shapes: PartMesh[][] = partObjects.map((obj, i) => {
+    if (startParts[i].path) return [];
     const toPart = obj.matrixWorld.clone().invert();
     const list: PartMesh[] = [];
     obj.traverse((child) => {
@@ -233,6 +237,7 @@ async function start() {
   let kin = new Kinematics(mech);
   kin.scrub = scrub / 100;
   let sliders: Slider[] = [];
+  let placeLinks: (((travel: number) => Matrix4[]) | null)[] = [];
   let axes = new Group();
   axes.visible = OPTIONS.includes('axes');
   ldrawSpace.add(axes);
@@ -253,6 +258,8 @@ async function start() {
     sliders = findSliders(parts, mech, table);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
+    // Where each chain's or track's links go as it moves round (see paths.ts).
+    placeLinks = mech.loops.map((loop) => (loop.wheels.length ? loopLinks(loop.path.points, loop.links.map((i) => partObjects[i].userData.startMatrix)) : null));
 
     appearance.setMechanism(mech);
     appearance.update();
@@ -309,6 +316,18 @@ async function start() {
       obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     }
+    // A chain's or track's links go round it as far as it has moved, carried by what its first
+    // wheel turns in.
+    mech.loops.forEach((loop, l) => {
+      const place = placeLinks[l];
+      if (!place) return;
+      const placements = place(kin.loopTravel(l));
+      loop.links.forEach((part, k) => {
+        const obj = partObjects[part];
+        obj.matrix.multiplyMatrices(kin.poses[loop.wheels[0].mount], placements[k]);
+        obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
+      });
+    });
     updateReadout(mech, kin);
   }
 
@@ -575,8 +594,9 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
     const t = mech.treads.findIndex((tr) => tr.body === b);
     if (t >= 0 && kin.groundY !== null) {
       const rolled = Math.abs(kin.treadTravel[t]);
-      const expected = ((rolled / mech.treads[t].radius) * 180) / Math.PI;
-      line += ` (rolled ${rolled.toFixed(1)} ÷ ${mech.treads[t].radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
+      const radius = mech.treads[t].rollRadius ?? mech.treads[t].radius; // a track rolls at its path's radius
+      const expected = ((rolled / radius) * 180) / Math.PI;
+      line += ` (rolled ${rolled.toFixed(1)} ÷ ${radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
       // How far it has scrubbed sideways (see Kinematics.scrub), once it's noticeable.
       if (kin.treadScrub[t] >= 0.05) line += `, scrubbed ${kin.treadScrub[t].toFixed(1)} sideways`;
     }

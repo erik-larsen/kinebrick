@@ -508,6 +508,19 @@ function slidesFromCorrections(): Record<string, Slide> {
   return slides;
 }
 
+// TRACK lines in data/corrections.ldr: track links, and how far each reaches out beyond the
+// line through its pins, e.g. "0 !KINEBRICK TRACK [depth=8]".
+function tracksFromCorrections(): Record<string, { depth: number }> {
+  const tracks: Record<string, { depth: number }> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (meta && meta.kind === 'TRACK') tracks[name] = { depth: Number(meta.params.get('depth')) };
+    }
+  }
+  return tracks;
+}
+
 // ---------------------------------------------------------------------------
 // Writing the table, one cylinder per line so diffs stay readable.
 
@@ -540,6 +553,6 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-out += '\n  },\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + '\n}\n';
+out += '\n  },\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);

@@ -6,7 +6,7 @@
 // aren't in the LDraw library (the official model repository embeds unofficial parts this
 // way). Submodels are flattened: each part they hold is placed where the submodel puts it.
 
-import { Matrix4 } from 'three';
+import { Matrix4, Vector3 } from 'three';
 import { normalizePartName } from './connections.ts';
 
 export interface PlacedPart {
@@ -14,6 +14,50 @@ export interface PlacedPart {
   color: number; // LDraw colour code
   matrix: Matrix4; // part coordinates -> model coordinates, in LDU
   submodel?: string; // the submodel it's in (the innermost one), if not the main model
+  path?: PlacedPath; // the path it's a link (or segment) of, if a path's submodel placed it
+}
+
+// Something flexible drawn along a path, as the LDCad program generates it: a chain or track
+// looped round its wheels, a rubber band, a string, a hose bent to fit. The path's submodel
+// says where it runs ("0 !LDCAD PATH_POINT" lines) and what it's made of ("PATH_SKIN"), and
+// places the links (or segments) LDCad made of it.
+export interface PlacedPath {
+  looped: boolean; // round and back to its start, as a chain is
+  skin: string; // the part it's made of, e.g. "3873.dat"
+  points: PathPoint[]; // in order along the path
+}
+
+export interface PathPoint {
+  circle: boolean; // round a circle (a wheel, say), or through a point (a bend in a string)
+  center: Vector3; // model coordinates
+  axis: Vector3; // the circle's axis (unit, model coordinates)
+  radius: number; // LDU
+  // Which way the path goes round the circle, about `axis`: 1 or -1. (LDCad's "xyCW", with
+  // LDraw's y pointing down, goes round anticlockwise about its +z, as the links it places
+  // show.)
+  turn: number;
+}
+
+// A path's points from its submodel's lines, placed by `placement` (submodel coordinates ->
+// model coordinates), or null if the submodel isn't a path.
+function pathOf(lines: string[], placement: Matrix4): PlacedPath | null {
+  const param = (line: string, key: string) => new RegExp(`\\[${key}=([^\\]]*)\\]`).exec(line)?.[1].trim();
+  const content = lines.find((line) => /^\s*0\s+!LDCAD\s+CONTENT\b/.test(line));
+  if (!content || param(content, 'type') !== 'path') return null;
+  const skin = lines.find((line) => /^\s*0\s+!LDCAD\s+PATH_SKIN\b/.test(line));
+  const points = lines
+    .filter((line) => /^\s*0\s+!LDCAD\s+PATH_POINT\b/.test(line))
+    .map((line): PathPoint => {
+      const [x, y, z, , , c, , , f, , , i] = (param(line, 'posOri') ?? '').split(/\s+/).map(Number);
+      return {
+        circle: param(line, 'type') === 'circle',
+        center: new Vector3(x, y, z).applyMatrix4(placement),
+        axis: new Vector3(c, f, i).transformDirection(placement),
+        radius: Number(param(line, 'cirR') ?? 0),
+        turn: param(line, 'cirDir') === 'xyCCW' ? -1 : 1,
+      };
+    });
+  return { looped: param(content, 'looped') === 'true', skin: normalizePartName(skin ? param(skin, 'donPart') ?? '' : ''), points };
 }
 
 // Colour 16 means "the colour of whatever placed me".
@@ -127,8 +171,9 @@ export function parseModel(
   const shapeLines = new Map([...submodels].map(([name, lines]) => [name, lines.filter(drawn)]));
   const parts: PlacedPart[] = [];
   const shapes: PlacedShape[] = [];
-  // `pieces`: the lines are a part's pieces, which go in the submodel the part is in.
-  const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number, pieces = false) => {
+  // `pieces`: the lines are a part's pieces, which go in the submodel the part is in. `path`:
+  // the lines are a path's (see PlacedPath).
+  const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number, pieces = false, path: PlacedPath | null = null) => {
     if (depth > 64) throw new Error(`Submodels nested too deep (does one place itself?): ${submodel}`);
     const first = parts.length;
     for (const line of lines) {
@@ -142,9 +187,9 @@ export function parseModel(
       if (isPrimitive(name)) continue; // drawn with the submodel's shapes
       const sub = submodels.get(name);
       const ownPieces = sub ? null : piecesOf(name);
-      if (sub) place(sub, matrix, partColor, name, depth + 1);
+      if (sub) place(sub, matrix, partColor, name, depth + 1, false, pathOf(sub, matrix));
       else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true);
-      else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}) });
+      else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(path ? { path } : {}) });
     }
     const own = submodel && !pieces ? shapeLines.get(submodel)! : [];
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1 });

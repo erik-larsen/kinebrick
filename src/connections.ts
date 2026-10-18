@@ -60,6 +60,10 @@ export interface ConnectionTable {
   // ring): the direction they slide (in the part's own coordinates), and the positions, as
   // distances of the part's middle from the middle of what it sits on, along that direction.
   slides?: Record<string, Slide>;
+  // Track links (a chain tread's): how far each reaches out beyond the line through its pins,
+  // which a track runs round its wheels along, in LDU. A track touches the ground that much
+  // further out than its path.
+  tracks?: Record<string, { depth: number }>;
 }
 
 export interface Slide {

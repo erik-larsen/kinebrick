@@ -729,14 +729,18 @@ export class Kinematics {
     // and the other forward, as on a real car.
     // (Each tyre's forward is taken with its axis turned to point the way the body's first
     // tyre's does: tyres either side of a car face opposite ways.)
+    // A track (a tyre whose `track` is set, see trackTreads) skids sideways freely where it
+    // touches the ground under each of its wheels, as a tracked vehicle does to turn, but its
+    // middle doesn't slide sideways: the average of its wheels' sideways speeds is 0.
     const rolling = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each body, its tyres' rows
+    const tracks = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each track, its sideways rows
     for (const i of this.contactTreads) {
       const p = this.contactPoint(i);
       if (!p) continue;
       const tread = this.mech.treads[i];
       const pose = this.poses[tread.body];
       const axis = tread.axis.clone().transformDirection(pose);
-      const first = rolling.get(tread.body)?.axis;
+      const first = tread.track === undefined ? rolling.get(tread.body)?.axis : tracks.get(tread.track)?.axis;
       if (first && axis.dot(first) < 0) axis.negate();
       const forward = new Vector3().crossVectors(DOWN, axis).normalize();
       const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
@@ -746,21 +750,58 @@ export class Kinematics {
         return row;
       };
       if (!rolling.has(tread.body)) rolling.set(tread.body, { axis, rows: [] });
-      rolling.get(tread.body)!.rows.push(along(p, forward));
+      // (A track rolls at its path's radius, nearer the axle than where it touches; see Tread.)
+      const hub = tread.center.clone().applyMatrix4(pose);
+      const rollAt = tread.rollRadius === undefined ? p : hub.clone().lerp(p, tread.rollRadius / tread.radius);
+      rolling.get(tread.body)!.rows.push(along(rollAt, forward));
+      if (tread.track !== undefined) {
+        if (!tracks.has(tread.track)) tracks.set(tread.track, { axis, rows: [] });
+        tracks.get(tread.track)!.rows.push(along(p, sideways));
+      }
       if (slip) {
-        slip.sideways.push(along(p, sideways));
+        if (tread.track === undefined) slip.sideways.push(along(p, sideways));
         slip.travel.push(along(tread.center.clone().applyMatrix4(pose), forward));
         slip.lift.push(along(p, DOWN));
       } else {
         add(along(p, DOWN));
       }
     }
-    for (const { rows: tyres } of rolling.values()) {
+    for (const { rows: tyres } of [...rolling.values(), ...tracks.values()]) {
       const average = new Array(n).fill(0);
       for (const row of tyres) for (let k = 0; k < n; k++) average[k] += row[k] / tyres.length;
       add(average);
     }
+
+    // A chain, track or rubber band looped round wheels: each wheel's rim moves at the loop's
+    // speed, relative to what the wheel turns in, the way the loop goes round it.
+    for (const loop of this.mech.loops ?? []) {
+      const rims = loop.wheels.map((w) => {
+        const point = loop.path.points[w.point];
+        const z = point.axis.clone().transformDirection(this.poses[w.mount]).multiplyScalar(point.turn * point.radius);
+        const row = new Array(n).fill(0);
+        for (let k = 0; k < 3; k++) {
+          row[6 * w.body + k] += z.getComponent(k);
+          row[6 * w.mount + k] -= z.getComponent(k);
+        }
+        return row;
+      });
+      for (let r = 1; r < rims.length; r++) add(rims[0].map((x, k) => x - rims[r][k]));
+    }
     return rows;
+  }
+
+  // How far a loop (a chain or track, an index into Mechanism.loops) has moved round since the
+  // start, in LDU, the way its path goes: as far as its first wheel's rim has turned.
+  loopTravel(loop: number): number {
+    const { path, wheels } = this.mech.loops[loop];
+    const w = wheels[0];
+    if (!w) return 0;
+    const point = path.points[w.point];
+    const j = this.mech.joints[w.joint];
+    // The joint turns bodyB relative to bodyA about its own axis; the wheel turns about the
+    // circle's.
+    const angle = (j.bodyB === w.body ? 1 : -1) * Math.sign(axisOf(j.from, j.to).dot(point.axis)) * this.jointAngles[w.joint];
+    return point.turn * point.radius * angle;
   }
 
   // How far bodyA has turned out of line with bodyB at a joint, as a small turn (its axis is
@@ -1002,11 +1043,27 @@ export class Kinematics {
   // The motion vector that turns a joint at rate 1 (one radian per unit), with the rest of
   // the mechanism following. If the joint can turn with the frame standing still, it does
   // (turning a steering wheel turns the front axle without rolling the car); otherwise the
-  // frame moves too. Among the motions that qualify, it picks the smallest. Null if the joint
-  // can't turn.
+  // frame moves too. Among the motions that qualify, it picks the smallest, measured by how
+  // fast the joints turn (see treeCoordinates): measured by how fast the bodies move, it would
+  // nudge a linkage nobody asked to move (a bulldozer's bucket arm) against the way the whole
+  // model turns, to make that a little smaller, and step after step the linkage would drift.
+  // Null if the joint can't turn.
   jointMotion(joint: number): number[] | null {
     const all = this.freeMotions();
-    return smallestTurning(this.frameStill(all), (m) => this.jointRate(m, joint)) ?? smallestTurning(all, (m) => this.jointRate(m, joint));
+    const rate = (m: number[]) => this.jointRate(m, joint);
+    const size = (m: number[]) => this.treeCoordinates(m);
+    return smallestTurning(this.frameStill(all), rate, size) ?? smallestTurning(all, rate, size);
+  }
+
+  // A motion vector in the tree's coordinates (see treeBasis): each root body's 6 numbers, then
+  // how fast each joint in the tree turns.
+  private treeCoordinates(m: number[]): number[] {
+    const out: number[] = [];
+    for (const root of this.rootPoses.keys()) for (let k = 0; k < 6; k++) out.push(m[6 * root + k]);
+    this.mech.joints.forEach((_, j) => {
+      if (this.inTree(j)) out.push(this.jointRate(m, j));
+    });
+    return out;
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
@@ -1177,14 +1234,19 @@ function screwMotion(w: Vector3, v: Vector3): Matrix4 {
 }
 
 // Of orthonormal motions, the smallest mix that turns at rate 1 (by `rate`), or null if none
-// of them turns at all. With orthonormal motions, each one's share is proportional to its rate.
-function smallestTurning(motions: number[][], rate: (m: number[]) => number): number[] | null {
+// of them turns at all, its size measured by the length of `size` of it: the mix a minimizing
+// aᵀ G a with Σ a_k rate_k = 1, where G holds each pair of motions' sizes multiplied together,
+// is a = G⁻¹ rates / (ratesᵀ G⁻¹ rates).
+function smallestTurning(motions: number[][], rate: (m: number[]) => number, size: (m: number[]) => number[]): number[] | null {
   const rates = motions.map(rate);
-  const total = rates.reduce((sum, r) => sum + r * r, 0);
-  if (total < EPSILON) return null;
-  const combined = new Array(motions[0].length).fill(0);
-  motions.forEach((m, k) => m.forEach((x, i) => (combined[i] += (x * rates[k]) / total)));
-  return combined;
+  if (rates.reduce((sum, r) => sum + r * r, 0) < EPSILON) return null;
+  const sizes = motions.map(size);
+  const gram = sizes.map((a) => sizes.map((b) => a.reduce((sum, x, i) => sum + x * b[i], 0)));
+  const scale = Math.max(...gram.map((row, i) => row[i]));
+  const mix = solveSymmetric(gram, rates, EPSILON * scale);
+  const turns = mix.reduce((sum, a, k) => sum + a * rates[k], 0);
+  if (Math.abs(turns) < EPSILON) return null;
+  return combine(motions, mix.map((a) => a / turns));
 }
 
 // Of orthonormal motions, the mixes in which the tyres scrub sideways by at most `limit` of how
