@@ -10,7 +10,7 @@
 
 import { readFileSync, readdirSync, existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { Cylinder, Section, Slide, Vec3, normalizePartName } from '../src/connections.ts';
+import { Cylinder, Groove, Section, Slide, Vec3, normalizePartName } from '../src/connections.ts';
 import { embeddedParts, parseLdr } from '../src/ldr.ts';
 
 const LDRAW_DIR = 'ldraw';
@@ -521,6 +521,28 @@ function tracksFromCorrections(): Record<string, { depth: number }> {
   return tracks;
 }
 
+// GROOVE lines in data/corrections.ldr: grooves a plate slides into edge first, as boxes, e.g.
+// "0 !KINEBRICK GROOVE [pos=-43.4 36.6 0] [ori=...] [size=80 8 12]": the box's middle, its
+// axes (the ori matrix's columns: along the groove, across it, into it) and its size along
+// each.
+function groovesFromCorrections(): Record<string, Groove[]> {
+  const grooves: Record<string, Groove[]> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (!meta || meta.kind !== 'GROOVE') continue;
+      const ori = numbers(meta.params.get('ori'), IDENTITY.m);
+      (grooves[name] ??= []).push({
+        center: numbers(meta.params.get('pos'), [0, 0, 0]) as Vec3,
+        along: applyMatrix(ori, [1, 0, 0]).map(round) as Vec3,
+        across: applyMatrix(ori, [0, 1, 0]).map(round) as Vec3,
+        size: numbers(meta.params.get('size'), [0, 0, 0]) as Vec3,
+      });
+    }
+  }
+  return grooves;
+}
+
 // ---------------------------------------------------------------------------
 // Writing the table, one cylinder per line so diffs stay readable.
 
@@ -553,6 +575,6 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-out += '\n  },\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + '\n}\n';
+out += '\n  },\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);

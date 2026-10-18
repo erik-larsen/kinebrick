@@ -6,7 +6,7 @@
 0 // tooth count, pitch radius and tooth width, and for bevel gears which side its bevel teeth
 0 // face and how far away its pitch cone's tip is; !KINEBRICK SLIDE for parts that click into
 0 // set places; !KINEBRICK TRACK for track links, and how far they reach out beyond the line
-0 // through their pins).
+0 // through their pins; !KINEBRICK GROOVE for grooves a plate slides into edge first).
 
 0 FILE 3482.dat
 0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
@@ -234,3 +234,14 @@
 0 // Technic Chain Tread 2.5 Wide: its grousers reach 8 LDU out beyond the line through its pins
 0 // (its -y), which is the path a track of them runs round its wheels along.
 0 !KINEBRICK TRACK [depth=8]
+
+0 // Grooves.
+
+0 FILE 3145.dat
+0 // Tipper End: a groove inside each of its sloping edges, at 60 degrees, that the end of a
+0 // plate slides into, the plate's last row of anti-studs halfway into the wall (an official
+0 // bulldozer's bucket is two 4 x 12 plates in a pair of these). Each is 80 long (a 4 wide
+0 // plate), 8 wide (a plate's thickness) and 12 deep; the ori's columns run along the groove,
+0 // across it (the way a plate in it faces) and into the wall.
+0 !KINEBRICK GROOVE [pos=-43.41 36.61 0] [ori=0.5 -0.866025 0 0.866025 0.5 0 0 0 1] [size=80 8 12]
+0 !KINEBRICK GROOVE [pos=43.41 36.61 0] [ori=-0.5 0.866025 0 0.866025 0.5 0 0 0 -1] [size=80 8 12]

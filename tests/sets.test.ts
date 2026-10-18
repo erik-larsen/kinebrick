@@ -135,7 +135,7 @@ describe('856 Bulldozer', () => {
   const gears = parts.flatMap((p, i) => (p.name === '3649.dat' ? [mech.bodyOf[i]] : []));
   const yaw = () => Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]);
 
-  it('runs on two tracks of 50 links, each round two 40 tooth gears; its links are attached, and only its bucket plates are loose, riding along with the bucket', () => {
+  it("is fully attached: it runs on two tracks of 50 links, each round two 40 tooth gears, and its bucket's plates slot into grooves in its tipper ends", () => {
     expect(mech.loops).toHaveLength(2);
     for (const loop of mech.loops) {
       expect(loop.links).toHaveLength(50);
@@ -143,8 +143,9 @@ describe('856 Bulldozer', () => {
       expect(loop.wheels.map((w) => w.body).every((b) => gears.includes(b))).toBe(true);
       expect(loop.wheels).toHaveLength(2);
     }
-    expect(new Set(mech.loose.map((i) => parts[i].submodel))).toEqual(new Set(['856-bucket.ldr']));
-    expect(new Set(mech.loose.map((i) => mech.bodyOf[i]))).toEqual(new Set([mech.bodyOf[parts.findIndex((p) => p.name === '3145.dat')]]));
+    expect(mech.loose).toEqual([]);
+    const tipperEnd = mech.bodyOf[parts.findIndex((p) => p.name === '3145.dat')];
+    for (const [i, p] of parts.entries()) if (p.name === '3029.dat') expect(mech.bodyOf[i]).toBe(tipperEnd);
   });
 
   it('stands on its tracks: their links reach 8 LDU below the path round the gears', () => {

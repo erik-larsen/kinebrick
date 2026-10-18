@@ -64,6 +64,17 @@ export interface ConnectionTable {
   // which a track runs round its wheels along, in LDU. A track touches the ground that much
   // further out than its path.
   tracks?: Record<string, { depth: number }>;
+  // Grooves a plate slides into edge first (a tipper end's): boxes in the part's own
+  // coordinates. A plate whose anti-studs lie in one, its thickness across the groove, is held
+  // there (see inGrooves in mechanism.ts).
+  grooves?: Record<string, Groove[]>;
+}
+
+export interface Groove {
+  center: Vec3;
+  along: Vec3; // unit: the groove's length
+  across: Vec3; // unit: across it, the way a plate in it faces
+  size: Vec3; // its length, its width across (a plate's thickness), and how deep it goes
 }
 
 export interface Slide {
