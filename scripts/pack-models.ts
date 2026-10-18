@@ -12,7 +12,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { normalizePartName } from '../src/connections.ts';
-import { embeddedParts, modelTitle, parseModel, partLine } from '../src/ldr.ts';
+import { embeddedParts, modelFiles, modelTitle, parseModel, partLine } from '../src/ldr.ts';
 
 const LDRAW_DIR = 'ldraw';
 const MODELS_DIR = 'models';
@@ -55,11 +55,14 @@ const colours = readFileSync(join(LDRAW_DIR, 'LDConfig.ldr'), 'utf-8')
 mkdirSync(OUT_DIR, { recursive: true });
 const titles: Record<string, string> = {};
 
-const modelTitles: Record<string, string> = {};
+const modelTitles: Record<string, { title: string; primitives: string[] }> = {};
+
+// An LDraw primitive (a piece of shape, such as a cylinder), rather than a part.
+const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
 
 for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f)).sort()) {
   const source = readFileSync(join(MODELS_DIR, file), 'utf-8');
-  const { parts, shapes } = parseModel(source);
+  const { parts, shapes } = parseModel(source, isPrimitive);
   const embedded = embeddedParts(source);
   const shapeName = (submodel: string) => `kinebrick-shape/${submodel}`;
   const model = [
@@ -70,7 +73,7 @@ for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f))
   // Every file the model needs, each once, found by following references.
   const included = new Map<string, string>();
   for (const s of shapes) included.set(shapeName(s.submodel), s.lines.join('\n'));
-  const queue = references(model).filter((name) => !included.has(name));
+  const queue = [...references(model), ...shapes.flatMap((s) => references(s.lines.join('\n')))].filter((name) => !included.has(name));
   while (queue.length) {
     const name = queue.shift()!;
     if (included.has(name)) continue;
@@ -83,7 +86,8 @@ for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f))
   }
 
   const base = file.replace(/\.(ldr|mpd)$/, '');
-  modelTitles[base] = modelTitle(source);
+  const primitives = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)).filter(isPrimitive))].sort();
+  modelTitles[base] = { title: modelTitle(source), primitives };
   let out = `0 FILE ${base}.ldr\n${colours}\n${model}\n`;
   for (const [name, text] of included) out += `\n0 NOFILE\n0 FILE ${packedName(name)}\n${text.trimEnd()}\n`;
   writeFileSync(join(OUT_DIR, `${base}.mpd`), out);

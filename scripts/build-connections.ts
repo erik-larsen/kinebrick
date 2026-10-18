@@ -378,6 +378,14 @@ function fileCylinders(name: string): WorkingCylinder[] {
     // SNAP_FGR and SNAP_SPH (hinge fingers, and so on) aren't used yet.
   }
 
+  // A tyre's tread, measured from its shape. Part of the tyre's own connection points, so a
+  // file made of a wheel and its tyre (a shortcut) has the tread too.
+  if (roles[name] === 'tyre') {
+    const seat = result.find((c) => c.gender === 'F' && c.secs.some((sec) => sec.shape === 'T'));
+    if (seat) result.push({ ...treadCylinder(name, seat), id: '', scaleRule: 'none', mirrorRule: 'cor' });
+    else console.warn(`${name}: tyre without a tyre seat in data/corrections.ldr`);
+  }
+
   cache.set(name, result);
   return result;
 }
@@ -451,7 +459,8 @@ const embedded = new Map(modelTexts().flatMap((text) => [...embeddedParts(text)]
 // Every part used by the models in models/, with their submodels flattened.
 function partsInModels(): string[] {
   const parts = new Set<string>();
-  for (const text of modelTexts()) for (const p of parseLdr(text)) parts.add(p.name);
+  const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
+  for (const text of modelTexts()) for (const p of parseLdr(text, isPrimitive)) parts.add(p.name);
   return [...parts].sort();
 }
 
@@ -496,11 +505,6 @@ let out = '{\n  "about": ' + JSON.stringify(about) + ',\n  "parts": {';
 let first = true;
 for (const name of partsInModels()) {
   const cyls: Cylinder[] = [...fileCylinders(name)];
-  if (roles[name] === 'tyre') {
-    const seat = cyls.find((c) => c.gender === 'F' && c.secs.some((sec) => sec.shape === 'T'));
-    if (seat) cyls.push(treadCylinder(name, seat));
-    else console.warn(`${name}: tyre without a tyre seat in data/corrections.ldr`);
-  }
   out += (first ? '\n' : ',\n') + '    ' + JSON.stringify(name) + ': [';
   out += cyls.map((c) => '\n      ' + cylinderJson(c)).join(',');
   out += cyls.length ? '\n    ]' : ']';

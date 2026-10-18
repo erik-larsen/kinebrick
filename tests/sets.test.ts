@@ -10,6 +10,8 @@ import { inferMechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+// Tests that drive a whole model through many steps take a few seconds.
+const SLOW = 30000;
 
 function load(file: string) {
   const parts = parseLdr(readFileSync(file, 'utf-8'));
@@ -69,7 +71,7 @@ describe('854 Go-Kart', () => {
     expect(Math.abs(turned)).toBeCloseTo(2 * Math.PI, 6);
     expect(frameMoved()).toBeCloseTo(2 * Math.PI * 54.2, 0); // the big tyre's radius
     expect(Math.max(...offsets) - Math.min(...offsets)).toBeCloseTo(28, 0); // twice the crank's throw
-  });
+  }, SLOW);
 });
 
 describe('950 Fork-Lift Truck', () => {
@@ -95,7 +97,7 @@ describe('950 Fork-Lift Truck', () => {
       expect(Math.abs(moved)).toBeCloseTo(reach, 0);
       expect(frameMoved()).toBeLessThan(1e-6);
     }
-  });
+  }, SLOW);
 
   it('turning the steering wheel turns both front wheels the same way, through the crown gear and a rack', () => {
     kin.reset();
@@ -106,4 +108,79 @@ describe('950 Fork-Lift Truck', () => {
     expect(Math.abs(a)).toBeGreaterThan(0.05);
     expect(b).toBeCloseTo(a, 3);
   });
+});
+
+describe('952 Tractor', () => {
+  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/952 - Tractor.mpd');
+
+  it('is fully attached: its big rear wheels are tyres, and two plates stand on edge between studs', () => {
+    expect(mech.loose).toEqual([]);
+    expect(kin.groundY).not.toBeNull();
+    expect(mech.treads.filter((t) => t.radius > 100)).toHaveLength(2); // the big rear tyres
+  });
+
+  it('turning the steering column turns both front wheels the same way, and the tractor stays where it is', () => {
+    kin.reset();
+    expect(Math.abs(turn(bodyOf('3712.dat'), 0.5))).toBeCloseTo(0.5, 6);
+    const [a, b] = turntables().map(angleOf);
+    expect(Math.abs(a)).toBeGreaterThan(0.05);
+    expect(b).toBeCloseTo(a, 3);
+    expect(frameMoved()).toBeLessThan(1e-6);
+  });
+
+  it('a turn of the rear wheels rolls it one big tyre round, and the assembly hung on the rear axle stays level', () => {
+    kin.reset();
+    const wheel = bodyOf('952 - 3739c01.dat');
+    const joint = kin.parentLink(wheel)!.joint;
+    kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
+    let turned = 0;
+    for (let i = 0; i < 60; i++) turned += kin.turnJoint(joint, (2 * Math.PI) / 60);
+    kin.letGoAfterDrag();
+    expect(turned).toBeCloseTo(2 * Math.PI, 6);
+    expect(frameMoved()).toBeCloseTo(2 * Math.PI * 102.7, 0);
+    const hung = bodyOf('3021.dat', 0);
+    expect(new Vector3(0, 1, 0).transformDirection(kin.poses[hung]).y).toBeCloseTo(1, 3); // not carried round
+  }, SLOW);
+});
+
+describe('956 Auto Chassis', () => {
+  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/956 - Auto Chassis.mpd');
+
+  it('is fully attached: its steering column bends through a double universal joint, and its steering rack is guided', () => {
+    expect(mech.loose).toEqual([]);
+    expect(mech.couplings).toHaveLength(2);
+    expect(mech.joints.filter((j) => j.kind === 'slide')).toHaveLength(7); // two seats, the steering rack, four pistons
+  });
+
+  it('turning the steering wheel turns both front wheels the same way, and the car stays where it is', () => {
+    kin.reset();
+    expect(Math.abs(turn(bodyOf('3736.dat'), 0.5))).toBeCloseTo(0.5, 6);
+    const [a, b] = turntables().map(angleOf);
+    expect(Math.abs(a)).toBeGreaterThan(0.05);
+    expect(b).toBeCloseTo(a, 3);
+    expect(frameMoved()).toBeLessThan(1e-6);
+  }, SLOW);
+
+  it('a turn of a wheel rolls it one big tyre round, and runs its four-cylinder engine: each piston through its 32 LDU stroke', () => {
+    kin.reset();
+    const wheel = bodyOf('3740.dat');
+    const joint = kin.parentLink(wheel)!.joint;
+    const pistons = mech.joints.flatMap((j, i) => (j.kind === 'slide' && mech.bodies[j.bodyB].name.startsWith('piston') ? [i] : []));
+    kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
+    const low = pistons.map(() => Infinity);
+    const high = pistons.map(() => -Infinity);
+    let turned = 0;
+    for (let i = 0; i < 60; i++) {
+      turned += kin.turnJoint(joint, (2 * Math.PI) / 60);
+      pistons.forEach((p, k) => {
+        low[k] = Math.min(low[k], kin.slideOffset(p));
+        high[k] = Math.max(high[k], kin.slideOffset(p));
+      });
+    }
+    kin.letGoAfterDrag();
+    expect(Math.abs(turned)).toBeCloseTo(2 * Math.PI, 6);
+    expect(frameMoved()).toBeCloseTo(2 * Math.PI * 102.7, 0);
+    expect(pistons).toHaveLength(4);
+    pistons.forEach((_, k) => expect(high[k] - low[k]).toBeCloseTo(32, 0));
+  }, 4 * SLOW);
 });

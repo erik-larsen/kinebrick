@@ -34,7 +34,7 @@ import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } fr
 import connectionsUrl from '../data/connections.json?url';
 import rolesUrl from '../data/roles.json?url';
 import titlesUrl from '../packed/titles.json?url';
-import modelTitles from '../packed/models.json';
+import packedModels from '../packed/models.json';
 
 // The test models in models/, and their names in the picker. Any other model in models/ comes
 // after them, under its file name and title.
@@ -57,9 +57,9 @@ const NAMED_MODELS: [string, string][] = [
 ];
 const MODELS: [string, string][] = [
   ...NAMED_MODELS,
-  ...Object.entries(modelTitles as Record<string, string>)
+  ...Object.entries(packedModels as Record<string, { title: string }>)
     .filter(([file]) => !NAMED_MODELS.some(([named]) => named === file))
-    .map(([file, title]): [string, string] => [file, title && title !== file && !/^untitled/i.test(title) ? `${file}: ${title}` : file]),
+    .map(([file, { title }]): [string, string] => [file, title && title !== file && !/^untitled/i.test(title) ? `${file}: ${title}` : file]),
 ];
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');
@@ -155,7 +155,9 @@ async function start() {
   const summary = document.getElementById('summary')!;
 
   const modelText = await (await fetch(MODEL_URL)).text();
-  const { parts: startParts, shapes: drawnShapes } = parseModel(modelText);
+  // Which files the model places are LDraw primitives (drawn shapes), as the packer found.
+  const primitives = new Set((packedModels as Record<string, { primitives: string[] }>)[MODEL]?.primitives ?? []);
+  const { parts: startParts, shapes: drawnShapes } = parseModel(modelText, (name) => primitives.has(name));
   const table: ConnectionTable = await (await fetch(connectionsUrl)).json();
   const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
 

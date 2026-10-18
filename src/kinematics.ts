@@ -23,8 +23,9 @@
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh } from './mechanism.ts';
 
-// How close a tyre must be to the ground to count as touching it, in LDU.
-const GROUND_TOLERANCE = 0.5;
+// How close a tyre must be to the ground to count as touching it, in LDU. Models are often
+// built half an LDU out (an official tractor's front tyres sit half an LDU above its rear ones).
+const GROUND_TOLERANCE = 1;
 // Numbers smaller than this count as zero when solving the equations.
 const EPSILON = 1e-9;
 // How far a tyre may scrub sideways, as a fraction of how far it rolls (see freeMotions): real
@@ -61,6 +62,16 @@ export interface KinematicsState {
 
 // For each tyre on the ground, a row for how fast it scrubs sideways, and one for how fast it
 // travels (see Kinematics.freeMotions).
+// One shaft of a universal joint (see findCouplings).
+interface Shaft {
+  body: number;
+  joint: number; // the joint it turns on, or -1 for a shaft that floats between two joints
+  mount: number; // the body it turns in (the frame, for a floating shaft)
+  axis: Vector3; // its axis at the start (model coordinates)
+  away: number; // +1 if its axis points away from the joint's middle, else -1
+  near: Vector3; // the point on its axis nearest the joint's middle, at the start
+}
+
 interface Slip {
   sideways: Row[]; // how fast each tyre scrubs sideways
   travel: Row[]; // how fast each tyre's hub travels along the way it rolls
@@ -91,13 +102,16 @@ export class Kinematics {
   private fixedBody = -1; // kept still when the model has no tyres on the ground
   private frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
   private dragHeld = new Set<number>(); // bodies held still for the length of one drag
+  // Bodies held for a drag against the frame rather than against what they turn on (which the
+  // drag turns): an assembly hanging on a driven axle stays level, not carried round.
+  private heldToFrame = new Set<number>();
   private contactTreads: number[] = []; // indices into mech.treads
   // Bodies held only by a ball joint at each end (a steering link), and those two joints.
   private links: { body: number; balls: [number, number] }[] = [];
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
   // on that axis nearest the middle (model coordinates, at the start).
-  private couplings: { shafts: { body: number; joint: number; away: number; near: Vector3 }[] }[] = [];
+  private couplings: { shafts: Shaft[] }[] = [];
 
   constructor(mech: Mechanism) {
     this.mech = mech;
@@ -131,10 +145,11 @@ export class Kinematics {
   }
 
   // For each universal joint, the joint each shaft turns on: the one whose axis passes through
-  // the universal joint's middle.
+  // the universal joint's middle. A shaft that turns in nothing but the joints at its ends (the
+  // middle of a double universal joint) turns about its end's axle hole, against the frame.
   private findCouplings() {
     for (const c of this.mech.couplings ?? []) {
-      const shafts = [c.bodyA, c.bodyB].map((body) => {
+      const shafts = [c.bodyA, c.bodyB].map((body, side): Shaft => {
         let best = -1;
         let bestDistance = 2; // LDU
         this.mech.joints.forEach((j, i) => {
@@ -144,15 +159,32 @@ export class Kinematics {
           const distance = fromCenter.clone().addScaledVector(d, -fromCenter.dot(d)).length();
           if (distance < bestDistance) [best, bestDistance] = [i, distance];
         });
-        if (best < 0) return null;
+        const end = side === 0 ? c.atA : c.atB;
+        if (best < 0) {
+          // A floating shaft, against the frame: about the line through the middles of the
+          // joints at its two ends (so turning it leaves both where they are), or failing a
+          // second joint, about its end's axle hole.
+          const other = this.mech.couplings.find((o) => o !== c && (o.bodyA === body || o.bodyB === body));
+          const axis = other ? new Vector3().subVectors(other.center, c.center).normalize() : (side === 0 ? c.axisA : c.axisB).clone();
+          const away = other ? 1 : new Vector3().subVectors(end, c.center).dot(axis) >= 0 ? 1 : -1;
+          return { body, joint: -1, mount: 0, axis, away, near: c.center.clone() };
+        }
         const j = this.mech.joints[best];
         const d = axisOf(j.from, j.to);
-        const middle = j.from.clone().add(j.to).multiplyScalar(0.5);
         const near = j.from.clone().addScaledVector(d, new Vector3().subVectors(c.center, j.from).dot(d));
-        return { body, joint: best, away: new Vector3().subVectors(middle, c.center).dot(d) >= 0 ? 1 : -1, near };
+        const away = new Vector3().subVectors(end, c.center).dot(d) >= 0 ? 1 : -1;
+        return { body, joint: best, mount: j.bodyA === body ? j.bodyB : j.bodyA, axis: d, away, near };
       });
-      if (shafts[0] && shafts[1]) this.couplings.push({ shafts: shafts as { body: number; joint: number; away: number; near: Vector3 }[] });
+      this.couplings.push({ shafts });
     }
+  }
+
+  // A shaft's axis now (the joint it turns on, or for a floating shaft its own axis), in model
+  // coordinates.
+  private shaftAxis(shaft: Shaft): Vector3 {
+    if (shaft.joint < 0) return shaft.axis.clone().transformDirection(this.poses[shaft.body]);
+    const j = this.mech.joints[shaft.joint];
+    return axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
   }
 
   // The ground is level with the lowest tyre. Tyres within GROUND_TOLERANCE of it touch it.
@@ -353,6 +385,7 @@ export class Kinematics {
   // can say why a part won't move.
   holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean): boolean {
     this.dragHeld.clear();
+    this.heldToFrame.clear();
     let wormLocked = false;
     for (const worm of this.wormsAgainst(grabbed)) {
       this.dragHeld.add(worm);
@@ -377,17 +410,45 @@ export class Kinematics {
       if (this.dragHeld.has(body)) continue;
       // A hold mustn't carry along what the body turns on, if that could have stayed still:
       // locking a gear that freewheels on a shaft would turn the shaft.
-      const shaft = this.parentLink(body)!.parent;
+      const link = this.parentLink(body)!;
+      const shaft = link.parent;
       const shaftCouldStay = this.couldStayStill(shaft, stillPossible);
+      // Nor carry the body round with the shaft it turns on, if that shaft has to turn (an
+      // assembly hanging on a driven axle): hold it against the frame instead, if the drag
+      // allows.
+      if (!shaftCouldStay && this.sharesAxisWithShaft(body)) {
+        this.heldToFrame.add(body);
+        if (stillPossible()) continue;
+        this.heldToFrame.delete(body);
+      }
+      // Parts of a closed loop aren't held: whether one is needed can't be told from this
+      // instant alone (a steering tie rod doesn't turn at all at straight ahead, but must as
+      // soon as the wheels do).
+      if (this.inLoop(link.joint)) continue;
       this.dragHeld.add(body);
       if (!stillPossible() || (shaftCouldStay && !this.couldStayStill(shaft, stillPossible))) this.dragHeld.delete(body);
     }
     return wormLocked;
   }
 
+  // Whether a body turns on the same axis as the shaft it turns on turns on its own (an
+  // assembly on a wheel's axle), so turning the shaft would carry the body round.
+  private sharesAxisWithShaft(body: number): boolean {
+    const link = this.parentLink(body)!;
+    const shaftJoint = this.parentJoint[link.parent];
+    if (shaftJoint < 0) return false;
+    const a = this.mech.joints[link.joint];
+    const b = this.mech.joints[shaftJoint];
+    const da = axisOf(a.from, a.to);
+    const db = axisOf(b.from, b.to);
+    if (new Vector3().crossVectors(da, db).length() > 0.01) return false;
+    const offset = new Vector3().subVectors(b.from, a.from);
+    return offset.addScaledVector(da, -offset.dot(da)).length() < 1;
+  }
+
   // Whether the drag could still happen with `body` not turning on its joint.
   private couldStayStill(body: number, stillPossible: () => boolean): boolean {
-    if (this.parentJoint[body] < 0 || this.dragHeld.has(body) || this.frozen.has(body)) return true;
+    if (this.parentJoint[body] < 0 || this.dragHeld.has(body) || this.heldToFrame.has(body) || this.frozen.has(body)) return true;
     this.dragHeld.add(body);
     const possible = stillPossible();
     this.dragHeld.delete(body);
@@ -429,6 +490,7 @@ export class Kinematics {
 
   letGoAfterDrag() {
     this.dragHeld.clear();
+    this.heldToFrame.clear();
   }
 
   // ---------------------------------------------------------------------------
@@ -454,6 +516,17 @@ export class Kinematics {
 
     const fixed = new Set([...this.frozen, ...this.dragHeld]);
     if (this.fixedBody >= 0) fixed.add(this.fixedBody);
+    for (const body of this.heldToFrame) {
+      // Held against the frame: no turning about its joint's axis relative to the frame.
+      const joint = this.mech.joints[this.parentJoint[body]];
+      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+      const row = new Array(n).fill(0);
+      for (let k = 0; k < 3; k++) {
+        row[6 * body + k] += d.getComponent(k);
+        row[6 * 0 + k] -= d.getComponent(k);
+      }
+      add(row);
+    }
     for (const body of fixed) {
       const j = this.parentJoint[body];
       if (j >= 0 && body !== this.fixedBody) {
@@ -527,13 +600,11 @@ export class Kinematics {
     }
     for (const { shafts } of this.couplings) {
       const row = new Array(n).fill(0);
-      for (const { body, joint, away } of shafts) {
-        const j = this.mech.joints[joint];
-        const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
-        const mount = j.bodyA === body ? j.bodyB : j.bodyA;
+      for (const shaft of shafts) {
+        const d = this.shaftAxis(shaft);
         for (let k = 0; k < 3; k++) {
-          row[6 * body + k] += away * d.getComponent(k);
-          row[6 * mount + k] -= away * d.getComponent(k);
+          row[6 * shaft.body + k] += shaft.away * d.getComponent(k);
+          row[6 * shaft.mount + k] -= shaft.away * d.getComponent(k);
         }
       }
       add(row);
@@ -748,9 +819,23 @@ export class Kinematics {
       return row;
     });
     const parked = orthonormalize(nullSpace([...rows, ...frameStill], n));
-    const keptParked = parked.length ? leastScrub(parked, { sideways: slip.lift, travel: [...slip.travel, ...slip.sideways], lift: [] }, LIFT) : [];
+    const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: slip.lift, travel: [...slip.travel, ...slip.sideways], lift: [] }, LIFT)) : [];
+    // The rest of the motions, with the parked ones taken out, judged as rolling. Taking them
+    // out first keeps the two sets apart: joined afterwards, a rolling motion that's nearly a
+    // parked one would leave a sliver that, scaled up, is a bogus motion (lifting the car).
+    const rest = orthonormalize(
+      motions.map((m) => {
+        const u = m.slice();
+        for (const p of keptParked) {
+          const d = u.reduce((sum, x, i) => sum + x * p[i], 0);
+          for (let i = 0; i < u.length; i++) u[i] -= d * p[i];
+        }
+        return u;
+      }),
+      1e-6,
+    );
     const liftAsScrub = slip.lift.map((row) => row.map((x) => (x * SCRUB) / LIFT));
-    const rolling = leastScrub(motions, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, SCRUB);
+    const rolling = rest.length ? leastScrub(rest, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, SCRUB) : [];
     return orthonormalize([...keptParked, ...rolling]);
   }
 
@@ -1125,7 +1210,7 @@ function smallestSolution(rows: Row[], values: number[]): number[] | null {
 
 // The same vectors made orthonormal (unit length, at right angles to each other), by
 // Gram-Schmidt.
-function orthonormalize(vectors: number[][]): number[][] {
+function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] {
   const result: number[][] = [];
   for (const v of vectors) {
     const u = v.slice();
@@ -1134,7 +1219,7 @@ function orthonormalize(vectors: number[][]): number[][] {
       for (let i = 0; i < u.length; i++) u[i] -= d * b[i];
     }
     const len = Math.sqrt(u.reduce((sum, x) => sum + x * x, 0));
-    if (len > EPSILON) result.push(u.map((x) => x / len));
+    if (len > tiny) result.push(u.map((x) => x / len));
   }
   return result;
 }

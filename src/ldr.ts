@@ -75,10 +75,15 @@ export interface PlacedShape {
 
 // Every part in the model, with submodels flattened, in the order their lines come (a
 // submodel's parts where the submodel's line is), and the shapes drawn without parts.
-export function parseModel(text: string): { parts: PlacedPart[]; shapes: PlacedShape[] } {
+// `isPrimitive` says which referenced files are LDraw primitives (pieces of shape, such as a
+// cylinder, rather than parts): a submodel that places them is drawing a shape, as CAD
+// programs draw a string or a hose. Only the LDraw library knows for sure, so the caller says.
+export function parseModel(text: string, isPrimitive: (name: string) => boolean = () => false): { parts: PlacedPart[]; shapes: PlacedShape[] } {
   const files = modelFiles(text);
   const submodels = new Map([...files].filter(([name, lines]) => name && !isPart(lines)));
-  const shapeLines = new Map([...submodels].map(([name, lines]) => [name, lines.filter((l) => /^\s*[2-5]\s/.test(l))]));
+  const referenced = (line: string) => normalizePartName(line.trim().split(/\s+/).slice(14).join(' '));
+  const drawn = (line: string) => /^\s*[2-5]\s/.test(line) || (/^\s*1\s/.test(line) && isPrimitive(referenced(line)));
+  const shapeLines = new Map([...submodels].map(([name, lines]) => [name, lines.filter(drawn)]));
   const parts: PlacedPart[] = [];
   const shapes: PlacedShape[] = [];
   const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number) => {
@@ -92,6 +97,7 @@ export function parseModel(text: string): { parts: PlacedPart[]; shapes: PlacedS
       const ownColor = Number(tokens[1]);
       const partColor = ownColor === INHERIT ? color : ownColor;
       const name = normalizePartName(tokens.slice(14).join(' '));
+      if (isPrimitive(name)) continue; // drawn with the submodel's shapes
       const sub = submodels.get(name);
       if (sub) place(sub, matrix, partColor, name, depth + 1);
       else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}) });
@@ -104,8 +110,8 @@ export function parseModel(text: string): { parts: PlacedPart[]; shapes: PlacedS
 }
 
 // Every part in the model (see parseModel).
-export function parseLdr(text: string): PlacedPart[] {
-  return parseModel(text).parts;
+export function parseLdr(text: string, isPrimitive?: (name: string) => boolean): PlacedPart[] {
+  return parseModel(text, isPrimitive).parts;
 }
 
 // A part as a type 1 line, as the model would have it if it had no submodels.

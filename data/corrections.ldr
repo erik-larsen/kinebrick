@@ -11,6 +11,15 @@
 0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 22 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 3739.dat
+0 // Wheel 24 x 43 Technic (the big wheel of early tractors and cars): a tyre seat around the
+0 // middle of its axle hole, which runs along x
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 30 20] [center=true] [pos=-30 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 FILE 3740.dat
+0 // Tyre 24/ 80 x 43 Offset Tread: sits on the big Technic wheel (3739)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 30 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 3483.dat
 0 // Tyre 56 x 17 Offset Tread: sits on a 22 LDU radius rim seat, 18 LDU wide
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 22 18] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -186,3 +195,16 @@
 0 // Turntable 2 x 2 Plate Top: its centre pin turns in the base's hole (3680). The shadow
 0 // library closes it at one end, so it would only fit as a stud does; it's open-ended here.
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 2   L 4.5 2] [pos=0 4 0] [ori=-1 0 0 0 -1 0 0 0 1]
+
+0 // Small wheels.
+
+0 FILE 3464b.dat
+0 // Wheel Centre with Stub Axles: thin stub axles out of both sides, which clip into wheel clips
+0 // (8, Plate 2 x 2 with 2 Wheel Clips Perpendicular), and a seat for its tyre (3641). The
+0 // shadow library gives only its bore.
+0 !LDCAD SNAP_CYL [gender=M] [caps=two] [secs=R 2 24] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 10 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 3641.dat
+0 // Tyre 6/50 x 8 Offset Tread: sits on the small wheel centre (3464b)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 10 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]

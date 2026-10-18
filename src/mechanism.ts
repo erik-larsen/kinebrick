@@ -8,6 +8,9 @@ import { PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
+// How far off each other's axis a pin and its hole (or a tyre and its rim) may be and still
+// fit, in LDU. Models are often built half an LDU out.
+const ALIGN_TOLERANCE = 1;
 // How far apart two connection points' directions may be and still line up, as the sine of
 // the angle between them: 2 degrees. Models are sometimes built a little askew (an official
 // model tilts a go-kart's engine by a degree), as real parts allow.
@@ -39,7 +42,7 @@ interface WorldCylinder {
 // slide     the parts can slide along the shared axis, but not turn (a piston in its bore)
 // ball      the parts can turn any way about a shared point (a towball in a ball socket)
 // stud      a stud in an anti-stud: the parts are attached and move together
-export type ConnectionKind = 'rigid' | 'revolute' | 'slide' | 'ball' | 'stud';
+export type ConnectionKind = 'rigid' | 'revolute' | 'slide' | 'ball' | 'stud' | 'coupling';
 
 // Two parts joined at one pair of connection points.
 export interface Connection {
@@ -136,32 +139,65 @@ export interface Mechanism {
 }
 
 // A universal joint: bodyA and bodyB, each a shaft turning in something, turn at the same rate
-// about their own axes, which meet at `center`.
+// about their own axes, which meet at `center`. The axes are the ends' axle holes (model
+// coordinates), for a shaft that turns in nothing but the joints at its ends.
 export interface Coupling {
   bodyA: number;
   bodyB: number;
   center: Vector3;
+  axisA: Vector3;
+  axisB: Vector3;
+  atA: Vector3; // where each end part is
+  atB: Vector3;
 }
 
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>): Mechanism {
   // Friction pins hold what they join in place, unless they're the only way the model can
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
   // still move, that's it; if not, they stay joints, stiff ones.
-  const rigid = buildMechanism(parts, table, roleList, true);
-  if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
-  return buildMechanism(parts, table, roleList, false);
+  const build = (guide: Set<number>) => {
+    const rigid = buildMechanism(parts, table, roleList, true, guide);
+    if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
+    return buildMechanism(parts, table, roleList, false, guide);
+  };
+  const mech = build(new Set());
+  const guide = racksToGuide(mech);
+  return guide.size ? build(guide) : mech;
+}
+
+// Racks that need guiding: a rack that can still move with its gear held still, held by
+// nothing that sets its path but the gear (a steering rack on tie rods, which in the real
+// model slides in a channel of bricks). A rack whose linkage sets its path already (a tie bar
+// fixed to the tops of two turntables) needs no guide, and a straight one would jam it.
+// Returns the rack parts to guide.
+function racksToGuide(mech: Mechanism): Set<number> {
+  const guide = new Set<number>();
+  const kin = new Kinematics(mech);
+  for (const mesh of mech.meshes) {
+    if (mesh.kind !== 'rack') continue;
+    const gear = mech.gears[mesh.gearA];
+    const rack = mech.gears[mesh.gearB];
+    if (mech.joints.some((j) => j.kind === 'slide' && (j.bodyA === rack.body || j.bodyB === rack.body))) continue;
+    if (!kin.parentLink(gear.body)) continue;
+    kin.toggleFreeze(gear.body);
+    const moves = kin.freeMotions().some((m) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * rack.body + k] - m[k]) > 1e-6));
+    kin.toggleFreeze(gear.body);
+    if (moves) for (const g of mech.gears) if (g.face && g.body === rack.body) guide.add(g.part);
+  }
+  return guide;
 }
 
 // The mechanism, with friction pins treated as rigid or as stiff joints.
-function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean): Mechanism {
+function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide = new Set<number>()): Mechanism {
   const roles = parts.map((p) => roleList[p.name] ?? 'structure');
   const cyls = worldCylinders(parts, table);
   const connections = findConnections(cyls);
   fixPins(connections, roles, frictionRigid);
-  connections.push(...guidedRacks(parts.length, cyls, connections));
+  connections.push(...platesOnEdge(cyls));
+  connections.push(...guidedRacks(parts.length, cyls, connections, guide));
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
-  const joined = universalJoints(parts, roles, connections);
+  const joined = universalJoints(parts, roles, cyls, connections);
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
@@ -169,7 +205,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
   const loose = findLooseParts(parts.length, connections);
-  const couplings = joined.map(({ partA, partB, center }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center }));
+  const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
+  const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center, axisA, axisB, atA: at(partA), atB: at(partB) }));
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings };
 }
 
@@ -210,9 +247,11 @@ function rigidGroups(count: number, connections: Connection[]): number[] {
 // fraction of an LDU, as built models do. What the joint does is pass turning from one shaft
 // to the other, so that's what KineBrick models: the cross is fixed to the first end, its
 // other arm lets go of the second end, and the two shafts turn together (see Coupling).
-// Removes those connections from `connections`; returns the pairs of ends it couples.
-function universalJoints(parts: PlacedPart[], roles: string[], connections: Connection[]): { partA: number; partB: number; center: Vector3 }[] {
-  const joined: { partA: number; partB: number; center: Vector3 }[] = [];
+// Replaces those connections in `connections` with a coupling (which only says the two ends
+// are attached); returns the pairs of ends it couples.
+function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]) {
+  const joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[] = [];
+  const axisOfEnd = (end: number) => cyls.find((c) => c.part === end && c.secs.some((s) => s.shape === 'A'))?.dir.clone() ?? new Vector3(0, 0, 1);
   roles.forEach((role, cross) => {
     if (role !== 'universal joint') return;
     const arms = connections.filter((c) => c.kind === 'revolute' && (c.male === cross || c.female === cross));
@@ -223,9 +262,54 @@ function universalJoints(parts: PlacedPart[], roles: string[], connections: Conn
       if (end === ends[0]) c.kind = 'rigid';
       else connections.splice(connections.indexOf(c), 1);
     }
-    joined.push({ partA: ends[0], partB: ends[1], center: new Vector3().setFromMatrixPosition(parts[cross].matrix) });
+    const center = new Vector3().setFromMatrixPosition(parts[cross].matrix);
+    connections.push({ male: ends[0], female: ends[1], kind: 'coupling', from: center, to: center.clone() });
+    joined.push({ partA: ends[0], partB: ends[1], center, axisA: axisOfEnd(ends[0]), axisB: axisOfEnd(ends[1]) });
   });
   return joined;
+}
+
+// A plate standing on its edge between two rows of studs is held there: a plate is 8 LDU thick,
+// just the gap between neighbouring studs (an old trick, used on an official tractor's cab).
+// Found from connection points alone: an upright plate's studs all point the same way across,
+// its anti-studs lie 8 LDU behind them, and its bottom edge is half a stud below its lowest
+// studs. It's held by a part whose studs stand on the surface that edge rests on, half a stud
+// either side of the plate's middle.
+function platesOnEdge(cyls: WorldCylinder[]): Connection[] {
+  const UP = new Vector3(0, -1, 0); // LDraw's y points down
+  const isStudCyl = (c: WorldCylinder) => c.gender === 'M' && isStud(c);
+  const byPart = new Map<number, WorldCylinder[]>();
+  for (const c of cyls) byPart.set(c.part, [...(byPart.get(c.part) ?? []), c]);
+  const upStuds = cyls.filter((c) => isStudCyl(c) && c.dir.dot(UP) > 0.99);
+  const held: Connection[] = [];
+  for (const [part, own] of byPart) {
+    const studs = own.filter(isStudCyl);
+    if (studs.length === 0) continue;
+    const across = studs[0].dir;
+    if (Math.abs(across.dot(UP)) > 0.1 || studs.some((st) => st.dir.dot(across) < 0.99)) continue; // not upright
+    const antiStuds = own.filter((c) => c.gender === 'F' && isAntiStud(c));
+    const face = studs[0].start.dot(across);
+    if (!antiStuds.some((a) => Math.abs(face - a.start.dot(across) - 8) < AXIS_TOLERANCE)) continue; // not a plate
+    const middle = face - 4;
+    const edge = Math.max(...studs.map((st) => st.start.y)) + 10; // y points down
+    const sideways = new Vector3().crossVectors(across, UP).normalize();
+    const along = studs.map((st) => st.start.dot(sideways));
+    const [lo, hi] = [Math.min(...along) - 10, Math.max(...along) + 10];
+    const sides = new Map<number, Set<number>>();
+    for (const st of upStuds) {
+      if (st.part === part || Math.abs(st.start.y - edge) > AXIS_TOLERANCE) continue;
+      const off = st.start.dot(across) - middle;
+      const at = st.start.dot(sideways);
+      if (Math.abs(Math.abs(off) - 10) > AXIS_TOLERANCE || at < lo || at > hi) continue;
+      sides.set(st.part, (sides.get(st.part) ?? new Set()).add(Math.sign(off)));
+    }
+    for (const [other, signs] of sides) {
+      if (signs.size < 2) continue; // studs on both sides grip it
+      const at = studs[0].start.clone().addScaledVector(across, -4);
+      held.push({ male: other, female: part, kind: 'stud', from: at, to: at.clone() });
+    }
+  }
+  return held;
 }
 
 // Decoration: parts that are there for looks and connect to nothing in a way that matters,
@@ -250,13 +334,14 @@ function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]
 // keep it in line are taken as read, as for a plate sliding on tiles). Its parts connect to the
 // part the gear's axle turns in by a slide; it stops where the gear reaches the end of its
 // teeth.
-function guidedRacks(count: number, cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+// `guide` names more racks to guide so, though attached (see racksToGuide).
+function guidedRacks(count: number, cyls: WorldCylinder[], connections: Connection[], guide: Set<number>): Connection[] {
   const loose = new Set(findLooseParts(count, connections));
-  if (loose.size === 0) return [];
+  if (loose.size === 0 && guide.size === 0) return [];
   const gears = findGears(cyls, Array.from({ length: count }, (_, i) => i));
   const guided: Connection[] = [];
   for (const rack of gears) {
-    if (!rack.face || !loose.has(rack.part)) continue;
+    if (!rack.face || !(loose.has(rack.part) || guide.has(rack.part))) continue;
     for (const gear of gears) {
       if (gear.face || loose.has(gear.part) || !rackMesh(gear, rack)) continue;
       const mount = mountOf(gear.part, connections);
@@ -623,7 +708,7 @@ function axialOverlap(m: WorldCylinder, f: WorldCylinder): { from: Vector3; to: 
   if (new Vector3().crossVectors(m.dir, f.dir).length() > ANGLE_TOLERANCE) return null;
   const offset = new Vector3().subVectors(f.start, m.start);
   const along = offset.dot(m.dir);
-  if (offset.clone().addScaledVector(m.dir, -along).length() > AXIS_TOLERANCE) return null;
+  if (offset.clone().addScaledVector(m.dir, -along).length() > ALIGN_TOLERANCE) return null;
   const mLength = m.secs.reduce((sum, s) => sum + s.length, 0);
   const fEnd = along + Math.sign(f.dir.dot(m.dir)) * f.secs.reduce((sum, s) => sum + s.length, 0);
   const lo = Math.max(0, Math.min(along, fEnd));
@@ -655,7 +740,7 @@ function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
   const offset = new Vector3().subVectors(f.start, m.start);
   const along = offset.dot(m.dir);
   const sideways = offset.clone().addScaledVector(m.dir, -along).length();
-  if (sideways > AXIS_TOLERANCE) return null;
+  if (sideways > ALIGN_TOLERANCE) return null;
 
   // Walk both cylinders' sections, measured as distances along the male's axis.
   const sign = f.dir.dot(m.dir) > 0 ? 1 : -1;
