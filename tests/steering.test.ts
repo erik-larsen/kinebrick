@@ -115,12 +115,26 @@ describe('steering car', () => {
     expect(kin.jointAngles[jointOf(carrier)]).toBeCloseTo(steer, 9);
   });
 
-  it('with a solid rear axle instead of the differential, it can steer but then cannot roll', () => {
+  it('with a solid rear axle instead of the differential, it rolls round a bend once steered, its rear tyres skidding to make up the difference', () => {
     const car = load(readFileSync('models/steering-car-solid.ldr', 'utf-8'));
     const col = bodyOf(car.parts, car.mech, '2819.dat');
-    expect(car.kin.freeMotions()).toHaveLength(2); // straight ahead it can still roll
+    expect(car.kin.freeMotions()).toHaveLength(2); // steer, and roll
     car.kin.turnJoint(car.kin.parentLink(col)!.joint, 1.5);
     car.kin.toggleFreeze(col);
-    expect(car.kin.freeMotions()).toHaveLength(0); // steered and frozen: jammed
+    expect(car.kin.freeMotions()).toHaveLength(1); // steered and frozen: it can still roll
+    const rear = car.mech.treads.flatMap((t, i) => (car.mech.treads.filter((u) => u.body === t.body).length === 2 ? [i] : []));
+    const axle = car.mech.treads[rear[0]].body;
+    const j = car.kin.parentLink(axle)!.joint;
+    car.kin.holdWhatTheDragDoesntNeed(axle, () => car.kin.jointMotion(j) !== null);
+    const turned = car.kin.turnJoint(j, 1);
+    car.kin.letGoAfterDrag();
+    expect(Math.abs(turned)).toBeCloseTo(1, 9);
+    expect(Math.abs(yaw(car.kin))).toBeGreaterThan(0.01); // it went round a bend
+    // The axle turned both tyres alike, but the outer one travelled further: they skidded, one
+    // back and one forward, and on average rolled as far as the axle turned.
+    const [a, b] = rear.map((i) => Math.abs(car.kin.treadTravel[i]));
+    const radius = car.mech.treads[rear[0]].radius;
+    expect(Math.abs(a - b)).toBeGreaterThan(1);
+    expect((a + b) / 2).toBeCloseTo(radius * Math.abs(turned), 3);
   });
 });

@@ -236,4 +236,17 @@ describe('956 Auto Chassis', () => {
     expect(pistons).toHaveLength(4);
     pistons.forEach((_, k) => expect(high[k] - low[k]).toBeCloseTo(32, 0));
   });
+
+  it('steered, a turn of the rear axle takes it round a bend: with no differential, its rear tyres skid to make up the difference', () => {
+    kin.reset();
+    turn(bodyOf('3736.dat'), 0.5); // the front wheels about 7 degrees
+    const wheel = bodyOf('3740.dat');
+    const joint = kin.parentLink(wheel)!.joint;
+    kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
+    let turned = 0;
+    for (let i = 0; i < 30; i++) turned += kin.turnJoint(joint, (2 * Math.PI) / 60);
+    kin.letGoAfterDrag();
+    expect(Math.abs(turned)).toBeCloseTo(Math.PI, 6);
+    expect(Math.abs(Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]))).toBeGreaterThan(0.05);
+  });
 });

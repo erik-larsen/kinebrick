@@ -128,7 +128,9 @@ export function setUpInteraction(s: InteractionSetup) {
   let drag: Drag | null = null;
   let shifting: Shift | null = null;
   let motorPart = -1; // the part kept turning (Ctrl-click), or -1
-  let motorDirection = 1; // 1, or -1 for the other way (a second Ctrl-click)
+  // Which way the part kept turning turns about its joint's axis (jointAxisNow): 1 or -1. It
+  // starts counter-clockwise as seen from the camera; a second Ctrl-click reverses it.
+  let motorDirection = 1;
   let motorSpeed = (DEFAULT_RPM / 60) * 2 * Math.PI; // radians per second
   // The kinematics the motor's holds were worked out for, or null if they need working out
   // again (after a drag, a freeze, a shift).
@@ -486,7 +488,11 @@ export function setUpInteraction(s: InteractionSetup) {
       showMessage(`This part can't turn: ${why}`, clientX, clientY);
       return;
     }
-    motorDirection = 1;
+    // Counter-clockwise as seen from the camera: turning about an axis that points towards it.
+    // (The part turns at motorDirection about its joint's axis, relative to what it's mounted in.)
+    const { point, dir } = s.kin.jointAxisNow(link.joint);
+    const toCamera = s.ldrawSpace.worldToLocal(s.camera.position.clone()).sub(point);
+    motorDirection = dir.dot(toCamera) < 0 ? -1 : 1;
     setMotor(part);
     showMessage(`Turning ${name} · Ctrl-click again to reverse`, clientX, clientY);
   }

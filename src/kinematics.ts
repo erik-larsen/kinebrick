@@ -715,19 +715,30 @@ export class Kinematics {
     // A tyre on the ground rolls without slipping: the point touching the ground doesn't move
     // along the way the tyre rolls, nor up or down. Sideways it may scrub a little, and up or
     // down it may move a very little, which freeMotions sees to, from the rows in `slip`.
+    // Tyres on one body (a solid axle, with no differential between its wheels) roll without
+    // slipping on average, but each may skid along the way it rolls: going round a corner, the
+    // inside one travels less than the outside one, though both turn alike, so one skids back
+    // and the other forward, as on a real car.
+    // (Each tyre's forward is taken with its axis turned to point the way the body's first
+    // tyre's does: tyres either side of a car face opposite ways.)
+    const rolling = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each body, its tyres' rows
     for (const i of this.contactTreads) {
       const p = this.contactPoint(i);
       if (!p) continue;
       const tread = this.mech.treads[i];
       const pose = this.poses[tread.body];
-      const forward = new Vector3().crossVectors(DOWN, tread.axis.clone().transformDirection(pose)).normalize();
+      const axis = tread.axis.clone().transformDirection(pose);
+      const first = rolling.get(tread.body)?.axis;
+      if (first && axis.dot(first) < 0) axis.negate();
+      const forward = new Vector3().crossVectors(DOWN, axis).normalize();
       const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
       const along = (point: Vector3, dir: Vector3) => {
         const row = new Array(n).fill(0);
         for (let k = 0; k < 3; k++) addPointVelocity(row, tread.body, point, k, dir.getComponent(k));
         return row;
       };
-      add(along(p, forward));
+      if (!rolling.has(tread.body)) rolling.set(tread.body, { axis, rows: [] });
+      rolling.get(tread.body)!.rows.push(along(p, forward));
       if (slip) {
         slip.sideways.push(along(p, sideways));
         slip.travel.push(along(tread.center.clone().applyMatrix4(pose), forward));
@@ -735,6 +746,11 @@ export class Kinematics {
       } else {
         add(along(p, DOWN));
       }
+    }
+    for (const { rows: tyres } of rolling.values()) {
+      const average = new Array(n).fill(0);
+      for (const row of tyres) for (let k = 0; k < n; k++) average[k] += row[k] / tyres.length;
+      add(average);
     }
     return rows;
   }
