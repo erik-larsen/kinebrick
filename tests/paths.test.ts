@@ -1,7 +1,32 @@
+import { readFileSync } from 'node:fs';
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { parseLdr } from '../src/ldr.ts';
+import { ConnectionTable } from '../src/connections.ts';
+import { Kinematics } from '../src/kinematics.ts';
+import { parseLdr, parseModel } from '../src/ldr.ts';
+import { inferMechanism } from '../src/mechanism.ts';
 import { LoopPath, loopLinks } from '../src/paths.ts';
+
+const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
+const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+
+// A rubber band round two axles through a Technic brick, on circles of radius 8 and 16, drawn
+// (as LDCad draws a band) with shapes; `way` is how the band goes round the second: the same
+// way as the first, or crossed.
+const band = (way: string) => `0 FILE Belt.ldr
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 3701.dat
+1 16 -20 10 0 0 0 -1 0 1 0 1 0 0 3705.dat
+1 16 20 10 0 0 0 -1 0 1 0 1 0 0 3705.dat
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 Band.ldr
+0 NOFILE
+0 FILE Band.ldr
+0 !LDCAD CONTENT [type=path] [looped=true] [displayKind=mm]
+0 !LDCAD PATH_POINT [type=circle] [posOri=-20 10 30 1 0 0 0 1 0 0 0 1] [cirR=8] [cirDir=xyCW]
+0 !LDCAD PATH_POINT [type=circle] [posOri=20 10 30 1 0 0 0 1 0 0 0 1] [cirR=16] [cirDir=${way}]
+0 !LDCAD PATH_SKIN [donPart=ldcRubberBandSqSeg.dat]
+2 16 -20 2 30 20 -6 30
+0 NOFILE
+`;
 
 // A chain as LDCad draws one: a path submodel round two circles of radius 20, 100 LDU apart,
 // with a link on each, placed 50 LDU along z.
@@ -53,5 +78,22 @@ describe('paths', () => {
     const half = at(2 * Math.PI * 10 + 100);
     expect(half[0].distanceTo(new Vector3(-20, -50, 50))).toBeLessThan(1e-6);
     expect(half[1].distanceTo(new Vector3(20, -50, 50))).toBeLessThan(1e-6);
+  });
+
+  it('a rubber band turns its pulleys together, at speeds in the inverse ratio of its circles; crossed, the other way', () => {
+    for (const [way, ratio] of [
+      ['xyCW', 0.5],
+      ['xyCCW', -0.5],
+    ] as const) {
+      const { parts, paths } = parseModel(band(way));
+      const mech = inferMechanism(parts, table, roles, paths);
+      expect(mech.loops).toHaveLength(1);
+      expect(mech.loops[0].wheels).toHaveLength(2);
+      const kin = new Kinematics(mech);
+      const [small, big] = mech.loops[0].wheels;
+      kin.turnJoint(small.joint, 1);
+      const turned = (w: typeof small) => (mech.joints[w.joint].bodyB === w.body ? 1 : -1) * kin.jointAngles[w.joint];
+      expect(turned(big) / turned(small)).toBeCloseTo(ratio, 6);
+    }
   });
 });

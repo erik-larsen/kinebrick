@@ -4,7 +4,7 @@
 import { Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
 import { Kinematics } from './kinematics.ts';
-import { PlacedPath, PlacedPart } from './ldr.ts';
+import { PathPoint, PlacedPath, PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
@@ -159,6 +159,17 @@ export interface Mechanism {
   // Universal joints: the shafts on either side turn together (see universalJoints).
   couplings: Coupling[];
   loops: Loop[]; // chains, tracks and rubber bands looped round wheels
+  strings: StringLine[]; // strings wound on drums and run over pulleys
+}
+
+// A string wound on a drum and run over pulleys (see findStrings).
+export interface StringLine {
+  path: PlacedPath;
+  drum: LoopWheel | null; // the drum at its start, if it's wound on one
+  start: { body: number; at: Vector3 } | null; // else where it's tied at its start
+  pulleys: LoopWheel[]; // in order along it
+  end: { body: number; at: Vector3 }; // where it's tied at its end
+  hook: { body: number; pulley: number } | null; // the body hanging on it, and its pulley (an index into pulleys)
 }
 
 // A universal joint: bodyA and bodyB, each a shaft turning in something, turn at the same rate
@@ -174,14 +185,17 @@ export interface Coupling {
   atB: Vector3;
 }
 
-export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>): Mechanism {
+// `paths`: every path in the model (see parseModel), including those drawn with shapes rather
+// than parts (a string), which the parts alone don't show.
+export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = []): Mechanism {
   // Friction pins hold what they join in place, unless they're the only way the model can
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
   // still move, that's it; if not, they stay joints, stiff ones.
+  const allPaths = [...new Set([...paths, ...parts.flatMap((p) => (p.path ? [p.path] : []))])];
   const build = (guide: Set<number>) => {
-    const rigid = buildMechanism(parts, table, roleList, true, guide);
+    const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths);
     if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
-    return buildMechanism(parts, table, roleList, false, guide);
+    return buildMechanism(parts, table, roleList, false, guide, allPaths);
   };
   const mech = build(new Set());
   const guide = racksToGuide(mech);
@@ -211,7 +225,7 @@ function racksToGuide(mech: Mechanism): Set<number> {
 }
 
 // The mechanism, with friction pins treated as rigid or as stiff joints.
-function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide = new Set<number>()): Mechanism {
+function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[]): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
   const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? 'structure'));
@@ -226,7 +240,9 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
   const joined = universalJoints(parts, roles, cyls, connections);
-  const loose = findLooseParts(parts.length, connections);
+  // Loose parts hanging on a string are held by it; the rest ride along with what's nearest.
+  const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections), paths);
+  const loose = findLooseParts(parts.length, connections).filter((i) => !hanging.has(i));
   connections.push(...rideAlong(parts, cyls, connections, loose));
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
@@ -236,9 +252,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const meshes = findMeshes(gears);
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
   const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center, axisA, axisB, atA: at(partA), atB: at(partB) }));
-  const loops = findLoops(parts, roles, bodyOf, joints, table);
+  const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   treads.push(...trackTreads(loops));
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops };
+  const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging);
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings };
 }
 
 // A piston with no cylinder of its own to slide in, such as the old 2x2 piston block, whose
@@ -464,35 +481,79 @@ function inGrooves(parts: PlacedPart[], cyls: WorldCylinder[], table: Connection
 // wheel is the one with a part nearest the circle's middle (a 40 tooth gear a track runs
 // round, say), and the other is what it turns in. A circle on nothing that turns (a peg a
 // rubber band is hooked round) is left out: the band slides round it.
-function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], table: ConnectionTable): Loop[] {
-  const paths = [...new Set(parts.flatMap((p) => (p.path?.looped ? [p.path] : [])))];
-  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
-  return paths.map((path) => {
-    const wheels: LoopWheel[] = [];
-    path.points.forEach((point, index) => {
-      if (!point.circle) return;
-      let best: LoopWheel | null = null;
-      let bestDistance = point.radius;
-      joints.forEach((joint, j) => {
-        if (joint.kind !== 'revolute') return;
-        const d = new Vector3().subVectors(joint.to, joint.from).normalize();
-        if (Math.abs(Math.abs(d.dot(point.axis)) - 1) > 1e-3) return;
-        const off = new Vector3().subVectors(point.center, joint.from);
-        if (off.addScaledVector(d, -off.dot(d)).length() > AXIS_TOLERANCE) return;
-        parts.forEach((_, i) => {
-          if (roles[i] === 'path' || (bodyOf[i] !== joint.bodyA && bodyOf[i] !== joint.bodyB)) return;
-          const distance = at[i].distanceTo(point.center);
-          if (distance >= bestDistance) return;
-          bestDistance = distance;
-          const mount = bodyOf[i] === joint.bodyA ? joint.bodyB : joint.bodyA;
-          best = { body: bodyOf[i], joint: j, mount, point: index };
-        });
-      });
-      if (best) wheels.push(best);
+function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], table: ConnectionTable, paths: PlacedPath[]): Loop[] {
+  return paths
+    .filter((path) => path.looped)
+    .map((path) => {
+      const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints) ?? []);
+      const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
+      return { path, wheels, links, depth: table.tracks?.[path.skin]?.depth ?? null };
     });
-    const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
-    return { path, wheels, links, depth: table.tracks?.[path.skin]?.depth ?? null };
+}
+
+// The wheel a path's circle is on, if any (see findLoops): the body turning on a joint whose
+// axis runs along the circle's, through its middle, with a part on that axis (within the
+// circle's radius of it) nearest the middle along it. (A drum is often just an axle, its
+// middle well along from where the string is wound.)
+function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[]): LoopWheel | null {
+  if (!point.circle) return null;
+  let best: LoopWheel | null = null;
+  let bestDistance = Infinity;
+  joints.forEach((joint, j) => {
+    if (joint.kind !== 'revolute') return;
+    const d = new Vector3().subVectors(joint.to, joint.from).normalize();
+    if (Math.abs(Math.abs(d.dot(point.axis)) - 1) > 0.01) return;
+    const off = new Vector3().subVectors(point.center, joint.from);
+    if (off.addScaledVector(d, -off.dot(d)).length() > AXIS_TOLERANCE) return;
+    parts.forEach((part, i) => {
+      if (roles[i] === 'path' || (bodyOf[i] !== joint.bodyA && bodyOf[i] !== joint.bodyB)) return;
+      const offset = new Vector3().setFromMatrixPosition(part.matrix).sub(point.center);
+      const distance = Math.abs(offset.dot(point.axis));
+      if (offset.addScaledVector(point.axis, -offset.dot(point.axis)).length() > point.radius || distance >= bestDistance) return;
+      bestDistance = distance;
+      const mount = bodyOf[i] === joint.bodyA ? joint.bodyB : joint.bodyA;
+      best = { body: bodyOf[i], joint: j, mount, point: index };
+    });
   });
+  return best;
+}
+
+// A string (a path that isn't looped, as LDCad draws a crane's rope): wound on a drum at its
+// start, if its first point is a circle on a wheel; over the pulleys after that (its other
+// circles on wheels, in order; any other point it passes is left out); and tied at its last
+// point to the part nearest there. A pulley whose parts are attached to nothing else (a
+// crane's hook block) hangs on the string: its `hook`.
+function findStrings(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], paths: PlacedPath[], hanging: Set<number>): StringLine[] {
+  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  return paths
+    .filter((path) => !path.looped && path.points.some((p) => p.circle))
+    .map((path) => {
+      const drum = findWheel(path.points[0], 0, parts, roles, bodyOf, joints);
+      const pulleys = path.points.slice(1, -1).flatMap((point, k) => findWheel(point, k + 1, parts, roles, bodyOf, joints) ?? []);
+      const last = path.points[path.points.length - 1].center;
+      const nearest = (p: Vector3) =>
+        parts.reduce((best, _, i) => (roles[i] !== 'path' && !hanging.has(i) && (best < 0 || at[i].distanceTo(p) < at[best].distanceTo(p)) ? i : best), -1);
+      const start = drum ? null : { body: bodyOf[nearest(path.points[0].center)], at: path.points[0].center.clone() };
+      const end = { body: bodyOf[nearest(last)], at: last.clone() };
+      const hung = pulleys.findIndex((w) => parts.some((_, i) => hanging.has(i) && (bodyOf[i] === w.body || bodyOf[i] === w.mount)));
+      return { path, drum, start, pulleys, end, hook: hung < 0 ? null : { body: pulleys[hung].mount, pulley: hung } };
+    });
+}
+
+// The loose parts that hang on a string: each group of loose parts attached to each other, one
+// of whose parts is inside a circle the string goes round (a crane's hook block, with its
+// pulley).
+function hangingParts(parts: PlacedPart[], connections: Connection[], loose: number[], paths: PlacedPath[]): Set<number> {
+  const circles = paths.filter((p) => !p.looped).flatMap((p) => p.points.slice(1, -1).filter((q) => q.circle));
+  const isLoose = new Set(loose);
+  const leader = new Map(loose.map((i) => [i, i]));
+  const find = (i: number): number => {
+    while (leader.get(i) !== i) i = leader.get(i)!;
+    return i;
+  };
+  for (const c of connections) if (isLoose.has(c.male) && isLoose.has(c.female)) leader.set(find(c.male), find(c.female));
+  const groups = new Set(loose.filter((i) => circles.some((q) => new Vector3().setFromMatrixPosition(parts[i].matrix).distanceTo(q.center) < q.radius)).map(find));
+  return new Set(loose.filter((i) => groups.has(find(i))));
 }
 
 // A track touches the ground under its wheels, its links reaching `depth` beyond its path: so

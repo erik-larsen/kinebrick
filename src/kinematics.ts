@@ -21,7 +21,8 @@
 // through those, such as a piston, is a root of its own.
 
 import { Matrix4, Quaternion, Vector3 } from 'three';
-import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh } from './mechanism.ts';
+import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh, StringLine } from './mechanism.ts';
+import { StringCircle, stringLayout } from './paths.ts';
 
 // How close a tyre must be to the ground to count as touching it, in LDU. Models are often
 // built half an LDU out (an official tractor's front tyres sit half an LDU above its rear ones).
@@ -124,6 +125,9 @@ export class Kinematics {
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
   // on that axis nearest the middle (model coordinates, at the start).
   private couplings: { shafts: Shaft[] }[] = [];
+  // For each string (see Mechanism.strings): its free length at the start, and where its hook
+  // hung then, relative to the middle of the two pulleys it hangs from (model coordinates).
+  private strings: { length: number; hookOffset: Vector3 | null }[] = [];
 
   constructor(mech: Mechanism) {
     this.mech = mech;
@@ -133,6 +137,95 @@ export class Kinematics {
     this.findGround();
     this.buildTree();
     this.reset();
+    this.strings = (mech.strings ?? []).map((s) => ({
+      length: this.stringNow(s).layout.length,
+      hookOffset: s.hook ? this.hookOffset(s) : null,
+    }));
+  }
+
+  // ---------------------------------------------------------------------------
+  // Strings
+
+  // A string where it is now: the circles it goes round (its drum, or where it's tied at its
+  // start; its pulleys; where it's tied at its end), each with the body carrying its middle,
+  // and its layout (see stringLayout). `moved` gives the bodies' poses to use instead (to see
+  // how the layout changes as a body moves).
+  private stringNow(s: StringLine, poseOf = (body: number) => this.poses[body]): { circles: StringCircle[]; bodies: number[]; axis: Vector3; layout: ReturnType<typeof stringLayout> } {
+    const circles: StringCircle[] = [];
+    const bodies: number[] = [];
+    const point = (index: number) => s.path.points[index];
+    if (s.drum) {
+      const p = point(s.drum.point);
+      circles.push({ center: p.center.clone().applyMatrix4(poseOf(s.drum.mount)), radius: p.radius, turn: p.turn });
+      bodies.push(s.drum.mount);
+    } else {
+      circles.push({ center: s.start!.at.clone().applyMatrix4(poseOf(s.start!.body)), radius: 0, turn: 1 });
+      bodies.push(s.start!.body);
+    }
+    for (const w of s.pulleys) {
+      const p = point(w.point);
+      circles.push({ center: p.center.clone().applyMatrix4(poseOf(w.mount)), radius: p.radius, turn: p.turn });
+      bodies.push(w.mount);
+    }
+    circles.push({ center: s.end.at.clone().applyMatrix4(poseOf(s.end.body)), radius: 0, turn: 1 });
+    bodies.push(s.end.body);
+    const first = s.drum ?? s.pulleys[0];
+    const axis = point(first.point).axis.clone().transformDirection(poseOf(first.mount));
+    return { circles, bodies, axis, layout: stringLayout(circles, axis) };
+  }
+
+  // How much string its drum has paid out since the start, in LDU (0 if it isn't wound on one):
+  // as far as the drum's rim has turned, the way the string goes round it.
+  private payout(s: StringLine): number {
+    if (!s.drum) return 0;
+    const p = s.path.points[s.drum.point];
+    const j = this.mech.joints[s.drum.joint];
+    const angle = (j.bodyB === s.drum.body ? 1 : -1) * Math.sign(axisOf(j.from, j.to).dot(p.axis)) * this.jointAngles[s.drum.joint];
+    return p.turn * p.radius * angle;
+  }
+
+  // Where a string's hook hangs, relative to the middle of the circles either side of its pulley
+  // (the pulleys it hangs from).
+  private hookOffset(s: StringLine): Vector3 {
+    const { circles } = this.stringNow(s);
+    const h = s.hook!.pulley + 1; // circles start with the drum (or where it's tied)
+    return circles[h].center.clone().sub(circles[h - 1].center.clone().add(circles[h + 1].center).multiplyScalar(0.5));
+  }
+
+  // Rows saying how fast a length worked out from a string's layout (by `measure`) changes as
+  // the bodies carrying its circles move: for each circle, the change of the length with its
+  // middle (by finite differences), times how fast that middle moves.
+  private stringRate(s: StringLine, measure: (layout: ReturnType<typeof stringLayout>) => number, n: number): Row {
+    const { circles, axis, bodies } = this.stringNow(s);
+    const row = new Array(n).fill(0);
+    const base = measure(stringLayout(circles, axis));
+    const h = 1e-3;
+    circles.forEach((circle, i) => {
+      const g = new Vector3();
+      for (let k = 0; k < 3; k++) {
+        const moved = circles.map((c, m) => (m === i ? { ...c, center: c.center.clone().setComponent(k, c.center.getComponent(k) + h) } : c));
+        g.setComponent(k, (measure(stringLayout(moved, axis)) - base) / h);
+      }
+      // The middle moves at v + ω × c, so the length changes at g · v + (c × g) · ω.
+      const turn = new Vector3().crossVectors(circle.center, g);
+      for (let k = 0; k < 3; k++) {
+        row[6 * bodies[i] + k] += turn.getComponent(k);
+        row[6 * bodies[i] + 3 + k] += g.getComponent(k);
+      }
+    });
+    return row;
+  }
+
+  // A row for how fast a wheel's rim turns relative to what it turns in, about a circle's axis,
+  // the way the string goes round it.
+  private rimRate(body: number, mount: number, point: { axis: Vector3; radius: number; turn: number }, n: number): Row {
+    const row = new Array(n).fill(0);
+    const z = point.axis.clone().transformDirection(this.poses[mount]).multiplyScalar(point.turn * point.radius);
+    for (let k = 0; k < 3; k++) {
+      row[6 * body + k] += z.getComponent(k);
+      row[6 * mount + k] -= z.getComponent(k);
+    }
+    return row;
   }
 
   // Back to the starting position.
@@ -362,10 +455,18 @@ export class Kinematics {
   // Whether a body turns like a knob: on a joint whose axis stays put in what it's mounted on
   // (a gear, a crank, a wheel), rather than turning and travelling at once as part of a loop
   // (a connecting rod, the middle beam of a linkage). Drags turn the first kind and push the rest.
+  // A body in a loop still turns like a knob if it can turn with what it's mounted on held
+  // still (a crane's winch drum, whose axle also passes through bricks pinned to the cab),
+  // but not if turning it needs that to move (a connecting rod on its crank).
   turnsLikeAKnob(body: number): boolean {
     const link = this.parentLink(body);
     if (!link) return false;
-    return this.parentJoint[link.parent] < 0 || !this.inLoop(link.joint);
+    if (this.parentJoint[link.parent] < 0 || !this.inLoop(link.joint)) return true;
+    const held = this.dragHeld.has(link.parent);
+    this.dragHeld.add(link.parent);
+    const turns = this.jointMotion(link.joint) !== null;
+    if (!held) this.dragHeld.delete(link.parent);
+    return turns;
   }
 
   // How far a slide joint's bodyB has slid along it, relative to bodyA, since the start, in LDU.
@@ -477,7 +578,9 @@ export class Kinematics {
       this.dragHeld.add(0);
       if (!stillPossible()) this.dragHeld.delete(0);
     }
-    const candidates =this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b));
+    // A string's pulleys aren't held either: they turn as it runs round them.
+    const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.body)));
+    const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b) && !pulleys.has(b));
     // Friction pins first, then the deepest parts.
     const stiff = (body: number) => (this.mech.joints[this.parentJoint[body]].stiff ? 1 : 0);
     candidates.sort((a, b) => stiff(b) - stiff(a) || depth(b) - depth(a) || a - b);
@@ -787,7 +890,70 @@ export class Kinematics {
       });
       for (let r = 1; r < rims.length; r++) add(rims[0].map((x, k) => x - rims[r][k]));
     }
+
+    // A string keeps its length: as the bodies carrying its circles move, its free length
+    // changes by just what its drum pays out (or winds in). A pulley turns as the string runs
+    // round it, without slipping, unless it shares its body with another of the string's
+    // pulleys (two pulleys side by side on one axle, which the string runs round at different
+    // speeds: one of them must slip). The body hanging on the string (its hook) hangs
+    // beneath the middle of the two pulleys either side of its own, as it did at the start,
+    // and stays upright, turning with what it hangs from only about the vertical.
+    (this.mech.strings ?? []).forEach((s, i) => {
+      const start = this.strings[i];
+      if (!start) return; // still being set up
+      const { circles, bodies, layout } = this.stringNow(s);
+      const payout = s.drum ? this.rimRate(s.drum.body, s.drum.mount, s.path.points[s.drum.point], n) : new Array(n).fill(0);
+      const length = this.stringRate(s, (l) => l.length, n);
+      add(
+        length.map((x, k) => x - payout[k]),
+        -(layout.length - start.length - this.payout(s)),
+      );
+      s.pulleys.forEach((w, k) => {
+        if (s.pulleys.some((o) => o !== w && o.body === w.body) || s.drum?.body === w.body) return;
+        // The string runs past at what the drum pays out, less how fast the string up to here
+        // is getting longer.
+        const upTo = this.stringRate(s, (l) => l.upTo[k + 1], n);
+        const rim = this.rimRate(w.body, w.mount, s.path.points[w.point], n);
+        add(rim.map((x, m) => x - payout[m] + upTo[m]));
+      });
+      if (!s.hook || !start.hookOffset) return;
+      const h = s.hook.pulley + 1; // circles start with the drum (or where it's tied)
+      const hook = s.hook.body;
+      const middle = circles[h - 1].center.clone().add(circles[h + 1].center).multiplyScalar(0.5);
+      const off = circles[h].center.clone().sub(middle).sub(start.hookOffset);
+      const level = [new Vector3(1, 0, 0), new Vector3(0, 0, 1)];
+      for (const dir of level) {
+        const row = new Array(n).fill(0);
+        for (let k = 0; k < 3; k++) {
+          addPointVelocity(row, hook, circles[h].center, k, dir.getComponent(k));
+          addPointVelocity(row, bodies[h - 1], circles[h - 1].center, k, -0.5 * dir.getComponent(k));
+          addPointVelocity(row, bodies[h + 1], circles[h + 1].center, k, -0.5 * dir.getComponent(k));
+        }
+        add(row, -off.dot(dir));
+      }
+      // Upright: turned from the start only about the vertical, as far as what it hangs from
+      // has turned about it.
+      const above = bodies[h - 1];
+      let heading = new Vector3(1, 0, 0).transformDirection(this.poses[above]);
+      if (Math.hypot(heading.x, heading.z) < 0.1) heading = new Vector3(0, 0, 1).transformDirection(this.poses[above]).applyAxisAngle(DOWN, -Math.PI / 2);
+      const target = new Matrix4().makeRotationY(Math.atan2(-heading.z, heading.x));
+      const q = new Quaternion().setFromRotationMatrix(new Matrix4().extractRotation(this.poses[hook]).multiply(target.transpose()));
+      const tilt = new Vector3(q.x, q.y, q.z).multiplyScalar(2 * (q.w < 0 ? -1 : 1));
+      for (const dir of [...level, DOWN]) {
+        const row = new Array(n).fill(0);
+        for (let k = 0; k < 3; k++) {
+          row[6 * hook + k] += dir.getComponent(k);
+          if (dir === DOWN) row[6 * above + k] -= dir.getComponent(k);
+        }
+        add(row, -tilt.dot(dir));
+      }
+    });
     return rows;
+  }
+
+  // A string's layout where it is now, for drawing it (see stringLayout).
+  stringPoints(string: number): Vector3[] {
+    return this.stringNow(this.mech.strings[string]).layout.points;
   }
 
   // How far a loop (a chain or track, an index into Mechanism.loops) has moved round since the
@@ -1044,26 +1210,19 @@ export class Kinematics {
   // the mechanism following. If the joint can turn with the frame standing still, it does
   // (turning a steering wheel turns the front axle without rolling the car); otherwise the
   // frame moves too. Among the motions that qualify, it picks the smallest, measured by how
-  // fast the joints turn (see treeCoordinates): measured by how fast the bodies move, it would
-  // nudge a linkage nobody asked to move (a bulldozer's bucket arm) against the way the whole
-  // model turns, to make that a little smaller, and step after step the linkage would drift.
-  // Null if the joint can't turn.
+  // fast the joints turn, and nothing else: measured by how fast the bodies move, it would nudge
+  // a linkage nobody asked to move (a bulldozer's bucket arm) against the way the whole model
+  // turns, to make that a little smaller, and step after step the linkage would drift; and a
+  // body with a position of its own (a crane's hook) moves only as it must, rather than other
+  // joints turning (the crane slewing) to spare it. The pulleys a string turns don't count
+  // either, for the same reason. Null if the joint can't turn.
   jointMotion(joint: number): number[] | null {
     const all = this.freeMotions();
     const rate = (m: number[]) => this.jointRate(m, joint);
-    const size = (m: number[]) => this.treeCoordinates(m);
+    const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.joint)));
+    const size = (m: number[]) =>
+      this.mech.joints.flatMap((j, i) => (pulleys.has(i) ? [] : j.kind === 'revolute' ? [this.jointRate(m, i)] : []));
     return smallestTurning(this.frameStill(all), rate, size) ?? smallestTurning(all, rate, size);
-  }
-
-  // A motion vector in the tree's coordinates (see treeBasis): each root body's 6 numbers, then
-  // how fast each joint in the tree turns.
-  private treeCoordinates(m: number[]): number[] {
-    const out: number[] = [];
-    for (const root of this.rootPoses.keys()) for (let k = 0; k < 6; k++) out.push(m[6 * root + k]);
-    this.mech.joints.forEach((_, j) => {
-      if (this.inTree(j)) out.push(this.jointRate(m, j));
-    });
-    return out;
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when

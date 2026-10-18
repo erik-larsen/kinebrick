@@ -130,3 +130,66 @@ export function loopLinks(points: PathPoint[], links: Matrix4[]): ((travel: numb
   const relative = links.map((m, i) => path.frameAt(along[i]).invert().multiply(m));
   return (travel) => relative.map((rel, i) => path.frameAt(along[i] + travel).multiply(rel));
 }
+
+// A circle a string goes round (or, with radius 0, a point it's tied to), where it is now.
+export interface StringCircle {
+  center: Vector3;
+  radius: number;
+  turn: number; // which way the string goes round, about `axis` (see PathPoint)
+}
+
+// A string's shape (see Mechanism.strings): from where it leaves the first circle (the drum it
+// winds on), round each circle after in turn, and straight between them, to the last (where
+// it's tied, radius 0). All in one plane, the one `axis` (the circles' shared axis) is square
+// to. Its free length, from the drum, and the length up to where it meets each circle.
+export function stringLayout(circles: StringCircle[], axis: Vector3): { points: Vector3[]; length: number; upTo: number[] } {
+  const z = axis.clone().normalize();
+  const origin = circles[0].center;
+  let u = new Vector3(1, 0, 0).cross(z);
+  if (u.length() < 0.1) u = new Vector3(0, 1, 0).cross(z);
+  u.normalize();
+  const v = new Vector3().crossVectors(z, u);
+  const flat = circles.map((c) => {
+    const d = c.center.clone().sub(origin);
+    return { c: new Vector2(d.dot(u), d.dot(v)), r: c.radius, turn: c.turn };
+  });
+  const lift = (p: Vector2) => origin.clone().addScaledVector(u, p.x).addScaledVector(v, p.y);
+  // The straight run from each circle to the next (as for a loop, see LoopPath).
+  const runs = flat.slice(0, -1).map((a, i) => {
+    const b = flat[i + 1];
+    const d = b.c.clone().sub(a.c);
+    const k = a.turn * a.r - b.turn * b.r;
+    const theta = Math.atan2(d.y, d.x);
+    const spread = Math.acos(Math.max(-1, Math.min(1, k / Math.max(d.length(), 1e-9))));
+    for (const phi of [theta + spread, theta - spread]) {
+      const m = new Vector2(Math.cos(phi), Math.sin(phi));
+      const t = new Vector2(-m.y, m.x);
+      if (d.dot(t) > 0) return { from: a.c.clone().addScaledVector(m, a.turn * a.r), to: b.c.clone().addScaledVector(m, b.turn * b.r) };
+    }
+    return { from: a.c.clone(), to: b.c.clone() };
+  });
+  const points: Vector3[] = [lift(runs[0].from)];
+  const upTo = [0];
+  let length = 0;
+  runs.forEach((run, i) => {
+    length += run.to.distanceTo(run.from);
+    points.push(lift(run.to));
+    upTo.push(length);
+    const next = runs[i + 1];
+    if (!next) return;
+    // Round circle i + 1, from where this run meets it to where the next run leaves it.
+    const circle = flat[i + 1];
+    const start = Math.atan2(run.to.y - circle.c.y, run.to.x - circle.c.x);
+    const end = Math.atan2(next.from.y - circle.c.y, next.from.x - circle.c.x);
+    let sweep = circle.turn * (end - start);
+    while (sweep < 0) sweep += 2 * Math.PI;
+    while (sweep >= 2 * Math.PI) sweep -= 2 * Math.PI;
+    length += sweep * circle.r;
+    const steps = Math.max(1, Math.ceil(sweep / 0.2));
+    for (let s = 1; s <= steps; s++) {
+      const angle = start + (circle.turn * sweep * s) / steps;
+      points.push(lift(circle.c.clone().add(new Vector2(Math.cos(angle), Math.sin(angle)).multiplyScalar(circle.r))));
+    }
+  });
+  return { points, length, upTo };
+}

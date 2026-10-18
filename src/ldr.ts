@@ -150,6 +150,7 @@ export interface PlacedShape {
   color: number;
   matrix: Matrix4; // submodel coordinates -> model coordinates
   nearPart: number; // a part placed by the same submodel line (it moves with that part), or -1
+  path?: PlacedPath; // the path they're drawn along, if their submodel is a path's
 }
 
 // Every part in the model, with submodels flattened, in the order their lines come (a
@@ -163,7 +164,7 @@ export function parseModel(
   text: string,
   isPrimitive: (name: string) => boolean = () => false,
   piecesOf: (name: string) => string[] | null = () => null,
-): { parts: PlacedPart[]; shapes: PlacedShape[] } {
+): { parts: PlacedPart[]; shapes: PlacedShape[]; paths: PlacedPath[] } {
   const files = modelFiles(text);
   const submodels = new Map([...files].filter(([name, lines]) => name && !isPart(lines)));
   const referenced = (line: string) => normalizePartName(line.trim().split(/\s+/).slice(14).join(' '));
@@ -192,10 +193,12 @@ export function parseModel(
       else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(path ? { path } : {}) });
     }
     const own = submodel && !pieces ? shapeLines.get(submodel)! : [];
-    if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1 });
+    if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1, ...(path ? { path } : {}) });
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
-  return { parts, shapes };
+  // Every path placed, whether drawn with parts (a chain's links) or shapes (a string's).
+  const paths = [...new Set([...parts.flatMap((p) => (p.path ? [p.path] : [])), ...shapes.flatMap((s) => (s.path ? [s.path] : []))])];
+  return { parts, shapes, paths };
 }
 
 // Every part in the model (see parseModel).

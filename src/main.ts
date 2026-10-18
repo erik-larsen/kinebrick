@@ -8,8 +8,13 @@ import {
   Group,
   HemisphereLight,
   Matrix4,
+  CurvePath,
+  LineCurve3,
+  Material,
   Mesh,
   MeshBasicMaterial,
+  MeshStandardMaterial,
+  TubeGeometry,
   Object3D,
   PerspectiveCamera,
   Scene,
@@ -92,6 +97,9 @@ function percent(text: string | null): number | null {
   const n = Number(text);
   return text && Number.isFinite(n) && n >= 0 && n <= 100 ? n : null;
 }
+
+// How thick a string is drawn: its radius, in LDU.
+const STRING_RADIUS = 1;
 
 // A whole number of at least 1 from text, or null if it isn't one.
 function whole(text: string | null): number | null {
@@ -179,7 +187,7 @@ async function start() {
   // as their pieces, as the packer found.
   const packed = (packedModels as Record<string, { primitives: string[]; pieces: Record<string, string[]> }>)[MODEL];
   const primitives = new Set(packed?.primitives ?? []);
-  const { parts: startParts, shapes: drawnShapes } = parseModel(modelText, (name) => primitives.has(name), (name) => packed?.pieces[name] ?? null);
+  const { parts: startParts, shapes: drawnShapes, paths } = parseModel(modelText, (name) => primitives.has(name), (name) => packed?.pieces[name] ?? null);
   const table: ConnectionTable = await (await fetch(connectionsUrl)).json();
   const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
 
@@ -229,7 +237,7 @@ async function start() {
   // The mechanism, and everything worked out from it. read() sets these, at the start and
   // again after each shift, when the mechanism is worked out afresh from where the parts are.
   let parts = startParts;
-  let mech = inferMechanism(parts, table, roles);
+  let mech = inferMechanism(parts, table, roles, paths);
   // How far tyres may scrub sideways, in percent: the model's own allowance, unless the address
   // says otherwise.
   const modelScrub = modelSettings(modelText).scrub ?? DEFAULT_SCRUB * 100;
@@ -252,7 +260,7 @@ async function start() {
   // Works out the mechanism from parts placed as given, with partObjects already there.
   function read(placed: PlacedPart[]) {
     parts = placed;
-    mech = inferMechanism(parts, table, roles);
+    mech = inferMechanism(parts, table, roles, paths);
     kin = new Kinematics(mech);
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table);
@@ -328,7 +336,32 @@ async function start() {
         obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
       });
     });
+    showStrings();
     updateReadout(mech, kin);
+  }
+
+  // A string runs where its hook now hangs, so it's drawn afresh each time, as a thin tube along
+  // its layout (see stringLayout), rather than as the pieces LDCad drew it with for where the
+  // hook hung in the model file, which are hidden.
+  const strings: Mesh[] = [];
+  function showStrings() {
+    mech.strings.forEach((s, i) => {
+      if (!strings[i]) {
+        const drawn = shapeObjects.filter((_, k) => drawnShapes[k].path === s.path);
+        drawn.forEach((obj) => (obj.visible = false));
+        let material: Material = new MeshStandardMaterial({ color: 0x333333 });
+        drawn[0]?.traverse((child) => {
+          if ((child as Mesh).isMesh) material = (child as Mesh).material as Material;
+        });
+        strings[i] = new Mesh(undefined, material);
+        ldrawSpace.add(strings[i]);
+      }
+      const points = kin.stringPoints(i);
+      const path = new CurvePath<Vector3>();
+      for (let k = 1; k < points.length; k++) path.add(new LineCurve3(points[k - 1], points[k]));
+      strings[i].geometry.dispose();
+      strings[i].geometry = new TubeGeometry(path, 2 * points.length, STRING_RADIUS, 6, false);
+    });
   }
 
   // Slides a part (a driving ring) to one of its click-in positions, then works the mechanism
@@ -428,7 +461,10 @@ async function start() {
     onMoved: showPoses,
     onFreezeChanged: showFrozen,
     onMotorChanged: () => showMotor(),
-    blockedBy: () => collisions!.check(partMatrices()) ?? kin.atLimit(),
+    blockedBy: () => {
+      const now = partMatrices();
+      return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
+    },
     slideOf,
     shift,
   };

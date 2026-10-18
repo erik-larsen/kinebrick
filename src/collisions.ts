@@ -130,6 +130,20 @@ export class Collisions {
     return this.groups.reduce((sum, g) => sum + g.pairs.length, 0);
   }
 
+  // A part that has gone below the ground (LDraw y `ground`, which points down), as a pair of
+  // it with itself, or null if none has: a crane's hook let down too far. Parts that reach to
+  // within NEAR of the ground at `start` (tyres, outrigger pads) aren't checked; by the box
+  // round each part, which is a little bigger than the part once it's turned, so a part can
+  // stop a little short.
+  belowGround(partMatrices: Matrix4[], ground: number, start: Matrix4[]): [number, number] | null {
+    for (let i = 0; i < this.shapes.length; i++) {
+      const box = this.shapes[i].box;
+      if (box.isEmpty() || box.clone().applyMatrix4(start[i]).max.y > ground - NEAR) continue;
+      if (box.clone().applyMatrix4(partMatrices[i]).max.y > ground) return [i, i];
+    }
+    return null;
+  }
+
   // The first pair of watched parts that now overlap, or null if none do.
   check(partMatrices: Matrix4[]): [number, number] | null {
     // Each part's box in model coordinates, worked out when first needed.

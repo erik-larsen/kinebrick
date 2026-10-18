@@ -132,6 +132,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // starts counter-clockwise as seen from the camera; a second Ctrl-click reverses it.
   let motorDirection = 1;
   let motorReversed = false; // whether it's been reversed since it started (a third Ctrl-click stops it)
+  let motorMoved = false; // whether it's turned at all since it started or last turned back
   let motorSpeed = (DEFAULT_RPM / 60) * 2 * Math.PI; // radians per second
   // The kinematics the motor's holds were worked out for, or null if they need working out
   // again (after a drag, a freeze, a shift).
@@ -492,6 +493,7 @@ export function setUpInteraction(s: InteractionSetup) {
     if (!canTurn) return `This part can't turn: ${wormLocked ? 'a worm gear can only be turned from the worm' : "it's jammed"}`;
     motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
     motorReversed = false;
+    motorMoved = false;
     setMotor(part);
     return null;
   }
@@ -545,9 +547,21 @@ export function setUpInteraction(s: InteractionSetup) {
       turned += s.kin.turnJoint(link.joint, angle - turned, allowed, MOTOR_MAX_STEP);
     }
     // A big step that ran into something: creep up to it in a drag's small steps, so the
-    // motor stops where a drag would.
+    // motor gets as far as a drag would.
     if (blocked) turned += s.kin.turnJoint(link.joint, angle - turned, allowed);
-    if (Math.abs(turned - angle) > 1e-9) setMotor(-1);
+    if (Math.abs(turned) > 1e-9) motorMoved = true;
+    if (Math.abs(turned - angle) > 1e-9) {
+      // At the end of its travel (it ran into something, or a slide or rack ran out), it turns
+      // back, as long as it got somewhere since it last did: else it's stuck both ways, and
+      // stops. If it can't turn at all, it stops.
+      if (blocked && motorMoved) {
+        motorDirection = -motorDirection;
+        motorMoved = false;
+        s.onMotorChanged();
+      } else {
+        setMotor(-1);
+      }
+    }
     s.onMoved();
   }
 
