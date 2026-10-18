@@ -35,6 +35,9 @@ export interface Section {
   bevel?: string; // has bevel teeth facing along the axis: '+' (the way dir points), '-', or 'both'
   apex?: number; // for bevel teeth: how far from the gear's middle, along the axis, the
   //               tip of its 45 degree pitch cone is. Two bevel gears mesh when their tips meet.
+  crown?: string; // has crown teeth on one face, pointing along the axis: '+' (the way dir points)
+  //                or '-'. Their pitch plane goes through the gear's middle. Meshes with a spur
+  //                gear whose axle crosses its own at right angles.
   worm?: number; // a worm: how far its thread advances along the axis per turn (positive for a
   //               right-handed thread about dir). Meshes with a spur gear at right angles.
   rack?: Vec3; // a rack: the way its teeth face, in the part's own coordinates. The cylinder

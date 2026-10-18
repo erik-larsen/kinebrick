@@ -30,6 +30,11 @@ const EPSILON = 1e-9;
 // How far a tyre may scrub sideways, as a fraction of how far it rolls (see freeMotions): real
 // steering only approximates every wheel turning round one centre, and real tyres scrub.
 const SCRUB = 0.02;
+// How far a tyre may rise or sink, as a fraction of how far it moves across the ground. A
+// wheel steered on a pivot that leans a little (as real cars' do, and as models are often
+// built) rises or sinks a little as it turns; an axle rocking with the car standing still
+// would push one tyre into the ground, and isn't allowed.
+const LIFT = 0.05;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
@@ -57,8 +62,9 @@ export interface KinematicsState {
 // For each tyre on the ground, a row for how fast it scrubs sideways, and one for how fast it
 // travels (see Kinematics.freeMotions).
 interface Slip {
-  sideways: Row[];
-  travel: Row[];
+  sideways: Row[]; // how fast each tyre scrubs sideways
+  travel: Row[]; // how fast each tyre's hub travels along the way it rolls
+  lift: Row[]; // how fast each tyre's contact point rises or sinks
 }
 
 export class Kinematics {
@@ -88,11 +94,16 @@ export class Kinematics {
   private contactTreads: number[] = []; // indices into mech.treads
   // Bodies held only by a ball joint at each end (a steering link), and those two joints.
   private links: { body: number; balls: [number, number] }[] = [];
+  // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
+  // middle), which way along that axis points away from the middle (+1 or -1), and the point
+  // on that axis nearest the middle (model coordinates, at the start).
+  private couplings: { shafts: { body: number; joint: number; away: number; near: Vector3 }[] }[] = [];
 
   constructor(mech: Mechanism) {
     this.mech = mech;
     this.bodyCount = mech.bodies.length;
     this.findLinks();
+    this.findCouplings();
     this.findGround();
     this.buildTree();
     this.reset();
@@ -116,6 +127,31 @@ export class Kinematics {
       const geared = this.mech.gears.some((g) => g.body === body);
       const tyred = this.mech.treads.some((t) => t.body === body);
       if (joints.length === 2 && balls.length === 2 && !geared && !tyred) this.links.push({ body, balls: [balls[0], balls[1]] });
+    }
+  }
+
+  // For each universal joint, the joint each shaft turns on: the one whose axis passes through
+  // the universal joint's middle.
+  private findCouplings() {
+    for (const c of this.mech.couplings ?? []) {
+      const shafts = [c.bodyA, c.bodyB].map((body) => {
+        let best = -1;
+        let bestDistance = 2; // LDU
+        this.mech.joints.forEach((j, i) => {
+          if (j.kind !== 'revolute' || (j.bodyA !== body && j.bodyB !== body)) return;
+          const d = axisOf(j.from, j.to);
+          const fromCenter = new Vector3().subVectors(j.from, c.center);
+          const distance = fromCenter.clone().addScaledVector(d, -fromCenter.dot(d)).length();
+          if (distance < bestDistance) [best, bestDistance] = [i, distance];
+        });
+        if (best < 0) return null;
+        const j = this.mech.joints[best];
+        const d = axisOf(j.from, j.to);
+        const middle = j.from.clone().add(j.to).multiplyScalar(0.5);
+        const near = j.from.clone().addScaledVector(d, new Vector3().subVectors(c.center, j.from).dot(d));
+        return { body, joint: best, away: new Vector3().subVectors(middle, c.center).dot(d) >= 0 ? 1 : -1, near };
+      });
+      if (shafts[0] && shafts[1]) this.couplings.push({ shafts: shafts as { body: number; joint: number; away: number; near: Vector3 }[] });
     }
   }
 
@@ -476,6 +512,33 @@ export class Kinematics {
       if (joint.kind === 'slide') for (const dir of xyz) turnRow(dir);
     });
 
+    // A universal joint: its two shafts turn at the same rate, each relative to what it turns
+    // in, about its own axis pointing away from the joint's middle (so a straight joint turns
+    // both the same way). And its two ends stay together, where each shaft's axis passes the
+    // joint's middle (points on the axes, so turning the shafts doesn't move them).
+    for (const { shafts } of this.couplings) {
+      const [a, b] = shafts.map((sh) => ({ body: sh.body, at: sh.near.clone().applyMatrix4(this.poses[sh.body]) }));
+      for (let k = 0; k < 3; k++) {
+        const row = new Array(n).fill(0);
+        addPointVelocity(row, a.body, a.at, k, 1);
+        addPointVelocity(row, b.body, b.at, k, -1);
+        add(row);
+      }
+    }
+    for (const { shafts } of this.couplings) {
+      const row = new Array(n).fill(0);
+      for (const { body, joint, away } of shafts) {
+        const j = this.mech.joints[joint];
+        const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+        const mount = j.bodyA === body ? j.bodyB : j.bodyA;
+        for (let k = 0; k < 3; k++) {
+          row[6 * body + k] += away * d.getComponent(k);
+          row[6 * mount + k] -= away * d.getComponent(k);
+        }
+      }
+      add(row);
+    }
+
     // A link between two balls turns about its length as the bodies at its ends do, on average.
     for (const { body, balls } of this.links) {
       const [a, b] = balls.map((i) => this.mech.joints[i]);
@@ -509,8 +572,8 @@ export class Kinematics {
     }
 
     // A tyre on the ground rolls without slipping: the point touching the ground doesn't move
-    // up or down, or along the way the tyre rolls. Sideways it may scrub a little, which
-    // freeMotions sees to, from the rows in `slip`.
+    // along the way the tyre rolls, nor up or down. Sideways it may scrub a little, and up or
+    // down it may move a very little, which freeMotions sees to, from the rows in `slip`.
     for (const i of this.contactTreads) {
       const p = this.contactPoint(i);
       if (!p) continue;
@@ -523,11 +586,13 @@ export class Kinematics {
         for (let k = 0; k < 3; k++) addPointVelocity(row, tread.body, point, k, dir.getComponent(k));
         return row;
       };
-      add(along(p, DOWN));
       add(along(p, forward));
       if (slip) {
         slip.sideways.push(along(p, sideways));
         slip.travel.push(along(tread.center.clone().applyMatrix4(pose), forward));
+        slip.lift.push(along(p, DOWN));
+      } else {
+        add(along(p, DOWN));
       }
     }
     return rows;
@@ -619,6 +684,14 @@ export class Kinematics {
       const pitchPoint = ca.clone().addScaledVector(face, -a.radius);
       return { a, b, pitchPoint, across: axisB };
     }
+    if (mesh.kind === 'crown') {
+      // a is the crown gear. Where the spur gear's pitch circle touches the crown gear's pitch
+      // plane, both gears' teeth move at the same speed round the crown gear's axis.
+      const toward = axisA.clone().multiplyScalar(-a.crown);
+      const pitchPoint = cb.clone().addScaledVector(toward, b.radius);
+      const across = new Vector3().crossVectors(axisA, new Vector3().subVectors(pitchPoint, ca)).normalize();
+      return { a, b, pitchPoint, across };
+    }
     if (mesh.kind === 'spur') {
       // On the line between the centres, split in the ratio of the pitch radii.
       const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));
@@ -655,12 +728,30 @@ export class Kinematics {
   // Tyres on the ground may scrub sideways a little: of the motions the equations allow, the
   // ones kept are those where the tyres scrub sideways by at most SCRUB of how fast they
   // travel (rolling straight, steering on its own, and a steered car turning round the centre
-  // that needs the least scrub), and not, say, sliding the car across its length.
+  // that needs the least scrub), and not, say, sliding the car across its length. Motions that
+  // leave the frame where it is are kept however much the tyres scrub: steering a parked car
+  // whose wheels sit off their pivots drags its tyres round, as on a real car.
+  //
+  // A tyre's contact point may also rise or sink, very little: by at most LIFT of how far it
+  // moves across the ground, so a wheel steered on a leaning pivot can turn. Rolling the car
+  // counts that against the scrub allowance; a parked car's motions (steering) have only it
+  // to keep to.
   freeMotions(): number[][] {
-    const slip: Slip = { sideways: [], travel: [] };
-    const motions = orthonormalize(nullSpace(this.buildEquations(null, slip), 6 * this.bodyCount));
+    const slip: Slip = { sideways: [], travel: [], lift: [] };
+    const n = 6 * this.bodyCount;
+    const rows = this.buildEquations(null, slip);
+    const motions = orthonormalize(nullSpace(rows, n));
     if (slip.sideways.length === 0 || motions.length === 0) return motions;
-    return leastScrub(motions, slip);
+    const frameStill = Array.from({ length: 6 }, (_, k) => {
+      const row = new Array(n).fill(0);
+      row[k] = 1;
+      return row;
+    });
+    const parked = orthonormalize(nullSpace([...rows, ...frameStill], n));
+    const keptParked = parked.length ? leastScrub(parked, { sideways: slip.lift, travel: [...slip.travel, ...slip.sideways], lift: [] }, LIFT) : [];
+    const liftAsScrub = slip.lift.map((row) => row.map((x) => (x * SCRUB) / LIFT));
+    const rolling = leastScrub(motions, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, SCRUB);
+    return orthonormalize([...keptParked, ...rolling]);
   }
 
   // How fast a point on a body moves under a motion vector.
@@ -882,7 +973,7 @@ function smallestTurning(motions: number[][], rate: (m: number[]) => number): nu
 //   - mixes in which tyres travel may add any of those, to scrub as little as they can; then
 //     the directions whose scrub per unit of travel is at most SCRUB are kept (rolling
 //     straight, and a steered car turning round the centre that needs the least scrub).
-function leastScrub(motions: number[][], slip: Slip): number[][] {
+function leastScrub(motions: number[][], slip: Slip, limit: number): number[][] {
   const k = motions.length;
   const dot = (a: number[], b: number[]) => a.reduce((sum, x, i) => sum + x * b[i], 0);
   // Each row applied to each motion: rows × k.
@@ -920,7 +1011,7 @@ function leastScrub(motions: number[][], slip: Slip): number[][] {
   const leftGram = best.map((_, i) => best.map((_, j) => dot(left[i], left[j])));
   const { values: mv, vectors: mvecs } = symmetricEigen(leftGram);
   mvecs.forEach((y, e) => {
-    if (mv[e] <= SCRUB * SCRUB) kept.push(combine(best, y));
+    if (mv[e] <= limit * limit) kept.push(combine(best, y));
   });
 
   return orthonormalize(kept.map((a) => combine(motions, a)));

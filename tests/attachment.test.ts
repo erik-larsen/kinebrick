@@ -14,10 +14,8 @@ function looseParts(text: string): string[] {
 
 // Real models KineBrick can't fully read yet, and what they need (M7 works through them).
 const NOT_YET = [
-  '854 - Go Kart.mpd', // 2x2 turntables, its chain (165, 166)
   '855 - Mobile Crane.mpd', // chain tread tracks, racks on plates
   '856 - Bulldozer.mpd', // chain tread tracks
-  '950 - Fork Lift.mpd', // 2x2 turntables, the lift sliding up the mast
   '952 - Tractor.mpd', // 2x2 turntables
   '956 - Auto Chassis.mpd', // 2x2 turntables, and more to find
   '8880 - Super Car.mpd', // hinge plates, chain, towballs

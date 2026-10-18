@@ -34,6 +34,28 @@
 0 // Technic Gear 24 Tooth with Single Axle Hole (3648 is an alias for this part)
 0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 3648a.dat
+0 // Technic Gear 24 Tooth with 3 Axleholes (the old 24 tooth gear)
+0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 // Crown gears: a 24 tooth gear whose teeth also point along its axis, towards +z, so a spur
+0 // gear of the same tooth size meshes with them on an axle crossing its own at right angles.
+0 // Their pitch plane is 3 LDU along from the middle, measured from how official models mount
+0 // them (8 tooth gears' centres 13 LDU out from the middle, 24 tooth gears' 33). The same teeth
+0 // also mesh side by side, as a spur gear's.
+
+0 FILE 3650a.dat
+0 // Technic Gear 24 Tooth Crown Type 1
+0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=6] [crown=+] [center=true] [pos=0 0 3] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 3650b.dat
+0 // Technic Gear 24 Tooth Crown Type 2
+0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=6] [crown=+] [center=true] [pos=0 0 3] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 3650c.dat
+0 // Technic Gear 24 Tooth Crown Type 3
+0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=6] [crown=+] [center=true] [pos=0 0 3] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 3649.dat
 0 // Technic Gear 40 Tooth
 0 !KINEBRICK GEAR [teeth=40] [radius=50] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -157,3 +179,10 @@
 0 // Technic Pin Towball with Friction: the shadow library closes its pin at the ball end, so it
 0 // would only fit a hole as a stud does. It's a pin like any other, so here it's open-ended too.
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 8 2   R 6 16   L 6.25 2] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 // Turntables.
+
+0 FILE 3679.dat
+0 // Turntable 2 x 2 Plate Top: its centre pin turns in the base's hole (3680). The shadow
+0 // library closes it at one end, so it would only fit as a stud does; it's open-ended here.
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 2   L 4.5 2] [pos=0 4 0] [ori=-1 0 0 0 -1 0 0 0 1]

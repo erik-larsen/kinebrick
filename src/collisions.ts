@@ -3,8 +3,9 @@
 //
 // Which pairs of parts are checked: parts on different bodies (parts on one body never move
 // against each other) that aren't directly connected (an axle in a hole, a tyre on its rim
-// and meshing gear teeth all touch legitimately) and don't already touch when the model
-// loads (a rim pressed against a brick).
+// and meshing gear teeth all touch legitimately) and don't already touch, or nearly touch,
+// when the model loads (a rim pressed against a brick; a bush built flush against a brick,
+// which on the real model just rubs past it as the wheel steers).
 //
 // The shapes are the parts' own LDraw meshes, tested with three-mesh-bvh, a library that
 // sorts each mesh's triangles into a tree of boxes so two meshes can be tested quickly. A
@@ -18,6 +19,9 @@ import { Box3, BufferAttribute, BufferGeometry, Matrix4, Vector3 } from 'three';
 // LDU. Faces that merely touch (a beam sliding across the flush head of a pin) then don't
 // count as overlapping; anything that really passes through still does.
 const INSET = 0.25;
+// Parts this close when the model loads, in LDU (after INSET), aren't checked against each
+// other: real models are built tight, and parts that rub on the real thing don't stop it.
+const NEAR = 1;
 
 // A copy of a mesh's geometry for collision checks: its positions and its index.
 export function collisionGeometry(source: BufferGeometry): BufferGeometry {
@@ -97,7 +101,7 @@ export class Collisions {
     for (let a = 0; a < this.shapes.length; a++) {
       for (let b = a + 1; b < this.shapes.length; b++) {
         if (bodyOf[a] === bodyOf[b] || connected.has(`${a},${b}`)) continue;
-        if (this.overlap(a, b, partMatrices)) continue; // already touching at the start
+        if (this.near(a, b, partMatrices)) continue; // already touching, or nearly, at the start
         this.pairs.push([a, b]);
       }
     }
@@ -119,6 +123,24 @@ export class Collisions {
       this.lastClear.set(key, relative);
     }
     return null;
+  }
+
+  // Whether two parts' meshes are within NEAR of each other, placed as `partMatrices` says.
+  private near(a: number, b: number, partMatrices: Matrix4[]): boolean {
+    const boxA = this.shapes[a].box.clone().applyMatrix4(partMatrices[a]).expandByScalar(NEAR);
+    const boxB = this.shapes[b].box.clone().applyMatrix4(partMatrices[b]);
+    if (!boxA.intersectsBox(boxB)) return false;
+    const bToA = partMatrices[a].clone().invert().multiply(partMatrices[b]);
+    for (const ma of this.shapes[a].meshes) {
+      const aMeshInverse = ma.matrix.clone().invert();
+      for (const mb of this.shapes[b].meshes) {
+        const toA = aMeshInverse.clone().multiply(bToA).multiply(mb.matrix);
+        if (ma.bvh.intersectsGeometry(mb.geometry, toA)) return true;
+        const hit = () => ({ point: new Vector3(), distance: 0, faceIndex: 0 });
+        if (ma.bvh.closestPointToGeometry(mb.geometry, toA, hit(), hit(), 0, NEAR)) return true;
+      }
+    }
+    return false;
   }
 
   // Whether two parts' meshes overlap, placed as `partMatrices` says.

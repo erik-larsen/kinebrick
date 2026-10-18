@@ -152,6 +152,7 @@ function gearFromMeta(meta: Meta): WorkingCylinder[] {
       sec.apex = Number(p.get('apex'));
     }
     if (p.has('worm')) sec.worm = Number(p.get('worm'));
+    if (p.has('crown')) sec.crown = p.get('crown');
   }
   return cyls;
 }
@@ -178,16 +179,35 @@ function rackFromMeta(meta: Meta): WorkingCylinder[] {
   ];
 }
 
-// A SNAP_GEN line shaped as a sphere ([bounding=sph 8]): a towball (M) or a ball socket (F).
-// Stored as a cylinder with one O section, as long as the ball is wide and centred on it,
-// so it can be placed like any other cylinder. Other SNAP_GEN shapes aren't used yet.
-function ballFromMeta(meta: Meta): WorkingCylinder[] {
+// A SNAP_GEN line, by its shape:
+//   sphere ([bounding=sph 8])     a towball (M) or a ball socket (F), stored as a cylinder with
+//                                 one O section, as long as the ball is wide and centred on it,
+//                                 so it can be placed like any other cylinder
+//   cylinder ([bounding=cyl 6 16]) a hinge's pin (M) or the hole it turns in (F), such as the
+//                                 old hinge plates': a round section, centred
+// Other shapes aren't used yet.
+function genFromMeta(meta: Meta): WorkingCylinder[] {
   const p = meta.params;
   const bounding = (p.get('bounding') ?? '').split(/\s+/);
-  if (bounding[0] !== 'sph') return [];
-  const radius = Number(bounding[1]);
-  p.set('secs', `O ${radius} ${2 * radius}`);
+  if (bounding[0] === 'sph') {
+    const radius = Number(bounding[1]);
+    p.set('secs', `O ${radius} ${2 * radius}`);
+  } else if (bounding[0] === 'cyl') {
+    p.set('secs', `R ${bounding[1]} ${bounding[2]}`);
+  } else {
+    return [];
+  }
   p.set('center', 'true');
+  p.set('caps', 'none');
+  return cylindersFromMeta(meta);
+}
+
+// A SNAP_CLP line: a clip, which grips a bar or pin of its radius and lets it turn (a
+// universal joint's ends grip its centre's arms so). Stored as a round hole.
+function clipFromMeta(meta: Meta): WorkingCylinder[] {
+  const p = meta.params;
+  p.set('secs', `R ${p.get('radius') ?? '4'} ${p.get('length') ?? '8'}`);
+  p.set('gender', 'F');
   p.set('caps', 'none');
   return cylindersFromMeta(meta);
 }
@@ -303,7 +323,8 @@ function ownShadowCylinders(name: string): WorkingCylinder[] {
   for (const line of (readShadowFile(name) ?? '').split(/\r?\n/)) {
     const meta = parseMeta(line.trim());
     if (meta && meta.kind === 'SNAP_CYL') result.push(...cylindersFromMeta(meta));
-    if (meta && meta.kind === 'SNAP_GEN') result.push(...ballFromMeta(meta));
+    if (meta && meta.kind === 'SNAP_GEN') result.push(...genFromMeta(meta));
+    if (meta && meta.kind === 'SNAP_CLP') result.push(...clipFromMeta(meta));
   }
   return result;
 }
@@ -339,7 +360,9 @@ function fileCylinders(name: string): WorkingCylinder[] {
     } else if (meta.kind === 'RACK') {
       result.push(...rackFromMeta(meta));
     } else if (meta.kind === 'SNAP_GEN') {
-      result.push(...ballFromMeta(meta));
+      result.push(...genFromMeta(meta));
+    } else if (meta.kind === 'SNAP_CLP') {
+      result.push(...clipFromMeta(meta));
     } else if (meta.kind === 'SNAP_INCL') {
       const ref = normalizePartName(meta.params.get('ref') ?? '');
       const pos = numbers(meta.params.get('pos'), [0, 0, 0]) as Vec3;
@@ -352,7 +375,7 @@ function fileCylinders(name: string): WorkingCylinder[] {
         }
       }
     }
-    // SNAP_CLP, SNAP_FGR and SNAP_SPH (clips, hinge fingers, and so on) aren't used yet.
+    // SNAP_FGR and SNAP_SPH (hinge fingers, and so on) aren't used yet.
   }
 
   cache.set(name, result);

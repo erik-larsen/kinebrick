@@ -8,6 +8,14 @@ import { PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
+// How far apart two connection points' directions may be and still line up, as the sine of
+// the angle between them: 2 degrees. Models are sometimes built a little askew (an official
+// model tilts a go-kart's engine by a degree), as real parts allow.
+const ANGLE_TOLERANCE = 0.035;
+// How far meshing gears' axles (or a gear and a rack's pitch line) may be from exactly their
+// pitch radii apart, in LDU. Real teeth still engage a little closer or further, and models
+// built by hand often have them so: an official model may put a gear 2 LDU into a rack.
+const MESH_TOLERANCE = 2;
 // Minimum length two connection points must overlap along their axis, in LDU.
 const MIN_OVERLAP = 1;
 // How much two sliding parts must still overlap, in LDU (see slideRange): a plate on tiles a
@@ -89,6 +97,7 @@ export interface Gear {
   spur: boolean; // straight teeth, for meshing on parallel axes
   bevel: string; // bevel teeth facing '+' (along axis), '-', 'both', or '' for none
   apex: number; // bevel teeth: distance from center to the tip of the pitch cone
+  crown: number; // crown teeth facing +1 (along axis) or -1, their pitch plane through center; 0 for none
   worm: number; // a worm: its thread's advance per turn (right-handed about axis), else 0
   // A rack: the way its teeth face, else null. For a rack, center is the middle of its pitch
   // line, axis the way that line runs, length its length, and radius 0.
@@ -101,10 +110,12 @@ export interface Gear {
 //   bevel  axes crossing; the tips of their bevel cones meet where the axes cross
 //   worm   a worm (gearA) and a spur gear (gearB) on axes at right angles that don't meet
 //   rack   a spur gear (gearA) whose pitch circle touches a rack's pitch line (gearB)
+//   crown  a crown gear (gearA) and a spur gear (gearB) whose axle crosses the crown gear's at
+//          right angles, its pitch circle touching the crown gear's pitch plane
 export interface Mesh {
   gearA: number; // index into gears
   gearB: number;
-  kind: 'spur' | 'bevel' | 'worm' | 'rack';
+  kind: 'spur' | 'bevel' | 'worm' | 'rack' | 'crown';
 }
 
 export interface Mechanism {
@@ -120,6 +131,16 @@ export interface Mechanism {
   // everything outside the largest group of parts attached to each other. Usually a sign
   // that a part is in the wrong place.
   loose: number[];
+  // Universal joints: the shafts on either side turn together (see universalJoints).
+  couplings: Coupling[];
+}
+
+// A universal joint: bodyA and bodyB, each a shaft turning in something, turn at the same rate
+// about their own axes, which meet at `center`.
+export interface Coupling {
+  bodyA: number;
+  bodyB: number;
+  center: Vector3;
 }
 
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>): Mechanism {
@@ -137,6 +158,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const cyls = worldCylinders(parts, table);
   const connections = findConnections(cyls);
   fixPins(connections, roles, frictionRigid);
+  connections.push(...guidedRacks(parts.length, cyls, connections));
+  connections.push(...decorations(parts, roles, cyls));
+  connections.push(...guidedPistons(parts, roles, cyls, connections));
+  const joined = universalJoints(parts, roles, connections);
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
@@ -144,7 +169,128 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
   const loose = findLooseParts(parts.length, connections);
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose };
+  const couplings = joined.map(({ partA, partB, center }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center }));
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings };
+}
+
+// A piston with no cylinder of its own to slide in, such as the old 2x2 piston block, whose
+// cylinder is a square of bricks around it, slides along its own axis (its y) against the
+// part nearest to it that it isn't connected to.
+function guidedPistons(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+  const guided: Connection[] = [];
+  roles.forEach((role, piston) => {
+    if (role !== 'piston' || connections.some((c) => c.kind === 'slide' && (c.male === piston || c.female === piston))) return;
+    // Not the piston, nor anything fixed to what it's connected to (its connecting rod).
+    const group = rigidGroups(parts.length, connections);
+    const touching = new Set(connections.flatMap((c) => (c.male === piston ? [group[c.female]] : c.female === piston ? [group[c.male]] : [])));
+    touching.add(group[piston]);
+    const at = new Vector3().setFromMatrixPosition(parts[piston].matrix);
+    let nearest: WorldCylinder | null = null;
+    for (const c of cyls) {
+      if (touching.has(group[c.part])) continue;
+      if (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at)) nearest = c;
+    }
+    if (!nearest) return;
+    const axis = new Vector3(0, 1, 0).transformDirection(parts[piston].matrix);
+    guided.push({ male: piston, female: nearest.part, kind: 'slide', from: at, to: at.clone().add(axis) });
+  });
+  return guided;
+}
+
+// For each part, a representative of the parts fixed to it (rigid and stud connections).
+function rigidGroups(count: number, connections: Connection[]): number[] {
+  const leader = Array.from({ length: count }, (_, i) => i);
+  const find = (i: number): number => (leader[i] === i ? i : (leader[i] = find(leader[i])));
+  for (const c of connections) if (c.kind === 'rigid' || c.kind === 'stud') leader[find(c.male)] = find(c.female);
+  return leader.map((_, i) => find(i));
+}
+
+// A universal joint's centre is a cross whose two arms turn in the ends of two shafts. As two
+// hinges, the cross would lock the joint solid if the model's shafts miss its middle by a
+// fraction of an LDU, as built models do. What the joint does is pass turning from one shaft
+// to the other, so that's what KineBrick models: the cross is fixed to the first end, its
+// other arm lets go of the second end, and the two shafts turn together (see Coupling).
+// Removes those connections from `connections`; returns the pairs of ends it couples.
+function universalJoints(parts: PlacedPart[], roles: string[], connections: Connection[]): { partA: number; partB: number; center: Vector3 }[] {
+  const joined: { partA: number; partB: number; center: Vector3 }[] = [];
+  roles.forEach((role, cross) => {
+    if (role !== 'universal joint') return;
+    const arms = connections.filter((c) => c.kind === 'revolute' && (c.male === cross || c.female === cross));
+    const ends = [...new Set(arms.map((c) => (c.male === cross ? c.female : c.male)))];
+    if (ends.length !== 2) return;
+    for (const c of arms) {
+      const end = c.male === cross ? c.female : c.male;
+      if (end === ends[0]) c.kind = 'rigid';
+      else connections.splice(connections.indexOf(c), 1);
+    }
+    joined.push({ partA: ends[0], partB: ends[1], center: new Vector3().setFromMatrixPosition(parts[cross].matrix) });
+  });
+  return joined;
+}
+
+// Decoration: parts that are there for looks and connect to nothing in a way that matters,
+// such as stickers and the old pneumatic hoses models use for exhausts and cables. Each moves
+// with the part whose connection point (stud, hole, axle) is nearest to it.
+function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]): Connection[] {
+  const isDecoration = (i: number) => roles[i] === 'decoration' || parts[i].name.includes('sticker');
+  const anchors = cyls.filter((c) => !isDecoration(c.part));
+  const result: Connection[] = [];
+  parts.forEach((p, i) => {
+    if (!isDecoration(i)) return;
+    const at = new Vector3().setFromMatrixPosition(p.matrix);
+    let nearest: WorldCylinder | null = null;
+    for (const c of anchors) if (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at)) nearest = c;
+    if (nearest) result.push({ male: i, female: nearest.part, kind: 'rigid', from: at, to: at.clone() });
+  });
+  return result;
+}
+
+// A rack held by nothing but the gear it meshes with, such as a fork-lift's carriage riding up
+// its mast, slides along its length past the gear, as if guided (the bricks either side that
+// keep it in line are taken as read, as for a plate sliding on tiles). Its parts connect to the
+// part the gear's axle turns in by a slide; it stops where the gear reaches the end of its
+// teeth.
+function guidedRacks(count: number, cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+  const loose = new Set(findLooseParts(count, connections));
+  if (loose.size === 0) return [];
+  const gears = findGears(cyls, Array.from({ length: count }, (_, i) => i));
+  const guided: Connection[] = [];
+  for (const rack of gears) {
+    if (!rack.face || !loose.has(rack.part)) continue;
+    for (const gear of gears) {
+      if (gear.face || loose.has(gear.part) || !rackMesh(gear, rack)) continue;
+      const mount = mountOf(gear.part, connections);
+      if (mount < 0) continue;
+      const from = rack.center.clone();
+      guided.push({ male: rack.part, female: mount, kind: 'slide', from, to: from.clone().add(rack.axis) });
+      break;
+    }
+  }
+  return guided;
+}
+
+// The part a gear's axle turns in: from the gear, through what's rigidly fixed to it, to the
+// other side of a turning connection. Or -1 if none.
+function mountOf(gear: number, connections: Connection[]): number {
+  const fixed = new Set([gear]);
+  for (let grew = true; grew; ) {
+    grew = false;
+    for (const c of connections) {
+      if (c.kind !== 'rigid') continue;
+      for (const [a, b] of [[c.male, c.female], [c.female, c.male]]) {
+        if (fixed.has(a) && !fixed.has(b)) {
+          fixed.add(b);
+          grew = true;
+        }
+      }
+    }
+  }
+  for (const c of connections) {
+    if (c.kind !== 'revolute') continue;
+    if (fixed.has(c.male) && !fixed.has(c.female)) return c.female;
+    if (fixed.has(c.female) && !fixed.has(c.male)) return c.male;
+  }
+  return -1;
 }
 
 // Step 3: every part's connection points, moved into model coordinates.
@@ -191,6 +337,7 @@ function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
       spur: sec.spur !== false && !sec.rack,
       bevel: sec.bevel ?? '',
       apex: sec.apex ?? 0,
+      crown: sec.crown === '+' ? 1 : sec.crown === '-' ? -1 : 0,
       worm: sec.worm ?? 0,
       face: c.face ?? null,
       length: sec.rack ? sec.length : 0,
@@ -219,6 +366,8 @@ function findMeshes(gears: Gear[]): Mesh[] {
       }
       if (parallel && spurMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'spur' });
       if (!parallel && bevelMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'bevel' });
+      if (!parallel && crownMesh(ga, gb)) meshes.push({ gearA: a, gearB: b, kind: 'crown' });
+      if (!parallel && crownMesh(gb, ga)) meshes.push({ gearA: b, gearB: a, kind: 'crown' });
     }
   }
   // Racks lined up end to end on one body (two 1x4 racks on a plate) make one long row of
@@ -244,7 +393,7 @@ function spurMesh(ga: Gear, gb: Gear): boolean {
   const along = offset.dot(ga.axis);
   const across = offset.clone().addScaledVector(ga.axis, -along).length();
   if ((ga.width + gb.width) / 2 - Math.abs(along) < MIN_OVERLAP) return false; // teeth don't face each other
-  return Math.abs(across - (ga.radius + gb.radius)) < AXIS_TOLERANCE;
+  return Math.abs(across - (ga.radius + gb.radius)) < MESH_TOLERANCE;
 }
 
 // A worm meshes with a spur gear of the same tooth size when their axes are at right angles,
@@ -273,7 +422,7 @@ function rackMesh(gear: Gear, rack: Gear, within = true): boolean {
   if (Math.abs(gear.axis.dot(rack.axis)) > 0.01 || Math.abs(gear.axis.dot(face)) > 0.01) return false;
   const offset = new Vector3().subVectors(gear.center, rack.center);
   if (within && Math.abs(offset.dot(rack.axis)) > rack.length / 2) return false;
-  if (Math.abs(offset.dot(face) - gear.radius) > AXIS_TOLERANCE) return false;
+  if (Math.abs(offset.dot(face) - gear.radius) > MESH_TOLERANCE) return false;
   return (gear.width + rack.width) / 2 - Math.abs(offset.dot(gear.axis)) >= MIN_OVERLAP;
 }
 
@@ -289,6 +438,21 @@ export function closestPoints(pa: Vector3, da: Vector3, pb: Vector3, db: Vector3
   const onA = pa.clone().addScaledVector(da, s);
   const onB = pb.clone().addScaledVector(db, t);
   return { onA, onB, distance: onA.distanceTo(onB) };
+}
+
+// A crown gear meshes with a spur gear of the same tooth size whose axle crosses its own at
+// right angles, the spur gear's middle a pitch radius out from the crown gear's axis, and its
+// pitch circle touching the crown gear's pitch plane on the side its teeth face.
+function crownMesh(crown: Gear, gear: Gear): boolean {
+  if (!crown.crown || !gear.spur || gear.crown || gear.worm || gear.face) return false;
+  if (Math.abs(crown.radius / crown.teeth - gear.radius / gear.teeth) > 0.01) return false;
+  if (Math.abs(crown.axis.dot(gear.axis)) > 0.01) return false;
+  const offset = new Vector3().subVectors(gear.center, crown.center);
+  const along = offset.dot(crown.axis);
+  const out = offset.clone().addScaledVector(crown.axis, -along);
+  if (Math.abs(out.length() - crown.radius) > MESH_TOLERANCE) return false;
+  if (Math.abs(out.normalize().dot(gear.axis)) < 0.99) return false; // the gear's axle points at the crown gear's
+  return Math.abs(along - crown.crown * gear.radius) <= MESH_TOLERANCE;
 }
 
 // Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross.
@@ -349,6 +513,7 @@ function findConnections(cyls: WorldCylinder[]): Connection[] {
       if (isBall(m) && isBall(f)) c = ballConnect(m, f);
       else if (goesInForTechnic(m) && opensForTechnic(f)) c = connect(m, f);
       else if ((isStud(m) && isAntiStud(f)) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f);
+      else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f);
       if (c) connections.push(c);
     }
   }
@@ -395,10 +560,11 @@ function fixPins(connections: Connection[], roles: string[], frictionRigid: bool
 }
 
 // A male connection point that goes into Technic holes: open at both ends (an axle, a pin),
-// or an axle stub fixed to a part at one end (a connector's, a crankshaft's). Studs, closed
-// at one end too, have no axle shape, so they don't count.
+// closed at both (a bar, or a universal joint's centre's arms, which clips grip from the
+// side), or an axle stub fixed to a part at one end (a connector's, a crankshaft's). Studs,
+// closed at one end too, have no axle shape, so they don't count.
 function goesInForTechnic(m: WorldCylinder): boolean {
-  return m.caps === 'none' || (m.caps === 'one' && m.secs.some((s) => s.shape === 'A'));
+  return m.caps === 'none' || m.caps === 'two' || (m.caps === 'one' && m.secs.some((s) => s.shape === 'A'));
 }
 
 // A female connection point that takes Technic axles and pins: open at both ends, or an axle
@@ -425,6 +591,13 @@ function isHollowStud(c: WorldCylinder): boolean {
   return c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 4) < AXIS_TOLERANCE;
 }
 
+// A Technic hole, round and open at both ends. A stud in one turns in it, like a pin (an old
+// engine's piston turns on its connecting rod's stud), unless held on another axis too (a
+// Technic plate's holes sit on studs, next to its anti-studs).
+function isTechnicHole(c: WorldCylinder): boolean {
+  return c.caps === 'none' && c.secs.some((s) => s.shape === 'R' && Math.abs(s.radius - 6) < AXIS_TOLERANCE);
+}
+
 // An anti-stud: the socket for a stud, underneath a brick or plate.
 function isAntiStud(c: WorldCylinder): boolean {
   const sec = c.secs[0];
@@ -432,6 +605,12 @@ function isAntiStud(c: WorldCylinder): boolean {
 }
 
 // A stud sitting in an anti-stud: on the same axis, overlapping along it.
+function studInHole(m: WorldCylinder, f: WorldCylinder): Connection | null {
+  const overlap = axialOverlap(m, f);
+  if (!overlap) return null;
+  return { male: m.part, female: f.part, kind: 'revolute', from: overlap.from, to: overlap.to };
+}
+
 function studConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
   const overlap = axialOverlap(m, f);
   if (!overlap) return null;
@@ -441,7 +620,7 @@ function studConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
 // Where two cylinders on the same axis overlap, or null if they're not on the same axis or
 // overlap by less than MIN_OVERLAP.
 function axialOverlap(m: WorldCylinder, f: WorldCylinder): { from: Vector3; to: Vector3 } | null {
-  if (new Vector3().crossVectors(m.dir, f.dir).length() > 0.01) return null;
+  if (new Vector3().crossVectors(m.dir, f.dir).length() > ANGLE_TOLERANCE) return null;
   const offset = new Vector3().subVectors(f.start, m.start);
   const along = offset.dot(m.dir);
   if (offset.clone().addScaledVector(m.dir, -along).length() > AXIS_TOLERANCE) return null;
@@ -472,7 +651,7 @@ function findLooseParts(count: number, connections: Connection[]): number[] {
 
 function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
   // Same axis: parallel, and the female's start lies on the male's line.
-  if (new Vector3().crossVectors(m.dir, f.dir).length() > 0.01) return null;
+  if (new Vector3().crossVectors(m.dir, f.dir).length() > ANGLE_TOLERANCE) return null;
   const offset = new Vector3().subVectors(f.start, m.start);
   const along = offset.dot(m.dir);
   const sideways = offset.clone().addScaledVector(m.dir, -along).length();
