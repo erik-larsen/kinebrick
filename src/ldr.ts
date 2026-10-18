@@ -56,6 +56,22 @@ export function embeddedParts(text: string): Map<string, string> {
   return parts;
 }
 
+// KineBrick's own settings for a model, from "0 !KINEBRICK" lines in its main file (LDraw
+// programs skip meta-commands they don't know, so the file still opens anywhere), e.g.
+//   0 !KINEBRICK SCRUB [percent=10]   tyres may scrub sideways by up to 10% of how far they roll
+export interface ModelSettings {
+  scrub?: number; // percent
+}
+
+export function modelSettings(text: string): ModelSettings {
+  const settings: ModelSettings = {};
+  for (const line of [...modelFiles(text).values()][0] ?? []) {
+    const scrub = /^\s*0\s+!KINEBRICK\s+SCRUB\b.*\[percent=([\d.]+)\]/.exec(line);
+    if (scrub) settings.scrub = Number(scrub[1]);
+  }
+  return settings;
+}
+
 // Shapes a submodel draws directly, with lines of types 2 to 5, rather than with parts: a hose
 // or a spring bent to fit, as CAD programs generate them. They have no connections, so they
 // don't take part in the mechanism, but they're drawn.

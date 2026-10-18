@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { embeddedParts, parseLdr, parseModel, partLine, PlacedPart } from '../src/ldr.ts';
+import { embeddedParts, modelSettings, parseLdr, parseModel, partLine, PlacedPart } from '../src/ldr.ts';
 
 // A main model placing a wheel submodel twice (once turned half round), which holds an axle
 // and another submodel, a hub; a shape drawn without parts; and a part the file brings with it.
@@ -73,6 +73,13 @@ describe('reading model files', () => {
     expect(parts.slice(0, 2).map((p) => [p.name, p.color])).toEqual([['base.dat', 72], ['top.dat', 4]]);
     expect(at(parts[1])).toEqual(new Vector3(0, -8, 0));
     expect(parts[1].submodel).toBeUndefined(); // in the main model, as the part was
+  });
+
+  it("reads KineBrick's own settings from the main model's meta-commands, which other programs skip", () => {
+    expect(modelSettings(MPD)).toEqual({});
+    const withScrub = MPD.replace('0 !LDRAW_ORG Model\n', '0 !LDRAW_ORG Model\n0 !KINEBRICK SCRUB [percent=12.5]\n');
+    expect(modelSettings(withScrub)).toEqual({ scrub: 12.5 });
+    expect(parseLdr(withScrub)).toEqual(parseLdr(MPD));
   });
 
   it("writes a part back as the line it'd be without submodels", () => {

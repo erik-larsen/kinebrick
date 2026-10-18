@@ -4,6 +4,8 @@
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
+0 // KineBrick: its front wheels turn alike, so at full lock its tyres scrub sideways by up to a quarter of how far they roll
+0 !KINEBRICK SCRUB [percent=25]
 
 1 14 0 -114.415 211.231 1 0 0 0 1 0.01 0 -0.01 1 956-chassis.ldr
 

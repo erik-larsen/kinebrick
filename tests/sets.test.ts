@@ -2,8 +2,8 @@ import { readFileSync } from 'node:fs';
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable } from '../src/connections.ts';
-import { Kinematics } from '../src/kinematics.ts';
-import { parseLdr } from '../src/ldr.ts';
+import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
+import { modelSettings, parseLdr } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 
 // Real LEGO Technic sets from the LDraw Official Model Repository, oldest first.
@@ -17,9 +17,11 @@ const packed: Record<string, { primitives: string[]; pieces: Record<string, stri
 function load(file: string) {
   const model = packed[file.replace(/^models\//, '').replace(/\.(ldr|mpd)$/, '')];
   const primitives = new Set(model?.primitives ?? []);
-  const parts = parseLdr(readFileSync(file, 'utf-8'), (name) => primitives.has(name), (name) => model?.pieces[name] ?? null);
+  const text = readFileSync(file, 'utf-8');
+  const parts = parseLdr(text, (name) => primitives.has(name), (name) => model?.pieces[name] ?? null);
   const mech = inferMechanism(parts, table, roles);
   const kin = new Kinematics(mech);
+  kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100; // as the viewer does
   // The body of the n-th copy of a part.
   const bodyOf = (name: string, n = 0) => mech.bodyOf[parts.map((p, i) => (p.name === name ? i : -1)).filter((i) => i >= 0)[n]];
   // Turns a body on its joint as a drag does (holding what that doesn't need), as far as it
@@ -235,6 +237,21 @@ describe('956 Auto Chassis', () => {
     expect(frameMoved()).toBeCloseTo(2 * Math.PI * 102.7, 0);
     expect(pistons).toHaveLength(4);
     pistons.forEach((_, k) => expect(high[k] - low[k]).toBeCloseTo(32, 0));
+  });
+
+  it('at full lock either way, a turn of the rear axle still takes it round, its tyres scrubbing sideways by up to the 25% its file allows', () => {
+    expect(kin.scrub).toBe(0.25);
+    for (const way of [1, -1]) {
+      kin.reset();
+      turn(bodyOf('3736.dat'), way * 10); // as far as the steering rack goes
+      const wheel = bodyOf('3740.dat');
+      const joint = kin.parentLink(wheel)!.joint;
+      kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
+      let turned = 0;
+      for (let i = 0; i < 20; i++) turned += kin.turnJoint(joint, 0.05);
+      kin.letGoAfterDrag();
+      expect(Math.abs(turned)).toBeCloseTo(1, 6);
+    }
   });
 
   it('steered, a turn of the rear axle takes it round a bend: with no differential, its rear tyres skid to make up the difference', () => {

@@ -28,9 +28,10 @@ import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh } from './mec
 const GROUND_TOLERANCE = 1;
 // Numbers smaller than this count as zero when solving the equations.
 const EPSILON = 1e-9;
-// How far a tyre may scrub sideways, as a fraction of how far it rolls (see freeMotions): real
-// steering only approximates every wheel turning round one centre, and real tyres scrub.
-const SCRUB = 0.02;
+// How far a tyre may scrub sideways, as a fraction of how far it rolls, unless a model says
+// otherwise (see Kinematics.scrub and freeMotions): real steering only approximates every
+// wheel turning round one centre, and real tyres scrub.
+export const DEFAULT_SCRUB = 0.02;
 // How far a tyre may rise or sink, as a fraction of how far it moves across the ground. A
 // wheel steered on a pivot that leans a little (as real cars' do, and as models are often
 // built) rises or sinks a little as it turns; an axle rocking with the car standing still
@@ -91,6 +92,11 @@ export class Kinematics {
   treadScrub: number[] = [];
   // The ground's height (LDraw y), or null if no tyre touches it.
   groundY: number | null = null;
+  // How far a tyre may scrub sideways, as a fraction of how far it rolls (see freeMotions).
+  // More lets a car whose steering is further from every wheel turning round one centre (both
+  // front wheels turned alike, say) roll at a bigger steering angle; but too much would let a
+  // car with no steering at all turn, its tyres scrubbing round.
+  scrub = DEFAULT_SCRUB;
 
   private mech: Mechanism;
   private bodyCount: number;
@@ -889,7 +895,7 @@ export class Kinematics {
   // motion (turning the steering wheel shouldn't also roll the car).
   //
   // Tyres on the ground may scrub sideways a little: of the motions the equations allow, the
-  // ones kept are those where the tyres scrub sideways by at most SCRUB of how fast they
+  // ones kept are those where the tyres scrub sideways by at most `scrub` of how fast they
   // travel (rolling straight, steering on its own, and a steered car turning round the centre
   // that needs the least scrub), and not, say, sliding the car across its length. Motions that
   // leave the frame where it is are kept however much the tyres scrub: steering a parked car
@@ -927,8 +933,11 @@ export class Kinematics {
       }),
       1e-6,
     );
-    const liftAsScrub = slip.lift.map((row) => row.map((x) => (x * SCRUB) / LIFT));
-    const rolling = rest.length ? leastScrub(rest, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, SCRUB) : [];
+    // Lift counts as scrub, LIFT of it as much as the usual allowance (however much more scrub
+    // the model allows: that's for scrubbing sideways, not rising or sinking).
+    const usual = Math.min(this.scrub, DEFAULT_SCRUB);
+    const liftAsScrub = slip.lift.map((row) => row.map((x) => (x * usual) / LIFT));
+    const rolling = rest.length ? leastScrub(rest, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, this.scrub, usual) : [];
     return orthonormalize([...keptParked, ...rolling]);
   }
 
@@ -1145,13 +1154,17 @@ function smallestTurning(motions: number[][], rate: (m: number[]) => number): nu
   return combined;
 }
 
-// Of orthonormal motions, the mixes in which the tyres scrub sideways by at most SCRUB of how
+// Of orthonormal motions, the mixes in which the tyres scrub sideways by at most `limit` of how
 // far they travel, as orthonormal motions. Worked out in the motions' own coordinates:
 //   - mixes in which no tyre travels are kept only if no tyre scrubs (steering on its own);
 //   - mixes in which tyres travel may add any of those, to scrub as little as they can; then
-//     the directions whose scrub per unit of travel is at most SCRUB are kept (rolling
-//     straight, and a steered car turning round the centre that needs the least scrub).
-function leastScrub(motions: number[][], slip: Slip, limit: number): number[][] {
+//     the directions whose scrub per unit of travel is at most `usual` are kept (rolling
+//     straight, and a steered car turning round the centre that needs the least scrub). If
+//     none is, but the one that scrubs least is within `limit`, that one alone is kept: a model
+//     may allow its tyres more scrub (`limit`, more than `usual`) so that it can roll where it
+//     otherwise couldn't, but not so that it may also roll in other ways that scrub more than
+//     needed (a steered car scrubbing straight on, rather than following its steering).
+function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit): number[][] {
   const k = motions.length;
   const dot = (a: number[], b: number[]) => a.reduce((sum, x, i) => sum + x * b[i], 0);
   // Each row applied to each motion: rows × k.
@@ -1188,8 +1201,10 @@ function leastScrub(motions: number[][], slip: Slip, limit: number): number[][] 
   const left = best.map(scrubOf);
   const leftGram = best.map((_, i) => best.map((_, j) => dot(left[i], left[j])));
   const { values: mv, vectors: mvecs } = symmetricEigen(leftGram);
+  const least = Math.min(...mv);
+  const threshold = least <= limit * limit ? Math.max(usual * usual, least) : -Infinity;
   mvecs.forEach((y, e) => {
-    if (mv[e] <= limit * limit) kept.push(combine(best, y));
+    if (mv[e] <= threshold) kept.push(combine(best, y));
   });
 
   return orthonormalize(kept.map((a) => combine(motions, a)));

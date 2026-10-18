@@ -707,6 +707,12 @@ export function setUpInteraction(s: InteractionSetup) {
     stopMotor: () => setMotor(-1),
     reverseMotor: () => (motorDirection = -motorDirection),
     setMotorRpm: (rpm: number) => (motorSpeed = (rpm / 60) * 2 * Math.PI),
+    // The ways the mechanism can move have changed (tyres may scrub more or less), so the
+    // motor's holds need working out again.
+    motionsChanged: () => {
+      if (motorHeldIn === s.kin) s.kin.letGoAfterDrag();
+      motorHeldIn = null;
+    },
     motorRunning: () => motorPart >= 0,
   };
 }

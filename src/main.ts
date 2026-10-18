@@ -26,8 +26,8 @@ import { collisionGeometry, Collisions, PartMesh } from './collisions.ts';
 import { ConnectionTable, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
-import { Kinematics } from './kinematics.ts';
-import { parseModel, PlacedPart } from './ldr.ts';
+import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
+import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
@@ -70,6 +70,15 @@ const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODEL
 const OPTIONS = params.getAll('option').join(',').split(',');
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
+// How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
+// not the model's own (see modelSettings in ldr.ts).
+const SCRUB_PARAM = percent(params.get('scrub'));
+
+// A percentage from 0 to 100 from text, or null if it isn't one.
+function percent(text: string | null): number | null {
+  const n = Number(text);
+  return text && Number.isFinite(n) && n >= 0 && n <= 100 ? n : null;
+}
 
 // A whole number of at least 1 from text, or null if it isn't one.
 function whole(text: string | null): number | null {
@@ -206,7 +215,12 @@ async function start() {
   // again after each shift, when the mechanism is worked out afresh from where the parts are.
   let parts = startParts;
   let mech = inferMechanism(parts, table, roles);
+  // How far tyres may scrub sideways, in percent: the model's own allowance, unless the address
+  // says otherwise.
+  const modelScrub = modelSettings(modelText).scrub ?? DEFAULT_SCRUB * 100;
+  let scrub = SCRUB_PARAM ?? modelScrub;
   let kin = new Kinematics(mech);
+  kin.scrub = scrub / 100;
   let sliders: Slider[] = [];
   let axes = new Group();
   axes.visible = OPTIONS.includes('axes');
@@ -224,6 +238,7 @@ async function start() {
     parts = placed;
     mech = inferMechanism(parts, table, roles);
     kin = new Kinematics(mech);
+    kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
@@ -317,9 +332,10 @@ async function start() {
 
   const picker = document.getElementById('model') as HTMLSelectElement;
   for (const [file, name] of MODELS) picker.add(new Option(name, file, false, file === MODEL));
-  // Switching model keeps the options.
+  // Switching model keeps the options, except tyre scrub: the next model has its own.
   picker.addEventListener('change', () => {
     params.set('model', picker.value);
+    params.delete('scrub');
     window.location.search = params.toString();
   });
 
@@ -331,6 +347,7 @@ async function start() {
     axes: axes.visible,
     contacts: contacts.visible,
     rpm: RPM,
+    scrub,
   };
   const keepOption = (name: string, on: boolean) => {
     const options = new Set(OPTIONS.filter((o) => o));
@@ -397,6 +414,15 @@ async function start() {
     interaction.setMotorRpm(rpm);
     if (rpm === DEFAULT_RPM) params.delete('rpm');
     else params.set('rpm', String(rpm));
+    history.replaceState(null, '', '?' + params.toString());
+  });
+  // How far tyres may scrub sideways, in percent, kept in the address if not the model's own.
+  gui.add(settings, 'scrub', 0, 30, 1).name('Tyre scrub (%)').onFinishChange((value: number) => {
+    scrub = Math.max(0, Math.round(value));
+    kin.scrub = scrub / 100;
+    interaction.motionsChanged();
+    if (scrub === modelScrub) params.delete('scrub');
+    else params.set('scrub', String(scrub));
     history.replaceState(null, '', '?' + params.toString());
   });
   // While a part is kept turning, the camera follows the model: it moves by however far the
@@ -530,7 +556,7 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
       const rolled = Math.abs(kin.treadTravel[t]);
       const expected = ((rolled / mech.treads[t].radius) * 180) / Math.PI;
       line += ` (rolled ${rolled.toFixed(1)} ÷ ${mech.treads[t].radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
-      // How far it has scrubbed sideways (see SCRUB in kinematics.ts), once it's noticeable.
+      // How far it has scrubbed sideways (see Kinematics.scrub), once it's noticeable.
       if (kin.treadScrub[t] >= 0.05) line += `, scrubbed ${kin.treadScrub[t].toFixed(1)} sideways`;
     }
     lines.push(line);
