@@ -99,6 +99,11 @@ export class Kinematics {
   private parentJoint: number[] = [];
   private order: number[] = []; // bodies, parents before children
   private rootPoses = new Map<number, Matrix4>();
+  // The tree's coordinates, in which the solver works (see treeBasis): six for each root body
+  // (how it turns and moves), then one for each joint in the tree (how fast it turns).
+  private rootColumn = new Map<number, number>(); // a root body's first coordinate
+  private jointColumn: number[] = []; // a joint's coordinate, or -1 if it's not in the tree
+  private columns = 0; // how many coordinates
   private fixedBody = -1; // kept still when the model has no tyres on the ground
   private frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
   private dragHeld = new Set<number>(); // bodies held still for the length of one drag
@@ -231,6 +236,68 @@ export class Kinematics {
         });
       }
     }
+    for (const root of this.rootPoses.keys()) {
+      this.rootColumn.set(root, this.columns);
+      this.columns += 6;
+    }
+    this.jointColumn = this.mech.joints.map((_, j) => (this.inTree(j) ? this.columns++ : -1));
+  }
+
+  // An orthonormal basis for the motions the tree allows, as motion vectors: the rows of the
+  // result are the motion vector's places (6 per body), its columns the basis vectors.
+  //
+  // Every motion that keeps the tree's joints together is the bodies turning and moving as the
+  // root bodies and the tree's joint speeds say, so solving for those (one number per joint,
+  // rather than six per body) gives the same answers from a far smaller system of equations,
+  // with the tree's joints dropped from it. The basis is made orthonormal, so that the
+  // smallest motion in its coordinates is the smallest motion of the bodies too.
+  private treeBasis(): number[][] {
+    // Each body's motion, as a list of coordinates and what one unit of each does to it
+    // (6 numbers: turning, then the velocity of the origin).
+    const chains: { column: number; twist: number[] }[][] = [];
+    for (const body of this.order) {
+      const j = this.parentJoint[body];
+      if (j < 0) {
+        const first = this.rootColumn.get(body)!;
+        chains[body] = Array.from({ length: 6 }, (_, k) => ({ column: first + k, twist: Array.from({ length: 6 }, (_, i) => (i === k ? 1 : 0)) }));
+        continue;
+      }
+      // Turning about the joint's axis d through point c, at rate 1, bodyB relative to bodyA:
+      // turn d, velocity of the origin c × d.
+      const joint = this.mech.joints[j];
+      const parent = joint.bodyA === body ? joint.bodyB : joint.bodyA;
+      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+      const c = joint.from.clone().applyMatrix4(this.poses[joint.bodyA]);
+      const v = new Vector3().crossVectors(c, d);
+      const sign = joint.bodyB === body ? 1 : -1;
+      const twist = [d.x, d.y, d.z, v.x, v.y, v.z].map((x) => sign * x);
+      chains[body] = [...chains[parent], { column: this.jointColumn[j], twist }];
+    }
+    // The columns of J, which turns coordinates into a motion vector, made orthonormal by
+    // Gram-Schmidt, twice over for accuracy (some columns are nearly alike, such as two joints
+    // on one axle). Plain loops: this runs every step.
+    const n = 6 * this.bodyCount;
+    const columns: Float64Array[] = Array.from({ length: this.columns }, () => new Float64Array(n));
+    chains.forEach((chain, body) => {
+      for (const { column, twist } of chain) for (let k = 0; k < 6; k++) columns[column][6 * body + k] = twist[k];
+    });
+    for (let c = 0; c < columns.length; c++) {
+      const u = columns[c];
+      for (let pass = 0; pass < 2; pass++) {
+        for (let b = 0; b < c; b++) {
+          const e = columns[b];
+          let d = 0;
+          for (let i = 0; i < n; i++) d += u[i] * e[i];
+          for (let i = 0; i < n; i++) u[i] -= d * e[i];
+        }
+      }
+      let length = 0;
+      for (let i = 0; i < n; i++) length += u[i] * u[i];
+      length = Math.sqrt(length);
+      for (let i = 0; i < n; i++) u[i] /= length;
+    }
+    const basis = Array.from({ length: n }, (_, i) => columns.map((col) => col[i]));
+    return basis;
   }
 
   // Rebuilds every body's pose from the root poses and joint angles.
@@ -506,7 +573,9 @@ export class Kinematics {
   // has come apart), or 0 for every other row (see closeLoops).
   // If `slip` is given, it gets, for each tyre on the ground, a row for how fast it scrubs
   // sideways and one for how fast it travels.
-  private buildEquations(gaps: number[] | null, slip: Slip | null): Row[] {
+  // With `skipTree`, the tree's joints are left out, for solving in the tree's coordinates
+  // (see treeBasis), which keep them together anyway.
+  private buildEquations(gaps: number[] | null, slip: Slip | null, skipTree = false): Row[] {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
     const add = (row: Row, gap = 0) => {
@@ -553,6 +622,7 @@ export class Kinematics {
     //   slide     the same across the axis, and no turning at all
     //   ball      the same at the ball's centre
     this.mech.joints.forEach((joint, index) => {
+      if (skipTree && this.inTree(index)) return;
       const poseA = this.poses[joint.bodyA];
       const c = joint.from.clone().applyMatrix4(poseA);
       const d = joint.kind === 'ball' ? new Vector3(0, 1, 0) : axisOf(joint.from, joint.to).transformDirection(poseA);
@@ -696,16 +766,22 @@ export class Kinematics {
   // without turning `keep` (the joint a drag is turning, so it turns by exactly what the drag
   // asked). A few rounds, since each is only exact for small gaps; it stops early once a round
   // no longer halves the biggest gap (a model whose positions are rounded off, as LDraw files
-  // are, can't always close its loops quite exactly).
+  // are, can't always close its loops quite exactly), undoing that round if it made the gap
+  // bigger.
   private closeLoops(keep: number) {
     if (this.mech.joints.every((_, j) => this.inTree(j))) return;
     let previous = Infinity;
+    let before: KinematicsState | null = null;
     for (let round = 0; round < 8; round++) {
       const gaps: number[] = [];
-      const rows = this.buildEquations(gaps, null);
+      const rows = this.buildEquations(gaps, null, true);
       const biggest = gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
+      // A round that opened the gaps up, rather than closing them, is undone.
+      if (before && biggest > previous) this.restore(before);
       if (biggest < LOOP_TOLERANCE || biggest > previous / 2) return;
       previous = biggest;
+      before = this.snapshot();
+      const basis = this.treeBasis();
       if (keep >= 0) {
         const row = new Array(6 * this.bodyCount).fill(0);
         const j = this.mech.joints[keep];
@@ -717,9 +793,9 @@ export class Kinematics {
         rows.push(row);
         gaps.push(0);
       }
-      const motion = smallestSolution(rows, gaps);
-      if (!motion) return;
-      this.move(motion, 1);
+      const solution = dampedSolution(inBasis(rows, basis), gaps);
+      if (!solution) return;
+      this.move(fromBasis(solution, basis), 1);
     }
   }
 
@@ -810,15 +886,16 @@ export class Kinematics {
   freeMotions(): number[][] {
     const slip: Slip = { sideways: [], travel: [], lift: [] };
     const n = 6 * this.bodyCount;
-    const rows = this.buildEquations(null, slip);
-    const motions = orthonormalize(nullSpace(rows, n));
+    const basis = this.treeBasis();
+    const rows = inBasis(this.buildEquations(null, slip, true), basis);
+    const motions = orthonormalize(nullSpace(rows, basis[0].length).map((z) => fromBasis(z, basis)));
     if (slip.sideways.length === 0 || motions.length === 0) return motions;
     const frameStill = Array.from({ length: 6 }, (_, k) => {
       const row = new Array(n).fill(0);
       row[k] = 1;
       return row;
     });
-    const parked = orthonormalize(nullSpace([...rows, ...frameStill], n));
+    const parked = orthonormalize(nullSpace([...rows, ...inBasis(frameStill, basis)], basis[0].length).map((z) => fromBasis(z, basis)));
     const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: slip.lift, travel: [...slip.travel, ...slip.sideways], lift: [] }, LIFT)) : [];
     // The rest of the motions, with the parked ones taken out, judged as rolling. Taking them
     // out first keeps the two sets apart: joined afterwards, a rolling motion that's nearly a
@@ -1164,48 +1241,91 @@ export function symmetricEigen(matrix: number[][]): { values: number[]; vectors:
   return { values: a.map((row, i) => row[i]), vectors: a.map((_, e) => v.map((row) => row[e])) };
 }
 
-// The smallest x with  rows · x = values  (least squares, if they can't all hold): x is a mix
-// of the rows, x = rowsᵀ · y, where (rows · rowsᵀ) · y = values, solved by Gaussian
-// elimination with a little damping so repeated rows don't make it fail.
-function smallestSolution(rows: Row[], values: number[]): number[] | null {
-  const m = rows.length;
-  if (m === 0) return null;
+// The smallest x with  rows · x = values, or if they can't all hold (a model whose positions
+// are rounded off can't always close its loops exactly), close to the smallest that comes
+// closest: the x minimizing |rows · x - values|² + δ|x|², with δ tiny, which keeps rows that
+// nearly repeat others (two joints in a loop that each keep the same body from tipping) from
+// asking for huge motions. Each row is scaled to length 1 first, so that where rows can't all
+// hold, rows about turning count as much as rows about moving (in LDU, whose numbers run
+// larger); weighed by their raw sizes, a single-cylinder engine's piston tips a little further
+// out of line with every step. Solved by QR on the rows themselves, rather than on rows · rowsᵀ,
+// which would square their rounding errors.
+function dampedSolution(rows: Row[], values: number[]): number[] | null {
+  if (rows.length === 0) return null;
   const n = rows[0].length;
-  // Each row is mostly zeros (it involves one or two bodies), so only its non-zero places are
-  // multiplied.
-  const nonZero = rows.map((row) => row.flatMap((x, k) => (x !== 0 ? [k] : [])));
-  const a: number[][] = [];
-  for (let i = 0; i < m; i++) {
-    a.push([]);
-    for (let j = 0; j < m; j++) {
-      let dot = 0;
-      for (const k of nonZero[i]) dot += rows[i][k] * rows[j][k];
-      a[i].push(dot);
+  // Each row scaled to length 1, so that rows of turning and of moving count alike. Rows next
+  // to nothing long are left out: the tree already keeps them (their length is rounding).
+  const lengths = rows.map((row) => Math.sqrt(row.reduce((sum, x) => sum + x * x, 0)));
+  const longest = Math.max(...lengths);
+  const kept = rows.flatMap((_, i) => (lengths[i] > 1e-9 * longest ? [i] : []));
+  if (kept.length === 0) return null;
+  const damping = Math.sqrt(1e-13);
+  const identity = Array.from({ length: n }, (_, i) => Array.from({ length: n }, (_, j) => (i === j ? damping : 0)));
+  return leastSquares(
+    [...kept.map((i) => rows[i].map((x) => x / lengths[i])), ...identity],
+    [...kept.map((i) => values[i] / lengths[i]), ...new Array(n).fill(0)],
+  );
+}
+
+function leastSquares(a: number[][], b: number[]): number[] {
+  const m = a.length;
+  const k = a[0].length;
+  const r = a.map((row) => row.slice());
+  const y = b.slice();
+  for (let j = 0; j < k; j++) {
+    // Reflect column j below the diagonal onto the diagonal.
+    let norm = 0;
+    for (let i = j; i < m; i++) norm += r[i][j] * r[i][j];
+    norm = Math.sqrt(norm);
+    if (norm === 0) continue;
+    const alpha = r[j][j] > 0 ? -norm : norm;
+    const v = new Array(m).fill(0);
+    for (let i = j; i < m; i++) v[i] = r[i][j];
+    v[j] -= alpha;
+    const vv = v.reduce((sum, x) => sum + x * x, 0);
+    if (vv === 0) continue;
+    for (let col = j; col < k; col++) {
+      let d = 0;
+      for (let i = j; i < m; i++) d += v[i] * r[i][col];
+      const f = (2 * d) / vv;
+      for (let i = j; i < m; i++) r[i][col] -= f * v[i];
     }
+    let d = 0;
+    for (let i = j; i < m; i++) d += v[i] * y[i];
+    const f = (2 * d) / vv;
+    for (let i = j; i < m; i++) y[i] -= f * v[i];
   }
-  const scale = Math.max(...a.map((r, i) => r[i]), 1);
-  for (let i = 0; i < m; i++) a[i][i] += 1e-13 * scale;
-  const y = values.slice();
-  for (let c = 0; c < m; c++) {
-    let best = c;
-    for (let r = c + 1; r < m; r++) if (Math.abs(a[r][c]) > Math.abs(a[best][c])) best = r;
-    if (Math.abs(a[best][c]) < 1e-30) return null;
-    [a[c], a[best]] = [a[best], a[c]];
-    [y[c], y[best]] = [y[best], y[c]];
-    for (let r = c + 1; r < m; r++) {
-      const f = a[r][c] / a[c][c];
-      if (f === 0) continue;
-      for (let k = c; k < m; k++) a[r][k] -= f * a[c][k];
-      y[r] -= f * y[c];
-    }
+  const x = new Array(k).fill(0);
+  for (let j = k - 1; j >= 0; j--) {
+    let sum = y[j];
+    for (let col = j + 1; col < k; col++) sum -= r[j][col] * x[col];
+    x[j] = r[j][j] === 0 ? 0 : sum / r[j][j];
   }
-  for (let c = m - 1; c >= 0; c--) {
-    for (let k = c + 1; k < m; k++) y[c] -= a[c][k] * y[k];
-    y[c] /= a[c][c];
-  }
-  const x = new Array(n).fill(0);
-  for (let i = 0; i < m; i++) for (const k of nonZero[i]) x[k] += rows[i][k] * y[i];
   return x;
+}
+
+// Equation rows (on motion vectors) as rows on coordinates in a basis (see treeBasis).
+function inBasis(rows: Row[], basis: number[][]): Row[] {
+  const q = basis[0]?.length ?? 0;
+  return rows.map((row) => {
+    const out = new Array(q).fill(0);
+    for (let i = 0; i < row.length; i++) {
+      const x = row[i];
+      if (x === 0) continue;
+      const b = basis[i];
+      for (let c = 0; c < q; c++) out[c] += x * b[c];
+    }
+    return out;
+  });
+}
+
+// The motion vector with these coordinates in a basis (see treeBasis).
+function fromBasis(z: number[], basis: number[][]): number[] {
+  return basis.map((b) => {
+    let sum = 0;
+    for (let c = 0; c < z.length; c++) sum += b[c] * z[c];
+    return sum;
+  });
 }
 
 // The same vectors made orthonormal (unit length, at right angles to each other), by

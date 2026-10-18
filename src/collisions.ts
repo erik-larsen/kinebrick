@@ -8,8 +8,11 @@
 // which on the real model just rubs past it as the wheel steers).
 //
 // The shapes are the parts' own LDraw meshes, tested with three-mesh-bvh, a library that
-// sorts each mesh's triangles into a tree of boxes so two meshes can be tested quickly. A
-// cheap box check first skips pairs that aren't near each other. Each shape is shrunk a
+// sorts each mesh's triangles into a tree of boxes so two meshes can be tested quickly. Pairs
+// are grouped by the two bodies they're on: parts on two bodies that haven't moved against each
+// other since last found clear can't have started to overlap, so the whole group is skipped.
+// Cheap box checks (around each body's parts, then each part) skip pairs that aren't near
+// each other. Each shape is shrunk a
 // little towards its middle (by INSET at each face of its box), so parts that only touch,
 // face to face, don't count.
 
@@ -67,12 +70,21 @@ interface Shape {
   box: Box3; // in the part's own coordinates
 }
 
+// The watched pairs of parts on two bodies.
+interface Group {
+  pairs: [number, number][];
+  onA: number[]; // the parts in those pairs on each body
+  onB: number[];
+  // A part on each body, and how the second sat relative to the first when the group was last
+  // found clear. If that hasn't changed, no pair in the group can have started to overlap.
+  a: number;
+  b: number;
+  lastClear: Matrix4 | null;
+}
+
 export class Collisions {
   private shapes: Shape[];
-  private pairs: [number, number][] = [];
-  // For each checked pair: how the second part sat relative to the first when last found
-  // clear. If that hasn't changed, the pair can't have started to overlap.
-  private lastClear = new Map<string, Matrix4>();
+  private groups: Group[] = [];
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
@@ -96,31 +108,47 @@ export class Collisions {
   // Works out which pairs of parts to watch, for a mechanism worked out afresh (after a shift).
   // Same arguments as the constructor.
   watch(bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]) {
-    this.pairs = [];
-    this.lastClear.clear();
+    const groups = new Map<string, Group>();
     for (let a = 0; a < this.shapes.length; a++) {
       for (let b = a + 1; b < this.shapes.length; b++) {
         if (bodyOf[a] === bodyOf[b] || connected.has(`${a},${b}`)) continue;
         if (this.near(a, b, partMatrices)) continue; // already touching, or nearly, at the start
-        this.pairs.push([a, b]);
+        const key = `${bodyOf[a]},${bodyOf[b]}`;
+        if (!groups.has(key)) groups.set(key, { pairs: [], onA: [], onB: [], a, b, lastClear: null });
+        groups.get(key)!.pairs.push([a, b]);
       }
+    }
+    this.groups = [...groups.values()];
+    for (const g of this.groups) {
+      g.onA = [...new Set(g.pairs.map(([a]) => a))];
+      g.onB = [...new Set(g.pairs.map(([, b]) => b))];
     }
   }
 
   // How many pairs of parts are being watched.
   get watchedPairs(): number {
-    return this.pairs.length;
+    return this.groups.reduce((sum, g) => sum + g.pairs.length, 0);
   }
 
   // The first pair of watched parts that now overlap, or null if none do.
   check(partMatrices: Matrix4[]): [number, number] | null {
-    for (const [a, b] of this.pairs) {
-      const key = `${a},${b}`;
-      const relative = partMatrices[a].clone().invert().multiply(partMatrices[b]);
-      const last = this.lastClear.get(key);
-      if (last && sameMatrix(last, relative)) continue;
-      if (this.overlap(a, b, partMatrices)) return [a, b];
-      this.lastClear.set(key, relative);
+    // Each part's box in model coordinates, worked out when first needed.
+    const boxes: (Box3 | undefined)[] = [];
+    const boxOf = (i: number) => (boxes[i] ??= this.shapes[i].box.clone().applyMatrix4(partMatrices[i]));
+    for (const group of this.groups) {
+      const relative = partMatrices[group.a].clone().invert().multiply(partMatrices[group.b]);
+      if (group.lastClear && sameMatrix(group.lastClear, relative)) continue;
+      // Boxes round each side's watched parts: if they don't meet, no pair can.
+      const sideA = new Box3();
+      const sideB = new Box3();
+      for (const a of group.onA) sideA.union(boxOf(a));
+      for (const b of group.onB) sideB.union(boxOf(b));
+      if (sideA.intersectsBox(sideB)) {
+        for (const [a, b] of group.pairs) {
+          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
+        }
+      }
+      group.lastClear = relative;
     }
     return null;
   }
@@ -144,10 +172,8 @@ export class Collisions {
   }
 
   // Whether two parts' meshes overlap, placed as `partMatrices` says.
+  // (The caller has already checked their boxes meet.)
   private overlap(a: number, b: number, partMatrices: Matrix4[]): boolean {
-    const boxA = this.shapes[a].box.clone().applyMatrix4(partMatrices[a]);
-    const boxB = this.shapes[b].box.clone().applyMatrix4(partMatrices[b]);
-    if (!boxA.intersectsBox(boxB)) return false;
     // b's coordinates -> a's coordinates
     const bToA = partMatrices[a].clone().invert().multiply(partMatrices[b]);
     for (const ma of this.shapes[a].meshes) {

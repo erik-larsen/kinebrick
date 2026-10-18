@@ -45,8 +45,14 @@ const ARC_ANGLE = 1.8; // radians covered by the turning arc (about 100 degrees)
 const MIN_ARC_RADIUS = 10; // LDU, so an arc grabbed near the axle is still visible
 // Largest distance the grabbed point moves in one push step, in LDU. Smaller is more exact.
 const MAX_STEP = 1;
-// Most push steps per pointer movement.
+// Most push steps towards one pointer position.
 const MAX_STEPS = 60;
+// Largest turn a drag makes in one go, in radians (as Kinematics.turnJoint's steps).
+const TURN_STEP = 0.035;
+// Most time spent moving the mechanism in one frame of a drag, in milliseconds. Pointer
+// movements are gathered up and worked through a frame at a time, so a big model on a slow
+// computer still redraws; what's left is done in the next frame.
+const FRAME_BUDGET = 25;
 // A message in the label (such as "Froze gear 1") stays up this long, in milliseconds, unless
 // the pointer moves this far away, in pixels. (A click nearly always moves the pointer a
 // little, so a message that went at the first move would hardly be seen.)
@@ -105,6 +111,9 @@ interface Drag {
   arc: Group | null; // turn only
   lastX: number; // the pointer's previous position (turn only)
   lastY: number;
+  owed: number; // how far the joint has still to turn to catch up with the pointer (turn only)
+  target: Vector2 | null; // where the pointer is, if the grabbed point hasn't got there (push only)
+  pushSteps: number; // steps taken towards the target so far (push only)
 }
 
 export function setUpInteraction(s: InteractionSetup) {
@@ -260,16 +269,17 @@ export function setUpInteraction(s: InteractionSetup) {
   // Moves the mechanism, in small steps, so the grabbed point gets as close as it can to the
   // pointer on screen. Each step works out, for every allowed motion, how far the grabbed
   // point would move on screen, and picks the mix of motions that best closes the gap
-  // (least squares).
-  function pushTowards(d: Drag, clientX: number, clientY: number) {
-    const target = new Vector2(clientX, clientY);
-    for (let step = 0; step < MAX_STEPS; step++) {
+  // (least squares). Returns false if it ran out of time (`deadline`, from performance.now())
+  // before getting there, else true (there, or as near as it can get).
+  function pushTowards(d: Drag, target: Vector2, deadline: number): boolean {
+    for (; d.pushSteps < MAX_STEPS; d.pushSteps++) {
+      if (performance.now() > deadline) return false;
       const motions = s.kin.freeMotions();
-      if (motions.length === 0) return;
+      if (motions.length === 0) return true;
       const g = grabPoint(d);
       const gScreen = toScreen(g);
       const gap = target.clone().sub(gScreen);
-      if (gap.length() < 0.5) return;
+      if (gap.length() < 0.5) return true;
 
       // For each motion: how fast the point moves in LDU, and in pixels on screen.
       const speeds: Vector3[] = [];
@@ -282,18 +292,19 @@ export function setUpInteraction(s: InteractionSetup) {
       }
 
       const amounts = leastSquares(screenSpeeds, gap);
-      if (!amounts) return;
+      if (!amounts) return true;
       // Limit how far the point moves in one step.
       const move = new Vector3();
       amounts.forEach((a, i) => move.addScaledVector(speeds[i], a));
-      if (move.length() < 1e-6) return;
+      if (move.length() < 1e-6) return true;
       const scale = Math.min(1, MAX_STEP / move.length());
       const combined = new Array(motions[0].length).fill(0);
       motions.forEach((m, i) => m.forEach((x, k) => (combined[k] += x * amounts[i] * scale)));
       const before = s.kin.snapshot();
       s.kin.advance(combined, 1);
-      if (stopIfBlocked(before)) return;
+      if (stopIfBlocked(before)) return true;
     }
+    return true;
   }
 
   // ---------------------------------------------------------------------------
@@ -313,9 +324,10 @@ export function setUpInteraction(s: InteractionSetup) {
     d.arc.visible = true;
   }
 
-  // Turns the part about its axle like a knob, by the angle the pointer swept around the axle
-  // since its last position (see turn.ts). Seen side-on, where that doesn't work, it instead
-  // turns by how far the pointer moved along the way the grabbed point turns on screen.
+  // Owes the part a turn about its axle like a knob, by the angle the pointer swept around the
+  // axle since its last position (see turn.ts). Seen side-on, where that doesn't work, it
+  // instead owes it how far the pointer moved along the way the grabbed point turns on screen.
+  // (turnOwed makes the turn.)
   function turnTowards(d: Drag, clientX: number, clientY: number) {
     const { hub, dir } = turnAxis(d);
     const grab = grabPoint(d);
@@ -333,11 +345,49 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     // The joint's angle is bodyB relative to bodyA, so flip it if we're turning bodyA.
     const sign = s.mech.joints[d.joint].bodyB === d.body ? 1 : -1;
-    s.kin.turnJoint(d.joint, sign * angle, () => {
+    d.owed += sign * angle;
+  }
+
+  // Turns the part by what it's owed, a step at a time, until `deadline` (from
+  // performance.now()). If it runs into something, it stops there and is owed nothing more.
+  function turnOwed(d: Drag, deadline: number) {
+    const allowed = () => {
       const pair = s.blockedBy();
       if (pair) s.appearance.flashBlocked(pair);
       return !pair;
+    };
+    while (d.owed !== 0 && performance.now() < deadline) {
+      const step = Math.sign(d.owed) * Math.min(Math.abs(d.owed), TURN_STEP);
+      const turned = s.kin.turnJoint(d.joint, step, allowed);
+      d.owed = Math.abs(turned - step) > 1e-12 ? 0 : d.owed - step;
+      if (Math.abs(d.owed) < 1e-12) d.owed = 0;
+    }
+  }
+
+  // Works through the drag's pointer movements for up to FRAME_BUDGET, once a frame, as long
+  // as there's some left.
+  let working = false;
+  function workSoon() {
+    if (working) return;
+    working = true;
+    requestAnimationFrame(() => {
+      working = false;
+      if (!drag) return;
+      work(drag);
+      if (drag.owed !== 0 || drag.target) workSoon();
     });
+  }
+
+  function work(d: Drag) {
+    const deadline = performance.now() + FRAME_BUDGET;
+    if (d.joint >= 0) {
+      turnOwed(d, deadline);
+      updateArc(d);
+    } else if (d.target) {
+      if (pushTowards(d, d.target, deadline)) d.target = null;
+      updateArrow(d);
+    }
+    s.onMoved();
   }
 
   // If the last step made two parts pass through each other, puts everything back where it
@@ -553,7 +603,7 @@ export function setUpInteraction(s: InteractionSetup) {
       // rod) is pushed.
       const link = s.kin.parentLink(body);
       const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
-      drag = { pointerId: e.pointerId, body, grabStart, joint, arc: null, lastX: e.clientX, lastY: e.clientY };
+      drag = { pointerId: e.pointerId, body, grabStart, joint, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0 };
       hideLabel();
 
       // Hold still whatever this drag doesn't need to move.
@@ -620,15 +670,16 @@ export function setUpInteraction(s: InteractionSetup) {
       turnTowards(drag, e.clientX, e.clientY);
       drag.lastX = e.clientX;
       drag.lastY = e.clientY;
-      updateArc(drag);
     } else {
-      pushTowards(drag, e.clientX, e.clientY);
-      updateArrow(drag);
+      drag.target = new Vector2(e.clientX, e.clientY);
+      drag.pushSteps = 0;
     }
-    s.onMoved();
+    workSoon();
   });
 
   canvas.addEventListener('pointerup', (e) => {
+    // A last movement not yet worked through (let go within a frame of it) is, first.
+    if (e.pointerId === drag?.pointerId && (drag.owed !== 0 || drag.target)) work(drag);
     if (e.pointerId === drag?.pointerId || e.pointerId === shifting?.pointerId) endDrag();
   });
   canvas.addEventListener('pointercancel', (e) => {
