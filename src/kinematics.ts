@@ -455,18 +455,22 @@ export class Kinematics {
   // Whether a body turns like a knob: on a joint whose axis stays put in what it's mounted on
   // (a gear, a crank, a wheel), rather than turning and travelling at once as part of a loop
   // (a connecting rod, the middle beam of a linkage). Drags turn the first kind and push the rest.
-  // A body in a loop still turns like a knob if it can turn with what it's mounted on held
-  // still (a crane's winch drum, whose axle also passes through bricks pinned to the cab),
-  // but not if turning it needs that to move (a connecting rod on its crank).
+  // A body in a loop still turns like a knob if all its joints are turning ones on one axis: a
+  // shaft held in several places (a crane's winch drum, whose axle also passes through bricks
+  // pinned to the cab; the axle at the top of its boom, which drives the boom's luffing), not a
+  // link pinned at two (a connecting rod).
   turnsLikeAKnob(body: number): boolean {
     const link = this.parentLink(body);
     if (!link) return false;
     if (this.parentJoint[link.parent] < 0 || !this.inLoop(link.joint)) return true;
-    const held = this.dragHeld.has(link.parent);
-    this.dragHeld.add(link.parent);
-    const turns = this.jointMotion(link.joint) !== null;
-    if (!held) this.dragHeld.delete(link.parent);
-    return turns;
+    const own = this.mech.joints[link.joint];
+    const d = axisOf(own.from, own.to);
+    return this.mech.joints.every((j) => {
+      if (j.bodyA !== body && j.bodyB !== body) return true;
+      if (j.kind !== 'revolute' || new Vector3().crossVectors(d, axisOf(j.from, j.to)).length() > 0.01) return false;
+      const off = new Vector3().subVectors(j.from, own.from);
+      return off.addScaledVector(d, -off.dot(d)).length() < 1;
+    });
   }
 
   // How far a slide joint's bodyB has slid along it, relative to bodyA, since the start, in LDU.
