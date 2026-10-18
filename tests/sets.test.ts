@@ -10,9 +10,14 @@ import { inferMechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+// Which files each model places are LDraw primitives (drawn shapes, not parts), and which parts
+// are read as their pieces, as the packer found.
+const packed: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
 
 function load(file: string) {
-  const parts = parseLdr(readFileSync(file, 'utf-8'));
+  const model = packed[file.replace(/^models\//, '').replace(/\.(ldr|mpd)$/, '')];
+  const primitives = new Set(model?.primitives ?? []);
+  const parts = parseLdr(readFileSync(file, 'utf-8'), (name) => primitives.has(name), (name) => model?.pieces[name] ?? null);
   const mech = inferMechanism(parts, table, roles);
   const kin = new Kinematics(mech);
   // The body of the n-th copy of a part.
@@ -69,6 +74,56 @@ describe('854 Go-Kart', () => {
     expect(Math.abs(turned)).toBeCloseTo(2 * Math.PI, 6);
     expect(frameMoved()).toBeCloseTo(2 * Math.PI * 54.2, 0); // the big tyre's radius
     expect(Math.max(...offsets) - Math.min(...offsets)).toBeCloseTo(28, 0); // twice the crank's throw
+  });
+});
+
+describe('855 Mobile Crane', () => {
+  const { parts, mech, kin, bodyOf, turn, frameMoved } = load('models/855 - Mobile Crane.mpd');
+  const outriggers = mech.joints.flatMap((j, i) => (j.kind === 'slide' && j.bodyA === 0 && (j.range![0] === -120 || j.range![0] === -40) ? [i] : []));
+  const cab = bodyOf('3404.dat');
+
+  it("is attached except its hook, which hangs on a string (M9): the cab turns on a 4x4 turntable, read as its base and top, and the outriggers slide out on tiles", () => {
+    expect(new Set(mech.loose.map((i) => parts[i].submodel))).toEqual(new Set(['855 - hook.ldr']));
+    expect(mech.joints.some((j) => j.kind === 'revolute' && j.bodyA === 0 && j.bodyB === cab)).toBe(true);
+    expect(outriggers).toHaveLength(4);
+  });
+
+  it('the cab slews on its turntable, boom and all, and the crane stays where it is', () => {
+    kin.reset();
+    expect(Math.abs(turn(cab, 1))).toBeCloseTo(1, 6);
+    expect(frameMoved()).toBeLessThan(1e-6);
+  });
+
+  // Pushes a slide joint's bodyB along it, as a drag does, by `distance` or as far as it goes.
+  const push = (joint: number, distance: number) => {
+    const j = mech.joints[joint];
+    const rate = (m: number[]) => {
+      const at = j.from.clone().applyMatrix4(kin.poses[j.bodyA]);
+      const dir = j.to.clone().sub(j.from).normalize().transformDirection(kin.poses[j.bodyA]);
+      return kin.pointVelocity(m, j.bodyB, at).sub(kin.pointVelocity(m, j.bodyA, at)).dot(dir);
+    };
+    kin.holdWhatTheDragDoesntNeed(j.bodyB, () => kin.freeMotions().some((m) => Math.abs(rate(m)) > 1e-9));
+    for (let i = 0; i < Math.abs(distance) / 5; i++) {
+      const m = kin.freeMotions().find((m) => Math.abs(rate(m)) > 1e-9);
+      if (!m) break;
+      const before = kin.snapshot();
+      kin.advance(m, (5 * Math.sign(distance)) / rate(m));
+      if (kin.atLimit()) {
+        kin.restore(before);
+        break;
+      }
+    }
+    kin.letGoAfterDrag();
+  };
+
+  it('each outrigger slides 160 LDU along its tiles, and no further', () => {
+    for (const joint of outriggers) {
+      for (const end of mech.joints[joint].range!) {
+        kin.reset();
+        push(joint, end + 40 * Math.sign(end));
+        expect(kin.slideOffset(joint)).toBeCloseTo(end, 3);
+      }
+    }
   });
 });
 

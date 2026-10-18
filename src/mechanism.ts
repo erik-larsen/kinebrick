@@ -194,6 +194,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const connections = findConnections(cyls);
   fixPins(connections, roles, frictionRigid);
   connections.push(...platesOnEdge(cyls));
+  connections.push(...onFourStuds(cyls));
+  connections.push(...onTiles(cyls, connections));
   connections.push(...guidedRacks(parts.length, cyls, connections, guide));
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
@@ -267,6 +269,70 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
     joined.push({ partA: ends[0], partB: ends[1], center, axisA: axisOfEnd(ends[0]), axisB: axisOfEnd(ends[1]) });
   });
   return joined;
+}
+
+// A part with a single anti-stud (a 1x1 round brick or plate) sitting centred between four
+// studs grips them: its round underside fits between them, a classic way to set a part half a
+// stud off the grid (an official crane's outrigger legs stand so on their pads).
+function onFourStuds(cyls: WorldCylinder[]): Connection[] {
+  const UP = new Vector3(0, -1, 0);
+  const antiStuds = cyls.filter((c) => c.gender === 'F' && isAntiStud(c) && c.dir.dot(UP) > 0.99);
+  const perPart = new Map<number, number>();
+  for (const a of antiStuds) perPart.set(a.part, (perPart.get(a.part) ?? 0) + 1);
+  const studs = cyls.filter((c) => c.gender === 'M' && isStud(c) && c.dir.dot(UP) > 0.99);
+  const held: Connection[] = [];
+  for (const a of antiStuds) {
+    if (perPart.get(a.part) !== 1) continue;
+    const around = studs.filter((st) => st.part !== a.part && Math.abs(st.start.y - a.start.y) < AXIS_TOLERANCE && Math.abs(Math.abs(st.start.x - a.start.x) - 10) < ALIGN_TOLERANCE && Math.abs(Math.abs(st.start.z - a.start.z) - 10) < ALIGN_TOLERANCE);
+    for (const part of new Set(around.map((st) => st.part))) {
+      if (around.filter((st) => st.part === part).length < 4) continue;
+      held.push({ male: part, female: a.part, kind: 'stud', from: a.start.clone(), to: a.start.clone() });
+    }
+  }
+  return held;
+}
+
+// A part held by nothing but smooth tiles under it slides along them: nothing grips a tile
+// from above (an official crane's outriggers slide out on tiles). Like a plate on tiles (see
+// the corrections), along the tile's length (whatever keeps it in line is taken as read), as
+// long as it still overlaps the tile by a stud. A part attached otherwise (a seat on a rack)
+// is left to that: a tile lets it slide any way, so a slide along the tile could jam it.
+function onTiles(cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+  const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
+  const loose = new Set(findLooseParts(count, connections));
+  if (loose.size === 0) return [];
+  const UP = new Vector3(0, -1, 0);
+  const tops = cyls.filter((c) => c.gender === 'F' && c.secs.length === 1 && c.secs[0].shape === 'P' && Math.abs(c.dir.dot(UP)) < 0.01);
+  const antiStuds = cyls.filter((c) => c.gender === 'F' && isAntiStud(c) && c.dir.dot(UP) > 0.99);
+  const group = rigidGroups(count, connections);
+  const slides: Connection[] = [];
+  for (const top of tops) {
+    const length = top.secs[0].length;
+    const width = top.secs[0].radius;
+    const resting = new Set<number>(); // parts with anti-studs on this tile
+    for (const a of antiStuds) {
+      if (a.part === top.part || !loose.has(a.part) || loose.has(top.part) || group[a.part] === group[top.part]) continue;
+      const offset = new Vector3().subVectors(a.start, top.start);
+      if (Math.abs(offset.y) > AXIS_TOLERANCE) continue;
+      const along = offset.dot(top.dir);
+      const across = offset.clone().addScaledVector(top.dir, -along).length();
+      if (across > width - 4 || along < 0 || along > length) continue;
+      resting.add(a.part);
+    }
+    for (const part of resting) {
+      const ownAlong = antiStuds.filter((a) => a.part === part).map((a) => new Vector3().subVectors(a.start, top.start).dot(top.dir));
+      const from = top.start.clone();
+      slides.push({
+        male: part,
+        female: top.part,
+        kind: 'slide',
+        from,
+        to: from.clone().add(top.dir),
+        extents: { male: [Math.min(...ownAlong) - 10, Math.max(...ownAlong) + 10], female: [0, length], overlap: SURFACE_OVERLAP },
+      });
+    }
+  }
+  return slides;
 }
 
 // A plate standing on its edge between two rows of studs is held there: a plate is 8 LDU thick,
@@ -892,7 +958,10 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
     const b = bodyOf[c.female];
     if (a === b) continue;
     const kind = c.kind;
-    const existing = joints.find((j) => j.kind === kind && sameBodies(j, a, b) && (kind === 'ball' ? j.from.distanceTo(c.from) < AXIS_TOLERANCE : onSameAxis(j, c)));
+    // Slides between the same two bodies along parallel lines are one joint too (an outrigger
+    // riding on two rows of tiles side by side).
+    const along = (j: Joint) => (kind === 'ball' ? j.from.distanceTo(c.from) < AXIS_TOLERANCE : kind === 'slide' ? parallel(j, c) : onSameAxis(j, c));
+    const existing = joints.find((j) => j.kind === kind && sameBodies(j, a, b) && along(j));
     if (existing) {
       if (kind !== 'ball') extendJoint(existing, c);
       existing.stiff = existing.stiff || c.stiff === true;
@@ -901,33 +970,45 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
     }
   }
 
-  // A slide joint's travel, from all the slide connections behind it together (a plate on a
-  // row of tiles: it may slide as far as it stays over the row, not over each tile).
+  // A slide joint's travel, from all the slide connections behind it together. Along one line
+  // they add up (a plate on a row of tiles may slide as far as it stays over the row, not over
+  // each tile); lines side by side each allow their own travel, and the joint may slide as far
+  // as any of them allows (an outrigger may leave a short tile at its end behind).
   for (const joint of joints) {
     if (joint.kind !== 'slide') continue;
     const dir = new Vector3().subVectors(joint.to, joint.from).normalize();
-    let male: [number, number] = [Infinity, -Infinity];
-    let female: [number, number] = [Infinity, -Infinity];
-    let maleBody = -1;
-    let overlap = 0;
+    const lines: Connection[][] = [];
     for (const c of connections) {
-      if (c.kind !== 'slide' || !c.extents || !sameBodies(joint, bodyOf[c.male], bodyOf[c.female]) || !onSameAxis(joint, c)) continue;
-      // Move the connection's extents to be measured from the joint's `from`, along its axis.
-      const sign = new Vector3().subVectors(c.to, c.from).dot(dir) >= 0 ? 1 : -1;
-      const shift = new Vector3().subVectors(c.from, joint.from).dot(dir);
-      const place = ([lo, hi]: [number, number]): [number, number] => [Math.min(shift + sign * lo, shift + sign * hi), Math.max(shift + sign * lo, shift + sign * hi)];
-      const [m0, m1] = place(c.extents.male);
-      const [f0, f1] = place(c.extents.female);
-      male = [Math.min(male[0], m0), Math.max(male[1], m1)];
-      female = [Math.min(female[0], f0), Math.max(female[1], f1)];
-      maleBody = bodyOf[c.male];
-      overlap = c.extents.overlap;
-      joint.sliding = [c.male, c.female];
+      if (c.kind !== 'slide' || !c.extents || !sameBodies(joint, bodyOf[c.male], bodyOf[c.female]) || !parallel(joint, c)) continue;
+      const line = lines.find((l) => onSameLine(l[0], c));
+      if (line) line.push(c);
+      else lines.push([c]);
     }
-    if (maleBody < 0) continue;
-    // How far the male may slide; the joint measures bodyB relative to bodyA.
-    const range = slideRange({ male, female, overlap });
-    joint.range = joint.bodyB === maleBody ? range : [-range[1], -range[0]];
+    let range: [number, number] | null = null;
+    for (const line of lines) {
+      let male: [number, number] = [Infinity, -Infinity];
+      let female: [number, number] = [Infinity, -Infinity];
+      let maleBody = -1;
+      let overlap = 0;
+      for (const c of line) {
+        // Move the connection's extents to be measured from the joint's `from`, along its axis.
+        const sign = new Vector3().subVectors(c.to, c.from).dot(dir) >= 0 ? 1 : -1;
+        const shift = new Vector3().subVectors(c.from, joint.from).dot(dir);
+        const place = ([lo, hi]: [number, number]): [number, number] => [Math.min(shift + sign * lo, shift + sign * hi), Math.max(shift + sign * lo, shift + sign * hi)];
+        const [m0, m1] = place(c.extents!.male);
+        const [f0, f1] = place(c.extents!.female);
+        male = [Math.min(male[0], m0), Math.max(male[1], m1)];
+        female = [Math.min(female[0], f0), Math.max(female[1], f1)];
+        maleBody = bodyOf[c.male];
+        overlap = c.extents!.overlap;
+        joint.sliding = [c.male, c.female];
+      }
+      // How far the male may slide; the joint measures bodyB relative to bodyA.
+      const r = slideRange({ male, female, overlap });
+      const lineRange: [number, number] = joint.bodyB === maleBody ? r : [-r[1], -r[0]];
+      range = range ? [Math.min(range[0], lineRange[0]), Math.max(range[1], lineRange[1])] : lineRange;
+    }
+    if (range) joint.range = range;
   }
   return joints;
 }
@@ -944,6 +1025,20 @@ function coaxial(a: Connection, b: Connection): boolean {
     return offset.addScaledVector(dir, -offset.dot(dir)).length();
   };
   return distance(b.from) < AXIS_TOLERANCE && distance(b.to) < AXIS_TOLERANCE;
+}
+
+// Whether a connection's axis runs the same way as a joint's.
+function parallel(j: Joint, c: Connection): boolean {
+  const dj = new Vector3().subVectors(j.to, j.from).normalize();
+  const dc = new Vector3().subVectors(c.to, c.from).normalize();
+  return new Vector3().crossVectors(dj, dc).length() < 0.01;
+}
+
+// Whether two connections lie on one line.
+function onSameLine(a: Connection, b: Connection): boolean {
+  const dir = new Vector3().subVectors(a.to, a.from).normalize();
+  const offset = new Vector3().subVectors(b.from, a.from);
+  return offset.addScaledVector(dir, -offset.dot(dir)).length() < AXIS_TOLERANCE;
 }
 
 function onSameAxis(j: Joint, c: Connection): boolean {

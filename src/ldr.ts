@@ -78,7 +78,13 @@ export interface PlacedShape {
 // `isPrimitive` says which referenced files are LDraw primitives (pieces of shape, such as a
 // cylinder, rather than parts): a submodel that places them is drawing a shape, as CAD
 // programs draw a string or a hose. Only the LDraw library knows for sure, so the caller says.
-export function parseModel(text: string, isPrimitive: (name: string) => boolean = () => false): { parts: PlacedPart[]; shapes: PlacedShape[] } {
+// `piecesOf` gives the lines of a part that's read as the parts it's made of (a 4x4 turntable,
+// one LDraw file, is a base and a top that turns on it), or null for any other part.
+export function parseModel(
+  text: string,
+  isPrimitive: (name: string) => boolean = () => false,
+  piecesOf: (name: string) => string[] | null = () => null,
+): { parts: PlacedPart[]; shapes: PlacedShape[] } {
   const files = modelFiles(text);
   const submodels = new Map([...files].filter(([name, lines]) => name && !isPart(lines)));
   const referenced = (line: string) => normalizePartName(line.trim().split(/\s+/).slice(14).join(' '));
@@ -86,7 +92,8 @@ export function parseModel(text: string, isPrimitive: (name: string) => boolean 
   const shapeLines = new Map([...submodels].map(([name, lines]) => [name, lines.filter(drawn)]));
   const parts: PlacedPart[] = [];
   const shapes: PlacedShape[] = [];
-  const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number) => {
+  // `pieces`: the lines are a part's pieces, which go in the submodel the part is in.
+  const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number, pieces = false) => {
     if (depth > 64) throw new Error(`Submodels nested too deep (does one place itself?): ${submodel}`);
     const first = parts.length;
     for (const line of lines) {
@@ -99,10 +106,12 @@ export function parseModel(text: string, isPrimitive: (name: string) => boolean 
       const name = normalizePartName(tokens.slice(14).join(' '));
       if (isPrimitive(name)) continue; // drawn with the submodel's shapes
       const sub = submodels.get(name);
+      const ownPieces = sub ? null : piecesOf(name);
       if (sub) place(sub, matrix, partColor, name, depth + 1);
+      else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true);
       else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}) });
     }
-    const own = submodel ? shapeLines.get(submodel)! : [];
+    const own = submodel && !pieces ? shapeLines.get(submodel)! : [];
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1 });
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
@@ -110,8 +119,8 @@ export function parseModel(text: string, isPrimitive: (name: string) => boolean 
 }
 
 // Every part in the model (see parseModel).
-export function parseLdr(text: string, isPrimitive?: (name: string) => boolean): PlacedPart[] {
-  return parseModel(text, isPrimitive).parts;
+export function parseLdr(text: string, isPrimitive?: (name: string) => boolean, piecesOf?: (name: string) => string[] | null): PlacedPart[] {
+  return parseModel(text, isPrimitive, piecesOf).parts;
 }
 
 // A part as a type 1 line, as the model would have it if it had no submodels.

@@ -55,14 +55,17 @@ const colours = readFileSync(join(LDRAW_DIR, 'LDConfig.ldr'), 'utf-8')
 mkdirSync(OUT_DIR, { recursive: true });
 const titles: Record<string, string> = {};
 
-const modelTitles: Record<string, { title: string; primitives: string[] }> = {};
+const modelTitles: Record<string, { title: string; primitives: string[]; pieces: Record<string, string[]> }> = {};
 
 // An LDraw primitive (a piece of shape, such as a cylinder), rather than a part.
 const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
+// A part KineBrick reads as the parts it's made of (role "split"): their lines, from its file.
+const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+const piecesOf = (name: string) => (roles[name] === 'split' ? readLdrawFile(name, new Map()).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
 
 for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f)).sort()) {
   const source = readFileSync(join(MODELS_DIR, file), 'utf-8');
-  const { parts, shapes } = parseModel(source, isPrimitive);
+  const { parts, shapes } = parseModel(source, isPrimitive, piecesOf);
   const embedded = embeddedParts(source);
   const shapeName = (submodel: string) => `kinebrick-shape/${submodel}`;
   const model = [
@@ -86,8 +89,9 @@ for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f))
   }
 
   const base = file.replace(/\.(ldr|mpd)$/, '');
-  const primitives = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)).filter(isPrimitive))].sort();
-  modelTitles[base] = { title: modelTitle(source), primitives };
+  const placed = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)))].sort();
+  const pieces = Object.fromEntries(placed.flatMap((name) => (piecesOf(name) ? [[name, piecesOf(name)!]] : [])));
+  modelTitles[base] = { title: modelTitle(source), primitives: placed.filter(isPrimitive), pieces };
   let out = `0 FILE ${base}.ldr\n${colours}\n${model}\n`;
   for (const [name, text] of included) out += `\n0 NOFILE\n0 FILE ${packedName(name)}\n${text.trimEnd()}\n`;
   writeFileSync(join(OUT_DIR, `${base}.mpd`), out);

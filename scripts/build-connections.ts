@@ -202,6 +202,30 @@ function genFromMeta(meta: Meta): WorkingCylinder[] {
   return cylindersFromMeta(meta);
 }
 
+// A SNAP_FGR line: a finger hinge, a row of fingers along an axis, alternately pins (M) and
+// gaps the other part's fingers fill (F), starting with [genderOfs], [seq] long each, of
+// [radius], centred on [pos]. Stored as a round cylinder per finger, so a shutter's finger
+// turns between its holder's (3582 in 3581), as do hinge plates'.
+function fingersFromMeta(meta: Meta): WorkingCylinder[] {
+  const p = meta.params;
+  const lengths = (p.get('seq') ?? '').split(/\s+/).filter((x) => x).map(Number);
+  if (lengths.length === 0) return [];
+  const total = lengths.reduce((sum, l) => sum + l, 0);
+  const radius = p.get('radius') ?? '4';
+  const first = p.get('genderOfs') === 'F' ? 'F' : 'M';
+  const pos = numbers(p.get('pos'), [0, 0, 0]) as Vec3;
+  const ori = numbers(p.get('ori'), IDENTITY.m);
+  const dir = applyMatrix(ori, [0, -1, 0]); // LDCad cylinders run along the meta's -Y axis
+  const result: WorkingCylinder[] = [];
+  let at = -total / 2;
+  lengths.forEach((length, i) => {
+    const gender = i % 2 === 0 ? first : first === 'M' ? 'F' : 'M';
+    result.push({ id: p.get('id') ?? '', gender, caps: 'none', start: add(pos, scaleVec(dir, at)), dir, secs: [{ shape: 'R', radius: Number(radius), length }], scaleRule: p.get('scale') ?? 'none', mirrorRule: p.get('mirror') ?? 'cor' });
+    at += length;
+  });
+  return result;
+}
+
 // A SNAP_CLP line: a clip, which grips a bar or pin of its radius and lets it turn (a
 // universal joint's ends grip its centre's arms so). Stored as a round hole.
 function clipFromMeta(meta: Meta): WorkingCylinder[] {
@@ -325,6 +349,7 @@ function ownShadowCylinders(name: string): WorkingCylinder[] {
     if (meta && meta.kind === 'SNAP_CYL') result.push(...cylindersFromMeta(meta));
     if (meta && meta.kind === 'SNAP_GEN') result.push(...genFromMeta(meta));
     if (meta && meta.kind === 'SNAP_CLP') result.push(...clipFromMeta(meta));
+    if (meta && meta.kind === 'SNAP_FGR') result.push(...fingersFromMeta(meta));
   }
   return result;
 }
@@ -363,6 +388,8 @@ function fileCylinders(name: string): WorkingCylinder[] {
       result.push(...genFromMeta(meta));
     } else if (meta.kind === 'SNAP_CLP') {
       result.push(...clipFromMeta(meta));
+    } else if (meta.kind === 'SNAP_FGR') {
+      result.push(...fingersFromMeta(meta));
     } else if (meta.kind === 'SNAP_INCL') {
       const ref = normalizePartName(meta.params.get('ref') ?? '');
       const pos = numbers(meta.params.get('pos'), [0, 0, 0]) as Vec3;
@@ -375,7 +402,7 @@ function fileCylinders(name: string): WorkingCylinder[] {
         }
       }
     }
-    // SNAP_FGR and SNAP_SPH (hinge fingers, and so on) aren't used yet.
+    // SNAP_SPH and other kinds aren't used yet.
   }
 
   // A tyre's tread, measured from its shape. Part of the tyre's own connection points, so a
@@ -460,7 +487,9 @@ const embedded = new Map(modelTexts().flatMap((text) => [...embeddedParts(text)]
 function partsInModels(): string[] {
   const parts = new Set<string>();
   const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
-  for (const text of modelTexts()) for (const p of parseLdr(text, isPrimitive)) parts.add(p.name);
+  // A part read as its pieces (role "split") brings those instead.
+  const piecesOf = (name: string) => (roles[name] === 'split' ? (readLdrawFile(name) ?? '').split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
+  for (const text of modelTexts()) for (const p of parseLdr(text, isPrimitive, piecesOf)) parts.add(p.name);
   return [...parts].sort();
 }
 

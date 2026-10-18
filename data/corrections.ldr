@@ -178,6 +178,14 @@
 0 // Plate 1 x 4
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=S 10 80] [center=true] [pos=0 8 0] [ori=0 -1 0 1 0 0 0 0 1]
 
+0 FILE 3069b.dat
+0 // Tile 1 x 2 with Groove
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=P 10 40] [center=true] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 FILE 3068b.dat
+0 // Tile 2 x 2 with Groove
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=P 20 40] [center=true] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
 0 FILE 3070b.dat
 0 // Tile 1 x 1 with Groove
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=P 10 20] [center=true] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
@@ -195,6 +203,16 @@
 0 // Turntable 2 x 2 Plate Top: its centre pin turns in the base's hole (3680). The shadow
 0 // library closes it at one end, so it would only fit as a stud does; it's open-ended here.
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 2   L 4.5 2] [pos=0 4 0] [ori=-1 0 0 0 -1 0 0 0 1]
+
+0 FILE 3404.dat
+0 // Turntable 4 x 4 Top: its centre pin turns in the base's hole (3403), the two of them one
+0 // LDraw part (3403c01, which KineBrick reads as its pieces). The shadow library closes pin
+0 // and hole at one end each, so they'd only fit as a stud does; they're open-ended here.
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 10 11   L 11 4] [pos=0 3 0] [ori=1 0 0 0 -1 0 0 0 -1]
+
+0 FILE 3403.dat
+0 // Turntable 4 x 4 Base: takes the top's pin (see 3404).
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 10 11   L 11 4] [pos=0 3 0] [ori=1 0 0 0 -1 0 0 0 -1]
 
 0 // Small wheels.
 

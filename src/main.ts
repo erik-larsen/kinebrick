@@ -155,9 +155,11 @@ async function start() {
   const summary = document.getElementById('summary')!;
 
   const modelText = await (await fetch(MODEL_URL)).text();
-  // Which files the model places are LDraw primitives (drawn shapes), as the packer found.
-  const primitives = new Set((packedModels as Record<string, { primitives: string[] }>)[MODEL]?.primitives ?? []);
-  const { parts: startParts, shapes: drawnShapes } = parseModel(modelText, (name) => primitives.has(name));
+  // Which files the model places are LDraw primitives (drawn shapes), and which parts are read
+  // as their pieces, as the packer found.
+  const packed = (packedModels as Record<string, { primitives: string[]; pieces: Record<string, string[]> }>)[MODEL];
+  const primitives = new Set(packed?.primitives ?? []);
+  const { parts: startParts, shapes: drawnShapes } = parseModel(modelText, (name) => primitives.has(name), (name) => packed?.pieces[name] ?? null);
   const table: ConnectionTable = await (await fetch(connectionsUrl)).json();
   const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
 

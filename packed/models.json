@@ -1,94 +1,121 @@
 {
   "8448 - Super Car - V8 engine": {
     "title": "box5",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "8448 - Super Car": {
     "title": "main",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "854 - Go Kart": {
     "title": "Main",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "855 - Mobile Crane": {
     "title": "Main",
     "primitives": [
       "4-4cyli.dat"
-    ]
+    ],
+    "pieces": {
+      "3403c01.dat": [
+        "1 16 0 0 0 1 0 0 0 1 0 0 0 1 3403.dat",
+        "1 16 0 0 0 1 0 0 0 1 0 0 0 1 3404.dat"
+      ]
+    }
   },
   "856 - Bulldozer": {
     "title": "Main",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "8880 - Super Car": {
     "title": "main",
     "primitives": [
       "box5-12.dat"
-    ]
+    ],
+    "pieces": {}
   },
   "950 - Fork Lift": {
     "title": "Fork-Lift Truck",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "952 - Tractor": {
     "title": "main",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "956 - Auto Chassis": {
     "title": "main",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "ackermann-car": {
     "title": "Ackermann Car",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "differential": {
     "title": "Differential",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "four-bar": {
     "title": "Four-Bar Linkage",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "gear-train": {
     "title": "Gear Train",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "gearbox": {
     "title": "Two-Speed Gearbox",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "geared-car": {
     "title": "Geared Four-Wheeled Car",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "rack-and-pinion": {
     "title": "Rack and Pinion",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "right-angle": {
     "title": "Right-Angle Drive",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "simple-car": {
     "title": "Simple Four-Wheeled Car",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "single-piston-engine": {
     "title": "Single-Cylinder Engine",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "steering-car-solid": {
     "title": "Steering Car with a Solid Rear Axle",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "steering-car": {
     "title": "Steering Car",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   },
   "worm-drive": {
     "title": "Worm Drive",
-    "primitives": []
+    "primitives": [],
+    "pieces": {}
   }
 }

@@ -67,6 +67,14 @@ describe('reading model files', () => {
     expect(parts[shapes[1].nearPart].name).toBe('3704.dat');
   });
 
+  it('reads a part the caller says is made of pieces as those pieces, each placed where the part puts it', () => {
+    const pieces = (name: string) => (name === '3001.dat' ? ['1 16 0 0 0 1 0 0 0 1 0 0 0 1 base.dat', '1 4 0 -8 0 1 0 0 0 1 0 0 0 1 top.dat'] : null);
+    const parts = parseLdr(MPD, undefined, pieces);
+    expect(parts.slice(0, 2).map((p) => [p.name, p.color])).toEqual([['base.dat', 72], ['top.dat', 4]]);
+    expect(at(parts[1])).toEqual(new Vector3(0, -8, 0));
+    expect(parts[1].submodel).toBeUndefined(); // in the main model, as the part was
+  });
+
   it("names a model by its first line, and writes a part back as the line it'd be without submodels", () => {
     expect(modelTitle(MPD)).toBe('Little car');
     const hub = parseLdr(MPD)[4];
