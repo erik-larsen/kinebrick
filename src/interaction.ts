@@ -131,6 +131,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // Which way the part kept turning turns about its joint's axis (jointAxisNow): 1 or -1. It
   // starts counter-clockwise as seen from the camera; a second Ctrl-click reverses it.
   let motorDirection = 1;
+  let motorReversed = false; // whether it's been reversed since it started (a third Ctrl-click stops it)
   let motorSpeed = (DEFAULT_RPM / 60) * 2 * Math.PI; // radians per second
   // The kinematics the motor's holds were worked out for, or null if they need working out
   // again (after a drag, a freeze, a shift).
@@ -466,8 +467,8 @@ export function setUpInteraction(s: InteractionSetup) {
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
-      if (motorDirection === 1) {
-        motorDirection = -1;
+      if (!motorReversed) {
+        reverseMotor();
         showMessage(`Turning ${name} the other way · Ctrl-click again to stop`, clientX, clientY);
       } else {
         setMotor(-1);
@@ -475,26 +476,42 @@ export function setUpInteraction(s: InteractionSetup) {
       }
       return;
     }
+    const why = startMotor(part, s.camera.position, false);
+    showMessage(why ?? `Turning ${name} · Ctrl-click again to reverse`, clientX, clientY);
+  }
+
+  // Keeps a part turning, counter-clockwise (or clockwise) as seen from `seenFrom` (world
+  // coordinates). Returns why it can't, if it can't.
+  function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
+    const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
-    if (!link || !s.kin.turnsLikeAKnob(body)) {
-      showMessage('Only a part that spins on an axle can be kept turning', clientX, clientY);
-      return;
-    }
+    if (!link || !s.kin.turnsLikeAKnob(body)) return 'Only a part that spins on an axle can be kept turning';
     const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
     const canTurn = s.kin.jointMotion(link.joint) !== null;
     s.kin.letGoAfterDrag();
-    if (!canTurn) {
-      const why = wormLocked ? 'a worm gear can only be turned from the worm' : "it's jammed";
-      showMessage(`This part can't turn: ${why}`, clientX, clientY);
-      return;
-    }
-    // Counter-clockwise as seen from the camera: turning about an axis that points towards it.
-    // (The part turns at motorDirection about its joint's axis, relative to what it's mounted in.)
-    const { point, dir } = s.kin.jointAxisNow(link.joint);
-    const toCamera = s.ldrawSpace.worldToLocal(s.camera.position.clone()).sub(point);
-    motorDirection = dir.dot(toCamera) < 0 ? -1 : 1;
+    if (!canTurn) return `This part can't turn: ${wormLocked ? 'a worm gear can only be turned from the worm' : "it's jammed"}`;
+    motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
+    motorReversed = false;
     setMotor(part);
-    showMessage(`Turning ${name} · Ctrl-click again to reverse`, clientX, clientY);
+    return null;
+  }
+
+  // The motor direction that turns a part counter-clockwise as seen from `seenFrom` (world
+  // coordinates): about its joint's axis pointing towards there, where the joint is now, or with
+  // `atStart`, where it was when the model loaded. (The part turns at motorDirection about its
+  // joint's axis, relative to what it's mounted in.)
+  function counterClockwiseFrom(part: number, seenFrom: Vector3, atStart = false): number {
+    const link = s.kin.parentLink(s.mech.bodyOf[part])!;
+    const j = s.mech.joints[link.joint];
+    const { point, dir } = atStart ? { point: j.from.clone(), dir: j.to.clone().sub(j.from).normalize() } : s.kin.jointAxisNow(link.joint);
+    const toCamera = s.ldrawSpace.worldToLocal(seenFrom.clone()).sub(point);
+    return dir.dot(toCamera) < 0 ? -1 : 1;
+  }
+
+  function reverseMotor() {
+    motorDirection = -motorDirection;
+    motorReversed = !motorReversed;
+    s.onMotorChanged();
   }
 
   // Turns the driven part on by however far it goes in `seconds`, as a turn drag would but in
@@ -705,7 +722,12 @@ export function setUpInteraction(s: InteractionSetup) {
   return {
     runMotor, // call every frame with the seconds since the last
     stopMotor: () => setMotor(-1),
-    reverseMotor: () => (motorDirection = -motorDirection),
+    reverseMotor,
+    startMotor, // (part, seenFrom, clockwise): see startMotor
+    motorPart: () => motorPart,
+    // Whether the part kept turning turns clockwise as seen from `seenFrom` (world coordinates),
+    // with the model as it was when it loaded.
+    motorClockwiseFrom: (seenFrom: Vector3) => motorPart >= 0 && motorDirection !== counterClockwiseFrom(motorPart, seenFrom, true),
     setMotorRpm: (rpm: number) => (motorSpeed = (rpm / 60) * 2 * Math.PI),
     // The ways the mechanism can move have changed (tyres may scrub more or less), so the
     // motor's holds need working out again.

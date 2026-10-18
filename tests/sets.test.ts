@@ -254,6 +254,20 @@ describe('956 Auto Chassis', () => {
     }
   });
 
+  it('driven round and round in a circle, as Ctrl-click does, it stays level on its tyres', () => {
+    kin.reset();
+    turn(bodyOf('3736.dat'), 0.5);
+    const wheel = bodyOf('3740.dat');
+    const joint = kin.parentLink(wheel)!.joint;
+    kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
+    const step = (15 * Math.PI) / 180; // a motor's step
+    for (let i = 0; i < 24 * 6; i++) kin.turnJoint(joint, step, undefined, step); // six turns of the wheel
+    kin.letGoAfterDrag();
+    expect(frameMoved()).toBeGreaterThan(1000);
+    const up = new Vector3(0, -1, 0).transformDirection(kin.poses[0]);
+    expect(Math.acos(Math.min(1, -up.y)) * (180 / Math.PI)).toBeLessThan(0.5); // degrees from upright
+  });
+
   it('steered, a turn of the rear axle takes it round a bend: with no differential, its rear tyres skid to make up the difference', () => {
     kin.reset();
     turn(bodyOf('3736.dat'), 0.5); // the front wheels about 7 degrees

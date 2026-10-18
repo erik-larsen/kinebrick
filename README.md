@@ -67,12 +67,13 @@ Each kind of information has its own channel: fill colour shows the parts' LEGO 
 
 ### Options
 
-These are off unless you set them, in the Options panel at the top right or in the address, so the published viewer shows the plain model. Switching model keeps them.
+These are off unless you set them, in the Options panel at the top right or in the address, so the published viewer shows the plain model. Switching model keeps them, except Auto spin and Tyre scrub, which belong to a model.
 
 - **Body colours** (`option=bodycolours`): each body in its own colour instead of the parts' LEGO colours, the frame grey.
 - **Joint axes** (`option=axes`): each joint's axis as a thin pink rod.
 - **Gear contacts** (`option=contacts`): a pink dot where each pair of gears' teeth meet.
 - **Spin speed** (`rpm=60`): how fast Ctrl-click turns a part, in whole revolutions per minute.
+- **Auto spin** (`autospin=271`, or `autospin=271,cw`): a part kept turning from the moment the page opens, as if Ctrl-clicked, by its place in the model file (counting from 0, submodels flattened). It turns counter-clockwise as seen from where the camera starts, or with `,cw` clockwise. Ctrl-click, Reverse and Stop keep it up to date, so copying the address shares the animation. Switching model drops it.
 - **Tyre scrub** (`scrub=10`): how far tyres may slide sideways, as a percentage of how far they roll. It's 2% unless the model says otherwise (see below), and switching model goes back to the new model's own. More lets a car whose steering is far from every wheel turning round one centre roll at bigger steering angles; too much would let a car with no steering at all turn.
 
 A model file can carry KineBrick's own settings as LDraw meta-commands, which other LDraw programs skip. `0 !KINEBRICK SCRUB [percent=25]` in its main file sets its tyre scrub (the 956 Auto Chassis has it, its front wheels turning alike).

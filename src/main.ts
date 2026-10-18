@@ -73,6 +73,17 @@ const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
 // not the model's own (see modelSettings in ldr.ts).
 const SCRUB_PARAM = percent(params.get('scrub'));
+// A part kept turning from the start, by its place in the model file (counting from 0, as
+// the model's parts come, submodels flattened), counter-clockwise as seen from where the
+// camera starts, or with ",cw" clockwise: e.g. ?autospin=271 or ?autospin=271,cw. Ctrl-click
+// keeps it up to date, so the address shares the animation.
+const AUTOSPIN = /^(\d+)(,cw)?$/.exec(params.get('autospin') ?? '');
+
+// The address's query, from params, with commas left as they are (option=bodycolours,axes),
+// rather than written %2C.
+function address(): string {
+  return '?' + params.toString().replaceAll('%2C', ',');
+}
 
 // A percentage from 0 to 100 from text, or null if it isn't one.
 function percent(text: string | null): number | null {
@@ -336,7 +347,8 @@ async function start() {
   picker.addEventListener('change', () => {
     params.set('model', picker.value);
     params.delete('scrub');
-    window.location.search = params.toString();
+    params.delete('autospin');
+    window.location.search = address();
   });
 
   // The options panel, upper right. Each option is kept in the address, so switching model
@@ -356,7 +368,7 @@ async function start() {
     OPTIONS.splice(0, OPTIONS.length, ...options);
     if (options.size) params.set('option', [...options].join(','));
     else params.delete('option');
-    history.replaceState(null, '', '?' + params.toString());
+    history.replaceState(null, '', address());
   };
   gui.add(settings, 'bodyColours').name('Body colours').onChange((on: boolean) => {
     appearance.showBodyColours = on;
@@ -414,7 +426,7 @@ async function start() {
     interaction.setMotorRpm(rpm);
     if (rpm === DEFAULT_RPM) params.delete('rpm');
     else params.set('rpm', String(rpm));
-    history.replaceState(null, '', '?' + params.toString());
+    history.replaceState(null, '', address());
   });
   // How far tyres may scrub sideways, in percent, kept in the address if not the model's own.
   gui.add(settings, 'scrub', 0, 30, 1).name('Tyre scrub (%)').onFinishChange((value: number) => {
@@ -423,7 +435,7 @@ async function start() {
     interaction.motionsChanged();
     if (scrub === modelScrub) params.delete('scrub');
     else params.set('scrub', String(scrub));
-    history.replaceState(null, '', '?' + params.toString());
+    history.replaceState(null, '', address());
   });
   // While a part is kept turning, the camera follows the model: it moves by however far the
   // frame's middle moved, so the model stays in view while you still orbit and zoom around it.
@@ -473,8 +485,17 @@ async function start() {
   showMotor = () => {
     reverseButton.show(interaction.motorRunning());
     stopButton.show(interaction.motorRunning());
+    // Kept in the address, so it can be shared (see AUTOSPIN).
+    if (interaction.motorRunning()) {
+      const clockwise = interaction.motorClockwiseFrom(startCamera.position);
+      params.set('autospin', `${interaction.motorPart()}${clockwise ? ',cw' : ''}`);
+    } else {
+      params.delete('autospin');
+    }
+    history.replaceState(null, '', address());
   };
   showMotor();
+  if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
   unfreezeButton = gui.add({ unfreezeAll }, 'unfreezeAll').name('Unfreeze all');
   gui.add({ reset }, 'reset').name('Reset');
   showFrozen();

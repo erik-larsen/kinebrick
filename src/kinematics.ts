@@ -117,6 +117,7 @@ export class Kinematics {
   // drag turns): an assembly hanging on a driven axle stays level, not carried round.
   private heldToFrame = new Set<number>();
   private contactTreads: number[] = []; // indices into mech.treads
+  private contactHeights: number[] = []; // for each tyre, where it touched the ground at the start (LDraw y)
   // Bodies held only by a ball joint at each end (a steering link), and those two joints.
   private links: { body: number; balls: [number, number] }[] = [];
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
@@ -213,6 +214,7 @@ export class Kinematics {
     this.groundY = lowest;
     this.mech.treads.forEach((t, i) => {
       const p = lowestPoint(t.center, t.axis, t.radius);
+      this.contactHeights[i] = p ? p.y : 0;
       if (p && Math.abs(p.y - lowest) < GROUND_TOLERANCE) this.contactTreads.push(i);
     });
   }
@@ -1054,6 +1056,37 @@ export class Kinematics {
   advance(motion: number[], amount: number, keep = -1) {
     this.move(motion, amount);
     this.closeLoops(keep);
+    this.settle();
+  }
+
+  // Sets the model back down on its tyres. The solver lets a tyre rise or sink a very little
+  // (see freeMotions), and a car's rolling makes use of that to scrub less; step after step,
+  // that would add up, and a car driving round in circles would slowly tip over. So after each
+  // step, the whole model is moved as one, up or down and tipped about level directions,
+  // as little as puts its tyres on the ground back where they touched it at the start (least
+  // squares, since four tyres on a frame that can't twist may not all fit). Moving it all as
+  // one opens no joint. A car held still (steering it, or frozen) isn't moved.
+  private settle() {
+    if (this.contactTreads.length < 3 || this.fixedBody >= 0 || this.frozen.has(0) || this.dragHeld.has(0)) return;
+    for (let round = 0; round < 3; round++) {
+      // For each tyre, how its contact point would rise or sink (LDraw y) for each of: the
+      // model moving down, turning about x, turning about z (about the origin); and how far it
+      // has to go.
+      const rows: number[][] = [];
+      const wanted: number[] = [];
+      for (const i of this.contactTreads) {
+        const p = this.contactPoint(i);
+        if (!p) continue;
+        rows.push([1, -p.z, p.x]);
+        wanted.push(this.contactHeights[i] - p.y);
+      }
+      if (Math.max(...wanted.map(Math.abs)) < LOOP_TOLERANCE) return;
+      const gram = [0, 1, 2].map((a) => [0, 1, 2].map((b) => rows.reduce((sum, r) => sum + r[a] * r[b], 0)));
+      const [down, tipX, tipZ] = solveSymmetric(gram, [0, 1, 2].map((a) => rows.reduce((sum, r, k) => sum + r[a] * wanted[k], 0)), EPSILON);
+      const tip = screwMotion(new Vector3(tipX, 0, tipZ), new Vector3(0, down, 0));
+      for (const pose of this.rootPoses.values()) pose.premultiply(tip);
+      this.updatePoses();
+    }
   }
 
   private move(motion: number[], amount: number) {
