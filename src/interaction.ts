@@ -250,12 +250,16 @@ export function setUpInteraction(s: InteractionSetup) {
   // ---------------------------------------------------------------------------
   // Push: arrow and drag
 
-  // Points the arrow along the grabbed point's allowed motion (the first one, if several).
-  // Returns false if the point can't move.
+  // Points the arrow along the way the grabbed point moves fastest, of the motions the
+  // mechanism allows (pushing a car's frame rolls it, rather than steering, which leaves the
+  // frame where it is). Returns false if the point can't move.
   function updateArrow(d: Drag): boolean {
-    const motions = s.kin.freeMotions();
     const g = grabPoint(d);
-    const direction = motions.length ? s.kin.pointVelocity(motions[0], d.body, g) : new Vector3();
+    let direction = new Vector3();
+    for (const m of s.kin.freeMotions()) {
+      const v = s.kin.pointVelocity(m, d.body, g);
+      if (v.length() > direction.length()) direction = v;
+    }
     if (direction.length() < 1e-9) {
       arrow.visible = false;
       return false;
