@@ -124,6 +124,7 @@ What a drag does for the user is in the README's [Interaction](README.md#interac
 | `mechanism.test.ts` | The simple car splits into a frame and two wheel-and-axle bodies, with one turning joint per axle. |
 | `attachment.test.ts` | Every test model is fully attached, and a misplaced brick is caught, sitting between the studs or floating above the plate. Real sets KineBrick can't fully read yet are listed, with what each needs. |
 | `ldr.test.ts` | Reading model files: submodels flattened in order, each part placed where its submodels put it, colour 16 inherited through every level, parts the file brings with it, shapes drawn without parts, a part read as the pieces it's made of, KineBrick's own settings from `0 !KINEBRICK` lines, and a part written back as one line. |
+| `import.test.ts` | Bringing in real LEGO sets: every set in `models/` already has its own lines from `models/sets.json`, so importing it again changes nothing; a fresh set's files are renamed wherever they're named (`956 - main.ldr` to `956-main.ldr`), its lines go after its main file's license, its line endings are kept, and importing twice gives the same file. |
 | `sets.test.ts` | Real LEGO sets, oldest first. The 854 Go-Kart is fully attached; its steering wheel turns both front wheels the same way through its universal joint, without moving it; a turn of a rear wheel rolls it one tyre round and runs its piston through its 28 LDU stroke. The 950 Fork-Lift Truck is fully attached, its forks sliding on the mast and its steering driving a crown gear; the lift shaft raises the forks 10 LDU per radian until the gears reach the end of the racks; its steering wheel turns both front wheels the same way. The 952 Tractor is fully attached, its big rear wheels tyres; its steering column turns both front wheels the same way; a turn of its rear wheels rolls it one tyre round, the assembly on its rear axle staying level. The 956 Auto Chassis is fully attached, with a double universal joint and a guided steering rack; its steering wheel turns both front wheels the same way; at full lock either way, a turn of its rear axle still takes it round, its file allowing 25% scrub; driven round in circles it stays level; a turn of a wheel rolls it one tyre round and runs each of its four pistons through its 32 LDU stroke; steered, a turn of its rear axle, which has no differential, takes it round a bend. The 855 Mobile Crane is attached but for its hook, which hangs on a string (M9), its cab on a 4x4 turntable read as base and top; the cab slews on it, and the crane stays where it is; each of its four outriggers slides 160 LDU along its tiles and stops at either end. |
 | `kinematics.test.ts` | The simple car stands on four tyres and can move exactly one way; its wheels turn by distance ÷ tyre radius, it stays on the ground, and it rolls back to where it started. With no tyres, the frame stays put and only the axles turn. |
 | `gears.test.ts` | The 8, 24 and 40 tooth gear train turns at the right ratios, both ways. Rolling the geared car spins its extra axle the other way. Turning a wheel rolls the car one tyre circumference per turn. |
@@ -158,8 +159,9 @@ Browser-level tests for these paths can come later.
 | Path | What's in it |
 |---|---|
 | `models/` | Test models |
+| `models/sets.json` | KineBrick's own lines for each real LEGO set in `models/` (settings such as tyre scrub), put into its file by `npm run import` |
 | `src/main.ts` | The viewer: model picker, loading, camera, readout, re-reading after a shift |
-| `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels |
+| `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, and KineBrick's own settings in it; brings a real LEGO set's file into the shape KineBrick keeps it in |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
 | `src/shift.ts` | Finds the parts that slide into set positions (driving rings) and moves them |
@@ -172,6 +174,7 @@ Browser-level tests for these paths can come later.
 | `src/connections.ts` | What a connection point looks like in the table |
 | `tests/` | The tests (see [Testing](#testing)) |
 | `scripts/build-connections.ts` | Builds the connection table (`npm run connections`) |
+| `scripts/import-sets.ts` | Brings real LEGO sets downloaded from the OMR into `models/`, renamed, with their lines from `models/sets.json` (`npm run import`, run first by `npm run data`) |
 | `scripts/pack-models.ts` | Packs each test model, flattened, with the LDraw parts it uses (`npm run pack`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |
 | `packed/` | The packed models and part titles the viewer loads (generated, don't edit) |

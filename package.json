@@ -8,7 +8,8 @@
     "test": "vitest run",
     "connections": "tsx scripts/build-connections.ts",
     "pack": "tsx scripts/pack-models.ts",
-    "data": "npm run connections && npm run pack"
+    "import": "tsx scripts/import-sets.ts",
+    "data": "npm run import && npm run connections && npm run pack"
   },
   "dependencies": {
     "lil-gui": "^0.20.0",

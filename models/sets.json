@@ -1,0 +1,14 @@
+{
+  "854-Go Kart": [],
+  "855-Mobile Crane": [],
+  "856-Bulldozer": [],
+  "950-Fork Lift": [],
+  "952-Tractor": [],
+  "956-Auto Chassis": [
+    "0 // KineBrick: its front wheels turn alike, so at full lock its tyres scrub sideways by up to a quarter of how far they roll",
+    "0 !KINEBRICK SCRUB [percent=25]"
+  ],
+  "8448-Super Car": [],
+  "8448-Super Car-V8 engine": [],
+  "8880-Super Car": []
+}

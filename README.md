@@ -76,7 +76,7 @@ These are off unless you set them, in the Options panel at the top right or in t
 - **Auto spin** (`autospin=271`, or `autospin=271,cw`): a part kept turning from the moment the page opens, as if Ctrl-clicked, by its place in the model file (counting from 0, submodels flattened). It turns counter-clockwise as seen from where the camera starts, or with `,cw` clockwise. Ctrl-click, Reverse and Stop keep it up to date, so copying the address shares the animation. Switching model drops it.
 - **Tyre scrub** (`scrub=10`): how far tyres may slide sideways, as a percentage of how far they roll. It's 2% unless the model says otherwise (see below), and switching model goes back to the new model's own. More lets a car whose steering is far from every wheel turning round one centre roll at bigger steering angles; too much would let a car with no steering at all turn.
 
-A model file can carry KineBrick's own settings as LDraw meta-commands, which other LDraw programs skip. `0 !KINEBRICK SCRUB [percent=25]` in its main file sets its tyre scrub (the 956 Auto Chassis has it, its front wheels turning alike).
+A model file can carry KineBrick's own settings as LDraw meta-commands, which other LDraw programs skip. `0 !KINEBRICK SCRUB [percent=25]` in its main file sets its tyre scrub (the 956 Auto Chassis has it, its front wheels turning alike). A real LEGO set's lines are kept in `models/sets.json`, by its name in `models/`, rather than edited into its file: `npm run data` puts them there, so a fresh copy from the OMR gets them too.
 
 For example, `?model=8448-Super%20Car-V8%20engine&option=bodycolours,axes&rpm=60` opens the V8 with body colours and joint axes on, spinning at 60 rpm.
 
@@ -126,7 +126,7 @@ Other commands:
 
 - `npm test` runs the tests.
 - `npm run build` builds the site into `dist/`. Every push to `main` runs the tests, then builds and publishes it to GitHub Pages (see `.github/workflows/pages.yml`). If a test fails, the live site stays as it was.
-- `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) and the packed models, after adding or changing a test model (an `.ldr`, or an `.mpd` with submodels, in `models/`). It needs both libraries in the project folder (neither is committed):
+- `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) and the packed models, after adding or changing a test model (an `.ldr`, or an `.mpd` with submodels, in `models/`). First it brings in any real LEGO set newly downloaded from the [LDraw Official Model Repository](https://library.ldraw.org/omr) into `models/`: `956 - Auto Chassis.mpd` becomes `956-Auto Chassis.mpd`, replacing an older copy, and so do the names of the files inside it; and it gives every set KineBrick's own lines for it from `models/sets.json` (see [Options](#options)). It needs both libraries in the project folder (neither is committed):
   - the LDraw parts library: download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) and unzip it, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`;
   - the LDCad shadow library: `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`.
 

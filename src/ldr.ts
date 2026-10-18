@@ -72,6 +72,31 @@ export function modelSettings(text: string): ModelSettings {
   return settings;
 }
 
+// A real LEGO set's file from the LDraw Official Model Repository, as KineBrick keeps it in
+// models/: the files in it drop the spaces round the dash after the set number ("956 - main.ldr"
+// becomes "956-main.ldr", wherever it's named), and its main file gets KineBrick's own lines for
+// it (from models/sets.json) straight after its "0 !LICENSE" line, in place of any "0 !KINEBRICK"
+// or "0 // KineBrick" lines it had. Doing it again changes nothing.
+export function importSet(text: string, set: string, lines: string[]): string {
+  const eol = text.includes('\r\n') ? '\r\n' : '\n';
+  const out: string[] = [];
+  let files = 0;
+  let added = false;
+  for (const line of text.split(/\r?\n/)) {
+    const renamed = line.replace(new RegExp(`\\b${set} - `, 'g'), `${set}-`);
+    if (/^\s*0\s+FILE\b/.test(renamed)) files++;
+    const inMain = files <= 1;
+    if (inMain && /^\s*0\s+(!KINEBRICK\b|\/\/\s*KineBrick\b)/.test(renamed)) continue;
+    out.push(renamed);
+    if (inMain && !added && /^\s*0\s+!LICENSE\b/.test(renamed)) {
+      out.push(...lines);
+      added = true;
+    }
+  }
+  if (lines.length && !added) throw new Error(`set ${set}: no "0 !LICENSE" line in its main file to put KineBrick's lines after`);
+  return out.join(eol);
+}
+
 // Shapes a submodel draws directly, with lines of types 2 to 5, rather than with parts: a hose
 // or a spring bent to fit, as CAD programs generate them. They have no connections, so they
 // don't take part in the mechanism, but they're drawn.
