@@ -19,6 +19,11 @@ const ANGLE_TOLERANCE = 0.035;
 // pitch radii apart, in LDU. Real teeth still engage a little closer or further, and models
 // built by hand often have them so: an official model may put a gear 2 LDU into a rack.
 const MESH_TOLERANCE = 2;
+// How far a spur gear meshing with a crown gear may be from over its pitch circle, in LDU: the
+// crown teeth stand in a band across its face (from 26 to 33 LDU out on the 24 tooth crown gear,
+// round its 30 LDU pitch radius), and a spur gear over any of it engages (an official crane's
+// boom drive has one 2 LDU out).
+const CROWN_BAND = 3.5;
 // Minimum length two connection points must overlap along their axis, in LDU.
 const MIN_OVERLAP = 1;
 // How much two sliding parts must still overlap, in LDU (see slideRange): a plate on tiles a
@@ -766,8 +771,9 @@ export function closestPoints(pa: Vector3, da: Vector3, pb: Vector3, db: Vector3
 }
 
 // A crown gear meshes with a spur gear of the same tooth size whose axle crosses its own at
-// right angles, the spur gear's middle a pitch radius out from the crown gear's axis, and its
-// pitch circle touching the crown gear's pitch plane on the side its teeth face.
+// right angles, the spur gear's middle over its band of teeth (a pitch radius out from the
+// crown gear's axis, within CROWN_BAND), and its pitch circle touching the crown gear's pitch
+// plane on the side its teeth face.
 function crownMesh(crown: Gear, gear: Gear): boolean {
   if (!crown.crown || !gear.spur || gear.crown || gear.worm || gear.face) return false;
   if (Math.abs(crown.radius / crown.teeth - gear.radius / gear.teeth) > 0.01) return false;
@@ -775,7 +781,7 @@ function crownMesh(crown: Gear, gear: Gear): boolean {
   const offset = new Vector3().subVectors(gear.center, crown.center);
   const along = offset.dot(crown.axis);
   const out = offset.clone().addScaledVector(crown.axis, -along);
-  if (Math.abs(out.length() - crown.radius) > MESH_TOLERANCE) return false;
+  if (Math.abs(out.length() - crown.radius) > CROWN_BAND) return false;
   if (Math.abs(out.normalize().dot(gear.axis)) < 0.99) return false; // the gear's axle points at the crown gear's
   return Math.abs(along - crown.crown * gear.radius) <= MESH_TOLERANCE;
 }
