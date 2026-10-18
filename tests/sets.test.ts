@@ -200,6 +200,8 @@ describe('952 Tractor', () => {
 
 describe('956 Auto Chassis', () => {
   const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
+  // The rear axle: both rear tyres on one body, with no differential between them.
+  const rearAxle = mech.treads.find((t) => mech.treads.filter((u) => u.body === t.body).length === 2)!.body;
 
   it('is fully attached: its steering column bends through a double universal joint, and its steering rack is guided', () => {
     expect(mech.loose).toEqual([]);
@@ -216,7 +218,7 @@ describe('956 Auto Chassis', () => {
     expect(frameMoved()).toBeLessThan(1e-6);
   });
 
-  it('a turn of a wheel rolls it one big tyre round, and runs its four-cylinder engine: each piston through its 32 LDU stroke', () => {
+  it('a turn of a front wheel rolls it one big tyre round, and runs its four-cylinder engine: each piston through its 32 LDU stroke', () => {
     kin.reset();
     const wheel = bodyOf('3740.dat');
     const joint = kin.parentLink(wheel)!.joint;
@@ -244,7 +246,7 @@ describe('956 Auto Chassis', () => {
     for (const way of [1, -1]) {
       kin.reset();
       turn(bodyOf('3736.dat'), way * 10); // as far as the steering rack goes
-      const wheel = bodyOf('3740.dat');
+      const wheel = rearAxle;
       const joint = kin.parentLink(wheel)!.joint;
       kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
       let turned = 0;
@@ -257,7 +259,7 @@ describe('956 Auto Chassis', () => {
   it('driven round and round in a circle, as Ctrl-click does, it stays level on its tyres', () => {
     kin.reset();
     turn(bodyOf('3736.dat'), 0.5);
-    const wheel = bodyOf('3740.dat');
+    const wheel = rearAxle;
     const joint = kin.parentLink(wheel)!.joint;
     kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
     const step = (15 * Math.PI) / 180; // a motor's step
@@ -271,7 +273,7 @@ describe('956 Auto Chassis', () => {
   it('steered, a turn of the rear axle takes it round a bend: with no differential, its rear tyres skid to make up the difference', () => {
     kin.reset();
     turn(bodyOf('3736.dat'), 0.5); // the front wheels about 7 degrees
-    const wheel = bodyOf('3740.dat');
+    const wheel = rearAxle;
     const joint = kin.parentLink(wheel)!.joint;
     kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
     let turned = 0;
