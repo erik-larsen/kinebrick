@@ -300,19 +300,27 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
   return joined;
 }
 
-// A part with a single anti-stud (a 1x1 round brick or plate) sitting centred between four
-// studs grips them: its round underside fits between them, a classic way to set a part half a
-// stud off the grid (an official crane's outrigger legs stand so on their pads).
+// A part with a single round opening underneath (a 1x1 round brick's or plate's anti-stud,
+// or the open end of an axle hole, as on a Technic connector) sitting centred between four
+// studs grips them: its round end fits between them, a classic way to set a part half a stud
+// off the grid (an official crane's outrigger legs stand so on their pads, and an official
+// bulldozer's bucket is wedged so on the connectors that hold it). At any angle: the four
+// studs point the way the opening does, at its level, each half a stud's diagonal (14.1 LDU)
+// off its axis.
 function onFourStuds(cyls: WorldCylinder[]): Connection[] {
-  const UP = new Vector3(0, -1, 0);
-  const antiStuds = cyls.filter((c) => c.gender === 'F' && isAntiStud(c) && c.dir.dot(UP) > 0.99);
+  const openings = cyls.filter((c) => c.gender === 'F' && c.caps === 'one' && c.secs.length === 1 && ['R', 'S', 'A'].includes(c.secs[0].shape) && Math.abs(c.secs[0].radius - 6) < AXIS_TOLERANCE);
   const perPart = new Map<number, number>();
-  for (const a of antiStuds) perPart.set(a.part, (perPart.get(a.part) ?? 0) + 1);
-  const studs = cyls.filter((c) => c.gender === 'M' && isStud(c) && c.dir.dot(UP) > 0.99);
+  for (const a of openings) perPart.set(a.part, (perPart.get(a.part) ?? 0) + 1);
+  const studs = cyls.filter((c) => c.gender === 'M' && isStud(c));
   const held: Connection[] = [];
-  for (const a of antiStuds) {
+  for (const a of openings) {
     if (perPart.get(a.part) !== 1) continue;
-    const around = studs.filter((st) => st.part !== a.part && Math.abs(st.start.y - a.start.y) < AXIS_TOLERANCE && Math.abs(Math.abs(st.start.x - a.start.x) - 10) < ALIGN_TOLERANCE && Math.abs(Math.abs(st.start.z - a.start.z) - 10) < ALIGN_TOLERANCE);
+    const around = studs.filter((st) => {
+      if (st.part === a.part || st.dir.dot(a.dir) < 0.99) return false;
+      const d = new Vector3().subVectors(st.start, a.start);
+      const level = d.dot(a.dir);
+      return Math.abs(level) < AXIS_TOLERANCE && Math.abs(d.addScaledVector(a.dir, -level).length() - 10 * Math.SQRT2) < ALIGN_TOLERANCE;
+    });
     for (const part of new Set(around.map((st) => st.part))) {
       if (around.filter((st) => st.part === part).length < 4) continue;
       held.push({ male: part, female: a.part, kind: 'stud', from: a.start.clone(), to: a.start.clone() });

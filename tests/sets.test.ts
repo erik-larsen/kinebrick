@@ -135,7 +135,7 @@ describe('856 Bulldozer', () => {
   const gears = parts.flatMap((p, i) => (p.name === '3649.dat' ? [mech.bodyOf[i]] : []));
   const yaw = () => Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]);
 
-  it("is fully attached: it runs on two tracks of 50 links, each round two 40 tooth gears, and its bucket's plates slot into grooves in its tipper ends", () => {
+  it("is fully attached: it runs on two tracks of 50 links, each round two 40 tooth gears, its bucket's plates slot into grooves in its tipper ends, and two connectors' ends wedge between its studs", () => {
     expect(mech.loops).toHaveLength(2);
     for (const loop of mech.loops) {
       expect(loop.links).toHaveLength(50);
@@ -146,6 +146,8 @@ describe('856 Bulldozer', () => {
     expect(mech.loose).toEqual([]);
     const tipperEnd = mech.bodyOf[parts.findIndex((p) => p.name === '3145.dat')];
     for (const [i, p] of parts.entries()) if (p.name === '3029.dat') expect(mech.bodyOf[i]).toBe(tipperEnd);
+    // Two Technic connectors that turn on an axle hold the bucket, their ends wedged between its studs.
+    expect(parts.filter((p, i) => p.name === '3651.dat' && mech.bodyOf[i] === tipperEnd)).toHaveLength(2);
   });
 
   it('stands on its tracks: their links reach 8 LDU below the path round the gears', () => {
