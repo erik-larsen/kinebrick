@@ -120,7 +120,7 @@ The project uses plain TypeScript, and [Vite](https://vite.dev) as its developme
 Other commands:
 
 - `npm test` runs the tests.
-- `npm run build` builds the site into `dist/`. Every push to `main` builds and publishes it to GitHub Pages (see `.github/workflows/pages.yml`).
+- `npm run build` builds the site into `dist/`. Every push to `main` runs the tests, then builds and publishes it to GitHub Pages (see `.github/workflows/pages.yml`). If a test fails, the live site stays as it was.
 - `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) and the packed models, after adding or changing a test model (an `.ldr`, or an `.mpd` with submodels, in `models/`). It needs both libraries in the project folder (neither is committed):
   - the LDraw parts library: download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) and unzip it, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`;
   - the LDCad shadow library: `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`.

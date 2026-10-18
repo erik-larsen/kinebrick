@@ -10,8 +10,6 @@ import { inferMechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-// Tests that drive a whole model through many steps take a few seconds.
-const SLOW = 30000;
 
 function load(file: string) {
   const parts = parseLdr(readFileSync(file, 'utf-8'));
@@ -71,7 +69,7 @@ describe('854 Go-Kart', () => {
     expect(Math.abs(turned)).toBeCloseTo(2 * Math.PI, 6);
     expect(frameMoved()).toBeCloseTo(2 * Math.PI * 54.2, 0); // the big tyre's radius
     expect(Math.max(...offsets) - Math.min(...offsets)).toBeCloseTo(28, 0); // twice the crank's throw
-  }, SLOW);
+  });
 });
 
 describe('950 Fork-Lift Truck', () => {
@@ -97,7 +95,7 @@ describe('950 Fork-Lift Truck', () => {
       expect(Math.abs(moved)).toBeCloseTo(reach, 0);
       expect(frameMoved()).toBeLessThan(1e-6);
     }
-  }, SLOW);
+  });
 
   it('turning the steering wheel turns both front wheels the same way, through the crown gear and a rack', () => {
     kin.reset();
@@ -140,7 +138,7 @@ describe('952 Tractor', () => {
     expect(frameMoved()).toBeCloseTo(2 * Math.PI * 102.7, 0);
     const hung = bodyOf('3021.dat', 0);
     expect(new Vector3(0, 1, 0).transformDirection(kin.poses[hung]).y).toBeCloseTo(1, 3); // not carried round
-  }, SLOW);
+  });
 });
 
 describe('956 Auto Chassis', () => {
@@ -159,7 +157,7 @@ describe('956 Auto Chassis', () => {
     expect(Math.abs(a)).toBeGreaterThan(0.05);
     expect(b).toBeCloseTo(a, 3);
     expect(frameMoved()).toBeLessThan(1e-6);
-  }, SLOW);
+  });
 
   it('a turn of a wheel rolls it one big tyre round, and runs its four-cylinder engine: each piston through its 32 LDU stroke', () => {
     kin.reset();
@@ -182,5 +180,5 @@ describe('956 Auto Chassis', () => {
     expect(frameMoved()).toBeCloseTo(2 * Math.PI * 102.7, 0);
     expect(pistons).toHaveLength(4);
     pistons.forEach((_, k) => expect(high[k] - low[k]).toBeCloseTo(32, 0));
-  }, 4 * SLOW);
+  });
 });

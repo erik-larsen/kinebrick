@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -12,4 +13,7 @@ export default defineConfig({
     // Don't watch the large libraries for changes.
     watch: { ignored: ['**/ldraw/**', '**/ldcad-shadow/**', '**/reference/**'] },
   },
+  // Many tests drive a whole model through many steps; on GitHub's machines, which run them
+  // a few times slower, some take tens of seconds.
+  test: { testTimeout: 120000 },
 });
