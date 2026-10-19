@@ -37,7 +37,7 @@ describe('Importing real LEGO sets', () => {
     expect(out).toContain('[master=956-chassis.ldr]');
     expect(out.split('\r\n').slice(4, 7)).toEqual(['0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt', ...sets['956-Auto Chassis']]);
     expect(out.split('\r\n').length).toBe(FRESH.split('\r\n').length + 2); // line endings kept, and no lines added elsewhere
-    expect(modelSettings(out).scrub).toBe(25);
+    expect(modelSettings(out).scrub).toBe(6);
   });
 
   it('changes nothing the second time, and replaces lines that sets.json has changed', () => {

@@ -1,5 +1,6 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
+import { configDefaults } from 'vitest/config';
 
 export default defineConfig({
   // Relative paths, so the built site works wherever it's served from (such as
@@ -14,6 +15,7 @@ export default defineConfig({
     watch: { ignored: ['**/ldraw/**', '**/ldcad-shadow/**', '**/reference/**'] },
   },
   // Many tests drive a whole model through many steps; on GitHub's machines, which run them
-  // a few times slower, some take tens of seconds.
-  test: { testTimeout: 120000 },
+  // a few times slower, some take tens of seconds. Other sessions' git worktrees, under
+  // .claude/, have tests of their own, which aren't this checkout's.
+  test: { testTimeout: 120000, exclude: [...configDefaults.exclude, '.claude/**'] },
 });

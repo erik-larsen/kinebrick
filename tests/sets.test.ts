@@ -380,7 +380,7 @@ describe('956 Auto Chassis', () => {
   });
 
   it('at full lock either way, where its tyres meet its chassis, a turn of the rear axle still takes it round, its tyres scrubbing sideways more than the usual 2%', () => {
-    expect(kin.scrub).toBe(0.25);
+    expect(kin.scrub).toBe(0.06);
     const [left, right] = turntables();
     for (const way of [1, -1]) {
       kin.reset();
@@ -398,10 +398,10 @@ describe('956 Auto Chassis', () => {
         for (let i = 0; i < 20; i++) turned += kin.turnJoint(joint, 0.05);
         kin.letGoAfterDrag();
         kin.restore(start);
-        kin.scrub = 0.25;
+        kin.scrub = 0.06;
         return Math.abs(turned);
       };
-      expect(roll(0.25)).toBeCloseTo(1, 6);
+      expect(roll(0.06)).toBeCloseTo(1, 6);
       expect(roll(0.02)).toBeLessThan(0.1);
     }
   });
