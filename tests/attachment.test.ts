@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { ConnectionTable } from '../src/connections.ts';
+import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { parseModel } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 
@@ -47,4 +47,25 @@ describe('a part that is in the wrong place', () => {
     const lifted = car.replace('1 14 70 -24 0 0 0 1 0 1 0 -1 0 0 3701.dat', '1 14 70 -40 0 0 0 1 0 1 0 -1 0 0 3701.dat');
     expect(looseParts(lifted)).toEqual(['3701.dat']);
   });
+});
+
+// Pairs of parts as real sets join them (from the OMR's: 42092, 42061, 42116, 42023, 42062,
+// 8845, 42099), read with the whole library's table, as a model opened from your own computer is.
+describe('parts joined in ways only real sets showed', () => {
+  const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
+  const loose = (text: string) => {
+    const { parts } = parseModel(text);
+    return inferMechanism(parts, library, roles).loose.map((i) => parts[i].name);
+  };
+  const pairs: [string, string][] = [
+    ['a long pin with stop bush, through a beam', '1 71 -40 -89 -20 0 0 1 0 1 0 -1 0 0 32054.dat\n1 71 0 -89 -20 0 0 -1 1 0 0 0 -1 0 32316.dat'],
+    ["a friction pin, in a panel's pin hole closed at the far end", '1 0 -70 -141.8 -320 1 0 0 0 -1 0 0 0 -1 2780.dat\n1 0 -80 -142 -260 0 1 0 1 0 0 0 0 -1 11946.dat'],
+    ['a half pin, under a 1 x 1 round tile', '1 71 40 -78 130 0 -1 0 0 0 -1 1 0 0 4274.dat\n1 36 40 -78 138 -1 0 0 0 0 -1 0 -1 0 98138.dat'],
+    ["a half pin, in a plate's anti-stud", '1 71 -60 -20 -210 0 0 -1 0 -1 0 -1 0 0 4274.dat\n1 47 -50 -20 -218 1 0 0 0 0 -1 0 1 0 3023.dat'],
+    ["a beam's angled bar, in a steering wheel the set brings with it", '1 0 -137.96 -140 -290.274 0.259 0.966 0 0 0 1 0.966 -0.259 0 85940.dat\n1 71 -133.912607 -155.343 -275.178318 -0.183113 -0.183113 0.966 -0.707 0.707 0 -0.682962 -0.682962 -0.259 42062 - 16091.dat'],
+    ["an old steering arm's pivot, in a Technic plate's hole", '1 7 -40 0.152 -271.736 -1 0 0 0 0.985 0.174 0 0.174 -0.985 4261.dat\n1 0 -10 23.787 -267.569 -1 0 0 0 0.985 0.174 0 0.174 -0.985 4263.dat'],
+    ["a turntable's top, on its bottom", '1 0 0 -242.42 17.48 1 0 0 0 0.021 1 0 -1 0.021 18938.dat\n1 71 0 -242.42 17.48 1 0 0 0 0.021 1 0 -1 0.021 18939.dat'],
+    ['a rack with a beam under it, in its housing', '1 72 20 -210 -254 0 0 -1 0 1 0 1 0 0 18942.dat\n1 4 20 -190 -204 0 0 -1 0 1 0 1 0 0 18940.dat'],
+  ];
+  for (const [what, text] of pairs) it(what, () => expect(loose(text)).toEqual([]));
 });

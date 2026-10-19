@@ -218,11 +218,12 @@ export class Kinematics {
   }
 
   // Where a string's hook hangs, relative to the middle of the circles either side of its pulley
-  // (the pulleys it hangs from).
+  // (the pulleys it hangs from), or to the last circle before it, for a hook tied to the string's
+  // end.
   private hookOffset(s: StringLine): Vector3 {
     const { circles } = this.stringNow(s);
     const h = s.hook!.pulley + 1; // circles start with the drum (or where it's tied)
-    return circles[h].center.clone().sub(circles[h - 1].center.clone().add(circles[h + 1].center).multiplyScalar(0.5));
+    return circles[h].center.clone().sub(hungFrom(circles, h));
   }
 
   // Rows saying how fast a length worked out from a string's layout (by `measure`) changes as
@@ -749,7 +750,7 @@ export class Kinematics {
       if (!stillPossible()) this.dragHeld.delete(body);
     }
     // A string's pulleys aren't held either: they turn as it runs round them.
-    const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.body)));
+    const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.body] : []))));
     const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b) && !pulleys.has(b));
     // On a car standing on its tyres, what steers it first: turning a wheel rolls the car,
     // rather than steering it (a steered wheel turns, too, as it swings round its pivot). Then
@@ -1190,7 +1191,7 @@ export class Kinematics {
         -(layout.length - start.length - this.payout(s)),
       );
       s.pulleys.forEach((w, k) => {
-        if (s.pulleys.some((o) => o !== w && o.body === w.body) || s.drum?.body === w.body) return;
+        if (w.joint < 0 || s.pulleys.some((o) => o !== w && o.body === w.body) || s.drum?.body === w.body) return;
         // The string runs past at what the drum pays out, less how fast the string up to here
         // is getting longer.
         const upTo = this.stringRate(s, (l) => l.upTo[k + 1], n);
@@ -1200,15 +1201,14 @@ export class Kinematics {
       if (!s.hook || !start.hookOffset) return;
       const h = s.hook.pulley + 1; // circles start with the drum (or where it's tied)
       const hook = s.hook.body;
-      const middle = circles[h - 1].center.clone().add(circles[h + 1].center).multiplyScalar(0.5);
-      const off = circles[h].center.clone().sub(middle).sub(start.hookOffset);
+      const off = circles[h].center.clone().sub(hungFrom(circles, h)).sub(start.hookOffset);
       const level = [new Vector3(1, 0, 0), new Vector3(0, 0, 1)];
+      const either = h + 1 < circles.length ? [h - 1, h + 1] : [h - 1];
       for (const dir of level) {
         const row = new Array(n).fill(0);
         for (let k = 0; k < 3; k++) {
           addPointVelocity(row, hook, circles[h].center, k, dir.getComponent(k));
-          addPointVelocity(row, bodies[h - 1], circles[h - 1].center, k, -0.5 * dir.getComponent(k));
-          addPointVelocity(row, bodies[h + 1], circles[h + 1].center, k, -0.5 * dir.getComponent(k));
+          for (const e of either) addPointVelocity(row, bodies[e], circles[e].center, k, -dir.getComponent(k) / either.length);
         }
         add(row, -off.dot(dir));
       }
@@ -1619,7 +1619,7 @@ export class Kinematics {
   jointMotion(joint: number): number[] | null {
     const all = this.freeMotions();
     const rate = (m: number[]) => this.jointRate(m, joint);
-    const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.joint)));
+    const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.joint] : []))));
     const size = (m: number[]) =>
       this.mech.joints.flatMap((j, i) => (pulleys.has(i) ? [] : j.kind === 'revolute' ? [this.jointRate(m, i)] : []));
     return smallestTurning(this.frameStill(all), rate, size) ?? smallestTurning(all, rate, size);
@@ -2153,4 +2153,10 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     basis.push(x);
   }
   return basis;
+}
+
+// Where a hook on a string's circle h hangs from: the middle of the circles either side, or, for
+// a hook tied to the string's end, the last circle before it.
+function hungFrom(circles: StringCircle[], h: number): Vector3 {
+  return h + 1 < circles.length ? circles[h - 1].center.clone().add(circles[h + 1].center).multiplyScalar(0.5) : circles[h - 1].center.clone();
 }

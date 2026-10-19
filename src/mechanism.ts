@@ -37,6 +37,9 @@ const CROWN_BAND = 3.5;
 // shadow library's sphere for them says (a wheel hub's, 2999's, is a bore an official model
 // seats its driveshaft's ball 1 LDU further into).
 const BALL_TOLERANCE = 2.5;
+// How far beyond a string's circle the middle of the part it goes round may be, in LDU (see
+// findStrings): LSynth runs a crane's rope round the edge of a cross block 12 LDU from its middle.
+const GUIDE_REACH = 15;
 // Minimum length two connection points must overlap along their axis, in LDU.
 const MIN_OVERLAP = 1;
 // How much two sliding parts must still overlap, in LDU (see slideRange): a plate on tiles a
@@ -187,9 +190,9 @@ export interface StringLine {
   path: PlacedPath;
   drum: LoopWheel | null; // the drum at its start, if it's wound on one
   start: { body: number; at: Vector3 } | null; // else where it's tied at its start
-  pulleys: LoopWheel[]; // in order along it
+  pulleys: LoopWheel[]; // in order along it, guides (joint -1) among them
   end: { body: number; at: Vector3 }; // where it's tied at its end
-  hook: { body: number; pulley: number } | null; // the body hanging on it, and its pulley (an index into pulleys)
+  hook: { body: number; pulley: number } | null; // the body hanging on it, and its pulley (an index into pulleys; pulleys.length if it hangs from the string's end)
 }
 
 // A universal joint: bodyA and bodyB, each a shaft turning in something, turn at the same rate
@@ -212,6 +215,7 @@ export interface Coupling {
 // `paths`: every path in the model (see parseModel), including those drawn with shapes rather
 // than parts (a string), which the parts alone don't show.
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = []): Mechanism {
+  parts = parts.map((p) => ({ ...p, name: libraryName(p.name, table) }));
   // Friction pins hold what they join in place, unless they're the only way the model can
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
   // still move, that's it; if not, they stay joints, stiff ones.
@@ -224,6 +228,14 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
   const mech = build(new Set());
   const guide = racksToGuide(mech);
   return guide.size ? build(guide) : mech;
+}
+
+// The OMR embeds parts that weren't in the LDraw library yet in the model's file, named
+// "<set> - <part>.dat" (42116 - 42924.dat). Most are in the library now: such a part is read as
+// the library's, if KineBrick knows nothing of its own name.
+function libraryName(name: string, table: ConnectionTable): string {
+  const part = / - ([^/]+)$/.exec(name)?.[1];
+  return !table.parts[name] && part && table.parts[part] ? part : name;
 }
 
 // Racks that need guiding: a rack that can still move with its gear held still, held by
@@ -283,7 +295,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' }));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   treads.push(...trackTreads(loops));
-  const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging);
+  const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings };
 }
 
@@ -659,30 +671,61 @@ function stepsFromFrame(joints: Joint[]): number[] {
 // A string (a path that isn't looped, as LDCad draws a crane's rope): wound on a drum at its
 // start, if its first point is a circle on a wheel; over the pulleys after that (its other
 // circles on wheels, in order; any other point it passes is left out); and tied at its last
-// point to the part nearest there. A pulley whose parts are attached to nothing else (a
-// crane's hook block) hangs on the string: its `hook`.
-function findStrings(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], paths: PlacedPath[], hanging: Set<number>): StringLine[] {
+// point to the part nearest there. Its circles on no wheel are guides it slides over, if
+// something is there to go round. A pulley whose parts are attached to nothing else (a
+// crane's hook block) hangs on the string: its `hook`. So do parts attached to nothing else
+// tied to its end (a hook on a single rope, as LSynth draws a crane's), if no pulley hangs on
+// it. A string that goes round no wheel at all moves nothing, and is left out.
+function findStrings(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], paths: PlacedPath[], hanging: Set<number>, loose: number[]): StringLine[] {
   const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
   return paths
     .filter((path) => !path.looped && path.points.some((p) => p.circle))
-    .map((path) => {
+    .flatMap((path) => {
       const drum = findWheel(path.points[0], 0, parts, roles, bodyOf, joints);
-      const pulleys = path.points.slice(1, -1).flatMap((point, k) => findWheel(point, k + 1, parts, roles, bodyOf, joints) ?? []);
+      const nearest = (p: Vector3, hung = false) =>
+        parts.reduce((best, _, i) => (roles[i] !== 'path' && (hung || !hanging.has(i)) && (best < 0 || at[i].distanceTo(p) < at[best].distanceTo(p)) ? i : best), -1);
+      // A circle on no wheel, round something attached near its middle (not the drum: LSynth
+      // bends a rope a little as it leaves its drum), is a guide the string slides over (a cross
+      // block a crane's rope runs over at its boom tip): its joint is -1.
+      const guide = (point: PathPoint, index: number): LoopWheel | null => {
+        if (!point.circle) return null;
+        const i = nearest(point.center);
+        if (i < 0 || at[i].distanceTo(point.center) >= point.radius + GUIDE_REACH || bodyOf[i] === drum?.body) return null;
+        return { body: bodyOf[i], joint: -1, mount: bodyOf[i], point: index };
+      };
+      const pulleys = path.points.slice(1, -1).flatMap((point, k) => findWheel(point, k + 1, parts, roles, bodyOf, joints) ?? guide(point, k + 1) ?? []);
+      if (!drum && !pulleys.some((w) => w.joint >= 0)) return [];
       const last = path.points[path.points.length - 1].center;
-      const nearest = (p: Vector3) =>
-        parts.reduce((best, _, i) => (roles[i] !== 'path' && !hanging.has(i) && (best < 0 || at[i].distanceTo(p) < at[best].distanceTo(p)) ? i : best), -1);
       const start = drum ? null : { body: bodyOf[nearest(path.points[0].center)], at: path.points[0].center.clone() };
-      const end = { body: bodyOf[nearest(last)], at: last.clone() };
       const hung = pulleys.findIndex((w) => parts.some((_, i) => hanging.has(i) && (bodyOf[i] === w.body || bodyOf[i] === w.mount)));
-      return { path, drum, start, pulleys, end, hook: hung < 0 ? null : { body: pulleys[hung].mount, pulley: hung } };
+      const tied = nearest(last, hung < 0);
+      // Tied to something attached to nothing that doesn't hang on it (a tow truck's hook, run out
+      // level), it's left out: what it's tied to rides along with what's near it, and would hold
+      // the drum still.
+      if (loose.includes(tied) && !hanging.has(tied)) return [];
+      const end = { body: bodyOf[tied], at: last.clone() };
+      const hook = hung >= 0 ? { body: pulleys[hung].mount, pulley: hung } : hanging.has(tied) ? { body: end.body, pulley: pulleys.length } : null;
+      return [{ path, drum, start, pulleys, end, hook }];
     });
 }
 
 // The loose parts that hang on a string: each group of loose parts attached to each other, one
 // of whose parts is inside a circle the string goes round (a crane's hook block, with its
-// pulley).
+// pulley), or is the part nearest where it ends, if it hangs down there (a hook tied to it).
 function hangingParts(parts: PlacedPart[], connections: Connection[], loose: number[], paths: PlacedPath[]): Set<number> {
-  const circles = paths.filter((p) => !p.looped).flatMap((p) => p.points.slice(1, -1).filter((q) => q.circle));
+  const strings = paths.filter((p) => !p.looped && p.points.some((q) => q.circle));
+  // Not the circles of a knot at its end (LSynth ties a rope to its hook so).
+  const circles = strings.flatMap((p) => p.points.slice(1, -1).filter((q) => q.circle && q.center.distanceTo(p.points[p.points.length - 1].center) >= 20));
+  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  // The part nearest each string's end, if the string hangs down to it (within 30 degrees of
+  // straight down, from 20 LDU before its end): a hook tied to a crane's rope. A tow truck's
+  // cable, run out level to its hook, holds up nothing.
+  const ends = strings.map((p) => {
+    const last = p.points[p.points.length - 1].center;
+    const before = [...p.points].reverse().find((q) => q.center.distanceTo(last) >= 20);
+    if (!before || last.clone().sub(before.center).normalize().y < Math.cos(Math.PI / 6)) return -1;
+    return parts.reduce((best, part, i) => (!part.path && (best < 0 || at[i].distanceTo(last) < at[best].distanceTo(last)) ? i : best), -1);
+  });
   const isLoose = new Set(loose);
   const leader = new Map(loose.map((i) => [i, i]));
   const find = (i: number): number => {
@@ -690,7 +733,7 @@ function hangingParts(parts: PlacedPart[], connections: Connection[], loose: num
     return i;
   };
   for (const c of connections) if (isLoose.has(c.male) && isLoose.has(c.female)) leader.set(find(c.male), find(c.female));
-  const groups = new Set(loose.filter((i) => circles.some((q) => new Vector3().setFromMatrixPosition(parts[i].matrix).distanceTo(q.center) < q.radius)).map(find));
+  const groups = new Set(loose.filter((i) => ends.includes(i) || circles.some((q) => at[i].distanceTo(q.center) < q.radius)).map(find));
   return new Set(loose.filter((i) => groups.has(find(i))));
 }
 
@@ -920,18 +963,39 @@ function crownMesh(crown: Gear, gear: Gear): boolean {
 }
 
 // Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross
-// (to within BEVEL_TOLERANCE).
+// (to within BEVEL_TOLERANCE). On axes at right angles, two 45 degree cones also touch all along
+// a line when their tips are either side of the crossing, as far from it as each other; gears with
+// teeth of the same size mesh there if their pitch circles meet on that line. (An official
+// model's differential has a 28 tooth ring whose tip is 10 LDU one side of the crossing, and the
+// 20 tooth gear it meshes with has its tip 10 LDU the other side.)
 function bevelMesh(ga: Gear, gb: Gear): boolean {
   if (!ga.bevel || !gb.bevel) return false;
   const crossing = axesCrossing(ga.center, ga.axis, gb.center, gb.axis);
   if (!crossing) return false;
-  return coneTipAt(ga, crossing) && coneTipAt(gb, crossing);
+  if (coneTipAt(ga, crossing) && coneTipAt(gb, crossing)) return true;
+  if (Math.abs(ga.axis.dot(gb.axis)) > ANGLE_TOLERANCE) return false; // not at right angles
+  if (Math.abs(ga.radius / ga.teeth - gb.radius / gb.teeth) > 0.01) return false; // different tooth sizes
+  // Where a gear's pitch circle is on the line along which its cone touches the other's: as far
+  // from its tip along its own axis as along the other's.
+  const pitchPoint = (cone: Cone, other: Cone, radius: number) => cone.tip.clone().addScaledVector(cone.out, radius).addScaledVector(other.out, radius);
+  return cones(ga).some((a) => cones(gb).some((b) => pitchPoint(a, b, ga.radius).distanceTo(pitchPoint(b, a, gb.radius)) < BEVEL_TOLERANCE));
+}
+
+// A bevel cone: its tip, and the way it opens from there towards the teeth.
+interface Cone {
+  tip: Vector3;
+  out: Vector3;
+}
+
+// A gear's bevel cones (two for a double bevel gear).
+function cones(g: Gear): Cone[] {
+  const sides = g.bevel === 'both' ? [1, -1] : g.bevel === '+' ? [1] : [-1];
+  return sides.map((side) => ({ tip: g.center.clone().addScaledVector(g.axis, side * g.apex), out: g.axis.clone().multiplyScalar(-side) }));
 }
 
 // Whether one of a gear's bevel cones has its tip at `point`.
 function coneTipAt(g: Gear, point: Vector3): boolean {
-  const sides = g.bevel === 'both' ? [1, -1] : g.bevel === '+' ? [1] : [-1];
-  return sides.some((side) => g.center.clone().addScaledVector(g.axis, side * g.apex).distanceTo(point) < BEVEL_TOLERANCE);
+  return cones(g).some((cone) => cone.tip.distanceTo(point) < BEVEL_TOLERANCE);
 }
 
 // Where two axes cross: the midpoint of their closest approach, or null if they're parallel
@@ -961,6 +1025,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
   if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole
   if (male.shape === 'H' && female.shape === 'H' && same) return 'revolute'; // hinge fingers
   if ((male.shape === 'R' || male.shape === 'S') && (female.shape === 'B' || female.shape === 'P') && same) return 'slide'; // piston in its bore, plate on a tile
+  if (male.shape === 'S' && female.shape === 'S' && same) return 'slide'; // square peg in a square socket
   if (male.shape === 'R' && female.shape === 'A' && male.radius < female.radius) return 'revolute'; // thin pin in axle hole
   return null;
 }
@@ -979,9 +1044,11 @@ function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, align = 
       let c: Connection | null = null;
       if (isBall(m) && isBall(f)) c = ballConnect(m, f);
       else if (goesInForTechnic(m) && opensForTechnic(f)) c = connect(m, f, align);
+      else if (goesInForTechnic(m) && hasRound(m, 6) && isAntiStud(f)) c = studConnect(m, f, align);
       else if ((isStud(m) && (isAntiStud(f) || endsInAntiStud(f))) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f, align);
       else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f, align);
       else if (isSwivelPin(m) && isSwivelHole(f)) c = studInHole(m, f, align);
+      else if ((isRoundSocket(m) && isRoundSocket(f)) || (isSquareSocket(m) && isSquareSocket(f))) c = connect(m, f, align);
       if (c && (isSwivelPin(m) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid);
       if (c) connections.push(c);
     }
@@ -1057,18 +1124,48 @@ function fixPins(connections: Connection[], roles: string[], frictionRigid: bool
 
 // A male connection point that goes into Technic holes: open at both ends (an axle, a pin),
 // closed at both (a bar, or a universal joint's centre's arms, which clips grip from the
-// side), or an axle stub fixed to a part at one end (a connector's, a crankshaft's). Studs,
-// closed at one end too, have no axle shape, so they don't count.
+// side), or an axle stub or a pin fixed to a part at one end (a connector's axle, a crankshaft's;
+// a cross block's pins, a long pin's beyond its stop bush, an old steering arm's pivots), or a
+// bar (a beam's angled bar, a tile's bottom pin, a minifig's sword), which goes into a pin's
+// hollow or a bar hole. Studs, closed at one end too, have neither an axle's shape nor a pin's
+// collar or tip, and are wider than a bar, so they don't count.
 function goesInForTechnic(m: WorldCylinder): boolean {
-  return m.caps === 'none' || m.caps === 'two' || (m.caps === 'one' && m.secs.some((s) => s.shape === 'A'));
+  return m.caps === 'none' || m.caps === 'two' || (closedAtOneEnd(m) && (m.secs.some((s) => s.shape === 'A') || hasPinCollar(m) || hasPinTip(m) || isBar(m)));
 }
 
 // A female connection point that takes Technic axles and pins: open at both ends, or an axle
-// hole closed at the far end (such as the ends of an axle joiner, or an angle connector's,
-// which have a thin round lip at the mouth). Anti-studs, closed at one end too, have no axle
-// shape, so they don't count.
+// hole or a pin hole closed at the far end (the ends of an axle joiner, or an angle
+// connector's, which have a thin round lip at the mouth; a panel's pin holes). Anti-studs,
+// closed at one end too, have neither an axle's shape nor a pin hole's collar, so they don't
+// count.
 function opensForTechnic(f: WorldCylinder): boolean {
-  return f.caps === 'none' || (f.caps === 'one' && f.secs.some((s) => s.shape === 'A'));
+  return f.caps === 'none' || (closedAtOneEnd(f) && (f.secs.some((s) => s.shape === 'A') || hasPinCollar(f)));
+}
+
+// Closed at one end: most connection points just say so, some say which (A: the start, B: the
+// far end), as a round tile's anti-stud does.
+function closedAtOneEnd(c: WorldCylinder): boolean {
+  return c.caps === 'one' || c.caps === 'A' || c.caps === 'B';
+}
+
+// A Technic pin's collar and shaft, or a pin hole's counterbore and bore: round sections of
+// radius 8 and 6 LDU.
+function hasPinCollar(c: WorldCylinder): boolean {
+  return hasRound(c, 8) && hasRound(c, 6);
+}
+
+// A Technic pin's shaft and its springy tip, with no collar (an old steering arm's pivots).
+function hasPinTip(c: WorldCylinder): boolean {
+  return hasRound(c, 6) && c.secs.some((s) => s.shape === 'L');
+}
+
+// A bar: round, of radius 4 LDU all along.
+function isBar(c: WorldCylinder): boolean {
+  return c.secs.every((s) => s.shape === 'R' && Math.abs(s.radius - 4) < AXIS_TOLERANCE);
+}
+
+function hasRound(c: WorldCylinder, radius: number): boolean {
+  return c.secs.some((s) => s.shape === 'R' && Math.abs(s.radius - radius) < AXIS_TOLERANCE);
 }
 
 // A stud: a short round peg, closed at one end, on top of a brick or plate.
@@ -1106,6 +1203,18 @@ function turnsStiffly(c: Connection, frictionRigid: boolean) {
   else c.stiff = true;
 }
 
+// A round peg or socket closed at one end and wider than a stud, the peg turning in a socket
+// its size: a turntable's two halves, a linear actuator's end in its bracket.
+function isRoundSocket(c: WorldCylinder): boolean {
+  return closedAtOneEnd(c) && c.secs.length === 1 && c.secs[0].shape === 'R' && c.secs[0].radius > 10;
+}
+
+// A square peg or socket closed at one end and wider than an anti-stud, the peg sliding along
+// a socket its size: a rack with a beam under it, in its housing (a telescopic boom).
+function isSquareSocket(c: WorldCylinder): boolean {
+  return closedAtOneEnd(c) && c.secs.length === 1 && c.secs[0].shape === 'S' && c.secs[0].radius > 8;
+}
+
 // A Technic hole, round and open at both ends. A stud in one turns in it, like a pin (an old
 // engine's piston turns on its connecting rod's stud), unless held on another axis too (a
 // Technic plate's holes sit on studs, next to its anti-studs).
@@ -1113,10 +1222,11 @@ function isTechnicHole(c: WorldCylinder): boolean {
   return c.caps === 'none' && c.secs.some((s) => s.shape === 'R' && Math.abs(s.radius - 6) < AXIS_TOLERANCE);
 }
 
-// An anti-stud: the socket for a stud, underneath a brick or plate.
+// An anti-stud: the socket for a stud, underneath a brick or plate. A pin's end holds in one as
+// a stud does (a 1 x 1 round tile on a half pin, a plate on a long pin's end).
 function isAntiStud(c: WorldCylinder): boolean {
   const sec = c.secs[0];
-  return c.caps === 'one' && c.secs.length === 1 && (sec.shape === 'R' || sec.shape === 'S') && Math.abs(sec.radius - 6) < AXIS_TOLERANCE;
+  return closedAtOneEnd(c) && c.secs.length === 1 && (sec.shape === 'R' || sec.shape === 'S') && Math.abs(sec.radius - 6) < AXIS_TOLERANCE;
 }
 
 // A hole that opens into an anti-stud: a headlight brick's (4070), through the brick from

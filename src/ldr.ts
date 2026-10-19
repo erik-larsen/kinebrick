@@ -60,6 +60,133 @@ function pathOf(lines: string[], placement: Matrix4): PlacedPath | null {
   return { looped: param(content, 'looped') === 'true', skin: normalizePartName(skin ? param(skin, 'donPart') ?? '' : ''), points };
 }
 
+// The paths LSynth drew: runs of its segments, one after another in a submodel (a crane's rope,
+// a hose, a cable), which the official model repository's files place as parts (embedded as
+// "<set> - LS60.dat"), with nothing to say where the path runs but the segments themselves.
+// Each run becomes a path its segments are links of. A rope's (LS60's) turns round a drum or a
+// pulley become its circles: each stretch where it keeps turning the same way through at least
+// MIN_TURN, as the circle that fits it best. Other paths (hoses, cables) only show where they run.
+const LSYNTH_SEGMENT = /(^|[ /])ls([2-9]\d)[a-z]?\.dat$/;
+const LSYNTH_STRING = '60';
+const LSYNTH_GAP = 6; // LDU: segments further apart than this are on different paths
+const MIN_TURN = Math.PI / 6;
+function lsynthPaths(parts: PlacedPart[]) {
+  let start = 0;
+  while (start < parts.length) {
+    const kind = LSYNTH_SEGMENT.exec(parts[start].name)?.[2];
+    let end = start + 1;
+    const at = (i: number) => new Vector3().setFromMatrixPosition(parts[i].matrix);
+    while (kind && end < parts.length && parts[end].name === parts[start].name && parts[end].submodel === parts[start].submodel && !parts[end].path && at(end).distanceTo(at(end - 1)) < LSYNTH_GAP) end++;
+    if (kind && !parts[start].path && end - start > 1) {
+      const points = parts.slice(start, end).map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+      const looped = points.length > 8 && points[0].distanceTo(points[points.length - 1]) < LSYNTH_GAP;
+      const path: PlacedPath = { looped, skin: parts[start].name, points: kind === LSYNTH_STRING ? stringPoints(points) : points.map(throughPoint) };
+      for (let i = start; i < end; i++) parts[i].path = path;
+    }
+    start = end;
+  }
+}
+
+const throughPoint = (center: Vector3): PathPoint => ({ circle: false, center, axis: new Vector3(0, 0, 1), radius: 0, turn: 1 });
+
+// A string's points from its segments' middles: where it starts, the circles it goes round (see
+// lsynthPaths), and where it ends. A string that starts on a circle (wound on a drum) starts
+// with it. All its circles' axes point the same way, the first's, as a string's layout needs
+// (see stringLayout), each turn saying which way it goes round.
+function stringPoints(points: Vector3[]): PathPoint[] {
+  const dirs = points.slice(1).map((p, i) => p.clone().sub(points[i]).normalize());
+  // How it turns at each point between two segments.
+  const turns = dirs.slice(1).map((d, i) => new Vector3().crossVectors(dirs[i], d));
+  const bend = (k: number) => Math.asin(Math.min(1, turns[k].length()));
+  const circles: { from: number; point: PathPoint }[] = [];
+  let i = 0;
+  while (i < turns.length) {
+    if (turns[i].length() < 0.003) {
+      i++;
+      continue;
+    }
+    const sum = turns[i].clone();
+    let angle = bend(i);
+    let j = i + 1;
+    while (j < turns.length && turns[j].length() >= 0.003 && turns[j].dot(sum) > 0) {
+      sum.add(turns[j]);
+      angle += bend(j);
+      j++;
+    }
+    // Turns i to j - 1 are where it turned (turn k is at point k + 1). Where it goes round less
+    // than a whole turn, only the tightest stretch counts: LSynth eases a string into and out of
+    // each circle.
+    if (angle >= MIN_TURN) {
+      let tightest = 0;
+      for (let k = i; k < j; k++) tightest = Math.max(tightest, bend(k));
+      // Wound round more than once (a drum), it's whole turns that count: a part turn would pull
+      // the circle's middle its way.
+      const whole = Math.floor(angle / (2 * Math.PI)) * 2 * Math.PI;
+      const core = [];
+      let wound = 0;
+      for (let k = i; k < j; k++) {
+        wound += bend(k);
+        if (whole ? wound <= whole : bend(k) >= tightest / 1.5) core.push(k);
+      }
+      // Its axis: the way it turns, leaving out where it steps across (from one winding of a
+      // drum to the next).
+      const along = new Vector3();
+      for (const k of core) along.add(turns[k]);
+      for (let pass = 0; pass < 2; pass++) {
+        const axis = along.clone().normalize();
+        along.set(0, 0, 0);
+        for (const k of core) if (turns[k].clone().normalize().dot(axis) > 0.98) along.add(turns[k]);
+      }
+      const near = [...new Set(core.flatMap((k) => [k, k + 1, k + 2]))].map((k) => points[k]);
+      circles.push({ from: i, point: fitCircle(near, along.normalize()) });
+    }
+    i = j;
+  }
+  const result: PathPoint[] = [];
+  if (!circles.length || circles[0].from > 2) result.push(throughPoint(points[0]));
+  const axis = circles[0]?.point.axis;
+  for (const c of circles) {
+    if (c.point.axis.dot(axis) < 0) [c.point.axis, c.point.turn] = [axis.clone(), -1];
+    result.push(c.point);
+  }
+  result.push(throughPoint(points[points.length - 1]));
+  return result;
+}
+
+// The circle through points that best fits them, seen along `axis` (the way they turn round it,
+// anticlockwise): its middle in the plane through their middle.
+function fitCircle(points: Vector3[], axis: Vector3): PathPoint {
+  const mid = points.reduce((sum, p) => sum.add(p), new Vector3()).divideScalar(points.length);
+  let u = new Vector3(1, 0, 0).cross(axis);
+  if (u.length() < 0.1) u = new Vector3(0, 1, 0).cross(axis);
+  u.normalize();
+  const v = new Vector3().crossVectors(axis, u);
+  // Least squares: x² + y² + a x + b y + c = 0, solved by its normal equations.
+  const m = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  const r = [0, 0, 0];
+  for (const p of points) {
+    const d = p.clone().sub(mid);
+    const row = [d.dot(u), d.dot(v), 1];
+    const rhs = -(row[0] * row[0] + row[1] * row[1]);
+    for (let a = 0; a < 3; a++) {
+      r[a] += row[a] * rhs;
+      for (let b = 0; b < 3; b++) m[a][b] += row[a] * row[b];
+    }
+  }
+  const [a, b, c] = solve3(m, r);
+  const x = -a / 2;
+  const y = -b / 2;
+  const center = mid.clone().addScaledVector(u, x).addScaledVector(v, y);
+  return { circle: true, center, axis: axis.clone(), radius: Math.sqrt(Math.max(0, x * x + y * y - c)), turn: 1 };
+}
+
+// Solves the 3 x 3 linear equations m x = r (Cramer's rule).
+function solve3(m: number[][], r: number[]): number[] {
+  const det = (k: number[][]) => k[0][0] * (k[1][1] * k[2][2] - k[1][2] * k[2][1]) - k[0][1] * (k[1][0] * k[2][2] - k[1][2] * k[2][0]) + k[0][2] * (k[1][0] * k[2][1] - k[1][1] * k[2][0]);
+  const d = det(m) || 1e-12;
+  return [0, 1, 2].map((col) => det(m.map((row, i) => row.map((x, j) => (j === col ? r[i] : x)))) / d);
+}
+
 // Colour 16 means "the colour of whatever placed me".
 const INHERIT = 16;
 
@@ -177,6 +304,9 @@ export function parseModel(
   const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number, pieces = false, path: PlacedPath | null = null) => {
     if (depth > 64) throw new Error(`Submodels nested too deep (does one place itself?): ${submodel}`);
     const first = parts.length;
+    // A path's caps (a cable's plugs, or the receiver it comes out of) are parts in their own
+    // right, not links of it.
+    const caps = new Set(path ? lines.filter((line) => /^\s*0\s+!LDCAD\s+PATH_CAP\b/.test(line)).map((line) => normalizePartName(/\[part=([^\]]*)\]/.exec(line)?.[1] ?? '')) : []);
     for (const line of lines) {
       const tokens = line.trim().split(/\s+/);
       if (tokens[0] !== '1' || tokens.length < 15) continue;
@@ -190,12 +320,13 @@ export function parseModel(
       const ownPieces = sub ? null : piecesOf(name);
       if (sub) place(sub, matrix, partColor, name, depth + 1, false, pathOf(sub, matrix));
       else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true);
-      else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(path ? { path } : {}) });
+      else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(path && !caps.has(name) ? { path } : {}) });
     }
     const own = submodel && !pieces ? shapeLines.get(submodel)! : [];
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1, ...(path ? { path } : {}) });
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
+  lsynthPaths(parts);
   // Every path placed, whether drawn with parts (a chain's links) or shapes (a string's).
   const paths = [...new Set([...parts.flatMap((p) => (p.path ? [p.path] : [])), ...shapes.flatMap((s) => (s.path ? [s.path] : []))])];
   return { parts, shapes, paths };

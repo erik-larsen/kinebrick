@@ -70,8 +70,9 @@ export interface ConnectionTable {
   // coordinates. A plate whose anti-studs lie in one, its thickness across the groove, is held
   // there (see inGrooves in mechanism.ts).
   grooves?: Record<string, Groove[]>;
-  // Stickers (parts the LDraw library describes as one): decoration, moving with what they're
-  // stuck on (see decorations in mechanism.ts).
+  // Stickers (parts the LDraw library describes as one), and flexible sections (a ribbed hose's
+  // or a cable's segments): decoration, moving with what they're stuck on or lie next to (see
+  // decorations in mechanism.ts).
   stickers?: string[];
 }
 

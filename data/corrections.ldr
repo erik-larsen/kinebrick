@@ -38,6 +38,68 @@
 0 // Tyre 10/130 x 17 Offset Tread: a big tyre for the same rims (3482), its tread offset towards -z
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 22 18] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 2346.dat
+0 // Tyre 12/ 50 x 16 Offset Tread: another tyre for the same rims (3482)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 22 18] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 // Studless rims and their tyres. Each rim's seat is the band its tyre's bead sits in,
+0 // measured from the LDraw shapes, its radius where the tyre's inside meets the rim; every
+0 // axis runs along z. Which tyre goes on which rim is from how the official models in the
+0 // LDraw Official Model Repository mount them.
+
+0 FILE 42610.dat
+0 // Wheel Rim 8 x 11.2 with Centre Groove: its tyre's bead grips the groove
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 14 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 50951.dat
+0 // Tyre 6/ 30 x 11: sits on the 8 x 11.2 rim (42610)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 14 16] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 55982.dat
+0 // Wheel Rim 14 x 18 with Axlehole
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 21 34] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 55981.dat
+0 // Wheel Rim 14 x 18 with Holes on Both Sides: the same seat as 55982
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 21 34] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 58090.dat
+0 // Tyre 14/ 50 x 17 VR: sits on the 14 x 18 rims (55982, 55981)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 21 34] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 56145.dat
+0 // Wheel Rim 20 x 30 with 6 Dual Spokes and External Ribs: a seat between its flanges
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 34 50] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 54087.dat
+0 // Wheel Rim 20 x 30 with 6 Spokes and No Pegholes: the same seat as 56145
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 34 50] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 55976.dat
+0 // Tyre 26/ 52 x 30 Off Road: sits on the 20 x 30 rims (56145, 54087)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 34 50] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 15413.dat
+0 // Tyre 20/ 48 x 30: sits on the 20 x 30 rims (56145, 54087)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 34 50] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 44309.dat
+0 // Tyre 22/ 30 x 30 ZR: sits on the 20 x 30 rims (56145, 54087)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 34 50] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 44772.dat
+0 // Wheel Rim 34 x 56 with 6 Spokes and 3 Pegholes: a seat between its flanges, which reach
+0 // from z = -45 to 39
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 65 84] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 15038.dat
+0 // Wheel Rim 34 x 56 with 6 Spokes and 6 Pegholes: the same seat as 44772
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 65 84] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 44771.dat
+0 // Tyre 35/ 46 x 56 ZR: sits on the 34 x 56 rims (44772, 15038)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 65 88] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 // Spur gears. Pitch radius is 1.25 LDU per tooth, so two meshing gears' axles are
 0 // (teeth1 + teeth2) x 1.25 LDU apart. Every gear's axis runs along z, teeth 9.5 LDU wide.
 
@@ -56,6 +118,14 @@
 0 FILE 3648a.dat
 0 // Technic Gear 24 Tooth with 3 Axleholes (the old 24 tooth gear)
 0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 10928.dat
+0 // Technic Gear 8 Tooth Reinforced: the same teeth as 3647
+0 !KINEBRICK GEAR [teeth=8] [radius=10] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 94925.dat
+0 // Technic Gear 16 Tooth Reinforced: the same teeth as 4019
+0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 // Crown gears: a 24 tooth gear whose teeth also point along its axis, towards +z, so a spur
 0 // gear of the same tooth size meshes with them on an axle crossing its own at right angles.
@@ -94,6 +164,16 @@
 0 // Technic Gear 20 Tooth Double Bevel
 0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=20] [bevel=both] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 18575.dat
+0 // Technic Gear 20 Tooth Double Bevel Reinforced: the same teeth as 32269
+0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=20] [bevel=both] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 87407.dat
+0 // Technic Gear 20 Tooth Bevel with Peghole: one side of 32269's teeth, facing -z, between
+0 // z = -10 and -2 (its peghole reaches on to z = -20), so its cone's tip is where 32269's -z
+0 // one is, 30 LDU from z = 0
+0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=8] [spur=false] [bevel=-] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 6589.dat
 0 // Technic Gear 12 Tooth Bevel: teeth face +z, cone tip 17 LDU out (where it sits in a differential)
 0 !KINEBRICK GEAR [teeth=12] [radius=12] [width=7] [spur=false] [bevel=+] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -109,6 +189,20 @@
 0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [pos=0 0 30] [ori=1 0 0 0 0 1 0 -1 0]
 0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [pos=0 0 -30] [ori=1 0 0 0 0 1 0 -1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 8] [pos=0 20 0]
+
+0 FILE 62821.dat
+0 // Technic Differential with One Gear 28 Tooth Bevel: a 28 tooth bevel ring between z = 20
+0 // and 28, its teeth facing -z, their cone's tip at z = -10 (measured from the LDraw shape),
+0 // and a post inside for the middle (planet) bevel gear to turn on. The shadow library closes
+0 // the holes the output axles go in at one end, and the post, so neither takes an axle or a
+0 // gear's hole; they're open here. (Official models set a 20 tooth bevel gear 40 LDU out, its
+0 // axle crossing the differential's at its middle, where neither cone's tip is: its tip is 10
+0 // LDU out from there, the ring's 10 LDU the other way, so their cones touch along a line.)
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 6   R 8 2   R 10 3   R 20 7] [pos=0 0 30] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 6   R 8 2   R 10 3   R 20 7] [pos=0 0 -30] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 10] [pos=0 -20 0] [ori=1 0 0 0 -1 0 0 0 -1]
+0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=8] [spur=false] [bevel=-] [apex=34] [center=true] [pos=0 0 24] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 // Worm gears. A worm's thread is a single right-handed helix; each turn moves a meshing gear
 0 // on by one tooth, so its lead (how far the thread advances per turn) is one gear tooth:
@@ -192,6 +286,19 @@
 0 // meshes with a rack lying on plates, as LEGO designed it.
 0 !KINEBRICK RACK [teeth=10] [length=80] [width=20] [pos=-40 -4 0] [dir=1 0 0] [face=0 -1 0]
 
+0 // The studless racks with pegholes and axleholes: a row of teeth along their top, 8 LDU apart
+0 // as the LDraw shapes draw them, their tips 7.5 LDU above the middle. Their pitch line is 5
+0 // LDU above it, so a 12 tooth double bevel gear a stud above meshes with them, as official
+0 // models mount it.
+
+0 FILE 87761.dat
+0 // Technic Gear Rack 1 x 7 with Pegholes and Axleholes: six teeth, from x = -24 to 24
+0 !KINEBRICK RACK [teeth=6] [length=48] [width=20] [pos=-24 -5 0] [dir=1 0 0] [face=0 -1 0]
+
+0 FILE 64781.dat
+0 // Technic Gear Rack 1 x 13 with Pegholes and Axleholes: 22 teeth, from x = -88 to 88
+0 !KINEBRICK RACK [teeth=22] [length=176] [width=20] [pos=-88 -5 0] [dir=1 0 0] [face=0 -1 0]
+
 0 // Sliding on tiles. A plate resting on smooth tiles slides along them (rails either side keep
 0 // it in line; KineBrick doesn't check for those), for as long as it still overlaps the row of
 0 // tiles by a stud. The plate's underside is a slider (S) along its length, and each tile's top
@@ -220,6 +327,15 @@
 0 FILE 3070b.dat
 0 // Tile 1 x 1 with Groove
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=P 10 20] [center=true] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 // Steering.
+
+0 FILE 4261.dat
+0 // Technic Steering Arm: it turns on the pins out of its top and bottom (y = 0 up, y = 24
+0 // down), each in a hole of the plate above or below it. The shadow library closes them at one
+0 // end, as it does a stud's, so they'd fit nothing; these are the same pins open-ended.
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 6 8   L 6.5 2]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 6 8   L 6.5 2] [pos=0 24 0] [ori=1 0 0 0 -1 0 0 0 -1]
 
 0 // Towballs.
 
