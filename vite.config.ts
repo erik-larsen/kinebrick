@@ -17,5 +17,5 @@ export default defineConfig({
   // Many tests drive a whole model through many steps; on GitHub's machines, which run them
   // a few times slower, some take tens of seconds. Other sessions' git worktrees, under
   // .claude/, have tests of their own, which aren't this checkout's.
-  test: { testTimeout: 120000, exclude: [...configDefaults.exclude, '.claude/**'] },
+  test: { testTimeout: 120000, setupFiles: ['tests/setup.ts'], exclude: [...configDefaults.exclude, '.claude/**'] },
 });
