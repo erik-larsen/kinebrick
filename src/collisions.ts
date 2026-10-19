@@ -132,16 +132,32 @@ export class Collisions {
 
   // A part that has gone below the ground (LDraw y `ground`, which points down), as a pair of
   // it with itself, or null if none has: a crane's hook let down too far. Parts that reach to
-  // within NEAR of the ground at `start` (tyres, outrigger pads) aren't checked; by the box
-  // round each part, which is a little bigger than the part once it's turned, so a part can
-  // stop a little short.
+  // within NEAR of the ground at `start` (tyres, outrigger pads) aren't checked (by the box
+  // round each part as it was built).
   belowGround(partMatrices: Matrix4[], ground: number, start: Matrix4[]): [number, number] | null {
     for (let i = 0; i < this.shapes.length; i++) {
       const box = this.shapes[i].box;
       if (box.isEmpty() || box.clone().applyMatrix4(start[i]).max.y > ground - NEAR) continue;
-      if (box.clone().applyMatrix4(partMatrices[i]).max.y > ground) return [i, i];
+      // A box turned with its part reaches further than the part (a big wheel's rim, turned an
+      // eighth of a turn, would reach below its tyre): so where it does, the part's own shape
+      // is looked at.
+      if (box.clone().applyMatrix4(partMatrices[i]).max.y > ground && this.lowest(i, partMatrices[i]) > ground) return [i, i];
     }
     return null;
+  }
+
+  // How low a part's shape reaches (its greatest LDraw y), placed as `matrix` says.
+  private lowest(part: number, matrix: Matrix4): number {
+    let low = -Infinity;
+    for (const m of this.shapes[part].meshes) {
+      const e = matrix.clone().multiply(m.matrix).elements;
+      const position = m.geometry.getAttribute('position');
+      for (let k = 0; k < position.count; k++) {
+        const y = e[1] * position.getX(k) + e[5] * position.getY(k) + e[9] * position.getZ(k) + e[13];
+        if (y > low) low = y;
+      }
+    }
+    return low;
   }
 
   // The first pair of watched parts that now overlap, or null if none do.

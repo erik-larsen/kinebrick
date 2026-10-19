@@ -19,11 +19,19 @@ const ANGLE_TOLERANCE = 0.035;
 // pitch radii apart, in LDU. Real teeth still engage a little closer or further, and models
 // built by hand often have them so: an official model may put a gear 2 LDU into a rack.
 const MESH_TOLERANCE = 2;
+// How far a bevel gear's cone tip may be from where its axle crosses the other gear's, in LDU.
+// Teeth still overlap a tooth's depth (4 LDU, on the old 14 tooth bevel gear) apart: an
+// official model sets one of a pair 20 LDU from where the axles cross, the other at 17.
+const BEVEL_TOLERANCE = 3.5;
 // How far a spur gear meshing with a crown gear may be from over its pitch circle, in LDU: the
 // crown teeth stand in a band across its face (from 26 to 33 LDU out on the 24 tooth crown gear,
 // round its 30 LDU pitch radius), and a spur gear over any of it engages (an official crane's
 // boom drive has one 2 LDU out).
 const CROWN_BAND = 3.5;
+// How far a ball's middle may be from its socket's, in LDU. Some sockets are deeper than the
+// shadow library's sphere for them says (a wheel hub's, 2999's, is a bore an official model
+// seats its driveshaft's ball 1 LDU further into).
+const BALL_TOLERANCE = 2.5;
 // Minimum length two connection points must overlap along their axis, in LDU.
 const MIN_OVERLAP = 1;
 // How much two sliding parts must still overlap, in LDU (see slideRange): a plate on tiles a
@@ -188,6 +196,10 @@ export interface Coupling {
   axisB: Vector3;
   atA: Vector3; // where each end part is
   atB: Vector3;
+  // Only their turning is tied, not where their ends are: a grooved ball in a wheel hub's
+  // socket, the shaft and the hub each held in place by their own joints. (A wheel whose
+  // steering pivot misses the ball's middle a little, as LDraw's shapes have it, still steers.)
+  turningOnly?: boolean;
 }
 
 // `paths`: every path in the model (see parseModel), including those drawn with shapes rather
@@ -233,9 +245,9 @@ function racksToGuide(mech: Mechanism): Set<number> {
 function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[]): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
-  const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? 'structure'));
+  const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? (table.stickers?.includes(p.name) ? 'decoration' : 'structure')));
   const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path');
-  const connections = findConnections(cyls);
+  const connections = findConnections(cyls, frictionRigid);
   fixPins(connections, roles, frictionRigid);
   connections.push(...platesOnEdge(cyls));
   connections.push(...onFourStuds(cyls));
@@ -244,7 +256,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...guidedRacks(parts.length, cyls, connections, guide));
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
-  const joined = universalJoints(parts, roles, cyls, connections);
+  connections.push(...shockAbsorbers(cyls));
+  const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
   // Loose parts hanging on a string are held by it; the rest ride along with what's nearest.
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections), paths);
   const loose = findLooseParts(parts.length, connections).filter((i) => !hanging.has(i));
@@ -252,15 +265,32 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
+  lineUpAxles(joints);
   const treads = findTreads(cyls, bodyOf);
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
-  const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center, axisA, axisB, atA: at(partA), atB: at(partB) }));
+  const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' }));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   treads.push(...trackTreads(loops));
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging);
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings };
+}
+
+// A shock absorber: its rod slides in its cylinder against a spring. Until KineBrick models
+// springs (v2.0), the spring holds it at the length it was built at, so a car sits on its
+// suspension: the rod (square, open at both ends) is fixed in the cylinder (square, closed at
+// one end) it's in.
+function shockAbsorbers(cyls: WorldCylinder[]): Connection[] {
+  const square = (c: WorldCylinder, gender: string, caps: string) => c.gender === gender && c.caps === caps && c.secs.length === 1 && c.secs[0].shape === 'S' && c.secs[0].radius > 6;
+  const result: Connection[] = [];
+  for (const rod of cyls.filter((c) => square(c, 'M', 'none'))) {
+    for (const cylinder of cyls.filter((c) => square(c, 'F', 'one') && c.part !== rod.part && Math.abs(c.secs[0].radius - rod.secs[0].radius) < AXIS_TOLERANCE)) {
+      const overlap = axialOverlap(rod, cylinder);
+      if (overlap) result.push({ male: rod.part, female: cylinder.part, kind: 'rigid', ...overlap });
+    }
+  }
+  return result;
 }
 
 // A piston with no cylinder of its own to slide in, such as the old 2x2 piston block, whose
@@ -319,6 +349,23 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
     connections.push({ male: ends[0], female: ends[1], kind: 'coupling', from: center, to: center.clone() });
     joined.push({ partA: ends[0], partB: ends[1], center, axisA: axisOfEnd(ends[0]), axisB: axisOfEnd(ends[1]) });
   });
+  return joined;
+}
+
+// A grooved ball (2907) on the end of a driveshaft, in a wheel hub's socket (2999's): ridges
+// in the socket fit its grooves, so the hub turns with the shaft, at any angle the ball sits
+// at (a constant velocity joint: steered wheels are driven through it). Like a universal
+// joint, the ball's connection is replaced with a coupling at the ball's middle, between the
+// shaft (the ball's axle hole's axis) and the hub (its socket's), tying only their turning
+// (see Coupling).
+function groovedBalls(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]) {
+  const joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[] = [];
+  const axisOf = (part: number, shape: string) => cyls.find((c) => c.part === part && c.secs.some((s) => s.shape === shape))?.dir.clone() ?? new Vector3(0, 0, 1);
+  for (const c of connections) {
+    if (c.kind !== 'ball' || roles[c.male] !== 'grooved ball') continue;
+    c.kind = 'coupling';
+    joined.push({ partA: c.male, partB: c.female, center: c.from.clone(), axisA: axisOf(c.male, 'A'), axisB: axisOf(c.female, 'O') });
+  }
   return joined;
 }
 
@@ -441,7 +488,7 @@ function platesOnEdge(cyls: WorldCylinder[]): Connection[] {
 // such as stickers and the old pneumatic hoses models use for exhausts and cables. Each moves
 // with the part whose connection point (stud, hole, axle) is nearest to it.
 function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]): Connection[] {
-  const isDecoration = (i: number) => roles[i] === 'decoration' || roles[i] === 'path' || parts[i].name.includes('sticker');
+  const isDecoration = (i: number) => roles[i] === 'decoration' || roles[i] === 'path';
   const anchors = cyls.filter((c) => !isDecoration(c.part));
   const result: Connection[] = [];
   parts.forEach((p, i) => {
@@ -520,7 +567,39 @@ function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: 
       best = { body: bodyOf[i], joint: j, mount, point: index };
     });
   });
-  return best;
+  if (!best) return null;
+  // Of the joints it turns on along the circle's axis, the one in what's nearest the frame:
+  // a gearbox's output shaft turns in the frame, and in the clutch gears freewheeling on it,
+  // and it's how it turns in the frame that drives the chain.
+  const wheel: LoopWheel = best;
+  const steps = stepsFromFrame(joints);
+  joints.forEach((joint, j) => {
+    if (joint.kind !== 'revolute' || (joint.bodyA !== wheel.body && joint.bodyB !== wheel.body)) return;
+    const d = new Vector3().subVectors(joint.to, joint.from).normalize();
+    if (Math.abs(Math.abs(d.dot(point.axis)) - 1) > 0.01) return;
+    const off = new Vector3().subVectors(point.center, joint.from);
+    if (off.addScaledVector(d, -off.dot(d)).length() > AXIS_TOLERANCE) return;
+    const mount = joint.bodyA === wheel.body ? joint.bodyB : joint.bodyA;
+    if (steps[mount] < steps[wheel.mount]) [wheel.joint, wheel.mount] = [j, mount];
+  });
+  return wheel;
+}
+
+// How many joints away from the frame (body 0) each body is.
+function stepsFromFrame(joints: Joint[]): number[] {
+  const steps: number[] = [0];
+  const queue = [0];
+  while (queue.length) {
+    const body = queue.shift()!;
+    for (const j of joints) {
+      const other = j.bodyA === body ? j.bodyB : j.bodyB === body ? j.bodyA : -1;
+      if (other >= 0 && steps[other] === undefined) {
+        steps[other] = steps[body] + 1;
+        queue.push(other);
+      }
+    }
+  }
+  return steps.map((s) => s ?? Infinity);
 }
 
 // A string (a path that isn't looped, as LDCad draws a crane's rope): wound on a drum at its
@@ -786,7 +865,8 @@ function crownMesh(crown: Gear, gear: Gear): boolean {
   return Math.abs(along - crown.crown * gear.radius) <= MESH_TOLERANCE;
 }
 
-// Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross.
+// Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross
+// (to within BEVEL_TOLERANCE).
 function bevelMesh(ga: Gear, gb: Gear): boolean {
   if (!ga.bevel || !gb.bevel) return false;
   const crossing = axesCrossing(ga.center, ga.axis, gb.center, gb.axis);
@@ -797,7 +877,7 @@ function bevelMesh(ga: Gear, gb: Gear): boolean {
 // Whether one of a gear's bevel cones has its tip at `point`.
 function coneTipAt(g: Gear, point: Vector3): boolean {
   const sides = g.bevel === 'both' ? [1, -1] : g.bevel === '+' ? [1] : [-1];
-  return sides.some((side) => g.center.clone().addScaledVector(g.axis, side * g.apex).distanceTo(point) < 1);
+  return sides.some((side) => g.center.clone().addScaledVector(g.axis, side * g.apex).distanceTo(point) < BEVEL_TOLERANCE);
 }
 
 // Where two axes cross: the midpoint of their closest approach, or null if they're parallel
@@ -825,6 +905,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
   if (male.shape === 'K' && female.shape === 'K' && same) return 'rigid'; // driving ring in a clutch gear
   if (male.shape === 'A' && female.shape === 'R' && same) return 'revolute'; // axle in round hole
   if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole
+  if (male.shape === 'H' && female.shape === 'H' && same) return 'revolute'; // hinge fingers
   if ((male.shape === 'R' || male.shape === 'S') && (female.shape === 'B' || female.shape === 'P') && same) return 'slide'; // piston in its bore, plate on a tile
   if (male.shape === 'R' && female.shape === 'A' && male.radius < female.radius) return 'revolute'; // thin pin in axle hole
   return null;
@@ -833,24 +914,54 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
 // Step 4: pairs of connection points that line up.
 // Open-ended cylinders (Technic holes, axles, pins, tyre seats) make rigid and revolute
 // connections; studs in anti-studs make stud connections.
-function findConnections(cyls: WorldCylinder[]): Connection[] {
+function findConnections(cyls: WorldCylinder[], frictionRigid: boolean): Connection[] {
   const connections: Connection[] = [];
   const males = cyls.filter((c) => c.gender === 'M');
   const females = cyls.filter((c) => c.gender === 'F');
+  const near = nearbyFemales(females);
   for (const m of males) {
-    for (const f of females) {
+    for (const f of near(m)) {
       if (f.part === m.part) continue;
       let c: Connection | null = null;
       if (isBall(m) && isBall(f)) c = ballConnect(m, f);
       else if (goesInForTechnic(m) && opensForTechnic(f)) c = connect(m, f);
-      else if ((isStud(m) && isAntiStud(f)) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f);
+      else if ((isStud(m) && (isAntiStud(f) || endsInAntiStud(f))) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f);
       else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f);
+      else if (isSwivelPin(m) && isSwivelHole(f)) c = studInHole(m, f);
+      if (c && (isSwivelPin(m) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid);
       if (c) connections.push(c);
     }
   }
   return connections;
 }
 
+
+// Which female connection points are near enough a male one to connect to it, in the order
+// they were given: those whose boxes (round the cylinder, a little bigger than it) share a
+// cube of a grid with its box. Far quicker than trying every pair in a big model.
+function nearbyFemales(females: WorldCylinder[]): (m: WorldCylinder) => WorldCylinder[] {
+  const CELL = 40; // LDU
+  const MARGIN = 5; // LDU, more than any tolerance
+  const cellsOf = (c: WorldCylinder): string[] => {
+    const length = c.secs.reduce((sum, sec) => sum + sec.length, 0);
+    const reach = Math.max(...c.secs.map((sec) => sec.radius)) + MARGIN;
+    const end = c.start.clone().addScaledVector(c.dir, length);
+    const lo = [0, 1, 2].map((k) => Math.floor((Math.min(c.start.getComponent(k), end.getComponent(k)) - reach) / CELL));
+    const hi = [0, 1, 2].map((k) => Math.floor((Math.max(c.start.getComponent(k), end.getComponent(k)) + reach) / CELL));
+    const keys: string[] = [];
+    for (let x = lo[0]; x <= hi[0]; x++) for (let y = lo[1]; y <= hi[1]; y++) for (let z = lo[2]; z <= hi[2]; z++) keys.push(`${x},${y},${z}`);
+    return keys;
+  };
+  const grid = new Map<string, number[]>();
+  females.forEach((f, i) => {
+    for (const key of cellsOf(f)) grid.set(key, [...(grid.get(key) ?? []), i]);
+  });
+  return (m) => {
+    const found = new Set<number>();
+    for (const key of cellsOf(m)) for (const i of grid.get(key) ?? []) found.add(i);
+    return [...found].sort((a, b) => a - b).map((i) => females[i]);
+  };
+}
 
 // A towball or a ball socket.
 function isBall(c: WorldCylinder): boolean {
@@ -862,7 +973,7 @@ function ballConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
   if (Math.abs(m.secs[0].radius - f.secs[0].radius) > AXIS_TOLERANCE) return null;
   const centre = (c: WorldCylinder) => c.start.clone().addScaledVector(c.dir, c.secs[0].length / 2);
   const point = centre(m);
-  if (point.distanceTo(centre(f)) > AXIS_TOLERANCE) return null;
+  if (point.distanceTo(centre(f)) > BALL_TOLERANCE) return null;
   return { male: m.part, female: f.part, kind: 'ball', from: point, to: point.clone() };
 }
 
@@ -922,6 +1033,25 @@ function isHollowStud(c: WorldCylinder): boolean {
   return c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 4) < AXIS_TOLERANCE;
 }
 
+// A swivel hinge's pin: a thin round peg with a lip at its end (a 1 x 4 swivel hinge plate's
+// top half, 2430), which clicks into the thin hole of the other half (2429) and turns in it.
+function isSwivelPin(c: WorldCylinder): boolean {
+  const [first, ...rest] = c.secs;
+  return c.caps === 'one' && first.shape === 'R' && Math.abs(first.radius - 4) < AXIS_TOLERANCE && rest.length > 0 && rest.every((s) => s.shape === 'L');
+}
+
+function isSwivelHole(c: WorldCylinder): boolean {
+  return c.caps === 'none' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 4) < AXIS_TOLERANCE;
+}
+
+// Hinges (a swivel hinge, hinge plates' fingers) turn stiffly, like a friction pin (see
+// fixPins): they hold what they're set at an angle (a seat back, a spoiler, a bumper's
+// corners), unless they're the only way the model can move.
+function turnsStiffly(c: Connection, frictionRigid: boolean) {
+  if (frictionRigid) [c.kind, c.held] = ['rigid', true];
+  else c.stiff = true;
+}
+
 // A Technic hole, round and open at both ends. A stud in one turns in it, like a pin (an old
 // engine's piston turns on its connecting rod's stud), unless held on another axis too (a
 // Technic plate's holes sit on studs, next to its anti-studs).
@@ -933,6 +1063,12 @@ function isTechnicHole(c: WorldCylinder): boolean {
 function isAntiStud(c: WorldCylinder): boolean {
   const sec = c.secs[0];
   return c.caps === 'one' && c.secs.length === 1 && (sec.shape === 'R' || sec.shape === 'S') && Math.abs(sec.radius - 6) < AXIS_TOLERANCE;
+}
+
+// A hole that opens into an anti-stud: a headlight brick's (4070), through the brick from
+// its underside, which sits on a stud as any brick does.
+function endsInAntiStud(c: WorldCylinder): boolean {
+  return c.secs.length > 1 && c.secs.some((s) => s.shape === 'S' && Math.abs(s.radius - 6) < AXIS_TOLERANCE);
 }
 
 // A stud sitting in an anti-stud: on the same axis, overlapping along it.
@@ -961,6 +1097,32 @@ function axialOverlap(m: WorldCylinder, f: WorldCylinder): { from: Vector3; to: 
   const hi = Math.min(mLength, Math.max(along, fEnd));
   if (hi - lo < MIN_OVERLAP) return null;
   return { from: m.start.clone().addScaledVector(m.dir, lo), to: m.start.clone().addScaledVector(m.dir, hi) };
+}
+
+// Turning joints whose axes are parallel and all but on one line (within AXLE_LINE) are put on
+// one line, the first one's: a model built by hand may set two half axles a hair apart (an
+// official tractor's are 0.02 LDU apart), and an assembly hung on both (its hitch) would
+// otherwise be held fast, as if on two axles side by side.
+function lineUpAxles(joints: Joint[]) {
+  const AXLE_LINE = 0.1; // LDU
+  const lines: { from: Vector3; dir: Vector3 }[] = [];
+  for (const joint of joints) {
+    if (joint.kind !== 'revolute') continue;
+    const dir = new Vector3().subVectors(joint.to, joint.from).normalize();
+    const line = lines.find((l) => {
+      if (new Vector3().crossVectors(l.dir, dir).length() > 1e-3) return false;
+      const off = new Vector3().subVectors(joint.from, l.from);
+      return off.addScaledVector(l.dir, -off.dot(l.dir)).length() < AXLE_LINE;
+    });
+    if (!line) {
+      lines.push({ from: joint.from.clone(), dir });
+      continue;
+    }
+    for (const end of [joint.from, joint.to]) {
+      const along = new Vector3().subVectors(end, line.from).dot(line.dir);
+      end.copy(line.from).addScaledVector(line.dir, along);
+    }
+  }
 }
 
 // Step 5: parts outside the largest group of parts that are attached to each other.

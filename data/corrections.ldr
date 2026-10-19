@@ -17,6 +17,15 @@
 0 // middle of its axle hole, which runs along x
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 30 20] [center=true] [pos=-30 0 0] [ori=0 -1 0 1 0 0 0 0 1]
 
+0 FILE 2998.dat
+0 // Wheel Rim 32 x 56 with Peghole and 6 Spokes with Pegholes (8880's): a tyre seat round its
+0 // outside, between its flanges, its axis along z
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 68 60] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2997.dat
+0 // Tyre 34/ 38 x 56 ZR: sits on the 32 x 56 rim (2998)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 68 60] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 3740.dat
 0 // Tyre 24/ 80 x 43 Offset Tread: sits on the big Technic wheel (3739)
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 30 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -89,6 +98,10 @@
 0 // Technic Gear 12 Tooth Bevel: teeth face +z, cone tip 17 LDU out (where it sits in a differential)
 0 !KINEBRICK GEAR [teeth=12] [radius=12] [width=7] [spur=false] [bevel=+] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 4143.dat
+0 // Technic Gear 14 Tooth Bevel (the old differential's gears): teeth face -z, cone tip 17 LDU out
+0 !KINEBRICK GEAR [teeth=14] [radius=15] [width=4] [spur=false] [bevel=-] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 6573.dat
 0 // Technic Differential with Gear 16 Tooth and 24 Tooth: a 24 tooth ring at z = 30, a 16 tooth
 0 // ring at z = -30, and a post inside for the middle (planet) bevel gear to turn on. The
@@ -119,6 +132,23 @@
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 28] [ori=1 0 0 0 0 -1 0 1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 -28] [ori=1 0 0 0 0 1 0 -1 0]
 0 !KINEBRICK SLIDE [positions=-10 0 10] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 // The older 2L driving ring system (8880's 4-speed gearbox). A 2L driving ring (6539) slides
+0 // on a ridged axle joiner (6538a), locked to it for turning, between two clutch gears (6542a)
+0 // that spin freely on the axles either side. Centred, its ends just touch the gears' clutch
+0 // faces (neutral); shifted 5 LDU either way, its clutch teeth fill the 5 LDU deep clutch face
+0 // of that gear, which then turns with the joiner. Measured from the LDraw shapes.
+
+0 FILE 6539.dat
+0 // Technic Transmission Driving Ring: clutch teeth at both ends, and its three places
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 13 8] [pos=0 0 20] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 13 8] [pos=0 0 -20] [ori=1 0 0 0 0 1 0 -1 0]
+0 !KINEBRICK SLIDE [positions=-5 0 5] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 6542a.dat
+0 // Technic Gear 16 Tooth with Clutch: its clutch face is the 5 LDU at its +z end
+0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 13 5] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
 
 0 FILE 18946.dat
 0 // Technic Gear 16 Tooth with Clutch on Both Sides

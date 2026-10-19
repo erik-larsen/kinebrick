@@ -23,6 +23,8 @@ export type Vec3 = [number, number, number];
 //      cylinder is as long as the ball is wide, centred on the ball
 //   K  clutch: a driving ring's clutch teeth (M) and a clutch gear's clutch face (F); where
 //      they overlap, the gear turns with the ring
+//   H  hinge finger: a hinge plate's finger (M) or the gap between its fingers (F), from the
+//      shadow library's finger hinges; fingers of two parts that interleave turn on each other
 //   G  gear: radius is the pitch radius (where the teeth of two meshing gears meet),
 //      length is the width of the teeth
 export interface Section {
@@ -68,6 +70,9 @@ export interface ConnectionTable {
   // coordinates. A plate whose anti-studs lie in one, its thickness across the groove, is held
   // there (see inGrooves in mechanism.ts).
   grooves?: Record<string, Groove[]>;
+  // Stickers (parts the LDraw library describes as one): decoration, moving with what they're
+  // stuck on (see decorations in mechanism.ts).
+  stickers?: string[];
 }
 
 export interface Groove {

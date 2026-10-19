@@ -487,7 +487,7 @@ export function setUpInteraction(s: InteractionSetup) {
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
     if (!link || !s.kin.turnsLikeAKnob(body)) return 'Only a part that spins on an axle can be kept turning';
-    const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
+    const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
     const canTurn = s.kin.jointMotion(link.joint) !== null;
     s.kin.letGoAfterDrag();
     if (!canTurn) return `This part can't turn: ${wormLocked ? 'a worm gear can only be turned from the worm' : "it's jammed"}`;
@@ -541,7 +541,7 @@ export function setUpInteraction(s: InteractionSetup) {
     };
     for (let attempt = 0; attempt < 2 && !blocked && Math.abs(turned - angle) > 1e-9; attempt++) {
       if (motorHeldIn !== s.kin || attempt > 0) {
-        s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null);
+        s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
         motorHeldIn = s.kin;
       }
       turned += s.kin.turnJoint(link.joint, angle - turned, allowed, MOTOR_MAX_STEP);
@@ -651,7 +651,7 @@ export function setUpInteraction(s: InteractionSetup) {
       const d = drag;
       let wormLocked = false;
       if (d.joint >= 0) {
-        wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null);
+        wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null, d.joint);
       } else {
         const directions = grabDirections(d);
         if (directions > 0) wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);

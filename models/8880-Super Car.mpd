@@ -35,7 +35,8 @@
 0 STEP
 1 7 0 0 430 0 0 1 0 1 0 -1 0 0 8880-step5.ldr
 1 0 0 -14 -80 0 0 -1 0 1 0 1 0 0 3706.dat
-1 0 130 -64 30 0 0 -1 0 1 0 1 0 0 3737.dat
+0 // Corrected for KineBrick: this axle was at 130 -64 30, through no holes; here it carries the 8 tooth gear below and fills the axle joiner
+1 0 -60 -14 -20 0 0 -1 0 1 0 1 0 0 3737.dat
 0 STEP
 1 14 0 0 -110 0 0 1 0 1 0 -1 0 0 8880-step6.ldr
 1 7 -60 -14 -70 -1 0 0 0 1 0 0 0 -1 3647.dat
@@ -246,7 +247,8 @@
 1 7 -212 -54 -180 0 -1 0 -1 0 0 0 0 -1 2907.dat
 1 7 212 -54 -180 0 -1 0 -1 0 0 0 0 -1 2907.dat
 1 0 220 -54 200 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880-step17sub2.ldr
-1 0 -220 -50.633 219.715 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880-step17sub1.ldr
+0 // Corrected for KineBrick: was at -220 -50.633 219.715, a stud further along its slope than its mirror twin (8880-step17sub2), its pin in no hole
+1 0 -220 -54 200 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880-step17sub1.ldr
 1 0 220 -72 -340 1 0 0 0 1 0 0 0 1 4730.dat
 1 0 -220 -72 -340 -1 0 0 0 1 0 0 0 -1 4730.dat
 0 STEP
@@ -294,7 +296,8 @@
 1 7 0 -93.996 249.988 1 0 0 0 1 0 0 0 1 3647.dat
 1 7 0 -93.996 282.99 -1 0 0 0 1 0 0 0 -1 4143.dat
 1 8 0 -60 -110 1 0 0 0 1 0 0 0 1 8880-step19.ldr
-1 8 0 -64 430 1 0 0 0 1 0 0 0 1 8880-step19.ldr
+0 // Corrected for KineBrick: the rear steering rack, as the Bricksafe reconstruction builds it (8880-step19r.ldr, not 8880-step19.ldr, the front one)
+1 8 0 -64 430 1 0 0 0 1 0 0 0 1 8880-step19r.ldr
 1 0 70 -54 380 -1 0 0 0 1 0 0 0 -1 8880-step19ch.ldr
 0 STEP
 1 7 -30 -104 -130 1 0 0 0 1 0 0 0 1 6541.dat
@@ -930,6 +933,27 @@
 
 
 
+
+0 FILE 8880-step19r.ldr
+0 step19r
+0 Author: Orion Pobursky [OrionP]
+0 !LDRAW_ORG Model
+0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
+0 !THEME Technic
+0 Name: 8880-step19r.ldr
+0 // Corrected for KineBrick: the rear steering rack. As the front one (8880-step19.ldr), but as the Bricksafe reconstruction of the set builds it: a 1 x 8 plate under the racks raises them a plate, so the 8 tooth gears above them mesh (the rear wheels steer half as far as the front ones), and the links lean down to the rear wheels' towballs.
+1 7 0 0 0 1 0 0 0 1 0 0 0 1 2719.dat
+1 7 90 0 0 0 -1 0 1 0 0 0 0 1 2736.dat
+1 7 -90 0 0 0 -1 0 1 0 0 0 0 1 2736.dat
+1 7 90 11 0 0 -1 0 0 0 -1 1 0 0 4265b.dat
+1 7 -90 11 0 0 -1 0 0 0 -1 1 0 0 4265b.dat
+0 STEP
+1 0 0 -8 0 1 0 0 0 1 0 0 0 1 3460.dat
+1 7 -40 -16 0 1 0 0 0 1 0 0 0 1 3743.dat
+1 7 40 -16 0 1 0 0 0 1 0 0 0 1 3743.dat
+0 // Angle: -1.169
+1 8 90 -12 0 0 -0.0204 1 0 1 0.0204 -1 0 0 2739a.dat
+1 8 -90 -12 0 0 0.0204 -1 0 1 0.0204 1 0 0 2739a.dat
 
 0 FILE 8880-step20.ldr
 0 step20
@@ -8167,7 +8191,8 @@
 0 STEP
 1 7 0 53.235 394.427 1 0 0 0 0.333 0.943 0 -0.943 0.333 8880-step33-8.ldr
 1 0 90 0 365 -1 0 0 0 0.711 -0.703 0 -0.703 -0.711 6558.dat
-1 0 -90 6.286 367.222 1 0 0 0 -0.111 0.994 0 -0.994 -0.111 6558.dat
+0 // Corrected for KineBrick: was at -90 6.286 367.222, in no hole; moved to mirror its twin at 90 0 365
+1 0 -90 0 365 1 0 0 0 -0.111 0.994 0 -0.994 -0.111 6558.dat
 0 STEP
 1 0 90 -95.338 50.106 1 0 0 0 0.945 0.328 0 -0.328 0.945 8880-step33-9.ldr
 1 0 -90 -95.338 50.106 1 0 0 0 0.945 0.328 0 -0.328 0.945 8880-step33-9.ldr

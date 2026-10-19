@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { Vector3 } from 'three';
+import { Matrix4, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
@@ -25,11 +25,11 @@ function load(file: string) {
   kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100; // as the viewer does
   // The body of the n-th copy of a part.
   const bodyOf = (name: string, n = 0) => mech.bodyOf[parts.map((p, i) => (p.name === name ? i : -1)).filter((i) => i >= 0)[n]];
-  // Turns a body on its joint as a drag does (holding what that doesn't need), as far as it
-  // goes, up to `angle`. Returns how far it turned.
+  // Turns a body on its joint as a drag does (holding what that doesn't need, chosen as the
+  // viewer chooses), as far as it goes, up to `angle`. Returns how far it turned.
   const turn = (body: number, angle: number) => {
     const joint = kin.parentLink(body)!.joint;
-    kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null);
+    kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
     const turned = kin.turnJoint(joint, angle, () => kin.atLimit() === null);
     kin.letGoAfterDrag();
     return turned;
@@ -271,12 +271,28 @@ describe('950 Fork-Lift Truck', () => {
 });
 
 describe('952 Tractor', () => {
-  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/952-Tractor.mpd');
+  const { parts, mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/952-Tractor.mpd');
 
   it('is fully attached: its big rear wheels are tyres, and two plates stand on edge between studs', () => {
     expect(mech.loose).toEqual([]);
     expect(kin.groundY).not.toBeNull();
     expect(mech.treads.filter((t) => t.radius > 100)).toHaveLength(2); // the big rear tyres
+  });
+
+  it('its lever raises and lowers the hitch, which hangs on both rear half axles, and the tractor stays where it is', () => {
+    kin.reset();
+    // The lever: a Technic brick pinned beside the seat, with a plate up from it for a handle.
+    const lever = mech.bodyOf[parts.findIndex((p) => p.name === '3702.dat' && new Vector3().setFromMatrixPosition(p.matrix).distanceTo(new Vector3(-50, -109, 39)) < 1)];
+    // The hitch: what turns on both rear wheels' axles, but the frame.
+    const wheels = mech.treads.filter((t) => t.radius > 100).map((t) => t.body);
+    const hitch = mech.bodies.findIndex((_, b) => b !== 0 && wheels.every((w) => mech.joints.some((j) => (j.bodyA === w && j.bodyB === b) || (j.bodyA === b && j.bodyB === w))));
+    const tilt = () => new Vector3(0, 0, 1).transformDirection(kin.poses[hitch]).y;
+    expect(Math.abs(turn(lever, 0.3))).toBeCloseTo(0.3, 6);
+    const up = tilt();
+    expect(Math.abs(up)).toBeGreaterThan(0.05);
+    expect(Math.abs(turn(lever, -0.6))).toBeCloseTo(0.6, 6);
+    expect(Math.sign(tilt())).toBe(-Math.sign(up));
+    expect(frameMoved()).toBeLessThan(1e-6);
   });
 
   it('turning the steering column turns both front wheels the same way, and the tractor stays where it is', () => {
@@ -403,5 +419,68 @@ describe('956 Auto Chassis', () => {
     kin.letGoAfterDrag();
     expect(Math.abs(turned)).toBeCloseTo(Math.PI, 6);
     expect(Math.abs(Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]))).toBeGreaterThan(0.05);
+  });
+});
+
+describe('8880 Super Car', () => {
+  const { parts, mech, kin, bodyOf, turn, frameMoved } = load('models/8880-Super Car.mpd');
+  // Its wheels' steering knuckles (6540b), front ones first, and how far each has turned about
+  // the upright, in degrees.
+  const knuckles = mech.bodies.flatMap((b, i) => (b.parts.some((p) => parts[p].name === '6540b.dat') ? [i] : []));
+  const at = (body: number) => new Vector3().setFromMatrixPosition(parts[mech.bodies[body].parts[0]].matrix); // where it was built
+  const steered = (body: number) => (Math.atan2(kin.poses[body].elements[8], kin.poses[body].elements[0]) * 180) / Math.PI;
+  const crank = () => kin.jointAngles[kin.parentLink(bodyOf('2853.dat'))!.joint];
+
+  it('is fully attached: hinge plates hold its bodywork at its angles, and its driveshafts turn its steered wheels through grooved balls', () => {
+    expect(mech.loose).toEqual([]);
+    expect(mech.couplings).toHaveLength(6); // two universal joints in the steering, four grooved balls
+    expect(mech.loops).toHaveLength(1); // the chain from the gearbox to the engine
+    expect(knuckles).toHaveLength(4);
+  });
+
+  it('a turn of a wheel rolls it one big tyre round, through its three differentials; in neutral its V8 stays still', () => {
+    kin.reset();
+    expect(Math.abs(turn(bodyOf('2998.dat'), 1))).toBeCloseTo(1, 6);
+    expect(frameMoved()).toBeCloseTo(101.4, 0); // the tyre's radius
+    expect(crank()).toBeCloseTo(0, 6);
+  });
+
+  it('turning the steering wheel steers the front wheels one way and the rear ones the other, about half as far, and the car stays where it is', () => {
+    kin.reset();
+    const front = knuckles.filter((b) => at(b).z < 0);
+    const rear = knuckles.filter((b) => at(b).z > 0);
+    expect(turn(bodyOf('2741.dat'), 1.5)).toBeCloseTo(1.5, 6);
+    const [f1, f2] = front.map(steered);
+    const [r1, r2] = rear.map(steered);
+    expect(Math.sign(f1)).toBe(Math.sign(f2));
+    expect(Math.sign(r1)).toBe(Math.sign(r2));
+    expect(Math.sign(r1)).toBe(-Math.sign(f1));
+    const ratio = (Math.abs(r1) + Math.abs(r2)) / (Math.abs(f1) + Math.abs(f2));
+    expect(ratio).toBeGreaterThan(0.35);
+    expect(ratio).toBeLessThan(0.65);
+    expect(frameMoved()).toBeLessThan(1e-6);
+  });
+
+  it('its four-speed gearbox: each driving ring, shifted either way, puts the engine in gear with the wheels', () => {
+    const rings = parts.flatMap((p, i) => (p.name === '6539.dat' ? [i] : []));
+    const ratios: number[] = [];
+    for (const ring of rings) {
+      for (const by of [-5, 5]) {
+        const shifted = parts.map((p, i) => {
+          if (i !== ring) return p;
+          const dir = new Vector3(0, 0, 1).transformDirection(p.matrix);
+          return { ...p, matrix: new Matrix4().makeTranslation(dir.x * by, dir.y * by, dir.z * by).multiply(p.matrix) };
+        });
+        const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path));
+        const k = new Kinematics(m);
+        const wheel = m.bodyOf[shifted.findIndex((p) => p.name === '2998.dat')];
+        const joint = k.parentLink(wheel)!.joint;
+        k.holdWhatTheDragDoesntNeed(wheel, () => k.jointMotion(joint) !== null, joint);
+        const turned = k.turnJoint(joint, 0.25);
+        ratios.push(Math.abs(k.jointAngles[k.parentLink(m.bodyOf[shifted.findIndex((p) => p.name === '2853.dat')])!.joint] / turned));
+      }
+    }
+    // Engine turns per turn of the wheels: 1st, 2nd, 3rd and 4th gear.
+    expect(ratios.sort((a, b) => b - a).map((r) => +r.toFixed(3))).toEqual([2.25, 1.5, 0.75, 0.5]);
   });
 });
