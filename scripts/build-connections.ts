@@ -5,6 +5,8 @@
 //   1. the LDraw parts library (ldraw/): which primitives and subparts each part is built from
 //   2. the LDCad shadow library (ldcad-shadow/): snap lines attached to parts and primitives
 //   3. KineBrick's corrections (data/corrections.ldr): snap lines for what 1 and 2 miss
+// It also builds data/library-connections.json, the same for every part in the LDraw library,
+// for models opened from your own computer.
 //
 // Run with: npm run connections
 
@@ -19,6 +21,7 @@ const MODELS_DIR = 'models';
 const ROLES_FILE = 'data/roles.json';
 const CORRECTIONS_FILE = 'data/corrections.ldr';
 const OUTPUT_FILE = 'data/connections.json';
+const LIBRARY_OUTPUT_FILE = 'data/library-connections.json';
 
 // ---------------------------------------------------------------------------
 // Small 3D helpers. A transform is a 3x3 matrix (row by row, as in LDraw) plus a translation.
@@ -580,6 +583,31 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-out += '\n  },\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + ',\n  "stickers": ' + JSON.stringify(stickers) + '\n}\n';
+const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections());
+out += '\n  }' + extras() + ',\n  "stickers": ' + JSON.stringify(stickers) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);
+
+// The same for every part in the LDraw library (and every part the models in models/ bring
+// with them), for models opened from your own computer: data/library-connections.json. Most
+// parts share their connection points with others (a part's printed versions all have the
+// same), so each cylinder is written once, in "cylinders", and each part lists its cylinders
+// by their place there. Parts with no connection points are left out.
+const libraryParts = [...new Set([...readdirSync(join(LDRAW_DIR, 'parts')).filter((f) => f.endsWith('.dat')).map(normalizePartName), ...embedded.keys(), ...partsInModels()])].sort();
+const cylinderIndex = new Map<string, number>();
+const libraryStickers: string[] = [];
+let partLines = '';
+for (const name of libraryParts) {
+  if (/^0\s+~?Sticker\b/.test(readLdrawFile(name) ?? '')) libraryStickers.push(name);
+  const indices = fileCylinders(name).map((c) => {
+    const json = cylinderJson(c);
+    if (!cylinderIndex.has(json)) cylinderIndex.set(json, cylinderIndex.size);
+    return cylinderIndex.get(json)!;
+  });
+  if (indices.length) partLines += (partLines ? ',\n' : '\n') + '    ' + JSON.stringify(name) + ': ' + JSON.stringify(indices);
+}
+let library = '{\n  "about": ' + JSON.stringify(about) + ',\n  "cylinders": [';
+library += [...cylinderIndex.keys()].map((json) => '\n    ' + json).join(',');
+library += '\n  ],\n  "parts": {' + partLines + '\n  }' + extras() + ',\n  "stickers": ' + JSON.stringify(libraryStickers) + '\n}\n';
+writeFileSync(LIBRARY_OUTPUT_FILE, library);
+console.log(`Wrote ${LIBRARY_OUTPUT_FILE}: ${libraryParts.length} parts, ${cylinderIndex.size} different cylinders`);

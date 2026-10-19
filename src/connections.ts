@@ -87,6 +87,20 @@ export interface Slide {
   positions: number[];
 }
 
+// data/library-connections.json, the table for every part in the LDraw library: each cylinder
+// is written once, in `cylinders`, and each part lists its cylinders by their place there.
+export interface LibraryTable extends Omit<ConnectionTable, 'parts'> {
+  cylinders: Cylinder[];
+  parts: Record<string, number[]>;
+}
+
+// The library table as a connection table, each part with its own cylinders.
+export function libraryConnections(library: LibraryTable): ConnectionTable {
+  const parts: Record<string, Cylinder[]> = {};
+  for (const [name, indices] of Object.entries(library.parts)) parts[name] = indices.map((i) => library.cylinders[i]);
+  return { ...library, parts };
+}
+
 export function cylinderLength(cyl: Cylinder): number {
   let total = 0;
   for (const sec of cyl.secs) total += sec.length;

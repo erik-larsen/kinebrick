@@ -67,6 +67,12 @@ The **Readout**, which opens under the model's summary, shows how far the frame 
 
 Each kind of information has its own channel: fill colour shows the parts' LEGO colours, a yellow glow what the pointer is on, and an outline their status (cyan frozen, green kept turning, red loose), with a 📌 or ⚠ badge pinned to frozen and loose parts. Outlines show through other parts in a darker shade.
 
+### Your own model
+
+Pick **Open a model file…** at the bottom of the model menu, or drop an LDraw file (`.ldr`, or `.mpd` with submodels) anywhere on the page. KineBrick fetches the parts it uses from [a copy of the LDraw parts library](https://github.com/erik-larsen/ldraw) published beside KineBrick, and works out its mechanism as it does for its own models. The file isn't uploaded anywhere: your browser keeps it, so the page can reload with it (the address names it, as `file=`), and a link to it only works in that browser.
+
+The panel lists any parts KineBrick doesn't know how to connect, which stay where they are, and any files the library hasn't got, which aren't drawn: parts newer than the copy's last update, unless the model file brings them with it. And KineBrick only knows the gears, tyres and other moving parts its own models use, so in another model those it doesn't know won't mesh or roll.
+
 ### Options
 
 These are off, or at their usual values, unless you set them, in the Options panel at the top right or in the address, so the published viewer shows the plain model. Switching model keeps them, except Auto spin and Tyre scrub, which belong to a model.
@@ -117,17 +123,18 @@ A car with two fixed axles can't turn without its tyres sliding sideways, which 
 You need [Node.js](https://nodejs.org) (which comes with `npm`).
 
 1. Install the dependencies: `npm install`
-2. Start the viewer: `npm run dev`, then open the address it prints. Pick a test model from the menu at the top left.
+2. Start the viewer: `npm run dev`, then open the address it prints. Pick a test model from the menu at the top left, or [open your own](#your-own-model).
 
-The viewer doesn't need the LDraw parts library: each test model is packed, with every part it uses, into one file in `packed/`. The libraries are only needed to rebuild the data after changing a test model (see below).
+The viewer doesn't need the LDraw parts library: each test model is packed, with every part it uses, into one file in `packed/`. A model you open yourself is packed the same way in your browser, its parts fetched from an online copy of the library (with the LDraw library in `ldraw/`, add `library=/ldraw/` to the address to use that one instead). The libraries are only needed to rebuild the data after changing a test model (see below).
 
 The project uses plain TypeScript, and [Vite](https://vite.dev) as its development server: Vite serves the code to the browser, converts TypeScript to JavaScript as it goes, and reloads the page whenever a file is saved.
 
 Other commands:
 
 - `npm test` runs the tests.
+- `npm run omr` downloads every Technic set in `models/technic-sets.csv` that the LDraw Official Model Repository has into `omr/` (not committed), and `npm run scan` reads them all as the viewer reads a model you open yourself and writes `omr/coverage.md`: how much of each KineBrick connects, and the parts most worth teaching it next. The scan needs the LDraw parts library in `ldraw/`.
 - `npm run build` builds the site into `dist/`. Every push to `main` runs the tests, then builds and publishes it to GitHub Pages (see `.github/workflows/pages.yml`). If a test fails, the live site stays as it was.
-- `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) and the packed models, after adding or changing a test model (an `.ldr`, or an `.mpd` with submodels, in `models/`). First it brings in any real LEGO set newly downloaded from the [LDraw Official Model Repository](https://library.ldraw.org/omr) into `models/`: `956 - Auto Chassis.mpd` becomes `956-Auto Chassis.mpd`, replacing an older copy, and so do the names of the files inside it; and it gives every set KineBrick's own lines for it from `models/sets.json` (see [Options](#options)). It needs both libraries in the project folder (neither is committed):
+- `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) (and the one for the whole LDraw library, for models you open yourself) and the packed models, after adding or changing a test model (an `.ldr`, or an `.mpd` with submodels, in `models/`). First it brings in any real LEGO set newly downloaded from the [LDraw Official Model Repository](https://library.ldraw.org/omr) into `models/`: `956 - Auto Chassis.mpd` becomes `956-Auto Chassis.mpd`, replacing an older copy, and so do the names of the files inside it; and it gives every set KineBrick's own lines for it from `models/sets.json` (see [Options](#options)). It needs both libraries in the project folder (neither is committed):
   - the LDraw parts library: download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) and unzip it, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`;
   - the LDCad shadow library: `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`.
 
@@ -135,7 +142,7 @@ Other commands:
 
 | Source | Used for | License |
 |---|---|---|
-| [LDraw parts library](https://library.ldraw.org) | Part shapes and connection primitives; the packed models in `packed/` include the parts they use | CC BY 4.0 |
+| [LDraw parts library](https://library.ldraw.org) | Part shapes and connection primitives; the packed models in `packed/` include the parts they use, and models you open yourself fetch theirs from [a copy published beside KineBrick](https://github.com/erik-larsen/ldraw) | CC BY 4.0 |
 | [three.js](https://threejs.org) | Rendering and LDraw loading | MIT |
 | [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh) | Fast tests of whether two parts' shapes overlap | MIT |
 | [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Connection points in the [connection table](ARCHITECTURE.md#the-connection-table) | CC BY-SA 4.0 |

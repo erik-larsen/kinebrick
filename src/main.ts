@@ -29,7 +29,7 @@ import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawCondit
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { collisionGeometry, Collisions, PartMesh } from './collisions.ts';
-import { ConnectionTable, normalizePartName } from './connections.ts';
+import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
 import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
@@ -38,8 +38,13 @@ import { inferMechanism, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { loopLinks } from './paths.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
+import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
+import { packModel } from './pack.ts';
 import connectionsUrl from '../data/connections.json?url';
+import libraryConnectionsUrl from '../data/library-connections.json?url';
 import rolesUrl from '../data/roles.json?url';
+import coloursUrl from '../packed/colours.ldr?url';
+import primitivesUrl from '../packed/primitives.json?url';
 import titlesUrl from '../packed/titles.json?url';
 import packedModels from '../packed/models.json';
 
@@ -69,6 +74,12 @@ const MODELS: [string, string][] = [
 const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
+// A model opened from your own computer, by its file name, e.g. ?file=my-car.mpd, in place of
+// one of KineBrick's own: the browser keeps the file (see library.ts), so only this browser has it.
+const FILE = params.get('file');
+// The LDraw library such a model's parts come from, if not the usual one (LDRAW_LIBRARY), e.g.
+// ?library=/ldraw/ for the one in ldraw/, served by npm run dev.
+const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 // Views for checking the mechanism, off unless the address turns them on, e.g.
 // ?model=gearbox&option=bodycolours,axes,contacts
 //   bodycolours  each body in its own colour, instead of the parts' LEGO colours
@@ -168,9 +179,10 @@ renderer.setAnimationLoop(() => {
 });
 
 // ---------------------------------------------------------------------------
-// Part titles ("Technic Brick 1 x 4 with Holes"), from packed/titles.json.
+// Part titles ("Technic Brick 1 x 4 with Holes"), from packed/titles.json, or for a model opened
+// from your own computer, from its parts' files (start() sets them).
 
-const titles: Promise<Record<string, string>> = fetch(titlesUrl).then((r) => r.json());
+let titles: Promise<Record<string, string>> = FILE ? Promise.resolve({}) : fetch(titlesUrl).then((r) => r.json());
 
 function partTitle(name: string): Promise<string> {
   return titles.then((t) => t[name] ?? '');
@@ -182,19 +194,46 @@ function partTitle(name: string): Promise<string> {
 async function start() {
   const summary = document.getElementById('summary')!;
 
-  const modelText = await (await fetch(MODEL_URL)).text();
-  // Which files the model places are LDraw primitives (drawn shapes), and which parts are read
-  // as their pieces, as the packer found.
-  const packed = (packedModels as Record<string, { primitives: string[]; pieces: Record<string, string[]> }>)[MODEL];
-  const primitives = new Set(packed?.primitives ?? []);
-  const { parts: startParts, shapes: drawnShapes, paths } = parseModel(modelText, (name) => primitives.has(name), (name) => packed?.pieces[name] ?? null);
-  const table: ConnectionTable = await (await fetch(connectionsUrl)).json();
   const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
-
   const loader = new LDrawLoader();
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);
   loader.smoothNormals = true;
-  const model = await loader.loadAsync(PACKED_URL);
+
+  // The model's file, which of the files it places are LDraw primitives (drawn shapes) and which
+  // parts are read as their pieces, as the packer found, its connection table, and the packed
+  // model, loaded. One of KineBrick's own models comes packed (npm run pack); one opened from
+  // your own computer is packed here and now, with the parts it uses fetched from the library.
+  let modelText: string;
+  let packed: { primitives: string[]; pieces: Record<string, string[]> } | undefined;
+  let table: ConnectionTable;
+  let model: Group;
+  let missingFiles: string[] = [];
+  if (FILE) {
+    const kept = await keptFile(FILE);
+    if (kept === null) throw new Error(`${FILE} isn't kept in this browser: open it again with "Open a model file…" above`);
+    modelText = kept;
+    const [colours, primitiveList, library] = await Promise.all([
+      fetch(coloursUrl).then((r) => r.text()),
+      fetch(primitivesUrl).then((r) => r.json()),
+      fetch(libraryConnectionsUrl).then((r) => r.json()),
+    ]);
+    const primitiveSet = new Set<string>(primitiveList);
+    const readFile = libraryReader(LIBRARY, primitiveSet, (count) => (summary.textContent = `Fetching parts from the LDraw library: ${count}…`));
+    const result = await packModel(FILE.replace(/\.(ldr|mpd)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => primitiveSet.has(name), roles);
+    summary.textContent = 'Loading…';
+    packed = result;
+    titles = Promise.resolve(result.titles);
+    missingFiles = result.missing;
+    table = libraryConnections(library);
+    model = await new Promise((resolve, reject) => loader.parse(result.text, resolve, reject));
+  } else {
+    modelText = await (await fetch(MODEL_URL)).text();
+    packed = (packedModels as Record<string, { primitives: string[]; pieces: Record<string, string[]> }>)[MODEL];
+    table = await (await fetch(connectionsUrl)).json();
+    model = await loader.loadAsync(PACKED_URL);
+  }
+  const primitives = new Set(packed?.primitives ?? []);
+  const { parts: startParts, shapes: drawnShapes, paths } = parseModel(modelText, (name) => primitives.has(name), (name) => packed?.pieces[name] ?? null);
   ldrawSpace.add(model);
 
   // The loader makes one child group per line of the packed model, in file order: the parts,
@@ -393,16 +432,6 @@ async function start() {
 
   const meshMaterial = new MeshBasicMaterial({ color: 0xe0218a, depthTest: false });
 
-  const picker = document.getElementById('model') as HTMLSelectElement;
-  for (const [file, name] of MODELS) picker.add(new Option(name, file, false, file === MODEL));
-  // Switching model keeps the options, except tyre scrub: the next model has its own.
-  picker.addEventListener('change', () => {
-    params.set('model', picker.value);
-    params.delete('scrub');
-    params.delete('autospin');
-    window.location.search = address();
-  });
-
   // The options panel, upper right. Each option is kept in the address, so switching model
   // keeps it.
   const gui = new GUI({ title: 'Options' });
@@ -469,7 +498,7 @@ async function start() {
     shift,
   };
   read(startParts);
-  showLooseWarning(startParts.map((p) => p.name), mech.loose);
+  showWarnings(startParts.map((p) => p.name), mech.loose, unconnected(startParts, table, roles), missingFiles);
   const grid = frameCamera(model, kin.groundY);
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
@@ -574,16 +603,83 @@ function frameCamera(model: Object3D, groundY: number | null): GridHelper {
   return grid;
 }
 
-// Lists the parts that aren't attached to the rest of the model (outlined red, marked ⚠), if any.
-async function showLooseWarning(names: string[], loose: number[]) {
+// The parts KineBrick knows no connection points for, so they can't connect to anything (by
+// file name, each once), other than decoration, which needs none.
+function unconnected(parts: PlacedPart[], table: ConnectionTable, roles: Record<string, string>): string[] {
+  const names = new Set(parts.filter((p) => !p.path).map((p) => p.name));
+  return [...names].filter((name) => !table.parts[name]?.length && roles[name] !== 'decoration' && !table.stickers?.includes(name));
+}
+
+// Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red,
+// marked ⚠), the parts KineBrick can't connect, and the files that couldn't be found, so aren't
+// drawn.
+async function showWarnings(names: string[], loose: number[], unconnected: string[], missing: string[]) {
   const warning = document.getElementById('warning')!;
-  if (loose.length === 0) return;
-  const shown = await Promise.all(loose.slice(0, 3).map(async (i) => `${names[i].replace(/\.dat$/, '')} ${await partTitle(names[i])}`));
-  const more = loose.length > 3 ? `, and ${loose.length - 3} more` : '';
-  const what = loose.length === 1 ? "1 part isn't" : `${loose.length} parts aren't`;
-  warning.textContent = `${what} attached to the rest of the model (marked ⚠): ${shown.join(', ')}${more}`;
+  const list = async (parts: string[], count: number) => {
+    const shown = await Promise.all(parts.slice(0, count).map(async (name) => `${name.replace(/\.dat$/, '')} ${await partTitle(name)}`.trim()));
+    return shown.join(', ') + (parts.length > count ? `, and ${parts.length - count} more` : '');
+  };
+  const lines: string[] = [];
+  if (loose.length) {
+    const what = loose.length === 1 ? "1 part isn't" : `${loose.length} parts aren't`;
+    lines.push(`${what} attached to the rest of the model (marked ⚠): ${await list(loose.map((i) => names[i]), 3)}`);
+  }
+  if (unconnected.length) {
+    const what = unconnected.length === 1 ? 'a part' : `${unconnected.length} parts`;
+    lines.push(`KineBrick doesn't know how ${what} can connect: ${await list(unconnected, 8)}`);
+  }
+  if (missing.length) {
+    const what = missing.length === 1 ? "1 file isn't" : `${missing.length} files aren't`;
+    lines.push(`${what} in the LDraw library or the model file, so not drawn: ${missing.slice(0, 8).join(', ')}${missing.length > 8 ? `, and ${missing.length - 8} more` : ''}`);
+  }
+  if (!lines.length) return;
+  warning.replaceChildren(...lines.map((line) => Object.assign(document.createElement('p'), { textContent: line })));
   warning.style.display = 'block';
 }
+
+// ---------------------------------------------------------------------------
+// The model picker: KineBrick's own models, and a model of your own, opened from your computer
+// (picked, or dropped on the page). The browser keeps the file and the page reloads with it.
+
+const picker = document.getElementById('model') as HTMLSelectElement;
+if (FILE) picker.add(new Option(FILE, '', false, true));
+for (const [file, name] of MODELS) picker.add(new Option(name, file, false, !FILE && file === MODEL));
+picker.add(new Option('Open a model file…', 'open'));
+const chosen = picker.value;
+const filePicker = document.getElementById('file') as HTMLInputElement;
+
+// Switching model keeps the options, except tyre scrub and spinning: the next model has its own.
+function openModel(set: (params: URLSearchParams) => void) {
+  for (const name of ['model', 'file', 'scrub', 'autospin']) params.delete(name);
+  set(params);
+  window.location.search = address();
+}
+
+picker.addEventListener('change', () => {
+  if (picker.value === 'open') {
+    picker.value = chosen;
+    filePicker.click();
+  } else if (picker.value) {
+    openModel((p) => p.set('model', picker.value));
+  }
+});
+
+async function openFile(file: File | undefined) {
+  if (!file) return;
+  try {
+    if (!/\.(ldr|mpd)$/i.test(file.name)) throw new Error('KineBrick opens LDraw models: .ldr or .mpd files');
+    await keepFile(file.name, await file.text());
+    openModel((p) => p.set('file', file.name));
+  } catch (err) {
+    document.getElementById('summary')!.textContent = `Can't open ${file.name}: ${(err as Error).message}`;
+  }
+}
+filePicker.addEventListener('change', () => openFile(filePicker.files?.[0]));
+window.addEventListener('dragover', (e) => e.preventDefault());
+window.addEventListener('drop', (e) => {
+  e.preventDefault();
+  openFile(e.dataTransfer?.files[0]);
+});
 
 // ---------------------------------------------------------------------------
 // Readout: how far the frame has moved and how far each joint has turned, so the motion can

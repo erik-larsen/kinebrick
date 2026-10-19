@@ -9,6 +9,8 @@
     "connections": "tsx scripts/build-connections.ts",
     "pack": "tsx scripts/pack-models.ts",
     "import": "tsx scripts/import-sets.ts",
+    "omr": "tsx scripts/download-omr.ts",
+    "scan": "tsx scripts/scan-omr.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },
   "dependencies": {

@@ -1,50 +1,29 @@
 // Packs each test model in models/ (.ldr, or .mpd with submodels) together with every LDraw
 // part and primitive it uses into one file, packed/<model>.mpd, so the viewer needs no LDraw
-// parts library: just one file per model. The model goes in flattened, its submodels' parts
-// placed directly, in the order the viewer's own reading of the model gives (src/ldr.ts), then
-// any shapes its submodels draw without parts (hoses, springs), each as a file of its own.
-// Parts the model file brings with it (unofficial ones) are used where the library has none.
-// Also writes packed/titles.json, the LDraw title of every part the models use, and
-// packed/models.json, which files each model places are primitives (drawn shapes) and which
-// parts are read as their pieces.
+// parts library: just one file per model (see src/pack.ts). Also writes packed/titles.json, the
+// LDraw title of every part the models use, and packed/models.json, which files each model
+// places are primitives (drawn shapes) and which parts are read as their pieces.
+//
+// For models opened from your own computer, which the viewer packs itself, it also writes
+// packed/primitives.json, which files in the LDraw library are primitives, and
+// packed/colours.ldr, the library's colours.
 //
 // Needs the LDraw parts library in ldraw/. Run with: npm run pack
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { normalizePartName } from '../src/connections.ts';
-import { embeddedParts, modelFiles, parseModel, partLine } from '../src/ldr.ts';
+import { packModel } from '../src/pack.ts';
 
 const LDRAW_DIR = 'ldraw';
 const MODELS_DIR = 'models';
 const OUT_DIR = 'packed';
 
-function readLdrawFile(name: string, embedded: Map<string, string>): string {
+async function readLdrawFile(name: string): Promise<string | null> {
   for (const dir of ['parts', 'p']) {
     const path = join(LDRAW_DIR, dir, name);
     if (existsSync(path)) return readFileSync(path, 'utf-8');
   }
-  const own = embedded.get(name);
-  if (own !== undefined) return own;
-  throw new Error(`${name} is not in the LDraw library (${LDRAW_DIR}/) or the model file`);
-}
-
-// The files a file refers to, from its type 1 lines.
-function references(text: string): string[] {
-  const names: string[] = [];
-  for (const line of text.split(/\r?\n/)) {
-    const tokens = line.trim().split(/\s+/);
-    if (tokens[0] === '1' && tokens.length >= 15) names.push(normalizePartName(tokens.slice(14).join(' ')));
-  }
-  return names;
-}
-
-// The name three.js's LDraw loader looks a file up by: it files subparts ("s/...") under
-// "parts/s/..." and high-resolution primitives ("48/...") under "p/48/...".
-function packedName(name: string): string {
-  if (name.startsWith('s/')) return 'parts/' + name;
-  if (name.startsWith('48/')) return 'p/' + name;
-  return name;
+  return null;
 }
 
 // LDConfig.ldr's colour definitions, so the packed file brings its own colours.
@@ -60,44 +39,17 @@ const models: Record<string, { primitives: string[]; pieces: Record<string, stri
 
 // An LDraw primitive (a piece of shape, such as a cylinder), rather than a part.
 const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
-// A part KineBrick reads as the parts it's made of (role "split"): their lines, from its file.
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-const piecesOf = (name: string) => (roles[name] === 'split' ? readLdrawFile(name, new Map()).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
 
 for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f)).sort()) {
-  const source = readFileSync(join(MODELS_DIR, file), 'utf-8');
-  const { parts, shapes } = parseModel(source, isPrimitive, piecesOf);
-  const embedded = embeddedParts(source);
-  const shapeName = (submodel: string) => `kinebrick-shape/${submodel}`;
-  const model = [
-    ...parts.map(partLine),
-    ...shapes.map((s) => partLine({ name: shapeName(s.submodel), color: s.color, matrix: s.matrix })),
-  ].join('\n');
-
-  // Every file the model needs, each once, found by following references.
-  const included = new Map<string, string>();
-  for (const s of shapes) included.set(shapeName(s.submodel), s.lines.join('\n'));
-  const queue = [...references(model), ...shapes.flatMap((s) => references(s.lines.join('\n')))].filter((name) => !included.has(name));
-  while (queue.length) {
-    const name = queue.shift()!;
-    if (included.has(name)) continue;
-    const text = readLdrawFile(name, embedded);
-    included.set(name, text);
-    queue.push(...references(text));
-  }
-  for (const p of parts) {
-    titles[p.name] = included.get(p.name)!.split(/\r?\n/)[0].replace(/^0\s+/, '').replace(/\s+/g, ' ').trim();
-  }
-
   const base = file.replace(/\.(ldr|mpd)$/, '');
-  const placed = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)))].sort();
-  const pieces = Object.fromEntries(placed.flatMap((name) => (piecesOf(name) ? [[name, piecesOf(name)!]] : [])));
-  models[base] = { primitives: placed.filter(isPrimitive), pieces };
-  let out = `0 FILE ${base}.ldr\n${colours}\n${model}\n`;
-  for (const [name, text] of included) out += `\n0 NOFILE\n0 FILE ${packedName(name)}\n${text.trimEnd()}\n`;
-  writeFileSync(join(OUT_DIR, `${base}.mpd`), out);
-  const shapeNote = shapes.length ? `, ${shapes.length} shapes` : '';
-  console.log(`${base}.mpd: ${parts.length} parts${shapeNote}, ${included.size} files, ${(out.length / 1024).toFixed(0)} KB`);
+  const packed = await packModel(base, readFileSync(join(MODELS_DIR, file), 'utf-8'), colours, readLdrawFile, isPrimitive, roles);
+  if (packed.missing.length) throw new Error(`${file}: ${packed.missing.join(', ')} not in the LDraw library (${LDRAW_DIR}/) or the model file`);
+  Object.assign(titles, packed.titles);
+  models[base] = { primitives: packed.primitives, pieces: packed.pieces };
+  writeFileSync(join(OUT_DIR, `${base}.mpd`), packed.text);
+  const shapeNote = packed.shapes.length ? `, ${packed.shapes.length} shapes` : '';
+  console.log(`${base}.mpd: ${packed.parts.length} parts${shapeNote}, ${packed.files} files, ${(packed.text.length / 1024).toFixed(0)} KB`);
 }
 
 writeFileSync(join(OUT_DIR, 'models.json'), JSON.stringify(models, null, 2) + '\n');
@@ -111,3 +63,14 @@ for (const file of readdirSync(OUT_DIR).filter((f) => f.endsWith('.mpd'))) {
 const sorted = Object.fromEntries(Object.entries(titles).sort(([a], [b]) => a.localeCompare(b)));
 writeFileSync(join(OUT_DIR, 'titles.json'), JSON.stringify(sorted, null, 2) + '\n');
 console.log(`Wrote ${OUT_DIR}/titles.json`);
+
+// Every primitive in the library (p/, and its 48/ and 8/ folders), one per line, as models name
+// them ("48/4-4cyli.dat"), less any a part in parts/ shares a name with.
+const primitives = readdirSync(join(LDRAW_DIR, 'p'), { recursive: true, encoding: 'utf-8' })
+  .map((name) => name.replaceAll('\\', '/'))
+  .filter((name) => name.endsWith('.dat') && isPrimitive(name))
+  .sort();
+writeFileSync(join(OUT_DIR, 'primitives.json'), '[\n' + primitives.map((name) => '  ' + JSON.stringify(name)).join(',\n') + '\n]\n');
+console.log(`Wrote ${OUT_DIR}/primitives.json: ${primitives.length} primitives`);
+writeFileSync(join(OUT_DIR, 'colours.ldr'), colours + '\n');
+console.log(`Wrote ${OUT_DIR}/colours.ldr`);
