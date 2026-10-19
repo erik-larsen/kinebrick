@@ -188,6 +188,7 @@ Browser-level tests for these paths can come later.
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
 | `src/appearance.ts` | How parts look: fill colour (LEGO colours, or one per body), yellow glow for hover, outlines and badges for status |
 | `src/outlines.ts` | Outlines drawn around parts after the scene renders |
+| `src/thumbnail.ts` | A picture of the model for its card in the README, taken when the page is opened with `?thumb` |
 | `src/jointAxes.ts` | Draws joint axes |
 | `src/connections.ts` | What a connection point looks like in the table |
 | `tests/` | The tests (see [Testing](#testing)) |
@@ -195,6 +196,7 @@ Browser-level tests for these paths can come later.
 | `scripts/build-connections.ts` | Builds the connection table (`npm run connections`) |
 | `scripts/import-sets.ts` | Brings real LEGO sets downloaded from the OMR into `models/`, renamed, with their lines from `models/sets.json` (`npm run import`, run first by `npm run data`) |
 | `scripts/pack-models.ts` | Packs each test model, flattened, with the LDraw parts it uses (`npm run pack`) |
+| `scripts/thumbs.ts` | Makes the README cards' pictures, opening each model in headless Chrome with `?thumb` (`npm run thumbs`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |
 | `packed/` | The packed models and part titles the viewer loads (generated, don't edit) |
 | `data/connections.json` | The connection table (generated, don't edit) |

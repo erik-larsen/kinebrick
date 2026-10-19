@@ -2,9 +2,11 @@
 
 ![LEGO set 956, Auto Chassis, from 1978, steered halfway to full lock with its rear axle kept turning at 10 rpm: the red, yellow and blue chassis drives round in a circle, its front wheels turned, its four-cylinder engine's pistons running and its rear tyres skidding round the bend](media/auto-chassis.webp)
 
-A web viewer that enables LEGO Technic models to move as they were designed. Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn. Gear trains, pistons, crankshafts, differentials, steering, pulleys, etc. all work properly.
+A web viewer that enables LEGO Technic models to move as they were designed. Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn. Various gears, axles, wheels, pistons, pulleys, etc. work properly now, with many more parts to be handled in the future.
 
 **KineBrick works all this out from the parts themselves, with no hand-made animation.**
+
+The project is currently working its way through Technic models available on LDraw's Official Model Repository (OMR), generally from oldest models first.  Available sets from years 1977-1980 are done, and the goal is to work through every available model up to the present.
 
 Many thanks to the projects KineBrick builds on:
 
@@ -187,6 +189,7 @@ Other commands:
 - `npm run data` rebuilds the [connection table](ARCHITECTURE.md#the-connection-table) and the packed models, after adding or changing a test model (an `.ldr`, or an `.mpd` with submodels, in `models/`). First it brings in any real LEGO set newly downloaded from the [LDraw Official Model Repository](https://library.ldraw.org/omr) into `models/`: `956 - Auto Chassis.mpd` becomes `956-Auto Chassis.mpd`, replacing an older copy, and so do the names of the files inside it; and it gives every set KineBrick's own lines for it from `models/sets.json` (see [Options](#options)). It needs both libraries in the project folder (neither is committed):
   - the LDraw parts library: download [complete.zip](https://library.ldraw.org/library/updates/complete.zip) and unzip it, so you have `ldraw/parts`, `ldraw/p` and `ldraw/LDConfig.ldr`;
   - the LDCad shadow library: `git clone --depth 1 https://github.com/RolandMelkert/LDCadShadowLibrary.git ldcad-shadow`.
+- `npm run thumbs` makes the pictures on the [Models](#models) cards, `media/thumbs/<model>.webp`, for every model in `models/` (or only those named: `npm run thumbs -- "956-Auto Chassis"`). It opens each one in Google Chrome, out of sight, and crops the view as the viewer first shows it to the model. Set `CHROME` to the program's path if Chrome isn't in `/Applications`, or to use Chromium.
 
 ## Data sources and licenses
 

@@ -9,6 +9,7 @@
     "connections": "tsx scripts/build-connections.ts",
     "pack": "tsx scripts/pack-models.ts",
     "import": "tsx scripts/import-sets.ts",
+    "thumbs": "tsx scripts/thumbs.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },
   "dependencies": {
