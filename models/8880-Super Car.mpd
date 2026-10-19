@@ -4,6 +4,8 @@
 0 Author: Orion Pobursky [OrionP]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
+0 // KineBrick: its front wheels turn alike, and its rear ones too, so at full lock its tyres scrub sideways by up to 4% of how far they roll
+0 !KINEBRICK SCRUB [percent=4]
 
 0 !THEME Technic
 

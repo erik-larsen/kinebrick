@@ -1,11 +1,14 @@
 {
-  "854-Go Kart": [],
+  "854-Go Kart": [
+    "0 // KineBrick: its front wheels turn alike, so steered 15 degrees its tyres scrub sideways by up to 8% of how far they roll (further round, by more)",
+    "0 !KINEBRICK SCRUB [percent=8]"
+  ],
   "855-Mobile Crane": [],
   "856-Bulldozer": [],
   "950-Fork Lift": [],
   "952-Tractor": [
-    "0 // KineBrick: its front wheels turn alike, so steered 40 degrees its tyres scrub sideways by up to a fifth of how far they roll",
-    "0 !KINEBRICK SCRUB [percent=20]"
+    "0 // KineBrick: its front wheels turn alike, so steered 40 degrees its tyres scrub sideways by up to 7% of how far they roll",
+    "0 !KINEBRICK SCRUB [percent=7]"
   ],
   "956-Auto Chassis": [
     "0 // KineBrick: its front wheels turn alike, so at full lock its tyres scrub sideways by about a twentieth of how far they roll, more than the usual 2%",
@@ -13,6 +16,9 @@
   ],
   "8448-Super Car": [],
   "8448-Super Car-V8 engine": [],
-  "8880-Super Car": [],
+  "8880-Super Car": [
+    "0 // KineBrick: its front wheels turn alike, and its rear ones too, so at full lock its tyres scrub sideways by up to 4% of how far they roll",
+    "0 !KINEBRICK SCRUB [percent=4]"
+  ],
   "852-Helicopter": []
 }

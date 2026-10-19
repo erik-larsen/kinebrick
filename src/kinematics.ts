@@ -46,6 +46,11 @@ const DEAD_POINT = 0.25;
 // the joint being turned) before a dead point counts as just ahead (see turnJoint). Gears
 // keep it steady, and linkages change it gently, except close to a dead point.
 const DEAD_POINT_RATE = 1.5;
+// How far the fastest joint in a closed loop may have turned in the step before, in radians,
+// for a jump in its rate to tell a dead point (see turnJoint). Further, and its rate is sampled
+// too coarsely to tell: an engine's connecting rods, geared up from a wheel a motor turns 15
+// degrees at a time, swing back and forth faster and slower from one step to the next.
+const DEAD_POINT_SAMPLE = (10 * Math.PI) / 180;
 // How far apart a joint may be left after closing the loops, in LDU, before the step counts as
 // past a dead point (see turnJoint). Models' rounded-off positions leave a hundred-thousandth.
 const DEAD_POINT_GAP = 1e-3;
@@ -140,7 +145,7 @@ export class Kinematics {
   private dragTurning: { grabbed: number; joint: number } | null = null; // the drag they're held for, if it turns a joint
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
-  private slipped = 0; // how far closing the loops last moved geared parts against each other (see closeLoops)
+  private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
   // Bodies held for a drag against the frame rather than against what they turn on (which the
   // drag turns): an assembly hanging on a driven axle stays level, not carried round.
   private heldToFrame = new Set<number>();
@@ -685,6 +690,44 @@ export class Kinematics {
     return wormLocked;
   }
 
+  // The bodies that steer a car: those that turn when, and only when, its wheels turn about
+  // upright axes (a steering wheel, and the gears and shafts down to its rack). Found with the
+  // tyres it stands on lifted off the ground and not turning on their axles, so that steering
+  // doesn't roll them.
+  private steeringBodies(): Set<number> {
+    const treads = this.contactTreads.map((i) => this.mech.treads[i].body);
+    const [contact, held, toFrame] = [this.contactTreads, this.dragHeld, this.heldToFrame];
+    this.contactTreads = [];
+    this.dragHeld = new Set(treads);
+    this.heldToFrame = new Set();
+    let motions: number[][];
+    try {
+      motions = this.freeMotions();
+    } finally {
+      [this.contactTreads, this.dragHeld, this.heldToFrame] = [contact, held, toFrame];
+    }
+    // How fast each tyre turns about the upright against the frame, in each motion; those rows
+    // made orthonormal.
+    const headings = orthonormalize(treads.map((b) => motions.map((m) => DOWN.x * (m[6 * b] - m[0]) + DOWN.y * (m[6 * b + 1] - m[1]) + DOWN.z * (m[6 * b + 2] - m[2]))));
+    const steering = new Set<number>();
+    if (headings.length === 0) return steering;
+    for (const body of this.order) {
+      const j = this.parentJoint[body];
+      if (j < 0 || treads.includes(body)) continue;
+      // How fast it turns in each motion: steering if that's all down to the tyres turning.
+      const rates = motions.map((m) => this.jointRate(m, j));
+      const size = Math.hypot(...rates);
+      if (size < 1e-6) continue;
+      const left = rates.slice();
+      for (const h of headings) {
+        const d = left.reduce((sum, x, i) => sum + x * h[i], 0);
+        for (let i = 0; i < left.length; i++) left[i] -= d * h[i];
+      }
+      if (Math.hypot(...left) < 1e-6 * size) steering.add(body);
+    }
+    return steering;
+  }
+
   // The holds for a drag (see holdWhatTheDragDoesntNeed), on top of any already there.
   private chooseHolds(grabbed: number, stillPossible: () => boolean) {
     const depth = (body: number): number => {
@@ -708,9 +751,13 @@ export class Kinematics {
     // A string's pulleys aren't held either: they turn as it runs round them.
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.body)));
     const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b) && !pulleys.has(b));
-    // Friction pins first, then the deepest parts.
+    // On a car standing on its tyres, what steers it first: turning a wheel rolls the car,
+    // rather than steering it (a steered wheel turns, too, as it swings round its pivot). Then
+    // friction pins, then the deepest parts.
+    const steering = this.contactTreads.length > 0 ? this.steeringBodies() : new Set<number>();
+    const steers = (body: number) => (steering.has(body) ? 1 : 0);
     const stiff = (body: number) => (this.mech.joints[this.parentJoint[body]].stiff ? 1 : 0);
-    candidates.sort((a, b) => stiff(b) - stiff(a) || depth(b) - depth(a) || a - b);
+    candidates.sort((a, b) => steers(b) - steers(a) || stiff(b) - stiff(a) || depth(b) - depth(a) || a - b);
     const alone = this.standingAlone(grabbed);
     for (const body of candidates) {
       if (this.dragHeld.has(body)) continue;
@@ -995,9 +1042,14 @@ export class Kinematics {
     // in, about its own axis pointing away from the joint's middle (so a straight joint turns
     // both the same way). And its two ends stay together, where each shaft's axis passes the
     // joint's middle (points on the axes, so turning the shafts doesn't move them), unless
-    // only their turning is tied (a grooved ball in a wheel hub, see Coupling).
+    // only their turning is tied (a grooved ball in a wheel hub, see Coupling). Shafts that
+    // both turn in one body (a steering column's, in the frame) are kept together by it
+    // already: as rows, their ends would come out, from parts placed only so precisely in an
+    // LDraw file, as a hair's breadth short of that, and stop some other motion altogether (a
+    // car turning a corner).
     for (const { shafts, turningOnly } of this.couplings) {
       if (turningOnly) continue;
+      if (shafts.every((sh) => sh.joint >= 0 && sh.mount === shafts[0].mount)) continue;
       const [a, b] = shafts.map((sh) => ({ body: sh.body, at: sh.near.clone().applyMatrix4(this.poses[sh.body]) }));
       for (let k = 0; k < 3; k++) {
         const row = new Array(n).fill(0);
@@ -1274,16 +1326,8 @@ export class Kinematics {
         gaps.push(0);
         weights.push(1);
       }
-      const inTree = inBasis(rows, basis);
-      const solution = dampedSolution(inTree, gaps, this.basisOrder, weights);
+      const solution = dampedSolution(inBasis(rows, basis), gaps, this.basisOrder, weights);
       if (!solution) return last;
-      // How far the correction would move geared parts against each other (a rack against its
-      // gear): it can't be undone later, so a step that needs it is past a dead point.
-      inTree.forEach((row, k) => {
-        if (weights[k] !== DRIVE_WEIGHT) return;
-        const length = Math.sqrt(row.reduce((sum, x) => sum + x * x, 0));
-        if (length > 1e-9) this.slipped = Math.max(this.slipped, Math.abs(row.reduce((sum, x, c) => sum + x * solution[c], 0)) / length);
-      });
       this.move(fromBasis(solution, basis), 1);
       fresh = false;
     }
@@ -1469,12 +1513,14 @@ export class Kinematics {
   // apart), or closing them would wrench the joints far from where the step's motion had them
   // going, or flip the linkage over. Close to one, the linkage's joints turn faster and faster
   // for each turn of the joint being turned. So a step for which the fastest joint would turn
-  // more than DEAD_POINT_RATE times as fast as in the step before isn't taken; and a step after
-  // which a joint is left more than DEAD_POINT_GAP apart, or any joint has turned more than
-  // DEAD_POINT of the step's largest joint turn away from where its motion had it going, is
-  // undone, and the turn stops there, short of the dead point, and won't turn further that
-  // way from there. (Creeping on in ever smaller steps, it would slip across; and stopped right
-  // at the dead point, it couldn't turn back.)
+  // more than DEAD_POINT_RATE times as fast as in the step before (if it turned at most
+  // DEAD_POINT_SAMPLE then) isn't taken; and a step after which a joint is left more than
+  // DEAD_POINT_GAP apart, or any joint has turned more than DEAD_POINT of the step's largest
+  // joint turn away from where its motion had it going, is undone (a step bigger than the usual
+  // MAX_TURN_STEP, a motor's, is taken again in usual steps first), and the turn stops there,
+  // short of the dead point, and won't turn further that way from there. (Creeping on in ever
+  // smaller steps, it would slip across; and stopped right at the dead point, it couldn't turn
+  // back.)
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
     // Stopped at a dead point already, and nothing has moved since: no further that way.
     const dead = this.deadPoint;
@@ -1501,14 +1547,23 @@ export class Kinematics {
       // How far each joint should turn in the step, and how far it has.
       const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' ? this.jointRate(motion, k) * step : 0));
       const largest = Math.max(...predicted.map(Math.abs));
-      // How fast the fastest joint turns, for each turn of this one (at least 1: this one).
-      const ratio = largest / Math.abs(step);
+      // How fast the fastest joint in a closed loop turns, for each turn of this one (at least
+      // 1: this one). Dead points are linkages', and other joints' rates may change from step
+      // to step for other reasons (a steered tractor's front wheels, as it rolls and scrubs).
+      const loops = this.loopJoints ??= new Set(this.mech.joints.flatMap((_, k) => (this.inLoop(k) ? [k] : [])));
+      const ratio = Math.max(1, ...[...loops].map((k) => Math.abs(predicted[k] / step)));
       const last = this.lastStep;
-      if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
+      if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);
       if (gap > DEAD_POINT_GAP || predicted.some((p, k) => Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
         this.restore(before);
-        return stop(turned);
+        // A bigger step than usual (a motor's) may just be too big to follow: taken in the
+        // usual steps, it may go. Only those can tell a dead point.
+        if (Math.abs(step) <= MAX_TURN_STEP + 1e-12) return stop(turned);
+        const done = this.turnJoint(joint, step, allowed, MAX_TURN_STEP);
+        turned += done;
+        if (Math.abs(done - step) > 1e-12) return turned;
+        continue;
       }
       if (allowed && !allowed()) {
         this.restore(before);
@@ -1736,10 +1791,14 @@ function screwMotion(w: Vector3, v: Vector3): Matrix4 {
 // is a = G⁻¹ rates / (ratesᵀ G⁻¹ rates).
 function smallestTurning(motions: number[][], rate: (m: number[]) => number, size: (m: number[]) => number[]): number[] | null {
   const rates = motions.map(rate);
-  if (rates.reduce((sum, r) => sum + r * r, 0) < EPSILON) return null;
   const sizes = motions.map(size);
   const gram = sizes.map((a) => sizes.map((b) => a.reduce((sum, x, i) => sum + x * b[i], 0)));
+  // How fast joints turn in the motions at all. Motions are made to unit size, and moving a body
+  // far from the model's origin counts for more and more (its speed there), so a car driven far
+  // off has motions in which every joint turns slowly: whether this joint turns is judged
+  // against that.
   const scale = Math.max(...gram.map((row, i) => row[i]));
+  if (!(scale > 0) || rates.reduce((sum, r) => sum + r * r, 0) < EPSILON * scale) return null;
   const mix = solveSymmetric(gram, rates, EPSILON * scale);
   const turns = mix.reduce((sum, a, k) => sum + a * rates[k], 0);
   if (Math.abs(turns) < EPSILON) return null;

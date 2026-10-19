@@ -34,16 +34,37 @@ function load(file: string) {
     kin.letGoAfterDrag();
     return turned;
   };
+  // Keeps a body turning as the motor does (Ctrl-click): `steps` steps of 15 degrees, with what
+  // that doesn't need held once, and held afresh if a step can't be taken. Returns how far it
+  // turned, stopping at a step it can't take.
+  const motor = (body: number, steps: number) => {
+    const joint = kin.parentLink(body)!.joint;
+    const step = (15 * Math.PI) / 180;
+    const allowed = () => kin.atLimit() === null;
+    let total = 0;
+    kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
+    for (let i = 0; i < steps; i++) {
+      let turned = kin.turnJoint(joint, step, allowed, step);
+      if (Math.abs(turned - step) > 1e-9) {
+        kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
+        turned += kin.turnJoint(joint, step - turned, allowed, step);
+      }
+      total += turned;
+      if (Math.abs(turned - step) > 1e-9) break;
+    }
+    kin.letGoAfterDrag();
+    return total;
+  };
   const angleOf = (body: number) => kin.jointAngles[kin.parentLink(body)!.joint];
   const frameMoved = () => new Vector3().applyMatrix4(kin.poses[0]).length();
   // The bodies that turn on the frame on a 2x2 turntable (whose top, 3679, they carry).
   const turntables = () =>
     mech.joints.flatMap((j) => (j.kind === 'revolute' && j.bodyA === 0 && mech.bodies[j.bodyB].parts.some((p) => parts[p].name === '3679.dat') ? [j.bodyB] : []));
-  return { parts, mech, kin, bodyOf, turn, angleOf, frameMoved, turntables };
+  return { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables };
 }
 
 describe('854 Go-Kart', () => {
-  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/854-Go Kart.mpd');
+  const { mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/854-Go Kart.mpd');
   const knuckles = turntables();
 
   it('is fully attached: its hoses are decoration, its seat sits on a hinge, its steering column bends through a universal joint', () => {
@@ -77,6 +98,21 @@ describe('854 Go-Kart', () => {
     expect(Math.abs(turned)).toBeCloseTo(2 * Math.PI, 6);
     expect(frameMoved()).toBeCloseTo(2 * Math.PI * 54.2, 0); // the big tyre's radius
     expect(Math.max(...offsets) - Math.min(...offsets)).toBeCloseTo(28, 0); // twice the crank's throw
+  });
+
+  it('steered 15 degrees either way, a turn of a rear wheel still takes it round, its tyres scrubbing sideways by up to the 8% its file allows', () => {
+    expect(kin.scrub).toBe(0.08);
+    for (const way of [1, -1]) {
+      kin.reset();
+      turn(bodyOf('3736.dat'), way); // the steering wheel a radian, the front wheels about 15 degrees
+      for (const tt of turntables()) expect(Math.abs(angleOf(tt)) * (180 / Math.PI)).toBeGreaterThan(14);
+      const start = kin.snapshot();
+      kin.scrub = 0.04;
+      expect(motor(bodyOf('3634.dat', 2), 24)).toBeLessThan(0.1);
+      kin.restore(start);
+      kin.scrub = 0.08;
+      expect(motor(bodyOf('3634.dat', 2), 24)).toBeCloseTo(2 * Math.PI, 6); // a turn of the wheel
+    }
   });
 });
 
@@ -271,7 +307,7 @@ describe('950 Fork-Lift Truck', () => {
 });
 
 describe('952 Tractor', () => {
-  const { parts, mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/952-Tractor.mpd');
+  const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/952-Tractor.mpd');
 
   it('is fully attached: its big rear wheels are tyres, and two plates stand on edge between studs', () => {
     expect(mech.loose).toEqual([]);
@@ -318,8 +354,8 @@ describe('952 Tractor', () => {
     expect(new Vector3(0, 1, 0).transformDirection(kin.poses[hung]).y).toBeCloseTo(1, 3); // not carried round
   });
 
-  it('steered 40 degrees either way, a turn of the rear wheels still takes it round, its tyres scrubbing sideways by up to the 20% its file allows', () => {
-    expect(kin.scrub).toBe(0.2);
+  it('steered 40 degrees either way, a turn of the rear wheels still takes it round, its tyres scrubbing sideways by up to the 7% its file allows', () => {
+    expect(kin.scrub).toBe(0.07);
     for (const way of [1, -1]) {
       kin.reset();
       turn(bodyOf('3712.dat'), way * 4); // the steering column
@@ -334,10 +370,22 @@ describe('952 Tractor', () => {
       expect(Math.abs(turned)).toBeCloseTo(1, 6);
     }
   });
+
+  it('steered a little, a rear wheel kept turning by the motor takes it round and round, with its steering left where it was', () => {
+    kin.reset();
+    const column = bodyOf('3712.dat');
+    turn(column, -0.5);
+    const heading = Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]);
+    expect(motor(bodyOf('952-3739c01.dat', 1), 400)).toBeCloseTo(400 * ((15 * Math.PI) / 180), 6);
+    expect(angleOf(column)).toBeCloseTo(-0.5, 6);
+    // It went round a corner: a quarter of a turn, give or take.
+    const turned = Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]) - heading;
+    expect(Math.abs(turned) * (180 / Math.PI)).toBeGreaterThan(45);
+  });
 });
 
 describe('956 Auto Chassis', () => {
-  const { mech, kin, bodyOf, turn, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
+  const { mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
   // The rear axle: both rear tyres on one body, with no differential between them.
   const rearAxle = mech.treads.find((t) => mech.treads.filter((u) => u.body === t.body).length === 2)!.body;
 
@@ -467,10 +515,18 @@ describe('956 Auto Chassis', () => {
     expect(Math.abs(turned)).toBeCloseTo(Math.PI, 6);
     expect(Math.abs(Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]))).toBeGreaterThan(0.05);
   });
+
+  it('at full lock either way, its rear axle kept turning by the motor takes it round and round: its connecting rods, swinging fast, are no dead point', () => {
+    for (const way of [1, -1]) {
+      kin.reset();
+      turn(bodyOf('3736.dat'), way * 2.19);
+      expect(motor(rearAxle, 200)).toBeCloseTo(200 * ((15 * Math.PI) / 180), 6);
+    }
+  });
 });
 
 describe('8880 Super Car', () => {
-  const { parts, mech, kin, bodyOf, turn, frameMoved } = load('models/8880-Super Car.mpd');
+  const { parts, mech, kin, bodyOf, turn, motor, frameMoved } = load('models/8880-Super Car.mpd');
   // Its wheels' steering knuckles (6540b), front ones first, and how far each has turned about
   // the upright, in degrees.
   const knuckles = mech.bodies.flatMap((b, i) => (b.parts.some((p) => parts[p].name === '6540b.dat') ? [i] : []));
@@ -529,5 +585,17 @@ describe('8880 Super Car', () => {
     }
     // Engine turns per turn of the wheels: 1st, 2nd, 3rd and 4th gear.
     expect(ratios.sort((a, b) => b - a).map((r) => +r.toFixed(3))).toEqual([2.25, 1.5, 0.75, 0.5]);
+  });
+
+  it('steered near full lock, a front wheel kept turning by the motor takes it round a corner through its three differentials, its steering left where it was and its tyres scrubbing sideways by up to the 4% its file allows', () => {
+    expect(kin.scrub).toBe(0.04);
+    kin.reset();
+    const steeringWheel = bodyOf('2741.dat');
+    turn(steeringWheel, 3); // it stops at 3.64
+    const heading = Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]);
+    expect(motor(bodyOf('2998.dat'), 24)).toBeCloseTo(2 * Math.PI, 6); // a turn of the wheel
+    expect(kin.jointAngles[kin.parentLink(steeringWheel)!.joint]).toBeCloseTo(3, 6);
+    const turned = Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]) - heading;
+    expect(Math.abs(turned) * (180 / Math.PI)).toBeGreaterThan(15);
   });
 });
