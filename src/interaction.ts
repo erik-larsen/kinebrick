@@ -551,10 +551,10 @@ export function setUpInteraction(s: InteractionSetup) {
     if (blocked) turned += s.kin.turnJoint(link.joint, angle - turned, allowed);
     if (Math.abs(turned) > 1e-9) motorMoved = true;
     if (Math.abs(turned - angle) > 1e-9) {
-      // At the end of its travel (it ran into something, or a slide or rack ran out), it turns
-      // back, as long as it got somewhere since it last did: else it's stuck both ways, and
-      // stops. If it can't turn at all, it stops.
-      if (blocked && motorMoved) {
+      // At the end of its travel (it ran into something, a slide or rack ran out, or a linkage
+      // came to a dead point), it turns back, as long as it got somewhere since it last did:
+      // else it's stuck both ways, and stops. If it can't turn at all, it stops.
+      if ((blocked || s.kin.atDeadPoint(link.joint)) && motorMoved) {
         motorDirection = -motorDirection;
         motorMoved = false;
         s.onMotorChanged();

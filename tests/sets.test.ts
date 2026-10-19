@@ -379,18 +379,50 @@ describe('956 Auto Chassis', () => {
     pistons.forEach((_, k) => expect(high[k] - low[k]).toBeCloseTo(32, 0));
   });
 
-  it('at full lock either way, a turn of the rear axle still takes it round, its tyres scrubbing sideways by up to the 25% its file allows', () => {
+  it('at full lock either way, where its tyres meet its chassis, a turn of the rear axle still takes it round, its tyres scrubbing sideways more than the usual 2%', () => {
     expect(kin.scrub).toBe(0.25);
+    const [left, right] = turntables();
     for (const way of [1, -1]) {
       kin.reset();
-      turn(bodyOf('3736.dat'), way * 10); // as far as the steering rack goes
+      // 2.19 radians of the steering wheel, as far as it turns in the viewer, which stops the
+      // front tyres where they meet the chassis (the tests can't: that needs the parts' shapes).
+      expect(Math.abs(turn(bodyOf('3736.dat'), way * 2.19))).toBeCloseTo(2.19, 6);
+      for (const tt of [left, right]) expect(Math.abs(angleOf(tt)) * (180 / Math.PI)).toBeGreaterThan(30);
       const wheel = rearAxle;
       const joint = kin.parentLink(wheel)!.joint;
-      kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
-      let turned = 0;
-      for (let i = 0; i < 20; i++) turned += kin.turnJoint(joint, 0.05);
-      kin.letGoAfterDrag();
-      expect(Math.abs(turned)).toBeCloseTo(1, 6);
+      const roll = (scrub: number) => {
+        const start = kin.snapshot();
+        kin.scrub = scrub;
+        kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null, joint);
+        let turned = 0;
+        for (let i = 0; i < 20; i++) turned += kin.turnJoint(joint, 0.05);
+        kin.letGoAfterDrag();
+        kin.restore(start);
+        kin.scrub = 0.25;
+        return Math.abs(turned);
+      };
+      expect(roll(0.25)).toBeCloseTo(1, 6);
+      expect(roll(0.02)).toBeLessThan(0.1);
+    }
+  });
+
+  it('turned on past that, its steering stops short of where its linkage locks, in the same place however it gets there, and turns back', () => {
+    for (const way of [1, -1]) {
+      kin.reset();
+      const once = turn(bodyOf('3736.dat'), way * 10);
+      expect(Math.abs(once)).toBeGreaterThan(3);
+      expect(Math.abs(once)).toBeLessThan(3.25);
+      kin.reset();
+      let stepped = 0;
+      for (let i = 0; i < 150; i++) stepped += turn(bodyOf('3736.dat'), way * 0.03);
+      expect(Math.abs(stepped - once)).toBeLessThan(0.05);
+      // Turned back half a radian, the front wheels are where that steering puts them, to
+      // within 2 degrees: the rack hasn't slipped against its gear.
+      expect(turn(bodyOf('3736.dat'), -way * 0.5)).toBeCloseTo(-way * 0.5, 6);
+      const back = turntables().map(angleOf);
+      kin.reset();
+      turn(bodyOf('3736.dat'), stepped - way * 0.5);
+      turntables().map(angleOf).forEach((a, k) => expect(Math.abs(a - back[k])).toBeLessThan((2 * Math.PI) / 180));
     }
   });
 
