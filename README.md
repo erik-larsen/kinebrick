@@ -1,8 +1,18 @@
 # [KineBrick](https://erik-larsen.github.io/kinebrick/)
 
-A web viewer that makes LEGO Technic models move. Load an LDraw model and drag its parts: push a car and it rolls, its tyres turning against the ground; turn its steering wheel and the front wheels turn, the inside one further, and the car drives round a curve, a differential letting each rear wheel turn at its own speed. Gear trains turn at the right ratios, a worm drive locks when driven from its gear, a gearbox shifts when you slide its driving ring, and parts stop where they'd run into each other. Real LEGO sets from the late 1970s to the 1990s, read straight from their LDraw files, drive, steer, crank their forks up and run their engines. Ctrl-click a part to keep it spinning like a motor, or Alt-click it to freeze it. KineBrick works all this out from the parts themselves, with no hand-made animation.
-
 ![LEGO set 956, Auto Chassis, from 1978, steered halfway to full lock with its rear axle kept turning at 10 rpm: the red, yellow and blue chassis drives round in a circle, its front wheels turned, its four-cylinder engine's pistons running and its rear tyres skidding round the bend](media/auto-chassis.webp)
+
+A web viewer that enables LEGO Technic models to move as they were designed. Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn. Gear trains, pistons, crankshafts, differentials, steering, pulleys, etc. all work properly.
+
+**KineBrick works all this out from the parts themselves, with no hand-made animation.**
+
+Many thanks to the projects KineBrick builds on:
+
+- **[Roland Melkert's LDCad](https://www.melkert.net/LDCad)** provides the [shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) to specify the location of each part's studs, holes and axles, and its path data specifies where a chain, track or string runs.
+- **[LDraw's](https://www.ldraw.org)** parts library gives every part its shape, and its [Official Model Repository](https://library.ldraw.org/omr) provides official LEGO sets.
+- **[Three.js's LDraw loader](https://threejs.org/examples/#webgl_loader_ldraw)** renders models in the browser.
+
+Full credits and licenses are under [Data sources and licenses](#data-sources-and-licenses).
 
 ## Models
 
