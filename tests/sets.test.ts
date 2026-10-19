@@ -356,6 +356,21 @@ describe('956 Auto Chassis', () => {
     expect(frameMoved()).toBeLessThan(1e-6);
   });
 
+  it('turning the steering wheel 3 radians slides its rack 10 LDU for each radian its 8 tooth gear turns, without slipping', () => {
+    kin.reset();
+    // Each rack's gear's joint, and the rack's slide joint.
+    const racks = mech.meshes.flatMap((m) => {
+      if (m.kind !== 'rack') return [];
+      const rack = mech.gears[m.gearB].body;
+      return [{ gear: kin.parentLink(mech.gears[m.gearA].body)!.joint, slide: mech.joints.findIndex((j) => j.kind === 'slide' && j.bodyB === rack) }];
+    });
+    expect(Math.abs(turn(bodyOf('3736.dat'), 3))).toBeCloseTo(3, 6);
+    const steering = racks.filter((r) => Math.abs(kin.jointAngles[r.gear]) > 1);
+    expect(steering).toHaveLength(1);
+    const { gear, slide } = steering[0];
+    expect(Math.abs(kin.slideOffset(slide) / kin.jointAngles[gear])).toBeCloseTo(10, 6);
+  });
+
   it('a turn of a front wheel rolls it one big tyre round, and runs its four-cylinder engine: each piston through its 32 LDU stroke', () => {
     kin.reset();
     const wheel = bodyOf('3740.dat');
@@ -417,12 +432,12 @@ describe('956 Auto Chassis', () => {
       for (let i = 0; i < 150; i++) stepped += turn(bodyOf('3736.dat'), way * 0.03);
       expect(Math.abs(stepped - once)).toBeLessThan(0.05);
       // Turned back half a radian, the front wheels are where that steering puts them, to
-      // within 2 degrees: the rack hasn't slipped against its gear.
+      // within a millionth of a radian: the rack hasn't slipped against its gear.
       expect(turn(bodyOf('3736.dat'), -way * 0.5)).toBeCloseTo(-way * 0.5, 6);
       const back = turntables().map(angleOf);
       kin.reset();
       turn(bodyOf('3736.dat'), stepped - way * 0.5);
-      turntables().map(angleOf).forEach((a, k) => expect(Math.abs(a - back[k])).toBeLessThan((2 * Math.PI) / 180));
+      turntables().map(angleOf).forEach((a, k) => expect(Math.abs(a - back[k])).toBeLessThan(1e-6));
     }
   });
 

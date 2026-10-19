@@ -1034,7 +1034,8 @@ export class Kinematics {
 
     // Meshing gears: where their teeth touch (the pitch point), both gears' teeth move at the
     // same speed across the mesh. (Moving the other ways would pull the teeth apart, which the
-    // joints already prevent.)
+    // joints already prevent.) A rack that slides in what its gear turns in has its own gap: how
+    // far it has slid short of what its gear has turned (see rackSlip).
     for (const mesh of this.mech.meshes) {
       const contact = this.meshContact(mesh);
       if (!contact) continue;
@@ -1047,7 +1048,7 @@ export class Kinematics {
         addPointVelocity(rb, b.body, pitchPoint, k, -1);
         for (let i = 0; i < n; i++) row[i] += across.getComponent(k) * (ra[i] + rb[i]);
       }
-      add(row, 0, DRIVE_WEIGHT);
+      add(row, gaps && mesh.kind === 'rack' ? -this.rackSlip(contact) : 0, DRIVE_WEIGHT);
     }
 
     // A tyre on the ground rolls without slipping: the point touching the ground doesn't move
@@ -1347,6 +1348,31 @@ export class Kinematics {
     const pitchPoint = crossing.clone().addScaledVector(towardA, b.teeth).addScaledVector(towardB, a.teeth);
     const across = new Vector3().crossVectors(towardA, towardB).normalize();
     return { a, b, pitchPoint, across };
+  }
+
+  // How far a rack's gear has slipped along it since the start, in LDU: how far the gear's teeth
+  // have gone along the rack, for the turn of the joint it turns on, less how far the rack has
+  // slid on its slide joint, both relative to what the gear turns in. A gear mesh is a rule
+  // about speeds, and each step only keeps to it at the step's start, so a rack the tree reaches
+  // through a linkage (a steering rack on its tie rods) would slip a little every step, and
+  // nothing would undo it. 0 if the rack doesn't slide in what its gear turns in.
+  private rackSlip(contact: { a: Gear; b: Gear; pitchPoint: Vector3; across: Vector3 }): number {
+    const { a, b, pitchPoint, across } = contact;
+    const link = this.parentLink(a.body);
+    if (!link) return 0;
+    const mount = link.parent;
+    const slide = this.mech.joints.findIndex((j) => j.kind === 'slide' && ((j.bodyA === mount && j.bodyB === b.body) || (j.bodyA === b.body && j.bodyB === mount)));
+    if (slide < 0) return 0;
+    // Turning the joint by 1 moves the gear's teeth, at the pitch point, by d × (pitch point - c).
+    const turn = this.mech.joints[link.joint];
+    const d = axisOf(turn.from, turn.to).transformDirection(this.poses[turn.bodyA]);
+    const c = turn.from.clone().applyMatrix4(this.poses[turn.bodyA]);
+    const teeth = new Vector3().crossVectors(d, new Vector3().subVectors(pitchPoint, c)).dot(across);
+    const turned = (turn.bodyB === a.body ? 1 : -1) * this.jointAngles[link.joint] * teeth;
+    const s = this.mech.joints[slide];
+    const along = axisOf(s.from, s.to).transformDirection(this.poses[s.bodyA]).dot(across);
+    const slid = (s.bodyB === b.body ? 1 : -1) * this.slideOffset(slide) * along;
+    return turned - slid;
   }
 
   // Where a tyre touches the ground now.
