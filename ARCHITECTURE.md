@@ -183,7 +183,7 @@ Browser-level tests for these paths can come later.
 | `models/sets.json` | KineBrick's own lines for each real LEGO set in `models/` (settings such as tyre scrub), put into its file by `npm run import` |
 | `src/main.ts` | The viewer: model picker, opening your own model, loading, camera, readout, re-reading after a shift |
 | `src/pack.ts` | Packs a model with every LDraw file it uses into one file the loader reads, for `npm run pack` and for a model opened from your own computer |
-| `src/library.ts` | For a model opened from your own computer: fetches its parts from an LDraw library online, and keeps the file and the parts in the browser |
+| `src/library.ts` | For a model opened from your own computer: fetches its parts from an LDraw library online (erik-larsen.github.io/ldraw, or another given with `?library=`, such as `?library=/ldraw/` for the one in `ldraw/` under `npm run dev`), and keeps the file and the parts in the browser |
 | `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and KineBrick's own settings in it; brings a real LEGO set's file into the shape KineBrick keeps it in |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
