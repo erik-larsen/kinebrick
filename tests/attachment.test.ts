@@ -22,7 +22,6 @@ function looseParts(text: string, name = ''): string[] {
 // Real models KineBrick can't fully read yet, and what they need (M7 works through them).
 const NOT_YET = [
   '8448-Super Car.mpd', // hinges, universal joints, its tyres
-  '852-Helicopter.mpd', // pin connectors and axles in its rotor linkage
 ];
 
 describe('every test model is fully attached', () => {

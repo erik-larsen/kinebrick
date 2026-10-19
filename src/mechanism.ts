@@ -11,6 +11,11 @@ const AXIS_TOLERANCE = 0.5;
 // How far off each other's axis a pin and its hole (or a tyre and its rim) may be and still
 // fit, in LDU. Models are often built half an LDU out.
 const ALIGN_TOLERANCE = 1;
+// The same for a part that would otherwise be loose (see looseFits): an official helicopter's
+// rotor linkage is built a little stretched, its levers' ends 1.8 and 1.2 LDU off their pins.
+// Not for every part: some parts have holes this close together (a steering arm's two pin holes,
+// 2 LDU apart), and a pin would catch both.
+const LOOSE_ALIGN_TOLERANCE = 2;
 // How far apart two connection points' directions may be and still line up, as the sine of
 // the angle between them: 2 degrees. Models are sometimes built a little askew (an official
 // model tilts a go-kart's engine by a degree), as real parts allow.
@@ -70,6 +75,7 @@ export interface Connection {
   // (from -> to), and how much they must still overlap. How far it may slide follows from
   // them (see slideRange).
   extents?: { male: [number, number]; female: [number, number]; overlap: number };
+  turns?: boolean; // a slide along which the parts may turn too (see slidingOnAxles)
 }
 
 export interface Body {
@@ -90,6 +96,7 @@ export interface Joint {
   // from -> to), and two parts that slide, which meet at either end of that.
   range?: [number, number];
   sliding?: [number, number];
+  turns?: boolean; // a slide joint along which bodyB may also turn about the axis, relative to bodyA
 }
 
 // A tyre's tread: the part of a tyre that can touch the ground.
@@ -257,12 +264,15 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
   connections.push(...shockAbsorbers(cyls));
+  connections.push(...bushGrips(roles, cyls));
   const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
   // Loose parts hanging on a string are held by it; the rest ride along with what's nearest.
+  connections.push(...looseFits(roles, cyls, connections, frictionRigid));
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections), paths);
   const loose = findLooseParts(parts.length, connections).filter((i) => !hanging.has(i));
   connections.push(...rideAlong(parts, cyls, connections, loose));
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
+  connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
   const bodies = nameBodies(bodyOf, roles);
   const joints = findJoints(connections, bodyOf);
   lineUpAxles(joints);
@@ -275,6 +285,33 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   treads.push(...trackTreads(loops));
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging);
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings };
+}
+
+// A bush seated in a Technic plate's hole grips the plate: the plate's hole is counterbored
+// 4 LDU deep for a bush's flange (a brick's only 2), and the bush reaches at least
+// BUSH_SEAT into it. Clamped so, the plate turns with the bush's axle, as an old helicopter's
+// rotors are driven (Technic plates on the shaft, a bush pushed into each).
+function bushGrips(roles: string[], cyls: WorldCylinder[]): Connection[] {
+  const BUSH_SEAT = 3; // LDU
+  const result: Connection[] = [];
+  for (const bush of cyls.filter((c) => roles[c.part] === 'bush' && c.gender === 'F' && c.secs.some((s) => s.shape === 'A'))) {
+    const length = bush.secs.reduce((sum, sec) => sum + sec.length, 0);
+    for (const hole of cyls) {
+      if (hole.part === bush.part || hole.gender !== 'F' || !hole.secs.every((s) => s.shape === 'R')) continue;
+      if (!axialOverlap(bush, hole)) continue;
+      // How far the bush reaches into one of the hole's counterbores (its sections of radius 8).
+      const way = Math.sign(hole.dir.dot(bush.dir));
+      let at = new Vector3().subVectors(hole.start, bush.start).dot(bush.dir);
+      let seated = 0;
+      for (const sec of hole.secs) {
+        const end = at + way * sec.length;
+        if (Math.abs(sec.radius - 8) < AXIS_TOLERANCE) seated = Math.max(seated, Math.min(length, Math.max(at, end)) - Math.max(0, Math.min(at, end)));
+        at = end;
+      }
+      if (seated >= BUSH_SEAT) result.push({ male: bush.part, female: hole.part, kind: 'rigid', from: bush.start.clone(), to: bush.start.clone().addScaledVector(bush.dir, length) });
+    }
+  }
+  return result;
 }
 
 // A shock absorber: its rod slides in its cylinder against a spring. Until KineBrick models
@@ -350,6 +387,23 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
     joined.push({ partA: ends[0], partB: ends[1], center, axisA: axisOfEnd(ends[0]), axisB: axisOfEnd(ends[1]) });
   });
   return joined;
+}
+
+// Parts that would be loose get a second chance, fitting with the looser LOOSE_ALIGN_TOLERANCE:
+// connections that join a loose part to anything, found as findConnections finds them. A pin's
+// new joints turn as fixPins has its others do: a friction pin's stiffly.
+function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean): Connection[] {
+  const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
+  const loose = new Set(findLooseParts(count, connections));
+  if (loose.size === 0) return [];
+  const known = new Set(connections.map((c) => `${c.male},${c.female}`));
+  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`));
+  for (const c of found) {
+    if (c.kind !== 'revolute' || roles[c.male] !== 'friction pin') continue;
+    if (frictionRigid) [c.kind, c.held] = ['rigid', true];
+    else c.stiff = true;
+  }
+  return found;
 }
 
 // A grooved ball (2907) on the end of a driveshaft, in a wheel hub's socket (2999's): ridges
@@ -914,7 +968,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
 // Step 4: pairs of connection points that line up.
 // Open-ended cylinders (Technic holes, axles, pins, tyre seats) make rigid and revolute
 // connections; studs in anti-studs make stud connections.
-function findConnections(cyls: WorldCylinder[], frictionRigid: boolean): Connection[] {
+function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, align = ALIGN_TOLERANCE): Connection[] {
   const connections: Connection[] = [];
   const males = cyls.filter((c) => c.gender === 'M');
   const females = cyls.filter((c) => c.gender === 'F');
@@ -924,10 +978,10 @@ function findConnections(cyls: WorldCylinder[], frictionRigid: boolean): Connect
       if (f.part === m.part) continue;
       let c: Connection | null = null;
       if (isBall(m) && isBall(f)) c = ballConnect(m, f);
-      else if (goesInForTechnic(m) && opensForTechnic(f)) c = connect(m, f);
-      else if ((isStud(m) && (isAntiStud(f) || endsInAntiStud(f))) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f);
-      else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f);
-      else if (isSwivelPin(m) && isSwivelHole(f)) c = studInHole(m, f);
+      else if (goesInForTechnic(m) && opensForTechnic(f)) c = connect(m, f, align);
+      else if ((isStud(m) && (isAntiStud(f) || endsInAntiStud(f))) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f, align);
+      else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f, align);
+      else if (isSwivelPin(m) && isSwivelHole(f)) c = studInHole(m, f, align);
       if (c && (isSwivelPin(m) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid);
       if (c) connections.push(c);
     }
@@ -1072,25 +1126,25 @@ function endsInAntiStud(c: WorldCylinder): boolean {
 }
 
 // A stud sitting in an anti-stud: on the same axis, overlapping along it.
-function studInHole(m: WorldCylinder, f: WorldCylinder): Connection | null {
-  const overlap = axialOverlap(m, f);
+function studInHole(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): Connection | null {
+  const overlap = axialOverlap(m, f, align);
   if (!overlap) return null;
   return { male: m.part, female: f.part, kind: 'revolute', from: overlap.from, to: overlap.to };
 }
 
-function studConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
-  const overlap = axialOverlap(m, f);
+function studConnect(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): Connection | null {
+  const overlap = axialOverlap(m, f, align);
   if (!overlap) return null;
   return { male: m.part, female: f.part, kind: 'stud', from: overlap.from, to: overlap.to };
 }
 
 // Where two cylinders on the same axis overlap, or null if they're not on the same axis or
 // overlap by less than MIN_OVERLAP.
-function axialOverlap(m: WorldCylinder, f: WorldCylinder): { from: Vector3; to: Vector3 } | null {
+function axialOverlap(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): { from: Vector3; to: Vector3 } | null {
   if (new Vector3().crossVectors(m.dir, f.dir).length() > ANGLE_TOLERANCE) return null;
   const offset = new Vector3().subVectors(f.start, m.start);
   const along = offset.dot(m.dir);
-  if (offset.clone().addScaledVector(m.dir, -along).length() > ALIGN_TOLERANCE) return null;
+  if (offset.clone().addScaledVector(m.dir, -along).length() > align) return null;
   const mLength = m.secs.reduce((sum, s) => sum + s.length, 0);
   const fEnd = along + Math.sign(f.dir.dot(m.dir)) * f.secs.reduce((sum, s) => sum + s.length, 0);
   const lo = Math.max(0, Math.min(along, fEnd));
@@ -1123,6 +1177,118 @@ function lineUpAxles(joints: Joint[]) {
       end.copy(line.from).addScaledVector(line.dir, along);
     }
   }
+}
+
+// A part turning on an axle may slide along it too, as far as the parts either side of it on
+// the axle let it, if a linkage works it that way: its body turns on another body about an
+// axis across the axle, in a closed loop of joints back to the axle, so swinging there moves
+// it along the axle (an old helicopter's
+// swashplate, raised and lowered on its rotor shaft by the pilot's levers, so tilting the
+// blades through their pitch links). A connecting rod on a crank, whose other end turns on a
+// parallel pin, swings across its axle, and stays where it is along it. Parts stacked against it on the axle that turn
+// there too ride along with it, turning against it (the swashplate's other half, which turns
+// with the rotor while this one doesn't). Other parts stay where they're built along their
+// axles: most are held there by their neighbours, or by friction.
+// Turns the parts' turning connections with the axle into slides that turn (with their travel
+// as extents, see slideRange), and returns the connections between the parts of a stack.
+function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connections: Connection[], bodyOf: number[]): Connection[] {
+  const TOUCH = 0.5; // LDU: parts along an axle this close touch
+  const result: Connection[] = [];
+  for (const axle of cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle')) {
+    const length = axle.secs.reduce((sum, sec) => sum + sec.length, 0);
+    const at = (p: Vector3) => new Vector3().subVectors(p, axle.start).dot(axle.dir);
+    // The parts on the axle, each with where it lies along it.
+    const spans = new Map<number, [number, number]>();
+    for (const c of cyls) {
+      if (c.part === axle.part) continue;
+      const overlap = axialOverlap(axle, c);
+      if (!overlap) continue;
+      const [lo, hi] = [at(overlap.from), at(overlap.to)].sort((x, y) => x - y);
+      const span = spans.get(c.part);
+      spans.set(c.part, span ? [Math.min(span[0], lo), Math.max(span[1], hi)] : [lo, hi]);
+    }
+    const shaft = bodyOf[axle.part];
+    const onAxle = (c: Connection) => Math.max(...[c.from, c.to].map((p) => new Vector3().subVectors(p, axle.start).cross(axle.dir).length())) < AXIS_TOLERANCE;
+    // Parts that turn on it, and of those, the ones a linkage works.
+    const turning = (part: number) => bodyOf[part] !== shaft && connections.some((c) => c.kind === 'revolute' && c.male === axle.part && c.female === part);
+    // Whether a body joins back up with the shaft's through joints, other than through `not`.
+    const joinsShaft = (start: number, not: number) => {
+      const seen = new Set([start, not]);
+      const queue = [start];
+      while (queue.length) {
+        const body = queue.shift()!;
+        if (body === shaft) return true;
+        for (const c of connections) {
+          if (c.kind !== 'revolute' && c.kind !== 'ball' && c.kind !== 'slide') continue;
+          const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
+          const next = a === body ? b : b === body ? a : -1;
+          if (next >= 0 && !seen.has(next)) {
+            seen.add(next);
+            queue.push(next);
+          }
+        }
+      }
+      return false;
+    };
+    const linked = (part: number) =>
+      connections.some((c) => {
+        if (c.kind !== 'revolute') return false;
+        const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
+        const other = a === bodyOf[part] ? b : b === bodyOf[part] ? a : -1;
+        const across = new Vector3().subVectors(c.to, c.from).normalize().cross(axle.dir).length() > 0.5;
+        return other >= 0 && other !== bodyOf[part] && other !== shaft && across && joinsShaft(other, bodyOf[part]);
+      });
+    const done = new Set<number>();
+    for (const [part] of spans) {
+      if (done.has(part) || !turning(part) || !linked(part)) continue;
+      // The stack of turning parts touching it, and the room either side of the stack.
+      const stack = [part];
+      let [lo, hi] = spans.get(part)!;
+      let grew = true;
+      while (grew) {
+        grew = false;
+        for (const [other, [a, b]] of spans) {
+          if (stack.includes(other) || a > hi + TOUCH || b < lo - TOUCH || !turning(other)) continue;
+          stack.push(other);
+          [lo, hi] = [Math.min(lo, a), Math.max(hi, b)];
+          grew = true;
+        }
+      }
+      for (const p of stack) done.add(p);
+      // Not the frame, nor a body held on the axle elsewhere too (the frame, or a tail boom, with
+      // a shaft turning in a row of its holes): those hold the axle, rather than ride on it.
+      const bodies = new Set(stack.map((p) => bodyOf[p]));
+      if (bodies.has(0) || [...spans.keys()].some((p) => bodies.has(bodyOf[p]) && !stack.includes(p))) continue;
+      let [below, above] = [lo, length - hi];
+      for (const [other, [a, b]] of spans) {
+        if (stack.includes(other)) continue;
+        if (b <= lo + TOUCH) below = Math.min(below, Math.max(0, lo - b));
+        else if (a >= hi - TOUCH) above = Math.min(above, Math.max(0, a - hi));
+        else [below, above] = [0, 0]; // something else round the axle in the stack's way
+      }
+      if (below + above < TOUCH) continue;
+      for (const c of connections) {
+        if (c.kind !== 'revolute' || !onAxle(c)) continue;
+        const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
+        if (!((a === shaft && bodies.has(b)) || (b === shaft && bodies.has(a)))) continue;
+        // How far the axle may slide against the part, along from -> to.
+        const way = new Vector3().subVectors(c.to, c.from).dot(axle.dir) >= 0 ? 1 : -1;
+        const room: [number, number] = a === shaft ? [-above, below] : [-below, above];
+        c.kind = 'slide';
+        c.turns = true;
+        c.extents = { male: [0, 0], female: way > 0 ? room : [-room[1], -room[0]], overlap: 0 };
+      }
+      // The stack's parts, each turning against the next.
+      const ordered = stack.slice().sort((x, y) => spans.get(x)![0] - spans.get(y)![0]);
+      for (let k = 1; k < ordered.length; k++) {
+        const [x, y] = [ordered[k - 1], ordered[k]];
+        if (bodyOf[x] === bodyOf[y]) continue;
+        const point = (t: number) => axle.start.clone().addScaledVector(axle.dir, t);
+        result.push({ male: x, female: y, kind: 'revolute', from: point(spans.get(x)![0]), to: point(spans.get(y)![1]) });
+      }
+    }
+  }
+  return result;
 }
 
 // Step 5: parts outside the largest group of parts that are attached to each other.
@@ -1174,13 +1340,13 @@ function findLooseParts(count: number, connections: Connection[]): number[] {
   return loose;
 }
 
-function connect(m: WorldCylinder, f: WorldCylinder): Connection | null {
+function connect(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): Connection | null {
   // Same axis: parallel, and the female's start lies on the male's line.
   if (new Vector3().crossVectors(m.dir, f.dir).length() > ANGLE_TOLERANCE) return null;
   const offset = new Vector3().subVectors(f.start, m.start);
   const along = offset.dot(m.dir);
   const sideways = offset.clone().addScaledVector(m.dir, -along).length();
-  if (sideways > ALIGN_TOLERANCE) return null;
+  if (sideways > align) return null;
 
   // Walk both cylinders' sections, measured as distances along the male's axis.
   const sign = f.dir.dot(m.dir) > 0 ? 1 : -1;
@@ -1335,12 +1501,12 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
     // Slides between the same two bodies along parallel lines are one joint too (an outrigger
     // riding on two rows of tiles side by side).
     const along = (j: Joint) => (kind === 'ball' ? j.from.distanceTo(c.from) < AXIS_TOLERANCE : kind === 'slide' ? parallel(j, c) : onSameAxis(j, c));
-    const existing = joints.find((j) => j.kind === kind && sameBodies(j, a, b) && along(j));
+    const existing = joints.find((j) => j.kind === kind && j.turns === c.turns && sameBodies(j, a, b) && along(j));
     if (existing) {
       if (kind !== 'ball') extendJoint(existing, c);
       existing.stiff = existing.stiff || c.stiff === true;
     } else {
-      joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true });
+      joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true, ...(c.turns ? { turns: true } : {}) });
     }
   }
 
@@ -1353,7 +1519,7 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
     const dir = new Vector3().subVectors(joint.to, joint.from).normalize();
     const lines: Connection[][] = [];
     for (const c of connections) {
-      if (c.kind !== 'slide' || !c.extents || !sameBodies(joint, bodyOf[c.male], bodyOf[c.female]) || !parallel(joint, c)) continue;
+      if (c.kind !== 'slide' || c.turns !== joint.turns || !c.extents || !sameBodies(joint, bodyOf[c.male], bodyOf[c.female]) || !parallel(joint, c)) continue;
       const line = lines.find((l) => onSameLine(l[0], c));
       if (line) line.push(c);
       else lines.push([c]);

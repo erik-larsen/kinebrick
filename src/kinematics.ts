@@ -364,7 +364,7 @@ export class Kinematics {
       const own = this.mech.joints.filter((j) => j.bodyA === root || j.bodyB === root);
       const mounts = new Set(own.map((j) => (j.bodyA === root ? j.bodyB : j.bodyA)));
       const geared = this.mech.gears.some((g) => g.body === root);
-      if (own.length > 0 && own.every((j) => j.kind === 'slide' || j.kind === 'ball') && mounts.size === 1 && !geared) this.mounts.set(root, [...mounts][0]);
+      if (own.length > 0 && own.every((j) => (j.kind === 'slide' && !j.turns) || j.kind === 'ball') && mounts.size === 1 && !geared) this.mounts.set(root, [...mounts][0]);
     }
   }
 
@@ -1002,7 +1002,8 @@ export class Kinematics {
 
     // Joints. Each row says how bodyA moves relative to bodyB in some way must be zero:
     //   revolute  the same at a point on the axis, and no turning about any direction across it
-    //   slide     the same across the axis, and no turning at all
+    //   slide     the same across the axis, and no turning at all (or, if it turns, none
+    //             about any direction across it)
     //   ball      the same at the ball's centre
     this.mech.joints.forEach((joint, index) => {
       if (skipTree && this.inTree(index)) return;
@@ -1035,7 +1036,7 @@ export class Kinematics {
       if (joint.kind === 'revolute' || joint.kind === 'ball') for (const dir of xyz) pointRow(dir);
       if (joint.kind === 'slide') for (const dir of acrossDirections(d)) pointRow(dir);
       if (joint.kind === 'revolute') for (const dir of acrossDirections(d)) turnRow(dir);
-      if (joint.kind === 'slide') for (const dir of xyz) turnRow(dir);
+      if (joint.kind === 'slide') for (const dir of joint.turns ? acrossDirections(d) : xyz) turnRow(dir);
     });
 
     // A universal joint: its two shafts turn at the same rate, each relative to what it turns
@@ -1251,13 +1252,13 @@ export class Kinematics {
   }
 
   // How far bodyA has turned out of line with bodyB at a joint, as a small turn (its axis is
-  // the direction, its length the angle in radians): for a revolute joint, how far its axis
-  // as carried by bodyA has tipped away from its axis as carried by bodyB; for a slide joint,
-  // which mustn't turn at all, bodyA's whole turn relative to bodyB.
+  // the direction, its length the angle in radians): for a revolute joint (or a slide joint
+  // that turns), how far its axis as carried by bodyA has tipped away from its axis as carried
+  // by bodyB; for a slide joint, which mustn't turn at all, bodyA's whole turn relative to bodyB.
   private misalignment(joint: Joint): Vector3 {
     const poseA = this.poses[joint.bodyA];
     const poseB = this.poses[joint.bodyB];
-    if (joint.kind === 'revolute') {
+    if (joint.kind === 'revolute' || joint.turns) {
       const dA = axisOf(joint.from, joint.to).transformDirection(poseA);
       const dB = axisOf(joint.from, joint.to).transformDirection(poseB);
       return new Vector3().crossVectors(dB, dA);
@@ -1370,10 +1371,18 @@ export class Kinematics {
     }
     if (mesh.kind === 'crown') {
       // a is the crown gear. Where the spur gear's pitch circle touches the crown gear's pitch
-      // plane, both gears' teeth move at the same speed round the crown gear's axis.
+      // plane, both gears' teeth move at the same speed round the crown gear's axis. Their teeth
+      // mesh one for one wherever the spur gear sits along the crown's radius (its teeth run
+      // radially), so the crown's are taken at its pitch radius, in line with the spur gear (out
+      // along the spur gear's axis, which doesn't change how fast the spur gear's teeth move):
+      // their speeds come out in the ratio of their tooth counts, as built (a helicopter's spur
+      // gear sits 2 LDU in from it) or not.
       const toward = axisA.clone().multiplyScalar(-a.crown);
-      const pitchPoint = cb.clone().addScaledVector(toward, b.radius);
-      const across = new Vector3().crossVectors(axisA, new Vector3().subVectors(pitchPoint, ca)).normalize();
+      const touch = cb.clone().addScaledVector(toward, b.radius);
+      const height = new Vector3().subVectors(touch, ca).dot(axisA);
+      const out = new Vector3().subVectors(touch, ca).addScaledVector(axisA, -height).normalize();
+      const pitchPoint = ca.clone().addScaledVector(axisA, height).addScaledVector(out, a.radius);
+      const across = new Vector3().crossVectors(axisA, out).normalize();
       return { a, b, pitchPoint, across };
     }
     if (mesh.kind === 'spur') {
