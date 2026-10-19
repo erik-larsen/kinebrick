@@ -40,6 +40,7 @@ import { loopLinks } from './paths.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { packModel } from './pack.ts';
+import { thumbnail } from './thumbnail.ts';
 import connectionsUrl from '../data/connections.json?url';
 import libraryConnectionsUrl from '../data/library-connections.json?url';
 import rolesUrl from '../data/roles.json?url';
@@ -768,7 +769,12 @@ function turnOnAxis(mech: Mechanism, kin: Kinematics, body: number): { radians: 
   return { radians, mount: current };
 }
 
-start().catch((err) => {
-  document.getElementById('summary')!.textContent = 'Error: ' + err.message;
-  console.error(err);
-});
+start()
+  .then(() => {
+    // Opened with ?thumb (by npm run thumbs), the page takes a picture of the model.
+    if (params.has('thumb')) (window as unknown as { kinebrickThumbnail: Promise<string> }).kinebrickThumbnail = thumbnail(renderer.domElement, camera, ldrawSpace);
+  })
+  .catch((err) => {
+    document.getElementById('summary')!.textContent = 'Error: ' + err.message;
+    console.error(err);
+  });
