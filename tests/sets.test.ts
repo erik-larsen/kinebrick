@@ -301,6 +301,23 @@ describe('952 Tractor', () => {
     const hung = bodyOf('3021.dat', 0);
     expect(new Vector3(0, 1, 0).transformDirection(kin.poses[hung]).y).toBeCloseTo(1, 3); // not carried round
   });
+
+  it('steered 40 degrees either way, a turn of the rear wheels still takes it round, its tyres scrubbing sideways by up to the 20% its file allows', () => {
+    expect(kin.scrub).toBe(0.2);
+    for (const way of [1, -1]) {
+      kin.reset();
+      turn(bodyOf('3712.dat'), way * 4); // the steering column
+      const [a] = turntables().map(angleOf);
+      expect(Math.abs(a) * (180 / Math.PI)).toBeGreaterThan(40);
+      const wheel = bodyOf('952-3739c01.dat');
+      const joint = kin.parentLink(wheel)!.joint;
+      kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null);
+      let turned = 0;
+      for (let i = 0; i < 20; i++) turned += kin.turnJoint(joint, 0.05);
+      kin.letGoAfterDrag();
+      expect(Math.abs(turned)).toBeCloseTo(1, 6);
+    }
+  });
 });
 
 describe('956 Auto Chassis', () => {
