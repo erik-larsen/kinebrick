@@ -1,7 +1,7 @@
 {
   "854-Go Kart": [
-    "0 // KineBrick: its front wheels turn alike, so steered 15 degrees its tyres scrub sideways by up to 8% of how far they roll (further round, by more)",
-    "0 !KINEBRICK SCRUB [percent=8]"
+    "0 // KineBrick: its front wheels turn alike, so at full lock, about 33 degrees, where a knuckle meets its chassis, its tyres scrub sideways by up to 16% of how far they roll",
+    "0 !KINEBRICK SCRUB [percent=16]"
   ],
   "855-Mobile Crane": [],
   "856-Bulldozer": [],

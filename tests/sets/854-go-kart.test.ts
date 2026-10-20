@@ -38,22 +38,23 @@ describe('854 Go-Kart', () => {
     expect(Math.max(...offsets) - Math.min(...offsets)).toBeCloseTo(28, 0); // twice the crank's throw
   });
 
-  it('steered 15 degrees either way, a turn of a rear wheel still takes it round, its tyres scrubbing sideways by up to the 8% its file allows', () => {
-    expect(kin.scrub).toBe(0.08);
+  it('at full lock either way, about 33 degrees where a knuckle meets its chassis, a turn of a rear wheel still takes it round, its tyres scrubbing sideways by up to the 16% its file allows, which 15% wouldn\'t', () => {
+    expect(kin.scrub).toBe(0.16);
     for (const way of [1, -1]) {
       kin.reset();
-      turn(bodyOf('3736.dat'), way); // the steering wheel a radian, the front wheels about 15 degrees
-      for (const tt of turntables()) expect(Math.abs(angleOf(tt)) * (180 / Math.PI)).toBeGreaterThan(14);
+      turn(bodyOf('3736.dat'), way * 2.16); // the steering wheel 124 degrees, as far as the viewer lets it go
+      for (const tt of turntables()) expect(Math.abs(angleOf(tt)) * (180 / Math.PI)).toBeCloseTo(32.7, 0);
       const start = kin.snapshot();
-      kin.scrub = 0.04;
+      kin.scrub = 0.15;
       expect(motor(bodyOf('3634.dat', 2), 24)).toBeLessThan(0.1);
       kin.restore(start);
-      kin.scrub = 0.08;
+      kin.scrub = 0.16;
       expect(motor(bodyOf('3634.dat', 2), 24)).toBeCloseTo(2 * Math.PI, 6); // a turn of the wheel
     }
   });
 
-  it('steered 22 degrees, its tyres would have to scrub more than 8% to roll, and it says by how much; within that, each tyre reports how much it scrubs', () => {
+  it('allowed only 8%, steered 22 degrees its tyres would have to scrub more to roll, and it says by how much; within that, each tyre reports how much it scrubs', () => {
+    kin.scrub = 0.08;
     kin.reset();
     turn(bodyOf('3736.dat'), 1); // about 15 degrees: it rolls
     expect(motor(bodyOf('3634.dat', 2), 4)).toBeGreaterThan(1);
@@ -66,5 +67,6 @@ describe('854 Go-Kart', () => {
     expect(motor(bodyOf('3634.dat', 2), 4)).toBeLessThan(1e-9);
     expect(kin.scrubNeeded).toBeGreaterThan(0.08);
     expect(kin.scrubNeeded).toBeLessThan(0.15); // at 15% it rolls
+    kin.scrub = 0.16;
   });
 });
