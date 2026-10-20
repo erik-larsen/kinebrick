@@ -122,6 +122,10 @@ export interface Loop {
   wheels: LoopWheel[];
   links: number[]; // its parts
   depth: number | null; // a track's: how far its links reach out beyond its path; else null
+  // For each of its path's points, the body it moves with: the wheel it's on, or else the part
+  // nearest its middle (the peg a rubber band is hooked round). A loop with no links of its own
+  // (a rubber band, drawn as shapes) is drawn afresh round where these have taken its points.
+  carriers: number[];
 }
 
 // A wheel a loop wraps: the body that turns on `joint`, in `mount`, where the path goes round
@@ -605,8 +609,21 @@ function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[], joint
     .map((path) => {
       const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints) ?? []);
       const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
-      return { path, wheels, links, depth: table.tracks?.[path.skin]?.depth ?? null };
+      const carriers = path.points.map((point, index) => wheels.find((w) => w.point === index)?.body ?? bodyOf[nearestPart(point.center, parts, roles)]);
+      return { path, wheels, links, depth: table.tracks?.[path.skin]?.depth ?? null, carriers };
     });
+}
+
+// The part nearest a point (not a path's link), by where the part is placed, or -1 if none.
+function nearestPart(point: Vector3, parts: PlacedPart[], roles: string[]): number {
+  let best = -1;
+  let bestDistance = Infinity;
+  parts.forEach((part, i) => {
+    if (roles[i] === 'path') return;
+    const distance = new Vector3().setFromMatrixPosition(part.matrix).distanceTo(point);
+    if (distance < bestDistance) [best, bestDistance] = [i, distance];
+  });
+  return best;
 }
 
 // The wheel a path's circle is on, if any (see findLoops): the body turning on a joint whose

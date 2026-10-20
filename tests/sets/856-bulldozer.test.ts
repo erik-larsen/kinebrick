@@ -89,4 +89,19 @@ describe('856 Bulldozer', () => {
     expect(Math.abs(knob.turned)).toBeGreaterThan(2);
     expect(knob.moved).toBeGreaterThan(100);
   });
+
+  it("its two rubber bands are each hooked from a beam on its bucket arm to an axle on its frame, and stretch as the bucket rises, not left where the file drew them", () => {
+    const bands = mech.loops.filter((l) => l.links.length === 0);
+    expect(bands).toHaveLength(2);
+    const stretch = (l: (typeof bands)[0]) => l.path.points[0].center.clone().applyMatrix4(kin.poses[l.carriers[0]]).distanceTo(l.path.points[1].center.clone().applyMatrix4(kin.poses[l.carriers[1]]));
+    kin.reset();
+    const before = bands.map(stretch);
+    for (const l of bands) expect(new Set(l.carriers).size).toBe(2); // its two hooks are on different bodies
+    const pulley = bodyOf('3736.dat', 1);
+    const joint = kin.parentLink(pulley)!.joint;
+    kin.holdWhatTheDragDoesntNeed(pulley, () => kin.jointMotion(joint) !== null, joint);
+    for (let i = 0; i < 60; i++) kin.turnJoint(joint, 0.05);
+    kin.letGoAfterDrag();
+    bands.forEach((l, b) => expect(stretch(l)).toBeGreaterThan(before[b] + 5));
+  });
 });

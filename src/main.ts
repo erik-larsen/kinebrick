@@ -8,6 +8,7 @@ import {
   Group,
   HemisphereLight,
   Matrix4,
+  CatmullRomCurve3,
   CurvePath,
   LineCurve3,
   Material,
@@ -36,7 +37,7 @@ import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
 import { inferMechanism, libraryName, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
-import { loopLinks } from './paths.ts';
+import { LoopPath, loopLinks } from './paths.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { packModel, shapeName } from './pack.ts';
@@ -113,6 +114,8 @@ function percent(text: string | null): number | null {
 
 // How thick a string is drawn: its radius, in LDU.
 const STRING_RADIUS = 1;
+// How thick a rubber band is drawn: its radius, in LDU.
+const BAND_RADIUS = 1.5;
 
 // A whole number of at least 1 from text, or null if it isn't one.
 function whole(text: string | null): number | null {
@@ -438,6 +441,7 @@ async function start() {
       });
     });
     showStrings();
+    showBands();
     updateReadout(mech, kin);
   }
 
@@ -462,6 +466,41 @@ async function start() {
       for (let k = 1; k < points.length; k++) path.add(new LineCurve3(points[k - 1], points[k]));
       strings[i].geometry.dispose();
       strings[i].geometry = new TubeGeometry(path, 2 * points.length, STRING_RADIUS, 6, false);
+    });
+  }
+
+  // A rubber band (a loop with no links of its own) stretches between what it's hooked round,
+  // so it's drawn afresh each time, as a thin closed tube round where its circles are now (see
+  // Loop.carriers), rather than as the pieces LDCad drew it with for where they were in the model
+  // file, which are hidden. A band whose circles don't lie in one plane keeps its pieces.
+  const bands: Mesh[] = [];
+  function showBands() {
+    mech.loops.forEach((loop, i) => {
+      if (loop.links.length) return;
+      const points = loop.path.points.map((p, k) => {
+        const pose = kin.poses[loop.carriers[k]];
+        return { ...p, center: p.center.clone().applyMatrix4(pose), axis: p.axis.clone().transformDirection(pose) };
+      });
+      let path: LoopPath;
+      try {
+        path = new LoopPath(points);
+      } catch {
+        return;
+      }
+      if (!bands[i]) {
+        const drawn = shapeObjects.filter((_, k) => drawnShapes[k].path === loop.path);
+        drawn.forEach((obj) => (obj.visible = false));
+        let material: Material = new MeshStandardMaterial({ color: 0x333333 });
+        drawn[0]?.traverse((child) => {
+          if ((child as Mesh).isMesh) material = (child as Mesh).material as Material;
+        });
+        bands[i] = new Mesh(undefined, material);
+        ldrawSpace.add(bands[i]);
+      }
+      const n = Math.max(24, Math.ceil(path.length / 2));
+      const round = Array.from({ length: n }, (_, k) => new Vector3().setFromMatrixPosition(path.frameAt((k * path.length) / n)));
+      bands[i].geometry.dispose();
+      bands[i].geometry = new TubeGeometry(new CatmullRomCurve3(round, true), n, BAND_RADIUS, 6, true);
     });
   }
 
