@@ -1,0 +1,6 @@
+{
+  "model": "rack-and-pinion",
+  "joints": [
+    {"joint":"p10 4519 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p10 4519":[0,86],"p7 3460":[15,0]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p10 4519":[0,86],"p7 3460":[15,0]}}}
+  ]
+}

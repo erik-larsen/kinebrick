@@ -162,6 +162,8 @@ What a drag does for the user is in the README's [Interaction](README.md#interac
 | `collisions.test.ts` | On simple boxes: parts apart move freely and are caught when they start to overlap; parts on the same body, connected parts, and parts touching at the start aren't watched. |
 | `turn.test.ts` | The knob: it turns by the angle the pointer sweeps around the axle and keeps in step over full turns; it doesn't turn when the pointer is still; a short drag next to the axle gives a short turn; it turns the right way; and it gives up when the plane of turning is seen edge-on. |
 
+Every model's controls are tried by `npm run joints` (`scripts/probe-joints.ts`), too slow to run with the tests (about three minutes for the models in `models/`). For each part a drag turns like a knob, it turns the joint a drag would, both ways, as far as 1.5 radians, holding what a drag would hold, and writes down how far it went and which bodies it moved, and how far. `tests/joints/<model>.json` keeps what it found, one line per knob, as a baseline; a run compares against it and fails if a knob turns much less than it did or no longer moves a body it moved, which is how a change that seizes a model's linkage (the 856 Bulldozer's bucket, once) gets caught. When a change is meant, the baselines are written afresh (`npm run joints -- --update`), and the diff shows what changed. `npm run joints -- --report` lists, from the baselines, each model's knobs that stop after a little, turn only one way, or can't move at all. It tries the mechanism alone, without the collision checks the viewer adds.
+
 What the tests don't cover, and is checked by hand in the browser instead:
 
 - Anything on screen: hover, arrows and arcs, push drags, the motor and its address (`autospin=`), shifting, freeze outlines and badges, and the options.
@@ -206,6 +208,7 @@ Browser-level tests for these paths can come later.
 | `scripts/pack-models.ts` | Packs each test model, flattened, with the LDraw parts it uses (`npm run pack`), and lists the library's primitives and colours for models opened from your own computer |
 | `scripts/thumbs.ts` | Makes the README cards' pictures, opening each model in headless Chrome with `?thumb` (`npm run thumbs`) |
 | `scripts/download-omr.ts` | Downloads the OMR's Technic sets into `omr/` for the scan (`npm run omr`), each the version pinned in `models/technic-sets.csv`'s `omr_file` column, pinning new sets |
+| `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [Testing](#testing)) |
 | `scripts/scan-omr.ts` | Reads every set in `omr/` as the viewer would and reports what KineBrick connects and what it's missing, in `omr/coverage.md` (`npm run scan`) |
 | `scripts/thumbs.ts` | Makes the README cards' pictures, opening each model in headless Chrome with `?thumb` (`npm run thumbs`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |
