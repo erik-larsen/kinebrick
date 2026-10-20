@@ -622,8 +622,9 @@ function unconnected(parts: PlacedPart[], table: ConnectionTable, roles: Record<
 // Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red,
 // marked ⚠), the parts KineBrick can't connect, the moving parts it can't move yet (from
 // data/not-moving-yet.json, each with what it doesn't do), and the files that couldn't be found,
-// so aren't drawn.
+// so aren't drawn: under Warnings, which counts each kind, and opens to the list.
 async function showWarnings(names: string[], loose: number[], unconnected: string[], stuck: string[], missing: string[]) {
+  const warnings = document.getElementById('warnings') as HTMLDetailsElement;
   const warning = document.getElementById('warning')!;
   const list = async (parts: string[], count: number, note: (name: string) => string = () => '') => {
     const shown = await Promise.all(parts.slice(0, count).map(async (name) => `${name.replace(/\.dat$/, '')} ${await partTitle(name)}`.trim() + note(name)));
@@ -648,7 +649,14 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
   }
   if (!lines.length) return;
   warning.replaceChildren(...lines.map((line) => Object.assign(document.createElement('p'), { textContent: line })));
-  warning.style.display = 'block';
+  const counts = [
+    [loose.length, 'loose'],
+    [unconnected.length, 'unknown'],
+    [stuck.length, 'not moving yet'],
+    [missing.length, 'missing'],
+  ].filter(([count]) => count);
+  warnings.querySelector('summary')!.textContent = `Warnings: ${counts.map(([count, what]) => `${count} ${what}`).join(' · ')}`;
+  warnings.hidden = false;
 }
 
 // ---------------------------------------------------------------------------

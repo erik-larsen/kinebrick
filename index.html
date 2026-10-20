@@ -15,7 +15,10 @@
       #summary, #inputs { color: #5a6475; }
       #inputs { margin-bottom: 6px; font-size: 12px; }
       #inputs b { color: #1d2430; font-weight: 600; }
-      #warning { display: none; margin-top: 6px; max-width: 260px; color: #b3261e; font-size: 12px; }
+      /* What's wrong with the model, if anything: a count of each kind, opening to the list. */
+      #warnings { margin-top: 6px; }
+      #warnings summary { cursor: pointer; color: #b3261e; }
+      #warning { margin-top: 4px; max-width: 260px; color: #b3261e; font-size: 12px; }
       #warning p { margin: 0 0 4px; }
       #panel select { font: inherit; margin: 2px 0 4px; }
       #details { margin-top: 6px; }
@@ -64,7 +67,10 @@
       <select id="model"></select>
       <input id="file" type="file" accept=".ldr,.mpd" hidden />
       <div id="summary">Loading…</div>
-      <div id="warning"></div>
+      <details id="warnings" hidden>
+        <summary></summary>
+        <div id="warning"></div>
+      </details>
       <details id="details">
         <summary>Readout</summary>
         <div id="readoutBox"><div id="readout"></div></div>
