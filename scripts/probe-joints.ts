@@ -17,7 +17,10 @@
 //   npm run joints -- 856 952         only models whose file name has one of these in it
 //   npm run joints -- --update        write the baselines afresh from this run
 //   npm run joints -- --omr           the OMR's sets in omr/ (npm run omr), as a model you open
-//                                     yourself would be read; baselines in omr/joints/, not committed
+//                                     yourself would be read; baselines in omr/joints/ (or, with a
+//                                     --reach of its own, omr/joints-<reach>/), not committed
+//   npm run joints -- --resume        skip the models that have a baseline at this reach already,
+//                                     so a long run that stopped carries on where it left off
 //   npm run joints -- --jobs 4        how many models to probe at once (default: half the cores)
 //   npm run joints -- --reach 0.25    how far to turn each knob each way, in radians (default 1.5):
 //                                     a short reach is enough to tell which knobs are stuck, and
@@ -216,9 +219,14 @@ function report(dir: string, filters: string[]) {
 async function main() {
   const filters = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--jobs' && args[i - 1] !== '--reach');
   const modelsDir = omr ? 'omr' : 'models';
-  const baselineDir = omr ? join('omr', 'joints') : join('tests', 'joints');
+  const baselineDir = omr ? join('omr', reach === REACH ? 'joints' : `joints-${reach}`) : join('tests', 'joints');
+  // With --resume, a model whose baseline is already at this reach is done.
+  const done = (f: string) => {
+    const path = join(baselineDir, f.replace(/\.(ldr|mpd)$/i, '.json'));
+    return args.includes('--resume') && existsSync(path) && JSON.parse(readFileSync(path, 'utf-8')).reach === reach;
+  };
   const files = readdirSync(modelsDir)
-    .filter((f) => /\.(ldr|mpd)$/i.test(f) && (filters.length === 0 || filters.some((x) => f.includes(x))))
+    .filter((f) => /\.(ldr|mpd)$/i.test(f) && (filters.length === 0 || filters.some((x) => f.includes(x))) && !done(f))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
     .map((f) => join(modelsDir, f));
   if (args.includes('--report')) return report(baselineDir, filters);
