@@ -39,7 +39,7 @@ import { Outlines } from './outlines.ts';
 import { loopLinks } from './paths.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
-import { packModel } from './pack.ts';
+import { packModel, shapeName } from './pack.ts';
 import { thumbnail } from './thumbnail.ts';
 import connectionsUrl from '../data/connections.json?url';
 import libraryConnectionsUrl from '../data/library-connections.json?url';
@@ -193,6 +193,49 @@ function partTitle(name: string): Promise<string> {
 // ---------------------------------------------------------------------------
 // Loading
 
+// Lets the page show what's changed (the summary's progress) before a long step.
+function shown(): Promise<void> {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => setTimeout(resolve));
+    setTimeout(resolve, 100); // a page out of sight gets no frames
+  });
+}
+
+// three.js's LDraw loader means to build each kind of part once and copy it wherever the model
+// places it, but asked for the same part many times at once (as it is, for a whole model), it
+// starts building it each time, before the first build is there to copy: the 8880 Super Car's
+// 140 kinds of part were built 1411 times over, most of its loading time. So the first request
+// for a part builds it, and the rest wait for it and take copies, from the loader's own cache.
+function buildEachPartOnce(loader: LDrawLoader) {
+  const cache = (loader as unknown as { partsCache: { loadModel(name: string): Promise<Group> } }).partsCache;
+  const loadModel = cache.loadModel.bind(cache);
+  const first = new Map<string, Promise<Group>>();
+  cache.loadModel = (name) => {
+    const key = name.toLowerCase();
+    const building = first.get(key);
+    if (building) return building.catch(() => null).then(() => loadModel(name));
+    const promise = loadModel(name);
+    first.set(key, promise);
+    return promise;
+  };
+}
+
+// A string's shape, as LDCad drew it, isn't shown: the string is drawn afresh as it runs (see
+// showStrings), in the colour of its shape's first piece. Building the rest would be wasted,
+// and slow: a crane's string is 3725 short pieces, and smoothing their shading took seconds.
+// So for each of these shapes (by its file's name in the packed model), the loader builds only
+// the first piece.
+function firstPieceOnly(loader: LDrawLoader, files: string[]) {
+  type Info = { fileName: string | null; subobjects: unknown[] };
+  const cache = (loader as unknown as { partsCache: { processIntoMesh(info: Info): Promise<Group> } }).partsCache;
+  const build = cache.processIntoMesh.bind(cache);
+  const names = new Set(files.map((f) => f.toLowerCase()));
+  cache.processIntoMesh = (info) => {
+    if (info.fileName && names.has(info.fileName.toLowerCase())) info.subobjects = info.subobjects.slice(0, 1);
+    return build(info);
+  };
+}
+
 async function start() {
   const summary = document.getElementById('summary')!;
 
@@ -208,7 +251,7 @@ async function start() {
   let modelText: string;
   let packed: { primitives: string[]; pieces: Record<string, string[]> } | undefined;
   let table: ConnectionTable;
-  let model: Group;
+  let load: (onProgress: (event: ProgressEvent) => void) => Promise<Group>;
   let missingFiles: string[] = [];
   if (FILE) {
     const kept = await keptFile(FILE);
@@ -227,15 +270,27 @@ async function start() {
     titles = Promise.resolve(result.titles);
     missingFiles = result.missing;
     table = libraryConnections(library);
-    model = await new Promise((resolve, reject) => loader.parse(result.text, resolve, reject));
+    load = () => new Promise((resolve, reject) => loader.parse(result.text, resolve, reject));
   } else {
     modelText = await (await fetch(MODEL_URL)).text();
     packed = (packedModels as Record<string, { primitives: string[]; pieces: Record<string, string[]> }>)[MODEL];
     table = await (await fetch(connectionsUrl)).json();
-    model = await loader.loadAsync(PACKED_URL);
+    load = (onProgress) => loader.loadAsync(PACKED_URL, onProgress);
   }
   const primitives = new Set(packed?.primitives ?? []);
   const { parts: startParts, shapes: drawnShapes, paths } = parseModel(modelText, (name) => primitives.has(name), (name) => packed?.pieces[name] ?? null);
+  // The mechanism, worked out from the parts as placed (it needs no shapes). Here, so the loader
+  // needn't build the pieces of a string's shape that won't be shown (see showStrings).
+  summary.textContent = 'Working out how it moves…';
+  await shown();
+  let mech = inferMechanism(startParts, table, roles, paths);
+
+  // Loading, with how far the download has got.
+  const megabytes = (bytes: number) => (bytes / 1e6).toFixed(1);
+  buildEachPartOnce(loader);
+  firstPieceOnly(loader, drawnShapes.filter((shape) => mech.strings.some((s) => s.path === shape.path)).map((shape) => shapeName(shape.submodel)));
+  summary.textContent = 'Loading…';
+  const model = await load((e) => (summary.textContent = `Loading… ${megabytes(e.loaded)}${e.lengthComputable ? ` of ${megabytes(e.total)}` : ''} MB`));
   ldrawSpace.add(model);
 
   // The loader makes one child group per line of the packed model, in file order: the parts,
@@ -278,7 +333,6 @@ async function start() {
   // The mechanism, and everything worked out from it. read() sets these, at the start and
   // again after each shift, when the mechanism is worked out afresh from where the parts are.
   let parts = startParts;
-  let mech = inferMechanism(parts, table, roles, paths);
   // How far tyres may scrub sideways, in percent: the model's own allowance, unless the address
   // says otherwise.
   const modelScrub = modelSettings(modelText).scrub ?? DEFAULT_SCRUB * 100;
@@ -298,10 +352,11 @@ async function start() {
   const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
   let collisions: Collisions | null = null;
 
-  // Works out the mechanism from parts placed as given, with partObjects already there.
-  function read(placed: PlacedPart[]) {
+  // Works out the mechanism from parts placed as given (unless it's known already), with
+  // partObjects already there.
+  function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
-    mech = inferMechanism(parts, table, roles, paths);
+    mech = known ?? inferMechanism(parts, table, roles, paths);
     kin = new Kinematics(mech);
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table);
@@ -499,7 +554,9 @@ async function start() {
     slideOf,
     shift,
   };
-  read(startParts);
+  summary.textContent = 'Getting ready to check for collisions…';
+  await shown();
+  read(startParts, mech);
   const placed = [...new Set(startParts.map((p) => libraryName(p.name, table)))];
   // A part the file brings under its own name, read as the library's, keeps its title under both.
   titles = titles.then((t) => {

@@ -21,6 +21,11 @@ export interface Packed {
   missing: string[]; // files neither the model file nor the library has, packed empty
 }
 
+// The name of the file a submodel's shape (drawn without parts) is packed as.
+export function shapeName(submodel: string): string {
+  return `kinebrick-shape/${submodel}`;
+}
+
 // The files a file refers to, from its type 1 lines.
 export function references(text: string): string[] {
   const names: string[] = [];
@@ -73,7 +78,6 @@ export async function packModel(
     if (roles[file] === 'split') pieces[file] = (await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line));
   }
   const { parts, shapes, paths } = parseModel(source, isPrimitive, (file) => pieces[file] ?? null);
-  const shapeName = (submodel: string) => `kinebrick-shape/${submodel}`;
   const model = [
     ...parts.map(partLine),
     ...shapes.map((s) => partLine({ name: shapeName(s.submodel), color: s.color, matrix: s.matrix })),
