@@ -750,8 +750,10 @@ export class Kinematics {
     };
     const wheels = new Set(this.mech.treads.map((t) => t.body));
     // A car stays where it is unless the drag needs it to move: pushing it, or turning a wheel
-    // (which drives it). Steering doesn't.
-    if (this.contactTreads.length > 0 && grabbed !== 0 && !wheels.has(grabbed)) {
+    // it stands on (which drives it). Steering doesn't, nor does turning a wheel off the ground
+    // (the 8880 Super Car's steering knob, a small tyre on its back).
+    const onGround = new Set(this.contactTreads.map((i) => this.mech.treads[i].body));
+    if (this.contactTreads.length > 0 && grabbed !== 0 && !onGround.has(grabbed)) {
       this.dragHeld.add(0);
       if (!stillPossible()) this.dragHeld.delete(0);
     }

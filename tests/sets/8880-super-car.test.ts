@@ -43,6 +43,27 @@ describe('8880 Super Car', () => {
     expect(frameMoved()).toBeLessThan(1e-6);
   });
 
+  it('its steering knob, a small tyre on its back, steers it as its steering wheel does, the car staying where it is', () => {
+    // Turned as a drag does: what it doesn't need held, then turned a little at a time. Being a
+    // wheel, it once let the car roll, and stopped after a few steps (0.125) as if at a dead point.
+    const steerBy = (body: number, angle: number) => {
+      kin.reset();
+      const joint = kin.parentLink(body)!.joint;
+      kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
+      let turned = 0;
+      for (let i = 0; i < Math.round(Math.abs(angle) / 0.05); i++) turned += kin.turnJoint(joint, Math.sign(angle) * 0.05);
+      kin.letGoAfterDrag();
+      return { turned, steered: knuckles.map(steered), steeringWheel: kin.jointAngles[kin.parentLink(bodyOf('2741.dat'))!.joint] };
+    };
+    const knob = bodyOf('3482.dat');
+    const byKnob = steerBy(knob, 0.5);
+    expect(byKnob.turned).toBeCloseTo(0.5, 6);
+    expect(Math.abs(byKnob.steeringWheel)).toBeCloseTo(0.5, 4); // through two 24 tooth gears and two bevel gears
+    expect(frameMoved()).toBeLessThan(1e-6);
+    const byWheel = steerBy(bodyOf('2741.dat'), byKnob.steeringWheel);
+    byKnob.steered.forEach((a, i) => expect(a).toBeCloseTo(byWheel.steered[i], 3));
+  });
+
   it('its four-speed gearbox: each driving ring, shifted either way, puts the engine in gear with the wheels', () => {
     const rings = parts.flatMap((p, i) => (p.name === '6539.dat' ? [i] : []));
     const ratios: number[] = [];
