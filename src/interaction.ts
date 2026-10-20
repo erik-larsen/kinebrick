@@ -112,6 +112,7 @@ interface Drag {
   lastX: number; // the pointer's previous position (turn only)
   lastY: number;
   owed: number; // how far the joint has still to turn to catch up with the pointer (turn only)
+  sideOn: boolean; // its plane of turning is seen edge-on, so it's turned by pushing its near side (turn only)
   target: Vector2 | null; // where the pointer is, if the grabbed point hasn't got there (push only)
   pushSteps: number; // steps taken towards the target so far (push only)
 }
@@ -349,19 +350,27 @@ export function setUpInteraction(s: InteractionSetup) {
 
   // Owes the part a turn about its axle like a knob, by the angle the pointer swept around the
   // axle since its last position (see turn.ts). Seen side-on, where that doesn't work, it
-  // instead owes it how far the pointer moved along the way the grabbed point turns on screen.
-  // (turnOwed makes the turn.)
+  // instead owes it how far the pointer moved along the way the part's side nearest the camera
+  // turns on screen, as if pushing that side. Not the grabbed point's way: seen side-on, that
+  // reverses as the turn carries the grabbed point past the near side, and the part would turn
+  // back and forth. Once side-on, a drag stays so, rather than switching to and fro as the
+  // pointer crosses where it becomes side-on. (turnOwed makes the turn.)
   function turnTowards(d: Drag, clientX: number, clientY: number) {
     const { hub, dir } = turnAxis(d);
-    const grab = grabPoint(d);
-    const outward = new Vector3().subVectors(grab, hub);
+    const outward = new Vector3().subVectors(grabPoint(d), hub);
     const minRadius = Math.max(outward.length() / 2, 1);
-    let angle = knobTurn({ hub, dir, from: rayAt(d.lastX, d.lastY), to: rayAt(clientX, clientY), minRadius });
+    let angle = d.sideOn ? null : knobTurn({ hub, dir, from: rayAt(d.lastX, d.lastY), to: rayAt(clientX, clientY), minRadius });
     if (angle === null) {
-      // Where the grabbed point would move per radian, turning about a still axle.
-      const perRadian = new Vector3().crossVectors(dir, outward).setLength(Math.max(outward.length(), MIN_ARC_RADIUS));
-      const gScreen = toScreen(grab);
-      const screenPerRadian = toScreen(grab.clone().add(perRadian)).sub(gScreen);
+      d.sideOn = true;
+      // The side nearest the camera, and where it would move per radian, turning about a still axle.
+      const radius = Math.max(outward.length(), MIN_ARC_RADIUS);
+      const toCamera = s.ldrawSpace.worldToLocal(s.camera.position.clone()).sub(hub);
+      const near = toCamera.addScaledVector(dir, -toCamera.dot(dir));
+      if (near.lengthSq() < 1e-9) return; // looking along the axle: not side-on at all
+      near.setLength(radius);
+      const nearPoint = hub.clone().add(near);
+      const perRadian = new Vector3().crossVectors(dir, near);
+      const screenPerRadian = toScreen(nearPoint.clone().add(perRadian)).sub(toScreen(nearPoint));
       if (screenPerRadian.lengthSq() < 1e-6) return;
       const moved = new Vector2(clientX - d.lastX, clientY - d.lastY);
       angle = Math.max(-0.5, Math.min(0.5, moved.dot(screenPerRadian) / screenPerRadian.lengthSq()));
@@ -664,7 +673,7 @@ export function setUpInteraction(s: InteractionSetup) {
       // rod) is pushed.
       const link = s.kin.parentLink(body);
       const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
-      drag = { pointerId: e.pointerId, body, grabStart, joint, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0 };
+      drag = { pointerId: e.pointerId, body, grabStart, joint, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false };
       hideLabel();
 
       // Hold still whatever this drag doesn't need to move.
