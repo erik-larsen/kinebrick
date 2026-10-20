@@ -1,5 +1,6 @@
 {
   "model": "worm-drive",
+  "reach": 1.5,
   "joints": [
     {"joint":"p5 3707 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
     {"joint":"p13 3707 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p13 3707":[0,86],"p5 3707":[0,4]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p13 3707":[0,86],"p5 3707":[0,4]}}}

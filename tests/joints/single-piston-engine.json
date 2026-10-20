@@ -1,5 +1,6 @@
 {
   "model": "single-piston-engine",
+  "reach": 1.5,
   "joints": [
     {"joint":"p7 3704 in frame","plus":{"turned":1.5,"moved":3,"bodies":{"p7 3704":[0,86],"p9 2852":[14,14],"p10 2851":[11,0]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p7 3704":[0,86],"p9 2852":[14,14],"p10 2851":[11,0]}}}
   ]

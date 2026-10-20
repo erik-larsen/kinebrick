@@ -1,5 +1,6 @@
 {
   "model": "simple-car",
+  "reach": 1.5,
   "joints": [
     {"joint":"p5 3706 in frame","plus":{"turned":1.5,"moved":3,"bodies":{"p6 3706":[47,86],"p5 3706":[47,86],"frame":[47,0]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p5 3706":[47,86],"p6 3706":[47,86],"frame":[47,0]}}},
     {"joint":"p6 3706 in frame","plus":{"turned":1.5,"moved":3,"bodies":{"p5 3706":[47,86],"p6 3706":[47,86],"frame":[47,0]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p5 3706":[47,86],"p6 3706":[47,86],"frame":[47,0]}}}

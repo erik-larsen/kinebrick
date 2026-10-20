@@ -1,5 +1,6 @@
 {
   "model": "right-angle",
+  "reach": 1.5,
   "joints": [
     {"joint":"p3 3705 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p4 3704":[0,86],"p3 3705":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p4 3704":[0,86],"p3 3705":[0,86]}}},
     {"joint":"p4 3704 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p3 3705":[0,86],"p4 3704":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p3 3705":[0,86],"p4 3704":[0,86]}}}

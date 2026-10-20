@@ -1,5 +1,6 @@
 {
   "model": "gearbox",
+  "reach": 1.5,
   "joints": [
     {"joint":"p5 18948 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p5 18948":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p5 18948":[0,86]}}},
     {"joint":"p9 2471 in p5 18948","plus":{"turned":1.5,"moved":3,"bodies":{"p10 18946":[0,102],"p11 3707":[0,102],"p9 2471":[0,86]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p10 18946":[0,102],"p11 3707":[0,102],"p9 2471":[0,86]}}},

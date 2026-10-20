@@ -1,5 +1,6 @@
 {
   "model": "956-Auto Chassis",
+  "reach": 1.5,
   "joints": [
     {"joint":"p21 3702 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
     {"joint":"p167 3705 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p167 3705":[0,86],"p143 3031":[15,0]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p167 3705":[0,86],"p143 3031":[15,0]}}},

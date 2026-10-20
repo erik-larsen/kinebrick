@@ -19,6 +19,9 @@
 //   npm run joints -- --omr           the OMR's sets in omr/ (npm run omr), as a model you open
 //                                     yourself would be read; baselines in omr/joints/, not committed
 //   npm run joints -- --jobs 4        how many models to probe at once (default: half the cores)
+//   npm run joints -- --reach 0.25    how far to turn each knob each way, in radians (default 1.5):
+//                                     a short reach is enough to tell which knobs are stuck, and
+//                                     much quicker on big models (a survey of the OMR's sets)
 //   npm run joints -- --report        no probing: from the baselines, each model's knobs that
 //                                     stop after a little, or turn only one way, or can't move at all
 
@@ -32,7 +35,7 @@ import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { modelSettings, parseModel } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 
-// How far each joint is turned each way, in radians, in steps of STEP.
+// How far each knob is turned each way, in radians (unless --reach says otherwise), in steps of STEP.
 const REACH = 1.5;
 const STEP = 0.05;
 // A body counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
@@ -63,13 +66,14 @@ interface JointFinding {
 
 interface Baseline {
   model: string;
+  reach: number; // how far each knob was turned each way
   joints: JointFinding[];
 }
 
 // Probes one model file, as the viewer reads it: one of KineBrick's own, or (`omr`) a set from
 // the OMR, read as a model you open yourself. Only every `of`-th knob, from the `chunk`-th, so a
 // big model can be shared out between processes.
-function probe(file: string, omr: boolean, chunk = 0, of = 1): Baseline {
+function probe(file: string, omr: boolean, reach: number, chunk = 0, of = 1): Baseline {
   const text = readFileSync(file, 'utf-8');
   const name = file.replace(/^.*\//, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -108,7 +112,7 @@ function probe(file: string, omr: boolean, chunk = 0, of = 1): Baseline {
     kin.reset();
     kin.holdWhatTheDragDoesntNeed(grabbed, () => kin.jointMotion(joint) !== null, joint);
     let turned = 0;
-    for (let i = 0; i < Math.round(REACH / STEP); i++) {
+    for (let i = 0; i < Math.round(reach / STEP); i++) {
       const t = kin.turnJoint(joint, way * STEP);
       turned += t;
       if (Math.abs(t) < 1e-9) break;
@@ -137,12 +141,12 @@ function probe(file: string, omr: boolean, chunk = 0, of = 1): Baseline {
     joints.push({ joint: `${bodyKey(knob.body)} in ${bodyKey(knob.mount)}`, plus: turnWay(knob.body, knob.joint, 1), minus: turnWay(knob.body, knob.joint, -1) });
   });
   joints.sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true }));
-  return { model: name, joints };
+  return { model: name, reach, joints };
 }
 
 // A baseline as text: one joint per line, so a change shows as a change of line.
 function baselineText(b: Baseline): string {
-  return `{\n  "model": ${JSON.stringify(b.model)},\n  "joints": [\n${b.joints.map((j) => '    ' + JSON.stringify(j)).join(',\n')}\n  ]\n}\n`;
+  return `{\n  "model": ${JSON.stringify(b.model)},\n  "reach": ${b.reach},\n  "joints": [\n${b.joints.map((j) => '    ' + JSON.stringify(j)).join(',\n')}\n  ]\n}\n`;
 }
 
 // What got worse, and what got better, from a baseline to now.
@@ -179,11 +183,13 @@ const omr = args.includes('--omr');
 const update = args.includes('--update');
 const jobsAt = args.indexOf('--jobs');
 const jobs = jobsAt >= 0 ? Number(args[jobsAt + 1]) : Math.max(1, Math.floor(availableParallelism() / 2));
+const reachAt = args.indexOf('--reach');
+const reach = reachAt >= 0 ? Number(args[reachAt + 1]) : REACH;
 const one = args.indexOf('--one'); // (internal) probe this one file (a chunk of it) and print its findings
 if (one >= 0) {
   const [chunk, of] = (args[args.indexOf('--chunk') + 1] ?? '0/1').split('/').map(Number);
   // Let the output drain before the process ends: a pipe takes it in pieces.
-  process.stdout.write(JSON.stringify(probe(args[one + 1], omr, chunk, of)), () => process.exit(0));
+  process.stdout.write(JSON.stringify(probe(args[one + 1], omr, reach, chunk, of)), () => process.exit(0));
 } else {
   await main();
 }
@@ -208,7 +214,7 @@ function report(dir: string, filters: string[]) {
 }
 
 async function main() {
-  const filters = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--jobs');
+  const filters = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--jobs' && args[i - 1] !== '--reach');
   const modelsDir = omr ? 'omr' : 'models';
   const baselineDir = omr ? join('omr', 'joints') : join('tests', 'joints');
   const files = readdirSync(modelsDir)
@@ -222,7 +228,7 @@ async function main() {
   // shared out between up to `jobs`, all `jobs` at a time.
   function probeInChild(file: string, chunk: number, of: number): Promise<Baseline> {
     return new Promise((resolve, reject) => {
-      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', file, '--chunk', `${chunk}/${of}`, ...(omr ? ['--omr'] : [])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', file, '--chunk', `${chunk}/${of}`, '--reach', String(reach), ...(omr ? ['--omr'] : [])], { stdio: ['ignore', 'pipe', 'inherit'] });
       let out = '';
       child.stdout.on('data', (d) => (out += d));
       child.on('close', (code) => {
@@ -262,7 +268,7 @@ async function main() {
       const parts = [...(found.get(file) ?? []), part];
       found.set(file, parts);
       if (parts.length < of) continue;
-      const now: Baseline = { model: part.model, joints: parts.flatMap((p) => p.joints).sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true })) };
+      const now: Baseline = { model: part.model, reach, joints: parts.flatMap((p) => p.joints).sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true })) };
       const seconds = ((Date.now() - started.get(file)!) / 1000).toFixed(0);
       const path = join(baselineDir, `${now.model}.json`);
       if (update || !existsSync(path)) {
@@ -270,7 +276,13 @@ async function main() {
         console.log(`${now.model}: ${now.joints.length} knobs, baseline written (${seconds} s)`);
         continue;
       }
-      const { worse, better } = compare(JSON.parse(readFileSync(path, 'utf-8')), now);
+      const before: Baseline = JSON.parse(readFileSync(path, 'utf-8'));
+      if (before.reach !== now.reach) {
+        console.log(`${now.model}: its baseline turned each knob ${before.reach} rad, this run ${now.reach}: not compared (write it afresh with --update, or run with --reach ${before.reach})`);
+        failed = true;
+        continue;
+      }
+      const { worse, better } = compare(before, now);
       const lines = [`${now.model}: ${now.joints.length} knobs, ${worse.length ? `${worse.length} worse` : 'none worse'}${better.length ? `, ${better.length} better` : ''} (${seconds} s)`];
       for (const w of worse) lines.push(`  worse:  ${w}`);
       for (const b of better) lines.push(`  better: ${b}`);
