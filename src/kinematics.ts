@@ -1421,9 +1421,15 @@ export class Kinematics {
   // slid on its slide joint, both relative to what the gear turns in. A gear mesh is a rule
   // about speeds, and each step only keeps to it at the step's start, so a rack the tree reaches
   // through a linkage (a steering rack on its tie rods) would slip a little every step, and
-  // nothing would undo it. 0 if the rack doesn't slide in what its gear turns in.
+  // nothing would undo it. 0 if the rack doesn't slide in what its gear turns in, or if the gear
+  // meshes another rack too: two racks on one gear, both in a linkage (the 856 Bulldozer's
+  // bucket), can't both be kept exactly in step, since the model's rounded-off positions leave
+  // them a hair apart, and taking up the slip of each would wrench the linkage until it couldn't
+  // move at all.
   private rackSlip(contact: { a: Gear; b: Gear; pitchPoint: Vector3; across: Vector3 }): number {
     const { a, b, pitchPoint, across } = contact;
+    const racks = new Set(this.mech.meshes.filter((m) => m.kind === 'rack' && this.mech.gears[m.gearA].body === a.body).map((m) => this.mech.gears[m.gearB].body));
+    if (racks.size > 1) return 0;
     const link = this.parentLink(a.body);
     if (!link) return 0;
     const mount = link.parent;
