@@ -29,6 +29,11 @@ import { StringCircle, stringLayout } from './paths.ts';
 const GROUND_TOLERANCE = 1;
 // Numbers smaller than this count as zero when solving the equations.
 const EPSILON = 1e-9;
+// How far a tyre must roll in a step, in LDU, for that step to set its scrub rate (see
+// Kinematics.treadScrubRate): the tiny steps that close a loop or settle the model on the ground
+// would make it meaningless.
+const MIN_ROLL = 0.01;
+
 // How far a tyre may scrub sideways, as a fraction of how far it rolls, unless a model says
 // otherwise (see Kinematics.scrub and freeMotions): real steering only approximates every
 // wheel turning round one centre, and real tyres scrub.
@@ -112,6 +117,13 @@ export class Kinematics {
   treadTravel: number[] = [];
   // How far each tyre has scrubbed sideways since the start, in LDU (see freeMotions).
   treadScrub: number[] = [];
+  // How fast each tyre scrubbed sideways in the last step that rolled the model, as a fraction of
+  // how fast it rolled (0 until it has rolled).
+  treadScrubRate: number[] = [];
+  // The least scrub rolling would need, as a fraction like `scrub`, when that's more than `scrub`
+  // allows, so the model can't roll; else null. Set by freeMotions, for the position it was
+  // last asked about.
+  scrubNeeded: number | null = null;
   // The ground's height (LDraw y), or null if no tyre touches it.
   groundY: number | null = null;
   // How far a tyre may scrub sideways, as a fraction of how far it rolls (see freeMotions).
@@ -267,6 +279,7 @@ export class Kinematics {
     this.jointAngles = this.mech.joints.map(() => 0);
     this.treadTravel = this.mech.treads.map(() => 0);
     this.treadScrub = this.mech.treads.map(() => 0);
+    this.treadScrubRate = this.mech.treads.map(() => 0);
     for (const root of this.rootPoses.keys()) this.rootPoses.set(root, new Matrix4());
     this.updatePoses();
   }
@@ -1460,6 +1473,7 @@ export class Kinematics {
     const basis = this.treeBasis();
     const rows = inBasis(this.buildEquations(null, slip, true), basis);
     const motions = orthonormalize(nullSpace(rows, basis[0].length).map((z) => fromBasis(z, basis)));
+    this.scrubNeeded = null;
     if (slip.sideways.length === 0 || motions.length === 0) return motions;
     const frameStill = Array.from({ length: 6 }, (_, k) => {
       const row = new Array(n).fill(0);
@@ -1486,7 +1500,9 @@ export class Kinematics {
     // the model allows: that's for scrubbing sideways, not rising or sinking).
     const usual = Math.min(this.scrub, DEFAULT_SCRUB);
     const liftAsScrub = slip.lift.map((row) => row.map((x) => (x * usual) / LIFT));
-    const rolling = rest.length ? leastScrub(rest, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, this.scrub, usual) : [];
+    const needs = { least: 0 };
+    const rolling = rest.length ? leastScrub(rest, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, this.scrub, usual, needs) : [];
+    if (needs.least > this.scrub) this.scrubNeeded = needs.least;
     return orthonormalize([...keptParked, ...rolling]);
   }
 
@@ -1708,16 +1724,22 @@ export class Kinematics {
   }
 
   private move(motion: number[], amount: number) {
+    // Whether the model goes anywhere: steering a parked car drags its tyres round, but that
+    // isn't rolling, and doesn't count towards their scrub rate (see freeMotions).
+    const rolls = motion.slice(0, 6).some((x) => Math.abs(x * amount) > 1e-9);
     this.mech.treads.forEach((t, i) => {
       const pose = this.poses[t.body];
       const hub = t.center.clone().applyMatrix4(pose);
       // Turning positive about the axis a, with the ground below, carries the hub along down × a.
       const forward = new Vector3().crossVectors(DOWN, t.axis.clone().transformDirection(pose)).normalize();
-      this.treadTravel[i] += this.pointVelocity(motion, t.body, hub).dot(forward) * amount;
+      const rolled = this.pointVelocity(motion, t.body, hub).dot(forward) * amount;
+      this.treadTravel[i] += rolled;
       const contact = this.contactTreads.includes(i) ? this.contactPoint(i) : null;
       if (contact) {
         const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
-        this.treadScrub[i] += Math.abs(this.pointVelocity(motion, t.body, contact).dot(sideways) * amount);
+        const scrubbed = Math.abs(this.pointVelocity(motion, t.body, contact).dot(sideways) * amount);
+        this.treadScrub[i] += scrubbed;
+        if (rolls && Math.abs(rolled) > MIN_ROLL) this.treadScrubRate[i] = scrubbed / Math.abs(rolled);
       }
     });
     this.mech.joints.forEach((joint, j) => {
@@ -1824,7 +1846,8 @@ function smallestTurning(motions: number[][], rate: (m: number[]) => number, siz
 //     may allow its tyres more scrub (`limit`, more than `usual`) so that it can roll where it
 //     otherwise couldn't, but not so that it may also roll in other ways that scrub more than
 //     needed (a steered car scrubbing straight on, rather than following its steering).
-function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit): number[][] {
+// `needs.least` gets the least scrub any of them needs, as a fraction like `limit` (0 if none travels).
+function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit, needs = { least: 0 }): number[][] {
   const k = motions.length;
   const dot = (a: number[], b: number[]) => a.reduce((sum, x, i) => sum + x * b[i], 0);
   // Each row applied to each motion: rows × k.
@@ -1862,6 +1885,7 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
   const leftGram = best.map((_, i) => best.map((_, j) => dot(left[i], left[j])));
   const { values: mv, vectors: mvecs } = symmetricEigen(leftGram);
   const least = Math.min(...mv);
+  if (mv.length) needs.least = Math.sqrt(Math.max(0, least));
   const threshold = least <= limit * limit ? Math.max(usual * usual, least) : -Infinity;
   mvecs.forEach((y, e) => {
     if (mv[e] <= threshold) kept.push(combine(best, y));

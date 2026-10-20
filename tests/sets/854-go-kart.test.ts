@@ -52,4 +52,19 @@ describe('854 Go-Kart', () => {
       expect(motor(bodyOf('3634.dat', 2), 24)).toBeCloseTo(2 * Math.PI, 6); // a turn of the wheel
     }
   });
+
+  it('steered 22 degrees, its tyres would have to scrub more than 8% to roll, and it says by how much; within that, each tyre reports how much it scrubs', () => {
+    kin.reset();
+    turn(bodyOf('3736.dat'), 1); // about 15 degrees: it rolls
+    expect(motor(bodyOf('3634.dat', 2), 4)).toBeGreaterThan(1);
+    expect(kin.scrubNeeded).toBeNull();
+    const rates = kin.treadScrubRate.filter((r) => r > 0);
+    expect(rates.length).toBeGreaterThan(0);
+    for (const r of rates) expect(r).toBeLessThan(0.2);
+    kin.reset();
+    turn(bodyOf('3736.dat'), 1.5); // about 22 degrees: too far to roll at 8%
+    expect(motor(bodyOf('3634.dat', 2), 4)).toBeLessThan(1e-9);
+    expect(kin.scrubNeeded).toBeGreaterThan(0.08);
+    expect(kin.scrubNeeded).toBeLessThan(0.15); // at 15% it rolls
+  });
 });

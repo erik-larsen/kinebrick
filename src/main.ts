@@ -743,8 +743,9 @@ function updateReadout(mech: Mechanism, kin: Kinematics) {
       const radius = mech.treads[t].rollRadius ?? mech.treads[t].radius; // a track rolls at its path's radius
       const expected = ((rolled / radius) * 180) / Math.PI;
       line += ` (rolled ${rolled.toFixed(1)} ÷ ${radius.toFixed(1)} = ±${expected.toFixed(1)}°)`;
-      // How far it has scrubbed sideways (see Kinematics.scrub), once it's noticeable.
-      if (kin.treadScrub[t] >= 0.05) line += `, scrubbed ${kin.treadScrub[t].toFixed(1)} sideways`;
+      // How far it has scrubbed sideways (see Kinematics.scrub), once it's noticeable, and how
+      // fast it's scrubbing, as a share of how fast it rolls.
+      if (kin.treadScrub[t] >= 0.05) line += `, scrubbed ${kin.treadScrub[t].toFixed(1)} sideways, ${(kin.treadScrubRate[t] * 100).toFixed(1)}% of its roll`;
     }
     lines.push(line);
   });

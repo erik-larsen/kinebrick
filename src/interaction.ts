@@ -217,6 +217,21 @@ export function setUpInteraction(s: InteractionSetup) {
     messageY = clientY;
   }
 
+  // Why the model can't move the way asked: its tyres would scrub sideways more than Tyre scrub
+  // allows (see Kinematics.scrubNeeded), or it's jammed.
+  function whyStuck(): string {
+    const needed = s.kin.scrubNeeded;
+    const percent = (x: number) => `${Math.round(x * 100)}%`;
+    return needed === null ? "it's jammed" : `its tyres would scrub ${percent(needed)}, over the ${percent(s.kin.scrub)} allowed`;
+  }
+
+  // Where a part is on the screen, in client coordinates.
+  function onScreen(part: number): { x: number; y: number } {
+    const p = new Vector3().setFromMatrixPosition(s.model.children[part].matrixWorld).project(s.camera);
+    const box = s.renderer.domElement.getBoundingClientRect();
+    return { x: box.left + ((p.x + 1) / 2) * box.width, y: box.top + ((1 - p.y) / 2) * box.height };
+  }
+
   function hideLabel() {
     label.style.display = 'none';
   }
@@ -490,7 +505,7 @@ export function setUpInteraction(s: InteractionSetup) {
     const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
     const canTurn = s.kin.jointMotion(link.joint) !== null;
     s.kin.letGoAfterDrag();
-    if (!canTurn) return `This part can't turn: ${wormLocked ? 'a worm gear can only be turned from the worm' : "it's jammed"}`;
+    if (!canTurn) return `This part can't turn: ${wormLocked ? 'a worm gear can only be turned from the worm' : whyStuck()}`;
     motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
     motorReversed = false;
     motorMoved = false;
@@ -559,7 +574,12 @@ export function setUpInteraction(s: InteractionSetup) {
         motorMoved = false;
         s.onMotorChanged();
       } else {
+        // Stuck both ways, or it can't turn at all: it stops, and if that's because its tyres
+        // would have to scrub too much, says so.
+        const scrubbing = !blocked && s.kin.scrubNeeded !== null;
+        const at = onScreen(motorPart);
         setMotor(-1);
+        if (scrubbing) showMessage(`Stopped: ${whyStuck()}`, at.x, at.y);
       }
     }
     s.onMoved();
@@ -669,7 +689,7 @@ export function setUpInteraction(s: InteractionSetup) {
         s.ldrawSpace.add(drag.arc);
         updateArc(drag);
       } else if (!updateArrow(drag)) {
-        const why = s.kin.frameFixed() ? 'the model has no means of locomotion' : "it's jammed";
+        const why = s.kin.frameFixed() ? 'the model has no means of locomotion' : whyStuck();
         showMessage(`This part can't move: ${why}`, e.clientX, e.clientY);
       }
     },
