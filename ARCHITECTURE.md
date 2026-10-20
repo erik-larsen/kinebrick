@@ -122,6 +122,8 @@ A role is a short label for what a part does in a mechanism. It tells KineBrick 
 
 More roles arrive with each milestone, as real models need them: pulleys and strings. Shock absorbers need none: a square rod fixed in a square cylinder (see step 4); their springs, like everything to do with forces, wait for version 2.0. A steering arm needs no role of its own: it's plates and a towball on the part a wheel turns on.
 
+Parts KineBrick knows it can't move yet are listed in `data/not-moving-yet.json`, each with what it doesn't do: a gear without teeth data that doesn't mesh, a tyre without a tread that doesn't roll, shock absorbers that don't compress, linear actuators that don't extend, pneumatics, and motors, whose output holds its axle still. They connect as plain parts; the viewer lists any in a model, so a part that silently doesn't move is said to. The list was checked by hand from the scan (`npm run scan`), whose report also lists the parts that look like they move but have neither a role nor a place on the list, still to be checked. A part that gets a role comes off the list (a test checks).
+
 ## Drags
 
 What a drag does for the user is in the README's [Interaction](README.md#interaction) section. Underneath:
@@ -212,3 +214,4 @@ Browser-level tests for these paths can come later.
 | `data/library-connections.json` | The connection table for the whole LDraw library, for models opened from your own computer (generated, don't edit) |
 | `data/corrections.ldr` | KineBrick's own additions to the connection table |
 | `data/roles.json` | Each part's role; parts not listed are `structure` |
+| `data/not-moving-yet.json` | The moving parts KineBrick can't move yet, each with what it doesn't do, which the viewer lists |

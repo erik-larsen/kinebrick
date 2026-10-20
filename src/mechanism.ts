@@ -233,7 +233,7 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
 // The OMR embeds parts that weren't in the LDraw library yet in the model's file, named
 // "<set> - <part>.dat" (42116 - 42924.dat). Most are in the library now: such a part is read as
 // the library's, if KineBrick knows nothing of its own name.
-function libraryName(name: string, table: ConnectionTable): string {
+export function libraryName(name: string, table: ConnectionTable): string {
   const part = / - ([^/]+)$/.exec(name)?.[1];
   return !table.parts[name] && part && table.parts[part] ? part : name;
 }

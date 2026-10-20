@@ -82,7 +82,7 @@ Pick **Open a model file…** at the bottom of the model menu, or drop an LDraw 
 
 Your file stays in your browser; nothing is uploaded. The browser keeps it so the page can reload with it (the address names it, as `file=`), so a link to it only works in that browser.
 
-KineBrick knows the moving parts of its own models and the most common ones in the OMR's Technic sets, but not every part yet. The panel lists any part it has no connection data for (marked ⚠, as loose parts are) and any file the parts library hasn't got, which isn't drawn: usually a part LDraw hasn't made official yet, which the model file didn't bring along. A gear or tyre KineBrick doesn't know is taken for a plain part: it connects, but won't mesh or roll, and the panel doesn't say so yet.
+KineBrick knows the moving parts of its own models and the most common ones in the OMR's Technic sets, but not every part yet. The panel lists any part it has no connection data for (marked ⚠, as loose parts are); any moving part it can't move yet, such as shock absorbers, motors, pneumatics and some gears and tyres, with what it doesn't do ("doesn't mesh", "doesn't roll"); and any file the parts library hasn't got, which isn't drawn: usually a part LDraw hasn't made official yet, which the model file didn't bring along.
 
 ## Status
 
@@ -99,7 +99,7 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 - Closed loops of parts, such as an engine's crank, connecting rod and piston, that stay together however long they run (M6.1)
 - Chains and tracks, on which the bulldozer runs (M8)
 - Strings and rubber bands: the crane's winch raises and lowers its hook (M9)
-- [Your own models](#your-own-model): open any LDraw file; KineBrick lists what it can't connect
+- [Your own models](#your-own-model): open any LDraw file; KineBrick lists what it can't connect or move yet
 
 The models' files are in [`models/`](models/).
 

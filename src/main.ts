@@ -34,7 +34,7 @@ import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.t
 import { makeJointAxes } from './jointAxes.ts';
 import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
-import { inferMechanism, Mechanism } from './mechanism.ts';
+import { inferMechanism, libraryName, Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { loopLinks } from './paths.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
@@ -48,6 +48,7 @@ import coloursUrl from '../packed/colours.ldr?url';
 import primitivesUrl from '../packed/primitives.json?url';
 import titlesUrl from '../packed/titles.json?url';
 import packedModels from '../packed/models.json';
+import notMovingYet from '../data/not-moving-yet.json';
 
 // The test models in models/, and their names in the picker. Any other model in models/ (the
 // real LEGO sets) comes after them, under its file name.
@@ -499,7 +500,14 @@ async function start() {
     shift,
   };
   read(startParts);
-  showWarnings(startParts.map((p) => p.name), mech.loose, unconnected(startParts, table, roles), missingFiles);
+  const placed = [...new Set(startParts.map((p) => libraryName(p.name, table)))];
+  // A part the file brings under its own name, read as the library's, keeps its title under both.
+  titles = titles.then((t) => {
+    for (const p of startParts) t[libraryName(p.name, table)] ??= t[p.name];
+    return t;
+  });
+  const stuck = placed.filter((name) => name in notMovingYet);
+  showWarnings(startParts.map((p) => p.name), mech.loose, unconnected(startParts, table, roles), stuck, missingFiles);
   const grid = frameCamera(model, kin.groundY);
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
@@ -607,17 +615,18 @@ function frameCamera(model: Object3D, groundY: number | null): GridHelper {
 // The parts KineBrick knows no connection points for, so they can't connect to anything (by
 // file name, each once), other than decoration, which needs none.
 function unconnected(parts: PlacedPart[], table: ConnectionTable, roles: Record<string, string>): string[] {
-  const names = new Set(parts.filter((p) => !p.path).map((p) => p.name));
+  const names = new Set(parts.filter((p) => !p.path).map((p) => libraryName(p.name, table)));
   return [...names].filter((name) => !table.parts[name]?.length && roles[name] !== 'decoration' && !table.stickers?.includes(name));
 }
 
 // Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red,
-// marked ⚠), the parts KineBrick can't connect, and the files that couldn't be found, so aren't
-// drawn.
-async function showWarnings(names: string[], loose: number[], unconnected: string[], missing: string[]) {
+// marked ⚠), the parts KineBrick can't connect, the moving parts it can't move yet (from
+// data/not-moving-yet.json, each with what it doesn't do), and the files that couldn't be found,
+// so aren't drawn.
+async function showWarnings(names: string[], loose: number[], unconnected: string[], stuck: string[], missing: string[]) {
   const warning = document.getElementById('warning')!;
-  const list = async (parts: string[], count: number) => {
-    const shown = await Promise.all(parts.slice(0, count).map(async (name) => `${name.replace(/\.dat$/, '')} ${await partTitle(name)}`.trim()));
+  const list = async (parts: string[], count: number, note: (name: string) => string = () => '') => {
+    const shown = await Promise.all(parts.slice(0, count).map(async (name) => `${name.replace(/\.dat$/, '')} ${await partTitle(name)}`.trim() + note(name)));
     return shown.join(', ') + (parts.length > count ? `, and ${parts.length - count} more` : '');
   };
   const lines: string[] = [];
@@ -628,6 +637,10 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
   if (unconnected.length) {
     const what = unconnected.length === 1 ? 'a part' : `${unconnected.length} parts`;
     lines.push(`KineBrick doesn't know how ${what} can connect: ${await list(unconnected, 8)}`);
+  }
+  if (stuck.length) {
+    const reasons: Record<string, string> = notMovingYet;
+    lines.push(`Some parts don't move as they should yet: ${await list(stuck, 8, (name) => ` (${reasons[name]})`)}`);
   }
   if (missing.length) {
     const what = missing.length === 1 ? "1 file isn't" : `${missing.length} files aren't`;
