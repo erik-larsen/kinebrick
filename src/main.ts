@@ -144,6 +144,8 @@ sun.position.set(100, 200, 150);
 scene.add(sun);
 
 const camera = new PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 10000);
+// Somewhere sensible to start, looking at the middle, until frameCamera points it at the model.
+camera.position.set(450, 350, 550);
 const controls = new OrbitControls(camera, renderer.domElement);
 
 // LDraw's y axis points down; flipping this group turns the model the right way up.
@@ -291,6 +293,9 @@ async function start() {
   firstPieceOnly(loader, drawnShapes.filter((shape) => mech.strings.some((s) => s.path === shape.path)).map((shape) => shapeName(shape.submodel)));
   summary.textContent = 'Loading…';
   const model = await load((e) => (summary.textContent = `Loading… ${megabytes(e.loaded)}${e.lengthComputable ? ` of ${megabytes(e.total)}` : ''} MB`));
+  // Hidden until the camera is pointed at it (frameCamera, below): the page shows how loading is
+  // going in between, and would show the model from wherever the camera happened to be.
+  model.visible = false;
   ldrawSpace.add(model);
 
   // The loader makes one child group per line of the packed model, in file order: the parts,
@@ -554,7 +559,7 @@ async function start() {
     slideOf,
     shift,
   };
-  summary.textContent = 'Getting ready to check for collisions…';
+  summary.textContent = 'Checking for collisions…';
   await shown();
   read(startParts, mech);
   const placed = [...new Set(startParts.map((p) => libraryName(p.name, table)))];
@@ -566,6 +571,7 @@ async function start() {
   const stuck = placed.filter((name) => name in notMovingYet);
   showWarnings(startParts.map((p) => p.name), mech.loose, unconnected(startParts, table, roles), stuck, missingFiles);
   const grid = frameCamera(model, kin.groundY);
+  model.visible = true;
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
