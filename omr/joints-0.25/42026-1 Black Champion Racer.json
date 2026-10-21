@@ -1,0 +1,20 @@
+{
+  "model": "42026-1 Black Champion Racer",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p2 32556 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p2 32556":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p2 32556":[0,14]}}},
+    {"joint":"p7 43093 in frame","plus":{"turned":0.25,"moved":3,"bodies":{"p66 87082":[7,14],"p67 32054":[7,14],"p7 43093":[0,14]}},"minus":{"turned":-0.25,"moved":3,"bodies":{"p66 87082":[7,14],"p67 32054":[7,14],"p7 43093":[0,14]}}},
+    {"joint":"p47 87082 in frame","plus":{"turned":0.25,"moved":2,"bodies":{"p48 43093":[5,14],"p47 87082":[0,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p48 43093":[5,14],"p47 87082":[0,14]}}},
+    {"joint":"p48 43093 in p47 87082","plus":{"turned":0.25,"moved":1,"bodies":{"p48 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p48 43093":[0,14]}}},
+    {"joint":"p57 32556 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p57 32556":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p57 32556":[0,14]}}},
+    {"joint":"p62 32556 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p62 32556":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p62 32556":[0,14]}}},
+    {"joint":"p66 87082 in p67 32054","plus":{"turned":0.25,"moved":1,"bodies":{"p66 87082":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p66 87082":[0,14]}}},
+    {"joint":"p67 32054 in p7 43093","plus":{"turned":0.25,"moved":1,"bodies":{"p67 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p67 32054":[0,14]}}},
+    {"joint":"p97 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p97 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p97 32054":[0,14]}}},
+    {"joint":"p101 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p101 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p101 32054":[0,14]}}},
+    {"joint":"p102 3708 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p102 3708":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p102 3708":[0,14]}}},
+    {"joint":"p115 32054 in p117 41678","plus":{"turned":0.25,"moved":1,"bodies":{"p115 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p115 32054":[0,14]}}},
+    {"joint":"p116 32054 in p117 41678","plus":{"turned":0.25,"moved":1,"bodies":{"p116 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p116 32054":[0,14]}}},
+    {"joint":"p117 41678 in frame","plus":{"turned":0.25,"moved":4,"bodies":{"p116 32054":[7,14],"p114 43857":[7,14],"p115 32054":[7,14],"p117 41678":[0,14]}},"minus":{"turned":-0.25,"moved":4,"bodies":{"p114 43857":[7,14],"p116 32054":[7,14],"p115 32054":[7,14],"p117 41678":[0,14]}}}
+  ]
+}
