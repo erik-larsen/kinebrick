@@ -379,19 +379,32 @@ async function main() {
   }
 
   // Each worker takes the next batch waiting, or else starts on the next model: counts its knobs
-  // and puts its batches in the queue (those already done, with --resume, read back instead).
+  // and puts its batches in the queue (those already done, with --resume, read back instead). With
+  // neither, it waits for any model still being counted, whose batches may be for it.
+  let counting = 0;
+  const waiting: (() => void)[] = [];
+  const counted = () => {
+    counting--;
+    for (const wake of waiting.splice(0)) wake();
+  };
   async function worker() {
     for (;;) {
       const batch = batches.shift();
       if (!batch) {
         const file = modelsLeft.shift();
-        if (!file) return;
+        if (!file) {
+          if (counting === 0) return;
+          await new Promise<void>((wake) => waiting.push(wake));
+          continue;
+        }
         let count: Baseline & { knobs: number };
+        counting++;
         try {
           count = await probeInChild(file, 0, 0);
         } catch (err) {
           console.log(`${file}: ${(err as Error).message}`);
           failed = true;
+          counted();
           continue;
         }
         const state: Model = { model: count.model, batchesDir: join(baselineDir, '.batches', count.model), knobs: count.knobs, done: 0, found: [], started: Date.now() };
@@ -404,6 +417,7 @@ async function main() {
             state.done += to - from;
           } else batches.push({ file, state, from, to });
         }
+        counted();
         if (state.done === state.knobs) finish(state);
         continue;
       }
