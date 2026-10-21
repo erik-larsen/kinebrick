@@ -90,7 +90,7 @@ interface Baseline {
 // big model can be shared out between processes.
 function probe(file: string, omr: boolean, reach: number, chunk = 0, of = 1): Baseline {
   const text = readFileSync(file, 'utf-8');
-  const name = file.replace(/^.*\//, '').replace(/\.(ldr|mpd)$/i, '');
+  const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
   const packedModels: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
   let table: ConnectionTable;
