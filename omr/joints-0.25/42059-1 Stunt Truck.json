@@ -1,0 +1,21 @@
+{
+  "model": "42059-1 Stunt Truck",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p0 56145 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p0 56145":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p0 56145":[0,14]}}},
+    {"joint":"p44 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p44 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p44 32054":[0,14]}}},
+    {"joint":"p52 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p52 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p52 32054":[0,14]}}},
+    {"joint":"p75 43093 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p77 18651 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p77 18651":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p77 18651":[0,14]}}},
+    {"joint":"p81 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p81 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p81 4274":[0,14]}}},
+    {"joint":"p83 43093 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p85 18651 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p85 18651":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p85 18651":[0,14]}}},
+    {"joint":"p89 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p89 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p89 4274":[0,14]}}},
+    {"joint":"p122 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p122 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p122 32054":[0,14]}}},
+    {"joint":"p123 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p123 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p123 32054":[0,14]}}},
+    {"joint":"p131 40490 in frame","plus":{"turned":0.25,"moved":2,"bodies":{"p134 43093":[40,14],"p131 40490":[20,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p134 43093":[40,14],"p131 40490":[20,14]}}},
+    {"joint":"p132 40490 in frame","plus":{"turned":0.25,"moved":2,"bodies":{"p139 43093":[40,14],"p132 40490":[20,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p139 43093":[40,14],"p132 40490":[20,14]}}},
+    {"joint":"p134 43093 in p131 40490","plus":{"turned":0.25,"moved":1,"bodies":{"p134 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p134 43093":[0,14]}}},
+    {"joint":"p139 43093 in p132 40490","plus":{"turned":0.25,"moved":1,"bodies":{"p139 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p139 43093":[0,14]}}}
+  ]
+}
