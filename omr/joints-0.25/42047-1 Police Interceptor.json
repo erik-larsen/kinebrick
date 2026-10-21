@@ -1,0 +1,20 @@
+{
+  "model": "42047-1 Police Interceptor",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p24 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p24 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p24 32054":[0,14]}}},
+    {"joint":"p34 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p34 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p34 32054":[0,14]}}},
+    {"joint":"p42 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p42 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p42 32054":[0,14]}}},
+    {"joint":"p66 6141 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p66 6141":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p66 6141":[0,14]}}},
+    {"joint":"p70 6141 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p70 6141":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p70 6141":[0,14]}}},
+    {"joint":"p73 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p73 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p73 4274":[0,14]}}},
+    {"joint":"p74 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p74 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p74 4274":[0,14]}}},
+    {"joint":"p78 32054 in frame","plus":{"turned":0.25,"moved":2,"bodies":{"p82 32002":[6,14],"p78 32054":[3,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p82 32002":[6,14],"p78 32054":[3,14]}}},
+    {"joint":"p82 32002 in p78 32054","plus":{"turned":0.25,"moved":1,"bodies":{"p82 32002":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p82 32002":[0,14]}}},
+    {"joint":"p109 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p109 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p109 11214":[0,14]}}},
+    {"joint":"p146 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p146 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p146 11214":[0,14]}}},
+    {"joint":"p147 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p147 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p147 11214":[0,14]}}},
+    {"joint":"p165 3708 in frame","plus":{"turned":0.25,"moved":17,"bodies":{"p166 3708":[14,14],"p165 3708":[14,14],"p148 6536":[14,0],"p155 6536":[14,0],"p147 11214":[14,0],"p78 32054":[14,0],"p24 32054":[14,0],"p34 32054":[14,0]}},"minus":{"turned":-0.25,"moved":17,"bodies":{"p166 3708":[14,14],"p165 3708":[14,14],"p34 32054":[14,0],"p66 6141":[14,0],"p70 6141":[14,0],"p73 4274":[14,0],"p74 4274":[14,0],"p109 11214":[14,0]}}},
+    {"joint":"p166 3708 in frame","plus":{"turned":0.25,"moved":17,"bodies":{"p165 3708":[14,14],"p166 3708":[14,14],"p66 6141":[14,0],"p70 6141":[14,0],"p73 4274":[14,0],"p74 4274":[14,0],"p109 11214":[14,0],"frame":[14,0]}},"minus":{"turned":-0.25,"moved":17,"bodies":{"p165 3708":[14,14],"p166 3708":[14,14],"p66 6141":[14,0],"p70 6141":[14,0],"p73 4274":[14,0],"p74 4274":[14,0],"p109 11214":[14,0],"p24 32054":[14,0]}}}
+  ]
+}
