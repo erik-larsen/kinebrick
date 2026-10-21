@@ -1,0 +1,11 @@
+{
+  "model": "42073-1 BASH!",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p36 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p36 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p36 11214":[0,14]}}},
+    {"joint":"p38 32140 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p38 32140":[1,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p38 32140":[1,14]}}},
+    {"joint":"p62 3708 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p62 3708":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p62 3708":[0,14]}}},
+    {"joint":"p115 85959p01 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p115 85959p01":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p115 85959p01":[0,14]}}},
+    {"joint":"p116 85959p01 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p116 85959p01":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p116 85959p01":[0,14]}}}
+  ]
+}
