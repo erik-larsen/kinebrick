@@ -1,0 +1,16 @@
+{
+  "model": "8062-1 Universal Set with Storage Case",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p0 4477 in p122 3704","plus":{"turned":0.25,"moved":1,"bodies":{"p0 4477":[76,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p0 4477":[76,14]}}},
+    {"joint":"p32 3705 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p32 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p32 3705":[0,14]}}},
+    {"joint":"p48 3749 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p48 3749":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p48 3749":[0,14]}}},
+    {"joint":"p49 3749 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p49 3749":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p49 3749":[0,14]}}},
+    {"joint":"p50 3706 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p50 3706":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p50 3706":[0,14]}}},
+    {"joint":"p53 6553 in frame","plus":{"turned":0.25,"moved":5,"bodies":{"p0 4477":[97,14],"p122 3704":[60,14],"p115 4442":[42,14],"p58 3712":[2,14],"p53 6553":[2,14]}},"minus":{"turned":-0.25,"moved":5,"bodies":{"p0 4477":[97,14],"p122 3704":[60,14],"p115 4442":[42,14],"p58 3712":[2,14],"p53 6553":[2,14]}}},
+    {"joint":"p58 3712 in frame","plus":{"turned":0.25,"moved":5,"bodies":{"p0 4477":[97,14],"p122 3704":[60,14],"p115 4442":[42,14],"p58 3712":[2,14],"p53 6553":[2,14]}},"minus":{"turned":-0.25,"moved":5,"bodies":{"p0 4477":[97,14],"p122 3704":[60,14],"p115 4442":[42,14],"p58 3712":[2,14],"p53 6553":[2,14]}}},
+    {"joint":"p72 3705 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p72 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p72 3705":[0,14]}}},
+    {"joint":"p115 4442 in p58 3712","plus":{"turned":0.25,"moved":3,"bodies":{"p0 4477":[95,14],"p122 3704":[35,14],"p115 4442":[17,14]}},"minus":{"turned":-0.25,"moved":3,"bodies":{"p0 4477":[95,14],"p122 3704":[35,14],"p115 4442":[17,14]}}},
+    {"joint":"p122 3704 in p115 4442","plus":{"turned":0.25,"moved":1,"bodies":{"p122 3704":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p122 3704":[0,14]}}}
+  ]
+}
