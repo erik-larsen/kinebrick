@@ -1,0 +1,15 @@
+{
+  "model": "42033-1 Record Breaker",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p16 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p16 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p16 11214":[0,14]}}},
+    {"joint":"p17 32140 in p16 11214","plus":{"turned":0.25,"moved":1,"bodies":{"p17 32140":[13,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p17 32140":[13,14]}}},
+    {"joint":"p49 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p49 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p49 11214":[0,14]}}},
+    {"joint":"p90 43093 in frame","plus":{"turned":0.25,"moved":2,"bodies":{"p93 40001":[5,14],"p90 43093":[0,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p93 40001":[5,14],"p90 43093":[0,14]}}},
+    {"joint":"p93 40001 in p90 43093","plus":{"turned":0.25,"moved":1,"bodies":{"p93 40001":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p93 40001":[0,14]}}},
+    {"joint":"p110 92279 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p110 92279":[10,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p110 92279":[10,14]}}},
+    {"joint":"p111 3706 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p111 3706":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p111 3706":[0,14]}}},
+    {"joint":"p113 2815 in p111 3706","plus":{"turned":0.25,"moved":1,"bodies":{"p113 2815":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p113 2815":[0,14]}}},
+    {"joint":"p115 2815 in p111 3706","plus":{"turned":0.25,"moved":1,"bodies":{"p115 2815":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p115 2815":[0,14]}}}
+  ]
+}
