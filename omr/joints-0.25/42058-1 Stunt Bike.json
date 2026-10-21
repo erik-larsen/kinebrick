@@ -1,0 +1,24 @@
+{
+  "model": "42058-1 Stunt Bike",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p15 32556 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p15 32556":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p15 32556":[0,14]}}},
+    {"joint":"p16 55013 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p21 18946 in p15 32556","plus":{"turned":0.25,"moved":1,"bodies":{"p15 32556":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p15 32556":[0,14]}}},
+    {"joint":"p28 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p28 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p28 11214":[0,14]}}},
+    {"joint":"p34 11214 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p34 11214":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p34 11214":[0,14]}}},
+    {"joint":"p53 44294 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p53 44294":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p53 44294":[0,14]}}},
+    {"joint":"p71 4519 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p83 64391 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p91 4519 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p107 4274 in p83 64391","plus":{"turned":0.25,"moved":1,"bodies":{"p107 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p107 4274":[0,14]}}},
+    {"joint":"p108 4274 in p83 64391","plus":{"turned":0.25,"moved":1,"bodies":{"p108 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p108 4274":[0,14]}}},
+    {"joint":"p118 43093 in p83 64391","plus":{"turned":0.25,"moved":3,"bodies":{"p123 42610":[15,14],"p122 42610":[10,14],"p118 43093":[6,14]}},"minus":{"turned":-0.25,"moved":3,"bodies":{"p123 42610":[15,14],"p122 42610":[10,14],"p118 43093":[6,14]}}},
+    {"joint":"p122 42610 in p118 43093","plus":{"turned":0.25,"moved":1,"bodies":{"p122 42610":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p122 42610":[0,14]}}},
+    {"joint":"p123 42610 in p118 43093","plus":{"turned":0.25,"moved":1,"bodies":{"p123 42610":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p123 42610":[0,14]}}},
+    {"joint":"p131 43093 in p16 55013","plus":{"turned":0.25,"moved":1,"bodies":{"p131 43093":[2,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p131 43093":[2,14]}}},
+    {"joint":"p132 43093 in p16 55013","plus":{"turned":0.25,"moved":1,"bodies":{"p132 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p132 43093":[0,14]}}},
+    {"joint":"p135 43093 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p135 43093":[2,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p135 43093":[2,14]}}},
+    {"joint":"p137 43093 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p137 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p137 43093":[0,14]}}}
+  ]
+}
