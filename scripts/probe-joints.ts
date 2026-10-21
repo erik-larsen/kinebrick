@@ -274,7 +274,11 @@ if (one >= 0) {
   let written = 0;
   const status = (now: string, often = false) => {
     if (statusAt < 0 || (often && Date.now() - written < 1000)) return;
-    writeFileSync(args[statusAt + 1], now);
+    try {
+      writeFileSync(args[statusAt + 1], now);
+    } catch {
+      // Only a note: never a reason to stop (another run in the same folder may have tidied it away).
+    }
     written = Date.now();
   };
   // Let the output drain before the process ends: a pipe takes it in pieces.
