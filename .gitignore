@@ -9,3 +9,4 @@ omr/
 
 # npm run joints keeps its batches here until a model is done
 tests/joints/.batches/
+tests/joints/.status/

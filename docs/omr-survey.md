@@ -50,7 +50,7 @@ The smallest sets go first. Each set is probed in batches of 20 controls, and ea
    npm run joints -- --omr --report > omr/report-full.txt
    ```
 
-   Each run prints a line per set as it finishes, and for a big set a line per batch. A set that fails prints an error, and the run carries on; note which, and why.
+   Each run prints a line per set as it finishes, and for a big set a line per batch. Every 5 minutes it also prints a "still on" line for each process that has been going longer than that: the set and knobs it's on, where it has got to (working out the mechanism, choosing what to hold, or which step of a turn), and how long ago that last changed. If that hasn't changed for an hour or more, it's stuck: note the set and what the line says, stop the run (Ctrl-C), move that set's file out of `omr/`, and run the same command again (`--resume` keeps what's done). A set that fails prints an error, and the run carries on; note which, and why.
 
 6. **Bring the results back**, packed for Erik to copy into `omr/` on the main Mac:
 
