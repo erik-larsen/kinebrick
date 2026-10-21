@@ -6,3 +6,6 @@ ldraw/
 reference/
 ldcad-shadow/
 omr/
+
+# npm run joints keeps its batches here until a model is done
+tests/joints/.batches/

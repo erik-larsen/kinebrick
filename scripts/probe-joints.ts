@@ -17,19 +17,29 @@
 //   npm run joints -- 856 952         only models whose file name has one of these in it
 //   npm run joints -- --update        write the baselines afresh from this run
 //   npm run joints -- --omr           the OMR's sets in omr/ (npm run omr), as a model you open
-//                                     yourself would be read; baselines in omr/joints/ (or, with a
-//                                     --reach of its own, omr/joints-<reach>/), not committed
+//                                     yourself would be read, and only the controls a person
+//                                     would use (see control below); baselines in omr/controls/
+//                                     (or, with a --reach of its own, omr/controls-<reach>/), not
+//                                     committed
+//   npm run joints -- --omr --all     every knob of the OMR's sets; baselines in omr/joints/ (or
+//                                     omr/joints-<reach>/)
 //   npm run joints -- --resume        skip the models that have a baseline at this reach already,
-//                                     so a long run that stopped carries on where it left off
-//   npm run joints -- --jobs 4        how many models to probe at once (default: half the cores)
+//                                     and the batches of a model already done, so a long run that
+//                                     stopped carries on where it left off
+//   npm run joints -- --jobs 4        how many batches to probe at once (default: half the cores)
 //   npm run joints -- --reach 0.25    how far to turn each knob each way, in radians (default 1.5):
 //                                     a short reach is enough to tell which knobs are stuck, and
 //                                     much quicker on big models (a survey of the OMR's sets)
 //   npm run joints -- --report        no probing: from the baselines, each model's knobs that
 //                                     stop after a little, or turn only one way, or can't move at all
+//
+// The smallest models go first. A model is probed in batches of BATCH knobs, each in a process of
+// its own, and each batch's findings are kept as it finishes (in .batches/ beside the baselines,
+// until the model is done), so a big model shows how far it has got, and --resume carries on
+// within it too.
 
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { Quaternion, Vector3 } from 'three';
@@ -45,8 +55,13 @@ const STEP = 0.05;
 const MOVED = 1;
 // How many of the bodies a joint moves are written down: the ones that moved most.
 const LISTED = 8;
-// A model file is probed in one process for each this many bytes of it (up to --jobs).
-const CHUNK_BYTES = 100_000;
+// How many knobs each process probes.
+const BATCH = 20;
+// The controls a person would use, for the OMR's sets (see control): gears with at least this
+// many teeth, reached from outside the model if there's this much room (LDU) round a line out
+// from them.
+const BIG_GEAR = 20;
+const ROOM = 30;
 // Got worse: a joint that turned at least WORSE_FROM now turns less than WORSE_SHARE of that, or a
 // body that moved at least WORSE_FROM_LDU (or degrees) now doesn't move at all.
 const WORSE_FROM = 0.2;
@@ -63,6 +78,7 @@ interface Way {
 
 interface JointFinding {
   joint: string; // bodyB's key "in" bodyA's key
+  control?: string; // what kind of control it is, for the OMR's sets: "wheel", "steering wheel", "40 tooth gear"
   plus: Way;
   minus: Way;
 }
@@ -74,9 +90,10 @@ interface Baseline {
 }
 
 // Probes one model file, as the viewer reads it: one of KineBrick's own, or (`omr`) a set from
-// the OMR, read as a model you open yourself. Only every `of`-th knob, from the `chunk`-th, so a
-// big model can be shared out between processes.
-function probe(file: string, omr: boolean, reach: number, chunk = 0, of = 1): Baseline {
+// the OMR, read as a model you open yourself, and then (unless `all`) only the controls a person
+// would use. Only its knobs from `from` up to `to`, so a big model can be shared out between
+// processes. Says how many knobs it has in all.
+function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0, to = Infinity): Baseline & { knobs: number } {
   const text = readFileSync(file, 'utf-8');
   const name = file.replace(/^.*\//, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -111,16 +128,14 @@ function probe(file: string, omr: boolean, reach: number, chunk = 0, of = 1): Ba
   // Each body's middle (of its parts' origins), where the model was loaded.
   const middles = mech.bodies.map((body) => body.parts.reduce((sum, p) => sum.add(new Vector3().setFromMatrixPosition(parts[p].matrix)), new Vector3()).divideScalar(Math.max(1, body.parts.length)));
 
-  const turnWay = (grabbed: number, joint: number, way: number): Way => {
-    kin.reset();
-    kin.holdWhatTheDragDoesntNeed(grabbed, () => kin.jointMotion(joint) !== null, joint);
+  // Turns a joint one way, from where it is, and says what that did.
+  const turnWay = (joint: number, way: number): Way => {
     let turned = 0;
     for (let i = 0; i < Math.round(reach / STEP); i++) {
       const t = kin.turnJoint(joint, way * STEP);
       turned += t;
       if (Math.abs(t) < 1e-9) break;
     }
-    kin.letGoAfterDrag();
     const moves = mech.bodies.map((_, b) => {
       const went = middles[b].clone().applyMatrix4(kin.poses[b]).distanceTo(middles[b]);
       const q = new Quaternion().setFromRotationMatrix(kin.poses[b]);
@@ -132,19 +147,51 @@ function probe(file: string, omr: boolean, reach: number, chunk = 0, of = 1): Ba
     for (const m of moved.slice(0, LISTED)) bodies[bodyKey(m.b)] = [Math.round(m.went), Math.round(m.angle)];
     return { turned: Math.round(turned * 100) / 100, moved: moved.length, bodies };
   };
+  // Turns a knob both ways from where the model was loaded, holding what a drag on it would hold:
+  // chosen once, as both ways start from the same place.
+  const turnBothWays = (grabbed: number, joint: number) => {
+    kin.reset();
+    kin.holdWhatTheDragDoesntNeed(grabbed, () => kin.jointMotion(joint) !== null, joint);
+    const start = kin.snapshot();
+    const plus = turnWay(joint, 1);
+    kin.restore(start);
+    const minus = turnWay(joint, -1);
+    kin.letGoAfterDrag();
+    return { plus, minus };
+  };
+
+  // The controls a person would use: a wheel with a tyre, a steering wheel, or a big gear that
+  // can be reached from outside the model (one of its parts with nothing of another body near a
+  // line out from it, along one of the six axis directions). Not the pins, axles and small
+  // gears inside, nor each link of a track.
+  const wheels = new Set(mech.treads.map((t) => t.body));
+  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  const axes = [new Vector3(1, 0, 0), new Vector3(-1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, -1, 0), new Vector3(0, 0, 1), new Vector3(0, 0, -1)];
+  const reachable = (i: number) =>
+    axes.some((d) =>
+      at.every((q, k) => {
+        if (mech.bodyOf[k] === mech.bodyOf[i]) return true;
+        const r = q.clone().sub(at[i]);
+        const along = r.dot(d);
+        return along <= 10 || r.addScaledVector(d, -along).length() >= ROOM;
+      }),
+    );
+  const control = (b: number): string | null => {
+    if (wheels.has(b)) return 'wheel';
+    if (mech.bodies[b].parts.some((p) => mech.roles[p] === 'steering wheel')) return 'steering wheel';
+    const big = mech.gears.filter((g) => g.body === b && g.teeth >= BIG_GEAR && !g.worm).sort((x, y) => y.teeth - x.teeth)[0];
+    return big && mech.bodies[b].parts.some(reachable) ? `${big.teeth} tooth gear` : null;
+  };
 
   // The knobs: each body a drag turns like a knob, and the joint it turns, as the viewer finds them.
   const knobs = mech.bodies.flatMap((_, b) => {
     const link = kin.parentLink(b);
-    return link && kin.turnsLikeAKnob(b) ? [{ body: b, joint: link.joint, mount: link.parent }] : [];
+    if (!link || !kin.turnsLikeAKnob(b)) return [];
+    const what = all ? null : control(b);
+    return all || what ? [{ body: b, joint: link.joint, mount: link.parent, what }] : [];
   });
-  const joints: JointFinding[] = [];
-  knobs.forEach((knob, k) => {
-    if (k % of !== chunk) return;
-    joints.push({ joint: `${bodyKey(knob.body)} in ${bodyKey(knob.mount)}`, plus: turnWay(knob.body, knob.joint, 1), minus: turnWay(knob.body, knob.joint, -1) });
-  });
-  joints.sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true }));
-  return { model: name, reach, joints };
+  const joints: JointFinding[] = knobs.slice(from, to).map((knob) => ({ joint: `${bodyKey(knob.body)} in ${bodyKey(knob.mount)}`, ...(knob.what ? { control: knob.what } : {}), ...turnBothWays(knob.body, knob.joint) }));
+  return { model: name, reach, joints, knobs: knobs.length };
 }
 
 // A baseline as text: one joint per line, so a change shows as a change of line.
@@ -188,11 +235,13 @@ const jobsAt = args.indexOf('--jobs');
 const jobs = jobsAt >= 0 ? Number(args[jobsAt + 1]) : Math.max(1, Math.floor(availableParallelism() / 2));
 const reachAt = args.indexOf('--reach');
 const reach = reachAt >= 0 ? Number(args[reachAt + 1]) : REACH;
-const one = args.indexOf('--one'); // (internal) probe this one file (a chunk of it) and print its findings
+// Every knob, or (for the OMR's sets, unless --all) only the controls a person would use.
+const all = !omr || args.includes('--all');
+const one = args.indexOf('--one'); // (internal) probe this one file (a batch of its knobs) and print its findings
 if (one >= 0) {
-  const [chunk, of] = (args[args.indexOf('--chunk') + 1] ?? '0/1').split('/').map(Number);
+  const [from, to] = (args[args.indexOf('--knobs') + 1] ?? '0-Infinity').split('-').map(Number);
   // Let the output drain before the process ends: a pipe takes it in pieces.
-  process.stdout.write(JSON.stringify(probe(args[one + 1], omr, reach, chunk, of)), () => process.exit(0));
+  process.stdout.write(JSON.stringify(probe(args[one + 1], omr, all, reach, from, to)), () => process.exit(0));
 } else {
   await main();
 }
@@ -210,33 +259,35 @@ function report(dir: string, filters: string[]) {
     const stops = b.joints.filter((j) => stuck(j.plus) && stuck(j.minus) && !locked.includes(j));
     const oneWay = b.joints.filter((j) => stuck(j.plus) !== stuck(j.minus));
     console.log(`${b.model}: ${b.joints.length} knobs; ${stops.length} stop after a little, ${oneWay.length} turn only one way, ${locked.length} can't move at all`);
-    for (const j of stops) console.log(`  stops:    ${j.joint} (${j.plus.turned}, ${j.minus.turned})`);
-    for (const j of oneWay) console.log(`  one way:  ${j.joint} (${j.plus.turned}, ${j.minus.turned})`);
-    for (const j of locked) console.log(`  locked:   ${j.joint}`);
+    const what = (j: JointFinding) => (j.control ? `, a ${j.control}` : '');
+    for (const j of stops) console.log(`  stops:    ${j.joint} (${j.plus.turned}, ${j.minus.turned}${what(j)})`);
+    for (const j of oneWay) console.log(`  one way:  ${j.joint} (${j.plus.turned}, ${j.minus.turned}${what(j)})`);
+    for (const j of locked) console.log(`  locked:   ${j.joint}${j.control ? ` (a ${j.control})` : ''}`);
   }
 }
 
 async function main() {
   const filters = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--jobs' && args[i - 1] !== '--reach');
   const modelsDir = omr ? 'omr' : 'models';
-  const baselineDir = omr ? join('omr', reach === REACH ? 'joints' : `joints-${reach}`) : join('tests', 'joints');
+  const baselineDir = omr ? join('omr', (all ? 'joints' : 'controls') + (reach === REACH ? '' : `-${reach}`)) : join('tests', 'joints');
+  const resume = args.includes('--resume');
   // With --resume, a model whose baseline is already at this reach is done.
   const done = (f: string) => {
     const path = join(baselineDir, f.replace(/\.(ldr|mpd)$/i, '.json'));
-    return args.includes('--resume') && existsSync(path) && JSON.parse(readFileSync(path, 'utf-8')).reach === reach;
+    return resume && existsSync(path) && JSON.parse(readFileSync(path, 'utf-8')).reach === reach;
   };
+  // Smallest first (by its file's size: fewer parts, fewer knobs), to get through the most soonest.
   const files = readdirSync(modelsDir)
     .filter((f) => /\.(ldr|mpd)$/i.test(f) && (filters.length === 0 || filters.some((x) => f.includes(x))) && !done(f))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-    .map((f) => join(modelsDir, f));
+    .map((f) => join(modelsDir, f))
+    .sort((a, b) => statSync(a).size - statSync(b).size || a.localeCompare(b, undefined, { numeric: true }));
   if (args.includes('--report')) return report(baselineDir, filters);
   mkdirSync(baselineDir, { recursive: true });
 
-  // Each model in a process of its own, or a big one (by its file's size: more parts, more joints)
-  // shared out between up to `jobs`, all `jobs` at a time.
-  function probeInChild(file: string, chunk: number, of: number): Promise<Baseline> {
+  // A batch of a model's knobs (from up to to) in a process of its own; from = to = 0 just counts them.
+  function probeInChild(file: string, from: number, to: number): Promise<Baseline & { knobs: number }> {
     return new Promise((resolve, reject) => {
-      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', file, '--chunk', `${chunk}/${of}`, '--reach', String(reach), ...(omr ? ['--omr'] : [])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', file, '--knobs', `${from}-${to}`, '--reach', String(reach), ...(omr ? ['--omr'] : []), ...(all ? ['--all'] : [])], { stdio: ['ignore', 'pipe', 'inherit'] });
       let out = '';
       child.stdout.on('data', (d) => (out += d));
       child.on('close', (code) => {
@@ -250,52 +301,91 @@ async function main() {
     });
   }
 
+  // A model under way: how many knobs it has, and what the batches done so far found.
+  interface Model {
+    model: string;
+    batchesDir: string;
+    knobs: number;
+    done: number;
+    found: JointFinding[];
+    started: number;
+  }
   let failed = false;
-  const chunks = files.flatMap((file) => {
-    const of = Math.max(1, Math.min(jobs, Math.ceil(statSync(file).size / CHUNK_BYTES)));
-    return Array.from({ length: of }, (_, chunk) => ({ file, chunk, of }));
-  });
-  // Biggest first, so a big model's chunks don't all wait till the end.
-  chunks.sort((a, b) => statSync(b.file).size - statSync(a.file).size);
-  const started = new Map<string, number>();
-  const found = new Map<string, Baseline[]>();
-  const queue = [...chunks];
+  const modelsLeft = [...files];
+  const batches: { file: string; state: Model; from: number; to: number }[] = [];
+  const elapsed = (state: Model) => {
+    const seconds = Math.round((Date.now() - state.started) / 1000);
+    return seconds < 120 ? `${seconds} s` : `${Math.round(seconds / 60)} min`;
+  };
+
+  // Once all of a model's batches are in, compare what they found with its baseline.
+  function finish(state: Model) {
+    rmSync(state.batchesDir, { recursive: true, force: true });
+    const now: Baseline = { model: state.model, reach, joints: state.found.sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true })) };
+    const path = join(baselineDir, `${now.model}.json`);
+    if (update || !existsSync(path)) {
+      writeFileSync(path, baselineText(now));
+      console.log(`${now.model}: ${now.joints.length} knobs, baseline written (${elapsed(state)})`);
+      return;
+    }
+    const before: Baseline = JSON.parse(readFileSync(path, 'utf-8'));
+    if (before.reach !== now.reach) {
+      console.log(`${now.model}: its baseline turned each knob ${before.reach} rad, this run ${now.reach}: not compared (write it afresh with --update, or run with --reach ${before.reach})`);
+      failed = true;
+      return;
+    }
+    const { worse, better } = compare(before, now);
+    const lines = [`${now.model}: ${now.joints.length} knobs, ${worse.length ? `${worse.length} worse` : 'none worse'}${better.length ? `, ${better.length} better` : ''} (${elapsed(state)})`];
+    for (const w of worse) lines.push(`  worse:  ${w}`);
+    for (const b of better) lines.push(`  better: ${b}`);
+    console.log(lines.join('\n'));
+    if (worse.length) failed = true;
+  }
+
+  // Each worker takes the next batch waiting, or else starts on the next model: counts its knobs
+  // and puts its batches in the queue (those already done, with --resume, read back instead).
   async function worker() {
-    while (queue.length) {
-      const { file, chunk, of } = queue.shift()!;
-      if (!started.has(file)) started.set(file, Date.now());
+    for (;;) {
+      const batch = batches.shift();
+      if (!batch) {
+        const file = modelsLeft.shift();
+        if (!file) return;
+        let count: Baseline & { knobs: number };
+        try {
+          count = await probeInChild(file, 0, 0);
+        } catch (err) {
+          console.log(`${file}: ${(err as Error).message}`);
+          failed = true;
+          continue;
+        }
+        const state: Model = { model: count.model, batchesDir: join(baselineDir, '.batches', count.model), knobs: count.knobs, done: 0, found: [], started: Date.now() };
+        if (!resume) rmSync(state.batchesDir, { recursive: true, force: true });
+        for (let from = 0; from < state.knobs; from += BATCH) {
+          const to = Math.min(state.knobs, from + BATCH);
+          const saved = join(state.batchesDir, `${from}-${to}.json`);
+          if (existsSync(saved)) {
+            state.found.push(...JSON.parse(readFileSync(saved, 'utf-8')));
+            state.done += to - from;
+          } else batches.push({ file, state, from, to });
+        }
+        if (state.done === state.knobs) finish(state);
+        continue;
+      }
+      const { file, state, from, to } = batch;
       let part: Baseline;
       try {
-        part = await probeInChild(file, chunk, of);
+        part = await probeInChild(file, from, to);
       } catch (err) {
-        console.log(`${file}: ${(err as Error).message}`);
+        console.log(`${file}, knobs ${from} to ${to}: ${(err as Error).message}`);
         failed = true;
         continue;
       }
-      // Once all of a model's chunks are in, put them together.
-      const parts = [...(found.get(file) ?? []), part];
-      found.set(file, parts);
-      if (parts.length < of) continue;
-      const now: Baseline = { model: part.model, reach, joints: parts.flatMap((p) => p.joints).sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true })) };
-      const seconds = ((Date.now() - started.get(file)!) / 1000).toFixed(0);
-      const path = join(baselineDir, `${now.model}.json`);
-      if (update || !existsSync(path)) {
-        writeFileSync(path, baselineText(now));
-        console.log(`${now.model}: ${now.joints.length} knobs, baseline written (${seconds} s)`);
-        continue;
-      }
-      const before: Baseline = JSON.parse(readFileSync(path, 'utf-8'));
-      if (before.reach !== now.reach) {
-        console.log(`${now.model}: its baseline turned each knob ${before.reach} rad, this run ${now.reach}: not compared (write it afresh with --update, or run with --reach ${before.reach})`);
-        failed = true;
-        continue;
-      }
-      const { worse, better } = compare(before, now);
-      const lines = [`${now.model}: ${now.joints.length} knobs, ${worse.length ? `${worse.length} worse` : 'none worse'}${better.length ? `, ${better.length} better` : ''} (${seconds} s)`];
-      for (const w of worse) lines.push(`  worse:  ${w}`);
-      for (const b of better) lines.push(`  better: ${b}`);
-      console.log(lines.join('\n'));
-      if (worse.length) failed = true;
+      mkdirSync(state.batchesDir, { recursive: true });
+      writeFileSync(join(state.batchesDir, `${from}-${to}.json`), JSON.stringify(part.joints));
+      state.found.push(...part.joints);
+      state.done += to - from;
+      if (state.done < state.knobs) console.log(`${state.model}: ${state.done} of ${state.knobs} knobs (${elapsed(state)})`);
+      else finish(state);
     }
   }
   await Promise.all(Array.from({ length: Math.max(1, jobs) }, worker));
