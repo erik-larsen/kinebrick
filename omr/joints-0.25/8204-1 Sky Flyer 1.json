@@ -1,0 +1,11 @@
+{
+  "model": "8204-1 Sky Flyer 1",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p8 32062 in frame","plus":{"turned":0.25,"moved":2,"bodies":{"p8 32062":[0,14],"p23 4519":[0,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p8 32062":[0,14],"p23 4519":[0,14]}}},
+    {"joint":"p12 32073 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p12 32073":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p12 32073":[0,14]}}},
+    {"joint":"p23 4519 in frame","plus":{"turned":0.25,"moved":2,"bodies":{"p8 32062":[0,14],"p23 4519":[0,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p8 32062":[0,14],"p23 4519":[0,14]}}},
+    {"joint":"p33 32002 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p33 32002":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p33 32002":[0,14]}}},
+    {"joint":"p34 32002 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p34 32002":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p34 32002":[0,14]}}}
+  ]
+}
