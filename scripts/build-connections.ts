@@ -298,6 +298,9 @@ function cylindersFromMeta(meta: Meta): WorkingCylinder[] {
   const pos = numbers(p.get('pos'), [0, 0, 0]) as Vec3;
   const ori = numbers(p.get('ori'), IDENTITY.m);
   const center = p.get('center') === 'true';
+  // An engine cylinder's bore (the shadow library groups it with the piston as "techEngine")
+  // is one a piston may slide along, not a round hole for it to turn in.
+  const bore = p.get('group') === 'techEngine' && p.get('gender') === 'F';
   // LDCad cylinders run along the meta's -Y axis.
   const dir = applyMatrix(ori, [0, -1, 0]);
   const firstEnd = center ? add(pos, scaleVec(dir, -total / 2)) : pos;
@@ -310,7 +313,7 @@ function cylindersFromMeta(meta: Meta): WorkingCylinder[] {
       caps: p.get('caps') ?? 'one',
       start: add(firstEnd, applyMatrix(ori, offset)),
       dir,
-      secs: secs.map((s) => ({ ...s })),
+      secs: secs.map((s) => ({ ...s, shape: bore && s.shape === 'R' ? 'B' : s.shape })),
       scaleRule: p.get('scale') ?? 'none',
       mirrorRule: p.get('mirror') ?? 'cor',
     });

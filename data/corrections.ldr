@@ -258,14 +258,6 @@
 
 0 // Engine parts.
 
-0 FILE 2850a.dat
-0 // Technic Engine Cylinder Head with Side Slots: the shadow library's lines, with the bore
-0 // (where the piston goes) marked as one a part may slide along (B) instead of round (R).
-0 !LDCAD SNAP_CLEAR
-0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 4   R 6 16   R 8 2] [center=true] [pos=0 26 0] [ori=1 0 0 0 0 -1 0 1 0] [grid=C 2 1 40 0]
-0 !LDCAD SNAP_CYL [gender=M] [caps=one] [secs=R 6 4] [grid=C 2 C 2 20 20]
-0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=B 12 47] [pos=0 43 0]
-
 0 FILE 2853a.dat
 0 // Technic Engine Crankshaft with Slot: an axle hole at x = 0 (z from -20 to -10, through
 0 // the crank's plate), and the crank pin, an axle stub half a stud away at x = -10 (z from

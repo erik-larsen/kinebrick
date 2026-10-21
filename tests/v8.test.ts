@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { ConnectionTable } from '../src/connections.ts';
+import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
@@ -55,6 +55,27 @@ describe('V8 engine from LEGO 8448', () => {
       expect(high[k] - low[k]).toBeCloseTo(20, 0);
       expect(kin.slideOffset(s)).toBeCloseTo(0, 3);
     });
+  });
+});
+
+describe('the same V8 with the newer cylinder heads, with bottom slots (2850b), read with the whole library\'s table', () => {
+  const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
+  const parts = parseLdr(readFileSync('models/8448-Super Car-V8 engine.mpd', 'utf-8').replaceAll('2850a.dat', '2850b.dat'));
+  const mech = inferMechanism(parts, library, roles);
+  const kin = new Kinematics(mech);
+  const crank = mech.bodyOf[parts.findIndex((p) => p.name === '2854.dat')];
+  const crankJoint = kin.parentLink(crank)!.joint;
+  const slides = mech.joints.flatMap((j, i) => (j.kind === 'slide' ? [i] : []));
+
+  it('slides each piston in its own cylinder, so turning the crankshaft runs the engine', () => {
+    expect(slides).toHaveLength(8);
+    for (const s of slides) expect(mech.joints[s].bodyA).toBe(0); // the cylinders, part of the frame
+    kin.reset();
+    kin.holdWhatTheDragDoesntNeed(crank, () => kin.jointMotion(crankJoint) !== null);
+    let turned = 0;
+    for (let i = 0; i < 36; i++) turned += kin.turnJoint(crankJoint, TURN / 36, () => kin.atLimit() === null);
+    kin.letGoAfterDrag();
+    expect(Math.abs(turned)).toBeCloseTo(TURN, 6);
   });
 });
 
