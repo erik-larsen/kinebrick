@@ -5,7 +5,8 @@
 // the bucket, shows up as a change from the last time. (Slides, such as pistons and racks, are
 // driven by something turning, so they show up in what that moves; so do joints no drag turns
 // directly, such as a differential's insides.) There are no collision checks here, as there are
-// in the viewer: this is the mechanism alone.
+// in the viewer: this is the mechanism alone. Once a minute it says how many models are done and
+// how many to go, and which it's working on.
 //
 // Each model's findings are kept in tests/joints/<model>.json, one line per joint, as a
 // baseline. A run compares what it finds with the baseline and lists what got worse (a joint
@@ -30,10 +31,17 @@
 //   npm run joints -- --reach 0.25    how far to turn each knob each way, in radians (default 1.5):
 //                                     a short reach is enough to tell which knobs are stuck, and
 //                                     much quicker on big models (a survey of the OMR's sets)
+//   npm run joints -- --limit 2       stop a model that takes more than this many hours (default
+//                                     4), keeping what it found by then, marked as timed out: a
+//                                     model to look into, which --resume doesn't try again
 //   npm run joints -- --heartbeat 60  how often (in seconds; default 300) to say where each
 //                                     process that has been going that long has got to
 //   npm run joints -- --report        no probing: from the baselines, each model's knobs that
-//                                     stop after a little, or turn only one way, or can't move at all
+//                                     stop after a little, or turn only one way, or can't move at
+//                                     all, and the models that timed out
+//   npm run joints -- --omr --commit  as each OMR set's baseline is written, commit it to the
+//                                     omr-survey branch and push it (see survey-branch.ts), with
+//                                     any already written that the branch doesn't have
 //
 // The smallest models go first. A model is probed in batches of BATCH knobs, each in a process of
 // its own, and each batch's findings are kept as it finishes (in .batches/ beside the baselines,
@@ -41,11 +49,12 @@
 // within it too. Each process also keeps a note of where it has got to (in .status/), which the
 // run shows every few minutes for any process that has been going that long.
 
-import { spawn } from 'node:child_process';
+import { ChildProcess, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { Quaternion, Vector3 } from 'three';
+import { commitFindings } from './survey-branch.ts';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { modelSettings, parseModel } from '../src/ldr.ts';
@@ -54,6 +63,8 @@ import { inferMechanism } from '../src/mechanism.ts';
 // How far each knob is turned each way, in radians (unless --reach says otherwise), in steps of STEP.
 const REACH = 1.5;
 const STEP = 0.05;
+// How many hours a model may take (unless --limit says otherwise) before it's stopped.
+const LIMIT_HOURS = 4;
 // A body counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
 // How many of the bodies a joint moves are written down: the ones that moved most.
@@ -89,6 +100,7 @@ interface JointFinding {
 interface Baseline {
   model: string;
   reach: number; // how far each knob was turned each way
+  timedOut?: number; // stopped after this many hours, its joints only those found by then
   joints: JointFinding[];
 }
 
@@ -100,7 +112,7 @@ interface Baseline {
 function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0, to = Infinity, status: (now: string, often?: boolean) => void = () => {}): Baseline & { knobs: number } {
   status('reading it');
   const text = readFileSync(file, 'utf-8');
-  const name = file.replace(/^.*\//, '').replace(/\.(ldr|mpd)$/i, '');
+  const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
   const packedModels: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
   let table: ConnectionTable;
@@ -209,7 +221,7 @@ function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0
 
 // A baseline as text: one joint per line, so a change shows as a change of line.
 function baselineText(b: Baseline): string {
-  return `{\n  "model": ${JSON.stringify(b.model)},\n  "reach": ${b.reach},\n  "joints": [\n${b.joints.map((j) => '    ' + JSON.stringify(j)).join(',\n')}\n  ]\n}\n`;
+  return `{\n  "model": ${JSON.stringify(b.model)},\n  "reach": ${b.reach},\n${b.timedOut !== undefined ? `  "timedOut": ${b.timedOut},\n` : ''}  "joints": [\n${b.joints.map((j) => '    ' + JSON.stringify(j)).join(',\n')}\n  ]\n}\n`;
 }
 
 // What got worse, and what got better, from a baseline to now.
@@ -278,8 +290,19 @@ if (one >= 0) {
 // way are at the end of their travel (a bucket at its lowest). The rest are controls to look at.
 function report(dir: string, filters: string[]) {
   const stuck = (w: Way) => Math.abs(w.turned) < WORSE_FROM;
-  for (const f of readdirSync(dir).filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x)))).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))) {
-    const b: Baseline = JSON.parse(readFileSync(join(dir, f), 'utf-8'));
+  const baselines: Baseline[] = readdirSync(dir)
+    .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map((f) => JSON.parse(readFileSync(join(dir, f), 'utf-8')));
+  // The models that took too long first: they need looking into.
+  const timedOut = baselines.filter((b) => b.timedOut !== undefined);
+  if (timedOut.length) {
+    console.log(`Timed out (${timedOut.length}), to look into:`);
+    for (const b of timedOut) console.log(`  ${b.model}: stopped after ${b.timedOut} hours, ${b.joints.length} knobs done by then`);
+    console.log('');
+  }
+  for (const b of baselines) {
+    if (b.timedOut !== undefined && b.joints.length === 0) continue;
     const locked = b.joints.filter((j) => j.plus.turned === 0 && j.minus.turned === 0);
     const stops = b.joints.filter((j) => stuck(j.plus) && stuck(j.minus) && !locked.includes(j));
     const oneWay = b.joints.filter((j) => stuck(j.plus) !== stuck(j.minus));
@@ -292,7 +315,9 @@ function report(dir: string, filters: string[]) {
 }
 
 async function main() {
-  const filters = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--reach', '--heartbeat'].includes(args[i - 1]));
+  const filters = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--reach', '--heartbeat', '--limit'].includes(args[i - 1]));
+  const limitAt = args.indexOf('--limit');
+  const limitHours = limitAt >= 0 ? Number(args[limitAt + 1]) : LIMIT_HOURS;
   const modelsDir = omr ? 'omr' : 'models';
   const baselineDir = omr ? join('omr', (all ? 'joints' : 'controls') + (reach === REACH ? '' : `-${reach}`)) : join('tests', 'joints');
   const resume = args.includes('--resume');
@@ -301,30 +326,59 @@ async function main() {
     const path = join(baselineDir, f.replace(/\.(ldr|mpd)$/i, '.json'));
     return resume && existsSync(path) && JSON.parse(readFileSync(path, 'utf-8')).reach === reach;
   };
+  const models = readdirSync(modelsDir).filter((f) => /\.(ldr|mpd)$/i.test(f) && (filters.length === 0 || filters.some((x) => f.includes(x))));
   // Smallest first (by its file's size: fewer parts, fewer knobs), to get through the most soonest.
-  const files = readdirSync(modelsDir)
-    .filter((f) => /\.(ldr|mpd)$/i.test(f) && (filters.length === 0 || filters.some((x) => f.includes(x))) && !done(f))
+  const files = models
+    .filter((f) => !done(f))
     .map((f) => join(modelsDir, f))
     .sort((a, b) => statSync(a).size - statSync(b).size || a.localeCompare(b, undefined, { numeric: true }));
   if (args.includes('--report')) return report(baselineDir, filters);
   mkdirSync(baselineDir, { recursive: true });
+  // With --commit, the OMR's findings go to the omr-survey branch as they're written. Git
+  // trouble is reported, not fatal: the survey goes on.
+  const commit = () => {
+    if (!omr || !args.includes('--commit')) return;
+    try {
+      commitFindings(baselineDir, (all ? 'every knob, ' : '') + (reach === REACH ? 'full' : `quick, reach ${reach}`));
+    } catch (err) {
+      console.log(`Couldn't commit to the omr-survey branch: ${(err as Error).message}`);
+    }
+  };
+  commit();
 
+  // A model under way: how many knobs it has (-1 while they're being counted), what the batches
+  // done so far found, and its processes, so one that takes too long can be stopped.
+  interface Model {
+    model: string;
+    batchesDir: string;
+    knobs: number;
+    done: number;
+    found: JointFinding[];
+    started: number;
+    children: Set<ChildProcess>;
+    running: number; // processes, or counting
+    timedOut: boolean;
+    over: boolean; // its baseline written, or given up on
+  }
   // The processes under way, each with the file it says where it has got to in (see --status).
   const running = new Set<{ what: string; status: string; started: number }>();
   const statusDir = join(baselineDir, '.status');
   mkdirSync(statusDir, { recursive: true });
 
   // A batch of a model's knobs (from up to to) in a process of its own; from = to = 0 just counts them.
-  function probeInChild(file: string, from: number, to: number): Promise<Baseline & { knobs: number }> {
-    const name = file.replace(/^.*\//, '').replace(/\.(ldr|mpd)$/i, '');
-    const job = { what: to > 0 ? `${name}, knobs ${from + 1} to ${to}` : `${name}, counting its knobs`, status: join(statusDir, `${name} ${from}-${to}.txt`), started: Date.now() };
+  function probeInChild(file: string, state: Model, from: number, to: number): Promise<Baseline & { knobs: number }> {
+    const job = { what: to > 0 ? `${state.model}, knobs ${from + 1} to ${to}` : `${state.model}, counting its knobs`, status: join(statusDir, `${state.model} ${from}-${to}.txt`), started: Date.now() };
     running.add(job);
+    state.running++;
     return new Promise((resolve, reject) => {
       const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', file, '--knobs', `${from}-${to}`, '--reach', String(reach), '--status', job.status, ...(omr ? ['--omr'] : []), ...(all ? ['--all'] : [])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      state.children.add(child);
       let out = '';
       child.stdout.on('data', (d) => (out += d));
       child.on('close', (code) => {
         running.delete(job);
+        state.children.delete(child);
+        state.running--;
         rmSync(job.status, { force: true });
         try {
           if (code !== 0) throw new Error(`exit ${code}`);
@@ -336,32 +390,32 @@ async function main() {
     });
   }
 
-  // A model under way: how many knobs it has, and what the batches done so far found.
-  interface Model {
-    model: string;
-    batchesDir: string;
-    knobs: number;
-    done: number;
-    found: JointFinding[];
-    started: number;
-  }
   let failed = false;
   const modelsLeft = [...files];
+  const under = new Set<Model>(); // the models started and not over
+  let over = models.length - files.length; // how many models are done, counting those --resume skipped
   const batches: { file: string; state: Model; from: number; to: number }[] = [];
   const since = (start: number) => {
     const seconds = Math.round((Date.now() - start) / 1000);
     return seconds < 120 ? `${seconds} s` : `${Math.round(seconds / 60)} min`;
   };
   const elapsed = (state: Model) => since(state.started);
+  const end = (state: Model) => {
+    state.over = true;
+    under.delete(state);
+    over++;
+  };
 
   // Once all of a model's batches are in, compare what they found with its baseline.
   function finish(state: Model) {
+    end(state);
     rmSync(state.batchesDir, { recursive: true, force: true });
     const now: Baseline = { model: state.model, reach, joints: state.found.sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true })) };
     const path = join(baselineDir, `${now.model}.json`);
     if (update || !existsSync(path)) {
       writeFileSync(path, baselineText(now));
       console.log(`${now.model}: ${now.joints.length} knobs, baseline written (${elapsed(state)})`);
+      commit();
       return;
     }
     const before: Baseline = JSON.parse(readFileSync(path, 'utf-8'));
@@ -376,6 +430,22 @@ async function main() {
     for (const b of better) lines.push(`  better: ${b}`);
     console.log(lines.join('\n'));
     if (worse.length) failed = true;
+  }
+
+  // A model that took more than limitHours, once its processes have stopped: what it found by
+  // then, marked as timed out (kept for the OMR's sets, and new models; for one of KineBrick's own
+  // with a baseline, a failure). Its batches stay kept, but --resume won't try it again.
+  function timeOut(state: Model) {
+    end(state);
+    const joints = state.found.sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true }));
+    const path = join(baselineDir, `${state.model}.json`);
+    console.log(`${state.model}: timed out after ${limitHours} hours, ${joints.length} knobs done by then; to look into`);
+    if (omr || update || !existsSync(path)) {
+      writeFileSync(path, baselineText({ model: state.model, reach, timedOut: limitHours, joints }));
+      commit();
+    } else {
+      failed = true;
+    }
   }
 
   // Each worker takes the next batch waiting, or else starts on the next model: counts its knobs
@@ -397,17 +467,24 @@ async function main() {
           await new Promise<void>((wake) => waiting.push(wake));
           continue;
         }
+        const model = basename(file).replace(/\.(ldr|mpd)$/i, '');
+        const state: Model = { model, batchesDir: join(baselineDir, '.batches', model), knobs: -1, done: 0, found: [], started: Date.now(), children: new Set(), running: 0, timedOut: false, over: false };
+        under.add(state);
         let count: Baseline & { knobs: number };
         counting++;
         try {
-          count = await probeInChild(file, 0, 0);
+          count = await probeInChild(file, state, 0, 0);
         } catch (err) {
-          console.log(`${file}: ${(err as Error).message}`);
-          failed = true;
+          if (state.timedOut) timeOut(state);
+          else {
+            console.log(`${file}: ${(err as Error).message}`);
+            failed = true;
+            end(state);
+          }
           counted();
           continue;
         }
-        const state: Model = { model: count.model, batchesDir: join(baselineDir, '.batches', count.model), knobs: count.knobs, done: 0, found: [], started: Date.now() };
+        state.knobs = count.knobs;
         if (!resume) rmSync(state.batchesDir, { recursive: true, force: true });
         for (let from = 0; from < state.knobs; from += BATCH) {
           const to = Math.min(state.knobs, from + BATCH);
@@ -422,22 +499,37 @@ async function main() {
         continue;
       }
       const { file, state, from, to } = batch;
-      let part: Baseline;
-      try {
-        part = await probeInChild(file, from, to);
-      } catch (err) {
-        console.log(`${file}, knobs ${from} to ${to}: ${(err as Error).message}`);
-        failed = true;
+      if (state.over) continue;
+      if (state.timedOut) {
+        if (state.running === 0) timeOut(state);
         continue;
       }
-      mkdirSync(state.batchesDir, { recursive: true });
-      writeFileSync(join(state.batchesDir, `${from}-${to}.json`), JSON.stringify(part.joints));
-      state.found.push(...part.joints);
-      state.done += to - from;
-      if (state.done < state.knobs) console.log(`${state.model}: ${state.done} of ${state.knobs} knobs (${elapsed(state)})`);
-      else finish(state);
+      let part: Baseline | null = null;
+      try {
+        part = await probeInChild(file, state, from, to);
+      } catch (err) {
+        if (!state.timedOut) {
+          console.log(`${file}, knobs ${from + 1} to ${to}: ${(err as Error).message}`);
+          failed = true;
+        }
+      }
+      if (part) {
+        mkdirSync(state.batchesDir, { recursive: true });
+        writeFileSync(join(state.batchesDir, `${from}-${to}.json`), JSON.stringify(part.joints));
+        state.found.push(...part.joints);
+        state.done += to - from;
+      }
+      if (state.timedOut) {
+        if (state.running === 0 && !state.over) timeOut(state);
+      } else if (part && state.done < state.knobs) console.log(`${state.model}: ${state.done} of ${state.knobs} knobs (${elapsed(state)})`);
+      else if (part) finish(state);
     }
   }
+  // Once a minute: how many models are done and to go, and which are being worked on.
+  const minute = setInterval(() => {
+    const working = [...under].map((m) => m.model + (m.knobs < 0 ? ' (counting its knobs)' : m.knobs > BATCH ? ` (${m.done} of ${m.knobs} knobs)` : ''));
+    console.log(`[${new Date().toTimeString().slice(0, 5)}] ${over} done, ${models.length - over} to go; working on ${working.join(', ')}`);
+  }, 60_000);
   // Every few minutes, a line for each process that has been going that long, so a long run shows
   // it isn't stuck: where the process has got to, and how long since that changed (a single step
   // of a turn going on for hours would be stuck).
@@ -455,8 +547,19 @@ async function main() {
       console.log(`  still on ${job.what} (${since(job.started)}): ${now}, ${since(changed)} ago`);
     }
   }, HEARTBEAT);
+  // A model that has taken more than limitHours is stopped: its processes, and its batches still
+  // waiting to start.
+  const watchdog = setInterval(() => {
+    for (const state of under) {
+      if (state.timedOut || Date.now() - state.started < limitHours * 3600_000) continue;
+      state.timedOut = true;
+      for (const child of state.children) child.kill();
+    }
+  }, 10_000);
   await Promise.all(Array.from({ length: Math.max(1, jobs) }, worker));
+  clearInterval(minute);
   clearInterval(heartbeat);
+  clearInterval(watchdog);
   rmSync(statusDir, { recursive: true, force: true });
   // The batches' folder too, unless some are kept (a model that failed), for --resume.
   try {

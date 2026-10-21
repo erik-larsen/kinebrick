@@ -299,14 +299,15 @@ export function parseModel(
   const shapeLines = new Map([...submodels].map(([name, lines]) => [name, lines.filter(drawn)]));
   const parts: PlacedPart[] = [];
   const shapes: PlacedShape[] = [];
+  // A path's caps (a cable's plugs, or the receiver it comes out of) are parts in their own
+  // right, not links of it: by path, the parts its submodel names as caps.
+  const capsOf = new Map<PlacedPath, Set<string>>();
   // `pieces`: the lines are a part's pieces, which go in the submodel the part is in. `path`:
   // the lines are a path's (see PlacedPath).
   const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number, pieces = false, path: PlacedPath | null = null) => {
     if (depth > 64) throw new Error(`Submodels nested too deep (does one place itself?): ${submodel}`);
     const first = parts.length;
-    // A path's caps (a cable's plugs, or the receiver it comes out of) are parts in their own
-    // right, not links of it.
-    const caps = new Set(path ? lines.filter((line) => /^\s*0\s+!LDCAD\s+PATH_CAP\b/.test(line)).map((line) => normalizePartName(/\[part=([^\]]*)\]/.exec(line)?.[1] ?? '')) : []);
+    const caps = (path && capsOf.get(path)) ?? new Set<string>();
     for (const line of lines) {
       const tokens = line.trim().split(/\s+/);
       if (tokens[0] !== '1' || tokens.length < 15) continue;
@@ -318,7 +319,11 @@ export function parseModel(
       if (isPrimitive(name)) continue; // drawn with the submodel's shapes
       const sub = submodels.get(name);
       const ownPieces = sub ? null : piecesOf(name);
-      if (sub) place(sub, matrix, partColor, name, depth + 1, false, pathOf(sub, matrix));
+      // A submodel inside a path's is more of the path: LDCad puts the links it gives a colour
+      // of their own in a subpart (the 42131 Cat D11's tracks).
+      const subPath = sub ? pathOf(sub, matrix) : null;
+      if (subPath) capsOf.set(subPath, new Set(sub!.filter((line) => /^\s*0\s+!LDCAD\s+PATH_CAP\b/.test(line)).map((line) => normalizePartName(/\[part=([^\]]*)\]/.exec(line)?.[1] ?? ''))));
+      if (sub) place(sub, matrix, partColor, name, depth + 1, false, subPath ?? path);
       else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true);
       else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(path && !caps.has(name) ? { path } : {}) });
     }

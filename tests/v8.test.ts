@@ -88,4 +88,13 @@ describe('friction pins', () => {
     expect(mech.joints.some((j) => j.stiff)).toBe(true);
     expect(new Kinematics(mech).freeMotions()).toHaveLength(1);
   });
+
+  it("are known in the shape studless sets use (Type 2): on them, the four-bar is still four bodies, not one for each pin spinning in its holes", () => {
+    const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
+    const parts = parseLdr(readFileSync('models/four-bar.ldr', 'utf-8').replaceAll('3673.dat', '61332.dat'));
+    const mech = inferMechanism(parts, library, roles);
+    expect(mech.bodies).toHaveLength(4);
+    expect(mech.joints.some((j) => j.stiff)).toBe(true);
+    expect(new Kinematics(mech).freeMotions()).toHaveLength(1);
+  });
 });
