@@ -538,21 +538,54 @@ export class Kinematics {
   // Whether a joint is part of a closed loop of joints: its two bodies are joined some other
   // way too.
   private inLoop(joint: number): boolean {
-    const { bodyA, bodyB } = this.mech.joints[joint];
-    const seen = new Set([bodyA]);
-    const queue = [bodyA];
-    while (queue.length) {
-      const body = queue.shift()!;
-      this.mech.joints.forEach((j, index) => {
-        if (index === joint) return;
-        const other = j.bodyA === body ? j.bodyB : j.bodyB === body ? j.bodyA : -1;
-        if (other >= 0 && !seen.has(other)) {
-          seen.add(other);
-          queue.push(other);
+    this.loopJoints ??= this.findLoopJoints();
+    return this.loopJoints.has(joint);
+  }
+
+  // The joints in closed loops of joints: all but the bridges, the joints whose bodies nothing
+  // else joins. Found in one walk over the joints (Tarjan's): a joint from a body to one first
+  // reached through it is a bridge if nothing reached from there leads back to before it. (Asking
+  // of each joint whether a search round it gets from one body to the other takes minutes on a
+  // model of thousands of bodies, the 42131 Cat D11 Bulldozer.)
+  private findLoopJoints(): Set<number> {
+    const joints = this.mech.joints;
+    const ends: number[][] = Array.from({ length: this.bodyCount }, () => []); // the joints at each body
+    joints.forEach((j, index) => {
+      ends[j.bodyA].push(index);
+      if (j.bodyB !== j.bodyA) ends[j.bodyB].push(index);
+    });
+    const reached = new Array(this.bodyCount).fill(-1); // in what order each body was first reached
+    const back = new Array(this.bodyCount).fill(-1); // the earliest body reachable from it, without going back the way it came
+    const bridges = new Set<number>();
+    let count = 0;
+    for (let start = 0; start < this.bodyCount; start++) {
+      if (reached[start] >= 0) continue;
+      reached[start] = back[start] = count++;
+      // The walk: each body, the joint it was reached by, and how many of its joints it has tried.
+      const stack = [{ body: start, via: -1, next: 0 }];
+      while (stack.length) {
+        const top = stack[stack.length - 1];
+        if (top.next < ends[top.body].length) {
+          const index = ends[top.body][top.next++];
+          if (index === top.via) continue;
+          const j = joints[index];
+          const other = j.bodyA === top.body ? j.bodyB : j.bodyA;
+          if (reached[other] < 0) {
+            reached[other] = back[other] = count++;
+            stack.push({ body: other, via: index, next: 0 });
+          } else {
+            back[top.body] = Math.min(back[top.body], reached[other]);
+          }
+          continue;
         }
-      });
+        stack.pop();
+        const parent = stack[stack.length - 1];
+        if (!parent) continue;
+        back[parent.body] = Math.min(back[parent.body], back[top.body]);
+        if (back[top.body] > reached[parent.body]) bridges.add(top.via);
+      }
     }
-    return seen.has(bodyB);
+    return new Set(joints.flatMap((_, index) => (bridges.has(index) ? [] : [index])));
   }
 
   // Whether a body turns like a knob: on a joint whose axis stays put in what it's mounted on
@@ -811,6 +844,14 @@ export class Kinematics {
   // since. Scrub only rules motions out, so this may say yes where the full answer
   // (jointMotion) is no, but never the other way round; the holds it chooses are checked with
   // the full answer. Null for a joint that doesn't turn.
+  //
+  // In those motions' coordinates, the drag is possible if the way that turns the joint (its
+  // rates) isn't all in the directions the holds rule out (the span of their rows). Those
+  // directions are kept made orthonormal, with what's left of the rates once they're taken out.
+  // Holds are tried one at a time, each kept or let go again, so each try starts from a recent
+  // one whose holds it still has, and only takes out the rows of those it adds: on a model of
+  // thousands of bodies (the 42131 Cat D11 Bulldozer), working out every hold's rows afresh for
+  // each try took hours a drag.
   private quickTest(joint: number): (() => boolean) | null {
     const j = this.mech.joints[joint];
     if (j.kind !== 'revolute') return null;
@@ -833,12 +874,57 @@ export class Kinematics {
     const rates = free.map((z) => dot(z, rate));
     const heldBefore = new Set(this.dragHeld);
     const toFrameBefore = new Set(this.heldToFrame);
+    // Each hold's rows in the free motions' coordinates, by "held 12" or "to frame 12".
+    const holdRowsOf = new Map<string, number[][]>();
+    const rowsOf = (hold: string): number[][] => {
+      let rows = holdRowsOf.get(hold);
+      if (!rows) {
+        const body = Number(hold.slice(hold.lastIndexOf(' ') + 1));
+        const toFrame = hold.startsWith('to frame');
+        rows = inBasis(this.holdRows(toFrame ? new Set() : new Set([body]), toFrame ? new Set([body]) : new Set()), basis).map((r) => free.map((z) => dot(r, z)));
+        holdRowsOf.set(hold, rows);
+      }
+      return rows;
+    };
+    // A try: its holds, the directions they rule out that the try it started from didn't, and
+    // what's left of the rates.
+    interface Try {
+      holds: Set<string>;
+      from: Try | null;
+      directions: number[][];
+      left: number[];
+    }
+    const start: Try = { holds: new Set(), from: null, directions: [], left: rates };
+    let recent: Try[] = [];
     return () => {
-      const held = new Set([...this.dragHeld].filter((b) => !heldBefore.has(b)));
-      const toFrame = new Set([...this.heldToFrame].filter((b) => !toFrameBefore.has(b)));
-      const rows = inBasis(this.holdRows(held, toFrame), basis).map((r) => free.map((z) => dot(r, z)));
-      const mixes = orthonormalize(nullSpace(rows, free.length));
-      return mixes.reduce((sum, mix) => sum + dot(mix, rates) ** 2, 0) >= EPSILON;
+      const holds = new Set([...[...this.dragHeld].filter((b) => !heldBefore.has(b)).map((b) => `held ${b}`), ...[...this.heldToFrame].filter((b) => !toFrameBefore.has(b)).map((b) => `to frame ${b}`)]);
+      // Of the recent tries with no holds this one hasn't, the one with the most.
+      let from = start;
+      for (const t of recent) if (t.holds.size > from.holds.size && [...t.holds].every((h) => holds.has(h))) from = t;
+      const next: Try = { holds, from, directions: [], left: from.left.slice() };
+      const before: number[][] = [];
+      for (let t: Try | null = from; t; t = t.from) before.push(...t.directions);
+      for (const hold of holds) {
+        if (from.holds.has(hold)) continue;
+        for (const r of rowsOf(hold)) {
+          const u = r.slice();
+          for (let pass = 0; pass < 2; pass++) {
+            for (const e of before) {
+              const x = dot(u, e);
+              for (let i = 0; i < u.length; i++) u[i] -= x * e[i];
+            }
+          }
+          const length = Math.sqrt(dot(u, u));
+          if (length < RANK_TOLERANCE) continue;
+          for (let i = 0; i < u.length; i++) u[i] /= length;
+          before.push(u);
+          next.directions.push(u);
+          const x = dot(next.left, u);
+          for (let i = 0; i < u.length; i++) next.left[i] -= x * u[i];
+        }
+      }
+      recent = [next, ...recent.filter((t) => t !== from).slice(0, 6), ...(from === start ? [] : [from])];
+      return dot(next.left, next.left) >= EPSILON;
     };
   }
 
@@ -1583,7 +1669,7 @@ export class Kinematics {
       // How fast the fastest joint in a closed loop turns, for each turn of this one (at least
       // 1: this one). Dead points are linkages', and other joints' rates may change from step
       // to step for other reasons (a steered tractor's front wheels, as it rolls and scrubs).
-      const loops = this.loopJoints ??= new Set(this.mech.joints.flatMap((_, k) => (this.inLoop(k) ? [k] : [])));
+      const loops = this.loopJoints ??= this.findLoopJoints();
       const ratio = Math.max(1, ...[...loops].map((k) => Math.abs(predicted[k] / step)));
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);

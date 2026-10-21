@@ -73,6 +73,16 @@ describe('paths', () => {
     ]);
   });
 
+  it('knows the links LDCad put in a subpart of the path are its links too (the 42131 Cat D11 Bulldozer\'s tracks)', () => {
+    const sub = MPD.replace(
+      '1 16 20 -50 0 1 0 0 0 1 0 0 0 1 3711.dat\n1 16 -20 -50 0 1 0 0 0 1 0 0 0 1 3711.dat\n0 NOFILE\n',
+      '1 16 0 0 0 1 0 0 0 1 0 0 0 1 Chain_subPart1.ldr\n0 NOFILE\n0 FILE Chain_subPart1.ldr\n1 16 20 -50 0 1 0 0 0 1 0 0 0 1 3711.dat\n1 16 -20 -50 0 1 0 0 0 1 0 0 0 1 3711.dat\n0 NOFILE\n',
+    );
+    const { parts, paths } = parseModel(sub);
+    expect(paths).toHaveLength(1);
+    expect(parts.map((p) => p.path)).toEqual([paths[0], paths[0]]);
+  });
+
   it("knows a path's caps are parts in their own right, not its links (a cable's plug, or the receiver it comes out of)", () => {
     const cable = `0 FILE Cabled.ldr
 1 16 0 0 0 1 0 0 0 1 0 0 0 1 Cable.ldr
