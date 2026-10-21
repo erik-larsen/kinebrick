@@ -1,0 +1,32 @@
+{
+  "model": "42084-1 Hook Loader",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p10 6141 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p10 6141":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p10 6141":[0,14]}}},
+    {"joint":"p11 6141 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p11 6141":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p11 6141":[0,14]}}},
+    {"joint":"p21 48989 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p22 48989 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p23 3749 in p21 48989","plus":{"turned":0.25,"moved":1,"bodies":{"p23 3749":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p23 3749":[0,14]}}},
+    {"joint":"p24 3749 in p22 48989","plus":{"turned":0.25,"moved":1,"bodies":{"p24 3749":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p24 3749":[0,14]}}},
+    {"joint":"p28 3749 in p22 48989","plus":{"turned":0.25,"moved":1,"bodies":{"p28 3749":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p28 3749":[0,14]}}},
+    {"joint":"p29 3749 in p21 48989","plus":{"turned":0.25,"moved":1,"bodies":{"p29 3749":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p29 3749":[0,14]}}},
+    {"joint":"p30 3749 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p36 32034 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p43 11214 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p46 11214 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p65 32140 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p65 32140":[12,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p65 32140":[12,14]}}},
+    {"joint":"p71 32140 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p71 32140":[12,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p71 32140":[12,14]}}},
+    {"joint":"p81 32014 in frame","plus":{"turned":0.25,"moved":8,"bodies":{"p162 18654":[33,14],"p171 26287":[26,14],"p81 32014":[19,14],"p161 60483":[16,14],"p160 32556":[11,14],"p152 32316":[6,14],"p95 43093":[0,14],"p100 18651":[0,14]}},"minus":{"turned":-0.25,"moved":8,"bodies":{"p162 18654":[33,14],"p171 26287":[26,14],"p81 32014":[19,14],"p161 60483":[16,14],"p160 32556":[11,14],"p152 32316":[6,14],"p95 43093":[0,14],"p100 18651":[0,14]}}},
+    {"joint":"p95 43093 in frame","plus":{"turned":0.25,"moved":8,"bodies":{"p162 18654":[33,14],"p171 26287":[26,14],"p81 32014":[19,14],"p161 60483":[16,14],"p160 32556":[11,14],"p152 32316":[6,14],"p100 18651":[0,14],"p95 43093":[0,14]}},"minus":{"turned":-0.25,"moved":8,"bodies":{"p162 18654":[33,14],"p171 26287":[26,14],"p81 32014":[19,14],"p161 60483":[16,14],"p160 32556":[11,14],"p152 32316":[6,14],"p100 18651":[0,14],"p95 43093":[0,14]}}},
+    {"joint":"p97 43093 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p97 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p97 43093":[0,14]}}},
+    {"joint":"p100 18651 in frame","plus":{"turned":0.25,"moved":8,"bodies":{"p162 18654":[33,14],"p171 26287":[26,14],"p81 32014":[19,14],"p161 60483":[16,14],"p160 32556":[11,14],"p152 32316":[6,14],"p95 43093":[0,14],"p100 18651":[0,14]}},"minus":{"turned":-0.25,"moved":8,"bodies":{"p162 18654":[33,14],"p171 26287":[26,14],"p81 32014":[19,14],"p161 60483":[16,14],"p160 32556":[11,14],"p152 32316":[6,14],"p100 18651":[0,14],"p95 43093":[0,14]}}},
+    {"joint":"p103 32034 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p115 32034 in p119 32015","plus":{"turned":0.25,"moved":1,"bodies":{"p115 32034":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p115 32034":[0,14]}}},
+    {"joint":"p138 32034 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p138 32034":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p138 32034":[0,14]}}},
+    {"joint":"p152 32316 in p81 32014","plus":{"turned":0.25,"moved":4,"bodies":{"p171 26287":[56,14],"p161 60483":[46,14],"p160 32556":[41,14],"p152 32316":[29,14]}},"minus":{"turned":-0.25,"moved":4,"bodies":{"p171 26287":[56,14],"p161 60483":[46,14],"p160 32556":[41,14],"p152 32316":[29,14]}}},
+    {"joint":"p160 32556 in p152 32316","plus":{"turned":0.25,"moved":1,"bodies":{"p160 32556":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p160 32556":[0,14]}}},
+    {"joint":"p161 60483 in p160 32556","plus":{"turned":0.25,"moved":1,"bodies":{"p161 60483":[5,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p161 60483":[5,14]}}},
+    {"joint":"p162 18654 in p81 32014","plus":{"turned":0.25,"moved":1,"bodies":{"p162 18654":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p162 18654":[0,14]}}},
+    {"joint":"p171 26287 in p152 32316","plus":{"turned":0.25,"moved":1,"bodies":{"p171 26287":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p171 26287":[0,14]}}}
+  ]
+}
