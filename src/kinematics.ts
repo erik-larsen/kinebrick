@@ -473,6 +473,10 @@ export class Kinematics {
     };
     const beyond: number[][] = []; // the bodies beyond each body, itself included
     const done: number[][] = []; // their columns, made orthonormal
+    // Each column's places: those of the bodies beyond its own body, the only ones it moves (in
+    // the same order as among a body further in's places, so leaving the rest out of a sum
+    // leaves out only zeros).
+    const placesOf: number[][] = [];
     this.basisOrder = [];
     for (const body of [...this.order].reverse()) {
       beyond[body] = [body, ...children[body].flatMap((c) => beyond[c])];
@@ -482,12 +486,14 @@ export class Kinematics {
       const own: number[] = [];
       for (const c of ownColumns(body)) {
         const u = columns[c];
+        placesOf[c] = places;
         for (let pass = 0; pass < 2; pass++) {
           for (const b of [...others, ...own]) {
             const e = columns[b];
+            const along = placesOf[b];
             let d = 0;
-            for (const i of places) d += u[i] * e[i];
-            for (const i of places) u[i] -= d * e[i];
+            for (const i of along) d += u[i] * e[i];
+            for (const i of along) u[i] -= d * e[i];
           }
         }
         let length = 0;
@@ -1478,18 +1484,24 @@ export class Kinematics {
   freeMotions(): number[][] {
     const slip: Slip = { sideways: [], travel: [], lift: [] };
     const n = 6 * this.bodyCount;
+    // Worked out in the tree basis's coordinates (see treeBasis), far fewer than the motion
+    // vector's: the basis is orthonormal, so lengths and angles there are the motions' own, and
+    // only the motions found at the end need turning back into motion vectors.
     const basis = this.treeBasis();
+    const q = basis[0].length;
+    const motionVectors = (zs: number[][]) => zs.map((z) => fromBasis(z, basis));
     const rows = inBasis(this.buildEquations(null, slip, true), basis);
-    const motions = orthonormalize(nullSpace(rows, basis[0].length).map((z) => fromBasis(z, basis)));
+    const motions = orthonormalize(nullSpace(rows, q));
     this.scrubNeeded = null;
-    if (slip.sideways.length === 0 || motions.length === 0) return motions;
+    if (slip.sideways.length === 0 || motions.length === 0) return motionVectors(motions);
+    const [sideways, travel, lift] = [slip.sideways, slip.travel, slip.lift].map((r) => inBasis(r, basis));
     const frameStill = Array.from({ length: 6 }, (_, k) => {
       const row = new Array(n).fill(0);
       row[k] = 1;
       return row;
     });
-    const parked = orthonormalize(nullSpace([...rows, ...inBasis(frameStill, basis)], basis[0].length).map((z) => fromBasis(z, basis)));
-    const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: slip.lift, travel: [...slip.travel, ...slip.sideways], lift: [] }, LIFT)) : [];
+    const parked = orthonormalize(nullSpace([...rows, ...inBasis(frameStill, basis)], q));
+    const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: lift, travel: [...travel, ...sideways], lift: [] }, LIFT)) : [];
     // The rest of the motions, with the parked ones taken out, judged as rolling. Taking them
     // out first keeps the two sets apart: joined afterwards, a rolling motion that's nearly a
     // parked one would leave a sliver that, scaled up, is a bogus motion (lifting the car).
@@ -1497,7 +1509,8 @@ export class Kinematics {
       motions.map((m) => {
         const u = m.slice();
         for (const p of keptParked) {
-          const d = u.reduce((sum, x, i) => sum + x * p[i], 0);
+          let d = 0;
+          for (let i = 0; i < u.length; i++) d += u[i] * p[i];
           for (let i = 0; i < u.length; i++) u[i] -= d * p[i];
         }
         return u;
@@ -1507,11 +1520,11 @@ export class Kinematics {
     // Lift counts as scrub, LIFT of it as much as the usual allowance (however much more scrub
     // the model allows: that's for scrubbing sideways, not rising or sinking).
     const usual = Math.min(this.scrub, DEFAULT_SCRUB);
-    const liftAsScrub = slip.lift.map((row) => row.map((x) => (x * usual) / LIFT));
+    const liftAsScrub = lift.map((row) => row.map((x) => (x * usual) / LIFT));
     const needs = { least: 0 };
-    const rolling = rest.length ? leastScrub(rest, { sideways: [...slip.sideways, ...liftAsScrub], travel: slip.travel, lift: [] }, this.scrub, usual, needs) : [];
+    const rolling = rest.length ? leastScrub(rest, { sideways: [...sideways, ...liftAsScrub], travel, lift: [] }, this.scrub, usual, needs) : [];
     if (needs.least > this.scrub) this.scrubNeeded = needs.least;
-    return orthonormalize([...keptParked, ...rolling]);
+    return motionVectors(orthonormalize([...keptParked, ...rolling]));
   }
 
   // How fast a point on a body moves under a motion vector.
@@ -1905,7 +1918,11 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
 // The mix of `vectors` with these amounts.
 function combine(vectors: number[][], amounts: number[]): number[] {
   const out = new Array(vectors[0]?.length ?? 0).fill(0);
-  vectors.forEach((v, i) => v.forEach((x, j) => (out[j] += amounts[i] * x)));
+  for (let i = 0; i < vectors.length; i++) {
+    const v = vectors[i];
+    const a = amounts[i];
+    for (let j = 0; j < v.length; j++) out[j] += a * v[j];
+  }
   return out;
 }
 
@@ -2127,8 +2144,9 @@ function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] {
 }
 
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).
+// Plain loops on typed arrays: this runs many times a step.
 export function nullSpace(rows: Row[], n: number): number[][] {
-  const a = rows.map((r) => r.slice());
+  const a = rows.map((r) => Float64Array.from(r));
   const pivotColumns: number[] = [];
   const used = new Array(n).fill(false);
   for (let r = 0; r < a.length; r++) {
@@ -2165,18 +2183,26 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     }
     used[c] = true;
     [a[r], a[best]] = [a[best], a[r]];
-    const pivot = a[r][c];
-    for (let k = 0; k < n; k++) a[r][k] /= pivot;
+    const row = a[r];
+    const pivot = row[c];
+    // The pivot row's nonzero entries: the only columns taking it from another row changes.
+    const nonzero: number[] = [];
+    for (let k = 0; k < n; k++) {
+      if (row[k] === 0) continue;
+      row[k] /= pivot;
+      nonzero.push(k);
+    }
     for (let i = 0; i < a.length; i++) {
-      if (i === r || a[i][c] === 0) continue;
-      const factor = a[i][c];
-      for (let k = 0; k < n; k++) a[i][k] -= factor * a[r][k];
+      const other = a[i];
+      if (i === r || other[c] === 0) continue;
+      const factor = other[c];
+      for (const k of nonzero) other[k] -= factor * row[k];
     }
     pivotColumns.push(c);
   }
   const basis: number[][] = [];
   for (let free = 0; free < n; free++) {
-    if (pivotColumns.includes(free)) continue;
+    if (used[free]) continue;
     const x = new Array(n).fill(0);
     x[free] = 1;
     pivotColumns.forEach((pc, row) => {
