@@ -1,6 +1,6 @@
 # Surveying every control of the OMR's Technic sets
 
-How to try every control of all 183 Technic sets from the LDraw Official Model Repository (OMR) with `npm run joints`, on a spare machine: it takes many hours. Written so a fresh Claude Code session (or a person) can follow it from a fresh clone.
+How to try every control of all 183 Technic sets from the LDraw Official Model Repository (OMR) with `npm run joints`, on a spare machine, Mac or Windows: it takes many hours, the full run days. Written so a fresh Claude Code session (or a person) can follow it from a fresh clone.
 
 ## What it does
 
@@ -8,17 +8,17 @@ How to try every control of all 183 Technic sets from the LDraw Official Model R
 
 ## Steps
 
-1. **Get the code and install it.** Node 22 or newer.
+1. **Get the code and install it.** Node 22 or newer, and Git. On Windows, run every command here in Git Bash (it comes with Git for Windows, and Claude Code on Windows uses it too), not PowerShell, which drops the `--` that passes options on to `npm run joints`. Clone with line endings left as they are, so every file is the same as on a Mac:
 
    ```bash
-   git clone https://github.com/erik-larsen/kinebrick.git
+   git clone -c core.autocrlf=false https://github.com/erik-larsen/kinebrick.git
    cd kinebrick
    npm ci
    ```
 
    No LDraw parts library is needed: everything the probe reads is in the repository.
 
-2. **Check it works**, on KineBrick's own models (about 3 minutes on a 10-core Mac):
+2. **Check it works**, on KineBrick's own models (a minute or two on 10 cores):
 
    ```bash
    npm run joints
@@ -38,14 +38,18 @@ How to try every control of all 183 Technic sets from the LDraw Official Model R
    tar -xzf path/to/omr-joints-so-far.tgz -C omr
    ```
 
-5. **The quick survey**: each knob turned a quarter radian each way, enough to tell which are stuck. Use most of the cores (here 8; `sysctl -n hw.ncpu` says how many there are, and the default is half), and keep the Mac awake:
+5. **The quick survey**: each knob turned a quarter radian each way, enough to tell which are stuck. A machine may do only this, or only the full run (step 6): the two keep their results apart.
+
+   How many jobs at once (`--jobs`; the default is half the processor threads): most of the threads (`sysctl -n hw.ncpu` on a Mac, `nproc` in Git Bash says how many), but each job takes up to about 2 GB of memory on the biggest sets, so no more jobs than half the memory in GB. Here 8.
+
+   Keep the machine awake: on a Mac, `caffeinate -i` in front of the command, as below; on Windows, leave `caffeinate -i` out and set the PC never to sleep while plugged in (Settings, System, Power, Screen and sleep) for as long as it runs.
 
    ```bash
    caffeinate -i npm run joints -- --omr --reach 0.25 --resume --jobs 8
    npm run joints -- --omr --reach 0.25 --report > omr/report-0.25.txt
    ```
 
-6. **The full run**: each knob turned 1.5 radians each way, as for KineBrick's own models. Expect it to take a long time: the biggest sets have hundreds of knobs, and every step of a turn solves a mechanism of hundreds of parts (on a 10-core Mac, the Lamborghini Sián alone took over two hours). If it stops, from a restart or a crash, run the same command again: `--resume` carries on where it left off.
+6. **The full run**: each knob turned 1.5 radians each way, as for KineBrick's own models. Expect it to take days: the biggest sets have hundreds of knobs, and every step of a turn solves a mechanism of hundreds of parts. The quick survey, a sixth of the turn, takes most of a day on a 12-core M6 Mac mini, its Rough Terrain Crane alone over two hours. If it stops, from a restart or a crash, run the same command again: `--resume` carries on where it left off.
 
    ```bash
    caffeinate -i npm run joints -- --omr --resume --jobs 8
@@ -54,7 +58,7 @@ How to try every control of all 183 Technic sets from the LDraw Official Model R
 
    Each run prints a line per set as it finishes. A set that fails prints an error, and the run carries on; note which, and why.
 
-7. **Bring the results back**, packed for Erik to copy into `omr/` on the main Mac:
+7. **Bring the results back**, packed for Erik to copy into `omr/` on the main Mac (leaving out what this machine didn't run):
 
    ```bash
    tar -czf omr-joints-results.tgz -C omr joints joints-0.25 report-0.25.txt report-full.txt
