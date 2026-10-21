@@ -57,7 +57,7 @@ How to try every control of all 183 Technic sets from the LDraw Official Model R
    npm run joints -- --omr --report > omr/report-full.txt
    ```
 
-   Each run prints a line per set as it finishes, and commits and pushes its results. A set that fails prints an error, and the run carries on; note which, and why. A push that fails (no network, say) is tried again after the next set.
+   Each run prints a line per set as it finishes, and commits and pushes its results; once a minute, it prints how many sets are done and how many to go, and which it's working on. A set that fails prints an error, and the run carries on; note which, and why. A push that fails (no network, say) is tried again after the next set.
 
 7. **Sum it up.** The results are already on the `omr-survey` branch. Write Erik a short summary from the report: how many sets failed (and why), and the sets and kinds of part that most often stop or can't move.
 

@@ -5,7 +5,8 @@
 // the bucket, shows up as a change from the last time. (Slides, such as pistons and racks, are
 // driven by something turning, so they show up in what that moves; so do joints no drag turns
 // directly, such as a differential's insides.) There are no collision checks here, as there are
-// in the viewer: this is the mechanism alone.
+// in the viewer: this is the mechanism alone. Once a minute it says how many models are done and
+// how many to go, and which it's working on.
 //
 // Each model's findings are kept in tests/joints/<model>.json, one line per joint, as a
 // baseline. A run compares what it finds with the baseline and lists what got worse (a joint
@@ -34,7 +35,7 @@
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { Quaternion, Vector3 } from 'three';
 import { commitFindings } from './survey-branch.ts';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
@@ -229,8 +230,9 @@ async function main() {
     const path = join(baselineDir, f.replace(/\.(ldr|mpd)$/i, '.json'));
     return args.includes('--resume') && existsSync(path) && JSON.parse(readFileSync(path, 'utf-8')).reach === reach;
   };
-  const files = readdirSync(modelsDir)
-    .filter((f) => /\.(ldr|mpd)$/i.test(f) && (filters.length === 0 || filters.some((x) => f.includes(x))) && !done(f))
+  const models = readdirSync(modelsDir).filter((f) => /\.(ldr|mpd)$/i.test(f) && (filters.length === 0 || filters.some((x) => f.includes(x))));
+  const files = models
+    .filter((f) => !done(f))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
     .map((f) => join(modelsDir, f));
   if (args.includes('--report')) return report(baselineDir, filters);
@@ -275,6 +277,22 @@ async function main() {
   const started = new Map<string, number>();
   const found = new Map<string, Baseline[]>();
   const queue = [...chunks];
+  // How many of each model's chunks have come back (found or failed), and how many models are
+  // done, counting those --resume skipped.
+  const back = new Map<string, number>();
+  let finished = models.length - files.length;
+  const comeBack = (file: string, of: number) => {
+    back.set(file, (back.get(file) ?? 0) + 1);
+    if (back.get(file) === of) finished++;
+  };
+  // Once a minute: how many models are done and to go, and which are being worked on.
+  const chunksOf = new Map(chunks.map((c) => [c.file, c.of]));
+  const status = setInterval(() => {
+    const working = [...started.keys()]
+      .filter((f) => (back.get(f) ?? 0) < chunksOf.get(f)!)
+      .map((f) => basename(f).replace(/\.(ldr|mpd)$/i, '') + (chunksOf.get(f)! > 1 ? ` (${back.get(f) ?? 0}/${chunksOf.get(f)} chunks done)` : ''));
+    console.log(`[${new Date().toTimeString().slice(0, 5)}] ${finished} done, ${models.length - finished} to go; working on ${working.join(', ')}`);
+  }, 60_000);
   async function worker() {
     while (queue.length) {
       const { file, chunk, of } = queue.shift()!;
@@ -283,10 +301,12 @@ async function main() {
       try {
         part = await probeInChild(file, chunk, of);
       } catch (err) {
+        comeBack(file, of);
         console.log(`${file}: ${(err as Error).message}`);
         failed = true;
         continue;
       }
+      comeBack(file, of);
       // Once all of a model's chunks are in, put them together.
       const parts = [...(found.get(file) ?? []), part];
       found.set(file, parts);
@@ -315,6 +335,7 @@ async function main() {
     }
   }
   await Promise.all(Array.from({ length: Math.max(1, jobs) }, worker));
+  clearInterval(status);
   if (failed && !update) {
     console.log('Some joints got worse, or a model failed (see above). If the changes were meant, write the baselines afresh: npm run joints -- --update');
     process.exit(1);
