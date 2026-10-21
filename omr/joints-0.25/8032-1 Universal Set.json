@@ -1,0 +1,12 @@
+{
+  "model": "8032-1 Universal Set",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p28 3736 in frame","plus":{"turned":0.25,"moved":7,"bodies":{"p28 3736":[2,14],"p35 3673":[6,9],"p44 3705":[2,1],"p39 3749":[2,1],"p66 4519":[2,1],"p42 3709b":[1,1],"p49 3749":[1,1]}},"minus":{"turned":-0.25,"moved":4,"bodies":{"p28 3736":[2,14],"p35 3673":[6,9],"p39 3749":[2,2],"p44 3705":[1,1]}}},
+    {"joint":"p33 3707 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p33 3707":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p33 3707":[0,14]}}},
+    {"joint":"p44 3705 in p42 3709b","plus":{"turned":0.25,"moved":1,"bodies":{"p44 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p44 3705":[0,14]}}},
+    {"joint":"p49 3749 in p42 3709b","plus":{"turned":0.25,"moved":1,"bodies":{"p49 3749":[9,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p49 3749":[9,14]}}},
+    {"joint":"p51 3706 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p51 3706":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p51 3706":[0,14]}}},
+    {"joint":"p66 4519 in p42 3709b","plus":{"turned":0.25,"moved":1,"bodies":{"p66 4519":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p66 4519":[0,14]}}}
+  ]
+}
