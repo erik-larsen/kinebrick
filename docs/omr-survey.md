@@ -57,7 +57,7 @@ How to try every control of all 183 Technic sets from the LDraw Official Model R
    npm run joints -- --omr --report > omr/report-full.txt
    ```
 
-   Each run prints a line per set as it finishes, and commits and pushes its results; once a minute, it prints how many sets are done and how many to go, and which it's working on. A set that fails prints an error, and the run carries on; note which, and why. A push that fails (no network, say) is tried again after the next set.
+   Each run prints a line per set as it finishes, and commits and pushes its results; once a minute, it prints how many sets are done and how many to go, and which it's working on. A set that fails prints an error, and the run carries on; note which, and why. A push that fails (no network, say) is tried again after the next set. A set that takes more than 4 hours (`--limit` sets how many) is stopped and written down as timed out, with what it found by then, and `--resume` doesn't try it again: those sets need looking into (the Cat D11 Bulldozer's quick survey ran 13 hours before it was stopped).
 
 7. **Sum it up.** The results are already on the `omr-survey` branch. Write Erik a short summary from the report: how many sets failed (and why), and the sets and kinds of part that most often stop or can't move.
 
@@ -74,7 +74,7 @@ npm run joints -- --omr --reach 0.25 --report
 
 `git log origin/omr-survey` lists the sets done so far, newest first, each with its run (full or quick) and how many knobs it has.
 
-`--report` lists each set's knobs that **stop** after a little (under 0.2 radians either way), turn only **one way**, or **can't move at all**. Most that can't move at all are structure hinged on one pin but held by another, or parts not meant to turn (a worm's gear, a differential's pinion with the car on its wheels). One-way knobs are often at the end of their travel (a bucket at its lowest). Knobs that stop after a little are the ones to look at: that's how the 8880 Super Car's rear steering knob was found, held back by a false dead point.
+`--report` lists the sets that timed out first, then each set's knobs that **stop** after a little (under 0.2 radians either way), turn only **one way**, or **can't move at all**. Most that can't move at all are structure hinged on one pin but held by another, or parts not meant to turn (a worm's gear, a differential's pinion with the car on its wheels). One-way knobs are often at the end of their travel (a bucket at its lowest). Knobs that stop after a little are the ones to look at: that's how the 8880 Super Car's rear steering knob was found, held back by a false dead point.
 
 The probe tries the mechanism alone, without the collision checks the viewer adds, so a knob can turn further here than in the viewer.
 

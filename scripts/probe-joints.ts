@@ -26,13 +26,17 @@
 //   npm run joints -- --reach 0.25    how far to turn each knob each way, in radians (default 1.5):
 //                                     a short reach is enough to tell which knobs are stuck, and
 //                                     much quicker on big models (a survey of the OMR's sets)
+//   npm run joints -- --limit 2       stop a model that takes more than this many hours (default
+//                                     4), keeping what it found by then, marked as timed out: a
+//                                     model to look into, which --resume doesn't try again
 //   npm run joints -- --report        no probing: from the baselines, each model's knobs that
-//                                     stop after a little, or turn only one way, or can't move at all
+//                                     stop after a little, or turn only one way, or can't move at
+//                                     all, and the models that timed out
 //   npm run joints -- --omr --commit  as each OMR set's baseline is written, commit it to the
 //                                     omr-survey branch and push it (see survey-branch.ts), with
 //                                     any already written that the branch doesn't have
 
-import { spawn } from 'node:child_process';
+import { ChildProcess, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { basename, join } from 'node:path';
@@ -46,6 +50,8 @@ import { inferMechanism } from '../src/mechanism.ts';
 // How far each knob is turned each way, in radians (unless --reach says otherwise), in steps of STEP.
 const REACH = 1.5;
 const STEP = 0.05;
+// How many hours a model may take (unless --limit says otherwise) before it's stopped.
+const LIMIT_HOURS = 4;
 // A body counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
 // How many of the bodies a joint moves are written down: the ones that moved most.
@@ -75,6 +81,7 @@ interface JointFinding {
 interface Baseline {
   model: string;
   reach: number; // how far each knob was turned each way
+  timedOut?: number; // stopped after this many hours, its joints only those found by then
   joints: JointFinding[];
 }
 
@@ -154,7 +161,7 @@ function probe(file: string, omr: boolean, reach: number, chunk = 0, of = 1): Ba
 
 // A baseline as text: one joint per line, so a change shows as a change of line.
 function baselineText(b: Baseline): string {
-  return `{\n  "model": ${JSON.stringify(b.model)},\n  "reach": ${b.reach},\n  "joints": [\n${b.joints.map((j) => '    ' + JSON.stringify(j)).join(',\n')}\n  ]\n}\n`;
+  return `{\n  "model": ${JSON.stringify(b.model)},\n  "reach": ${b.reach},\n${b.timedOut !== undefined ? `  "timedOut": ${b.timedOut},\n` : ''}  "joints": [\n${b.joints.map((j) => '    ' + JSON.stringify(j)).join(',\n')}\n  ]\n}\n`;
 }
 
 // What got worse, and what got better, from a baseline to now.
@@ -209,8 +216,19 @@ if (one >= 0) {
 // way are at the end of their travel (a bucket at its lowest). The rest are controls to look at.
 function report(dir: string, filters: string[]) {
   const stuck = (w: Way) => Math.abs(w.turned) < WORSE_FROM;
-  for (const f of readdirSync(dir).filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x)))).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))) {
-    const b: Baseline = JSON.parse(readFileSync(join(dir, f), 'utf-8'));
+  const baselines: Baseline[] = readdirSync(dir)
+    .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map((f) => JSON.parse(readFileSync(join(dir, f), 'utf-8')));
+  // The models that took too long first: they need looking into.
+  const timedOut = baselines.filter((b) => b.timedOut !== undefined);
+  if (timedOut.length) {
+    console.log(`Timed out (${timedOut.length}), to look into:`);
+    for (const b of timedOut) console.log(`  ${b.model}: stopped after ${b.timedOut} hours, ${b.joints.length} knobs done by then`);
+    console.log('');
+  }
+  for (const b of baselines) {
+    if (b.timedOut !== undefined && b.joints.length === 0) continue;
     const locked = b.joints.filter((j) => j.plus.turned === 0 && j.minus.turned === 0);
     const stops = b.joints.filter((j) => stuck(j.plus) && stuck(j.minus) && !locked.includes(j));
     const oneWay = b.joints.filter((j) => stuck(j.plus) !== stuck(j.minus));
@@ -222,7 +240,9 @@ function report(dir: string, filters: string[]) {
 }
 
 async function main() {
-  const filters = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--jobs' && args[i - 1] !== '--reach');
+  const filters = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--reach', '--limit'].includes(args[i - 1]));
+  const limitAt = args.indexOf('--limit');
+  const limitHours = limitAt >= 0 ? Number(args[limitAt + 1]) : LIMIT_HOURS;
   const modelsDir = omr ? 'omr' : 'models';
   const baselineDir = omr ? join('omr', reach === REACH ? 'joints' : `joints-${reach}`) : join('tests', 'joints');
   // With --resume, a model whose baseline is already at this reach is done.
@@ -251,12 +271,17 @@ async function main() {
 
   // Each model in a process of its own, or a big one (by its file's size: more parts, more joints)
   // shared out between up to `jobs`, all `jobs` at a time.
+  // The processes working on each model, so a model that takes too long can be stopped.
+  const children = new Map<string, Set<ChildProcess>>();
   function probeInChild(file: string, chunk: number, of: number): Promise<Baseline> {
     return new Promise((resolve, reject) => {
       const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', file, '--chunk', `${chunk}/${of}`, '--reach', String(reach), ...(omr ? ['--omr'] : [])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      if (!children.has(file)) children.set(file, new Set());
+      children.get(file)!.add(child);
       let out = '';
       child.stdout.on('data', (d) => (out += d));
       child.on('close', (code) => {
+        children.get(file)!.delete(child);
         try {
           if (code !== 0) throw new Error(`exit ${code}`);
           resolve(JSON.parse(out));
@@ -293,23 +318,51 @@ async function main() {
       .map((f) => basename(f).replace(/\.(ldr|mpd)$/i, '') + (chunksOf.get(f)! > 1 ? ` (${back.get(f) ?? 0}/${chunksOf.get(f)} chunks done)` : ''));
     console.log(`[${new Date().toTimeString().slice(0, 5)}] ${finished} done, ${models.length - finished} to go; working on ${working.join(', ')}`);
   }, 60_000);
+  // A model that has taken more than limitHours is stopped: its processes, and its chunks still
+  // waiting to start.
+  const timedOut = new Set<string>();
+  const watchdog = setInterval(() => {
+    for (const [file, start] of started) {
+      if (timedOut.has(file) || (back.get(file) ?? 0) === chunksOf.get(file) || Date.now() - start < limitHours * 3600_000) continue;
+      timedOut.add(file);
+      for (const child of children.get(file) ?? []) child.kill();
+    }
+  }, 10_000);
   async function worker() {
     while (queue.length) {
       const { file, chunk, of } = queue.shift()!;
       if (!started.has(file)) started.set(file, Date.now());
-      let part: Baseline;
-      try {
-        part = await probeInChild(file, chunk, of);
-      } catch (err) {
-        comeBack(file, of);
-        console.log(`${file}: ${(err as Error).message}`);
-        failed = true;
-        continue;
+      let part: Baseline | null = null;
+      if (!timedOut.has(file)) {
+        try {
+          part = await probeInChild(file, chunk, of);
+        } catch (err) {
+          if (!timedOut.has(file)) {
+            console.log(`${file}: ${(err as Error).message}`);
+            failed = true;
+          }
+        }
       }
       comeBack(file, of);
+      if (part) found.set(file, [...(found.get(file) ?? []), part]);
+      // A model that timed out, once all its chunks are back: what it found by then, marked.
+      if (timedOut.has(file)) {
+        if (back.get(file)! < of) continue;
+        const model = basename(file).replace(/\.(ldr|mpd)$/i, '');
+        const joints = (found.get(file) ?? []).flatMap((p) => p.joints).sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true }));
+        const path = join(baselineDir, `${model}.json`);
+        console.log(`${model}: timed out after ${limitHours} hours, ${joints.length} knobs done by then; to look into`);
+        if (omr || update || !existsSync(path)) {
+          writeFileSync(path, baselineText({ model, reach, timedOut: limitHours, joints }));
+          commit();
+        } else {
+          failed = true;
+        }
+        continue;
+      }
+      if (!part) continue;
       // Once all of a model's chunks are in, put them together.
-      const parts = [...(found.get(file) ?? []), part];
-      found.set(file, parts);
+      const parts = found.get(file)!;
       if (parts.length < of) continue;
       const now: Baseline = { model: part.model, reach, joints: parts.flatMap((p) => p.joints).sort((a, b) => a.joint.localeCompare(b.joint, undefined, { numeric: true })) };
       const seconds = ((Date.now() - started.get(file)!) / 1000).toFixed(0);
@@ -336,6 +389,7 @@ async function main() {
   }
   await Promise.all(Array.from({ length: Math.max(1, jobs) }, worker));
   clearInterval(status);
+  clearInterval(watchdog);
   if (failed && !update) {
     console.log('Some joints got worse, or a model failed (see above). If the changes were meant, write the baselines afresh: npm run joints -- --update');
     process.exit(1);

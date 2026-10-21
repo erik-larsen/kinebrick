@@ -48,7 +48,7 @@ function push(): boolean {
 }
 
 // Commits the findings in `dir` (a folder of <model>.json, relative to the repository's top) the
-// branch doesn't have, one commit each, named "OMR survey, <label>: <model>, <n> knobs", and
+// branch doesn't have, one commit each, named "OMR survey, <label>: <model>, <n> knobs" (or that it timed out), and
 // pushes them.
 export function commitFindings(dir: string, label: string) {
   const index = join(tmpdir(), `kinebrick-survey-${process.pid}.index`);
@@ -66,8 +66,9 @@ export function commitFindings(dir: string, label: string) {
       git(tip ? ['read-tree', tip] : ['read-tree', '--empty'], { GIT_INDEX_FILE: index });
       git(['update-index', '--add', '--cacheinfo', `100644,${blob},${path}`], { GIT_INDEX_FILE: index });
       const tree = git(['write-tree'], { GIT_INDEX_FILE: index });
-      const knobs = JSON.parse(readFileSync(join(dir, file), 'utf-8')).joints.length;
-      tip = git(['commit-tree', tree, ...(tip ? ['-p', tip] : []), '-m', `OMR survey, ${label}: ${file.replace(/\.json$/, '')}, ${knobs} knobs`]);
+      const found = JSON.parse(readFileSync(join(dir, file), 'utf-8'));
+      const what = found.timedOut !== undefined ? `timed out after ${found.timedOut} hours, ${found.joints.length} knobs done by then` : `${found.joints.length} knobs`;
+      tip = git(['commit-tree', tree, ...(tip ? ['-p', tip] : []), '-m', `OMR survey, ${label}: ${file.replace(/\.json$/, '')}, ${what}`]);
     }
     rmSync(index, { force: true });
     if (!tip) return;
