@@ -27,12 +27,16 @@
 //                                     much quicker on big models (a survey of the OMR's sets)
 //   npm run joints -- --report        no probing: from the baselines, each model's knobs that
 //                                     stop after a little, or turn only one way, or can't move at all
+//   npm run joints -- --omr --commit  as each OMR set's baseline is written, commit it to the
+//                                     omr-survey branch and push it (see survey-branch.ts), with
+//                                     any already written that the branch doesn't have
 
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { Quaternion, Vector3 } from 'three';
+import { commitFindings } from './survey-branch.ts';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { modelSettings, parseModel } from '../src/ldr.ts';
@@ -231,6 +235,17 @@ async function main() {
     .map((f) => join(modelsDir, f));
   if (args.includes('--report')) return report(baselineDir, filters);
   mkdirSync(baselineDir, { recursive: true });
+  // With --commit, the OMR's findings go to the omr-survey branch as they're written. Git
+  // trouble is reported, not fatal: the survey goes on.
+  const commit = () => {
+    if (!omr || !args.includes('--commit')) return;
+    try {
+      commitFindings(baselineDir, reach === REACH ? 'full' : `quick, reach ${reach}`);
+    } catch (err) {
+      console.log(`Couldn't commit to the omr-survey branch: ${(err as Error).message}`);
+    }
+  };
+  commit();
 
   // Each model in a process of its own, or a big one (by its file's size: more parts, more joints)
   // shared out between up to `jobs`, all `jobs` at a time.
@@ -282,6 +297,7 @@ async function main() {
       if (update || !existsSync(path)) {
         writeFileSync(path, baselineText(now));
         console.log(`${now.model}: ${now.joints.length} knobs, baseline written (${seconds} s)`);
+        commit();
         continue;
       }
       const before: Baseline = JSON.parse(readFileSync(path, 'utf-8'));
