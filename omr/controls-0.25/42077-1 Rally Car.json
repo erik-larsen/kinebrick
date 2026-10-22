@@ -1,0 +1,9 @@
+{
+  "model": "42077-1 Rally Car",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p96 92909 in p97 11950","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p346 99008 in p0 41239","control":"20 tooth gear","plus":{"turned":0.25,"moved":1,"bodies":{"p346 99008":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p346 99008":[0,14]}}},
+    {"joint":"p607 43093 in p606 62462","control":"steering wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p607 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p607 43093":[0,14]}}}
+  ]
+}
