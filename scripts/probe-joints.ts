@@ -93,7 +93,7 @@ interface Way {
 interface JointFinding {
   joint: string; // bodyB's key "in" bodyA's key
   control?: string; // what kind of control it is, for the OMR's sets: "wheel", "steering wheel", "40 tooth gear"
-  worm?: boolean; // a turn of it would drive a worm from its gear's side, which it can't
+  worm?: boolean; // it can't turn only because it would drive a worm from its gear's side
   plus: Way;
   minus: Way;
 }
@@ -174,7 +174,8 @@ function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0
   const turnBothWays = (grabbed: number, joint: number, knob: string) => {
     status(`${knob}, choosing what to hold`);
     kin.reset();
-    const worm = kin.holdWhatTheDragDoesntNeed(grabbed, () => kin.jointMotion(joint) !== null, joint);
+    kin.holdWhatTheDragDoesntNeed(grabbed, () => kin.jointMotion(joint) !== null, joint);
+    const worm = kin.againstWorm(grabbed, joint);
     const start = kin.snapshot();
     const plus = turnWay(joint, 1, knob);
     kin.restore(start);

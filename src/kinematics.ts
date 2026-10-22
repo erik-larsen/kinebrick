@@ -1024,6 +1024,23 @@ export class Kinematics {
     return possible;
   }
 
+  // Whether, with a drag's holds in place (see holdWhatTheDragDoesntNeed), its joint can't turn
+  // only because it would drive a worm from its gear's side: it could if those worms were let go.
+  // (A drag holds every such worm in the model, wherever it is, so that a worm is held tells
+  // nothing about this drag.)
+  againstWorm(grabbed: number, joint: number): boolean {
+    if (this.jointMotion(joint) !== null) return false;
+    const worms = this.wormsAgainst(grabbed);
+    if (worms.length === 0) return false;
+    const held = this.dragHeld;
+    this.dragHeld = new Set([...held].filter((b) => !worms.includes(b)));
+    try {
+      return this.jointMotion(joint) !== null;
+    } finally {
+      this.dragHeld = held;
+    }
+  }
+
   // The worms that a drag of `grabbed` would drive from the gear side. The worm's side is
   // everything geared to the worm without going through its worm mesh (a crank geared to the
   // worm's axle, say); a drag from anywhere else can only reach the worm through its gear.
