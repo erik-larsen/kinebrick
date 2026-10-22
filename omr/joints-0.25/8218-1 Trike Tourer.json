@@ -2,15 +2,11 @@
   "model": "8218-1 Trike Tourer",
   "reach": 0.25,
   "joints": [
-    {"joint":"p0 2994 in p8 32009","plus":{"turned":0.25,"moved":1,"bodies":{"p0 2994":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p0 2994":[0,14]}}},
+    {"joint":"p0 2994 in p8 32009","plus":{"turned":0.25,"moved":10,"bodies":{"p64 3705":[24,5],"p0 2994":[7,11],"frame":[12,5],"p13 3749":[9,5],"p14 3749":[7,5],"p10 3713":[6,5],"p22 2852":[2,5],"p46 2851":[1,5]}},"minus":{"turned":-0.25,"moved":10,"bodies":{"p64 3705":[24,5],"p0 2994":[7,11],"frame":[13,5],"p13 3749":[9,5],"p14 3749":[7,5],"p10 3713":[6,5],"p22 2852":[2,5],"p46 2851":[1,5]}}},
     {"joint":"p8 32009 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
     {"joint":"p10 3713 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p10 3713":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p10 3713":[0,14]}}},
     {"joint":"p13 3749 in p8 32009","plus":{"turned":0.25,"moved":1,"bodies":{"p13 3749":[2,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p13 3749":[2,14]}}},
     {"joint":"p14 3749 in p8 32009","plus":{"turned":0.25,"moved":1,"bodies":{"p14 3749":[2,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p14 3749":[2,14]}}},
-    {"joint":"p24 4274 in p8 32009","plus":{"turned":0.25,"moved":1,"bodies":{"p24 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p24 4274":[0,14]}}},
-    {"joint":"p27 4274 in p8 32009","plus":{"turned":0.25,"moved":1,"bodies":{"p27 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p27 4274":[0,14]}}},
-    {"joint":"p41 32002 in p8 32009","plus":{"turned":0.25,"moved":1,"bodies":{"p41 32002":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p41 32002":[0,14]}}},
-    {"joint":"p42 32002 in p8 32009","plus":{"turned":0.25,"moved":1,"bodies":{"p42 32002":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p42 32002":[0,14]}}},
     {"joint":"p64 3705 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p64 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p64 3705":[0,14]}}}
   ]
 }
