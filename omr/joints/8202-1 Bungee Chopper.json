@@ -1,0 +1,18 @@
+{
+  "model": "8202-1 Bungee Chopper",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p9 4519 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p9 4519":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p9 4519":[0,86]}}},
+    {"joint":"p10 4519 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p10 4519":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p10 4519":[0,86]}}},
+    {"joint":"p23 3706 in frame","plus":{"turned":1.5,"moved":3,"bodies":{"p23 3706":[0,86],"p50 3749":[17,35],"p45 32013":[9,14]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p23 3706":[0,86],"p50 3749":[36,46],"p45 32013":[19,29]}}},
+    {"joint":"p31 8202 - 57719 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p31 8202 - 57719":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p31 8202 - 57719":[0,86]}}},
+    {"joint":"p33 8202 - 57719 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p33 8202 - 57719":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p33 8202 - 57719":[0,86]}}},
+    {"joint":"p37 6587 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p37 6587":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p37 6587":[0,86]}}},
+    {"joint":"p40 4019 in frame","plus":{"turned":1.5,"moved":13,"bodies":{"p60 32062":[437,69],"p63 2815":[437,69],"p64 2815":[437,69],"p37 6587":[376,69],"p31 8202 - 57719":[269,69],"p33 8202 - 57719":[269,69],"p10 4519":[171,69],"frame":[148,69]}},"minus":{"turned":-1.5,"moved":13,"bodies":{"p63 2815":[390,58],"p60 32062":[390,58],"p64 2815":[390,58],"p37 6587":[336,58],"p33 8202 - 57719":[243,58],"p31 8202 - 57719":[243,58],"p10 4519":[154,58],"frame":[137,58]}}},
+    {"joint":"p45 32013 in frame","plus":{"turned":1.5,"moved":3,"bodies":{"p23 3706":[0,154],"p45 32013":[51,86],"p50 3749":[98,31]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p50 3749":[98,114],"p45 32013":[51,86],"p23 3706":[0,136]}}},
+    {"joint":"p50 3749 in p45 32013","plus":{"turned":1.5,"moved":3,"bodies":{"p50 3749":[66,31],"p23 3706":[0,90],"p45 32013":[34,55]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p23 3706":[0,149],"p50 3749":[35,114],"p45 32013":[18,28]}}},
+    {"joint":"p60 32062 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p60 32062":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p60 32062":[0,86]}}},
+    {"joint":"p63 2815 in p60 32062","plus":{"turned":1.5,"moved":1,"bodies":{"p63 2815":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p63 2815":[0,86]}}},
+    {"joint":"p64 2815 in p60 32062","plus":{"turned":1.5,"moved":1,"bodies":{"p64 2815":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p64 2815":[0,86]}}}
+  ]
+}
