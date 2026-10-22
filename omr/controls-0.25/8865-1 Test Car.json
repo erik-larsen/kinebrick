@@ -1,0 +1,15 @@
+{
+  "model": "8865-1 Test Car",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p178 3737 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p218 3712 in p361 3701","control":"wheel","plus":{"turned":0.25,"moved":125,"bodies":{"p150 4143":[27,14],"p218 3712":[26,14],"p221 3712":[26,14],"p146 3705":[26,14],"p144 3705":[26,14],"p149 73071":[26,14],"p167 3712":[26,14],"p164 3712":[26,14]}},"minus":{"turned":-0.25,"moved":125,"bodies":{"p218 3712":[26,14],"p221 3712":[26,14],"p144 3705":[26,14],"p149 73071":[26,14],"p146 3705":[26,14],"p167 3712":[26,14],"p164 3712":[26,14],"p150 4143":[26,14]}}},
+    {"joint":"p221 3712 in p377 3701","control":"wheel","plus":{"turned":0.25,"moved":125,"bodies":{"p150 4143":[27,14],"p221 3712":[26,14],"p218 3712":[26,14],"p144 3705":[26,14],"p146 3705":[26,14],"p149 73071":[26,14],"p164 3712":[26,14],"p167 3712":[26,14]}},"minus":{"turned":-0.25,"moved":125,"bodies":{"p144 3705":[26,14],"p146 3705":[26,14],"p149 73071":[26,14],"p218 3712":[26,14],"p221 3712":[26,14],"p167 3712":[26,14],"p164 3712":[26,14],"p150 4143":[26,14]}}},
+    {"joint":"p400 3707 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p427 3705 in p423 2737","control":"wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p427 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p427 3705":[0,14]}}},
+    {"joint":"p429 3705 in p424 2737","control":"wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p429 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p429 3705":[0,14]}}},
+    {"joint":"p511 3712 in frame","control":"steering wheel","plus":{"turned":0.25,"moved":14,"bodies":{"p458 3326b":[0,14],"p511 3712":[0,14],"p393 3706":[0,14],"p301 3707":[0,14],"p341 3705":[0,14],"p423 2737":[1,2],"p424 2737":[1,2],"p427 3705":[1,2]}},"minus":{"turned":-0.25,"moved":14,"bodies":{"p458 3326b":[0,14],"p511 3712":[0,14],"p393 3706":[0,14],"p301 3707":[0,14],"p341 3705":[0,14],"p424 2737":[1,2],"p423 2737":[1,2],"p429 3705":[1,2]}}},
+    {"joint":"p514 3708 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p519 3648a in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
