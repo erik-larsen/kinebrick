@@ -1,0 +1,13 @@
+{
+  "model": "8217-1 The Wasp",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p0 3707 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p0 3707":[0,86],"p17 3706":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p0 3707":[0,86],"p17 3706":[0,86]}}},
+    {"joint":"p17 3706 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p0 3707":[0,86],"p17 3706":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p0 3707":[0,86],"p17 3706":[0,86]}}},
+    {"joint":"p22 6536 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p22 6536":[27,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p22 6536":[27,86]}}},
+    {"joint":"p23 6536 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p23 6536":[27,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p23 6536":[27,86]}}},
+    {"joint":"p42 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p42 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p42 32054":[0,86]}}},
+    {"joint":"p43 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p43 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p43 32054":[0,86]}}},
+    {"joint":"p50 32017 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p50 32017":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p50 32017":[0,86]}}}
+  ]
+}
