@@ -1,0 +1,8 @@
+{
+  "model": "42058-1 Stunt Bike",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p16 55013 in frame","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p53 44294 in frame","control":"wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p53 44294":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p53 44294":[0,86]}}}
+  ]
+}
