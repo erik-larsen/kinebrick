@@ -1,0 +1,7 @@
+{
+  "model": "8204-1 Sky Flyer 1",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p12 32073 in frame","control":"wheel","plus":{"turned":0.25,"moved":4,"bodies":{"p12 32073":[3,9],"p23 4519":[5,6],"p8 32062":[3,6],"frame":[3,6]}},"minus":{"turned":-0.25,"moved":4,"bodies":{"p12 32073":[3,8],"p23 4519":[5,6],"p8 32062":[4,6],"frame":[3,6]}}}
+  ]
+}
