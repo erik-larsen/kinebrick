@@ -2,11 +2,11 @@
   "model": "8285-1 Tow Truck",
   "reach": 0.25,
   "joints": [
-    {"joint":"p125 32054 in frame","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p126 32054 in frame","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p610 3705 in frame","control":"24 tooth gear","plus":{"turned":0.25,"moved":1,"bodies":{"p610 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p610 3705":[0,14]}}},
-    {"joint":"p846 43093 in p832 41239","control":"steering wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p846 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p846 43093":[0,14]}}},
-    {"joint":"p1886 165 in frame","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p2140 32278 in frame","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+    {"joint":"p125 32054 in frame","control":"wheel","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p126 32054 in frame","control":"wheel","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p610 3705 in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0.25,"moved":1,"bodies":{"p610 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p610 3705":[0,14]}}},
+    {"joint":"p846 43093 in p832 41239","control":"steering wheel","worm":true,"plus":{"turned":0.25,"moved":1,"bodies":{"p846 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p846 43093":[0,14]}}},
+    {"joint":"p1886 165 in frame","control":"wheel","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p2140 32278 in frame","control":"wheel","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
   ]
 }
