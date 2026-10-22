@@ -1,0 +1,11 @@
+{
+  "model": "42099-1 4x4 X-treme Off-Roader",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p0 64179 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p18 99008 in p0 64179","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p463 99008 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p508 32073 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p1443 22961 in p196 u9218","control":"steering wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p1443 22961":[4,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p1443 22961":[4,14]}}}
+  ]
+}
