@@ -2,11 +2,11 @@
   "model": "8856-1 Whirlwind Rescue",
   "reach": 1.5,
   "joints": [
-    {"joint":"p0 4273a in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p1 4273a in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p56 3737 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p0 4273a in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p1 4273a in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p56 3737 in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
     {"joint":"p78 3705 in p79 4263","control":"wheel","plus":{"turned":1.5,"moved":61,"bodies":{"p78 3705":[30,56],"p79 4263":[18,30],"p82 4263":[18,30],"p7 3712":[18,2],"p398 3705":[18,2],"p8 3712":[16,2],"p77 3706":[14,2],"p429 3705":[13,2]}},"minus":{"turned":-0.55,"moved":59,"bodies":{"p78 3705":[12,22],"p79 4263":[7,10],"p82 4263":[7,10],"p107 3749":[2,3],"p113 3749":[2,3],"p77 3706":[2,0],"p149 8856 - 2901":[2,0],"p37 4273a":[2,0]}}},
-    {"joint":"p107 3749 in p103 4519","control":"wheel","plus":{"turned":1.5,"moved":61,"bodies":{"p113 3749":[47,88],"p107 3749":[47,88],"p79 4263":[36,30],"p82 4263":[36,30],"p78 3705":[22,40],"p7 3712":[59,2],"p398 3705":[59,2],"p261 3708":[59,2]}},"minus":{"turned":-1.5,"moved":61,"bodies":{"p107 3749":[46,86],"p113 3749":[46,86],"p82 4263":[33,26],"p79 4263":[33,26],"p78 3705":[19,35],"p149 8856 - 2901":[46,0],"p37 4273a":[46,0],"p103 4519":[46,0]}}},
+    {"joint":"p107 3749 in p103 4519","control":"wheel","plus":{"turned":1.5,"moved":61,"bodies":{"p107 3749":[47,88],"p113 3749":[47,88],"p82 4263":[36,30],"p79 4263":[36,30],"p78 3705":[22,40],"p7 3712":[59,2],"p398 3705":[59,2],"p261 3708":[59,2]}},"minus":{"turned":-1.5,"moved":61,"bodies":{"p107 3749":[46,86],"p113 3749":[46,86],"p79 4263":[33,26],"p82 4263":[33,26],"p78 3705":[19,35],"p149 8856 - 2901":[46,0],"p37 4273a":[46,0],"p103 4519":[46,0]}}},
     {"joint":"p113 3749 in p109 4519","control":"wheel","plus":{"turned":1.5,"moved":61,"bodies":{"p107 3749":[46,86],"p113 3749":[46,86],"p79 4263":[33,26],"p82 4263":[33,26],"p78 3705":[19,35],"p149 8856 - 2901":[46,0],"p37 4273a":[46,0],"p103 4519":[46,0]}},"minus":{"turned":-1.5,"moved":61,"bodies":{"p107 3749":[47,88],"p113 3749":[47,88],"p79 4263":[36,30],"p82 4263":[36,30],"p78 3705":[22,40],"p7 3712":[59,2],"p398 3705":[59,2],"p261 3708":[59,2]}}},
     {"joint":"p261 3708 in frame","control":"24 tooth gear","plus":{"turned":1.5,"moved":2,"bodies":{"p230 3706":[7,86],"p261 3708":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p230 3706":[7,86],"p261 3708":[0,86]}}}
   ]
