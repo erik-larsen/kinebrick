@@ -1,0 +1,14 @@
+{
+  "model": "8110-1 Mercedes-Benz Unimog U 400",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p327 3706 in p304 32526","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p626 92909 in p625 92908","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p648 92909 in p647 92908","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p956 4519 in p951 64179","control":"20 tooth gear","plus":{"turned":1.5,"moved":4,"bodies":{"p967 4519":[0,123],"p970 6589":[17,85],"p956 4519":[0,86],"p969 62821":[0,61]}},"minus":{"turned":-1.5,"moved":4,"bodies":{"p967 4519":[0,123],"p970 6589":[17,85],"p956 4519":[0,86],"p969 62821":[0,61]}}},
+    {"joint":"p1005 92909 in p1004 92908","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p1028 92909 in p1027 92908","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p1487 3705 in p1482 32034","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p1487 3705":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p1487 3705":[0,86]}}},
+    {"joint":"p1842 3749 in p1824 3894","control":"steering wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p1842 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p1842 3749":[0,86]}}}
+  ]
+}
