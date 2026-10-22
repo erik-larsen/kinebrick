@@ -1,0 +1,7 @@
+{
+  "model": "42045-1 Hydroplane Racer",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p39 4519 in frame","control":"24 tooth gear","plus":{"turned":1.5,"moved":2,"bodies":{"p6 87083":[0,102],"p39 4519":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p6 87083":[0,102],"p39 4519":[0,86]}}}
+  ]
+}
