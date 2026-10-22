@@ -2,7 +2,7 @@
   "model": "8208-1 Custom Cruiser",
   "reach": 0.25,
   "joints": [
-    {"joint":"p24 3705 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p24 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p24 3705":[0,14]}}},
-    {"joint":"p47 3705 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p47 3705":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p47 3705":[0,14]}}}
+    {"joint":"p24 3705 in frame","plus":{"turned":0.25,"moved":3,"bodies":{"p47 3705":[62,14],"frame":[32,14],"p24 3705":[9,3]}},"minus":{"turned":-0.25,"moved":3,"bodies":{"p47 3705":[60,13],"frame":[30,13],"p24 3705":[8,4]}}},
+    {"joint":"p47 3705 in frame","plus":{"turned":0.25,"moved":3,"bodies":{"p47 3705":[114,44],"frame":[63,32],"p24 3705":[21,32]}},"minus":{"turned":-0.25,"moved":3,"bodies":{"p47 3705":[132,81],"frame":[120,84],"p24 3705":[50,84]}}}
   ]
 }
