@@ -2,7 +2,9 @@
 
 ![LEGO set 956, Auto Chassis, from 1978, steered halfway to full lock with its rear axle kept turning at 10 rpm: the red, yellow and blue chassis drives round in a circle, its front wheels turned, its four-cylinder engine's pistons running and its rear tyres skidding round the bend](media/auto-chassis.webp)
 
-A web viewer that enables LEGO Technic models to move as they were designed. Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn. Various gears, axles, wheels, pistons, pulleys, etc. work properly now, with many more parts to be handled in the future.
+A web viewer that enables LEGO models to move as they were designed. Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn. Various gears, axles, wheels, pistons, pulleys, etc. work properly now, with many more parts to be handled in the future.
+
+Technic comes first, since its models are built to move. The long-term goal is any LEGO model with moving parts, such as Creator sets and trains.
 
 **KineBrick works all this out from the parts themselves, with no hand-made animation.**
 
@@ -178,6 +180,7 @@ A car with two fixed axles can't turn without its tyres sliding sideways, which 
 
 ### Later
 
+- **Beyond Technic.** Other LEGO lines with moving parts, such as Creator sets (hinges, turntables, wheels on plain bricks) and trains (bogies that swivel, wheels on rails).
 - **Marching ants for loose parts.** A loose part's own edge lines drawn dashed and crawling, on top of its red outline. Motion draws the eye, and it would only appear when something's wrong.
 - **Suggest a fix for a loose part.** For a part that isn't attached, find the nearest position where its anti-studs would land on studs, and suggest moving it there ("move 10 LDU along z to sit on the plate"). Suggest only; KineBrick doesn't edit models.
 
