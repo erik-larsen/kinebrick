@@ -1,0 +1,31 @@
+{
+  "model": "9391-1 Crawler Crane (Tracked Crane)",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p1 32556 in p0 32525","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p1 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p1 32556":[0,86]}}},
+    {"joint":"p2 32556 in p0 32525","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p2 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p2 32556":[0,86]}}},
+    {"joint":"p4 99010 in p3 99009","worm":true,"plus":{"turned":1.5,"moved":32,"bodies":{"p121 30395":[433,86],"p102 57779":[200,86],"p807 62462":[175,86],"p103 32002":[160,86],"p816 6141":[154,86],"p97 32525":[150,86],"p84 3749":[149,86],"p76 32000":[143,86]}},"minus":{"turned":-1.5,"moved":32,"bodies":{"p121 30395":[433,86],"p102 57779":[200,86],"p807 62462":[175,86],"p103 32002":[160,86],"p816 6141":[154,86],"p97 32525":[150,86],"p84 3749":[149,86],"p76 32000":[143,86]}}},
+    {"joint":"p6 3749 in frame","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p6 3749":[10,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p6 3749":[10,86]}}},
+    {"joint":"p7 3749 in frame","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p7 3749":[9,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p7 3749":[9,86]}}},
+    {"joint":"p8 32556 in frame","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p8 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p8 32556":[0,86]}}},
+    {"joint":"p9 32556 in frame","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p9 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p9 32556":[0,86]}}},
+    {"joint":"p17 32556 in p14 4519","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p17 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p17 32556":[0,86]}}},
+    {"joint":"p18 32556 in p14 4519","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p18 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p18 32556":[0,86]}}},
+    {"joint":"p19 3749 in p16 32525","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p19 3749":[10,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p19 3749":[10,86]}}},
+    {"joint":"p20 3749 in p16 32525","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p20 3749":[9,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p20 3749":[9,86]}}},
+    {"joint":"p24 55013 in p0 32525","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p24 55013":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p24 55013":[0,86]}}},
+    {"joint":"p33 32556 in p4 99010","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p33 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p33 32556":[0,86]}}},
+    {"joint":"p37 55013 in p42 42003","plus":{"turned":1.5,"moved":7,"bodies":{"p37 55013":[18,86],"p121 30395":[29,0],"p102 57779":[14,5],"p103 32002":[11,5],"p97 32525":[10,5],"p100 62462":[8,5],"p56 3706":[0,11]}},"minus":{"turned":-1.5,"moved":7,"bodies":{"p37 55013":[18,86],"p121 30395":[28,0],"p102 57779":[14,4],"p103 32002":[10,5],"p97 32525":[9,5],"p100 62462":[8,5],"p56 3706":[0,11]}}},
+    {"joint":"p65 32054 in p55 32524","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p65 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p65 32054":[0,86]}}},
+    {"joint":"p69 32054 in p32 32524","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p69 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p69 32054":[0,86]}}},
+    {"joint":"p74 32556 in p78 32140","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p74 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p74 32556":[0,86]}}},
+    {"joint":"p75 3749 in p42 42003","worm":true,"plus":{"turned":1.5,"moved":3,"bodies":{"p86 60485":[6,86],"p75 3749":[0,86],"p121 30395":[14,0]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p86 60485":[6,86],"p75 3749":[0,86],"p121 30395":[14,0]}}},
+    {"joint":"p83 87082 in p67 32526","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p83 87082":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p83 87082":[0,86]}}},
+    {"joint":"p86 60485 in p42 42003","worm":true,"plus":{"turned":1.5,"moved":3,"bodies":{"p86 60485":[6,86],"p75 3749":[0,86],"p121 30395":[14,0]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p86 60485":[6,86],"p75 3749":[0,86],"p121 30395":[14,0]}}},
+    {"joint":"p93 32556 in p78 32140","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p93 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p93 32556":[0,86]}}},
+    {"joint":"p100 62462 in p97 32525","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p100 62462":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p100 62462":[0,86]}}},
+    {"joint":"p112 87082 in p63 32526","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p112 87082":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p112 87082":[0,86]}}},
+    {"joint":"p807 62462 in p34 42003","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p807 62462":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p807 62462":[0,86]}}},
+    {"joint":"p816 6141 in p34 42003","worm":true,"plus":{"turned":1.5,"moved":1,"bodies":{"p816 6141":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p816 6141":[0,86]}}}
+  ]
+}
