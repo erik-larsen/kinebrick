@@ -1149,10 +1149,18 @@ function fixPins(connections: Connection[], roles: string[], frictionRigid: bool
 // side), or an axle stub or a pin fixed to a part at one end (a connector's axle, a crankshaft's;
 // a cross block's pins, a long pin's beyond its stop bush, an old steering arm's pivots), or a
 // bar (a beam's angled bar, a tile's bottom pin, a minifig's sword), which goes into a pin's
-// hollow or a bar hole. Studs, closed at one end too, have neither an axle's shape nor a pin's
-// collar or tip, and are wider than a bar, so they don't count.
+// hollow or a bar hole, or a wheel hub's boss (see isHubBoss). Studs, closed at one end too,
+// have neither an axle's shape nor a pin's collar or tip, are wider than a bar, and are a single
+// section, so they don't count.
 function goesInForTechnic(m: WorldCylinder): boolean {
-  return m.caps === 'none' || m.caps === 'two' || (closedAtOneEnd(m) && (m.secs.some((s) => s.shape === 'A') || hasPinCollar(m) || hasPinTip(m) || isBar(m)));
+  return m.caps === 'none' || m.caps === 'two' || (closedAtOneEnd(m) && (m.secs.some((s) => s.shape === 'A') || hasPinCollar(m) || hasPinTip(m) || isBar(m) || isHubBoss(m)));
+}
+
+// A wheel hub's boss, closed at its outer end: round, wider than a pin, in more than one
+// section (the hub with a brake disc, 35189, which turns in a steering bearing as the open
+// hub of a portal axle, 92909, does). A stud is a single section.
+function isHubBoss(m: WorldCylinder): boolean {
+  return m.secs.length > 1 && m.secs.every((s) => s.shape === 'R' || s.shape === 'L') && Math.max(...m.secs.map((s) => s.radius)) >= 9;
 }
 
 // A female connection point that takes Technic axles and pins: open at both ends, or an axle

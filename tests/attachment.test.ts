@@ -50,7 +50,7 @@ describe('a part that is in the wrong place', () => {
 });
 
 // Pairs of parts as real sets join them (from the OMR's: 42092, 42061, 42116, 42023, 42062,
-// 8845, 42099, 42110), read with the whole library's table, as a model opened from your own computer is.
+// 8845, 42099, 42110, 42083), read with the whole library's table, as a model opened from your own computer is.
 describe('parts joined in ways only real sets showed', () => {
   const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
   const loose = (text: string) => {
@@ -68,6 +68,7 @@ describe('parts joined in ways only real sets showed', () => {
     ['a rack with a beam under it, in its housing', '1 72 20 -210 -254 0 0 -1 0 1 0 1 0 0 18942.dat\n1 4 20 -190 -204 0 0 -1 0 1 0 1 0 0 18940.dat'],
     ["a portal axle's wheel hub, turning in a steering bearing with arms", '1 0 177.81 20.812 0 0 0 -1 0 1 0 1 0 0 23801.dat\n1 72 203.81 20.812 0 0 0 -1 0 1 0 1 0 0 92909.dat'],
     ["a rim with double spokes, on a portal axle's wheel hub's pins", '1 72 0 0 0 1 0 0 0 1 0 0 0 1 92909.dat\n1 0 0 0 0 1 0 0 0 1 0 0 0 1 49294.dat'],
+    ['a wheel hub with a brake disc, its boss closed at the end, turning in a steering bearing', '1 0 0 0 0 1 0 0 0 -1 0 0 0 -1 23801.dat\n1 72 0 0 30 1 0 0 0 -1 0 0 0 -1 35189.dat'],
   ];
   for (const [what, text] of pairs) it(what, () => expect(loose(text)).toEqual([]));
 
