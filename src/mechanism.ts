@@ -295,6 +295,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const bodies = nameBodies(bodyOf, roles);
   const joints = withoutSlidesOnCouplers(findJoints(connections, bodyOf));
   lineUpAxles(joints);
+  lineUpBalls(joints);
   const treads = findTreads(cyls, bodyOf);
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
@@ -1351,6 +1352,35 @@ function lineUpAxles(joints: Joint[]) {
     for (const end of [joint.from, joint.to]) {
       const along = new Vector3().subVectors(end, line.from).dot(line.dir);
       end.copy(line.from).addScaledVector(line.dir, along);
+    }
+  }
+}
+
+// A ball joint whose middle sits all but on an axis one of its bodies turns about (within
+// BALL_LINE of it, and no further along it than a stud past the turning joint's ends) is put on
+// that axis: a model built by hand may set a ball a fraction of an LDU off the axis of the part
+// it's socketed in (an official Unimog's driveshaft ends in a ball 0.23 LDU off its constant
+// velocity joint's axis), and as that part turned, the ball would go round its axis, which the
+// shaft, held at its other end, couldn't follow: the drivetrain locked after a step.
+export function lineUpBalls(joints: Joint[]) {
+  const BALL_LINE = 0.5; // LDU
+  const REACH = 20; // LDU
+  for (const ball of joints) {
+    if (ball.kind !== 'ball') continue;
+    let best: { at: Vector3; off: number } | null = null;
+    for (const j of joints) {
+      if (j.kind !== 'revolute' || ![j.bodyA, j.bodyB].some((b) => b === ball.bodyA || b === ball.bodyB)) continue;
+      const length = j.from.distanceTo(j.to);
+      const dir = new Vector3().subVectors(j.to, j.from).normalize();
+      const rel = new Vector3().subVectors(ball.from, j.from);
+      const along = rel.dot(dir);
+      const off = rel.addScaledVector(dir, -along).length();
+      if (along < -REACH || along > length + REACH || off < 1e-9 || off >= BALL_LINE || (best && off >= best.off)) continue;
+      best = { at: j.from.clone().addScaledVector(dir, along), off };
+    }
+    if (best) {
+      ball.from.copy(best.at);
+      ball.to.copy(best.at);
     }
   }
 }
