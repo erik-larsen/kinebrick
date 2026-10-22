@@ -1,0 +1,32 @@
+{
+  "model": "42131-1 Cat D11 Bulldozer",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p4126 15462 in p4127 42003","control":"20 tooth gear","plus":{"turned":1.5,"moved":10,"bodies":{"p4126 15462":[13,86],"p4142 42003":[22,14],"p4157 11214":[23,8],"p4158 18654":[22,8],"p4127 42003":[9,14],"p4116 47157":[10,8],"p4149 18654":[9,8],"p3934 99010":[7,8]}},"minus":{"turned":-1.5,"moved":10,"bodies":{"p4126 15462":[10,86],"p4142 42003":[17,11],"p4157 11214":[18,6],"p4158 18654":[17,6],"p4127 42003":[7,11],"p4116 47157":[8,6],"p4149 18654":[7,6],"p3934 99010":[6,6]}}},
+    {"joint":"p4201 15462 in p4202 42003","control":"20 tooth gear","plus":{"turned":1.5,"moved":10,"bodies":{"p4201 15462":[9,86],"p4217 42003":[17,11],"p4232 11214":[18,6],"p4233 18654":[17,6],"p4202 42003":[7,11],"p4191 47157":[8,6],"p4224 18654":[7,6],"p3932 99010":[6,6]}},"minus":{"turned":-1.5,"moved":10,"bodies":{"p4201 15462":[12,86],"p4217 42003":[21,14],"p4232 11214":[23,8],"p4233 18654":[22,8],"p4202 42003":[9,14],"p4191 47157":[10,8],"p4224 18654":[9,8],"p3932 99010":[7,8]}}},
+    {"joint":"p4322 42610 in p4318 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4323 42610 in p4318 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4334 42610 in p4318 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4335 42610 in p4318 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4347 42610 in p4343 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4348 42610 in p4343 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4359 42610 in p4343 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4360 42610 in p4343 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4509 42610 in p4505 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4510 42610 in p4505 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4521 42610 in p4505 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4522 42610 in p4505 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4607 42610 in p4603 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4608 42610 in p4603 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4619 42610 in p4603 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4620 42610 in p4603 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4632 42610 in p4628 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4633 42610 in p4628 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4644 42610 in p4628 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4645 42610 in p4628 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4794 42610 in p4790 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4795 42610 in p4790 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4806 42610 in p4790 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p4807 42610 in p4790 32073","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
