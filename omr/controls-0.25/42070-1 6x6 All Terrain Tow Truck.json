@@ -1,0 +1,19 @@
+{
+  "model": "42070-1 6x6 All Terrain Tow Truck",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p5 3708 in p33 11214","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p56 55013 in p141 32278","control":"20 tooth gear","plus":{"turned":0.25,"moved":3,"bodies":{"p161 18946":[0,18],"p56 55013":[0,14],"p106 24316":[0,9]}},"minus":{"turned":-0.25,"moved":3,"bodies":{"p161 18946":[0,18],"p56 55013":[0,14],"p106 24316":[0,9]}}},
+    {"joint":"p384 3705 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p426 3706 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p524 92909 in p523 92908","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p542 92909 in p541 92908","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p771 3648b in p741 99009","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p780 3648b in p741 99009","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p861 3648b in p829 64179","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p870 3648b in p829 64179","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p1083 55013 in frame","control":"20 tooth gear","plus":{"turned":0.25,"moved":2,"bodies":{"p68 55013":[0,18],"p1083 55013":[0,14]}},"minus":{"turned":-0.25,"moved":2,"bodies":{"p68 55013":[0,18],"p1083 55013":[0,14]}}},
+    {"joint":"p1095 99008 in frame","control":"24 tooth gear","plus":{"turned":0.25,"moved":1,"bodies":{"p1095 99008":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p1095 99008":[0,14]}}},
+    {"joint":"p1543 43093 in frame","control":"steering wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p1543 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p1543 43093":[0,14]}}}
+  ]
+}
