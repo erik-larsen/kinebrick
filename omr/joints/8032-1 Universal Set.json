@@ -1,0 +1,12 @@
+{
+  "model": "8032-1 Universal Set",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p28 3736 in frame","plus":{"turned":1.5,"moved":8,"bodies":{"p28 3736":[10,86],"p35 3673":[25,49],"p44 3705":[21,12],"p66 4519":[16,12],"p42 3709b":[14,12],"p49 3749":[9,12],"p39 3749":[14,3],"p51 3706":[0,6]}},"minus":{"turned":-1.5,"moved":8,"bodies":{"p28 3736":[10,86],"p35 3673":[40,55],"p39 3749":[10,16],"p44 3705":[10,6],"p66 4519":[8,6],"p42 3709b":[7,6],"p49 3749":[5,6],"p51 3706":[0,3]}}},
+    {"joint":"p33 3707 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p33 3707":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p33 3707":[0,86]}}},
+    {"joint":"p44 3705 in p42 3709b","plus":{"turned":1.5,"moved":1,"bodies":{"p44 3705":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p44 3705":[0,86]}}},
+    {"joint":"p49 3749 in p42 3709b","plus":{"turned":1.5,"moved":1,"bodies":{"p49 3749":[51,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p49 3749":[51,86]}}},
+    {"joint":"p51 3706 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p51 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p51 3706":[0,86]}}},
+    {"joint":"p66 4519 in p42 3709b","plus":{"turned":1.5,"moved":1,"bodies":{"p66 4519":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p66 4519":[0,86]}}}
+  ]
+}
