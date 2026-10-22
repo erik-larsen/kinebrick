@@ -69,6 +69,18 @@ const MAX_TURN_STEP = 0.035;
 // How much faster the joints may turn in a drag's motion without the car moving on its
 // suspension than with it, for the motion without to be taken all the same (see jointMotion).
 const SUSPENSION_GAIN = 2;
+// Play. Real parts have a little of it, and a loop of rigid parts built to fit only as the model
+// was built (an upright on two towballs a hair further apart than the arms it hangs from) turns
+// on it. When nothing turns a joint exactly, a motion that opens the loops at most PLAY_RATE (LDU
+// per radian of the joint) is taken, and its steps may leave them at most PLAY apart (LDU) (see
+// playMotion). A turning row counts as how far it moves a point a stud (STUD, LDU) away, so it
+// compares with the rest.
+const PLAY_RATE = 1;
+const PLAY = 0.1;
+const STUD = 20;
+// How much the joints' turning counts against the loops' opening in choosing a motion that takes
+// up play: only enough to choose between motions that open them alike.
+const TIE_BREAK = 0.1;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
 const LOOP_TOLERANCE = 1e-11;
 // When solving for the free motions, an equation counts as already implied by the others if
@@ -173,6 +185,7 @@ export class Kinematics {
   // tie rod's socket on the ball), by that turning joint.
   private spinners: number[] = [];
   private choosingHolds = false; // while holdWhatTheDragDoesntNeed is at work (see jointMotion)
+  private played = false; // whether jointMotion's last motion took up play (see playMotion)
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
   // on that axis nearest the middle (model coordinates, at the start).
@@ -1142,13 +1155,16 @@ export class Kinematics {
   }
 
   // `weights`, if given, gets how much each row counts in closing loops (see DRIVE_WEIGHT).
-  private buildEquations(gaps: number[] | null, slip: Slip | null, skipTree = false, weights: number[] | null = null): Row[] {
+  // `play`, if given, gets for each row of a joint that closes a loop how much it counts in
+  // taking up play (1, or STUD for a turning row), and 0 for every other row (see playMotion).
+  private buildEquations(gaps: number[] | null, slip: Slip | null, skipTree = false, weights: number[] | null = null, play: number[] | null = null): Row[] {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
-    const add = (row: Row, gap = 0, weight = 1) => {
+    const add = (row: Row, gap = 0, weight = 1, playScale = 0) => {
       rows.push(row);
       gaps?.push(gap);
       weights?.push(weight);
+      play?.push(playScale);
     };
 
     const fixed = new Set([...this.frozen, ...this.dragHeld]);
@@ -1166,7 +1182,8 @@ export class Kinematics {
       const c = joint.from.clone().applyMatrix4(poseA);
       const d = joint.kind === 'ball' ? new Vector3(0, 1, 0) : axisOf(joint.from, joint.to).transformDirection(poseA);
       // How far the joint has come apart, if it's not in the tree (else it can't have).
-      const loose = gaps !== null && !this.inTree(index);
+      const closesLoop = !this.inTree(index);
+      const loose = gaps !== null && closesLoop;
       const gap = loose ? joint.from.clone().applyMatrix4(this.poses[joint.bodyB]).sub(c) : new Vector3();
       const twist = loose ? this.misalignment(joint) : new Vector3();
 
@@ -1176,7 +1193,7 @@ export class Kinematics {
           addPointVelocity(row, joint.bodyA, c, k, dir.getComponent(k));
           addPointVelocity(row, joint.bodyB, c, k, -dir.getComponent(k));
         }
-        add(row, gap.dot(dir));
+        add(row, gap.dot(dir), 1, closesLoop ? 1 : 0);
       };
       const turnRow = (dir: Vector3) => {
         const row = new Array(n).fill(0);
@@ -1184,7 +1201,7 @@ export class Kinematics {
           row[6 * joint.bodyA + k] += dir.getComponent(k);
           row[6 * joint.bodyB + k] -= dir.getComponent(k);
         }
-        add(row, -twist.dot(dir));
+        add(row, -twist.dot(dir), 1, closesLoop ? STUD : 0);
       };
       const xyz = [new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1)];
 
@@ -1790,6 +1807,7 @@ export class Kinematics {
         motion = this.jointMotion(joint);
       }
       if (!motion) break;
+      const played = this.played;
       const before = this.snapshot();
       const step = Math.abs(angle - turned) < Math.abs(full) ? angle - turned : full;
       // How far each joint should turn in the step, and how far it has.
@@ -1803,7 +1821,7 @@ export class Kinematics {
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);
-      if (gap > DEAD_POINT_GAP || predicted.some((p, k) => Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
+      if (gap > (played ? PLAY : DEAD_POINT_GAP) || predicted.some((p, k) => Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
         this.restore(before);
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
         // usual steps, it may go. Only those can tell a dead point.
@@ -1899,7 +1917,47 @@ export class Kinematics {
     const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size) : plain;
     const length = (z: number[]) => Math.hypot(...size(z));
     const z = plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
-    return z ? fromBasis(z, basis) : null;
+    this.played = false;
+    if (z) return fromBasis(z, basis);
+    const played = this.playMotion(rate, size);
+    this.played = played !== null;
+    return played ? fromBasis(played, basis) : null;
+  }
+
+  // A motion that turns the joint (at rate 1, by `rate`) when none does exactly, taking up play
+  // (see PLAY_RATE): of those that keep every other rule exactly (gears, tyres rolling and, more
+  // strictly than usual, neither scrubbing nor lifting, holds, universal joints), the one that opens the loops least (by the length of the loops' rows
+  // applied to it), the smallest (by `size`) only breaking ties, and taken only if it opens them
+  // at most PLAY_RATE. Null if there's none. (A loop that fits only as built moves exactly for a
+  // step, to first order, and not after: its rows, which repeat each other there, don't a hair
+  // further on.)
+  private playMotion(rate: (z: number[]) => number, size: (z: number[]) => number[]): number[] | null {
+    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
+    const play: number[] = [];
+    const basis = this.treeBasis();
+    const rows = inBasis(this.buildEquations(null, slip, true, null, play), basis);
+    const loops = rows.flatMap((row, i) => (play[i] ? [row.map((x) => x * play[i])] : []));
+    if (loops.length === 0) return null;
+    // Tyres on the ground neither scrub nor lift here, so taking up play never stands in for
+    // scrubbing more than allowed (a steered car that can't roll).
+    const firm = [...rows.filter((_, i) => !play[i]), ...inBasis([...slip.sideways, ...slip.lift], basis)];
+    const apply = (z: number[]) => loops.map((row) => row.reduce((sum, x, c) => sum + x * z[c], 0));
+    const motions = orthonormalize(nullSpace(firm, basis[0].length));
+    if (motions.length === 0) return null;
+    // The mix a of the motions with Σ a_k rate_k = 1 that makes aᵀ G a least, G holding how much
+    // each pair of them opens the loops together, and turns the joints together times TIE_BREAK²:
+    // a = G⁻¹ rates / (ratesᵀ G⁻¹ rates). (Not smallestTurning, which leaves out as no motion at
+    // all a way to move that costs next to nothing, as a loop that all but fits does.)
+    const cost = motions.map((m) => [...apply(m), ...size(m).map((x) => x * TIE_BREAK)]);
+    const gram = cost.map((a) => cost.map((b) => a.reduce((sum, x, i) => sum + x * b[i], 0)));
+    const rates = motions.map(rate);
+    const scale = Math.max(...gram.map((row, i) => row[i]));
+    if (!(scale > 0)) return null;
+    const mix = solveSymmetric(gram, rates, 1e-12 * scale);
+    const turns = mix.reduce((sum, a, k) => sum + a * rates[k], 0);
+    if (Math.abs(turns) < EPSILON) return null;
+    const z = combine(motions, mix.map((a) => a / turns));
+    return Math.hypot(...apply(z)) <= PLAY_RATE * Math.abs(rate(z)) ? z : null;
   }
 
   // The motion jointMotion chooses from these (orthonormal, in the tree basis's coordinates), by
