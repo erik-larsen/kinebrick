@@ -1,0 +1,14 @@
+{
+  "model": "42076-1 Hovercraft",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p29 3708 in frame","control":"wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p29 3708":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p29 3708":[0,86]}}},
+    {"joint":"p176 3706 in frame","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p176 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p176 3706":[0,86]}}},
+    {"joint":"p194 42610 in p191 32556","control":"wheel","plus":{"turned":1.5,"moved":110,"bodies":{"p195 42610":[32,84],"p194 42610":[32,84],"p536 3708":[37,2],"p18 4519":[36,2],"p510 32054":[36,2],"p511 32054":[36,2],"p578 62520":[32,5],"p569 62520":[32,5]}},"minus":{"turned":-1.5,"moved":110,"bodies":{"p195 42610":[32,84],"p194 42610":[32,84],"p536 3708":[37,2],"p18 4519":[36,2],"p510 32054":[35,2],"p511 32054":[35,2],"p243 32054":[34,2],"p244 32054":[34,2]}}},
+    {"joint":"p195 42610 in p192 32556","control":"wheel","plus":{"turned":1.5,"moved":110,"bodies":{"p194 42610":[32,84],"p195 42610":[32,84],"p536 3708":[37,2],"p18 4519":[36,2],"p510 32054":[35,2],"p511 32054":[35,2],"p243 32054":[34,2],"p244 32054":[34,2]}},"minus":{"turned":-1.5,"moved":110,"bodies":{"p194 42610":[32,84],"p195 42610":[32,84],"p536 3708":[37,2],"p18 4519":[36,2],"p510 32054":[36,2],"p511 32054":[36,2],"p578 62520":[32,5],"p569 62520":[32,5]}}},
+    {"joint":"p891 3749 in p865 3749","control":"wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p891 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p891 3749":[0,86]}}},
+    {"joint":"p892 3749 in p864 3749","control":"wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p892 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p892 3749":[0,86]}}},
+    {"joint":"p893 3749 in frame","control":"wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p893 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p893 3749":[0,86]}}},
+    {"joint":"p894 3749 in frame","control":"wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p894 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p894 3749":[0,86]}}}
+  ]
+}
