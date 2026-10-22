@@ -2,8 +2,8 @@
   "model": "8275-1 Motorized Bulldozer",
   "reach": 0.25,
   "joints": [
-    {"joint":"p11 3708 in frame","control":"20 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p613 3713 in frame","control":"20 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p1462 3708 in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+    {"joint":"p11 3708 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p613 3713 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p1462 3708 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
   ]
 }
