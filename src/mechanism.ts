@@ -293,7 +293,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
   const bodies = nameBodies(bodyOf, roles);
-  const joints = findJoints(connections, bodyOf);
+  const joints = withoutSlidesOnCouplers(findJoints(connections, bodyOf));
   lineUpAxles(joints);
   const treads = findTreads(cyls, bodyOf);
   const gears = findGears(cyls, bodyOf);
@@ -1291,6 +1291,42 @@ function axialOverlap(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANC
   const hi = Math.min(mLength, Math.max(along, fEnd));
   if (hi - lo < MIN_OVERLAP) return null;
   return { from: m.start.clone().addScaledVector(m.dir, lo), to: m.start.clone().addScaledVector(m.dir, hi) };
+}
+
+// A part pinned to two arms that turn on one body, all on parallel axes (a steering rack
+// pinned to both steering arms), is the coupler of a four-bar linkage: that sets its path, a
+// curve as the arms swing. So it doesn't also slide straight on that body, or on the frame, as
+// a plate on tiles under it, or a guide for a rack, would have it: the two together would only
+// fit as the model was built, and it would jam a step further on (the 8841 Dune Buggy's and the
+// 8063 Tractor's steering). Such slides are left out.
+export function withoutSlidesOnCouplers(joints: Joint[]): Joint[] {
+  const axis = (j: Joint) => new Vector3().subVectors(j.to, j.from).normalize();
+  const parallel = (a: Joint, b: Joint) => new Vector3().crossVectors(axis(a), axis(b)).length() < ANGLE_TOLERANCE;
+  const other = (j: Joint, body: number) => (j.bodyA === body ? j.bodyB : j.bodyA);
+  const pins = (body: number) => joints.filter((j) => j.kind === 'revolute' && (j.bodyA === body || j.bodyB === body));
+  // The bodies a part's four-bars turn on, if it's a coupler (never the frame).
+  const bases = (body: number): number[] => {
+    if (body === 0) return [];
+    const found: number[] = [];
+    const own = pins(body);
+    // What an arm turns on, about an axis parallel to the pin joining it to the part.
+    const turnsOn = (arm: number, pin: Joint) => pins(arm).filter((j) => j !== pin && other(j, arm) !== body && parallel(j, pin)).map((j) => other(j, arm));
+    own.forEach((a, i) => {
+      for (const b of own.slice(i + 1)) {
+        const [armA, armB] = [other(a, body), other(b, body)];
+        if (armA === armB || !parallel(a, b)) continue;
+        const onA = turnsOn(armA, a);
+        for (const g of turnsOn(armB, b)) if (g !== armA && g !== armB && onA.includes(g)) found.push(g);
+      }
+    });
+    return found;
+  };
+  return joints.filter((j) => {
+    if (j.kind !== 'slide' || j.turns) return true;
+    const onA = bases(j.bodyA);
+    const onB = bases(j.bodyB);
+    return !(onA.length && (j.bodyB === 0 || onA.includes(j.bodyB))) && !(onB.length && (j.bodyA === 0 || onB.includes(j.bodyA)));
+  });
 }
 
 // Turning joints whose axes are parallel and all but on one line (within AXLE_LINE) are put on

@@ -104,6 +104,7 @@ interface Slip {
   sideways: Row[]; // how fast each tyre scrubs sideways
   travel: Row[]; // how fast each tyre's hub travels along the way it rolls
   lift: Row[]; // how fast each tyre's contact point rises or sinks
+  rise: Row[]; // how fast the frame rises or sinks over each tyre's hub, on its suspension
 }
 
 export class Kinematics {
@@ -893,7 +894,7 @@ export class Kinematics {
       for (let i = 0; i < a.length; i++) sum += a[i] * b[i];
       return sum;
     };
-    const slip: Slip = { sideways: [], travel: [], lift: [] };
+    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
     const free = orthonormalize(nullSpace(inBasis(this.buildEquations(null, slip, true), basis), basis[0].length));
     // How fast each free motion turns the joint (see jointRate).
     const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
@@ -1290,8 +1291,14 @@ export class Kinematics {
       }
       if (slip) {
         if (tread.track === undefined) slip.sideways.push(along(p, sideways));
-        slip.travel.push(along(tread.center.clone().applyMatrix4(pose), forward));
+        slip.travel.push(along(hub, forward));
         slip.lift.push(along(p, DOWN));
+        const rise = new Array(n).fill(0);
+        for (let k = 0; k < 3; k++) {
+          addPointVelocity(rise, 0, hub, k, DOWN.getComponent(k));
+          addPointVelocity(rise, tread.body, hub, k, -DOWN.getComponent(k));
+        }
+        slip.rise.push(rise);
       } else {
         add(along(p, DOWN));
       }
@@ -1605,6 +1612,15 @@ export class Kinematics {
   // moves across the ground, so a wheel steered on a leaning pivot can turn. Rolling the car
   // counts that against the scrub allowance; a parked car's motions (steering) have only it
   // to keep to.
+  //
+  // A car moving on its suspension (its frame rising, sinking or tipping over its tyres, which
+  // rolling and steering hardly do, and sliding the car across doesn't at all) drags its tyres
+  // sideways, as its suspension arms swing its wheels out and in, and as its frame tips: they
+  // may scrub sideways as far as the frame rises or sinks over them, but not lift. At the moment
+  // its arms swing its wheels straight up and down (as a model is often built) it needn't scrub
+  // at all, but a step further on it does, the more the further: counted against how far the
+  // tyres roll, next to nothing, its suspension locked after one step (the 42000 Grand Prix
+  // Racer's wishbones).
   freeMotions(): number[][] {
     const basis = this.treeBasis();
     return this.freeMotionsInBasis().map((z) => fromBasis(z, basis));
@@ -1614,7 +1630,7 @@ export class Kinematics {
   // vector's: the basis is orthonormal, so lengths and angles there are the motions' own, and
   // only the motions a caller ends up with need turning back into motion vectors.
   private freeMotionsInBasis(): number[][] {
-    const slip: Slip = { sideways: [], travel: [], lift: [] };
+    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
     const n = 6 * this.bodyCount;
     const basis = this.treeBasis();
     const q = basis[0].length;
@@ -1622,27 +1638,19 @@ export class Kinematics {
     const motions = orthonormalize(nullSpace(rows, q));
     this.scrubNeeded = null;
     if (slip.sideways.length === 0 || motions.length === 0) return motions;
-    const [sideways, travel, lift] = [slip.sideways, slip.travel, slip.lift].map((r) => inBasis(r, basis));
+    const [sideways, travel, lift, rise] = [slip.sideways, slip.travel, slip.lift, slip.rise].map((r) => inBasis(r, basis));
     const frameStill = Array.from({ length: 6 }, (_, k) => {
       const row = new Array(n).fill(0);
       row[k] = 1;
       return row;
     });
     const parked = orthonormalize(nullSpace([...rows, ...inBasis(frameStill, basis)], q));
-    const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: lift, travel: [...travel, ...sideways], lift: [] }, LIFT)) : [];
+    const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: lift, travel: [...travel, ...sideways], lift: [], rise: [] }, LIFT)) : [];
     // The rest of the motions, with the parked ones taken out, judged as rolling. Taking them
     // out first keeps the two sets apart: joined afterwards, a rolling motion that's nearly a
     // parked one would leave a sliver that, scaled up, is a bogus motion (lifting the car).
     const rest = orthonormalize(
-      motions.map((m) => {
-        const u = m.slice();
-        for (const p of keptParked) {
-          let d = 0;
-          for (let i = 0; i < u.length; i++) d += u[i] * p[i];
-          for (let i = 0; i < u.length; i++) u[i] -= d * p[i];
-        }
-        return u;
-      }),
+      motions.map((m) => without(m, keptParked)),
       1e-6,
     );
     // Lift counts as scrub, LIFT of it as much as the usual allowance (however much more scrub
@@ -1650,7 +1658,17 @@ export class Kinematics {
     const usual = Math.min(this.scrub, DEFAULT_SCRUB);
     const liftAsScrub = lift.map((row) => row.map((x) => (x * usual) / LIFT));
     const needs = { least: 0 };
-    const rolling = rest.length ? leastScrub(rest, { sideways: [...sideways, ...liftAsScrub], travel, lift: [] }, this.scrub, usual, needs) : [];
+    const scrubbing: Slip = { sideways: [...sideways, ...liftAsScrub], travel, lift: [], rise: [] };
+    const rolling = rest.length ? leastScrub(rest, scrubbing, this.scrub, usual, needs) : [];
+    // And of the rest of them (with those taken out, as the parked ones were), the car moving
+    // on its suspension: those whose tyres rise or sink no more for how far they roll than
+    // rolling allows (so not at all, if they don't roll), and of those, the ones whose tyres
+    // scrub sideways no further than the frame rises or sinks over them (or than rolling
+    // allows, for how far they roll).
+    const left = orthonormalize(rest.map((m) => without(m, rolling)), 1e-6);
+    const grounded = left.length ? leastScrub(left, { sideways: lift, travel, lift: [], rise: [] }, LIFT * Math.max(1, this.scrub / usual)) : [];
+    const riseAsTravel = rise.map((row) => row.map((x) => x / usual));
+    if (grounded.length) rolling.push(...leastScrub(grounded, { ...scrubbing, travel: [...travel, ...riseAsTravel] }, this.scrub, usual, { least: 0 }, needs.least * needs.least));
     if (needs.least > this.scrub) this.scrubNeeded = needs.least;
     return orthonormalize([...keptParked, ...rolling]);
   }
@@ -2079,7 +2097,11 @@ function smallestTurning(motions: number[][], rate: (m: number[]) => number, siz
 //     otherwise couldn't, but not so that it may also roll in other ways that scrub more than
 //     needed (a steered car scrubbing straight on, rather than following its steering).
 // `needs.least` gets the least scrub any of them needs, as a fraction like `limit` (0 if none travels).
-function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit, needs = { least: 0 }): number[][] {
+// Given `rolling`, the least scrub (squared) rolling needs, worked out already, that decides
+// instead what's within `limit` (with the frame rising or sinking counted as travel, see
+// freeMotions, a car moving on its suspension needs none): if rolling needs more, the
+// directions within `usual` are kept all the same.
+function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit, needs = { least: 0 }, rolling?: number): number[][] {
   const k = motions.length;
   const dot = (a: number[], b: number[]) => a.reduce((sum, x, i) => sum + x * b[i], 0);
   // Each row applied to each motion: rows × k.
@@ -2118,12 +2140,24 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
   const { values: mv, vectors: mvecs } = symmetricEigen(leftGram);
   const least = Math.min(...mv);
   if (mv.length) needs.least = Math.sqrt(Math.max(0, least));
-  const threshold = least <= limit * limit ? Math.max(usual * usual, least) : -Infinity;
+  const needed = rolling ?? least;
+  const threshold = needed <= limit * limit ? Math.max(usual * usual, needed) : rolling === undefined ? -Infinity : usual * usual;
   mvecs.forEach((y, e) => {
     if (mv[e] <= threshold) kept.push(combine(best, y));
   });
 
   return orthonormalize(kept.map((a) => combine(motions, a)));
+}
+
+// A vector with its parts along each of some orthonormal vectors taken out.
+function without(vector: number[], orthonormal: number[][]): number[] {
+  const u = vector.slice();
+  for (const p of orthonormal) {
+    let d = 0;
+    for (let i = 0; i < u.length; i++) d += u[i] * p[i];
+    for (let i = 0; i < u.length; i++) u[i] -= d * p[i];
+  }
+  return u;
 }
 
 // The mix of `vectors` with these amounts.
