@@ -373,6 +373,11 @@
 0 // (its -y), which is the path a track of them runs round its wheels along.
 0 !KINEBRICK TRACK [depth=8]
 
+0 FILE 69910.dat
+0 // Technic Chain Tread 7 Wide with Cleat (the 42131 Cat D11's): its cleats reach 22 LDU out
+0 // beyond the line through its pins (its -y), measured from its shape.
+0 !KINEBRICK TRACK [depth=22]
+
 0 // Grooves.
 
 0 FILE 3145.dat

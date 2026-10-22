@@ -93,6 +93,7 @@ interface Way {
 interface JointFinding {
   joint: string; // bodyB's key "in" bodyA's key
   control?: string; // what kind of control it is, for the OMR's sets: "wheel", "steering wheel", "40 tooth gear"
+  worm?: boolean; // a turn of it would drive a worm from its gear's side, which it can't
   plus: Way;
   minus: Way;
 }
@@ -173,13 +174,13 @@ function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0
   const turnBothWays = (grabbed: number, joint: number, knob: string) => {
     status(`${knob}, choosing what to hold`);
     kin.reset();
-    kin.holdWhatTheDragDoesntNeed(grabbed, () => kin.jointMotion(joint) !== null, joint);
+    const worm = kin.holdWhatTheDragDoesntNeed(grabbed, () => kin.jointMotion(joint) !== null, joint);
     const start = kin.snapshot();
     const plus = turnWay(joint, 1, knob);
     kin.restore(start);
     const minus = turnWay(joint, -1, knob);
     kin.letGoAfterDrag();
-    return { plus, minus };
+    return { ...(worm ? { worm: true } : {}), plus, minus };
   };
 
   // The controls a person would use: a wheel with a tyre, a steering wheel, or a big gear that
@@ -307,10 +308,12 @@ function report(dir: string, filters: string[]) {
   }
   for (const b of baselines) {
     if (b.timedOut !== undefined && b.joints.length === 0) continue;
-    const locked = b.joints.filter((j) => j.plus.turned === 0 && j.minus.turned === 0);
-    const stops = b.joints.filter((j) => stuck(j.plus) && stuck(j.minus) && !locked.includes(j));
+    // Those that would drive a worm from its gear's side are as they should be: not counted as stuck.
+    const worm = b.joints.filter((j) => j.worm && stuck(j.plus) && stuck(j.minus));
+    const locked = b.joints.filter((j) => j.plus.turned === 0 && j.minus.turned === 0 && !worm.includes(j));
+    const stops = b.joints.filter((j) => stuck(j.plus) && stuck(j.minus) && !locked.includes(j) && !worm.includes(j));
     const oneWay = b.joints.filter((j) => stuck(j.plus) !== stuck(j.minus));
-    console.log(`${b.model}: ${b.joints.length} knobs; ${stops.length} stop after a little, ${oneWay.length} turn only one way, ${locked.length} can't move at all`);
+    console.log(`${b.model}: ${b.joints.length} knobs; ${stops.length} stop after a little, ${oneWay.length} turn only one way, ${locked.length} can't move at all${worm.length ? ` (and ${worm.length} against a worm, as they should be)` : ''}`);
     const what = (j: JointFinding) => (j.control ? `, a ${j.control}` : '');
     for (const j of stops) console.log(`  stops:    ${j.joint} (${j.plus.turned}, ${j.minus.turned}${what(j)})`);
     for (const j of oneWay) console.log(`  one way:  ${j.joint} (${j.plus.turned}, ${j.minus.turned}${what(j)})`);
@@ -369,7 +372,8 @@ async function main() {
   const statusDir = join(baselineDir, '.status');
   mkdirSync(statusDir, { recursive: true });
 
-  // A batch of a model's knobs (from up to to) in a process of its own; from = to = 0 just counts them.
+  // A batch of a model's knobs (from up to to) in a process of its own, which also counts them all
+  // (from = to = 0 only counts them).
   function probeInChild(file: string, state: Model, from: number, to: number): Promise<Baseline & { knobs: number }> {
     const job = { what: to > 0 ? `${state.model}, knobs ${from + 1} to ${to}` : `${state.model}, counting its knobs`, status: join(statusDir, `${state.model} ${from}-${to}.txt`), started: Date.now() };
     running.add(job);
@@ -476,8 +480,12 @@ async function main() {
         under.add(state);
         let count: Baseline & { knobs: number };
         counting++;
+        // The first batch too, while it's at it: each process works the mechanism out afresh,
+        // and most models have no more knobs than a batch. (Not one --resume has already.)
+        const firstDone = resume && existsSync(state.batchesDir) && readdirSync(state.batchesDir).some((f) => f.startsWith('0-'));
+        const first = firstDone ? 0 : BATCH;
         try {
-          count = await probeInChild(file, state, 0, 0);
+          count = await probeInChild(file, state, 0, first);
         } catch (err) {
           if (state.timedOut) timeOut(state);
           else {
@@ -493,7 +501,12 @@ async function main() {
         for (let from = 0; from < state.knobs; from += BATCH) {
           const to = Math.min(state.knobs, from + BATCH);
           const saved = join(state.batchesDir, `${from}-${to}.json`);
-          if (existsSync(saved)) {
+          if (from === 0 && first > 0) {
+            mkdirSync(state.batchesDir, { recursive: true });
+            writeFileSync(saved, JSON.stringify(count.joints));
+            state.found.push(...count.joints);
+            state.done += to - from;
+          } else if (existsSync(saved)) {
             state.found.push(...JSON.parse(readFileSync(saved, 'utf-8')));
             state.done += to - from;
           } else batches.push({ file, state, from, to });

@@ -613,7 +613,7 @@ function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[], joint
       const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints) ?? []);
       const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
       const carriers = path.points.map((point, index) => wheels.find((w) => w.point === index)?.body ?? bodyOf[nearestPart(point.center, parts, roles)]);
-      return { path, wheels, links, depth: table.tracks?.[path.skin]?.depth ?? null, carriers };
+      return { path, wheels, links, depth: table.tracks?.[libraryName(path.skin, table)]?.depth ?? null, carriers };
     });
 }
 

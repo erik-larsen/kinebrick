@@ -776,22 +776,25 @@ export class Kinematics {
     this.contactTreads = [];
     this.dragHeld = new Set(treads);
     this.heldToFrame = new Set();
-    let motions: number[][];
+    // The motions' bodies' turning only (see turningIn): that's all this needs of them.
+    let motions: Float64Array[];
     try {
-      motions = this.freeMotions();
+      const basis = this.treeBasis();
+      motions = this.freeMotionsInBasis().map((z) => this.turningIn(z, basis));
     } finally {
       [this.contactTreads, this.dragHeld, this.heldToFrame] = [contact, held, toFrame];
     }
+    const axes = this.jointAxes();
     // How fast each tyre turns about the upright against the frame, in each motion; those rows
     // made orthonormal.
-    const headings = orthonormalize(treads.map((b) => motions.map((m) => DOWN.x * (m[6 * b] - m[0]) + DOWN.y * (m[6 * b + 1] - m[1]) + DOWN.z * (m[6 * b + 2] - m[2]))));
+    const headings = orthonormalize(treads.map((b) => motions.map((w) => DOWN.x * (w[3 * b] - w[0]) + DOWN.y * (w[3 * b + 1] - w[1]) + DOWN.z * (w[3 * b + 2] - w[2]))));
     const steering = new Set<number>();
     if (headings.length === 0) return steering;
     for (const body of this.order) {
       const j = this.parentJoint[body];
       if (j < 0 || treads.includes(body)) continue;
       // How fast it turns in each motion: steering if that's all down to the tyres turning.
-      const rates = motions.map((m) => this.jointRate(m, j));
+      const rates = motions.map((w) => this.rateIn(w, axes, j));
       const size = Math.hypot(...rates);
       if (size < 1e-6) continue;
       const left = rates.slice();
@@ -1603,18 +1606,22 @@ export class Kinematics {
   // counts that against the scrub allowance; a parked car's motions (steering) have only it
   // to keep to.
   freeMotions(): number[][] {
+    const basis = this.treeBasis();
+    return this.freeMotionsInBasis().map((z) => fromBasis(z, basis));
+  }
+
+  // The free motions, in the tree basis's coordinates (see treeBasis), far fewer than a motion
+  // vector's: the basis is orthonormal, so lengths and angles there are the motions' own, and
+  // only the motions a caller ends up with need turning back into motion vectors.
+  private freeMotionsInBasis(): number[][] {
     const slip: Slip = { sideways: [], travel: [], lift: [] };
     const n = 6 * this.bodyCount;
-    // Worked out in the tree basis's coordinates (see treeBasis), far fewer than the motion
-    // vector's: the basis is orthonormal, so lengths and angles there are the motions' own, and
-    // only the motions found at the end need turning back into motion vectors.
     const basis = this.treeBasis();
     const q = basis[0].length;
-    const motionVectors = (zs: number[][]) => zs.map((z) => fromBasis(z, basis));
     const rows = inBasis(this.buildEquations(null, slip, true), basis);
     const motions = orthonormalize(nullSpace(rows, q));
     this.scrubNeeded = null;
-    if (slip.sideways.length === 0 || motions.length === 0) return motionVectors(motions);
+    if (slip.sideways.length === 0 || motions.length === 0) return motions;
     const [sideways, travel, lift] = [slip.sideways, slip.travel, slip.lift].map((r) => inBasis(r, basis));
     const frameStill = Array.from({ length: 6 }, (_, k) => {
       const row = new Array(n).fill(0);
@@ -1645,7 +1652,36 @@ export class Kinematics {
     const needs = { least: 0 };
     const rolling = rest.length ? leastScrub(rest, { sideways: [...sideways, ...liftAsScrub], travel, lift: [] }, this.scrub, usual, needs) : [];
     if (needs.least > this.scrub) this.scrubNeeded = needs.least;
-    return motionVectors(orthonormalize([...keptParked, ...rolling]));
+    return orthonormalize([...keptParked, ...rolling]);
+  }
+
+  // How fast each body turns (3 numbers per body) under a motion in the tree basis's coordinates
+  // (see freeMotionsInBasis), read off the basis's rows without making the whole motion vector.
+  private turningIn(z: number[], basis: number[][]): Float64Array {
+    const w = new Float64Array(3 * this.bodyCount);
+    for (let body = 0; body < this.bodyCount; body++) {
+      for (let k = 0; k < 3; k++) {
+        const row = basis[6 * body + k];
+        let sum = 0;
+        for (let c = 0; c < z.length; c++) sum += row[c] * z[c];
+        w[3 * body + k] = sum;
+      }
+    }
+    return w;
+  }
+
+  // How fast a joint turns, given how fast each body turns (see turningIn) and the joints' axes
+  // where they are now (see jointAxes).
+  private rateIn(w: Float64Array, axes: Vector3[], joint: number): number {
+    const j = this.mech.joints[joint];
+    const d = axes[joint];
+    const [a, b] = [3 * j.bodyA, 3 * j.bodyB];
+    return (w[b] - w[a]) * d.x + (w[b + 1] - w[a + 1]) * d.y + (w[b + 2] - w[a + 2]) * d.z;
+  }
+
+  // Each joint's axis where it is now.
+  private jointAxes(): Vector3[] {
+    return this.mech.joints.map((j) => axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]));
   }
 
   // How fast a point on a body moves under a motion vector.
@@ -1785,23 +1821,38 @@ export class Kinematics {
   // cost nothing, and could be mixed in any amount, wrecking the loops over a step (the 8448
   // Super Car's steering, once its tyres stood on the ground). Null if the joint can't turn.
   jointMotion(joint: number): number[] | null {
-    const all = this.freeMotions();
-    const rate = (m: number[]) => this.jointRate(m, joint);
+    // Chosen in the tree basis's coordinates (see freeMotionsInBasis), each motion's bodies'
+    // turning read off the basis's rows as they're needed, and only the motion chosen turned
+    // back into a motion vector: a big model has many free motions, most of them left out.
+    const basis = this.treeBasis();
+    const all = this.freeMotionsInBasis();
+    const turnings = new WeakMap<number[], Float64Array>();
+    const turning = (z: number[]) => {
+      let w = turnings.get(z);
+      if (!w) turnings.set(z, (w = this.turningIn(z, basis)));
+      return w;
+    };
+    const axes = this.jointAxes();
+    const rateOf = (z: number[], i: number) => this.rateIn(turning(z), axes, i);
+    const rate = (z: number[]) => rateOf(z, joint);
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.joint] : []))));
-    const size = (m: number[]) =>
+    const size = (z: number[]) =>
       this.mech.joints.flatMap((j, i) => {
         if (pulleys.has(i)) return [];
-        if (j.kind === 'revolute' || (j.kind === 'slide' && j.turns)) return [this.jointRate(m, i)];
+        if (j.kind === 'revolute' || (j.kind === 'slide' && j.turns)) return [rateOf(z, i)];
         if (j.kind !== 'ball') return [];
-        const a = 6 * j.bodyA;
-        const b = 6 * j.bodyB;
-        return [m[b] - m[a], m[b + 1] - m[a + 1], m[b + 2] - m[a + 2]];
+        const w = turning(z);
+        const [a, b] = [3 * j.bodyA, 3 * j.bodyB];
+        return [w[b] - w[a], w[b + 1] - w[a + 1], w[b + 2] - w[a + 2]];
       });
-    const still = this.frameStill(all);
+    const motion = (z: number[] | null) => (z ? fromBasis(z, basis) : null);
+    // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
+    const frameRows = [0, 1, 2, 3, 4, 5].map((k) => all.map((z) => z.reduce((sum, x, c) => sum + x * basis[k][c], 0)));
+    const still = all.length ? orthonormalize(nullSpace(frameRows, all.length).map((a) => combine(all, a))) : [];
     const parked = smallestTurning(still, rate, size);
-    if (!parked) return smallestTurning(all, rate, size);
+    if (!parked) return motion(smallestTurning(all, rate, size));
     const { bodyA, bodyB } = this.mech.joints[joint];
-    if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return parked;
+    if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return motion(parked);
     // The tyre's: of the motions that leave the frame where it is, the one way among them that
     // turns it is taken out (they're orthonormal, so that's the mix of them in proportion to how
     // fast each turns it), and the smallest of the rest that turns it, which rolls the car.
@@ -1819,7 +1870,7 @@ export class Kinematics {
       }),
       1e-6,
     );
-    return smallestTurning(rest, rate, size) ?? (this.choosingHolds ? null : parked);
+    return motion(smallestTurning(rest, rate, size) ?? (this.choosingHolds ? null : parked));
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
