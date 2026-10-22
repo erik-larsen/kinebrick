@@ -1,0 +1,11 @@
+{
+  "model": "42072-1 WHACK!",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p47 11214 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p47 11214":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p47 11214":[0,86]}}},
+    {"joint":"p49 32140 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p49 32140":[7,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p49 32140":[7,86]}}},
+    {"joint":"p71 3708 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p108 85959p01 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p108 85959p01":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p108 85959p01":[0,86]}}},
+    {"joint":"p109 85959p01 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p109 85959p01":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p109 85959p01":[0,86]}}}
+  ]
+}
