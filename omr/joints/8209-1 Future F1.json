@@ -1,0 +1,13 @@
+{
+  "model": "8209-1 Future F1",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p2 3749 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p2 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p2 3749":[0,86]}}},
+    {"joint":"p10 4255 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p10 4255":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p10 4255":[0,86]}}},
+    {"joint":"p11 4254 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p11 4254":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p11 4254":[0,86]}}},
+    {"joint":"p19 32073 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p23 32062 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p30 3749 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p30 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p30 3749":[0,86]}}},
+    {"joint":"p34 3706 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p34 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p34 3706":[0,86]}}}
+  ]
+}
