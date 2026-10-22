@@ -1,0 +1,8 @@
+{
+  "model": "8418-1 Mini Loader",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p20 3706 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p20 3706":[0,86],"p38 3706":[19,11]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p20 3706":[0,86],"p38 3706":[19,11]}}},
+    {"joint":"p38 3706 in frame","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
