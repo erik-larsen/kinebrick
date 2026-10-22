@@ -414,9 +414,17 @@ function fileCylinders(name: string): WorkingCylinder[] {
     // SNAP_SPH and other kinds aren't used yet.
   }
 
+  // A tyre or rim the corrections give no tyre seat (most of the library's): one measured from
+  // its shape.
+  const kind = wheelKind(name);
+  if (kind && !result.some((c) => c.secs.some((sec) => sec.shape === 'T'))) {
+    const seat = shapeSeat(name, kind);
+    if (seat) result.push({ ...seat, id: '', scaleRule: 'none', mirrorRule: 'cor' });
+  }
+
   // A tyre's tread, measured from its shape. Part of the tyre's own connection points, so a
   // file made of a wheel and its tyre (a shortcut) has the tread too.
-  if (roles[name] === 'tyre') {
+  if (roles[name] === 'tyre' || kind === 'tyre') {
     const seat = result.find((c) => c.gender === 'F' && c.secs.some((sec) => sec.shape === 'T'));
     if (seat) result.push({ ...treadCylinder(name, seat), id: '', scaleRule: 'none', mirrorRule: 'cor' });
     else console.warn(`${name}: tyre without a tyre seat in data/corrections.ldr`);
@@ -453,6 +461,55 @@ function collectVertices(name: string, tr: Transform, out: Vec3[]) {
       for (let i = 0; i + 2 < n.length; i += 3) out.push(applyTransform(tr, [n[i], n[i + 1], n[i + 2]]));
     }
   }
+}
+
+// What kind of wheel part a file is, by its title: a tyre ("Tyre 44/ 58 x 56 R Tractor"), a rim
+// ("Wheel Rim 8 x 18 with Deep Centre Groove", "Wheel 12 x 20 with Technic Axle Hole"), or
+// neither (a wheel cover, a subpart).
+function wheelKind(name: string): 'tyre' | 'rim' | null {
+  const title = (readLdrawFile(name) ?? '').split(/\r?\n/, 1)[0].replace(/^0\s+/, '');
+  if (/^=?Tyre\b/.test(title)) return 'tyre';
+  if (/^=?Wheel (Rim\b|\d)/.test(title)) return 'rim';
+  return null;
+}
+
+// A tyre seat measured from a tyre's or rim's shape: around the axis it's round about (the
+// coordinate axis it's thinnest along, through the middle of it), as long as the part is wide,
+// at a rim's largest radius (its flanges too) or a tyre's smallest (its bore). Measured on the
+// rims and tyres the corrections give seats, a rim reaches 2 to 14 LDU past its tyre's bore, so
+// a tyre fits any rim it's on that reaches its bore (see sectionFit in src/mechanism.ts). Null
+// for a part that isn't round.
+function shapeSeat(name: string, kind: 'tyre' | 'rim'): Cylinder | null {
+  const vertices: Vec3[] = [];
+  collectVertices(name, IDENTITY, vertices);
+  if (vertices.length === 0) return null;
+  const lo: Vec3 = [Infinity, Infinity, Infinity];
+  const hi: Vec3 = [-Infinity, -Infinity, -Infinity];
+  for (const v of vertices) {
+    for (let k = 0; k < 3; k++) {
+      lo[k] = Math.min(lo[k], v[k]);
+      hi[k] = Math.max(hi[k], v[k]);
+    }
+  }
+  const extent = [0, 1, 2].map((k) => hi[k] - lo[k]);
+  const axis = extent.indexOf(Math.min(...extent));
+  const [a, b] = [0, 1, 2].filter((k) => k !== axis);
+  if (Math.abs(extent[a] - extent[b]) > 2) return null;
+  const center: Vec3 = [0, 0, 0];
+  center[a] = (lo[a] + hi[a]) / 2;
+  center[b] = (lo[b] + hi[b]) / 2;
+  let smallest = Infinity;
+  let largest = 0;
+  for (const v of vertices) {
+    const r = Math.hypot(v[a] - center[a], v[b] - center[b]);
+    smallest = Math.min(smallest, r);
+    largest = Math.max(largest, r);
+  }
+  const start: Vec3 = [...center];
+  start[axis] = lo[axis];
+  const dir: Vec3 = [0, 0, 0];
+  dir[axis] = 1;
+  return { gender: kind === 'rim' ? 'M' : 'F', caps: 'none', start, dir, secs: [{ shape: 'T', radius: kind === 'rim' ? largest : smallest, length: extent[axis] }] };
 }
 
 // A tyre's tread: the cylinder around its seat axis that encloses the whole tyre. Its radius

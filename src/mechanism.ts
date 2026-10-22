@@ -28,6 +28,9 @@ const MESH_TOLERANCE = 2;
 // Teeth still overlap a tooth's depth (4 LDU, on the old 14 tooth bevel gear) apart: an
 // official model sets one of a pair 20 LDU from where the axles cross, the other at 17.
 const BEVEL_TOLERANCE = 3.5;
+// How far a rim may reach past its tyre's bore, in LDU: its flanges, either side of where the
+// tyre sits (14 LDU on the 8880 Super Car's rim, as measured from its shape).
+const RIM_FLANGE = 16;
 // How far a spur gear meshing with a crown gear may be from over its pitch circle, in LDU: the
 // crown teeth stand in a band across its face (from 26 to 33 LDU out on the 24 tooth crown gear,
 // round its 30 LDU pitch radius), and a spur gear over any of it engages (an official crane's
@@ -1036,7 +1039,9 @@ export function axesCrossing(pa: Vector3, da: Vector3, pb: Vector3, db: Vector3)
 function sectionFit(male: Section, female: Section): ConnectionKind | null {
   const same = Math.abs(male.radius - female.radius) < AXIS_TOLERANCE;
   if (male.shape === 'A' && female.shape === 'A' && same) return 'rigid'; // axle in axle hole
-  if (male.shape === 'T' && female.shape === 'T' && same) return 'rigid'; // tyre on rim
+  // Tyre on rim: a seat measured from their shapes is at the rim's largest radius, which may reach
+  // past the tyre's bore by a flange's height (see shapeSeat in scripts/build-connections.ts).
+  if (male.shape === 'T' && female.shape === 'T' && female.radius < male.radius + AXIS_TOLERANCE && male.radius < female.radius + RIM_FLANGE) return 'rigid';
   if (male.shape === 'K' && female.shape === 'K' && same) return 'rigid'; // driving ring in a clutch gear
   if (male.shape === 'A' && female.shape === 'R' && same) return 'revolute'; // axle in round hole
   if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole

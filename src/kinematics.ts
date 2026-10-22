@@ -165,6 +165,10 @@ export class Kinematics {
   private contactHeights: number[] = []; // for each tyre, where it touched the ground at the start (LDraw y)
   // Bodies held only by a ball joint at each end (a steering link), and those two joints.
   private links: { body: number; balls: [number, number] }[] = [];
+  // Bodies held only by a turning joint and a ball on its axis (a towball in a steering rack, its
+  // tie rod's socket on the ball), by that turning joint.
+  private spinners: number[] = [];
+  private choosingHolds = false; // while holdWhatTheDragDoesntNeed is at work (see jointMotion)
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
   // on that axis nearest the middle (model coordinates, at the start).
@@ -293,6 +297,16 @@ export class Kinematics {
       const geared = this.mech.gears.some((g) => g.body === body);
       const tyred = this.mech.treads.some((t) => t.body === body);
       if (joints.length === 2 && balls.length === 2 && !geared && !tyred) this.links.push({ body, balls: [balls[0], balls[1]] });
+      // Nor could one joined only by a turning joint and a ball on that joint's axis spin about
+      // it (the 8448 Super Car's towballs, in its steering rack): equations() keeps that joint
+      // still.
+      const turning = joints.filter((i) => this.mech.joints[i].kind === 'revolute');
+      if (joints.length === 2 && balls.length === 1 && turning.length === 1 && !geared && !tyred) {
+        const j = this.mech.joints[turning[0]];
+        const d = axisOf(j.from, j.to);
+        const off = new Vector3().subVectors(this.mech.joints[balls[0]].from, j.from);
+        if (off.addScaledVector(d, -off.dot(d)).length() < 1) this.spinners.push(turning[0]);
+      }
     }
   }
 
@@ -710,6 +724,15 @@ export class Kinematics {
   // (see quickTest), and only the holds it ends up with are checked with `stillPossible`. If
   // they leave the drag impossible after all, as many of them are kept as it allows.
   holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean, joint = -1): boolean {
+    this.choosingHolds = true;
+    try {
+      return this.chooseDragHolds(grabbed, stillPossible, joint);
+    } finally {
+      this.choosingHolds = false;
+    }
+  }
+
+  private chooseDragHolds(grabbed: number, stillPossible: () => boolean, joint: number): boolean {
     this.dragHeld.clear();
     this.heldToFrame.clear();
     const worms = this.wormsAgainst(grabbed);
@@ -1177,6 +1200,18 @@ export class Kinematics {
         }
       }
       add(row, 0, DRIVE_WEIGHT);
+    }
+
+    // A towball and the like (see findLinks) doesn't spin on its axis.
+    for (const j of this.spinners) {
+      const joint = this.mech.joints[j];
+      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+      const row = new Array(n).fill(0);
+      for (let k = 0; k < 3; k++) {
+        row[6 * joint.bodyB + k] += d.getComponent(k);
+        row[6 * joint.bodyA + k] -= d.getComponent(k);
+      }
+      add(row);
     }
 
     // A link between two balls turns about its length as the bodies at its ends do, on average.
@@ -1732,20 +1767,59 @@ export class Kinematics {
   // The motion vector that turns a joint at rate 1 (one radian per unit), with the rest of
   // the mechanism following. If the joint can turn with the frame standing still, it does
   // (turning a steering wheel turns the front axle without rolling the car); otherwise the
-  // frame moves too. Among the motions that qualify, it picks the smallest, measured by how
+  // frame moves too. A tyre on the ground turning on its axle rolls the car, though, rather than,
+  // where the suspension lets it, steering its wheel round it with the car standing still (the
+  // 8448 Super Car's front wheels, whose steering arms swing on their suspension, there being no
+  // springs yet): if it could do that, that way is taken out of the motions it chooses from. Only
+  // if that leaves none does it turn with the car standing still, as it may at a moment a steered
+  // car can't roll on; and not at all while a drag's holds are being chosen, so that nothing the
+  // car needs to roll gets held. Among the motions that qualify, it picks the smallest, measured by how
   // fast the joints turn, and nothing else: measured by how fast the bodies move, it would nudge
   // a linkage nobody asked to move (a bulldozer's bucket arm) against the way the whole model
   // turns, to make that a little smaller, and step after step the linkage would drift; and a
   // body with a position of its own (a crane's hook) moves only as it must, rather than other
   // joints turning (the crane slewing) to spare it. The pulleys a string turns don't count
-  // either, for the same reason. Null if the joint can't turn.
+  // either, for the same reason. Every joint's turning counts, a ball joint's (each way) and a
+  // part's turning as it slides on an axle too: otherwise a part free to spin without moving
+  // anything else (a steering rack in its round guide, its tie rods on their ball joints) would
+  // cost nothing, and could be mixed in any amount, wrecking the loops over a step (the 8448
+  // Super Car's steering, once its tyres stood on the ground). Null if the joint can't turn.
   jointMotion(joint: number): number[] | null {
     const all = this.freeMotions();
     const rate = (m: number[]) => this.jointRate(m, joint);
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.joint] : []))));
     const size = (m: number[]) =>
-      this.mech.joints.flatMap((j, i) => (pulleys.has(i) ? [] : j.kind === 'revolute' ? [this.jointRate(m, i)] : []));
-    return smallestTurning(this.frameStill(all), rate, size) ?? smallestTurning(all, rate, size);
+      this.mech.joints.flatMap((j, i) => {
+        if (pulleys.has(i)) return [];
+        if (j.kind === 'revolute' || (j.kind === 'slide' && j.turns)) return [this.jointRate(m, i)];
+        if (j.kind !== 'ball') return [];
+        const a = 6 * j.bodyA;
+        const b = 6 * j.bodyB;
+        return [m[b] - m[a], m[b + 1] - m[a + 1], m[b + 2] - m[a + 2]];
+      });
+    const still = this.frameStill(all);
+    const parked = smallestTurning(still, rate, size);
+    if (!parked) return smallestTurning(all, rate, size);
+    const { bodyA, bodyB } = this.mech.joints[joint];
+    if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return parked;
+    // The tyre's: of the motions that leave the frame where it is, the one way among them that
+    // turns it is taken out (they're orthonormal, so that's the mix of them in proportion to how
+    // fast each turns it), and the smallest of the rest that turns it, which rolls the car.
+    const rates = still.map(rate);
+    const turns = orthonormalize([combine(still, rates)]);
+    const rest = orthonormalize(
+      all.map((m) => {
+        const u = m.slice();
+        for (const g of turns) {
+          let d = 0;
+          for (let i = 0; i < u.length; i++) d += u[i] * g[i];
+          for (let i = 0; i < u.length; i++) u[i] -= d * g[i];
+        }
+        return u;
+      }),
+      1e-6,
+    );
+    return smallestTurning(rest, rate, size) ?? (this.choosingHolds ? null : parked);
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when

@@ -68,4 +68,14 @@ describe('parts joined in ways only real sets showed', () => {
     ['a rack with a beam under it, in its housing', '1 72 20 -210 -254 0 0 -1 0 1 0 1 0 0 18942.dat\n1 4 20 -190 -204 0 0 -1 0 1 0 1 0 0 18940.dat'],
   ];
   for (const [what, text] of pairs) it(what, () => expect(loose(text)).toEqual([]));
+
+  it("a modern tyre, on its rim, both seats measured from the parts' shapes, and the tyre has its tread (42115)", () => {
+    const text = '1 82 -286.593 -54.118 -20 0 0 1 0 1 0 -1 0 0 68577.dat\n1 256 -261.407 -54.118 -20 0 0 -1 0 -1 0 -1 0 0 23799.dat';
+    const { parts } = parseModel(text);
+    const mech = inferMechanism(parts, library, roles);
+    expect(mech.loose).toEqual([]);
+    expect(mech.bodies).toHaveLength(1);
+    expect(mech.treads).toHaveLength(1);
+    expect(mech.treads[0].radius).toBeCloseTo(102, 0);
+  });
 });
