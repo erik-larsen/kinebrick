@@ -50,7 +50,7 @@ describe('a part that is in the wrong place', () => {
 });
 
 // Pairs of parts as real sets join them (from the OMR's: 42092, 42061, 42116, 42023, 42062,
-// 8845, 42099), read with the whole library's table, as a model opened from your own computer is.
+// 8845, 42099, 42110), read with the whole library's table, as a model opened from your own computer is.
 describe('parts joined in ways only real sets showed', () => {
   const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
   const loose = (text: string) => {
@@ -66,6 +66,8 @@ describe('parts joined in ways only real sets showed', () => {
     ["an old steering arm's pivot, in a Technic plate's hole", '1 7 -40 0.152 -271.736 -1 0 0 0 0.985 0.174 0 0.174 -0.985 4261.dat\n1 0 -10 23.787 -267.569 -1 0 0 0 0.985 0.174 0 0.174 -0.985 4263.dat'],
     ["a turntable's top, on its bottom", '1 0 0 -242.42 17.48 1 0 0 0 0.021 1 0 -1 0.021 18938.dat\n1 71 0 -242.42 17.48 1 0 0 0 0.021 1 0 -1 0.021 18939.dat'],
     ['a rack with a beam under it, in its housing', '1 72 20 -210 -254 0 0 -1 0 1 0 1 0 0 18942.dat\n1 4 20 -190 -204 0 0 -1 0 1 0 1 0 0 18940.dat'],
+    ["a portal axle's wheel hub, turning in a steering bearing with arms", '1 0 177.81 20.812 0 0 0 -1 0 1 0 1 0 0 23801.dat\n1 72 203.81 20.812 0 0 0 -1 0 1 0 1 0 0 92909.dat'],
+    ["a rim with double spokes, on a portal axle's wheel hub's pins", '1 72 0 0 0 1 0 0 0 1 0 0 0 1 92909.dat\n1 0 0 0 0 1 0 0 0 1 0 0 0 1 49294.dat'],
   ];
   for (const [what, text] of pairs) it(what, () => expect(loose(text)).toEqual([]));
 

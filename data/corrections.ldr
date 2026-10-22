@@ -366,6 +366,25 @@
 0 // Tyre 6/50 x 8 Offset Tread: sits on the small wheel centre (3464b)
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 10 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 // Portal axles and their wheels.
+
+0 FILE 23801.dat
+0 // Technic Steering Wheel Bearing with 2 Pegholes and 2 Slotted Axlehole Arms: the bore a
+0 // portal axle's wheel hub (92909) turns in, as in the bearings without arms (11949, 11950),
+0 // whose shadow lines give it; this one has no shadow file, and its shape the same bore.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 14 8   R 10 18   R 9 6] [pos=0 0 -30] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 49294.dat
+0 // Wheel Rim 34 x 56 with 6 Double Spokes and 6 Pegholes: its six pegholes, which a portal
+0 // axle's wheel hub's pins go into, measured from its shape (z from -10 to -30, 20 LDU out);
+0 // its peghole primitives give none, and it has no shadow file.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=0 20 -10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=17.321 10 -10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=17.321 -10 -10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=0 -20 -10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=-17.321 -10 -10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=-17.321 10 -10] [ori=1 0 0 0 0 -1 0 1 0]
+
 0 // Tracks.
 
 0 FILE 3873.dat
