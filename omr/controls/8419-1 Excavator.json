@@ -2,7 +2,7 @@
   "model": "8419-1 Excavator",
   "reach": 1.5,
   "joints": [
-    {"joint":"p158 4519 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p158 4519 in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
     {"joint":"p177 3737 in frame","control":"20 tooth gear","plus":{"turned":1.5,"moved":17,"bodies":{"p177 3737":[0,86],"p275 32556":[13,2],"p279 32525":[12,2],"p277 4519":[11,2],"p284 2950":[11,2],"p286 3706":[11,2],"p262 2825":[8,2],"p265 32524":[7,2]}},"minus":{"turned":-1.5,"moved":17,"bodies":{"p177 3737":[0,86],"p275 32556":[12,2],"p279 32525":[11,2],"p277 4519":[11,2],"p286 3706":[10,2],"p284 2950":[10,2],"p262 2825":[8,2],"p265 32524":[7,2]}}},
     {"joint":"p183 3749 in frame","control":"20 tooth gear","plus":{"turned":1.5,"moved":2,"bodies":{"p94 6538b":[0,107],"p183 3749":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p94 6538b":[0,107],"p183 3749":[0,86]}}}
   ]
