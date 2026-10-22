@@ -1,0 +1,7 @@
+{
+  "model": "42092-1 Rescue Helicopter",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p191 59426 in frame","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p191 59426":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p191 59426":[0,86]}}}
+  ]
+}
