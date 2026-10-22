@@ -1,0 +1,8 @@
+{
+  "model": "42094-1 Tracked Loader",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p54 87407 in p51 44294","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p54 87407":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p54 87407":[0,86]}}},
+    {"joint":"p58 4519 in frame","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p58 4519":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p58 4519":[0,86]}}}
+  ]
+}
