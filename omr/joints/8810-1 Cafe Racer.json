@@ -1,0 +1,19 @@
+{
+  "model": "8810-1 Cafe Racer",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p9 3673 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p15 4255 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p15 4255":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p15 4255":[0,86]}}},
+    {"joint":"p16 4254 in p21 3706","plus":{"turned":1.5,"moved":1,"bodies":{"p16 4254":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p16 4254":[0,86]}}},
+    {"joint":"p17 4255 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p17 4255":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p17 4255":[0,86]}}},
+    {"joint":"p18 4254 in p21 3706","plus":{"turned":1.5,"moved":1,"bodies":{"p18 4254":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p18 4254":[0,86]}}},
+    {"joint":"p21 3706 in p32 4262","plus":{"turned":1.5,"moved":1,"bodies":{"p21 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p21 3706":[0,86]}}},
+    {"joint":"p23 3706 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p23 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p23 3706":[0,86]}}},
+    {"joint":"p26 2695 in p21 3706","plus":{"turned":1.5,"moved":19,"bodies":{"p70 4273a":[266,76],"p69 4273a":[262,76],"p41 3176":[227,76],"p39 3705":[201,76],"p60 3707":[199,76],"p57 3707":[198,76],"p17 4255":[192,76],"frame":[179,76]}},"minus":{"turned":-1.5,"moved":19,"bodies":{"p26 2695":[56,60],"p15 4255":[82,15],"p69 4273a":[80,15],"p70 4273a":[79,15],"p17 4255":[78,15],"frame":[78,15],"p41 3176":[70,15],"p16 4254":[57,28]}}},
+    {"joint":"p39 3705 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p39 3705":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p39 3705":[0,86]}}},
+    {"joint":"p41 3176 in p39 3705","plus":{"turned":1.5,"moved":1,"bodies":{"p39 3705":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p39 3705":[0,86]}}},
+    {"joint":"p53 2695 in p55 3705","plus":{"turned":1.5,"moved":19,"bodies":{"p70 4273a":[159,45],"p69 4273a":[157,45],"p17 4255":[142,45],"frame":[132,45],"p41 3176":[131,45],"p15 4255":[131,45],"p39 3705":[123,45],"p60 3707":[118,45]}},"minus":{"turned":-1.5,"moved":19,"bodies":{"p70 4273a":[297,98],"p69 4273a":[296,98],"p41 3176":[250,98],"p39 3705":[218,98],"p57 3707":[216,98],"p60 3707":[214,98],"p17 4255":[204,98],"p15 4255":[196,98]}}},
+    {"joint":"p69 4273a in p57 3707","plus":{"turned":1.5,"moved":1,"bodies":{"p69 4273a":[34,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p69 4273a":[34,86]}}},
+    {"joint":"p70 4273a in p60 3707","plus":{"turned":1.5,"moved":1,"bodies":{"p70 4273a":[34,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p70 4273a":[34,86]}}}
+  ]
+}
