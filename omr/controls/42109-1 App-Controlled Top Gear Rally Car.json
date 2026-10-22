@@ -1,0 +1,8 @@
+{
+  "model": "42109-1 App-Controlled Top Gear Rally Car",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p671 87083 in p670 48989","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p675 87083 in p674 48989","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
