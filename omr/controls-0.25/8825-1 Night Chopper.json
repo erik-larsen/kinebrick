@@ -1,0 +1,7 @@
+{
+  "model": "8825-1 Night Chopper",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p30 3737 in frame","control":"24 tooth gear","plus":{"turned":0.25,"moved":1,"bodies":{"p30 3737":[1,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p30 3737":[1,14]}}}
+  ]
+}
