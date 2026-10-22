@@ -66,6 +66,9 @@ const DEAD_POINT_GAP = 1e-3;
 const DRIVE_WEIGHT = 1000;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
+// How much faster the joints may turn in a drag's motion without the car moving on its
+// suspension than with it, for the motion without to be taken all the same (see jointMotion).
+const SUSPENSION_GAIN = 2;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
 const LOOP_TOLERANCE = 1e-11;
 // When solving for the free motions, an equation counts as already implied by the others if
@@ -1647,6 +1650,13 @@ export class Kinematics {
   // vector's: the basis is orthonormal, so lengths and angles there are the motions' own, and
   // only the motions a caller ends up with need turning back into motion vectors.
   private freeMotionsInBasis(): number[][] {
+    const [usual, suspension] = this.freeMotionsApart();
+    return orthonormalize([...usual, ...suspension]);
+  }
+
+  // The free motions (see freeMotionsInBasis) in two lots: the car moving on its suspension,
+  // and all the others, orthogonal to those.
+  private freeMotionsApart(): [number[][], number[][]] {
     const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
     const n = 6 * this.bodyCount;
     const basis = this.treeBasis();
@@ -1654,7 +1664,7 @@ export class Kinematics {
     const rows = inBasis(this.buildEquations(null, slip, true), basis);
     const motions = orthonormalize(nullSpace(rows, q));
     this.scrubNeeded = null;
-    if (slip.sideways.length === 0 || motions.length === 0) return motions;
+    if (slip.sideways.length === 0 || motions.length === 0) return [motions, []];
     const [sideways, travel, lift, rise] = [slip.sideways, slip.travel, slip.lift, slip.rise].map((r) => inBasis(r, basis));
     const frameStill = Array.from({ length: 6 }, (_, k) => {
       const row = new Array(n).fill(0);
@@ -1685,9 +1695,9 @@ export class Kinematics {
     const left = orthonormalize(rest.map((m) => without(m, rolling)), 1e-6);
     const grounded = left.length ? leastScrub(left, { sideways: lift, travel, lift: [], rise: [] }, LIFT * Math.max(1, this.scrub / usual)) : [];
     const riseAsTravel = rise.map((row) => row.map((x) => x / usual));
-    if (grounded.length) rolling.push(...leastScrub(grounded, { ...scrubbing, travel: [...travel, ...riseAsTravel] }, this.scrub, usual, { least: 0 }, needs.least * needs.least));
+    const suspension = grounded.length ? leastScrub(grounded, { ...scrubbing, travel: [...travel, ...riseAsTravel] }, this.scrub, usual, { least: 0 }, needs.least * needs.least) : [];
     if (needs.least > this.scrub) this.scrubNeeded = needs.least;
-    return orthonormalize([...keptParked, ...rolling]);
+    return [orthonormalize([...keptParked, ...rolling]), suspension];
   }
 
   // How fast each body turns (3 numbers per body) under a motion in the tree basis's coordinates
@@ -1860,7 +1870,7 @@ export class Kinematics {
     // turning read off the basis's rows as they're needed, and only the motion chosen turned
     // back into a motion vector: a big model has many free motions, most of them left out.
     const basis = this.treeBasis();
-    const all = this.freeMotionsInBasis();
+    const [usual, suspension] = this.freeMotionsApart();
     const turnings = new WeakMap<number[], Float64Array>();
     const turning = (z: number[]) => {
       let w = turnings.get(z);
@@ -1880,14 +1890,29 @@ export class Kinematics {
         const [a, b] = [3 * j.bodyA, 3 * j.bodyB];
         return [w[b] - w[a], w[b + 1] - w[a + 1], w[b + 2] - w[a + 2]];
       });
-    const motion = (z: number[] | null) => (z ? fromBasis(z, basis) : null);
+    // The car moves on its suspension only if nothing else turns the joint without turning the
+    // joints SUSPENSION_GAIN times as fast or more (where the only way is a hair of rolling, scaled
+    // up, as for the arm a wheel hangs on): rolling, it would mix in a little of its suspension
+    // to turn the other joints a little less, a motion that, closing the loops, can jump far from
+    // where it had them going (the 41999 Crawler's portal hubs, stopped as at a dead point).
+    const plain = this.chooseMotion(joint, usual, rate, size);
+    const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size) : plain;
+    const length = (z: number[]) => Math.hypot(...size(z));
+    const z = plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
+    return z ? fromBasis(z, basis) : null;
+  }
+
+  // The motion jointMotion chooses from these (orthonormal, in the tree basis's coordinates), by
+  // how fast each turns the joint (`rate`) and all the joints (`size`).
+  private chooseMotion(joint: number, all: number[][], rate: (z: number[]) => number, size: (z: number[]) => number[]): number[] | null {
+    const basis = this.treeBasis();
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
     const frameRows = [0, 1, 2, 3, 4, 5].map((k) => all.map((z) => z.reduce((sum, x, c) => sum + x * basis[k][c], 0)));
     const still = all.length ? orthonormalize(nullSpace(frameRows, all.length).map((a) => combine(all, a))) : [];
     const parked = smallestTurning(still, rate, size);
-    if (!parked) return motion(smallestTurning(all, rate, size));
+    if (!parked) return smallestTurning(all, rate, size);
     const { bodyA, bodyB } = this.mech.joints[joint];
-    if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return motion(parked);
+    if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return parked;
     // The tyre's: of the motions that leave the frame where it is, the one way among them that
     // turns it is taken out (they're orthonormal, so that's the mix of them in proportion to how
     // fast each turns it), and the smallest of the rest that turns it, which rolls the car.
@@ -1905,7 +1930,7 @@ export class Kinematics {
       }),
       1e-6,
     );
-    return motion(smallestTurning(rest, rate, size) ?? (this.choosingHolds ? null : parked));
+    return smallestTurning(rest, rate, size) ?? (this.choosingHolds ? null : parked);
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
