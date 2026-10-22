@@ -1,0 +1,7 @@
+{
+  "model": "8208-1 Custom Cruiser",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p47 3705 in frame","control":"wheel","plus":{"turned":1.5,"moved":3,"bodies":{"p47 3705":[520,99],"frame":[284,170],"p24 3705":[96,170]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"frame":[111,75],"p24 3705":[109,75],"p47 3705":[58,95]}}}
+  ]
+}
