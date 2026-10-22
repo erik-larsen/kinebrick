@@ -1,0 +1,21 @@
+{
+  "model": "42045-1 Hydroplane Racer",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p6 87083 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p6 87083":[0,86],"p39 4519":[0,29]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p6 87083":[0,86],"p39 4519":[0,29]}}},
+    {"joint":"p8 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p8 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p8 32054":[0,86]}}},
+    {"joint":"p9 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p9 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p9 32054":[0,86]}}},
+    {"joint":"p24 2853 in frame","plus":{"turned":1.5,"moved":9,"bodies":{"p24 2853":[0,86],"p35 2852":[14,14],"p25 2852":[14,14],"p37 2852":[14,14],"p33 2852":[14,14],"p38 2851":[11,0],"p34 2851":[11,0],"p26 2851":[8,0]}},"minus":{"turned":-1.5,"moved":9,"bodies":{"p24 2853":[0,86],"p35 2852":[14,14],"p25 2852":[14,14],"p37 2852":[14,14],"p33 2852":[14,14],"p38 2851":[11,0],"p34 2851":[11,0],"p26 2851":[8,0]}}},
+    {"joint":"p39 4519 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p6 87083":[0,102],"p39 4519":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p6 87083":[0,102],"p39 4519":[0,86]}}},
+    {"joint":"p90 18651 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p90 18651":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p90 18651":[0,86]}}},
+    {"joint":"p92 15462 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p92 15462":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p92 15462":[0,86]}}},
+    {"joint":"p94 2815 in p92 15462","plus":{"turned":1.5,"moved":1,"bodies":{"p94 2815":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p94 2815":[0,86]}}},
+    {"joint":"p99 2815 in p92 15462","plus":{"turned":1.5,"moved":1,"bodies":{"p99 2815":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p99 2815":[0,86]}}},
+    {"joint":"p108 32140 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p108 32140":[61,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p108 32140":[61,86]}}},
+    {"joint":"p121 62462 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p121 62462":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p121 62462":[0,86]}}},
+    {"joint":"p130 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p130 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p130 32054":[0,86]}}},
+    {"joint":"p131 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p131 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p131 32054":[0,86]}}},
+    {"joint":"p132 43093 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p132 43093":[22,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p132 43093":[22,86]}}},
+    {"joint":"p139 43093 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p139 43093":[22,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p139 43093":[22,86]}}}
+  ]
+}
