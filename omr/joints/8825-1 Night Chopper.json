@@ -1,0 +1,18 @@
+{
+  "model": "8825-1 Night Chopper",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p6 3713 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p9 3749 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p17 4032a in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p17 4032a":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p17 4032a":[0,86]}}},
+    {"joint":"p30 3737 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p30 3737":[4,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p30 3737":[4,86]}}},
+    {"joint":"p35 4519 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p45 3708":[0,86],"p35 4519":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p45 3708":[0,86],"p35 4519":[0,86]}}},
+    {"joint":"p39 3749 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p41 3749 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p45 3708 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p35 4519":[0,86],"p45 3708":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p35 4519":[0,86],"p45 3708":[0,86]}}},
+    {"joint":"p57 3706 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p57 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p57 3706":[0,86]}}},
+    {"joint":"p63 3942b in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p63 3942b":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p63 3942b":[0,86]}}},
+    {"joint":"p96 3895 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p101 3895 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
