@@ -1,0 +1,25 @@
+{
+  "model": "42071-1 Dozer Compactor",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p7 87083 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p7 87083":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p7 87083":[0,86]}}},
+    {"joint":"p8 87083 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p8 87083":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p8 87083":[0,86]}}},
+    {"joint":"p16 4519 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p16 4519":[0,86],"p19 3749":[0,52]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p16 4519":[0,86],"p19 3749":[0,52]}}},
+    {"joint":"p19 3749 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p16 4519":[0,143],"p19 3749":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p16 4519":[0,143],"p19 3749":[0,86]}}},
+    {"joint":"p22 99010 in frame","plus":{"turned":1.5,"moved":13,"bodies":{"p168 6141":[351,86],"p163 6141":[351,86],"p143 15100":[300,86],"p151 32524":[271,86],"p152 32524":[271,86],"p107 59426":[199,86],"p131 59426":[199,86],"p140 64711":[183,86]}},"minus":{"turned":-1.5,"moved":13,"bodies":{"p163 6141":[351,86],"p168 6141":[351,86],"p143 15100":[300,86],"p152 32524":[271,86],"p151 32524":[271,86],"p131 59426":[199,86],"p107 59426":[199,86],"p133 64711":[183,86]}}},
+    {"joint":"p53 32184 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p53 32184":[30,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p53 32184":[30,86]}}},
+    {"joint":"p59 24116 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p59 24116":[136,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p59 24116":[136,86]}}},
+    {"joint":"p73 32184 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p73 32184":[30,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p73 32184":[30,86]}}},
+    {"joint":"p87 43093 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p107 59426 in p22 99010","plus":{"turned":1.5,"moved":1,"bodies":{"p107 59426":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p107 59426":[0,86]}}},
+    {"joint":"p116 3706 in p22 99010","plus":{"turned":1.5,"moved":1,"bodies":{"p116 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p116 3706":[0,86]}}},
+    {"joint":"p117 18654 in p116 3706","plus":{"turned":1.5,"moved":1,"bodies":{"p117 18654":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p117 18654":[0,86]}}},
+    {"joint":"p131 59426 in p22 99010","plus":{"turned":1.5,"moved":1,"bodies":{"p131 59426":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p131 59426":[0,86]}}},
+    {"joint":"p133 64711 in p131 59426","plus":{"turned":1.5,"moved":1,"bodies":{"p133 64711":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p133 64711":[0,86]}}},
+    {"joint":"p135 64711 in p7 87083","plus":{"turned":1.5,"moved":1,"bodies":{"p135 64711":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p135 64711":[0,86]}}},
+    {"joint":"p138 64711 in p8 87083","plus":{"turned":1.5,"moved":1,"bodies":{"p138 64711":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p138 64711":[0,86]}}},
+    {"joint":"p140 64711 in p107 59426","plus":{"turned":1.5,"moved":1,"bodies":{"p140 64711":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p140 64711":[0,86]}}},
+    {"joint":"p163 6141 in p143 15100","plus":{"turned":1.5,"moved":1,"bodies":{"p163 6141":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p163 6141":[0,86]}}},
+    {"joint":"p168 6141 in p143 15100","plus":{"turned":1.5,"moved":1,"bodies":{"p168 6141":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p168 6141":[0,86]}}}
+  ]
+}
