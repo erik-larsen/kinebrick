@@ -1,0 +1,7 @@
+{
+  "model": "8012-1 Super Battle Droid",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p94 4519 in frame","control":"20 tooth gear","plus":{"turned":0.25,"moved":4,"bodies":{"p3851 32291":[80,18],"p3850 32556":[65,18],"p79 3707":[44,18],"p94 4519":[7,14]}},"minus":{"turned":-0.25,"moved":4,"bodies":{"p3851 32291":[80,18],"p3850 32556":[65,18],"p79 3707":[44,18],"p94 4519":[7,14]}}}
+  ]
+}
