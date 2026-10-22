@@ -1,0 +1,16 @@
+{
+  "model": "8203-1 Rover Discovery",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p10 6118 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p10 6118":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p10 6118":[0,86]}}},
+    {"joint":"p11 6118 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p11 6118":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p11 6118":[0,86]}}},
+    {"joint":"p14 6118 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p14 6118":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p14 6118":[0,86]}}},
+    {"joint":"p15 6118 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p15 6118":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p15 6118":[0,86]}}},
+    {"joint":"p16 32123b in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p16 32123b":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p16 32123b":[0,86]}}},
+    {"joint":"p21 6629 in p16 32123b","plus":{"turned":1.5,"moved":7,"bodies":{"p28 4519":[143,86],"p29 4519":[143,86],"p30 32556":[142,86],"p21 6629":[75,86],"p22 32556":[55,86],"p23 32013":[55,86],"p24 32013":[55,86]}},"minus":{"turned":-1.5,"moved":7,"bodies":{"p28 4519":[143,86],"p29 4519":[143,86],"p30 32556":[142,86],"p21 6629":[75,86],"p22 32556":[55,86],"p23 32013":[55,86],"p24 32013":[55,86]}}},
+    {"joint":"p22 32556 in p21 6629","plus":{"turned":1.5,"moved":1,"bodies":{"p22 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p22 32556":[0,86]}}},
+    {"joint":"p23 32013 in p22 32556","plus":{"turned":1.5,"moved":1,"bodies":{"p23 32013":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p23 32013":[0,86]}}},
+    {"joint":"p24 32013 in p22 32556","plus":{"turned":1.5,"moved":1,"bodies":{"p24 32013":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p24 32013":[0,86]}}},
+    {"joint":"p30 32556 in p28 4519","plus":{"turned":1.5,"moved":1,"bodies":{"p30 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p30 32556":[0,86]}}}
+  ]
+}
