@@ -21,6 +21,12 @@ describe('a ball set a hair off the axis of the part it sits in', () => {
     expect(joints[1].from.z).toBeCloseTo(0, 9);
   });
 
+  it("is put on that axis from a couple of LDU off too, as the 42110 Land Rover's drooped half shafts set their balls in the front hubs", () => {
+    const joints = socket(new Vector3(17.8, 0, 0));
+    lineUpBalls(joints);
+    expect(joints[1].from.x).toBeCloseTo(20, 9);
+  });
+
   it("is left where it is if it sits well off the axis (a crank's)", () => {
     const joints = socket(new Vector3(10, 0, 0));
     lineUpBalls(joints);

@@ -1358,12 +1358,14 @@ function lineUpAxles(joints: Joint[]) {
 
 // A ball joint whose middle sits all but on an axis one of its bodies turns about (within
 // BALL_LINE of it, and no further along it than a stud past the turning joint's ends) is put on
-// that axis: a model built by hand may set a ball a fraction of an LDU off the axis of the part
+// that axis: a model built by hand may set a ball a little off the axis of the part
 // it's socketed in (an official Unimog's driveshaft ends in a ball 0.23 LDU off its constant
-// velocity joint's axis), and as that part turned, the ball would go round its axis, which the
-// shaft, held at its other end, couldn't follow: the drivetrain locked after a step.
+// velocity joint's axis, the 42110 Land Rover's half shafts, drawn drooped a little too far, 2 LDU
+// off its steering hubs'), and as that part turned, the ball would go round its axis, which the
+// shaft, held at its other end, couldn't follow: the drivetrain locked after a step. (No ball in
+// the OMR sits between 2 and 15 LDU off such an axis: a crank's is a stud or more out.)
 export function lineUpBalls(joints: Joint[]) {
-  const BALL_LINE = 0.5; // LDU
+  const BALL_LINE = 3; // LDU
   const REACH = 20; // LDU
   for (const ball of joints) {
     if (ball.kind !== 'ball') continue;
