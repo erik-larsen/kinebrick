@@ -1,0 +1,7 @@
+{
+  "model": "42029-1 Customized Pick up Truck",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p223 32062 in frame","control":"steering wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p223 32062":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p223 32062":[0,14]}}}
+  ]
+}
