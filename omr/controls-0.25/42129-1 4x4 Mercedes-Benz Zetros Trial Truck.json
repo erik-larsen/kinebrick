@@ -1,0 +1,9 @@
+{
+  "model": "42129-1 4x4 Mercedes-Benz Zetros Trial Truck",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p734 32073 in p485 42129 - 32523","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p1343 46490c01 in p1395 43093","control":"wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p1343 46490c01":[16,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p1343 46490c01":[16,14]}}},
+    {"joint":"p1925 32034 in frame","control":"steering wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p1925 32034":[9,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p1925 32034":[9,14]}}}
+  ]
+}
