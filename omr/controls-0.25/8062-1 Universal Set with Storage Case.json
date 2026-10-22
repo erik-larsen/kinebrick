@@ -1,0 +1,7 @@
+{
+  "model": "8062-1 Universal Set with Storage Case",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p0 4477 in p122 3704","control":"24 tooth gear","plus":{"turned":0.25,"moved":1,"bodies":{"p0 4477":[76,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p0 4477":[76,14]}}}
+  ]
+}
