@@ -1,0 +1,17 @@
+{
+  "model": "42046-1 Getaway Racer",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p10 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p10 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p10 32054":[0,86]}}},
+    {"joint":"p34 6141 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p34 6141":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p34 6141":[0,86]}}},
+    {"joint":"p35 6141 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p35 6141":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p35 6141":[0,86]}}},
+    {"joint":"p56 3708 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p59 87082 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p59 87082":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p59 87082":[0,86]}}},
+    {"joint":"p60 87082 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p60 87082":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p60 87082":[0,86]}}},
+    {"joint":"p85 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p85 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p85 32054":[0,86]}}},
+    {"joint":"p87 18651 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p87 18651":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p87 18651":[0,86]}}},
+    {"joint":"p91 43093 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p91 43093":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p91 43093":[0,86]}}},
+    {"joint":"p102 62462 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p102 62462":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p102 62462":[0,86]}}},
+    {"joint":"p103 62462 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p103 62462":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p103 62462":[0,86]}}}
+  ]
+}
