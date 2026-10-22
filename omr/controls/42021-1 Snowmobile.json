@@ -1,0 +1,10 @@
+{
+  "model": "42021-1 Snowmobile",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p96 87407 in p100 32556","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p96 87407":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p96 87407":[0,86]}}},
+    {"joint":"p97 87407 in p101 32556","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p97 87407":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p97 87407":[0,86]}}},
+    {"joint":"p98 87407 in p101 32556","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p98 87407":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p98 87407":[0,86]}}},
+    {"joint":"p99 87407 in p100 32556","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p99 87407":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p99 87407":[0,86]}}}
+  ]
+}
