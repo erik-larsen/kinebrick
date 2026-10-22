@@ -1,0 +1,8 @@
+{
+  "model": "42125-1 Ferrari 488 GTE AF CORSE #51",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p1 99008 in frame","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p670 4519 in frame","control":"steering wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p670 4519":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p670 4519":[0,14]}}}
+  ]
+}
