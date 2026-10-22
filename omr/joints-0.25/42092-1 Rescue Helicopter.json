@@ -2,8 +2,6 @@
   "model": "42092-1 Rescue Helicopter",
   "reach": 0.25,
   "joints": [
-    {"joint":"p27 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p27 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p27 4274":[0,14]}}},
-    {"joint":"p36 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p36 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p36 4274":[0,14]}}},
     {"joint":"p49 43093 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p49 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p49 43093":[0,14]}}},
     {"joint":"p50 43093 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p50 43093":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p50 43093":[0,14]}}},
     {"joint":"p74 32054 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p74 32054":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p74 32054":[0,14]}}},
@@ -16,9 +14,6 @@
     {"joint":"p108 24116 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p108 24116":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p108 24116":[0,14]}}},
     {"joint":"p125 40490 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
     {"joint":"p126 40490 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p135 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p135 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p135 4274":[0,14]}}},
-    {"joint":"p136 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p136 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p136 4274":[0,14]}}},
-    {"joint":"p137 4274 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p137 4274":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p137 4274":[0,14]}}},
     {"joint":"p142 62462 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p142 62462":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p142 62462":[0,14]}}},
     {"joint":"p143 62462 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p143 62462":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p143 62462":[0,14]}}},
     {"joint":"p147 62462 in frame","plus":{"turned":0.25,"moved":1,"bodies":{"p147 62462":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p147 62462":[0,14]}}},
