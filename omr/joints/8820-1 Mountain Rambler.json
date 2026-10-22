@@ -1,0 +1,24 @@
+{
+  "model": "8820-1 Mountain Rambler",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p10 4261 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p11 4261 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p12 3749 in p10 4261","plus":{"turned":1.5,"moved":23,"bodies":{"p12 3749":[46,76],"p13 3749":[46,76],"p104 3749":[38,61],"p103 3749":[38,61],"p102 3894":[46,30],"p105 3894":[46,30],"p30 4254":[37,30],"p32 3707":[37,30]}},"minus":{"turned":-1.5,"moved":23,"bodies":{"p13 3749":[48,79],"p12 3749":[48,79],"p104 3749":[26,42],"p103 3749":[26,42],"p105 3894":[35,26],"p102 3894":[35,26],"p100 3737":[48,7],"p11 4261":[46,7]}}},
+    {"joint":"p13 3749 in p11 4261","plus":{"turned":1.5,"moved":23,"bodies":{"p12 3749":[48,79],"p13 3749":[48,79],"p104 3749":[26,42],"p103 3749":[26,42],"p105 3894":[35,26],"p102 3894":[35,26],"p100 3737":[48,7],"p10 4261":[46,7]}},"minus":{"turned":-1.5,"moved":23,"bodies":{"p12 3749":[46,76],"p13 3749":[46,76],"p104 3749":[38,61],"p103 3749":[38,61],"p102 3894":[46,30],"p105 3894":[46,30],"p30 4254":[37,30],"p32 3707":[37,30]}}},
+    {"joint":"p25 2790a in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p29 4255 in p31 3706","plus":{"turned":1.5,"moved":1,"bodies":{"p29 4255":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p29 4255":[0,86]}}},
+    {"joint":"p30 4254 in p32 3707","plus":{"turned":1.5,"moved":1,"bodies":{"p30 4254":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p30 4254":[0,86]}}},
+    {"joint":"p31 3706 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p31 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p31 3706":[0,86]}}},
+    {"joint":"p32 3707 in p102 3894","plus":{"turned":1.5,"moved":1,"bodies":{"p32 3707":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p32 3707":[0,86]}}},
+    {"joint":"p39 2420 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p55 3706 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p55 3706":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p55 3706":[0,86]}}},
+    {"joint":"p76 3749 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p76 3749":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p76 3749":[0,86]}}},
+    {"joint":"p85 4519 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p87 4519 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p100 3737 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p100 3737":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p100 3737":[0,86]}}},
+    {"joint":"p103 3749 in p102 3894","plus":{"turned":1.5,"moved":23,"bodies":{"p104 3749":[37,60],"p103 3749":[37,60],"p30 4254":[43,26],"p32 3707":[43,26],"p102 3894":[28,26],"p105 3894":[28,26],"p76 3749":[43,7],"p113 3707":[37,7]}},"minus":{"turned":-1.5,"moved":23,"bodies":{"p104 3749":[34,56],"p103 3749":[34,56],"p76 3749":[62,10],"p30 4254":[37,30],"p32 3707":[37,30],"p113 3707":[57,10],"p13 3749":[25,41],"p12 3749":[25,41]}}},
+    {"joint":"p104 3749 in p105 3894","plus":{"turned":1.5,"moved":23,"bodies":{"p104 3749":[37,60],"p103 3749":[37,60],"p30 4254":[43,26],"p32 3707":[43,26],"p102 3894":[28,26],"p105 3894":[28,26],"p76 3749":[43,7],"p113 3707":[37,7]}},"minus":{"turned":-1.5,"moved":23,"bodies":{"p104 3749":[34,56],"p103 3749":[34,56],"p76 3749":[62,10],"p30 4254":[37,30],"p32 3707":[37,30],"p113 3707":[57,10],"p13 3749":[25,41],"p12 3749":[25,41]}}},
+    {"joint":"p113 3707 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p113 3707":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p113 3707":[0,86]}}}
+  ]
+}
