@@ -2,7 +2,7 @@
   "model": "8074-1 Universal Set with Flex System",
   "reach": 0.25,
   "joints": [
-    {"joint":"p141 3708 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
-    {"joint":"p144 3707 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+    {"joint":"p141 3708 in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p144 3707 in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
   ]
 }
