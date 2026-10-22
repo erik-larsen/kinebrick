@@ -1,0 +1,9 @@
+{
+  "model": "42081-1 Volvo Concept Wheel Loader ZEUX",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p25 3673 in p0 64179","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p26 3673 in p0 64179","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p149 32062 in p0 64179","control":"20 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
