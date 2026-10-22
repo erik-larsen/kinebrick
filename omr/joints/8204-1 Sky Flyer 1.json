@@ -1,0 +1,9 @@
+{
+  "model": "8204-1 Sky Flyer 1",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p8 32062 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p8 32062":[0,86],"p23 4519":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p8 32062":[0,86],"p23 4519":[0,86]}}},
+    {"joint":"p12 32073 in frame","plus":{"turned":1.5,"moved":4,"bodies":{"p12 32073":[17,53],"p23 4519":[24,33],"frame":[22,33],"p8 32062":[19,33]}},"minus":{"turned":-1.5,"moved":4,"bodies":{"p23 4519":[35,37],"p12 32073":[15,49],"p8 32062":[24,37],"frame":[18,37]}}},
+    {"joint":"p23 4519 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p8 32062":[0,86],"p23 4519":[0,86]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p8 32062":[0,86],"p23 4519":[0,86]}}}
+  ]
+}
