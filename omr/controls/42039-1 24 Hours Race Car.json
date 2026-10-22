@@ -9,6 +9,6 @@
     {"joint":"p522 92909 in p518 6628","control":"wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p522 92909":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p522 92909":[0,86]}}},
     {"joint":"p584 3705 in frame","control":"20 tooth gear","plus":{"turned":1.5,"moved":1,"bodies":{"p584 3705":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p584 3705":[0,86]}}},
     {"joint":"p747 87083 in p744 43093","control":"steering wheel","plus":{"turned":1.5,"moved":1,"bodies":{"p747 87083":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p747 87083":[0,86]}}},
-    {"joint":"p772 44294 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+    {"joint":"p772 44294 in frame","control":"24 tooth gear","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
   ]
 }
