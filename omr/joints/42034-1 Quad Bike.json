@@ -1,0 +1,12 @@
+{
+  "model": "42034-1 Quad Bike",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p7 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p7 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p7 32054":[0,86]}}},
+    {"joint":"p23 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p23 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p23 32054":[0,86]}}},
+    {"joint":"p26 32556 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p26 32556":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p26 32556":[0,86]}}},
+    {"joint":"p44 62462 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p44 62462":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p44 62462":[0,86]}}},
+    {"joint":"p85 3708 in frame","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p106 32054 in frame","plus":{"turned":1.5,"moved":1,"bodies":{"p106 32054":[0,86]}},"minus":{"turned":-1.5,"moved":1,"bodies":{"p106 32054":[0,86]}}}
+  ]
+}
