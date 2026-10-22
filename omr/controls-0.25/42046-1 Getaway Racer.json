@@ -1,0 +1,7 @@
+{
+  "model": "42046-1 Getaway Racer",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p56 3708 in frame","control":"wheel","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
