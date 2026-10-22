@@ -1,0 +1,16 @@
+{
+  "model": "8862-1 Backhoe",
+  "reach": 0.25,
+  "joints": [
+    {"joint":"p4 3706 in frame","control":"wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p4 3706":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p4 3706":[0,14]}}},
+    {"joint":"p5 3706 in frame","control":"wheel","plus":{"turned":0.25,"moved":1,"bodies":{"p5 3706":[0,14]}},"minus":{"turned":-0.25,"moved":1,"bodies":{"p5 3706":[0,14]}}},
+    {"joint":"p126 3707 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p127 3708 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p153 3706 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p172 3706 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p224 3404 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p361 3705 in p360 4261","control":"wheel","plus":{"turned":0.25,"moved":95,"bodies":{"p311 3705":[91,4],"p309 2711":[89,4],"p310 2711":[88,4],"p319 2796c01":[86,4],"p300 3749":[85,4],"p305 3705":[85,4],"p302 4700":[85,4],"p301 3749":[84,4]}},"minus":{"turned":-0.25,"moved":95,"bodies":{"p311 3705":[91,4],"p309 2711":[89,4],"p310 2711":[88,4],"p319 2796c01":[86,4],"p300 3749":[85,4],"p305 3705":[85,4],"p302 4700":[85,4],"p301 3749":[84,4]}}},
+    {"joint":"p371 3705 in p370 4261","control":"wheel","plus":{"turned":0.25,"moved":95,"bodies":{"p311 3705":[91,4],"p310 2711":[89,4],"p309 2711":[88,4],"p319 2796c01":[86,4],"p301 3749":[85,4],"p305 3705":[85,4],"p302 4700":[85,4],"p300 3749":[84,4]}},"minus":{"turned":-0.25,"moved":95,"bodies":{"p311 3705":[91,4],"p310 2711":[89,4],"p309 2711":[88,4],"p319 2796c01":[86,4],"p301 3749":[85,4],"p305 3705":[85,4],"p302 4700":[85,4],"p300 3749":[84,4]}}},
+    {"joint":"p396 3708 in frame","control":"24 tooth gear","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
