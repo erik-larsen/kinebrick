@@ -1920,6 +1920,10 @@ export class Kinematics {
     const z = plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
     this.played = false;
     if (z) return fromBasis(z, basis);
+    // Play only lets a drag go where nothing else would, not choose what it holds: a hold that
+    // left the drag only play would be kept, and the drag would turn a joint it needn't (the
+    // 42112 Concrete Mixer Truck's wheels, which stopped partway round).
+    if (this.choosingHolds) return null;
     const played = this.playMotion(rate, size);
     this.played = played !== null;
     return played ? fromBasis(played, basis) : null;
