@@ -124,7 +124,7 @@ Everything happens in the 3D view: drag parts with the mouse or a finger. A part
 
 | Do this | And |
 |---|---|
-| Hover over a part | It glows yellow, the rest of its body faintly, and a label gives its number, name, role and body. |
+| Hover over a part | It glows yellow, the rest of its body faintly, and a label gives its number, name, role and body. Not while you're turning, panning or zooming the view. |
 | Drag a part that spins on an axle (a gear, a crank, a wheel) | It turns like a knob, following the pointer round its axle. |
 | Drag any other part (a frame, a piston, a rack, a linkage's middle beam) | It's pushed along the way it can move: a car rolls, a piston turns its crank (except at dead centre, top and bottom of its stroke). |
 | Drag a gearbox's driving ring | It clicks into the nearest gear. |

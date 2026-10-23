@@ -240,7 +240,21 @@ export function setUpInteraction(s: InteractionSetup) {
   // ---------------------------------------------------------------------------
   // Hover
 
+  // While the view is being turned, panned or zoomed, nothing is highlighted: parts sweeping
+  // under a still pointer would flicker yellow, and their labels with them.
+  let movingView = false;
+  s.controls.addEventListener('start', () => {
+    movingView = true;
+    if (s.appearance.hoveredPart >= 0) {
+      s.appearance.hoveredPart = -1;
+      s.appearance.update();
+    }
+    if (!showingMessage) hideLabel();
+  });
+  s.controls.addEventListener('end', () => (movingView = false));
+
   function hover(clientX: number, clientY: number) {
+    if (movingView) return;
     const hit = hitAt(clientX, clientY);
     const part = hit ? hit.part : -1;
     if (part !== s.appearance.hoveredPart) {
