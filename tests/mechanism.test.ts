@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { ConnectionTable } from '../src/connections.ts';
+import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { parseLdr } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 
@@ -33,5 +33,26 @@ describe('simple car', () => {
       expect(Math.min(j.from.z, j.to.z)).toBeCloseTo(-38);
       expect(Math.max(j.from.z, j.to.z)).toBeCloseTo(38);
     }
+  });
+});
+
+describe("a constant velocity joint's nudged ball in a portal axle's steering hub", () => {
+  // As official cars seat them (the 42037 Formula Off-Roader's, the 42077 Rally Car's): the
+  // ball (32494) in the hub's socket (92909's, on its axis, z, 30 LDU in), its axle hole
+  // pointing out of the hub along the same axis.
+  const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
+  const parts = parseLdr('1 72 0 0 0 1 0 0 0 1 0 0 0 1 92909.dat\n1 71 0 0 30 1 0 0 0 1 0 0 0 1 32494.dat');
+  const mech = inferMechanism(parts, library, roles);
+  const [hub, ball] = [mech.bodyOf[0], mech.bodyOf[1]];
+
+  it('drives the hub: their turning is tied, about the hub\'s own axis', () => {
+    const coupling = mech.couplings.find((c) => [c.bodyA, c.bodyB].includes(hub) && [c.bodyA, c.bodyB].includes(ball));
+    expect(coupling?.turningOnly).toBe(true);
+    const hubAxis = coupling!.bodyA === hub ? coupling!.axisA : coupling!.axisB;
+    expect(Math.abs(hubAxis.z)).toBeCloseTo(1, 6);
+  });
+
+  it('still holds the ball in its socket, as nothing else may hold a half shaft\'s end', () => {
+    expect(mech.joints.some((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(hub) && [j.bodyA, j.bodyB].includes(ball))).toBe(true);
   });
 });

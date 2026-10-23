@@ -8,6 +8,9 @@ import { PathPoint, PlacedPath, PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
+// How far off the axis of the part it sits in a ball may be built, and still be taken to sit on
+// it (see lineUpBalls).
+const BALL_LINE = 3;
 // How far off each other's axis a pin and its hole (or a tyre and its rim) may be and still
 // fit, in LDU. Models are often built half an LDU out.
 const ALIGN_TOLERANCE = 1;
@@ -300,11 +303,36 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
-  const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' }));
+  dropBallsInBearings(joints, joined, roles, bodyOf);
+  // A nudged ball's coupling is at its ball joint's middle, where lineUpBalls has put it.
+  const ballAt = (partA: number, partB: number, center: Vector3) => joints.find((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(bodyOf[partA]) && [j.bodyA, j.bodyB].includes(bodyOf[partB]) && j.from.distanceTo(center) < BALL_LINE)?.from.clone() ?? center;
+  const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball' }));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   treads.push(...trackTreads(loops));
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings };
+}
+
+// A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
+// or the part it sits in, has nothing else to hold it (a half shaft, a universal joint at its
+// other end). Where both turn in bearings of their own, on axes through the ball (a drive shaft
+// joined at an angle to another, as an official bucket wheel excavator's are), the joint would
+// tie them a second way, which shafts built a hair out of line can't keep: they locked.
+function dropBallsInBearings(joints: Joint[], joined: { partA: number; partB: number; center: Vector3 }[], roles: string[], bodyOf: number[]) {
+  const turnsThrough = (body: number, center: Vector3) =>
+    joints.some((j) => {
+      if (j.kind !== 'revolute' || (j.bodyA !== body && j.bodyB !== body)) return false;
+      const dir = new Vector3().subVectors(j.to, j.from).normalize();
+      const rel = new Vector3().subVectors(center, j.from);
+      return rel.addScaledVector(dir, -rel.dot(dir)).length() < BALL_LINE;
+    });
+  for (const { partA, partB, center } of joined) {
+    if (roles[partA] !== 'nudged ball') continue;
+    const [a, b] = [bodyOf[partA], bodyOf[partB]];
+    if (!turnsThrough(a, center) || !turnsThrough(b, center)) continue;
+    const k = joints.findIndex((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(a) && [j.bodyA, j.bodyB].includes(b) && j.from.distanceTo(center) < BALL_LINE);
+    if (k >= 0) joints.splice(k, 1);
+  }
 }
 
 // A bush seated in a Technic plate's hole grips the plate: the plate's hole is counterbored
@@ -430,15 +458,33 @@ function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connecti
 // in the socket fit its grooves, so the hub turns with the shaft, at any angle the ball sits
 // at (a constant velocity joint: steered wheels are driven through it). Like a universal
 // joint, the ball's connection is replaced with a coupling at the ball's middle, between the
-// shaft (the ball's axle hole's axis) and the hub (its socket's), tying only their turning
-// (see Coupling).
+// shaft (the ball's axle hole's axis) and the hub (the axis of its holes through the socket: a
+// socket, a sphere, has none of its own), tying only their turning (see Coupling): shaft and
+// hub each turn in holes of their own.
+//
+// A nudged ball (32494) does the same in a portal axle's steering hub (92909), nudges on it
+// fitting slots in the socket; but its shaft often hangs on nothing else (a half shaft, a
+// universal joint at its other end), so its ball joint is kept as well, where it's needed
+// (see dropBallsInBearings).
 function groovedBalls(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]) {
   const joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[] = [];
   const axisOf = (part: number, shape: string) => cyls.find((c) => c.part === part && c.secs.some((s) => s.shape === shape))?.dir.clone() ?? new Vector3(0, 0, 1);
+  // The hole whose axis passes nearest the ball's middle, within BALL_LINE (a model may set
+  // the ball a little off it, as lineUpBalls allows).
+  const through = (part: number, center: Vector3) => {
+    let best: { dir: Vector3; off: number } | null = null;
+    for (const c of cyls) {
+      if (c.part !== part || c.secs.some((s) => s.shape === 'O')) continue;
+      const rel = new Vector3().subVectors(center, c.start);
+      const off = rel.addScaledVector(c.dir, -rel.dot(c.dir)).length();
+      if (off < BALL_LINE && (!best || off < best.off)) best = { dir: c.dir, off };
+    }
+    return best ? best.dir.clone() : axisOf(part, 'O');
+  };
   for (const c of connections) {
-    if (c.kind !== 'ball' || roles[c.male] !== 'grooved ball') continue;
-    c.kind = 'coupling';
-    joined.push({ partA: c.male, partB: c.female, center: c.from.clone(), axisA: axisOf(c.male, 'A'), axisB: axisOf(c.female, 'O') });
+    if (c.kind !== 'ball' || (roles[c.male] !== 'grooved ball' && roles[c.male] !== 'nudged ball')) continue;
+    if (roles[c.male] === 'grooved ball') c.kind = 'coupling';
+    joined.push({ partA: c.male, partB: c.female, center: c.from.clone(), axisA: axisOf(c.male, 'A'), axisB: through(c.female, c.from) });
   }
   return joined;
 }
@@ -1364,25 +1410,56 @@ function lineUpAxles(joints: Joint[]) {
 // off its steering hubs'), and as that part turned, the ball would go round its axis, which the
 // shaft, held at its other end, couldn't follow: the drivetrain locked after a step. (No ball in
 // the OMR sits between 2 and 15 LDU off such an axis: a crank's is a stud or more out.)
+//
+// Where two such axes cross at the ball, one each side of a constant velocity joint, it's put
+// where they cross, so it's on both: on one, a hair off the other, it went round as that one
+// turned (an official Porsche 911 GT3 RS's steering column, a ball 0.03 LDU off the axis of the
+// shaft it ends, which slides and turns in a toggle joint, stopped the steering a few degrees on).
+// Such a shaft's axis counts, if it crosses another's: a joint it slides on as it turns.
 export function lineUpBalls(joints: Joint[]) {
-  const BALL_LINE = 3; // LDU
   const REACH = 20; // LDU
+  const CROSS = 0.5; // LDU: how near two axes must pass each other to count as crossing
   for (const ball of joints) {
     if (ball.kind !== 'ball') continue;
-    let best: { at: Vector3; off: number } | null = null;
+    // The axes the ball's bodies turn about, near it: where on each it's nearest the ball, and
+    // whether that's within REACH of the joint (a crossing needs no reach: a shaft's axis runs on
+    // past the joint it turns in, to the ball at its end).
+    const axes: { from: Vector3; dir: Vector3; at: Vector3; off: number; slides: boolean; reaches: boolean }[] = [];
     for (const j of joints) {
-      if (j.kind !== 'revolute' || ![j.bodyA, j.bodyB].some((b) => b === ball.bodyA || b === ball.bodyB)) continue;
+      if ((j.kind !== 'revolute' && !(j.kind === 'slide' && j.turns)) || ![j.bodyA, j.bodyB].some((b) => b === ball.bodyA || b === ball.bodyB)) continue;
       const length = j.from.distanceTo(j.to);
       const dir = new Vector3().subVectors(j.to, j.from).normalize();
       const rel = new Vector3().subVectors(ball.from, j.from);
       const along = rel.dot(dir);
       const off = rel.addScaledVector(dir, -along).length();
-      if (along < -REACH || along > length + REACH || off < 1e-9 || off >= BALL_LINE || (best && off >= best.off)) continue;
-      best = { at: j.from.clone().addScaledVector(dir, along), off };
+      if (off >= BALL_LINE) continue;
+      axes.push({ from: j.from, dir, at: j.from.clone().addScaledVector(dir, along), off, slides: j.kind === 'slide', reaches: along >= -REACH && along <= length + REACH });
     }
-    if (best) {
-      ball.from.copy(best.at);
-      ball.to.copy(best.at);
+    // Two that cross near the ball: where they pass nearest each other.
+    let crossing: { at: Vector3; off: number } | null = null;
+    for (let a = 0; a < axes.length; a++) {
+      for (let b = a + 1; b < axes.length; b++) {
+        const [p, q] = [axes[a], axes[b]];
+        const normal = new Vector3().crossVectors(p.dir, q.dir);
+        if (normal.length() < 0.05) continue; // all but parallel
+        const w = new Vector3().subVectors(p.from, q.from);
+        const [dd, pq, qq] = [p.dir.dot(q.dir), p.dir.dot(w), q.dir.dot(w)];
+        const den = 1 - dd * dd;
+        const onP = p.from.clone().addScaledVector(p.dir, (dd * qq - pq) / den);
+        const onQ = q.from.clone().addScaledVector(q.dir, (qq - dd * pq) / den);
+        if (onP.distanceTo(onQ) >= CROSS) continue;
+        const at = onP.add(onQ).multiplyScalar(0.5);
+        const off = at.distanceTo(ball.from);
+        if (off < BALL_LINE && (!crossing || off < crossing.off)) crossing = { at, off };
+      }
+    }
+    // Failing that, the nearest axis it turns about (not one it slides on: a towball on a
+    // sliding part may well sit off it).
+    const nearest = axes.filter((x) => x.reaches && !x.slides && x.off > 1e-9).sort((x, y) => x.off - y.off)[0];
+    const at = crossing?.at ?? nearest?.at;
+    if (at) {
+      ball.from.copy(at);
+      ball.to.copy(at);
     }
   }
 }

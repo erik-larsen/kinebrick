@@ -186,6 +186,7 @@ export class Kinematics {
   // tie rod's socket on the ball), by that turning joint.
   private spinners: number[] = [];
   private choosingHolds = false; // while holdWhatTheDragDoesntNeed is at work (see jointMotion)
+  private plainOnly = false; // while it is, whether the drag's motions may not use the suspension (see chooseDragHolds)
   private played = false; // whether jointMotion's last motion took up play (see playMotion)
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
@@ -307,12 +308,14 @@ export class Kinematics {
   }
 
   // A body joined to the rest only by two ball joints could spin about the line through the
-  // balls without moving anything else. Nothing would make it, so equations() doesn't let it.
+  // balls without moving anything else. Nothing would make it, so equations() doesn't let it,
+  // unless gears or a coupling turn it (a half shaft with a constant velocity joint's ball at
+  // each end, turning the wheel hub with the differential's output).
   private findLinks() {
     for (let body = 1; body < this.bodyCount; body++) {
       const joints = this.mech.joints.flatMap((j, i) => (j.bodyA === body || j.bodyB === body ? [i] : []));
       const balls = joints.filter((i) => this.mech.joints[i].kind === 'ball');
-      const geared = this.mech.gears.some((g) => g.body === body);
+      const geared = this.mech.gears.some((g) => g.body === body) || this.mech.couplings.some((c) => c.bodyA === body || c.bodyB === body);
       const tyred = this.mech.treads.some((t) => t.body === body);
       if (joints.length === 2 && balls.length === 2 && !geared && !tyred) this.links.push({ body, balls: [balls[0], balls[1]] });
       // Nor could one joined only by a turning joint and a ball on that joint's axis spin about
@@ -757,6 +760,17 @@ export class Kinematics {
     for (const worm of worms) this.dragHeld.add(worm);
     const wormLocked = worms.length > 0;
     this.dragTurning = joint >= 0 ? { grabbed, joint } : null;
+    // A drag that turns its joint without the car moving on its suspension keeps to that: a hold
+    // that left it only the suspension would be let go (on the 42125 Ferrari 488 GTE, holding
+    // the driveshaft its front wheels drive, through constant velocity joints, left turning one
+    // of them only a lurch of the car on its suspension, which stopped it a step on).
+    this.plainOnly = false;
+    if (joint >= 0) {
+      const [usual] = this.freeMotionsApart();
+      const axes = this.jointAxes();
+      const basis = this.treeBasis();
+      this.plainOnly = usual.some((z) => Math.abs(this.rateIn(this.turningIn(z, basis), axes, joint)) > EPSILON);
+    }
     const quick = joint >= 0 ? this.quickTest(joint) : null;
     if (quick) {
       this.chooseHolds(grabbed, quick);
@@ -1917,7 +1931,7 @@ export class Kinematics {
     const plain = this.chooseMotion(joint, usual, rate, size);
     const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size) : plain;
     const length = (z: number[]) => Math.hypot(...size(z));
-    const z = plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
+    const z = this.choosingHolds && this.plainOnly ? plain : plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
     this.played = false;
     if (z) return fromBasis(z, basis);
     // Play only lets a drag go where nothing else would, not choose what it holds: a hold that
