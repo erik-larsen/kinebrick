@@ -92,4 +92,20 @@ describe('855 Mobile Crane', () => {
       }
     }
   });
+
+  it("its boom extension knob slides the boom's inner section out and in, through the crown gear it drives, leaving the boom's angle and its luffing knob where they were", () => {
+    const [extend, luff] = [483, 272].map((i) => {
+      expect(parts[i].name).toBe('3736.dat');
+      return mech.bodyOf[i];
+    });
+    const rack = mech.bodyOf[430]; // a rack on the boom's inner section
+    expect(parts[430].name).toBe('3743.dat');
+    const slide = mech.joints.findIndex((j) => j.kind === 'slide' && (j.bodyA === rack || j.bodyB === rack));
+    for (const way of [1, -1]) {
+      kin.reset();
+      expect(Math.abs(turn(extend, way * 1.5))).toBeCloseTo(1.5, 6);
+      expect(Math.abs(kin.slideOffset(slide))).toBeGreaterThan(1);
+      expect(kin.jointAngles[kin.parentLink(luff)!.joint]).toBeCloseTo(0, 6);
+    }
+  });
 });

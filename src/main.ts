@@ -303,14 +303,17 @@ async function start() {
 
   // The loader makes one child group per line of the packed model, in file order: the parts,
   // then the shapes submodels draw without parts (see scripts/pack-models.ts). A shape moves
-  // with the body of a part from the same submodel, or else the frame.
+  // with the body of a part from the same submodel, or else the frame; but a rubber band's, kept
+  // as drawn where it can't be drawn afresh (see showBands), with the first thing it's hooked
+  // round (the 855 Mobile Crane's, on its cab, slews with it).
   const partObjects: Object3D[] = model.children.slice(0, startParts.length);
   const shapeObjects: Object3D[] = model.children.slice(startParts.length);
   if (model.children.length !== startParts.length + drawnShapes.length) {
     throw new Error(`Loader made ${model.children.length} parts and shapes, model has ${startParts.length} and ${drawnShapes.length}`);
   }
   shapeObjects.forEach((obj, i) => {
-    obj.userData.nearPart = drawnShapes[i].nearPart;
+    const band = mech.loops.find((loop) => !loop.links.length && loop.path === drawnShapes[i].path);
+    obj.userData.nearPart = band ? mech.bodies[band.carriers[0]].parts[0] : drawnShapes[i].nearPart;
     obj.updateMatrix();
   });
   const loadedShapeMatrices = shapeObjects.map((obj) => obj.matrix.clone());

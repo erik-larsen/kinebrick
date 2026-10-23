@@ -43,6 +43,9 @@ export const DEFAULT_SCRUB = 0.1;
 // much more scrub is allowed (see freeMotionsApart): else a steered car could also scrub its
 // way straight on.
 const USUAL_SCRUB = 0.02;
+// How many times as much a drag may turn things with its holds as with nothing held before its
+// holds are chosen again (see chooseDragHolds).
+const HOLDS_DETOUR = 10;
 // How far a tyre may rise or sink, as a fraction of how far it moves across the ground. A
 // wheel steered on a pivot that leans a little (as real cars' do, and as models are often
 // built) rises or sinks a little as it turns; an axle rocking with the car standing still
@@ -193,6 +196,7 @@ export class Kinematics {
   private choosingHolds = false; // while holdWhatTheDragDoesntNeed is at work (see jointMotion)
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private plainOnly = false; // while it is, whether the drag's motions may not use the suspension (see chooseDragHolds)
+  private drivenLast = false; // while holds are chosen, whether what the drag's part drives is tried last (see chooseDragHolds)
   private played = false; // whether jointMotion's last motion took up play (see playMotion)
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
@@ -799,7 +803,23 @@ export class Kinematics {
     this.scrub = Math.min(this.scrub, Math.max(USUAL_SCRUB, least * 1.01));
     const quick = joint >= 0 ? this.quickTest(joint) : null;
     if (quick) {
+      // Holds that leave the drag turning things far more than it would with nothing held have
+      // shut off what turning the part is for, and left it a long way round: chosen again with
+      // what the part's gears drive held last. (The 855 Mobile Crane's boom extension knob:
+      // holding the pinion on its extension rack, deep in the boom, left the knob turning only
+      // by luffing the boom, its gear rolling round the one it drives, the luffing knob spinning
+      // 80 times as far.)
+      this.drivenLast = false;
+      const loose = this.motionSize(joint);
       this.chooseHolds(grabbed, quick);
+      const held = this.motionSize(joint);
+      if (loose > 0 && held > HOLDS_DETOUR * loose) {
+        this.dragHeld = new Set(worms);
+        this.heldToFrame.clear();
+        this.drivenLast = true;
+        this.chooseHolds(grabbed, quick);
+        this.drivenLast = false;
+      }
       if (stillPossible()) return wormLocked;
       // Too many: keep as many of them as the drag allows, in the order they were chosen
       // (found by halving).
@@ -892,11 +912,14 @@ export class Kinematics {
     const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b) && !pulleys.has(b));
     // On a car standing on its tyres, what steers it first: turning a wheel rolls the car,
     // rather than steering it (a steered wheel turns, too, as it swings round its pivot). Then
-    // friction pins, then the deepest parts.
+    // friction pins, then the deepest parts; but with drivenLast (see chooseDragHolds), what a
+    // part a drag turns drives through its gears comes last.
     const steering = this.contactTreads.length > 0 ? this.steeringBodies() : new Set<number>();
     const steers = (body: number) => (steering.has(body) ? 1 : 0);
     const stiff = (body: number) => (this.mech.joints[this.parentJoint[body]].stiff ? 1 : 0);
-    candidates.sort((a, b) => steers(b) - steers(a) || stiff(b) - stiff(a) || depth(b) - depth(a) || a - b);
+    const driven = this.drivenLast && this.dragTurning ? this.gearedTo(grabbed) : new Set<number>();
+    const free = (body: number) => (driven.has(body) ? 0 : 1);
+    candidates.sort((a, b) => steers(b) - steers(a) || stiff(b) - stiff(a) || free(b) - free(a) || depth(b) - depth(a) || a - b);
     const alone = this.standingAlone(grabbed);
     for (const body of candidates) {
       if (this.dragHeld.has(body)) continue;
@@ -1129,6 +1152,18 @@ export class Kinematics {
       }
     }
     return found;
+  }
+
+  // How much a drag turning `joint` turns things, with what's held now: the length of the
+  // joints' rates, for each radian of the joint (0 if it can't turn).
+  private motionSize(joint: number): number {
+    const motion = this.jointMotion(joint);
+    if (!motion) return 0;
+    let sum = 0;
+    this.mech.joints.forEach((j, k) => {
+      if (j.kind === 'revolute') sum += this.jointRate(motion, k) ** 2;
+    });
+    return Math.sqrt(sum);
   }
 
   letGoAfterDrag() {
