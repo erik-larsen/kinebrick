@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { Matrix4, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable } from '../src/connections.ts';
-import { Kinematics } from '../src/kinematics.ts';
+import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { parseLdr, PlacedPart } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 
@@ -117,11 +117,23 @@ describe('scrub', () => {
     expect(scrub).toBeLessThan(0.02 * travel);
   });
 
-  it('more is not: at full lock the shorter car can steer but not roll', () => {
+  it('more is not, if only 2% is allowed: at full lock the shorter car can steer but not roll', () => {
     kin.reset();
     steer(4);
     const frame = new Vector3().applyMatrix4(kin.poses[0]);
+    kin.scrub = 0.02;
     expect(roll(4)).toBe(0);
+    kin.scrub = DEFAULT_SCRUB;
     expect(new Vector3().applyMatrix4(kin.poses[0]).distanceTo(frame)).toBeLessThan(1e-9);
+  });
+
+  it('allowed the usual 10%, at full lock the shorter car rolls, scrubbing round the bend', () => {
+    kin.reset();
+    steer(4);
+    expect(roll(4)).toBeCloseTo(4, 9);
+    const scrub = Math.hypot(...kin.treadScrub);
+    const travel = Math.hypot(...kin.treadTravel);
+    expect(scrub).toBeGreaterThan(0.02 * travel);
+    expect(scrub).toBeLessThan(0.1 * travel);
   });
 });

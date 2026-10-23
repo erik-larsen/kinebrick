@@ -36,8 +36,13 @@ const MIN_ROLL = 0.01;
 
 // How far a tyre may scrub sideways, as a fraction of how far it rolls, unless a model says
 // otherwise (see Kinematics.scrub and freeMotions): real steering only approximates every
-// wheel turning round one centre, and real tyres scrub.
-export const DEFAULT_SCRUB = 0.02;
+// wheel turning round one centre, and real tyres scrub. Enough for a car whose front wheels
+// turn alike (an official fork-lift truck's) to roll with its steering well turned.
+export const DEFAULT_SCRUB = 0.1;
+// How far a tyre may scrub sideways rolling any way but the one that scrubs least, however
+// much more scrub is allowed (see freeMotionsApart): else a steered car could also scrub its
+// way straight on.
+const USUAL_SCRUB = 0.02;
 // How far a tyre may rise or sink, as a fraction of how far it moves across the ground. A
 // wheel steered on a pivot that leans a little (as real cars' do, and as models are often
 // built) rises or sinks a little as it turns; an axle rocking with the car standing still
@@ -186,6 +191,7 @@ export class Kinematics {
   // tie rod's socket on the ball), by that turning joint.
   private spinners: number[] = [];
   private choosingHolds = false; // while holdWhatTheDragDoesntNeed is at work (see jointMotion)
+  private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private plainOnly = false; // while it is, whether the drag's motions may not use the suspension (see chooseDragHolds)
   private played = false; // whether jointMotion's last motion took up play (see playMotion)
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
@@ -744,12 +750,19 @@ export class Kinematics {
   // A drag that turns a joint passes it as `joint`: then each hold is tried with a quick test
   // (see quickTest), and only the holds it ends up with are checked with `stillPossible`. If
   // they leave the drag impossible after all, as many of them are kept as it allows.
+  //
+  // While they're chosen, the tyres may scrub only as much as the drag needs with nothing held
+  // but the car's steering (and the usual USUAL_SCRUB): a model allowed more scrub would
+  // otherwise keep holds it can scrub its way past (the Ackermann car's differential, its tyres
+  // scrubbing round a bend rather than its rear wheels turning at different speeds).
   holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean, joint = -1): boolean {
+    const scrub = this.scrub;
     this.choosingHolds = true;
     try {
       return this.chooseDragHolds(grabbed, stillPossible, joint);
     } finally {
       this.choosingHolds = false;
+      this.scrub = scrub;
     }
   }
 
@@ -765,12 +778,25 @@ export class Kinematics {
     // the driveshaft its front wheels drive, through constant velocity joints, left turning one
     // of them only a lurch of the car on its suspension, which stopped it a step on).
     this.plainOnly = false;
+    const [usual] = this.freeMotionsApart();
     if (joint >= 0) {
-      const [usual] = this.freeMotionsApart();
       const axes = this.jointAxes();
       const basis = this.treeBasis();
       this.plainOnly = usual.some((z) => Math.abs(this.rateIn(this.turningIn(z, basis), axes, joint)) > EPSILON);
     }
+    // While the holds are chosen, the tyres may scrub no more than the drag needs with only the
+    // car's steering held, as it's held first (see holdWhatTheDragDoesntNeed).
+    let least = this.leastScrub;
+    if (this.contactTreads.length > 0) {
+      const steering = [...this.steeringBodies()].filter((b) => b !== grabbed && !this.frozen.has(b) && !this.dragHeld.has(b));
+      if (steering.length > 0 && !steering.includes(grabbed)) {
+        for (const b of steering) this.dragHeld.add(b);
+        this.freeMotionsApart();
+        least = Math.max(least, this.leastScrub);
+        for (const b of steering) this.dragHeld.delete(b);
+      }
+    }
+    this.scrub = Math.min(this.scrub, Math.max(USUAL_SCRUB, least * 1.01));
     const quick = joint >= 0 ? this.quickTest(joint) : null;
     if (quick) {
       this.chooseHolds(grabbed, quick);
@@ -1696,6 +1722,7 @@ export class Kinematics {
     const rows = inBasis(this.buildEquations(null, slip, true), basis);
     const motions = orthonormalize(nullSpace(rows, q));
     this.scrubNeeded = null;
+    this.leastScrub = 0;
     if (slip.sideways.length === 0 || motions.length === 0) return [motions, []];
     const [sideways, travel, lift, rise] = [slip.sideways, slip.travel, slip.lift, slip.rise].map((r) => inBasis(r, basis));
     const frameStill = Array.from({ length: 6 }, (_, k) => {
@@ -1714,7 +1741,7 @@ export class Kinematics {
     );
     // Lift counts as scrub, LIFT of it as much as the usual allowance (however much more scrub
     // the model allows: that's for scrubbing sideways, not rising or sinking).
-    const usual = Math.min(this.scrub, DEFAULT_SCRUB);
+    const usual = Math.min(this.scrub, USUAL_SCRUB);
     const liftAsScrub = lift.map((row) => row.map((x) => (x * usual) / LIFT));
     const needs = { least: 0 };
     const scrubbing: Slip = { sideways: [...sideways, ...liftAsScrub], travel, lift: [], rise: [] };
@@ -1728,6 +1755,7 @@ export class Kinematics {
     const grounded = left.length ? leastScrub(left, { sideways: lift, travel, lift: [], rise: [] }, LIFT * Math.max(1, this.scrub / usual)) : [];
     const riseAsTravel = rise.map((row) => row.map((x) => x / usual));
     const suspension = grounded.length ? leastScrub(grounded, { ...scrubbing, travel: [...travel, ...riseAsTravel] }, this.scrub, usual, { least: 0 }, needs.least * needs.least) : [];
+    this.leastScrub = needs.least;
     if (needs.least > this.scrub) this.scrubNeeded = needs.least;
     return [orthonormalize([...keptParked, ...rolling]), suspension];
   }

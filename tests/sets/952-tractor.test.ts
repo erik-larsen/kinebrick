@@ -50,8 +50,8 @@ describe('952 Tractor', () => {
     expect(new Vector3(0, 1, 0).transformDirection(kin.poses[hung]).y).toBeCloseTo(1, 3); // not carried round
   });
 
-  it('steered 40 degrees either way, a turn of the rear wheels still takes it round, its tyres scrubbing sideways by up to the 7% its file allows', () => {
-    expect(kin.scrub).toBe(0.07);
+  it('steered 40 degrees either way, a turn of the rear wheels still takes it round, its tyres scrubbing sideways by up to the 10% KineBrick allows', () => {
+    expect(kin.scrub).toBe(0.1);
     for (const way of [1, -1]) {
       kin.reset();
       turn(bodyOf('3712.dat'), way * 4); // the steering column

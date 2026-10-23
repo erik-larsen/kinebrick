@@ -22,6 +22,9 @@ const FRESH = [
   '',
 ].join('\r\n');
 
+// A set's own lines, as sets.json has them.
+const LINES = ['0 // KineBrick: its tyres scrub', '0 !KINEBRICK SCRUB [percent=16]'];
+
 describe('Importing real LEGO sets', () => {
   it('leaves every set in models/ as it is: each is already imported, with its own lines from sets.json', () => {
     for (const [name, lines] of Object.entries(sets)) {
@@ -31,13 +34,13 @@ describe('Importing real LEGO sets', () => {
   });
 
   it("renames a fresh set's files wherever they're named, and adds its lines after its main file's license", () => {
-    const out = importSet(FRESH, '956', sets['956-Auto Chassis']);
+    const out = importSet(FRESH, '956', LINES);
     expect(out).not.toContain(' - ');
     expect([...modelFiles(out).keys()]).toEqual(['956-main.ldr', '956-chassis.ldr']);
     expect(out).toContain('[master=956-chassis.ldr]');
-    expect(out.split('\r\n').slice(4, 7)).toEqual(['0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt', ...sets['956-Auto Chassis']]);
+    expect(out.split('\r\n').slice(4, 7)).toEqual(['0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt', ...LINES]);
     expect(out.split('\r\n').length).toBe(FRESH.split('\r\n').length + 2); // line endings kept, and no lines added elsewhere
-    expect(modelSettings(out).scrub).toBe(6);
+    expect(modelSettings(out).scrub).toBe(16);
   });
 
   it('changes nothing the second time, and replaces lines that sets.json has changed', () => {
