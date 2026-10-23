@@ -3,7 +3,7 @@
 // gear it locks to the shaft, so after a shift the mechanism is worked out afresh from where
 // everything now is.
 
-import { Matrix4, Vector3 } from 'three';
+import { Matrix4, Quaternion, Vector3 } from 'three';
 import { ConnectionTable } from './connections.ts';
 import { PlacedPart } from './ldr.ts';
 import { Mechanism } from './mechanism.ts';
@@ -51,4 +51,116 @@ export function sliderMovedTo(parts: PlacedPart[], table: ConnectionTable, slide
 // The click-in position nearest `position`.
 export function nearestPosition(slider: Slider, position: number): number {
   return slider.positions.reduce((best, p) => (Math.abs(p - position) < Math.abs(best - position) ? p : best));
+}
+
+// A gear lever (role `shift lever`, the 6549 Technic 4 Speed Shift Lever): a stick on a ball,
+// standing up through a gate (a plate with a slot), its foot below the ball sitting between
+// driving rings. It clicks between the gate's positions: tilted into a slot, its foot swings the
+// other way, into the ring on that side, and slides it to its click-in position that way; in
+// the middle of the gate, every ring is in its middle (neutral).
+export interface Stick {
+  part: number; // the lever
+  gate: number; // the plate it stands up through
+  rings: Slider[]; // the driving rings its foot can reach
+}
+
+// The gates: the points of each gate's slot a lever can stand in, in the plate's own
+// coordinates, on its top face. The 6543 Technic Plate 4 x 6 with 4 Position Gear Shift Gate:
+// the middle (neutral), and the ends of the two slots either side of it.
+const GATES: Record<string, [number, number, number][]> = {
+  '6543.dat': [
+    [0, 0, 0],
+    [-16, 0, -16],
+    [-16, 0, 16],
+    [16, 0, -16],
+    [16, 0, 16],
+  ],
+};
+// Where a 6549 lever's ball is, and its foot, in the lever's own coordinates; its stick runs up
+// from the ball along -y, to its end.
+const BALL = new Vector3(0, 0, 0);
+const FOOT = new Vector3(0, 20, 0);
+const STICK_END = new Vector3(0, -79, 0);
+// How far a lever's foot may be from a driving ring's middle to move it, in LDU.
+const FOOT_REACH = 30;
+// How far from its ball a gate may be for a lever to stand up through it, in LDU.
+const GATE_REACH = 40;
+
+// The gear levers in a model, each with its gate and the driving rings its foot can reach.
+export function findSticks(parts: PlacedPart[], roles: Record<string, string>, sliders: Slider[]): Stick[] {
+  const sticks: Stick[] = [];
+  parts.forEach((p, i) => {
+    if (roles[p.name] !== 'shift lever') return;
+    const ball = BALL.clone().applyMatrix4(p.matrix);
+    const foot = FOOT.clone().applyMatrix4(p.matrix);
+    const gate = parts.findIndex((g) => GATES[g.name] && new Vector3().setFromMatrixPosition(g.matrix).distanceTo(ball) < GATE_REACH);
+    const rings = sliders.filter((s) => new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(foot) < FOOT_REACH);
+    if (gate >= 0 && rings.length > 0) sticks.push({ part: i, gate, rings });
+  });
+  return sticks;
+}
+
+// Where a lever's stick ends, placed by `lever`.
+export function stickEnd(lever: Matrix4): Vector3 {
+  return STICK_END.clone().applyMatrix4(lever);
+}
+
+// The lever's part matrix moved into a gate position.
+export function leverAt(parts: PlacedPart[], stick: Stick, position: StickPosition): Matrix4 {
+  return position.turn.clone().multiply(parts[stick.part].matrix);
+}
+
+// A lever's place in its gate: how to move the lever, and what's fixed to it, from where it is
+// now to there, and where each ring it reaches is then (by its part, at one of its click-in
+// positions).
+export interface StickPosition {
+  turn: Matrix4;
+  rings: Map<number, number>;
+}
+
+// Each of a lever's gate positions, worked out from where the lever and its rings are now
+// (the gate's first position is neutral).
+export function stickPositions(parts: PlacedPart[], table: ConnectionTable, stick: Stick): StickPosition[] {
+  const lever = parts[stick.part].matrix;
+  const gate = parts[stick.gate].matrix;
+  const ball = BALL.clone().applyMatrix4(lever);
+  const up = STICK_END.clone().applyMatrix4(lever).sub(ball).normalize();
+  // The turn about its ball that stands the lever up through a point.
+  const through = (point: Vector3) => {
+    const turn = new Quaternion().setFromUnitVectors(up, point.clone().sub(ball).normalize());
+    return new Matrix4().makeTranslation(ball.x, ball.y, ball.z).multiply(new Matrix4().makeRotationFromQuaternion(turn)).multiply(new Matrix4().makeTranslation(-ball.x, -ball.y, -ball.z));
+  };
+  const points = GATES[parts[stick.gate].name].map((q) => new Vector3(...q).applyMatrix4(gate));
+  const turns = points.map(through);
+  const footAt = (turn: Matrix4) => FOOT.clone().applyMatrix4(turn.clone().multiply(lever));
+  const neutralFoot = footAt(turns[0]);
+  return turns.map((turn, k) => {
+    const rings = new Map<number, number>();
+    for (const s of stick.rings) rings.set(s.part, nearestPosition(s, 0));
+    if (k > 0) {
+      const moved = footAt(turn).sub(neutralFoot);
+      // The ring the foot swings towards, across the way the rings slide, and which way it
+      // slides it.
+      let best: Slider | null = null;
+      let most = 0;
+      for (const s of stick.rings) {
+        const dir = slideDirection(parts, table, s);
+        const across = moved.clone().addScaledVector(dir, -moved.dot(dir));
+        const toward = new Vector3().setFromMatrixPosition(parts[s.part].matrix).sub(neutralFoot).dot(across);
+        if (toward > most) [best, most] = [s, toward];
+      }
+      if (best) {
+        const way = Math.sign(moved.dot(slideDirection(parts, table, best)));
+        const ends = best.positions.filter((x) => Math.sign(x) === way);
+        if (ends.length) rings.set(best.part, ends.reduce((a, b) => (Math.abs(b) < Math.abs(a) ? b : a)));
+      }
+    }
+    return { turn, rings };
+  });
+}
+
+// Which of a lever's gate positions its rings are in now (neutral if none matches).
+export function stickPositionNow(parts: PlacedPart[], table: ConnectionTable, stick: Stick, positions: StickPosition[]): number {
+  const k = positions.findIndex((p) => stick.rings.every((s) => Math.abs(sliderPosition(parts, table, s) - p.rings.get(s.part)!) < 1));
+  return Math.max(0, k);
 }

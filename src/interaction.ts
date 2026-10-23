@@ -89,6 +89,8 @@ export interface InteractionSetup {
   onDragEnded: () => void; // called after any drag
   blockedBy: () => [number, number] | null; // two parts now passing through each other, or slid to the end of their travel, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
+  stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
+  shiftStick: (part: number, position: number) => void; // clicks a gear lever into one of its gate positions
   shift: (part: number, position: number) => void; // slides a part to one of its positions
 }
 
@@ -107,6 +109,7 @@ interface Shift {
   startX: number; // where the pointer was pressed
   startY: number;
   startPosition: number; // where the part was then
+  lever: boolean; // a gear lever clicking between its gate positions, rather than a part sliding
 }
 
 interface Drag {
@@ -483,6 +486,17 @@ export function setUpInteraction(s: InteractionSetup) {
     showSlideArrow(s.slideOf(sh.part)!);
   }
 
+  // Clicks a gear lever into the gate position where its stick's end is nearest the pointer
+  // on screen, if that's not where it is.
+  function leverTowards(sh: Shift, clientX: number, clientY: number) {
+    const stick = s.stickOf(sh.part);
+    if (!stick) return;
+    const pointer = new Vector2(clientX, clientY);
+    const distances = stick.ends.map((end) => toScreen(end).distanceTo(pointer));
+    const nearest = distances.indexOf(Math.min(...distances));
+    if (nearest !== stick.position) s.shiftStick(sh.part, nearest);
+  }
+
   // ---------------------------------------------------------------------------
   // Freezing parts
 
@@ -538,7 +552,7 @@ export function setUpInteraction(s: InteractionSetup) {
   function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
-    if (s.slideOf(part)) return "A part that clicks into set positions can't be kept moving: drag it";
+    if (s.slideOf(part) || s.stickOf(part)) return "A part that clicks into set positions can't be kept moving: drag it";
     if (!link || !s.kin.turnsLikeAKnob(body)) return startPush(part, seenFrom, clockwise);
     const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
     const canTurn = s.kin.jointMotion(link.joint) !== null;
@@ -826,9 +840,15 @@ export function setUpInteraction(s: InteractionSetup) {
         canvas.setPointerCapture(e.pointerId);
       } catch {}
 
+      const stick = s.stickOf(hit.part);
+      if (stick) {
+        shifting = { pointerId: e.pointerId, part: hit.part, startX: e.clientX, startY: e.clientY, startPosition: stick.position, lever: true };
+        hideLabel();
+        return;
+      }
       const slide = s.slideOf(hit.part);
       if (slide) {
-        shifting = { pointerId: e.pointerId, part: hit.part, startX: e.clientX, startY: e.clientY, startPosition: slide.position };
+        shifting = { pointerId: e.pointerId, part: hit.part, startX: e.clientX, startY: e.clientY, startPosition: slide.position, lever: false };
         hideLabel();
         showSlideArrow(slide);
         return;
@@ -895,7 +915,7 @@ export function setUpInteraction(s: InteractionSetup) {
 
   canvas.addEventListener('pointermove', (e) => {
     if (shifting) {
-      if (e.pointerId === shifting.pointerId) shiftTowards(shifting, e.clientX, e.clientY);
+      if (e.pointerId === shifting.pointerId) (shifting.lever ? leverTowards : shiftTowards)(shifting, e.clientX, e.clientY);
       return;
     }
     if (!drag) {

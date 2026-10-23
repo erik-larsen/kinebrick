@@ -2,6 +2,7 @@ import { Matrix4, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { Kinematics } from '../../src/kinematics.ts';
 import { inferMechanism } from '../../src/mechanism.ts';
+import { findSliders, findSticks, sliderMovedTo, stickPositionNow, stickPositions } from '../../src/shift.ts';
 import { load, roles, table } from './load.ts';
 
 describe('8880 Super Car', () => {
@@ -85,6 +86,36 @@ describe('8880 Super Car', () => {
     }
     // Engine turns per turn of the wheels: 1st, 2nd, 3rd and 4th gear.
     expect(ratios.sort((a, b) => b - a).map((r) => +r.toFixed(3))).toEqual([2.25, 1.5, 0.75, 0.5]);
+  });
+
+  it('its gear lever clicks into its gate: in the middle, neutral; tilted into each slot, its foot slides one driving ring, putting the engine in each of its four gears', () => {
+    const sticks = findSticks(parts, roles, findSliders(parts, mech, table));
+    expect(sticks).toHaveLength(1);
+    const [stick] = sticks;
+    expect(parts[stick.part].name).toBe('6549.dat');
+    expect(stick.rings.map((r) => parts[r.part].name)).toEqual(['6539.dat', '6539.dat']);
+    const positions = stickPositions(parts, table, stick);
+    expect(positions).toHaveLength(5);
+    expect(stickPositionNow(parts, table, stick, positions)).toBe(0); // built in neutral
+    const ratios: number[] = [];
+    positions.forEach((position, k) => {
+      const lever = mech.bodies[mech.bodyOf[stick.part]].parts;
+      const shifted = parts.map((p, i) => (lever.includes(i) ? { ...p, matrix: position.turn.clone().multiply(p.matrix) } : p));
+      for (const ring of stick.rings) shifted[ring.part] = { ...shifted[ring.part], matrix: sliderMovedTo(shifted, table, ring, position.rings.get(ring.part)!) };
+      // Each gear slides one ring, and only one; neutral none.
+      expect([...position.rings.values()].filter((at) => at !== 0)).toHaveLength(k === 0 ? 0 : 1);
+      const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path));
+      expect(m.loose).toEqual([]);
+      const k2 = new Kinematics(m);
+      const wheel = m.bodyOf[shifted.findIndex((p) => p.name === '2998.dat')];
+      const joint = k2.parentLink(wheel)!.joint;
+      k2.holdWhatTheDragDoesntNeed(wheel, () => k2.jointMotion(joint) !== null, joint);
+      const turned = k2.turnJoint(joint, 0.25);
+      ratios.push(+Math.abs(k2.jointAngles[k2.parentLink(m.bodyOf[shifted.findIndex((p) => p.name === '2853.dat')])!.joint] / turned).toFixed(3));
+    });
+    // Engine turns per turn of the wheels: neutral, then each gear.
+    expect(ratios[0]).toBe(0);
+    expect(ratios.slice(1).sort((a, b) => b - a)).toEqual([2.25, 1.5, 0.75, 0.5]);
   });
 
   it('steered near full lock, a front wheel kept turning by the motor takes it round a corner through its three differentials, its steering left where it was and its tyres scrubbing sideways by up to the 10% KineBrick allows', () => {

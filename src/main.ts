@@ -38,7 +38,7 @@ import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
 import { inferMechanism, libraryName, Mechanism, meshesChanged } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
-import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
+import { findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { packModel, shapeName } from './pack.ts';
 import { thumbnail } from './thumbnail.ts';
@@ -359,6 +359,7 @@ async function start() {
   let kin = new Kinematics(mech);
   kin.scrub = scrub / 100;
   let sliders: Slider[] = [];
+  let sticks: Stick[] = [];
   let placeLinks: (((travel: number) => Matrix4[]) | null)[] = [];
   let axes = new Group();
   axes.visible = OPTIONS.includes('axes');
@@ -379,6 +380,7 @@ async function start() {
     kin = new Kinematics(mech);
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table);
+    sticks = findSticks(parts, roles, sliders);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     // Where each chain's or track's links go as it moves round (see paths.ts).
@@ -529,6 +531,34 @@ async function start() {
     showPoses();
   }
 
+  // Clicks a gear lever into one of its gate positions, sliding the driving rings it moves with
+  // it, then works the mechanism out afresh from where everything now is.
+  function shiftStick(part: number, position: number) {
+    const stick = sticks.find((st) => mech.bodyOf[st.part] === mech.bodyOf[part])!;
+    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const target = stickPositions(now, table, stick)[position];
+    const place = (i: number, matrix: Matrix4) => {
+      const by = matrix.clone().multiply(now[i].matrix.clone().invert());
+      now[i] = { ...now[i], matrix };
+      partObjects[i].matrix.premultiply(by);
+      partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
+    };
+    for (const slider of stick.rings) place(slider.part, sliderMovedTo(now, table, slider, target.rings.get(slider.part)!));
+    for (const i of mech.bodies[mech.bodyOf[stick.part]].parts) place(i, target.turn.clone().multiply(now[i].matrix));
+    read(now);
+    showPoses();
+  }
+
+  // Where a gear lever's stick ends in each of its gate positions, and which it's in now, or
+  // null if the part isn't a gear lever or fixed to one (its knob).
+  function stickOf(part: number) {
+    const stick = sticks.find((st) => mech.bodyOf[st.part] === mech.bodyOf[part]);
+    if (!stick) return null;
+    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const positions = stickPositions(now, table, stick);
+    return { ends: positions.map((p) => stickEnd(leverAt(now, stick, p))), position: stickPositionNow(now, table, stick, positions) };
+  }
+
   // Works the mechanism out afresh from where everything now is, if gears now mesh that didn't
   // when it was last worked out, or no longer do (the 952 Tractor's harrow, lowered onto its
   // power take-off).
@@ -622,6 +652,8 @@ async function start() {
       return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
     },
     slideOf,
+    stickOf,
+    shiftStick,
     shift,
   };
   summary.textContent = 'Checking for collisions…';
