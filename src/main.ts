@@ -88,6 +88,7 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   bodycolours  each body in its own colour, instead of the parts' LEGO colours
 //   axes         each joint's axis
 //   contacts     a dot where each pair of gears' teeth meet
+//   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
 const OPTIONS = params.getAll('option').join(',').split(',');
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
@@ -369,6 +370,37 @@ async function start() {
   ldrawSpace.add(contacts);
   const appearance = new Appearance(partObjects, mech, outlines);
   appearance.showBodyColours = OPTIONS.includes('bodycolours');
+  // Drivetrain focus (see OPTIONS): the bodies the motion going on (a drag, or a part kept
+  // turning or moving) has moved against the frame, and where each was against the frame as it
+  // started. Until it's moved one, the last motion's stay in focus.
+  let focusOn = OPTIONS.includes('focus');
+  let focusStart: Matrix4[] | null = null;
+  let focusMoved = new Set<number>();
+  const againstFrame = (body: number) => kin.poses[0].clone().invert().multiply(kin.poses[body]);
+  const startFocus = () => {
+    focusStart = mech.bodies.map((_, body) => againstFrame(body));
+    focusMoved = new Set();
+  };
+  const clearFocus = () => {
+    focusStart = null;
+    appearance.focusBodies = null;
+    appearance.update();
+  };
+  function trackFocus() {
+    if (!focusOn || !focusStart) return;
+    let more = false;
+    for (let body = 1; body < mech.bodies.length; body++) {
+      if (focusMoved.has(body)) continue;
+      const now = againstFrame(body).elements;
+      if (focusStart[body].elements.some((x, k) => Math.abs(x - now[k]) > 1e-4)) {
+        focusMoved.add(body);
+        more = true;
+      }
+    }
+    if (!more) return;
+    appearance.focusBodies = new Set(focusMoved);
+    appearance.update();
+  }
   const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
   let collisions: Collisions | null = null;
 
@@ -387,6 +419,7 @@ async function start() {
     placeLinks = mech.loops.map((loop) => (loop.wheels.length ? loopLinks(loop.path.points, loop.links.map((i) => partObjects[i].userData.startMatrix)) : null));
 
     appearance.setMechanism(mech);
+    focusStart = null; // the bodies have changed
     appearance.update();
 
     const showAxes = axes.visible;
@@ -455,6 +488,7 @@ async function start() {
     });
     showStrings();
     showBands();
+    trackFocus();
     updateReadout(mech, kin);
   }
 
@@ -596,6 +630,7 @@ async function start() {
     bodyColours: appearance.showBodyColours,
     axes: axes.visible,
     contacts: contacts.visible,
+    focus: focusOn,
     rpm: RPM,
     scrub,
   };
@@ -620,6 +655,11 @@ async function start() {
   gui.add(settings, 'contacts').name('Gear contacts').onChange((on: boolean) => {
     contacts.visible = on;
     keepOption('contacts', on);
+  });
+  gui.add(settings, 'focus').name('Drivetrain focus').onChange((on: boolean) => {
+    focusOn = on;
+    if (!on) clearFocus();
+    keepOption('focus', on);
   });
 
   // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" (in the options panel,
@@ -653,6 +693,7 @@ async function start() {
       if (sense !== null) keepTurn(part, angle * sense);
     },
     onDragEnded: () => meshAfresh(),
+    onMotionStarted: () => startFocus(),
     blockedBy: () => {
       const now = partMatrices();
       return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
@@ -719,6 +760,7 @@ async function start() {
   // grid back where they started.
   const reset = () => {
     interaction.stopMotor();
+    clearFocus();
     turns.length = 0;
     showTurns();
     camera.position.copy(startCamera.position);

@@ -4,8 +4,9 @@
 //   outline      status: frozen (cyan), the part kept turning (green) and loose (red)
 //   badge        status, as an icon pinned to the part: 📌 frozen, ⚠ loose (a part kept
 //                turning has no badge: its turning shows it)
+//   see-through  with drivetrain focus, the parts the last drag or spin didn't move
 
-import { Box3, Color, Material, Mesh, MeshStandardMaterial, Object3D, Vector3 } from 'three';
+import { Box3, Color, LineSegments, Material, Mesh, MeshStandardMaterial, Object3D, Vector3 } from 'three';
 import { CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Mechanism } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
@@ -16,6 +17,8 @@ const BODY_COLOURS = [
 ];
 const HOVER_GLOW = new Color(0xffd23f);
 const GLOW_STRENGTH = { part: 0.55, body: 0.15 };
+// How solid a part outside the drivetrain focus is drawn.
+const FADED_OPACITY = 0.12;
 
 export class Appearance {
   showBodyColours = true;
@@ -23,9 +26,11 @@ export class Appearance {
   frozenBodies = new Set<number>();
   looseParts = new Set<number>();
   drivenPart = -1; // the part kept turning (Ctrl-click), or -1
+  focusBodies: Set<number> | null = null; // with drivetrain focus, the bodies drawn solid (null: all)
 
   private partObjects: Object3D[];
   private meshesOfPart: Mesh[][] = [];
+  private linesOfPart: Object3D[][] = []; // its edges
   private originalMaterial = new Map<Mesh, Material | Material[]>();
   private bodyMaterials: MeshStandardMaterial[];
   private mech: Mechanism;
@@ -40,13 +45,17 @@ export class Appearance {
     this.outlines = outlines;
     partObjects.forEach((obj, i) => {
       const meshes: Mesh[] = [];
+      const lines: Object3D[] = [];
       obj.traverse((child) => {
         if ((child as Mesh).isMesh) {
           meshes.push(child as Mesh);
           this.originalMaterial.set(child as Mesh, (child as Mesh).material);
+        } else if ((child as LineSegments).isLineSegments) {
+          lines.push(child);
         }
       });
       this.meshesOfPart[i] = meshes;
+      this.linesOfPart[i] = lines;
     });
     this.bodyMaterials = [];
     this.setMechanism(mech);
@@ -60,6 +69,7 @@ export class Appearance {
       this.bodyMaterials.push(new MeshStandardMaterial({ color: BODY_COLOURS[i % BODY_COLOURS.length], roughness: 0.6 }));
     }
     this.frozenBodies.clear();
+    this.focusBodies = null;
     this.looseParts = new Set(mech.loose);
   }
 
@@ -70,10 +80,13 @@ export class Appearance {
     this.meshesOfPart.forEach((meshes, part) => {
       const body = this.mech.bodyOf[part];
       const glow = part === this.hoveredPart ? 'part' : body === hoveredBody ? 'body' : null;
+      const faded = this.focusBodies !== null && !this.focusBodies.has(body) && glow === null;
+      const look = (m: Material) => (faded ? this.fading(m) : this.glowing(m, glow));
       for (const mesh of meshes) {
         const base = this.showBodyColours ? this.bodyMaterials[body] : this.originalMaterial.get(mesh)!;
-        mesh.material = Array.isArray(base) ? base.map((m) => this.glowing(m, glow)) : this.glowing(base, glow);
+        mesh.material = Array.isArray(base) ? base.map(look) : look(base);
       }
+      for (const line of this.linesOfPart[part]) line.visible = !faded;
     });
 
     // Outlines
@@ -107,6 +120,20 @@ export class Appearance {
       lit.emissive = HOVER_GLOW;
       lit.emissiveIntensity = GLOW_STRENGTH[glow];
       copy = lit;
+      this.glowCache.set(key, copy);
+    }
+    return copy;
+  }
+
+  // A see-through copy of the material, for a part outside the drivetrain focus. Copies are cached.
+  private fading(material: Material): Material {
+    const key = material.uuid + 'faded';
+    let copy = this.glowCache.get(key);
+    if (!copy) {
+      copy = material.clone();
+      copy.transparent = true;
+      copy.opacity = FADED_OPACITY;
+      copy.depthWrite = false;
       this.glowCache.set(key, copy);
     }
     return copy;

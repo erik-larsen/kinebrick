@@ -205,7 +205,7 @@ Browser-level tests for these paths can come later.
 | `src/collisions.ts` | Stops parts passing through each other |
 | `src/interaction.ts` | Hover, press, drag, freeze, keep turning (see [Drags](#drags)) |
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
-| `src/appearance.ts` | How parts look: fill colour (LEGO colours, or one per body), yellow glow for hover, outlines and badges for status |
+| `src/appearance.ts` | How parts look: fill colour (LEGO colours, or one per body), yellow glow for hover, outlines and badges for status, and see-through for what drivetrain focus leaves out |
 | `src/outlines.ts` | Outlines drawn around parts after the scene renders |
 | `src/thumbnail.ts` | A picture of the model for its card in the README, taken when the page is opened with `?thumb` |
 | `src/jointAxes.ts` | Draws joint axes |

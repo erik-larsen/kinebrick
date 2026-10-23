@@ -138,7 +138,7 @@ Parts a drag doesn't need stay put: pushing a car leaves its steering alone, and
 
 The **Readout**, which opens under the model's summary, shows how far the frame has moved and each body has turned or slid, so the motion can be checked by eye. A wheel on the ground also shows how far it rolled ÷ its radius, which its turn should match, and once it has scrubbed, how far sideways, and how much of its roll that is just now.
 
-Each kind of information has its own channel: fill colour shows the parts' LEGO colours, a yellow glow what the pointer is on, and an outline their status (cyan frozen, green kept turning, red loose), with a 📌 or ⚠ badge pinned to frozen and loose parts. Outlines show through other parts in a darker shade.
+Each kind of information has its own channel: fill colour shows the parts' LEGO colours, a yellow glow what the pointer is on, and an outline their status (cyan frozen, green kept turning, red loose), with a 📌 or ⚠ badge pinned to frozen and loose parts, and with **Drivetrain focus** on, see-through what the last drag didn't move. Outlines show through other parts in a darker shade.
 
 ### Options
 
@@ -147,6 +147,7 @@ These are off, or at their usual values, unless you set them, in the Options pan
 - **Body colours** (`option=bodycolours`): each body in its own colour instead of the parts' LEGO colours, the frame grey.
 - **Joint axes** (`option=axes`): each joint's axis as a thin pink rod.
 - **Gear contacts** (`option=contacts`): a pink dot where each pair of gears' teeth meet.
+- **Drivetrain focus** (`option=focus`): only what a drag or a part kept turning moves draws solid, everything else see-through, so turning a car's steering wheel shows just its steering (the wheel, its column and universal joints, the rack, tie rods and wheels) and rolling it just its wheels and drivetrain. A part counts if it moves against the frame, so a car's frame and what it carries stay see-through as it rolls. Until the next drag or spin moves something, the last one's stay solid; Reset shows everything again.
 - **Spin speed** (`rpm=60`): how fast Ctrl-click turns a part, in whole revolutions per minute. It's 15 unless set, and switching model goes back to 15.
 - **Auto spin** (`autospin=271`, or `autospin=271,cw`): a part kept turning from the moment the page opens, as if Ctrl-clicked, by its place in the model file: the number the hover label gives it (counting from 0, submodels flattened). It turns counter-clockwise as seen from where the camera starts, or with `,cw` clockwise; a part kept moving rather than turning starts away from where the camera starts, or with `,cw` towards it. Ctrl-click, Reverse and Stop keep it up to date, so copying the address shares the animation. Switching model drops it.
 - **Turned parts** (`turn=155,60`, again for each part: `turn=155,60&turn=12,-30`): parts turned as the page opens, each as if dragged, by its place in the model file (as for Auto spin) and how many degrees, counter-clockwise as seen from where the camera starts, or clockwise if negative, one after another before Auto spin starts. Dragging a part like a knob keeps it up to date, so copying the address shares how you've set the model (a car's steering, say); Reset clears it. Switching model drops it.

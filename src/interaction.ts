@@ -87,6 +87,7 @@ export interface InteractionSetup {
   onMotorChanged: () => void; // called after a part starts or stops being kept turning
   onTurned: (part: number, angle: number) => void; // called after a drag turns a part like a knob, by `angle` radians about its joint
   onDragEnded: () => void; // called after any drag
+  onMotionStarted: () => void; // called as a drag that moves the mechanism, or a part kept turning or moving, starts
   blockedBy: () => [number, number] | null; // two parts now passing through each other, or slid to the end of their travel, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
   stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
@@ -563,6 +564,7 @@ export function setUpInteraction(s: InteractionSetup) {
     motorMoved = false;
     motorPush = null;
     setMotor(part);
+    s.onMotionStarted();
     return null;
   }
 
@@ -595,6 +597,7 @@ export function setUpInteraction(s: InteractionSetup) {
     motorMoved = false;
     motorPush = { grabStart: g.applyMatrix4(s.kin.poses[body].clone().invert()), dir, speed: MOVE_SPEED * extent };
     setMotor(part);
+    s.onMotionStarted();
     return null;
   }
 
@@ -862,6 +865,7 @@ export function setUpInteraction(s: InteractionSetup) {
       const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
       drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false };
       hideLabel();
+      s.onMotionStarted();
 
       // Hold still whatever this drag doesn't need to move.
       const d = drag;
