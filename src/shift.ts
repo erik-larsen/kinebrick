@@ -5,17 +5,22 @@
 
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { ConnectionTable } from './connections.ts';
-import { PlacedPart } from './ldr.ts';
+import { ModelSlide, PlacedPart } from './ldr.ts';
 import { Mechanism } from './mechanism.ts';
 
 export interface Slider {
   part: number; // the part that slides (the driving ring)
-  base: number; // the part it slides on (the axle joiner)
+  base: number; // the part it slides on (the axle joiner), or -1 for a model's own (see ModelSlide)
   positions: number[]; // where it can click in: distances of its middle from the base's, in LDU
+  origin?: Vector3; // a model's own: where its middle was built, and the way it slides
+  dir?: Vector3;
+  riders?: number[]; // the parts that slide with it (a model's own: its body's, and what turns on it), if not just it
 }
 
-// The parts in a model that slide into set positions, and what each sits on.
-export function findSliders(parts: PlacedPart[], mech: Mechanism, table: ConnectionTable): Slider[] {
+// The parts in a model that slide into set positions, and what each sits on; and the shafts
+// the model says slide (its SLIDE lines, see modelSettings), each with what turns on it (a gear
+// lever) sliding with it.
+export function findSliders(parts: PlacedPart[], mech: Mechanism, table: ConnectionTable, slides: ModelSlide[] = []): Slider[] {
   const sliders: Slider[] = [];
   parts.forEach((p, i) => {
     const slide = table.slides?.[p.name];
@@ -24,20 +29,41 @@ export function findSliders(parts: PlacedPart[], mech: Mechanism, table: Connect
     const fit = mech.connections.find((c) => c.female === i && c.kind === 'rigid');
     if (fit) sliders.push({ part: i, base: fit.male, positions: slide.positions });
   });
+  for (const slide of slides) {
+    // The part, wherever along its slide it is now.
+    const part = parts.findIndex((p) => {
+      if (p.name !== slide.part) return false;
+      const off = new Vector3().setFromMatrixPosition(p.matrix).sub(slide.at);
+      const along = off.dot(slide.dir);
+      return off.addScaledVector(slide.dir, -along).length() < 1 && along > Math.min(...slide.positions) - 1 && along < Math.max(...slide.positions) + 1;
+    });
+    if (part < 0) continue;
+    const body = mech.bodyOf[part];
+    const riding = mech.joints.flatMap((j) => {
+      const other = j.bodyA === body ? j.bodyB : j.bodyB === body ? j.bodyA : -1;
+      if (other <= 0 || j.kind !== 'revolute') return [];
+      const axis = new Vector3().subVectors(j.to, j.from).normalize();
+      return Math.abs(axis.dot(slide.dir)) > 0.99 ? [other] : [];
+    });
+    const riders = [body, ...riding].flatMap((b) => mech.bodies[b].parts);
+    sliders.push({ part, base: -1, positions: slide.positions, origin: slide.at.clone(), dir: slide.dir.clone(), riders });
+  }
   return sliders;
 }
 
 // The direction a slider slides, in model coordinates.
 export function slideDirection(parts: PlacedPart[], table: ConnectionTable, slider: Slider): Vector3 {
+  if (slider.dir) return slider.dir.clone();
   const dir = table.slides![parts[slider.part].name].dir;
   return new Vector3(...dir).transformDirection(parts[slider.part].matrix);
 }
 
-// Where a slider is now: its middle's distance from its base's middle, along the slide.
+// Where a slider is now: its middle's distance from its base's middle (or where a model's own
+// was built), along the slide.
 export function sliderPosition(parts: PlacedPart[], table: ConnectionTable, slider: Slider): number {
   const dir = slideDirection(parts, table, slider);
   const at = new Vector3().setFromMatrixPosition(parts[slider.part].matrix);
-  const base = new Vector3().setFromMatrixPosition(parts[slider.base].matrix);
+  const base = slider.origin ?? new Vector3().setFromMatrixPosition(parts[slider.base].matrix);
   return at.sub(base).dot(dir);
 }
 

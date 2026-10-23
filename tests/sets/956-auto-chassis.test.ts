@@ -1,6 +1,11 @@
+import { readFileSync } from 'node:fs';
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { Kinematics } from '../../src/kinematics.ts';
+import { modelSettings } from '../../src/ldr.ts';
+import { inferMechanism } from '../../src/mechanism.ts';
+import { findSliders, sliderMovedTo } from '../../src/shift.ts';
+import { load, roles, table } from './load.ts';
 
 describe('956 Auto Chassis', () => {
   const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
@@ -153,5 +158,26 @@ describe('956 Auto Chassis', () => {
       const after = kin.poses[0].clone().invert().multiply(kin.poses[lever]);
       before.elements.forEach((x, k) => expect(after.elements[k]).toBeCloseTo(x, 6));
     }
+  });
+
+  it("its gear lever slides its input shaft between two speeds: built, the engine turns 9 times for each turn of the rear axle, and slid back 20 LDU, meshing the shaft's gear straight with the crankshaft's, 3 times", () => {
+    const sliders = findSliders(parts, mech, table, modelSettings(readFileSync('models/956-Auto Chassis.mpd', 'utf-8')).slides);
+    const shaft = sliders.find((s) => s.origin)!;
+    expect(parts[shaft.part].name).toBe('3737.dat');
+    expect(shaft.riders).toContain(559); // the lever's stick rides on it
+    const ratios = [0, 20].map((position) => {
+      const by = sliderMovedTo(parts, table, shaft, position).multiply(parts[shaft.part].matrix.clone().invert());
+      const shifted = parts.map((p, i) => (shaft.riders!.includes(i) ? { ...p, matrix: by.clone().multiply(p.matrix) } : p));
+      const m = inferMechanism(shifted, table, roles, mech.loops.map((l) => l.path));
+      expect(m.loose).toEqual([]);
+      const k = new Kinematics(m);
+      const axle = m.treads.find((t) => m.treads.filter((u) => u.body === t.body).length === 2)!.body;
+      const joint = k.parentLink(axle)!.joint;
+      k.holdWhatTheDragDoesntNeed(axle, () => k.jointMotion(joint) !== null, joint);
+      const turned = k.turnJoint(joint, 0.25);
+      return Math.abs(k.jointAngles[k.parentLink(m.bodyOf[565])!.joint] / turned); // the crankshaft
+    });
+    expect(ratios[0]).toBeCloseTo(9, 6);
+    expect(ratios[1]).toBeCloseTo(3, 6);
   });
 });

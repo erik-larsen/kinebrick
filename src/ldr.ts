@@ -230,8 +230,22 @@ export function embeddedParts(text: string): Map<string, string> {
 // KineBrick's own settings for a model, from "0 !KINEBRICK" lines in its main file (LDraw
 // programs skip meta-commands they don't know, so the file still opens anywhere), e.g.
 //   0 !KINEBRICK SCRUB [percent=10]   tyres may scrub sideways by up to 10% of how far they roll
+//   0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.6 -108.5] [dir=0 0 -1] [positions=0,20]
+//                                      the part of that name whose middle is there (within 1 LDU,
+//                                      in the model's coordinates) slides that way, with what
+//                                      turns on it, into those positions (LDU from there): a shaft
+//                                      a gear lever slides back and forth, meshing its gear with
+//                                      one gear or another (the 956 Auto Chassis's two speeds)
 export interface ModelSettings {
   scrub?: number; // percent
+  slides?: ModelSlide[];
+}
+
+export interface ModelSlide {
+  part: string;
+  at: Vector3;
+  dir: Vector3;
+  positions: number[];
 }
 
 export function modelSettings(text: string): ModelSettings {
@@ -239,6 +253,14 @@ export function modelSettings(text: string): ModelSettings {
   for (const line of [...modelFiles(text).values()][0] ?? []) {
     const scrub = /^\s*0\s+!KINEBRICK\s+SCRUB\b.*\[percent=([\d.]+)\]/.exec(line);
     if (scrub) settings.scrub = Number(scrub[1]);
+    if (/^\s*0\s+!KINEBRICK\s+SLIDE\b/.test(line)) {
+      const field = (name: string) => new RegExp(`\\[${name}=([^\\]]*)\\]`).exec(line)?.[1] ?? '';
+      const numbers = (text: string) => text.split(/[\s,]+/).filter(Boolean).map(Number);
+      const [at, dir, positions] = [numbers(field('at')), numbers(field('dir')), numbers(field('positions'))];
+      if (at.length === 3 && dir.length === 3 && positions.length > 0) {
+        (settings.slides ??= []).push({ part: normalizePartName(field('part')), at: new Vector3(...at), dir: new Vector3(...dir).normalize(), positions });
+      }
+    }
   }
   return settings;
 }

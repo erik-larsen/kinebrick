@@ -4,6 +4,8 @@
 0 Author: N. W. Perry [Plastikean]
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
+0 // KineBrick: its gear lever slides its input shaft 20 LDU back, from meshing with the gear that drives the engine through a 24 tooth gear to meshing with the crankshaft's own 8 tooth gear
+0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.615 -108.469] [dir=0 0 -1] [positions=0,20]
 
 1 14 0 -114.415 211.231 1 0 0 0 1 0.01 0 -0.01 1 956-chassis.ldr
 

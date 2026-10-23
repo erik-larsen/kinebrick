@@ -379,7 +379,7 @@ async function start() {
     mech = known ?? inferMechanism(parts, table, roles, paths);
     kin = new Kinematics(mech);
     kin.scrub = scrub / 100;
-    sliders = findSliders(parts, mech, table);
+    sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
@@ -520,16 +520,22 @@ async function start() {
   // Slides a part (a driving ring) to one of its click-in positions, then works the mechanism
   // out afresh from where everything now is.
   function shift(part: number, position: number) {
-    const slider = sliders.find((sl) => sl.part === part)!;
+    const slider = sliderOf(part)!;
     const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
     const moved = sliderMovedTo(now, table, slider, position);
-    const by = moved.clone().multiply(now[part].matrix.clone().invert());
-    now[part] = { ...now[part], matrix: moved };
-    partObjects[part].matrix.premultiply(by);
-    partObjects[part].matrix.decompose(partObjects[part].position, partObjects[part].quaternion, partObjects[part].scale);
+    const by = moved.clone().multiply(now[slider.part].matrix.clone().invert());
+    for (const i of slider.riders ?? [slider.part]) {
+      now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
+      partObjects[i].matrix.premultiply(by);
+      partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
+    }
     read(now);
     showPoses();
   }
+
+  // The slider a part slides with: it's the slider, or rides on one (a gear lever on the shaft
+  // it slides).
+  const sliderOf = (part: number) => sliders.find((sl) => sl.part === part || sl.riders?.includes(part));
 
   // Clicks a gear lever into one of its gate positions, sliding the driving rings it moves with
   // it, then works the mechanism out afresh from where everything now is.
@@ -570,11 +576,11 @@ async function start() {
 
   // Where a sliding part is and how it slides, or null if it doesn't.
   function slideOf(part: number) {
-    const slider = sliders.find((sl) => sl.part === part);
+    const slider = sliderOf(part);
     if (!slider) return null;
     const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
     return {
-      at: new Vector3().setFromMatrixPosition(now[part].matrix),
+      at: new Vector3().setFromMatrixPosition(now[slider.part].matrix),
       dir: slideDirection(now, table, slider),
       position: sliderPosition(now, table, slider),
       positions: slider.positions,

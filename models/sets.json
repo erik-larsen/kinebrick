@@ -7,7 +7,10 @@
   "856-Bulldozer": [],
   "950-Fork Lift": [],
   "952-Tractor": [],
-  "956-Auto Chassis": [],
+  "956-Auto Chassis": [
+    "0 // KineBrick: its gear lever slides its input shaft 20 LDU back, from meshing with the gear that drives the engine through a 24 tooth gear to meshing with the crankshaft's own 8 tooth gear",
+    "0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.615 -108.469] [dir=0 0 -1] [positions=0,20]"
+  ],
   "8448-Super Car": [],
   "8448-Super Car-V8 engine": [],
   "8880-Super Car": [],
