@@ -67,3 +67,30 @@ describe('a frame pinned to two arms that turn on one body', () => {
     expect(withoutSlidesOnCouplers(joints)).toContain(piston);
   });
 });
+
+describe('a half shaft between a universal joint and a ball in its wheel hub', () => {
+  // As the 42110 Land Rover's front wheels have them: a stub shaft (body 2) turning on the frame
+  // at x = 0 to 20, a universal joint at its end, and a half shaft (3) from there, down at an
+  // angle to a ball in the hub of a wheel (1). The wheel turns on a knuckle (4) that steers on
+  // the frame about an upright axis through the ball; a gear in its hub (a portal hub's) keeps
+  // it from counting as a towball, spinning to no purpose. The half shaft hangs on nothing but
+  // its ball, as a gear lever does.
+  const across = (x: number, y: number) => [new Vector3(x - 10, y, 0), new Vector3(x + 10, y, 0)] as const;
+  const joints = [revolute(4, 1, across(100, 0)), revolute(0, 2, across(10, -10)), revolute(0, 4, [new Vector3(100, -10, 0), new Vector3(100, 10, 0)]), ball(3, 1, new Vector3(100, 0, 0))];
+  const mech = mechanism(joints, 5);
+  const down = new Vector3(80, 10, 0).normalize();
+  mech.couplings = [{ bodyA: 2, bodyB: 3, center: new Vector3(20, -10, 0), axisA: new Vector3(1, 0, 0), axisB: down, atA: new Vector3(10, -10, 0), atB: new Vector3(60, -5, 0) }];
+  mech.gears = [{ part: 1, body: 1, center: new Vector3(95, 0, 0), axis: new Vector3(1, 0, 0), radius: 7.5, width: 5, teeth: 12, spur: true, bevel: '', apex: 0, crown: 0, worm: 0, face: null, length: 0 }];
+
+  it("isn't held still against the wheel when the wheel is turned, as a gear lever would be, and the wheel doesn't steer", () => {
+    const kin = new Kinematics(mech);
+    kin.holdWhatTheDragDoesntNeed(1, () => kin.jointMotion(0) !== null, 0);
+    const motion = kin.jointMotion(0)!;
+    // Held against the wheel, the half shaft would go round with it, and the knuckle would
+    // have to steer to swing its far end round the universal joint's middle.
+    expect(Math.abs(kin.jointRate(motion, 2))).toBeLessThan(1e-6);
+    let turned = 0;
+    for (let i = 0; i < 10; i++) turned += kin.turnJoint(0, 0.025);
+    expect(turned).toBeCloseTo(0.25, 6);
+  });
+});

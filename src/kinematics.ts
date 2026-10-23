@@ -159,7 +159,8 @@ export class Kinematics {
   // Bodies that only slide or swivel on another (a bumper resting on tiles, a crane's
   // outrigger, a gear lever on its ball), and that other body: the root of a tree of their
   // own, joined by nothing but slides and ball joints to it, with no gears (a rack, which its
-  // gear moves, or holds).
+  // gear moves, or holds) and no universal joint (a half shaft on a ball in its wheel's hub,
+  // which the differential turns).
   private mounts = new Map<number, number>();
   private basisOrder: number[] = []; // its columns, deepest bodies' first (see leastSquares)
   // The tree's coordinates, in which the solver works (see treeBasis): six for each root body
@@ -408,7 +409,7 @@ export class Kinematics {
       if (root === 0) continue;
       const own = this.mech.joints.filter((j) => j.bodyA === root || j.bodyB === root);
       const mounts = new Set(own.map((j) => (j.bodyA === root ? j.bodyB : j.bodyA)));
-      const geared = this.mech.gears.some((g) => g.body === root);
+      const geared = this.mech.gears.some((g) => g.body === root) || this.mech.couplings.some((c) => c.bodyA === root || c.bodyB === root);
       if (own.length > 0 && own.every((j) => (j.kind === 'slide' && !j.turns) || j.kind === 'ball') && mounts.size === 1 && !geared) this.mounts.set(root, [...mounts][0]);
     }
   }
