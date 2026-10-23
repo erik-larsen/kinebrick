@@ -1,7 +1,7 @@
 // Works out a model's mechanism: which parts move together (bodies) and how bodies can
 // move relative to each other (joints). See "How it works" in ARCHITECTURE.md, steps 2 to 6.
 
-import { Vector3 } from 'three';
+import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
 import { Kinematics } from './kinematics.ts';
 import { PathPoint, PlacedPath, PlacedPart } from './ldr.ts';
@@ -917,6 +917,20 @@ function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
     });
   }
   return gears;
+}
+
+// Whether gears now mesh that didn't, or no longer do, with each body moved by its pose (the
+// 952 Tractor's harrow lowered onto its power take-off): if so, the mechanism wants working out
+// afresh from where everything now is.
+export function meshesChanged(mech: Mechanism, poses: Matrix4[]): boolean {
+  const moved = mech.gears.map((g) => {
+    const pose = poses[g.body];
+    return { ...g, center: g.center.clone().applyMatrix4(pose), axis: g.axis.clone().transformDirection(pose), face: g.face ? g.face.clone().transformDirection(pose) : null };
+  });
+  const key = (m: Mesh) => `${m.gearA} ${m.gearB} ${m.kind}`;
+  const now = new Set(findMeshes(moved).map(key));
+  const before = new Set(mech.meshes.map(key));
+  return now.size !== before.size || [...now].some((k) => !before.has(k));
 }
 
 function findMeshes(gears: Gear[]): Mesh[] {

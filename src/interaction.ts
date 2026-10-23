@@ -86,6 +86,7 @@ export interface InteractionSetup {
   onFreezeChanged: () => void; // called after a part is frozen or unfrozen
   onMotorChanged: () => void; // called after a part starts or stops being kept turning
   onTurned: (part: number, angle: number) => void; // called after a drag turns a part like a knob, by `angle` radians about its joint
+  onDragEnded: () => void; // called after any drag
   blockedBy: () => [number, number] | null; // two parts now passing through each other, or slid to the end of their travel, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
   shift: (part: number, position: number) => void; // slides a part to one of its positions
@@ -792,6 +793,7 @@ export function setUpInteraction(s: InteractionSetup) {
     arrow.visible = false;
     s.controls.enabled = true;
     if (Math.abs(turned) > 1e-9) s.onTurned(part, turned);
+    s.onDragEnded();
   }
 
   // Runs before the camera controls see the press (capture phase), so a press on a part

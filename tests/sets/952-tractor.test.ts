@@ -1,6 +1,8 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { Kinematics } from '../../src/kinematics.ts';
+import { inferMechanism, meshesChanged } from '../../src/mechanism.ts';
+import { load, roles, table } from './load.ts';
 
 describe('952 Tractor', () => {
   const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/952-Tractor.mpd');
@@ -80,5 +82,30 @@ describe('952 Tractor', () => {
     const turned = Math.atan2(kin.poses[0].elements[8], kin.poses[0].elements[0]) - heading;
     expect(Math.abs(turned) * (180 / Math.PI)).toBeGreaterThan(45);
     expect(Math.abs(turned) * (180 / Math.PI)).toBeLessThan(90);
+  });
+
+  it("lowered by its lever onto the power take-off, the harrow's 40 tooth gear meshes with the crown gear the rear axle drives, and worked out afresh there, a turn of the rear wheels spins the harrow", () => {
+    kin.reset();
+    const lever = mech.bodyOf[parts.findIndex((p) => p.name === '3702.dat' && new Vector3().setFromMatrixPosition(p.matrix).distanceTo(new Vector3(-50, -109, 39)) < 1)];
+    const joint = kin.parentLink(lever)!.joint;
+    expect(meshesChanged(mech, kin.poses)).toBe(false);
+    kin.holdWhatTheDragDoesntNeed(lever, () => kin.jointMotion(joint) !== null, joint);
+    expect(kin.turnJoint(joint, -1.39)).toBeCloseTo(-1.39, 6); // as far down as the viewer lets it go, where the gears' teeth meet
+    kin.letGoAfterDrag();
+    expect(meshesChanged(mech, kin.poses)).toBe(true);
+    const lowered = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const after = inferMechanism(lowered, table, roles);
+    const pto = after.meshes.find((m) => [after.gears[m.gearA].part, after.gears[m.gearB].part].sort().join() === [27, 286].sort().join());
+    expect(pto?.kind).toBe('crown');
+    const kin2 = new Kinematics(after);
+    kin2.scrub = kin.scrub;
+    const wheel = after.bodyOf[parts.findIndex((p) => p.name === '952-3739c01.dat')];
+    expect(parts[305].name).toBe('3649.dat');
+    const harrow = after.bodyOf[305]; // the middle of its three 40 tooth gears
+    const wheelJoint = kin2.parentLink(wheel)!.joint;
+    kin2.holdWhatTheDragDoesntNeed(wheel, () => kin2.jointMotion(wheelJoint) !== null, wheelJoint);
+    expect(Math.abs(kin2.turnJoint(wheelJoint, 1))).toBeCloseTo(1, 6);
+    kin2.letGoAfterDrag();
+    expect(Math.abs(kin2.jointAngles[kin2.parentLink(harrow)!.joint])).toBeGreaterThan(0.5);
   });
 });

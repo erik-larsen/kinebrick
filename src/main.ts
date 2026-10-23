@@ -35,7 +35,7 @@ import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.t
 import { makeJointAxes } from './jointAxes.ts';
 import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
-import { inferMechanism, libraryName, Mechanism } from './mechanism.ts';
+import { inferMechanism, libraryName, Mechanism, meshesChanged } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { findSliders, Slider, sliderMovedTo, sliderPosition, slideDirection } from './shift.ts';
@@ -529,6 +529,15 @@ async function start() {
     showPoses();
   }
 
+  // Works the mechanism out afresh from where everything now is, if gears now mesh that didn't
+  // when it was last worked out, or no longer do (the 952 Tractor's harrow, lowered onto its
+  // power take-off).
+  function meshAfresh() {
+    if (!meshesChanged(mech, kin.poses)) return;
+    read(parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) })));
+    showPoses();
+  }
+
   // Where a sliding part is and how it slides, or null if it doesn't.
   function slideOf(part: number) {
     const slider = sliders.find((sl) => sl.part === part);
@@ -607,6 +616,7 @@ async function start() {
       const sense = interaction.turnSense(part, startCamera.position);
       if (sense !== null) keepTurn(part, angle * sense);
     },
+    onDragEnded: () => meshAfresh(),
     blockedBy: () => {
       const now = partMatrices();
       return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
@@ -710,7 +720,7 @@ async function start() {
   showMotor();
   // The parts turned (see TURNS), in the order they were turned, each by how many degrees (one
   // after another turned again adding up). Kept as turns rather than where each part is, so they
-  // still add up after the mechanism is worked out afresh (after a shift).
+  // still add up after the mechanism is worked out afresh (see meshAfresh).
   const turns: { part: number; degrees: number }[] = [];
   const showTurns = () => {
     params.delete('turn');
@@ -728,6 +738,7 @@ async function start() {
     if (part >= startParts.length) continue;
     const turned = interaction.turnPart(part, (degrees * Math.PI) / 180, startCamera.position);
     if (Math.abs(turned) > 1e-9) keepTurn(part, turned);
+    meshAfresh();
   }
   if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
   unfreezeButton = gui.add({ unfreezeAll }, 'unfreezeAll').name('Unfreeze all');
