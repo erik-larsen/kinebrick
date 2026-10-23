@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { load } from './load.ts';
 
 describe('956 Auto Chassis', () => {
-  const { mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
+  const { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables } = load('models/956-Auto Chassis.mpd');
   // The rear axle: both rear tyres on one body, with no differential between them.
   const rearAxle = mech.treads.find((t) => mech.treads.filter((u) => u.body === t.body).length === 2)!.body;
 
@@ -139,6 +139,19 @@ describe('956 Auto Chassis', () => {
       kin.reset();
       turn(bodyOf('3736.dat'), way * 2.19);
       expect(motor(rearAxle, 200)).toBeCloseTo(200 * ((15 * Math.PI) / 180), 6);
+    }
+  });
+
+  it("at full lock either way, its rear axle kept turning leaves its gear lever, which sits on the drive shaft, standing where it was rather than swinging round with the shaft into the engine", () => {
+    expect(parts[559].name).toBe('3705.dat'); // the lever's stick
+    const lever = mech.bodyOf[559];
+    for (const way of [1, -1]) {
+      kin.reset();
+      turn(bodyOf('3736.dat'), way * 2.18);
+      const before = kin.poses[0].clone().invert().multiply(kin.poses[lever]);
+      expect(motor(rearAxle, 24)).toBeCloseTo(24 * ((15 * Math.PI) / 180), 6);
+      const after = kin.poses[0].clone().invert().multiply(kin.poses[lever]);
+      before.elements.forEach((x, k) => expect(after.elements[k]).toBeCloseTo(x, 6));
     }
   });
 });

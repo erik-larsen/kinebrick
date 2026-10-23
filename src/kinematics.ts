@@ -811,19 +811,22 @@ export class Kinematics {
       // 80 times as far.)
       this.drivenLast = false;
       const loose = this.motionSize(joint);
-      this.chooseHolds(grabbed, quick);
+      let order = this.chooseHolds(grabbed, quick);
       const held = this.motionSize(joint);
       if (loose > 0 && held > HOLDS_DETOUR * loose) {
         this.dragHeld = new Set(worms);
         this.heldToFrame.clear();
         this.drivenLast = true;
-        this.chooseHolds(grabbed, quick);
+        order = this.chooseHolds(grabbed, quick);
         this.drivenLast = false;
       }
       if (stillPossible()) return wormLocked;
       // Too many: keep as many of them as the drag allows, in the order they were chosen
-      // (found by halving).
-      const chosen = [...[...this.dragHeld].filter((b) => !worms.includes(b)).map((b) => ({ b, toFrame: false })), ...[...this.heldToFrame].map((b) => ({ b, toFrame: true }))];
+      // (found by halving), those held against the frame among the rest: at full lock, the 956
+      // Auto Chassis's gear lever, held against the frame, is chosen before its drive shaft,
+      // which leaves its tyres too much to scrub; listed after it, the lever was let go too, and
+      // swung round with the shaft it sits on, into the engine.
+      const chosen = order.flatMap((b) => (this.heldToFrame.has(b) ? [{ b, toFrame: true }] : this.dragHeld.has(b) && !worms.includes(b) ? [{ b, toFrame: false }] : []));
       const keep = (count: number) => {
         this.dragHeld = new Set([...worms, ...chosen.slice(0, count).flatMap((h) => (h.toFrame ? [] : [h.b]))]);
         this.heldToFrame = new Set(chosen.slice(0, count).flatMap((h) => (h.toFrame ? [h.b] : [])));
@@ -885,8 +888,9 @@ export class Kinematics {
     return steering;
   }
 
-  // The holds for a drag (see holdWhatTheDragDoesntNeed), on top of any already there.
-  private chooseHolds(grabbed: number, stillPossible: () => boolean) {
+  // The holds for a drag (see holdWhatTheDragDoesntNeed), on top of any already there. Returns
+  // the bodies it tried, in the order it tried them.
+  private chooseHolds(grabbed: number, stillPossible: () => boolean): number[] {
     const depth = (body: number): number => {
       const link = this.parentLink(body);
       return link ? 1 + depth(link.parent) : 0;
@@ -949,6 +953,7 @@ export class Kinematics {
       this.dragHeld.add(body);
       if (!stillPossible() || (shaftCouldStay && !this.couldStayStill(shaft, stillPossible))) this.dragHeld.delete(body);
     }
+    return [0, ...this.mounts.keys(), ...candidates];
   }
 
   // A quick stand-in for asking whether a drag that turns `joint` is still possible, for trying
