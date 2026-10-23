@@ -99,6 +99,14 @@ const SCRUB_PARAM = percent(params.get('scrub'));
 // camera starts, or with ",cw" clockwise: e.g. ?autospin=271 or ?autospin=271,cw. Ctrl-click
 // keeps it up to date, so the address shares the animation.
 const AUTOSPIN = /^(\d+)(,cw)?$/.exec(params.get('autospin') ?? '');
+// Parts turned from the start, each by its place in the model file and how many degrees,
+// counter-clockwise as seen from where the camera starts (negative: clockwise), in the order
+// given, as a drag would turn them, before Auto spin starts: e.g. ?turn=12,30&turn=271,-45.
+// Dragging a part like a knob keeps it up to date, so the address shares the pose.
+const TURNS = params.getAll('turn').flatMap((t) => {
+  const m = /^(\d+),(-?[\d.]+)$/.exec(t);
+  return m && Number.isFinite(Number(m[2])) ? [{ part: Number(m[1]), degrees: Number(m[2]) }] : [];
+});
 
 // The address's query, from params, with commas left as they are (option=bodycolours,axes),
 // rather than written %2C.
@@ -573,6 +581,7 @@ async function start() {
   // added below) shows while any are frozen.
   let unfreezeButton: Controller | undefined;
   let showMotor = () => {}; // shows the motor's buttons, once they're made (below)
+  let keepTurn = (_part: number, _angle: number) => {}; // keeps a part's turn (radians, counter-clockwise) in the address, once that's set up (below)
   function showFrozen() {
     appearance.frozenBodies = new Set(kin.frozenBodies());
     appearance.update();
@@ -594,6 +603,10 @@ async function start() {
     onMoved: showPoses,
     onFreezeChanged: showFrozen,
     onMotorChanged: () => showMotor(),
+    onTurned: (part, angle) => {
+      const sense = interaction.turnSense(part, startCamera.position);
+      if (sense !== null) keepTurn(part, angle * sense);
+    },
     blockedBy: () => {
       const now = partMatrices();
       return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
@@ -658,6 +671,8 @@ async function start() {
   // grid back where they started.
   const reset = () => {
     interaction.stopMotor();
+    turns.length = 0;
+    showTurns();
     camera.position.copy(startCamera.position);
     controls.target.copy(startCamera.target);
     controls.update();
@@ -693,6 +708,27 @@ async function start() {
     history.replaceState(null, '', address());
   };
   showMotor();
+  // The parts turned (see TURNS), in the order they were turned, each by how many degrees (one
+  // after another turned again adding up). Kept as turns rather than where each part is, so they
+  // still add up after the mechanism is worked out afresh (after a shift).
+  const turns: { part: number; degrees: number }[] = [];
+  const showTurns = () => {
+    params.delete('turn');
+    for (const { part, degrees } of turns) params.append('turn', `${part},${degrees}`);
+    history.replaceState(null, '', address());
+  };
+  keepTurn = (part: number, angle: number) => {
+    const last = turns[turns.length - 1];
+    if (last?.part === part) turns.pop();
+    const degrees = Math.round(((last?.part === part ? last.degrees : 0) + (angle * 180) / Math.PI) * 10) / 10;
+    if (degrees !== 0) turns.push({ part, degrees });
+    showTurns();
+  };
+  for (const { part, degrees } of TURNS) {
+    if (part >= startParts.length) continue;
+    const turned = interaction.turnPart(part, (degrees * Math.PI) / 180, startCamera.position);
+    if (Math.abs(turned) > 1e-9) keepTurn(part, turned);
+  }
   if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
   unfreezeButton = gui.add({ unfreezeAll }, 'unfreezeAll').name('Unfreeze all');
   gui.add({ reset }, 'reset').name('Reset');
@@ -775,9 +811,10 @@ picker.add(new Option('Open a model file…', 'open'));
 const chosen = picker.value;
 const filePicker = document.getElementById('file') as HTMLInputElement;
 
-// Switching model keeps the options, except tyre scrub and spinning: the next model has its own.
+// Switching model keeps the options, except tyre scrub, turned parts, spinning and spin speed:
+// the next model has its own.
 function openModel(set: (params: URLSearchParams) => void) {
-  for (const name of ['model', 'file', 'scrub', 'autospin']) params.delete(name);
+  for (const name of ['model', 'file', 'scrub', 'turn', 'autospin', 'rpm']) params.delete(name);
   set(params);
   window.location.search = address();
 }

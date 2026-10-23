@@ -4,8 +4,8 @@
 //   drag     move the mechanism so the grabbed point follows the pointer
 //   release  leave the model where it is
 //   Alt-click   freeze a part, or unfreeze it
-//   Ctrl-click  keep a part that spins on an axle turning on its own (a motor); again, turn
-//               it the other way; again, stop it
+//   Ctrl-click  keep a part that spins on an axle turning on its own (a motor), or any other
+//               part moving as a push would; again, the other way; again, stop it
 // Dragging on empty space turns the camera instead.
 //
 // There are three kinds of drag:
@@ -18,6 +18,7 @@
 //          out afresh.
 
 import {
+  Box3,
   Camera,
   ConeGeometry,
   CylinderGeometry,
@@ -66,6 +67,9 @@ export const DEFAULT_RPM = 15;
 // than a drag's steps, to keep up on big models; it's just as exact, except where it runs into
 // something, so it creeps up to that in a drag's steps.
 const MOTOR_MAX_STEP = (15 * Math.PI) / 180;
+// How fast a part kept moving (Ctrl-click on a part that's pushed) moves: this much of the
+// model's size along the way it moves, per second.
+const MOVE_SPEED = 0.1;
 
 export interface InteractionSetup {
   renderer: WebGLRenderer;
@@ -81,6 +85,7 @@ export interface InteractionSetup {
   onMoved: () => void; // called after the mechanism moves
   onFreezeChanged: () => void; // called after a part is frozen or unfrozen
   onMotorChanged: () => void; // called after a part starts or stops being kept turning
+  onTurned: (part: number, angle: number) => void; // called after a drag turns a part like a knob, by `angle` radians about its joint
   blockedBy: () => [number, number] | null; // two parts now passing through each other, or slid to the end of their travel, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
   shift: (part: number, position: number) => void; // slides a part to one of its positions
@@ -105,9 +110,11 @@ interface Shift {
 
 interface Drag {
   pointerId: number;
+  part: number; // the part grabbed
   body: number;
   grabStart: Vector3; // the grabbed point, in the body's starting position
   joint: number; // the joint the body turns on (turn), or -1 (push)
+  startAngle: number; // how far that joint had turned when the drag started (turn only)
   arc: Group | null; // turn only
   lastX: number; // the pointer's previous position (turn only)
   lastY: number;
@@ -135,6 +142,9 @@ export function setUpInteraction(s: InteractionSetup) {
   let motorReversed = false; // whether it's been reversed since it started (a third Ctrl-click stops it)
   let motorMoved = false; // whether it's turned at all since it started or last turned back
   let motorSpeed = (DEFAULT_RPM / 60) * 2 * Math.PI; // radians per second
+  // A part kept moving rather than turning: the point moved (in its body's starting position),
+  // the way it's going now (LDraw coordinates, a unit vector), and how fast, in LDU per second.
+  let motorPush: { grabStart: Vector3; dir: Vector3; speed: number } | null = null;
   // The kinematics the motor's holds were worked out for, or null if they need working out
   // again (after a drag, a freeze, a shift).
   let motorHeldIn: Kinematics | null = null;
@@ -494,6 +504,7 @@ export function setUpInteraction(s: InteractionSetup) {
   function setMotor(part: number) {
     if (motorHeldIn === s.kin) s.kin.letGoAfterDrag();
     motorHeldIn = null;
+    if (part < 0) motorPush = null;
     motorPart = part;
     s.appearance.drivenPart = part;
     s.appearance.update();
@@ -508,7 +519,7 @@ export function setUpInteraction(s: InteractionSetup) {
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
       if (!motorReversed) {
         reverseMotor();
-        showMessage(`Turning ${name} the other way · Ctrl-click again to stop`, clientX, clientY);
+        showMessage(`${motorPush ? 'Moving' : 'Turning'} ${name} the other way · Ctrl-click again to stop`, clientX, clientY);
       } else {
         setMotor(-1);
         showMessage(`Stopped ${name}`, clientX, clientY);
@@ -516,15 +527,18 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const why = startMotor(part, s.camera.position, false);
-    showMessage(why ?? `Turning ${name} · Ctrl-click again to reverse`, clientX, clientY);
+    showMessage(why ?? `${motorPush ? 'Moving' : 'Turning'} ${name} · Ctrl-click again to reverse`, clientX, clientY);
   }
 
   // Keeps a part turning, counter-clockwise (or clockwise) as seen from `seenFrom` (world
   // coordinates). Returns why it can't, if it can't.
+  // A part that doesn't spin on an axle is kept moving instead (see startPush), away from
+  // `seenFrom`, or with `clockwise`, towards it.
   function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
-    if (!link || !s.kin.turnsLikeAKnob(body)) return 'Only a part that spins on an axle can be kept turning';
+    if (s.slideOf(part)) return "A part that clicks into set positions can't be kept moving: drag it";
+    if (!link || !s.kin.turnsLikeAKnob(body)) return startPush(part, seenFrom, clockwise);
     const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
     const canTurn = s.kin.jointMotion(link.joint) !== null;
     s.kin.letGoAfterDrag();
@@ -532,6 +546,39 @@ export function setUpInteraction(s: InteractionSetup) {
     motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
     motorReversed = false;
     motorMoved = false;
+    motorPush = null;
+    setMotor(part);
+    return null;
+  }
+
+  // Keeps a part moving as a push would move its middle: of the ways it can go, the one nearest
+  // straight away from `seenFrom` (world coordinates), or with `back`, towards it, at MOVE_SPEED
+  // of the model's size that way per second. Returns why it can't, if it can't.
+  function startPush(part: number, seenFrom: Vector3, back: boolean): string | null {
+    const body = s.mech.bodyOf[part];
+    const g = s.ldrawSpace.worldToLocal(new Box3().setFromObject(s.model.children[part]).getCenter(new Vector3()));
+    const directions = pointDirections(body, g);
+    const wormLocked = directions > 0 && s.kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(body, g) === directions);
+    const speeds = s.kin.freeMotions().map((m) => s.kin.pointVelocity(m, body, g));
+    s.kin.letGoAfterDrag();
+    if (directions === 0 || speeds.every((v) => v.length() < 1e-9)) {
+      const why = wormLocked ? 'a worm gear can only be turned from the worm' : s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck();
+      return `This part can't move: ${why}`;
+    }
+    const away = g.clone().sub(s.ldrawSpace.worldToLocal(seenFrom.clone())).normalize();
+    const amounts = leastSquares(speeds, away);
+    const dir = new Vector3();
+    if (amounts) amounts.forEach((a, i) => dir.addScaledVector(speeds[i], a));
+    if (dir.length() < 1e-6) dir.copy(speeds.reduce((a, b) => (b.length() > a.length() ? b : a)));
+    dir.normalize();
+    // The model's size along that way.
+    const size = new Box3().setFromObject(s.model).getSize(new Vector3());
+    const extent = Math.abs(dir.x) * size.x + Math.abs(dir.y) * size.y + Math.abs(dir.z) * size.z;
+    motorDirection = back ? -1 : 1;
+    if (back) dir.negate();
+    motorReversed = false;
+    motorMoved = false;
+    motorPush = { grabStart: g.applyMatrix4(s.kin.poses[body].clone().invert()), dir, speed: MOVE_SPEED * extent };
     setMotor(part);
     return null;
   }
@@ -548,8 +595,39 @@ export function setUpInteraction(s: InteractionSetup) {
     return dir.dot(toCamera) < 0 ? -1 : 1;
   }
 
+  // Which way a part turns counter-clockwise as seen from `seenFrom` (world coordinates), with
+  // the model as it was when it loaded, about its joint: 1 if that's the way its joint's angle
+  // grows, -1 if not, or null if it doesn't turn like a knob.
+  function turnSense(part: number, seenFrom: Vector3): number | null {
+    const body = s.mech.bodyOf[part];
+    const link = s.kin.parentLink(body);
+    if (!link || !s.kin.turnsLikeAKnob(body)) return null;
+    const sign = s.mech.joints[link.joint].bodyB === body ? 1 : -1;
+    return sign * counterClockwiseFrom(part, seenFrom, true);
+  }
+
+  // Turns a part like a knob by `angle` radians, counter-clockwise as seen from `seenFrom`
+  // (world coordinates), with the model as it was when it loaded, as a drag would: holding what
+  // that doesn't need, and stopping where parts would run into each other. Returns how far it
+  // turned.
+  function turnPart(part: number, angle: number, seenFrom: Vector3): number {
+    const body = s.mech.bodyOf[part];
+    const link = s.kin.parentLink(body);
+    if (!link || !s.kin.turnsLikeAKnob(body)) return 0;
+    const sign = s.mech.joints[link.joint].bodyB === body ? 1 : -1;
+    const way = sign * counterClockwiseFrom(part, seenFrom, true);
+    s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
+    const allowed = () => s.blockedBy() === null;
+    const turned = s.kin.turnJoint(link.joint, way * angle, allowed);
+    s.kin.letGoAfterDrag();
+    motorHeldIn = null;
+    s.onMoved();
+    return turned * way;
+  }
+
   function reverseMotor() {
     motorDirection = -motorDirection;
+    motorPush?.dir.negate();
     motorReversed = !motorReversed;
     s.onMotorChanged();
   }
@@ -561,6 +639,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // model), and again if a step fails with them, before giving up.
   function runMotor(seconds: number) {
     if (motorPart < 0 || drag) return;
+    if (motorPush) return runPush(motorPush, seconds);
     const body = s.mech.bodyOf[motorPart];
     const link = s.kin.parentLink(body);
     if (!link) {
@@ -608,15 +687,84 @@ export function setUpInteraction(s: InteractionSetup) {
     s.onMoved();
   }
 
+  // Moves the part kept moving on by however far it goes in `seconds`, in steps of up to
+  // MAX_STEP as a push drag would, each the mix of the ways it can go nearest the way it was
+  // going, so it follows a curve (a steered car rolling round). Where it can go no further that
+  // way (it runs into something, or a slide runs out), it turns back, as long as it got
+  // somewhere since it last did; else it stops.
+  function runPush(push: NonNullable<typeof motorPush>, seconds: number) {
+    const body = s.mech.bodyOf[motorPart];
+    const distance = push.speed * seconds;
+    let moved = 0;
+    let stuck = false;
+    for (let attempt = 0; attempt < 2 && moved < distance - 1e-9; attempt++) {
+      if (motorHeldIn !== s.kin || attempt > 0) {
+        const g = push.grabStart.clone().applyMatrix4(s.kin.poses[body]);
+        const directions = pointDirections(body, g);
+        if (directions > 0) s.kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(body, push.grabStart.clone().applyMatrix4(s.kin.poses[body])) === directions);
+        motorHeldIn = s.kin;
+      }
+      stuck = false;
+      while (moved < distance - 1e-9) {
+        const step = Math.min(MAX_STEP, distance - moved);
+        const g = push.grabStart.clone().applyMatrix4(s.kin.poses[body]);
+        const motions = s.kin.freeMotions();
+        const speeds = motions.map((m) => s.kin.pointVelocity(m, body, g));
+        const amounts = motions.length ? leastSquares(speeds, push.dir) : null;
+        const move = new Vector3();
+        if (amounts) amounts.forEach((a, i) => move.addScaledVector(speeds[i], a));
+        // Nowhere to go, or only well off the way it was going.
+        if (!amounts || move.length() < 1e-6 || move.clone().normalize().dot(push.dir) < 0.5) {
+          stuck = true;
+          break;
+        }
+        const scale = step / move.length();
+        const combined = new Array(motions[0].length).fill(0);
+        motions.forEach((m, i) => m.forEach((x, k) => (combined[k] += x * amounts[i] * scale)));
+        const before = s.kin.snapshot();
+        s.kin.advance(combined, 1);
+        const pair = s.blockedBy();
+        if (pair) {
+          s.kin.restore(before);
+          s.appearance.flashBlocked(pair);
+          stuck = true;
+          attempt = 2; // ran into something: fresh holds won't help
+          break;
+        }
+        const now = push.grabStart.clone().applyMatrix4(s.kin.poses[body]).sub(g);
+        if (now.length() > 1e-9) push.dir.copy(now.normalize());
+        moved += step;
+        motorMoved = true;
+      }
+    }
+    if (stuck) {
+      if (motorMoved) {
+        reverseMotor();
+        motorReversed = false;
+        motorMoved = false;
+      } else {
+        const scrubbing = s.kin.scrubNeeded !== null;
+        const at = onScreen(motorPart);
+        setMotor(-1);
+        if (scrubbing) showMessage(`Stopped: ${whyStuck()}`, at.x, at.y);
+      }
+    }
+    s.onMoved();
+  }
+
   // ---------------------------------------------------------------------------
   // Press, move, release
 
   // In how many independent directions the grabbed point can move.
   function grabDirections(d: Drag): number {
-    const g = grabPoint(d);
+    return pointDirections(d.body, grabPoint(d));
+  }
+
+  // In how many independent directions a point on a body can move.
+  function pointDirections(body: number, g: Vector3): number {
     const basis: Vector3[] = [];
     for (const m of s.kin.freeMotions()) {
-      const v = s.kin.pointVelocity(m, d.body, g);
+      const v = s.kin.pointVelocity(m, body, g);
       for (const b of basis) v.addScaledVector(b, -v.dot(b));
       if (v.length() > 1e-6) basis.push(v.normalize());
     }
@@ -633,14 +781,17 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     if (!drag) return;
     s.kin.letGoAfterDrag();
+    const turned = drag.joint >= 0 ? s.kin.jointAngles[drag.joint] - drag.startAngle : 0;
     if (canvas.hasPointerCapture(drag.pointerId)) canvas.releasePointerCapture(drag.pointerId);
     if (drag.arc) {
       s.ldrawSpace.remove(drag.arc);
       drag.arc.traverse((o) => (o as Mesh).geometry?.dispose());
     }
+    const part = drag.part;
     drag = null;
     arrow.visible = false;
     s.controls.enabled = true;
+    if (Math.abs(turned) > 1e-9) s.onTurned(part, turned);
   }
 
   // Runs before the camera controls see the press (capture phase), so a press on a part
@@ -687,7 +838,7 @@ export function setUpInteraction(s: InteractionSetup) {
       // rod) is pushed.
       const link = s.kin.parentLink(body);
       const joint = link && s.kin.turnsLikeAKnob(body) ? link.joint : -1;
-      drag = { pointerId: e.pointerId, body, grabStart, joint, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false };
+      drag = { pointerId: e.pointerId, part: hit.part, body, grabStart, joint, startAngle: joint >= 0 ? s.kin.jointAngles[joint] : 0, arc: null, lastX: e.clientX, lastY: e.clientY, owed: 0, target: null, pushSteps: 0, sideOn: false };
       hideLabel();
 
       // Hold still whatever this drag doesn't need to move.
@@ -782,9 +933,12 @@ export function setUpInteraction(s: InteractionSetup) {
     reverseMotor,
     startMotor, // (part, seenFrom, clockwise): see startMotor
     motorPart: () => motorPart,
+    turnSense, // (part, seenFrom): see turnSense
+    turnPart, // (part, angle, seenFrom): see turnPart
     // Whether the part kept turning turns clockwise as seen from `seenFrom` (world coordinates),
     // with the model as it was when it loaded.
-    motorClockwiseFrom: (seenFrom: Vector3) => motorPart >= 0 && motorDirection !== counterClockwiseFrom(motorPart, seenFrom, true),
+    // A part kept moving, rather than turning: whether it's going the other way from how it started.
+    motorClockwiseFrom: (seenFrom: Vector3) => motorPart >= 0 && (motorPush ? motorDirection < 0 : motorDirection !== counterClockwiseFrom(motorPart, seenFrom, true)),
     setMotorRpm: (rpm: number) => (motorSpeed = (rpm / 60) * 2 * Math.PI),
     // The ways the mechanism can move have changed (tyres may scrub more or less), so the
     // motor's holds need working out again.
@@ -844,14 +998,15 @@ function perpendicularTo(d: Vector3): Vector3 {
 
 // The amounts a_i that make  Σ a_i · columns_i  as close as possible to `target`, slightly
 // damped so a motion that barely shows on screen doesn't get a huge amount.
-function leastSquares(columns: Vector2[], target: Vector2): number[] | null {
+function leastSquares(columns: (Vector2 | Vector3)[], target: Vector2 | Vector3): number[] | null {
+  const dot = (u: Vector2 | Vector3, v: Vector2 | Vector3) => u.toArray().reduce((sum: number, x: number, i: number) => sum + x * v.toArray()[i], 0);
   const k = columns.length;
   const a: number[][] = [];
   const b: number[] = [];
   for (let i = 0; i < k; i++) {
     a.push([]);
-    for (let j = 0; j < k; j++) a[i].push(columns[i].dot(columns[j]) + (i === j ? 1e-3 : 0));
-    b.push(columns[i].dot(target));
+    for (let j = 0; j < k; j++) a[i].push(dot(columns[i], columns[j]) + (i === j ? 1e-3 : 0));
+    b.push(dot(columns[i], target));
   }
   // Gaussian elimination on the small k × k system.
   for (let c = 0; c < k; c++) {
