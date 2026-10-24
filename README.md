@@ -2,11 +2,11 @@
 
 ![LEGO set 956, Auto Chassis, from 1978, steered halfway to full lock with its rear axle kept turning at 10 rpm: the red, yellow and blue chassis drives round in a circle, its front wheels turned, its four-cylinder engine's pistons running and its rear tyres skidding round the bend](media/auto-chassis.webp)
 
-A web viewer that enables LEGO models to move as they were designed. Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn. Various gears, axles, wheels, pistons, pulleys, etc. work properly now, with many more parts to be handled in the future.
-
-Technic comes first, since its models are built to move. The long-term goal is any LEGO model with moving parts, such as Creator sets and trains.
+A web viewer that enables LEGO models to move as they were designed. Load an LDraw model and drag its parts: push a car and it rolls, turn its steering wheel and the front wheels turn.
 
 **KineBrick works all this out from the parts themselves, with no hand-made animation.**
+
+Technic comes first, since its models are built to move. The long-term goal is any LEGO model with moving parts, such as Creator sets and trains.
 
 The project is currently working its way through Technic models available on LDraw's Official Model Repository (OMR), generally from oldest models first.  Available sets from years 1977-1980 are done, and the goal is to work through every available model up to the present.
 
