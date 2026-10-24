@@ -181,3 +181,178 @@ The agents' questions are in their reports; the ones that decide a function:
 - **8270:** does the inner boom slide? **8273:** does the rear bogie rock? **8274:** how does the 24 tooth gear lift the feeder?
 - **8275:** which M motor works the blade and which the ripper? **8063:** what does the red lever engage?
 - **8261:** is the front axle pendular? **8260:** is the steering wheel decoration?
+
+# 2010 to 2021: review
+
+Drafted 2026-10-24 from each set's instructions, 104 sets (every OMR set from 2010 to 2021), 737 functions. "Today" is a quick automated check of every function with a control: worked as a drag would, it counts as working if the control turns half a radian and every part its `moves` lists moves, partly if something moves, and not at all if nothing does. A rough measure (a wheel's "rolls freely" counts as working if the wheel turns), to be replaced by a proper check in the probe. Left and right are the vehicle's own, its front at -z, so its left at +x (as the 8880 Super Car's left-hand-drive steering wheel shows); one agent had them the other way round, and its nine files were swapped back.
+
+## Results
+
+| Set | Today (works / partly / not) | Main problems |
+|---|---|---|
+| 8049 Tractor with Log Loader | 2 / 2 / 3 | Roof knob doesn't reach the rack; slew knob turns only its own axle; pump on the frame. |
+| 8081 Extreme Cruiser | 4 / 1 / 3 | Engine and differential work; roof steering and doors don't. |
+| 8110 Mercedes-Benz Unimog U 400 | 1 / 1 / 0 | Checking timed out (its motor drags the whole model); weakest draft, every line to check. |
+| 9390 Mini Tow Truck | 3 / 0 / 0 | Steering and winch work; hook and string loose. |
+| 9391 Crawler Crane (Tracked Crane) | 3 / 0 / 1 | Luffing works; slewing from the back knob doesn't; track links scattered. |
+| 9392 Quad Bike | 0 / 2 / 3 | Chain drive, steering column and swing arm don't move; 26 chain links loose. |
+| 9393 Tractor | 4 / 1 / 1 | Roof steering and the tedder's power take-off don't move; hitch worm a little. |
+| 9394 Jet Plane | 3 / 2 / 0 | Wings, landing gear, canopy and tailplanes move only slightly. |
+| 9395 Pick-Up Tow Truck | 2 / 2 / 2 | Roof steering, gear lever and side knob don't move; winch works from inside. |
+| 9396 Helicopter | 1 / 0 / 5 | Fragmented bodies: the tail boom hangs off the tail rotor's shaft; selector levers don't work. |
+| 9397 Logging Truck | 1 / 2 / 5 | Frame is only 56 parts, the chassis a chain of jointed bodies. |
+| 41999 4 x 4 Crawler Exclusive Edition | 0 / 2 / 4 | Every Power Functions element is an LDCad path cap, not a part; axle housings have no joint. |
+| 42000 Grand Prix Racer | 2 / 0 / 4 | Steering and engine work; the side knob moves nothing; rims and tyres loose. |
+| 42004 Mini Backhoe | 4 / 1 / 3 | Loader works; roof steering and backhoe boom and stick don't; both buckets loose. |
+| 42006 Excavator | 2 / 0 / 3 | Knob reaches only the selector shafts; boom and grab trains work when driven directly. |
+| 42020 Twin-rotor Helicopter | 4 / 0 / 0 | All work. |
+| 42021 Snowmobile | 4 / 0 / 0 | All work. |
+| 42022 Hot Rod | 2 / 2 / 0 | Steering and engine work; side panels barely move. |
+| 42023 Construction Crew | 2 / 1 / 1 | Roof steering locked; dump body on the frame. |
+| 42024 Container Truck | 1 / 2 / 2 | Steering and the gearbox selector locked. |
+| 42026 Black Champion Racer | 2 / 0 / 1 | Pull-back motor holds the rear wheels. |
+| 42029 Customized Pick up Truck | 4 / 3 / 1 | Steering and bonnet work; the selector lever is locked; hook loose. |
+| 42031 Cherry Picker | 4 / 0 / 0 | All work. |
+| 42032 Compact Tracked Loader | 2 / 0 / 2 | Lift works; the bucket and fork levers are rigid on the arms. |
+| 42033 Record Breaker | 2 / 0 / 2 | Pull-back motor holds the rear wheels. |
+| 42034 Quad Bike | 0 / 0 / 2 | Pull-back motor holds the rear wheels. |
+| 42035 Mining Truck | 4 / 0 / 1 | Engine and tipping work; the steering rack is jointed as turning, not sliding. |
+| 42036 Street Motorcycle | 0 / 3 / 3 | Fork, handlebars and kickstand on the frame; many loose parts. |
+| 42037 Formula Off-Roader | 3 / 2 / 1 | Steering and engine work. |
+| 42038 Arctic Truck | 4 / 3 / 2 | Steering works; the selector and actuators don't. |
+| 42039 24 Hours Race Car | 4 / 3 / 2 | Engine and steering work; the selector's ring doesn't couple. |
+| 42040 Fire Plane | 3 / 1 / 4 | Joystick doesn't reach the control surfaces; the hatch is loose. |
+| 42041 Race Truck {Reissue} | 3 / 1 / 1 | Engine works; the roof gear moves nothing (knob wheels). |
+| 42042 Crawler Crane | 3 / 0 / 6 | Motor shaft on the frame; tracks and hoist work from their ring shafts, slew and luff don't. |
+| 42043 Mercedes-Benz Arocs 3245 | 6 / 0 / 7 | Motor's output axle on the frame; valves and pump loose; beacons do steer both front axles. |
+| 42044 Display Team Jet | 3 / 0 / 0 | Works, the canopy's flexible axles being submodels. |
+| 42045 Hydroplane Racer | 1 / 1 / 0 | Engine works; its propeller gear isn't joined to the crank. |
+| 42046 Getaway Racer | 0 / 0 / 2 | Pull-back motor holds the rear wheels. |
+| 42047 Police Interceptor | 2 / 0 / 0 | All work. |
+| 42048 Race Kart | 1 / 2 / 1 | Steering wheel doesn't steer; the gear lever rocks but the ring doesn't slide. |
+| 42049 Mine Loader | 2 / 1 / 2 | Rolling and engine work; articulation, claw and arm don't. |
+| 42050 Drag Racer | 3 / 1 / 1 | Steering and engine work; the bodywork lever and wheelie knob are jammed. |
+| 42052 Heavy Lift Helicopter | 1 / 0 / 5 | Motor jammed; levers turn alone. |
+| 42053 Volvo EW160E | 4 / 0 / 1 | Steering and slewing work; pneumatics are custom parts; boom, stick and grab one body. |
+| 42054 CLAAS XERION 5000 TRAC VC | 5 / 1 / 8 | Motor on the frame; steering turns the whole cab; jib has no joint. |
+| 42055 Bucket Wheel Excavator | 3 / 2 / 5 | Mine truck all loose; motor fused to the boom; many drive shafts stuck. |
+| 42056 Porsche 911 GT3 RS | 5 / 3 / 3 | Steering, hood and wing work; paddles locked; doors fused. |
+| 42057 Ultralight Helicopter | 3 / 0 / 2 | Rotor and propeller spin free on their pins. |
+| 42058 Stunt Bike | 1 / 0 / 1 | Pull-back motor holds the rear wheel; the ramp is fused to it. |
+| 42059 Stunt Truck | 1 / 0 / 1 | Pull-back motor holds the rear wheels. |
+| 42060 Roadwork Crew | 3 / 0 / 5 | Truck steering, tipper and excavator cranks locked; excavator bucket fused onto the tipper. |
+| 42061 Telehandler | 4 / 1 / 1 | Four-wheel steering works; boom lift and extension barely move. |
+| 42062 Container Yard | 4 / 0 / 6 | Truck steering works; the reach stacker's steering, boom and claws are locked. |
+| 42063 BMW R 1200 GS Adventure | 2 / 0 / 3 | Engine works; the front fork has no joint. |
+| 42064 Ocean Explorer | 5 / 3 / 1 | Crane partly; the helicopter's rotor shaft is joined to the helipad. |
+| 42065 RC Tracked Racer | 1 / 0 / 4 | Motors' sprocket axles on the frame. |
+| 42066 Air Race Jet | 2 / 2 / 2 | Motor loose; worms nearly jammed. |
+| 42068 Airport Rescue Vehicle | 4 / 0 / 2 | Steering works; the tool tray is loose. |
+| 42069 Extreme Adventure | 5 / 2 / 1 | Rear axle hangs only on its shocks; side panels on the frame. |
+| 42070 6x6 All Terrain Tow Truck | 0 / 2 / 8 | Motor gearbox jointed loose; battery box loose; little works. |
+| 42071 Dozer Compactor | 1 / 2 / 0 | Articulated steering works; blade knob won't turn. |
+| 42072 WHACK! | 1 / 0 / 2 | Pull-back motor holds the rear wheels. |
+| 42073 BASH! | 2 / 0 / 1 | Mostly works. |
+| 42074 Racing Yacht | 1 / 1 / 1 | Winch cranks and rubber-band loops don't turn; rolling swings the hull. |
+| 42075 First Responder | 6 / 0 / 2 | Steering, engine and winch work. |
+| 42076 Hovercraft | 3 / 0 / 6 | Propeller drive and ramp work; stern steering and gantry don't; carriage loose. |
+| 42077 Rally Car | 4 / 0 / 3 | Steering moves slightly (a knuckle jams); doors on the frame. |
+| 42078 Mack Anthem | 3 / 2 / 8 | Pistons hinged to the frame; steering gear jammed; crane drives jammed. |
+| 42079 Heavy Duty Forklift | 4 / 0 / 2 | Rear steering and engine work; inner mast has no joint. |
+| 42080 Forest Machine | 2 / 1 / 5 | Cab is the frame; valves and motor on the frame. |
+| 42081 Volvo Concept Wheel Loader ZEUX | 6 / 0 / 2 | Chassis has no joint to the rear body; actuators only spin their inputs. |
+| 42082 Rough Terrain Crane | 7 / 0 / 2 | Motor-side driving ring welded in; inner boom floats; steering and lever don't turn. |
+| 42083 Bugatti Chiron | 4 / 0 / 4 | Steering, doors and wing work; rolling barely reaches the gearbox; key lies on the ground. |
+| 42084 Hook Loader | 2 / 0 / 1 | Hook arm works; steering locked. |
+| 42088 Cherry Picker | 3 / 0 / 1 | Boom worm locked; slewing works. |
+| 42092 Rescue Helicopter | 3 / 1 / 1 | Rotor and winch gears work; tail propeller on a friction pin. |
+| 42093 Chevrolet Corvette ZR1 | 2 / 2 / 0 | Rolling stops short of the crank (12/8 tooth gears 20 LDU apart); steering gear doesn't reach. |
+| 42094 Tracked Loader | 2 / 3 / 2 | Actuator jams after 4 LDU; front knob doesn't reach the turntable. |
+| 42095 Remote-Controlled Stunt Racer | 1 / 0 / 3 | Motors' gears and track links on the frame. |
+| 42096 Porsche 911 RSR | 4 / 0 / 1 | Steering works; rolling doesn't reach the half shafts. |
+| 42099 4x4 X-treme Off-Roader | 1 / 0 / 6 | 106 loose parts; motor gears locked; rack drags the hubs erratically. |
+| 42100 Liebherr R 9800 | 2 / 0 / 7 | Motor gears fused; turntable top turns alone; track clutch halves break the drive. |
+| 42110 Land Rover Defender | 6 / 2 / 5 | Steering and winch work; levers locked; tailgate and lids fused. |
+| 42101 Buggy | 3 / 0 / 1 | Steering gear stuck; swing arm works. |
+| 42102 Mini CLAAS XERION | 4 / 0 / 0 | Steering works; the rake drive doesn't. |
+| 42105 Catamaran | 0 / 2 / 2 | Rudders and daggerboards don't move from their controls. |
+| 42106 Stunt Show Truck & Bike | 6 / 0 / 2 | Steering works; trailer ramp and bike gears locked. |
+| 42107 Ducati Panigale V4 R | 1 / 3 / 3 | Gear lever locked; fork on the frame; rear wheel loose. |
+| 42108 Mobile Crane | 2 / 4 / 1 | Steering, outriggers, slewing and winch work; luffing and extension don't; inner boom no joint. |
+| 42109 App-Controlled Top Gear Rally Car | 0 / 0 / 4 | Whole drivetrain on the frame. |
+| 42111 Dom's Dodge Charger | 6 / 1 / 1 | Steering, bonnet and boot work; wheelie lever locked; rack has no joint. |
+| 42112 Concrete Mixer Truck | 4 / 2 / 2 | Steering works; the drum barely moves; chute locked. |
+| 42113 Bell-Boeing V-22 Osprey | 1 / 1 / 6 | Motor on the frame; buttons loose; rotors and nacelles jammed. |
+| 42114 6x6 Volvo Articulated Hauler | 2 / 0 / 5 | Motors on the rear frame; actuators and two driving rings loose. |
+| 42115 Lamborghini Sián (Sian) FKP 37 | 2 / 1 / 7 | Steering works; paddles move only their linkage; rolling doesn't reach the engine. |
+| 42116 Skid Steer Loader | 2 / 0 / 1 | Both knobs work, the arm knob also moving the bucket. |
+| 42120 Rescue Hovercraft | 2 / 2 / 1 | Steering and drive coupled, each moving the other's parts. |
+| 42121 Heavy Duty Excavator | 3 / 0 / 1 | Boom knob turns boom, actuator and stick rigidly; side knob on the frame. |
+| 42122 Jeep Wrangler | 3 / 0 / 5 | Winch works; steering and both axle turntables locked; doors on the frame. |
+| 42123 McLaren Senna GTR | 2 / 1 / 1 | Steering and engine work; doors on the frame. |
+| 42124 Off-Road Buggy | 2 / 0 / 4 | Motors on the frame; steering crank 0.07 rad; front arms locked. |
+| 42125 Ferrari 488 GTE AF CORSE #51 | 5 / 0 / 2 | Engine and doors work; the steering column's axle is loose. |
+| 42129 4x4 Mercedes-Benz Zetros Trial Truck | 2 / 1 / 4 | Motors' gears fused; axle bodies have no joint; lock rings loose. |
+| 42131 Cat D11 Bulldozer | 1 / 0 / 9 | All four motor shafts on the frame; actuators spin instead of extending. |
+
+In all: 277 functions work, 90 partly, 267 not.
+
+## What would fix the most
+
+1. **Motors that hold their shafts still** (8110, 41999, 42042, 42043, 42052, 42054, 42055, 42065, 42066, 42070, 42080, 42082, 42095, 42099, 42100, 42109, 42113, 42114, 42124, 42129, 42131): a Power Functions or Powered Up motor should be a control that turns its output; today its output, and often the gear on it, is fixed to the motor. By far the most common: most big sets from 2010 on have a motor.
+2. **Pull-back motors that hold their axles** (42026, 42033, 42034, 42046, 42058, 42059, 42072): the same, for the spring motor's axle.
+3. **Gear selectors that don't shift** (9395, 9396, 42006, 42024, 42029, 42038, 42039, 42048, 42052, 42056, 42083, 42107, 42110, 42112, 42115): levers on changeover catches, rotary catches and paddles don't slide their driving rings, so a gearbox stays in whatever gear its file builds it in. The 8880's and 956's gear levers work through the viewer's shift; these need the same, from the lever.
+4. **Linear actuators that extend** (42038, 42049, 42061, 42070, 42078, 42081, 42094, 42108, 42121, 42131): their halves turn together or spin instead of sliding.
+5. **Bodies with no joint, floating** (41999, 42063, 42069, 42079, 42081, 42082, 42108, 42129): inner boom sections, axle housings, front forks.
+6. **Hinged doors, lids and panels fused to the frame** (42056, 42069, 42077, 42110, 42122, 42123).
+7. **Steering trains that stop short** (8049, 9393, 9395, 42023, 42041, 42076, 42093, 42122): knob wheels, gears just off mesh, a rack jointed as turning (42035).
+8. **Pneumatics** (8049, 8110, 42043, 42053, 42080).
+9. **Errors in the files**: 41999 (every Power Functions element an LDCad path cap, not a part), 42083 (its key lies on the ground), 42123 (leaves out step 220's roof gear), 42107 (its fork shocks, 65151-f1, aren't in the LDraw library), 42055 (the mine truck all loose), 9397 (a 56-part frame, the chassis a chain of bodies), 42093 (two submodels 2 LDU off centre).
+
+## Instruction books out of order
+
+LEGO's PDF numbering doesn't always follow the books: 8110 (-1, -5, -2, -3, -4 are books 1 to 5), 8275 (-1 is book 3), 8448 (-2 is book 1), 9394 (-2 is book 1, -3 the alternate), 9396 (-2 is book 3), 42024, 42029 and 42082 (-2 is book 1), 42032, 42035, 42036 and 42037 (-2 builds the main model, -1 the alternate). This belongs with each set's record, so nobody works it out twice.
+
+## Questions for you
+
+- **Gear selectors and levers, in nearly every set with one**: which way each lever goes for which function. The `first` amounts in the files are guesses (42024, 42029, 42038, 42039, 42042, 42048, 42052, 42066, 42068, 42070, 42082, 42094, 42110, 42112, 42114, 9395, 9396, 9397, 42006, 42000).
+- **Which knob does which**, where the book doesn't label them: 42004, 42032, 42054, 42055, 42076, 42078, 42080, 42084, 42108, 42116, 42131.
+- **8049 / 42053 / 42080 / 8110**: which valve works which cylinder.
+- **8110**: what does the fourth motor output do, and the truck valve p826? Is the steering wheel linked?
+- **9391**: is slewing worked from the knob at the back?
+- **9392**: does the rear chain stay meshed as the swing arm moves?
+- **9393 / 42123**: does only one rear wheel drive the power take-off or engine?
+- **41999**: does either axle swing on its own, apart from the turntable twist?
+- **42020**: is the tail liftarm a skid that moves, and does the nose strut castor?
+- **42021**: are the skis meant to tilt?
+- **42022**: which side panels really open?
+- **42031 / 42088**: does the basket tilt, and is slewing a function?
+- **42040**: do the float wheels drive the propeller, and what works the rudder?
+- **42044**: does a link drive the main gear from the nose gear's knob?
+- **42050**: is the roof knob the steering, and what does the wheelie actuator push?
+- **42052**: do the rotors counter-rotate?
+- **42056 / 42083 / 42115**: how many gears, and which paddle shifts up? Does the 42083's wing tilt as it rises, and its front hood open?
+- **42057**: are the rotor and propeller fixed to their shafts (they sit on pins)?
+- **42062**: how are the twist locks worked, and which spreader axle closes the claws?
+- **42064**: does knob C steer the rudders and the rear bogie?
+- **42069**: what does the actuator lift, the whole roof or its rear panels?
+- **42074**: which crank works the sails?
+- **42084**: does the container slide on its rollers as the arm swings?
+- **42092**: is the right-side gear a second winch knob, and does the winch arm swing?
+- **42093**: is the gear at the back the steering knob? Do the doors open?
+- **42095**: are the tail's yellow wheels wheelie rollers?
+- **42096**: does the engine cover open?
+- **42099 / 42101 / 42125 / 42037**: is the steering wheel really unlinked?
+- **42100**: what do the small actuators at the bucket mount do?
+- **42102**: what pivots as the rake lifts?
+- **42105**: does the steering crossbar slide or swing?
+- **42106**: which parts are the trailer's ramp legs?
+- **42107**: which parts are the handlebars and the stand's handle?
+- **42111**: which parts are the wheelie lever and bar, and does the chain turn the supercharger?
+- **42113**: which button is which function?
+- **42114**: does tipping go through the XL motor's gearbox?
+- **42120**: is the front fan undriven, and do the handlebars turn with the wheels?
+- **42122**: does the rear seat back fold?
+- **42124**: does the rear unit pivot?
+- **42129**: which differentials does the lock reach? Do the doors open?
+- **42131**: which gearbox motor shifts and which powers? Does the blade tilt or pitch? Is the engine driven from the drive motors' differential?
