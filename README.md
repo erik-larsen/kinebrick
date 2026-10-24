@@ -10,6 +10,8 @@ Technic comes first, since its models are built to move. The long-term goal is a
 
 The project is currently working its way through Technic models available on LDraw's Official Model Repository (OMR), generally from oldest models first.  Available sets from years 1977-1980 are done, and the goal is to work through every available model up to the present.
 
+## Credits
+
 Many thanks to the projects KineBrick builds on:
 
 - **[Roland Melkert's LDCad](https://www.melkert.net/LDCad)** provides the [shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) to specify the location of each part's studs, holes and axles, and its path data specifies where a chain, track or string runs.
@@ -18,6 +20,15 @@ Many thanks to the projects KineBrick builds on:
 - **[Three.js's LDraw loader](https://threejs.org/examples/#webgl_loader_ldraw)** renders models in the browser.
 
 Full credits and licenses are under [Data sources and licenses](#data-sources-and-licenses).
+
+## Related Projects
+
+| Project | What it does | How KineBrick differs |
+|---|---|---|
+| [SR 3D Builder](https://wiki.ldraw.org/wiki/Sr3d) | Windows LEGO CAD that could animate gears, hinges and pistons. Discontinued, and its own website is gone, so this links to the LDraw wiki. | Runs in a browser, and is a viewer, not a CAD program. |
+| [LDCad](https://www.melkert.net/LDCad) | LEGO CAD whose animations are written by hand in Lua for each model. | Works out how a model moves from its parts, with nothing written by hand. KineBrick uses LDCad's shadow library for its connection points. |
+| [TechnicBrickPower gear calculator](https://www.eurobricks.com/forum/forums/topic/186656-new-technic-gear-ratio-calculator-tool) | Web tool that finds the gear trains in an LDraw file and shows their ratios. | Covers the whole mechanism, not only gears (axles, pins, pistons, steering, wheels on the ground), and moves it live as you drag. |
+| [yoff/LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation) | Python tool that finds bodies, joints and gear meshes in an LDraw file and exports them to Blender or MuJoCo. | Closest in approach: both find connection points from LDraw primitives. KineBrick solves and animates in the browser instead of exporting to another program. Its code can't be reused directly: it's Python, and it has no license. |
 
 ## Models
 
@@ -219,13 +230,6 @@ Other commands:
 | [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh) | Fast tests of whether two parts' shapes overlap | MIT |
 | [LDCad shadow library](https://github.com/RolandMelkert/LDCadShadowLibrary) | Connection points in the [connection table](ARCHITECTURE.md#the-connection-table) | CC BY-SA 4.0 |
 | [LDraw Official Model Repository](https://library.ldraw.org/omr) | The real LEGO sets in `models/`: 852 Helicopter by Allard van Efferen; 854 Go-Kart by Stefan Frenz; 855 Mobile Crane and 856 Bulldozer by Marc Giraudet; 950 Fork-Lift Truck by Merlijn Wissink; 952 Tractor by Nathan Perry; 956 Auto Chassis by N. W. Perry; 8880 Super Car, and 8448 Super Street Sensation and its V8 engine, by Orion Pobursky | CC BY 2.0 (CCAL 2.0) |
-
-## Prior Works
-
-- **[SR 3D Builder](https://wiki.ldraw.org/wiki/Sr3d).** Windows LEGO CAD that could animate gears, hinges and pistons. Discontinued, and its own website is gone, so this links to the LDraw wiki.
-- **[LDCad](https://www.melkert.net/LDCad).** LEGO CAD whose animations are written by hand in Lua for each model.
-- **[TechnicBrickPower gear calculator](https://www.eurobricks.com/forum/forums/topic/186656-new-technic-gear-ratio-calculator-tool).** Web tool that finds the gear trains in an LDraw file and shows their ratios. Gears only, and no live animation.
-- **[yoff/LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation).** Python tool that finds bodies, joints and gear meshes in an LDraw file and exports them to Blender or MuJoCo. Like KineBrick's connection table, it gets connection points from LDraw primitives. Its code can't be reused directly: it's Python, and it has no license.
 
 ## License
 
