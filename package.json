@@ -10,8 +10,10 @@
     "pack": "tsx scripts/pack-models.ts",
     "import": "tsx scripts/import-sets.ts",
     "omr": "tsx scripts/download-omr.ts",
+    "instructions": "tsx scripts/download-instructions.ts",
     "scan": "tsx scripts/scan-omr.ts",
     "joints": "tsx scripts/probe-joints.ts",
+    "functions": "tsx scripts/check-functions.ts",
     "thumbs": "tsx scripts/thumbs.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },

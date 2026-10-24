@@ -4,9 +4,9 @@ Everything KineBrick knows about a real LEGO set that's too long or nested for i
 
 | Section | What | Written by |
 |---|---|---|
-| `imported` | `instructions`: the set's building instructions as downloaded into `omr/instructions/`, each LEGO PDF (`url`, `file`, in the order LEGO's site lists them) or a folder of scans (`url`, `folder`, `pages`). Empty where neither was found. | Scripts, from outside sources |
+| `imported` | `instructions`: the set's building instructions as downloaded into `omr/instructions/`, each LEGO PDF (`url`, `file`, in the order LEGO's site lists them) or a folder of scans (`url`, `folder`, `pages`). Empty where neither was found. | `npm run instructions` |
 | `curated` | `model`, `instructions`, `functions` (below), `questions` for someone who knows the set, and `settings`: KineBrick's own lines for a set in `models/`, by its file name there, which `npm run import` puts into that file | People, or agents' drafts that people review |
-| `generated` | KineBrick's own measurements of the set, with the commit and date | Scripts only, afresh each time (none yet) |
+| `generated` | What KineBrick does with each of the set's functions today, its model's loose parts, and the commit and date they were measured at (see [The function check](../../ARCHITECTURE.md#the-function-check)) | `npm run functions`, afresh each time |
 
 ```json
 {

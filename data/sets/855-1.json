@@ -108,5 +108,137 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "works": 5,
+      "no": 2,
+      "not checked": 1,
+      "skipped": 2
+    },
+    "loose": [],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "why": [
+          "p99 3008 has no joint to work",
+          "p106 3008 has no joint to work",
+          "p113 3008 has no joint to work",
+          "p120 3008 has no joint to work"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "why": [
+          "p157 3582 is part of the frame",
+          "p158 3582 is part of the frame",
+          "p159 3582 is part of the frame",
+          "p160 3582 is part of the frame"
+        ]
+      },
+      {
+        "result": "not checked"
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "skipped"
+      }
+    ]
+  }
 }

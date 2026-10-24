@@ -109,5 +109,117 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "partly": 1,
+      "works": 4,
+      "no": 3
+    },
+    "loose": [
+      "p177 30394",
+      "p229 2951"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p5 99010",
+          "p25 40490"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p159 32525",
+          "p158 10928"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p169 40490 against p159 32525"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p177 30394 against p169 40490"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      }
+    ]
+  }
 }

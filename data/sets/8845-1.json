@@ -75,5 +75,83 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "no": 1,
+      "partly": 1,
+      "skipped": 1,
+      "works": 1,
+      "not checked": 1
+    },
+    "loose": [],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p93 4019",
+          "p75 4019",
+          "p59 3743",
+          "p168 3482",
+          "p174 3482"
+        ],
+        "why": [
+          "p100 4185 has no joint to work"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p170 3482",
+          "p103 4255 against p104 4254",
+          "p172 3482",
+          "p105 4255 against p106 4254"
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "not checked"
+      }
+    ]
+  }
 }

@@ -58,5 +58,62 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "no": 1,
+      "skipped": 1,
+      "works": 1,
+      "not checked": 1
+    },
+    "loose": [],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p46 32193",
+          "p45 32193",
+          "p25 32073",
+          "p11 4254 against p10 4255"
+        ],
+        "why": [
+          "p6 32056 is part of the frame"
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "not checked"
+      }
+    ]
+  }
 }

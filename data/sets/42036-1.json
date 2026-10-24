@@ -97,5 +97,119 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "partly": 4,
+      "skipped": 1,
+      "no": 2
+    },
+    "loose": [
+      "p228 2910",
+      "p229 32123b",
+      "p230 44294",
+      "p231 6590",
+      "p232 88516",
+      "p233 88517",
+      "p234 6590",
+      "p235 32123b",
+      "p237 2910",
+      "p335 32013",
+      "p337 2780",
+      "p338 32013"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.14,
+            -0.17
+          ]
+        ],
+        "still": [
+          "p117 6542b",
+          "p107 3648b",
+          "p146 3705"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.14,
+            -0.1
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0.07,
+            -0.07
+          ]
+        ],
+        "still": [
+          "p233 88517"
+        ],
+        "why": [
+          "p228 2910 is part of the frame"
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p233 88517",
+          "p227 2909",
+          "p236 2909"
+        ],
+        "why": [
+          "p268 32016 is part of the frame"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p291 4519"
+        ],
+        "why": [
+          "p290 32192 is part of the frame"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            0.14,
+            -0.17
+          ],
+          [
+            0.17,
+            -0.14
+          ]
+        ]
+      }
+    ]
+  }
 }

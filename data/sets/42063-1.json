@@ -89,5 +89,91 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "no": 1,
+      "works": 2,
+      "partly": 2,
+      "skipped": 2
+    },
+    "loose": [
+      "p335 11957",
+      "p388 11957"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p386 88517",
+          "p345 32278"
+        ],
+        "why": [
+          "p418 32016 has no joint to work",
+          "p419 32016 has no joint to work"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p386 88517",
+          "p164 4254"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p334 88517",
+          "p198 4254"
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "skipped"
+      }
+    ]
+  }
 }

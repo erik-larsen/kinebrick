@@ -122,5 +122,127 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "partly": 2,
+      "no": 3,
+      "works": 2,
+      "skipped": 1
+    },
+    "loose": [
+      "p171 6141",
+      "p172 6141",
+      "p173 6141",
+      "p174 6141",
+      "p565 2995",
+      "p567 2995",
+      "p569 2995",
+      "p571 2995"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p268 3647",
+          "p569 2995 against p565 2995",
+          "p558 32030 against p565 2995"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p303 4019",
+          "p291 2819",
+          "p569 2995 against p565 2995"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p31 3650a",
+          "p69 9244",
+          "p132 3650a",
+          "p427 2854",
+          "p437 2851",
+          "p449 2851"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p234 3702",
+          "p250 3702",
+          "p201 2793c01-f1",
+          "p202 2793c01-f1",
+          "p558 32030"
+        ],
+        "why": [
+          "p394 4694c01-f1 is part of the frame"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p558 32030 against p234 3702",
+          "p203 2793c01-f1"
+        ],
+        "why": [
+          "p400 4694c01-f1 is part of the frame"
+        ]
+      }
+    ]
+  }
 }

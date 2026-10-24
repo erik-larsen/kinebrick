@@ -108,5 +108,104 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "partly": 3,
+      "not checked": 1,
+      "works": 2,
+      "skipped": 1
+    },
+    "loose": [
+      "p204 2941"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p174 3895",
+          "p213 3895",
+          "p183 3895",
+          "p212 2950",
+          "p63 2796c01 against p62 2793c03",
+          "p62 2793c03"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p212 2950 against p183 3895",
+          "p185 2825 against p183 3895",
+          "p188 4263 against p183 3895",
+          "p205 2944c01 against p203 2947a"
+        ]
+      },
+      {
+        "result": "not checked"
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p54 3703 against p0 3738",
+          "p174 3895 against p0 3738",
+          "p51 3647 against p54 3703"
+        ],
+        "moved": [
+          "p19 2790a against p0 3738"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "skipped"
+      }
+    ]
+  }
 }

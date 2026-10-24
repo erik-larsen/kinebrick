@@ -94,5 +94,92 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "no": 2,
+      "works": 1,
+      "partly": 1,
+      "not checked": 1
+    },
+    "loose": [
+      "p69 71372c01",
+      "p70 71372c01"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p212 32009 against p0 41239",
+          "p284 2950 against p0 41239"
+        ],
+        "why": [
+          "p212 32009 is part of the frame"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p188 32269 against p212 32009",
+          "p176 4019 against p212 32009",
+          "p98 32198 against p212 32009",
+          "p102 3326b against p212 32009",
+          "p129 4716 against p115 32140",
+          "p135 3647 against p115 32140",
+          "p279 32525 against p115 32140",
+          "p284 2950 against p115 32140"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p69 71372c01",
+          "p70 71372c01"
+        ]
+      },
+      {
+        "result": "not checked"
+      }
+    ]
+  }
 }

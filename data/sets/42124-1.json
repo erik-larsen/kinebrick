@@ -90,5 +90,119 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "no": 4,
+      "partly": 1,
+      "skipped": 2,
+      "works": 1
+    },
+    "loose": [
+      "p1 23816c01",
+      "p502 23816c02"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p318 32524",
+          "p343 15460",
+          "p345 15460"
+        ],
+        "why": [
+          "p0 22169 is part of the frame"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p889 32498",
+          "p464 65414c01",
+          "p972 56908",
+          "p974 56908"
+        ],
+        "why": [
+          "p501 22169 is part of the frame"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p974 56908 against p464 65414c01"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p343 15460",
+          "p345 15460"
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p464 65414c01 against p270 14720",
+          "p501 22169 against p270 14720"
+        ],
+        "why": [
+          "p470 40490 is part of the frame"
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      }
+    ]
+  }
 }

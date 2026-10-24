@@ -1,0 +1,213 @@
+// Checks each real LEGO set's functions (curated.functions in data/sets/<set>.json, what each
+// control is supposed to do) against what KineBrick does with the set's model, and writes what it
+// found into the set's generated section, afresh each time. Each function's control is worked
+// both ways from where the model was loaded (after its `first` controls), as a drag on it would
+// (holding what a drag holds): a turn of REACH radians, or a push of PUSH LDU for a slide. A way
+// works if the control goes at least half that far, every part in `moves` moves and no part in
+// `stays` does, each against the frame or the part it names. A function works if one way works
+// for each of its controls; it partly works if something moves; otherwise it doesn't.
+//
+//   npm run functions                 every set with functions
+//   npm run functions -- 855 8880     only sets whose number has one of these in it
+//   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
+//   npm run functions -- --limit 20   stop a set that takes more than this many minutes (default
+//                                     30), marking it as timed out
+//
+// Each set is checked in a process of its own. generated has the commit it was checked at (and
+// "uncommitted": true if src/ or data/ had changes not yet committed), the date, how many
+// functions came out each way, the model's loose parts, and one entry per function, in the same
+// order as curated.functions: its result, how far each control went each way, and the parts that
+// didn't do what they should ("still": in `moves` but didn't move; "moved": in `stays` but did).
+
+import { execSync, spawn } from 'node:child_process';
+import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { availableParallelism } from 'node:os';
+import { join } from 'node:path';
+import { Matrix4, Quaternion, Vector3 } from 'three';
+import { loadModel } from './load-model.ts';
+
+const SETS_DIR = join('data', 'sets');
+// How far a control is turned each way (radians), or pushed (LDU) if it slides.
+const REACH = 1.5;
+const PUSH = 20;
+// A part counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
+const MOVED = 1;
+const LIMIT_MINUTES = 30;
+
+type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
+interface Checked {
+  result: Result;
+  turned?: [number, number][]; // each control's turn (or push), each way
+  still?: string[];
+  moved?: string[];
+  why?: string[];
+}
+interface Fn {
+  control?: string | string[];
+  moves?: string[];
+  stays?: string[];
+  first?: { control: string; by: number }[];
+  skip?: string;
+}
+
+// Checks one set's functions on its model; what goes in its generated section, but for the commit and date.
+function check(set: { curated: { model: string; functions: Fn[] } }) {
+  const { model, functions } = set.curated;
+  const { parts, mech, kin } = loadModel(model, model.startsWith('omr/'));
+  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  // A part named as the joints probe names it: "p483 3736".
+  const part = (ref: string) => {
+    const n = Number(/^p(\d+)\b/.exec(ref.trim())?.[1]);
+    if (!(n >= 0 && n < parts.length)) throw new Error(`no part ${ref}`);
+    return n;
+  };
+  const name = (p: number) => `p${p} ${parts[p].name.replace(/\.dat$/, '')}`;
+  // "p402 3703 against p315 3029": the part, and the body it's measured against (the frame if none).
+  const against = (ref: string) => {
+    const [a, b] = ref.split(' against ');
+    return { ref, part: part(a), body: b ? mech.bodyOf[part(b)] : 0 };
+  };
+  // Whether a part moved against its body, from the poses at `start` to now.
+  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[]) => {
+    const rel = (poses: Matrix4[]) => poses[body].clone().invert().multiply(poses[mech.bodyOf[part]]);
+    const was = rel(start);
+    const is = rel(kin.poses);
+    const went = at[part].clone().applyMatrix4(is).distanceTo(at[part].clone().applyMatrix4(was));
+    const q = new Quaternion().setFromRotationMatrix(was.clone().invert().multiply(is));
+    return went >= MOVED || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= MOVED;
+  };
+  // Works a body's joint as a drag does, as far as it goes up to `amount`; how far it went.
+  const turn = (body: number, amount: number) => {
+    const joint = kin.parentLink(body)!.joint;
+    kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
+    const turned = kin.turnJoint(joint, amount, () => kin.atLimit() === null);
+    kin.letGoAfterDrag();
+    return turned;
+  };
+  const round = (x: number) => Math.round(x * 100) / 100;
+
+  const checkOne = (fn: Fn): Checked => {
+    if (fn.skip) return { result: 'skipped' };
+    if (!fn.control) return { result: 'not checked' };
+    const why: string[] = [];
+    const moves = (fn.moves ?? []).map(against);
+    const stays = (fn.stays ?? []).map(against);
+    const ways = [fn.control].flat().map((ref) => {
+      kin.reset();
+      for (const first of fn.first ?? []) {
+        const b = mech.bodyOf[part(first.control)];
+        const went = kin.parentLink(b) ? turn(b, first.by) : 0;
+        if (Math.abs(went) < 0.9 * Math.abs(first.by)) why.push(`${first.control}, worked first, went ${round(went)} of ${first.by}`);
+      }
+      const control = part(ref);
+      const b = mech.bodyOf[control];
+      const link = kin.parentLink(b);
+      if (b === 0 || !link) {
+        why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
+        return { works: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false };
+      }
+      const reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
+      const start = kin.snapshot();
+      const startPoses = kin.poses.map((m) => m.clone());
+      const each = [1, -1].map((way) => {
+        kin.restore(start);
+        const turned = turn(b, way * reach);
+        const still = moves.filter((m) => !moved(m, startPoses)).map((m) => m.ref);
+        const wrong = stays.filter((s) => moved(s, startPoses)).map((s) => s.ref);
+        return { turned, still, moved: wrong, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
+      });
+      kin.restore(start);
+      // The better way: one that works, or else the one with fewer wrong parts that went further.
+      const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
+      const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
+      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something };
+    });
+    const result: Result = ways.every((w) => w.works) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
+    const still = [...new Set(ways.flatMap((w) => w.still))];
+    const wrong = [...new Set(ways.flatMap((w) => w.moved))];
+    return { result, turned: ways.map((w) => w.turned), ...(still.length ? { still } : {}), ...(wrong.length ? { moved: wrong } : {}), ...(why.length ? { why: [...new Set(why)] } : {}) };
+  };
+
+  const checked = functions.map((fn) => {
+    try {
+      return checkOne(fn);
+    } catch (err) {
+      return { result: 'error' as Result, why: [(err as Error).message] };
+    }
+  });
+  const counts: Partial<Record<Result, number>> = {};
+  for (const c of checked) counts[c.result] = (counts[c.result] ?? 0) + 1;
+  return { counts, loose: mech.loose.map(name), functions: checked };
+}
+
+// ---------------------------------------------------------------------------
+
+const args = process.argv.slice(2);
+const one = args.indexOf('--one'); // (internal) check this one set's file and print what it found
+if (one >= 0) {
+  const found = check(JSON.parse(readFileSync(args[one + 1], 'utf-8')));
+  // Let the output drain before the process ends: a pipe takes it in pieces.
+  process.stdout.write(JSON.stringify(found), () => process.exit(0));
+} else {
+  await main();
+}
+
+async function main() {
+  const jobsAt = args.indexOf('--jobs');
+  const jobs = jobsAt >= 0 ? Number(args[jobsAt + 1]) : Math.max(1, Math.floor(availableParallelism() / 2));
+  const limitAt = args.indexOf('--limit');
+  const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : LIMIT_MINUTES;
+  const filters = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
+  const commit = execSync('git rev-parse --short HEAD').toString().trim();
+  const uncommitted = execSync("git status --porcelain -- src data ':!data/sets'").toString().trim() !== '';
+  const date = new Date().toISOString().slice(0, 10);
+
+  // The sets with functions, smallest model first.
+  const files = readdirSync(SETS_DIR)
+    .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
+    .map((f) => ({ file: join(SETS_DIR, f), data: JSON.parse(readFileSync(join(SETS_DIR, f), 'utf-8')) }))
+    .filter((s) => s.data.curated.functions?.length)
+    .sort((a, b) => statSync(a.data.curated.model).size - statSync(b.data.curated.model).size);
+
+  const run = (s: (typeof files)[number]) =>
+    new Promise<void>((resolve) => {
+      const started = Date.now();
+      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file], { stdio: ['ignore', 'pipe', 'inherit'] });
+      let out = '';
+      let timedOut = false;
+      const timer = setTimeout(() => {
+        timedOut = true;
+        child.kill();
+      }, limit * 60_000);
+      child.stdout.on('data', (d) => (out += d));
+      child.on('close', (code) => {
+        clearTimeout(timer);
+        const seconds = Math.round((Date.now() - started) / 1000);
+        let found: ReturnType<typeof check> | { timedOut: number } | { failed: string };
+        if (timedOut) found = { timedOut: limit };
+        else {
+          try {
+            if (code !== 0) throw new Error(`exit ${code}`);
+            found = JSON.parse(out);
+          } catch (err) {
+            found = { failed: (err as Error).message };
+          }
+        }
+        // Read afresh, so only generated changes, whatever else changed meanwhile.
+        const data = JSON.parse(readFileSync(s.file, 'utf-8'));
+        data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), date, ...found };
+        writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
+        const summary = 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
+        console.log(`${data.set}: ${summary} (${seconds} s)`);
+        resolve();
+      });
+    });
+
+  console.log(`Checking ${files.length} sets, ${jobs} at a time`);
+  const queue = [...files];
+  await Promise.all(
+    Array.from({ length: jobs }, async () => {
+      for (let s = queue.shift(); s; s = queue.shift()) await run(s);
+    }),
+  );
+}

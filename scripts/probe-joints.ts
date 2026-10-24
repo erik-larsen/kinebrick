@@ -54,11 +54,8 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, st
 import { availableParallelism } from 'node:os';
 import { basename, join } from 'node:path';
 import { Quaternion, Vector3 } from 'three';
+import { loadModel } from './load-model.ts';
 import { commitFindings } from './survey-branch.ts';
-import { ConnectionTable, libraryConnections } from '../src/connections.ts';
-import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
-import { modelSettings, parseModel } from '../src/ldr.ts';
-import { inferMechanism } from '../src/mechanism.ts';
 
 // How far each knob is turned each way, in radians (unless --reach says otherwise), in steps of STEP.
 const REACH = 1.5;
@@ -111,34 +108,8 @@ interface Baseline {
 // processes. Says how many knobs it has in all. Tells `status` where it has got to as it goes
 // (`often` for each step of a turn, which it may skip).
 function probe(file: string, omr: boolean, all: boolean, reach: number, from = 0, to = Infinity, status: (now: string, often?: boolean) => void = () => {}): Baseline & { knobs: number } {
-  status('reading it');
-  const text = readFileSync(file, 'utf-8');
-  const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
-  const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-  const packedModels: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
-  let table: ConnectionTable;
-  let isPrimitive: (n: string) => boolean;
-  let piecesOf: (n: string) => string[] | null;
-  if (omr) {
-    table = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
-    const primitives = new Set<string>(JSON.parse(readFileSync('packed/primitives.json', 'utf-8')));
-    // The parts read as their pieces, from whichever of KineBrick's own models has them.
-    const pieces = Object.assign({}, ...Object.values(packedModels).map((m) => m.pieces)) as Record<string, string[]>;
-    isPrimitive = (n) => primitives.has(n);
-    piecesOf = (n) => pieces[n] ?? null;
-  } else {
-    table = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
-    const packed = packedModels[name];
-    const primitives = new Set(packed?.primitives ?? []);
-    isPrimitive = (n) => primitives.has(n);
-    piecesOf = (n) => packed?.pieces[n] ?? null;
-  }
-  const { parts, paths } = parseModel(text, isPrimitive, piecesOf);
-  status('working out its mechanism');
-  const mech = inferMechanism(parts, table, roles, paths);
+  const { name, parts, mech, kin } = loadModel(file, omr, status);
   status('finding its knobs');
-  const kin = new Kinematics(mech);
-  kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
 
   // A body by its first part, which stays the same as long as the model file does: "p49 3705".
   const bodyKey = (b: number) => {

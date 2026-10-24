@@ -73,5 +73,69 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "partly": 2,
+      "works": 1,
+      "not checked": 2,
+      "skipped": 1
+    },
+    "loose": [
+      "p384 2842c01",
+      "p385 3068bd0t",
+      "p386 3068bd0s",
+      "p387 3068bd0h",
+      "p388 3068bd0g"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p161 2855 against p102 3709b",
+          "p259 3703 against p102 3709b",
+          "p281 3709b against p102 3709b"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p297 2825 against p281 3709b",
+          "p305 2825 against p281 3709b",
+          "p316 3708 against p281 3709b"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "not checked"
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "not checked"
+      }
+    ]
+  }
 }

@@ -65,5 +65,59 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "partly": 2,
+      "skipped": 2
+    },
+    "loose": [
+      "p65 2994",
+      "p66 6578",
+      "p67 6578",
+      "p68 2994"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p34 4019",
+          "p24 32012"
+        ],
+        "moved": [
+          "p45 32013"
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p63 2815",
+          "p64 2815"
+        ]
+      }
+    ]
+  }
 }

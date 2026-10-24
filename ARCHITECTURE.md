@@ -734,7 +734,7 @@ Two places hold it:
 | What | One row per set: what fits in a column, to sort and filter every set by | One file per set: everything nested or long, in three sections, `imported`, `curated` and `generated` |
 | Imported | Set number, name, year, part counts, BrickLink and OMR links, the pinned OMR file | `instructions`: its instruction books as downloaded, each LEGO PDF or a folder of scans |
 | Curated | `errors` (the model's mistakes, in plain English) and `corrected_model` (the repo file of a model put right) | `model` (the file its parts are counted in), `instructions` (which books build the main model, where its functions are drawn), `functions` (what each control does, and which parts it moves), `questions` and their answers, and `settings` (KineBrick's own lines for a set in `models/`); see [data/sets/README.md](data/sets/README.md) |
-| Generated | Summary columns at the end, such as `functions_working` (none yet) | `generated`: each function's result, loose parts, and the commit and date (empty until the probe checks functions) |
+| Generated | Summary columns at the end, such as `functions_working` (none yet) | `generated`: each function's result, loose parts, and the commit and date, written by `npm run functions` (see [The function check](#the-function-check)) |
 
 The rules that keep them tidy:
 
@@ -748,8 +748,8 @@ Where the earlier files went:
 |---|---|
 | `data/functions/<set>.json`, the function lists | Each `data/sets/<set>.json`'s `curated` `model`, `instructions` and `functions` |
 | `models/sets.json`, KineBrick's lines for the sets in `models/` | Each set's `curated.settings`, only where it has lines |
-| `omr/instructions/index.txt` and the scan folders, which file holds which book | Each set's `imported.instructions`. The scripts that downloaded them aren't in the repository yet, so nothing refreshes it. |
-| `data/functions/REVIEW.md`, the first review of the function lists | [data/sets/REVIEW.md](data/sets/REVIEW.md). Its questions are each set's `curated.questions`; its results are to be replaced by `generated`. |
+| `omr/instructions/index.txt` and the scan folders, which file holds which book | Each set's `imported.instructions`, written by `npm run instructions` |
+| `data/functions/REVIEW.md`, the first review of the function lists | [data/sets/REVIEW.md](data/sets/REVIEW.md). Its questions are each set's `curated.questions`; its results are replaced by `generated`. |
 | `tests/joints/`, the joints probe's baselines | Stays where it is: the tests' own |
 
 ## Testing
@@ -916,6 +916,37 @@ Not the pins, axles and small gears inside, nor each link of a track: in seven o
 
 [docs/omr-survey.md](docs/omr-survey.md) gives the steps for a survey on a spare machine.
 
+### The function check
+
+The joints probe can tell that a control moved, but not whether it moved the right thing. `npm run functions` (`scripts/check-functions.ts`) checks each set's functions, what its controls are supposed to do (`curated.functions` in `data/sets/<set>.json`), against what KineBrick does with its model, and writes what it found into the set's `generated`, afresh each time.
+
+**What it does.** For each function with a control, from where the model was loaded:
+
+- works the function's `first` controls, in order;
+- works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide;
+- checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°).
+
+**Results.**
+
+| Result | |
+|---|---|
+| `works` | For each of its controls, one way went at least half as far as it was worked, with every part doing what it should |
+| `partly` | Something moved, but not all it should, or something that should have stayed moved |
+| `no` | Nothing moved: the control is part of the frame, or has no joint to work |
+| `skipped` | Marked `skip`: it only matters under gravity or force |
+| `not checked` | Nothing is worked by hand |
+| `error` | The check couldn't be made: a part its list names isn't in the model |
+
+**What it writes.**
+
+- The commit it ran at, and `"uncommitted": true` if `src/` or `data/` had changes not yet committed.
+- The date, how many functions came out each way, and the model's loose parts.
+- One entry per function, in the same order as `curated.functions`: its result, how far each control went each way (`turned`), the parts in `moves` that didn't move (`still`), those in `stays` that did (`moved`), and `why`, where it couldn't work a control.
+
+**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. A set that takes longer than 30 minutes (`--limit`) is stopped and written down as timed out. `npm run functions -- 855 8880` checks only those sets.
+
+**What it can't do yet.** It doesn't click a slide between positions set by a `SLIDE` line, as the viewer does (the 956's gear lever), shift a gearbox's rings, or run a motor, so those functions come out `partly` or `no` here even where the viewer works them.
+
 ### What the tests don't cover
 
 Checked by hand in the browser instead:
@@ -981,7 +1012,10 @@ Browser-level tests for these paths can come later.
 | `scripts/pack-models.ts` | Packs each test model, flattened, with the LDraw parts it uses (`npm run pack`), and lists the library's primitives and colours for models opened from your own computer |
 | `scripts/thumbs.ts` | Makes the README cards' pictures, opening each model in headless Chrome with `?thumb` (`npm run thumbs`) |
 | `scripts/download-omr.ts` | Downloads the OMR's Technic sets into `omr/` for the scan (`npm run omr`), each the version pinned in `models/technic-sets.csv`'s `omr_file` column, pinning new sets |
+| `scripts/download-instructions.ts` | Downloads each set's building instructions into `omr/instructions/`, LEGO's PDFs or else brickinstructions.com's scans, and writes which are which into its `imported.instructions` (`npm run instructions`) |
 | `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [The joints probe](#the-joints-probe)) |
+| `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
+| `scripts/load-model.ts` | Reads a model as the viewer does, from `models/` or `omr/`, for the probe and the function check |
 | `scripts/survey-branch.ts` | Commits each OMR set's findings from `npm run joints -- --omr --commit` to the `omr-survey` branch, one commit per set per run, and pushes it |
 | `scripts/scan-omr.ts` | Reads every set in `omr/` as the viewer would and reports what KineBrick connects and what it's missing, in `omr/coverage.md` (`npm run scan`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |

@@ -1,0 +1,41 @@
+// Reads a model file as the viewer does, for the scripts that work its controls (probe-joints.ts,
+// check-functions.ts): one of KineBrick's own in models/, with its connection table and packed
+// pieces, or (`omr`) a set from the OMR in omr/, as a model you open yourself would be read, with
+// the whole LDraw library's table and primitives. Its mechanism, and its kinematics ready to move.
+
+import { readFileSync } from 'node:fs';
+import { ConnectionTable, libraryConnections } from '../src/connections.ts';
+import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
+import { modelSettings, parseModel } from '../src/ldr.ts';
+import { inferMechanism } from '../src/mechanism.ts';
+
+export function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}) {
+  status('reading it');
+  const text = readFileSync(file, 'utf-8');
+  const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
+  const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+  const packedModels: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
+  let table: ConnectionTable;
+  let isPrimitive: (n: string) => boolean;
+  let piecesOf: (n: string) => string[] | null;
+  if (omr) {
+    table = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
+    const primitives = new Set<string>(JSON.parse(readFileSync('packed/primitives.json', 'utf-8')));
+    // The parts read as their pieces, from whichever of KineBrick's own models has them.
+    const pieces = Object.assign({}, ...Object.values(packedModels).map((m) => m.pieces)) as Record<string, string[]>;
+    isPrimitive = (n) => primitives.has(n);
+    piecesOf = (n) => pieces[n] ?? null;
+  } else {
+    table = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
+    const packed = packedModels[name];
+    const primitives = new Set(packed?.primitives ?? []);
+    isPrimitive = (n) => primitives.has(n);
+    piecesOf = (n) => packed?.pieces[n] ?? null;
+  }
+  const { parts, paths } = parseModel(text, isPrimitive, piecesOf);
+  status('working out its mechanism');
+  const mech = inferMechanism(parts, table, roles, paths);
+  const kin = new Kinematics(mech);
+  kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
+  return { name, parts, mech, kin };
+}

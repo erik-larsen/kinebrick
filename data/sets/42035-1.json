@@ -76,5 +76,88 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "partly": 2,
+      "works": 3
+    },
+    "loose": [
+      "p123 14682",
+      "p336 3032",
+      "p337 2412b",
+      "p338 2412b",
+      "p339 2412b",
+      "p340 2412b",
+      "p341 2412b",
+      "p342 2412b",
+      "p343 2412b",
+      "p344 2412b",
+      "p345 2412b",
+      "p346 2412b",
+      "p347 2412b",
+      "p348 2412b"
+    ],
+    "functions": [
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p37 32270 against p0 32525",
+          "p28 87761 against p0 32525",
+          "p22 48989 against p0 32525",
+          "p23 48989 against p0 32525"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "moved": [
+          "p38 60485 against p0 32525"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.56,
+            -1.47
+          ]
+        ]
+      }
+    ]
+  }
 }

@@ -57,5 +57,73 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "works": 1,
+      "no": 2
+    },
+    "loose": [
+      "p57 30394",
+      "p58 30285",
+      "p59 30648",
+      "p60 30648",
+      "p61 30285",
+      "p62 30648",
+      "p63 30285",
+      "p64 30648",
+      "p65 30285"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p57 30394 against p47 3706"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "why": [
+          "p58 30285 is part of the frame",
+          "p61 30285 is part of the frame",
+          "p63 30285 is part of the frame",
+          "p65 30285 is part of the frame"
+        ]
+      }
+    ]
+  }
 }

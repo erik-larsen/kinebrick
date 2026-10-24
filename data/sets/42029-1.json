@@ -143,5 +143,124 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "works": 4,
+      "partly": 4,
+      "skipped": 1,
+      "not checked": 1
+    },
+    "loose": [
+      "p846 30395"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p367 6542b against p674 2850a",
+          "p828 94925 against p674 2850a",
+          "p690 2854 against p674 2850a",
+          "p698 2851 against p674 2850a",
+          "p702 2851 against p674 2850a"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p48 6539 against p47 3705"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p64 6542b against p0 32278",
+          "p55 94925 against p0 32278",
+          "p832 4716 against p674 2850a",
+          "p837 3648b against p674 2850a",
+          "p841 61510 against p674 2850a"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p49 6542b against p0 32278",
+          "p62 94925 against p0 32278",
+          "p597 92695 against p596 92693c01",
+          "p974 64782 against p0 32278"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "not checked"
+      }
+    ]
+  }
 }

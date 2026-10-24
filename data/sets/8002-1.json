@@ -106,5 +106,115 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "works": 4,
+      "partly": 2,
+      "skipped": 3
+    },
+    "loose": [
+      "p331 342",
+      "p332 8002 - 6644",
+      "p333 342",
+      "p395 343",
+      "p396 343",
+      "p397 343",
+      "p398 343",
+      "p440 342",
+      "p441 8002 - 6644",
+      "p442 342",
+      "p515 343",
+      "p516 343",
+      "p517 343",
+      "p518 343",
+      "p519 343",
+      "p520 343"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.59,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p856 6536 against p0 32009",
+          "p619 6536 against p0 32009"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p856 6536 against p250 6632",
+          "p619 6536 against p238 6632"
+        ],
+        "moved": [
+          "p0 32009 against p305 32016"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.07,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "skipped"
+      }
+    ]
+  }
 }

@@ -5,7 +5,7 @@
       {
         "url": "https://lego.brickinstructions.com/en/lego_instructions/set/851",
         "folder": "omr/instructions/851-1/",
-        "pages": 16
+        "pages": 18
       }
     ]
   },
@@ -76,5 +76,73 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "no": 2,
+      "works": 2
+    },
+    "loose": [
+      "p237 3024",
+      "p238 3023"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p55 3706",
+          "p159 3743",
+          "p150 3706",
+          "p149 3706"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p39 3702",
+          "p102 3702",
+          "p254 3709b"
+        ]
+      }
+    ]
+  }
 }

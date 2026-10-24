@@ -119,5 +119,122 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "no": 2,
+      "partly": 3,
+      "works": 1,
+      "skipped": 1,
+      "not checked": 1
+    },
+    "loose": [
+      "p57 30395",
+      "p101 3702",
+      "p102 2432"
+    ],
+    "functions": [
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p30 57779 against p61 32184",
+          "p60 32498 against p61 32184"
+        ],
+        "why": [
+          "p0 2905 is part of the frame"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p30 57779 against p0 2905"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p57 30395 against p30 57779"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p55 32278 against p30 57779",
+          "p50 6632 against p30 57779"
+        ],
+        "moved": [
+          "p30 57779 against p0 2905"
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p77 32140 against p61 32184",
+          "p76 32140 against p61 32184"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "skipped"
+      },
+      {
+        "result": "not checked"
+      }
+    ]
+  }
 }

@@ -65,5 +65,48 @@
       }
     ]
   },
-  "generated": {}
+  "generated": {
+    "commit": "007c2d5",
+    "date": "2026-10-24",
+    "counts": {
+      "works": 1,
+      "no": 1,
+      "not checked": 1
+    },
+    "loose": [],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p9 3706",
+          "p23 3701",
+          "p60 3707",
+          "p184 3709b",
+          "p282 3034 against p253 3708"
+        ]
+      },
+      {
+        "result": "not checked"
+      }
+    ]
+  }
 }
