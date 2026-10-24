@@ -43,7 +43,9 @@ export interface Section {
   worm?: number; // a worm: how far its thread advances along the axis per turn (positive for a
   //               right-handed thread about dir). Meshes with a spur gear at right angles.
   rack?: Vec3; // a rack: the way its teeth face, in the part's own coordinates. The cylinder
-  //              is its pitch line, the section's length the length of its teeth, radius 0.
+  //              is its pitch line, the section's length the length of its teeth, radius 0; or
+  //              for a round rack (its teeth rings round a bar, facing every way), the bar's
+  //              axis, and the rings' pitch radius about it.
   width?: number; // a rack: how wide its teeth are
 }
 

@@ -3,7 +3,7 @@
 
 import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
-import { Kinematics } from './kinematics.ts';
+import { Kinematics, nullSpace } from './kinematics.ts';
 import { PathPoint, PlacedPath, PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
@@ -27,6 +27,13 @@ const ANGLE_TOLERANCE = 0.035;
 // pitch radii apart, in LDU. Real teeth still engage a little closer or further, and models
 // built by hand often have them so: an official model may put a gear 2 LDU into a rack.
 const MESH_TOLERANCE = 2;
+// The same for a gear and a rack's pitch line. A rack's straight teeth engage over more than a
+// gear's do, and official models set gears further from them: the 8859 Tractor's 24 tooth
+// gear sits 4 LDU off its steering rack, the 8849 Tractor's 8 tooth gears 3 LDU into theirs.
+const RACK_TOLERANCE = 4.5;
+// How far a gear's axle may tip about the way a rack runs, from square to its teeth, and still
+// mesh (radians): the 1972 Go-Kart's steering column meets its rack at 26 degrees.
+const RACK_TILT = 0.55;
 // How far a bevel gear's cone tip may be from where its axle crosses the other gear's, in LDU.
 // Teeth still overlap a tooth's depth (4 LDU, on the old 14 tooth bevel gear) apart: an
 // official model sets one of a pair 20 LDU from where the axles cross, the other at 17.
@@ -158,7 +165,9 @@ export interface Gear {
   crown: number; // crown teeth facing +1 (along axis) or -1, their pitch plane through center; 0 for none
   worm: number; // a worm: its thread's advance per turn (right-handed about axis), else 0
   // A rack: the way its teeth face, else null. For a rack, center is the middle of its pitch
-  // line, axis the way that line runs, length its length, and radius 0.
+  // line, axis the way that line runs, length its length, and radius 0; or for a round rack (its
+  // teeth rings round a bar, facing every way, as on the 2790 steering rack), the middle of the
+  // bar's axis, and the rings' pitch radius about it.
   face: Vector3 | null;
   length: number;
 }
@@ -263,8 +272,16 @@ function racksToGuide(mech: Mechanism): Set<number> {
     if (mech.joints.some((j) => j.kind === 'slide' && (j.bodyA === rack.body || j.bodyB === rack.body))) continue;
     if (!kin.parentLink(gear.body)) continue;
     kin.toggleFreeze(gear.body);
-    const moves = kin.freeMotions().some((m) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * rack.body + k] - m[k]) > 1e-6));
+    const motions = kin.freeMotions();
     kin.toggleFreeze(gear.body);
+    // Against the gear, in the motions that leave everything its shaft turns in still on it: the
+    // 8849 Tractor's front axle, which holds its steering shaft beside the rack, rocks on that
+    // shaft, the rack sliding along it as it goes, which doesn't need a guide.
+    const apart = (m: number[], a: number, b: number, k: number) => m[6 * a + k] - m[6 * b + k];
+    const six = [0, 1, 2, 3, 4, 5];
+    const bearings = [...new Set(mountsOf(gear.part, mech.connections).map((p) => mech.bodyOf[p]))];
+    const still = nullSpace(bearings.flatMap((b) => six.map((k) => motions.map((m) => apart(m, b, gear.body, k)))), motions.length);
+    const moves = still.some((c) => six.some((k) => Math.abs(c.reduce((sum, x, i) => sum + x * apart(motions[i], rack.body, gear.body, k), 0)) > 1e-6));
     if (moves) for (const g of mech.gears) if (g.face && g.body === rack.body) guide.add(g.part);
   }
   return guide;
@@ -832,8 +849,8 @@ function guidedRacks(count: number, cyls: WorldCylinder[], connections: Connecti
     if (!rack.face || !(loose.has(rack.part) || guide.has(rack.part))) continue;
     for (const gear of gears) {
       if (gear.face || loose.has(gear.part) || !rackMesh(gear, rack)) continue;
-      const mount = mountOf(gear.part, connections);
-      if (mount < 0) continue;
+      const [mount] = mountsOf(gear.part, connections);
+      if (mount === undefined) continue;
       const from = rack.center.clone();
       guided.push({ male: rack.part, female: mount, kind: 'slide', from, to: from.clone().add(rack.axis) });
       break;
@@ -842,9 +859,9 @@ function guidedRacks(count: number, cyls: WorldCylinder[], connections: Connecti
   return guided;
 }
 
-// The part a gear's axle turns in: from the gear, through what's rigidly fixed to it, to the
-// other side of a turning connection. Or -1 if none.
-function mountOf(gear: number, connections: Connection[]): number {
+// The parts a gear's axle turns in: from the gear, through what's rigidly fixed to it, to the
+// other side of each turning connection.
+function mountsOf(gear: number, connections: Connection[]): number[] {
   const fixed = new Set([gear]);
   for (let grew = true; grew; ) {
     grew = false;
@@ -858,12 +875,7 @@ function mountOf(gear: number, connections: Connection[]): number {
       }
     }
   }
-  for (const c of connections) {
-    if (c.kind !== 'revolute') continue;
-    if (fixed.has(c.male) && !fixed.has(c.female)) return c.female;
-    if (fixed.has(c.female) && !fixed.has(c.male)) return c.male;
-  }
-  return -1;
+  return connections.flatMap((c) => (c.kind !== 'revolute' || fixed.has(c.male) === fixed.has(c.female) ? [] : [fixed.has(c.male) ? c.female : c.male]));
 }
 
 // Step 3: every part's connection points, moved into model coordinates.
@@ -997,19 +1009,24 @@ function wormMesh(worm: Gear, gear: Gear): boolean {
   return Math.abs(alongWorm) <= worm.width / 2 && Math.abs(alongGear) <= gear.width / 2;
 }
 
-// A spur gear meshes with a rack of the same tooth size when its axis lies across the rack
-// (at right angles both to the way the rack runs and to the way its teeth face), its pitch
-// circle touches the rack's pitch line, within the rack's length (unless `within` is false),
-// and their teeth overlap across their widths.
+// A spur gear meshes with a rack of the same tooth size when its axis lies across the rack (at
+// right angles to the way the rack runs, and to the way its teeth face or tipped from that by
+// up to RACK_TILT, as a go-kart's slanted steering column meets its rack; a round rack's teeth
+// face every way), its pitch circle touches the rack's pitch line, on the side its teeth face,
+// within the rack's length (unless `within` is false), and their teeth overlap across their
+// widths.
 function rackMesh(gear: Gear, rack: Gear, within = true): boolean {
   if (!gear.spur || gear.worm || gear.face) return false;
   const face = rack.face!;
   // Tooth size: the distance between teeth along the pitch line.
   if (Math.abs((2 * Math.PI * gear.radius) / gear.teeth - rack.length / rack.teeth) > 0.25) return false;
-  if (Math.abs(gear.axis.dot(rack.axis)) > 0.01 || Math.abs(gear.axis.dot(face)) > 0.01) return false;
+  if (Math.abs(gear.axis.dot(rack.axis)) > 0.01) return false;
   const offset = new Vector3().subVectors(gear.center, rack.center);
   if (within && Math.abs(offset.dot(rack.axis)) > rack.length / 2) return false;
-  if (Math.abs(offset.dot(face) - gear.radius) > MESH_TOLERANCE) return false;
+  // From the pitch line (a round rack's axis) to the gear's axis, in the gear's own plane.
+  const apart = offset.clone().addScaledVector(rack.axis, -offset.dot(rack.axis)).addScaledVector(gear.axis, -offset.dot(gear.axis));
+  if (!rack.radius && apart.dot(face) < Math.cos(RACK_TILT) * apart.length()) return false;
+  if (Math.abs(apart.length() - rack.radius - gear.radius) > RACK_TOLERANCE) return false;
   return (gear.width + rack.width) / 2 - Math.abs(offset.dot(gear.axis)) >= MIN_OVERLAP;
 }
 

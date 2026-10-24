@@ -291,6 +291,17 @@
 0 // Technic Gear Rack 1 x 13 with Pegholes and Axleholes: 22 teeth, from x = -88 to 88
 0 !KINEBRICK RACK [teeth=22] [length=176] [width=20] [pos=-88 -5 0] [dir=1 0 0] [face=0 -1 0]
 
+0 FILE 2790a.dat
+0 // Technic Steering Rack, the 1980s sets' (8832 Roadster, 8024 Universal Set): a round bar along x whose teeth are rings round it, 8 LDU apart, their tips 10 LDU from its axis and their roots 4, from x = -30 to 30. Its bracket (2791a) holds an 8 tooth gear 18 LDU from the bar's axis, so its pitch radius is 8. Its teeth face every way, so a slanted steering column's gear meshes with it from either side.
+0 !KINEBRICK RACK [teeth=8] [length=64] [width=20] [pos=-32 0 0] [dir=1 0 0] [face=0 -1 0] [radius=8]
+
+0 FILE 2791a.dat
+0 // Technic Steering Gear Holder: the steering rack (2790a) slides through it, and its gear's axle crosses it above. The shadow library marks the rack's hole slide=true; here it's a bore (B), so the rack slides along it rather than only turning in it. Its other lines as the shadow library gives them.
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 4   _L 8 20   R 6 4] [center=true] [pos=0 -18 0] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_FGR [group=steerHold1] [genderOfs=M] [seq=32] [radius=13] [ori=0 -1 0 1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=B 13 32] [center=true] [ori=0 -1 0 1 0 0 0 0 1]
+
 0 // Sliding on tiles. A plate resting on smooth tiles slides along them (rails either side keep
 0 // it in line; KineBrick doesn't check for those), for as long as it still overlaps the row of
 0 // tiles by a stud. The plate's underside is a slider (S) along its length, and each tile's top

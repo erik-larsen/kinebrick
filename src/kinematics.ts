@@ -1634,9 +1634,12 @@ export class Kinematics {
     }
     if (mesh.kind === 'rack') {
       // b is the rack. Where the gear's pitch circle touches the rack's pitch line, the gear's
-      // teeth and the rack move at the same speed along the rack.
-      const face = b.face!.clone().transformDirection(this.poses[b.body]);
-      const pitchPoint = ca.clone().addScaledVector(face, -a.radius);
+      // teeth and the rack move at the same speed along the rack. That's towards the rack's
+      // teeth, in the gear's plane (a slanted gear's axle tips from square to them; see rackMesh),
+      // or for a round rack, whose teeth face every way, towards the gear from the rack's axis.
+      const face = b.radius ? new Vector3().subVectors(ca, cb).addScaledVector(axisB, -new Vector3().subVectors(ca, cb).dot(axisB)) : b.face!.clone().transformDirection(this.poses[b.body]);
+      const toward = face.addScaledVector(axisA, -face.dot(axisA)).normalize();
+      const pitchPoint = ca.clone().addScaledVector(toward, -a.radius);
       return { a, b, pitchPoint, across: axisB };
     }
     if (mesh.kind === 'crown') {

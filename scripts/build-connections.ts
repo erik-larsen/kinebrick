@@ -163,6 +163,8 @@ function gearFromMeta(meta: Meta): WorkingCylinder[] {
 // A RACK line from data/corrections.ldr: a rack's pitch line, given directly in the part's
 // coordinates, e.g.
 //   "0 !KINEBRICK RACK [teeth=32] [length=256] [width=20] [pos=-116 -25 0] [dir=1 0 0] [face=0 -1 0]"
+// A round rack, its teeth rings round a bar, gives the bar's axis and [radius], the rings' pitch
+// radius about it.
 // Stored as a cylinder along the pitch line with one G section of radius 0: its length is the
 // pitch line's, and it also keeps the tooth count, the way the teeth face, and their width.
 function rackFromMeta(meta: Meta): WorkingCylinder[] {
@@ -175,7 +177,7 @@ function rackFromMeta(meta: Meta): WorkingCylinder[] {
       caps: 'none',
       start: numbers(p.get('pos'), [0, 0, 0]) as Vec3,
       dir: numbers(p.get('dir'), [1, 0, 0]) as Vec3,
-      secs: [{ shape: 'G', radius: 0, length, teeth: Number(p.get('teeth')), rack: numbers(p.get('face'), [0, -1, 0]) as Vec3, width: Number(p.get('width')) }],
+      secs: [{ shape: 'G', radius: Number(p.get('radius') ?? 0), length, teeth: Number(p.get('teeth')), rack: numbers(p.get('face'), [0, -1, 0]) as Vec3, width: Number(p.get('width')) }],
       scaleRule: 'none',
       mirrorRule: 'none',
     },
