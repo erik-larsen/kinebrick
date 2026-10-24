@@ -1,0 +1,26 @@
+{
+  "set": "8054-1",
+  "name": "Universal Motor Set",
+  "model": "models/8054-Universal Motor Set.mpd",
+  "instructions": "omr/instructions/8054-1/ (scans; the model file builds the motorised buggy, model A, pages 4-5; pages 2-3 are the motor and battery box, the crane and the other models follow from page 6)",
+  "functions": [
+    {
+      "does": "The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.",
+      "source": "book: steps 4 (motor), 6 (upper axle), 7 (rear axle with two belt wheels, third belt wheel), 8 (the three bands; inset shows the motor's band) and 9",
+      "control": "p72 4265a",
+      "moves": ["p50 4185", "p55 4185", "p53 3708", "p86 3482"],
+      "note": "KineBrick today: partly. Turning the big belt wheel (p50) or a rear wheel works the two inner bands as belts, so the upper axle and the rear axle turn together. But the motor holds its shaft still and is part of the frame, so the half bush on its shaft (p72) can't be turned, and the band from it to p50 isn't linked."
+    },
+    {
+      "does": "The two front wheels roll freely on their axle; there's no steering.",
+      "source": "book: steps 2 and 9",
+      "control": ["p76 3482", "p78 3482"],
+      "note": "KineBrick today: works."
+    },
+    {
+      "does": "The rubber bands slip when the wheels are held, so the motor can't stall.",
+      "source": "inferred: what rubber-band drives do; the book doesn't say",
+      "skip": "only matters under force; KineBrick treats the bands as belts that don't slip"
+    }
+  ]
+}

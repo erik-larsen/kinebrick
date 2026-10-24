@@ -1,0 +1,35 @@
+{
+  "set": "856-1",
+  "name": "Bulldozer",
+  "model": "models/856-Bulldozer.mpd",
+  "instructions": "omr/instructions/856-1/ (scans; pages 1-8 build the tracked loader with a bucket, which the model file follows; the cover shows the bulldozer with a blade; alternate models from page 9)",
+  "functions": [
+    {
+      "does": "The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.",
+      "source": "book: steps 6-7 (handwheels, gears and the rack sled), 13-14 and 17-18 (rods and arms)",
+      "control": "p50 3736",
+      "moves": ["p56 3706", "p60 3034", "p189 3895", "p190 3895", "p202 3700"],
+      "stays": ["p51 3736", "p115 3737", "p140 3460"],
+      "note": "The gearing is 9:1 before the 8-tooth gears on the racks, so many turns of the handwheel are needed for a full lift."
+    },
+    {
+      "does": "The handwheel at the back on the right tips the bucket: its 8-tooth gear turns a crown gear, which turns the 24-tooth gear on the axle across the top of the cab; that axle's two 8-tooth gears slide two racks along the cab sides, which work a pair of levers on the arms' pivot axle, and rods from there through levers on the arms tip the bucket at the arm tips.",
+      "source": "book: steps 6-7 (handwheels and crown gears), 10 (top axle and gears), 12 (racks) and 13-18 (rods and levers); inferred: which rods lead where, from the drawings",
+      "control": "p51 3736",
+      "moves": ["p115 3737", "p140 3460", "p145 3460", "p206 3894", "p202 3700 against p189 3895"],
+      "stays": ["p50 3736", "p60 3034", "p189 3895"]
+    },
+    {
+      "does": "The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.",
+      "source": "book: steps 3-5 and 20",
+      "control": ["p11 3649", "p12 3649", "p13 3649", "p14 3649"],
+      "note": "KineBrick carries each sprocket's share of track links round with the sprocket instead of running the track as a chain."
+    },
+    {
+      "does": "The angled front guard below the cab front stays put.",
+      "source": "book: step 11; inferred: unsure whether it is meant to be fixed",
+      "stays": ["p126 3702", "p127 3702"],
+      "note": "KineBrick today lets it swing freely on its pins."
+    }
+  ]
+}

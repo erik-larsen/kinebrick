@@ -1,0 +1,72 @@
+{
+  "set": "42029-1",
+  "name": "Customized Pick up Truck",
+  "model": "omr/42029-1 Customized Pick up Truck.mpd",
+  "instructions": "omr/instructions/42029-1-2.pdf (book 1, steps 1-60) and omr/instructions/42029-1-1.pdf (book 2, steps 61-109; function pictures on page 65, the optional Power Functions motor on pages 66-78)",
+  "functions": [
+    {
+      "does": "The black gear on top of the upright axle behind the cab steers the front wheels: a bevel gear at the axle's foot turns a long shaft running forward under the cab, whose 12-tooth gear drives the steering rack and its two links to the front hubs.",
+      "source": "book 1: the front axle steps; book 2: step 89 (page 36, the knob on top behind the cab); inferred: the gear train, from the model file",
+      "control": "p656 32270",
+      "moves": ["p437 6589 against p674 2850a", "p415 32270 against p674 2850a", "p405 87761 against p674 2850a", "p800 11949 against p674 2850a", "p804 11949 against p674 2850a"],
+      "stays": ["p1143 45982 against p674 2850a"]
+    },
+    {
+      "does": "The steering wheel in the cab turns, but isn't linked to the front wheels.",
+      "source": "inferred: it sits on its own axle in the dashboard (book 1, step 47) and nothing connects it to the steering shaft",
+      "control": "p224 2819",
+      "stays": ["p405 87761 against p674 2850a"]
+    },
+    {
+      "does": "As the truck rolls, the rear wheels drive the V6 engine: the rear differential's ring gear turns a long shaft forward, whose 16-tooth gears (one an idler riding loose on the steering shaft) pass the drive up to a shaft that turns the crankshaft, pumping the six pistons up and down.",
+      "source": "book 1: the rear axle, gearbox and engine steps (engine pages 79-84); inferred: the gear train, from the model file",
+      "control": ["p1143 45982", "p1144 45982"],
+      "moves": ["p457 62821 against p674 2850a", "p356 94925 against p674 2850a", "p367 6542b against p674 2850a", "p828 94925 against p674 2850a", "p690 2854 against p674 2850a", "p698 2851 against p674 2850a", "p702 2851 against p674 2850a"],
+      "stays": ["p674 2850a against p337 32525"]
+    },
+    {
+      "does": "The rear differential lets the two rear wheels turn at different speeds on corners.",
+      "source": "book 1: the rear axle steps",
+      "control": "p1143 45982"
+    },
+    {
+      "does": "The yellow lever inside the cab, on the right behind the seat, works a gearbox under the cab: it slides the driving ring between two clutch gears, choosing whether the black gear low on the right side drives the winch at the front (position 1) or tips the bed (position 2).",
+      "source": "book 2: page 65 (the inset with the lever's two positions), step 106 (page 61, the yellow arrow at the lever)",
+      "control": "p133 6632",
+      "moves": ["p111 6641 against p0 32278", "p48 6539 against p47 3705"],
+      "stays": ["p47 3705 against p0 32278"]
+    },
+    {
+      "does": "With the winch chosen, turning the black gear low on the right side, under the door, winds the front winch in or out: the drive goes through 16-tooth gears to the gearbox, then by a shaft and two universal joints forward to a worm, which turns a 24-tooth gear, an 8-tooth gear and the winch reel behind the front bumper.",
+      "source": "book 2: page 65 (inset 1, the hook on its string), steps 105-106 (pages 60-61, the yellow arrows at the gear); inferred: the gear train, from the model file",
+      "control": "p155 32270",
+      "first": [{"control": "p133 6632", "by": 0.4}],
+      "moves": ["p50 94925 against p0 32278", "p64 6542b against p0 32278", "p55 94925 against p0 32278", "p832 4716 against p674 2850a", "p837 3648b against p674 2850a", "p841 61510 against p674 2850a"],
+      "stays": ["p597 92695 against p596 92693c01"]
+    },
+    {
+      "does": "With the bed chosen, turning the same black gear tips the pick-up bed: the gearbox's other clutch gear drives a shaft and universal joints back to a linear actuator under the bed, which pushes the bed up so it tips back on its hinge at the rear.",
+      "source": "book 2: page 65 (inset 2, the bed tipped), steps 93-98 (pages 45-54)",
+      "control": "p155 32270",
+      "first": [{"control": "p133 6632", "by": -0.4}],
+      "moves": ["p49 6542b against p0 32278", "p62 94925 against p0 32278", "p597 92695 against p596 92693c01", "p974 64782 against p0 32278"],
+      "stays": ["p841 61510 against p674 2850a"]
+    },
+    {
+      "does": "The bonnet hinges up at its back edge to show the engine.",
+      "source": "book 2: step 89 (page 36, the red arrow)",
+      "control": "p951 64392",
+      "moves": ["p951 64392 against p0 32278"]
+    },
+    {
+      "does": "The front and rear axles are each sprung on two shock absorbers, so they can tilt and rise under the body.",
+      "source": "inferred: from the two shock absorbers on each axle in the model file (book 1 and book 2 axle steps)",
+      "skip": "the springs only matter under the truck's weight or a push"
+    },
+    {
+      "does": "The optional Power Functions motor and battery box (not in the set) can be fitted to drive the gearbox instead of the black side gear.",
+      "source": "book 2: pages 66-78",
+      "note": "not in the model file"
+    }
+  ]
+}

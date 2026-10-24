@@ -1,0 +1,56 @@
+{
+  "set": "42124-1",
+  "name": "Off-Road Buggy",
+  "model": "omr/42124-1 Off-Road Buggy.mpd",
+  "instructions": "omr/instructions/42124-1-1.pdf (one book; no function page: pages 78-79 only show driving it from the Control+ app)",
+  "functions": [
+    {
+      "does": "The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs.",
+      "source": "book: steps 1-17 (the steering motor and crank), 18-38 (front suspension and steering links)",
+      "control": "p0 22169",
+      "moves": ["p318 32524", "p343 15460", "p345 15460"],
+      "note": "The motor is one part; the crank on its output shaft (p318 32524 with p315 32316) is what it turns."
+    },
+    {
+      "does": "The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner.",
+      "source": "book: steps 60-72 (the rear frame and differential), 77-99 (the drive motor and its 36 tooth gear, with the inset on page 55 showing the differential)",
+      "control": "p501 22169",
+      "moves": ["p889 32498", "p464 65414c01", "p972 56908", "p974 56908"],
+      "note": "The motor is one part; the 36 tooth gear on its output shaft (p889 32498) is what it turns."
+    },
+    {
+      "does": "The differential lets one rear wheel turn while the other is held, or turn backwards against it when the motor's gear is held.",
+      "source": "book: steps 67-69 and page 55's inset (the differential between the rear half-axles)",
+      "control": "p972 56908",
+      "moves": ["p974 56908 against p464 65414c01"],
+      "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way."
+    },
+    {
+      "does": "Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber.",
+      "source": "book: steps 18-38 (the arms and the yellow shock absorbers)",
+      "control": ["p325 42124 - 31794", "p326 42124 - 31794"],
+      "moves": ["p343 15460", "p345 15460"]
+    },
+    {
+      "does": "The front shock absorbers' springs hold the front of the buggy up.",
+      "source": "book: step 33 (the shock absorbers)",
+      "skip": "only matters under gravity or force"
+    },
+    {
+      "does": "The rear unit (motor, gears, differential and rear wheels) swings up and down on a pivot at its front, sprung by two soft shock absorbers from the roll cage.",
+      "source": "inferred: steps 99-104 pin the rear unit to the chassis at its front and add the two long shock absorbers above it; the book doesn't show it moving",
+      "control": "p470 40490",
+      "moves": ["p464 65414c01 against p270 14720", "p501 22169 against p270 14720"]
+    },
+    {
+      "does": "The rear shock absorbers' springs hold the back of the buggy up.",
+      "source": "inferred: steps 103-104 (the soft shock absorbers)",
+      "skip": "only matters under gravity or force"
+    },
+    {
+      "does": "The front wheels roll freely.",
+      "source": "book: step 127 (the wheels)",
+      "control": ["p971 42124 - 69909", "p977 42124 - 69909"]
+    }
+  ]
+}

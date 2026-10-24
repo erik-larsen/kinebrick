@@ -1,0 +1,38 @@
+{
+  "set": "8835-1",
+  "name": "Forklift",
+  "model": "models/8835-Forklift.mpd",
+  "instructions": "omr/instructions/8835-1/ (scans; the forklift is pages 1-9, the alternate side-loader pages 10-14, the 8700 motor add-on pages 15-16)",
+  "functions": [
+    {
+      "does": "The crank handle on the big grey wheel on the cab's right side raises and lowers the forks: its worm turns a 24-tooth gear on a shaft under the cab, which through two 16-tooth gears and the crown gear on the front axle turns an 8-tooth gear on the mast's bottom axle, and that axle's sprocket drives the chain that carries the forks up the mast.",
+      "source": "book: steps 3-4 and 6 (gears and front axle), 8 (24-tooth gear), 12 (worm), 13 (handwheel); mast steps 1-8 on pages 3-4 (chain loop and sprockets)",
+      "control": "p212 3736",
+      "moves": ["p63 2823 against p29 3703", "p75 3707", "p71 3706"],
+      "stays": ["p29 3703", "p231 2695c01", "p232 2695c01"],
+      "note": "KineBrick today: partly. The gears turn as far as the mast's bottom axle and sprocket (p75), but the chain isn't modelled, so the top sprocket (p71) stays still, and the fork carriage is welded to the mast (its parts p35-p70 are loose and lumped onto the mast's body), so the forks don't rise. The front axle is only a shaft here: the front wheels' round holes let them spin freely on it. The worm can't be driven back, so turning the front axle or a gear by hand does nothing, as it should."
+    },
+    {
+      "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
+      "source": "book: mast steps 4 and 8 (the link on the mast), steps 13 (the wheel and liftarm) and 14 (arrow: the link is swung up onto the liftarm's pin)",
+      "control": "p207 4185a",
+      "moves": ["p29 3703", "p128 4262", "p63 2823"],
+      "stays": ["p212 3736", "p216 3941"],
+      "note": "KineBrick today: doesn't. The wheel won't turn and the mast (p29) can't be tilted by hand either; the crank-and-link loop doesn't solve. Is the wheel meant to be turned right round (rocking the mast back and forth), or only through part of a turn?"
+    },
+    {
+      "does": "The yellow round knob on the cab roof steers the rear wheels: its vertical axle runs down through the cab to a bevel gear, which turns an 8-tooth gear on the rack under the rear, pushing the steering arms.",
+      "source": "book: cover (rotation arrow on the knob); steps 4 (rack), 6 (pinion shaft), 8 (vertical axle and bevel gear), 14 (yellow knob)",
+      "control": "p216 3941",
+      "moves": ["p13 3743", "p9 4261", "p15 4261", "p14 2695c01", "p18 2695c01"],
+      "stays": ["p231 2695c01", "p232 2695c01", "p29 3703"],
+      "note": "KineBrick today: works."
+    },
+    {
+      "does": "The four wheels roll freely; there's no drive to them.",
+      "source": "book: step 17",
+      "control": ["p231 2695c01", "p232 2695c01", "p14 2695c01", "p18 2695c01"],
+      "note": "KineBrick today: works; the front wheels spin freely on the lift drive's front axle without turning it."
+    }
+  ]
+}

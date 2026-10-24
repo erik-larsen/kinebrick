@@ -1,0 +1,79 @@
+{
+  "set": "42042-1",
+  "name": "Crawler Crane",
+  "model": "omr/42042-1 Crawler Crane.mpd",
+  "instructions": "omr/instructions/42042-1-1.pdf (one book, 240 pages; the functions are photographed on pages 234-235: the four levers A-D, and what each does)",
+  "functions": [
+    {
+      "does": "The Power Functions L motor at the back of the superstructure runs the gearbox: a 24 tooth clutch gear on its shaft drives a 24 tooth gear, and rows of 16 tooth clutch gears carry the turn across the gearbox, one pair (one turning each way) beside each of the four driving rings.",
+      "source": "book: the gearbox steps (gearbox, gearbox2-4 sub-assemblies) and the motor fitted; page 234 (the motor and battery box, top left)",
+      "control": "p539 15462",
+      "moves": ["p586 3648b", "p522 18946", "p526 18946", "p529 18946", "p569 18946", "p584 18946", "p602 18946", "p605 18946", "p582 18946"],
+      "note": "the motor (p673 99499) turns the 24 tooth clutch gear p587 76019, which meshes p586 3648b on the control's shaft; the motor's shaft is on the frame in the model, so the control is the shaft it drives"
+    },
+    {
+      "does": "Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets.",
+      "source": "book: page 234 (the levers, B with its icon), page 235 (picture B, the crane driving); the drive gears in the crawler and drivegear sub-assemblies",
+      "first": [{ "control": "p576 18947", "by": 10 }],
+      "control": "p539 15462",
+      "moves": ["p576 18947", "p710 62520", "p45 6589", "p97 6589", "p154 10928", "p147 3648b", "p205 3648b", "p141 57519", "p199 57519"],
+      "stays": ["p720 10928", "p747 10928"],
+      "note": "the ring is slid as the lever would slide it; sliding it the other way (-10) drives the tracks the other way; unsure which part of the lever assembly is lever B's handle"
+    },
+    {
+      "does": "Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth.",
+      "source": "book: page 234 (the levers, C), page 234 picture C (the superstructure slewing)",
+      "first": [{ "control": "p577 18947", "by": 10 }],
+      "control": "p539 15462",
+      "moves": ["p577 18947", "p581 10928", "p588 76019", "p639 10928", "p499 3648b", "p636 32269", "p648 32270", "p132 60484"],
+      "stays": ["p141 57519 against p132 60484"],
+      "note": "the ring is slid as the lever would slide it; -10 slews the other way. The slewing moves the crawler (body of p132) against the superstructure (the frame)"
+    },
+    {
+      "does": "Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame.",
+      "source": "book: page 234 (the levers, A, and picture A, the boom raised and lowered); winch2 sub-assembly, boompull steps",
+      "first": [{ "control": "p575 18947", "by": 10 }],
+      "control": "p539 15462",
+      "moves": ["p575 18947", "p525 32269", "p796 32270", "p751 4716", "p747 10928", "p746 3737", "p906 44294"],
+      "stays": ["p720 10928"],
+      "note": "the ring is slid as the lever would slide it; -10 lowers. The boom (p906 and the boom sections) pivots on the superstructure as its cables are wound; unsure which way winds"
+    },
+    {
+      "does": "Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab.",
+      "source": "book: page 234 (the levers, D), page 235 picture D (the grab lowered); winch sub-assembly, boomtip and grabbertop steps",
+      "first": [{ "control": "p578 18947", "by": 10 }],
+      "control": "p539 15462",
+      "moves": ["p578 18947", "p530 32269", "p797 32270", "p724 4716", "p720 10928", "p719 3737", "p1206 61510"],
+      "stays": ["p747 10928", "p906 44294"],
+      "note": "the ring is slid as the lever would slide it; -10 the other way. The grab hangs on the string"
+    },
+    {
+      "does": "The four levers on the superstructure (two pairs) each slide one driving ring forward or back, between its two clutch gears: forward drives its function one way, back the other way, and in the middle it's in neutral.",
+      "source": "book: the controlsticks sub-assemblies; page 234 (the levers A-D with their arrows and icons)",
+      "control": ["p829 15462", "p840 15462"],
+      "moves": ["p575 18947", "p576 18947", "p577 18947", "p578 18947"],
+      "note": "unsure how the model's lever parts map to A-D: by the model, each stick (p829, p840) carries a changeover catch between two rings, and p838 32054 sits on a third pivot"
+    },
+    {
+      "does": "The black knob gear on top of the grab opens and closes its four claws: it turns a 20 tooth bevel gear and a 12 tooth bevel gear on a small linear actuator, whose piston pushes the claws' arms.",
+      "source": "book: page 235 (top right: the knob turned, the claws open); grabber steps",
+      "control": "p1400 32270",
+      "moves": ["p1344 6589", "p1342 92695", "p1343 92696", "p1337 11953", "p1339 11953", "p1340 11953", "p1353 11953"]
+    },
+    {
+      "does": "The cab's door swings open.",
+      "source": "book: page 235 (top middle, the door swung open)",
+      "control": "p974 32009"
+    },
+    {
+      "does": "The tracks run round their sprockets and rollers when driven.",
+      "source": "book: the crawler steps (rollers and tread)",
+      "control": ["p141 57519", "p199 57519"]
+    },
+    {
+      "does": "The spare boom section can be fitted into the boom to make it 12 cm longer.",
+      "source": "book: pages 226-233 (the extra section), page 235 (bottom right)",
+      "note": "a building option, not a working function; the model file builds the boom with it fitted (its boomext sub-assemblies)"
+    }
+  ]
+}

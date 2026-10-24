@@ -1,0 +1,63 @@
+{
+  "set": "8856-1",
+  "name": "Whirlwind Rescue",
+  "model": "omr/8856-1 Whirlwind Rescue.mpd",
+  "instructions": "omr/instructions/8856-1/ (scans; the helicopter is pages 4-27, steps 1-28, the second model after, and the last pages add the 8720 motor)",
+  "functions": [
+    {
+      "does": "The big white handwheel on the right side spins the main rotor through a bevel gear at the foot of the rotor mast, and a crown gear on the mast drives the long shaft with universal joints down the tail boom, which spins the tail rotor through a bevel pair at the tail.",
+      "source": "book: steps 18 (mast with crown gear), 23 (gear on the front of the tail shaft), 24 (handwheel), 26-28 (rotors); cover arrows on both rotors",
+      "control": "p388 3736",
+      "moves": ["p460 2906", "p372 3707", "p490 2711"],
+      "stays": ["p408 2738", "p159 3705"]
+    },
+    {
+      "does": "The small crank low on the right side retracts and lowers the landing gear: a worm turns the long shaft under the floor, which swings the nose wheel's leg through a bevel pair at the front and the two main wheels' legs through a crown gear on the rear axle.",
+      "source": "book: steps 1-7 and 9-11 (the shaft, the bevel pair, the crown gear and the legs; the step 11 underside view), step 14 (worm); that it folds the gear away is inferred from the build and the cover blueprint's arrow at the nose wheel",
+      "control": "p390 8856 - 4185a",
+      "moves": ["p17 3708", "p79 4263", "p82 4263", "p87 3482", "p103 4519", "p109 4519", "p129 3482", "p131 3482"],
+      "stays": ["p193 3706", "p408 2738"],
+      "note": "The worm makes it slow: many turns of the crank per swing of the legs. The nose leg's two plates must swing together with their axle p77 3706. Unsure how far the legs swing and whether they fold forward or back."
+    },
+    {
+      "does": "The small crank low on the left side winds the winch: a 16-tooth gear and a bevel pair turn the drum behind the seats, and the rope runs up over the tip of the hoist arm to the hook, which rises or falls.",
+      "source": "book: steps 14-16 (crank axle, bevel pair and drum with the string), step 24 (crank)",
+      "control": "p182 8856 - 4185a",
+      "moves": ["p193 3706", "p468 70278 against p408 2738"],
+      "stays": ["p408 2738"]
+    },
+    {
+      "does": "The small crank high on the left side swings the black hoist arm, with the hook hanging from its tip, out over the right-hand door and back in: a worm turns a 16-tooth gear, whose axle swings a short crank arm, and a link pushes the hoist arm round its pivot.",
+      "source": "book: steps 18 and 22 (worm axle, gear and link), steps 23-24 (hoist arm and crank); that it swings the arm out and in is inferred from the linkage",
+      "control": "p392 8856 - 4185a",
+      "moves": ["p242 3705", "p256 3705", "p408 2738", "p468 70278"],
+      "stays": ["p193 3706"]
+    },
+    {
+      "does": "Pushing the control stick in the cockpit forward or back tilts the main rotor forward or back: the lever under the stick pulls a flex cable to a bellcrank by the rotor mast, which pushes a black arm up against the rotor's holder.",
+      "source": "book: steps 4-6 (stick pivot), 12-13 (stick and first cable), 25-26 (bellcrank, arm and rotor holder); cover arrows at the blade tips. Which way of the stick works which cable is inferred from the model",
+      "control": "p159 3705",
+      "moves": ["p38 2736", "p375 2825", "p373 2738", "p462 2908"],
+      "stays": ["p11 3705", "p469 2876"],
+      "note": "Unsure whether the holder p462 2908 stays still while the rotor spins above it on the ball, or turns with it."
+    },
+    {
+      "does": "Pushing the control stick left or right tilts the main rotor sideways: the stick turns the long shaft under the cockpit floor, whose ball arm at the back pulls a second flex cable up the mast to the side of the rotor's holder.",
+      "source": "book: steps 1-6 (shaft with toggle joints and ball arm), 13 and 16 (stick and second cable), 26 (rotor holder); cover arrows at the blade tips. Which way of the stick works which cable is inferred from the model",
+      "control": "p159 3705",
+      "moves": ["p11 3705", "p27 2736", "p462 2908"],
+      "stays": ["p38 2736 against p11 3705", "p469 2876"]
+    },
+    {
+      "does": "A pawl rests on the winch crank's 16-tooth gear, so the hook stays where it is wound to.",
+      "source": "inferred: the submodel is named Winch-Stopper and sits over the winch crank's gear; the book draws no arrow",
+      "control": "p206 3705",
+      "skip": "only resists gravity on the hook; the winch crank works both ways without it"
+    },
+    {
+      "does": "The three landing gear wheels roll freely.",
+      "source": "book: steps 7 and 10",
+      "control": ["p87 3482", "p89 3482", "p129 3482", "p131 3482"]
+    }
+  ]
+}

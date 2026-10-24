@@ -1,0 +1,67 @@
+{
+  "set": "42076-1",
+  "name": "Hovercraft",
+  "model": "omr/42076-1 Hovercraft.mpd",
+  "instructions": "omr/instructions/42076-1-1.pdf (the truck is steps 1-58, the hovercraft from step 59 on; its functions on pages 150-151)",
+  "functions": [
+    {
+      "does": "Pushed along, the hovercraft's hidden wheels underneath spin both propellers at the stern: a long shaft runs back to a cross shaft, and bevel gears take the drive up each propeller pod's upright shaft and round to the propeller.",
+      "source": "book: steps 24-49 (the wheels and shafts underneath), 200-203 (the propeller pods); page 151 (bottom right photo, the push arrow and the propellers turning)",
+      "control": ["p32 55982", "p42 55982"],
+      "moves": ["p615 15790", "p647 15790"]
+    },
+    {
+      "does": "The black gear on top at the stern steers: it swings both propeller pods together, and the hidden wheels under the stern steer with them, so the hovercraft turns as it's pushed.",
+      "source": "book: steps 34-49 (the steering wheels underneath), 200-203 (the pods and their link bar); page 151 (top right photo, the arrows on the gear and on both pods)",
+      "control": "p374 32269",
+      "moves": ["p596 87080", "p628 87080", "p194 42610", "p195 42610"],
+      "stays": ["p32 55982"]
+    },
+    {
+      "does": "Either gear on a yellow upright shaft on the deck beside the bow lowers and raises the ramp at the bow: bevel gears and a cross shaft under the deck tie the two together, and each turns a linear actuator through a universal joint.",
+      "source": "book: steps 87, 134-140 (the knobs and cross shaft), 187-190 (the actuators and ramp); page 150 (bottom left photo, the arrow on the ramp)",
+      "control": ["p348 32270", "p363 32270"],
+      "moves": ["p544 64782", "p568 92696", "p577 92696"],
+      "stays": ["p32 55982"]
+    },
+    {
+      "does": "The black gear on the carriage at the top of the red gantry raises and lowers the white bridge: an 8 tooth gear behind it climbs the tall black rack the bridge stands on.",
+      "source": "book: steps 210-217 (the carriage, its gears and the rack; the inset on page 135); page 150 (top left photo, the arrows on the gear and the rack)",
+      "control": "p700 32270",
+      "moves": ["p697 64781", "p726 60485"],
+      "stays": ["p706 32278"],
+      "note": "the carriage has a second black gear, p705, on a second 8 tooth gear; which of the two drives the rack is unsure"
+    },
+    {
+      "does": "The bridge, on its carriage, slides from side to side along the gantry's black top beam.",
+      "source": "book: page 150 (top middle photo, the arrows on the bridge)",
+      "control": "p676 14720",
+      "moves": ["p697 64781", "p726 60485"],
+      "stays": ["p706 32278"]
+    },
+    {
+      "does": "The truck: the black gear on its cab roof steers its front wheels.",
+      "source": "book: steps 1-20 (the steering), page 151 (top middle photo, the arrows on the roof gear and the front wheel)",
+      "control": "p935 32270",
+      "moves": ["p982 55982", "p989 55982"],
+      "stays": ["p985 55982"]
+    },
+    {
+      "does": "The truck's rear axle swings up and down, sprung by a shock absorber.",
+      "source": "book: page 151 (top middle photo, the arrow on the rear wheel); which steps build it is inferred",
+      "control": ["p985 55982", "p987 55982"],
+      "moves": ["p883 73129"],
+      "note": "the spring only matters under the truck's weight; the axle's travel is what's checked"
+    },
+    {
+      "does": "The truck's four wheels roll; it can drive up the ramp onto the deck.",
+      "source": "book: step 48, page 150 (bottom left photo)",
+      "control": ["p982 55982", "p985 55982", "p987 55982", "p989 55982"]
+    },
+    {
+      "does": "The rotors in the two red fans on deck spin freely.",
+      "source": "inferred: steps 204-206 fit each rotor on a pin; the book draws no arrow on them",
+      "control": ["p661 46667", "p675 46667"]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "set": "8880-1",
+  "name": "Super Car",
+  "model": "models/8880-Super Car.mpd",
+  "instructions": "omr/instructions/8880-1/ (scans; the car is pages 1-54, its photos on pages 52-54; the Formula One car from page 55 on is an alternate model)",
+  "functions": [
+    {
+      "does": "Pushed along, all four wheels drive together through three differentials (one between the front and rear axles, one on each axle), the half shafts reaching the steered and sprung wheels through universal joints; with the gear lever in neutral the V8 stays still.",
+      "source": "book: steps 3 (centre differential), 15 (front and rear differentials, half shafts), 36 (wheels)",
+      "control": ["p1401 2998", "p1403 2998", "p1405 2998", "p1407 2998"],
+      "moves": ["p14 6573", "p302 6573", "p320 6573"],
+      "stays": ["p750 2853", "p894 2741"],
+      "note": "checked by tests/sets/8880-super-car.test.ts"
+    },
+    {
+      "does": "In gear, the car rolling runs the V8: the gearbox's output shaft drives the crankshaft by a chain, and the eight pistons run up and down in their two banks.",
+      "source": "book: steps 13 (gearbox), 19 (chain), 27 (engine, pages 27-30)",
+      "first": [{ "control": "p240 6539", "by": 5 }],
+      "control": ["p1401 2998", "p1403 2998", "p1405 2998", "p1407 2998"],
+      "moves": ["p750 2853", "p753 2852", "p767 2851", "p771 2851"],
+      "note": "the ring is slid as the gear lever's foot would slide it; checked by tests/sets/8880-super-car.test.ts, which finds the engine turning 2.25, 1.5, 0.75 and 0.5 times per turn of the wheels in the four gears"
+    },
+    {
+      "does": "The gear lever moves in an H gate with four slots: tilted into each, its foot slides one of the gearbox's two driving rings to one side or the other, giving four speeds; in the middle, neutral.",
+      "source": "book: steps 13 (the gearbox's two shafts, clutch gears and driving rings) and 22 (the lever and its gate, with the 1-2-3-4 sticker)",
+      "control": "p595 6549",
+      "moves": ["p240 6539"],
+      "note": "the lever clicks between its gate's places rather than following a plain drag, and only the slot for each gear slides that ring; checked by tests/sets/8880-super-car.test.ts"
+    },
+    {
+      "does": "The steering wheel steers all four wheels: its column turns through crown gears and universal joints to an 8 tooth gear on the front steering rack, and a long shaft carries the turn back to the rear rack, so the front wheels turn one way and the rear wheels the other, about half as far.",
+      "source": "book: steps 19 (the two racks and their links), 20 (the long shaft), 21 (the column's universal joints), page 19 (setting the wheels straight), steps 28-29 and pages 31-33 (the steering wheel's column)",
+      "control": "p894 2741",
+      "moves": ["p429 6540b", "p438 6540b", "p432 6540b", "p435 6540b", "p461 2719", "p470 2719"],
+      "stays": ["p750 2853"],
+      "note": "checked by tests/sets/8880-super-car.test.ts"
+    },
+    {
+      "does": "The knob on top behind the cockpit, a small tyre on an upright axle, steers the car as the steering wheel does: two 24 tooth gears and a pair of bevel gears take its turn down to the long steering shaft, and the steering wheel turns with it.",
+      "source": "book: step 29 (pages 34-35: the knob's axle and 24 tooth gear, fitted from above)",
+      "control": "p925 3482",
+      "moves": ["p429 6540b", "p438 6540b", "p894 2741"],
+      "stays": ["p750 2853"],
+      "note": "checked by tests/sets/8880-super-car.test.ts"
+    },
+    {
+      "does": "The headlights pop up: the small knob on the centre console, just in front of the gear lever, turns a shaft through a universal joint, two 16 tooth gears and a pair of bevel gears to a cross shaft at the nose, which tips both headlight pods up together.",
+      "source": "book: cover (the arrow at the front); steps 21 (the shaft and its 16 tooth gear), 26 (the cross shaft at the nose), 29 (the headlight pods and the knob); where the knob sits is inferred from the model",
+      "control": "p948 6553",
+      "moves": ["p937 3041p01", "p947 3041p01", "p744 3706"],
+      "stays": ["p429 6540b", "p750 2853"]
+    },
+    {
+      "does": "The front wheels each have independent suspension: the steering arm rides between a lower and an upper suspension arm, and a shock absorber from the lower arm lets the wheel rise and fall.",
+      "source": "book: steps 9 (lower arms), 18 (steering arms), 24 (shock absorbers), 25 (upper arms); photo on page 52",
+      "control": ["p105 2738", "p121 2738"]
+    },
+    {
+      "does": "The rear wheels have the same independent suspension as the front ones.",
+      "source": "book: steps 9, 18, 24 and 25; photo on page 52",
+      "control": ["p113 2738", "p129 2738"]
+    },
+    {
+      "does": "The shock absorbers' springs hold the car up and spring back.",
+      "source": "book: step 24",
+      "skip": "springs only matter under gravity or force"
+    },
+    {
+      "does": "The whole rear body, from the roof back to the tail, lifts as one hatch on two axles behind the cockpit, showing the V8.",
+      "source": "book: cover (the arrow at the back); steps 31 (the hinge axles) and 33 (the hatch, built on pages 42-47 and fitted on page 48); the photo on page 53 shows it open",
+      "control": "p1240 4477",
+      "moves": ["p1238 3702", "p1252 3895"],
+      "stays": ["p750 2853"],
+      "note": "which parts lift with the hatch is read from the photo on page 53 and the step 33 submodel; p1035 and p1061 are the hinge axles it turns on"
+    },
+    {
+      "does": "A prop rod with a toggle joint, pinned to the chassis on the right of the engine, folds up to hold the hatch open.",
+      "source": "book: step 33 (page 45, step 11: the rod and its toggle joint); the photo on page 53 shows it holding the hatch up",
+      "control": "p1292 3705",
+      "skip": "only holds the hatch up against gravity"
+    },
+    {
+      "does": "The two seat backs tilt on their finger hinges.",
+      "source": "inferred: step 32 and pages 40-41 (the seats' backs stand on finger hinge plates); unsure they are meant to move rather than just be set at an angle",
+      "control": ["p1092 3031", "p1126 3031"]
+    },
+    {
+      "does": "Turned by hand at its fan, with the gear lever in neutral, the V8 runs on its own and the car stays where it is.",
+      "source": "inferred: step 27 (the fan on the crankshaft's front end, page 29 step 13; the photo on page 53 shows it)",
+      "control": "p826 2712",
+      "moves": ["p753 2852", "p767 2851", "p771 2851"],
+      "stays": ["p1407 2998"]
+    }
+  ]
+}

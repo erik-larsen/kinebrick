@@ -1,0 +1,85 @@
+{
+  "set": "42070-1",
+  "name": "6x6 All Terrain Tow Truck",
+  "model": "omr/42070-1 6x6 All Terrain Tow Truck.mpd",
+  "instructions": "omr/instructions/42070-1-1.pdf (one book: finished truck step 590 page 393, functions pages 394-397: driving and steering on 394, the two levers on 394 and 396, the four crane functions on 397)",
+  "functions": [
+    {
+      "does": "The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive.",
+      "source": "book: page 394 (top left inset: driving forwards and back with the left lever; middle inset: the lever on the cab's side set to drive); the gears are read from the model",
+      "control": "p402 32073",
+      "moves": ["p405 18946", "p448 94925", "p381 6573", "p471 62821", "p755 62821", "p845 62821", "p2367 15038", "p2369 15038", "p2371 15038"],
+      "note": "The XL motor (p593 58121) turns the control, the axle in its shaft; the driving ring p404 18947, moved by the drive/crane lever (p1770 41669), joins it to the 16 tooth clutch gear p405 for driving. Unsure which way the lever goes for driving."
+    },
+    {
+      "does": "As the truck drives, the V8 engine under the bonnet pumps its pistons, turned from the drive's 16 tooth gear.",
+      "source": "book: page 394 (top middle inset: the engine under the bonnet, arrow on the pistons); the gears are read from the model",
+      "control": "p402 32073",
+      "moves": ["p592 18946", "p1057 94925", "p1137 2853"]
+    },
+    {
+      "does": "The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive.",
+      "source": "book: page 394 (bottom left inset: steering with the right lever); the gears are read from the model",
+      "control": "p372 94925",
+      "moves": ["p160 18575", "p406 18946", "p390 76244", "p430 18575", "p506 64781", "p524 92909", "p542 92909"],
+      "stays": ["p2369 15038"],
+      "note": "The M motor (p185 58120) turns the control, the 16 tooth gear on its shaft; the driving ring p403 18947, moved by the same drive/crane lever, joins its 20 tooth gear's shaft to the clutch gear p406 for steering."
+    },
+    {
+      "does": "The drive/crane lever on the side of the cab switches both motors at once, from driving and steering to working the crane.",
+      "source": "book: page 394 (middle inset: the lever and its two pictures), page 396 (top left inset)",
+      "control": "p1770 41669",
+      "moves": ["p1055 6641", "p1056 6641", "p403 18947", "p404 18947"],
+      "note": "The lever's cross axle (p999 87083 and the parts on it) tips two changeover catches, each sliding a driving ring (p403 for the M motor, p404 for the XL motor)."
+    },
+    {
+      "does": "The crane-function lever behind the cab chooses which two crane functions the motors work: in one position the left remote lever slews the crane and the right one works the winch; in the other the left lever works the outriggers and the right one raises and lowers the boom.",
+      "source": "book: page 396 (the lever up and down, with its pictures), page 397 (the four crane functions, two above and two below); which pair goes with which lever position is inferred from the page's layout and the model's gears",
+      "control": "p994 42070 - 33299a",
+      "moves": ["p1067 6641", "p1068 6641", "p135 18947", "p136 18947"],
+      "note": "The lever's cross axle (p991 87083 and the parts on it, out to p1460 59443) tips two changeover catches, each sliding a driving ring: p136 on the XL motor's crane shaft, p135 on the M motor's. Unsure which part is the handle a person holds."
+    },
+    {
+      "does": "In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable.",
+      "source": "book: page 397 (top left inset: the boom slewing, the left remote lever); the gears are read from the model",
+      "control": "p402 32073",
+      "moves": ["p174 18946", "p378 94925", "p124 18946", "p1108 18575", "p1088 4716", "p1096 3648b", "p1336 18575", "p1320 18938", "p2086 40490"],
+      "stays": ["p2369 15038"],
+      "note": "Needs the drive/crane lever set to crane (ring p404 on p174) and the crane-function lever set for slewing (ring p136 on p124); unsure which way each lever goes."
+    },
+    {
+      "does": "In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks.",
+      "source": "book: page 397 (bottom left inset: all four legs going down, the left remote lever); the gears and actuators are read from the model",
+      "control": "p402 32073",
+      "moves": ["p139 18946", "p1005 18575", "p1377 94925", "p1378 92693c01", "p1409 92693c01", "p1880 92693c01", "p1390 18942", "p1420 18942", "p1911 18942"],
+      "stays": ["p1320 18938"],
+      "note": "Needs the drive/crane lever set to crane (ring p404 on p174) and the crane-function lever set for the outriggers (ring p136 on p139); unsure which way each lever goes."
+    },
+    {
+      "does": "In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook.",
+      "source": "book: page 397 (top right inset: the hook going up and down, the right remote lever); the gears are read from the model",
+      "control": "p372 94925",
+      "moves": ["p161 18946", "p107 18946", "p1003 10928", "p1304 6573", "p2113 94925", "p2134 32270", "p2152 32012"],
+      "stays": ["p2086 40490"],
+      "note": "Needs the drive/crane lever set to crane (ring p403 on p161) and the crane-function lever set for the winch (ring p135 on p107); unsure which way each lever goes. The mesh of p2134 with the reel's clutch gear p2149 76244 is read from the parts' places."
+    },
+    {
+      "does": "In crane mode, the M motor raises and lowers the boom: its crane shaft drives an upright shaft through the turntable's centre to bevel gears that turn the large linear actuator under the boom.",
+      "source": "book: page 397 (bottom right inset: the boom rising, the right remote lever); the gears and actuator are read from the model",
+      "control": "p372 94925",
+      "moves": ["p161 18946", "p138 18946", "p130 94925", "p100 42070 - 32198", "p2131 6589", "p2139 87407", "p2145 6589", "p2143 62274c01", "p2086 40490"],
+      "stays": ["p1320 18938"],
+      "note": "Needs the drive/crane lever set to crane (ring p403 on p161) and the crane-function lever set for the boom (ring p135 on p138); unsure which way each lever goes."
+    },
+    {
+      "does": "The two rear axles each rock side to side on a turntable, so all six wheels stay on rough ground.",
+      "source": "inferred: each rear axle hangs from a turntable (axle2 and axle3 submodels); the function pages don't show it",
+      "control": ["p742 64179", "p829 64179"]
+    },
+    {
+      "does": "The 24 tooth clutch gears in the steering and crane drives slip at the end of travel, so the motors can keep running.",
+      "source": "inferred: what 24 tooth clutch gears (p390 76244, p84 76244, p2149 76244) do; the book doesn't say",
+      "skip": "only matters under force"
+    }
+  ]
+}

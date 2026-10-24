@@ -1,0 +1,38 @@
+{
+  "set": "8841-1",
+  "name": "Dune Buggy",
+  "model": "models/8841-Dune Buggy.mpd",
+  "instructions": "omr/instructions/8841-1/ (scans; the buggy is pages 3-6, steps 1-15, the tractor after)",
+  "functions": [
+    {
+      "does": "The steering wheel steers the front wheels: its column runs down through a universal joint to an 8-tooth pinion on a toothed rack, and the rack pushes both steering arms.",
+      "source": "book: steps 5, 12 and 13",
+      "control": "p683 4185",
+      "moves": ["p677 3647", "p646 3743", "p42 4261", "p43 4261"],
+      "stays": ["p14 3707", "p15 3707"]
+    },
+    {
+      "does": "Rolling the buggy works the engine's piston: a pin in the 24-tooth gear on the left rear axle is a crank, and a connecting rod pushes the piston up and down in its block behind the seat.",
+      "source": "book: steps 3-5 (the inset in step 4 shows the pin in the gear); that rolling drives it is inferred, as the gear only sits on the left rear axle",
+      "control": "p700 3482",
+      "moves": ["p20 3648a", "p25 3652"]
+    },
+    {
+      "does": "The front wheels turn freely on pins in the steering arms.",
+      "source": "book: steps 5 and 15",
+      "control": ["p698 3482", "p701 3482"]
+    },
+    {
+      "does": "The rear wheels are on two separate axles; only the left one turns the engine.",
+      "source": "book: steps 2 and 15",
+      "control": ["p699 3482", "p700 3482"],
+      "note": "inferred: the right rear axle turns on its own and drives nothing"
+    },
+    {
+      "does": "The roll cage, the seat and the steering column's mounting stay rigid: the toothed toggle joints hold their angle, and the cage is a closed frame.",
+      "source": "inferred: steps 10-14 build the cage from toothed toggle joints, which click and hold, and the seat folds round its hinge axle only while it is built",
+      "stays": ["p35 3706", "p36 3706", "p684 3737", "p617 3623", "p632 4262", "p28 3737"],
+      "note": "KineBrick today lets the front cage strut p35 3706 (or the column holder p32 3705) be dragged, turning the 10-long axle p28 3737 it hangs on; the rest of the cage and the seat don't move"
+    }
+  ]
+}

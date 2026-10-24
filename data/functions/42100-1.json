@@ -1,0 +1,75 @@
+{
+  "set": "42100-1",
+  "name": "Liebherr R 9800",
+  "model": "omr/42100-1 Liebherr R 9800.mpd",
+  "instructions": "omr/instructions/42100-1-1.pdf (book 1: undercarriage, tracks and slewing steps 1-131, superstructure to step 485) and 42100-1-2.pdf (book 2: boom, stick and bucket from step 486, finished at step 999 on page 362; the app and its two hubs on page 364; the boom, stick and bucket actuators drawn side on, page 157)",
+  "functions": [
+    {
+      "does": "The XL motor on the right drives the right track: a 20 tooth gear by the motor drives, through 12 and 20 tooth gears, a slipping clutch, a 12 tooth gear, a 36 tooth gear, a 28 tooth gear and the 36 tooth gear on the rear sprocket, which turns the track round the front sprocket and the rollers.",
+      "source": "book 1: track steps 6-67 (motor at step 58), app book 2 page 364; the gear train is inferred from the model",
+      "control": "p301 42100 - 18575",
+      "moves": ["p313 42100 - 42529", "p110 42100 - 42529"],
+      "stays": ["p1099 42100 - 42529", "p896 42100 - 42529"],
+      "note": "The motor (p127 42100 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its axle (inferred). Driven from the Control+ app through the hub in the undercarriage (p766 42100 - 22127)."
+    },
+    {
+      "does": "The XL motor on the left drives the left track the same way.",
+      "source": "book 1: track steps 6-67 built twice; the gear train is inferred from the model",
+      "control": "p1087 42100 - 18575",
+      "moves": ["p1099 42100 - 42529", "p896 42100 - 42529"],
+      "stays": ["p313 42100 - 42529", "p110 42100 - 42529"],
+      "note": "The motor (p913 42100 - 22172, a Control+ XL motor) turns the control."
+    },
+    {
+      "does": "With both tracks driven the same way the excavator drives forwards or back; driven opposite ways it turns on the spot.",
+      "source": "book 2 page 364 (the app)",
+      "control": ["p301 42100 - 18575", "p1087 42100 - 18575"],
+      "moves": ["p313 42100 - 42529", "p1099 42100 - 42529"]
+    },
+    {
+      "does": "The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth.",
+      "source": "book 1: turntable and slewing steps 91-131 (motor at step 104, the gear train inset at step 102); the gear train is inferred from the model",
+      "control": "p707 32270",
+      "moves": ["p1927 42003 against p87 42003", "p516 18938 against p515 18939"],
+      "stays": ["p313 42100 - 42529 against p87 42003"],
+      "note": "The motor (p536 42100 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its axle."
+    },
+    {
+      "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",
+      "source": "book 1: boom motor and actuators steps 312-330 and after; book 2 page 157 (side view of the actuators), app page 364; the gear train is inferred from the model",
+      "control": "p1718 32270",
+      "moves": ["p2971 42003 against p1927 42003", "p1481 42100 - 62274c02 against p1480 42100 - u9487c01", "p1502 42100 - 62274c02 against p1501 42100 - u9487c01"],
+      "stays": ["p3322 42003 against p2971 42003"],
+      "note": "The motor (p1555 42100 - 22172, a Control+ XL motor) turns the control, the 12 tooth gear on its axle. Driven through the second hub (p1965 42100 - 22127)."
+    },
+    {
+      "does": "Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step.",
+      "source": "book 2: boom steps 486-560 (the two L motors at step 486-490), page 157 (the stick actuator, lower, drawn side on); the gear train is inferred from the model",
+      "control": ["p2982 94925", "p2983 94925"],
+      "moves": ["p3322 42003 against p2971 42003", "p3841 42100 - 62274c02 against p3840 42100 - u9487c01", "p3847 42100 - 62274c02 against p3846 42100 - u9487c01"],
+      "stays": ["p2971 42003 against p1927 42003"],
+      "note": "The motors p2601 42100 - 22169 (left) and p2770 42100 - 22169 (right) turn the controls, the 16 tooth gears on their axles; the app always runs both together."
+    },
+    {
+      "does": "An L motor on top of the boom tilts the bucket: a 12 tooth gear on its axle drives a 20 tooth gear and a 16 tooth gear, a row of five 16 tooth gears across the boom, and 12 tooth bevel gears into the two big linear actuators that run from the boom's tip down to the bucket's mount at the end of the stick.",
+      "source": "book 2: bucket motor and actuators steps 660-690, page 157 (the long upper actuator, drawn side on); the gear train is inferred from the model",
+      "control": "p3237 32270",
+      "moves": ["p3600 15458 against p3322 42003", "p3780 42100 - 62274c02 against p3779 42100 - u9487c01", "p3797 42100 - 62274c02 against p3796 42100 - u9487c01"],
+      "stays": ["p3322 42003 against p2971 42003"],
+      "note": "The motor (p3086 42100 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its axle."
+    },
+    {
+      "does": "A shaft runs down the stick from bevel gears at the boom's tip to two small linear actuators on the bucket's mount, turning them through 12 tooth bevel gears; its top bevel gear meshes one held by the boom, so the shaft turns as the stick swings.",
+      "source": "book 2: steps 637-640 (the small actuators, page 126), stick steps after 640; inferred: how it is driven, from the model",
+      "control": "p3349 6589",
+      "moves": ["p3322 42003 against p2971 42003"],
+      "note": "Unsure what the small actuators (p3694 92693c01-f2, p3698 92693c01-f2) move, and so what this is for; no motor drives the shaft. The bucket shell itself is held to its mount by pins pushed in sideways, drawn with yellow arrows at step 999 (page 362)."
+    },
+    {
+      "does": "The access ladder at the back left of the superstructure swings up out of the way and down to the ground.",
+      "source": "book 2: step 941 (page 307, arrow 1 to 2)",
+      "control": "p4656 40490",
+      "moves": ["p4682 40490"]
+    }
+  ]
+}

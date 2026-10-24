@@ -1,0 +1,71 @@
+{
+  "set": "42062-1",
+  "name": "Container Yard",
+  "model": "omr/42062-1 Container Yard.mpd",
+  "instructions": "omr/instructions/42062-1-1.pdf (book 1 builds the truck and its semi-trailer, steps 1-28 of bags 1-2, the two containers, steps 24-27, and the reach stacker, bag 3 steps 1-113; page 85 shows every function); omr/instructions/42062-1-2.pdf builds the alternate model",
+  "functions": [
+    {
+      "does": "The black knob on the truck's cab roof steers the front wheels: its shaft runs down through the cab and a universal joint to an arm that swings the two steering knuckles.",
+      "source": "book: page 85 (the top right picture: the arrow on the roof knob and the truck turning)",
+      "control": "p116 32270",
+      "moves": ["p87 48989", "p88 48989", "p183 55981", "p186 55981"],
+      "stays": ["p188 32525"]
+    },
+    {
+      "does": "The semi-trailer turns on its coupling behind the cab as the truck steers.",
+      "source": "book: bag 2 step 28 and page 85 (the truck and trailer)",
+      "control": "p32 11214",
+      "moves": ["p188 32525"]
+    },
+    {
+      "does": "The truck's and the trailer's wheels roll freely.",
+      "source": "book: bag 1 steps 51-52, bag 2 step 23",
+      "control": ["p177 55982", "p180 55982", "p183 55981", "p186 55981", "p293 55982", "p296 55982"]
+    },
+    {
+      "does": "Twist locks at the trailer's corners turn to hold a container down on the trailer.",
+      "source": "book: bag 2 step 20 (the yellow arrows on the locks); that long beams under the trailer link the locks so they turn together is inferred from the model",
+      "control": ["p213 3749", "p214 3749"],
+      "note": "unsure how the locks are meant to be worked: by hand one by one, or linked"
+    },
+    {
+      "does": "The gear at the reach stacker's back end, the lower of two, steers its rear wheels: an axle runs forward to a link that swings the two rear steering knuckles.",
+      "source": "book: page 85 (the middle right picture: the arrow at the back and the reach stacker turning)",
+      "control": "p508 32270",
+      "moves": ["p406 48989", "p407 48989", "p597 55981", "p601 55981"],
+      "stays": ["p603 55981", "p510 18940"]
+    },
+    {
+      "does": "The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot.",
+      "source": "book: page 85 (the bottom left picture: the arrow at the back and the boom rising); bag 3 step 87 (the inset shows the boom raised)",
+      "control": "p507 32270",
+      "moves": ["p443 42062 - 18575", "p510 18940", "p547 32524"],
+      "stays": ["p508 32270"]
+    },
+    {
+      "does": "The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure).",
+      "source": "book: page 85 (the bottom middle picture: the arrow at the boom's base, the double arrow along the boom), bag 3 steps 72-84 (the boom and its rack)",
+      "control": "p530 6553",
+      "moves": ["p511 18942 against p510 18940", "p547 32524 against p510 18940"],
+      "stays": ["p510 18940"]
+    },
+    {
+      "does": "The spreader turns on the boom's tip to line up with a container.",
+      "source": "book: page 85 (the bottom right picture: the curved arrow over the spreader)",
+      "control": "p547 32524",
+      "stays": ["p511 18942"]
+    },
+    {
+      "does": "Turning the axle at the spreader's end swings its claws in to grip a container's top or out to let it go.",
+      "source": "book: bag 3 steps 104 and 110 (the yellow arrows), page 85 (the bottom right picture: the small arrows at the claws)",
+      "control": "p574 32073",
+      "moves": ["p581 6553", "p568 32526"],
+      "note": "which parts are the claws is read from the model (the handlergrabberclaw submodel); unsure which axle end the book means to be turned"
+    },
+    {
+      "does": "The reach stacker's four wheels roll freely.",
+      "source": "book: bag 3 steps 112-113",
+      "control": ["p597 55981", "p601 55981", "p603 55981", "p605 55981"]
+    }
+  ]
+}

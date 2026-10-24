@@ -1,0 +1,94 @@
+{
+  "set": "8001-1",
+  "name": "Battle Droid",
+  "model": "omr/8001-1 Battle Droid.mpd",
+  "instructions": "omr/instructions/8001-1-1.pdf (the droid is pages 2-46, its functions shown in photos on pages 47-55; pages 56-82 build a second version and its commander and security colourings)",
+  "functions": [
+    {
+      "does": "The droid folds up for transport: the legs swing up against the body at the hips, turning round the axle of the 24-tooth gear in the hips, and a catch clicks into the gear to hold them folded.",
+      "source": "book: hips steps 5-13 (page 6 arrow); photos on pages 47-48 and 50",
+      "control": "p62 32177",
+      "moves": [
+        "p42 32165 against p95 32184",
+        "p71 32165 against p95 32184"
+      ],
+      "stays": [
+        "p0 32140 against p95 32184"
+      ]
+    },
+    {
+      "does": "Pressing the round button on the back of the hips tips the lever it sits on, lifting the catch out of the 24-tooth gear so the folded droid can open.",
+      "source": "book: hips step 6 (the lever with its two round buttons); photo on page 51",
+      "control": "p18 2654",
+      "moves": [
+        "p9 32034 against p0 32140"
+      ],
+      "stays": [
+        "p62 32177 against p0 32140"
+      ],
+      "note": "which end of the lever holds the gear isn't clear from the book: inferred from the photo of the button being pressed"
+    },
+    {
+      "does": "Once the catch is lifted, rubber bands round the two pulleys in the hips spring the droid open and stand it up.",
+      "source": "book: hips steps 12-14 (page 6 arrow); photos on pages 51-52",
+      "skip": "rubber bands only matter under force"
+    },
+    {
+      "does": "The head folds down onto the back for transport and swings back up, pivoting on an axle at the top of the torso.",
+      "source": "book: photos on pages 49 and 52; torso step 13",
+      "control": "p132 32271",
+      "moves": [
+        "p165 32015 against p95 32184"
+      ],
+      "stays": [
+        "p95 32184"
+      ]
+    },
+    {
+      "does": "Turning the grey gear on the backpack raises the right arm, which holds the blaster, to aim: the gear's axle carries a 24-tooth gear driving an 8-tooth gear in the torso, whose 12-tooth bevel gear turns a 20-tooth bevel gear on the right shoulder's axle.",
+      "source": "book: torso steps 4-8 (bevel gears), backpack steps 13-16 and 20 (pages 42-46); photos on pages 53-55",
+      "control": "p897 32269",
+      "moves": [
+        "p898 3648b",
+        "p105 3647",
+        "p117 32198",
+        "p848 32177 against p95 32184",
+        "p846 32177 against p95 32184"
+      ],
+      "stays": [
+        "p95 32184",
+        "p830 32177 against p95 32184"
+      ]
+    },
+    {
+      "does": "The left arm swings at the shoulder and bends at the elbow, so it can be posed.",
+      "source": "inferred: arm steps and the photos on pages 47 and 52-53, which show it in different places; the book doesn't say",
+      "control": "p830 32177",
+      "moves": [
+        "p825 32177 against p95 32184",
+        "p815 6536 against p95 32184"
+      ],
+      "stays": [
+        "p848 32177 against p95 32184"
+      ]
+    },
+    {
+      "does": "Each leg bends at the knee, and a rubber band across the knee pulls it straight again.",
+      "source": "inferred: leg steps 8-11 (pages 10-11) hinge the shin to the thigh and put a rubber band across; the book doesn't show the knee bending",
+      "control": [
+        "p42 32165",
+        "p71 32165"
+      ],
+      "moves": [
+        "p42 32165 against p62 32177",
+        "p71 32165 against p91 32177"
+      ],
+      "note": "the rubber band only matters under force; whether the knees are meant to bend is unsure"
+    },
+    {
+      "does": "The blaster is held in the right hand by a magnet, so it can be taken out and put back.",
+      "source": "book: arm step 12 (magnet holder) and the blaster steps (page 37)",
+      "skip": "magnets only matter under force"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "set": "8815-1",
+  "name": "Speedway Bandit",
+  "model": "omr/8815-1 Speedway Bandit.mpd",
+  "instructions": "omr/instructions/8815-1/ (scans; the go-kart is pages 3-5, steps 1-10; pages 5-9 are the alternate model)",
+  "functions": [
+    {
+      "does": "The steering wheel steers the front wheels: an 8-tooth gear at the foot of the steering column slides the steering rack across, and the rack's ends swing the two steering arms.",
+      "source": "book: steps 3-4 (steering arms on axle pins), 8 (rack), 9 (column and 8-tooth gear), 10 (steering wheel); the cover blueprint draws a turning arrow on the steering wheel",
+      "control": "p59 8815 - 4185a",
+      "moves": ["p53 3705", "p48 2790a", "p18 4261", "p24 4261", "p66 3482", "p62 3482"],
+      "stays": ["p70 3482", "p74 3482", "p40 2851"]
+    },
+    {
+      "does": "Pushing the kart along works its engine: the crank on the rear axle on the engine's side drives a connecting rod that pumps the piston up and down in the cylinder behind the seat.",
+      "source": "book: steps 3 (crank and connecting rod on the 4-long rear axle, inset), 5 (cylinder and piston), 10 (wheels)",
+      "control": "p70 3482",
+      "moves": ["p8 3705", "p9 2853", "p10 2852", "p40 2851"],
+      "stays": ["p22 2850a", "p38 3706"],
+      "note": "the other rear wheel is on its own axle and doesn't drive the engine"
+    },
+    {
+      "does": "The four wheels roll freely: each rear wheel on its own 4-long axle, each front wheel on its steering arm's axle.",
+      "source": "book: steps 3-4, 10",
+      "control": ["p70 3482", "p74 3482", "p66 3482", "p62 3482"]
+    },
+    {
+      "does": "The number board at the front tilts on its hinge.",
+      "source": "inferred: steps 8 (the hinge, inset) and 10 (the number plate on it); the book doesn't show it tilting",
+      "control": "p43 3938",
+      "moves": ["p61 3068bp81"],
+      "stays": ["p42 3937"]
+    }
+  ]
+}

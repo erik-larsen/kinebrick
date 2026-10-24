@@ -1,0 +1,39 @@
+{
+  "set": "42057-1",
+  "name": "Ultralight Helicopter",
+  "model": "omr/42057-1 Ultralight Helicopter.mpd",
+  "instructions": "omr/instructions/42057-1-1.pdf (book 1 builds the helicopter, steps 1-86, the finished model on page 70); omr/instructions/42057-1-2.pdf builds the alternate model",
+  "functions": [
+    {
+      "does": "Turning the main rotor runs the three-cylinder engine behind the pilot: the rotor's mast turns the crankshaft through a pair of 12 tooth bevel gears, the three pistons pump up and down, and a 20 tooth gear on the crankshaft's back end turns the rear propeller's shaft through a 12 tooth gear, faster than the rotor.",
+      "source": "book: steps 31-36 (the crankshaft and pistons), 41-42 (the engine and its gears), 55-56 and 62 (the rotor mast, its bevel gear and the turning arrows), 72 (the propeller), 85-86 (the rotor); which part is meant to be turned by hand is inferred",
+      "control": "p113 32209",
+      "moves": ["p73 2854", "p72 2851", "p76 2851", "p68 87083"],
+      "note": "p113 is the rotor's mast; the rotor blades (p195, p196) sit on a long pin with a stop bush on top of it (steps 85-86), and the propeller p163 on the pin end of another (step 72), so it isn't certain the book means them to be held fast to their shafts"
+    },
+    {
+      "does": "The rear propeller turns with the engine and the main rotor.",
+      "source": "inferred: from the gears in steps 41-42 and the propeller fitted in step 72",
+      "control": "p163 15790",
+      "moves": ["p113 32209", "p73 2854"]
+    },
+    {
+      "does": "The red lever on the helicopter's right side, under the engine, swings the tail rudder: a steering link runs back from the lever's ball to a bellcrank (the beam with the 40 years print) under the engine, and a second steering link runs from the bellcrank to a ball on the rudder.",
+      "source": "book: steps 16-27 (the bellcrank, built as the tail control and fitted under the engine), 66-67 and 69 (the rudder on the tail), 71-72 (the lever and the link to it); that the lever works the rudder is inferred from the links",
+      "control": "p161 32062",
+      "moves": ["p154 61800", "p60 42057 -32523p01"],
+      "stays": ["p113 32209"]
+    },
+    {
+      "does": "The joystick in front of the pilot's seat tilts.",
+      "source": "inferred: the steering-wheel yoke on a cross block in the cockpit (steps 64-65); the book draws no link from it to anything",
+      "control": "p142 40001",
+      "note": "unsure whether the joystick is meant to work the rudder too; in the book's steps it isn't linked to it"
+    },
+    {
+      "does": "The nose wheel and the two wheels on the red landing legs roll freely.",
+      "source": "book: step 4 (the nose wheel), steps 77 and 83 (the landing legs and their wheels)",
+      "control": ["p7 42057 - 13971", "p175 42610", "p188 42610"]
+    }
+  ]
+}

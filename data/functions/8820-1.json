@@ -1,0 +1,36 @@
+{
+  "set": "8820-1",
+  "name": "Mountain Rambler",
+  "model": "omr/8820-1 Mountain Rambler.mpd",
+  "instructions": "omr/instructions/8820-1/ (scans; the buggy is pages 3-6, steps 1-13; pages 7-10 are the alternate model, and page 1's left half adds the 8720 motor to it)",
+  "functions": [
+    {
+      "does": "The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms.",
+      "source": "book: steps 3 (steering arms), 4 (rack and its holder), 7 (steering wheel on its 6-long column, inset); the cover blueprint draws the front wheels turned",
+      "control": "p56 8820 - 4185a",
+      "moves": ["p55 3706", "p58 3647", "p25 2790a", "p10 4261", "p11 4261", "p129 3482", "p131 3482"],
+      "stays": ["p46 3709b", "p17 2791a", "p125 3482", "p127 3482"]
+    },
+    {
+      "does": "The rear wheels ride on a swinging arm: two 1x6 bricks, one each side, pivot on a 10-long axle under the seat and carry the rear wheels on axle pins, joined at the back by an 8-long axle that the shock absorber pushes down, so the rear wheels rise and fall together.",
+      "source": "book: step 5 (shock absorber between a 6-long axle and an 8-long axle; the inset's arrows show it squeezing), step 11 (the 10-long pivot axle pushed through the arms), steps 12-13 (rear wheels)",
+      "control": "p102 3894",
+      "moves": ["p105 3894", "p32 3707", "p30 4254", "p125 3482", "p127 3482"],
+      "stays": ["p31 3706", "p47 2717", "p129 3482"],
+      "note": "how far the arm can swing is set by the shock absorber's travel; its cylinder swings a little on its top axle as the arm moves"
+    },
+    {
+      "does": "The shock absorber's spring pushes the rear wheels back down.",
+      "source": "book: step 5",
+      "control": "p29 4255",
+      "skip": "a spring only matters under gravity or force"
+    },
+    {
+      "does": "The four wheels roll freely, each on its own axle pin; there's no drive.",
+      "source": "book: steps 3 and 12-13",
+      "control": ["p129 3482", "p131 3482", "p125 3482", "p127 3482"],
+      "stays": ["p102 3894"],
+      "note": "rolling shouldn't swing the rear arm"
+    }
+  ]
+}

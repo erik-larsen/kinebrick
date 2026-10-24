@@ -1,0 +1,47 @@
+{
+  "set": "42092-1",
+  "name": "Rescue Helicopter",
+  "model": "omr/42092-1 Rescue Helicopter.mpd",
+  "instructions": "omr/instructions/42092-1-1.pdf (the helicopter; its functions on pages 80-81)",
+  "functions": [
+    {
+      "does": "The 12 tooth gear under the belly spins the main rotor on its upright shaft, and a 20 tooth bevel gear on that shaft drives a long shaft down the tail to bevel gears at its end, which spin the tail rotor.",
+      "source": "book: steps 57-58 (the rotor shaft with its 20 tooth gear and the gear under the belly, pages 40-42), 63-76 (the tail shaft and its bevel gears), 98 (the tail rotor, page 60), 118 (the main rotor); page 80 (arrows on the rotor and the belly gear)",
+      "control": "p198 32270",
+      "moves": ["p314 62743", "p225 3708", "p275 6589", "p277 92842"],
+      "stays": ["p309 61510", "p95 24116"]
+    },
+    {
+      "does": "The tan gear beside the winch drum, high on the left side behind the cockpit, winds the winch, raising and lowering the stretcher on its string over the pulley at the end of the winch's arm.",
+      "source": "book: steps 113-117 (the drum, the string and the tan gear, pages 71-73); page 80 (the arrow on the stretcher)",
+      "control": "p312 6589",
+      "moves": ["p309 61510"],
+      "stays": ["p198 32270"],
+      "note": "the stretcher hangs on the string, so how far it rises follows how much string the drum winds"
+    },
+    {
+      "does": "The 12 tooth gear high on the right side turns the winch too: it is on a cross axle whose other end's 12 tooth gear meshes with the tan gear on the drum.",
+      "source": "inferred: from the parts, the cross axle and its two gears; the book shows only the tan gear being used",
+      "control": "p291 32270",
+      "moves": ["p309 61510", "p312 6589"],
+      "stays": ["p198 32270"]
+    },
+    {
+      "does": "The winch's arm swings out from the side on a pin, carrying the pulley the string runs over.",
+      "source": "inferred: from step 117 (page 73), the arm on a single pin",
+      "control": "p302 74695",
+      "moves": ["p307 74695"],
+      "stays": ["p309 61510"]
+    },
+    {
+      "does": "The two rear doors swing open sideways.",
+      "source": "book: step 44 (page 26, arrows on both rear corners); page 80 (arrows on both doors)",
+      "control": ["p95 24116", "p108 24116"]
+    },
+    {
+      "does": "The stretcher hangs level from the hook on its string.",
+      "source": "book: step 119 (page 78); page 80",
+      "skip": "only matters under gravity: the stretcher swings free on its hook"
+    }
+  ]
+}

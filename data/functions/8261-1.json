@@ -1,0 +1,41 @@
+{
+  "set": "8261-1",
+  "name": "Rally Truck",
+  "model": "omr/8261-1 Rally Truck.mpd",
+  "instructions": "omr/instructions/8261-1-1.pdf (one book; no page of functions)",
+  "functions": [
+    {
+      "does": "The 12 tooth gear on the roof steers the front wheels: it turns a vertical shaft down through the cab, whose 12 tooth bevel gear at the foot turns the 20 tooth gear on a shaft running forward under the truck; a knob gear at that shaft's front end turns the knob gear on the front axle's steering post, swinging its steering arm, which pushes the tie rod that turns both front wheels.",
+      "source": "book: steps 17-18 (vertical shaft, knob gears), 20 (front axle), 21 (20 tooth gear) and 36 (roof); inferred: the book draws no arrow, the drive is worked out from the gears",
+      "control": "p131 32270",
+      "moves": ["p33 6589", "p18 32269", "p93 32072", "p82 32072", "p75 33299", "p76 32524", "p66 48989", "p67 48989"],
+      "stays": ["p0 32526", "p194 56145"]
+    },
+    {
+      "does": "The front axle swings side to side about the steering shaft it hangs from, so the front wheels can follow rough ground; the steering still works as it swings.",
+      "source": "inferred: the front axle hangs from a 180 degree angle connector on the steering shaft (book step 20); not shown in the book",
+      "control": "p63 32524",
+      "moves": ["p63 32524", "p66 48989", "p67 48989", "p192 56145", "p190 56145"],
+      "stays": ["p0 32526", "p18 32269"]
+    },
+    {
+      "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
+      "source": "inferred: from the model file (the rear axle's sub-assembly hangs on bent beams pivoting on a 7-long axle, with a shock absorber behind); the book draws no arrow, and the step that fits the shock absorber isn't identified",
+      "control": "p45 32271",
+      "moves": ["p45 32271", "p51 32271", "p43 59426", "p52 59426", "p194 56145", "p196 56145"],
+      "stays": ["p0 32526", "p55 44294"],
+      "note": "how far the arm can swing is set by the shock absorber's travel; its two ends swing a little on their pins as the arm moves"
+    },
+    {
+      "does": "The shock absorber's spring pushes the rear wheels back down.",
+      "source": "inferred: from the model file",
+      "control": "p3 41838",
+      "skip": "a spring only matters under gravity or force"
+    },
+    {
+      "does": "The four wheels roll freely; there's no drive.",
+      "source": "book: step 37 (wheels)",
+      "control": ["p190 56145", "p192 56145", "p194 56145", "p196 56145"]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "set": "8849-1",
+  "name": "Tractor",
+  "model": "models/8849-Tractor.mpd",
+  "instructions": "omr/instructions/8849-1/ (scans; the tractor with its sprayer is pages 1-14, steps 1-26; pages 15-25 are the alternate model and pages 26-27 add the 8700 motor)",
+  "functions": [
+    {
+      "does": "The steering wheel steers the front wheels: the column drives a shaft under the bonnet through a universal joint, and two 8-tooth gears at the front of that shaft slide the rack on the tie rod, which swings both steering arms.",
+      "source": "book: steps 8 and 11 (column and universal joint), 12 (front axle, rack and tie rod), 13 and 17 (the circle shows the column joining the front shaft)",
+      "control": "p66 3736",
+      "moves": ["p118 3707", "p114 3743", "p100 4261", "p101 4261"],
+      "stays": ["p259 3739", "p261 3739"]
+    },
+    {
+      "does": "The exhaust stack on the bonnet turns as the steering wheel turns: a bevel gear on the steering shaft drives a bevel gear at the foot of the stack's long upright axle.",
+      "source": "inferred: steps 13 and 15 put a 14-tooth bevel gear on the front shaft and on the foot of the stack's axle where they meet, and the step 17 circle shows them together; the book doesn't say whether the turning stack is meant as a feature",
+      "control": "p66 3736",
+      "moves": ["p150 3708", "p152 6143"]
+    },
+    {
+      "does": "The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.",
+      "source": "inferred: step 12 builds the front axle as a separate beam hung on the shaft through its middle hole; no arrow shows it rocking",
+      "control": "p97 4442",
+      "moves": ["p100 4261", "p101 4261", "p114 3743"],
+      "stays": ["p118 3707"]
+    },
+    {
+      "does": "Rolling the tractor turns the power take-off shaft sticking out at the back: a 24-tooth gear on the left rear half-axle drives an 8-tooth gear on a cross shaft, whose 24-tooth gear turns a crown gear on the short shaft out the back, three times as fast as the wheels.",
+      "source": "book: steps 4 (rear half-axles and 24-tooth gear), 6-7 (cross shaft and crown gear)",
+      "control": "p261 3739",
+      "moves": ["p52 3707", "p44 3705"],
+      "note": "only the left rear wheel drives it; the right rear wheel turns freely on its own half-axle"
+    },
+    {
+      "does": "The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.",
+      "source": "book: steps 7 (worm and crown gear), 9 (long shaft with 24-tooth gear and bevel), 10 (rear cross axle with bevel), 11 (lower links), 22 (handwheel and upright shaft); inferred: that the lower links turn with the rear cross axle, by the toothed half bushes beside their toggle joints, since the toggle joints themselves only have round holes there",
+      "control": "p200 4185",
+      "moves": ["p55 4716", "p77 3708", "p81 3737", "p90 3705", "p93 3705", "p269 3894"],
+      "stays": ["p259 3739", "p66 3736"]
+    },
+    {
+      "does": "The sprayer hangs on the hitch's two lower links and its top link, so it stays upright as the hitch rises.",
+      "source": "book: steps 11, 22-23 and 26, page 14",
+      "note": "checked with the handwheel above: the sprayer should rise level as the lower links swing up; the worm should then hold the hitch where it's left, so dragging the sprayer or a link by itself shouldn't move it"
+    },
+    {
+      "does": "The four wheels roll; the front wheels turn freely on their own axles.",
+      "source": "book: steps 4, 12 and 26",
+      "control": ["p259 3739", "p261 3739", "p263 4266", "p265 4266"]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "set": "42105-1",
+  "name": "Catamaran",
+  "model": "omr/42105-1 Catamaran.mpd",
+  "instructions": "omr/instructions/42105-1-1.pdf (one book, 100 pages; the catamaran is steps 1-143, pages 4-94, and page 96 shows its functions)",
+  "functions": [
+    {
+      "does": "The black 12 tooth gear at the back of the deck, between the hulls, steers: turning it swings a black arm on its fore-and-aft axle, which shifts the white crossbar sideways, and black link rods from the crossbar's ball joints turn both rudders together.",
+      "source": "book: page 96 bottom-left inset (arrow over the crossbar and gear, arrows on both rudders); steps 106-113 (rudders), steps 121-122 (link rods)",
+      "control": "p59 32270",
+      "moves": ["p60 40490", "p293 99012", "p316 99012"],
+      "stays": ["p161 32278", "p236 32278", "p128 4519"],
+      "note": "inferred: whether the crossbar slides or swings isn't clear from the book; the white joiners on the same long axle (p8 18948, p10 18948) may be meant as a grip for it too"
+    },
+    {
+      "does": "The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull.",
+      "source": "book: one hull is built in steps 52-75 and the other in 79-102 (the file's submodel names say which is right); steps 52-68 show the tower, worm, gears and rack, step 74 the arrows (turn the handle, the rack goes down), step 75 the board under the hull; page 96 right insets",
+      "control": "p186 42105 - 33299b",
+      "moves": ["p184 27938", "p155 42105 - 18575", "p161 32278", "p213 11946"],
+      "stays": ["p236 32278", "p59 32270"]
+    },
+    {
+      "does": "The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack.",
+      "source": "book: steps 79-97 (the tower, worm, gears and rack), step 101 (arrows), step 102 (the board under the hull), page 96 right insets; see the right hull's function for which hull is which",
+      "control": "p261 42105 - 33299b",
+      "moves": ["p259 27938", "p230 42105 - 18575", "p236 32278"],
+      "stays": ["p161 32278", "p59 32270"]
+    },
+    {
+      "does": "The sails swing from side to side: a crank on the deck turns, and black link rods from it swing the booms, so the sails can be set to the wind.",
+      "source": "book: page 96 top-left picture (arrow at the boom's end) and its inset (a white part turned, with a black link rod)",
+      "control": "p54 42105 - 33299b",
+      "moves": ["p128 4519", "p393 44294"],
+      "stays": ["p161 32278", "p60 40490"],
+      "note": "inferred: which crank works the sails isn't clear from the book. The guess is the black arm with two white levers on the deck's left side (p54, p50 6632, p51 6632), which drives a 9-long beam, a fore-and-aft axle and a link rod to the jib boom (p128); whether the main boom (p393) and mast swing with it, or swing freely, is unknown"
+    },
+    {
+      "does": "The boat floats on its two hollow hull shells.",
+      "source": "book: page 96 bottom-right picture, page 97 (draining the hulls after use)",
+      "skip": "floating only matters in water"
+    }
+  ]
+}

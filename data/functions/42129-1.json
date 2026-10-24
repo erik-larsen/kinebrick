@@ -1,0 +1,59 @@
+{
+  "set": "42129-1",
+  "name": "4x4 Mercedes-Benz Zetros Trial Truck",
+  "model": "omr/42129-1 4x4 Mercedes-Benz Zetros Trial Truck.mpd",
+  "instructions": "omr/instructions/42129-1-1.pdf (one book; the function page is page 372, driven from the Control+ app)",
+  "functions": [
+    {
+      "does": "The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down.",
+      "source": "book: page 372 (main control, 4x4), steps 9-17 (the two motors and the centre differential), the front and rear axle steps (axle differentials and planetary hubs)",
+      "control": ["p20 22169", "p236 22169"],
+      "moves": ["p468 6573", "p1305 65414c01", "p1030 65414c01", "p2922 42129 - 69912", "p2924 42129 - 69912"],
+      "note": "The motors are single parts; their 24 tooth gears (p483 3648b, p484 3648b) are what they turn."
+    },
+    {
+      "does": "The centre differential lets the front and rear axles turn at different speeds while it's unlocked: holding the motors, turning the front drive shaft turns the rear one the opposite way.",
+      "source": "book: step 13 (the differential), 16 (the motors' gears on its housing)",
+      "control": "p466 99008",
+      "moves": ["p471 4519 against p468 6573"]
+    },
+    {
+      "does": "The front and rear axle differentials let each axle's wheels turn at different speeds in a corner.",
+      "source": "book: the front and rear axle steps",
+      "control": ["p2922 42129 - 69912", "p2924 42129 - 69912"],
+      "moves": ["p2928 42129 - 69912 against p1305 65414c01", "p2926 42129 - 69912 against p1030 65414c01"],
+      "note": "With the drive held, turning one wheel turns the other on the same axle backwards (until the rear lock is engaged)."
+    },
+    {
+      "does": "The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.",
+      "source": "book: page 372 (the diff-lock icon), step 23 (the catch and ring at the centre differential, with the inset), steps 32-36 (the medium motor and its gears); the rear axle's lock is from the parts (rearaxlelock submodel)",
+      "control": "p550 21980",
+      "moves": ["p517 35188", "p1060 35188", "p513 18947 against p468 6573", "p1028 18947 against p1030 65414c01"],
+      "note": "The motor is one part; its 16 tooth gear (p741 94925) is what it turns. Which differentials the lock reaches (centre and rear, or also the front) is drawn from the parts, not the book; see the report."
+    },
+    {
+      "does": "The L motor on the front axle steers the front wheels: its 12 tooth gear slides the steering rack across, and links from the rack turn both front portal hubs.",
+      "source": "book: page 372 (main control), the front axle and steerbar steps",
+      "control": "p1470 22169",
+      "moves": ["p1394 87761", "p1342 46490c01", "p1343 46490c01"],
+      "note": "The motor is one part; its 12 tooth gear (p1702 32270) is what it turns."
+    },
+    {
+      "does": "Each axle is held under the chassis on swinging suspension arms and sways and rises over rough ground, between two shock absorbers.",
+      "source": "book: page 372 (left inset, the truck articulating over rough ground), the front and rear axle steps",
+      "control": ["p958 42129 - 31794", "p1194 42129 - 31794"],
+      "moves": ["p1305 65414c01", "p1030 65414c01", "p1371 4254 against p1372 4255", "p1211 4254 against p1212 4255"]
+    },
+    {
+      "does": "The four shock absorbers' springs hold the truck up on its axles.",
+      "source": "book: the axle steps (shock absorbers with springs)",
+      "skip": "only matters under gravity or force"
+    },
+    {
+      "does": "The steering wheel in the cab turns freely; it isn't connected to the steering.",
+      "source": "inferred: the wheel sits on a short axle in the cab with nothing below it",
+      "control": "p1927 2819",
+      "stays": ["p1394 87761"]
+    }
+  ]
+}

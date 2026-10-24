@@ -1,0 +1,32 @@
+{
+  "set": "42084-1",
+  "name": "Hook Loader",
+  "model": "omr/42084-1 Hook Loader.mpd",
+  "instructions": "omr/instructions/42084-1-1.pdf (the hook loader, its functions on page 46); omr/instructions/42084-1-2.pdf builds the alternate model",
+  "functions": [
+    {
+      "does": "The gear on top of the cab, behind the roof, steers the front wheels: its upright axle runs down through the cab to a lever under the front axle, which pushes both wheels' pivoting hubs round.",
+      "source": "book: steps 1-16 (the front axle, its pivoting hubs and the lever on the yellow axle, step 13), 29-30 (the axle up through the cab and the gear on top); page 46 (arrows on the gear and a front wheel)",
+      "control": "p108 32270",
+      "moves": ["p21 48989", "p22 48989", "p146 55982", "p147 55982"],
+      "stays": ["p81 32014"]
+    },
+    {
+      "does": "The gear low on the side of the bed, behind the cab, swings the hook arm back over the rear through a row of three 8 tooth gears: the hook at the arm's top lifts the container's front, tips it up and sets it down behind the truck, and swinging the arm forward pulls it back up onto the bed.",
+      "source": "book: steps 24-28 (the arm's pivot and the 8 tooth gears), 34 (arrows on the gear and the arm); page 46 (the container on the bed, tipped up and set down behind)",
+      "control": "p102 32270",
+      "moves": ["p81 32014", "p96 10928", "p99 10928", "p169 62531"],
+      "stays": ["p108 32270", "p146 55982"]
+    },
+    {
+      "does": "The four wheels roll freely; there's no drive.",
+      "source": "inferred: nothing in the book is driven by the wheels",
+      "control": ["p144 55982", "p145 55982", "p146 55982", "p147 55982"]
+    },
+    {
+      "does": "The container comes off: it rests on the bed held only by the hook through the loop at its front, and rolls on the two small rollers at its back end when set down.",
+      "source": "book: steps 40-50 (the container and its rollers); page 46",
+      "note": "the container moves with the hook arm in the function above; letting go of it isn't a control"
+    }
+  ]
+}

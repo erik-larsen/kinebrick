@@ -1,0 +1,46 @@
+{
+  "set": "42061-1",
+  "name": "Telehandler",
+  "model": "omr/42061-1 Telehandler.mpd",
+  "instructions": "omr/instructions/42061-1-1.pdf (book 1 builds the telehandler with its bucket, steps 1-95; page 81 shows every function); omr/instructions/42061-1-2.pdf builds the alternate model",
+  "functions": [
+    {
+      "does": "The gear on the cab roof steers all four wheels: its upright shaft runs down through the cab, and arms on it push links to the front and rear axles' steering knuckles, so the front wheels turn one way and the rear wheels the other.",
+      "source": "book: page 81 (the view from above with the turning arrow); the links to both axles are read from the model",
+      "control": "p252 32270",
+      "moves": ["p28 48989", "p31 48989", "p40 48989", "p43 48989"],
+      "stays": ["p85 32348"]
+    },
+    {
+      "does": "The gear on the side of the chassis, between the wheels, raises and lowers the boom: its axle turns a bevel gear pair that drives a small linear actuator, which pushes the boom up about its pivot at the back.",
+      "source": "book: page 81 (the top picture: the gear on the side with its arrow, the boom rising; the inset shows the gear)",
+      "control": "p142 32270",
+      "moves": ["p85 32348", "p90 18940", "p178 42061 - 28216"],
+      "stays": ["p252 32270"]
+    },
+    {
+      "does": "Turning the axle end at the back of the boom extends and retracts the boom's inner section: a shaft runs along the outer section to a worm at its front, which drives the rack under the inner section like a lead screw.",
+      "source": "book: page 81 (the middle picture: the small arrow at the boom's back end, the double arrow along the boom); the shaft and the worm are read from the model",
+      "control": "p199 59443",
+      "moves": ["p170 18942 against p90 18940", "p178 42061 - 28216 against p90 18940"],
+      "stays": ["p90 18940"]
+    },
+    {
+      "does": "The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot.",
+      "source": "book: page 81 (the bottom picture: the arrow on top of the head, the bucket tilting)",
+      "control": "p181 59443",
+      "moves": ["p184 10928", "p178 42061 - 28216 against p170 18942"],
+      "stays": ["p170 18942 against p90 18940"]
+    },
+    {
+      "does": "The four wheels roll freely.",
+      "source": "book: step 95",
+      "control": ["p253 56145", "p255 56145", "p257 56145", "p259 56145"]
+    },
+    {
+      "does": "The steering wheel in the cab turns on its own; it isn't linked to the steering.",
+      "source": "inferred: the steering wheel sits on its own in the cab; the steering is worked from the roof gear",
+      "control": "p222 42061 - 16091"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "set": "42044-1",
+  "name": "Display Team Jet",
+  "model": "omr/42044-1 Display Team Jet.mpd",
+  "instructions": "omr/instructions/42044-1-1.pdf (book 1 builds this jet, finished on page 46; book 2, omr/instructions/42044-1-2.pdf, builds the alternate model)",
+  "functions": [
+    {
+      "does": "The 12-tooth bevel gear on the fuselage's right side is a knob that raises and lowers the landing gear: it turns the nose gear's leg up into the fuselage, and a steering link from the nose gear swings the main gear's axle, so the two main wheels fold up too.",
+      "source": "book: steps 8-10 (pages 12-17, nose gear), step 36 (page 39, the knob), step 42 (page 45, red arrow on the knob); inferred: that the link carries the main gear with it, and which side is right",
+      "control": "p97 32270",
+      "moves": ["p106 42610", "p34 32293", "p25 32073", "p104 42610", "p105 42610"]
+    },
+    {
+      "does": "The canopy, made of two flexible axles over the cockpit, hinges up at its front to open the cockpit.",
+      "source": "book: step 31 (page 34, red arrow on the canopy)",
+      "control": "p42 6536",
+      "moves": ["p43 6536", "p82 4274", "p83 4274"]
+    },
+    {
+      "does": "The three landing gear wheels roll freely.",
+      "source": "book: steps 41-42 (pages 44-45)",
+      "control": ["p104 42610", "p105 42610", "p106 42610"]
+    }
+  ]
+}

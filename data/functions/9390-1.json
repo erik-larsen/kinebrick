@@ -1,0 +1,40 @@
+{
+  "set": "9390-1",
+  "name": "Mini Tow Truck",
+  "model": "omr/9390-1 Mini Tow Truck.mpd",
+  "instructions": "omr/instructions/9390-1-1.pdf and omr/instructions/9390-1-3.pdf (the tow truck, books 1 and 2); omr/instructions/9390-1-2.pdf builds the alternate buggy",
+  "functions": [
+    {
+      "does": "The black gear on top behind the cab is a steering knob: it turns an upright axle whose arm pushes a beam across under the front axle and steers the front wheels.",
+      "source": "book: book 1 sub-steps 1-6 on pages 6-7 (the knob on its upright axle and arm), book 2 steps 32-34 (the steering beam and front wheels)",
+      "control": "p13 32270",
+      "moves": ["p491 32316", "p505 55982", "p515 55982"],
+      "stays": ["p521 55982", "p523 55982"]
+    },
+    {
+      "does": "The black gear on the left of the red boom winds the winch: its axle carries the reel, whose string runs over the boom tip down to the hook, raising or lowering it.",
+      "source": "book: book 2 steps 26-30 (the axle, reel, string over the boom tip and hook)",
+      "control": "p94 32270",
+      "moves": ["p92 61510"],
+      "stays": ["p79 32140"],
+      "note": "the hook's rise and fall on the string isn't expressed by the fields"
+    },
+    {
+      "does": "A small gear on a friction axle pin on the boom's right meshes with the gear on the winch axle, so the winch turns stiffly and holds the hook where it's left.",
+      "source": "inferred: book 2 steps 26 and 28 show the two small gears, one on a blue axle pin; their purpose isn't drawn",
+      "control": "p89 3647",
+      "moves": ["p92 61510"],
+      "skip": "only resists the hook's weight"
+    },
+    {
+      "does": "The red boom is fixed to the back of the frame; it doesn't luff or slew.",
+      "source": "book: book 2 steps 22-25",
+      "stays": ["p79 32140", "p95 32062"]
+    },
+    {
+      "does": "The rear wheels roll freely on their axle.",
+      "source": "book: book 2 steps 35-36",
+      "control": ["p521 55982", "p523 55982"]
+    }
+  ]
+}

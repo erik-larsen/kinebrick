@@ -1,0 +1,62 @@
+{
+  "set": "8838-1",
+  "name": "Shock Cycle",
+  "model": "omr/8838-1 Shock Cycle.mpd",
+  "instructions": "omr/instructions/8838-1/ (scans; the motorbike is pages 4-15, steps 1-23, and is built upside down from step 16; pages 16-24 are the alternate chopper)",
+  "functions": [
+    {
+      "does": "The handlebars steer the front wheel: the whole front fork, with its two triangular clamps, the number board, both front shock absorbers and the front wheel, turns on a 4-long axle in the frame's motorcycle steering head.",
+      "source": "book: steps 12 (fork clamps and number board), 14-15 (handlebars), 22 (front wheel and shock absorbers)",
+      "control": "p106 3706",
+      "moves": ["p73 3705", "p77 2905", "p84 2905", "p87 3068bp87", "p224 2909", "p226 2909", "p219 3706", "p220 8838 - 2903"],
+      "stays": ["p66 2904", "p170 3707"]
+    },
+    {
+      "does": "The front wheel has telescopic suspension: it hangs from the piston rods of two long shock absorbers whose cylinders are held in the fork, so the front wheel can rise and fall.",
+      "source": "book: step 22 (inset 1-2: the front wheel on a 6-long axle between the two shock absorbers, hung on the fork's 6-long axles)",
+      "control": "p225 2910",
+      "moves": ["p227 2910", "p219 3706", "p220 8838 - 2903"],
+      "stays": ["p224 2909", "p226 2909", "p77 2905"],
+      "note": "a slide: the rods push into the cylinders, not a turn"
+    },
+    {
+      "does": "The rear wheel rides on a swinging arm: a 1x10 brick and a triangular liftarm on each side pivot on the 8-long axle that carries the chain's front gear, and two long shock absorbers run from the rear of the arm up to an axle under the seat, so the rear wheel can rise and fall while the chain stays taut.",
+      "source": "book: steps 19 and 23 (each side's arm and shock absorber, insets), 20 (rear wheel), 21 (chain)",
+      "control": "p167 2730",
+      "moves": ["p241 2730", "p164 2905", "p238 2905", "p170 3707", "p171 8838 - 2903", "p162 2910", "p236 2910"],
+      "stays": ["p61 3707", "p141 3706", "p117 3623"],
+      "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top axle as the arm moves"
+    },
+    {
+      "does": "The shock absorbers' springs, two front and two rear, hold the bike up and push the wheels back down.",
+      "source": "book: steps 19, 22 and 23",
+      "control": ["p224 2909", "p226 2909", "p161 2909", "p235 2909"],
+      "skip": "springs only matter under gravity or force"
+    },
+    {
+      "does": "Turning the rear wheel works the two-cylinder engine: a 24-tooth gear on the rear wheel drives the chain to a 16-tooth gear on the swinging arm's pivot axle; a 24-tooth gear on that axle turns an 8-tooth gear on a 6-long axle, whose 14-tooth bevel gear turns the bevel gear on the crankshaft, so the two pistons go in and out of their cylinders on either side.",
+      "source": "book: steps 1-5 (crankshaft, connecting rods, pistons, cylinders), 7 (bevel gear on the crankshaft), 10 (gears), 20 (rear wheel's 24-tooth gear, and the 1:1 inset showing the gear train), 21 (chain); inferred: which of the small gears is the 8-tooth and which the bevel, from the inset",
+      "control": "p171 8838 - 2903",
+      "moves": ["p176 3648a", "p62 4019", "p63 3648a", "p25 4143", "p1 2853", "p5 2851", "p6 2851"],
+      "stays": ["p19 2850a", "p22 2850a"],
+      "note": "the 6-long axle with the 8-tooth and 14-tooth bevel gears is defined in the model file as the submodel Axle-with-Gears but never placed in the model"
+    },
+    {
+      "does": "The front wheel rolls freely on its 6-long axle.",
+      "source": "book: step 22",
+      "control": "p220 8838 - 2903"
+    },
+    {
+      "does": "The centre stand under the engine swings down onto its two legs to hold the bike up, and folds back up to ride; its two light grey levers turn on a 4-long axle in the frame and carry the legs on a 6-long axle.",
+      "source": "book: steps 16 (levers on their axle), 22 (the two legs, 1:1 inset); the cover blueprint draws a leg in a second position; inferred: how far it swings",
+      "control": "p138 2825",
+      "moves": ["p146 2825", "p178 3706", "p211 3705", "p214 3705", "p212 3651", "p215 3651"],
+      "stays": ["p157 2825", "p159 2825"]
+    },
+    {
+      "does": "Two rubber bands between the stand's levers and two dark levers on the frame hold the stand up or down.",
+      "source": "book: steps 18 (two rubber bands, K3) and 19 (the dark levers); inferred: that they hold it both ways",
+      "skip": "a rubber band only matters under force"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "set": "42031-1",
+  "name": "Cherry Picker",
+  "model": "omr/42031-1 Cherry Picker.mpd",
+  "instructions": "omr/instructions/42031-1-1.pdf (the cherry picker); omr/instructions/42031-1-2.pdf builds the B model, a tow truck",
+  "functions": [
+    {
+      "does": "The black knob at the back of the boom's yellow mount turns a worm, which turns the 24-tooth gear on the boom's pivot and raises or lowers the boom; the worm holds the boom wherever it's left.",
+      "source": "book: steps 33-34 and 37 (pages 27, 32), the boom's gear in step 35.7 (page 30)",
+      "control": "p139 32270",
+      "moves": ["p120 4716 against p101 6632", "p133 3648b against p101 6632", "p122 11478 against p101 6632"],
+      "stays": ["p101 6632 against p1 64289"]
+    },
+    {
+      "does": "The whole boom, with its yellow mount, turns round on a single upright pin on top of the chassis behind the cab.",
+      "source": "book: step 39 (page 36), the mount is set on the chassis's upright pin; that it slews freely is inferred from the single pin",
+      "control": "p101 6632",
+      "moves": ["p101 6632 against p1 64289", "p122 11478 against p1 64289"],
+      "stays": ["p122 11478 against p101 6632"]
+    },
+    {
+      "does": "The work basket hangs from the boom tip on pins and a pin joiner, so it swings and swivels and can be kept upright as the boom rises.",
+      "source": "book: step 38.7 and 39 (pages 35-36); inferred: which ways it swings, from the pins it hangs on (unsure whether it tilts about the boom-tip cross block or only swivels on the joiner)",
+      "control": "p140 32249",
+      "moves": ["p140 32249 against p122 11478"]
+    },
+    {
+      "does": "The four wheels roll freely, each on its own pin; there's no steering.",
+      "source": "book: step 24 (page 22)",
+      "control": ["p93 55981", "p95 55981", "p97 55981", "p99 55981"]
+    }
+  ]
+}

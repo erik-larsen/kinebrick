@@ -1,0 +1,52 @@
+{
+  "set": "42066-1",
+  "name": "Air Race Jet",
+  "model": "omr/42066-1 Air Race Jet.mpd",
+  "instructions": "omr/instructions/42066-1-1.pdf (one book: M motor and gearbox steps 10-21, finished jet page 245, functions pages 246-247)",
+  "functions": [
+    {
+      "does": "The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one.",
+      "source": "book: steps 10-21 (motor and gearbox), page 247 (top inset: the two levers, each up or down); the gear train is read from the model",
+      "control": "p136 10928",
+      "moves": ["p135 76019", "p140 32269", "p804 10928", "p800 94925"],
+      "note": "The motor (p22 58120) turns the control, the 8 tooth gear on its shaft. The battery box is p1172 58119; the levers are p1096 6641 (right) and p1095 6641 (left). The 24 tooth clutch gear (p135 76019) slips when a function reaches its end."
+    },
+    {
+      "does": "With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose.",
+      "source": "book: page 247 (lower orange picture: both legs folding); which lever works the landing gear is inferred from the model's gears and links",
+      "control": "p1116 4716",
+      "first": [{"control": "p1096 6641", "by": 0.5}],
+      "moves": ["p158 3648b", "p244 3706", "p400 40490", "p411 40490", "p499 11478"],
+      "stays": ["p1117 4716"],
+      "note": "Driven by the motor through the gearbox; the control is the worm on the right output axle."
+    },
+    {
+      "does": "With the left lever set, the motor opens and closes the canopy, lowers the air brake under the fuselage and swivels the exhaust at the tail, all together: a worm on the left output turns a 24 tooth gear whose arms push links and long rods to all three.",
+      "source": "book: page 247 (upper orange picture: canopy up, air brake down, exhaust swivelling), page 246 (lower inset: the canopy open); which lever works these, and the links, are inferred from the model",
+      "control": "p1117 4716",
+      "first": [{"control": "p1095 6641", "by": 0.5}],
+      "moves": ["p159 3648b", "p669 60483", "p720 32524", "p1166 32524"],
+      "stays": ["p1116 4716", "p400 40490"],
+      "note": "Driven by the motor through the gearbox; the control is the worm on the left output axle. p669 is on the canopy, p720 on the hatch under the cockpit (taken to be the air brake: unsure), p1166 on the exhaust."
+    },
+    {
+      "does": "The black knob on top of the fuselage between the tail fins turns both red rudders together: it turns a cross block whose two steering links push the rudders' arms.",
+      "source": "book: page 246 (top inset: the knob turned, the rudders swinging)",
+      "control": "p1164 32269",
+      "moves": ["p1157 2739a", "p1193 40490", "p1227 40490"],
+      "stays": ["p1166 32524"]
+    },
+    {
+      "does": "The black knob on top of the fuselage behind the cockpit steers the nose wheel, through an upright shaft with a universal joint down the nose leg.",
+      "source": "book: page 246 (middle inset: the knob turned, the nose wheel turning)",
+      "control": "p624 32269",
+      "moves": ["p518 3705", "p524 32013", "p526 42066 - 18976"],
+      "stays": ["p499 11478"]
+    },
+    {
+      "does": "The two main wheels and the twin nose wheels roll freely.",
+      "source": "book: pages 245-246",
+      "control": ["p401 55982", "p412 55982", "p526 42066 - 18976"]
+    }
+  ]
+}

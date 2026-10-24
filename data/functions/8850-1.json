@@ -1,0 +1,55 @@
+{
+  "set": "8850-1",
+  "name": "Rally Support Truck",
+  "model": "omr/8850-1 Rally Support Truck.mpd",
+  "instructions": "omr/instructions/8850-1/ (scans; the truck is steps 1-22, pages 1-17, with the V6 engine built in its own steps 1-7 on pages 12-14; an alternate tow truck from page 18; motorising with the 8720 motor set at the end)",
+  "functions": [
+    {
+      "does": "The yellow beacon on the roof steers the front wheels: its tall upright shaft carries a 24 tooth gear at the bottom that drives a crown gear on a shaft running forward under the floor, whose 8 tooth gear slides the steering rack on the tie-rod plate between the two steering arms.",
+      "source": "book: steps 2 and 7 (steering arms, tie-rod plate and rack), step 11 (the forward shaft, its 8 tooth gears and crown gear), step 14 (the upright shaft and 24 tooth gear), step 22 (the beacon on top)",
+      "control": "p338 4150",
+      "moves": ["p33 4261 against p0 3702", "p29 4261 against p0 3702", "p54 3743 against p0 3702"],
+      "stays": ["p346 4266 against p0 3702", "p344 4266 against p0 3702"]
+    },
+    {
+      "does": "Pushed along, the rear wheels drive the differential between them, so they can turn at different speeds round a corner.",
+      "source": "book: step 4 (the differential and its bevel gears on two half-shafts), step 22 (wheels)",
+      "control": ["p346 4266", "p344 4266"],
+      "moves": ["p76 73071 against p0 3702"]
+    },
+    {
+      "does": "As the truck rolls, the V6 engine runs: a 14 tooth bevel gear on the long prop shaft meshes the differential and turns the shaft, which runs forward through a universal joint to a 16 tooth gear under the front; through an idler 16 tooth gear this drives the 16 tooth gear on the engine's crankshaft, so the six pistons pump up and down in their cylinders.",
+      "source": "book: steps 3 and 5 (the prop shaft, its universal joint, bevel gear and front 16 tooth gear), step 10 (the idler gear), engine steps 1-4 (the crankshaft, rods, pistons and cylinders, and its gear), step 19 (the engine dropped in)",
+      "control": "p346 4266",
+      "moves": ["p21 3708 against p0 3702", "p264 4019 against p0 3702", "p240 2853 against p0 3702", "p252 2851 against p0 3702", "p255 2851 against p0 3702"]
+    },
+    {
+      "does": "The axle sticking out of the back of the chassis turns as the truck rolls: its 8 tooth gear is driven by the 24 tooth gear on the prop shaft, ready to drive something hitched behind.",
+      "source": "book: step 5 (the 24 tooth gear on the prop shaft), step 7 (the axle and its 8 tooth gear); what it is for is inferred, the book doesn't say",
+      "control": "p346 4266",
+      "moves": ["p94 3737 against p0 3702"]
+    },
+    {
+      "does": "The front wheels roll freely on their stub axles.",
+      "source": "book: steps 4 and 22",
+      "control": ["p342 4266", "p348 4266"]
+    },
+    {
+      "does": "The front bar, an axle held in two toggle joints on short yellow liftarms at the ends of the bumper, swings up and down on the liftarms' pins, and the bar itself turns freely in the toggle joints.",
+      "source": "inferred: step 12 builds the liftarms on axle pins at the ends of the bumper and step 15 hangs the axle on them; unsure whether the bar is meant to swing or turn",
+      "control": ["p138 2825", "p189 3708"],
+      "moves": ["p139 2825 against p0 3702", "p189 3708 against p0 3702"]
+    },
+    {
+      "does": "The grey pulley wheel on the side of the engine turns freely on its pin.",
+      "source": "inferred: engine step 7 fits it on an axle pin; the book doesn't say it should turn",
+      "control": "p303 4185"
+    },
+    {
+      "does": "The cab and roll cage hold their shape: the two sloping beams on the cab sides, running from the top of the windscreen down and back to the doors, stay fixed to the chassis.",
+      "source": "book: steps 15-21 and the cover; that the sloping beams are pinned at their lower ends too is inferred from the cover photo",
+      "stays": ["p339 3702 against p0 3702", "p340 3702 against p0 3702", "p329 3673 against p0 3702", "p330 3673 against p0 3702"],
+      "note": "not a control: what the other functions need to hold still"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "set": "956-1",
+  "name": "Auto Chassis",
+  "model": "models/956-Auto Chassis.mpd",
+  "instructions": "omr/instructions/956-1/ (scans; engine pages 1-5, steering 5-7, chassis 7-10, seats 11, finished model 12-13; the scissor lift photo on page 11 is an alternate model)",
+  "functions": [
+    {
+      "does": "The steering wheel turns the front wheels: its column bends through a double universal joint to an 8 tooth gear, which drives a guided rack through a second pair of 8 tooth gears, and tie rods from the rack swing both front wheels the same way on their turntables.",
+      "source": "book: steering steps 1-10, chassis steps 13 and 15",
+      "control": "p354 3736",
+      "moves": ["p342 3739", "p340 3739", "p295 3743"],
+      "stays": ["p450 3739", "p571 3652"]
+    },
+    {
+      "does": "As it rolls, the rear axle runs the four-cylinder engine: the rear axle's 24 tooth gear turns a crown gear on the drive shaft, which through universal joints and gears turns the crankshaft, so the four pistons run up and down, and the crankshaft's 40 tooth gear at the engine's front spins the 24 tooth gear above it.",
+      "source": "book: engine steps 10-13, chassis step 13 (the insets show the crown gear and the drive shaft's two 24 tooth gears), step 16",
+      "control": ["p450 3739", "p452 3739"],
+      "moves": ["p571 3652", "p577 3652", "p583 3652", "p589 3652", "p600 3648a"],
+      "stays": ["p354 3736", "p559 3705", "p143 3031", "p148 3031"]
+    },
+    {
+      "does": "Pushed along, the front wheels roll freely on their own axles.",
+      "source": "book: chassis step 15",
+      "control": ["p340 3739", "p342 3739"]
+    },
+    {
+      "does": "The gear lever standing up behind the engine slides the engine's input shaft back and forth between two speeds: as built, its 8 tooth gear drives the crankshaft through an 8 tooth and a 24 tooth gear on a side shaft, so the engine turns 9 times for each turn of the rear axle; slid back 20 LDU, the same gear meshes straight with the crankshaft's own 8 tooth gear, 3 times.",
+      "source": "book: engine step 12 shows the lever's axle standing up through the plates; what it does is inferred from the gears it slides between",
+      "control": "p559 3705",
+      "moves": ["p555 3737"],
+      "note": "checked by tests/sets/956-auto-chassis.test.ts; KineBrick lets the lever slide its shaft through the SLIDE line kept for this set in models/sets.json"
+    },
+    {
+      "does": "The 24 tooth gear on the right side of the chassis slides the right front seat forward and back: its 8 tooth gear runs in a rack under the seat.",
+      "source": "book: chassis steps 10-12 (racks under the yellow seat bases, the gear on its short axle)",
+      "control": "p168 3648a",
+      "moves": ["p143 3031"],
+      "stays": ["p148 3031"]
+    },
+    {
+      "does": "The 24 tooth gear on the left side of the chassis slides the left (driver's) front seat forward and back the same way.",
+      "source": "book: chassis steps 10-12",
+      "control": "p173 3648a",
+      "moves": ["p148 3031"],
+      "stays": ["p143 3031"]
+    },
+    {
+      "does": "The rear seat's centre armrest, two Technic bricks pinned between its backs, folds up into the slot in the seat back.",
+      "source": "inferred: seats page, rear seat steps 2-4 (the armrest is pinned on, and the seat back is built with a gap above it); unsure it is meant to move",
+      "control": "p425 3701"
+    }
+  ]
+}

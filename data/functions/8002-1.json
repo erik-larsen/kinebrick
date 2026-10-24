@@ -1,0 +1,95 @@
+{
+  "set": "8002-1",
+  "name": "Destroyer Droid",
+  "model": "omr/8002-1 Destroyer Droid.mpd",
+  "instructions": "omr/instructions/8002-1-1.pdf (scan of both books: book 1 is pages 2-35, the legs and lower body, with its function shown on pages 31-35; book 2 is pages 36-98, the rest, with the change into a wheel shown on pages 85-98; pages 99-130 build an alternate model)",
+  "functions": [
+    {
+      "does": "The droid changes from its standing attack shape into a wheel: the curved brown shell, hinged to the top of the back, swings forward and down round the body, while the arms, head and legs fold in, until it is a ball that can be rolled along the floor.",
+      "source": "book: photos on pages 85-96 and the four small pictures on page 98",
+      "control": "p0 32009",
+      "moves": [
+        "p0 32009 against p305 32016"
+      ],
+      "note": "the shell is the model's frame (body 0 holds the shell, its sensor arm and the tail), so the control is the body, turning against the shell on the two hinges at the top of the back; how far it swings, and what stops it, isn't shown"
+    },
+    {
+      "does": "The head on the front end of the shell, with its red-tipped sensors, folds down against the body.",
+      "source": "book: photos on pages 85-86",
+      "control": "p551 32073",
+      "moves": [
+        "p564 6536 against p305 32016"
+      ],
+      "stays": [
+        "p0 32009 against p305 32016"
+      ]
+    },
+    {
+      "does": "Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim.",
+      "source": "book: photos on pages 88-90; inferred: which way each arm turns",
+      "control": [
+        "p238 6632",
+        "p250 6632"
+      ],
+      "moves": [
+        "p619 6536 against p0 32009",
+        "p856 6536 against p0 32009"
+      ],
+      "stays": [
+        "p0 32009"
+      ]
+    },
+    {
+      "does": "Each twin blaster bends at the elbow of its arm.",
+      "source": "inferred: arm steps on pages 71-83 hinge the blasters on long pins; the book doesn't show it moving",
+      "control": [
+        "p618 32054",
+        "p855 32054"
+      ],
+      "moves": [
+        "p619 6536 against p238 6632",
+        "p856 6536 against p250 6632"
+      ],
+      "stays": [
+        "p0 32009 against p305 32016"
+      ]
+    },
+    {
+      "does": "The two front legs fold back under the body for rolling and swing down to stand on.",
+      "source": "book: photo on page 87; inferred: that the two legs fold together on one hinge",
+      "control": "p11 3707",
+      "moves": [
+        "p164 32310 against p0 32009",
+        "p182 32310 against p0 32009"
+      ]
+    },
+    {
+      "does": "The single back leg swings up over the back to close the wheel, and down again to stand on.",
+      "source": "book: photos on pages 31-35 (book 1) and 94-95",
+      "control": "p197 32310",
+      "moves": [
+        "p197 32310 against p0 32009"
+      ],
+      "note": "the back leg hangs from the body on two hinges and is linked to the shell's lower ends (tail submodel), so it may swing as the shell does: unsure"
+    },
+    {
+      "does": "Pressing the red pin on top of the shell pushes a rod down the middle that frees a catch, and a rubber band snaps the back leg up; pulling the pin up resets it. In book 1, before the shell is built, the red trigger under the back does the same.",
+      "source": "book: photos on pages 31-35 and 92-95; plunger rod in book 2 (axle 10 down the middle)",
+      "control": "p297 6538b",
+      "moves": [
+        "p296 3737 against p0 32009"
+      ],
+      "skip": "the catch and the rubber band only matter under force; the pin itself slides down and up, as a push"
+    },
+    {
+      "does": "Catches click to hold the arms and the shell folded in the wheel shape, and rubber bands spring the droid open again into its attack shape when it's set down.",
+      "source": "book: photos on pages 89, 91 and 97 (clicks drawn); book 1 steps 7, 10, 25 and 34 (rubber bands)",
+      "skip": "catches and rubber bands only matter under force"
+    },
+    {
+      "does": "In the wheel shape the droid rolls along the floor on the rim of its shell.",
+      "source": "book: photo on page 96",
+      "skip": "rolling the whole model on its shell needs gravity"
+    }
+  ]
+}

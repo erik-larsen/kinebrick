@@ -1,0 +1,33 @@
+{
+  "set": "854-1",
+  "name": "Go-Kart",
+  "model": "models/854-Go Kart.mpd",
+  "instructions": "omr/instructions/854-1/ (scans; the go-kart is pages 1-8, alternate models after)",
+  "functions": [
+    {
+      "does": "The steering wheel steers the front wheels: its column, held at an angle on a frame of rods, turns through a universal joint an axle whose 8-tooth gear slides the rack on the tie rod between the two wheel turntables.",
+      "source": "book: steps 3-10 (rods in steps 4-6, rack in step 7, universal joint and gear in step 9, wheel in step 10)",
+      "control": "p155 3736",
+      "moves": ["p142 3706", "p125 3743", "p21 3679", "p23 3679"],
+      "stays": ["p136 3700", "p88 3651", "p100 3652 against p0 3702"]
+    },
+    {
+      "does": "The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.",
+      "source": "book: step 3 and its inset (the crankshaft), steps 5 and 10-11 (the piston and engine block)",
+      "control": ["p326 3482", "p322 3482"],
+      "moves": ["p46 3647 against p0 3702", "p47 3705 against p0 3702", "p100 3652 against p0 3702"],
+      "stays": ["p155 3736 against p0 3702"]
+    },
+    {
+      "does": "The front wheels roll freely.",
+      "source": "book: steps 3-4 and 12",
+      "control": ["p318 3482", "p320 3482"]
+    },
+    {
+      "does": "The nose with the number board hangs on the axle across the very front.",
+      "source": "book: steps 4-5 and 8; inferred: unsure whether the nose is meant to stay put or to tip on its axle",
+      "stays": ["p50 3700"],
+      "note": "KineBrick today lets the nose (p50 and the parts on it) swing freely on the front axle p24."
+    }
+  ]
+}

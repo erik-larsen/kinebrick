@@ -1,0 +1,53 @@
+{
+  "set": "42063-1",
+  "name": "BMW R 1200 GS Adventure",
+  "model": "omr/42063-1 BMW R 1200 GS Adventure.mpd",
+  "instructions": "omr/instructions/42063-1-1.pdf (book 1 builds the motorbike, steps 1-200; page 107 shows every function); omr/instructions/42063-1-2.pdf builds the alternate model, the hover bike, and its stand",
+  "functions": [
+    {
+      "does": "The handlebars steer the front wheel: the whole front fork turns with them.",
+      "source": "book: page 107 (the bottom left picture: the front wheel turning)",
+      "control": ["p418 32016", "p419 32016"],
+      "moves": ["p386 88517", "p345 32278"],
+      "stays": ["p142 32526"]
+    },
+    {
+      "does": "Pushing the bike along turns the boxer engine: the rear wheel's 20 tooth bevel gear turns a 12 tooth bevel gear on a drive shaft that runs forward along the swing arm through two universal joints, and a 20 and 12 tooth gear pair turns the crankshaft, so the two pistons slide in and out of their cylinders on either side of the bike.",
+      "source": "book: page 107 (the bottom middle picture: the rear wheel turning; the bottom right picture: the double arrow at the cylinders)",
+      "control": "p334 88517",
+      "moves": ["p83 6589", "p23 32269", "p64 2853", "p67 2851", "p68 2851"],
+      "stays": ["p386 88517"]
+    },
+    {
+      "does": "The front wheel rolls freely.",
+      "source": "book: page 107",
+      "control": "p386 88517"
+    },
+    {
+      "does": "The front wheel has suspension: the fork is held by a suspension arm under the tank (BMW's Telelever), and a shock absorber between the arm and the frame lets the wheel rise and fall.",
+      "source": "book: page 107 (the arrow along the front fork)",
+      "control": "p157 57515",
+      "moves": ["p386 88517", "p164 4254"],
+      "stays": ["p142 32526"]
+    },
+    {
+      "does": "The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame.",
+      "source": "book: page 107 (the arrow at the rear shock absorber)",
+      "control": "p72 14720",
+      "moves": ["p334 88517", "p198 4254"],
+      "stays": ["p142 32526"]
+    },
+    {
+      "does": "The shock absorbers' springs hold the bike up and spring back.",
+      "source": "book: page 107",
+      "skip": "springs only matter under gravity or force"
+    },
+    {
+      "does": "The side stand holds the bike upright when parked.",
+      "source": "book: page 107 (the bottom right picture shows it); inferred that it is fixed, not folding",
+      "control": "p426 87083",
+      "skip": "only holds the bike up against gravity",
+      "note": "unsure whether the stand is meant to fold"
+    }
+  ]
+}

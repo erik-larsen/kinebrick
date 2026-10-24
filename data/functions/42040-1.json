@@ -1,0 +1,63 @@
+{
+  "set": "42040-1",
+  "name": "Fire Plane",
+  "model": "omr/42040-1 Fire Plane.mpd",
+  "instructions": "omr/instructions/42040-1-1.pdf (book 1: the fire plane on floats, steps 1-50; the functions are photographed on page 115); omr/instructions/42040-1-2.pdf (book 2) builds the alternate model, a jet, whose functions are drawn on its pages 106-107",
+  "functions": [
+    {
+      "does": "Pushed along on the little wheels under its floats, the plane turns its propeller and engine: the front wheels' cross axle drives a 12 tooth bevel gear, a vertical shaft carries the turn up through the nose, and 12 tooth bevel gears at the top turn the crankshaft behind the propeller, so the pistons pump.",
+      "source": "book 1: the engine and its gears (steps 1-18 of the nose, pages 12-28), the floats and wheels (pages 28-36); inferred: that the wheels drive the propeller, the book draws no arrow",
+      "control": ["p169 56903", "p173 56903"],
+      "moves": ["p160 6589", "p157 32270", "p144 6589", "p148 6589", "p557 99012", "p75 2853"],
+      "note": "unsure: by the model, the gears reach a 5.5 axle (p147 59426) behind the crankshaft but it is not clear how that couples to the crankshaft (p80 2853)"
+    },
+    {
+      "does": "The propeller turns the engine's crankshaft, and the pistons pump up and down in their cylinders.",
+      "source": "book 1: engine steps 1-18 (pages 12-22, the crankshaft drawn 1:1), steps 47-49 (propeller, pages 110-113)",
+      "control": "p557 99012",
+      "moves": ["p75 2853", "p76 2852", "p77 2852", "p78 2851", "p79 2851"]
+    },
+    {
+      "does": "The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks).",
+      "source": "book 1: page 115, pictures 1 and 2",
+      "control": "p251 32140",
+      "note": "unsure which parts form the hatch: the seat assembly's parts (p249-p265) sit behind the engine on top"
+    },
+    {
+      "does": "Pressing the knob on top of the fuselage drops the water: it pushes down a shaft that releases the tank's trapdoor in the belly, which swings open and lets the bricks fall out.",
+      "source": "book 1: page 115, picture 3 (the finger presses the knob, the door swings down, the water falls); the release shaft from the model",
+      "control": "p222 2736",
+      "moves": ["p226 60483", "p234 2736"],
+      "note": "the knob is pressed (a push of a few LDU down), not turned"
+    },
+    {
+      "does": "The trapdoor under the tank swings down by its own weight once released, and is pushed shut again by hand.",
+      "source": "book 1: page 115, picture 3",
+      "control": "p226 60483",
+      "skip": "it falls open under gravity; worked by hand it just swings"
+    },
+    {
+      "does": "The red joystick on top behind the wing, tilted side to side, works the ailerons: its column turns knob wheels that turn the axles along the wing, and the axles tip the ailerons at the wing tips, one up and one down.",
+      "source": "book 1: the joystick and its knob wheels (pages 80-90), the wing's axles and ailerons (pages 90-108); inferred: what each tilt does, the book draws no arrows",
+      "control": "p358 6572",
+      "moves": ["p381 32072", "p384 32072", "p405 32072", "p441 32072", "p520 32525", "p511 32525"]
+    },
+    {
+      "does": "Tilted forward and back, the joystick works the elevator: a steering link under it pulls a lever at the tail, which tips the tailplane.",
+      "source": "book 1: the tail (pages 58-66), the joystick and link (pages 80-90); inferred: which way it goes",
+      "control": "p358 6572",
+      "moves": ["p371 2739a", "p330 2736", "p338 18945"]
+    },
+    {
+      "does": "The rudder on the fin swings side to side.",
+      "source": "book 1: the tail (pages 58-66); inferred: that it moves, and unsure whether anything works it",
+      "control": "p314 92907",
+      "moves": ["p311 40490"]
+    },
+    {
+      "does": "The wheels under the floats roll.",
+      "source": "book 1: the floats (pages 28-36)",
+      "control": ["p35 42610", "p36 42610", "p169 56903", "p173 56903"]
+    }
+  ]
+}

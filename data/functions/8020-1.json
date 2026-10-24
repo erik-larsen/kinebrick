@@ -1,0 +1,21 @@
+{
+  "set": "8020-1",
+  "name": "Building Set (truck)",
+  "model": "models/8020-Building Set.mpd",
+  "instructions": "omr/instructions/8020-1/ (scans; the file builds the yellow truck, pages 2-5, steps 1-14; the van, windmill and others after)",
+  "functions": [
+    {
+      "does": "The wheel on the cab roof steers the front wheels: an 8-tooth gear at the foot of its axle turns a crown gear behind the windscreen, which turns an 8-tooth gear on a cross axle, which slides the toothed rack that joins the two steering arms.",
+      "source": "book: steps 2 and 4-6 (rack, 8-tooth gears and crown gear) and 13 (the roof wheel on its axle with an 8-tooth gear)",
+      "control": "p99 3482",
+      "moves": ["p98 10928", "p46 3650a", "p32 10928", "p22 3743", "p11 4261", "p13 4261"],
+      "stays": ["p103 3482", "p105 3482"]
+    },
+    {
+      "does": "The four road wheels roll freely, the front ones on pins in the steering arms, the rear ones on pins in the chassis.",
+      "source": "book: steps 2 and 14",
+      "control": ["p101 3482", "p107 3482", "p103 3482", "p105 3482"],
+      "note": "inferred: nothing is driven from the wheels"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "set": "42026-1",
+  "name": "Black Champion Racer",
+  "model": "omr/42026-1 Black Champion Racer.mpd",
+  "instructions": "omr/instructions/42026-1-1.pdf (the racer); omr/instructions/42026-1-2.pdf is the pull-back play leaflet",
+  "functions": [
+    {
+      "does": "The two big rear wheels turn together on their axle, which runs through the pull-back motor at the back.",
+      "source": "book: steps 3 and 9 (pages 4, 10), wheels step 28 (page 43)",
+      "control": ["p120 56145", "p121 56145"],
+      "moves": ["p120 56145 against p6 12799", "p121 56145 against p6 12799"],
+      "stays": ["p6 12799 against p0 32525"]
+    },
+    {
+      "does": "Pull the racer back along the floor and let go: the pull-back motor's spring drives the rear wheels and it races forward.",
+      "source": "book: cover; leaflet 42026-1-2 pages 1-5",
+      "control": ["p120 56145", "p121 56145"],
+      "skip": "the pull-back spring only stores and releases force; the wheels turn freely without it"
+    },
+    {
+      "does": "The two front wheels roll freely on their axle; there's no steering.",
+      "source": "book: step 23 (page 38), wheels step 28 (page 43)",
+      "control": ["p119 56145", "p122 56145"],
+      "moves": ["p102 3708"]
+    },
+    {
+      "does": "The steering wheel in the cockpit turns, but steers nothing.",
+      "source": "inferred: the steering wheel goes on a pin in step 13 (page 17) and isn't linked to the front axle",
+      "control": "p49 18352",
+      "stays": ["p102 3708 against p0 32525"]
+    }
+  ]
+}

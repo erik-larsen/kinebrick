@@ -1,0 +1,69 @@
+{
+  "set": "42069-1",
+  "name": "Extreme Adventure",
+  "model": "omr/42069-1 Extreme Adventure.mpd",
+  "instructions": "omr/instructions/42069-1-1.pdf (one book: finished vehicle step 555 page 387, functions pages 388-389)",
+  "functions": [
+    {
+      "does": "The knob on the roof, behind the windscreen, steers the front track units: an upright shaft with a universal joint comes down to bevel gears and a long shaft forward to a 12 tooth bevel gear on the steering rack, which swings both front track units on their turntables.",
+      "source": "book: pages 388-389 (top left inset: front tracks steering; the knob on the roof with its arrow); the gears are read from the model",
+      "control": "p639 18575",
+      "moves": ["p4 32270", "p1894 32270", "p1879 64781", "p1780 99010", "p1815 99010"],
+      "stays": ["p1490 57519"]
+    },
+    {
+      "does": "The knob on the right side of the body (the side with the right door) winds the winch in the front bumper: through bevel gears, an upright shaft and a shaft forward with universal joints, it turns a 20 tooth bevel gear that turns the reel, pulling the hook in or letting it out.",
+      "source": "book: page 388 (bottom inset: the hook pulled in, small inset: the knob on the side); the gears are read from the model",
+      "control": "p981 32270",
+      "moves": ["p531 32270", "p534 6589", "p299 32270", "p316 32012"],
+      "stays": ["p639 18575"]
+    },
+    {
+      "does": "A ratchet on the winch stops it unwinding under load.",
+      "source": "inferred: the winch ratchet submodel (p329 41678 and the parts with it)",
+      "skip": "a ratchet; only matters under force"
+    },
+    {
+      "does": "The knob on the left side of the body raises the back of the roof, with its rack and jerry cans, on a linear actuator: the knob's 20 tooth bevel gear turns a cross shaft whose bevel gear turns the actuator's 12 tooth gear.",
+      "source": "book: page 389 (top right inset: the roof raised; the knob on the side with its arrow); the gears and actuator are read from the model",
+      "control": "p1098 32270",
+      "moves": ["p579 32270", "p567 6589", "p566 92696", "p1214 18945", "p1215 18945", "p2289 41239"],
+      "stays": ["p981 32270"],
+      "note": "Unsure what exactly rises: the book's inset shows the roof rack and jerry cans tilted up over a white panel. In the model the actuator lifts a frame under the two rear roof panels (p1214, p1215), which are hinged to the roof, and the roof with its rack is hinged at the front (p661 24316)."
+    },
+    {
+      "does": "Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft.",
+      "source": "inferred: the engine and its drive are in the model; the function pages don't show it",
+      "control": ["p1490 57519", "p1492 57519"],
+      "moves": ["p1333 62821", "p146 2853", "p162 2851"]
+    },
+    {
+      "does": "The four track units roll; each pivots on its axle to follow the ground.",
+      "source": "book: page 387 (finished vehicle); that they pivot is inferred",
+      "control": ["p1490 57519", "p1492 57519", "p1871 57519", "p1872 57519"]
+    },
+    {
+      "does": "Each front door swings open, and a steering link from the door lowers the side step under it.",
+      "source": "book: page 388 (middle inset: the door swung up, the step lowered)",
+      "control": ["p1172 32525", "p1055 32525"],
+      "moves": ["p1150 62531", "p1033 62531"],
+      "note": "The left door (p1172, doorleft) works the step p1150; the right door (p1055, doorright) works p1033."
+    },
+    {
+      "does": "The rear door, with the spare wheel on it, swings open, and the white tray inside slides out.",
+      "source": "book: page 389 (middle right inset: door open, tray sliding out)",
+      "control": ["p1300 64782", "p722 64782"],
+      "note": "The tray (p722 and the trunk parts after it) isn't fastened: it only slides in."
+    },
+    {
+      "does": "The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it.",
+      "source": "book: page 389 (bottom right inset)",
+      "control": ["p884 64782", "p896 64782"]
+    },
+    {
+      "does": "Shock absorbers on each axle let the track units rise and fall.",
+      "source": "book: page 387 (shock absorbers drawn over each axle)",
+      "skip": "springs; only matter under force"
+    }
+  ]
+}

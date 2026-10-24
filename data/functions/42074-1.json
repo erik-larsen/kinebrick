@@ -1,0 +1,33 @@
+{
+  "set": "42074-1",
+  "name": "Racing Yacht",
+  "model": "omr/42074-1 Racing Yacht.mpd",
+  "instructions": "omr/instructions/42074-1-1.pdf (book 1: the racing yacht; helm and rudder drive steps 10-21 and 38-44, winches and rubber bands steps 45-66, functions pages 80-81); 42074-1-2.pdf builds the alternate model",
+  "functions": [
+    {
+      "does": "The helm, a small steering wheel on the deck, turns the rudder at the stern: its 16 tooth gear drives, through a 16 tooth idler, a 16 tooth gear on the long shaft down the hull, whose 12 tooth bevel gear at the stern turns the 20 tooth bevel gear on the rudder's upright axle.",
+      "source": "book: steps 10-21 (the long shaft and gears), 38-44 (the stern bevel gears), page 81 (top insets: the helm turned, the rudder swinging)",
+      "control": "p40 2819",
+      "moves": ["p37 94925", "p33 94925", "p90 6589", "p93 42074 - 32198", "p95 32316"],
+      "stays": ["p34 32316", "p150 3648b"]
+    },
+    {
+      "does": "Either of the two winch cranks on the deck swings the boom and mainsail from side to side: a rubber band loop runs from each crank's reel to a reel in the middle, whose 8 tooth gear turns the 24 tooth gear at the foot of the boom.",
+      "source": "book: steps 45-66 (reels, rubber bands, 8 and 24 tooth gears), page 81 (lower inset: both cranks turned, the boom swinging)",
+      "control": ["p161 60483", "p160 60483"],
+      "moves": ["p123 61510", "p124 10928", "p150 3648b", "p275 32278"],
+      "stays": ["p40 2819"],
+      "note": "Turning one crank turns the other too, as the rubber bands join all three reels."
+    },
+    {
+      "does": "The yacht stands on four small wheels under its hull, which roll freely so it can be pushed along a table.",
+      "source": "inferred: the wheels are built in at book steps 18-21 and the model has them; the book doesn't say what they are for",
+      "control": ["p43 42074 - 13971", "p45 42074 - 13971", "p47 42074 - 13971", "p54 42074 - 13971"]
+    },
+    {
+      "does": "The rubber bands slip if the boom is held, so the winches can't jam it.",
+      "source": "inferred: what rubber-band drives do; the book doesn't say",
+      "skip": "only matters under force"
+    }
+  ]
+}

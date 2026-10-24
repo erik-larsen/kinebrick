@@ -1,0 +1,40 @@
+{
+  "set": "42121-1",
+  "name": "Heavy Duty Excavator",
+  "model": "omr/42121-1 Heavy Duty Excavator.mpd",
+  "instructions": "omr/instructions/42121-1-1.pdf (one book, 120 pages; page 48 and the back cover, page 115, show the functions)",
+  "functions": [
+    {
+      "does": "The black gear knob at the back of the superstructure raises and lowers the boom: through a 20 tooth gear and a long shaft with two universal joints it turns the linear actuator under the boom, which pushes the boom up.",
+      "source": "book: page 48 (lower picture), back cover; actuator step 44, rear gears steps 59-66",
+      "control": "p186 32270",
+      "moves": ["p82 32271", "p44 92693c01-f2", "p145 24120"],
+      "stays": ["p532 32270", "p269 32063"]
+    },
+    {
+      "does": "The black gear knob on the side of the superstructure opposite the cab moves the stick in and out: its shaft runs to a 20 tooth bevel gear at the foot of the boom, which turns a 12 tooth bevel and a shaft with universal joints up the boom to the linear actuator inside it.",
+      "source": "book: page 48 (upper picture), back cover; actuator step 21, shaft and bevel gear steps 3, 15 and 35",
+      "control": "p532 32270",
+      "moves": ["p129 32525 against p82 32271", "p108 92693c01 against p82 32271", "p145 24120"],
+      "stays": ["p82 32271", "p186 32270"],
+      "note": "the 12 tooth bevel rides round the 20 tooth one as the boom swings, so raising the boom may move the stick a little"
+    },
+    {
+      "does": "The whole superstructure, with cab, boom and stick, slews all the way round on the turntable above the tracks, by hand.",
+      "source": "book: back cover (360 degrees); turntable step 85",
+      "control": "p277 18938",
+      "moves": ["p269 32063"],
+      "stays": ["p82 32271", "p145 24120 against p82 32271"]
+    },
+    {
+      "does": "The two tracks roll freely round their sprockets and rollers; nothing drives them.",
+      "source": "book: tracks steps 94-104",
+      "control": ["p322 94925", "p323 94925", "p394 94925", "p395 94925"]
+    },
+    {
+      "does": "The bucket is fixed to the end of the stick; the grey cylinder on the stick is only for show.",
+      "source": "book: stick steps 27-30 (a 3 long beam pins the bucket on)",
+      "stays": ["p145 24120 against p129 32525"]
+    }
+  ]
+}

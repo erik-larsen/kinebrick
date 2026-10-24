@@ -1,0 +1,30 @@
+{
+  "set": "42058-1",
+  "name": "Stunt Bike",
+  "model": "omr/42058-1 Stunt Bike.mpd",
+  "instructions": "omr/instructions/42058-1-1.pdf (the bike is steps 1-47, the ramp steps 48-50; page 47 shows the bike pulled back and launched at the ramp; the back cover's 42058 + 42059 model is a different build)",
+  "functions": [
+    {
+      "does": "Pull the bike back and let go: the pull-back motor drives the rear wheel through three 16 tooth gears, the middle one an idler, and the bike races forward.",
+      "source": "book: steps 1-4 (the pull-back motor), 6-8 and 15-17 (the gears and the rear wheel), page 47 (the hand pulling it back, the arrow forward)",
+      "control": "p41 56145",
+      "moves": ["p18 94925", "p21 18946", "p17 94925"],
+      "note": "the pull-back motor's spring is what drives it; turning the rear wheel by hand only winds the motor's output shaft (p19) round with it"
+    },
+    {
+      "does": "The pull-back motor's spring winds up as the bike is pulled back and drives it forward when let go.",
+      "source": "book: page 47",
+      "skip": "a spring only matters under force"
+    },
+    {
+      "does": "The front wheel rolls freely.",
+      "source": "book: steps 20-23",
+      "control": "p56 56145"
+    },
+    {
+      "does": "The stunt ramp, a printed cardboard sheet folded over two 9 long beams, stands on the ground for the bike to jump off.",
+      "source": "book: steps 48-50, page 47",
+      "note": "not a mechanism; the model file places the bike mid-jump just above the ramp"
+    }
+  ]
+}

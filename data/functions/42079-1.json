@@ -1,0 +1,48 @@
+{
+  "set": "42079-1",
+  "name": "Heavy Duty Forklift",
+  "model": "omr/42079-1 Heavy Duty Forklift.mpd",
+  "instructions": "omr/instructions/42079-1-1.pdf (book 1 builds the forklift, its functions on pages 118-119); book 2, omr/instructions/42079-1-2.pdf, builds the alternate tow truck",
+  "functions": [
+    {
+      "does": "Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further.",
+      "source": "book 1: steps 19-23 (the centre gearbox), 109-113 (the mast and its rack), 194 (the string); page 118 (top left photo, the arrows on the beacon and the forks)",
+      "control": "p448 3941",
+      "moves": ["p471 18942", "p524 32524", "p531 32524"],
+      "stays": ["p458 86652"]
+    },
+    {
+      "does": "The lever on the side of the body tilts the mast forward and back.",
+      "source": "book 1: page 118 (bottom left photo, the arrows on the side lever and the mast); the lever's build steps are inferred",
+      "control": "p334 6553",
+      "moves": ["p13 6629", "p471 18942"],
+      "stays": ["p448 3941"]
+    },
+    {
+      "does": "The grey exhaust stack on top at the back steers the rear wheels.",
+      "source": "book 1: page 119 (bottom right photo, the arrows on the exhaust and the rear wheel)",
+      "control": "p578 15535",
+      "moves": ["p454 86652", "p456 86652"],
+      "stays": ["p458 86652"]
+    },
+    {
+      "does": "Pushed along, the front wheels drive the two cylinder engine through a differential: a shaft runs back to the engine, where a 16 tooth gear and an idler turn the crankshaft and the two pistons move up and down.",
+      "source": "book 1: steps 27-30 (the differential), 76-83 (the engine); page 119 (top right photo, the arrows on the pistons)",
+      "control": ["p458 86652", "p460 86652"],
+      "moves": ["p54 62821", "p245 2853", "p250 2851", "p251 2851"],
+      "stays": ["p448 3941"]
+    },
+    {
+      "does": "The rear wheels roll freely; they aren't driven.",
+      "source": "inferred: no drive shaft reaches the rear axle",
+      "control": ["p454 86652", "p456 86652"],
+      "stays": ["p245 2853"]
+    },
+    {
+      "does": "The two front wheel arches, with the mirrors, swing out.",
+      "source": "inferred: each arch hangs on its own pin (wheelarchfrontleft and right); the book draws no arrow on them",
+      "control": ["p349 42003", "p428 42003"],
+      "note": "unsure whether the arches are meant to move"
+    }
+  ]
+}

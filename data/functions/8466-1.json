@@ -1,0 +1,83 @@
+{
+  "set": "8466-1",
+  "name": "4 X 4 Off-Roader",
+  "model": "omr/8466-1 4 X 4 Off-Roader.mpd",
+  "instructions": "omr/instructions/8466-1-1.pdf (the off-roader is pages 4-153: chassis and axles 4-71, body 72-153; pages 154-171 add a crane from another set, the one whose box is drawn on page 3, and pages 172-243 build the alternate model)",
+  "functions": [
+    {
+      "does": "The steering wheel steers the front wheels: its column, through two universal joints, turns the second from the right of a row of four 8-tooth gears behind the front axle; the row turns the rack, and the rack's two links turn the front hubs.",
+      "source": "book: front axle pages 4-19 (rack, links and hubs), pages 22-27 (the row of 8-tooth gears), step 23 (page 48, steering wheel and column), page 95 (yellow arrow on a front wheel)",
+      "control": "p993 2741",
+      "moves": ["p732 3647", "p719 6592", "p802 2739a", "p671 32495", "p687 32495"],
+      "stays": ["p1060 32495", "p1078 32495"]
+    },
+    {
+      "does": "The black knob on top of the roof also steers the front wheels: its long upright shaft has a 12-tooth bevel gear at the foot, which turns a long shaft running forward under the floor to the row of 8-tooth gears at the steering rack. The steering wheel turns with it.",
+      "source": "book: step 16 (page 94, the upright shaft and bevel gear), step 17 (page 95, the knob, with yellow arrows matching those on the front wheel); inferred: where the long shaft's 20-tooth bevel gear meets the knob's bevel",
+      "control": "p303 4288",
+      "moves": ["p296 6589", "p1103 32198", "p731 3647", "p719 6592", "p671 32495", "p993 2741"]
+    },
+    {
+      "does": "Pushing the off-roader along turns all four wheels together and runs the V8 engine: the front and rear differentials drive shafts to a third, central differential, which drives the five-speed gearbox's output; through whichever gear is engaged, the gearbox turns the engine's input shaft, whose 24-tooth gear turns the crankshaft, so the eight pistons go up and down.",
+      "source": "book: front axle (pages 4-16), centre differential step 3 (page 21), gearbox steps 1-6 (pages 38-39), rear axle (pages 52-71), step 24 (page 67, the drive shafts), engine steps 1-14 (pages 108-117)",
+      "control": "p1063 22969",
+      "moves": ["p1081 22969", "p669 22969", "p690 22969", "p1031 6573", "p648 6573", "p816 6573", "p958 3737", "p435 2854", "p412 2851"],
+      "note": "the engine only turns with a gear engaged; with the gearbox in neutral, the wheels and differentials turn but the engine stays still"
+    },
+    {
+      "does": "The gear lever between the seats picks one of five speeds or reverse, in the H-shaped gate shown by the stickers on the tiles beside it (1, 3, 5 on one side; 2, 4, R on the other): moving it sideways chooses one of the gearbox's three shafts, and moving it fore and aft slides that shaft's driving ring to lock one of its two clutch gears.",
+      "source": "book: gearbox steps 1-6 (pages 38-39, three shafts, each with two clutch gears and a driving ring), step 19 (page 44, lever and selector), step 20 (page 45, stickers, and red arrows in four directions on the lever)",
+      "moves": ["p959 6539", "p965 6539", "p969 6539"],
+      "note": "the model file has no gear lever or selector (step 19's parts): its driving rings sit in neutral, between their gears. Unsure: which speeds the lever's positions give."
+    },
+    {
+      "does": "The front differential lets the front wheels turn at different speeds in a bend: with the drive shaft held, turning one front wheel turns the other the opposite way.",
+      "source": "book: front axle (page 5); inferred: what it's for",
+      "control": "p669 22969",
+      "moves": ["p690 22969", "p651 6589", "p652 6589"],
+      "stays": ["p816 6573", "p1063 22969"]
+    },
+    {
+      "does": "The rear differential does the same for the rear wheels.",
+      "source": "book: rear axle (page 53); inferred: what it's for",
+      "control": "p1063 22969",
+      "moves": ["p1081 22969", "p1033 6589", "p1034 6589"],
+      "stays": ["p816 6573", "p669 22969"]
+    },
+    {
+      "does": "The central differential lets the front and rear axles turn at different speeds: with the front wheels held, the rear wheels can still turn.",
+      "source": "book: step 3 (page 21); inferred: what it's for",
+      "control": "p1063 22969",
+      "moves": ["p1031 6573", "p818 6589"],
+      "stays": ["p669 22969", "p648 6573"]
+    },
+    {
+      "does": "Each wheel has independent suspension: its hub rides on an upper and a lower suspension arm, with a shock absorber from the lower arm up to the frame, so each wheel moves up and down on its own; pressing the body down lowers it between the wheels, which tilt in.",
+      "source": "book: page 3 (front views, high and pressed down); front suspension pages 18-19, rear suspension pages 62-63",
+      "control": ["p662 2738", "p680 2738", "p1053 2738", "p1071 2738"]
+    },
+    {
+      "does": "The four shock absorbers' springs hold the off-roader up and spring back.",
+      "source": "book: pages 18-19 and 63",
+      "skip": "springs only matter under gravity or force"
+    },
+    {
+      "does": "The two doors swing up and out like gull wings: each is a black frame running from the roof edge down to the front fender, with green panels, hinged at the roof.",
+      "source": "book: page 3 (third front view, arrows); roof frame (pages 76-78) and side panels (pages 136-147); inferred: which parts make up each door, and where they hinge",
+      "control": ["p134 32009", "p138 32009"],
+      "moves": ["p257 32188", "p276 32189"],
+      "note": "Unsure: which parts swing with each door (the lower green side panels p62 and p16, on bent beams, may be part of the doors or fixed to the body)."
+    },
+    {
+      "does": "A white damped shock absorber at each side of the roof frame works like a gas strut for its door, holding it up when opened.",
+      "source": "book: steps 4-5 (pages 73-74, 80); inferred: what they're for",
+      "skip": "a damper only matters under gravity or force"
+    },
+    {
+      "does": "Two upright axles with grey bushes on top, either side of the knob at the back of the roof, are pushed down (the book draws red arrows down on them), working toggle joints and levers inside the roof frame.",
+      "source": "book: step 6 (page 84, the axles), step 17 (page 95, red arrows down on them, and a red arrow showing something swinging up at the back of the roof)",
+      "control": ["p183 3737", "p210 3737"],
+      "note": "Unsure what pushing them does: perhaps it releases the doors to swing up. To ask the set's owner."
+    }
+  ]
+}

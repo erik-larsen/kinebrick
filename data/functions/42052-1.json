@@ -1,0 +1,59 @@
+{
+  "set": "42052-1",
+  "name": "Heavy Lift Helicopter",
+  "model": "omr/42052-1 Heavy Lift Helicopter.mpd",
+  "instructions": "omr/instructions/42052-1-1.pdf (one book: finished on page 188; pages 190-191 show the battery box switch, the two selector levers and functions A-D)",
+  "functions": [
+    {
+      "does": "One Power Functions M-motor, switched on and reversed at the battery box under the nose, drives everything through a gearbox behind the cockpit: its 12-tooth gear turns a 24-tooth gear on the gearbox's right shaft, and a row of 16-tooth gears carries the drive across to the left shaft, so both shafts with driving rings always turn while the motor runs.",
+      "source": "book: gearbox steps 87-98 (pages 47-52), page 190 (the battery box switch, with a two-way arrow); inferred: the gear path",
+      "control": "p407 58120",
+      "moves": ["p196 32270", "p311 76019", "p239 15462", "p241 94925", "p261 18946", "p243 18946", "p254 18946", "p240 94925", "p238 15462"]
+    },
+    {
+      "does": "Function A: with the lever on the right side behind the cockpit pushed to A, the motor turns the two coaxial three-blade rotors: the right shaft's driving ring locks its rear 16-tooth clutch gear, which turns through two idler clutch gears and a gear above them to a 16-tooth gear on the rotor drive shaft; its two 12-tooth bevel gears turn the two rotor turntables, one from above and one from below, so the rotors turn opposite ways.",
+      "source": "book: page 190 (the right lever, positions A and B), page 191 (A: the rotors turning), gearbox steps 87-98 (pages 47-52); inferred: the gear path and that the rotors counter-rotate",
+      "control": "p407 58120",
+      "first": [{"control": "p131 6553", "by": 0.4}],
+      "moves": ["p272 18947", "p276 18946", "p278 18946", "p393 18946", "p392 94925", "p355 32270", "p333 99010", "p1203 99013p01", "p360 3705", "p1229 99013p01"],
+      "stays": ["p925 64782"],
+      "note": "unsure which way the lever must turn for A (the sign of 'by')"
+    },
+    {
+      "does": "Function B: with the right lever pushed to B, the motor lowers or raises the rear loading ramp: the right shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft running back through a universal joint to a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms swing the ramp on its links.",
+      "source": "book: page 190 (the right lever, positions A and B), page 191 (B: the ramp swinging down), gearbox steps 87-98 (pages 47-52); inferred: the gear path",
+      "control": "p407 58120",
+      "first": [{"control": "p131 6553", "by": -0.4}],
+      "moves": ["p272 18947", "p248 18946", "p262 94925", "p265 62520", "p753 4716", "p709 10928", "p716 11478", "p925 64782"],
+      "stays": ["p333 99010"],
+      "note": "unsure which way the lever must turn for B (the sign of 'by')"
+    },
+    {
+      "does": "Function C: with the lever on the left side pushed to C, the motor swings the two orange side panels (the cargo bay doors) out and in: the left shaft's driving ring locks its rear clutch gear, which turns a 16-tooth gear on a shaft with a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms and links swing both doors on their hinges.",
+      "source": "book: page 190 (the left lever, positions C and D), page 191 (C: the side panels swinging out), gearbox steps 87-98 (pages 47-52); inferred: the gear path",
+      "control": "p407 58120",
+      "first": [{"control": "p132 6553", "by": 0.4}],
+      "moves": ["p271 18947", "p275 18946", "p168 94925", "p167 4716", "p153 10928", "p148 32073", "p602 62531", "p595 62531"],
+      "stays": ["p213 32012"],
+      "note": "unsure which way the lever must turn for C (the sign of 'by')"
+    },
+    {
+      "does": "Function D: with the left lever pushed to D, the motor winds the winch, raising or lowering the hook on its string under the fuselage: the left shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft whose 20-tooth gear turns a 12-tooth gear on a worm shaft; the worm turns an 8-tooth gear on the winch reel.",
+      "source": "book: page 190 (the left lever, positions C and D), page 191 (D: the hook going up and down), gearbox steps 87-98 (pages 47-52); inferred: the gear path",
+      "control": "p407 58120",
+      "first": [{"control": "p132 6553", "by": -0.4}],
+      "moves": ["p271 18947", "p249 18946", "p253 94925", "p255 32269", "p234 32270", "p207 4716", "p202 10928", "p213 32012"],
+      "stays": ["p602 62531"],
+      "note": "unsure which way the lever must turn for D (the sign of 'by')"
+    },
+    {
+      "does": "With a lever in the middle, between its two positions, its driving ring locks neither clutch gear and neither of its functions runs.",
+      "source": "inferred: how driving rings work; the book's lever pictures (page 190) show only the end positions"
+    },
+    {
+      "does": "The landing gear's wheels roll freely: two small nose wheels and two larger main wheels.",
+      "source": "book: page 188 (finished helicopter)",
+      "control": ["p1185 42052 - 13971", "p1186 42052 - 13971", "p1177 55981", "p1178 55981"]
+    }
+  ]
+}
