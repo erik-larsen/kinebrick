@@ -92,14 +92,15 @@ export interface Stick {
 
 // The gates: the points of each gate's slot a lever can stand in, in the plate's own
 // coordinates, on its top face. The 6543 Technic Plate 4 x 6 with 4 Position Gear Shift Gate:
-// the middle (neutral), and the ends of the two slots either side of it.
+// the middle (neutral), and the ends of the two slots either side of it (each slot 12 LDU wide,
+// from 7.3 to 19 LDU out, and 19 LDU long each way, with round ends: the ends' middles at 13).
 const GATES: Record<string, [number, number, number][]> = {
   '6543.dat': [
     [0, 0, 0],
-    [-16, 0, -16],
-    [-16, 0, 16],
-    [16, 0, -16],
-    [16, 0, 16],
+    [-13, 0, -13],
+    [-13, 0, 13],
+    [13, 0, -13],
+    [13, 0, 13],
   ],
 };
 // Where a 6549 lever's ball is, and its foot, in the lever's own coordinates; its stick runs up
@@ -112,18 +113,29 @@ const FOOT_REACH = 30;
 // How far from its ball a gate may be for a lever to stand up through it, in LDU.
 const GATE_REACH = 40;
 
-// The gear levers in a model, each with its gate and the driving rings its foot can reach.
+// The gear levers in a model, each with its gate and the driving rings its foot can reach from
+// the middle of the gate (in a slot that swings it away from a ring, it may be out of reach).
 export function findSticks(parts: PlacedPart[], roles: Record<string, string>, sliders: Slider[]): Stick[] {
   const sticks: Stick[] = [];
   parts.forEach((p, i) => {
     if (roles[p.name] !== 'shift lever') return;
     const ball = BALL.clone().applyMatrix4(p.matrix);
-    const foot = FOOT.clone().applyMatrix4(p.matrix);
     const gate = parts.findIndex((g) => GATES[g.name] && new Vector3().setFromMatrixPosition(g.matrix).distanceTo(ball) < GATE_REACH);
+    if (gate < 0) return;
+    const middle = new Vector3(...GATES[parts[gate].name][0]).applyMatrix4(parts[gate].matrix);
+    const foot = FOOT.clone().applyMatrix4(standThrough(p.matrix, middle).multiply(p.matrix));
     const rings = sliders.filter((s) => new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(foot) < FOOT_REACH);
-    if (gate >= 0 && rings.length > 0) sticks.push({ part: i, gate, rings });
+    if (rings.length > 0) sticks.push({ part: i, gate, rings });
   });
   return sticks;
+}
+
+// The turn about its ball that stands a lever, placed by `lever`, up through a point.
+function standThrough(lever: Matrix4, point: Vector3): Matrix4 {
+  const ball = BALL.clone().applyMatrix4(lever);
+  const up = STICK_END.clone().applyMatrix4(lever).sub(ball).normalize();
+  const turn = new Quaternion().setFromUnitVectors(up, point.clone().sub(ball).normalize());
+  return new Matrix4().makeTranslation(ball.x, ball.y, ball.z).multiply(new Matrix4().makeRotationFromQuaternion(turn)).multiply(new Matrix4().makeTranslation(-ball.x, -ball.y, -ball.z));
 }
 
 // Where a lever's stick ends, placed by `lever`.
@@ -149,15 +161,8 @@ export interface StickPosition {
 export function stickPositions(parts: PlacedPart[], table: ConnectionTable, stick: Stick): StickPosition[] {
   const lever = parts[stick.part].matrix;
   const gate = parts[stick.gate].matrix;
-  const ball = BALL.clone().applyMatrix4(lever);
-  const up = STICK_END.clone().applyMatrix4(lever).sub(ball).normalize();
-  // The turn about its ball that stands the lever up through a point.
-  const through = (point: Vector3) => {
-    const turn = new Quaternion().setFromUnitVectors(up, point.clone().sub(ball).normalize());
-    return new Matrix4().makeTranslation(ball.x, ball.y, ball.z).multiply(new Matrix4().makeRotationFromQuaternion(turn)).multiply(new Matrix4().makeTranslation(-ball.x, -ball.y, -ball.z));
-  };
   const points = GATES[parts[stick.gate].name].map((q) => new Vector3(...q).applyMatrix4(gate));
-  const turns = points.map(through);
+  const turns = points.map((point) => standThrough(lever, point));
   const footAt = (turn: Matrix4) => FOOT.clone().applyMatrix4(turn.clone().multiply(lever));
   const neutralFoot = footAt(turns[0]);
   return turns.map((turn, k) => {
@@ -185,8 +190,14 @@ export function stickPositions(parts: PlacedPart[], table: ConnectionTable, stic
   });
 }
 
-// Which of a lever's gate positions its rings are in now (neutral if none matches).
+// Which of a lever's gate positions it's in now: the one it stands in (the one it needn't turn
+// to get to), or, if it stands in none, the one its rings are in (neutral if none matches). Not
+// only by its rings: where a lever reaches one ring, the slots that swing its foot away from it
+// leave it in its middle, as neutral does.
 export function stickPositionNow(parts: PlacedPart[], table: ConnectionTable, stick: Stick, positions: StickPosition[]): number {
+  const turned = positions.map((p) => new Quaternion().setFromRotationMatrix(p.turn).angleTo(new Quaternion()));
+  const standing = turned.indexOf(Math.min(...turned));
+  if (turned[standing] < 0.01) return standing;
   const k = positions.findIndex((p) => stick.rings.every((s) => Math.abs(sliderPosition(parts, table, s) - p.rings.get(s.part)!) < 1));
   return Math.max(0, k);
 }
