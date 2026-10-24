@@ -1044,12 +1044,12 @@ export function closestPoints(pa: Vector3, da: Vector3, pb: Vector3, db: Vector3
   return { onA, onB, distance: onA.distanceTo(onB) };
 }
 
-// A crown gear meshes with a spur gear of the same tooth size whose axle crosses its own at
-// right angles, the spur gear's middle over its band of teeth (a pitch radius out from the
+// A crown gear meshes with a spur gear (or a bevel gear, as the old differential's crown wheel's
+// pinion is) of the same tooth size whose axle crosses its own at right angles, the spur gear's middle over its band of teeth (a pitch radius out from the
 // crown gear's axis, within CROWN_BAND), and its pitch circle touching the crown gear's pitch
 // plane on the side its teeth face.
 function crownMesh(crown: Gear, gear: Gear): boolean {
-  if (!crown.crown || !gear.spur || gear.crown || gear.worm || gear.face) return false;
+  if (!crown.crown || !(gear.spur || gear.bevel) || gear.crown || gear.worm || gear.face) return false;
   if (Math.abs(crown.radius / crown.teeth - gear.radius / gear.teeth) > 0.01) return false;
   if (Math.abs(crown.axis.dot(gear.axis)) > 0.01) return false;
   const offset = new Vector3().subVectors(gear.center, crown.center);
@@ -1057,7 +1057,9 @@ function crownMesh(crown: Gear, gear: Gear): boolean {
   const out = offset.clone().addScaledVector(crown.axis, -along);
   if (Math.abs(out.length() - crown.radius) > CROWN_BAND) return false;
   if (Math.abs(out.normalize().dot(gear.axis)) < 0.99) return false; // the gear's axle points at the crown gear's
-  return Math.abs(along - crown.crown * gear.radius) <= MESH_TOLERANCE;
+  // A bevel gear's teeth slope back along its cone, engaging over its depth: the 8850 Rally Support
+  // Truck's 14 tooth pinion sits 15 LDU from its crown wheel's pitch plane, its pitch radius 17.5.
+  return Math.abs(along - crown.crown * gear.radius) <= (gear.bevel ? BEVEL_TOLERANCE : MESH_TOLERANCE);
 }
 
 // Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross

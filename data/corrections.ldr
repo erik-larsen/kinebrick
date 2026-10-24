@@ -174,13 +174,21 @@
 0 // one is, 30 LDU from z = 0
 0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=8] [spur=false] [bevel=-] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 32198a.dat
+0 // Technic Gear 20 Tooth Bevel with Two Axlehole Slots, the older 20 tooth bevel (and 32198, moved to it): its teeth face -z, between z = -7 and 0, tapering from 26 LDU out to 23, so its cone's tip is 28 LDU from z = 0, where a pair at right angles in the 8448 Super Street Sensation meet
+0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=7] [spur=false] [bevel=-] [apex=28] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 4142.dat
+0 // Technic Differential Crown Wheel 28 Tooth, on the old differential (73071, which places it 21.5 LDU along its axis): its teeth face -z, standing from z = -8.5 to -4.5, 26 to 38 LDU out, round a 35 LDU pitch radius. A 14 tooth bevel gear on a shaft crossing the differential's axle drives it (the 8850 Rally Support Truck's prop shaft)
+0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=4] [spur=false] [crown=-] [center=true] [pos=0 0 -6.5] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 6589.dat
-0 // Technic Gear 12 Tooth Bevel: teeth face +z, cone tip 17 LDU out (where it sits in a differential)
-0 !KINEBRICK GEAR [teeth=12] [radius=12] [width=7] [spur=false] [bevel=+] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 // Technic Gear 12 Tooth Bevel: teeth face +z, cone tip 17 LDU out (where it sits in a differential). Its pitch radius is 15 LDU, a 12 tooth gear's at LEGO's tooth size (the 12 tooth double bevel's), so it meshes with 20 tooth bevels at right angles (the 8281 Mini Tractor's power take-off)
+0 !KINEBRICK GEAR [teeth=12] [radius=15] [width=7] [spur=false] [bevel=+] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 4143.dat
-0 // Technic Gear 14 Tooth Bevel (the old differential's gears): teeth face -z, cone tip 17 LDU out
-0 !KINEBRICK GEAR [teeth=14] [radius=15] [width=4] [spur=false] [bevel=-] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 // Technic Gear 14 Tooth Bevel (the old differential's gears): teeth face -z, cone tip 17 LDU out. Its pitch radius is 17.5 LDU, a 14 tooth gear's at LEGO's tooth size, so it meshes with the old differential's 28 tooth crown wheel (4142) as its pinion
+0 !KINEBRICK GEAR [teeth=14] [radius=17.5] [width=4] [spur=false] [bevel=-] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 6573.dat
 0 // Technic Differential with Gear 16 Tooth and 24 Tooth: a 24 tooth ring at z = 30, a 16 tooth
