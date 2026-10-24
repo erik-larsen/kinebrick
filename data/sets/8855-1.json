@@ -1,0 +1,83 @@
+{
+  "set": "8855-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8855",
+        "folder": "omr/instructions/8855-1/",
+        "pages": 36
+      }
+    ]
+  },
+  "curated": {
+    "model": "models/8855-Prop Plane.mpd",
+    "instructions": "omr/instructions/8855-1/ (scans; the seaplane is pages 1-17: main steps 1-12 on pages 2-6, pontoons steps 1-8 on pages 6-8, main steps 13-15 on pages 9-10, tail steps 1-5 on pages 10-11, main steps 16-17 on pages 12-13, wing steps 1-6 on pages 14-16, main step 18 on page 17; pages 18-34 are the alternate model and page 35 adds the 8700 motor)",
+    "functions": [
+      {
+        "does": "The propeller turns the engine's piston: the propeller's 24-tooth gear and the engine's 24-tooth gear are joined off-centre by an axle that works as a crank, and the connecting rod on it pushes the piston up and down in the engine block.",
+        "source": "book: main steps 5-6 (page 3, crank gear, rod and piston) and 17 (page 13, propeller); page 35 drives the propeller with the 8700 motor",
+        "control": "p428 8855-2742c01",
+        "moves": [
+          "p90 3648a",
+          "p91 3705",
+          "p95 3652"
+        ],
+        "stays": [
+          "p144 3705"
+        ]
+      },
+      {
+        "does": "Tipping the control stick forward and back tilts the tail's elevators: under the cockpit floor a link from the stick's gimbal pushes a rod back to a bellcrank of two small rotors, which pushes a long rod up the tail to the elevators' cross axle.",
+        "source": "book: main steps 10 (page 5, stick and its gimbal of two pulley wheels), 11 (link and rod), 12 (page 6, bellcrank), 15-16 (pages 10 and 12) and tail steps 3-5 (page 11)",
+        "control": "p144 3705",
+        "moves": [
+          "p347 3707",
+          "p369 3708",
+          "p371 3705",
+          "p356 3585",
+          "p357 3586"
+        ],
+        "stays": [
+          "p556 3795",
+          "p561 3795"
+        ],
+        "note": "the stick is gimballed and works two things: forward and back for the elevators, side to side for the ailerons (next function); inferred: which way the elevators tilt for which way the stick goes"
+      },
+      {
+        "does": "Tipping the control stick side to side works the ailerons near the wing tips, one up as the other goes down: the stick's gimbal turns a shaft under the floor whose 16-tooth gear, through an idler, rocks a three-bladed rotor behind the cockpit; two links from the rotor rock a toggle on each wing's inner shaft, which turns through a universal joint and a pair of 8-tooth gears to the shaft that tilts the aileron.",
+        "source": "book: main steps 10 (page 5, gimbal and its 16-tooth gear), 14 (page 9, three-bladed rotor and gears), 18 (page 17, the two links; the inset shows the wing centre), wing steps 4-6 (pages 15-16, shafts, universal joints, 8-tooth gears and ailerons); inferred: that the two ailerons move opposite ways",
+        "control": "p144 3705",
+        "moves": [
+          "p154 3706",
+          "p336 2712",
+          "p530 3706",
+          "p541 3706",
+          "p520 3737",
+          "p522 3737",
+          "p556 3795",
+          "p561 3795"
+        ],
+        "stays": [
+          "p356 3585",
+          "p357 3586"
+        ]
+      },
+      {
+        "does": "The four small wheels set into the pontoons roll freely, so the seaplane can roll on land.",
+        "source": "book: pontoons step 8 (page 8)",
+        "control": [
+          "p319 3482",
+          "p320 3482",
+          "p321 3482",
+          "p322 3482"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each control surface go for each stick direction?"
+      }
+    ]
+  },
+  "generated": {}
+}

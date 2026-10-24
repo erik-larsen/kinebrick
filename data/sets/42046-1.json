@@ -1,0 +1,54 @@
+{
+  "set": "42046-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6190353.pdf",
+        "file": "omr/instructions/42046-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42046-1 Getaway Racer.mpd",
+    "instructions": "omr/instructions/42046-1-1.pdf (one book, finished car on page 50; pages 52-53 advertise a combined model with the 42047)",
+    "functions": [
+      {
+        "does": "The rear wheels' 12-long axle runs through the pull-back motor under the back of the car, so the rear wheels roll, turning the motor's axle with them.",
+        "source": "book: step 33 (page 31, the axle pushed through the motor), steps 59-60 (pages 49-50, wheels)",
+        "control": [
+          "p157 56145",
+          "p163 56145"
+        ],
+        "moves": [
+          "p93 3708",
+          "p158 55978",
+          "p164 55978"
+        ],
+        "stays": [
+          "p20 12799"
+        ]
+      },
+      {
+        "does": "The front wheels roll freely on their own 12-long axle; there's no steering.",
+        "source": "book: steps 59-60 (pages 49-50)",
+        "control": [
+          "p159 56145",
+          "p161 56145"
+        ],
+        "moves": [
+          "p56 3708"
+        ]
+      },
+      {
+        "does": "The pull-back motor: pull the car backwards along the ground and let go, and its spring drives the rear wheels so the car races forward.",
+        "source": "inferred: what a pull-back motor does; the book shows only the motor and its axle (steps 6-13, pages 8-11, and step 33, page 31)",
+        "control": [
+          "p157 56145",
+          "p163 56145"
+        ],
+        "skip": "a spring that only drives under force"
+      }
+    ]
+  },
+  "generated": {}
+}

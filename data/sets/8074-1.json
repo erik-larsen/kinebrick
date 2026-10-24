@@ -1,0 +1,99 @@
+{
+  "set": "8074-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8074",
+        "folder": "omr/instructions/8074-1/",
+        "pages": 46
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8074-1 Universal Set with Flex System.mpd",
+    "instructions": "omr/instructions/8074-1/ (scans; the model file builds the tower crane, pages 12-24: the tower in steps 1-7 on pages 12-15, the cab and counter-jib in steps 1-9 on pages 16-18, then steps 8-13 on pages 19-24; the other pages are the front loader, the excavator and the forklift)",
+    "functions": [
+      {
+        "does": "The handwheel with the half-pin handle, low on the tower's side, winds the winch: its 12-long axle across the bottom of the tower is the drum, and the string runs up through the tower and the turntable, along the jib and down the arm at the jib's tip to the hook's pulley, raising or lowering the hook.",
+        "source": "book: tower steps 4 (12-long drum axle and string), 6-7 (handwheel and handle), step 13 (the string round the hook's pulley, inset); the cover draws an up-and-down arrow by the hook",
+        "control": "p88 8074 - 4185a",
+        "moves": [
+          "p32 3708",
+          "p231 8074 - 4185a",
+          "p233 70496"
+        ],
+        "stays": [
+          "p0 3710",
+          "p201 3703"
+        ]
+      },
+      {
+        "does": "A pawl on the tower, a 4-long axle hanging from a pin, rests on the 16-tooth gear on the winch's axle so the hook can't run down by itself; lifting it lets the winch unwind.",
+        "source": "book: tower step 7 (the pawl, inset) and step 6; inferred: that it's a ratchet, from how it's built",
+        "control": "p90 3705",
+        "skip": "a ratchet only matters under gravity"
+      },
+      {
+        "does": "The round yellow knob high on the tower's side slews the crane: its 6-long axle turns a 14-tooth bevel gear, which turns a vertical 4-long axle whose 8-tooth gear runs round the turntable's teeth, so the whole cab, counter-jib and jib turn on top of the tower.",
+        "source": "book: tower step 5 (sub-steps 3-5: the bevel gear, and the 4-long axle with its 8-tooth gear beside the turntable), step 7 (the knob, inset)",
+        "control": "p95 4150",
+        "moves": [
+          "p47 3706",
+          "p54 3705",
+          "p55 3647",
+          "p40 2856",
+          "p96 3738",
+          "p201 3703",
+          "p134 8074 - 4185a"
+        ],
+        "stays": [
+          "p0 3710",
+          "p35 3738"
+        ]
+      },
+      {
+        "does": "One handwheel at the back of the counter-jib luffs the jib: its 10-long axle's worm turns a 24-tooth gear on a 12-long axle, whose two levers push two Flex System cables forward to a rocker of liftarms on the jib's pivot, and two short links from the rocker raise or lower the jib.",
+        "source": "book: cab steps 3 (the two worms on 10-long axles), 5 (handwheels), 6 (24-tooth gears and levers), steps 9-11 (the rocker, the two 5.6 cm cables and the jib); inferred: that this cable train luffs the jib rather than the arm, from how the parts are joined; the cover shows the jib raised",
+        "control": "p134 8074 - 4185a",
+        "moves": [
+          "p118 4716",
+          "p143 3648a",
+          "p168 2825",
+          "p169 2825",
+          "p177 3708",
+          "p201 3703",
+          "p202 3703"
+        ],
+        "stays": [
+          "p96 3738",
+          "p135 8074 - 4185a"
+        ]
+      },
+      {
+        "does": "The other handwheel at the back of the counter-jib swings the arm that hangs from the jib's tip: its worm turns a 24-tooth gear on an 8-long axle, whose two levers push a Flex System cable to a crank on the jib's pivot, and from there a long cable along the jib pushes the lever at the top of the arm, swinging the arm (and the hook hanging from it) in and out.",
+        "source": "book: cab steps 3, 5-6 and 8 (the 4 cm and 7.2 cm cables), steps 12 (the arm on its 8-long axle at the jib's tip, and the 10.4 cm cable along the jib) and 13; the cover shows the arm swung up",
+        "control": "p135 8074 - 4185a",
+        "moves": [
+          "p119 4716",
+          "p146 3648a",
+          "p148 2825",
+          "p170 3704",
+          "p223 3705",
+          "p216 2730",
+          "p219 2730"
+        ],
+        "stays": [
+          "p201 3703",
+          "p134 8074 - 4185a"
+        ],
+        "note": "worms hold both cable trains still when the handwheels aren't turned"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Does one cable train luff the jib and the other swing the tip arm?"
+      }
+    ]
+  },
+  "generated": {}
+}

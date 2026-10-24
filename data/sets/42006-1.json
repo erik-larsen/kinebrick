@@ -1,0 +1,116 @@
+{
+  "set": "42006-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037216.pdf",
+        "file": "omr/instructions/42006-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037218.pdf",
+        "file": "omr/instructions/42006-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42006-1 Excavator.mpd",
+    "instructions": "omr/instructions/42006-1-1.pdf and 42006-1-2.pdf (both books build the excavator; book 2 pages 29-41 are the optional Power Functions add-on, 8293, which the model file doesn't include)",
+    "functions": [
+      {
+        "does": "The black knob at the back of the superstructure drives a gearbox; two red change-over levers on the superstructure's side choose which function it works (boom, stick or grab), each by sliding a driving ring between two clutch gears.",
+        "source": "book 1: steps 19-32 (the gearbox; step 30's inset circles the two change-over catches), function page book 2 p28",
+        "control": "p295 32270",
+        "moves": [
+          "p237 6590"
+        ],
+        "note": "the levers are p239 87083 and p240 87083 (with their red catches p308 6641 and p307 6641); which lever position gives which function is worked out from the gears, not stated in the book"
+      },
+      {
+        "does": "With the rear lever's ring on its back gear, the knob raises and lowers the boom: a shaft along the middle of the superstructure turns a 20-tooth bevel that spins the big linear actuator under the boom.",
+        "source": "book 1: steps 36-38 (the actuator and its gears); function page book 2 p28 (the boom arrow); inferred: which gear the ring engages for this",
+        "control": "p295 32270",
+        "first": [
+          {
+            "control": "p240 87083",
+            "by": 0.4
+          }
+        ],
+        "moves": [
+          "p206 60485",
+          "p361 62274c01 against p360 62271c01",
+          "p389 32278"
+        ],
+        "stays": [
+          "p0 32278"
+        ]
+      },
+      {
+        "does": "With the rear lever's ring on its front gear, the knob moves the stick (arm) in and out: one of two upper side shafts takes the drive through a CV joint into the boom pivot and up the boom to the second big linear actuator.",
+        "source": "book 1: boom sub-build steps 8-15 (pages 50-60); function page book 2 p28 (the arm arrow); inferred: which gear the ring engages for this",
+        "control": "p295 32270",
+        "first": [
+          {
+            "control": "p240 87083",
+            "by": -0.4
+          }
+        ],
+        "moves": [
+          "p250 55013",
+          "p458 62274c01 against p457 62271c01",
+          "p486 32209 against p389 32278"
+        ],
+        "stays": [
+          "p389 32278"
+        ]
+      },
+      {
+        "does": "With the front lever's ring engaged, the knob opens and closes the four-claw grab: the other upper side shaft, through an idler gear, a CV joint, the boom pivot and shafts up the boom and stick, turns the small linear actuator in the grab, which swings the four claws together.",
+        "source": "book 2: grab sub-build steps 1-15, steps 36-38; function page book 2 p28 (the grab's arrows); inferred: which lever and position engage it",
+        "control": "p295 32270",
+        "first": [
+          {
+            "control": "p239 87083",
+            "by": 0.4
+          }
+        ],
+        "moves": [
+          "p253 99008",
+          "p425 3737",
+          "p648 92695 against p647 92693c01",
+          "p640 11953",
+          "p645 11953",
+          "p646 11953",
+          "p659 11953"
+        ],
+        "stays": [
+          "p389 32278",
+          "p486 32209 against p389 32278"
+        ]
+      },
+      {
+        "does": "The superstructure slews all the way round (360 degrees) on the big turntable over the tracks.",
+        "source": "book 1: step 38 (the turntable); function page book 2 p28 (360 degree arrow); inferred: unsure whether it's turned by hand or from the gearbox",
+        "moves": [
+          "p0 32278 against p188 64179"
+        ],
+        "note": "the book's function page shows only the slewing arrow; nothing in the build shows a gear driving the turntable's teeth"
+      },
+      {
+        "does": "The tracks run freely round their sprockets; nothing drives them.",
+        "source": "book 1: undercarriage steps 1-18",
+        "control": [
+          "p74 57519",
+          "p76 57519",
+          "p111 57519",
+          "p117 57519"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+      }
+    ]
+  },
+  "generated": {}
+}

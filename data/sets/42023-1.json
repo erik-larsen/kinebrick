@@ -1,0 +1,75 @@
+{
+  "set": "42023-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6079641.pdf",
+        "file": "omr/instructions/42023-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6079643.pdf",
+        "file": "omr/instructions/42023-1-2.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6099637.pdf",
+        "file": "omr/instructions/42023-1-3.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42023-1 Construction Crew.mpd",
+    "instructions": "omr/instructions/42023-1-1.pdf (the dump truck); 42023-1-3.pdf builds the excavator and 42023-1-2.pdf the wheel loader built from both",
+    "functions": [
+      {
+        "does": "The black knob on the cab roof steers the front wheels: its upright axle turns a short crank under the cab, which pushes a link to the two steering hubs.",
+        "source": "book: steps 8-18 (pages 9-18), knob step 36 (page 32), page 75 (the arrow at the front wheel)",
+        "control": "p23 32270",
+        "moves": [
+          "p17 60483 against p0 32140",
+          "p13 32524 against p0 32140",
+          "p135 32184 against p0 32140",
+          "p136 32184 against p0 32140"
+        ],
+        "stays": [
+          "p118 60485 against p0 32140"
+        ]
+      },
+      {
+        "does": "Turning the cross axle under the front of the dump body (by either end) tips the body: a 20-tooth bevel gear on it turns the 12-tooth bevel on a linear actuator, which pushes up under the body so it tips back on its hinge at the rear.",
+        "source": "book: steps 12-14 (pages 54-60), step 44 (page 66, the turning arrow), page 75 (the body tipped)",
+        "control": [
+          "p313 59443",
+          "p314 59443"
+        ],
+        "moves": [
+          "p317 32198 against p0 32140",
+          "p247 6589 against p0 32140",
+          "p244 92695 against p245 92693c01",
+          "p213 64782 against p300 32278"
+        ],
+        "stays": [
+          "p300 32278 against p0 32140"
+        ]
+      },
+      {
+        "does": "The dump body's tailgate hangs from pins at its top and swings open as the body tips, letting the load out.",
+        "source": "book: page 75 (the load falling out under the open tailgate); inferred: that it swings freely, from its pins",
+        "control": "p256 6558",
+        "moves": [
+          "p256 6558 against p213 64782"
+        ]
+      },
+      {
+        "does": "The two front wheels and the four wheels on the two rear axles roll freely.",
+        "source": "book: steps 45-49 (pages 67-71)",
+        "control": [
+          "p112 55982",
+          "p113 55982",
+          "p120 55982",
+          "p131 55982"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

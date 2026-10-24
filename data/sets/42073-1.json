@@ -1,0 +1,59 @@
+{
+  "set": "42073-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6227047.pdf",
+        "file": "omr/instructions/42073-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42073-1 BASH!.mpd",
+    "instructions": "omr/instructions/42073-1-1.pdf (one book: pull-back motor and rear axle in the first steps, front lever steps 10-22, wheels steps 49-52, functions page 52)",
+    "functions": [
+      {
+        "does": "The rear wheels turn together on the axle through the pull-back motor: pulled back along the ground they wind it up, and let go the motor drives the car forward.",
+        "source": "book: first steps (motor and rear axle), page 52 (right insets: pull back, let go)",
+        "control": [
+          "p117 54087",
+          "p120 54087"
+        ],
+        "moves": [
+          "p61 3708",
+          "p117 54087",
+          "p120 54087"
+        ],
+        "stays": [
+          "p6 12799"
+        ]
+      },
+      {
+        "does": "The front wheels roll freely on their axle.",
+        "source": "book: steps 49-52",
+        "control": [
+          "p123 54087",
+          "p124 54087"
+        ],
+        "moves": [
+          "p62 3708"
+        ]
+      },
+      {
+        "does": "When the car runs into a wall, the red lever sticking out low at the front is knocked back, and its upright arm flicks the loose bonnet block up off the car.",
+        "source": "book: page 52 (left inset: the bonnet flying off as the car hits; lower right inset: the car hitting the wall); front steps 10-22; how the lever reaches the block is inferred from the model",
+        "control": "p38 32140",
+        "moves": [
+          "p41 18654"
+        ],
+        "note": "The bonnet block (p129 88646, p132 3701, p137 2431 and the parts under them) only sits on the car by two pins and is meant to fly off."
+      },
+      {
+        "does": "The pull-back motor's spring drives the car once it is wound and let go.",
+        "source": "book: page 52",
+        "skip": "a spring; only matters under force"
+      }
+    ]
+  },
+  "generated": {}
+}

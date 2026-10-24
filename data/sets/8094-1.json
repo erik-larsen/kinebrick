@@ -1,0 +1,77 @@
+{
+  "set": "8094-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8094",
+        "folder": "omr/instructions/8094-1/",
+        "pages": 72
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8094-1 Control Center.mpd",
+    "instructions": "omr/instructions/8094-1/ (scans; this file builds the robot arm with its chute and box, steps 1-30 on scan pages 30-49; the plotter and buggy come before it and the crane truck after; the robot arm's photo is on page 72)",
+    "functions": [
+      {
+        "does": "The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth.",
+        "source": "book: steps 9-11 (upright axle, crown gear, worm and gears), step 14 (the motor), steps 15-17 (turntable, belt wheel and rubber band); the gear train is read from the model file, as the scans are too small to follow every gear",
+        "control": "p380 4185a",
+        "moves": [
+          "p161 2855 against p102 3709b",
+          "p259 3703 against p102 3709b",
+          "p281 3709b against p102 3709b"
+        ],
+        "note": "the motor drives the belt wheel through a rubber band, which isn't in the model file"
+      },
+      {
+        "does": "The arm motor, at the back of the arm as a counterweight, opens and closes the gripper: through a rubber band and a worm it turns a train of gears along the arm to the elbow's 40 tooth gear, which turns the long shaft down the forearm; at its foot an 8 tooth gear turns two shafts the opposite way to each other through their 16 tooth gears, and their bevel gears swing the two claws together or apart.",
+        "source": "book: steps 19-27 (the gears along the arm, the motor and its worm, the forearm shaft and the gripper; step 27 draws the claws' swing with arrows); the gear train is read from the model file",
+        "control": "p227 4185a",
+        "moves": [
+          "p297 2825 against p281 3709b",
+          "p305 2825 against p281 3709b",
+          "p316 3708 against p281 3709b"
+        ],
+        "note": "the motor drives the belt wheel through a rubber band, which isn't in the model file"
+      },
+      {
+        "does": "The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again.",
+        "source": "inferred: the arm motor's housing hangs on the shoulder axle (steps 22-29) and there is no second arm motor; unsure how the book means the one motor to share gripping and lifting",
+        "control": "p227 4185a",
+        "moves": [
+          "p259 3703 against p161 2855",
+          "p281 3709b against p161 2855"
+        ]
+      },
+      {
+        "does": "As the arm rises and falls, the grey links and support rod on its far side keep the forearm hanging the same way, so the gripper stays level.",
+        "source": "inferred: from the parallel grey beams and support rod built in steps 26-29 and the photo on page 72",
+        "moves": [
+          "p348 3703 against p161 2855",
+          "p356 3737 against p161 2855"
+        ],
+        "note": "what matters is that the forearm keeps its angle to the turntable, which the fields can't say"
+      },
+      {
+        "does": "Pieces set on the sloping chute slide down to the stop at its foot, where the gripper picks them up and drops them in the box.",
+        "source": "book: steps 3-6 (the box, chute pillars and chute slope with its stop); what it is for is inferred from the photo on page 72",
+        "skip": "only works under gravity"
+      },
+      {
+        "does": "The chute stands fixed beside the baseplate: its two grey pillars and the sloping ramp on top of them don't move.",
+        "source": "book: steps 5-6; inferred that it is meant to be rigid, as the book draws no movement, but each pillar stands on a single pin at its foot, so unsure whether the ramp is meant to tip",
+        "stays": [
+          "p60 3703 against p0 367",
+          "p78 3460 against p0 367"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Does one arm motor both grip and lift?"
+      }
+    ]
+  },
+  "generated": {}
+}

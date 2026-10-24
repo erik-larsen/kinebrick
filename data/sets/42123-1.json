@@ -1,0 +1,68 @@
+{
+  "set": "42123-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6366687.pdf",
+        "file": "omr/instructions/42123-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42123-1 McLaren Senna GTR.mpd",
+    "instructions": "omr/instructions/42123-1-1.pdf (one book; the function page is page 144)",
+    "functions": [
+      {
+        "does": "The 12 tooth gear on top of the roof steers the front wheels: its upright shaft drives a pair of 12 tooth bevel gears under the cockpit, and a long shaft forward to a 12 tooth gear at the front slides the steering rack across, turning both front hubs.",
+        "source": "book: page 144 (right inset, the roof gear with a turning arrow and a front wheel steering), steps 49-59 (the upright shaft and bevel gears), step 220 (the gear on the roof)",
+        "control": "p49 87083",
+        "moves": [
+          "p110 87761",
+          "p94 42123 - 65489",
+          "p97 42123 - 65489"
+        ],
+        "stays": [
+          "p162 55013"
+        ],
+        "note": "The model file leaves out step 220's gear and axle on the roof, so the control here is the upright shaft (p49) it would turn."
+      },
+      {
+        "does": "Rolling the car turns the V8 engine behind the seats: the right rear wheel's axle turns the crankshaft through two 12 tooth bevel gears, and the crankshaft pushes the eight yellow pistons up and down in their two tilted banks.",
+        "source": "book: page 144 (middle inset, the yellow pistons with an up-and-down arrow), steps 1-35 (engine and crankshaft); which wheel drives it is from the parts (the left rear wheel turns on its own axle)",
+        "control": "p1109 42123 - 56145",
+        "moves": [
+          "p162 55013",
+          "p253 32123b against p251 32524",
+          "p264 32123b against p262 32524"
+        ],
+        "stays": [
+          "p251 32524",
+          "p262 32524"
+        ]
+      },
+      {
+        "does": "The two doors swing up and forward on hinges at their front corners (dihedral doors).",
+        "source": "book: page 144 (main picture and left inset, both doors up), steps 199-213 (the doors, with red arrows showing them swing)",
+        "control": [
+          "p916 32524",
+          "p938 32524"
+        ]
+      },
+      {
+        "does": "The front wheels and the left rear wheel roll freely.",
+        "source": "book: page 144; steps 219-220",
+        "control": [
+          "p1111 30699",
+          "p1114 30699",
+          "p1115 42123 - 56145"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Does only one rear wheel drive the power take-off or engine?"
+      }
+    ]
+  },
+  "generated": {}
+}

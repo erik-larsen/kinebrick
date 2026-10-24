@@ -1,0 +1,138 @@
+{
+  "set": "8868-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8868",
+        "folder": "omr/instructions/8868-1/",
+        "pages": 59
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8868-1 Air Tech Claw Rig.mpd",
+    "instructions": "omr/instructions/8868-1/ (scans; the claw rig is pages 1-34, steps 1-32, the alternate model after)",
+    "functions": [
+      {
+        "does": "The 9V motor, switched at the battery box on the cab roof, runs the compressor: a rubber band from the motor turns a pulley on a crank, and the crank works a small pump on its pivot, feeding air to the four valves.",
+        "source": "book: page 2 (the compressor), steps 20-23 (switch cable, motor, pulley and rubber band) and 29 (battery box)",
+        "control": "p2556 3736",
+        "moves": [
+          "p2557 2853",
+          "p2721 74982-f1"
+        ],
+        "note": "the motor (p2445) turns the pulley; working the pulley by hand stands in for it"
+      },
+      {
+        "does": "The knob on the cab roof steers the front wheels: its upright shaft, through a universal joint, turns a bevel gear on a lengthwise shaft, which through two 16 tooth gears turns an 8 tooth gear on the toothed rack between the steering arms.",
+        "source": "book: steps 5 (steering arms) and 12 (the upright shaft); the gear path and the roof knob inferred from the model file",
+        "control": "p3320 6143",
+        "moves": [
+          "p75 4261",
+          "p80 4261",
+          "p132 3743"
+        ],
+        "stays": [
+          "p3342 4266",
+          "p3348 4266"
+        ]
+      },
+      {
+        "does": "The two front wheels roll freely on the steering arms.",
+        "source": "book: steps 5 and 32",
+        "control": [
+          "p3338 4266",
+          "p3340 4266"
+        ]
+      },
+      {
+        "does": "Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band.",
+        "source": "book: steps 2-3 (propeller shaft and differentials) and 27 (engine); the rubber band drive inferred from the model file",
+        "control": [
+          "p3342 4266",
+          "p3344 4266",
+          "p3346 4266",
+          "p3348 4266"
+        ],
+        "moves": [
+          "p27 3707",
+          "p1975 4185a",
+          "p2898 2853",
+          "p2910 2851"
+        ]
+      },
+      {
+        "does": "The rear valve on the cab's left side slews the crane: two cylinders lying lengthwise in the chassis are piped crosswise, so one pushes while the other pulls, and the racks on their rods turn a 16 tooth gear under the turntable from either side.",
+        "source": "book: steps 9 (the cylinders and their T-pieces), 13-14 (turntable) and 32 (sticker); which valve from the model file's hose names",
+        "control": "p1952 4694c01-f1",
+        "moves": [
+          "p2045 2855",
+          "p2420 2717",
+          "p1409 2796c01 against p1407 2793",
+          "p1412 2796c01 against p1410 2793"
+        ],
+        "stays": [
+          "p1407 2793",
+          "p1410 2793"
+        ]
+      },
+      {
+        "does": "The front valve on the cab's left side raises and lowers the big arm: a cylinder from the turntable pushes it up about its foot.",
+        "source": "book: steps 22-26 and 32 (sticker); which valve from the model file's hose names",
+        "control": "p1951 4694c01-f1",
+        "moves": [
+          "p2459 4519 against p2420 2717",
+          "p2185 2796c01 against p2183 2793"
+        ],
+        "stays": [
+          "p2420 2717 against p2045 2855"
+        ]
+      },
+      {
+        "does": "The rear valve on the cab's right side raises and lowers the front arm: a cylinder along the top of the big arm tips the front arm about the big arm's top.",
+        "source": "book: steps 24-28 and 32 (sticker); which valve from the model file's hose names",
+        "control": "p1950 4694c01-f1",
+        "moves": [
+          "p2831 4519 against p2459 4519",
+          "p2744 2796c01 against p2742 2793"
+        ],
+        "stays": [
+          "p2459 4519 against p2420 2717"
+        ]
+      },
+      {
+        "does": "The front valve on the cab's right side opens and closes the claw: a small cylinder in the claw head pushes or pulls the inner and outer yellow fingers together or apart.",
+        "source": "book: steps 28 and 32 (sticker); which valve from the model file's hose names",
+        "control": "p1949 4694c01-f1",
+        "moves": [
+          "p3240 2825 against p3207 3704",
+          "p3264 2825 against p3207 3704",
+          "p3206 2944c01 against p3204 2947a"
+        ],
+        "stays": [
+          "p3207 3704 against p2831 4519"
+        ]
+      },
+      {
+        "does": "The claw head hangs on an axle at the tip of the front arm, so it swings to hang straight down as the arms move.",
+        "source": "inferred: from the model file (the head is held by one axle); the book doesn't say whether it swings",
+        "skip": "only matters under gravity"
+      },
+      {
+        "does": "The fuel tanks, exhaust stacks and roof horns stay fixed to the truck whatever is turned.",
+        "source": "book: steps 30-32",
+        "stays": [
+          "p2093 3700",
+          "p3282 6143",
+          "p3328 6135"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which valve works which cylinder?"
+      }
+    ]
+  },
+  "generated": {}
+}

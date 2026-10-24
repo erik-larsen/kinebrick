@@ -1,0 +1,81 @@
+{
+  "set": "8260-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4549716.pdf",
+        "file": "omr/instructions/8260-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4549717.pdf",
+        "file": "omr/instructions/8260-1-2.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4549718.pdf",
+        "file": "omr/instructions/8260-1-3.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8260-1 Tractor.mpd",
+    "instructions": "omr/instructions/8260-1-1.pdf and 8260-1-2.pdf (the tractor; book 2 page 18 shows its functions); 8260-1-3.pdf builds the alternate model",
+    "functions": [
+      {
+        "does": "Turning the red knob at the back turns the worm under the tractor, which turns the 8 tooth gear on the loader arms' axle: the arms and the bucket on them rise and lower.",
+        "source": "book: 2 page 18 (arrows: knob turning, arms rising); 1 steps 7-10 (axle, worm, red knob); 2 steps 25-30 (arms and bucket)",
+        "control": "p10 3713",
+        "moves": [
+          "p19 4716",
+          "p52 3647",
+          "p86 32348",
+          "p93 32348",
+          "p92 47508"
+        ],
+        "stays": [
+          "p0 32524",
+          "p98 56904"
+        ]
+      },
+      {
+        "does": "The bucket tips forward and back by hand on its click hinge at the arms' ends, holding where it's left.",
+        "source": "book: 2 page 18 (curved arrow at the bucket); 2 step 29 (click hinge and bucket)",
+        "control": "p92 47508",
+        "moves": [
+          "p92 47508 against p86 32348"
+        ],
+        "stays": [
+          "p86 32348"
+        ],
+        "note": "the click hinge holds the bucket in steps, by friction"
+      },
+      {
+        "does": "The wheels roll freely: the two big rear wheels together on their 8-long axle, the two small front wheels each on its own pin. There's no steering.",
+        "source": "book: 2 step 31 (wheels)",
+        "control": [
+          "p98 56904",
+          "p100 56904",
+          "p96 56902",
+          "p97 56902"
+        ]
+      },
+      {
+        "does": "The steering wheel turns on its axle in the cab, but steers nothing: the front wheels sit on fixed pins.",
+        "source": "book: 2 step 20 (steering wheel); inferred: that nothing joins it to the front wheels",
+        "control": "p63 30663",
+        "moves": [
+          "p63 30663"
+        ],
+        "stays": [
+          "p96 56902",
+          "p97 56902"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is the steering wheel decoration?"
+      }
+    ]
+  },
+  "generated": {}
+}

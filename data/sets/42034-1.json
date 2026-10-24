@@ -1,0 +1,56 @@
+{
+  "set": "42034-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6124828.pdf",
+        "file": "omr/instructions/42034-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42034-1 Quad Bike.mpd",
+    "instructions": "omr/instructions/42034-1-1.pdf (the quad bike; the B model is not in this book)",
+    "functions": [
+      {
+        "does": "The two rear wheels turn together on their axle, which runs through the pull-back motor at the back.",
+        "source": "book: steps 6-8 and 19 (pages 6-8, 31), wheels step 27 (page 48)",
+        "control": [
+          "p137 56145",
+          "p139 56145"
+        ],
+        "moves": [
+          "p137 56145 against p18 12799",
+          "p139 56145 against p18 12799"
+        ],
+        "stays": [
+          "p18 12799 against p0 6629"
+        ]
+      },
+      {
+        "does": "Pull the quad back along the floor and let go: the pull-back motor's spring drives the rear wheels and it races forward.",
+        "source": "book: pages 53-55 (the pull-back pages)",
+        "control": [
+          "p137 56145",
+          "p139 56145"
+        ],
+        "skip": "the pull-back spring only stores and releases force; the wheels turn freely without it"
+      },
+      {
+        "does": "The two front wheels roll freely on their axle; there's no steering, the handlebars are fixed.",
+        "source": "book: step 18 (page 30), wheels steps 27-29 (pages 48-50), handlebars step 26 (pages 46-47)",
+        "control": [
+          "p135 56145",
+          "p141 56145"
+        ],
+        "moves": [
+          "p85 3708"
+        ],
+        "stays": [
+          "p128 4519 against p0 6629"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

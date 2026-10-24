@@ -1,0 +1,90 @@
+{
+  "set": "42021-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6073145.pdf",
+        "file": "omr/instructions/42021-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6094171.pdf",
+        "file": "omr/instructions/42021-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42021-1 Snowmobile.mpd",
+    "instructions": "omr/instructions/42021-1-2.pdf (the snowmobile; book 1, 42021-1-1.pdf, builds the alternate one-ski snow scooter)",
+    "functions": [
+      {
+        "does": "Turning the handlebars steers both front skis: the steering column turns a short arm under the nose, which pushes two steering links out to the ski uprights.",
+        "source": "book: steps 1-12 (the front suspension and steering unit), 26-29",
+        "control": "p162 57585",
+        "moves": [
+          "p12 15460",
+          "p13 15460",
+          "p169 92907",
+          "p178 92907"
+        ],
+        "stays": [
+          "p8 15459",
+          "p9 15459"
+        ]
+      },
+      {
+        "does": "Each ski rides on its own pair of wishbones (independent front suspension): pushing a ski up swings its upper and lower arms together and slides its shock absorber.",
+        "source": "book: steps 4-6 and 21-22 (the two grey shock absorbers)",
+        "control": [
+          "p8 15459",
+          "p9 15459"
+        ],
+        "moves": [
+          "p11 15459 against p8 15459",
+          "p12 15460"
+        ],
+        "stays": [
+          "p13 15460"
+        ],
+        "note": "the arms on the other side stay put; each side works alone"
+      },
+      {
+        "does": "The two shock absorbers' springs hold the front up.",
+        "source": "book: steps 21-22",
+        "skip": "the springs only push back under the model's weight"
+      },
+      {
+        "does": "Each ski pivots on its mount, so its tip can tilt up and down over bumps.",
+        "source": "inferred: each ski hangs on a single pin through its bent cross block (sub 11 and sub 12); the book draws no arrow for it",
+        "control": [
+          "p170 92907",
+          "p179 92907"
+        ]
+      },
+      {
+        "does": "The track's four 20-tooth wheels turn freely, and the rubber-linked track runs round them.",
+        "source": "book: steps 1-9 of the track sub-build (before step 17)",
+        "control": [
+          "p96 87407",
+          "p97 87407",
+          "p98 87407",
+          "p99 87407"
+        ],
+        "note": "nothing drives the track; it only rolls"
+      },
+      {
+        "does": "The track unit is pinned to the body at two places and doesn't pivot.",
+        "source": "book: steps 17-19 (one pin in step 17, another in step 18, then two beams in step 19)",
+        "stays": [
+          "p51 32009",
+          "p0 14720"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Are the skis meant to tilt?"
+      }
+    ]
+  },
+  "generated": {}
+}

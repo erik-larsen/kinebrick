@@ -1,0 +1,80 @@
+{
+  "set": "42035-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6113938.pdf",
+        "file": "omr/instructions/42035-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6125482.pdf",
+        "file": "omr/instructions/42035-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42035-1 Mining Truck.mpd",
+    "instructions": "omr/instructions/42035-1-2.pdf (the mining truck, numbered 1 on its cover); omr/instructions/42035-1-1.pdf builds the B model",
+    "functions": [
+      {
+        "does": "The black gear on top of the tall yellow column behind the cab steers the front wheels: the column's knob gear turns a knob gear on a lengthwise axle, whose 12-tooth gear at the front drives a steering rack between the front wheels.",
+        "source": "book: steps 3-9 (pages 4-10), the steering column step 10 (page 13), step 12 (page 16, the inset shows a front wheel's hub turning)",
+        "control": "p81 32270",
+        "moves": [
+          "p37 32270 against p0 32525",
+          "p28 87761 against p0 32525",
+          "p22 48989 against p0 32525",
+          "p23 48989 against p0 32525"
+        ],
+        "stays": [
+          "p13 42003 against p0 32525",
+          "p12 42003 against p0 32525"
+        ]
+      },
+      {
+        "does": "As the truck rolls, the right rear wheel drives the engine: its 20-tooth bevel gear turns a 12-tooth bevel on a long shaft running forward, which turns an 8-tooth sprocket whose chain drives a 16-tooth gear on the crankshaft, pumping the piston up and down in its cylinder under the bonnet.",
+        "source": "book: steps 5 and 17 (pages 8, 24, the chain), the engine steps; inferred: the order of the gears from the model file",
+        "control": "p353 56145",
+        "moves": [
+          "p49 6589 against p0 32525",
+          "p96 10928 against p0 32525",
+          "p122 94925 against p0 32525",
+          "p105 2851 against p103 42035 - 2850b"
+        ],
+        "stays": [
+          "p103 42035 - 2850b against p0 32525"
+        ]
+      },
+      {
+        "does": "The left rear wheel rolls freely on its own axle.",
+        "source": "inferred: it isn't geared to the drive shaft (book step 33, page 60)",
+        "control": "p351 56145",
+        "stays": [
+          "p38 60485 against p0 32525"
+        ]
+      },
+      {
+        "does": "The two front wheels roll freely on their steering hubs.",
+        "source": "book: step 33 (page 60)",
+        "control": [
+          "p349 56145",
+          "p355 56145"
+        ]
+      },
+      {
+        "does": "The black gear on the axle sticking out of the left side behind the cab tips the dump body: it turns cranks under the body, which push a link up and tip the body back on its hinge at the rear.",
+        "source": "book: steps 26-29 and 31 (pages 36-39, 56-58; the finger on page 56 lifts the body)",
+        "control": "p335 32270",
+        "moves": [
+          "p262 11478 against p0 32525",
+          "p250 32523 against p0 32525",
+          "p227 64782 against p0 32525"
+        ],
+        "stays": [
+          "p275 32316 against p227 64782"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

@@ -268,7 +268,7 @@ export function modelSettings(text: string): ModelSettings {
 // A real LEGO set's file from the LDraw Official Model Repository, as KineBrick keeps it in
 // models/: the files in it drop the spaces round the dash after the set number ("956 - main.ldr"
 // becomes "956-main.ldr", wherever it's named), and its main file gets KineBrick's own lines for
-// it (from models/sets.json) straight after its "0 !LICENSE" line, in place of any "0 !KINEBRICK"
+// it (from data/sets/) straight after its "0 !LICENSE" line, in place of any "0 !KINEBRICK"
 // or "0 // KineBrick" lines it had. Doing it again changes nothing.
 export function importSet(text: string, set: string, lines: string[]): string {
   const eol = text.includes('\r\n') ? '\r\n' : '\n';

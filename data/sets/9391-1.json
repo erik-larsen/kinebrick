@@ -1,0 +1,82 @@
+{
+  "set": "9391-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6002091.pdf",
+        "file": "omr/instructions/9391-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6004568.pdf",
+        "file": "omr/instructions/9391-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/9391-1 Crawler Crane (Tracked Crane).mpd",
+    "instructions": "omr/instructions/9391-1-1.pdf (the crawler crane); omr/instructions/9391-1-2.pdf builds the alternate bulldozer",
+    "functions": [
+      {
+        "does": "The black gear at the back end of the undercarriage slews the crane: its long axle runs under the turntable, where a bevel gear drives the turntable's teeth, turning the whole upper works with the boom.",
+        "source": "book: steps 2-7 (turntable, the long axle with its bevel gear under it and the knob on the end); how it's worked inferred, as the book draws no arrow for it",
+        "control": "p31 32270",
+        "moves": [
+          "p4 99010",
+          "p78 32140",
+          "p116 32062"
+        ],
+        "stays": [
+          "p826 94925",
+          "p827 94925"
+        ]
+      },
+      {
+        "does": "The black gear at the top back of the upper works raises and lowers the boom: it turns a worm, which turns a small gear on a cross axle, whose cranks push the boom up on two links.",
+        "source": "book: sub-steps 1-10 on pages 12-16 (the worm, gear, cranks and links), step 25 (the arrows show the knob turning and the boom swinging)",
+        "control": "p45 32270",
+        "moves": [
+          "p38 4716",
+          "p57 3647",
+          "p97 32525",
+          "p116 32062 against p78 32140"
+        ],
+        "stays": [
+          "p78 32140"
+        ]
+      },
+      {
+        "does": "The black gear on the left side at the back of the upper works winds the winch, raising or lowering the hook on its string over the boom tip.",
+        "source": "book: sub-steps 1-4 on pages 26-27 and step 20 (the winch axle and string), steps 29-31 (the string over the boom tip; arrows show the knob turning and the string running)",
+        "control": "p120 32270",
+        "moves": [
+          "p121 30395 against p116 32062"
+        ],
+        "stays": [
+          "p116 32062 against p78 32140"
+        ]
+      },
+      {
+        "does": "A small gear on a friction axle pin meshes with the gear on the winch axle, so the winch turns stiffly and holds the hook where it's left.",
+        "source": "inferred: the second small gear beside the winch, on a blue axle pin, has no other use",
+        "control": "p77 3647",
+        "skip": "only resists the hook's weight"
+      },
+      {
+        "does": "The two tracks run round their sprockets and idlers, so the crane rolls along; nothing drives them.",
+        "source": "book: steps 34-35",
+        "control": [
+          "p826 94925",
+          "p827 94925",
+          "p828 94925",
+          "p829 94925"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is slewing worked from the knob at the back?"
+      }
+    ]
+  },
+  "generated": {}
+}

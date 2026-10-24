@@ -1,0 +1,52 @@
+{
+  "set": "42045-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6143804.pdf",
+        "file": "omr/instructions/42045-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6150245.pdf",
+        "file": "omr/instructions/42045-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42045-1 Hydroplane Racer.mpd",
+    "instructions": "omr/instructions/42045-1-1.pdf (book 1 builds this hydroplane, finished on page 58; book 2, omr/instructions/42045-1-2.pdf, builds the alternate model)",
+    "functions": [
+      {
+        "does": "Pushing the hydroplane along on the two small wheels under its nose runs the inline four-cylinder engine: the wheels' axle carries a 20-tooth bevel gear that turns a 12-tooth bevel gear on the front of the crankshaft, so the four pistons go up and down.",
+        "source": "book: engine steps 7-12 (pages 8-10), wheels steps 31-35 (pages 27-28, the tan bevel gear on the wheel axle), steps 38-45 (pages 31-36)",
+        "control": [
+          "p93 4185",
+          "p98 4185"
+        ],
+        "moves": [
+          "p55 32270",
+          "p27 2854",
+          "p26 2851",
+          "p34 2851",
+          "p36 2851",
+          "p38 2851"
+        ]
+      },
+      {
+        "does": "The engine spins the propeller at the back: an axle in the crankshaft's rear end carries a 24-tooth gear, which turns an 8-tooth gear on the propeller's shaft above it, three times as fast.",
+        "source": "book: step 13 (page 11, the axle goes into the crank's yellow end and takes the 24-tooth gear), steps 64-65 (pages 55-56, the propeller)",
+        "control": [
+          "p93 4185",
+          "p98 4185"
+        ],
+        "moves": [
+          "p27 2854",
+          "p40 3648b",
+          "p7 10928",
+          "p174 6041"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

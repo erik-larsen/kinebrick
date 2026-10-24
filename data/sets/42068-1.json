@@ -1,0 +1,104 @@
+{
+  "set": "42068-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245299.pdf",
+        "file": "omr/instructions/42068-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42068-1 Airport Rescue Vehicle.mpd",
+    "instructions": "omr/instructions/42068-1-1.pdf (one book: tool tray steps 248-251, finished truck step 252 page 182, functions pages 184-187; pages 188-195 add an optional Power Functions motor, not in the model)",
+    "functions": [
+      {
+        "does": "The tan gear on top of the body, behind the boom, steers the front and rear axles together, the front wheels further (20 degrees) than the rear (12 degrees); the middle axle doesn't steer.",
+        "source": "book: page 184 (left insets: the gear turned, the wheels steering, the angles drawn from above)",
+        "control": "p783 18575",
+        "moves": [
+          "p1065 56145",
+          "p1071 56145",
+          "p1069 56145",
+          "p1075 56145"
+        ],
+        "stays": [
+          "p1067 56145"
+        ]
+      },
+      {
+        "does": "Pushing the truck along turns the V4 engine's pistons in the back: the middle axle's differential drives a shaft back to the crankshaft through two 16 tooth gears and a clutch gear.",
+        "source": "inferred: the engine and its drive are in the model (engine submodel, middle axle's differential); the function pages don't show it",
+        "control": [
+          "p1067 56145",
+          "p1073 56145"
+        ],
+        "moves": [
+          "p52 62821",
+          "p4 94925",
+          "p493 2853",
+          "p496 2851"
+        ],
+        "note": "Unsure which axles drive the engine: by the model's gears only the middle one."
+      },
+      {
+        "does": "The black knob at the back of the truck works the boom, through a gearbox chosen by the yellow lever on top: with the lever one way the knob raises and lowers the boom (a long shaft forward and up the turntable's centre to a worm under the boom's 24 tooth gear); with it the other way the knob slews the boom round on its turntable (a shaft forward to a 12 tooth bevel gear on the turntable's teeth).",
+        "source": "book: page 187 (top insets: the lever each way, the boom rising or slewing; lower right inset: the knob at the back); the gear trains are read from the model",
+        "control": "p309 32270",
+        "moves": [
+          "p471 3648b",
+          "p425 99010"
+        ],
+        "note": "The lever is p361 6641; its driving ring (p327 18947) engages one of two 16 tooth clutch gears (p307 18946, p326 18946). Raising the boom moves p471 3648b and the boom (p968 32271) against the turntable (p425 99010); slewing moves the turntable against the frame. Unsure which lever position chooses which."
+      },
+      {
+        "does": "The black knob at the foot of the boom unfolds and folds the boom's upper section: through bevel gears and a shaft along the boom it turns a worm at the elbow, which turns the upper section's 8 tooth gear.",
+        "source": "book: page 186 (top inset: the knob turned; lower inset: the upper section folding)",
+        "control": "p987 32270",
+        "moves": [
+          "p983 32270",
+          "p1000 4716",
+          "p1002 10928"
+        ],
+        "stays": [
+          "p471 3648b",
+          "p425 99010"
+        ]
+      },
+      {
+        "does": "A shock absorber at the foot of the boom helps hold it up.",
+        "source": "book: page 186 (top inset shows the spring)",
+        "skip": "a spring; only matters under force"
+      },
+      {
+        "does": "The grey hatch on the side of the body, just behind the cab, swings open.",
+        "source": "book: page 185 (arrow on the hatch)",
+        "note": "Not tied to parts: unsure which parts make the hatch and its hinge."
+      },
+      {
+        "does": "The tool tray, with its axe, extinguisher and other tools, slides into the body from the side and can be taken out.",
+        "source": "book: steps 248-252 (tray built and slid in)",
+        "control": "p1083 64782",
+        "note": "The tray isn't fastened: it only slides in."
+      },
+      {
+        "does": "The six wheels roll freely.",
+        "source": "book: page 184",
+        "control": [
+          "p1065 56145",
+          "p1071 56145",
+          "p1067 56145",
+          "p1073 56145",
+          "p1069 56145",
+          "p1075 56145"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+      }
+    ]
+  },
+  "generated": {}
+}

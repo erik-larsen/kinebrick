@@ -1,0 +1,58 @@
+{
+  "set": "8808-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8808",
+        "folder": "omr/instructions/8808-1/",
+        "pages": 32
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8808-1 Formula One Racer.mpd",
+    "instructions": "omr/instructions/8808-1/ (scans; the racer is pages 1-14, the buggy on pages 15-28 is an alternate model, and pages 29-32 fit the 8720 motor set, which isn't in the model)",
+    "functions": [
+      {
+        "does": "The steering wheel steers the front wheels: an 8 tooth gear on its column runs in a rack on the tie plate between the two steering arms, so both front wheels swing the same way.",
+        "source": "book: steps 12-13 (the steering arms on their axle pins, and the tie plate), 15 (the grey rack) and 16 (the steering wheel and its 8 tooth gear)",
+        "control": "p79 2819",
+        "moves": [
+          "p49 4261",
+          "p53 4261",
+          "p71 3743"
+        ],
+        "stays": [
+          "p74 3482"
+        ]
+      },
+      {
+        "does": "Pushed along, the four rear wheels, doubled up on one long axle, roll together.",
+        "source": "book: steps 1 and 17",
+        "control": [
+          "p74 3482",
+          "p82 3482",
+          "p86 3482",
+          "p90 3482"
+        ],
+        "stays": [
+          "p79 2819"
+        ]
+      },
+      {
+        "does": "The front wheels, doubled up on a short axle in each steering arm, roll freely.",
+        "source": "book: steps 12-13 and 17",
+        "control": [
+          "p72 3482",
+          "p88 3482",
+          "p80 3482",
+          "p84 3482"
+        ],
+        "stays": [
+          "p79 2819"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

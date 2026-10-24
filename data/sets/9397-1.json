@@ -1,0 +1,139 @@
+{
+  "set": "9397-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6004029.pdf",
+        "file": "omr/instructions/9397-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6004032.pdf",
+        "file": "omr/instructions/9397-1-2.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6010324.pdf",
+        "file": "omr/instructions/9397-1-3.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/9397-1 Logging Truck.mpd",
+    "instructions": "omr/instructions/9397-1-1.pdf, 9397-1-2.pdf, 9397-1-3.pdf (all three books build the logging truck; function pages: 9397-1-3.pdf pages 58-59)",
+    "functions": [
+      {
+        "does": "A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with four driving rings; two blue-handled change-over levers, one on each side of the chassis behind the cab, choose which of the crane's four functions it works.",
+        "source": "book 1: gearbox sub-build steps 1-15 (pages 43-48) and steps 50-57; book 3: function pages 58-59 (each photo shows a lever's position and the battery box switch)",
+        "control": "p240 58120",
+        "note": "levers: p217 3749 (handle, with catch p216 6641) and p221 3749 (handle, with catch p220 6641); battery box switch p1287 920; the motor is a control like a crank, and each function below names it with the lever setting it needs"
+      },
+      {
+        "does": "With one lever to one side, the motor lowers and raises the outrigger legs behind the cab, which stand the truck firm for craning.",
+        "source": "book 3: page 58 top (lever, switch, and the up-down arrow at the striped leg)",
+        "control": "p240 58120",
+        "first": [
+          {
+            "control": "p217 3749",
+            "by": 20
+          }
+        ],
+        "moves": [
+          "p464 92695 against p463 92693c01"
+        ],
+        "note": "inferred: the legs' parts weren't pinned down; the small linear actuator p463 is the likeliest drive. The lever direction (20 LDU) is a guess"
+      },
+      {
+        "does": "With the same lever the other way, the motor slews the crane round on its mast through a worm.",
+        "source": "book 3: page 58 bottom (the turning arrow round the crane's mast)",
+        "control": "p240 58120",
+        "first": [
+          {
+            "control": "p217 3749",
+            "by": -20
+          }
+        ],
+        "moves": [
+          "p534 4716",
+          "p528 32140"
+        ],
+        "note": "the worm p534 drives a 24-tooth clutch gear (p551-p553) so the slewing slips at its ends; inferred: lever direction"
+      },
+      {
+        "does": "With the other lever to one side, the motor raises and lowers the crane's main boom by spinning the big linear actuator under it.",
+        "source": "book 3: page 59 top (the arrow lifting the boom)",
+        "control": "p240 58120",
+        "first": [
+          {
+            "control": "p221 3749",
+            "by": -20
+          }
+        ],
+        "moves": [
+          "p624 62274c01 against p623 62271c01"
+        ],
+        "note": "inferred: lever direction"
+      },
+      {
+        "does": "With the other lever the other way, the motor folds the crane's outer arm (the yellow jib) in and out with a second linear actuator.",
+        "source": "book 3: page 59 bottom (the arrow at the jib's tip)",
+        "control": "p240 58120",
+        "first": [
+          {
+            "control": "p221 3749",
+            "by": 20
+          }
+        ],
+        "note": "inferred: lever direction and the jib actuator's part"
+      },
+      {
+        "does": "The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level.",
+        "source": "book 3: steps 140-152 (grab sub-build); inferred: the book draws no arrow for it"
+      },
+      {
+        "does": "The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack.",
+        "source": "book 1: steering sub-build (steps 37-42); inferred: no arrow in the book",
+        "control": "p1000 3706",
+        "moves": [
+          "p813 32072",
+          "p510 32072",
+          "p142 87761",
+          "p121 87083",
+          "p125 87083"
+        ]
+      },
+      {
+        "does": "Rolling the truck turns the engine: the two rear axles' differential drives a shaft forward to the crankshaft under the bonnet, so the four pistons go up and down.",
+        "source": "book 1: steps 1-24 (differential, long shaft, engine); inferred: no arrow in the book",
+        "control": [
+          "p1450 86652",
+          "p1451 86652"
+        ],
+        "moves": [
+          "p22 62821",
+          "p778 2853",
+          "p779 2852"
+        ],
+        "stays": [
+          "p790 2851 against p472 32278"
+        ]
+      },
+      {
+        "does": "All six wheels roll; the front pair steer.",
+        "source": "book 3: step 154",
+        "control": [
+          "p1448 86652",
+          "p1449 86652",
+          "p1450 86652",
+          "p1451 86652",
+          "p1452 86652",
+          "p1453 86652"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+      }
+    ]
+  },
+  "generated": {}
+}

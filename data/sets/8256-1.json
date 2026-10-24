@@ -1,0 +1,64 @@
+{
+  "set": "8256-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548365.pdf",
+        "file": "omr/instructions/8256-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548375.pdf",
+        "file": "omr/instructions/8256-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8256-1 Super Kart.mpd",
+    "instructions": "omr/instructions/8256-1-1.pdf (book 1 builds this kart; book 2, omr/instructions/8256-1-2.pdf, builds the alternate model)",
+    "functions": [
+      {
+        "does": "The steering wheel steers the front wheels: the foot of its slanted column pushes the 9-long tie rod across the front, which swings both steering arms and the wheels on them.",
+        "source": "book: 1 steps 16 (steering wheel) and 33 (column fitted, turning arrow); inferred: which later steps build the steering arms and tie rod, as the book draws no arrow at the wheels",
+        "control": "p52 2819",
+        "moves": [
+          "p83 32068",
+          "p84 32068",
+          "p89 40490",
+          "p135 55982",
+          "p137 55982"
+        ],
+        "stays": [
+          "p5 44294"
+        ]
+      },
+      {
+        "does": "Pushing the kart along turns the engine: the rear axle's 16 tooth gear turns the 16 tooth gear on the crankshaft, and the crank drives the connecting rod and pushes the piston up and down in its cylinder.",
+        "source": "book: 1 steps 4 (rear axle and gear), 6 (cylinder), 7 (crankshaft, rod and piston, 1:1 inset), 8 (crankshaft's gear)",
+        "control": [
+          "p131 55982",
+          "p133 55982"
+        ],
+        "moves": [
+          "p16 4019",
+          "p12 2853",
+          "p14 2852",
+          "p15 2851 against p10 2850a"
+        ],
+        "stays": [
+          "p10 2850a"
+        ]
+      },
+      {
+        "does": "The wheels roll freely: the two rear wheels together on their 7-long axle, the two front wheels each on its own axle pin in its steering arm.",
+        "source": "book: 1 step 50 (wheels)",
+        "control": [
+          "p131 55982",
+          "p133 55982",
+          "p135 55982",
+          "p137 55982"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

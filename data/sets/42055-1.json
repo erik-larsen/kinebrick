@@ -1,0 +1,148 @@
+{
+  "set": "42055-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6198466.pdf",
+        "file": "omr/instructions/42055-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42055-1 Bucket Wheel Excavator.mpd",
+    "instructions": "omr/instructions/42055-1-1.pdf (one book, 552 pages: the mine truck is pages 1-46, steps 1-72; the excavator is pages 47-541; its functions are drawn on pages 542-545). The model file holds both, the truck standing beside the excavator",
+    "functions": [
+      {
+        "does": "The orange switch on the battery box, at the back end of the counterweight boom, switches the Power Functions XL motor on, one way.",
+        "source": "book: page 542 (the inset: the switch pushed one way)",
+        "control": "p3365 58119",
+        "note": "the motor is p3149 58121; everything below marked as motor-driven needs it running"
+      },
+      {
+        "does": "The XL motor, beside the gearbox on the counterweight boom, drives a gearbox whose three red knobs, on top, choose what it works; with the middle knob pulled back (towards the knob's lower arrow) it turns the bucket wheel and runs the conveyor belts: the boom's belt carrying the spoil from the wheel to the middle, and the discharge belt carrying it out over the back.",
+        "source": "book: page 543, function A (middle knob back, the other two at N: the wheel turns and both belts run); inferred from the model: which catch is each knob",
+        "control": "p3246 6641",
+        "moves": [
+          "p2422 42055 - 24120 against p2531 42055 - 55615",
+          "p2335 57520 against p2531 42055 - 55615",
+          "p1865 57520"
+        ],
+        "stays": [
+          "p418 64178",
+          "p1595 42055 - 18938"
+        ],
+        "note": "motor-driven. The middle knob is taken as the catch p3246 6641, at x 40 between the other two. The wheel's teeth are the four ring quarters 24121 (p2425, p2455, p2474, p2475) and its buckets 24120"
+      },
+      {
+        "does": "With the middle knob back, the right knob, pushed forward or back, slews the whole upper works round on the crawler base one way or the other, while the wheel and belts keep running: two worms turn on a big ring gear made of four quarters on the base.",
+        "source": "book: page 543, function B; inferred from the model: the worms p1330 4716 and the ring quarters p810-p813 24121, and which catch is the right knob (seen from behind the counterweight)",
+        "control": "p3237 6641",
+        "moves": [
+          "p418 64178 against p1175 18939"
+        ],
+        "note": "motor-driven; the slew is drawn as the base turning against the upper works, which the model makes the frame"
+      },
+      {
+        "does": "With the middle knob pushed forward, the left knob, pushed forward or back, drives the excavator forward or back on its two crawler tracks; the wheel and belts stop. The drive goes down a shaft through the middle of the slewing turntable to an axle carrying both tracks' sprockets, so the two tracks always run together.",
+        "source": "book: page 543, function C (middle knob forward, left knob up or down); inferred from the model: the shaft p488 32073 down the turntable's middle and the sprocket axle with p911 and p1018 57520, and which catch is the left knob",
+        "control": "p3255 6641",
+        "first": [
+          {
+            "control": "p3246 6641",
+            "by": -1
+          }
+        ],
+        "moves": [
+          "p911 57520",
+          "p1018 57520",
+          "p910 57520",
+          "p1019 57520"
+        ],
+        "stays": [
+          "p2422 42055 - 24120 against p2531 42055 - 55615"
+        ],
+        "note": "motor-driven; there's no steering: the tracks can't run against each other"
+      },
+      {
+        "does": "With the red lever at the back of the upper works in the middle (N), the black gear behind it, used as a knob, swings the discharge belt round on its own turntable, so it can be aimed over the mine truck: its shaft runs forward through two universal joints and bevel gears to a 12 tooth gear on the turntable.",
+        "source": "book: page 545, function D; page 544 (D labelled); inferred from the model: the gear train from p1710 to p1612",
+        "control": "p1710 32269",
+        "moves": [
+          "p1612 32270",
+          "p1595 42055 - 18938",
+          "p1865 57520"
+        ],
+        "stays": [
+          "p418 64178"
+        ]
+      },
+      {
+        "does": "The red lever at the back, pushed down (lock), slides a driving ring that ties the discharge belt's turntable to the crawler base, so when the upper works slews the discharge belt stays aimed where it was, over the truck.",
+        "source": "book: page 545, function E (the lever down and locked, the right knob worked: the upper works turns and the discharge belt stays over the truck); page 544 (E labelled); inferred: through which parts",
+        "control": "p1674 6641",
+        "moves": [
+          "p1706 18947"
+        ],
+        "note": "check with the slew: with this lever locked and the right knob worked, p1595 42055 - 18938 should keep its heading against p418 64178 while the upper works turns"
+      },
+      {
+        "does": "The black gear at the foot of the tower, used as a crank, raises and lowers the bucket wheel boom: a cross shaft with bevel gears turns two linear actuators, one each side, that push the boom up about its pivot, carrying the counterweight boom, motor and gearbox with it.",
+        "source": "book: page 545, function F; page 544 (F labelled); inferred from the model: the cross shaft p1501 and the actuators",
+        "control": "p1805 32269",
+        "moves": [
+          "p1508 61927c01",
+          "p1509 61927c01",
+          "p2531 42055 - 55615",
+          "p3149 58121"
+        ],
+        "stays": [
+          "p418 64178"
+        ]
+      },
+      {
+        "does": "The mine truck's white knob on top of its cab, a 12 tooth gear on an upright axle, steers its front wheels: knob gears at the bottom of the axle turn a 12 tooth gear on a gear rack across the front axle.",
+        "source": "book: truck steps 41-42 (pages 26-27, the upright axle and knob); inferred: the knob gears, rack and its gear, read from the model",
+        "control": "p156 32270",
+        "moves": [
+          "p13 32072",
+          "p51 32072",
+          "p49 87761",
+          "p294 56145",
+          "p303 56145"
+        ],
+        "stays": [
+          "p297 56145",
+          "p300 56145"
+        ]
+      },
+      {
+        "does": "The 12 tooth gear on the mine truck's side, used as a knob, tips the dump body up and lowers it.",
+        "source": "book: truck steps 67-69 (pages 41-43; the step 69 inset shows the body tipped and lowered); inferred: which gear is the knob",
+        "control": "p276 32270",
+        "moves": [
+          "p263 18945",
+          "p264 18945"
+        ],
+        "stays": [
+          "p300 56145"
+        ]
+      },
+      {
+        "does": "The mine truck's four wheels roll freely.",
+        "source": "book: truck step 71 (page 45)",
+        "control": [
+          "p294 56145",
+          "p303 56145",
+          "p297 56145",
+          "p300 56145"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which knob does which, where the book doesn't label them?"
+      }
+    ]
+  },
+  "generated": {}
+}

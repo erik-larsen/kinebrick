@@ -1,0 +1,93 @@
+{
+  "set": "8012-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4177117.pdf",
+        "file": "omr/instructions/8012-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8012-1 Super Battle Droid.mpd",
+    "instructions": "omr/instructions/8012-1-1.pdf (three books in one PDF: torso pages 2-19, legs pages 20-39, arms pages 40-55)",
+    "functions": [
+      {
+        "does": "The black lever at the top of the back swings the right arm up and down: the lever carries a 20-tooth double bevel gear on its pivot axle, which turns the 16-tooth gear on the right arm's shoulder axle.",
+        "source": "book: torso pages 7-9 (the gear sub-assembly, steps 1-9; the inset on page 9 has a red arrow for the turn) and step 18 (page 9); arms book step 17 (page 54, the arm's axle into the shoulder); a set review also says the lever at the top of the back swings the right arm",
+        "control": "p96 32449",
+        "moves": [
+          "p95 32269",
+          "p90 4019",
+          "p83 6538b",
+          "p3847 41680",
+          "p3851 32291"
+        ],
+        "stays": [
+          "p3456 41680",
+          "p3474 6538b",
+          "p2387 41680"
+        ]
+      },
+      {
+        "does": "The left arm swings at the shoulder on a long pin.",
+        "source": "book: arms book step 17 (page 47)",
+        "control": "p3474 6538b",
+        "moves": [
+          "p3456 41680",
+          "p3441 3705"
+        ],
+        "stays": [
+          "p90 4019",
+          "p3847 41680"
+        ]
+      },
+      {
+        "does": "Each arm bends at the elbow on a click hinge, which holds where it's set.",
+        "source": "book: arms book step 8 (page 43, and page 50 for the other arm)",
+        "control": [
+          "p3833 3705",
+          "p3441 3705"
+        ],
+        "moves": [
+          "p3851 32291 against p3869 41681",
+          "p3083 6538b against p3462 41681"
+        ]
+      },
+      {
+        "does": "A long grey rod runs from each arm's blaster frame up the arm to beside the shoulder.",
+        "source": "book: arms book steps 7 and 12 (pages 42 and 45), 17 (page 47); inferred: that it does nothing but look like a cable",
+        "note": "Unsure: whether the rod tilts the blasters as the elbow bends, or is only decoration."
+      },
+      {
+        "does": "A rubber band at the right arm's blasters holds the blaster frame.",
+        "source": "book: arms book step 12 (page 52); inferred: what it's for",
+        "skip": "a rubber band only pulls; only matters under force"
+      },
+      {
+        "does": "Each leg poses at the hip, knee and ankle on click hinges, each holding where it's set.",
+        "source": "book: legs steps 6, 12 and 18 (pages 22, 24 and 27; the other leg's steps 7, 13 and 19 on pages 30, 32 and 35)",
+        "control": [
+          "p2378 41681",
+          "p2431 41681",
+          "p2363 41681",
+          "p2416 41681",
+          "p2012 41681",
+          "p2396 41681"
+        ],
+        "note": "the controls are each leg's thigh, shin and foot, left leg first; the hinge pins are p2387, p2369 and p2352 (left) and p2440, p2422 and p2405 (right)"
+      },
+      {
+        "does": "A grey rod hangs from each hip's round plate down the front of the thigh, sliding through a guide above the knee as the leg bends.",
+        "source": "book: legs steps 21 and 23 (pages 36 and 38, red arrows show the rod going into the guide)",
+        "note": "decorative; follows the leg poses"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Does the blaster rod tilt the blasters?"
+      }
+    ]
+  },
+  "generated": {}
+}

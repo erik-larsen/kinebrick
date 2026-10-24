@@ -1,0 +1,135 @@
+{
+  "set": "42053-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6197964.pdf",
+        "file": "omr/instructions/42053-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42053-1 Volvo EW160E.mpd",
+    "instructions": "omr/instructions/42053-1-1.pdf (one book, 252 pages: the excavator is pages 1-217, steps 1-403, with its functions on pages 218-219; pages 220-246 add the separate 8293 Power Functions set, a motor driving the pump and lights, which the model file leaves out)",
+    "functions": [
+      {
+        "does": "Pumping the hand pump on the upper body's right side, pushing its black top down, fills the pneumatic system with air for the three valves.",
+        "source": "book: page 218, function 2 (the pump pushed down)",
+        "control": "p1973 42053 - 19482-f1",
+        "skip": "pneumatic: air pressure and the pump's spring aren't modelled"
+      },
+      {
+        "does": "Valve A, the left one of the three valve levers along the back of the upper body (seen from behind), sends air to the big cylinder under the boom, which raises and lowers the boom, carrying the stick and grab with it.",
+        "source": "book: pages 218-219, functions 1 and A; steps 176-183 (pages 102-106, the boom's two cylinders); which valve feeds which cylinder is read from the model's hoses, which run from this valve to the boom cylinder",
+        "control": "p522 42053 - 47223d-f1",
+        "moves": [
+          "p756 2730",
+          "p793 42053 - 19467c01 against p792 42053 - 19466c01"
+        ],
+        "stays": [
+          "p285 42053 - 18938"
+        ],
+        "skip": "pneumatic: works by air pressure from the hand pump",
+        "note": "dragging the boom p756 2730 stands in for the cylinder until air is modelled: the cylinder's rod p793 should slide out of its barrel p792, which tilts on its pivot on the upper body"
+      },
+      {
+        "does": "Valve B, the middle lever, sends air to the cylinder on top of the boom, which swings the stick in and out at the boom tip.",
+        "source": "book: pages 218-219, functions 1 and B; steps 183-186 (pages 106-107) and 238-247 (pages 137-146, the stick); the hoses run from this valve to the stick cylinder",
+        "control": "p521 42053 - 47223d-f1",
+        "moves": [
+          "p2028 2730 against p756 2730",
+          "p810 42053 - 19467c01 against p809 42053 - 19466c01"
+        ],
+        "stays": [
+          "p756 2730"
+        ],
+        "skip": "pneumatic: works by air pressure from the hand pump",
+        "note": "dragging the stick p2028 2730 stands in for the cylinder until air is modelled"
+      },
+      {
+        "does": "Valve C, the right lever, sends air to a small cylinder inside the grab at the stick's end, which opens and closes the two clamshell halves together.",
+        "source": "book: pages 218-219, functions 1 and C; steps 220-229 (pages 129-133, the grab and its cylinder); the hoses run from this valve down the boom to the grab's cylinder",
+        "control": "p520 42053 - 47223d-f1",
+        "moves": [
+          "p1991 42053 - 18943 against p2028 2730",
+          "p2010 42053 - 18943 against p2028 2730",
+          "p2005 2944 against p2003 42053 - 2947-v2"
+        ],
+        "stays": [
+          "p2028 2730 against p756 2730"
+        ],
+        "skip": "pneumatic: works by air pressure from the hand pump",
+        "note": "dragging either clamshell half (p1991 or p2010) stands in for the cylinder until air is modelled; the two halves are linked and should close together"
+      },
+      {
+        "does": "The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level.",
+        "source": "book: pages 218-219, function D; steps 248-272 (pages 146-155, the worm, 24 tooth gear and arms); inferred: that p2207 is the knob a person turns (it is the top of the worm's shaft)",
+        "control": "p2207 32270",
+        "moves": [
+          "p2196 4716",
+          "p2201 3648b",
+          "p2222 42053 - 33299b",
+          "p2407 32073"
+        ],
+        "stays": [
+          "p285 42053 - 18938",
+          "p756 2730"
+        ]
+      },
+      {
+        "does": "The 20 tooth gear at the back of the chassis steers the front wheels: a long shaft down the middle of the chassis carries its turn to a 12 tooth gear at the front, which slides a rack that turns the front wheels.",
+        "source": "book: steps 28-29 (pages 13-14, the front gear and the long red shaft), step 62 (page 32, the gear at the back); page 219, function E shows the gear at the back",
+        "control": "p201 32269",
+        "moves": [
+          "p78 32270",
+          "p66 87761",
+          "p55 59426",
+          "p56 59426"
+        ],
+        "stays": [
+          "p96 59426",
+          "p97 59426",
+          "p284 18939"
+        ]
+      },
+      {
+        "does": "The upper body, with the boom and cab, slews round by hand on the turntable on top of the chassis.",
+        "source": "book: step 90 (page 46, the turntable), step 209 (page 123, the upper body set on it); inferred: that it slews by hand, since nothing drives the turntable and the overview pages don't show it",
+        "control": "p284 18939",
+        "moves": [
+          "p0 92907"
+        ],
+        "stays": [
+          "p66 87761 against p0 92907",
+          "p55 59426 against p0 92907"
+        ],
+        "note": "slewing mustn't steer: the steering shaft lies wholly in the chassis"
+      },
+      {
+        "does": "The two rear outriggers swing down from the chassis' back corners onto their feet, and a grey liftarm on each folds over to lock it down.",
+        "source": "book: page 219, function E (1: the leg swung down, 2: the grey liftarm locking it); steps 30-34 (pages 15-17); inferred: which parts are the leg and which the lock",
+        "control": [
+          "p182 43857",
+          "p183 43857"
+        ],
+        "note": "the grey locking liftarms are p160 6632 and p175 6632 (inferred)"
+      },
+      {
+        "does": "The four wheels roll freely; there is no drive.",
+        "source": "book: steps 401-403 (pages 215-217, the wheels)",
+        "control": [
+          "p2692 56145",
+          "p2691 56145",
+          "p2693 56145",
+          "p2690 56145"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which valve works which cylinder."
+      }
+    ]
+  },
+  "generated": {}
+}

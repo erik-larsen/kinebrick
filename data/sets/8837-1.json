@@ -1,0 +1,112 @@
+{
+  "set": "8837-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8837",
+        "folder": "omr/instructions/8837-1/",
+        "pages": 32
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8837-1 Pneumatic Excavator.mpd",
+    "instructions": "omr/instructions/8837-1/ (scans; the excavator is pages 1-18, steps 1-24, with its functions drawn on page 18; the truck crane after)",
+    "functions": [
+      {
+        "does": "Pump with the black hand pump and push the lever of the inner valve (the two valves stand side by side at the upper body's back, the end away from the boom; this one is nearer the middle, away from the grey tower), and the big yellow cylinder raises or lowers the boom, carrying the stick and bucket with it. The cylinder's rod pushes on a pair of half-beams under the boom tip.",
+        "source": "book: cover, steps 11-12 and 17-18 (valves and hoses), 21-23; the cylinder's hoses carry green and yellow marks (steps 18, 22), which start at this valve",
+        "control": "p139 4694c01-f1",
+        "moves": [
+          "p174 3895",
+          "p213 3895",
+          "p183 3895",
+          "p212 2950",
+          "p63 2796c01 against p62 2793c03",
+          "p62 2793c03"
+        ],
+        "stays": [
+          "p183 3895 against p174 3895",
+          "p212 2950 against p183 3895"
+        ],
+        "note": "Which valve is which is read from the hose marks and from which valve lies nearer the reader in step 18 (the tower stands on the far side); the barrel p62 pivots on its pins p58/p59 at its base."
+      },
+      {
+        "does": "The outer valve, on the same side as the grey tower, works the small yellow cylinder on top of the stick, which curls the bucket through a dark grey rocker and a pair of 1x4 link plates.",
+        "source": "book: cover, arm steps 1-7 (rocker, cylinder, links, bucket), steps 18 and 22 (the cylinder's hoses carry blue and red marks, which start at this valve)",
+        "control": "p138 4694c01-f1",
+        "moves": [
+          "p212 2950 against p183 3895",
+          "p185 2825 against p183 3895",
+          "p188 4263 against p183 3895",
+          "p205 2944c01 against p203 2947a"
+        ],
+        "stays": [
+          "p183 3895 against p174 3895",
+          "p174 3895"
+        ]
+      },
+      {
+        "does": "The stick is held at a fixed angle to the boom: it pivots on the boom-tip axle, and a pair of half-beams pinned to the boom and to the stick's last hole locks it there.",
+        "source": "book: arm steps 8-10 and 21",
+        "stays": [
+          "p183 3895 against p174 3895",
+          "p178 2825 against p174 3895"
+        ],
+        "note": "Not a control; checked by working the boom."
+      },
+      {
+        "does": "The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.",
+        "source": "book: chassis steps 3-9, step 24 (the knob), page 18 top panel (knob pushed down, wheels steering)",
+        "control": "p227 3941",
+        "moves": [
+          "p19 2790a against p0 3738",
+          "p16 4261 against p0 3738",
+          "p23 4261 against p0 3738",
+          "p230 3650a against p0 3738",
+          "p15 4019 against p0 3738"
+        ],
+        "stays": [
+          "p54 3703 against p0 3738"
+        ],
+        "note": "As built the knob is pushed down, so this works without moving it first."
+      },
+      {
+        "does": "The same knob, pulled up and turned, slews the whole upper body with the boom round on the turntable: lifted, its axle's 8-tooth gear leaves the crown gear and meshes with an 8-tooth gear on a pin under the turntable instead.",
+        "source": "book: step 8 inset (the two 8-tooth gears), page 18 bottom panel (knob pulled up, the upper body turning); that the pinned gear runs round teeth in the turntable's fixed base is inferred",
+        "control": "p227 3941",
+        "moves": [
+          "p54 3703 against p0 3738",
+          "p174 3895 against p0 3738",
+          "p51 3647 against p54 3703"
+        ],
+        "stays": [
+          "p19 2790a against p0 3738"
+        ],
+        "note": "Pull the knob p227 up about 16 LDU (sliding its axle p53 and gear p52 up) before turning it. Unsure what the pinned gear p51 meshes with: inferred to be inner teeth of the turntable base p40."
+      },
+      {
+        "does": "The four wheels roll freely; nothing drives them. The two under the boom end steer, the two at the cab end are on a fixed axle.",
+        "source": "book: chassis steps 3-9",
+        "control": [
+          "p22 2695c01",
+          "p28 2695c01",
+          "p232 2695c01",
+          "p233 2695c01"
+        ]
+      },
+      {
+        "does": "The hand pump: pushing the black knob down blows air through the valves, and its spring pushes it back up.",
+        "source": "book: page 4 (how the pneumatics work), steps 11-12",
+        "control": "p61 2797c01-f2",
+        "skip": "air pressure and the spring aren't modelled"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which valve works which cylinder?"
+      }
+    ]
+  },
+  "generated": {}
+}

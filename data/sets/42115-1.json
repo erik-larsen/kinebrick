@@ -1,0 +1,144 @@
+{
+  "set": "42115-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6392465.pdf",
+        "file": "omr/instructions/42115-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6394695.pdf",
+        "file": "omr/instructions/42115-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42115-1 Lamborghini Sián (Sian) FKP 37.mpd",
+    "instructions": "omr/instructions/42115-1-1.pdf and omr/instructions/42115-1-2.pdf (two books, six build boxes: 1 gearbox and rear suspension, 2 engine and front suspension, 3 interior and seats, 4 rear spoiler, 5 scissor doors, 6 wheels; no single functions page, so functions are read from the build steps' arrows and the photos)",
+    "functions": [
+      {
+        "does": "Pushed along, all four wheels drive together through a differential on each axle, and in gear the V12 turns: its twelve pistons run up and down in their two banks.",
+        "source": "book 1: steps 1-180 (gearbox, rear differential, pages 30-130), steps 187-215 (V12 and crankshaft, pages 140-160), front axle and its differential (box 2); the photos on pages 139 and 224",
+        "control": [
+          "p97 35189",
+          "p105 35189",
+          "p886 35189",
+          "p894 35189"
+        ],
+        "moves": [
+          "p38 62821",
+          "p797 62821",
+          "p681 2854",
+          "p702 2851",
+          "p708 2851"
+        ],
+        "note": "whether the front wheels are driven too is inferred from the front differential p797; the gearbox must be in a gear for the engine to turn"
+      },
+      {
+        "does": "The paddle shifters behind the steering wheel change gear in the eight-speed sequential gearbox: each pull of a paddle turns the selector one step, which turns two changeover rotary catches through knob gears to slide the gearbox's driving rings in turn.",
+        "source": "book 1: pages 104-105 (step 134: the insets show the changeover catches and the driving rings), the paddle shifter submodel (box 1, around page 120); 8 speeds from the set's description, not drawn in the book",
+        "control": "p583 11478",
+        "moves": [
+          "p579 32072",
+          "p439 32072",
+          "p441 32072",
+          "p323 35188",
+          "p329 35188"
+        ],
+        "note": "how many paddle pulls give each gear, and which paddle shifts up, are inferred: the owner should check. The ring p211 18947 should slide as the catches turn"
+      },
+      {
+        "does": "The lever on the centre console between the seats switches the gearbox between drive and neutral (or reverse): its towball top turns a changeover catch that slides a driving ring on the shaft to the gearbox.",
+        "source": "inferred: the changeover catch p1081, its towball p1082 and the driving ring p549 sit together on the centre line in front of the gearbox",
+        "control": "p1082 2736",
+        "moves": [
+          "p1081 6641",
+          "p549 18947"
+        ],
+        "note": "what this lever selects is not shown in the pages read; the owner should check"
+      },
+      {
+        "does": "The steering wheel steers the front wheels: its column turns through universal joints and gears down to a pinion on the steering rack.",
+        "source": "book 1: box 2 (front axle and steering rack), box 3 (the column and wheel); the photo on page 259",
+        "control": "p1826 2741",
+        "moves": [
+          "p1017 87761",
+          "p886 35189",
+          "p894 35189"
+        ],
+        "stays": [
+          "p97 35189",
+          "p105 35189"
+        ]
+      },
+      {
+        "does": "All four wheels have independent pushrod suspension: each wheel's wishbones push a rocker that compresses a pair of shock absorbers lying across the car.",
+        "source": "book 1: pages 94-98 (step 127: the yellow arrows show the rear wishbones swinging), box 2 (front suspension); the 'Engine & front suspension' page 138",
+        "control": [
+          "p97 35189",
+          "p105 35189",
+          "p886 35189",
+          "p894 35189"
+        ]
+      },
+      {
+        "does": "The shock absorbers' springs hold the car up and spring back.",
+        "source": "book 1: steps building the four pairs of shock absorbers",
+        "skip": "springs only matter under gravity or force"
+      },
+      {
+        "does": "The rear spoiler rises and tilts: a lever in the interior pushes a flexible axle, used as a push rod, back to the spoiler lift under the engine cover, whose yellow axles push the wing up.",
+        "source": "book 1: pages 299-304 (steps 462-471: a lever with a curved yellow arrow, fitted in the chassis), page 315 (step 491, a second lever); book 2: pages 37-39 (steps 555-563: the spoiler lift, the yellow arrow pushing its axle), the 'Rear spoiler' page 54 and the photo on page 55",
+        "control": "p2680 43093",
+        "moves": [
+          "p2703 11946",
+          "p2708 11947"
+        ],
+        "note": "which lever raises the spoiler, and how the flexible axles carry the push, are inferred from the pages read: the owner should name the control. p2680 and p2681 are the wing's pivots"
+      },
+      {
+        "does": "The two scissor doors swing up and forward on hinges at their front edges.",
+        "source": "book 2: box 5 (pages 188-300), the 'Scissor doors' page 190 and the photo on page 191",
+        "control": [
+          "p3495 55615",
+          "p3589 55615"
+        ],
+        "moves": [
+          "p3498 64394",
+          "p3592 64680"
+        ]
+      },
+      {
+        "does": "The front hood lifts, showing the luggage space and the set's bag.",
+        "source": "book 2: box 5, step 1078 (page 320: the hood shown open) and the hood submodel",
+        "control": "p3406 6632",
+        "moves": [
+          "p3407 6632"
+        ]
+      },
+      {
+        "does": "The engine cover behind the cabin lifts to show the V12.",
+        "source": "book 2: box 4, rear hood submodel; inferred that it opens from its hinge pins and the engine photos",
+        "control": "p2809 32278",
+        "moves": [
+          "p2806 32140"
+        ]
+      },
+      {
+        "does": "The seats' backs tilt.",
+        "source": "inferred: the seat submodels (book 1, steps 395-447) are pinned to the floor on axles; the book's arrows weren't checked for them",
+        "control": [
+          "p1528 32073",
+          "p1599 32073"
+        ],
+        "note": "unsure whether the seats move at all: the owner should check"
+      }
+    ],
+    "questions": [
+      {
+        "question": "How many gears, and which paddle shifts up? Does the 42083's wing tilt as it rises, and its front hood open?"
+      }
+    ]
+  },
+  "generated": {}
+}

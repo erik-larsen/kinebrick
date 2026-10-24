@@ -1,0 +1,101 @@
+{
+  "set": "42036-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117746.pdf",
+        "file": "omr/instructions/42036-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133085.pdf",
+        "file": "omr/instructions/42036-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42036-1 Street Motorcycle.mpd",
+    "instructions": "omr/instructions/42036-1-2.pdf (the street motorcycle, the book marked 1, steps 1-40); omr/instructions/42036-1-1.pdf (the book marked 2) builds the alternate model",
+    "functions": [
+      {
+        "does": "Pushed along, the rear wheel runs the four-cylinder engine: a 24 tooth sprocket on the rear wheel drives a chain to a 16 tooth sprocket on the swing arm's pivot axle, a row of 16 tooth gears carries the turn forward and up to a 24 tooth gear, and that drives an 8 tooth gear on the crankshaft, so the four pistons pump up and down, about four and a half times per turn of the wheel.",
+        "source": "book: steps 1-7 of the gear train (pages 17-19), 17-23 (rear wheel, sprockets, gears; pages 22-29), the engine's steps 1-16 (pages 31-36, the crankshaft and pistons drawn 1:1), 25 (engine fitted, page 37) and 28 (chain, page 40)",
+        "control": "p118 88517",
+        "moves": [
+          "p130 3648b",
+          "p129 94925",
+          "p117 6542b",
+          "p107 3648b",
+          "p146 3705",
+          "p149 2851",
+          "p153 2851",
+          "p164 2851",
+          "p168 2851"
+        ],
+        "note": "the gear count is read from the model: 24 tooth sprocket to 16 tooth (1.5), then 24 tooth to the 8 tooth on the crankshaft (3)"
+      },
+      {
+        "does": "The rear wheel rides on a swing arm pivoted under the seat, with a yellow shock absorber from the frame to the swing arm, so the rear wheel moves up and down; the chain runs round the sprocket on the pivot axle, so the drive to the engine keeps working.",
+        "source": "book: steps 13 (shock absorber, page 11), 17-19 (swing arm and its pivot axle, pages 23-25)",
+        "control": "p79 64290",
+        "moves": [
+          "p118 88517",
+          "p455 4254"
+        ],
+        "stays": [
+          "p454 4255",
+          "p146 3705"
+        ]
+      },
+      {
+        "does": "The front wheel rides between two long shock absorbers, a telescopic front fork, so it moves up and down.",
+        "source": "book: front wheel steps 1-9 (pages 41-45), fork steps 1-15 (pages 46-52); inferred: that it's meant to move",
+        "control": [
+          "p228 2910",
+          "p237 2910"
+        ],
+        "moves": [
+          "p233 88517"
+        ],
+        "stays": [
+          "p227 2909",
+          "p236 2909"
+        ]
+      },
+      {
+        "does": "The shock absorbers' springs hold the bike up and spring back.",
+        "source": "book: steps 13 and the fork's steps",
+        "skip": "springs only matter under force; the suspension moves freely without them"
+      },
+      {
+        "does": "The handlebars steer the front fork and wheel.",
+        "source": "book: handlebar steps 1-7 (pages 57-58), steps 29-31 (front end fitted, pages 53-55); inferred: that it steers, the book draws no arrow",
+        "control": "p268 32016",
+        "moves": [
+          "p233 88517",
+          "p227 2909",
+          "p236 2909"
+        ],
+        "stays": [
+          "p118 88517"
+        ]
+      },
+      {
+        "does": "The kickstand under the right side swings down to hold the bike up, and folds back up.",
+        "source": "book: step 32 (page 56); inferred: that it folds",
+        "control": "p290 32192",
+        "moves": [
+          "p291 4519"
+        ]
+      },
+      {
+        "does": "Both wheels roll freely.",
+        "source": "book: steps 20 (rear wheel) and the front wheel's step 5",
+        "control": [
+          "p118 88517",
+          "p233 88517"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

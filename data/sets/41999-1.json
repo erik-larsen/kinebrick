@@ -1,0 +1,114 @@
+{
+  "set": "41999-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064360.pdf",
+        "file": "omr/instructions/41999-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064367.pdf",
+        "file": "omr/instructions/41999-1-2.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064368.pdf",
+        "file": "omr/instructions/41999-1-3.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6066063.pdf",
+        "file": "omr/instructions/41999-1-4.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/41999-1 4 x 4 Crawler Exclusive Edition.mpd",
+    "instructions": "omr/instructions/41999-1-1.pdf to 41999-1-4.pdf (function pages: book 4 pages 64-65)",
+    "functions": [
+      {
+        "does": "Driving (remote, one stick): two Power Functions XL motors, one on each axle, each turn their axle's pinion into its differential, and the differential drives both portal hubs, so all four wheels drive.",
+        "source": "book 4: function page 64 (the remote's left stick and the wheel arrows); books 2-3: axle sub-builds (steps 26, 48, 61)",
+        "control": [
+          "p366 32270",
+          "p439 32270"
+        ],
+        "moves": [
+          "p94 62821",
+          "p192 62821",
+          "p1539 44772",
+          "p1541 44772",
+          "p1543 44772",
+          "p1545 44772"
+        ],
+        "note": "the XL motors themselves are only LDCad cable paths in the model file (step48-motor, step61-motor), so the controls named are the gears on the motors' outputs; each motor drives only its own axle"
+      },
+      {
+        "does": "Steering (remote, other stick): the Power Functions servo turns a shaft running front and back under the chassis; through universal joints it turns a gear on each axle's steering rack, so the front and rear wheels steer together, the rear the opposite way (four-wheel steering, crab-free).",
+        "source": "book 4: function page 64 (front and rear wheels both turning); book 1: steps 5 and 20 (servo and the shaft with universal joints); steps 30-33 (racks)",
+        "control": "p0 32062",
+        "moves": [
+          "p299 87761",
+          "p316 87761",
+          "p151 92909",
+          "p164 92909",
+          "p249 92909",
+          "p262 92909"
+        ],
+        "note": "the servo is only an LDCad cable path (step5-motor), so the control named is the servo's output shaft; whether the rear wheels steer opposite to the front is inferred from the photo"
+      },
+      {
+        "does": "Each axle is a live axle hung on the chassis with shock absorbers and links, so it can tilt and rise over rough ground (articulation).",
+        "source": "book 2: steps 68-72 (the shock absorber sub-builds); inferred: no motion arrows",
+        "control": [
+          "p79 64178",
+          "p177 64178"
+        ]
+      },
+      {
+        "does": "The shock absorbers' springs hold the chassis up on its axles.",
+        "source": "book 2: steps 70-72",
+        "skip": "the springs only push back under the model's weight"
+      },
+      {
+        "does": "The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in.",
+        "source": "book 4: function page 65 (1: turning the switch, 2: the hook going in and out); book 2: step 40 (winch sub-build)",
+        "control": "p663 4716",
+        "moves": [
+          "p722 76244",
+          "p720 32012"
+        ],
+        "note": "the M motor and the pole-reverser switch are only LDCad cable paths (step40-1-motor, step89-polerev); the control named is the worm on the motor's shaft"
+      },
+      {
+        "does": "The two front doors open.",
+        "source": "book 4: step 104 (the white arrows at the doors)",
+        "control": [
+          "p1190 43093",
+          "p1235 43093"
+        ],
+        "moves": [
+          "p1171 11954",
+          "p1216 11954"
+        ]
+      },
+      {
+        "does": "The whole body shell tilts up on a hinge at the back, for getting at the battery box and switches, and folds back down.",
+        "source": "book 4: steps 103-104 (shell standing up, then the big arrow lowering it)",
+        "control": "p50 32524",
+        "moves": [
+          "p50 32524"
+        ]
+      },
+      {
+        "does": "The headlights (two Power Functions LEDs) light up when the battery box is switched on.",
+        "source": "book 4: function page 64 (lights inset); book 3: step 90",
+        "note": "electrical only"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Does either axle swing on its own, apart from the turntable twist?"
+      }
+    ]
+  },
+  "generated": {}
+}

@@ -1,0 +1,126 @@
+{
+  "set": "42114-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf",
+        "file": "omr/instructions/42114-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42114-1 6x6 Volvo Articulated Hauler.mpd",
+    "instructions": "omr/instructions/42114-1-1.pdf (one book; the gearbox is built on pages 6-60, the rear chassis to page 109, the front from page 110; the app's functions page is page 441, the hub's switch and battery access page 438)",
+    "functions": [
+      {
+        "does": "The XL motor in the rear frame, just behind the articulation, drives all six wheels through the gearbox: the gearbox's output runs back to a centre differential, which drives the front axle's differential through a shaft with universal joints across the articulation, and both rear axles' differentials by a shaft running back between them, to the portal hubs.",
+        "source": "book: pages 6-60 (gearbox), 67 (overview of the rear chassis), 61-109 (rear axles, portal hubs and the two motors), 204 (step 325: the front axle's differential), 218-220 (steps 340-341: the shaft across the articulation); page 441 (driving forwards and back)",
+        "first": [
+          {
+            "control": "p602 22169",
+            "by": 1.5
+          }
+        ],
+        "control": "p427 22172",
+        "moves": [
+          "p275 6573",
+          "p84 65414c01",
+          "p318 65414c01",
+          "p2352 65414c01",
+          "p4615 15038",
+          "p4616 15038",
+          "p4617 15038",
+          "p4621 15038",
+          "p4622 15038",
+          "p4623 15038"
+        ],
+        "note": "the gearbox must be in a driving gear (1, 2, 3 or R) first; which turn of the L motor gives which gear is not known. Pushed along, the wheels turn the XL motor back through the gearbox"
+      },
+      {
+        "does": "The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels.",
+        "source": "book: page 31 (inset: the changeover catch, in purple, and the driving ring extension), pages 33-60 (the driving rings), page 441 (the H-pattern 1-3 / 2-R gear icon); the tipping position is inferred from the gearbox driving the actuators' shafts",
+        "control": "p602 22169",
+        "moves": [
+          "p129 35188",
+          "p120 18947",
+          "p121 18947",
+          "p122 18947",
+          "p53 35186"
+        ],
+        "note": "which ring each position slides, and the order of the positions, are inferred: the owner should check"
+      },
+      {
+        "does": "With the gearbox in its tipping position, the XL motor raises and lowers the dump body: a shaft out of the gearbox turns a pair of bevel gears to two cross shafts, each driving one of the two linear actuators on either side, which push the body up about its pivot at the back.",
+        "source": "book: pages 85-109 (the actuators' turntable mounts and their drive shafts), pages 340-436 (the dump body), page 437, page 441 (the body tipping)",
+        "first": [
+          {
+            "control": "p602 22169",
+            "by": 1.5
+          }
+        ],
+        "control": "p427 22172",
+        "moves": [
+          "p779 32198",
+          "p808 4519",
+          "p839 4519",
+          "p4156 u9487c01",
+          "p4163 u9487c01",
+          "p4170 15458"
+        ],
+        "stays": [
+          "p4615 15038",
+          "p4621 15038"
+        ],
+        "note": "inferred that the dump is worked by the XL motor through the gearbox: the set has three motors (XL, L, large angular) and the actuators' shafts come from the gearbox"
+      },
+      {
+        "does": "The large angular motor at the front steers by bending the truck at its articulation: its two cranks push and pull two links on the rear half's hitch, swinging the front and rear halves about the upright hinge behind the cab.",
+        "source": "book: page 140 (step 221: the angular motor), pages 140-150 (its cranks and links), 218-220 (steps 340-341: the hitch), page 441 (steering left and right)",
+        "control": "p1031 42114 - 69730",
+        "moves": [
+          "p2038 32140",
+          "p2043 32140",
+          "p994 99010",
+          "p0 64179"
+        ],
+        "stays": [
+          "p4617 15038 against p919 92908"
+        ]
+      },
+      {
+        "does": "The rear half can roll against the front half on a turntable lying on its side in the hitch, so all six wheels stay on uneven ground.",
+        "source": "inferred: the hitch's 28 tooth turntable faces along the truck (pages 218-220)",
+        "control": "p995 99009",
+        "moves": [
+          "p0 64179"
+        ]
+      },
+      {
+        "does": "The orange beacon on the cab roof switches the hub on and off: turning it turns an upright axle down through the roof to a lever that presses the hub's button.",
+        "source": "book: page 438 (top: the beacon with turning arrows and the lever on the hub's button)",
+        "control": "p2535 3941",
+        "moves": [
+          "p2471 41677"
+        ]
+      },
+      {
+        "does": "The black hood over the hub tilts forward once the long axle pin at the front bumper is pulled out, giving access to the hub's batteries.",
+        "source": "book: page 438 (bottom, 1 and 2)",
+        "control": "p2928 64782",
+        "moves": [
+          "p2766 32525"
+        ],
+        "note": "which side the hood hinges on is read from the page 438 picture and the model's bonnet hinge axles p2926 and p2927; the owner should check"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+      },
+      {
+        "question": "Does tipping go through the XL motor's gearbox?"
+      }
+    ]
+  },
+  "generated": {}
+}

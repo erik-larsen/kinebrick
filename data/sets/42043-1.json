@@ -1,0 +1,280 @@
+{
+  "set": "42043-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208382.pdf",
+        "file": "omr/instructions/42043-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42043-1 Mercedes-Benz Arocs 3245.mpd",
+    "instructions": "omr/instructions/42043-1-1.pdf (one PDF of 484 pages holding all the books: the truck with its crane is finished on page 427, the tipper body is built on pages 428-468 and fitted on pages 469-471; pages 472-477 show every function, A to M)",
+    "functions": [
+      {
+        "does": "One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs.",
+        "source": "book: page 472 (the battery box switch, and the two red levers, A/pump and B/C), page 474 (the switch again); inferred: the gear path, from the parts",
+        "control": "p169 99499",
+        "moves": [
+          "p1703 3707",
+          "p1704 94925",
+          "p1692 18946",
+          "p1702 18946",
+          "p1701 94925",
+          "p1715 10928",
+          "p1716 76019",
+          "p1718 32269",
+          "p1717 32270",
+          "p1697 32269"
+        ],
+        "note": "the 24-tooth clutch gear slips if a function jams"
+      },
+      {
+        "does": "Function A: with the red lever on the right of the chassis pushed forward, to A, the motor tips the dump body backwards: the right driving ring locks its front clutch gear, which turns through a 16-tooth gear and bevel gears a shaft running back to the large linear actuator under the body, which pushes the body up on its hinge at the back.",
+        "source": "book: page 472 (the lever's A position, with the tipper icon), page 473 (A: the body tipped up); inferred: the gear path, and which side the lever is on",
+        "control": "p169 99499",
+        "first": [
+          {
+            "control": "p2200 6536",
+            "by": 0.4
+          }
+        ],
+        "moves": [
+          "p1721 18947",
+          "p1710 18946",
+          "p1711 94925",
+          "p1728 32269",
+          "p1738 32270",
+          "p2012 32269",
+          "p1873 6589",
+          "p1901 6589",
+          "p1898 62274c01",
+          "p7053 64782"
+        ],
+        "stays": [
+          "p2368 42043 - 18938",
+          "p1665 99799"
+        ],
+        "note": "unsure which way the lever must turn for A (the sign of 'by')"
+      },
+      {
+        "does": "Function D: with the same right lever pulled back, to PUMP, the motor works the pneumatic pump: the right driving ring locks its rear clutch gear, which turns a 20-tooth gear on a short crank that pumps the pump's piston, filling the crane's pneumatic system with air.",
+        "source": "book: page 472 (the lever's PUMP position), page 474 (D: pneumatic pump on/off); inferred: the gear path",
+        "control": "p169 99499",
+        "first": [
+          {
+            "control": "p2200 6536",
+            "by": -0.4
+          }
+        ],
+        "moves": [
+          "p1721 18947",
+          "p1723 18946",
+          "p1663 32269",
+          "p1670 32062",
+          "p1667 2944"
+        ],
+        "stays": [
+          "p7053 64782"
+        ],
+        "note": "unsure which way the lever must turn for the pump (the sign of 'by')"
+      },
+      {
+        "does": "Function C: with the red lever on the left of the chassis pushed forward, to C, the motor slews the crane on its turntable, through 180 degrees: the left driving ring locks its front clutch gear, which turns through two idler clutch gears a 16-tooth gear on a shaft running forward, then bevel gears up to a 12-tooth gear on the turntable's 60 teeth.",
+        "source": "book: page 472 (the lever's C position, with the crane icon), page 473 (C: the crane slewing, 180 degrees); inferred: the gear path, and which side the lever is on",
+        "control": "p169 99499",
+        "first": [
+          {
+            "control": "p2181 6536",
+            "by": 0.4
+          }
+        ],
+        "moves": [
+          "p1722 18947",
+          "p1706 18946",
+          "p1709 18946",
+          "p1741 94925",
+          "p932 32270",
+          "p939 32269",
+          "p2373 32270",
+          "p2368 42043 - 18938",
+          "p2622 42043 - 19466c01"
+        ],
+        "stays": [
+          "p1519 18942",
+          "p2367 18939"
+        ],
+        "note": "unsure which way the lever must turn for C (the sign of 'by')"
+      },
+      {
+        "does": "Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks.",
+        "source": "book: page 472 (the lever's B position, with the outrigger icon), page 473 (B: an outrigger sliding out on its rack); inferred: the gear path",
+        "control": "p169 99499",
+        "first": [
+          {
+            "control": "p2181 6536",
+            "by": -0.4
+          }
+        ],
+        "moves": [
+          "p1722 18947",
+          "p1724 18946",
+          "p1616 32269",
+          "p1661 32269",
+          "p1618 32270",
+          "p1612 32270",
+          "p1519 18942",
+          "p1554 18942"
+        ],
+        "stays": [
+          "p2368 42043 - 18938"
+        ],
+        "note": "unsure which way the lever must turn for B (the sign of 'by')"
+      },
+      {
+        "does": "Function L: each outrigger's foot is lowered or raised by hand: turning the black 12-tooth gear knob on top of the outrigger's end turns a worm gear, which turns an 8-tooth gear that swings the foot down to the ground.",
+        "source": "book: page 477 (L: the knob turned and the foot lowered), page 473 (B, the foot and its knob); inferred: how the worm moves the foot",
+        "control": [
+          "p1537 32270",
+          "p1576 32270"
+        ],
+        "moves": [
+          "p1536 4716",
+          "p1530 10928",
+          "p1538 4519"
+        ],
+        "note": "one entry for both outriggers: the left one is p1537 (worm p1536, foot p1538), the right one p1576 (worm p1575, gear p1569, foot p1577)"
+      },
+      {
+        "does": "Functions E, F, G and H: the four pneumatic switches on the red crane base work the crane's four pneumatic cylinders, once the pump has filled the system with air: E slides the crane's last section in and out (a telescope), F raises and lowers the main boom, G folds the outer boom up and down, and H opens and closes the clamshell grab.",
+        "source": "book: page 474 (the four switches E-H with their icons), page 475 (E-H, each movement); inferred: which switch is which, from the pictures (E and F on the base's right, G and H on its left)",
+        "control": [
+          "p2366 42043 - 47223-v2-p1",
+          "p2387 42043 - 47223-v2-p1",
+          "p2386 42043 - 47223-v2-p1",
+          "p2365 42043 - 47223-v2-p1"
+        ],
+        "moves": [
+          "p5205 42043 - u9111c01",
+          "p5179 18942",
+          "p2623 42043 - 19467c01",
+          "p4106 32056",
+          "p4520 42043 - 19467c01",
+          "p5178 18940",
+          "p6173 2944",
+          "p6162 44294",
+          "p6178 44294"
+        ],
+        "skip": "pneumatic: each switch only lets air into a cylinder, which pushes; nothing links the switch to the crane mechanically",
+        "note": "the boom, outer boom, telescope and grab can also be moved by hand, as their cylinders let them"
+      },
+      {
+        "does": "Function K: the orange beacons on the two back corners of the cab's roof are knobs that steer the two front axles (the first by up to 28 degrees, the second by 19): each beacon's upright shaft has a 12-tooth gear on the same 20-tooth gear, on a third upright shaft behind the cab, whose 12-tooth bevel gear at the bottom turns a 20-tooth bevel gear on a cross shaft; the cross shaft's towballs push links to both front axles' steering arms.",
+        "source": "book: page 477 (K: a beacon turned, and the front wheels turned 19 and 28 degrees); inferred: the gear path and links, and that both beacons steer, from the parts",
+        "control": [
+          "p1276 6143",
+          "p1283 6143"
+        ],
+        "moves": [
+          "p1278 32270",
+          "p1187 32269",
+          "p897 6589",
+          "p899 32198",
+          "p901 2736",
+          "p1026 32293",
+          "p1123 32005",
+          "p2217 86652",
+          "p2211 86652",
+          "p2215 86652",
+          "p2213 86652"
+        ],
+        "stays": [
+          "p2219 86652",
+          "p2227 86652",
+          "p6909 2741"
+        ],
+        "note": "unsure: whether both beacons are meant as steering knobs; the book shows one"
+      },
+      {
+        "does": "The steering wheel in the cab turns freely; it doesn't steer.",
+        "source": "inferred: it sits on a friction pin in the cab, which tilts away from the steering gear",
+        "control": "p6909 2741"
+      },
+      {
+        "does": "Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down.",
+        "source": "inferred: from the parts (rear axles, drive shaft and engine); the function pages don't show it",
+        "control": [
+          "p2219 86652",
+          "p2227 86652",
+          "p2223 86652",
+          "p2231 86652"
+        ],
+        "moves": [
+          "p2036 62821",
+          "p2104 62821",
+          "p2029 62520",
+          "p138 32269",
+          "p853 32269",
+          "p105 3648b",
+          "p102 10928",
+          "p66 2851",
+          "p67 2851",
+          "p71 2851",
+          "p73 2851",
+          "p78 2851",
+          "p82 2851"
+        ]
+      },
+      {
+        "does": "The two rear axles each have a differential, so their wheels can turn at different speeds in a bend; the front two axles' wheels roll freely.",
+        "source": "inferred: from the parts",
+        "control": [
+          "p2219 86652",
+          "p2227 86652"
+        ],
+        "moves": [
+          "p2036 62821"
+        ],
+        "note": "with the drive shaft held, turning one third-axle wheel turns the other the opposite way"
+      },
+      {
+        "does": "All four axles have suspension: each axle swings on its shock absorbers, hard springs on the two front axles and soft ones on the two rear axles, and the rear axle pair twists on a turntable between them.",
+        "source": "inferred: from the parts (shock absorbers, the turntable between the rear axles)",
+        "skip": "springs only matter under load"
+      },
+      {
+        "does": "Function i: the tipper's tailgate is locked by a lever at the back on the right; with it unlocked, the tailgate swings open from its top hinge as the body tips.",
+        "source": "book: page 476 (i: the lock lever turned, locked and unlocked, and the tailgate swung open as the body tips)",
+        "control": "p7241 6553",
+        "moves": [
+          "p7226 32073",
+          "p7228 32524"
+        ],
+        "note": "the tailgate itself (p7262 64782) swings under gravity once unlocked"
+      },
+      {
+        "does": "Function J: the two cab doors open.",
+        "source": "book: page 477 (J: a door swung open), page 476 (J marks the door)",
+        "control": [
+          "p6740 32316",
+          "p6747 32316"
+        ]
+      },
+      {
+        "does": "Function M: the whole cab tilts forward.",
+        "source": "book: page 477 (M: the cab tilted forward), page 476 (M marks the cab)",
+        "control": "p6963 64782",
+        "moves": [
+          "p6909 2741",
+          "p6740 32316"
+        ],
+        "stays": [
+          "p6296 58119",
+          "p1276 6143"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

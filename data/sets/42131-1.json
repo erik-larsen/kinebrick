@@ -1,0 +1,179 @@
+{
+  "set": "42131-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf",
+        "file": "omr/instructions/42131-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403276.pdf",
+        "file": "omr/instructions/42131-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42131-1 Cat D11 Bulldozer.mpd",
+    "instructions": "omr/instructions/42131-1-1.pdf (book 1: page 15 draws the functions; steps 1-61 the drive motors and chassis, 62-125 the gearbox with insets at steps 104, 110 and 120, 198 the gearbox test and wiring, 208-232 the ripper, 241-262 the engine, 268-288 and 376-433 the blade lift cylinders, 434-628 the track frames) and 42131-1-2.pdf (book 2: the cab, the ladder at steps 878-887, the push arms with the tilt cylinders at steps 946-976, the blade after)",
+    "functions": [
+      {
+        "does": "The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track.",
+        "source": "book 1 page 15 (the track drawing); steps 1-21 (the two drive motors); the gearing is inferred from the model",
+        "control": "p2686 32062",
+        "moves": [
+          "p3606 42529",
+          "p6159 42131 - 69910"
+        ],
+        "stays": [
+          "p3609 42529"
+        ],
+        "note": "The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
+      },
+      {
+        "does": "The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket.",
+        "source": "book 1 page 15 and steps 1-21; the gearing is inferred from the model",
+        "control": "p2688 32062",
+        "moves": [
+          "p3609 42529",
+          "p6101 42131 - 69910"
+        ],
+        "stays": [
+          "p3606 42529"
+        ],
+        "note": "The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
+      },
+      {
+        "does": "With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot.",
+        "source": "book 1 page 15; what the two track motors do together",
+        "control": [
+          "p2686 32062",
+          "p2688 32062"
+        ],
+        "moves": [
+          "p3606 42529",
+          "p3609 42529"
+        ]
+      },
+      {
+        "does": "The V12 engine's pistons pump as the bulldozer drives: the two drive motors' inner shafts meet in a differential between them, whose case turns a 20 tooth gear and a shaft running forward under the gearbox, up through an idler to the crankshaft.",
+        "source": "book 1 steps 241-262 (the engine); that it is driven by the differential between the drive motors is inferred from the model (p5 62821, p2647 42131 - 18575, p2685 32270, p3429 94925, p3409 18946, p3742 94925)",
+        "control": [
+          "p2686 32062",
+          "p2688 32062"
+        ],
+        "moves": [
+          "p5 62821",
+          "p3657 2853",
+          "p3665 2851",
+          "p3666 2851"
+        ],
+        "note": "Through the differential the engine runs at the average of the two tracks' speeds, so it runs when driving straight and stops when spinning on the spot. Unsure: the book doesn't say what drives the engine."
+      },
+      {
+        "does": "One of the two L motors in the gearbox only shifts it: it turns the selector, with its orange rotary catch and orange levers, which slides two driving rings so that the other L motor drives one of four functions: blade lift, blade tilt, ripper or ladder. The app shifts it by itself when a function is picked.",
+        "source": "book 1 steps 62-125 (the gearbox; the insets at steps 104, 110 and 120 show the orange shift parts) and step 198 (the app's gearbox test); that one motor shifts and the other powers comes from reviews of the set (Brickset, The Brothers Brick); which motor is which is inferred from the model",
+        "control": "p3163 3706",
+        "moves": [
+          "p3293 18947",
+          "p3322 18947"
+        ],
+        "note": "The control is the axle in the L motor p2867 22169 (left of the pair, green-marked in the book). Unsure which motor shifts: the model's gears make the other one (p3014 22169) the drive into both shift shafts, but the orange rotary catch (p3291 35188) sits on that other motor's shaft line. Unsure how the selector moves the driving rings."
+      },
+      {
+        "does": "With the gearbox set to the ripper, the function L motor raises and lowers the ripper at the back: its drive runs across the gearbox in a row of 16 tooth gears to 20 tooth gears at both sides, back to two linear actuators that push the ripper's arms.",
+        "source": "book 1 page 15 (arrow at the ripper); steps 208-232 (the ripper fitted); the gear train is inferred from the model",
+        "control": "p3164 32073",
+        "moves": [
+          "p3395 62274c01 against p3394 42131 - u9559c01",
+          "p3404 62274c01 against p3403 42131 - u9559c01",
+          "p5913 32524"
+        ],
+        "stays": [
+          "p6006 62274c01 against p6005 42131 - u9559c01",
+          "p4118 62274c01 against p4117 42131 - u9559c01"
+        ],
+        "note": "The control is the axle in the function L motor p3014 22169 (blue-marked in the book); the selector must first be set to the ripper, which the app does. Unsure which gearbox position is which function."
+      },
+      {
+        "does": "With the gearbox set to blade lift, the function L motor raises and lowers the blade: a shaft runs forward from the gearbox through universal joints and up to a cross shaft at the front, which drives the two linear actuators standing on turntables either side of the radiator; they lift the blade on its push arms.",
+        "source": "book 1 page 15 (arrow at the blade); steps 268-288 and 376-433 (the lift cylinders on their turntables); the gear train is inferred from the model (p3338 94925, p2809 3708, p3940 4519)",
+        "control": "p3164 32073",
+        "moves": [
+          "p4118 62274c01 against p4117 42131 - u9559c01",
+          "p4193 62274c01 against p4192 42131 - u9559c01",
+          "p6204 32525",
+          "p5943 42131 - 32523"
+        ],
+        "stays": [
+          "p3395 62274c01 against p3394 42131 - u9559c01"
+        ],
+        "note": "The cylinders swing on their turntables (p3934 99010, p3932 99010) as the blade rises; the selector must first be set to blade lift."
+      },
+      {
+        "does": "With the gearbox set to blade tilt, the function L motor tilts the blade forward and back: its drive runs out to both sides, through CV joints at the push arms' pivots on the track frames and along each push arm, to a linear actuator on each arm that pushes the top of the blade.",
+        "source": "book 2 steps 946-976 (the push arms with their actuators); reviews of the set (both blade pairs work independently); the drive is inferred from the model",
+        "control": "p3164 32073",
+        "moves": [
+          "p6006 62274c01 against p6005 42131 - u9559c01",
+          "p6074 62274c01 against p6073 42131 - u9559c01",
+          "p6204 32525 against p5943 42131 - 32523"
+        ],
+        "stays": [
+          "p4118 62274c01 against p4117 42131 - u9559c01",
+          "p3395 62274c01 against p3394 42131 - u9559c01"
+        ],
+        "note": "The selector must first be set to blade tilt. Unsure whether the blade tilts (one side up) or pitches (forward and back); the model's two actuators work together, so it pitches."
+      },
+      {
+        "does": "With the gearbox set to the ladder, the function L motor lowers and raises the boarding ladder on the left side by the cab: a worm on top of the gearbox turns a 20 tooth gear, and a shaft up into the cab and a linkage across swing the ladder down and out.",
+        "source": "book 1 page 15 (arrow at the ladder); book 2 steps 878-887 (the ladder fitted); the drive is inferred from the model (p3416 27938, p4863 42131 - 18575, p5034 94925)",
+        "control": "p3164 32073",
+        "moves": [
+          "p5713 42131 - 71710",
+          "p5742 6536"
+        ],
+        "stays": [
+          "p6204 32525",
+          "p4118 62274c01 against p4117 42131 - u9559c01"
+        ],
+        "note": "The selector must first be set to the ladder. The worm holds the ladder where it stops."
+      },
+      {
+        "does": "The red lever in the engine compartment switches the Control+ hub on: pressing it pushes a pin onto the hub's button.",
+        "source": "book 1 steps 168-174 (the switch built and fitted, with the inset); what it does from the Brickset review",
+        "control": "p3445 32056",
+        "moves": [
+          "p3437 4274"
+        ]
+      },
+      {
+        "does": "The two drive motors and two gearbox motors are worked from the LEGO Technic Control+ app, which also shows the gearbox test and challenges.",
+        "source": "book 1 pages 13-15 and step 198",
+        "note": "Kept as a reminder that every motor function here is worked from the app, not by hand."
+      },
+      {
+        "does": "A worm on each track frame, turned by a gear on the side, slides the front idler to tension the track.",
+        "source": "inferred: the worms in the track frames (p4301 27938, p4586 27938) and the Brickset review (track tension set with gear wheels on the side)",
+        "control": [
+          "p4301 27938",
+          "p4586 27938"
+        ],
+        "skip": "only matters under track tension"
+      },
+      {
+        "does": "The roller bogies under each track frame rock to follow the ground.",
+        "source": "book 1 steps 448-628 (the track frames and their bogies)",
+        "skip": "only matters under gravity, on uneven ground"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which knob does which, where the book doesn't label them?"
+      },
+      {
+        "question": "Which gearbox motor shifts and which powers? Does the blade tilt or pitch? Is the engine driven from the drive motors' differential?"
+      }
+    ]
+  },
+  "generated": {}
+}

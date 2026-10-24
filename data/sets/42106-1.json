@@ -1,0 +1,130 @@
+{
+  "set": "42106-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6310645.pdf",
+        "file": "omr/instructions/42106-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42106-1 Stunt Show Truck & Bike.mpd",
+    "instructions": "omr/instructions/42106-1-1.pdf (one book, 120 pages: bag 1 the bike, bag 2 the trailer, bags 3-4 the truck and the fire ring, steps 1-130 on pages 5-115; page 116 shows the functions)",
+    "functions": [
+      {
+        "does": "The black 12 tooth gear on the truck's cab roof steers the front wheels: its upright shaft drives a bevel gear on a long shaft running forward under the bonnet, whose 12 tooth gear slides the steering rack joining the two steering knuckles.",
+        "source": "book: steps 26-27 (the gears and shafts), step 35 (yellow arrows: turn the shaft, the knuckles turn), step 47 (arrows on the front wheels), steps 62-63 (the shaft up through the cab and the gear on top), page 116 (arrow on the roof gear and a front wheel)",
+        "control": "p195 32270",
+        "moves": [
+          "p84 6589",
+          "p98 32270",
+          "p95 87761",
+          "p89 48989",
+          "p92 48989",
+          "p326 56904",
+          "p324 56904"
+        ],
+        "stays": [
+          "p322 56904",
+          "p328 56904",
+          "p2085 32270"
+        ]
+      },
+      {
+        "does": "The truck's four wheels roll freely; there's no drive. The two rear wheels turn together on one axle; each front wheel turns on its own short axle in its steering knuckle.",
+        "source": "book: steps 47 and 100",
+        "control": [
+          "p322 56904",
+          "p328 56904",
+          "p324 56904",
+          "p326 56904"
+        ]
+      },
+      {
+        "does": "The trailer hitches on a pin at the truck's back and swings behind it as the truck turns.",
+        "source": "book: page 115 (the trailer hitched), page 116",
+        "control": "p2052 87082",
+        "moves": [
+          "p2060 64782"
+        ],
+        "stays": [
+          "p322 56904",
+          "p95 87761"
+        ],
+        "note": "inferred: the book shows it hitched but draws no arrow for the swing"
+      },
+      {
+        "does": "The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end.",
+        "source": "book: page 116 middle inset (arrows on the gear and the legs); the trailer is bag 2",
+        "control": "p2085 32270",
+        "moves": [
+          "p2084 40490",
+          "p2089 32524",
+          "p2095 32524"
+        ],
+        "stays": [
+          "p2060 64782",
+          "p2136 55982"
+        ],
+        "note": "inferred: which of the trailer's parts are the legs, from their place under its front (body of p2084, p2089, p2095); the book doesn't show how the gear drives them"
+      },
+      {
+        "does": "The trailer's two wheels roll freely together on one axle line.",
+        "source": "book: bag 2 steps",
+        "control": [
+          "p2136 55982",
+          "p2138 55982"
+        ]
+      },
+      {
+        "does": "The bike's rear wheel winds its pull-back motor: a 16 tooth gear on the rear wheel's axle drives a 16 tooth idler, which drives the 16 tooth gear on the motor's shaft.",
+        "source": "book: steps 6-10 (the motor and its gears), steps 15-16 (rear wheel), page 116 bottom-left inset (pull back, let go)",
+        "control": "p2196 56145",
+        "moves": [
+          "p2190 94925",
+          "p2193 18946",
+          "p2189 94925",
+          "p2188 55013"
+        ],
+        "stays": [
+          "p2178 12799",
+          "p2222 56145"
+        ]
+      },
+      {
+        "does": "The pull-back motor's spring drives the bike forward when it's pulled back and let go, fast enough to jump off the trailer ramp and through the fire ring over the truck.",
+        "source": "book: page 116 bottom-left and bottom-right insets",
+        "control": "p2178 12799",
+        "skip": "a spring motor only matters under force"
+      },
+      {
+        "does": "The bike's front wheel rolls freely on its axle in the fork.",
+        "source": "book: step 16",
+        "control": "p2222 56145"
+      },
+      {
+        "does": "The bike stands on a removable stand on the trailer; it lifts off for its run.",
+        "source": "book: page 116 middle inset (the stand drawn apart from the bike)",
+        "note": "not a control: the bike just lifts off"
+      },
+      {
+        "does": "The truck's doors swing open on their pins.",
+        "source": "inferred: the door1 and door2 submodels (steps 106-121) are pinned to the cab on one line; the book draws no arrow for them",
+        "control": [
+          "p380 24119",
+          "p402 24119"
+        ],
+        "stays": [
+          "p195 32270"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which parts are the trailer's ramp legs?"
+      }
+    ]
+  },
+  "generated": {}
+}

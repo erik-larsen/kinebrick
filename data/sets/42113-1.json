@@ -1,0 +1,102 @@
+{
+  "set": "42113-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/42113",
+        "folder": "omr/instructions/42113-1/",
+        "pages": 344
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42113-1 Bell-Boeing V-22 Osprey.mpd",
+    "instructions": "omr/instructions/42113-1/ (scans of the four books' pages; the functions are shown on pages 333-335: the finished model in both modes, the four motor functions and the four red selector buttons with their stickers)",
+    "functions": [
+      {
+        "does": "The motor in the fuselage, run from the hub, drives whichever function is selected by four red push buttons on the fuselage sides (two each side, behind the wing): each button slides a driving ring in a gearbox under the wing, connecting that function's shaft to the motor.",
+        "source": "book: pages 333-335 (the four functions with the motor icon, and the four buttons with their stickers: rotors, landing gear, nacelle tilt, ramp), steps 10-22 (the hub and motor in the fuselage), the wing base gearbox (pages around 150-200)",
+        "control": "p769 22169",
+        "note": "the buttons are p591, p594, p944 and p955 (42113 - 51149); which button is which function is read from the stickers on page 335 (upper left pair: rotors and landing gear; lower pair: nacelle tilt and ramp) and is unsure. Each function below is worked by the motor with its button pushed in"
+      },
+      {
+        "does": "With the rotor button pushed in, the motor spins both three-bladed rotors together, in opposite directions, through shafts out along the wing and up into the nacelles.",
+        "source": "book: page 335 (the rotor sticker), page 333 (both modes), steps 396-417 (the rotors on their hubs, pages 316-332)",
+        "control": "p769 22169",
+        "moves": [
+          "p1739 57585",
+          "p1773 57585"
+        ],
+        "note": "that the rotors turn opposite ways is inferred from the real aircraft; the owner should check. Unsure whether the rotor sticker means spinning or the blades folding"
+      },
+      {
+        "does": "With the nacelle button pushed in, the motor tilts both engine nacelles together between upright (helicopter mode) and level (aeroplane mode), turning them on turntables at the wingtips.",
+        "source": "book: pages 333-334 (the two modes, and the tilt with the motor icon), page 335 (the orange nacelle sticker), the turntables p1346 and p1480 at the wing tips",
+        "control": "p769 22169",
+        "moves": [
+          "p1345 99010",
+          "p1479 99010",
+          "p1739 57585",
+          "p1773 57585"
+        ]
+      },
+      {
+        "does": "With the landing gear button pushed in, the motor retracts and lowers the three landing gear legs: a linear actuator in the fuselage pushes a linkage that folds the two main legs and the nose leg up into the fuselage.",
+        "source": "book: page 334 (middle: the main gear folding, with arrows), page 335 (the landing gear sticker), steps 12-22 (the gear legs), the actuator in the motor submodel",
+        "control": "p769 22169",
+        "moves": [
+          "p882 92693c01",
+          "p105 42610",
+          "p130 42610",
+          "p353 42610"
+        ],
+        "note": "which actuator works the gear and which the ramp is inferred from where they sit: p882 alongside the motor, p974 at the tail"
+      },
+      {
+        "does": "With the ramp button pushed in, the motor opens and closes the rear cargo ramp: a linear actuator at the tail lowers the ramp and lifts the upper tail door.",
+        "source": "book: page 334 (bottom: the ramp closed and open, with the motor icon), page 335 (the ramp sticker), the hatch submodels",
+        "control": "p769 22169",
+        "moves": [
+          "p974 92693c01",
+          "p223 64782",
+          "p244 32524"
+        ]
+      },
+      {
+        "does": "The wheels on the three landing gear legs roll freely.",
+        "source": "book: steps 12 and 22 (the wheels)",
+        "control": [
+          "p105 42610",
+          "p106 42610",
+          "p130 42610",
+          "p131 42610",
+          "p353 42610",
+          "p354 42610"
+        ]
+      },
+      {
+        "does": "The rotor blades are hinged at their roots and can be folded by hand.",
+        "source": "inferred: each blade (42113 - 65422) is held on its hub by a pin with a stop bush (steps 396-412) rather than an axle",
+        "control": [
+          "p1770 42113 - 65422",
+          "p1804 42113 - 65422"
+        ],
+        "note": "unsure whether the blades are meant to fold; the owner should check"
+      },
+      {
+        "does": "The flaps on the wings' trailing edges move with the nacelles.",
+        "source": "inferred: the flap submodels (flap1, flap2) are linked to the nacelle tilt mechanism at the wing tips",
+        "control": [
+          "p1281 32524"
+        ],
+        "note": "unsure: whether the flaps are linked to the nacelles or simply hinged; the owner should check"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which button is which function?"
+      }
+    ]
+  },
+  "generated": {}
+}

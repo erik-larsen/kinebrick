@@ -1,0 +1,153 @@
+{
+  "set": "42112-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf",
+        "file": "omr/instructions/42112-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356981.pdf",
+        "file": "omr/instructions/42112-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42112-1 Concrete Mixer Truck.mpd",
+    "instructions": "omr/instructions/42112-1-1.pdf and 42112-1-2.pdf (two books, 124 and 92 pages; the truck is steps 1-326, ending on book 2 page 86, and book 2 pages 88-89 show the functions)",
+    "functions": [
+      {
+        "does": "The black 12 tooth gear on top of the cab steers the front two axles (hand of God steering): its upright shaft runs down behind the cab to a shaft along the chassis that works the steering links of both front axles, the first axle turning further than the second.",
+        "source": "book: book 2 page 88 top-left inset (arrow on the roof gear, arrows at both front axles' wheels)",
+        "control": "p1016 32270",
+        "moves": [
+          "p147 32270",
+          "p61 48989",
+          "p65 48989",
+          "p69 48989",
+          "p77 48989",
+          "p694 56145",
+          "p702 56145",
+          "p692 56145",
+          "p700 56145"
+        ],
+        "stays": [
+          "p688 56145",
+          "p696 56145",
+          "p1128 42112 - 65421p01"
+        ]
+      },
+      {
+        "does": "The eight wheels roll. The four rear wheels drive through a differential on each rear axle; the front wheels roll freely on their steering knuckles.",
+        "source": "book: book 1 (rear axles with their differentials), book 2 page 89 top inset (arrow along the ground)",
+        "control": [
+          "p688 56145",
+          "p690 56145",
+          "p696 56145",
+          "p698 56145",
+          "p692 56145",
+          "p694 56145",
+          "p700 56145",
+          "p702 56145"
+        ]
+      },
+      {
+        "does": "Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down.",
+        "source": "inferred: the model's drive shaft (p15-p160) runs from the rear axles' bevel gears to the front, where gears drive a shaft of liftarm cams (p133-p139) under four upright axles (p170-p181); the book's function pages don't show it",
+        "control": [
+          "p696 56145",
+          "p688 56145"
+        ],
+        "moves": [
+          "p249 62821",
+          "p245 18575",
+          "p17 60485",
+          "p160 94925",
+          "p139 94925",
+          "p170 4519"
+        ],
+        "stays": [
+          "p1016 32270"
+        ],
+        "note": "inferred: whether the four upright axles are an engine's pistons; turn both rear wheels the same way, or the differentials take up the drive"
+      },
+      {
+        "does": "The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank.",
+        "source": "book: book 2 page 89 insets (the lever with its N label pushed right while the truck rolls, and left while the side crank turns)",
+        "control": "p374 32523",
+        "moves": [
+          "p354 18947"
+        ],
+        "note": "inferred: the lever's parts and which position is which; slide the ring to engage before the next two functions"
+      },
+      {
+        "does": "With the selector set for driving, rolling the truck turns the drum to mix: the drive shaft's 16 tooth gear turns the 20 tooth clutch gear on the drum drive shaft, which runs back to a 24 tooth gear, a shaft through the drum's support, and a universal joint to a 36 tooth gear that turns the drum on the turntable at its front end.",
+        "source": "book: book 2 page 89 top inset (arrow along the ground, the drum turning)",
+        "control": [
+          "p696 56145",
+          "p688 56145"
+        ],
+        "moves": [
+          "p231 94925",
+          "p356 42112 - 35185",
+          "p361 32270",
+          "p390 3648b",
+          "p436 32498",
+          "p448 18938",
+          "p1128 42112 - 65421p01"
+        ],
+        "stays": [
+          "p1049 42112 - 33299b"
+        ],
+        "note": "needs the selector lever moved to the driving side first; how far isn't known, so there's no `first` yet"
+      },
+      {
+        "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
+        "source": "book: book 2 page 89 bottom inset (arrow on the crank, the drum turning, concrete pouring)",
+        "control": "p1049 42112 - 33299b",
+        "moves": [
+          "p347 32270",
+          "p344 6589",
+          "p342 94925",
+          "p352 18946",
+          "p361 32270",
+          "p1128 42112 - 65421p01"
+        ],
+        "stays": [
+          "p696 56145",
+          "p17 60485"
+        ],
+        "note": "needs the selector lever moved to the crank side first"
+      },
+      {
+        "does": "The drum's back end rides on four small wheels on a rocking frame.",
+        "source": "book: book 2 page 88 (the rollers under the drum's back end)",
+        "control": "p581 92907",
+        "moves": [
+          "p589 42610",
+          "p600 42610"
+        ],
+        "note": "inferred: the frame rocks so all four rollers stay on the drum"
+      },
+      {
+        "does": "The chute at the back swings down from its stowed position for pouring.",
+        "source": "book: book 2 page 88 bottom-left insets (stowed, and swung down with an arrow)",
+        "control": "p555 32140",
+        "moves": [
+          "p559 57585"
+        ],
+        "stays": [
+          "p1128 42112 - 65421p01",
+          "p696 56145"
+        ],
+        "note": "inferred: which parts make the chute (p555-p560, swinging on p519/p527); the hinge chain under it (bodies of p508-p528) may also let it swivel"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+      }
+    ]
+  },
+  "generated": {}
+}

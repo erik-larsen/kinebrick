@@ -1,9 +1,14 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { importSet, modelFiles, modelSettings } from '../src/ldr.ts';
 
-// KineBrick's own lines for each real LEGO set, by its name in models/.
-const sets: Record<string, string[]> = JSON.parse(readFileSync('models/sets.json', 'utf-8'));
+// KineBrick's own lines for each real LEGO set, by its name in models/, from data/sets/.
+const sets: Record<string, string[]> = {};
+for (const file of readdirSync('data/sets').filter((f) => f.endsWith('.json'))) {
+  Object.assign(sets, JSON.parse(readFileSync(`data/sets/${file}`, 'utf-8')).curated.settings);
+}
+// The real LEGO sets in models/, by name.
+const models = readdirSync('models').filter((f) => /^\d+-.*\.mpd$/.test(f)).map((f) => f.replace(/\.mpd$/, ''));
 
 // A set as the LDraw Official Model Repository has it: its files named "956 - ...", with CRLF
 // line endings, and an LDCad line naming another of its files.
@@ -22,14 +27,14 @@ const FRESH = [
   '',
 ].join('\r\n');
 
-// A set's own lines, as sets.json has them.
+// A set's own lines, as its file in data/sets/ has them.
 const LINES = ['0 // KineBrick: its tyres scrub', '0 !KINEBRICK SCRUB [percent=16]'];
 
 describe('Importing real LEGO sets', () => {
-  it('leaves every set in models/ as it is: each is already imported, with its own lines from sets.json', () => {
-    for (const [name, lines] of Object.entries(sets)) {
+  it('leaves every set in models/ as it is: each is already imported, with its own lines from data/sets/', () => {
+    for (const name of models) {
       const text = readFileSync(`models/${name}.mpd`, 'utf-8');
-      expect(importSet(text, name.split('-')[0], lines), name).toBe(text);
+      expect(importSet(text, name.split('-')[0], sets[name] ?? []), name).toBe(text);
     }
   });
 
@@ -43,7 +48,7 @@ describe('Importing real LEGO sets', () => {
     expect(modelSettings(out).scrub).toBe(16);
   });
 
-  it('changes nothing the second time, and replaces lines that sets.json has changed', () => {
+  it('changes nothing the second time, and replaces lines that have changed', () => {
     const once = importSet(FRESH, '956', ['0 !KINEBRICK SCRUB [percent=25]']);
     expect(importSet(once, '956', ['0 !KINEBRICK SCRUB [percent=25]'])).toBe(once);
     const changed = importSet(once, '956', ['0 !KINEBRICK SCRUB [percent=10]']);

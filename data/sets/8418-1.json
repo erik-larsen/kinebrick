@@ -1,0 +1,61 @@
+{
+  "set": "8418-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4505204.pdf",
+        "file": "omr/instructions/8418-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4505206.pdf",
+        "file": "omr/instructions/8418-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8418-1 Mini Loader.mpd",
+    "instructions": "omr/instructions/8418-1-1.pdf (the skid loader; book 2, omr/instructions/8418-1-2.pdf, builds the alternate wheel loader)",
+    "functions": [
+      {
+        "does": "The grey knob at the back (a 12-tooth double bevel gear) raises and lowers the loader arms and bucket: it turns a worm, which turns an 8-tooth gear on a cross axle at the top of the back; the two arms, long axles along the sides, are fixed on that axle's ends and carry the crossbar the bucket clips onto.",
+        "source": "book 1: page 22 (finished model: arrows on the knob and on the bucket); steps 7 (worm and knob), 14 (8-tooth gear on its axle), 16-18 (arms and crossbar), 19 (bucket)",
+        "control": "p21 32270",
+        "moves": [
+          "p22 4716 against p0 32009",
+          "p39 3647 against p0 32009",
+          "p45 44294 against p0 32009",
+          "p54 44294 against p0 32009",
+          "p47 3706 against p0 32009",
+          "p57 30394 against p0 32009"
+        ],
+        "stays": [
+          "p30 32063 against p0 32009",
+          "p58 30285 against p0 32009"
+        ],
+        "note": "That the arms are fixed on the 8-tooth gear's axle (rather than pushed by levers) is read from the model file. The worm holds the arms wherever they're left."
+      },
+      {
+        "does": "The bucket tilts by hand on its click hinge under the arms' crossbar, holding at each click.",
+        "source": "book 1: step 19 (bucket on a click hinge); inferred: tilted by hand, nothing drives it",
+        "control": "p57 30394",
+        "moves": [
+          "p57 30394 against p47 3706"
+        ],
+        "stays": [
+          "p47 3706 against p0 32009"
+        ]
+      },
+      {
+        "does": "The four wheels roll freely on pins; there's no steering (a skid loader).",
+        "source": "book 1: steps 2-3 and 19",
+        "control": [
+          "p58 30285",
+          "p61 30285",
+          "p63 30285",
+          "p65 30285"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

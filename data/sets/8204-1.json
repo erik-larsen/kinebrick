@@ -1,0 +1,49 @@
+{
+  "set": "8204-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4118040.pdf",
+        "file": "omr/instructions/8204-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8204-1 Sky Flyer 1.mpd",
+    "instructions": "omr/instructions/8204-1-1.pdf (two pages, steps 1-13)",
+    "functions": [
+      {
+        "does": "Rolling the plane on its two wheels spins the propeller: a rubber band runs as a belt from a bush on the wheels' axle up to a half bush on a short axle above, whose 12-tooth bevel gear turns the 12-tooth bevel gear on the propeller's shaft.",
+        "source": "book: steps 5-8 (the bevel gear, the wheel axle and the band), step 9 (the propeller shaft's bevel gear), step 13 (the propeller)",
+        "control": [
+          "p16 3139",
+          "p32 3139"
+        ],
+        "moves": [
+          "p12 32073",
+          "p10 6589",
+          "p25 6589",
+          "p35 32125"
+        ],
+        "stays": [
+          "p5 6629",
+          "p0 32073"
+        ],
+        "note": "the band is a drive belt, not a spring, and can slip; the belt's two pulleys are about the same size and the bevels are 1:1, so the propeller turns about as fast as the wheels"
+      },
+      {
+        "does": "The propeller spins by hand, turning the two bevel gears and, through the band, the wheels.",
+        "source": "inferred: steps 5-9 and 13 build the drive both ways; the book draws no motion",
+        "control": "p35 32125",
+        "moves": [
+          "p25 6589",
+          "p10 6589"
+        ],
+        "stays": [
+          "p5 6629"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

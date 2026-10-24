@@ -1,0 +1,136 @@
+{
+  "set": "8854-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8854",
+        "folder": "omr/instructions/8854-1/",
+        "pages": 48
+      }
+    ]
+  },
+  "curated": {
+    "model": "models/8854-Power Crane.mpd",
+    "instructions": "omr/instructions/8854-1/ (scans; the crane is pages 4-27, the alternate model after)",
+    "functions": [
+      {
+        "does": "The yellow beacon on the cab roof steers the front wheels: it caps a shaft that runs down through the cab to a bevel pair, and a shaft forward to an 8-tooth gear on the rack between the steering arms.",
+        "source": "book: steps 4-5, 7, 14 and 20; inferred: the book draws no knob, but the beacon is the only part on top of the steering shaft",
+        "control": "p948 6143",
+        "moves": [
+          "p59 3743",
+          "p28 4261",
+          "p29 4261"
+        ]
+      },
+      {
+        "does": "The handwheel low on the chassis's left side slews the superstructure round on its turntable: an 8-tooth gear turns a crown gear, then an 8-tooth and 24-tooth pair, and an 8-tooth gear under the turntable turns the crown gear on the superstructure's post.",
+        "source": "book: steps 6-8 and 12 (the inset shows the gear on the turntable's post turning)",
+        "control": "p137 3736",
+        "moves": [
+          "p533 3709b"
+        ],
+        "stays": [
+          "p811 3709b against p533 3709b"
+        ]
+      },
+      {
+        "does": "The handwheel low on the chassis's right side lowers and raises both rear stabiliser legs together: a worm on its long shaft turns a 24-tooth gear, and a shaft with a universal joint and bevel gears at the back turns both legs' parallel arms.",
+        "source": "book: steps 3, 5-6, 9, 11 and 13",
+        "control": "p491 3736",
+        "moves": [
+          "p167 3702",
+          "p168 3702"
+        ],
+        "stays": [
+          "p533 3709b"
+        ]
+      },
+      {
+        "does": "Each stabiliser leg's foot, two pulley wheels on toothed toggle joints, tilts to sit flat on the ground.",
+        "source": "book: step 9 (insets 1-5); inferred: the book doesn't show it tilting",
+        "control": [
+          "p169 4185",
+          "p178 4185"
+        ]
+      },
+      {
+        "does": "Either handwheel at the back of the superstructure winds the winch, raising or lowering the hook: the drum is the axle between them with the string tied between two bushes, and the string runs along the boom, over the pulley at its tip, down round the hook's pulley and back up to the tip.",
+        "source": "book: steps 13, 15-16 and 19-21",
+        "control": [
+          "p547 3736",
+          "p954 3736"
+        ],
+        "moves": [
+          "p951 70644"
+        ],
+        "stays": [
+          "p811 3709b against p533 3709b",
+          "p903 2428 against p811 3709b"
+        ]
+      },
+      {
+        "does": "A ratchet holds the hook up: a pawl on a toothed toggle joint rests on the 24-tooth gear on the winch drum.",
+        "source": "book: step 15 (the inset shows the pawl on the gear); inferred: what it's for",
+        "control": "p503 4273b",
+        "skip": "only resists gravity; the winch handwheels work both ways without it"
+      },
+      {
+        "does": "The handwheel at the boom's pivot, on the right, extends and retracts the boom's grey inner section: a worm at the pivot drives two 8-tooth gears and a shaft with a universal joint along the boom to bevel gears at its tip, which drive the rack under the grey section.",
+        "source": "book: boom steps 4 and 7-11, main step 21; the cover shows 170 mm of travel",
+        "control": "p957 3736",
+        "moves": [
+          "p903 2428 against p811 3709b",
+          "p897 3482 against p811 3709b"
+        ],
+        "stays": [
+          "p811 3709b against p533 3709b"
+        ]
+      },
+      {
+        "does": "The two pneumatic cylinders behind the cab raise and lower the boom: their piston rods slide out as the boom rises, and the cylinders tilt on their pivot axle.",
+        "source": "book: steps 11, 16-17 and 19",
+        "control": "p811 3709b",
+        "moves": [
+          "p694 2796c01 against p692 2793",
+          "p697 2796c01 against p695 2793",
+          "p692 2793 against p533 3709b"
+        ],
+        "stays": [
+          "p903 2428 against p811 3709b"
+        ],
+        "note": "In the set the pump and valve work the cylinders; dragging the boom stands in for them until air is modelled."
+      },
+      {
+        "does": "Pumping the spring-loaded pump on the chassis, with the valve lever on the superstructure pushed one way or the other, raises or lowers the boom.",
+        "source": "book: steps 11 and 16; cover inset",
+        "control": [
+          "p221 2797c01-f2",
+          "p535 4694c01-f1"
+        ],
+        "skip": "air pressure isn't simulated"
+      },
+      {
+        "does": "The four wheels roll freely; nothing drives them.",
+        "source": "book: step 22",
+        "control": [
+          "p960 4266",
+          "p964 4266",
+          "p962 4266",
+          "p966 4266"
+        ]
+      },
+      {
+        "does": "The hook hangs straight down beneath the boom tip as the superstructure slews, the boom luffs and the boom extends.",
+        "source": "book: steps 20-21",
+        "note": "hangs under gravity; no test checks it yet"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is the trans-yellow beacon on the cab roof the steering knob? Do the feet tilt?"
+      }
+    ]
+  },
+  "generated": {}
+}

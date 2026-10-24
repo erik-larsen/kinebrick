@@ -1,0 +1,107 @@
+{
+  "set": "8283-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4504630.pdf",
+        "file": "omr/instructions/8283-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4504632.pdf",
+        "file": "omr/instructions/8283-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8283-1 Telehandler (Front End Loader).mpd",
+    "instructions": "omr/instructions/8283-1-1.pdf (the telehandler, functions on page 3; book 2, omr/instructions/8283-1-2.pdf, builds the alternate front end loader)",
+    "functions": [
+      {
+        "does": "The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.",
+        "source": "book 1: page 3 (knob and top view of the front wheels steering); steps 35-36 (column and knob)",
+        "control": "p264 6143",
+        "moves": [
+          "p255 32073 against p65 32524",
+          "p50 3647 against p65 32524",
+          "p54 3648b against p65 32524",
+          "p83 32069 against p65 32524",
+          "p88 32069 against p65 32524"
+        ],
+        "stays": [
+          "p311 6595 against p65 32524",
+          "p105 32525 against p65 32524"
+        ],
+        "note": "Read from the model file: that the 8-tooth gear at the column's foot (p50) drives the 24-tooth gear (p54) that works the steering, and which parts form the steering linkage to the front wheels' arms."
+      },
+      {
+        "does": "The left of the two knobs at the back (a 12-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on the boom's pivot axle.",
+        "source": "book 1: page 3 (knobs at the back, icon of the boom lifting); steps 8-9 (worm and knob), 11 (24-tooth gear), 23 (boom on its pivot, inset of the worm and gear)",
+        "control": "p174 32270",
+        "moves": [
+          "p26 4716 against p65 32524",
+          "p41 3648b against p65 32524",
+          "p105 32525 against p65 32524",
+          "p133 32525 against p65 32524",
+          "p223 41239 against p65 32524",
+          "p310 2951 against p65 32524"
+        ],
+        "stays": [
+          "p223 41239 against p105 32525",
+          "p175 32270 against p65 32524"
+        ],
+        "note": "Which knob does which is read from the gears in the model file (the left knob's worm meets the 24-tooth gear on the boom's pivot axle); page 3 doesn't make it plain. The worm holds the boom wherever it's left."
+      },
+      {
+        "does": "The right of the two knobs at the back (a 12-tooth double bevel gear) extends and retracts the boom: it turns a second worm, which turns an 8-tooth gear at the boom's foot, and that slides the inner boom with the bucket out of the outer one.",
+        "source": "book 1: page 3 (icon of the boom extending); steps 22-24 (inner and outer boom); inferred: the linkage between the 8-tooth gear and the inner boom",
+        "control": "p175 32270",
+        "moves": [
+          "p148 4716 against p65 32524",
+          "p137 3647 against p105 32525",
+          "p223 41239 against p105 32525",
+          "p310 2951 against p105 32525"
+        ],
+        "stays": [
+          "p105 32525 against p65 32524",
+          "p174 32270 against p65 32524"
+        ],
+        "note": "How the 8-tooth gear drives the inner boom isn't clear from the book or the model file (a crank on the cross axle p117 and the thin beams inside the boom are a guess). The worm holds the boom at whatever length it's left."
+      },
+      {
+        "does": "Turning the axle end at the boom's head tilts the bucket: a worm on that axle turns an 8-tooth gear on the bucket's pivot axle.",
+        "source": "book 1: page 3 (inset: the axle end turned, the bucket tilting); steps 5-11 on pages 35-38 (boom head with worm and 8-tooth gear), 39 (bucket)",
+        "control": "p203 59426",
+        "moves": [
+          "p205 4716 against p223 41239",
+          "p202 3647 against p223 41239",
+          "p310 2951 against p223 41239"
+        ],
+        "stays": [
+          "p223 41239 against p105 32525"
+        ],
+        "note": "The worm holds the bucket wherever it's left."
+      },
+      {
+        "does": "The four wheels roll freely; nothing drives them.",
+        "source": "book 1: step 40",
+        "control": [
+          "p311 6595",
+          "p313 6595",
+          "p315 6595",
+          "p317 6595"
+        ]
+      },
+      {
+        "does": "The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels.",
+        "source": "inferred: from the model file (p231 on the half pin p229); the book shows the yellow roof knob doing the steering",
+        "control": "p231 30663"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which rear knob does which?"
+      }
+    ]
+  },
+  "generated": {}
+}

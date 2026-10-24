@@ -1,0 +1,48 @@
+{
+  "set": "42059-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6191980.pdf",
+        "file": "omr/instructions/42059-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42059-1 Stunt Truck.mpd",
+    "instructions": "omr/instructions/42059-1-1.pdf (the truck is steps 1-52, the ramp steps 53-55; page 47 shows the truck pulled back and launched at the ramp; the back cover's 42058 + 42059 model is a different build)",
+    "functions": [
+      {
+        "does": "Pull the truck back and let go: the pull-back motor at the back turns the rear axle, a 12 long axle straight through it carrying both rear wheels, and the truck races forward.",
+        "source": "book: steps 1 and 11 (the pull-back motor and the axle through it), 52 (the wheels), page 47 (the hand pulling it back, the arrow forward)",
+        "control": [
+          "p126 56145",
+          "p128 56145"
+        ],
+        "moves": [
+          "p30 3708"
+        ],
+        "note": "the pull-back motor's spring is what drives it; turning a rear wheel by hand turns the other rear wheel and the motor's shaft with it"
+      },
+      {
+        "does": "The pull-back motor's spring winds up as the truck is pulled back and drives it forward when let go.",
+        "source": "book: page 47",
+        "skip": "a spring only matters under force"
+      },
+      {
+        "does": "The front wheels roll freely, both on one 12 long axle; there's no steering.",
+        "source": "book: steps 11 and 52",
+        "control": [
+          "p0 56145",
+          "p124 56145"
+        ]
+      },
+      {
+        "does": "The stunt ramp, a printed cardboard sheet folded over two 9 long beams, stands on the ground for the truck to jump off.",
+        "source": "book: steps 53-55, page 47",
+        "note": "not a mechanism"
+      }
+    ]
+  },
+  "generated": {}
+}

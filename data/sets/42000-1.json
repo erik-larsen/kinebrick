@@ -1,0 +1,113 @@
+{
+  "set": "42000-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf",
+        "file": "omr/instructions/42000-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037212.pdf",
+        "file": "omr/instructions/42000-1-2.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6044017.pdf",
+        "file": "omr/instructions/42000-1-3.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42000-1 Grand Prix Racer.mpd",
+    "instructions": "omr/instructions/42000-1-1.pdf, 42000-1-2.pdf, 42000-1-3.pdf (all three books build the racer; book 3 pages 43-46 are the optional Power Functions add-on, 8293, which the model file doesn't include)",
+    "functions": [
+      {
+        "does": "The steering wheel in the cockpit steers the front wheels: its column runs forward under the nose through bevel gears to a gear on the steering rack, which pushes the track rods out to both front uprights.",
+        "source": "book 2 and 3: the steering column and front axle; inferred: the book draws no arrow for steering",
+        "control": "p706 32138",
+        "moves": [
+          "p644 32269",
+          "p497 32270",
+          "p585 92909",
+          "p588 92909"
+        ],
+        "stays": [
+          "p350 92909",
+          "p358 92909"
+        ]
+      },
+      {
+        "does": "Rolling the car turns the V8 engine: the rear wheels drive a differential through two half-shafts with CV joints, and the differential turns the crankshaft, so the eight pistons go up and down.",
+        "source": "book 1: steps 1-17 (differential and rear end), book 2: engine; inferred: the engine is the rear wheels' only load, so it's driven as in every Technic car of the time",
+        "control": [
+          "p350 92909",
+          "p358 92909"
+        ],
+        "moves": [
+          "p274 62821",
+          "p395 2853",
+          "p396 2852",
+          "p400 2852"
+        ],
+        "stays": [
+          "p411 2851 against p0 32278"
+        ],
+        "note": "through the differential: turning one rear wheel with the other held turns the engine at half speed; the pistons slide in fixed cylinders"
+      },
+      {
+        "does": "The black knob on the side behind the cockpit, with the yellow selector lever above it, works two things: with the lever one way, the knob tilts the rear wing's upper flap (a small linear actuator behind the engine pushes it); with the lever the other way, it lifts the whole engine cover, raised by two small linear actuators beside the engine.",
+        "source": "book 1: steps 4-12 (the gearbox with driving ring and the yellow lever); book 3: step 104 (the yellow arrows on the lever, knob and wing); function page book 3 p42 (insets 1 and 2)",
+        "control": "p158 32270",
+        "moves": [
+          "p105 92693c01",
+          "p252 3706",
+          "p1089 92693c01",
+          "p1161 92693c01"
+        ],
+        "note": "the selector lever is p251 32526, which slides the change-over catch p246 6641 and the driving ring p155 6539 between the clutch gears p156 6542b and p177 6542b; which lever position gives which function isn't stated plainly, and the engine cover's own parts weren't pinned down"
+      },
+      {
+        "does": "Each front wheel rides on double wishbones with a pushrod to a rocker inside the nose, which works a shock absorber lying across the car (pushrod suspension).",
+        "source": "book 2 and 3: front suspension; inferred: no motion arrows",
+        "control": [
+          "p591 32294",
+          "p600 32294"
+        ],
+        "moves": [
+          "p559 32056",
+          "p566 4255"
+        ]
+      },
+      {
+        "does": "Each rear wheel rides on double wishbones with a pushrod to a rocker above the gearbox, which works a shock absorber (pushrod suspension).",
+        "source": "book 2: rear suspension; inferred: no motion arrows",
+        "control": [
+          "p278 32294",
+          "p291 32294"
+        ],
+        "moves": [
+          "p298 87083",
+          "p464 4254"
+        ]
+      },
+      {
+        "does": "The shock absorbers' springs hold the car up on its suspension.",
+        "source": "book 2 and 3",
+        "skip": "the springs only push back under the model's weight"
+      },
+      {
+        "does": "The front wheels roll freely.",
+        "source": "book 3: step 106",
+        "control": [
+          "p585 92909",
+          "p588 92909"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+      }
+    ]
+  },
+  "generated": {}
+}

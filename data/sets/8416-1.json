@@ -1,0 +1,108 @@
+{
+  "set": "8416-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4280297.pdf",
+        "file": "omr/instructions/8416-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4280298.pdf",
+        "file": "omr/instructions/8416-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8416-1 Forklift.mpd",
+    "instructions": "omr/instructions/8416-1-1.pdf (the forklift, functions on page 103; book 2, omr/instructions/8416-1-2.pdf, builds the alternate tractor)",
+    "functions": [
+      {
+        "does": "The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time.",
+        "source": "book 1: page 103 (arrows on the crank at the back); steps 6-8 on pages 83-84 (worm, crown gear and universal joint), 7-10 on pages 65-68 (racks on the inner mast), 10-12 on pages 73-77 (strings and pulleys; the page 77 inset shows the inner mast and forks rising), 19 on page 15 (crank and 20-tooth double bevel gear)",
+        "control": "p401 33299",
+        "moves": [
+          "p406 32269 against p308 32526",
+          "p324 4019 against p308 32526",
+          "p529 6589 against p308 32526",
+          "p86 32269 against p308 32526",
+          "p17 3326a against p49 32278",
+          "p26 4716 against p49 32278",
+          "p27 3650c against p49 32278",
+          "p214 32278 against p49 32278",
+          "p156 32278 against p214 32278",
+          "p178 32525 against p49 32278"
+        ],
+        "stays": [
+          "p49 32278 against p308 32526",
+          "p25 6632 against p308 32526"
+        ],
+        "note": "That the carriage rises on its strings as the inner mast rises (a two-stage mast) is read from the page 77 inset and the strings' ends (p189 and p207 on the carriage, p304 and p305 on the outer mast). The worm holds the forks wherever they're left."
+      },
+      {
+        "does": "The levers at the front edge of the cab roof tilt the mast: they turn a crank on the roof, whose two red suspension arms push and pull the top of the mast, and the mast pivots on two pins at the front axle.",
+        "source": "book 1: page 103 (curved arrows on the roof levers); steps 42-45 (roof), the red arms on pages 88-96, and step 18 on page 99 (mast mounted on the chassis)",
+        "control": "p25 6632",
+        "moves": [
+          "p20 32062 against p308 32526",
+          "p5 32294 against p308 32526",
+          "p37 32294 against p308 32526",
+          "p49 32278 against p308 32526",
+          "p110 32278 against p308 32526",
+          "p214 32278 against p308 32526",
+          "p178 32525 against p308 32526"
+        ],
+        "stays": [
+          "p214 32278 against p49 32278",
+          "p401 33299 against p308 32526"
+        ],
+        "note": "Which parts a person pushes is read from the arrows on page 103 (the roof's front liftarms p25, p34, p38, p45 on the crank's axles); the book doesn't say how far the mast tilts."
+      },
+      {
+        "does": "The beacon on the cab roof is a knob that steers the rear wheels: its axle runs down through the cab to a pair of bevel gears, and two 8-tooth gears slide a rack sideways between the rear steering knuckles.",
+        "source": "book 1: steps 14-19 on pages 10-15 (rear steering rack, 8-tooth gears and knuckles), 48 on pages 52-53 (beacon on its axle); inferred: that the beacon is the steering knob, from the gears in the model file (page 103 draws no arrow on it)",
+        "control": "p670 6143",
+        "moves": [
+          "p639 3708 against p308 32526",
+          "p414 32198 against p308 32526",
+          "p399 6589 against p308 32526",
+          "p396 3647 against p308 32526",
+          "p383 3743 against p308 32526",
+          "p366 48989 against p308 32526",
+          "p372 48989 against p308 32526",
+          "p712 41896 against p308 32526",
+          "p708 41896 against p308 32526"
+        ],
+        "stays": [
+          "p714 41896 against p308 32526",
+          "p49 32278 against p308 32526"
+        ]
+      },
+      {
+        "does": "The four wheels roll freely; nothing drives them.",
+        "source": "book 1: step 51 (wheels)",
+        "control": [
+          "p708 41896",
+          "p709 41896",
+          "p712 41896",
+          "p714 41896"
+        ]
+      },
+      {
+        "does": "The steering wheel in the cab is for show: it sits on an axle pin and turns, but isn't linked to the wheels.",
+        "source": "book 1: step 44 (steering wheel on its pin); inferred: nothing connects it to the steering",
+        "control": "p632 2819"
+      },
+      {
+        "does": "The pallet is loose: it rests on the forks and is carried by them.",
+        "source": "book 1: step 19 (pallet, pages 100-101) and step 20 (pallet on the forks)",
+        "note": "an accessory, not worked; it should rise and tilt with the forks"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is the beacon the steering, the mast two-stage, the tilt worked by the roof levers?"
+      }
+    ]
+  },
+  "generated": {}
+}

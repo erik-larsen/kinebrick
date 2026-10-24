@@ -1,0 +1,98 @@
+{
+  "set": "42050-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf",
+        "file": "omr/instructions/42050-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42050-1 Drag Racer.mpd",
+    "instructions": "omr/instructions/42050-1-1.pdf (one book: the car is finished on page 118 and its functions A and B are shown on page 119; pages 120-132 show an optional Power Functions upgrade with the 8293 set, which the model file doesn't build)",
+    "functions": [
+      {
+        "does": "Pushing the dragster along runs its V8 engine: the rear axle's 20-tooth bevel gear turns a 12-tooth bevel gear on a shaft running forward under the car, whose 16-tooth sprocket drives a chain up to the crankshaft, so the eight pistons go up and down.",
+        "source": "book: engine (pages 8-16), chain and drive shaft (pages 16-24); inferred: the gear path, from the parts",
+        "control": [
+          "p864 56908",
+          "p869 56908"
+        ],
+        "moves": [
+          "p229 3708",
+          "p230 32198",
+          "p214 6589",
+          "p55 94925",
+          "p89 2853",
+          "p91 2851",
+          "p93 2851",
+          "p97 2851",
+          "p100 2851",
+          "p105 2851",
+          "p106 2851",
+          "p108 2851",
+          "p111 2851"
+        ]
+      },
+      {
+        "does": "The 12-tooth gear knob on top of the car, behind the cockpit, steers the front wheels: its shaft runs down and forward through a universal joint to a pair of 16-tooth gears, then along a shaft to a 12-tooth bevel gear at the front, which slides the steering rack and turns the two front hubs.",
+        "source": "inferred: from the parts; the book's function page (page 119) doesn't show the steering",
+        "control": "p415 32270",
+        "moves": [
+          "p407 62520",
+          "p57 94925",
+          "p46 94925",
+          "p32 32270",
+          "p34 87761",
+          "p23 48989",
+          "p24 48989",
+          "p863 56145",
+          "p867 56145"
+        ],
+        "note": "unsure: whether the knob on top is meant as the steering control"
+      },
+      {
+        "does": "Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis.",
+        "source": "book: page 119 (inset A, the lever swung back, and the body tilted up with an arrow); inferred: which parts the lever turns",
+        "control": "p403 32013",
+        "moves": [
+          "p400 32140",
+          "p550 32140",
+          "p398 64451",
+          "p804 64782"
+        ],
+        "stays": [
+          "p229 3708"
+        ],
+        "note": "unsure which lever part the book's inset shows"
+      },
+      {
+        "does": "Function B: turning the knob just in front of the right rear wheel works the linear actuator under the car, which puts the dragster into a wheelie: its nose rises off the ground and the wheelie bars at the back go down.",
+        "source": "book: page 119 (inset B, the knob turned, and the car with its nose up and the wheelie bars down, with arrows), step 69 (page 38, the inset shows the linear actuator from below); inferred: how the actuator tilts the car",
+        "control": "p257 59443",
+        "moves": [
+          "p246 6589",
+          "p242 92696"
+        ],
+        "note": "unsure: what the actuator pushes against (the rear axle's frame or the wheelie bars), so only the actuator itself is listed"
+      },
+      {
+        "does": "The four wheels roll; the front wheels turn on their steering hubs and the wheelie bars' two small wheels roll freely.",
+        "source": "book: page 118 (finished car)",
+        "control": [
+          "p863 56145",
+          "p867 56145",
+          "p648 42610",
+          "p649 42610"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is the roof knob the steering, and what does the wheelie actuator push?"
+      }
+    ]
+  },
+  "generated": {}
+}

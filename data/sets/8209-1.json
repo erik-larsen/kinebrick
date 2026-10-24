@@ -1,0 +1,62 @@
+{
+  "set": "8209-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4117953.pdf",
+        "file": "omr/instructions/8209-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8209-1 Future F1.mpd",
+    "instructions": "omr/instructions/8209-1-1.pdf (steps 1-15)",
+    "functions": [
+      {
+        "does": "The rear end is sprung: the rear wheels, the dark 5-hole side beams they hang on and the rear wing on its two red L-shaped uprights swing together on the two half pins at the front of those side beams, where they meet the cockpit's L-frames; as the rear swings, the shock absorber between the bottom of the wing uprights and the top of the cockpit's L-frames slides in and out.",
+        "source": "book: steps 4 and 9 (the half pins at the front of the dark side beams), steps 5-8 (the L-frames and the shock absorber); inferred: the book draws no motion, and that the rear swings on the half pins is read from how it's built",
+        "control": "p6 32056",
+        "moves": [
+          "p46 32193",
+          "p45 32193",
+          "p25 32073",
+          "p11 4254 against p10 4255"
+        ],
+        "stays": [
+          "p47 32193",
+          "p48 32193",
+          "p22 6589"
+        ]
+      },
+      {
+        "does": "The shock absorber's spring holds the rear end up, so the car stands on its rear wheels and springs back when pushed down.",
+        "source": "book: step 7; the cover photo",
+        "skip": "a spring only matters under gravity or force; the rear's swing is the function above"
+      },
+      {
+        "does": "Pushed along, all four wheels roll freely: each rear wheel on its own axle pin in the dark side beams, the front ones together on one long axle through the nose.",
+        "source": "book: steps 1, 9, 13 and 15",
+        "control": [
+          "p46 32193",
+          "p45 32193",
+          "p47 32193",
+          "p48 32193"
+        ]
+      },
+      {
+        "does": "The grey 12-tooth gear in front of the cockpit stands for the steering wheel. Its column is fixed in the nose, between the axle at the nose's tip and a cross block on the nose's sides, and the front wheels don't steer.",
+        "source": "book: steps 11-12; inferred: that the gear is a steering wheel, from the cover photo",
+        "stays": [
+          "p22 6589",
+          "p19 32073"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is the rear meant to be suspension?"
+      }
+    ]
+  },
+  "generated": {}
+}

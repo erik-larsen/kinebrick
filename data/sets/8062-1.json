@@ -1,0 +1,41 @@
+{
+  "set": "8062-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8062",
+        "folder": "omr/instructions/8062-1/",
+        "pages": 88
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8062-1 Universal Set with Storage Case.mpd",
+    "instructions": "omr/instructions/8062-1/ (scans; the file builds the ice hockey player and goal, pages 2-10, steps 1-17; the other models after)",
+    "functions": [
+      {
+        "does": "Swinging the player's upper body sweeps the hockey stick across the ice at the puck (a crown gear): the torso sits on an axle that a universal joint links to an upright shaft in the hips, so the torso turns on the hips and carries the arm and stick with it.",
+        "source": "book: steps 5-6 (hip shaft and universal joint), 12-15 (torso on the axle, arm and stick) and 17 (puck and goal); how it is worked inferred, as the book draws no arrows",
+        "control": "p109 3700",
+        "moves": [
+          "p55 3705",
+          "p115 4442"
+        ],
+        "stays": [
+          "p77 4262",
+          "p83 4262",
+          "p30 4282",
+          "p132 3650c"
+        ]
+      },
+      {
+        "does": "The stick is held on two axles between the hand's two yellow liftarms, so it stays fixed to the arm.",
+        "source": "book: arm sub-steps 4-7 on page 8",
+        "stays": [
+          "p115 4442 against p109 3700"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

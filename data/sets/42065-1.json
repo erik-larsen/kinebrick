@@ -1,0 +1,86 @@
+{
+  "set": "42065-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6188050.pdf",
+        "file": "omr/instructions/42065-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42065-1 RC Tracked Racer.mpd",
+    "instructions": "omr/instructions/42065-1-1.pdf (one book: motors steps 40-49, battery box and receiver 50-55, body tilting down onto the chassis step 97, remote step 100, driving page 69)",
+    "functions": [
+      {
+        "does": "The M motor at the back right drives the right track: its shaft's axle runs straight into the right rear sprocket.",
+        "source": "book: steps 40-42 and 48 (motor and sprocket on its shaft), page 69 (remote driving pictures); which motor drives which track is read from the model",
+        "control": "p287 32209",
+        "moves": [
+          "p521 57519",
+          "p651 57518"
+        ],
+        "stays": [
+          "p524 57519"
+        ],
+        "note": "The motor (p133 58120) turns the control, the axle on its shaft. It is worked from the IR remote's right lever."
+      },
+      {
+        "does": "The M motor at the front left drives the left track: its shaft's axle runs straight into the left front sprocket.",
+        "source": "book: steps 40-42 and 49 (the second motor), page 69; read from the model",
+        "control": "p289 32209",
+        "moves": [
+          "p524 57519",
+          "p688 57518"
+        ],
+        "stays": [
+          "p521 57519"
+        ],
+        "note": "The motor (p290 58120) turns the control, the axle on its shaft. It is worked from the IR remote's left lever."
+      },
+      {
+        "does": "With both tracks driven the same way the racer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.",
+        "source": "book: page 69 (the four remote pictures)",
+        "control": [
+          "p287 32209",
+          "p289 32209"
+        ],
+        "moves": [
+          "p521 57519",
+          "p524 57519"
+        ]
+      },
+      {
+        "does": "The idler sprockets and the eight white road wheels turn freely as the tracks run round them.",
+        "source": "book: steps 41-47 and 98",
+        "control": [
+          "p523 57519",
+          "p522 57519",
+          "p98 42065 - 4185",
+          "p102 42065 - 4185",
+          "p106 42065 - 4185",
+          "p110 42065 - 4185"
+        ]
+      },
+      {
+        "does": "The whole green body tilts up on pins at its front, so the battery box can be reached, and folds back down over the chassis.",
+        "source": "book: step 97 (the red arrow lowers the body onto the chassis), page 68 (inset: body tilted up)",
+        "control": "p567 41239",
+        "moves": [
+          "p529 6558",
+          "p627 15458"
+        ],
+        "stays": [
+          "p400 58119"
+        ]
+      },
+      {
+        "does": "The battery box's switch turns the power on and off.",
+        "source": "book: page 2 and step 100",
+        "control": "p400 58119",
+        "skip": "electrical only"
+      }
+    ]
+  },
+  "generated": {}
+}

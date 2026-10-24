@@ -1,0 +1,44 @@
+{
+  "set": "8217-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4118047.pdf",
+        "file": "omr/instructions/8217-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8217-1 The Wasp.mpd",
+    "instructions": "omr/instructions/8217-1-1.pdf (main steps 1-15 in red; the rotor mast is black steps 1-8 on pages 5-7, the tail black steps 1-5 on pages 13-14)",
+    "functions": [
+      {
+        "does": "Pushed along, the two wheels turn together on one long axle, and a 12-tooth bevel gear on that axle turns another on the bottom of the upright rotor mast, so the main rotor spins as fast as the wheels; turning the rotor by hand turns the wheels too.",
+        "source": "book: main steps 1, 3 and 8 (the wheels and the bevel gear on their axle), mast steps 7-8, main steps 5 and 15 (the mast and the rotor blades)",
+        "control": [
+          "p1 4288",
+          "p25 4288"
+        ],
+        "moves": [
+          "p17 3706",
+          "p27 4519",
+          "p54 3737",
+          "p57 3737"
+        ],
+        "stays": [
+          "p50 32017"
+        ]
+      },
+      {
+        "does": "The tail rotor, a dark 5-hole beam with yellow round plates at its ends, spins freely on its pin at the end of the tail boom.",
+        "source": "book: tail steps 3 and 5",
+        "control": "p50 32017",
+        "stays": [
+          "p17 3706",
+          "p0 3707"
+        ]
+      }
+    ]
+  },
+  "generated": {}
+}

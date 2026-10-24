@@ -1,0 +1,117 @@
+{
+  "set": "8245-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4115771.pdf",
+        "file": "omr/instructions/8245-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8245-1 Robot's Revenge.mpd",
+    "instructions": "omr/instructions/8245-1-1.pdf (the green buggy is pages 3-11, the purple robot pages 12-27, playing them against each other pages 28-29; pages 30-56 build the B models, a hand-held punch and a standing target)",
+    "functions": [
+      {
+        "does": "The buggy's punch: turning the small black knob low on the buggy's right side swings a lever that opens the scissor arm, shooting its yellow rubber-tipped end forward at the robot.",
+        "source": "book: scissor arm steps 1-5 (pages 9-10), buggy steps 15-18 (pages 10-11), page 28 panel 2 (a hand works the knob and the scissor shoots out); inferred: that the knob from step 18 sits on the lever's axle pin, p4",
+        "control": "p4 3749",
+        "moves": [
+          "p69 32133",
+          "p71 32134",
+          "p49 32065"
+        ],
+        "stays": [
+          "p23 3707"
+        ],
+        "note": "the knob itself (a small wheel, 3482 with 3483, added in step 18) isn't in the model file; p4 is the axle pin it would go on, turning with the lever (p45 32017)"
+      },
+      {
+        "does": "The buggy rolls on three wheels with yellow hubs: two on one axle at the back and one at the front, held in a fork; there's no steering.",
+        "source": "book: buggy steps 6-11 (pages 5-7), page 29 panel 3 (the buggy rolls back)",
+        "control": [
+          "p28 2994",
+          "p30 2994",
+          "p37 2994"
+        ]
+      },
+      {
+        "does": "The robot's rubber-band motor: rolling the robot on its two big wheels turns the purple reel inside it, through an 8-tooth gear on the wheel axle and a 24-tooth gear on the reel's axle, so the reel makes a third of a turn for each turn of the wheels.",
+        "source": "book: robot steps 5-8 (pages 14-16), 12-13 and 23 (pages 19, 27), page 28 panel 1",
+        "control": [
+          "p278 2994",
+          "p280 2994"
+        ],
+        "moves": [
+          "p181 32012 against p177 32009",
+          "p180 3648a against p177 32009"
+        ],
+        "stays": [
+          "p152 6629 against p177 32009"
+        ]
+      },
+      {
+        "does": "The long white rubber band runs from the reel along the purple tail, round the pulleys at the tail's tip, and back to a towball. Pulling the robot back winds it onto the reel; let go, it unwinds and drives the robot forward at the buggy.",
+        "source": "book: robot steps 5-8 (pages 14-16, a hand hooks the band over the towball), page 28 panel 1 (the robot pulled back, then running forward); inferred: which way it's wound",
+        "skip": "a spring: only matters under force, which KineBrick doesn't simulate yet; the band's path is drawn in the model (8245 - ls05 and the cylinder primitives)"
+      },
+      {
+        "does": "The two small black wheels at the end of the purple tail roll freely.",
+        "source": "book: robot step 12 (page 19)",
+        "control": [
+          "p215 3482",
+          "p217 3482"
+        ]
+      },
+      {
+        "does": "The robot's head (the eyes, the black hoses and the purple target disc on top) is set folded forward and flips up and back on its axle at the back of the body when the buggy's punch hits it.",
+        "source": "book: robot step 20 (page 25, a red arrow folds the head forward), step 24 (page 27, the target disc), page 29 panel 3 (a red arrow: the head flips back); inferred: that the punch hitting the disc is what lets it go",
+        "control": "p188 6629",
+        "moves": [
+          "p285 2723 against p177 32009",
+          "p189 99773 against p177 32009"
+        ],
+        "stays": [
+          "p152 6629 against p177 32009",
+          "p278 2994 against p177 32009"
+        ]
+      },
+      {
+        "does": "Two black rubber bands from the head down to the body pull the head back once it's let go.",
+        "source": "book: robot step 14 (page 20); inferred: what they're for",
+        "skip": "a spring: only matters under force"
+      },
+      {
+        "does": "The two purple arms with yellow claws swing round on upright pins at the front corners of the body; in the book they swing forward, round to the front, and snap at the buggy when the robot is hit.",
+        "source": "book: robot step 17 (page 22), step 24 (page 27, red arrows swing them forward), page 29 panel 4; inferred: that they snap forward when the robot is hit",
+        "control": [
+          "p242 32009",
+          "p246 32009"
+        ],
+        "stays": [
+          "p188 6629 against p177 32009"
+        ]
+      },
+      {
+        "does": "Black rubber bands across the front of the body, round the arms' pins, spring the arms.",
+        "source": "book: robot steps 15 and 23 (pages 20, 27); inferred: which way they pull",
+        "skip": "a spring: only matters under force"
+      },
+      {
+        "does": "A black T-shaped foot hangs on a cross axle under the front of the body and swings.",
+        "source": "book: robot step 16 (page 21); inferred: what it's for (a bumper, or the catch the arms' band goes round)",
+        "control": "p237 6536",
+        "stays": [
+          "p188 6629 against p177 32009",
+          "p242 32009 against p177 32009"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "What releases the robot's head, and which way do its arms spring?"
+      }
+    ]
+  },
+  "generated": {}
+}

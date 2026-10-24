@@ -1,0 +1,163 @@
+{
+  "set": "8448-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4129312.pdf",
+        "file": "omr/instructions/8448-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4129313.pdf",
+        "file": "omr/instructions/8448-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "models/8448-Super Car.mpd",
+    "instructions": "omr/instructions/8448-1-2.pdf (book 1, the chassis, boxes 1-5, with a screen showing each box's function on pages 26, 48, 70, 84 and 98) and omr/instructions/8448-1-1.pdf (book 2, the body: the model file builds the convertible, printed pages 104-177; the wing-door version is pages 104-155 and 178-215, and alternate models follow)",
+    "functions": [
+      {
+        "does": "The steering wheel steers the front wheels: its column, through universal joints, turns an 8-tooth pinion on the rack between the front wheels, and the rack's links push the steering arms.",
+        "source": "book: book 1 page 70 (screen with arrows on the steering wheel and front wheels); box 3, the rack and steering arms, and its steering column steps",
+        "control": "p436 2741",
+        "moves": [
+          "p415 3647",
+          "p345 32185",
+          "p365 32186",
+          "p381 32186",
+          "p475 32196",
+          "p484 32196"
+        ],
+        "stays": [
+          "p478 32196",
+          "p481 32196"
+        ]
+      },
+      {
+        "does": "Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins.",
+        "source": "book: book 1 pages 26 (propeller shaft), 48 (differential), 84 (gearbox) and 98 (screen with arrows on the drive shaft and the engine's fan)",
+        "control": [
+          "p478 32196",
+          "p481 32196"
+        ],
+        "moves": [
+          "p236 6573",
+          "p31 3706",
+          "p100 3737",
+          "p577 32073",
+          "p692 32125",
+          "p594 2851",
+          "p598 2851"
+        ],
+        "note": "only in gear: the gearbox has a neutral, and the model file may be built in it; which gear the file is in isn't known"
+      },
+      {
+        "does": "The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed.",
+        "source": "book: book 1 page 84 (screen with arrows on the lever, fore, aft and across, and the gate drawn twice from above); box 4 steps 17-22 on pages 77-79 (selector rail and gate) and step 26 on page 83 (the lever)",
+        "control": "p576 6587",
+        "moves": [
+          "p575 6641",
+          "p486 3707",
+          "p497 6539"
+        ],
+        "stays": [
+          "p577 32073"
+        ],
+        "note": "inferred: how many speeds the gate gives, and which positions are which; the lever both turns (fore and aft) and slides (across), which one probe control can't say"
+      },
+      {
+        "does": "The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
+        "source": "book: book 1 page 48 (screen showing the car going straight and turning, with arrows on both half shafts)",
+        "control": "p478 32196",
+        "moves": [
+          "p481 32196",
+          "p237 6589"
+        ],
+        "stays": [
+          "p31 3706",
+          "p100 3737"
+        ]
+      },
+      {
+        "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",
+        "source": "book: book 1 box 3 (suspension arms, hubs and shock absorbers); inferred: that it's meant to move",
+        "control": [
+          "p364 32195a",
+          "p380 32195a"
+        ],
+        "moves": [
+          "p370 32184",
+          "p384 32184",
+          "p475 32196",
+          "p484 32196"
+        ]
+      },
+      {
+        "does": "The rear wheels have independent suspension: each upright rides between two arms with a shock absorber, and the half shafts' universal joints let it move up and down.",
+        "source": "book: book 1 box 2 steps 7-11 (arms, uprights, universal joints and shock absorbers); inferred: that it's meant to move",
+        "control": [
+          "p231 6629",
+          "p224 6629"
+        ],
+        "moves": [
+          "p259 32184",
+          "p270 32184",
+          "p481 32196",
+          "p478 32196"
+        ]
+      },
+      {
+        "does": "The shock absorbers' springs hold the car up and spring back.",
+        "source": "book: book 1 box 2 step 11 and box 3",
+        "skip": "springs only matter under gravity or force"
+      },
+      {
+        "does": "The two pop-up headlights at the front swing up and down together, joined by a cross bar.",
+        "source": "inferred: book 2 box 7 steps 16-17 hinge the two lamp units on pins and join them; the book doesn't show them moving",
+        "control": [
+          "p1016 32015",
+          "p1078 32000"
+        ],
+        "moves": [
+          "p1016 32015",
+          "p1017 32015",
+          "p1078 32000"
+        ]
+      },
+      {
+        "does": "The rear deck behind the seats, with its roll bars, tips up on its hinge, a white damped shock absorber holding it.",
+        "source": "book: book 2 page 176 (screen showing the deck tipped up); box 8 steps 21-30 on pages 158-168",
+        "control": "p1187 6629",
+        "moves": [
+          "p1201 6629",
+          "p1148 32183c02",
+          "p1147 32181c01"
+        ],
+        "stays": [
+          "p436 2741"
+        ],
+        "note": "the shock absorber should lengthen and shorten as the deck tips, not just turn"
+      },
+      {
+        "does": "A hinged catch at the very back holds the rear deck down.",
+        "source": "inferred: box 8 step 22 (page 170) puts a hinged piece with a towball at the back; the book doesn't say what it's for",
+        "control": "p1244 32017",
+        "skip": "a catch only matters under force"
+      },
+      {
+        "does": "Each seat's backrest folds forward.",
+        "source": "inferred: book 2 page 212 shows the backrests folding in the wing-door version, whose seats (box 6) are the convertible's too",
+        "control": [
+          "p757 6536",
+          "p725 6536"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "How many speeds does the gate give? Do the headlights pop up, and the convertible's seats fold?"
+      }
+    ]
+  },
+  "generated": {}
+}

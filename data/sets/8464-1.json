@@ -1,0 +1,126 @@
+{
+  "set": "8464-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4163343.pdf",
+        "file": "omr/instructions/8464-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8464-1 Pneumatic Front End Loader.mpd",
+    "instructions": "omr/instructions/8464-1-1.pdf (the loader is pages 4-49; the alternate grab model is pages 50-89, and pages 90-98 add a motor to the loader)",
+    "functions": [
+      {
+        "does": "The steering wheel in the cab steers the loader by bending it in the middle: an 8-tooth pinion at the foot of its column runs on a 40-tooth gear lying flat on the joint between the two frames, so the front frame, with its wheels, boom and bucket, swings left and right against the rear about a vertical pivot.",
+        "source": "book: step 13 (page 15, the two frames joined), step 19 (page 20, the 40-tooth gear), cab steps 1-8 (pages 25-26), step 26 (page 27, the cab lowered with its pinion onto the 40-tooth gear); inferred: which frame the 40-tooth gear is fixed to",
+        "control": "p291 2819",
+        "moves": [
+          "p268 3647",
+          "p569 2995 against p565 2995",
+          "p558 32030 against p565 2995"
+        ],
+        "stays": [
+          "p427 2854 against p565 2995"
+        ]
+      },
+      {
+        "does": "The round yellow knob on top of the tall shaft behind the cab steers too: the shaft's 8-tooth gear turns a 16-tooth gear on the 40-tooth gear at the joint, and the steering wheel turns along with it.",
+        "source": "book: step 20 (page 20), step 25 (page 24, the tall shaft), step 41 (page 45, the knob)",
+        "control": "p512 4032a",
+        "moves": [
+          "p303 4019",
+          "p291 2819",
+          "p569 2995 against p565 2995"
+        ],
+        "stays": [
+          "p427 2854 against p565 2995"
+        ]
+      },
+      {
+        "does": "Pushing the loader along turns all four wheels together and runs the V6 engine: each axle's differential turns a 16-tooth gear on a cross shaft, which drives a 24-tooth crown gear on the drive shaft; the drive shaft runs through a universal joint under the pivot to join the two axles, and an 8-tooth gear on the crankshaft runs off the rear crown gear, so the six pistons go up and down.",
+        "source": "book: steps 3-5 (page 5, rear differential and crown gear), front axle steps 1-11 (pages 10-11), step 12 (page 9, universal joint), step 13 (page 15), engine steps 1-7 (pages 38-39) and step 37 (page 40)",
+        "control": "p565 2995",
+        "moves": [
+          "p569 2995",
+          "p8 4019",
+          "p31 3650a",
+          "p69 9244",
+          "p132 3650a",
+          "p126 4019",
+          "p427 2854",
+          "p437 2851",
+          "p449 2851"
+        ]
+      },
+      {
+        "does": "The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
+        "source": "book: steps 3-5 (page 5); inferred: what it's for",
+        "control": "p565 2995",
+        "moves": [
+          "p567 2995",
+          "p17 6589"
+        ],
+        "stays": [
+          "p31 3650a",
+          "p427 2854"
+        ]
+      },
+      {
+        "does": "The front differential does the same for the front wheels.",
+        "source": "book: front axle steps 1-11 (pages 10-11); inferred: what it's for",
+        "control": "p569 2995",
+        "moves": [
+          "p571 2995",
+          "p99 6589"
+        ],
+        "stays": [
+          "p132 3650a",
+          "p427 2854"
+        ]
+      },
+      {
+        "does": "Pushing the pump's black knob in and out 30-35 times fills the blue air tank.",
+        "source": "book: step 35 (page 36, the pump), step 39 (page 42, the tank), page 48 (30-35 strokes)",
+        "control": "p413 2797c01-f2",
+        "skip": "air pressure isn't modelled"
+      },
+      {
+        "does": "One valve raises and lowers the boom: it feeds the two cylinders low down between the front wheels, which push the boom up about its pivot at the top of the black uprights; the bucket rises and falls with it.",
+        "source": "book: lift cylinders step 24 (page 23), boom steps 21-23 (pages 21-23), valves steps 33-34 (pages 34-35), finished model page 48; inferred: which of the model's two valves is which",
+        "control": "p394 4694c01-f1",
+        "moves": [
+          "p234 3702",
+          "p250 3702",
+          "p201 2793c01-f1",
+          "p202 2793c01-f1",
+          "p558 32030"
+        ],
+        "stays": [
+          "p565 2995",
+          "p569 2995"
+        ]
+      },
+      {
+        "does": "The other valve tips the bucket: it feeds the cylinder on top of the boom, which turns the bucket on the end of the boom through a lever and two links.",
+        "source": "book: tilt cylinder step 18 (page 19), boom step 22 (page 22), valves steps 33-34 (pages 34-35), bucket step 43 (page 47), finished model page 48; inferred: which of the model's two valves is which",
+        "control": "p400 4694c01-f1",
+        "moves": [
+          "p558 32030 against p234 3702",
+          "p203 2793c01-f1"
+        ],
+        "stays": [
+          "p234 3702",
+          "p250 3702"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which valve works which cylinder?"
+      }
+    ]
+  },
+  "generated": {}
+}

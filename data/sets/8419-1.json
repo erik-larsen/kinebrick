@@ -1,0 +1,98 @@
+{
+  "set": "8419-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4505208.pdf",
+        "file": "omr/instructions/8419-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4505209.pdf",
+        "file": "omr/instructions/8419-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/8419-1 Excavator.mpd",
+    "instructions": "omr/instructions/8419-1-1.pdf (the excavator, functions on pages 60-61; book 2, omr/instructions/8419-1-2.pdf, builds the alternate bulldozer)",
+    "functions": [
+      {
+        "does": "The upper body slews round on the turntable by hand, carrying the boom with it.",
+        "source": "book 1: page 60 (arrows round the turntable); steps 17-19 (turntable)",
+        "control": "p212 32009",
+        "moves": [
+          "p212 32009 against p0 41239",
+          "p284 2950 against p0 41239"
+        ],
+        "stays": [
+          "p69 71372c01 against p0 41239"
+        ]
+      },
+      {
+        "does": "The knob at the back on the right (a 20-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on a cross shaft at the back; cranks and a side link carry that to a cross shaft at the front, whose two arms push the boom up on two thin beams.",
+        "source": "book 1: page 61 (knobs and icons); steps 22 and 24 (boom raising, arrows), 23-28 (cranks and shafts), 29-30 (worm and 24-tooth gear), 32 and 36 (knobs, arrows)",
+        "control": "p205 32269",
+        "moves": [
+          "p180 4716 against p212 32009",
+          "p172 3648b against p212 32009",
+          "p144 32449 against p212 32009",
+          "p148 32063 against p212 32009",
+          "p115 32140 against p212 32009",
+          "p284 2950 against p212 32009"
+        ],
+        "stays": [
+          "p204 32269 against p212 32009",
+          "p57 48168 against p0 41239"
+        ],
+        "note": "The drive from the cross shaft at the back (p170, p158) to the one at the front (p154, p142) is read from the model file: cranks p160 and p157 joined by a link at the left; check against a real model. The worm holds the boom wherever it's left."
+      },
+      {
+        "does": "The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip.",
+        "source": "book 1: page 60 (inset: bevel gear and universal joint at the centre), page 61 (knobs and icons); steps 6 (boom with worm, page 19), 19-21 (bevel gears, universal joint, boom on its pivot), 32 and 36 (knobs, arrows)",
+        "control": "p204 32269",
+        "moves": [
+          "p188 32269 against p212 32009",
+          "p176 4019 against p212 32009",
+          "p98 32198 against p212 32009",
+          "p102 3326b against p212 32009",
+          "p129 4716 against p115 32140",
+          "p135 3647 against p115 32140",
+          "p279 32525 against p115 32140",
+          "p284 2950 against p115 32140"
+        ],
+        "stays": [
+          "p115 32140 against p212 32009",
+          "p205 32269 against p212 32009"
+        ],
+        "note": "Which knob does which is read from the gears in the model file: page 61 shows both knobs with an icon each but doesn't make clear which icon goes with which knob. The worm holds the stick wherever it's left."
+      },
+      {
+        "does": "The two tracks run freely round their sprockets; nothing drives them.",
+        "source": "book 1: steps 7-16 (sprockets and tracks)",
+        "control": [
+          "p16 32007",
+          "p19 32007",
+          "p41 32007",
+          "p44 32007"
+        ],
+        "moves": [
+          "p69 71372c01",
+          "p70 71372c01"
+        ]
+      },
+      {
+        "does": "The bucket is held at a fixed angle on the end of the stick by a grey link; it isn't worked separately.",
+        "source": "book 1: steps 42 and 46-48 (grey link and bucket); inferred: no separate control for it is built",
+        "stays": [
+          "p284 2950 against p279 32525"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which rear knob does which?"
+      }
+    ]
+  },
+  "generated": {}
+}

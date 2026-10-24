@@ -1,0 +1,118 @@
+{
+  "set": "9396-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6015589.pdf",
+        "file": "omr/instructions/9396-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6015592.pdf",
+        "file": "omr/instructions/9396-1-2.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6053059.pdf",
+        "file": "omr/instructions/9396-1-3.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/9396-1 Helicopter.mpd",
+    "instructions": "omr/instructions/9396-1-1.pdf, 9396-1-3.pdf, 9396-1-2.pdf (the books are numbered 1, 3, 2 on their covers: 9396-1-3.pdf is book 2 and 9396-1-2.pdf is book 3; function page: 9396-1-2.pdf page 45; pages 46-57 of that book are the optional Power Functions add-on, 8293, which the model file doesn't include)",
+    "functions": [
+      {
+        "does": "One knob on the fuselage's side works everything through a gearbox; two selector levers, one on each side, each slide a driving ring between two gears. With one lever toward the rotor symbol, turning the knob spins the main rotor and, through a long shaft down the tail boom, the tail rotor.",
+        "source": "book 3 (9396-1-2.pdf) page 45, top left inset; book 3 steps 140-144",
+        "control": "p367 32269",
+        "first": [
+          {
+            "control": "p1425 6553",
+            "by": 0.3
+          }
+        ],
+        "moves": [
+          "p1510 99013p01",
+          "p1088 32270",
+          "p1337 55013"
+        ],
+        "note": "selector levers: p1425 6553 (handle on one side, catch p1426 6641, ring p1051 6539) and p1428 6553 (other side, catch p1427 6641, ring p1050 6539); which lever, and which way, selects which function is inferred from the inset icons, not certain"
+      },
+      {
+        "does": "With the same lever the other way (toward the landing-gear symbol), the knob retracts and lowers the landing gear: two small linear actuators fold the main wheels' struts up into the sponsons, and the nose wheels fold too.",
+        "source": "book 3 page 45, top right inset (arrows on the nose and main wheels)",
+        "control": "p367 32269",
+        "first": [
+          {
+            "control": "p1425 6553",
+            "by": -0.3
+          }
+        ],
+        "moves": [
+          "p449 92695 against p448 92693c01",
+          "p437 92695 against p436 92693c01",
+          "p1198 42610",
+          "p36 42610"
+        ],
+        "note": "inferred: which parts fold the nose gear"
+      },
+      {
+        "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
+        "source": "book 3 page 45, middle right inset (the up-down arrow at the side door)",
+        "control": "p367 32269",
+        "first": [
+          {
+            "control": "p1428 6553",
+            "by": 0.3
+          }
+        ],
+        "moves": [
+          "p570 32073",
+          "p575 30395"
+        ]
+      },
+      {
+        "does": "With the other lever toward the helicopter symbol, the knob opens and closes the rear loading ramp under the tail.",
+        "source": "book 3 page 45, middle left inset (the curved arrow at the ramp)",
+        "control": "p367 32269",
+        "first": [
+          {
+            "control": "p1428 6553",
+            "by": -0.3
+          }
+        ],
+        "moves": [
+          "p1278 41239",
+          "p1399 41239"
+        ],
+        "note": "inferred: the ramp's own parts; the two long side beams p1278 and p1399 look like its hinge arms"
+      },
+      {
+        "does": "The main rotor's four blades fold back on their hinges for parking, released by a blue lever in the cockpit.",
+        "source": "book 3 page 45, bottom insets (blue lever, then a blade folding); inferred: how the lever and the blades are connected",
+        "control": [
+          "p1510 99013p01",
+          "p1511 99013p01",
+          "p1512 99013p01",
+          "p1513 99013p01"
+        ],
+        "note": "the blue lever's part wasn't identified"
+      },
+      {
+        "does": "The wheels roll freely when the landing gear is down.",
+        "source": "book 2 and 3: landing gear sub-builds",
+        "control": [
+          "p36 42610",
+          "p37 42610",
+          "p1198 42610",
+          "p1224 42610"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Which way does each lever go for which function? The `first` amounts in this file are guesses."
+      }
+    ]
+  },
+  "generated": {}
+}

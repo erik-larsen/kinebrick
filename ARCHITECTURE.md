@@ -732,9 +732,9 @@ Two places hold it:
 | | `models/technic-sets.csv` | `data/sets/<set>.json` |
 |---|---|---|
 | What | One row per set: what fits in a column, to sort and filter every set by | One file per set: everything nested or long, in three sections, `imported`, `curated` and `generated` |
-| Imported | Set number, name, year, part counts, BrickLink and OMR links, the pinned OMR file | Its instruction books as downloaded: each PDF or scan, and its pages |
-| Curated | `errors` (the model's mistakes, in plain English) and `corrected_model` (the repo file of a model put right) | `instructions` (the books in build order, which builds the main model, where its functions are drawn), `functions` (what each control does, and which parts it moves; see [data/functions/README.md](data/functions/README.md)), `questions` and their answers, and its KineBrick settings |
-| Generated | Summary columns at the end, such as `functions_working` | `generated`: each function's result, loose parts, and the commit and date |
+| Imported | Set number, name, year, part counts, BrickLink and OMR links, the pinned OMR file | `instructions`: its instruction books as downloaded, each LEGO PDF or a folder of scans |
+| Curated | `errors` (the model's mistakes, in plain English) and `corrected_model` (the repo file of a model put right) | `model` (the file its parts are counted in), `instructions` (which books build the main model, where its functions are drawn), `functions` (what each control does, and which parts it moves), `questions` and their answers, and `settings` (KineBrick's own lines for a set in `models/`); see [data/sets/README.md](data/sets/README.md) |
+| Generated | Summary columns at the end, such as `functions_working` (none yet) | `generated`: each function's result, loose parts, and the commit and date (empty until the probe checks functions) |
 
 The rules that keep them tidy:
 
@@ -742,14 +742,14 @@ The rules that keep them tidy:
 - **A script owns its fields.** Each script rewrites only the columns or keys it owns, by name, and leaves the rest as they were, as `npm run omr` does the `omr_file` column.
 - **No script writes curated data.**
 
-Today's files, and where they're to go:
+Where the earlier files went:
 
-| Today | Becomes |
+| Was | Now |
 |---|---|
-| `data/functions/<set>.json`, the function lists | Each `data/sets/<set>.json`'s `curated.functions` |
-| `models/sets.json`, KineBrick's lines for the sets in `models/` | Each set's `curated` settings |
-| `omr/instructions/index.txt`, which PDF holds which book | Each set's `imported` instructions |
-| `data/functions/REVIEW.md`, the first review of the function lists | `generated`, and the curated questions |
+| `data/functions/<set>.json`, the function lists | Each `data/sets/<set>.json`'s `curated` `model`, `instructions` and `functions` |
+| `models/sets.json`, KineBrick's lines for the sets in `models/` | Each set's `curated.settings`, only where it has lines |
+| `omr/instructions/index.txt` and the scan folders, which file holds which book | Each set's `imported.instructions`. The scripts that downloaded them aren't in the repository yet, so nothing refreshes it. |
+| `data/functions/REVIEW.md`, the first review of the function lists | [data/sets/REVIEW.md](data/sets/REVIEW.md). Its questions are each set's `curated.questions`; its results are to be replaced by `generated`. |
 | `tests/joints/`, the joints probe's baselines | Stays where it is: the tests' own |
 
 ## Testing
@@ -763,7 +763,7 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 | File | What it checks |
 |---|---|
 | `ldr.test.ts` | Reading model files: submodels flattened in order, each part placed where its submodels put it, colour 16 inherited through every level, parts the file brings with it, shapes drawn without parts, a part read as the pieces it's made of, KineBrick's own settings from `0 !KINEBRICK` lines, and a part written back as one line. |
-| `import.test.ts` | Bringing in real LEGO sets. Every set in `models/` already has its own lines from `models/sets.json`, so importing it again changes nothing. A fresh set's files are renamed wherever they're named (`956 - main.ldr` to `956-main.ldr`), its lines go after its main file's license, its line endings are kept, and importing twice gives the same file. |
+| `import.test.ts` | Bringing in real LEGO sets. Every set in `models/` already has its own lines from its file in `data/sets/`, so importing it again changes nothing. A fresh set's files are renamed wherever they're named (`956 - main.ldr` to `956-main.ldr`), its lines go after its main file's license, its line endings are kept, and importing twice gives the same file. |
 | `attachment.test.ts` | Every test model is fully attached, and a misplaced brick is caught, sitting between the studs or floating above the plate. Real sets KineBrick can't fully read yet are listed, with what each needs. |
 | `not-moving-yet.test.ts` | A part KineBrick has learned to move comes off the list of those it can't. |
 | `paths.test.ts` | A path LDCad drew is read with its circles where its submodel puts them, and its links known; its loop goes round the circles and along the straight runs between them; and its links move along it, half way round swapping places. Links LDCad put in a subpart of the path are its links too. A path's caps are parts of their own. A rubber band round two axles turns them together, at speeds in the inverse ratio of its circles, and crossed, the other way. A run of LSynth segments is a path: a rope wound on a drum is read with the drum's circle, a hose with none; and a winch wound with such a rope raises the hook tied to its end as far as the drum's rim turns, straight up. |
@@ -962,8 +962,7 @@ Browser-level tests for these paths can come later.
 |---|---|
 | `models/` | Test models |
 | `models/technic-sets.csv` | Every LEGO Technic set, one row each (see [Per-set data](#per-set-data)) |
-| `models/sets.json` | KineBrick's own lines for each real LEGO set in `models/` (settings such as tyre scrub), put into its file by `npm run import` |
-| `data/functions/` | What each set's controls should do, one file per set (see [Per-set data](#per-set-data)) |
+| `data/sets/` | Everything known about each real LEGO set, one file per set, in `imported`, `curated` and `generated` sections (see [Per-set data](#per-set-data)): its instruction books, what its controls should do, and KineBrick's own lines for a set in `models/` (settings such as tyre scrub), which `npm run import` puts into its file |
 | `data/corrections.ldr` | KineBrick's own additions to the connection table |
 | `data/roles.json` | Each part's role; parts not listed are `structure` |
 | `data/not-moving-yet.json` | The moving parts KineBrick can't move yet, each with what it doesn't do, which the viewer lists |
@@ -978,7 +977,7 @@ Browser-level tests for these paths can come later.
 | `tests/` | The tests (see [Testing](#testing)) |
 | `tests/setup.ts` | Runs before every test file: after each test, lets vitest's worker read its messages, so long synchronous tests one after another don't time it out on GitHub's machines |
 | `scripts/build-connections.ts` | Builds the connection table (`npm run connections`) |
-| `scripts/import-sets.ts` | Brings real LEGO sets downloaded from the OMR into `models/`, renamed, with their lines from `models/sets.json` (`npm run import`, run first by `npm run data`) |
+| `scripts/import-sets.ts` | Brings real LEGO sets downloaded from the OMR into `models/`, renamed, with their lines from `data/sets/` (`npm run import`, run first by `npm run data`) |
 | `scripts/pack-models.ts` | Packs each test model, flattened, with the LDraw parts it uses (`npm run pack`), and lists the library's primitives and colours for models opened from your own computer |
 | `scripts/thumbs.ts` | Makes the README cards' pictures, opening each model in headless Chrome with `?thumb` (`npm run thumbs`) |
 | `scripts/download-omr.ts` | Downloads the OMR's Technic sets into `omr/` for the scan (`npm run omr`), each the version pinned in `models/technic-sets.csv`'s `omr_file` column, pinning new sets |

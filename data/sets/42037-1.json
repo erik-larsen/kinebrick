@@ -1,0 +1,112 @@
+{
+  "set": "42037-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112296.pdf",
+        "file": "omr/instructions/42037-1-1.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6129796.pdf",
+        "file": "omr/instructions/42037-1-2.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42037-1 Formula Off-Roader.mpd",
+    "instructions": "omr/instructions/42037-1-1.pdf (the off-roader, the book marked 1, steps 1-54); omr/instructions/42037-1-2.pdf (the book marked 2) builds the alternate model",
+    "functions": [
+      {
+        "does": "Pushed along, the rear wheels run the inline four-cylinder engine in front of the seat: the rear differential's 28 tooth crown drives a 20 tooth bevel gear on a shaft running forward under the seat, and a 16 tooth gear on it drives the crankshaft's 16 tooth gear through a 16 tooth idler, so the four pistons pump up and down, about 1.4 times per turn of the wheels.",
+        "source": "book: the engine's steps 1-11 (pages 17-20, crankshaft drawn 1:1), steps 28-34 (engine fitted, the gears behind it, pages 20-26), the rear module's steps 2-4 (differential, pages 32-33), steps 39-41 (rear module joined, pages 50-52)",
+        "control": [
+          "p489 45982",
+          "p493 45982"
+        ],
+        "moves": [
+          "p225 62821",
+          "p214 32269",
+          "p136 94925",
+          "p154 6542b",
+          "p153 94925",
+          "p113 2853",
+          "p126 2851",
+          "p127 2851",
+          "p128 2851",
+          "p129 2851"
+        ],
+        "note": "the gear count is read from the model"
+      },
+      {
+        "does": "The rear differential lets the two rear wheels turn at different speeds; with the car lifted, turning one rear wheel turns the other the opposite way.",
+        "source": "book: the rear module's steps 2-7 (differential and the drive shafts with their constant velocity joints, pages 32-35)",
+        "control": "p489 45982",
+        "moves": [
+          "p493 45982",
+          "p225 62821"
+        ]
+      },
+      {
+        "does": "The black gear on top of the roll cage behind the seat steers the front wheels (hand of god steering): its vertical shaft turns, through bevel gears, a long shaft running forward under the car to a 12 tooth gear on the front steering rack, and the rack's links turn both front hubs.",
+        "source": "book: front module steps 5 (the rack, page 10) and 17-21 (hubs and links, pages 12-14); step 25 (the gear on its vertical shaft, page 47); steps 39-41 (the long shaft joined, pages 50-52)",
+        "control": "p349 32270",
+        "moves": [
+          "p34 3737",
+          "p54 87761",
+          "p66 11949",
+          "p76 11949",
+          "p491 45982",
+          "p495 45982"
+        ],
+        "stays": [
+          "p489 45982",
+          "p493 45982"
+        ]
+      },
+      {
+        "does": "The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes.",
+        "source": "book: front module steps 6-27 (arms, hubs and shock absorbers, pages 5-16; the arrow on step 26 swings the shock absorber into place)",
+        "control": [
+          "p58 57515",
+          "p72 57515"
+        ],
+        "moves": [
+          "p66 11949",
+          "p76 11949",
+          "p96 76537",
+          "p97 76537"
+        ]
+      },
+      {
+        "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
+        "source": "book: the rear module's steps 5-23 (pages 34-45); inferred: that it's meant to move",
+        "control": [
+          "p229 32063",
+          "p241 32063"
+        ],
+        "moves": [
+          "p235 11950",
+          "p236 11950",
+          "p290 4254",
+          "p292 4254"
+        ]
+      },
+      {
+        "does": "The shock absorbers' springs hold the car up and spring back.",
+        "source": "book: front module step 26, rear module steps",
+        "skip": "springs only matter under force; the suspension moves freely without them"
+      },
+      {
+        "does": "The steering wheel in front of the seat turns freely; it isn't linked to the steering.",
+        "source": "inferred: from the model, the steering wheel sits on a pin, and the book draws no link to the steering",
+        "control": "p438 40001"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is the steering wheel really unlinked?"
+      }
+    ]
+  },
+  "generated": {}
+}

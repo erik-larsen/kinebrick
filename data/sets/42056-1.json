@@ -1,0 +1,161 @@
+{
+  "set": "42056-1",
+  "imported": {
+    "instructions": [
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6207110.pdf",
+        "file": "omr/instructions/42056-1-1.pdf"
+      }
+    ]
+  },
+  "curated": {
+    "model": "omr/42056-1 Porsche 911 GT3 RS.mpd",
+    "instructions": "omr/instructions/42056-1-1.pdf (one book in four build boxes: box 1, pages 39-223, the drivetrain with gearbox, paddle shifters, suspension and engine; box 2, pages 225-361, the floor, seats and roll cage; box 3, pages 363-473, the rear, hood and roof; box 4, pages 475-571, the front, wheel arches, rear wing, doors and wheels; the book has no page of functions, so they come from the box introductions and the build)",
+    "functions": [
+      {
+        "does": "The steering wheel steers the front wheels: its column turns a cross shaft and a shaft with a constant velocity joint down to the front axle, where a 12 and a 20 tooth gear drive the steering rack under the axle.",
+        "source": "book: box 1 (the column and wheel, pages 190-200; the steering rack in the front axle); inferred from the model which gears are which",
+        "control": "p467 2741",
+        "moves": [
+          "p450 32270",
+          "p626 32270",
+          "p585 32269",
+          "p574 64781",
+          "p2731 23800",
+          "p2734 23800"
+        ],
+        "stays": [
+          "p2725 23800",
+          "p910 2853"
+        ]
+      },
+      {
+        "does": "Pushed along in gear, the rear wheels run the flat six engine: half shafts with constant velocity joints take the turn from the rear wheels to the differential, the gearbox turns it, and a 16 tooth gear on the gearbox's output shaft turns the crankshaft, so the six pistons run in and out of their two banks.",
+        "source": "book: box 1 introduction (page 39: dual clutch gearbox, paddle shifters, suspension and the 4.0 flat six engine), pages 210-221 (the engine); the gear path is read from the model",
+        "control": [
+          "p2725 23800",
+          "p2728 23800"
+        ],
+        "moves": [
+          "p689 62821",
+          "p910 2853",
+          "p917 2851",
+          "p919 2851",
+          "p921 2851",
+          "p923 2851",
+          "p925 2851",
+          "p927 2851"
+        ],
+        "note": "unsure which gear the model file sits in; with the gearbox in neutral the engine would stay still"
+      },
+      {
+        "does": "The paddle shifters behind the steering wheel shift the sequential gearbox up and down: each paddle swings a lever that steps a knob gear round, and a shaft with constant velocity joints takes the turn back to the gearbox, where a selector moves the driving rings through the gears one by one.",
+        "source": "book: box 1 introduction (paddle shifters, dual clutch gearbox); the paddles and the selector linkage are read from the model (the gearshift submodels)",
+        "control": [
+          "p424 43093",
+          "p425 43093"
+        ],
+        "moves": [
+          "p340 32072",
+          "p155 32072",
+          "p234 18947",
+          "p235 18947"
+        ],
+        "stays": [
+          "p467 2741"
+        ],
+        "note": "unsure how many speeds the selector gives and which paddle shifts up; the selector clicks between its places rather than following a plain drag"
+      },
+      {
+        "does": "The gear lever on the centre console between the seats selects reverse, neutral or drive: it moves a changeover catch that slides a driving ring between the forward and reverse gears.",
+        "source": "inferred: the lever on the console (p478, a tile on a cross block) and the changeover catch p317 over the driving ring p39 are read from the model; the book's box 1 introduction names only the dual clutch gearbox and the paddles",
+        "control": "p478 87079",
+        "moves": [
+          "p317 6641",
+          "p39 18947"
+        ],
+        "note": "unsure whether the console lever is linked to the changeover catch, and what its positions are"
+      },
+      {
+        "does": "Each front wheel has independent suspension: a double wishbone with a shock absorber lets the wheel rise and fall, the steering still working.",
+        "source": "book: box 1 introduction (suspension), the front axle steps in box 1",
+        "control": [
+          "p535 57515",
+          "p543 57515"
+        ],
+        "moves": [
+          "p2731 23800",
+          "p2734 23800"
+        ]
+      },
+      {
+        "does": "Each rear wheel has the same independent suspension, the half shafts reaching the wheels through constant velocity joints.",
+        "source": "book: box 1 introduction (suspension), the rear axle steps in box 1",
+        "control": [
+          "p757 32063",
+          "p784 32063"
+        ],
+        "moves": [
+          "p2725 23800",
+          "p2728 23800"
+        ]
+      },
+      {
+        "does": "The shock absorbers' springs hold the car up and spring back.",
+        "source": "book: box 1",
+        "skip": "springs only matter under gravity or force"
+      },
+      {
+        "does": "The two doors swing open on hinges at their front edges.",
+        "source": "book: box 4 introduction (page 475: the doors), the door steps near the end of box 4",
+        "control": [
+          "p2437 64394",
+          "p2462 24316",
+          "p2610 24316"
+        ],
+        "note": "p2437 is a panel of the left door; p2462 and p2610 are the doors' hinge axles"
+      },
+      {
+        "does": "The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment.",
+        "source": "book: box 3 introduction (page 363: the hood), page 568 (the finished car with the hood open)",
+        "control": "p2132 32278",
+        "moves": [
+          "p2135 41239"
+        ]
+      },
+      {
+        "does": "The suitcase in the luggage compartment opens.",
+        "source": "inferred: the suitcase submodel's lids sit on their own pins in the model",
+        "control": [
+          "p2757 24119",
+          "p2758 24119"
+        ],
+        "note": "unsure whether the suitcase is meant to open"
+      },
+      {
+        "does": "The rear wing's angle can be adjusted: the wing tilts on its two supports.",
+        "source": "book: box 4 introduction (page 475: the adjustable rear wing)",
+        "control": "p2530 87083",
+        "moves": [
+          "p2553 32523"
+        ],
+        "note": "unsure how the wing is meant to be set; it may click between angles"
+      },
+      {
+        "does": "The seats sit on their own pins and can be tipped or slid by hand.",
+        "source": "book: box 2 steps 513 and 530 (white arrows at the seats); what the arrows mean is unsure",
+        "control": [
+          "p1697 4519",
+          "p1748 4519"
+        ],
+        "note": "unsure whether the seats are meant to move at all; the arrows may only show where a part goes"
+      }
+    ],
+    "questions": [
+      {
+        "question": "How many gears, and which paddle shifts up? Does the 42083's wing tilt as it rises, and its front hood open?"
+      }
+    ]
+  },
+  "generated": {}
+}
