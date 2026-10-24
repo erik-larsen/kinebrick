@@ -25,7 +25,7 @@ Click a model to open it in the viewer; each opens ready to drag, and some with 
 
 ### Official Models
 
-Read straight from their files in the [LDraw Official Model Repository](https://library.ldraw.org/omr), oldest first.
+Read straight from their files in the [LDraw Official Model Repository](https://library.ldraw.org/omr), oldest first. What KineBrick knows about every LEGO Technic set, these and the OMR's others, is listed in `models/technic-sets.csv`, with each set's details (what its controls should do, drafted from its instructions) in a file of its own: see [Per-set data](ARCHITECTURE.md#per-set-data).
 
 <table>
 <tr>
