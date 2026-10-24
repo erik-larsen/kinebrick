@@ -1,4 +1,41 @@
 {
+  "1972-Go-Kart": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8020-Building Set": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8024-Universal Set": {
+    "primitives": [
+      "1-4cylo.dat",
+      "1-4ndis.dat",
+      "1-8cylo.dat",
+      "1-8ndis.dat",
+      "1-8ring3.dat",
+      "2-4cylo.dat",
+      "2-4ndis.dat",
+      "3-16cylo.dat",
+      "3-16ndis.dat",
+      "3-16rin4.dat",
+      "3-16ring12.dat",
+      "4-4cylo.dat",
+      "48/1-4aring.dat",
+      "48/1-4con11.dat",
+      "48/1-4cylo.dat",
+      "48/4-4cylo.dat",
+      "axlehol5.dat",
+      "rect.dat",
+      "rect2p.dat",
+      "rect3.dat"
+    ],
+    "pieces": {}
+  },
+  "8054-Universal Motor Set": {
+    "primitives": [],
+    "pieces": {}
+  },
   "8448-Super Car-V8 engine": {
     "primitives": [],
     "pieces": {}
@@ -27,6 +64,122 @@
     }
   },
   "856-Bulldozer": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8832-Roadster": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8835-Forklift": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8841-Dune Buggy": {
+    "primitives": [
+      "4-4cyli.dat",
+      "4-4edge.dat",
+      "4-4ring1.dat",
+      "axleend.dat",
+      "axlehol2.dat",
+      "axlehol9.dat"
+    ],
+    "pieces": {}
+  },
+  "8844-Helicopter": {
+    "primitives": [
+      "4-4cyli.dat"
+    ],
+    "pieces": {}
+  },
+  "8845-Dune Buggy": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8848-Power Truck": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8849-Tractor": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8851-Excavator": {
+    "primitives": [
+      "4-4cyli.dat",
+      "4-4edge.dat",
+      "4-4ring3.dat",
+      "4-4ring4.dat",
+      "box4o8a.dat",
+      "rect.dat",
+      "rect1.dat",
+      "rect2a.dat",
+      "rect2p.dat",
+      "rect3.dat"
+    ],
+    "pieces": {
+      "3403c01.dat": [
+        "1 16 0 0 0 1 0 0 0 1 0 0 0 1 3403.dat",
+        "1 16 0 0 0 1 0 0 0 1 0 0 0 1 3404.dat"
+      ]
+    }
+  },
+  "8854-Power Crane": {
+    "primitives": [],
+    "pieces": {
+      "3403c01.dat": [
+        "1 16 0 0 0 1 0 0 0 1 0 0 0 1 3403.dat",
+        "1 16 0 0 0 1 0 0 0 1 0 0 0 1 3404.dat"
+      ]
+    }
+  },
+  "8855-Prop Plane": {
+    "primitives": [
+      "1-4cyli.dat",
+      "1-4disc.dat",
+      "1-4edge.dat",
+      "1-8chrd.dat",
+      "1-8cylo.dat",
+      "3-4disc.dat",
+      "3-4edge.dat",
+      "3-8ring1.dat",
+      "3-8ring2.dat",
+      "4-4con18.dat",
+      "4-4con8.dat",
+      "4-4cylc.dat",
+      "4-4cylo.dat",
+      "4-4disc.dat",
+      "4-4edge.dat",
+      "4-4rin16.dat",
+      "4-4rin18.dat",
+      "4-4ring3.dat",
+      "4-4ring6.dat",
+      "48/1-12edge.dat",
+      "48/4-4aring.dat",
+      "48/4-4con15.dat",
+      "48/4-4edge.dat",
+      "48/5-24edge.dat",
+      "7-8cylo.dat",
+      "7-8disc.dat",
+      "box2-7.dat",
+      "box3u10p.dat",
+      "r04o1000.dat",
+      "rect1.dat",
+      "rect2a.dat"
+    ],
+    "pieces": {}
+  },
+  "8859-Tractor": {
+    "primitives": [
+      "4-4cyli.dat"
+    ],
+    "pieces": {}
+  },
+  "8862-Backhoe": {
+    "primitives": [],
+    "pieces": {}
+  },
+  "8865-Test Car": {
     "primitives": [],
     "pieces": {}
   },

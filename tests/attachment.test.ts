@@ -22,6 +22,19 @@ function looseParts(text: string, name = ''): string[] {
 // Real models KineBrick can't fully read yet, and what they need (M7 works through them).
 const NOT_YET = [
   '8448-Super Car.mpd', // hinges, universal joints, its tyres
+  // The 1980s sets, brought in to be tried by hand, not yet worked through
+  '1972-Go-Kart.mpd',
+  '8024-Universal Set.mpd',
+  '8832-Roadster.mpd',
+  '8835-Forklift.mpd',
+  '8841-Dune Buggy.mpd',
+  '8844-Helicopter.mpd',
+  '8848-Power Truck.mpd',
+  '8849-Tractor.mpd',
+  '8851-Excavator.mpd',
+  '8854-Power Crane.mpd',
+  '8855-Prop Plane.mpd',
+  '8859-Tractor.mpd',
 ];
 
 describe('every test model is fully attached', () => {
