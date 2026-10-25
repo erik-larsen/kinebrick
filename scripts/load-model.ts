@@ -21,8 +21,8 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
   if (omr) {
     table = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
     const primitives = new Set<string>(JSON.parse(readFileSync('packed/primitives.json', 'utf-8')));
-    // The parts read as their pieces, from whichever of KineBrick's own models has them.
-    const pieces = Object.assign({}, ...Object.values(packedModels).map((m) => m.pieces)) as Record<string, string[]>;
+    // The parts read as their pieces: every such part in the library.
+    const pieces: Record<string, string[]> = JSON.parse(readFileSync('packed/pieces.json', 'utf-8'));
     isPrimitive = (n) => primitives.has(n);
     piecesOf = (n) => pieces[n] ?? null;
   } else {

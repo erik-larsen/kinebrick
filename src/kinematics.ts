@@ -325,7 +325,7 @@ export class Kinematics {
     for (let body = 1; body < this.bodyCount; body++) {
       const joints = this.mech.joints.flatMap((j, i) => (j.bodyA === body || j.bodyB === body ? [i] : []));
       const balls = joints.filter((i) => this.mech.joints[i].kind === 'ball');
-      const geared = this.mech.gears.some((g) => g.body === body) || this.mech.couplings.some((c) => c.bodyA === body || c.bodyB === body);
+      const geared = this.mech.gears.some((g) => g.body === body) || this.mech.couplings.some((c) => c.bodyA === body || c.bodyB === body) || this.screwed(body);
       const tyred = this.mech.treads.some((t) => t.body === body);
       if (joints.length === 2 && balls.length === 2 && !geared && !tyred) this.links.push({ body, balls: [balls[0], balls[1]] });
       // Nor could one joined only by a turning joint and a ball on that joint's axis spin about
@@ -389,6 +389,11 @@ export class Kinematics {
     }
   }
 
+  // Whether a body is a linear actuator's input or piston, which its screw turns or slides.
+  private screwed(body: number): boolean {
+    return (this.mech.screws ?? []).some((s) => s.input === body || s.piston === body);
+  }
+
   // A shaft's axis now (the joint it turns on, or for a floating shaft its own axis), in model
   // coordinates.
   private shaftAxis(shaft: Shaft): Vector3 {
@@ -422,7 +427,7 @@ export class Kinematics {
       if (root === 0) continue;
       const own = this.mech.joints.filter((j) => j.bodyA === root || j.bodyB === root);
       const mounts = new Set(own.map((j) => (j.bodyA === root ? j.bodyB : j.bodyA)));
-      const geared = this.mech.gears.some((g) => g.body === root) || this.mech.couplings.some((c) => c.bodyA === root || c.bodyB === root);
+      const geared = this.mech.gears.some((g) => g.body === root) || this.mech.couplings.some((c) => c.bodyA === root || c.bodyB === root) || this.screwed(root);
       if (own.length > 0 && own.every((j) => (j.kind === 'slide' && !j.turns) || j.kind === 'ball') && mounts.size === 1 && !geared) this.mounts.set(root, [...mounts][0]);
     }
   }
@@ -1062,6 +1067,7 @@ export class Kinematics {
     const ties: number[][] = [];
     for (const m of this.mech.meshes) ties.push([this.mech.gears[m.gearA].body, this.mech.gears[m.gearB].body]);
     for (const { shafts } of this.couplings) ties.push(shafts.flatMap((sh) => [sh.body, sh.mount]));
+    for (const screw of this.mech.screws ?? []) ties.push([screw.input, screw.piston]);
     for (const loop of this.mech.loops ?? []) ties.push(loop.wheels.flatMap((w) => [w.body, w.mount]));
     for (const st of this.mech.strings ?? []) {
       const wheels = [...(st.drum ? [st.drum] : []), ...st.pulleys];
@@ -1129,6 +1135,8 @@ export class Kinematics {
   // The worms that a drag of `grabbed` would drive from the gear side. The worm's side is
   // everything geared to the worm without going through its worm mesh (a crank geared to the
   // worm's axle, say); a drag from anywhere else can only reach the worm through its gear.
+  // A linear actuator's screw locks the same way: its piston can't drive its input, which is
+  // held still unless the drag turns it, through gears, universal joints or chains.
   private wormsAgainst(grabbed: number): number[] {
     const worms: number[] = [];
     for (const mesh of this.mech.meshes) {
@@ -1136,19 +1144,31 @@ export class Kinematics {
       const wormBody = this.mech.gears[mesh.gearA].body;
       if (!this.gearedTo(wormBody).has(grabbed)) worms.push(wormBody);
     }
+    for (const screw of this.mech.screws ?? []) if (!this.gearedTo(screw.input, true).has(grabbed)) worms.push(screw.input);
     return worms;
   }
 
-  // Bodies connected to `body` through gear meshes other than worm meshes.
-  private gearedTo(body: number): Set<number> {
+  // What a drag of `grabbed` would drive from the wrong end, if anything (see wormsAgainst): a worm
+  // gear from its gear, or failing that, a linear actuator from its piston.
+  lockedBy(grabbed: number): 'worm' | 'actuator' | null {
+    if (this.mech.meshes.some((m) => m.kind === 'worm' && !this.gearedTo(this.mech.gears[m.gearA].body).has(grabbed))) return 'worm';
+    return (this.mech.screws ?? []).some((screw) => !this.gearedTo(screw.input, true).has(grabbed)) ? 'actuator' : null;
+  }
+
+  // Bodies connected to `body` through gear meshes other than worm meshes, and with `turning`,
+  // through universal joints and chains too (a linear actuator's input, on a shaft a universal
+  // joint turns).
+  private gearedTo(body: number, turning = false): Set<number> {
+    const ties: [number, number][] = this.mech.meshes.filter((m) => m.kind !== 'worm').map((m) => [this.mech.gears[m.gearA].body, this.mech.gears[m.gearB].body]);
+    if (turning) {
+      for (const c of this.mech.couplings) ties.push([c.bodyA, c.bodyB]);
+      for (const loop of this.mech.loops ?? []) for (const w of loop.wheels.slice(1)) ties.push([loop.wheels[0].body, w.body]);
+    }
     const found = new Set([body]);
     const queue = [body];
     while (queue.length) {
       const b = queue.shift()!;
-      for (const mesh of this.mech.meshes) {
-        if (mesh.kind === 'worm') continue;
-        const x = this.mech.gears[mesh.gearA].body;
-        const y = this.mech.gears[mesh.gearB].body;
+      for (const [x, y] of ties) {
         const other = x === b ? y : y === b ? x : -1;
         if (other >= 0 && !found.has(other)) {
           found.add(other);
@@ -1367,6 +1387,26 @@ export class Kinematics {
         for (let i = 0; i < n; i++) row[i] += across.getComponent(k) * (ra[i] + rb[i]);
       }
       add(row, gaps && mesh.kind === 'rack' ? -this.rackSlip(contact) : 0, DRIVE_WEIGHT);
+    }
+
+    // A linear actuator's screw: its thread and the piston's nut move together across the
+    // thread's surface, as a worm's thread and its gear's tooth do (see meshContact), so the
+    // piston goes one lead along the axis for each turn of the input. Taken at any point off the
+    // axis: the thread leans the same at any radius, for a given lead.
+    for (const screw of this.mech.screws ?? []) {
+      const pose = this.poses[screw.input];
+      const d = screw.axis.clone().transformDirection(pose);
+      const [out] = acrossDirections(d);
+      const point = screw.center.clone().applyMatrix4(pose).addScaledVector(out, STUD);
+      const surface = new Vector3().crossVectors(d, out); // how the thread moves there as the input turns
+      const lean = Math.atan(screw.lead / (2 * Math.PI * STUD));
+      const across = d.clone().multiplyScalar(Math.cos(lean)).addScaledVector(surface, Math.sin(lean));
+      const row = new Array(n).fill(0);
+      for (let k = 0; k < 3; k++) {
+        addPointVelocity(row, screw.input, point, k, across.getComponent(k));
+        addPointVelocity(row, screw.piston, point, k, -across.getComponent(k));
+      }
+      add(row, 0, DRIVE_WEIGHT);
     }
 
     // A tyre on the ground rolls without slipping: the point touching the ground doesn't move

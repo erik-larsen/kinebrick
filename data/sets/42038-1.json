@@ -51,8 +51,8 @@
           "p323 64782"
         ],
         "stays": [
-          "p864 92693c03",
-          "p886 41239"
+          "p866 92696",
+          "p888 41239"
         ],
         "note": "the ring is slid as the lever would slide it; unsure which way it must slide for position 1: the tipper's clutch gear is the one towards the back (p67), the crane's the one towards the front (p71)"
       },
@@ -73,8 +73,8 @@
           "p46 6589",
           "p107 32269",
           "p862 62520",
-          "p864 92693c03",
-          "p886 41239"
+          "p866 92696",
+          "p888 41239"
         ],
         "stays": [
           "p323 64782",
@@ -95,8 +95,8 @@
         "source": "book 1: steps 34-40 (turntable and gear, pages 25-30); book 2 page 68 (the crane slewing, bottom right)",
         "control": "p158 99010",
         "moves": [
-          "p886 41239",
-          "p864 92693c03"
+          "p888 41239",
+          "p866 92696"
         ],
         "stays": [
           "p323 64782"
@@ -106,12 +106,12 @@
       {
         "does": "The black gear at the crane's base winds the winch, raising and lowering the hook and its load on the string over the boom tip.",
         "source": "book 2: crane step 11 (reel and string, page 57), steps 107-112 (pages 58-63); inferred: that the gear is the winch's handle",
-        "control": "p900 32270",
+        "control": "p902 32270",
         "moves": [
-          "p891 61510"
+          "p893 61510"
         ],
         "stays": [
-          "p886 41239"
+          "p888 41239"
         ]
       },
       {
@@ -179,11 +179,11 @@
       "p161 62520",
       "p165 4519",
       "p615 59443",
-      "p899 30395",
-      "p901 74698",
-      "p902 6218",
-      "p903 6218",
-      "p904 60474"
+      "p901 30395",
+      "p903 74698",
+      "p904 6218",
+      "p905 6218",
+      "p906 60474"
     ],
     "functions": [
       {
@@ -226,8 +226,8 @@
           "p46 6589",
           "p107 32269",
           "p862 62520",
-          "p864 92693c03",
-          "p886 41239"
+          "p866 92696",
+          "p888 41239"
         ]
       },
       {

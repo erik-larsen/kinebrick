@@ -15,28 +15,28 @@
       {
         "does": "The orange switch on the battery box, at the back end of the counterweight boom, switches the Power Functions XL motor on, one way.",
         "source": "book: page 542 (the inset: the switch pushed one way)",
-        "control": "p3365 58119",
-        "note": "the motor is p3149 58121; everything below marked as motor-driven needs it running"
+        "control": "p3369 58119",
+        "note": "the motor is p3153 58121; everything below marked as motor-driven needs it running"
       },
       {
         "does": "The XL motor, beside the gearbox on the counterweight boom, drives a gearbox whose three red knobs, on top, choose what it works; with the middle knob pulled back (towards the knob's lower arrow) it turns the bucket wheel and runs the conveyor belts: the boom's belt carrying the spoil from the wheel to the middle, and the discharge belt carrying it out over the back.",
         "source": "book: page 543, function A (middle knob back, the other two at N: the wheel turns and both belts run); inferred from the model: which catch is each knob",
-        "control": "p3246 6641",
+        "control": "p3250 6641",
         "moves": [
-          "p2422 42055 - 24120 against p2531 42055 - 55615",
-          "p2335 57520 against p2531 42055 - 55615",
-          "p1865 57520"
+          "p2426 42055 - 24120 against p2535 42055 - 55615",
+          "p2339 57520 against p2535 42055 - 55615",
+          "p1869 57520"
         ],
         "stays": [
           "p418 64178",
-          "p1595 42055 - 18938"
+          "p1599 42055 - 18938"
         ],
-        "note": "motor-driven. The middle knob is taken as the catch p3246 6641, at x 40 between the other two. The wheel's teeth are the four ring quarters 24121 (p2425, p2455, p2474, p2475) and its buckets 24120"
+        "note": "motor-driven. The middle knob is taken as the catch p3250 6641, at x 40 between the other two. The wheel's teeth are the four ring quarters 24121 (p2429, p2459, p2478, p2479) and its buckets 24120"
       },
       {
         "does": "With the middle knob back, the right knob, pushed forward or back, slews the whole upper works round on the crawler base one way or the other, while the wheel and belts keep running: two worms turn on a big ring gear made of four quarters on the base.",
         "source": "book: page 543, function B; inferred from the model: the worms p1330 4716 and the ring quarters p810-p813 24121, and which catch is the right knob (seen from behind the counterweight)",
-        "control": "p3237 6641",
+        "control": "p3241 6641",
         "moves": [
           "p418 64178 against p1175 18939"
         ],
@@ -45,10 +45,10 @@
       {
         "does": "With the middle knob pushed forward, the left knob, pushed forward or back, drives the excavator forward or back on its two crawler tracks; the wheel and belts stop. The drive goes down a shaft through the middle of the slewing turntable to an axle carrying both tracks' sprockets, so the two tracks always run together.",
         "source": "book: page 543, function C (middle knob forward, left knob up or down); inferred from the model: the shaft p488 32073 down the turntable's middle and the sprocket axle with p911 and p1018 57520, and which catch is the left knob",
-        "control": "p3255 6641",
+        "control": "p3259 6641",
         "first": [
           {
-            "control": "p3246 6641",
+            "control": "p3250 6641",
             "by": -1
           }
         ],
@@ -59,18 +59,18 @@
           "p1019 57520"
         ],
         "stays": [
-          "p2422 42055 - 24120 against p2531 42055 - 55615"
+          "p2426 42055 - 24120 against p2535 42055 - 55615"
         ],
         "note": "motor-driven; there's no steering: the tracks can't run against each other"
       },
       {
         "does": "With the red lever at the back of the upper works in the middle (N), the black gear behind it, used as a knob, swings the discharge belt round on its own turntable, so it can be aimed over the mine truck: its shaft runs forward through two universal joints and bevel gears to a 12 tooth gear on the turntable.",
-        "source": "book: page 545, function D; page 544 (D labelled); inferred from the model: the gear train from p1710 to p1612",
-        "control": "p1710 32269",
+        "source": "book: page 545, function D; page 544 (D labelled); inferred from the model: the gear train from p1714 to p1616",
+        "control": "p1714 32269",
         "moves": [
-          "p1612 32270",
-          "p1595 42055 - 18938",
-          "p1865 57520"
+          "p1616 32270",
+          "p1599 42055 - 18938",
+          "p1869 57520"
         ],
         "stays": [
           "p418 64178"
@@ -79,21 +79,21 @@
       {
         "does": "The red lever at the back, pushed down (lock), slides a driving ring that ties the discharge belt's turntable to the crawler base, so when the upper works slews the discharge belt stays aimed where it was, over the truck.",
         "source": "book: page 545, function E (the lever down and locked, the right knob worked: the upper works turns and the discharge belt stays over the truck); page 544 (E labelled); inferred: through which parts",
-        "control": "p1674 6641",
+        "control": "p1678 6641",
         "moves": [
-          "p1706 18947"
+          "p1710 18947"
         ],
-        "note": "check with the slew: with this lever locked and the right knob worked, p1595 42055 - 18938 should keep its heading against p418 64178 while the upper works turns"
+        "note": "check with the slew: with this lever locked and the right knob worked, p1599 42055 - 18938 should keep its heading against p418 64178 while the upper works turns"
       },
       {
         "does": "The black gear at the foot of the tower, used as a crank, raises and lowers the bucket wheel boom: a cross shaft with bevel gears turns two linear actuators, one each side, that push the boom up about its pivot, carrying the counterweight boom, motor and gearbox with it.",
         "source": "book: page 545, function F; page 544 (F labelled); inferred from the model: the cross shaft p1501 and the actuators",
-        "control": "p1805 32269",
+        "control": "p1809 32269",
         "moves": [
-          "p1508 61927c01",
-          "p1509 61927c01",
-          "p2531 42055 - 55615",
-          "p3149 58121"
+          "p1510 62274c01",
+          "p1513 62274c01",
+          "p2535 42055 - 55615",
+          "p3153 58121"
         ],
         "stays": [
           "p418 64178"
@@ -571,101 +571,101 @@
       "p416 3062b",
       "p417 3062b",
       "p1309 32017",
-      "p2396 42055 - 24121",
-      "p2397 32073",
-      "p2398 42055 - 24121",
-      "p2399 3713",
-      "p2400 32054",
-      "p2401 43857",
-      "p2402 6558",
-      "p2403 11214",
-      "p2404 32073",
-      "p2405 3713",
-      "p2406 32054",
-      "p2407 43857",
-      "p2408 6558",
-      "p2409 11214",
-      "p2410 32073",
-      "p2411 3713",
-      "p2412 32054",
-      "p2413 43857",
-      "p2414 6558",
-      "p2415 11214",
-      "p2416 43857",
+      "p2400 42055 - 24121",
+      "p2401 32073",
+      "p2402 42055 - 24121",
+      "p2403 3713",
+      "p2404 32054",
+      "p2405 43857",
+      "p2406 6558",
+      "p2407 11214",
+      "p2408 32073",
+      "p2409 3713",
+      "p2410 32054",
+      "p2411 43857",
+      "p2412 6558",
+      "p2413 11214",
+      "p2414 32073",
+      "p2415 3713",
+      "p2416 32054",
       "p2417 43857",
-      "p2418 43857",
-      "p2419 3713",
-      "p2420 3713",
-      "p2421 3713",
-      "p2422 42055 - 24120",
-      "p2423 42055 - 24120",
-      "p2424 42055 - 24120",
-      "p2425 42055 - 24121",
-      "p2426 42055 - 24121",
-      "p2427 32073",
-      "p2428 42055 - 24121",
-      "p2429 3713",
-      "p2430 32054",
-      "p2431 43857",
-      "p2432 6558",
-      "p2433 11214",
-      "p2434 32073",
-      "p2435 3713",
-      "p2436 32054",
-      "p2437 43857",
-      "p2438 6558",
-      "p2439 11214",
-      "p2440 32073",
-      "p2441 3713",
-      "p2442 32054",
-      "p2443 43857",
-      "p2444 6558",
-      "p2445 11214",
-      "p2446 43857",
+      "p2418 6558",
+      "p2419 11214",
+      "p2420 43857",
+      "p2421 43857",
+      "p2422 43857",
+      "p2423 3713",
+      "p2424 3713",
+      "p2425 3713",
+      "p2426 42055 - 24120",
+      "p2427 42055 - 24120",
+      "p2428 42055 - 24120",
+      "p2429 42055 - 24121",
+      "p2430 42055 - 24121",
+      "p2431 32073",
+      "p2432 42055 - 24121",
+      "p2433 3713",
+      "p2434 32054",
+      "p2435 43857",
+      "p2436 6558",
+      "p2437 11214",
+      "p2438 32073",
+      "p2439 3713",
+      "p2440 32054",
+      "p2441 43857",
+      "p2442 6558",
+      "p2443 11214",
+      "p2444 32073",
+      "p2445 3713",
+      "p2446 32054",
       "p2447 43857",
-      "p2448 43857",
-      "p2449 3713",
-      "p2450 3713",
-      "p2451 3713",
-      "p2452 42055 - 24120",
-      "p2453 42055 - 24120",
-      "p2454 42055 - 24120",
-      "p2455 42055 - 24121",
-      "p2456 32073",
-      "p2457 3713",
-      "p2458 32054",
-      "p2459 43857",
-      "p2460 6558",
-      "p2461 11214",
-      "p2462 43857",
-      "p2463 3713",
-      "p2464 42055 - 24120",
-      "p2465 32073",
-      "p2466 3713",
-      "p2467 32054",
-      "p2468 43857",
-      "p2469 6558",
-      "p2470 11214",
-      "p2471 43857",
-      "p2472 3713",
-      "p2473 42055 - 24120",
-      "p2474 42055 - 24121",
-      "p2475 42055 - 24121",
-      "p2849 32002",
-      "p2850 32002",
-      "p2851 32316",
-      "p2852 32316",
+      "p2448 6558",
+      "p2449 11214",
+      "p2450 43857",
+      "p2451 43857",
+      "p2452 43857",
+      "p2453 3713",
+      "p2454 3713",
+      "p2455 3713",
+      "p2456 42055 - 24120",
+      "p2457 42055 - 24120",
+      "p2458 42055 - 24120",
+      "p2459 42055 - 24121",
+      "p2460 32073",
+      "p2461 3713",
+      "p2462 32054",
+      "p2463 43857",
+      "p2464 6558",
+      "p2465 11214",
+      "p2466 43857",
+      "p2467 3713",
+      "p2468 42055 - 24120",
+      "p2469 32073",
+      "p2470 3713",
+      "p2471 32054",
+      "p2472 43857",
+      "p2473 6558",
+      "p2474 11214",
+      "p2475 43857",
+      "p2476 3713",
+      "p2477 42055 - 24120",
+      "p2478 42055 - 24121",
+      "p2479 42055 - 24121",
       "p2853 32002",
       "p2854 32002",
-      "p3874 6020",
-      "p3875 6020",
-      "p3921 43093",
-      "p3922 32291",
-      "p3923 4274",
-      "p3924 4274",
-      "p3925 3023",
-      "p3926 50746",
-      "p3927 50746"
+      "p2855 32316",
+      "p2856 32316",
+      "p2857 32002",
+      "p2858 32002",
+      "p3878 6020",
+      "p3879 6020",
+      "p3925 43093",
+      "p3926 32291",
+      "p3927 4274",
+      "p3928 4274",
+      "p3929 3023",
+      "p3930 50746",
+      "p3931 50746"
     ],
     "functions": [
       {
@@ -686,9 +686,9 @@
           ]
         ],
         "still": [
-          "p2422 42055 - 24120 against p2531 42055 - 55615",
-          "p2335 57520 against p2531 42055 - 55615",
-          "p1865 57520"
+          "p2426 42055 - 24120 against p2535 42055 - 55615",
+          "p2339 57520 against p2535 42055 - 55615",
+          "p1869 57520"
         ]
       },
       {
@@ -727,9 +727,9 @@
           ]
         ],
         "still": [
-          "p1612 32270",
-          "p1595 42055 - 18938",
-          "p1865 57520"
+          "p1616 32270",
+          "p1599 42055 - 18938",
+          "p1869 57520"
         ]
       },
       {
@@ -741,7 +741,7 @@
           ]
         ],
         "still": [
-          "p1706 18947"
+          "p1710 18947"
         ]
       },
       {
@@ -753,10 +753,10 @@
           ]
         ],
         "still": [
-          "p1508 61927c01",
-          "p1509 61927c01",
-          "p2531 42055 - 55615",
-          "p3149 58121"
+          "p1510 62274c01",
+          "p1513 62274c01",
+          "p2535 42055 - 55615",
+          "p3153 58121"
         ]
       },
       {

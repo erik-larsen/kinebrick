@@ -550,6 +550,11 @@ export function setUpInteraction(s: InteractionSetup) {
   // coordinates). Returns why it can't, if it can't.
   // A part that doesn't spin on an axle is kept moving instead (see startPush), away from
   // `seenFrom`, or with `clockwise`, towards it.
+  // Why a drag of `body` can't drive what it would drive from the wrong end (see lockedBy).
+  function lockedWhy(body: number): string {
+    return s.kin.lockedBy(body) === 'actuator' ? 'a linear actuator can only be worked from its input' : 'a worm gear can only be turned from the worm';
+  }
+
   function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
@@ -558,7 +563,7 @@ export function setUpInteraction(s: InteractionSetup) {
     const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
     const canTurn = s.kin.jointMotion(link.joint) !== null;
     s.kin.letGoAfterDrag();
-    if (!canTurn) return `This part can't turn: ${wormLocked ? 'a worm gear can only be turned from the worm' : whyStuck()}`;
+    if (!canTurn) return `This part can't turn: ${wormLocked ? lockedWhy(body) : whyStuck()}`;
     motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
     motorReversed = false;
     motorMoved = false;
@@ -579,7 +584,7 @@ export function setUpInteraction(s: InteractionSetup) {
     const speeds = s.kin.freeMotions().map((m) => s.kin.pointVelocity(m, body, g));
     s.kin.letGoAfterDrag();
     if (directions === 0 || speeds.every((v) => v.length() < 1e-9)) {
-      const why = wormLocked ? 'a worm gear can only be turned from the worm' : s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck();
+      const why = wormLocked ? lockedWhy(body) : s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck();
       return `This part can't move: ${why}`;
     }
     const away = g.clone().sub(s.ldrawSpace.worldToLocal(seenFrom.clone())).normalize();
@@ -879,7 +884,7 @@ export function setUpInteraction(s: InteractionSetup) {
       const canMove = d.joint >= 0 ? s.kin.jointMotion(d.joint) !== null : grabDirections(d) > 0;
 
       if (!canMove && wormLocked) {
-        showMessage("This part can't move: a worm gear can only be turned from the worm", e.clientX, e.clientY);
+        showMessage(`This part can't move: ${lockedWhy(body)}`, e.clientX, e.clientY);
       } else if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {

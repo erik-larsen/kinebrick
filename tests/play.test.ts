@@ -20,6 +20,7 @@ function mechanism(joints: Joint[], count: number): Mechanism {
     couplings: [],
     loops: [],
     strings: [],
+    screws: [],
   };
 }
 

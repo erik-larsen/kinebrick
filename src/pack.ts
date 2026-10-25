@@ -71,11 +71,15 @@ export async function packModel(
     return text ?? '';
   };
 
-  // The files the model places directly, and the lines of those read as their pieces.
+  // The files the model places directly, and the lines of those read as their pieces, and of
+  // their pieces read as theirs in turn (a linear actuator's old name, moved to its shortcut).
   const placed = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)))].sort();
   const pieces: Record<string, string[]> = {};
-  for (const file of placed) {
-    if (roles[file] === 'split') pieces[file] = (await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line));
+  const split = placed.filter((file) => roles[file] === 'split');
+  for (const file of split) {
+    if (pieces[file]) continue;
+    pieces[file] = (await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line));
+    split.push(...pieces[file].flatMap((line) => references(line)).filter((piece) => roles[piece] === 'split'));
   }
   const { parts, shapes, paths } = parseModel(source, isPrimitive, (file) => pieces[file] ?? null);
   const model = [

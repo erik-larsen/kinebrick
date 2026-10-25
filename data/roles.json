@@ -1,5 +1,8 @@
 {
   "3403c01.dat": "split",
+  "61927-f1.dat": "split", "61927-f2.dat": "split", "61927.dat": "split", "61927c01.dat": "split",
+  "92693c01-f1.dat": "split", "92693c01-f2.dat": "split", "92693c02.dat": "split", "92693c03.dat": "split",
+  "40918-f1.dat": "split", "40918-f2.dat": "split", "43097-f1.dat": "split", "43097-f2.dat": "split",
   "3704.dat": "axle",
   "3705.dat": "axle",
   "3706.dat": "axle",
@@ -44,5 +47,8 @@
   "10928.dat": "gear", "94925.dat": "gear", "18575.dat": "gear", "87407.dat": "gear",
   "62821.dat": "differential",
   "62519.dat": "universal joint",
-  "87761.dat": "rack", "64781.dat": "rack"
+  "87761.dat": "rack", "64781.dat": "rack",
+  "92693c01.dat": "linear actuator", "92695.dat": "linear actuator", "92696.dat": "linear actuator",
+  "62271c01.dat": "linear actuator", "62273.dat": "linear actuator", "62274c01.dat": "linear actuator",
+  "u9487c01.dat": "linear actuator", "u9559c01.dat": "linear actuator", "62274c02.dat": "linear actuator"
 }

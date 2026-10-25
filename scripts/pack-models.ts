@@ -6,7 +6,8 @@
 //
 // For models opened from your own computer, which the viewer packs itself, it also writes
 // packed/primitives.json, which files in the LDraw library are primitives, and
-// packed/colours.ldr, the library's colours.
+// packed/colours.ldr, the library's colours; and for the scripts that read sets from the OMR,
+// packed/pieces.json, the pieces of every part in the library read as its pieces.
 //
 // Needs the LDraw parts library in ldraw/. Run with: npm run pack
 
@@ -72,5 +73,14 @@ const primitives = readdirSync(join(LDRAW_DIR, 'p'), { recursive: true, encoding
   .sort();
 writeFileSync(join(OUT_DIR, 'primitives.json'), '[\n' + primitives.map((name) => '  ' + JSON.stringify(name)).join(',\n') + '\n]\n');
 console.log(`Wrote ${OUT_DIR}/primitives.json: ${primitives.length} primitives`);
+// The pieces of every part in the library read as its pieces (role "split"), for the scripts
+// that read sets from the OMR (scripts/load-model.ts).
+const pieces: Record<string, string[]> = {};
+for (const [name, role] of Object.entries(roles).sort(([a], [b]) => a.localeCompare(b))) {
+  const text = role === 'split' ? await readLdrawFile(name) : null;
+  if (text) pieces[name] = text.split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)).map((line) => line.trim());
+}
+writeFileSync(join(OUT_DIR, 'pieces.json'), JSON.stringify(pieces, null, 2) + '\n');
+console.log(`Wrote ${OUT_DIR}/pieces.json: ${Object.keys(pieces).length} parts`);
 writeFileSync(join(OUT_DIR, 'colours.ldr'), colours + '\n');
 console.log(`Wrote ${OUT_DIR}/colours.ldr`);

@@ -49,7 +49,7 @@
         ],
         "stays": [
           "p0 64179",
-          "p2121 32526"
+          "p2123 32526"
         ],
         "note": "which of the two yellow levers, and which way, is read from the book's picture and should be checked"
       },
@@ -58,9 +58,9 @@
         "source": "book: 3 page 5 (arrows: the boom up and down; one yellow lever up)",
         "control": "p767 58121",
         "moves": [
-          "p2095 61927-f2",
-          "p2121 32526 against p2046 40490",
-          "p2178 32524 against p2046 40490"
+          "p2097 62274c01",
+          "p2123 32526 against p2046 40490",
+          "p2180 32524 against p2046 40490"
         ],
         "stays": [
           "p2046 40490",
@@ -74,12 +74,12 @@
         "moves": [
           "p2027 48168",
           "p2046 40490",
-          "p2121 32526"
+          "p2123 32526"
         ],
         "stays": [
           "p0 64179",
           "p2026 48452",
-          "p2121 32526 against p2046 40490"
+          "p2123 32526 against p2046 40490"
         ]
       },
       {
@@ -87,11 +87,11 @@
         "source": "book: 3 page 7 (arrows: the upper boom up and down; the other yellow lever down)",
         "control": "p767 58121",
         "moves": [
-          "p2165 62274c01 against p2164 62271c01",
-          "p2178 32524 against p2121 32526"
+          "p2167 62274c01 against p2166 62271c01",
+          "p2180 32524 against p2123 32526"
         ],
         "stays": [
-          "p2121 32526 against p2046 40490"
+          "p2123 32526 against p2046 40490"
         ]
       },
       {
@@ -259,9 +259,9 @@
           ]
         ],
         "still": [
-          "p2095 61927-f2",
-          "p2121 32526 against p2046 40490",
-          "p2178 32524 against p2046 40490"
+          "p2097 62274c01",
+          "p2123 32526 against p2046 40490",
+          "p2180 32524 against p2046 40490"
         ]
       },
       {
@@ -275,7 +275,7 @@
         "still": [
           "p2027 48168",
           "p2046 40490",
-          "p2121 32526"
+          "p2123 32526"
         ]
       },
       {
@@ -287,8 +287,8 @@
           ]
         ],
         "still": [
-          "p2165 62274c01 against p2164 62271c01",
-          "p2178 32524 against p2121 32526"
+          "p2167 62274c01 against p2166 62271c01",
+          "p2180 32524 against p2123 32526"
         ]
       },
       {

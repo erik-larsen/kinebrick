@@ -67,6 +67,7 @@ const NAMED_MODELS: [string, string][] = [
   ['single-piston-engine', 'Single-cylinder engine'],
   ['four-bar', 'Four-bar linkage'],
   ['rack-and-pinion', 'Rack and pinion'],
+  ['linear-actuator', 'Linear actuator'],
 ];
 const MODELS: [string, string][] = [
   ...NAMED_MODELS,
@@ -712,7 +713,10 @@ async function start() {
     for (const p of startParts) t[libraryName(p.name, table)] ??= t[p.name];
     return t;
   });
-  const stuck = placed.filter((name) => name in notMovingYet);
+  // A linear actuator's input (47157) is listed for the motor it also comes on, whose output it
+  // holds still; on an actuator it turns.
+  const inputs = new Set(mech.screws.flatMap((screw) => mech.bodies[screw.input].parts.map((i) => libraryName(startParts[i].name, table))));
+  const stuck = placed.filter((name) => name in notMovingYet && !inputs.has(name));
   showWarnings(startParts.map((p) => p.name), mech.loose, unconnected(startParts, table, roles), stuck, missingFiles);
   const grid = frameCamera(model, kin.groundY);
   model.visible = true;

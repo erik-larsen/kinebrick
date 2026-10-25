@@ -92,8 +92,8 @@
         ],
         "moves": [
           "p3322 42003 against p2971 42003",
-          "p3841 42100 - 62274c02 against p3840 42100 - u9487c01",
-          "p3847 42100 - 62274c02 against p3846 42100 - u9487c01"
+          "p3845 42100 - 62274c02 against p3844 42100 - u9487c01",
+          "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
         ],
         "stays": [
           "p2971 42003 against p1927 42003"
@@ -106,8 +106,8 @@
         "control": "p3237 32270",
         "moves": [
           "p3600 15458 against p3322 42003",
-          "p3780 42100 - 62274c02 against p3779 42100 - u9487c01",
-          "p3797 42100 - 62274c02 against p3796 42100 - u9487c01"
+          "p3784 42100 - 62274c02 against p3783 42100 - u9487c01",
+          "p3801 42100 - 62274c02 against p3800 42100 - u9487c01"
         ],
         "stays": [
           "p3322 42003 against p2971 42003"
@@ -121,14 +121,14 @@
         "moves": [
           "p3322 42003 against p2971 42003"
         ],
-        "note": "Unsure what the small actuators (p3694 92693c01-f2, p3698 92693c01-f2) move, and so what this is for; no motor drives the shaft. The bucket shell itself is held to its mount by pins pushed in sideways, drawn with yellow arrows at step 999 (page 362)."
+        "note": "Unsure what the small actuators (p3696 92696, p3702 92696) move, and so what this is for; no motor drives the shaft. The bucket shell itself is held to its mount by pins pushed in sideways, drawn with yellow arrows at step 999 (page 362)."
       },
       {
         "does": "The access ladder at the back left of the superstructure swings up out of the way and down to the ground.",
         "source": "book 2: step 941 (page 307, arrow 1 to 2)",
-        "control": "p4656 40490",
+        "control": "p4660 40490",
         "moves": [
-          "p4682 40490"
+          "p4686 40490"
         ]
       }
     ],
@@ -169,12 +169,8 @@
       "p3087 42100 - 23816c02",
       "p3388 3705",
       "p3389 6589",
-      "p3783 6589",
-      "p7014 59426",
-      "p7179 3941",
-      "p7180 3941",
-      "p7181 3941",
-      "p7182 3941",
+      "p3787 6589",
+      "p7018 59426",
       "p7183 3941",
       "p7184 3941",
       "p7185 3941",
@@ -270,7 +266,11 @@
       "p7275 3941",
       "p7276 3941",
       "p7277 3941",
-      "p7278 3941"
+      "p7278 3941",
+      "p7279 3941",
+      "p7280 3941",
+      "p7281 3941",
+      "p7282 3941"
     ],
     "functions": [
       {
@@ -356,8 +356,8 @@
         ],
         "still": [
           "p3322 42003 against p2971 42003",
-          "p3841 42100 - 62274c02 against p3840 42100 - u9487c01",
-          "p3847 42100 - 62274c02 against p3846 42100 - u9487c01"
+          "p3845 42100 - 62274c02 against p3844 42100 - u9487c01",
+          "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
         ]
       },
       {
@@ -370,8 +370,8 @@
         ],
         "still": [
           "p3600 15458 against p3322 42003",
-          "p3780 42100 - 62274c02 against p3779 42100 - u9487c01",
-          "p3797 42100 - 62274c02 against p3796 42100 - u9487c01"
+          "p3784 42100 - 62274c02 against p3783 42100 - u9487c01",
+          "p3801 42100 - 62274c02 against p3800 42100 - u9487c01"
         ]
       },
       {
@@ -392,10 +392,10 @@
           ]
         ],
         "still": [
-          "p4682 40490"
+          "p4686 40490"
         ],
         "why": [
-          "p4656 40490 is part of the frame"
+          "p4660 40490 is part of the frame"
         ]
       }
     ]

@@ -172,6 +172,21 @@ A string that goes round no wheel, or is tied to something attached to nothing t
 
 **Shock absorbers.** A shock absorber's rod is fixed in its cylinder: its spring holds it at the length it was built at, so a car sits on its suspension. Springs, like everything to do with forces, wait for version 2.0.
 
+**Linear actuators.** A linear actuator is three parts: its body, an input at its back end, and a piston that a screw inside drives in and out of its front end as the input turns. Built separately or as one of the LDraw library's shortcuts (read as its pieces: see `split`), each is found by its body, with the input and piston on the body's axis. Whatever their shapes connect them by (the piston's rod sits in the body's bore like a stud in a hole) gives way to:
+
+- **the input turning in the body;**
+- **the piston sliding in the body,** from where its head is in the library's contracted shortcut to where it is in the extended one;
+- **a screw between them:** the piston goes one lead along the axis for each turn of the input, relative to the body.
+
+| Actuator | Stroke | Lead (LDU per turn) | From builders' measurements |
+|---|---|---|---|
+| Small (92693c01) | 60 LDU (3 studs) | 3.02 | 7160 degrees, 19.9 turns, end to end |
+| Large (62271c01) | 100 LDU (5 studs) | 3.73 | 9649 degrees, 26.8 turns |
+| Extra large (u9487c01) | 160 LDU (8 studs) | 3.66 | 43.75 turns |
+| Large, later type (u9559c01) | 100 LDU | 3.66 | none: it shares the extra large one's base, so taken to be geared alike |
+
+Like a worm, the screw can't be driven from its piston (see [Holds](#holds)): pushing what the piston moves doesn't turn the input. Its input, 47157, also comes on the 9V geared motor, where it holds its axle still, so it stays on the [list of parts that don't move yet](#parts-that-dont-move-yet), but the viewer doesn't list it where it's an actuator's input.
+
 **Bushes in Technic plates.** A Technic plate's holes are counterbored 4 LDU deep for a bush's flange (a brick's only 2). So a bush pushed at least 3 LDU into one grips the plate, which turns with the bush's axle: an old helicopter's rotors are Technic plates driven so.
 
 **Sliding on axles.** A part turning on an axle may slide along it too, as far as the parts either side of it on the axle let it, when a linkage works it that way. That is, its body turns on another body about an axis across the axle, in a closed loop of joints back to the axle. (An old helicopter's swashplate, raised and lowered on its rotor shaft by the pilot's levers, tilts the blades through their pitch links.)
@@ -307,6 +322,7 @@ Each connection is a rule about those numbers, written as "this combination of n
 | A universal joint | Its two shafts turn at the same rate, each in its mount, and its two ends stay together | 4 |
 | A grooved ball in a wheel hub, or a nudged ball in a steering hub | The driveshaft and the hub turn at the same rate, each in its mount (a nudged ball is a ball joint too) | 1 |
 | Sliding joint (a piston in its bore) | Both bodies move together, except for sliding along the axis | 5 |
+| A linear actuator's screw | Where the screw's thread meets the piston's nut, they move together across the thread, as a worm's thread and its gear's tooth do: the piston slides one lead for each turn of the input | 1 |
 | A part that slides and turns on an axle (a swashplate) | Both bodies move together, except for sliding along the axis and turning about it | 4 |
 | Ball joint (a towball in its socket) | Both bodies move the same at the ball's centre | 3 |
 | A body held only by a ball joint at each end (a steering link) | It turns about the line between the balls as the bodies at its ends do, on average. Nothing else would stop it spinning there, and nothing would make it. (Unless gears or a coupling turn it: a half shaft with a constant velocity joint's ball at each end, which turns its wheel's hub, isn't held so.) | 1 |
@@ -545,7 +561,8 @@ A role is a short label for what a part does in a mechanism. It tells KineBrick 
 | `nudged ball` | 32494 Technic Wheel Spindle Axle Driver | A constant velocity joint's ball, on a half shaft's end, in a steering hub's or a joint's socket: the hub turns with the shaft, and the ball stays in the socket (see [universal joints](#rules-for-real-models)). |
 | `steering link` | 2739a Technic Steering Link 6L | A ball socket at each end, 100 LDU apart, on the towballs of a rack and a steering arm. Turns any way on them, except about its own length. |
 | `path` | 3873 Technic Chain Tread, 3711 Technic Chain Link, when LDCad placed them along a path; LSynth's segments, run one after another | Not looked up: a part in a path's submodel, or a run of LSynth's segments (see [Load](#1-load)), is one of its links. Connects to nothing; moves with the part nearest it, or round its loop. |
-| `split` | 3403c01 Turntable 4 x 4 (Complete) | One LDraw file (a shortcut) for parts that move against each other: read as those parts, here the base and the top that turns on it. |
+| `split` | 3403c01 Turntable 4 x 4 (Complete); 61927-f1, 92693c01-f2, 40918-f1, the linear actuators' shortcuts, contracted and extended, and their old names | One LDraw file (a shortcut) for parts that move against each other: read as those parts, here the base and the top that turns on it. |
+| `linear actuator` | 92693c01, 62271c01, u9487c01, u9559c01 Technic Linear Actuator Body Assembly, small, large, extra large and the later large; 92695, 62273, their inputs; 92696, 62274c01, 62274c02, their pistons | The input turns in the body, and a screw slides the piston out of it as it does ([below](#rules-for-real-models)). |
 | `steering wheel` | 2819 Technic Steering Wheel Small | Locks onto an axle through its axle hole. Like `structure`, but the body it's on is named after it. |
 | `differential` | 6573 Technic Differential with Gear 16 Tooth and 24 Tooth; 62821 Technic Differential with One Gear 28 Tooth Bevel | Turns on the two output axles that pass into it. Carries gear rings outside, and a post inside for the middle (planet) bevel gear, which meshes with a bevel gear on each output ([below](#gears-and-racks)). |
 
@@ -598,7 +615,6 @@ Parts KineBrick knows it can't move yet are listed in `data/not-moving-yet.json`
 - a gear without teeth data, which doesn't mesh;
 - a tyre without a tread, which doesn't roll;
 - shock absorbers, which don't compress;
-- linear actuators, which don't extend;
 - pneumatics;
 - motors, whose output holds its axle still.
 
@@ -651,6 +667,7 @@ For the length of a drag, KineBrick holds still every part it can without stoppi
 - **Not parts in a closed loop**, since whether one is needed can't be told from the starting instant alone (a steering tie rod doesn't turn at straight ahead, but must as soon as the wheels do).
 - **Not wheels on the ground**, since rolling is their job, nor a string's pulleys, which turn as it runs round them.
 - **Worms lock:** a worm is held still during any drag that would drive it from its gear's side.
+- **So do linear actuators:** an actuator's input is held still during any drag that doesn't turn it, through gears, universal joints or chains.
 
 **Keeping to the plain motion.** A drag that turns its joint without the car moving on its suspension keeps to that while its holds are chosen: a hold that would leave it only a lurch of the car on its suspension is let go. (An official Ferrari 488 GTE's driveshaft, which its front wheels drive through constant velocity joints: held, turning one front wheel turned the other back and pitched the car, and stopped a step on.)
 
@@ -777,6 +794,7 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 | `gears.test.ts` | The 8, 24 and 40 tooth gear train turns at the right ratios, both ways. Rolling the geared car spins its extra axle the other way. Turning a wheel rolls the car one tyre circumference per turn. Every gear in the library's table has LEGO's tooth size, 1.25 LDU of pitch radius per tooth. |
 | `bevel.test.ts` | The right-angle drive turns 1:1. The differential has two free motions; the input drives the housing at a third; with the input frozen the outputs turn opposite ways; with one output frozen the housing turns half as far; a drag on the input keeps the outputs together; and freezing the input and one output jams it. |
 | `worm.test.ts` | The worm meshes with its gear, turns it one tooth per turn, can be driven from the worm, and locks when driven from the gear. |
+| `actuator.test.ts` | A large linear actuator raising an arm: its input turns in its body and its piston slides in it, leaving one way to move. A turn of the input slides the piston out one lead and swings the arm up. It stops at the end of its stroke going out, and coming in where the arm comes into line between its pins (a dead point). It can be worked from its input but not from the arm. The library's shortcuts read as their three parts, under their old names too. |
 | `gearbox.test.ts` | The driving ring sits centred on its joiner with three places to click into. Neutral leaves the output still, first gear turns it a third as far as the input, second as far. The gearbox is fully attached in every position. Its gear lever finds the ring: the two slots of its gate on the input axle's side put it in first and second, and the middle and the other two slots leave it in neutral. |
 | `rack.test.ts` | The plate and its racks slide along the tiles and mesh with the gear, leaving one way to move. A quarter turn of the gear slides the rack 2 teeth, and the rack can be pushed along its length, turning the gear. The plate may overhang the tiles down to a stud of overlap, and the rack stops where the gear reaches the end of the teeth, 80 LDU either way. Started over one rack, the gear meshes with both and rolls from one onto the other. |
 | `linkages.test.ts` | The engine has a frame (the cylinder head pinned on), crankshaft, connecting rod and piston, and moves one way. A turn of the crank moves the piston down its 20 LDU stroke and back, a quarter turn as far as crank-and-rod geometry says. Pushing the piston works mid-stroke but not at the top. The four-bar's pins are each locked to a beam, its crank turns all the way round and its rocker swings about 63 degrees. After 10 turns no joint of either has drifted apart, and each turns its cranks like knobs and pushes its connecting rod or coupler. |
@@ -999,7 +1017,7 @@ Browser-level tests for these paths can come later.
 | `data/not-moving-yet.json` | The moving parts KineBrick can't move yet, each with what it doesn't do, which the viewer lists |
 | `data/connections.json` | The connection table (generated, don't edit) |
 | `data/library-connections.json` | The connection table for the whole LDraw library, for models opened from your own computer (generated, don't edit) |
-| `packed/` | The packed models and part titles the viewer loads, and the LDraw library's primitives and colours (generated, don't edit) |
+| `packed/` | The packed models and part titles the viewer loads; the LDraw library's primitives and colours; and `pieces.json`, the pieces of every part read as its pieces, for the scripts that read sets from the OMR (generated, don't edit) |
 
 ### Tests and scripts
 
