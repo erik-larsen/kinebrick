@@ -72,6 +72,7 @@ interface WorldCylinder {
   dir: Vector3; // unit vector
   secs: Section[];
   face?: Vector3; // a rack: the way its teeth face
+  turns?: boolean; // a motor's output: what's fixed in it turns in the motor (see buildMechanism)
 }
 
 // rigid     the parts turn together (an axle in an axle hole, a tyre on a rim)
@@ -88,7 +89,8 @@ export interface Connection {
   kind: ConnectionKind;
   from: Vector3; // where the overlap starts, on the shared axis (for a ball: its centre)
   to: Vector3; // where it ends (for a ball: its centre again)
-  stiff?: boolean; // turns on a friction pin
+  stiff?: boolean; // turns on a friction pin, or in a motor
+  motor?: boolean; // turns in a motor: an axle in its output (see buildMechanism)
   held?: boolean; // would turn on a friction pin, but the pin holds it (see inferMechanism)
   // A slide: where the male and female sections lie, as distances along the male's axis
   // (from -> to), and how much they must still overlap. How far it may slide follows from
@@ -110,7 +112,8 @@ export interface Joint {
   bodyB: number;
   from: Vector3; // the axis, as a segment covering every connection behind this joint (for a
   to: Vector3; //   ball, both are its centre)
-  stiff: boolean; // turns on a friction pin, so a drag turns it only if nothing else can move
+  stiff: boolean; // turns on a friction pin or in a motor, so a drag turns it only if nothing else can move
+  motor?: boolean; // turns in a motor
   // A slide joint: how far bodyB may slide relative to bodyA from where it starts (along
   // from -> to), and two parts that slide, which meet at either end of that.
   range?: [number, number];
@@ -310,6 +313,9 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // move with what's nearest (see decorations), or round their loop (see findLoops).
   const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? (table.stickers?.includes(p.name) ? 'decoration' : 'structure')));
   const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path');
+  // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle
+  // in it turns, rather than being fixed to the motor and whatever the motor is built into.
+  for (const c of cyls) if (roles[c.part] === 'motor' && c.secs.some((s) => s.shape === 'A')) c.turns = true;
   const connections = findConnections(cyls, frictionRigid);
   fixPins(connections, roles, frictionRigid);
   connections.push(...platesOnEdge(cyls));
@@ -1767,6 +1773,9 @@ function connect(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): C
     mPos = mEnd;
   }
   if (total < MIN_OVERLAP) return null;
+  // A motor's output turns in it, stiffly: its gearbox holds it unless nothing else can move.
+  const motor = kind === 'rigid' && (m.turns || f.turns);
+  if (motor) kind = 'revolute';
 
   const from = m.start.clone().addScaledVector(m.dir, lo);
   let extents: Connection['extents'];
@@ -1777,7 +1786,7 @@ function connect(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): C
     const overlap = f.secs.some((sec) => sec.shape === 'P') ? SURFACE_OVERLAP : BORE_OVERLAP;
     extents = { male: [-lo, length(m) - lo], female: [Math.min(along, fEnd) - lo, Math.max(along, fEnd) - lo], overlap };
   }
-  return { male: m.part, female: f.part, kind, from, to: m.start.clone().addScaledVector(m.dir, hi), extents };
+  return { male: m.part, female: f.part, kind, from, to: m.start.clone().addScaledVector(m.dir, hi), extents, ...(motor ? { stiff: true, motor: true } : {}) };
 }
 
 // How far a slide's male part may slide from where it is, relative to the female: for as long
@@ -1899,8 +1908,9 @@ function findJoints(connections: Connection[], bodyOf: number[]): Joint[] {
     if (existing) {
       if (kind !== 'ball') extendJoint(existing, c);
       existing.stiff = existing.stiff || c.stiff === true;
+      if (c.motor) existing.motor = true;
     } else {
-      joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true, ...(c.turns ? { turns: true } : {}) });
+      joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true, ...(c.motor ? { motor: true } : {}), ...(c.turns ? { turns: true } : {}) });
     }
   }
 

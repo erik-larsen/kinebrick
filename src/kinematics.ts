@@ -953,8 +953,11 @@ export class Kinematics {
       }
       // Parts of a closed loop aren't held: whether one is needed can't be told from this
       // instant alone (a steering tie rod doesn't turn at all at straight ahead, but must as
-      // soon as the wheels do).
-      if (this.inLoop(link.joint)) continue;
+      // soon as the wheels do). But a motor's output is, if the drag allows: its axis stays put
+      // in the motor, and its gearbox holds it (the 42129 Mercedes-Benz Zetros's two motors,
+      // their axles through one beam, drive its centre differential's housing, which turns the
+      // rear axles against the front ones only with the motors held).
+      if (this.inLoop(link.joint) && !this.mech.joints[link.joint].motor) continue;
       this.dragHeld.add(body);
       if (!stillPossible() || (shaftCouldStay && !this.couldStayStill(shaft, stillPossible))) this.dragHeld.delete(body);
     }
