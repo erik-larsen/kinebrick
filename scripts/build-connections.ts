@@ -257,25 +257,25 @@ function parseSections(text: string): Section[] {
   return secs;
 }
 
-// "C 3 1 20 0" -> offsets in the meta's own X/Z plane. A "C" centres that axis on pos.
+// "C 3 1 20 0" -> offsets in the meta's own X/Z plane, or, with three counts and three steps
+// ("2 C 2 1 20 50 0"), along its X, Y and Z: a Y grid repeats a cylinder along its own axis
+// (the two lugs of a linear actuator's bracket). A "C" centres that axis on pos.
 function parseGrid(text: string | undefined): Vec3[] {
   if (!text) return [[0, 0, 0]];
   const tokens = text.split(/\s+/);
+  const axes = tokens.filter((t) => t !== 'C').length === 6 ? 3 : 2;
   let i = 0;
-  const centerX = tokens[i] === 'C' ? (i++, true) : false;
-  const countX = Number(tokens[i++]);
-  const centerZ = tokens[i] === 'C' ? (i++, true) : false;
-  const countZ = Number(tokens[i++]);
-  const stepX = Number(tokens[i++]);
-  const stepZ = Number(tokens[i++]);
-  const offsets: Vec3[] = [];
-  for (let x = 0; x < countX; x++) {
-    for (let z = 0; z < countZ; z++) {
-      const ox = centerX ? (x - (countX - 1) / 2) * stepX : x * stepX;
-      const oz = centerZ ? (z - (countZ - 1) / 2) * stepZ : z * stepZ;
-      offsets.push([ox, 0, oz]);
-    }
+  const counts: { center: boolean; count: number }[] = [];
+  for (let a = 0; a < axes; a++) {
+    const center = tokens[i] === 'C' ? (i++, true) : false;
+    counts.push({ center, count: Number(tokens[i++]) });
   }
+  const steps = counts.map(() => Number(tokens[i++]));
+  // Each axis's offsets, then every combination of them.
+  const along = counts.map(({ center, count }, a) => Array.from({ length: count }, (_, k) => (center ? k - (count - 1) / 2 : k) * steps[a]));
+  const [xs, ys, zs] = axes === 3 ? along : [along[0], [0], along[1]];
+  const offsets: Vec3[] = [];
+  for (const ox of xs) for (const oy of ys) for (const oz of zs) offsets.push([ox, oy, oz]);
   return offsets;
 }
 
