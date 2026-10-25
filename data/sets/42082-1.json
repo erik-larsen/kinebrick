@@ -209,12 +209,12 @@
     ]
   },
   "generated": {
-    "commit": "007c2d5",
-    "date": "2026-10-24",
+    "commit": "d3d792d",
+    "date": "2026-10-25",
     "counts": {
       "no": 1,
-      "works": 1,
-      "partly": 7,
+      "works": 2,
+      "partly": 6,
       "not checked": 1
     },
     "loose": [
@@ -689,15 +689,12 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "moved": [
-          "p2941 41239 against p2649 64179"
         ]
       },
       {
@@ -709,6 +706,7 @@
           ]
         ],
         "still": [
+          "p2941 41239 against p2649 64179",
           "p2383 62274c01 against p2382 62271c01",
           "p2386 62274c01 against p2385 62271c01"
         ],
@@ -725,11 +723,9 @@
           ]
         ],
         "still": [
-          "p3076 3703 against p2941 41239",
-          "p3268 32270 against p2941 41239"
+          "p3076 3703 against p2941 41239"
         ],
         "moved": [
-          "p2941 41239 against p2649 64179",
           "p2649 64179 against p0 64179"
         ]
       },
@@ -744,9 +740,6 @@
         "still": [
           "p2870 3737 against p2649 64179",
           "p3371 2736 against p3076 3703"
-        ],
-        "moved": [
-          "p2941 41239 against p2649 64179"
         ]
       },
       {

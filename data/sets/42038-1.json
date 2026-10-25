@@ -167,10 +167,11 @@
     ]
   },
   "generated": {
-    "commit": "007c2d5",
-    "date": "2026-10-24",
+    "commit": "d3d792d",
+    "date": "2026-10-25",
     "counts": {
-      "partly": 5,
+      "no": 1,
+      "partly": 4,
       "works": 4,
       "skipped": 1,
       "not checked": 2
@@ -187,12 +188,18 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            0.24,
-            -0.24
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p290 32270",
+          "p288 64781",
+          "p284 92909",
+          "p285 92909"
         ]
       },
       {

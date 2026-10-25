@@ -83,11 +83,12 @@
     ]
   },
   "generated": {
-    "commit": "007c2d5",
-    "date": "2026-10-24",
+    "commit": "d3d792d",
+    "date": "2026-10-25",
     "counts": {
-      "works": 3,
-      "partly": 1
+      "works": 2,
+      "partly": 1,
+      "no": 1
     },
     "loose": [],
     "functions": [
@@ -112,17 +113,23 @@
             -1.5
           ]
         ],
-        "moved": [
-          "p103 32524 against p93 32140"
+        "still": [
+          "p107 32498",
+          "p108 32498"
         ]
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p103 32524",
+          "p107 32498",
+          "p108 32498"
         ]
       },
       {
