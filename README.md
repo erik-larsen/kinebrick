@@ -103,21 +103,21 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 **Under way: M7, real LEGO sets, oldest first.** Every set under [Models](#models) works in full, except the 8448 Super Street Sensation (WIP); its V8 engine works on its own. Next: more sets.
 
-**[Function check](ARCHITECTURE.md#the-function-check) on 182 sets.** Each set's functions, from its instruction book, tried on its model. The three slowest sets, 8110, 9397 and 42055, aren't in it yet.
+**[Function check](ARCHITECTURE.md#the-function-check) on all 185 sets.** Each set's functions, from its instruction book, tried on its model.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 437 | 37% |
-| Partly | 343 | 29% |
-| Doesn't work | 226 | 19% |
-| Skipped or not checked | 174 | 15% |
+| Works | 446 | 37% |
+| Partly | 356 | 29% |
+| Doesn't work | 238 | 20% |
+| Skipped or not checked | 175 | 14% |
 
-Of the functions checked, 43% work in full. Only 12 of the 182 sets have every function working.
+Of the functions checked, 43% work in full. Only 12 of the 185 sets have every function working.
 
 **Major things left:**
 
-1. **Finish the surveys.** The function check is almost done, and the OMR control surveys' results are on the `omr-survey` branch.
-2. **Refine the kinematics from those results.** This is the bulk of the remaining work: turning the 343 "partly" and 226 "doesn't work" functions into working ones, a part type or connection rule at a time. The next step is to group them by cause, so each fix lifts many sets at once.
+1. **Finish the surveys.** The function check is done, and the OMR control surveys' results are on the `omr-survey` branch.
+2. **Refine the kinematics from those results.** This is the bulk of the remaining work: turning the 356 "partly" and 238 "doesn't work" functions into working ones, a part type or connection rule at a time. The next step is to group them by cause, so each fix lifts many sets at once.
 3. **Optimize, only once the refine phase is done.** Solve only the part of a mechanism a control reaches, and cache each set's inferred mechanism. Speed matters already: three sets ran past 30 minutes in the function check.
 4. **Version 2.0, forces through MuJoCo.** Springs and shocks, clutches that slip under load, and momentum.
 5. **[Later](#later):** other LEGO lines (Creator, trains), marching ants on loose parts, and suggested fixes for loose parts.
