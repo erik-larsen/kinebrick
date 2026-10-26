@@ -355,6 +355,14 @@
 0 // would only fit a hole as a stud does. It's a pin like any other, so here it's open-ended too.
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 8 2   R 6 16   L 6.25 2] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
 
+0 // Ball joints.
+
+0 FILE 92910.dat
+0 // Technic Ball Joint 2.25 Diameter with C-Shape Frame (a torque tube's): the pin hole in the
+0 // middle of the frame, behind the ball, that the shaft through the ball turns in, measured
+0 // from its shape (z from -30 to -50); the shadow library gives only the ball and the side holes.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=0 0 -30] [ori=1 0 0 0 0 -1 0 1 0]
+
 0 // Turntables.
 
 0 FILE 3679.dat

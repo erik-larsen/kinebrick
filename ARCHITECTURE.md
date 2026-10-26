@@ -496,7 +496,7 @@ A short hand-written file, `data/corrections.ldr`, adds what neither source cove
 - where a tyre sits on its rim;
 - gear tooth counts;
 - the teeth that lock a clutch gear to a driving ring, and the positions the ring clicks into;
-- the connection points of parts the shadow library doesn't describe (the engine crankshaft);
+- the connection points of parts the shadow library doesn't describe (the engine crankshaft), or describes only in part (the pin hole behind the ball of a torque tube's ball joint, 92910, that the drive shaft turns in);
 - where a rack's teeth are: the LDraw shapes draw them 8 LDU apart, but they're really one gear tooth, 7.854 LDU;
 - which parts may slide along which (below);
 - pins the shadow library closes at one end, as it does a stud, opened up: a towball pin's, and the 2x2 and 4x4 turntables', whose tops turn on their bases by that pin;
@@ -666,7 +666,7 @@ For the length of a drag, KineBrick holds still every part it can without stoppi
 **What it never holds, or holds differently:**
 
 - **Not in a way that carries along the shaft a part turns on**, if that shaft could have stayed put (a clutch gear freewheeling on a gearbox's output shaft).
-- **Not carried round by a shaft that has to turn about the part's own axis:** such a part is held against the frame instead (an assembly hanging on a tractor's driven rear axle stays level).
+- **Not carried round by a shaft that has to turn about the part's own axis:** such a part is held against the frame instead (an assembly hanging on a tractor's driven rear axle stays level). Or rather, against the body it hangs from that has a position of its own (see [Place the bodies](#8-place-the-bodies)), where that's not the frame: on the 42111 Dodge Charger, whose rear axle hangs on a ball joint, the differential on its half shafts is held against the axle, so one rear wheel turns the other the opposite way. (Held against the car, it left a rear wheel turning only by swinging the whole axle on its ball.)
 - **Not parts in a closed loop**, since whether one is needed can't be told from the starting instant alone (a steering tie rod doesn't turn at straight ahead, but must as soon as the wheels do). What turns in a motor is held all the same: its axis stays put in the motor (the 42129 Mercedes-Benz Zetros's two motors, their axles through one beam, drive its centre differential's housing, which turns the rear axles against the front ones only with the motors held).
 - **Not wheels on the ground**, since rolling is their job, nor a string's pulleys, which turn as it runs round them.
 - **Worms lock:** a worm is held still during any drag that would drive it from its gear's side.

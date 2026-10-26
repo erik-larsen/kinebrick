@@ -585,6 +585,13 @@ export class Kinematics {
     return { parent: joint.bodyA === body ? joint.bodyB : joint.bodyA, joint: j };
   }
 
+  // The root of the part of the tree a body is in: the frame, or a body joined to the rest only
+  // by joints the tree doesn't follow (a rear axle hung on a ball joint).
+  private treeRoot(body: number): number {
+    for (let link = this.parentLink(body); link; link = this.parentLink(body)) body = link.parent;
+    return body;
+  }
+
   // Whether a joint is in the tree that places the bodies.
   private inTree(joint: number): boolean {
     const j = this.mech.joints[joint];
@@ -1221,13 +1228,17 @@ export class Kinematics {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
     for (const body of toFrame) {
-      // Held against the frame: no turning about its joint's axis relative to the frame.
+      // Held against the frame: no turning about its joint's axis relative to the frame, or to
+      // the root of its own part of the tree, where that's not the frame (the 42111 Dodge
+      // Charger's rear axle, hung on a ball joint: held against the car, the differential on
+      // its half shafts left a rear wheel turning only by swinging the whole axle on its ball).
       const joint = this.mech.joints[this.parentJoint[body]];
       const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+      const root = this.treeRoot(body);
       const row = new Array(n).fill(0);
       for (let k = 0; k < 3; k++) {
         row[6 * body + k] += d.getComponent(k);
-        row[6 * 0 + k] -= d.getComponent(k);
+        row[6 * root + k] -= d.getComponent(k);
       }
       rows.push(row);
     }
