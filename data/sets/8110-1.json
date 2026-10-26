@@ -243,11 +243,11 @@
     ]
   },
   "generated": {
-    "commit": "4eb72fb",
-    "date": "2026-10-24",
+    "commit": "328d5bb",
+    "date": "2026-10-25",
     "counts": {
-      "partly": 4,
-      "works": 5,
+      "partly": 5,
+      "works": 4,
       "no": 7
     },
     "loose": [
@@ -335,7 +335,7 @@
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -353,6 +353,9 @@
             1.5,
             -1.5
           ]
+        ],
+        "still": [
+          "p1133 2851"
         ]
       },
       {

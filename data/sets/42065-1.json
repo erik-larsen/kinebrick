@@ -83,11 +83,11 @@
     ]
   },
   "generated": {
-    "commit": "007c2d5",
-    "date": "2026-10-24",
+    "commit": "328d5bb",
+    "date": "2026-10-25",
     "counts": {
-      "no": 3,
-      "partly": 2,
+      "partly": 3,
+      "works": 2,
       "skipped": 1
     },
     "loose": [
@@ -100,72 +100,63 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p521 57519",
           "p651 57518"
-        ]
-      },
-      {
-        "result": "no",
-        "turned": [
-          [
-            0,
-            0
-          ]
         ],
-        "still": [
-          "p524 57519",
-          "p688 57518"
-        ],
-        "why": [
-          "p289 32209 is part of the frame"
-        ]
-      },
-      {
-        "result": "no",
-        "turned": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ],
-        "still": [
-          "p521 57519",
+        "moved": [
           "p524 57519"
-        ],
-        "why": [
-          "p289 32209 is part of the frame"
         ]
       },
       {
         "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
+          ]
+        ],
+        "moved": [
+          "p521 57519"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
           ],
           [
             1.5,

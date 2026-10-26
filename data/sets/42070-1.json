@@ -180,11 +180,11 @@
     ]
   },
   "generated": {
-    "commit": "d3d792d",
+    "commit": "328d5bb",
     "date": "2026-10-25",
     "counts": {
-      "partly": 6,
-      "no": 4,
+      "partly": 9,
+      "no": 1,
       "skipped": 1
     },
     "loose": [
@@ -265,15 +265,14 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p160 18575",
           "p406 18946",
           "p390 76244",
           "p430 18575",
@@ -349,11 +348,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -367,11 +366,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [

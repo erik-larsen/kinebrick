@@ -127,10 +127,11 @@
     ]
   },
   "generated": {
-    "commit": "007c2d5",
-    "date": "2026-10-24",
+    "commit": "328d5bb",
+    "date": "2026-10-25",
     "counts": {
-      "no": 6,
+      "partly": 5,
+      "works": 1,
       "skipped": 1
     },
     "loose": [
@@ -251,86 +252,61 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p2612 57519",
-          "p2626 57518",
-          "p34 4019",
-          "p13 32269"
-        ],
-        "why": [
-          "p569 4019 is part of the frame"
+          "p2626 57518"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p2670 57518"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
           ]
         ],
         "still": [
           "p2614 57519",
-          "p2670 57518",
-          "p663 4019",
-          "p615 32269"
-        ],
-        "why": [
-          "p1195 4019 is part of the frame"
+          "p2612 57519"
         ]
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
-          ],
-          [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p2612 57519",
-          "p2614 57519"
-        ],
-        "why": [
-          "p569 4019 is part of the frame",
-          "p1195 4019 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
-          ]
-        ],
-        "still": [
-          "p1397 2853",
-          "p1409 2851",
-          "p1410 2851",
-          "p1398 2852"
-        ],
-        "why": [
-          "p569 4019 is part of the frame"
-        ]
-      },
-      {
-        "result": "no",
-        "turned": [
-          [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -341,17 +317,14 @@
           "p2902 6178",
           "p2716 3703",
           "p2732 3703"
-        ],
-        "why": [
-          "p125 3647 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -361,9 +334,6 @@
           "p2970 6629",
           "p2984 32278",
           "p2999 42023"
-        ],
-        "why": [
-          "p1247 3647 is part of the frame"
         ]
       },
       {

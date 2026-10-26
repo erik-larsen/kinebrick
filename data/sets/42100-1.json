@@ -139,11 +139,11 @@
     ]
   },
   "generated": {
-    "commit": "d3d792d",
+    "commit": "328d5bb",
     "date": "2026-10-25",
     "counts": {
-      "no": 8,
-      "works": 1
+      "partly": 6,
+      "no": 3
     },
     "loose": [
       "p128 42100 - 23816c02",
@@ -273,11 +273,11 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -286,11 +286,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -299,15 +299,15 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -316,41 +316,42 @@
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
             -1.5
           ]
+        ],
+        "still": [
+          "p1927 42003 against p87 42003",
+          "p516 18938 against p515 18939"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
           "p2971 42003 against p1927 42003",
           "p1481 42100 - 62274c02 against p1480 42100 - u9487c01",
           "p1502 42100 - 62274c02 against p1501 42100 - u9487c01"
-        ],
-        "why": [
-          "p1718 32270 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [

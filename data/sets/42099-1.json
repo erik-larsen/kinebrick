@@ -125,14 +125,14 @@
     ]
   },
   "generated": {
-    "commit": "007c2d5",
-    "date": "2026-10-24",
+    "commit": "328d5bb",
+    "date": "2026-10-25",
     "counts": {
-      "no": 5,
-      "partly": 1,
+      "partly": 3,
+      "no": 2,
+      "works": 2,
       "not checked": 1,
-      "skipped": 1,
-      "works": 1
+      "skipped": 1
     },
     "loose": [
       "p40 42099 - 52731",
@@ -251,23 +251,16 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p861 32270",
-          "p510 42099 - 18575",
-          "p465 32270",
-          "p486 62821",
           "p1854 23798",
           "p1858 23798"
-        ],
-        "why": [
-          "p870 42099 - 18575 is part of the frame"
         ]
       },
       {
@@ -288,11 +281,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
             0,
@@ -304,26 +297,15 @@
           "p1858 23798",
           "p1856 23798",
           "p1860 23798"
-        ],
-        "why": [
-          "p870 42099 - 18575 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p587 87761",
-          "p559 42099 - 46490c01",
-          "p569 42099 - 46490c01"
-        ],
-        "why": [
-          "p1088 32270 is part of the frame"
         ]
       },
       {

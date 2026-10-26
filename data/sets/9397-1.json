@@ -136,13 +136,12 @@
     ]
   },
   "generated": {
-    "commit": "d3d792d",
+    "commit": "328d5bb",
     "date": "2026-10-25",
     "counts": {
-      "no": 5,
-      "not checked": 1,
-      "partly": 2,
-      "works": 1
+      "works": 3,
+      "partly": 5,
+      "not checked": 1
     },
     "loose": [
       "p241 58124",
@@ -170,20 +169,20 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -191,11 +190,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -204,11 +203,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -216,11 +215,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ]
       },
