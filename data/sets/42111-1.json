@@ -158,13 +158,13 @@
     ]
   },
   "generated": {
-    "commit": "007c2d5",
-    "date": "2026-10-24",
+    "commit": "92f4e58",
+    "date": "2026-10-26",
     "counts": {
-      "works": 5,
-      "partly": 2,
-      "skipped": 2,
-      "no": 1
+      "works": 3,
+      "no": 4,
+      "partly": 1,
+      "skipped": 2
     },
     "loose": [
       "p54 90370",
@@ -185,18 +185,19 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ],
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p8 62821",
           "p56 59426",
           "p210 94925",
           "p217 18946",
@@ -207,12 +208,15 @@
         ]
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p473 56908"
         ]
       },
       {
@@ -239,12 +243,20 @@
         "result": "skipped"
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p471 56908",
+          "p473 56908",
+          "p8 62821"
+        ],
+        "why": [
+          "p0 92910 has no joint to work"
         ]
       },
       {
