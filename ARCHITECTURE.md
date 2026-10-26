@@ -965,7 +965,7 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 - The date, how many functions came out each way, and the model's loose parts.
 - One entry per function, in the same order as `curated.functions`: its result, how far each control went each way (`turned`), the parts in `moves` that didn't move (`still`), those in `stays` that did (`moved`), and `why`, where it couldn't work a control.
 
-**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. A set that takes longer than 30 minutes (`--limit`) is stopped and written down as timed out. `npm run functions -- 855 8880` checks only those sets.
+**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. A set that takes longer than 30 minutes (`--limit`) is stopped and written down as timed out. `npm run functions -- 855 8880` checks only those sets. Once a minute it says how far it's got: how many sets are done and left, their functions' results so far (works, partly, no, and skipped or not checked, each with its share), and which sets it's checking, with how long each has taken so far.
 
 **What it can't do yet.** It doesn't click a slide between positions set by a `SLIDE` line, as the viewer does (the 956's gear lever), shift a gearbox's rings, or run a motor, so those functions come out `partly` or `no` here even where the viewer works them.
 

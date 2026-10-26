@@ -169,9 +169,15 @@ async function main() {
     .filter((s) => s.data.curated.functions?.length)
     .sort((a, b) => statSync(a.data.curated.model).size - statSync(b.data.curated.model).size);
 
+  // The sets being checked, and when each was started; how many are done, and their functions'
+  // results so far.
+  const checking = new Map<string, number>();
+  let done = 0;
+  const results: Partial<Record<Result, number>> = {};
   const run = (s: (typeof files)[number]) =>
     new Promise<void>((resolve) => {
       const started = Date.now();
+      checking.set(s.data.set, started);
       const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file], { stdio: ['ignore', 'pipe', 'inherit'] });
       let out = '';
       let timedOut = false;
@@ -199,15 +205,30 @@ async function main() {
         writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
         const summary = 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
         console.log(`${data.set}: ${summary} (${seconds} s)`);
+        checking.delete(s.data.set);
+        done++;
+        if ('counts' in found) for (const [k, n] of Object.entries(found.counts)) results[k as Result] = (results[k as Result] ?? 0) + n;
         resolve();
       });
     });
 
   console.log(`Checking ${files.length} sets, ${jobs} at a time`);
+  // Once a minute, how far it's got, with its functions' results so far as shares of all their
+  // functions, as the README has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
+  // (11%), 21 skipped or not checked (26%); checking 42082-1 (14 min), 9397-1 (3 min)".
+  const progress = setInterval(() => {
+    const now = Date.now();
+    const sets = [...checking].map(([set, started]) => `${set} (${Math.floor((now - started) / 60_000)} min)`);
+    const all = Object.values(results).reduce((sum, n) => sum + n, 0);
+    const share = (n: number, what: string) => `${n} ${what} (${all ? Math.round((100 * n) / all) : 0}%)`;
+    const shares = [share(results.works ?? 0, 'works'), share(results.partly ?? 0, 'partly'), share(results.no ?? 0, 'no'), share((results.skipped ?? 0) + (results['not checked'] ?? 0), 'skipped or not checked')];
+    console.log(`${done} done, ${files.length - done} left; ${shares.join(', ')}; checking ${sets.join(', ')}`);
+  }, 60_000);
   const queue = [...files];
   await Promise.all(
     Array.from({ length: jobs }, async () => {
       for (let s = queue.shift(); s; s = queue.shift()) await run(s);
     }),
   );
+  clearInterval(progress);
 }
