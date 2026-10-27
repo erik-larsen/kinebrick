@@ -3,9 +3,10 @@
 //
 // Which pairs of parts are checked: parts on different bodies (parts on one body never move
 // against each other) that aren't directly connected (an axle in a hole, a tyre on its rim
-// and meshing gear teeth all touch legitimately) and don't already touch, or nearly touch,
-// when the model loads (a rim pressed against a brick; a bush built flush against a brick,
-// which on the real model just rubs past it as the wheel steers).
+// and meshing gear teeth all touch legitimately; the caller counts any two gears as connected)
+// and don't already touch, or nearly touch, when the model loads (a rim pressed against a
+// brick; a bush built flush against a brick, which on the real model just rubs past it as the
+// wheel steers).
 //
 // The shapes are the parts' own LDraw meshes, tested with three-mesh-bvh, a library that
 // sorts each mesh's triangles into a tree of boxes so two meshes can be tested quickly. Pairs

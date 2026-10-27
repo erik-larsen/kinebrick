@@ -455,6 +455,10 @@ async function start() {
       }
     }
     for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
+    // Nor are any two gears: KineBrick doesn't know where each gear's teeth are round it, so
+    // two gears coming into mesh would seem to run into each other tip to tip, short of it (the
+    // 952 Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short).
+    for (const a of mech.gears) for (const b of mech.gears) if (a.part !== b.part) connected.add(pairKey(a.part, b.part));
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
     else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
 

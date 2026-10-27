@@ -90,7 +90,7 @@ describe('952 Tractor', () => {
     const joint = kin.parentLink(lever)!.joint;
     expect(meshesChanged(mech, kin.poses)).toBe(false);
     kin.holdWhatTheDragDoesntNeed(lever, () => kin.jointMotion(joint) !== null, joint);
-    expect(kin.turnJoint(joint, -1.39)).toBeCloseTo(-1.39, 6); // as far down as the viewer lets it go, where the gears' teeth meet
+    expect(kin.turnJoint(joint, -1.396)).toBeCloseTo(-1.396, 6); // as far down as the viewer lets it go (80 degrees), where the harrow's wheels reach the ground
     kin.letGoAfterDrag();
     expect(meshesChanged(mech, kin.poses)).toBe(true);
     const lowered = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));

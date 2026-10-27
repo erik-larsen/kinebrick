@@ -260,6 +260,7 @@ The user drags a part (see [Drags](#drags)); the solver works out how every body
 **Pairs that aren't checked:**
 
 - parts directly connected (an axle in a hole, a tyre on its rim and meshing gear teeth all touch legitimately);
+- any two gears: KineBrick doesn't know where each gear's teeth are round it, so two gears coming into mesh would seem to run into each other tip to tip, short of it (the 952 Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short, its gears not quite meshing);
 - parts on the same pin or axle (two beams on one pin lie face to face);
 - parts that already touch when the model loads;
 - parts within an LDU of each other when the model loads: real models are built tight, and a bush built flush against a brick just rubs past it as the wheel steers.
