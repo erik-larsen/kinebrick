@@ -585,11 +585,14 @@ export class Kinematics {
     return { parent: joint.bodyA === body ? joint.bodyB : joint.bodyA, joint: j };
   }
 
-  // The root of the part of the tree a body is in: the frame, or a body joined to the rest only
-  // by joints the tree doesn't follow (a rear axle hung on a ball joint).
-  private treeRoot(body: number): number {
-    for (let link = this.parentLink(body); link; link = this.parentLink(body)) body = link.parent;
-    return body;
+  // What the shaft a body turns on turns in: up the tree from the body, past everything turning
+  // on that same line (the shaft, and anything else on it), the first body that doesn't (a
+  // differential's axle housing, round its half shafts), or a root (the frame).
+  private housing(body: number): number {
+    const joint = this.mech.joints[this.parentJoint[body]];
+    let link = this.parentLink(body)!;
+    while (this.parentJoint[link.parent] >= 0 && onOneLine(joint, this.mech.joints[this.parentJoint[link.parent]])) link = this.parentLink(link.parent)!;
+    return link.parent;
   }
 
   // Whether a joint is in the tree that places the bodies.
@@ -1106,14 +1109,7 @@ export class Kinematics {
   private sharesAxisWithShaft(body: number): boolean {
     const link = this.parentLink(body)!;
     const shaftJoint = this.parentJoint[link.parent];
-    if (shaftJoint < 0) return false;
-    const a = this.mech.joints[link.joint];
-    const b = this.mech.joints[shaftJoint];
-    const da = axisOf(a.from, a.to);
-    const db = axisOf(b.from, b.to);
-    if (new Vector3().crossVectors(da, db).length() > 0.01) return false;
-    const offset = new Vector3().subVectors(b.from, a.from);
-    return offset.addScaledVector(da, -offset.dot(da)).length() < 1;
+    return shaftJoint >= 0 && onOneLine(this.mech.joints[link.joint], this.mech.joints[shaftJoint]);
   }
 
   // Whether the drag could still happen with `body` not turning on its joint.
@@ -1228,13 +1224,16 @@ export class Kinematics {
     const rows: Row[] = [];
     const n = 6 * this.bodyCount;
     for (const body of toFrame) {
-      // Held against the frame: no turning about its joint's axis relative to the frame, or to
-      // the root of its own part of the tree, where that's not the frame (the 42111 Dodge
-      // Charger's rear axle, hung on a ball joint: held against the car, the differential on
-      // its half shafts left a rear wheel turning only by swinging the whole axle on its ball).
+      // Held against the frame: no turning about its joint's axis relative to what its shaft
+      // turns in (see housing), which is the frame, or what stands for it: the 42111 Dodge
+      // Charger's rear axle, hung on a ball joint (held against the car, the differential on its
+      // half shafts left a rear wheel turning only by swinging the whole axle on its ball); the
+      // 8110 Unimog's axles (its frame, the body with the most structure parts, is the cab,
+      // which tilts: held against the cab, a differential left a wheel turning only by tipping
+      // the cab with it, while the truck itself couldn't roll).
       const joint = this.mech.joints[this.parentJoint[body]];
       const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
-      const root = this.treeRoot(body);
+      const root = this.housing(body);
       const row = new Array(n).fill(0);
       for (let k = 0; k < 3; k++) {
         row[6 * body + k] += d.getComponent(k);
@@ -2253,6 +2252,15 @@ export class Kinematics {
 
 function axisOf(from: Vector3, to: Vector3): Vector3 {
   return new Vector3().subVectors(to, from).normalize();
+}
+
+// Whether two joints turn about one line (to within half a degree and an LDU, as built).
+function onOneLine(a: Joint, b: Joint): boolean {
+  const da = axisOf(a.from, a.to);
+  const db = axisOf(b.from, b.to);
+  if (new Vector3().crossVectors(da, db).length() > 0.01) return false;
+  const offset = new Vector3().subVectors(b.from, a.from);
+  return offset.addScaledVector(da, -offset.dot(da)).length() < 1;
 }
 
 // The lowest point of a circle (a tyre's tread at its middle), or null if the circle lies flat.
