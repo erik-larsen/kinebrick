@@ -22,6 +22,11 @@ function looseParts(text: string, name = ''): string[] {
 // Real models KineBrick can't fully read yet, and what they need (M7 works through them).
 const NOT_YET = [
   '8448-Super Car.mpd', // hinges, universal joints, its tyres
+  // Their round caps (a 2 x 2 round brick on an axle, on a bush between four studs) and the
+  // inline and V-6's fans (a round plate against the end of an axle pin)
+  '858-Auto Engines-Boxer Engine.mpd',
+  '858-Auto Engines-Inline Engine.mpd',
+  '858-Auto Engines-V-6 Engine.mpd',
   // The 1980s sets, brought in to be tried by hand, not yet worked through
   '1972-Go-Kart.mpd',
   '8024-Universal Set.mpd',

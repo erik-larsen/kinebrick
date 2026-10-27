@@ -35,7 +35,7 @@ The set's name, year and links are in the CSV, not here.
 
 | Field | |
 |---|---|
-| `model` | The model file the set's parts are counted in, for `functions`. |
+| `model` | The model file the set's parts are counted in, for `functions`, unless a function names its own. |
 | `instructions` | Which book or pages build the model, and where its functions are drawn, in plain English. |
 | `functions` | What each of the set's controls is supposed to do: drafted from its building instructions and checked by someone who knows the set. They're the reference the joints probe lacks: it can tell that a control moved, but not whether it moved the right thing. |
 | `questions` | What the instructions leave open, each a `question`, with its `answer` once someone gives one. |
@@ -55,5 +55,6 @@ Each function has:
 | `first` | Controls to work first, in order, each `{"control": "p12 3482", "by": 1.5}` (radians, or LDU for a slide), for a function that only works after another one (lower the implement, then roll). |
 | `skip` | Why it isn't modelled: a ratchet, brake or spring only matters under gravity or force, which KineBrick doesn't simulate yet. Kept so it isn't forgotten. |
 | `note` | Anything else, such as which test checks a function the fields can't express. |
+| `model` | The model file it's tried on, and its parts counted in, for a set built as several models (the 858 Auto Engines' four engines); otherwise the set's `model`. A loose part in it, if it isn't the set's model, is listed in `generated` with the model it's in. |
 
-A part is named as the joints probe names it: `p` and its place among the model's parts in file order, then its part number (`p483 3736`, the 484th part, a 3736). Its place is counted in the model file named by `model`. Everything after the first space is the part's name, which may have spaces of its own (`p250 120270 - 4185a`).
+A part is named as the joints probe names it: `p` and its place among the model's parts in file order, then its part number (`p483 3736`, the 484th part, a 3736). Its place is counted in the model file named by the function's `model`, or else the set's. Everything after the first space is the part's name, which may have spaces of its own (`p250 120270 - 4185a`).

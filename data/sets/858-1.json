@@ -1,0 +1,257 @@
+{
+  "set": "858-1",
+  "imported": {
+    "instructions": []
+  },
+  "curated": {
+    "model": "models/858-Auto Engines-2-Cycle Engine.mpd",
+    "instructions": "None found: neither LEGO's site nor lego.brickinstructions.com has this set's book, so the functions are inferred from the four models, by Takeshi Takahashi. The set builds four engines, each a model of its own, each of whose functions names its model.",
+    "functions": [
+      {
+        "does": "2-cycle engine: turning the hand wheel, the 24 tooth gear beside the engine with a pin for a handle, turns the crankshaft through a rubber band, about 2.9 times as fast, so its one piston runs up and down.",
+        "source": "inferred: the rubber band runs from the belt wheels on the hand wheel's axle to a bush on the crankshaft",
+        "model": "models/858-Auto Engines-2-Cycle Engine.mpd",
+        "control": "p20 3648a",
+        "moves": [
+          "p7 3705",
+          "p15 3652"
+        ]
+      },
+      {
+        "does": "Boxer engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its six pistons run in and out, three each side.",
+        "source": "inferred: the crankshaft is built of 24 tooth gears joined by axles off their middles",
+        "model": "models/858-Auto Engines-Boxer Engine.mpd",
+        "control": "p91 3649",
+        "moves": [
+          "p67 3652",
+          "p71 3652",
+          "p75 3652",
+          "p79 3652",
+          "p83 3652",
+          "p87 3652"
+        ]
+      },
+      {
+        "does": "Boxer engine: as the crankshaft turns, rubber bands from the belt wheels at its ends turn the fan and the axle across the top of the engine.",
+        "source": "inferred: the two rubber bands run from the crankshaft's belt wheels to bushes on the fan's axle and the top axle",
+        "model": "models/858-Auto Engines-Boxer Engine.mpd",
+        "control": "p91 3649",
+        "moves": [
+          "p138 3706",
+          "p157 3706"
+        ]
+      },
+      {
+        "does": "Inline engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its three pistons run up and down.",
+        "source": "inferred: the crankshaft is built of 24 tooth gears joined by axles off their middles",
+        "model": "models/858-Auto Engines-Inline Engine.mpd",
+        "control": "p43 3649",
+        "moves": [
+          "p23 3652",
+          "p27 3652",
+          "p31 3652"
+        ]
+      },
+      {
+        "does": "Inline engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the distributor's axle.",
+        "source": "inferred: the two rubber bands run from the crankshaft's belt wheels to bushes on the fan's axle pin and the distributor's axle",
+        "model": "models/858-Auto Engines-Inline Engine.mpd",
+        "control": "p43 3649",
+        "moves": [
+          "p110 3749",
+          "p52 3706"
+        ]
+      },
+      {
+        "does": "Inline engine: the crankshaft's four 24 tooth gears turn the camshaft's four beside them, at the same speed.",
+        "source": "inferred: the camshaft's gears sit beside the crankshaft's; the model has the camshaft 2 LDU further from the crankshaft than the hole it runs in, 62 LDU apart instead of 60, so in it the gears only just miss",
+        "model": "models/858-Auto Engines-Inline Engine.mpd",
+        "control": "p43 3649",
+        "moves": [
+          "p32 3708"
+        ]
+      },
+      {
+        "does": "Inline engine: pins on the camshaft's gears lift the three push rods in turn, and each rod tips its valve's rocker on the axle across the top of the cylinders.",
+        "source": "inferred: the push rods stand on the camshaft's pins, under the rockers",
+        "model": "models/858-Auto Engines-Inline Engine.mpd",
+        "control": "p43 3649",
+        "moves": [
+          "p157 3706",
+          "p160 3706",
+          "p163 3706",
+          "p179 3700",
+          "p181 3700",
+          "p183 3700"
+        ],
+        "note": "KineBrick has no cams yet: a part pushed by another it only touches, here a rod resting on a pin, and dropping back under gravity"
+      },
+      {
+        "does": "V-6 engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its six pistons run in and out of the two cylinder banks, which stay where they are: an axle across their tops and the engine block hold them in a V.",
+        "source": "inferred: the crankshaft is built of 24 tooth gears joined by axles off their middles; each bank hangs on an axle along the block, and the top axle runs through both",
+        "model": "models/858-Auto Engines-V-6 Engine.mpd",
+        "control": "p133 3649",
+        "moves": [
+          "p16 3652",
+          "p20 3652",
+          "p24 3652",
+          "p28 3652",
+          "p32 3652",
+          "p36 3652"
+        ],
+        "stays": [
+          "p0 3702",
+          "p38 3701"
+        ],
+        "note": "In the viewer the crank can't be dragged or spun yet: KineBrick takes the bigger cylinder bank for the frame, so the crankshaft turns in the block, which hangs off the frame, and isn't taken for a knob. The fan or the side axle turns it. This check works the crankshaft's joint directly, so it passes."
+      },
+      {
+        "does": "V-6 engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the long axle along the engine's side.",
+        "source": "inferred: the two rubber bands run from the crankshaft's belt wheels to bushes on the fan's axle pin and the side axle",
+        "model": "models/858-Auto Engines-V-6 Engine.mpd",
+        "control": "p133 3649",
+        "moves": [
+          "p158 3749",
+          "p114 3708"
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "question": "Is the inline engine's camshaft meant to be 60 LDU from the crankshaft, in the hole beside the one the model puts it 2 LDU from, so its gears mesh?"
+      },
+      {
+        "question": "What holds the boxer and inline engines' round cap (a 2 x 2 round brick on an axle) to the block: does the bush under it fit between four studs?"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6da8518",
+    "uncommitted": true,
+    "date": "2026-10-27",
+    "counts": {
+      "works": 7,
+      "partly": 2
+    },
+    "loose": [
+      "p161 3713 in models/858-Auto Engines-Boxer Engine.mpd",
+      "p162 3705 in models/858-Auto Engines-Boxer Engine.mpd",
+      "p163 3941 in models/858-Auto Engines-Boxer Engine.mpd",
+      "p164 3713 in models/858-Auto Engines-Boxer Engine.mpd",
+      "p56 3713 in models/858-Auto Engines-Inline Engine.mpd",
+      "p57 3705 in models/858-Auto Engines-Inline Engine.mpd",
+      "p58 3941 in models/858-Auto Engines-Inline Engine.mpd",
+      "p59 3713 in models/858-Auto Engines-Inline Engine.mpd",
+      "p112 4032a in models/858-Auto Engines-Inline Engine.mpd",
+      "p113 3623 in models/858-Auto Engines-Inline Engine.mpd",
+      "p114 3623 in models/858-Auto Engines-Inline Engine.mpd",
+      "p115 3623 in models/858-Auto Engines-Inline Engine.mpd",
+      "p116 3623 in models/858-Auto Engines-Inline Engine.mpd",
+      "p117 4032a in models/858-Auto Engines-Inline Engine.mpd",
+      "p151 4032a in models/858-Auto Engines-V-6 Engine.mpd",
+      "p152 3623 in models/858-Auto Engines-V-6 Engine.mpd",
+      "p153 3623 in models/858-Auto Engines-V-6 Engine.mpd",
+      "p154 3623 in models/858-Auto Engines-V-6 Engine.mpd",
+      "p155 3623 in models/858-Auto Engines-V-6 Engine.mpd",
+      "p156 4032a in models/858-Auto Engines-V-6 Engine.mpd",
+      "p162 3713 in models/858-Auto Engines-V-6 Engine.mpd",
+      "p163 3705 in models/858-Auto Engines-V-6 Engine.mpd",
+      "p164 3941 in models/858-Auto Engines-V-6 Engine.mpd",
+      "p165 3713 in models/858-Auto Engines-V-6 Engine.mpd"
+    ],
+    "functions": [
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p32 3708"
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p157 3706",
+          "p160 3706",
+          "p163 3706",
+          "p179 3700",
+          "p181 3700",
+          "p183 3700"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -48,11 +48,30 @@ interface Fn {
   stays?: string[];
   first?: { control: string; by: number }[];
   skip?: string;
+  model?: string; // its own model, for a set with several (the 858's four engines)
 }
 
-// Checks one set's functions on its model; what goes in its generated section, but for the commit and date.
+// Checks one set's functions on its model, or each on its own; what goes in its generated
+// section, but for the commit and date.
 function check(set: { curated: { model: string; functions: Fn[] } }) {
   const { model, functions } = set.curated;
+  const modelOf = (fn: Fn) => fn.model ?? model;
+  const checked: Checked[] = [];
+  const loose: string[] = [];
+  for (const m of new Set(functions.map(modelOf))) {
+    const found = checkModel(m, functions.filter((fn) => modelOf(fn) === m));
+    functions.forEach((fn, i) => {
+      if (modelOf(fn) === m) checked[i] = found.checked.shift()!;
+    });
+    loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
+  }
+  const counts: Partial<Record<Result, number>> = {};
+  for (const c of checked) counts[c.result] = (counts[c.result] ?? 0) + 1;
+  return { counts, loose, functions: checked };
+}
+
+// Checks functions on one model: each one's result, and the model's loose parts.
+function checkModel(model: string, functions: Fn[]) {
   const { parts, mech, kin } = loadModel(model, model.startsWith('omr/'));
   const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
   // A part named as the joints probe names it: "p483 3736".
@@ -135,9 +154,7 @@ function check(set: { curated: { model: string; functions: Fn[] } }) {
       return { result: 'error' as Result, why: [(err as Error).message] };
     }
   });
-  const counts: Partial<Record<Result, number>> = {};
-  for (const c of checked) counts[c.result] = (counts[c.result] ?? 0) + 1;
-  return { counts, loose: mech.loose.map(name), functions: checked };
+  return { checked, loose: mech.loose.map(name) };
 }
 
 // ---------------------------------------------------------------------------

@@ -2295,6 +2295,23 @@
       {"gender":"M","caps":"none","start":[10,0,0],"dir":[1,0,0],"secs":[{"shape":"H","radius":4,"length":10}]},
       {"gender":"F","caps":"none","start":[-8,0,0],"dir":[1,0,0],"secs":[{"shape":"R","radius":6,"length":16}]}
     ],
+    "3176.dat": [
+      {"gender":"F","caps":"one","start":[-10,8,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-10,8,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[10,8,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[10,8,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[0,8,0],"dir":[0,-1,0],"secs":[{"shape":"S","radius":16,"length":4}]},
+      {"gender":"F","caps":"none","start":[0,8,-30],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":8}]},
+      {"gender":"F","caps":"one","start":[-10,8,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-10,8,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[10,8,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[10,8,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[0,8,-30],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":8}]},
+      {"gender":"M","caps":"one","start":[-10,0,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"M","caps":"one","start":[-10,0,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"M","caps":"one","start":[10,0,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"M","caps":"one","start":[10,0,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]}
+    ],
     "32000.dat": [
       {"gender":"M","caps":"one","start":[10,0,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
       {"gender":"F","caps":"one","start":[10,-4,0],"dir":[0,1,0],"secs":[{"shape":"R","radius":4,"length":4}]},
@@ -2967,6 +2984,11 @@
     "3483.dat": [
       {"gender":"F","caps":"none","start":[0,0,-9],"dir":[0,0,1],"secs":[{"shape":"T","radius":22,"length":18}]},
       {"gender":"M","caps":"none","start":[0,0,-9],"dir":[0,0,1],"secs":[{"shape":"W","radius":31.002,"length":18}]}
+    ],
+    "3496c01.dat": [
+      {"gender":"F","caps":"one","start":[-10,8,0],"dir":[0,-1,0],"secs":[{"shape":"S","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[10,8,0],"dir":[0,-1,0],"secs":[{"shape":"S","radius":6,"length":4}]},
+      {"gender":"M","caps":"one","start":[0,-15.575,-13.588],"dir":[0,-0.492,-0.87],"secs":[{"shape":"R","radius":4,"length":10}]}
     ],
     "3581.dat": [
       {"gender":"M","caps":"one","start":[0,0,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
