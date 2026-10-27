@@ -108,9 +108,9 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 453 | 37% |
+| Works | 455 | 37% |
 | Partly | 383 | 32% |
-| Doesn't work | 204 | 17% |
+| Doesn't work | 202 | 17% |
 | Skipped or not checked | 175 | 14% |
 
 Of the functions checked, 44% work in full. Only 12 of the 185 sets have every function working.
@@ -118,7 +118,7 @@ Of the functions checked, 44% work in full. Only 12 of the 185 sets have every f
 **Major things left:**
 
 1. **Finish the surveys.** The function check is done, and the OMR control surveys' results are on the `omr-survey` branch.
-2. **Refine the kinematics from those results.** This is the bulk of the remaining work: turning the 383 "partly" and 204 "doesn't work" functions into working ones, a part type or connection rule at a time. The next step is to group them by cause, so each fix lifts many sets at once.
+2. **Refine the kinematics from those results.** This is the bulk of the remaining work: turning the 383 "partly" and 202 "doesn't work" functions into working ones, a part type or connection rule at a time. The next step is to group them by cause, so each fix lifts many sets at once.
 3. **Optimize, only once the refine phase is done.** Solve only the part of a mechanism a control reaches, and cache each set's inferred mechanism. Speed matters already: three sets ran past 30 minutes in the function check.
 4. **Version 2.0, forces through MuJoCo.** Springs and shocks, clutches that slip under load, and momentum.
 5. **[Later](#later):** other LEGO lines (Creator, trains), marching ants on loose parts, and suggested fixes for loose parts.
