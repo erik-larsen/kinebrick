@@ -19,7 +19,7 @@
 // order as curated.functions: its result, how far each control went each way, and the parts that
 // didn't do what they should ("still": in `moves` but didn't move; "moved": in `stays` but did).
 
-import { execSync, spawn } from 'node:child_process';
+import { execFileSync, execSync, spawn } from 'node:child_process';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
@@ -159,7 +159,8 @@ async function main() {
   const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : LIMIT_MINUTES;
   const filters = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
   const commit = execSync('git rev-parse --short HEAD').toString().trim();
-  const uncommitted = execSync("git status --porcelain -- src data ':!data/sets'").toString().trim() !== '';
+  // No shell, so the pathspec isn't left quoted by Windows' cmd.
+  const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets']).toString().trim() !== '';
   const date = new Date().toISOString().slice(0, 10);
 
   // The sets with functions, smallest model first.
