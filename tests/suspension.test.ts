@@ -30,6 +30,7 @@ function swingArmCar(): { mech: Mechanism; arm: number; armJoint: number } {
     loops: [],
     strings: [],
     screws: [],
+    rests: [],
   };
   return { mech, arm: 3, armJoint: 2 };
 }

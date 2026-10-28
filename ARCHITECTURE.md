@@ -196,6 +196,12 @@ Like a worm, the screw can't be driven from its piston (see [Holds](#holds)): pu
 - **Parts stacked against it** that turn on the axle too ride along with it, turning against it (the swashplate's top half, which turns with the rotor while the bottom one doesn't).
 - **What stays put along its axle:** a connecting rod on a crank, which swings across its axle; the frame's holes; other parts held on the axle in several places; and other parts generally, held there by their neighbours or by friction.
 
+**Resting parts.** KineBrick has no gravity, so a part that only rests on another is kept touching whatever is highest under it, as its weight would keep it (`restingParts`). Both kinds are in the 858 inline engine's valve train:
+
+- **A push rod:** an upright axle with bushes on it and nothing else, turning in round holes in one other body, standing by its bottom bush on a shaft that turns across it below. It rests on the highest of that shaft's cylinders under its foot (the camshaft's pins, or the camshaft itself between them), or by a bush higher up on the hole under it. Its holes become slides that turn, so pins lift it as they come round under it, and it drops back after them.
+- **A rocker:** a part turning on an axle across a push rod, whose underside lies on the rod's top bush. It rests on the rod, or on whatever studs are under its parts' undersides, whichever is higher: when the rod drops, a valve's rocker comes down on the plate the rod stands through.
+- **Only where built resting:** the rod (and the rocker) must be built touching what it rests on, to within an LDU. A part built a little into a flat thing it rests on (the rockers, 1.6 LDU into the studs under them) rests where it's built: that's taken as much lower.
+
 **Decoration** connects to nothing that matters; each piece moves with the part whose connection point is nearest:
 
 - stickers (the parts the LDraw library calls stickers);
@@ -239,6 +245,7 @@ Joints and ground contact become equations between the bodies' speeds. [The solv
 | A sliding joint | Also lets them slide along it |
 | A ball joint | Lets them turn any way about its centre |
 | Two meshing gears | Their teeth move at the same speed where they touch, so their speeds are in the ratio of their tooth counts. The same for spur gears side by side, bevel gears at an angle, and a gear on a rack |
+| A part resting on others (a push rod on a camshaft) | Where it touches the highest of them, it moves as that does, towards it: it neither lifts off nor sinks in |
 | A part the user has frozen | Its body doesn't turn |
 | A tyre on the ground | The point touching the ground doesn't move up or down, or along the way the tyre rolls, so it rolls without slipping. Sideways it may scrub a little, as real tyres do |
 
@@ -327,6 +334,7 @@ Each connection is a rule about those numbers, written as "this combination of n
 | Sliding joint (a piston in its bore) | Both bodies move together, except for sliding along the axis | 5 |
 | A linear actuator's screw | Where the screw's thread meets the piston's nut, they move together across the thread, as a worm's thread and its gear's tooth do: the piston slides one lead for each turn of the input | 1 |
 | A part that slides and turns on an axle (a swashplate) | Both bodies move together, except for sliding along the axis and turning about it | 4 |
+| A part resting on others (a push rod on a camshaft's pins) | Where it touches whichever is highest under it now, both move at the same speed towards each other | 1 |
 | Ball joint (a towball in its socket) | Both bodies move the same at the ball's centre | 3 |
 | A body held only by a ball joint at each end (a steering link) | It turns about the line between the balls as the bodies at its ends do, on average. Nothing else would stop it spinning there, and nothing would make it. (Unless gears or a coupling turn it: a half shaft with a constant velocity joint's ball at each end, which turns its wheel's hub, isn't held so.) | 1 |
 | A body held only by a turning joint and a ball on that joint's axis (a towball in a steering rack, its tie rod's socket on the ball) | It doesn't turn on that joint. Nothing would make it, and with nothing to stop it, any amount of that spin could be mixed into a motion (the 8448 Super Car's steering, once its tyres stood on the ground) | 1 |
@@ -412,7 +420,7 @@ The equations depend on where things are: tyre contact points and axles move as 
 **Dead points.** A turn stops short of a *dead point*: a linkage at the end of its reach, such as a steering arm whose tie rod has come into line with it, so the rack can't push it further round. There its joints would have to turn faster and faster, and a step past it can't be followed (the loops can't be closed again, or closing them would flip the linkage over). So a step isn't taken, and the turn stops there and won't go on that way:
 
 - **if the fastest joint in a closed loop would turn more than half as fast again as in the step before**, for each turn of the joint being turned, as long as it turned no more than 10 degrees in the step before. (Other joints' rates may change for other reasons: a steered tractor's front wheels as it rolls and scrubs. And sampled more coarsely, an engine's connecting rods, geared up from a wheel the motor turns, swing faster and slower from step to step.)
-- **if after it a joint is left apart**, or closing the loops had to wrench well away from where its motion was taking it (the step is undone).
+- **if after it a joint is left apart**, or closing the loops had to wrench well away from where its motion was taking it (the step is undone). Not a resting part's joint: what it rests on may change in the step (a pin coming round under a push rod), and with it how fast it goes, as a dead point wouldn't.
 
 Gears keep that rate steady, and linkages change it gently, except near a dead point. Without this, an official car's steering, turned past its dead point, flipped its front wheels over and let its rack slip against its gear.
 
@@ -449,6 +457,8 @@ So after each step, KineBrick works out how far each has come apart, and moves e
 - **Rules that pass turning on** (gear meshes, universal joints, chains) **count a thousand times as much as the rest.** Being about speeds, a slip in them would never be undone, so where the rules can't all hold, a joint is left apart instead, which a turn notices ([step 7](#7-small-steps)).
 
 **Racks.** A rack that slides in what its gear turns in also has a gap of its own: how far it has slid short of what its gear has turned. A step's motion keeps a gear's rule only at the step's start. For a rack the tree reaches through a linkage (a steering rack on its tie rods), that left it a little behind its gear every step: each step's travel a fifth of a percent short at first, and up to a tenth short in the last steps before a dead point. Closing the loops now pulls it back.
+
+**Resting parts.** A resting part (see [step 4](#4-connect)) has a gap too: how far it is off whatever is highest under it now, or into it. Closing the loops puts it back on that. As a camshaft turns, that may be a different thing from the step before: the rod drops onto the plate it stands through as a pin goes from under it, or jumps up onto a pin that comes round beside its foot.
 
 **How it's solved.** By QR on the rules themselves, which keeps rounding errors small (on rules times their own transposes, an engine drifted):
 
@@ -635,7 +645,7 @@ What a drag does for the user is in the README's [Interaction](README.md#interac
 
 A part that turns like a knob is turned: one on a joint whose axis stays put in what it's mounted on. That's when it:
 
-- is mounted on the frame;
+- is mounted on the frame, or on something that can't move against it (the 858 V-6 engine's crankshaft turns in its block, which is held between its two cylinder banks, the bigger of which is the frame);
 - isn't part of a closed loop;
 - or turns on one axis wherever it's held: a shaft rather than a link.
 
@@ -670,6 +680,7 @@ For the length of a drag, KineBrick holds still every part it can without stoppi
 - **Not carried round by a shaft that has to turn about the part's own axis:** such a part is held against the frame instead (an assembly hanging on a tractor's driven rear axle stays level). Or rather, against what the shaft turns in: the first body up the tree from it that doesn't turn on the same line, which is usually the frame. On the 42111 Dodge Charger, whose rear axle hangs on a ball joint, the differential on its half shafts is held against the axle, so one rear wheel turns the other the opposite way. (Held against the car, it left a rear wheel turning only by swinging the whole axle on its ball.) On the 8110 Unimog, whose frame (the body with the most structure parts) is its cab, which tilts, each differential is held against its axle: held against the cab, a differential left a wheel turning only by tipping the cab with it, and the truck couldn't roll.
 - **Not parts in a closed loop**, since whether one is needed can't be told from the starting instant alone (a steering tie rod doesn't turn at straight ahead, but must as soon as the wheels do). What turns in a motor is held all the same: its axis stays put in the motor (the 42129 Mercedes-Benz Zetros's two motors, their axles through one beam, drive its centre differential's housing, which turns the rear axles against the front ones only with the motors held).
 - **Not wheels on the ground**, since rolling is their job, nor a string's pulleys, which turn as it runs round them.
+- **Not resting parts**, which move as what they rest on does, and whether one has to can't be told from the starting instant alone (a push rod stands still on a camshaft until a pin comes round under it).
 - **Worms lock:** a worm is held still during any drag that would drive it from its gear's side.
 - **So do linear actuators:** an actuator's input is held still during any drag that doesn't turn it, through gears, universal joints or chains.
 

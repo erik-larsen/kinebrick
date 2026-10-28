@@ -6,13 +6,14 @@ import { load } from './load.ts';
 // stroke is 32 LDU, and rubber bands from belt wheels (30.5 LDU round) to bushes (10.5 LDU).
 const BAND = 30.5 / 10.5;
 
-// Turns the part at `handle` once round as a drag does, in small steps; how far each slide (each
-// piston) ranged and where it ended, and how many times each of the `others` turned.
+// Turns the part at `handle` once round as a drag does, in small steps; how far each piston's
+// slide ranged and where it ended, and how many times each of the `others` turned.
 function crank(engine: ReturnType<typeof load>, handle: number, others: number[] = []) {
   const { mech, kin, angleOf } = engine;
   const body = mech.bodyOf[handle];
   const joint = kin.parentLink(body)!.joint;
-  const slides = mech.joints.flatMap((j, i) => (j.kind === 'slide' ? [i] : []));
+  const pistons = new Set(mech.bodies.flatMap((b, i) => (b.name.startsWith('piston') ? [i] : [])));
+  const slides = mech.joints.flatMap((j, i) => (j.kind === 'slide' && (pistons.has(j.bodyA) || pistons.has(j.bodyB)) ? [i] : []));
   const low = slides.map(() => Infinity);
   const high = slides.map(() => -Infinity);
   const spun = others.map(() => 0);
@@ -93,10 +94,44 @@ describe('858 Auto Engines: the inline engine', () => {
     for (const t of turns) expect(t).toBeCloseTo(BAND, 2);
   });
 
-  it("doesn't turn its camshaft yet: the model has it 62 LDU from the crankshaft, 2 LDU from the hole it runs in, so their 24 tooth gears just miss", () => {
-    expect(mech.meshes).toHaveLength(0);
-    const { turns } = crank(engine, 43, [32]);
-    expect(turns[0]).toBeCloseTo(0, 6);
+  it("turns its camshaft as fast as the crankshaft, the other way, through four pairs of 24 tooth gears (the model had it 2 LDU off the hole it runs in, so they missed; models/ corrects that)", () => {
+    expect(mech.meshes).toHaveLength(4);
+    const { turns } = crank(engine, 43, [32, 11]);
+    expect(turns[0]).toBeCloseTo(1, 6);
+    expect(turns[1]).toBeCloseTo(1, 6);
+  });
+
+  it("lifts its three push rods on the camshaft's pins, each up to 14 LDU and back down onto the plate it stands through, and their rockers tip as they go: the rods resting on what's under them, the rockers on the rods, or on the studs below", () => {
+    const { kin, angleOf } = engine;
+    const rods = [157, 160, 163].map((p) => mech.bodyOf[p]);
+    const rockers = [179, 181, 183].map((p) => mech.bodyOf[p]);
+    expect(mech.rests.map((r) => r.body).sort((a, b) => a - b)).toEqual([...rods, ...rockers].sort((a, b) => a - b));
+    const height = (body: number) => -kin.poses[body].elements[13]; // how far it has risen
+    const body = mech.bodyOf[43];
+    const joint = kin.parentLink(body)!.joint;
+    kin.reset();
+    kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
+    const lifts = rods.map(() => [] as number[]);
+    const tips = rockers.map(() => [] as number[]);
+    let turned = 0;
+    for (let i = 0; i < 73; i++) {
+      turned += kin.turnJoint(joint, (2 * Math.PI) / 72, () => kin.atLimit() === null);
+      rods.forEach((b, k) => lifts[k].push(height(b)));
+      rockers.forEach((b, k) => tips[k].push((angleOf(b) * 180) / Math.PI));
+    }
+    kin.letGoAfterDrag();
+    expect(turned).toBeCloseTo((73 / 72) * 2 * Math.PI, 6);
+    // The middle rod is built lifted 11 LDU, on a pin (0.75 LDU above it, which it drops onto).
+    const range = (xs: number[]) => Math.max(...xs) - Math.min(...xs);
+    for (const xs of lifts) expect(range(xs)).toBeCloseTo(14.3, 0);
+    expect(Math.min(...lifts[0])).toBeCloseTo(0, 3);
+    expect(Math.min(...lifts[1])).toBeCloseTo(-11, 3);
+    // The outer rods' pins come round under them twice a turn, half a turn apart.
+    const rises = lifts[0].slice(0, 72).filter((h, i) => h > 5 && lifts[0][(i + 71) % 72] <= 5).length;
+    expect(rises).toBe(2);
+    for (const xs of tips) expect(range(xs)).toBeGreaterThan(15);
+    // A turn later, all back where they were.
+    for (const xs of [...lifts, ...tips]) expect(xs[72]).toBeCloseTo(xs[0], 3);
   });
 });
 
@@ -113,6 +148,13 @@ describe('858 Auto Engines: the V-6 engine', () => {
     const block = mech.bodyOf[0];
     expect(block).not.toBe(0);
     expect(engine.turn(block, 0.5)).toBeCloseTo(0, 6);
+  });
+
+  it('turns its crank like a knob, as a drag would: the frame is the bigger bank, but the block the crankshaft turns in is held to it', () => {
+    const crankshaft = mech.bodyOf[133];
+    expect(kin.parentLink(crankshaft)!.parent).toBe(mech.bodyOf[0]);
+    expect(kin.turnsLikeAKnob(crankshaft)).toBe(true);
+    expect(kin.turnsLikeAKnob(mech.bodyOf[13])).toBe(false); // a connecting rod
   });
 
   it('a turn of the crank takes all six pistons through their 32 LDU strokes and back, with the block and banks still, and the rubber bands turn the fan and the side axle about 2.9 times', () => {

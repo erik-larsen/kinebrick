@@ -21,6 +21,7 @@ function mechanism(joints: Joint[], count: number): Mechanism {
     loops: [],
     strings: [],
     screws: [],
+    rests: [],
   };
 }
 

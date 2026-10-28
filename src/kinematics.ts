@@ -21,7 +21,7 @@
 // through those, such as a piston, is a root of its own.
 
 import { Matrix4, Quaternion, Vector3 } from 'three';
-import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh, StringLine } from './mechanism.ts';
+import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh, Rest, restTouch, StringLine } from './mechanism.ts';
 import { StringCircle, stringLayout } from './paths.ts';
 
 // How close a tyre must be to the ground to count as touching it, in LDU. Models are often
@@ -183,6 +183,7 @@ export class Kinematics {
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
   private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
+  private framed: Set<number> | null = null; // the bodies that can't move against the frame (see fixedToFrame), once worked out
   // Bodies held for a drag against the frame rather than against what they turn on (which the
   // drag turns): an assembly hanging on a driven axle stays level, not carried round.
   private heldToFrame = new Set<number>();
@@ -654,17 +655,41 @@ export class Kinematics {
     return new Set(joints.flatMap((_, index) => (bridges.has(index) ? [] : [index])));
   }
 
+  // The bodies that can't move against the frame however the mechanism moves, holds and tyres
+  // aside: the frame, and any held to it by a loop of joints that can't flex. The 858 V-6
+  // engine's block is: its frame, the body with the most structure parts, is one of its
+  // cylinder banks, and the block hangs between the two banks, which an axle across their tops
+  // holds in a V. Worked out once, from the joints alone.
+  private fixedToFrame(): Set<number> {
+    if (this.framed) return this.framed;
+    const holds = { frozen: this.frozen, dragHeld: this.dragHeld, heldToFrame: this.heldToFrame, fixedBody: this.fixedBody };
+    this.frozen = new Set();
+    this.dragHeld = new Set();
+    this.heldToFrame = new Set();
+    this.fixedBody = -1;
+    const basis = this.treeBasis();
+    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] }; // tyre rows go here, not into the equations
+    const motions = nullSpace(inBasis(this.buildEquations(null, slip, true), basis), basis[0].length).map((z) => fromBasis(z, basis));
+    Object.assign(this, holds);
+    this.framed = new Set();
+    for (let body = 0; body < this.bodyCount; body++) {
+      if (motions.every((m) => [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * body + k] - m[k]) < RANK_TOLERANCE))) this.framed.add(body);
+    }
+    return this.framed;
+  }
+
   // Whether a body turns like a knob: on a joint whose axis stays put in what it's mounted on
   // (a gear, a crank, a wheel), rather than turning and travelling at once as part of a loop
   // (a connecting rod, the middle beam of a linkage). Drags turn the first kind and push the rest.
-  // A body in a loop still turns like a knob if all its joints are turning ones on one axis: a
+  // A body in a loop turns like a knob if what it's mounted on can't move against the frame (see
+  // fixedToFrame). It still does otherwise if all its joints are turning ones on one axis: a
   // shaft held in several places (a crane's winch drum, whose axle also passes through bricks
   // pinned to the cab; the axle at the top of its boom, which drives the boom's luffing), not a
   // link pinned at two (a connecting rod).
   turnsLikeAKnob(body: number): boolean {
     const link = this.parentLink(body);
     if (!link) return false;
-    if (this.parentJoint[link.parent] < 0 || !this.inLoop(link.joint)) return true;
+    if (this.parentJoint[link.parent] < 0 || !this.inLoop(link.joint) || this.fixedToFrame().has(link.parent)) return true;
     const own = this.mech.joints[link.joint];
     const d = axisOf(own.from, own.to);
     return this.mech.joints.every((j) => {
@@ -920,15 +945,18 @@ export class Kinematics {
       if (!stillPossible()) this.dragHeld.delete(0);
     }
     // Nor does what only slides on the car (a bumper resting on tiles) slide along it, nor what
-    // swivels on a ball in it (a gear lever) swivel.
+    // swivels on a ball in it (a gear lever) swivel. But a resting body (see Rest) isn't held:
+    // it moves as what it rests on does, and whether it has to can't be told from this instant
+    // alone (a push rod stands still on a camshaft until a pin comes round under it).
+    const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
     for (const body of this.mounts.keys()) {
-      if (body === grabbed || this.frozen.has(body)) continue;
+      if (body === grabbed || this.frozen.has(body) || resting.has(body)) continue;
       this.dragHeld.add(body);
       if (!stillPossible()) this.dragHeld.delete(body);
     }
     // A string's pulleys aren't held either: they turn as it runs round them.
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.body] : []))));
-    const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b) && !pulleys.has(b));
+    const candidates = this.order.filter((b) => b !== grabbed && this.parentJoint[b] >= 0 && !this.frozen.has(b) && !wheels.has(b) && !pulleys.has(b) && !resting.has(b));
     // On a car standing on its tyres, what steers it first: turning a wheel rolls the car,
     // rather than steering it (a steered wheel turns, too, as it swings round its pivot). Then
     // friction pins, then the deepest parts; but with drivenLast (see chooseDragHolds), what a
@@ -1081,6 +1109,7 @@ export class Kinematics {
     for (const m of this.mech.meshes) ties.push([this.mech.gears[m.gearA].body, this.mech.gears[m.gearB].body]);
     for (const { shafts } of this.couplings) ties.push(shafts.flatMap((sh) => [sh.body, sh.mount]));
     for (const screw of this.mech.screws ?? []) ties.push([screw.input, screw.piston]);
+    for (const rest of this.mech.rests ?? []) ties.push([rest.body, ...rest.on.map((c) => c.body)]);
     for (const loop of this.mech.loops ?? []) ties.push(loop.wheels.flatMap((w) => [w.body, w.mount]));
     for (const st of this.mech.strings ?? []) {
       const wheels = [...(st.drum ? [st.drum] : []), ...st.pulleys];
@@ -1422,6 +1451,21 @@ export class Kinematics {
       add(row, 0, DRIVE_WEIGHT);
     }
 
+    // A part resting on others (see Rest): where its face touches the highest of them now, the
+    // two move alike towards each other, so it stays on it, neither lifting off nor sinking in.
+    // Its gap: how far the face is off it.
+    for (const rest of this.mech.rests ?? []) {
+      const touch = this.restingOn(rest);
+      if (!touch) continue;
+      const { body, point, dir, clearance } = touch;
+      const row = new Array(n).fill(0);
+      for (let k = 0; k < 3; k++) {
+        addPointVelocity(row, rest.body, point, k, dir.getComponent(k));
+        addPointVelocity(row, body, point, k, -dir.getComponent(k));
+      }
+      add(row, clearance);
+    }
+
     // A tyre on the ground rolls without slipping: the point touching the ground doesn't move
     // along the way the tyre rolls, nor up or down. Sideways it may scrub a little, and up or
     // down it may move a very little, which freeMotions sees to, from the rows in `slip`.
@@ -1606,7 +1650,7 @@ export class Kinematics {
   // Returns how far apart the joints still are (the largest gap, as at the start of the
   // last round): next to nothing, unless they can't come together (see turnJoint).
   private closeLoops(keep: number): number {
-    if (this.mech.joints.every((_, j) => this.inTree(j))) return 0;
+    if (this.mech.joints.every((_, j) => this.inTree(j)) && !this.mech.rests?.length) return 0;
     let last = 0;
     let previous = Infinity;
     let before: KinematicsState | null = null;
@@ -1658,6 +1702,18 @@ export class Kinematics {
     const gaps: number[] = [];
     this.buildEquations(gaps, null, true);
     return gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
+  }
+
+  // What a resting body (see Rest) rests on now: of the ways it may, the one where it's nearest
+  // to touching, or deepest in (the highest thing under it), with where and which way (see
+  // restTouch); or null if nothing is under it.
+  private restingOn(rest: Rest): { body: number; point: Vector3; dir: Vector3; clearance: number } | null {
+    let best: { body: number; point: Vector3; dir: Vector3; clearance: number } | null = null;
+    for (const contact of rest.on) {
+      const touch = restTouch(contact, this.poses[rest.body], this.poses[contact.body]);
+      if (touch && (!best || touch.clearance < best.clearance)) best = { body: contact.body, ...touch };
+    }
+    return best;
   }
 
   // Where two meshing gears' teeth touch now (the pitch point), and the direction their teeth
@@ -1949,8 +2005,11 @@ export class Kinematics {
       const played = this.played;
       const before = this.snapshot();
       const step = Math.abs(angle - turned) < Math.abs(full) ? angle - turned : full;
-      // How far each joint should turn in the step, and how far it has.
-      const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' ? this.jointRate(motion, k) * step : 0));
+      // How far each joint should turn in the step, and how far it has. Not a resting body's
+      // (see Rest): what it rests on may change in the step (a pin coming round under a push
+      // rod), and with it how fast it goes, as a dead point wouldn't.
+      const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
+      const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) ? this.jointRate(motion, k) * step : 0));
       const largest = Math.max(...predicted.map(Math.abs));
       // How fast the fastest joint in a closed loop turns, for each turn of this one (at least
       // 1: this one). Dead points are linkages', and other joints' rates may change from step
@@ -1960,7 +2019,7 @@ export class Kinematics {
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);
-      if (gap > (played ? PLAY : DEAD_POINT_GAP) || predicted.some((p, k) => Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
+      if (gap > (played ? PLAY : DEAD_POINT_GAP) || predicted.some((p, k) => this.mech.joints[k].kind === 'revolute' && !resting.has(this.mech.joints[k].bodyA) && !resting.has(this.mech.joints[k].bodyB) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
         this.restore(before);
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
         // usual steps, it may go. Only those can tell a dead point.
@@ -2271,7 +2330,7 @@ function lowestPoint(center: Vector3, axis: Vector3, radius: number): Vector3 | 
 }
 
 // Two directions at right angles to `d` and to each other.
-function acrossDirections(d: Vector3): Vector3[] {
+export function acrossDirections(d: Vector3): Vector3[] {
   const helper = Math.abs(d.x) < 0.9 ? new Vector3(1, 0, 0) : new Vector3(0, 1, 0);
   const a = new Vector3().crossVectors(d, helper).normalize();
   const b = new Vector3().crossVectors(d, a).normalize();
