@@ -86,13 +86,14 @@ The 9397 timed out at 20 minutes both ways; the 9396 timed out with holds, and f
 
 ## The full function check, on the Windows PC
 
-To compare with holds on every set, as the last full check (6da8518) was run: in Git Bash, in the PC's clone, with the PC set never to sleep while it runs. The same limits as that check: 15 sets at a time, 150 minutes a set.
+To compare with holds on every set, as the last full check (6da8518) was run: in Git Bash, in the PC's clone, with the PC set never to sleep while it runs. The same limits as that check: 15 sets at a time, 150 minutes a set. The sets' models are read from `omr/` (not committed), so `npm run omr` downloads any that clone doesn't have yet.
 
 ```bash
 git fetch origin
 git switch claude/least-motion
 git pull
 npm ci
+npm run omr
 KINEBRICK_LEAST=1 npm run functions -- --jobs 15 --limit 150
 ```
 
