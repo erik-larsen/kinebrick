@@ -21,6 +21,13 @@
       #warning { margin-top: 4px; max-width: 260px; color: #b3261e; font-size: 12px; }
       #warning p { margin: 0 0 4px; }
       #panel select { font: inherit; margin: 2px 0 4px; }
+      /* The model menu's headings, Working and Work in progress, in bold italics rather than grey.
+         Only a browser that lets a page style its menus (Chrome and Edge, from 135) shows them so;
+         the others draw their own menu. */
+      #model, #model::picker(select) { appearance: base-select; }
+      #model optgroup { font-weight: bold; font-style: italic; color: inherit; }
+      #model option { font-weight: normal; font-style: normal; }
+      #model optgroup option { padding-inline-start: 1.5em; }
       #details { margin-top: 6px; }
       #details summary { cursor: pointer; color: #5a6475; }
       /* As wide as the panel's other lines make it (width 0, at least 100%), scrolling both ways,

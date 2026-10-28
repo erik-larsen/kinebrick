@@ -918,17 +918,15 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
 // The model picker: KineBrick's own models, and a model of your own, opened from your computer
 // (picked, or dropped on the page). The browser keeps the file and the page reloads with it.
 
-// The models that work in full come first; those that don't yet (data/wip-models.json: those
-// marked WIP in the README, and those it doesn't show yet) are grouped under Work in progress.
+// The models that work in full are grouped under Working; those that don't yet
+// (data/wip-models.json: those marked WIP in the README, and those it doesn't show yet) under
+// Work in progress.
 const picker = document.getElementById('model') as HTMLSelectElement;
 if (FILE) picker.add(new Option(FILE, '', false, true));
+const working = Object.assign(document.createElement('optgroup'), { label: 'Working' });
 const wip = Object.assign(document.createElement('optgroup'), { label: 'Work in progress' });
-for (const [file, name] of MODELS) {
-  const option = new Option(name, file, false, !FILE && file === MODEL);
-  if (wipModels.includes(file)) wip.append(option);
-  else picker.add(option);
-}
-if (wip.children.length) picker.append(wip);
+for (const [file, name] of MODELS) (wipModels.includes(file) ? wip : working).append(new Option(name, file, false, !FILE && file === MODEL));
+for (const group of [working, wip]) if (group.children.length) picker.append(group);
 picker.add(new Option('Open a model file…', 'open'));
 const chosen = picker.value;
 const filePicker = document.getElementById('file') as HTMLInputElement;
