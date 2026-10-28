@@ -71,8 +71,8 @@ const NAMED_MODELS: [string, string][] = [
   ['rack-and-pinion', 'Rack and pinion'],
   ['linear-actuator', 'Linear actuator'],
 ];
-// How the picker opens each test model, as the README's links do: the part it keeps turning
-// (and how fast), and the parts it turns first (a car's steering).
+// How the picker opens each test model and working set, as the README's links do: the part it
+// keeps turning (and how fast), the parts it turns first (a car's steering), and any view.
 const OPENINGS: Record<string, string> = {
   'simple-car': 'autospin=12',
   'geared-car': 'autospin=13&rpm=24',
@@ -88,6 +88,18 @@ const OPENINGS: Record<string, string> = {
   'four-bar': 'turn=3,-8.7&autospin=3',
   'rack-and-pinion': 'autospin=11&rpm=42',
   'linear-actuator': 'autospin=12&rpm=160',
+  '852-Helicopter': 'rpm=135&autospin=143',
+  '854-Go Kart': 'rpm=54&turn=155,60&autospin=323',
+  '855-Mobile Crane': 'rpm=79&autospin=313,cw',
+  '952-Tractor': 'turn=68,141.6&autospin=252',
+  '956-Auto Chassis': 'turn=354,-67.2&autospin=453',
+  '856-Bulldozer': 'autospin=51,cw',
+  '950-Fork Lift': 'turn=178,101.2&autospin=188,cw&rpm=28',
+  '858-Auto Engines-2-Cycle Engine': 'rpm=100&autospin=20',
+  '858-Auto Engines-Boxer Engine': 'rpm=100&autospin=91',
+  '858-Auto Engines-Inline Engine': 'rpm=100&autospin=43',
+  '858-Auto Engines-V-6 Engine': 'rpm=100&autospin=133',
+  '8448-Super Car-V8 engine': 'rpm=100&autospin=89,cw&option=focus',
 };
 const MODELS: [string, string][] = [
   ...NAMED_MODELS,
@@ -977,6 +989,12 @@ picker.addEventListener('change', () => {
     filePicker.click();
   } else if (picker.value) {
     openModel((p) => {
+      // The views the model being left opened with (the V8 engine's drivetrain focus) were its
+      // own: not kept for the next one, as views turned on in the Options are.
+      const own = new URLSearchParams(OPENINGS[MODEL] ?? '').getAll('option').join(',').split(',');
+      const kept = p.getAll('option').join(',').split(',').filter((o) => o && !own.includes(o));
+      p.delete('option');
+      if (kept.length) p.set('option', kept.join(','));
       p.set('model', picker.value);
       for (const [name, value] of new URLSearchParams(OPENINGS[picker.value] ?? '')) p.append(name, value);
     });
