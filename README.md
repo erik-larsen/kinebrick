@@ -25,11 +25,11 @@ Full credits and licenses are under [Data sources and licenses](#data-sources-an
 
 | Project | What it does | How KineBrick differs |
 |---|---|---|
+| [Kinebrick Studio](https://youtube.com/@fhareide) | Desktop LDraw editor by fhareide, written in Rust, that solves motion as you build: chains, strings and shock absorbers, gears and mechanisms you can drive while building, and a simulation mode with forces. Mainly aimed at GBCs, and about to go public in beta. | Runs in a browser with nothing to install, and is a viewer, not an editor. No forces yet. |
 | [SR 3D Builder](https://wiki.ldraw.org/wiki/Sr3d) | Windows LEGO CAD that could animate gears, hinges and pistons. Discontinued, and its own website is gone, so this links to the LDraw wiki. | Runs in a browser, and is a viewer, not a CAD program. |
 | [LDCad](https://www.melkert.net/LDCad) | LEGO CAD whose animations are written by hand in Lua for each model. | Works out how a model moves from its parts, with nothing written by hand. KineBrick uses LDCad's shadow library for its connection points. |
 | [TechnicBrickPower gear calculator](https://www.eurobricks.com/forum/forums/topic/186656-new-technic-gear-ratio-calculator-tool) | Web tool that finds the gear trains in an LDraw file and shows their ratios. | Covers the whole mechanism, not only gears (axles, pins, pistons, steering, wheels on the ground), and moves it live as you drag. |
 | [yoff/LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation) | Python tool that finds bodies, joints and gear meshes in an LDraw file and exports them to Blender or MuJoCo. | Closest in approach: both find connection points from LDraw primitives. KineBrick solves and animates in the browser instead of exporting to another program. LTS code can't be reused directly: it's Python and has no license. |
-| [Kinebrick Studio](https://youtube.com/@fhareide) | Desktop LDraw editor by fhareide, written in Rust, that solves motion as you build: chains, strings and shock absorbers, gears and mechanisms you can drive while building, and a simulation mode with forces. Mainly aimed at GBCs, and about to go public in beta. | Runs in a browser with nothing to install, and is a viewer, not an editor. No forces yet. |
 
 ## Models
 
