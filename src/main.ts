@@ -50,6 +50,7 @@ import primitivesUrl from '../packed/primitives.json?url';
 import titlesUrl from '../packed/titles.json?url';
 import packedModels from '../packed/models.json';
 import notMovingYet from '../data/not-moving-yet.json';
+import wipModels from '../data/wip-models.json';
 
 // The test models in models/, and their names in the picker. Any other model in models/ (the
 // real LEGO sets) comes after them, under its file name.
@@ -917,9 +918,17 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
 // The model picker: KineBrick's own models, and a model of your own, opened from your computer
 // (picked, or dropped on the page). The browser keeps the file and the page reloads with it.
 
+// The models that work in full come first; those that don't yet (data/wip-models.json: those
+// marked WIP in the README, and those it doesn't show yet) are grouped under Work in progress.
 const picker = document.getElementById('model') as HTMLSelectElement;
 if (FILE) picker.add(new Option(FILE, '', false, true));
-for (const [file, name] of MODELS) picker.add(new Option(name, file, false, !FILE && file === MODEL));
+const wip = Object.assign(document.createElement('optgroup'), { label: 'Work in progress' });
+for (const [file, name] of MODELS) {
+  const option = new Option(name, file, false, !FILE && file === MODEL);
+  if (wipModels.includes(file)) wip.append(option);
+  else picker.add(option);
+}
+if (wip.children.length) picker.append(wip);
 picker.add(new Option('Open a model file…', 'open'));
 const chosen = picker.value;
 const filePicker = document.getElementById('file') as HTMLInputElement;
