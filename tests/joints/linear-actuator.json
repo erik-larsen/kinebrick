@@ -1,0 +1,9 @@
+{
+  "model": "linear-actuator",
+  "reach": 1.5,
+  "joints": [
+    {"joint":"p4 62271c01 in frame","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}},
+    {"joint":"p5 47157 in p4 62271c01","plus":{"turned":1.5,"moved":3,"bodies":{"p5 47157":[0,86],"p8 32523":[1,2],"p6 62274c01":[1,0]}},"minus":{"turned":-1.5,"moved":3,"bodies":{"p5 47157":[0,86],"p8 32523":[1,2],"p6 62274c01":[2,0]}}},
+    {"joint":"p8 32523 in frame","worm":true,"plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+  ]
+}
