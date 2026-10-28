@@ -41,6 +41,7 @@ import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { packModel, shapeName } from './pack.ts';
+import { studioModel } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
 import connectionsUrl from '../data/connections.json?url';
 import libraryConnectionsUrl from '../data/library-connections.json?url';
@@ -280,7 +281,7 @@ async function start() {
     ]);
     const primitiveSet = new Set<string>(primitiveList);
     const readFile = libraryReader(LIBRARY, primitiveSet, (count) => (summary.textContent = `Fetching parts from the LDraw library: ${count}…`));
-    const result = await packModel(FILE.replace(/\.(ldr|mpd)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => primitiveSet.has(name), roles);
+    const result = await packModel(FILE.replace(/\.(ldr|mpd|io)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => primitiveSet.has(name), roles);
     summary.textContent = 'Loading…';
     packed = result;
     titles = Promise.resolve(result.titles);
@@ -964,8 +965,9 @@ picker.addEventListener('change', () => {
 async function openFile(file: File | undefined) {
   if (!file) return;
   try {
-    if (!/\.(ldr|mpd)$/i.test(file.name)) throw new Error('KineBrick opens LDraw models: .ldr or .mpd files');
-    await keepFile(file.name, await file.text());
+    if (!/\.(ldr|mpd|io)$/i.test(file.name)) throw new Error('KineBrick opens LDraw models (.ldr or .mpd files) and BrickLink Studio files (.io)');
+    // A Studio file is kept as the LDraw model inside it (see studio.ts), under its own name.
+    await keepFile(file.name, /\.io$/i.test(file.name) ? await studioModel(await file.arrayBuffer()) : await file.text());
     openModel((p) => p.set('file', file.name));
   } catch (err) {
     document.getElementById('summary')!.textContent = `Can't open ${file.name}: ${(err as Error).message}`;

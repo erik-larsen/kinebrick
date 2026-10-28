@@ -99,7 +99,7 @@ Built for KineBrick, each to try one kind of mechanism.
 
 ### Your own model
 
-Pick **Open a model file…** at the bottom of the model menu, or drop an LDraw file (`.ldr`, or `.mpd` with submodels) anywhere on the page. KineBrick fetches the parts it uses from [its copy of the LDraw parts library](https://github.com/erik-larsen/ldraw) and works out the mechanism as it does for its own models.
+Pick **Open a model file…** at the bottom of the model menu, or drop an LDraw file (`.ldr`, or `.mpd` with submodels) or a BrickLink Studio file (`.io`) anywhere on the page. KineBrick fetches the parts it uses from [its copy of the LDraw parts library](https://github.com/erik-larsen/ldraw) and works out the mechanism as it does for its own models.
 
 Your file stays in your browser; nothing is uploaded. The browser keeps it so the page can reload with it (the address names it, as `file=`), so a link to it only works in that browser.
 
