@@ -1,9 +1,11 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { load } from './load.ts';
+import { Kinematics } from '../../src/kinematics.ts';
+import { inferMechanism, Mechanism, movePaths } from '../../src/mechanism.ts';
+import { load, roles, table } from './load.ts';
 
 describe('855 Mobile Crane', () => {
-  const { parts, mech, kin, bodyOf, turn, frameMoved } = load('models/855-Mobile Crane.mpd');
+  const { parts, paths, mech, kin, bodyOf, turn, frameMoved } = load('models/855-Mobile Crane.mpd');
   const outriggers = mech.joints.flatMap((j, i) => (j.kind === 'slide' && j.bodyA === 0 && (j.range![0] === -120 || j.range![0] === -40) ? [i] : []));
   const cab = bodyOf('3404.dat');
 
@@ -107,5 +109,29 @@ describe('855 Mobile Crane', () => {
       expect(Math.abs(kin.slideOffset(slide))).toBeGreaterThan(1);
       expect(kin.jointAngles[kin.parentLink(luff)!.joint]).toBeCloseTo(0, 6);
     }
+  });
+
+  // The viewer works a mechanism out afresh when a drag brings gears into or out of mesh (luffing
+  // the boom up and back down can).
+  it("worked out afresh with its boom extended, its string still runs over the boom tip, and its hook hangs where it did", () => {
+    kin.reset();
+    expect(Math.abs(turn(mech.bodyOf[483], 20))).toBeGreaterThan(1); // extends the boom
+    // Where the string's first pulley (at the boom tip) and the hook's are.
+    const pulleys = (m: Mechanism, k: Kinematics) => {
+      const [string] = m.strings;
+      const at = (w: (typeof string.pulleys)[0]) => string.path.points[w.point].center.clone().applyMatrix4(k.poses[w.mount]);
+      return [at(string.pulleys[0]), at(string.pulleys[string.hook!.pulley])];
+    };
+    const [tip, hook] = pulleys(mech, kin);
+    // As the viewer does: the parts where they now are, and the paths moved with them (copies,
+    // leaving the paths this file's other tests use as they were).
+    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const moved = paths.map((path) => ({ ...path, points: path.points.map((p) => ({ ...p, center: p.center.clone(), axis: p.axis.clone() })) }));
+    movePaths(moved, parts, mech.bodyOf, kin.poses);
+    const afresh = inferMechanism(now, table, roles, moved);
+    expect(afresh.strings).toHaveLength(1);
+    const [tipAfresh, hookAfresh] = pulleys(afresh, new Kinematics(afresh));
+    expect(tipAfresh.distanceTo(tip)).toBeLessThan(1e-6);
+    expect(hookAfresh.distanceTo(hook)).toBeLessThan(0.5); // settling afresh
   });
 });

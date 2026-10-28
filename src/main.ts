@@ -34,8 +34,8 @@ import { ConnectionTable, libraryConnections, normalizePartName } from './connec
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
 import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
-import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
-import { inferMechanism, libraryName, Mechanism, meshesChanged } from './mechanism.ts';
+import { modelSettings, parseModel, PathPoint, PlacedPart } from './ldr.ts';
+import { inferMechanism, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
@@ -300,6 +300,10 @@ async function start() {
   summary.textContent = 'Working out how it moves…';
   await shown();
   let mech = inferMechanism(startParts, table, roles, paths);
+  // The paths as the file drew them, for Reset: working the mechanism out afresh moves them with
+  // the parts they run round (see movePaths).
+  const copyPoint = (p: PathPoint) => ({ ...p, center: p.center.clone(), axis: p.axis.clone() });
+  const startPaths = paths.map((path) => path.points.map(copyPoint));
 
   // Loading, with how far the download has got.
   const megabytes = (bytes: number) => (bytes / 1e6).toFixed(1);
@@ -571,6 +575,7 @@ async function start() {
       partObjects[i].matrix.premultiply(by);
       partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
     }
+    movePaths(paths, parts, mech.bodyOf, kin.poses);
     read(now);
     showPoses();
   }
@@ -593,6 +598,7 @@ async function start() {
     };
     for (const slider of stick.rings) place(slider.part, sliderMovedTo(now, table, slider, target.rings.get(slider.part)!));
     for (const i of mech.bodies[mech.bodyOf[stick.part]].parts) place(i, target.turn.clone().multiply(now[i].matrix));
+    movePaths(paths, parts, mech.bodyOf, kin.poses);
     read(now);
     showPoses();
   }
@@ -624,6 +630,7 @@ async function start() {
         partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
       }
     }
+    movePaths(paths, parts, mech.bodyOf, kin.poses);
     read(now);
     showPoses();
   }
@@ -798,6 +805,7 @@ async function start() {
       obj.matrix.copy(loadedShapeMatrices[i]);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     });
+    paths.forEach((path, i) => (path.points = startPaths[i].map(copyPoint)));
     read(startParts);
     showPoses();
   };

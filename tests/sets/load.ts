@@ -59,5 +59,5 @@ export function load(file: string) {
   // The bodies that turn on the frame on a 2x2 turntable (whose top, 3679, they carry).
   const turntables = () =>
     mech.joints.flatMap((j) => (j.kind === 'revolute' && j.bodyA === 0 && mech.bodies[j.bodyB].parts.some((p) => parts[p].name === '3679.dat') ? [j.bodyB] : []));
-  return { parts, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables };
+  return { parts, paths, mech, kin, bodyOf, turn, motor, angleOf, frameMoved, turntables };
 }

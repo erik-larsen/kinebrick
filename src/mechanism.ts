@@ -1109,6 +1109,23 @@ export function meshesChanged(mech: Mechanism, poses: Matrix4[]): boolean {
   return now.size !== before.size || [...now].some((k) => !before.has(k));
 }
 
+// Moves each point of each path (a string, chain or rubber band) with the part nearest it (not
+// one of the path's own links), each part moved by its body's pose: so a mechanism worked out
+// afresh from where everything now is (see meshesChanged) finds them where the parts they run
+// round now are, not where the model file drew them (the 855 Mobile Crane's string, its boom
+// extended). In place, so the shapes LDCad drew each path with still match it.
+export function movePaths(paths: PlacedPath[], parts: PlacedPart[], bodyOf: number[], poses: Matrix4[]) {
+  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  const moved = paths.map((path) =>
+    path.points.map((point) => {
+      const near = parts.reduce((best, part, i) => (!part.path && (best < 0 || at[i].distanceTo(point.center) < at[best].distanceTo(point.center)) ? i : best), -1);
+      const pose = near < 0 ? new Matrix4() : poses[bodyOf[near]];
+      return { center: point.center.clone().applyMatrix4(pose), axis: point.axis.clone().transformDirection(pose) };
+    }),
+  );
+  paths.forEach((path, i) => path.points.forEach((point, k) => Object.assign(point, moved[i][k])));
+}
+
 // Which gears mesh, by where each is (gears on one body never do).
 export function findMeshes(gears: Gear[]): Mesh[] {
   const meshes: Mesh[] = [];
