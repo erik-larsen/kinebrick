@@ -4,14 +4,14 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 75 of the 186 surveyed sets, by 127 functions. KineBrick: 48 works, 32 partly, 41 no, 2 skipped, 4 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. KineBrick: 48 works, 32 partly, 42 no, 2 skipped, 5 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 40 of 83 | 11 of 21 |
-| Functions | 2 | 1 | 15 | 25 | 64 | 20 |
+| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 41 of 83 | 11 of 21 |
+| Functions | 2 | 1 | 15 | 25 | 66 | 20 |
 
 ## Details
 
@@ -59,6 +59,7 @@ Each detail by the set it first appears in.
 | stabiliser legs | 2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1) | 1 |
 | tedder arms | 2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1) | 1 |
 | rotor blades | 2012, [9396 Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9396-1) | 2 |
+| grab claws | 2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1) | 1 |
 | body | 2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1) | 2 |
 | stick | 2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1) | 1 |
 | canopy | 2015, [42033 Record Breaker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42033-1) | 2 |
@@ -86,6 +87,7 @@ Each detail by the set it first appears in.
 | bucket | 2019, [42088 Cherry Picker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42088-1) | 1 |
 | winch arm | 2019, [42092 Rescue Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42092-1) | 1 |
 | rear doors | 2019, [42092 Rescue Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42092-1) | 1 |
+| grab | 2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1) | 1 |
 | armrest consoles | 2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1) | 1 |
 | top | 2019, [42095 Remote-Controlled Stunt Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42095-1) | 1 |
 | ladder | 2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1) | 1 |
@@ -241,6 +243,10 @@ Each detail by the set it first appears in.
 
 - *rotor blades:* The main rotor's four blades fold back on their hinges for parking, released by a blue lever in the cockpit. (no)
 
+**2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
+
+- *grab claws:* The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level. (not checked)
+
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
 - *doors:* The two front doors open. (partly)
@@ -380,6 +386,7 @@ Each detail by the set it first appears in.
 
 **2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1)**
 
+- *grab:* The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines. (no)
 - *armrest consoles:* The armrest consoles beside the seat, carrying the control levers, tip up on hinges at the back of the cab. (partly)
 
 **2019, [42095 Remote-Controlled Stunt Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42095-1)**

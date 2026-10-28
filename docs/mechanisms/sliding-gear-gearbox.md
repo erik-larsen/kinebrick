@@ -4,14 +4,14 @@ Speeds are chosen by sliding gears into and out of mesh. (Gearboxes.)
 
 First appears in 1978, in [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The gear lever standing up behind the engine slides the engine's input shaft back and forth between two speeds: as built, its 8 tooth gear drives the crankshaft through an 8 tooth and a 24 tooth gear on a side shaft, so the engine turns 9 times for each turn of the rear axle; slid back 20 LDU, the same gear meshes straight with the crankshaft's own 8 tooth gear, 3 times.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. KineBrick: 2 partly.
+Used in 2 of the 186 surveyed sets, by 4 functions. KineBrick: 1 works, 2 partly, 1 no.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 1 of 9 | 1 of 18 | 0 of 32 | 0 of 23 | 0 of 83 | 0 of 21 |
-| Functions | 1 | 1 | 0 | 0 | 0 | 0 |
+| Functions | 2 | 2 | 0 | 0 | 0 | 0 |
 
 ## Details
 
@@ -26,10 +26,12 @@ Each detail by the set it first appears in.
 
 **1978, [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis)**
 
+- *2 speeds:* As it rolls, the rear axle runs the four-cylinder engine: the rear axle's 24 tooth gear turns a crown gear on the drive shaft, which through universal joints and gears turns the crankshaft, so the four pistons run up and down, and the crankshaft's 40 tooth gear at the engine's front spins the 24 tooth gear above it. (works)
 - *2 speeds:* The gear lever standing up behind the engine slides the engine's input shaft back and forth between two speeds: as built, its 8 tooth gear drives the crankshaft through an 8 tooth and a 24 tooth gear on a side shaft, so the engine turns 9 times for each turn of the rear axle; slid back 20 LDU, the same gear meshes straight with the crankshaft's own 8 tooth gear, 3 times. (partly)
 
 **1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car)**
 
+- *3 speeds:* Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins. (no)
 - *3 speeds:* The blue-knobbed gear lever between the seats picks one of three speeds: moving it fore and aft slides the gearbox's selector shaft, changing which of its 16- and 24-tooth gears mesh with the engine's and the layshaft's gears. (partly)
 
 ---

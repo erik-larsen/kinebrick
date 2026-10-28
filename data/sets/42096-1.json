@@ -83,7 +83,8 @@
       {
         "does": "The rear wheels have independent suspension too, on pairs of arms with a shock absorber each.",
         "mechanisms": [
-          "double-wishbone: rear"
+          "double-wishbone: rear",
+          "spring: suspension"
         ],
         "source": "book: page 291 (the double arrow on the rear wheel); the rear arms and shock absorbers are built in the first steps, with the differential",
         "control": [

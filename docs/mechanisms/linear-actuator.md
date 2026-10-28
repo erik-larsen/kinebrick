@@ -4,14 +4,14 @@ A screw drives a piston out and in. (Moving and lifting.)
 
 First appears in 2009, in [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) and [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1): Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.
 
-Used in 29 of the 186 surveyed sets, by 49 functions. KineBrick: 5 works, 38 partly, 6 no.
+Used in 29 of the 186 surveyed sets, by 50 functions. KineBrick: 5 works, 38 partly, 7 no.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 0 of 18 | 0 of 32 | 2 of 23 | 22 of 83 | 5 of 21 |
-| Functions | 0 | 0 | 0 | 3 | 37 | 9 |
+| Functions | 0 | 0 | 0 | 3 | 38 | 9 |
 
 ## Details
 
@@ -35,6 +35,7 @@ Each detail by the set it first appears in.
 | stabiliser legs | 2014, [42024 Container Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42024-1) | 1 |
 | claws | 2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1) | 1 |
 | wheelie | 2016, [42050 Drag Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42050-1) | 1 |
+| crane lift | 2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1) | 1 |
 | roof rack | 2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1) | 1 |
 | ramp | 2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1) | 2 |
 | crane legs | 2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1) | 1 |
@@ -112,6 +113,7 @@ Each detail by the set it first appears in.
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
 - *boom:* Lever B, the left of the two red levers at the back of the crane's base, pushed up or down, raises or lowers the crane's boom: it slides a driving ring between two clutch gears turning opposite ways, and a shaft up through the crane's turntable, with a universal joint, turns a linear actuator that pushes the boom. (partly)
+- *crane lift:* The whole crane rises and falls on the back of the tractor: the 12 tooth gears at both sides of the back, used as knobs, turn a cross shaft that lifts it. (no)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 

@@ -38,7 +38,8 @@
         "does": "Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins.",
         "mechanisms": [
           "piston-engine: V4",
-          "differential"
+          "differential",
+          "sliding-gear-gearbox: 3 speeds"
         ],
         "source": "book: cover (blueprint arrow at the back); steps 6-7 (differential, pinion and 8-tooth gears), 14 (gearbox), 18 (engine, pages 16-17)",
         "control": "p900 3739",

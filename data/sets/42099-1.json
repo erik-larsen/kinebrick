@@ -138,7 +138,8 @@
       {
         "does": "Four red shock absorbers, two on each axle, spring the axles against the chassis.",
         "mechanisms": [
-          "spring: suspension"
+          "spring: suspension",
+          "pendular-axle"
         ],
         "source": "book: front axle step 87, rear axle steps 164-171, body fitted steps 333-335",
         "skip": "springs only matter under load"

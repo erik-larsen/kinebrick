@@ -4,14 +4,14 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 84 functions. KineBrick: 23 works, 48 partly, 11 no, 2 skipped.
+Used in 54 of the 186 surveyed sets, by 85 functions. KineBrick: 23 works, 48 partly, 11 no, 2 skipped, 1 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 4 of 18 | 4 of 32 | 13 of 23 | 30 of 83 | 3 of 21 |
-| Functions | 0 | 8 | 8 | 20 | 42 | 6 |
+| Functions | 0 | 8 | 8 | 20 | 43 | 6 |
 
 ## Details
 
@@ -22,7 +22,7 @@ Each detail by the set it first appears in.
 | outriggers | 1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe) | 1 |
 | gripper | 1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1) | 1 |
 | arm | 1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1) | 1 |
-| grab | 2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1) | 2 |
+| grab | 2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1) | 3 |
 | boom | 2015, [42031 Cherry Picker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42031-1) | 1 |
 | engine cover | 2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1) | 1 |
 | outrigger feet | 2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1) | 1 |
@@ -159,6 +159,7 @@ Each detail by the set it first appears in.
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 
 - With the same lever the other way, the motor slews the crane round on its mast through a worm. (partly)
+- *grab:* The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level. (not checked)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 

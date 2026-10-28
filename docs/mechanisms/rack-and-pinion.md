@@ -4,14 +4,14 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 24 of the 186 surveyed sets, by 29 functions. KineBrick: 11 works, 12 partly, 6 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. KineBrick: 12 works, 12 partly, 6 no.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 5 of 9 | 4 of 18 | 1 of 32 | 3 of 23 | 9 of 83 | 2 of 21 |
-| Functions | 8 | 5 | 1 | 3 | 9 | 3 |
+| Sets | 5 of 9 | 4 of 18 | 1 of 32 | 4 of 23 | 9 of 83 | 2 of 21 |
+| Functions | 8 | 5 | 1 | 4 | 9 | 3 |
 
 ## Details
 
@@ -29,6 +29,7 @@ Each detail by the set it first appears in.
 | hitch | 1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor) | 1 |
 | slewing | 1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1) | 1 |
 | mast | 2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1) | 2 |
+| inner boom | 2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1) | 1 |
 | outriggers | 2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1) | 2 |
 | wings | 2012, [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1) | 1 |
 | jib | 2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1) | 1 |
@@ -86,6 +87,10 @@ Each detail by the set it first appears in.
 **2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1)**
 
 - *mast:* The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time. (no)
+
+**2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1)**
+
+- *inner boom:* The right of the two knobs at the back (a 12-tooth double bevel gear) extends and retracts the boom: it turns a second worm, which turns an 8-tooth gear at the boom's foot, and that slides the inner boom with the bucket out of the outer one. (works)
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 

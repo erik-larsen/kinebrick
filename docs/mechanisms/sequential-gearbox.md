@@ -4,14 +4,14 @@ A rotary catch, turned a step at a time, slides the driving rings through the ge
 
 First appears in 2016, in [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1): The paddle shifters behind the steering wheel shift the sequential gearbox up and down: each paddle swings a lever that steps a knob gear round, and a shaft with constant velocity joints takes the turn back to the gearbox, where a selector moves the driving rings through the gears one by one.
 
-Used in 6 of the 186 surveyed sets, by 9 functions. KineBrick: 9 partly.
+Used in 6 of the 186 surveyed sets, by 11 functions. KineBrick: 11 partly.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 0 of 18 | 0 of 32 | 0 of 23 | 3 of 83 | 3 of 21 |
-| Functions | 0 | 0 | 0 | 0 | 6 | 3 |
+| Functions | 0 | 0 | 0 | 0 | 6 | 5 |
 
 ## Details
 
@@ -44,6 +44,7 @@ Each detail by the set it first appears in.
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
 - *2 speeds:* The grey gear lever on the gearbox's right side picks neutral, first or second gear: it turns the selector shaft, whose orange rotary catch slides the driving ring between the two clutch gears. (partly)
+- *2 speeds:* In first or second gear, turning the rear wheel runs the V4 engine: the chain from the rear sprocket drives the output shaft at the swing arm's pivot, which drives the gearbox and then the crankshaft, pumping the four pistons up and down. Second gear turns the engine at a different speed from first. (partly)
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
@@ -51,6 +52,7 @@ Each detail by the set it first appears in.
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 
+- *8 speeds:* Pushed along, all four wheels drive together through a differential on each axle, and in gear the V12 turns: its twelve pistons run up and down in their two banks. (partly)
 - *8 speeds:* The paddle shifters behind the steering wheel change gear in the eight-speed sequential gearbox: each pull of a paddle turns the selector one step, which turns two changeover rotary catches through knob gears to slide the gearbox's driving rings in turn. (partly)
 
 ---

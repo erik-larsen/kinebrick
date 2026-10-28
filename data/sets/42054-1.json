@@ -128,7 +128,8 @@
       {
         "does": "The whole crane rises and falls on the back of the tractor: the 12 tooth gears at both sides of the back, used as knobs, turn a cross shaft that lifts it.",
         "mechanisms": [
-          "crank-and-link: crane lift"
+          "linear-actuator: crane lift",
+          "three-point-hitch: crane"
         ],
         "source": "book: pages 332-333, function F (the crane's base raised and lowered); inferred: which knobs work it and how",
         "control": [

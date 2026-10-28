@@ -32,7 +32,8 @@
         "does": "In first or second gear, turning the rear wheel runs the V4 engine: the chain from the rear sprocket drives the output shaft at the swing arm's pivot, which drives the gearbox and then the crankshaft, pumping the four pistons up and down. Second gear turns the engine at a different speed from first.",
         "mechanisms": [
           "piston-engine: V4",
-          "chain-drive"
+          "chain-drive",
+          "sequential-gearbox: 2 speeds"
         ],
         "source": "book: steps 40-60 (gearbox and engine: crankshaft, rods and four yellow pistons), step 97 (the output shaft and sprocket), steps 125-130 (rear wheel and chain), page 121 bottom inset",
         "control": "p247 35189",

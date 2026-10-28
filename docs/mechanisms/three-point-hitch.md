@@ -4,14 +4,14 @@ Lift arms raise and lower a tractor's implement on two lower links and a top lin
 
 First appears in 1977, in [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.
 
-Used in 6 of the 186 surveyed sets, by 7 functions. KineBrick: 2 works, 3 partly, 1 no, 1 not checked.
+Used in 7 of the 186 surveyed sets, by 8 functions. KineBrick: 2 works, 3 partly, 2 no, 1 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 2 of 9 | 2 of 18 | 0 of 32 | 1 of 23 | 1 of 83 | 0 of 21 |
-| Functions | 2 | 3 | 0 | 1 | 1 | 0 |
+| Sets | 2 of 9 | 2 of 18 | 0 of 32 | 1 of 23 | 2 of 83 | 0 of 21 |
+| Functions | 2 | 3 | 0 | 1 | 2 | 0 |
 
 ## Details
 
@@ -21,6 +21,7 @@ Each detail by the set it first appears in.
 |---|---|---|
 | sprayer | 1986, [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor) | 1 |
 | hay tedder | 2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1) | 1 |
+| crane | 2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1) | 1 |
 
 ## Sets
 
@@ -48,6 +49,10 @@ Each detail by the set it first appears in.
 **2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1)**
 
 - *hay tedder:* The grey smooth axle joiner standing up behind the cab lifts the three-point linkage: it turns a worm, which turns a small gear on the lift arms' cross axle, and the arms raise or lower the hay tedder on their two links. (works)
+
+**2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
+
+- *crane:* The whole crane rises and falls on the back of the tractor: the 12 tooth gears at both sides of the back, used as knobs, turn a cross shaft that lifts it. (no)
 
 ---
 

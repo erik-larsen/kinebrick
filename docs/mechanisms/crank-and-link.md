@@ -4,14 +4,14 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 57 of the 186 surveyed sets, by 80 functions. KineBrick: 23 works, 37 partly, 19 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. KineBrick: 22 works, 37 partly, 18 no, 1 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 1 of 9 | 6 of 18 | 6 of 32 | 10 of 23 | 27 of 83 | 7 of 21 |
-| Functions | 2 | 10 | 9 | 15 | 35 | 9 |
+| Sets | 1 of 9 | 6 of 18 | 6 of 32 | 9 of 23 | 27 of 83 | 7 of 21 |
+| Functions | 2 | 10 | 9 | 14 | 34 | 9 |
 
 ## Details
 
@@ -33,7 +33,6 @@ Each detail by the set it first appears in.
 | saw | 1994, [8032 Universal Set](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8032-1) | 1 |
 | boom | 2005, [8419 Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8419-1) | 6 |
 | stick | 2005, [8419 Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8419-1) | 1 |
-| inner boom | 2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1) | 1 |
 | outriggers | 2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1) | 2 |
 | ladder | 2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1) | 2 |
 | bed | 2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1) | 1 |
@@ -47,16 +46,15 @@ Each detail by the set it first appears in.
 | doors | 2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1) | 2 |
 | landing gear | 2016, [42044 Display Team Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42044-1) | 4 |
 | arm | 2016, [42049 Mine Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42049-1) | 2 |
+| body lift | 2016, [42050 Drag Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42050-1) | 1 |
 | cab | 2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1) | 1 |
 | motor switch | 2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1) | 1 |
-| crane lift | 2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1) | 1 |
 | tipper | 2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1) | 1 |
 | claws | 2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1) | 1 |
 | canopy, air brake and exhaust | 2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1) | 1 |
 | side steps | 2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1) | 1 |
 | bonnet flick | 2018, [42072 WHACK!](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42072-1) | 2 |
 | rear wing | 2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1) | 1 |
-| grab | 2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1) | 1 |
 | sails | 2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1) | 1 |
 | legs | 2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1) | 1 |
 | hub switch | 2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1) | 2 |
@@ -142,10 +140,6 @@ Each detail by the set it first appears in.
 - *boom:* The knob at the back on the right (a 20-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on a cross shaft at the back; cranks and a side link carry that to a cross shaft at the front, whose two arms push the boom up on two thin beams. (works)
 - *stick:* The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip. (no)
 
-**2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1)**
-
-- *inner boom:* The right of the two knobs at the back (a 12-tooth double bevel gear) extends and retracts the boom: it turns a second worm, which turns an 8-tooth gear at the boom's foot, and that slides the inner boom with the bucket out of the outer one. (works)
-
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
 - *outriggers:* The knob on top of the sleeper box lowers and raises the two outriggers at the back: a worm on its shaft turns a 24-tooth gear, a long shaft runs back under the deck, and bevel gears turn a cross shaft whose links swing the two black legs down until their feet stand on the ground. (partly)
@@ -212,6 +206,10 @@ Each detail by the set it first appears in.
 
 - *arm:* The tall yellow lever standing on the front half raises and lowers the arm: pulling it back lifts the two lifting arms and the gripper head on their parallel links, which keep the claw level. (partly)
 
+**2016, [42050 Drag Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42050-1)**
+
+- *body lift:* Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis. (no)
+
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 
 - *ramp:* Function B: with the right lever pushed to B, the motor lowers or raises the rear loading ramp: the right shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft running back through a universal joint to a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms swing the ramp on its links. (partly)
@@ -224,7 +222,6 @@ Each detail by the set it first appears in.
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
 - *motor switch:* The upper of the two grey levers on the fuel tank on the right side, turned up, switches the motor on: a linkage runs forward to the battery box's switch under the bonnet. (no)
-- *crane lift:* The whole crane rises and falls on the back of the tractor: the 12 tooth gears at both sides of the back, used as knobs, turn a cross shaft that lifts it. (no)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
@@ -281,10 +278,6 @@ Each detail by the set it first appears in.
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
 - *rear wing:* The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat. (works)
-
-**2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1)**
-
-- *grab:* The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines. (no)
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 

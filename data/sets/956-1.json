@@ -33,7 +33,8 @@
       {
         "does": "As it rolls, the rear axle runs the four-cylinder engine: the rear axle's 24 tooth gear turns a crown gear on the drive shaft, which through universal joints and gears turns the crankshaft, so the four pistons run up and down, and the crankshaft's 40 tooth gear at the engine's front spins the 24 tooth gear above it.",
         "mechanisms": [
-          "piston-engine: 4 cylinders"
+          "piston-engine: 4 cylinders",
+          "sliding-gear-gearbox: 2 speeds"
         ],
         "source": "book: engine steps 10-13, chassis step 13 (the insets show the crown gear and the drive shaft's two 24 tooth gears), step 16",
         "control": [

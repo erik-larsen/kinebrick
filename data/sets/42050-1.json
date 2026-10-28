@@ -62,7 +62,8 @@
       {
         "does": "Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis.",
         "mechanisms": [
-          "hinge: bodywork"
+          "hinge: bodywork",
+          "crank-and-link: body lift"
         ],
         "source": "book: page 119 (inset A, the lever swung back, and the body tilted up with an arrow); inferred: which parts the lever turns",
         "control": "p403 32013",

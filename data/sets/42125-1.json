@@ -86,7 +86,8 @@
       {
         "does": "The rear wheels ride on their own suspension arms with shock absorbers.",
         "mechanisms": [
-          "double-wishbone: rear"
+          "double-wishbone: rear",
+          "spring: suspension"
         ],
         "source": "inferred: steps 9-25 build arms and two shock absorbers around the rear hubs; the book doesn't show them moving and it isn't clear whether the arms are meant to swing",
         "control": [

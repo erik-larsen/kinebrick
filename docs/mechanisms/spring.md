@@ -4,14 +4,14 @@ A spring or rubber band holds a part up, pulls it back, or springs it back once 
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The rubber band pulls the ratchet's lever down onto the gears.
 
-Used in 53 of the 186 surveyed sets, by 61 functions. KineBrick: 1 works, 4 partly, 56 skipped.
+Used in 54 of the 186 surveyed sets, by 63 functions. KineBrick: 3 works, 4 partly, 56 skipped.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 1 of 9 | 4 of 18 | 11 of 32 | 7 of 23 | 22 of 83 | 8 of 21 |
-| Functions | 1 | 4 | 13 | 10 | 23 | 10 |
+| Sets | 1 of 9 | 4 of 18 | 11 of 32 | 7 of 23 | 23 of 83 | 8 of 21 |
+| Functions | 1 | 4 | 13 | 10 | 24 | 11 |
 
 ## Details
 
@@ -20,7 +20,7 @@ Each detail by the set it first appears in.
 | Detail | First in | Sets |
 |---|---|---|
 | ratchet pawl | 1978, [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) | 1 |
-| suspension | 1981, [8845 Dune Buggy](https://erik-larsen.github.io/kinebrick/?model=8845-Dune%20Buggy) | 41 |
+| suspension | 1981, [8845 Dune Buggy](https://erik-larsen.github.io/kinebrick/?model=8845-Dune%20Buggy) | 42 |
 | cultivator tines | 1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor) | 1 |
 | stand | 1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1) | 1 |
 | landing gear | 1992, [8836 Sky Ranger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8836-1) | 1 |
@@ -218,6 +218,10 @@ Each detail by the set it first appears in.
 
 - *track idler:* Each track's raised front idler sits on a sprung arm, held out by a small shock absorber. (skipped)
 
+**2019, [42096 Porsche 911 RSR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42096-1)**
+
+- *suspension:* The rear wheels have independent suspension too, on pairs of arms with a shock absorber each. (works)
+
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
 - *suspension:* Four red shock absorbers, two on each axle, spring the axles against the chassis. (skipped)
@@ -255,6 +259,7 @@ Each detail by the set it first appears in.
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 
 - *suspension:* The front shock absorbers' springs hold the front of the car up. (skipped)
+- *suspension:* The rear wheels ride on their own suspension arms with shock absorbers. (works)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 

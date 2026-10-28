@@ -4,14 +4,14 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 27 of the 186 surveyed sets, by 28 functions. KineBrick: 10 works, 10 partly, 8 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. KineBrick: 11 works, 10 partly, 8 no.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 0 of 18 | 0 of 32 | 4 of 23 | 17 of 83 | 6 of 21 |
-| Functions | 0 | 0 | 0 | 4 | 18 | 6 |
+| Sets | 0 of 9 | 0 of 18 | 0 of 32 | 4 of 23 | 18 of 83 | 6 of 21 |
+| Functions | 0 | 0 | 0 | 4 | 19 | 6 |
 
 ## Details
 
@@ -20,6 +20,7 @@ Each detail by the set it first appears in.
 | Detail | First in | Sets |
 |---|---|---|
 | rear wheels | 2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1) | 2 |
+| front wheels | 2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1) | 1 |
 | fans and front wheels | 2021, [42120 Rescue Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42120-1) | 1 |
 
 ## Sets
@@ -85,9 +86,13 @@ Each detail by the set it first appears in.
 - The black knob on the truck's cab roof steers the front wheels: its shaft runs down through the cab and a universal joint to an arm that swings the two steering knuckles. (partly)
 - *rear wheels:* The gear at the reach stacker's back end, the lower of two, steers its rear wheels: an axle runs forward to a link that swings the two rear steering knuckles. (partly)
 
+**2017, [42068 Airport Rescue Vehicle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42068-1)**
+
+- The tan gear on top of the body, behind the boom, steers the front and rear axles together, the front wheels further (20 degrees) than the rear (12 degrees); the middle axle doesn't steer. (works)
+
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
-- The truck: the black gear on its cab roof steers its front wheels. (no)
+- *front wheels:* The truck: the black gear on its cab roof steers its front wheels. (no)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 

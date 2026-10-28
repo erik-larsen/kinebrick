@@ -15,7 +15,8 @@
       {
         "does": "The tan gear on top of the body, behind the boom, steers the front and rear axles together, the front wheels further (20 degrees) than the rear (12 degrees); the middle axle doesn't steer.",
         "mechanisms": [
-          "multi-axle-steering"
+          "multi-axle-steering",
+          "linkage-steering"
         ],
         "source": "book: page 184 (left insets: the gear turned, the wheels steering, the angles drawn from above)",
         "control": "p783 18575",

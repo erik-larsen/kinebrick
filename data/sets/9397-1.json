@@ -113,6 +113,8 @@
       {
         "does": "The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level.",
         "mechanisms": [
+          "worm-drive: grab",
+          "hinge: grab claws",
           "hangs-free: grab"
         ],
         "source": "book 3: steps 140-152 (grab sub-build); inferred: the book draws no arrow for it"

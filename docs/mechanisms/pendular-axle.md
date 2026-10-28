@@ -4,14 +4,14 @@ A rigid axle swings side to side on a central pivot or turntable. (Suspension.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.
 
-Used in 7 of the 186 surveyed sets, by 8 functions. KineBrick: 1 works, 2 partly, 4 no, 1 skipped.
+Used in 8 of the 186 surveyed sets, by 9 functions. KineBrick: 1 works, 2 partly, 4 no, 2 skipped.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 1 of 18 | 0 of 32 | 1 of 23 | 4 of 83 | 1 of 21 |
-| Functions | 0 | 1 | 0 | 1 | 4 | 2 |
+| Sets | 0 of 9 | 1 of 18 | 0 of 32 | 1 of 23 | 5 of 83 | 1 of 21 |
+| Functions | 0 | 1 | 0 | 1 | 5 | 2 |
 
 ## Details
 
@@ -49,6 +49,10 @@ Each detail by the set it first appears in.
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
 - *rear axles:* The two rear axles each rock side to side on a turntable, so all six wheels stay on rough ground. (no)
+
+**2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
+
+- Four red shock absorbers, two on each axle, spring the axles against the chassis. (skipped)
 
 **2021, [42122 Jeep Wrangler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42122-1)**
 

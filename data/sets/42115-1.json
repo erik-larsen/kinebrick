@@ -20,7 +20,8 @@
         "does": "Pushed along, all four wheels drive together through a differential on each axle, and in gear the V12 turns: its twelve pistons run up and down in their two banks.",
         "mechanisms": [
           "piston-engine: V12",
-          "differential"
+          "differential",
+          "sequential-gearbox: 8 speeds"
         ],
         "source": "book 1: steps 1-180 (gearbox, rear differential, pages 30-130), steps 187-215 (V12 and crankshaft, pages 140-160), front axle and its differential (box 2); the photos on pages 139 and 224",
         "control": [
