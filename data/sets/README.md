@@ -48,7 +48,7 @@ Each function has:
 | Field | |
 |---|---|
 | `does` | What it does, in plain English, as the set's owner would say it. |
-| `mechanisms` | The kinds of mechanism it uses, from [data/mechanisms.json](../mechanisms.json), each optionally followed by a colon and a short detail (`"driving-ring-gearbox: 4 speeds"`). The [mechanism catalog](../../docs/mechanisms/README.md) is made from them by `npm run mechanisms`. |
+| `mechanisms` | The kinds of mechanism it uses, from [data/mechanisms.json](../mechanisms.json), each optionally followed by a colon and a short detail (`"driving-ring-gearbox: 4 speeds"`). The [mechanism catalog](../../docs/mechanisms/README.md) is made from them by `npm run mechanisms`. Tagging a newly surveyed set, use the kinds already listed, and add a kind to `data/mechanisms.json` only when none fits without stretching its meaning, so that a new mechanism shows up as new (the catalog's timeline ends with the newest kinds); then run `npm run mechanisms`. |
 | `source` | Where that comes from: `book:` and the steps or pages that show it, or `inferred:` and why, where the book doesn't show it. |
 | `control` | The part a person turns or pushes to work it, or a list of parts that each do it alike (four outriggers). Left out where nothing is worked by hand. |
 | `moves` | Parts that must move when the control is worked, each against the frame or `against` another part. The control itself must always move. |
