@@ -150,6 +150,22 @@ describe('858 Auto Engines: the V-6 engine', () => {
     expect(engine.turn(block, 0.5)).toBeCloseTo(0, 6);
   });
 
+  it("stands each bank a stud out on the 1 x 4 Technic bricks it hangs from (its file had them flush, so the banks leaned 102 degrees apart and the pistons ran into the taps; models/ corrects that): the banks lean about 86 degrees apart, and each tap stands as far from the crankshaft along its cylinder as on the boxer engine", () => {
+    const boxer = load('models/858-Auto Engines-Boxer Engine.mpd');
+    // How far a tap stands from the crankshaft (the x axis in the V-6, at y -38 in the boxer),
+    // along its cylinder (the tap's own z axis), and that axis.
+    const out = (part: { matrix: { elements: number[] } }, crankY: number) => {
+      const e = part.matrix.elements;
+      return { distance: Math.abs((e[13] - crankY) * e[9] + e[14] * e[10]), axis: [e[9], e[10]] };
+    };
+    const taps = parts.filter((p) => p.name === '3496c01.dat').map((p) => out(p, 0));
+    const boxerTaps = boxer.parts.filter((p) => p.name === '3496c01.dat').map((p) => out(p, -38));
+    expect(taps).toHaveLength(6);
+    for (const t of [...taps, ...boxerTaps]) expect(t.distance).toBeCloseTo(boxerTaps[0].distance, -0.5);
+    const [a, b] = [taps[0].axis, taps[5].axis];
+    expect((Math.acos(a[0] * b[0] + a[1] * b[1]) * 180) / Math.PI).toBeCloseTo(86.5, 0);
+  });
+
   it('turns its crank like a knob, as a drag would: the frame is the bigger bank, but the block the crankshaft turns in is held to it', () => {
     const crankshaft = mech.bodyOf[133];
     expect(kin.parentLink(crankshaft)!.parent).toBe(mech.bodyOf[0]);

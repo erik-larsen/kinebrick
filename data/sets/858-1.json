@@ -87,7 +87,7 @@
       },
       {
         "does": "V-6 engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its six pistons run in and out of the two cylinder banks, which stay where they are: an axle across their tops and the engine block hold them in a V.",
-        "source": "inferred: the crankshaft is built of 24 tooth gears joined by axles off their middles; each bank hangs on an axle along the block, and the top axle runs through both",
+        "source": "book (Peeron's scans, filed as 8858-2): V-6 steps 1-5 (the crankshaft, its connecting rods, and the 1 x 4 Technic bricks each bank hangs from, on 12 long axles), 9-14 (the banks) and 17 (both swung up to meet at the top)",
         "model": "models/858-Auto Engines-V-6 Engine.mpd",
         "control": "p133 3649",
         "moves": [
@@ -101,8 +101,7 @@
         "stays": [
           "p0 3702",
           "p38 3701"
-        ],
-        "note": "In the viewer the crank turns only about 22 degrees either way: the connecting rods' studs run into bricks of the other cylinder bank, and further on the pistons into the taps on their cylinders. This check doesn't look for parts running into each other, so it passes."
+        ]
       },
       {
         "does": "V-6 engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the long axle along the engine's side.",
@@ -122,9 +121,9 @@
     ]
   },
   "generated": {
-    "commit": "516e176",
+    "commit": "124ef72",
     "uncommitted": true,
-    "date": "2026-10-27",
+    "date": "2026-10-28",
     "counts": {
       "works": 9
     },
