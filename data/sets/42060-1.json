@@ -105,11 +105,12 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "no": 4,
-      "works": 3,
+      "no": 3,
+      "works": 4,
       "partly": 1
     },
     "loose": [
@@ -339,11 +340,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ]
       }

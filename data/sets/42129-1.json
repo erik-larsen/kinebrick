@@ -107,12 +107,13 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "no": 4,
-      "works": 2,
-      "partly": 1,
+      "partly": 3,
+      "works": 3,
+      "no": 1,
       "skipped": 1
     },
     "loose": [
@@ -177,27 +178,22 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p468 6573",
           "p1305 65414c01",
           "p1030 65414c01",
           "p2922 42129 - 69912",
           "p2924 42129 - 69912"
-        ],
-        "why": [
-          "p20 22169 is part of the frame",
-          "p236 22169 is part of the frame"
         ]
       },
       {
@@ -231,11 +227,11 @@
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -243,26 +239,15 @@
           "p1060 35188",
           "p513 18947 against p468 6573",
           "p1028 18947 against p1030 65414c01"
-        ],
-        "why": [
-          "p550 21980 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p1394 87761",
-          "p1342 46490c01",
-          "p1343 46490c01"
-        ],
-        "why": [
-          "p1470 22169 has no joint to work"
         ]
       },
       {

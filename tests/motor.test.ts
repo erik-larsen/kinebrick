@@ -45,4 +45,11 @@ describe('motors: what is fixed on the output turns in the motor', () => {
     kin.turnJoint(link.joint, Math.PI / 2);
     expect(Math.abs(kin.jointAngles[link.joint])).toBeCloseTo(Math.PI / 2, 6);
   });
+
+  it("a pull-back motor: the axle through it turns in it, its spring waiting for forces (42026)", () => {
+    const { motor, rest, joint } = onOutput('1 16 0 0 0 1 0 0 0 1 0 0 0 1 12799.dat\n1 16 0 0 0 1 0 0 0 0 -1 0 1 0 3708.dat');
+    expect(rest[0]).not.toBe(motor);
+    expect(joint).toBeDefined();
+    expect(joint!.motor).toBe(true);
+  });
 });

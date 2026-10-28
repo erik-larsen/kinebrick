@@ -6,7 +6,7 @@
 import { readFileSync } from 'node:fs';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
-import { modelSettings, parseModel } from '../src/ldr.ts';
+import { modelSettings, parseModel, PlacedPart } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 
 export function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}) {
@@ -34,8 +34,13 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
   }
   const { parts, paths } = parseModel(text, isPrimitive, piecesOf);
   status('working out its mechanism');
-  const mech = inferMechanism(parts, table, roles, paths);
-  const kin = new Kinematics(mech);
-  kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
-  return { name, parts, mech, kin };
+  // The mechanism of the parts placed as given, ready to move: the model's own, or worked out
+  // afresh after a shift moved some of them, as the viewer does.
+  const read = (placed: PlacedPart[]) => {
+    const mech = inferMechanism(placed, table, roles, paths);
+    const kin = new Kinematics(mech);
+    kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
+    return { parts: placed, mech, kin };
+  };
+  return { name, table, slides: modelSettings(text).slides, ...read(parts), read };
 }

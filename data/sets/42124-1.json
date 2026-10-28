@@ -91,11 +91,12 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "no": 4,
-      "partly": 1,
+      "partly": 3,
+      "no": 2,
       "skipped": 2,
       "works": 1
     },
@@ -105,38 +106,24 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.17,
+            -0.17
           ]
-        ],
-        "still": [
-          "p318 32524",
-          "p343 15460",
-          "p345 15460"
-        ],
-        "why": [
-          "p0 22169 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.17,
+            -0.17
           ]
         ],
         "still": [
-          "p889 32498",
-          "p464 65414c01",
-          "p972 56908",
-          "p974 56908"
-        ],
-        "why": [
-          "p501 22169 is part of the frame"
+          "p889 32498"
         ]
       },
       {

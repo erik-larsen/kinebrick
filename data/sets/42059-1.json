@@ -45,12 +45,12 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "no": 1,
+      "works": 2,
       "skipped": 1,
-      "works": 1,
       "not checked": 1
     },
     "loose": [
@@ -68,23 +68,16 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p30 3708"
-        ],
-        "why": [
-          "p126 56145 is part of the frame",
-          "p128 56145 is part of the frame"
         ]
       },
       {

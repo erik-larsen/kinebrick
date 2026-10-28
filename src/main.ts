@@ -38,7 +38,7 @@ import { modelSettings, parseModel, PlacedPart } from './ldr.ts';
 import { inferMechanism, libraryName, Mechanism, meshesChanged } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
-import { findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
+import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { packModel, shapeName } from './pack.ts';
 import { thumbnail } from './thumbnail.ts';
@@ -362,6 +362,7 @@ async function start() {
   kin.scrub = scrub / 100;
   let sliders: Slider[] = [];
   let sticks: Stick[] = [];
+  let catches: Catch[] = [];
   let placeLinks: (((travel: number) => Matrix4[]) | null)[] = [];
   let axes = new Group();
   axes.visible = OPTIONS.includes('axes');
@@ -414,6 +415,7 @@ async function start() {
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
+    catches = findCatches(parts, sliders);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     // Where each chain's or track's links go as it moves round (see paths.ts).
@@ -606,10 +608,22 @@ async function start() {
 
   // Works the mechanism out afresh from where everything now is, if gears now mesh that didn't
   // when it was last worked out, or no longer do (the 952 Tractor's harrow, lowered onto its
-  // power take-off).
+  // power take-off), or a changeover catch has swung its driving ring's fork nearer another of
+  // the ring's click-in positions, sliding the ring there.
   function meshAfresh() {
-    if (!meshesChanged(mech, kin.poses)) return;
-    read(parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) })));
+    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const shifts = catchShifts(now, table, catches);
+    if (!shifts.size && !meshesChanged(mech, kin.poses)) return;
+    for (const [ring, to] of shifts) {
+      const slider = sliderOf(ring)!;
+      const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
+      for (const i of slider.riders ?? [ring]) {
+        now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
+        partObjects[i].matrix.premultiply(by);
+        partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
+      }
+    }
+    read(now);
     showPoses();
   }
 

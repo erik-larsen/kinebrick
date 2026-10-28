@@ -1109,7 +1109,8 @@ export function meshesChanged(mech: Mechanism, poses: Matrix4[]): boolean {
   return now.size !== before.size || [...now].some((k) => !before.has(k));
 }
 
-function findMeshes(gears: Gear[]): Mesh[] {
+// Which gears mesh, by where each is (gears on one body never do).
+export function findMeshes(gears: Gear[]): Mesh[] {
   const meshes: Mesh[] = [];
   for (let a = 0; a < gears.length; a++) {
     for (let b = a + 1; b < gears.length; b++) {
@@ -1236,9 +1237,9 @@ function bevelMesh(ga: Gear, gb: Gear): boolean {
   if (!ga.bevel || !gb.bevel) return false;
   const crossing = axesCrossing(ga.center, ga.axis, gb.center, gb.axis);
   if (!crossing) return false;
+  if (Math.abs(ga.radius / ga.teeth - gb.radius / gb.teeth) > 0.01) return false; // different tooth sizes (a knob wheel's knobs and a bevel gear's teeth)
   if (coneTipAt(ga, crossing) && coneTipAt(gb, crossing)) return true;
   if (Math.abs(ga.axis.dot(gb.axis)) > ANGLE_TOLERANCE) return false; // not at right angles
-  if (Math.abs(ga.radius / ga.teeth - gb.radius / gb.teeth) > 0.01) return false; // different tooth sizes
   // Where a gear's pitch circle is on the line along which its cone touches the other's: as far
   // from its tip along its own axis as along the other's.
   const pitchPoint = (cone: Cone, other: Cone, radius: number) => cone.tip.clone().addScaledVector(cone.out, radius).addScaledVector(other.out, radius);

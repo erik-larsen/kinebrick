@@ -79,11 +79,11 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "partly": 1,
-      "works": 3,
+      "works": 4,
       "skipped": 1
     },
     "loose": [
@@ -158,17 +158,12 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p4 99010",
-          "p78 32140",
-          "p116 32062"
         ]
       },
       {

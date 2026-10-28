@@ -144,11 +144,12 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "works": 4,
-      "partly": 4,
+      "works": 5,
+      "partly": 3,
       "skipped": 1,
       "not checked": 1
     },
@@ -204,15 +205,12 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p48 6539 against p47 3705"
         ]
       },
       {

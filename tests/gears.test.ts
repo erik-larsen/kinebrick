@@ -84,9 +84,12 @@ describe('every gear in the LDraw library', () => {
   // tooth, 10 LDU for an 8 tooth gear, 30 for a 24. Gears of different sizes mesh only if their
   // radii say so (a 12 tooth bevel gear with a 20 tooth one, a 14 tooth bevel pinion with the old
   // differential's crown wheel), so a radius measured off a gear's shape breaks those meshes.
+  // The knob wheel (32072) is the one exception: its four knobs aren't teeth of LEGO's size, and
+  // its size keeps it meshing only with another knob wheel.
+  const OWN_SIZE = ['32072.dat'];
   it("has LEGO's tooth size", () => {
     const library = JSON.parse(readFileSync('data/library-connections.json', 'utf-8'));
-    const wrong = Object.entries(library.parts as Record<string, number[]>).flatMap(([part, cylinders]) =>
+    const wrong = Object.entries(library.parts as Record<string, number[]>).filter(([part]) => !OWN_SIZE.includes(part)).flatMap(([part, cylinders]) =>
       cylinders.flatMap((i) => library.cylinders[i].secs.filter((s: { shape: string; teeth?: number; rack?: unknown; worm?: number; radius: number }) => s.shape === 'G' && s.teeth && !s.rack && !s.worm && Math.abs(s.radius / s.teeth - 1.25) > 0.01).map(() => part)),
     );
     expect(wrong).toEqual([]);

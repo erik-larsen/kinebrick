@@ -66,20 +66,14 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
       "works": 3,
       "no": 1
     },
-    "loose": [
-      "p0 2994",
-      "p1 2994",
-      "p2 6578",
-      "p7 6578",
-      "p66 2994",
-      "p67 6578"
-    ],
+    "loose": [],
     "functions": [
       {
         "result": "works",

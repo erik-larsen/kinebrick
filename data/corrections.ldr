@@ -47,6 +47,15 @@
 0 // axis runs along z. Which tyre goes on which rim is from how the official models in the
 0 // LDraw Official Model Repository mount them.
 
+0 FILE 2994.dat
+0 // Wheel 12 x 20 with Technic Axle Hole and 6 Pegholes: an axle hole through its hub (z from 0 to 20) and a seat for its tyre (6578), a band 23 LDU out between its flanges (z from -12.5 to 12.5), measured from its shape. The shadow library has nothing for it.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 20] [center=true] [pos=0 0 10] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 23 25] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 6578.dat
+0 // Tyre 14/ 36 x 20 VR: sits on the 12 x 20 wheel (2994)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=T 23 25] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 42610.dat
 0 // Wheel Rim 8 x 11.2 with Centre Groove: its tyre's bead grips the groove
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 14 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -185,6 +194,10 @@
 0 FILE 6589.dat
 0 // Technic Gear 12 Tooth Bevel: teeth face +z, cone tip 17 LDU out (where it sits in a differential). Its pitch radius is 15 LDU, a 12 tooth gear's at LEGO's tooth size (the 12 tooth double bevel's), so it meshes with 20 tooth bevels at right angles (the 8281 Mini Tractor's power take-off)
 0 !KINEBRICK GEAR [teeth=12] [radius=15] [width=7] [spur=false] [bevel=+] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 32072.dat
+0 // Technic Gear 4 Knob (the knob wheel): its four knobs engage another knob wheel's on an axle crossing its own at right angles, each wheel's middle 20 LDU from where the axles cross (as all 43 such pairs in the OMR's Technic sets sit). So it's declared a 4 tooth double bevel gear whose cones' tips are 20 LDU out along its axle, turning the other 1:1. Its knobs aren't teeth of LEGO's size, so it meshes with nothing else, nor side by side.
+0 !KINEBRICK GEAR [teeth=4] [radius=20] [width=20] [spur=false] [bevel=both] [apex=20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 4143.dat
 0 // Technic Gear 14 Tooth Bevel (the old differential's gears): teeth face -z, cone tip 17 LDU out. Its pitch radius is 17.5 LDU, a 14 tooth gear's at LEGO's tooth size, so it meshes with the old differential's 28 tooth crown wheel (4142) as its pinion
@@ -363,6 +376,10 @@
 0 // from its shape (z from -30 to -50); the shadow library gives only the ball and the side holes.
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 8 2   R 6 16   R 8 2] [pos=0 0 -30] [ori=1 0 0 0 0 -1 0 1 0]
 
+0 FILE 30394.dat
+0 // Excavator Bucket 6 x 3 with Click Hinge 2-Finger: its two fingers, built from two halves of a dual finger click hinge (clh4, which the shadow library has no fingers for), either side of an 8 LDU gap the single finger of a click hinge (clh1, as on 47973) turns in, on an axis along x through its middle, measured from its shape. Click hinges hold where they're set, so it turns stiffly.
+0 !LDCAD SNAP_FGR [group=lckHng] [genderOfs=M] [seq=9 8 9] [pos=0 0 0] [ori=0 -1 0 1 0 0 0 0 1]
+
 0 // Turntables.
 
 0 FILE 3679.dat
@@ -379,6 +396,15 @@
 0 FILE 3403.dat
 0 // Turntable 4 x 4 Base: takes the top's pin (see 3404).
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 10 11   L 11 4] [pos=0 3 0] [ori=1 0 0 0 -1 0 0 0 -1]
+
+0 FILE 99010.dat
+0 // Technic Turntable 28 Tooth Top: turns on its base (99009), the top's ring round the base's. The shadow library closes the ring at one end, so it would only fit as a stud does; it's open-ended here. Its 28 teeth, round its rim, are a double bevel gear's, at LEGO's tooth size (35 LDU pitch radius): a 12 tooth bevel gear 40 LDU out from its axis, on an axle crossing it at right angles 20 LDU below its top face, meshes with them, as a 20 or 12 tooth gear 60 or 50 LDU out on a parallel axle does side by side (as official models set them). So their cone's tip is 35 LDU along the axis from their middle, 5 LDU below the top face.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 27 15] [pos=0 10 0] [ori=-1 0 0 0 1 0 0 0 -1]
+0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=10] [bevel=-] [apex=35] [center=true] [pos=0 5 0]
+
+0 FILE 99009.dat
+0 // Technic Turntable 28 Tooth Bottom: the top (99010) turns on it; open-ended as the top's ring is.
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 27 15] [pos=0 10 0] [ori=-1 0 0 0 1 0 0 0 -1]
 
 0 // Small wheels.
 

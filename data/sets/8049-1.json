@@ -127,7 +127,8 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
       "partly": 4,
@@ -168,11 +169,9 @@
             -1.5
           ]
         ],
-        "still": [
-          "p52 32270",
-          "p34 87761",
-          "p205 56145",
-          "p208 56145"
+        "moved": [
+          "p201 41896 against p0 32316",
+          "p203 41896 against p0 32316"
         ]
       },
       {

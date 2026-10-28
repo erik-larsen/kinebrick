@@ -43,18 +43,14 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
       "no": 1,
-      "partly": 1
+      "works": 1
     },
-    "loose": [
-      "p26 2994",
-      "p27 6578",
-      "p49 2994",
-      "p50 6578"
-    ],
+    "loose": [],
     "functions": [
       {
         "result": "no",
@@ -75,19 +71,16 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "why": [
-          "p26 2994 is part of the frame"
         ]
       }
     ]

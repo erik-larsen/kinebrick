@@ -24,6 +24,10 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
+import { Kinematics } from '../src/kinematics.ts';
+import { PlacedPart } from '../src/ldr.ts';
+import { Mechanism } from '../src/mechanism.ts';
+import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { loadModel } from './load-model.ts';
 
 const SETS_DIR = join('data', 'sets');
@@ -72,8 +76,34 @@ function check(set: { curated: { model: string; functions: Fn[] } }) {
 
 // Checks functions on one model: each one's result, and the model's loose parts.
 function checkModel(model: string, functions: Fn[]) {
-  const { parts, mech, kin } = loadModel(model, model.startsWith('omr/'));
-  const at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  const loaded = loadModel(model, model.startsWith('omr/'));
+  const { table, slides } = loaded;
+  // The model as it's being worked: as loaded, or worked out afresh after a shift (see shiftTo).
+  let { parts, mech, kin } = loaded;
+  let sliders: Slider[] = [];
+  let catches: Catch[] = [];
+  let at: Vector3[] = [];
+  const use = (now: { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics }) => {
+    ({ parts, mech, kin } = now);
+    sliders = findSliders(parts, mech, table, slides);
+    catches = findCatches(parts, sliders);
+    at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
+  };
+  const asLoaded = { parts, mech, kin };
+  use(asLoaded);
+  // Where everything is now, as parts placed in the model.
+  const placedNow = () => parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+  // Slides driving rings to the click-in positions given (by each ring's part), and works the
+  // mechanism out afresh from where everything now is, as the viewer does after a shift.
+  const shiftTo = (shifts: Map<number, number>) => {
+    const now = placedNow();
+    for (const [ring, to] of shifts) {
+      const slider = sliders.find((s) => s.part === ring)!;
+      const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
+      for (const i of slider.riders ?? [ring]) now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
+    }
+    use(loaded.read(now));
+  };
   // A part named as the joints probe names it: "p483 3736".
   const part = (ref: string) => {
     const n = Number(/^p(\d+)\b/.exec(ref.trim())?.[1]);
@@ -86,14 +116,24 @@ function checkModel(model: string, functions: Fn[]) {
     const [a, b] = ref.split(' against ');
     return { ref, part: part(a), body: b ? mech.bodyOf[part(b)] : 0 };
   };
-  // Whether a part moved against its body, from the poses at `start` to now.
-  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[]) => {
+  // Whether a part moved against its body, from the poses at `start` to now, or is a driving
+  // ring a catch has shifted (`shifted`).
+  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[], shifted: Map<number, number>) => {
+    if (shifted.has(part)) return true;
     const rel = (poses: Matrix4[]) => poses[body].clone().invert().multiply(poses[mech.bodyOf[part]]);
     const was = rel(start);
     const is = rel(kin.poses);
     const went = at[part].clone().applyMatrix4(is).distanceTo(at[part].clone().applyMatrix4(was));
     const q = new Quaternion().setFromRotationMatrix(was.clone().invert().multiply(is));
     return went >= MOVED || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= MOVED;
+  };
+  // The body a control works: its own, or for a motor named as the control, what turns in it
+  // (its output's axle), as the motor would turn it.
+  const worked = (control: number) => {
+    const b = mech.bodyOf[control];
+    if (mech.roles[control] !== 'motor') return b;
+    const j = mech.joints.find((x) => x.motor && (x.bodyA === b || x.bodyB === b));
+    return j ? (j.bodyA === b ? j.bodyB : j.bodyA) : b;
   };
   // Works a body's joint as a drag does, as far as it goes up to `amount`; how far it went.
   const turn = (body: number, amount: number) => {
@@ -109,17 +149,32 @@ function checkModel(model: string, functions: Fn[]) {
     if (fn.skip) return { result: 'skipped' };
     if (!fn.control) return { result: 'not checked' };
     const why: string[] = [];
-    const moves = (fn.moves ?? []).map(against);
-    const stays = (fn.stays ?? []).map(against);
     const ways = [fn.control].flat().map((ref) => {
+      use(asLoaded);
       kin.reset();
       for (const first of fn.first ?? []) {
-        const b = mech.bodyOf[part(first.control)];
+        const p = part(first.control);
+        // A driving ring is slid by hand, `by` LDU, to the click-in position nearest that.
+        const slider = sliders.find((s) => s.part === p);
+        if (slider) {
+          const from = sliderPosition(placedNow(), table, slider);
+          const to = nearestPosition(slider, from + first.by);
+          if (to !== nearestPosition(slider, from)) shiftTo(new Map([[p, to]]));
+          else why.push(`${first.control}, worked first, didn't shift`);
+          continue;
+        }
+        const b = worked(p);
         const went = kin.parentLink(b) ? turn(b, first.by) : 0;
         if (Math.abs(went) < 0.9 * Math.abs(first.by)) why.push(`${first.control}, worked first, went ${round(went)} of ${first.by}`);
+        // A catch it turned shifts its ring.
+        const shifts = catchShifts(placedNow(), table, catches);
+        if (shifts.size) shiftTo(shifts);
       }
+      // Measured on the model as it is now, after any shift.
+      const moves = (fn.moves ?? []).map(against);
+      const stays = (fn.stays ?? []).map(against);
       const control = part(ref);
-      const b = mech.bodyOf[control];
+      const b = worked(control);
       const link = kin.parentLink(b);
       if (b === 0 || !link) {
         why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
@@ -131,8 +186,9 @@ function checkModel(model: string, functions: Fn[]) {
       const each = [1, -1].map((way) => {
         kin.restore(start);
         const turned = turn(b, way * reach);
-        const still = moves.filter((m) => !moved(m, startPoses)).map((m) => m.ref);
-        const wrong = stays.filter((s) => moved(s, startPoses)).map((s) => s.ref);
+        const shifted = catchShifts(placedNow(), table, catches);
+        const still = moves.filter((m) => !moved(m, startPoses, shifted)).map((m) => m.ref);
+        const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         return { turned, still, moved: wrong, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
       });
       kin.restore(start);

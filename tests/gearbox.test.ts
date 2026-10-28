@@ -1,11 +1,11 @@
 import { readFileSync } from 'node:fs';
-import { Quaternion } from 'three';
+import { Matrix4, Quaternion } from 'three';
 import { describe, expect, it } from 'vitest';
-import { ConnectionTable } from '../src/connections.ts';
+import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr, PlacedPart } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
-import { findSliders, findSticks, nearestPosition, sliderMovedTo, sliderPosition, stickPositionNow, stickPositions } from '../src/shift.ts';
+import { catchShifts, findCatches, findSliders, findSticks, nearestPosition, sliderMovedTo, sliderPosition, stickPositionNow, stickPositions } from '../src/shift.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -92,5 +92,55 @@ describe('two-speed gearbox', () => {
     // How far the output turns for each turn of the input: neutral in the middle, then each slot.
     expect(outputs[0]).toBeCloseTo(0, 9);
     expect(outputs.slice(1).sort((a, b) => a - b).map((x) => +x.toFixed(6))).toEqual([0, 0, +(1 / 3).toFixed(6), 1]);
+  });
+});
+
+// A changeover catch, its pin, and the driving ring its fork sits in, between two clutch gears on
+// its axle joiner, as the 42038 Arctic Truck has them, read with the whole library's table.
+describe('a changeover catch', () => {
+  const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
+  const parts: PlacedPart[] = parseLdr(
+    [
+      '1 16 0 0 0 -1 0 0 0 0 -1 0 -1 0 6641.dat',
+      '1 16 2 20 0 -1 0 0 0 -1 0 0 0 1 18651.dat',
+      '1 16 0 60 0 0 1 0 1 0 0 0 0 -1 18947.dat',
+      '1 16 0 60 0 0 1 0 1 0 0 0 0 -1 18948.dat',
+      '1 16 0 60 40 0 1 0 1 0 0 0 0 -1 18946.dat',
+      '1 16 0 60 -40 0 1 0 1 0 0 0 0 -1 18946.dat',
+    ].join('\n'),
+  );
+  const mech = inferMechanism(parts, library, roles);
+  const sliders = findSliders(parts, mech, library);
+  const catches = findCatches(parts, sliders);
+  // The parts with the catch turned by `angle` about its pin, which runs along x, 20 LDU below it.
+  const turned = (angle: number) => {
+    const turn = new Matrix4().makeTranslation(0, 20, 0).multiply(new Matrix4().makeRotationX(angle)).multiply(new Matrix4().makeTranslation(0, -20, 0));
+    return parts.map((p, i) => (i === 0 ? { ...p, matrix: turn.clone().multiply(p.matrix) } : p));
+  };
+
+  it('finds the ring its fork sits in', () => {
+    expect(catches).toHaveLength(1);
+    expect(catches[0].ring.part).toBe(2);
+  });
+
+  it("leaves the ring where it is while the fork's nearest its click-in position", () => {
+    expect(catchShifts(parts, library, catches).size).toBe(0);
+    expect(catchShifts(turned(0.1), library, catches).size).toBe(0);
+  });
+
+  it('slides the ring to the click-in position either side as the catch turns a quarter radian either way: 40 LDU a radian', () => {
+    const ways = [0.25, -0.25].map((angle) => catchShifts(turned(angle), library, catches).get(2));
+    expect(ways.map((x) => Math.abs(x!))).toEqual([10, 10]);
+    expect(ways[0]).toBe(-ways[1]!);
+  });
+
+  it('and so locks one clutch gear or the other to the axle joiner', () => {
+    for (const to of [-10, 10]) {
+      const placed = parts.map((p) => ({ ...p }));
+      placed[2] = { ...placed[2], matrix: sliderMovedTo(placed, library, sliders[0], to) };
+      const after = inferMechanism(placed, library, roles);
+      const locked = [4, 5].filter((g) => after.connections.some((c) => c.kind === 'rigid' && [c.male, c.female].includes(2) && [c.male, c.female].includes(g)));
+      expect(locked).toHaveLength(1);
+    }
   });
 });

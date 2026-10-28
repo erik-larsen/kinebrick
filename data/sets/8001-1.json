@@ -106,16 +106,16 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
       "works": 4,
       "skipped": 2,
-      "partly": 2
+      "no": 1,
+      "partly": 1
     },
     "loose": [
-      "p813 2994",
-      "p814 2994",
       "p871 75535",
       "p895 3705",
       "p896 3713",
@@ -174,11 +174,11 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
@@ -187,6 +187,9 @@
           "p117 32198",
           "p848 32177 against p95 32184",
           "p846 32177 against p95 32184"
+        ],
+        "why": [
+          "p897 32269 is part of the frame"
         ]
       },
       {

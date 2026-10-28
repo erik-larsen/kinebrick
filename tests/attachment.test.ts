@@ -87,6 +87,7 @@ describe('parts joined in ways only real sets showed', () => {
     ["a portal axle's wheel hub, turning in a steering bearing with arms", '1 0 177.81 20.812 0 0 0 -1 0 1 0 1 0 0 23801.dat\n1 72 203.81 20.812 0 0 0 -1 0 1 0 1 0 0 92909.dat'],
     ["a rim with double spokes, on a portal axle's wheel hub's pins", '1 72 0 0 0 1 0 0 0 1 0 0 0 1 92909.dat\n1 0 0 0 0 1 0 0 0 1 0 0 0 1 49294.dat'],
     ['a wheel hub with a brake disc, its boss closed at the end, turning in a steering bearing', '1 0 0 0 0 1 0 0 0 -1 0 0 0 -1 23801.dat\n1 72 0 0 30 1 0 0 0 -1 0 0 0 -1 35189.dat'],
+    ["an old wheel with pegholes, on its axle (8218)", '1 16 0 0 0 0 0 -1 -0.383 0.924 0 0.924 0.383 0 2994.dat\n1 16 0 0 0 1 0 0 0 0.924 -0.383 0 0.383 0.924 3705.dat'],
   ];
   for (const [what, text] of pairs) it(what, () => expect(loose(text)).toEqual([]));
 
@@ -98,5 +99,24 @@ describe('parts joined in ways only real sets showed', () => {
     expect(mech.bodies).toHaveLength(1);
     expect(mech.treads).toHaveLength(1);
     expect(mech.treads[0].radius).toBeCloseTo(102, 0);
+  });
+
+  it('an old tyre, on the old wheel with pegholes, and the tyre has its tread (8218)', () => {
+    const text = '1 16 0 0 0 0 0 -1 -0.383 0.924 0 0.924 0.383 0 2994.dat\n1 16 0 0 0 0 0 -1 -0.383 0.924 0 0.924 0.383 0 6578.dat';
+    const { parts } = parseModel(text);
+    const mech = inferMechanism(parts, library, roles);
+    expect(mech.loose).toEqual([]);
+    expect(mech.bodies).toHaveLength(1);
+    expect(mech.treads).toHaveLength(1);
+  });
+
+  it("an excavator bucket's click hinge, on a connector's, turning stiffly (8418)", () => {
+    const text = '1 16 0 0 0 0 -1 0 -0.99 0 0.139 -0.139 0 -0.99 47973.dat\n1 16 0 29.708 4.176 1 0 0 0 0.99 -0.139 0 0.139 0.99 30394.dat';
+    const { parts } = parseModel(text);
+    const mech = inferMechanism(parts, library, roles);
+    expect(mech.loose).toEqual([]);
+    expect(mech.joints).toHaveLength(1);
+    expect(mech.joints[0].kind).toBe('revolute');
+    expect(mech.joints[0].stiff).toBe(true);
   });
 });

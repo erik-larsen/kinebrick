@@ -277,11 +277,11 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "no": 5,
-      "partly": 4,
+      "partly": 9,
       "skipped": 2,
       "works": 4
     },
@@ -298,39 +298,29 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p1703 3707",
-          "p1704 94925",
-          "p1692 18946",
-          "p1702 18946",
-          "p1701 94925",
-          "p1715 10928",
           "p1716 76019",
           "p1718 32269",
           "p1717 32270",
           "p1697 32269"
-        ],
-        "why": [
-          "p169 99499 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p1721 18947",
           "p1710 18946",
           "p1711 94925",
           "p1728 32269",
@@ -340,36 +330,29 @@
           "p1901 6589",
           "p1898 62274c01",
           "p7053 64782"
-        ],
-        "why": [
-          "p169 99499 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p1721 18947",
           "p1723 18946",
           "p1663 32269",
           "p1670 32062",
           "p1667 2944"
-        ],
-        "why": [
-          "p169 99499 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -382,17 +365,14 @@
           "p2373 32270",
           "p2368 42043 - 18938",
           "p2622 42043 - 19466c01"
-        ],
-        "why": [
-          "p169 99499 is part of the frame"
         ]
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -404,9 +384,6 @@
           "p1612 32270",
           "p1519 18942",
           "p1554 18942"
-        ],
-        "why": [
-          "p169 99499 is part of the frame"
         ]
       },
       {

@@ -79,6 +79,49 @@ export function nearestPosition(slider: Slider, position: number): number {
   return slider.positions.reduce((best, p) => (Math.abs(p - position) < Math.abs(best - position) ? p : best));
 }
 
+// A changeover catch (6641 Technic Changeover Catch): it turns on the pin or axle through its
+// hole, and the fork at the end of its arm sits in a driving ring's groove, so turning it slides
+// the ring along its shaft (40 LDU a radian: its arm is 40 LDU from where it turns, its fork 60
+// LDU from its middle, as in every official model that has one). A lever or knob on its axle,
+// or a link pushing it, works it. The ring goes to the click-in position nearest where the fork
+// now is.
+export interface Catch {
+  part: number;
+  ring: Slider;
+  fork: Vector3; // where the ring's middle was as built, in the catch's own coordinates
+}
+
+// How far each catch's fork is from its middle, in LDU.
+const CATCH_REACH: Record<string, number> = { '6641.dat': 60 };
+
+// The catches in a model, each with the driving ring its fork sits in.
+export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
+  const catches: Catch[] = [];
+  parts.forEach((p, i) => {
+    const reach = CATCH_REACH[p.name];
+    if (!reach) return;
+    const at = new Vector3().setFromMatrixPosition(p.matrix);
+    const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - reach) < 1);
+    if (!ring) return;
+    const fork = new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
+    catches.push({ part: i, ring, fork });
+  });
+  return catches;
+}
+
+// Where the catches have swung their rings' forks to: for each ring whose fork is now nearer
+// another click-in position than the one it's in, that position.
+export function catchShifts(parts: PlacedPart[], table: ConnectionTable, catches: Catch[]): Map<number, number> {
+  const shifts = new Map<number, number>();
+  for (const c of catches) {
+    const fork = c.fork.clone().applyMatrix4(parts[c.part].matrix);
+    const base = c.ring.origin ?? new Vector3().setFromMatrixPosition(parts[c.ring.base].matrix);
+    const to = nearestPosition(c.ring, fork.sub(base).dot(slideDirection(parts, table, c.ring)));
+    if (to !== nearestPosition(c.ring, sliderPosition(parts, table, c.ring))) shifts.set(c.ring.part, to);
+  }
+  return shifts;
+}
+
 // A gear lever (role `shift lever`, the 6549 Technic 4 Speed Shift Lever): a stick on a ball,
 // standing up through a gate (a plate with a slot), its foot below the ball sitting between
 // driving rings. It clicks between the gate's positions: tilted into a slot, its foot swings the

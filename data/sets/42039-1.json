@@ -168,11 +168,12 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "516e176",
+    "uncommitted": true,
     "date": "2026-10-27",
     "counts": {
-      "works": 4,
-      "partly": 4,
+      "works": 6,
+      "partly": 2,
       "no": 1,
       "skipped": 1,
       "not checked": 1
@@ -276,7 +277,6 @@
           ]
         ],
         "still": [
-          "p670 18946",
           "p653 4716",
           "p870 32072",
           "p857 32072",
@@ -285,32 +285,21 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p633 18946",
-          "p637 94925",
-          "p780 32270",
-          "p760 4716",
-          "p773 3648b",
-          "p1157 41239"
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p636 18947"
         ]
       },
       {

@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { ConnectionTable } from '../src/connections.ts';
+import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr, PlacedPart } from '../src/ldr.ts';
-import { inferMechanism, Mechanism } from '../src/mechanism.ts';
+import { findMeshes, inferMechanism, Mechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -103,5 +103,34 @@ describe('differential', () => {
     kin.toggleFreeze(input);
     kin.toggleFreeze(right);
     expect(kin.freeMotions()).toHaveLength(0);
+  });
+});
+
+// Gears only real sets showed, placed as the OMR's sets place them, read with the whole library's
+// table, as a model opened from your own computer is.
+describe('gears only real sets showed', () => {
+  const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
+  const read = (text: string) => {
+    const parts = parseLdr(text);
+    return { parts, mech: inferMechanism(parts, library, roles) };
+  };
+  // How the gears of parts placed so would mesh, each on a body of its own (alone, they'd all be
+  // one body: nothing holds them apart).
+  const meshes = (text: string) => findMeshes(read(text).mech.gears.map((g, i) => ({ ...g, body: i + 1 }))).map((m) => m.kind);
+
+  it('two knob wheels on axles crossing at right angles, each 20 LDU from the crossing, mesh (42022)', () => {
+    expect(meshes('1 16 0 0 0 0.674 -0.738 0 -0.738 -0.674 0 0 0 -1 32072.dat\n1 16 20 0 -20 0 0 -1 -0.031 1 0 1 0.031 0 32072.dat')).toEqual(['bevel']);
+  });
+
+  it("a knob wheel doesn't mesh with a 12 tooth bevel gear set where another knob wheel would be: its knobs aren't teeth of LEGO's size", () => {
+    expect(meshes('1 16 0 0 0 0.674 -0.738 0 -0.738 -0.674 0 0 0 -1 32072.dat\n1 16 20 0 -20 0 0 -1 -0.031 1 0 1 0.031 0 32270.dat')).toEqual([]);
+  });
+
+  it("a 28 tooth turntable's top turns on its bottom, and a 12 tooth bevel gear at its side turns it (42052)", () => {
+    const turntable = '1 16 0 0 0 -1 0 0 0 1 0 0 0 -1 99009.dat\n1 16 0 0 0 1 0 0 0 1 0 0 0 1 99010.dat';
+    const { mech } = read(turntable);
+    expect(mech.loose).toEqual([]);
+    expect(mech.joints.map((j) => j.kind)).toEqual(['revolute']);
+    expect(meshes(turntable + '\n1 16 0 20 -40 0.966 -0.259 0 0.259 0.966 0 0 0 1 32270.dat')).toEqual(['bevel']);
   });
 });
