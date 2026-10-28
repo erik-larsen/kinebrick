@@ -8,6 +8,9 @@ import { PathPoint, PlacedPath, PlacedPart } from './ldr.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
+// How far the middle of a circle a chain placed link by link goes round may be from its wheel's
+// axis, in LDU (see findLoops): the 8835 Forklift's chain is 0.7 LDU off its sprockets.
+const CHAIN_REACH = 2;
 // How far off the axis of the part it sits in a ball may be built, and still be taken to sit on
 // it (see lineUpBalls).
 const BALL_LINE = 3;
@@ -891,12 +894,22 @@ function inGrooves(parts: PlacedPart[], cyls: WorldCylinder[], table: Connection
 // circle's axis, through its middle (within AXIS_TOLERANCE); of the joint's two bodies, the
 // wheel is the one with a part nearest the circle's middle (a 40 tooth gear a track runs
 // round, say), and the other is what it turns in. A circle on nothing that turns (a peg a
-// rubber band is hooked round) is left out: the band slides round it.
+// rubber band is hooked round) is left out: the band slides round it. A chain placed link by
+// link (see PlacedPath's byHand) is only roughly round its wheels: each of its circles is on the
+// wheel whose axis is within CHAIN_REACH of its middle, and is moved onto that axis.
 function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], table: ConnectionTable, paths: PlacedPath[]): Loop[] {
   return paths
     .filter((path) => path.looped)
     .map((path) => {
-      const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints) ?? []);
+      const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints, path.byHand ? CHAIN_REACH : AXIS_TOLERANCE) ?? []);
+      if (path.byHand) {
+        for (const w of wheels) {
+          const { from, to } = joints[w.joint];
+          const d = new Vector3().subVectors(to, from).normalize();
+          const point = path.points[w.point];
+          point.center = from.clone().addScaledVector(d, new Vector3().subVectors(point.center, from).dot(d));
+        }
+      }
       const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
       const carriers = path.points.map((point, index) => wheels.find((w) => w.point === index)?.body ?? bodyOf[nearestPart(point.center, parts, roles)]);
       return { path, wheels, links, depth: table.tracks?.[libraryName(path.skin, table)]?.depth ?? null, carriers };
@@ -919,7 +932,7 @@ function nearestPart(point: Vector3, parts: PlacedPart[], roles: string[]): numb
 // axis runs along the circle's, through its middle, with a part on that axis (within the
 // circle's radius of it) nearest the middle along it. (A drum is often just an axle, its
 // middle well along from where the string is wound.)
-function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[]): LoopWheel | null {
+function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], reach = AXIS_TOLERANCE): LoopWheel | null {
   if (!point.circle) return null;
   let best: LoopWheel | null = null;
   let bestDistance = Infinity;
@@ -928,7 +941,7 @@ function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: 
     const d = new Vector3().subVectors(joint.to, joint.from).normalize();
     if (Math.abs(Math.abs(d.dot(point.axis)) - 1) > 0.01) return;
     const off = new Vector3().subVectors(point.center, joint.from);
-    if (off.addScaledVector(d, -off.dot(d)).length() > AXIS_TOLERANCE) return;
+    if (off.addScaledVector(d, -off.dot(d)).length() > reach) return;
     parts.forEach((part, i) => {
       if (roles[i] === 'path' || (bodyOf[i] !== joint.bodyA && bodyOf[i] !== joint.bodyB)) return;
       const offset = new Vector3().setFromMatrixPosition(part.matrix).sub(point.center);
@@ -950,7 +963,7 @@ function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: 
     const d = new Vector3().subVectors(joint.to, joint.from).normalize();
     if (Math.abs(Math.abs(d.dot(point.axis)) - 1) > 0.01) return;
     const off = new Vector3().subVectors(point.center, joint.from);
-    if (off.addScaledVector(d, -off.dot(d)).length() > AXIS_TOLERANCE) return;
+    if (off.addScaledVector(d, -off.dot(d)).length() > reach) return;
     const mount = joint.bodyA === wheel.body ? joint.bodyB : joint.bodyA;
     if (steps[mount] < steps[wheel.mount]) [wheel.joint, wheel.mount] = [j, mount];
   });

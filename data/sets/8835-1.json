@@ -31,7 +31,7 @@
           "p231 2695c01",
           "p232 2695c01"
         ],
-        "note": "KineBrick today: partly. The gears turn as far as the mast's bottom axle and sprocket (p75), but the chain isn't modelled, so the top sprocket (p71) stays still, and the fork carriage is welded to the mast (its parts p35-p70 are loose and lumped onto the mast's body), so the forks don't rise. The front axle is only a shaft here: the front wheels' round holes let them spin freely on it. The worm can't be driven back, so turning the front axle or a gear by hand does nothing, as it should."
+        "note": "KineBrick today: partly. The gears turn as far as the mast's bottom axle and sprocket (p75), and the chain, placed link by link and closed by the fork carriage hooked to both its ends, turns the top sprocket (p71) with it. But the fork carriage is welded to the mast (its parts p35-p70 are loose and lumped onto the mast's body), and nothing ties it to the chain, so the forks don't rise. The front axle is only a shaft here: the front wheels' round holes let them spin freely on it. The worm can't be driven back, so turning the front axle or a gear by hand does nothing, as it should."
       },
       {
         "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
@@ -94,8 +94,9 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
-    "date": "2026-10-27",
+    "commit": "940beda",
+    "uncommitted": true,
+    "date": "2026-10-28",
     "counts": {
       "partly": 1,
       "no": 1,
@@ -142,41 +143,6 @@
       "p81 3711",
       "p82 3711",
       "p83 3711",
-      "p84 3711",
-      "p85 3711",
-      "p86 3711",
-      "p87 3711",
-      "p88 3711",
-      "p89 3711",
-      "p90 3711",
-      "p91 3711",
-      "p92 3711",
-      "p93 3711",
-      "p94 3711",
-      "p95 3711",
-      "p96 3711",
-      "p97 3711",
-      "p98 3711",
-      "p99 3711",
-      "p100 3711",
-      "p101 3711",
-      "p102 3711",
-      "p103 3711",
-      "p104 3711",
-      "p105 3711",
-      "p106 3711",
-      "p107 3711",
-      "p108 3711",
-      "p109 3711",
-      "p110 3711",
-      "p111 3711",
-      "p112 3711",
-      "p113 3711",
-      "p114 3711",
-      "p115 3711",
-      "p116 3711",
-      "p117 3711",
-      "p118 3711",
       "p119 3711",
       "p120 3711",
       "p121 3711",
@@ -192,8 +158,7 @@
           ]
         ],
         "still": [
-          "p63 2823 against p29 3703",
-          "p71 3706"
+          "p63 2823 against p29 3703"
         ]
       },
       {

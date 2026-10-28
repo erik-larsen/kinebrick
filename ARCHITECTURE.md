@@ -46,6 +46,14 @@ KineBrick keeps the path, and knows those parts as its links.
 - **A rope's circles** are where it keeps turning the same way through at least 30 degrees, round a drum or over a pulley. Each is the circle that best fits the tightest stretch of the turn, since LSynth eases a rope into and out of each. On a drum it's wound round more than once, it's its whole turns.
 - **A hose or cable** only shows where it runs.
 
+**Chains placed link by link.** Older models in the official model repository place a chain's links (3711) one by one, as parts, with no path to say where it runs (the 8835 Forklift, the 8844 Helicopter).
+
+- **A chain** is a run of links, each one's end within 4 LDU of the pin of the one before (16 LDU along it), in whatever order the file has them.
+- **It's looped** if it closes up, or if its two ends are within two links of each other: the 8835 Forklift's chain is a link short, both its ends hooked to the carriage it lifts, which closes it. A chain left open further isn't a path.
+- **Its circles** are where it keeps turning the same way, at least 10 degrees at each link (a chain placed by hand bends a little along its straight runs), through at least 30 degrees. Each is the circle that best fits the links turning at least two thirds as tightly as the tightest.
+- **Each circle's radius** is how far the chain moves for a radian of the wheel's turning: 8 links of 16 LDU to a turn of a 16 tooth gear, 12 to a 24 tooth one, so the wheels it wraps turn at the ratio of their teeth.
+- **Placed by hand,** its circles are only roughly round its wheels (see [chains and tracks](#rules-for-real-models)).
+
 **Shapes drawn directly.** Shapes a submodel draws directly rather than with parts (hoses, springs and strings bent to fit, as CAD programs generate them, out of triangles or LDraw primitives such as cylinders) are drawn, moving with a part placed by the same submodel line. They take no part in the mechanism.
 
 ### 4. Connect
@@ -216,6 +224,7 @@ Like a worm, the screw can't be driven from its piston (see [Holds](#holds)): pu
 A looped path (a chain, a track, a rubber band) goes round wheels:
 
 - **Which circles are on wheels.** A circle of the path whose middle a turning joint's axis runs through, along the circle's axis, is on a wheel. The wheel is the joint's body with a part on that axis nearest the circle's middle along it (a 40 tooth gear a track runs round, or an axle a winch's string is wound on).
+- **A chain placed link by link** is only roughly round its wheels: its circle is on the wheel whose axis passes within 2 LDU of its middle (the 8835 Forklift's are 0.7 LDU off its sprockets), and is moved onto that axis.
 - **What it turns in.** It turns in the joint's other body. Of its joints on that axis, it's the one in what's nearest the frame: a gearbox's output shaft turns in the frame and in the clutch gears freewheeling on it, and it's how it turns in the frame that drives its chain.
 - **A circle on nothing that turns** (a peg a rubber band is hooked round) is left out: the band slides round it.
 - **A rubber band** is drawn afresh round where its circles are now. One whose circles don't lie in one plane keeps the pieces LDCad drew it with, and they move with the first thing it's hooked round (the 855 Mobile Crane's, on its cab, slews with it).
@@ -576,7 +585,7 @@ A role is a short label for what a part does in a mechanism. It tells KineBrick 
 | `grooved ball` | 2907 Technic Ball with Grooves | On a driveshaft's end, in a wheel hub's socket: the hub turns with the shaft (see [universal joints](#rules-for-real-models)). |
 | `nudged ball` | 32494 Technic Wheel Spindle Axle Driver | A constant velocity joint's ball, on a half shaft's end, in a steering hub's or a joint's socket: the hub turns with the shaft, and the ball stays in the socket (see [universal joints](#rules-for-real-models)). |
 | `steering link` | 2739a Technic Steering Link 6L | A ball socket at each end, 100 LDU apart, on the towballs of a rack and a steering arm. Turns any way on them, except about its own length. |
-| `path` | 3873 Technic Chain Tread, 3711 Technic Chain Link, when LDCad placed them along a path; LSynth's segments, run one after another | Not looked up: a part in a path's submodel, or a run of LSynth's segments (see [Load](#1-load)), is one of its links. Connects to nothing; moves with the part nearest it, or round its loop. |
+| `path` | 3873 Technic Chain Tread, 3711 Technic Chain Link, when LDCad placed them along a path, or 3711 placed link by link; LSynth's segments, run one after another | Not looked up: a part in a path's submodel, a link of a chain placed link by link, or a run of LSynth's segments (see [Load](#1-load)), is one of its links. Connects to nothing; moves with the part nearest it, or round its loop. |
 | `split` | 3403c01 Turntable 4 x 4 (Complete); 61927-f1, 92693c01-f2, 40918-f1, the linear actuators' shortcuts, contracted and extended, and their old names | One LDraw file (a shortcut) for parts that move against each other: read as those parts, here the base and the top that turns on it. |
 | `linear actuator` | 92693c01, 62271c01, u9487c01, u9559c01 Technic Linear Actuator Body Assembly, small, large, extra large and the later large; 92695, 62273, their inputs; 92696, 62274c01, 62274c02, their pistons | The input turns in the body, and a screw slides the piston out of it as it does ([below](#rules-for-real-models)). |
 | `motor` | 58120, 99499, 58121 Power Functions Medium, Large and XL Motors; 22169, 22172 Control+ L and XL Motors; 69730, 54675, 54696p01, 68488 Powered Up Angular Motors; 21980, 26913, 87577, 99498 and the other Power Functions motors; 71427, 74569, 47154c01 the 9V motors; 6216m and the other 4.5V and 12V Technic motors; 2985c01 Technic Micromotor; 53787 Mindstorms NXT Motor; each with its coiled cable too; 12799 Technic Motor Pull Back 6 x 5 x 3, whose spring waits for forces in 2.0 | Its output turns in it ([below](#rules-for-real-models)). Doesn't count towards which body is the frame. |
@@ -801,7 +810,7 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 | `import.test.ts` | Bringing in real LEGO sets. Every set in `models/` already has its own lines from its file in `data/sets/`, so importing it again changes nothing. A fresh set's files are renamed wherever they're named (`956 - main.ldr` to `956-main.ldr`), its lines go after its main file's license, its line endings are kept, and importing twice gives the same file. |
 | `attachment.test.ts` | Every test model is fully attached, and a misplaced brick is caught, sitting between the studs or floating above the plate. Real sets KineBrick can't fully read yet are listed, with what each needs. |
 | `not-moving-yet.test.ts` | A part KineBrick has learned to move comes off the list of those it can't. |
-| `paths.test.ts` | A path LDCad drew is read with its circles where its submodel puts them, and its links known; its loop goes round the circles and along the straight runs between them; and its links move along it, half way round swapping places. Links LDCad put in a subpart of the path are its links too. A path's caps are parts of their own. A rubber band round two axles turns them together, at speeds in the inverse ratio of its circles, and crossed, the other way. A run of LSynth segments is a path: a rope wound on a drum is read with the drum's circle, a hose with none; and a winch wound with such a rope raises the hook tied to its end as far as the drum's rim turns, straight up. |
+| `paths.test.ts` | A path LDCad drew is read with its circles where its submodel puts them, and its links known; its loop goes round the circles and along the straight runs between them; and its links move along it, half way round swapping places. Links LDCad put in a subpart of the path are its links too. A path's caps are parts of their own. A rubber band round two axles turns them together, at speeds in the inverse ratio of its circles, and crossed, the other way. A run of LSynth segments is a path: a rope wound on a drum is read with the drum's circle, a hose with none; and a winch wound with such a rope raises the hook tied to its end as far as the drum's rim turns, straight up. Chain links placed one by one, out of order, are a looped chain round a circle at each gear, as far round as the chain goes in a turn, and turn the gears together; one a link short is closed, one left open further isn't a chain. The 8835 Forklift's chain turns its top sprocket with the bottom one, and the 8844 Helicopter's is found on its front axle. |
 
 ### Mechanisms built for the tests
 
@@ -810,8 +819,8 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 | `mechanism.test.ts` | The simple car splits into a frame and two wheel-and-axle bodies, with one turning joint per axle. A constant velocity joint's nudged ball in a portal axle's steering hub drives the hub, about the hub's axis, and stays in its socket. |
 | `kinematics.test.ts` | The simple car stands on four tyres and can move exactly one way; its wheels turn by distance ÷ tyre radius, it stays on the ground, and it rolls back to where it started. With no tyres, the frame stays put and only the axles turn. |
 | `gears.test.ts` | The 8, 24 and 40 tooth gear train turns at the right ratios, both ways. Rolling the geared car spins its extra axle the other way. Turning a wheel rolls the car one tyre circumference per turn. Every gear in the library's table has LEGO's tooth size, 1.25 LDU of pitch radius per tooth. |
-| `bevel.test.ts` | The right-angle drive turns 1:1. The differential has two free motions; the input drives the housing at a third; with the input frozen the outputs turn opposite ways; with one output frozen the housing turns half as far; a drag on the input keeps the outputs together; and freezing the input and one output jams it. |
-| `worm.test.ts` | The worm meshes with its gear, turns it one tooth per turn, can be driven from the worm, and locks when driven from the gear. |
+| `bevel.test.ts` | The right-angle drive turns 1:1. The differential has two free motions; the input drives the housing at a third; with the input frozen the outputs turn opposite ways; with one output frozen the housing turns half as far; a drag on the input keeps the outputs together; and freezing the input and one output jams it. The 8865 Test Car's old differential (73071) is named one, its crown wheel meshing with the pinion and its planet with both side gears; with the engine held, a rear wheel turns the other the opposite way, on the ground. |
+| `worm.test.ts` | The worm meshes with its gear, turns it one tooth per turn, can be driven from the worm, and locks when driven from the gear. The 8849 Tractor's worm meshes with the 24 tooth gear on its long shaft, and turns it one tooth per turn. |
 | `actuator.test.ts` | A large linear actuator raising an arm: its input turns in its body and its piston slides in it, leaving one way to move. A turn of the input slides the piston out one lead and swings the arm up. It stops at the end of its stroke going out, and coming in where the arm comes into line between its pins (a dead point). It can be worked from its input but not from the arm. The library's shortcuts read as their three parts, under their old names too. |
 | `motor.test.ts` | A motor's output turns in it: an axle in a Power Functions Medium Motor's, and the gear on that axle, turn together in the motor; so does an axle in a Control+ L Motor embedded under its set's name; and a gear on a 9V Mini-Motor's axle stub turns on it. The output turns stiffly, so a drag holds it unless nothing else can move. |
 | `gearbox.test.ts` | The driving ring sits centred on its joiner with three places to click into. Neutral leaves the output still, first gear turns it a third as far as the input, second as far. The gearbox is fully attached in every position. Its gear lever finds the ring: the two slots of its gate on the input axle's side put it in first and second, and the middle and the other two slots leave it in neutral. |
@@ -897,12 +906,23 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 **8448 Super Street Sensation**
 - Its rear cross shaft turns its propeller shaft as far, through a pair of the old 20 tooth bevel gears.
 
+**8835 Forklift**
+- Its chain, placed link by link, turns the mast's top sprocket as far as the bottom one.
+
+**8844 Helicopter**
+- Its landing gear chain, placed link by link, is found on the front axle's sprocket.
+
 **8849 Tractor**
+- Fully attached, its hitch's 24 tooth gear corrected onto its shaft.
 - Its steering wheel slides its rack 10 LDU per radian, its front axle, which rocks on the steering shaft, staying level.
+- Its worm turns the long shaft under it one tooth per turn.
 
 **8859 Tractor**
 - Its 24 tooth steering gear, 4 LDU further from its rack than its pitch radius, slides it 30 LDU per radian.
 - Its prop shaft turns the old differential's 28 tooth crown wheel half as far, through the 14 tooth bevel pinion on its end, and the tractor rolls.
+
+**8865 Test Car**
+- Its old differential (73071), with the engine held, turns one rear wheel the opposite way to the other, the car standing on the ground.
 
 **8880 Super Car**
 - Fully attached, two universal joints in its steering and four grooved balls in its hubs, and a chain from its gearbox to its engine.

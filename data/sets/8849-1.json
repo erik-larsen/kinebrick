@@ -91,7 +91,8 @@
         "stays": [
           "p259 3739",
           "p66 3736"
-        ]
+        ],
+        "note": "KineBrick today: partly. The worm drives the long shaft and, through the bevel gears, the rear cross axle (its 24 tooth gear corrected onto the shaft; see docs/ldraw-errata.md). But the lower links turn freely on the cross axle: the toothed half bushes that turn them with it, gripping their toothed toggle joints, aren't modelled."
       },
       {
         "does": "The sprayer hangs on the hitch's two lower links and its top link, so it stays upright as the hitch rises.",
@@ -122,16 +123,15 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
-    "date": "2026-10-27",
+    "commit": "940beda",
+    "uncommitted": true,
+    "date": "2026-10-28",
     "counts": {
       "works": 5,
       "partly": 1,
       "not checked": 1
     },
-    "loose": [
-      "p79 3648a"
-    ],
+    "loose": [],
     "functions": [
       {
         "result": "works",
@@ -178,8 +178,6 @@
           ]
         ],
         "still": [
-          "p77 3708",
-          "p81 3737",
           "p90 3705",
           "p93 3705",
           "p269 3894"

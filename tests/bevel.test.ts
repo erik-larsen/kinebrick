@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
-import { parseLdr, PlacedPart } from '../src/ldr.ts';
+import { parseLdr, parseModel, PlacedPart } from '../src/ldr.ts';
 import { findMeshes, inferMechanism, Mechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
@@ -103,6 +103,27 @@ describe('differential', () => {
     kin.toggleFreeze(input);
     kin.toggleFreeze(right);
     expect(kin.freeMotions()).toHaveLength(0);
+  });
+});
+
+describe("the 8865 Test Car's differential, the old one (73071), with its 28 tooth crown wheel", () => {
+  const packed = JSON.parse(readFileSync('packed/models.json', 'utf-8'))['8865-Test Car'];
+  const { parts, paths } = parseModel(readFileSync('models/8865-Test Car.mpd', 'utf-8'), (n) => packed.primitives.includes(n), (n) => packed.pieces[n] ?? null);
+  const mech = inferMechanism(parts, table, roles, paths);
+  const gear = (part: number) => mech.gears.findIndex((g) => g.part === part);
+  const has = (a: number, b: number) => mech.meshes.some((m) => (m.gearA === gear(a) && m.gearB === gear(b)) || (m.gearA === gear(b) && m.gearB === gear(a)));
+
+  it('is a differential: its crown wheel (p149) meshes with the pinion (p176), and its planet (p150) with both side gears (p147, p148)', () => {
+    expect(mech.bodies[mech.bodyOf[149]].name).toMatch(/^differential/);
+    expect(has(149, 176) && has(150, 147) && has(150, 148)).toBe(true);
+  });
+
+  it('with the engine held, turning one rear wheel turns the other the opposite way, the car standing on the ground', () => {
+    const kin = new Kinematics(mech);
+    kin.toggleFreeze(mech.bodyOf[175]); // the pinion's shaft, which the engine turns
+    const wheel = (part: number) => kin.parentLink(mech.bodyOf[part])!.joint;
+    expect(kin.turnJoint(wheel(900), 0.8)).toBeCloseTo(0.8, 6);
+    expect(kin.jointAngles[wheel(904)]).toBeCloseTo(-kin.jointAngles[wheel(900)], 3);
   });
 });
 

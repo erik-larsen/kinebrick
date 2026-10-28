@@ -35,7 +35,6 @@ const NOT_YET = [
   '8841-Dune Buggy.mpd',
   '8844-Helicopter.mpd',
   '8848-Power Truck.mpd',
-  '8849-Tractor.mpd',
   '8851-Excavator.mpd',
   '8854-Power Crane.mpd',
   '8855-Prop Plane.mpd',

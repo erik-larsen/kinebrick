@@ -25,6 +25,7 @@ export interface PlacedPath {
   looped: boolean; // round and back to its start, as a chain is
   skin: string; // the part it's made of, e.g. "3873.dat"
   points: PathPoint[]; // in order along the path
+  byHand?: boolean; // its links placed one by one, not along a path (see chainPaths): its circles are only roughly where its wheels are
 }
 
 export interface PathPoint {
@@ -88,6 +89,101 @@ function lsynthPaths(parts: PlacedPart[]) {
 }
 
 const throughPoint = (center: Vector3): PathPoint => ({ circle: false, center, axis: new Vector3(0, 0, 1), radius: 0, turn: 1 });
+
+// The chains placed link by link, as older models place them, with no path to say where they
+// run: each run of more than 8 Technic chain links (3711), one's pin in the next's end, becomes a looped
+// path its links are links of, if it closes up, or if its ends are within CHAIN_GAP of each
+// other (a forklift's chain, both ends hooked to the carriage it lifts, which closes it). Its
+// circles are where it goes round a wheel: each stretch where it keeps turning the same way, at
+// least CHAIN_STRAIGHT at each link (a chain placed by hand bends a little along its straight
+// runs), through at least MIN_TURN, as the circle that best fits the links turning at least a
+// CHAIN_BEND share of its tightest turn. Each circle's radius is how far the chain moves as the
+// wheel turns a radian, so the wheels it wraps turn at the ratio of their teeth. Placed by hand,
+// its circles are only roughly where its wheels are (see PlacedPath's byHand).
+const CHAIN_LINK = '3711.dat';
+const CHAIN_PITCH = 16; // LDU from a link's end to its pin
+const CHAIN_FIT = 4; // LDU: how far a link's end may be from the pin it's on
+const CHAIN_GAP = 2 * CHAIN_PITCH;
+const CHAIN_BEND = 1 / 1.5;
+const CHAIN_STRAIGHT = Math.PI / 18;
+function chainPaths(parts: PlacedPart[]) {
+  const links = parts.flatMap((p, i) => (p.name === CHAIN_LINK && !p.path ? [i] : []));
+  const end = (i: number) => new Vector3().setFromMatrixPosition(parts[i].matrix);
+  const pin = (i: number) => new Vector3(0, 0, CHAIN_PITCH).applyMatrix4(parts[i].matrix);
+  // The link on each link's pin, and the link whose pin it's on.
+  const next = new Map<number, number>();
+  const before = new Map<number, number>();
+  for (const i of links) {
+    for (const j of links) {
+      if (j === i || before.has(j) || end(j).distanceTo(pin(i)) > CHAIN_FIT) continue;
+      next.set(i, j);
+      before.set(j, i);
+      break;
+    }
+  }
+  const done = new Set<number>();
+  for (const first of links) {
+    if (done.has(first)) continue;
+    // Back to the chain's first link (or round to this one, if it closes up), then along it.
+    let start = first;
+    while (before.has(start) && before.get(start) !== first) start = before.get(start)!;
+    if (before.get(start) === first) start = first;
+    const chain = [start];
+    while (next.has(chain[chain.length - 1]) && next.get(chain[chain.length - 1]) !== start) chain.push(next.get(chain[chain.length - 1])!);
+    for (const i of chain) done.add(i);
+    const points = chain.map(end);
+    if (chain.length <= 8 || points[0].distanceTo(pin(chain[chain.length - 1])) > CHAIN_GAP) continue;
+    const circles = chainCircles(points);
+    if (!circles.length) continue;
+    const path: PlacedPath = { looped: true, skin: CHAIN_LINK, points: circles, byHand: true };
+    for (const i of chain) parts[i].path = path;
+  }
+}
+
+// The circles a looped chain goes round (see chainPaths), from where its links are, in order.
+function chainCircles(points: Vector3[]): PathPoint[] {
+  const n = points.length;
+  const dirs = points.map((p, i) => points[(i + 1) % n].clone().sub(p).normalize());
+  // Its axis: the way it turns, all the way round.
+  const axis = new Vector3();
+  dirs.forEach((d, i) => axis.add(new Vector3().crossVectors(dirs[(i + n - 1) % n], d)));
+  if (axis.length() < 1e-6) return [];
+  axis.normalize();
+  // How far it turns at each link (about its axis, from the way into it to the way out).
+  const turns = dirs.map((d, i) => {
+    const before = dirs[(i + n - 1) % n];
+    return Math.atan2(new Vector3().crossVectors(before, d).dot(axis), before.dot(d));
+  });
+  // Start where it turns least, so no stretch of turning is split between its end and start.
+  let from = 0;
+  turns.forEach((t, i) => Math.abs(t) < Math.abs(turns[from]) && (from = i));
+  const order = turns.map((_, k) => (from + k) % n);
+  const bends = (k: number, sign: number) => k < n && Math.abs(turns[order[k]]) >= CHAIN_STRAIGHT && Math.sign(turns[order[k]]) === sign;
+  const result: PathPoint[] = [];
+  let k = 0;
+  while (k < n) {
+    const sign = Math.sign(turns[order[k]]);
+    if (!bends(k, sign)) {
+      k++;
+      continue;
+    }
+    let j = k + 1;
+    while (bends(j, sign)) j++;
+    const stretch = order.slice(k, j);
+    const angle = Math.abs(stretch.reduce((sum, i) => sum + turns[i], 0));
+    k = j;
+    if (angle < MIN_TURN) continue;
+    const tightest = Math.max(...stretch.map((i) => Math.abs(turns[i])));
+    const core = stretch.filter((i) => Math.abs(turns[i]) >= tightest * CHAIN_BEND);
+    // The links' ends where it turns are on the circle; where it runs straight, they aren't.
+    const near = (core.length >= 3 ? core : [...new Set(core.flatMap((i) => [i - 1, i, i + 1]))]).map((i) => points[(i + n) % n]);
+    const circle = fitCircle(near, axis.clone().multiplyScalar(sign));
+    // Each link turns it 2 asin(pitch / 2 r) and moves it a pitch on.
+    const step = 2 * Math.asin(Math.min(1, CHAIN_PITCH / (2 * circle.radius)));
+    result.push({ ...circle, axis: axis.clone(), radius: CHAIN_PITCH / step, turn: sign });
+  }
+  return result;
+}
 
 // A string's points from its segments' middles: where it starts, the circles it goes round (see
 // lsynthPaths), and where it ends. A string that starts on a circle (wound on a drum) starts
@@ -354,6 +450,7 @@ export function parseModel(
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
   lsynthPaths(parts);
+  chainPaths(parts);
   // Every path placed, whether drawn with parts (a chain's links) or shapes (a string's).
   const paths = [...new Set([...parts.flatMap((p) => (p.path ? [p.path] : [])), ...shapes.flatMap((s) => (s.path ? [s.path] : []))])];
   return { parts, shapes, paths };

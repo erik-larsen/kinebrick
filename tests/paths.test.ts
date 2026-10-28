@@ -205,3 +205,97 @@ describe('paths LSynth drew', () => {
     expect(Math.hypot(moved.x, moved.z)).toBeCloseTo(0, 3);
   });
 });
+
+// A chain placed link by link, as older models place one: 18 Technic chain links (3711) round two
+// 16 tooth gears on axles 80 LDU apart through a Technic brick, each link's end on the pin of the
+// one before, 8 links to a turn; `drop` links are left out, from the 8th (as a forklift's chain
+// is left a link short, both its ends hooked to the carriage).
+function handChain(drop = 0): string {
+  const r = 8 / Math.sin(Math.PI / 8); // where the pins go round each gear
+  const pins: [number, number][] = [];
+  for (let k = 0; k < 5; k++) pins.push([-40 + 16 * k, 10 - r]); // along the top
+  for (let j = 0; j < 4; j++) pins.push([40 + r * Math.sin((j * Math.PI) / 4), 10 - r * Math.cos((j * Math.PI) / 4)]); // round the right gear
+  for (let k = 0; k < 5; k++) pins.push([40 - 16 * k, 10 + r]); // along the bottom
+  for (let j = 0; j < 4; j++) pins.push([-40 - r * Math.sin((j * Math.PI) / 4), 10 + r * Math.cos((j * Math.PI) / 4)]); // round the left gear
+  // Each link along z to the next pin, its pin across the chain, along the gears' axes (x).
+  const links = pins.map(([x, y], i) => {
+    const [nx, ny] = pins[(i + 1) % pins.length];
+    const [dx, dy] = [(nx - x) / 16, (ny - y) / 16];
+    return `1 0 ${x.toFixed(4)} ${y.toFixed(4)} 30 0 ${dy.toFixed(6)} ${dx.toFixed(6)} 0 ${(-dx).toFixed(6)} ${dy.toFixed(6)} 1 0 0 3711.dat`;
+  });
+  // Out of order in the file, as a model's may be.
+  const order = links.map((_, i) => (i * 5) % links.length).filter((i) => i < 7 || i >= 7 + drop);
+  return `1 16 0 0 0 1 0 0 0 1 0 0 0 1 3702.dat
+1 16 -40 10 0 0 0 -1 0 1 0 1 0 0 3705.dat
+1 16 40 10 0 0 0 -1 0 1 0 1 0 0 3705.dat
+1 16 -40 10 30 1 0 0 0 1 0 0 0 1 4019.dat
+1 16 40 10 30 1 0 0 0 1 0 0 0 1 4019.dat
+${order.map((i) => links[i]).join('\n')}
+`;
+}
+
+// A model in models/, read as the viewer reads it, with what the packer found.
+const packed: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
+function model(name: string) {
+  const { primitives, pieces } = packed[name] ?? { primitives: [], pieces: {} };
+  const { parts, paths } = parseModel(readFileSync(`models/${name}.mpd`, 'utf-8'), (n) => primitives.includes(n), (n) => pieces[n] ?? null);
+  return { parts, mech: inferMechanism(parts, table, roles, paths) };
+}
+
+describe('chains placed link by link', () => {
+  it('reads the links as a looped chain, round a circle at each gear, as far round as the chain goes in a turn', () => {
+    const { parts, paths } = parseModel(handChain());
+    expect(paths).toHaveLength(1);
+    const [chain] = paths;
+    expect(chain.looped).toBe(true);
+    expect(chain.byHand).toBe(true);
+    expect(parts.filter((p) => p.path === chain)).toHaveLength(18);
+    const circles = [...chain.points].sort((a, b) => a.center.x - b.center.x);
+    expect(circles.map((c) => [c.circle, Math.round(c.center.x), Math.round(c.center.y), Math.round(c.center.z)])).toEqual([
+      [true, -40, 10, 30],
+      [true, 40, 10, 30],
+    ]);
+    // 8 links of 16 LDU to a turn.
+    for (const c of circles) expect(c.radius).toBeCloseTo((8 * 16) / (2 * Math.PI), 3);
+  });
+
+  it('turns the gears together', () => {
+    const { parts, paths } = parseModel(handChain());
+    const mech = inferMechanism(parts, table, roles, paths);
+    expect(mech.loops).toHaveLength(1);
+    expect(mech.loops[0].wheels).toHaveLength(2);
+    const kin = new Kinematics(mech);
+    const [a, b] = mech.loops[0].wheels;
+    kin.turnJoint(a.joint, 1);
+    const turned = (w: typeof a) => (mech.joints[w.joint].bodyB === w.body ? 1 : -1) * kin.jointAngles[w.joint];
+    expect(turned(b) / turned(a)).toBeCloseTo(1, 6);
+  });
+
+  it('closes a chain left a link short, as a forklift carriage hooked to both its ends closes it, but not one left open further', () => {
+    expect(parseModel(handChain(1)).paths.map((p) => p.looped)).toEqual([true]);
+    expect(parseModel(handChain(3)).paths).toEqual([]);
+  });
+
+  it("the 8835 Forklift's chain turns its top sprocket with the bottom one, which the crank drives", () => {
+    const { parts, mech } = model('8835-Forklift');
+    expect(mech.loops).toHaveLength(1);
+    const [chain] = mech.loops;
+    expect(chain.links.every((i) => parts[i].name === '3711.dat')).toBe(true);
+    expect(chain.links).toHaveLength(43);
+    // The sprockets: the 16 tooth gears on the mast's top axle (p71) and bottom axle (p75).
+    expect(chain.wheels.map((w) => w.body).sort()).toEqual([mech.bodyOf[71], mech.bodyOf[75]].sort());
+    const kin = new Kinematics(mech);
+    const [a, b] = chain.wheels;
+    kin.turnJoint(a.joint, 1);
+    const turned = (w: typeof a) => (mech.joints[w.joint].bodyB === w.body ? 1 : -1) * kin.jointAngles[w.joint];
+    expect(turned(b) / turned(a)).toBeCloseTo(1, 6);
+  });
+
+  it("the 8844 Helicopter's landing gear chain is found, on the front axle's sprocket; its other end goes round a gear the model places twice (see docs/ldraw-errata.md)", () => {
+    const { mech } = model('8844-Helicopter');
+    expect(mech.loops).toHaveLength(1);
+    expect(mech.loops[0].links).toHaveLength(25);
+    // The front axle (p8, with its 16 tooth gear p10).
+    expect(mech.loops[0].wheels.map((w) => w.body)).toEqual([mech.bodyOf[8]]);
+  });
+});

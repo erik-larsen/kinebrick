@@ -30,7 +30,8 @@
           "p14 3895 against p0 3034",
           "p65 3673 against p0 3034",
           "p172 3648a against p65 3673"
-        ]
+        ],
+        "note": "KineBrick today: partly. The chain, placed link by link, is found round the front axle's 16 tooth gear, but not round the rear leg's 24 tooth gear: the model draws its rear end round a second copy of that gear, 5 LDU off the rear leg's axle (see docs/ldraw-errata.md), so the chain can't turn the rear leg."
       },
       {
         "does": "The handwheel high on the left side turns the main rotor: a crown gear on its axle drives the 24 tooth gear at the foot of the rotor mast.",
@@ -109,8 +110,9 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
-    "date": "2026-10-27",
+    "commit": "940beda",
+    "uncommitted": true,
+    "date": "2026-10-28",
     "counts": {
       "partly": 3,
       "works": 2,
@@ -118,27 +120,7 @@
     },
     "loose": [
       "p34 3648a",
-      "p37 3711",
-      "p38 3711",
-      "p39 3711",
-      "p40 3711",
-      "p41 3711",
-      "p42 3711",
-      "p43 3711",
-      "p44 3711",
-      "p45 3711",
-      "p46 3711",
-      "p47 3711",
       "p48 3711",
-      "p49 3711",
-      "p50 3711",
-      "p51 3711",
-      "p52 3711",
-      "p53 3711",
-      "p54 3711",
-      "p55 3711",
-      "p56 3711",
-      "p57 3711",
       "p58 3711",
       "p59 3711",
       "p60 3711",

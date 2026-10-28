@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
-import { parseLdr } from '../src/ldr.ts';
+import { parseLdr, parseModel } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
@@ -45,5 +45,27 @@ describe('worm drive: a worm driving a 24 tooth gear', () => {
     expect(locked).toBe(true);
     expect(kin.jointMotion(gearJoint)).toBeNull();
     kin.letGoAfterDrag();
+  });
+});
+
+describe("the 8849 Tractor's hitch: a worm driving a 24 tooth gear on the long shaft under the tractor", () => {
+  // The model's gear was off the shaft its hole is on; corrected (see docs/ldraw-errata.md).
+  const packed = JSON.parse(readFileSync('packed/models.json', 'utf-8'))['8849-Tractor'];
+  const { parts, paths } = parseModel(readFileSync('models/8849-Tractor.mpd', 'utf-8'), (n) => packed.primitives.includes(n), (n) => packed.pieces[n] ?? null);
+  const mech = inferMechanism(parts, table, roles, paths);
+  const worm = mech.gears.findIndex((g) => g.part === 55); // p55 4716
+  const gear = mech.gears.findIndex((g) => g.part === 79); // p79 3648a
+
+  it('finds the worm meshing with the gear, which is on the long shaft (p77)', () => {
+    expect(mech.meshes.filter((m) => m.kind === 'worm')).toEqual([{ gearA: worm, gearB: gear, kind: 'worm' }]);
+    expect(mech.bodyOf[79]).toBe(mech.bodyOf[77]);
+  });
+
+  it('turns the long shaft one tooth (1/24 of a turn) per turn of the worm', () => {
+    const kin = new Kinematics(mech);
+    const wormJoint = kin.parentLink(mech.gears[worm].body)!.joint;
+    const shaftJoint = kin.parentLink(mech.gears[gear].body)!.joint;
+    kin.turnJoint(wormJoint, TURN);
+    expect(Math.abs(kin.jointAngles[shaftJoint])).toBeCloseTo(TURN / 24, 3);
   });
 });

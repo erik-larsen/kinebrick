@@ -8,6 +8,9 @@ This page lists the errors KineBrick has found that way in the LDraw models it u
 | --- | --- | --- | --- | --- | --- |
 | [852-1](#852-1-helicopter) | Helicopter (1977) | Allard van Efferen | LDraw OMR | 1 | Not corrected |
 | [858-1](#858-1-auto-engines-inline-and-v-6-engines) | Auto Engines (1980), Inline and V-6 Engines | Takeshi Takahashi | LDraw forum | 2 | Corrected in KineBrick |
+| [8844-1](#8844-1-helicopter) | Helicopter (1981) | Allard van Efferen | LDraw OMR | 1 | Not corrected |
+| [8849-1](#8849-1-tractor) | Tractor (1986) | Stefan Frenz | LDraw OMR | 1 | Corrected in KineBrick |
+| [8854-1](#8854-1-power-crane) | Power Crane (1989) | Stefan Frenz | LDraw OMR | 1 | Not corrected |
 | [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in KineBrick |
 
 ## 852-1 Helicopter
@@ -146,6 +149,74 @@ And to follow the banks: in `858-1 - Engine housing.ldr`, the axle through both 
 - 1 7 0 0 60 0 0 1 -0.999657 0.0261769 0 -0.0261769 -0.999657 0 3652.dat
 + 1 7 0 0 60 0 0 1 -0.987764 0.155958 0 -0.155958 -0.987764 0 3652.dat
 ```
+
+## 8844-1 Helicopter
+
+| | |
+| --- | --- |
+| Set | 8844 Helicopter, 1981 |
+| Model | Helicopter, `8844-1.mpd` |
+| Author | Allard van Efferen (rabbitdesign.nl) |
+| Licence | CCAL 2.0 (CC BY 2.0) |
+| Original | [LDraw Official Model Repository, set 1231](https://library.ldraw.org/omr/sets/1231) |
+| In KineBrick | Used as published, not corrected: [`models/8844-Helicopter.mpd`](../models/8844-Helicopter.mpd) |
+
+### The landing gear chain goes round a second copy of each of its gears (not corrected)
+
+The chain that turns the rear leg from the front axle is placed link by link in `8844 - model.ldr`, and with it a 16 tooth gear (4019) and a 24 tooth gear (3648a) for it to go round. But those two gears are already in the model, on their axles: the 16 tooth gear on the front axle in `8844 - frame-1.ldr` (line 143), and the 24 tooth gear on the rear leg's axle in `8844 - landinggear-1.ldr` (line 180). Each pair overlaps: the second 16 tooth gear is 0.9 LDU from the first, and the second 24 tooth gear 5 LDU from the first, off the rear leg's axle and fixed to a beam instead. The chain goes round these second copies, so at its rear end it misses the gear that should turn the rear leg. KineBrick found this because it reads the chain round the front axle's gear but finds no wheel at its other end.
+
+Lines 41 and 42, in `8844 - model.ldr`:
+
+```
+1 7 0 -46 60 0 0 1 0 1 0 -1 0 0 4019.dat
+1 7 0 -66 175 0 0 1 0 1 0 -1 0 0 3648a.dat
+```
+
+A correction would take out both lines and lay the chain's rear end round the rear leg's own 24 tooth gear, 5 LDU from where it goes round now. KineBrick hasn't, since taking out two parts would renumber the parts its notes on the set's functions name.
+
+## 8849-1 Tractor
+
+| | |
+| --- | --- |
+| Set | 8849 Tractor, 1986 |
+| Model | Tractor, `8849-1.mpd` |
+| Author | Stefan Frenz [smf] |
+| Licence | CCAL 2.0 (CC BY 2.0) |
+| Original | [LDraw Official Model Repository, set 1108](https://library.ldraw.org/omr/sets/1108) |
+| In KineBrick | Corrected, with a comment saying how: [`models/8849-Tractor.mpd`](../models/8849-Tractor.mpd) |
+
+### The hitch's 24 tooth gear is off its shaft (corrected in KineBrick)
+
+The 24 tooth gear (3648a) the worm turns, to raise the three-point hitch, is placed 2 LDU off the long shaft under the tractor that it should be on. It's turned 15 degrees, as the bevel gear at the shaft's other end is, but about a point 2 LDU from its middle rather than about its middle. So its hole misses the shaft, and it misses the worm too: they mesh at 40 LDU apart, their two pitch radii, and the gear is 42 LDU from the worm. KineBrick found this because the gear was attached to nothing and the worm didn't mesh. On the shaft, under the worm, it meshes, and the worm turns the shaft.
+
+Line 103, in `8849 - Tractor.ldr`:
+
+```diff
+- 1 7 0.518 -12.068 60 0.966 -0.259 0 -0.259 -0.966 0 0 0 -1 3648a.dat
++ 1 7 0 -14 60 0.966 -0.259 0 -0.259 -0.966 0 0 0 -1 3648a.dat
+```
+
+## 8854-1 Power Crane
+
+| | |
+| --- | --- |
+| Set | 8854 Power Crane, 1989 |
+| Model | Power Crane, `8854-1.mpd` |
+| Author | Stefan Frenz [smf] |
+| Licence | CCAL 2.0 (CC BY 2.0) |
+| Original | [LDraw Official Model Repository, set 1144](https://library.ldraw.org/omr/sets/1144) |
+| In KineBrick | Used as published, not corrected: [`models/8854-Power Crane.mpd`](../models/8854-Power%20Crane.mpd) |
+
+### The winch's string is drawn with nothing (not corrected)
+
+The winch's string is an LDCad path, `8854 - Rope.ldr`, from the drum along the boom, over the pulley at its tip, round the hook's pulley and back up. But it names the part to draw it with as `8854 - ldcLQRopeSeg.dat`, as if it were one of the model's own subfiles, and there's no such part, in the file or in LDCad. So when LDCad generated the path it drew none of its 274 segments, and says so in the file:
+
+```
+0 // The path is approx 541.14 mm (1352.85) and exists out of 274 segments.
+0 // warning: 274 of 274 segments are 'empty' please check your (path_skin) configuration.
+```
+
+So no viewer draws the string, and the hook hangs on nothing. Its 18 points are all bezier points, too, none a circle round the drum or a pulley, so even drawn it wouldn't say what it's wound on. KineBrick found this because it finds no string for the winch. Other files in the OMR (the 855 Mobile Crane's) name LDCad's own rope segment, `ldcLQRopeSeg.dat`, which LDCad draws into the file itself. A correction would name that and generate the path again in LDCad, with circles round the drum and the pulleys.
 
 ## 8880-1 Super Car
 
