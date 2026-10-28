@@ -199,6 +199,7 @@ export class Kinematics {
   private plainOnly = false; // while it is, whether the drag's motions may not use the suspension (see chooseDragHolds)
   private drivenLast = false; // while holds are chosen, whether what the drag's part drives is tried last (see chooseDragHolds)
   private played = false; // whether jointMotion's last motion took up play (see playMotion)
+  private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
   // on that axis nearest the middle (model coordinates, at the start).
@@ -560,6 +561,44 @@ export class Kinematics {
     return this.basis;
   }
 
+  // Works something out with the model moved across the ground (x and z) so that its frame is at
+  // the origin, then moves it back. A motion is written as each body's turning and the velocity
+  // of the point at the origin, so the further the model is from the origin, the more turning
+  // weighs in the solver's sums against everything else, and the motions it picks would depend on
+  // where the model is: the 956 Auto Chassis, steered and kept driving, picked a different line
+  // round its circle once it had gone a few thousand LDU, and wandered off across the grid.
+  // `work` gets functions that turn a motion worked out there into one where the model is, and
+  // back. Within it, everything is near the origin, and calls within it work there too.
+  private nearOrigin<T>(work: (toModel: (motion: number[]) => number[], fromModel: (motion: number[]) => number[]) => T): T {
+    const at = new Vector3().setFromMatrixPosition(this.poses[0]).setY(0);
+    if (this.nearOriginDepth > 0 || at.lengthSq() < EPSILON) return work((m) => m, (m) => m);
+    const moveBy = (by: Vector3) => {
+      const t = new Matrix4().makeTranslation(by.x, 0, by.z);
+      for (const pose of this.rootPoses.values()) pose.premultiply(t);
+      this.updatePoses();
+    };
+    // The velocity of the point at the origin, from that of the point `at`, there: v − w × at.
+    const shifted = (motion: number[], sign: number) => {
+      const out = motion.slice();
+      for (let b = 0; b < this.bodyCount; b++) {
+        const w = new Vector3(motion[6 * b], motion[6 * b + 1], motion[6 * b + 2]);
+        const d = new Vector3().crossVectors(w, at).multiplyScalar(sign);
+        out[6 * b + 3] -= d.x;
+        out[6 * b + 4] -= d.y;
+        out[6 * b + 5] -= d.z;
+      }
+      return out;
+    };
+    moveBy(at.clone().negate());
+    this.nearOriginDepth++;
+    try {
+      return work((m) => shifted(m, 1), (m) => shifted(m, -1));
+    } finally {
+      this.nearOriginDepth--;
+      moveBy(at);
+    }
+  }
+
   // Rebuilds every body's pose from the root poses and joint angles.
   private updatePoses() {
     this.basis = null;
@@ -800,14 +839,16 @@ export class Kinematics {
   // otherwise keep holds it can scrub its way past (the Ackermann car's differential, its tyres
   // scrubbing round a bend rather than its rear wheels turning at different speeds).
   holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean, joint = -1): boolean {
-    const scrub = this.scrub;
-    this.choosingHolds = true;
-    try {
-      return this.chooseDragHolds(grabbed, stillPossible, joint);
-    } finally {
-      this.choosingHolds = false;
-      this.scrub = scrub;
-    }
+    return this.nearOrigin(() => {
+      const scrub = this.scrub;
+      this.choosingHolds = true;
+      try {
+        return this.chooseDragHolds(grabbed, stillPossible, joint);
+      } finally {
+        this.choosingHolds = false;
+        this.scrub = scrub;
+      }
+    });
   }
 
   private chooseDragHolds(grabbed: number, stillPossible: () => boolean, joint: number): boolean {
@@ -1852,8 +1893,10 @@ export class Kinematics {
   // tyres roll, next to nothing, its suspension locked after one step (the 42000 Grand Prix
   // Racer's wishbones).
   freeMotions(): number[][] {
-    const basis = this.treeBasis();
-    return this.freeMotionsInBasis().map((z) => fromBasis(z, basis));
+    return this.nearOrigin((toModel) => {
+      const basis = this.treeBasis();
+      return this.freeMotionsInBasis().map((z) => toModel(fromBasis(z, basis)));
+    });
   }
 
   // The free motions, in the tree basis's coordinates (see treeBasis), far fewer than a motion
@@ -1982,6 +2025,10 @@ export class Kinematics {
   // smaller steps, it would slip across; and stopped right at the dead point, it couldn't turn
   // back.)
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
+    return this.nearOrigin(() => this.turnJointNearOrigin(joint, angle, allowed, maxStep));
+  }
+
+  private turnJointNearOrigin(joint: number, angle: number, allowed: (() => boolean) | undefined, maxStep: number): number {
     // Stopped at a dead point already, and nothing has moved since: no further that way.
     const dead = this.deadPoint;
     if (dead && dead.joint === joint && dead.way === Math.sign(angle) && this.jointAngles.every((a, k) => a === dead.angles[k])) return 0;
@@ -2082,6 +2129,13 @@ export class Kinematics {
   // cost nothing, and could be mixed in any amount, wrecking the loops over a step (the 8448
   // Super Car's steering, once its tyres stood on the ground). Null if the joint can't turn.
   jointMotion(joint: number): number[] | null {
+    return this.nearOrigin((toModel) => {
+      const motion = this.jointMotionNearOrigin(joint);
+      return motion && toModel(motion);
+    });
+  }
+
+  private jointMotionNearOrigin(joint: number): number[] | null {
     // Chosen in the tree basis's coordinates (see freeMotionsInBasis), each motion's bodies'
     // turning read off the basis's rows as they're needed, and only the motion chosen turned
     // back into a motion vector: a big model has many free motions, most of them left out.
@@ -2197,6 +2251,10 @@ export class Kinematics {
   // it's driving straight, or null if the frame can't move. (Only steering and rolling move a
   // car's frame, so this takes the free motion that moves the frame, if there's one.)
   frameTurningRadius(): number | null {
+    return this.nearOrigin(() => this.frameTurningRadiusNearOrigin());
+  }
+
+  private frameTurningRadiusNearOrigin(): number | null {
     const all = this.freeMotions();
     const still = this.frameStill(all);
     let best: number[] | null = null;
@@ -2239,10 +2297,12 @@ export class Kinematics {
   // degrees): the motion is only exact at the start of the step.
   // Returns how far apart the joints are left (see closeLoops).
   advance(motion: number[], amount: number, keep = -1): number {
-    this.move(motion, amount);
-    const gap = this.closeLoops(keep);
-    this.settle();
-    return gap;
+    return this.nearOrigin((_, fromModel) => {
+      this.move(fromModel(motion), amount);
+      const gap = this.closeLoops(keep);
+      this.settle();
+      return gap;
+    });
   }
 
   // Sets the model back down on its tyres. The solver lets a tyre rise or sink a very little

@@ -126,6 +126,20 @@ describe('956 Auto Chassis', () => {
     expect(Math.acos(Math.min(1, -up.y)) * (180 / Math.PI)).toBeLessThan(0.5); // degrees from upright
   });
 
+  it('steered well over and driven a long way round, it keeps to the circle it started on, wherever on the grid it has got to', () => {
+    kin.reset();
+    turn(bodyOf('3736.dat'), (-93.9 * Math.PI) / 180);
+    const joint = kin.parentLink(rearAxle)!.joint;
+    kin.holdWhatTheDragDoesntNeed(rearAxle, () => kin.jointMotion(joint) !== null, joint);
+    const radius = kin.frameTurningRadius()!;
+    const step = (15 * Math.PI) / 180; // a motor's step
+    for (let i = 0; i < 150; i++) kin.turnJoint(joint, step, undefined, step); // halfway round, 3000 LDU from the start
+    const radiusThere = kin.frameTurningRadius()!;
+    kin.letGoAfterDrag();
+    expect(frameMoved()).toBeGreaterThan(3000);
+    expect(radiusThere).toBeCloseTo(radius, 0);
+  });
+
   it('steered, a turn of the rear axle takes it round a bend: with no differential, its rear tyres skid to make up the difference', () => {
     kin.reset();
     turn(bodyOf('3736.dat'), 0.5); // the front wheels about 7 degrees
