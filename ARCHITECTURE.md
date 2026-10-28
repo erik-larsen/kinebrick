@@ -151,6 +151,9 @@ A string that goes round no wheel, or is tied to something attached to nothing t
 - The opening is a 1x1 round plate's or brick's anti-stud, or the open end of a Technic connector's axle hole.
 - Examples: a crane's outrigger legs on their pads, the two connectors a bulldozer's bucket is wedged on.
 - It works at any angle: the four studs point the way the opening does, at its level, each 14.1 LDU (half a stud's diagonal) off its axis.
+- A Technic bush standing on end between four studs grips them too, as a 2 x 2 brick's tube does (the 858 Auto Engines' round caps). Only a bush that would otherwise be loose: one on an axle that turns in a Technic plate's hole may sit between its studs as well, and mustn't hold the axle still.
+
+**On an axle's tip.** A part that would otherwise be loose, its axle hole lined up with an axle's tip and starting right there, is pushed on that axle. Real parts give a little, so a builder may press a part on an axle already filled by others, where in LDraw it can only sit against its tip (the 858 Auto Engines' fans, two round plates on an axle pin past the bush their rubber band runs in).
 
 **On tiles.** A part held by nothing but smooth tiles under it slides along them, since nothing grips a tile from above (a crane's outriggers slide out on tiles), as long as it overlaps them by a stud.
 

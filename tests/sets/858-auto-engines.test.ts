@@ -63,8 +63,10 @@ describe('858 Auto Engines: the boxer engine', () => {
   const engine = load('models/858-Auto Engines-Boxer Engine.mpd');
   const { parts, mech } = engine;
 
-  it('is attached but for its round cap, a 2 x 2 round brick on an axle, whose bush stands between four studs', () => {
-    expect(mech.loose.map((i) => parts[i].name)).toEqual(['3713.dat', '3705.dat', '3941.dat', '3713.dat']);
+  it('is fully attached: its round cap, a 2 x 2 round brick on an axle, stands on a bush between four studs, which grip it', () => {
+    expect(mech.loose).toEqual([]);
+    expect(parts[161].name).toBe('3713.dat');
+    expect(mech.bodyOf[163]).toBe(mech.bodyOf[160]); // the cap, with the plate under it
   });
 
   it('a turn of the crank takes all six pistons through their 32 LDU strokes and back, and the rubber bands turn the fan and the top axle about 2.9 times', () => {
@@ -81,8 +83,10 @@ describe('858 Auto Engines: the inline engine', () => {
   const engine = load('models/858-Auto Engines-Inline Engine.mpd');
   const { parts, mech } = engine;
 
-  it('is attached but for its round cap, and its fan, whose round plate meets the end of its axle pin rather than going on it', () => {
-    expect(mech.loose.map((i) => parts[i].name)).toEqual(['3713.dat', '3705.dat', '3941.dat', '3713.dat', '4032a.dat', '3623.dat', '3623.dat', '3623.dat', '3623.dat', '4032a.dat']);
+  it('is fully attached: its round cap as on the boxer engine, and its fan, whose round plates are pressed onto the tip of its axle pin, past the bush', () => {
+    expect(mech.loose).toEqual([]);
+    expect(mech.bodyOf[117]).toBe(mech.bodyOf[110]); // the fan, with its axle pin
+    expect(mech.bodyOf[58]).toBe(mech.bodyOf[55]); // the cap, with the plate under it
   });
 
   it('a turn of the crank takes its three pistons through their 32 LDU strokes and back, and the rubber bands turn the fan and the distributor about 2.9 times', () => {
@@ -139,8 +143,10 @@ describe('858 Auto Engines: the V-6 engine', () => {
   const engine = load('models/858-Auto Engines-V-6 Engine.mpd');
   const { parts, mech, kin } = engine;
 
-  it('is attached but for its round cap and its fan, as on the inline engine', () => {
-    expect(mech.loose.map((i) => parts[i].name)).toEqual(['4032a.dat', '3623.dat', '3623.dat', '3623.dat', '3623.dat', '4032a.dat', '3713.dat', '3705.dat', '3941.dat', '3713.dat']);
+  it('is fully attached, its round cap and its fan as on the inline engine', () => {
+    expect(mech.loose).toEqual([]);
+    expect(mech.bodyOf[156]).toBe(mech.bodyOf[158]); // the fan, with its axle pin
+    expect(mech.bodyOf[164]).toBe(mech.bodyOf[132]); // the cap, with the plate under it
   });
 
   it('holds its two cylinder banks in a V: each hangs on an axle along the block, and an axle runs through both their tops, so neither can swing', () => {

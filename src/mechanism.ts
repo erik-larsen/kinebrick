@@ -410,6 +410,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const actuators = linearActuators(parts, connections);
   connections.push(...bushGrips(roles, cyls));
   const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
+  connections.push(...bushesOnFourStuds(roles, cyls, connections));
+  connections.push(...onAxleTips(cyls, connections));
   // Loose parts hanging on a string are held by it; the rest ride along with what's nearest.
   connections.push(...looseFits(roles, cyls, connections, frictionRigid));
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections), paths);
@@ -685,18 +687,74 @@ function onFourStuds(cyls: WorldCylinder[]): Connection[] {
   const held: Connection[] = [];
   for (const a of openings) {
     if (perPart.get(a.part) !== 1) continue;
-    const around = studs.filter((st) => {
-      if (st.part === a.part || st.dir.dot(a.dir) < 0.99) return false;
-      const d = new Vector3().subVectors(st.start, a.start);
-      const level = d.dot(a.dir);
-      return Math.abs(level) < AXIS_TOLERANCE && Math.abs(d.addScaledVector(a.dir, -level).length() - 10 * Math.SQRT2) < ALIGN_TOLERANCE;
-    });
-    for (const part of new Set(around.map((st) => st.part))) {
-      if (around.filter((st) => st.part === part).length < 4) continue;
-      held.push({ male: part, female: a.part, kind: 'stud', from: a.start.clone(), to: a.start.clone() });
+    for (const part of fourStudsAround(studs, a.start, a.dir, a.part)) held.push({ male: part, female: a.part, kind: 'stud', from: a.start.clone(), to: a.start.clone() });
+  }
+  return held;
+}
+
+// A Technic bush standing on end between four studs grips them too, as a 2 x 2 brick's tube does
+// (the 858 Auto Engines' round caps stand so, each on an axle with a bush under it). Only a bush
+// that would otherwise be loose: a bush on an axle that turns in a Technic plate's hole may sit
+// between the plate's studs as well, and mustn't hold the axle still.
+function bushesOnFourStuds(roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+  const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
+  const loose = new Set(findLooseParts(count, connections));
+  if (loose.size === 0) return [];
+  const studs = cyls.filter((c) => c.gender === 'M' && isStud(c));
+  const held: Connection[] = [];
+  for (const bush of cyls.filter((c) => loose.has(c.part) && roles[c.part] === 'bush' && c.gender === 'F' && c.secs.some((s) => s.shape === 'A'))) {
+    const length = bush.secs.reduce((sum, sec) => sum + sec.length, 0);
+    // Either end, with the way into the bush from it.
+    const ends: [Vector3, Vector3][] = [
+      [bush.start, bush.dir],
+      [bush.start.clone().addScaledVector(bush.dir, length), bush.dir.clone().negate()],
+    ];
+    for (const [end, inwards] of ends) {
+      for (const part of fourStudsAround(studs, end, inwards, bush.part)) held.push({ male: part, female: bush.part, kind: 'stud', from: end.clone(), to: end.clone() });
     }
   }
   return held;
+}
+
+// A part that would be loose, its axle hole lined up with an axle's tip and starting right there,
+// is pushed on that axle: real parts give a little, so a builder may press a part on an axle
+// already filled by others, where in LDraw it can only sit against its tip (the 858 Auto Engines'
+// fans, two round plates pressed on an axle pin past the bush their rubber band runs in).
+function onAxleTips(cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+  const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
+  const loose = new Set(findLooseParts(count, connections));
+  if (loose.size === 0) return [];
+  const pushed: Connection[] = [];
+  for (const axle of cyls.filter((c) => c.gender === 'M' && c.secs[c.secs.length - 1].shape === 'A')) {
+    const tip = axle.start.clone().addScaledVector(axle.dir, axle.secs.reduce((sum, sec) => sum + sec.length, 0));
+    for (const hole of cyls) {
+      if (hole.gender !== 'F' || hole.part === axle.part || !loose.has(hole.part) || loose.has(axle.part)) continue;
+      if (new Vector3().crossVectors(axle.dir, hole.dir).length() > ANGLE_TOLERANCE) continue;
+      // Where each of the hole's sections starts and ends, along the axle from its tip.
+      let at = new Vector3().subVectors(hole.start, tip).dot(axle.dir);
+      const sideways = new Vector3().subVectors(hole.start, tip).addScaledVector(axle.dir, -at).length();
+      if (sideways > LOOSE_ALIGN_TOLERANCE) continue;
+      const way = Math.sign(hole.dir.dot(axle.dir));
+      for (const sec of hole.secs) {
+        const end = at + way * sec.length;
+        if (sec.shape === 'A' && Math.abs(Math.min(at, end)) < AXIS_TOLERANCE) pushed.push({ male: axle.part, female: hole.part, kind: 'rigid', from: tip.clone(), to: tip.clone() });
+        at = end;
+      }
+    }
+  }
+  return pushed;
+}
+
+// The parts (other than `part`) with four studs round `at`: each pointing `dir`, its base at the
+// level of `at`, half a stud's diagonal (14.1 LDU) off the line through it.
+function fourStudsAround(studs: WorldCylinder[], at: Vector3, dir: Vector3, part: number): number[] {
+  const around = studs.filter((st) => {
+    if (st.part === part || st.dir.dot(dir) < 0.99) return false;
+    const d = new Vector3().subVectors(st.start, at);
+    const level = d.dot(dir);
+    return Math.abs(level) < AXIS_TOLERANCE && Math.abs(d.addScaledVector(dir, -level).length() - 10 * Math.SQRT2) < ALIGN_TOLERANCE;
+  });
+  return [...new Set(around.map((st) => st.part))].filter((p) => around.filter((st) => st.part === p).length >= 4);
 }
 
 // A part held by nothing but smooth tiles under it slides along them: nothing grips a tile
