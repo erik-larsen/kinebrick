@@ -96,7 +96,7 @@ mkdirSync(OUT_DIR, { recursive: true });
 // The index: the timeline of first appearances, and every kind by family.
 const used = kinds.filter((k) => uses.get(k.kind)!.length);
 const firsts = used.map((k) => ({ k, list: uses.get(k.kind)! })).sort((a, b) => a.list[0].year - b.list[0].year || kinds.indexOf(a.k) - kinds.indexOf(b.k));
-let index = `# Mechanisms\n\nThe kinds of mechanism in LEGO Technic sets: when each first appears, and how often it's used since, from the ${functionCount} functions of the ${sets.length} sets KineBrick has surveyed so far (${firstYear} to ${lastYear}). Each function's kinds are tagged from what its building instructions show it doing. ${generatedNote}\n\n`;
+let index = `# Mechanisms\n\nThe kinds of mechanism in LEGO Technic sets: when each first appears, and how often it's used since, from the ${functionCount} functions of the ${sets.length} sets KineBrick Viewer has surveyed so far (${firstYear} to ${lastYear}). Each function's kinds are tagged from what its building instructions show it doing. ${generatedNote}\n\n`;
 index += `## Timeline\n\nEach kind by the year it first appears, the newest last.\n\n| Year | Kind | Family | First in |\n|---|---|---|---|\n`;
 for (const { k, list } of firsts) {
   const first = distinctSets(list.filter((u) => u.year === list[0].year));

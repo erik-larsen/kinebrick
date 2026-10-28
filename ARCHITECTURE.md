@@ -1,4 +1,4 @@
-# KineBrick architecture
+# KineBrick Viewer architecture
 
 How KineBrick works inside, for anyone changing the code. What it does, and how to use it, is in the [README](README.md).
 

@@ -1,6 +1,6 @@
 # Errors found in LDraw models of LEGO Technic sets
 
-[KineBrick](https://github.com/erik-larsen/kinebrick) is a web LDraw viewer that works out a Technic model's mechanism from where its parts are placed, then lets you turn its gears and levers. To do that it has to decide, for every pin and axle, which hole it sits in, and for every pair of gears, whether they mesh. A part a few LDU out of place shows up as a part that attaches to nothing, or a gear train that doesn't turn.
+[KineBrick Viewer](https://github.com/erik-larsen/kinebrick) is a web LDraw viewer that works out a Technic model's mechanism from where its parts are placed, then lets you turn its gears and levers. To do that it has to decide, for every pin and axle, which hole it sits in, and for every pair of gears, whether they mesh. A part a few LDU out of place shows up as a part that attaches to nothing, or a gear train that doesn't turn.
 
 This page lists the errors KineBrick has found that way in the LDraw models it uses, so they can be corrected where the models are published. For each one it gives the exact lines, and the correction KineBrick uses where it has one. Coordinates are in LDU (1 stud = 20 LDU).
 
