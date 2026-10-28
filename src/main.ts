@@ -71,6 +71,24 @@ const NAMED_MODELS: [string, string][] = [
   ['rack-and-pinion', 'Rack and pinion'],
   ['linear-actuator', 'Linear actuator'],
 ];
+// How the picker opens each test model, as the README's links do: the part it keeps turning
+// (and how fast), and the parts it turns first (a car's steering).
+const OPENINGS: Record<string, string> = {
+  'simple-car': 'autospin=12',
+  'geared-car': 'autospin=13&rpm=24',
+  'gear-train': 'autospin=6',
+  'right-angle': 'autospin=5',
+  'differential': 'autospin=11&rpm=39',
+  'steering-car': 'turn=21,38.4&autospin=27,cw',
+  'steering-car-solid': 'turn=16,-45.7&autospin=22,cw',
+  'ackermann-car': 'turn=51,-160.6&autospin=55,cw',
+  'worm-drive': 'autospin=13&rpm=120',
+  'gearbox': 'autospin=13',
+  'single-piston-engine': 'autospin=7,cw&rpm=200',
+  'four-bar': 'turn=3,-8.7&autospin=3',
+  'rack-and-pinion': 'autospin=11&rpm=42',
+  'linear-actuator': 'autospin=12&rpm=160',
+};
 const MODELS: [string, string][] = [
   ...NAMED_MODELS,
   ...Object.keys(packedModels)
@@ -958,7 +976,10 @@ picker.addEventListener('change', () => {
     picker.value = chosen;
     filePicker.click();
   } else if (picker.value) {
-    openModel((p) => p.set('model', picker.value));
+    openModel((p) => {
+      p.set('model', picker.value);
+      for (const [name, value] of new URLSearchParams(OPENINGS[picker.value] ?? '')) p.append(name, value);
+    });
   }
 });
 
