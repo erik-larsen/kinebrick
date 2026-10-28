@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The 12-tooth bevel gear on the fuselage's right side is a knob that raises and lowers the landing gear: it turns the nose gear's leg up into the fuselage, and a steering link from the nose gear swings the main gear's axle, so the two main wheels fold up too.",
+        "mechanisms": [
+          "crank-and-link: landing gear"
+        ],
         "source": "book: steps 8-10 (pages 12-17, nose gear), step 36 (page 39, the knob), step 42 (page 45, red arrow on the knob); inferred: that the link carries the main gear with it, and which side is right",
         "control": "p97 32270",
         "moves": [
@@ -30,6 +33,9 @@
       },
       {
         "does": "The canopy, made of two flexible axles over the cockpit, hinges up at its front to open the cockpit.",
+        "mechanisms": [
+          "hinge: canopy"
+        ],
         "source": "book: step 31 (page 34, red arrow on the canopy)",
         "control": "p42 6536",
         "moves": [
@@ -40,6 +46,9 @@
       },
       {
         "does": "The three landing gear wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 41-42 (pages 44-45)",
         "control": [
           "p104 42610",

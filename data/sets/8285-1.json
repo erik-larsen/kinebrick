@@ -34,6 +34,10 @@
     "functions": [
       {
         "does": "Pushing the truck along turns the V6 engine: the first pair of rear wheels drives a differential, whose bevel gears turn a long shaft forward under the deck; at the front a row of three 16-tooth gears (the middle one idling on the steering shaft) turns the crankshaft, so the six pistons go up and down.",
+        "mechanisms": [
+          "piston-engine: V6",
+          "differential"
+        ],
         "source": "book: overview pages 2-3, function 1 (arrows along the truck, the engine photo); book 1 engine sub-steps on pages 52-55 and step 29 (page 56)",
         "control": [
           "p2332 32020",
@@ -52,6 +56,9 @@
       },
       {
         "does": "The second pair of rear wheels and the front wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: the second rear axle's shafts (p138, p121) carry no gears, and the front wheels sit on the steering stub axles",
         "control": [
           "p2336 32020",
@@ -61,6 +68,9 @@
       },
       {
         "does": "The knob on the cab roof steers the front wheels: its shaft runs down behind the seats, turns through a pair of bevel gears onto a shaft running forward to an 8-tooth pinion on the steering rack, and the rack's ends swing the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: overview pages 2-3, function 2 (the roof knob and a top view of the front wheels steering)",
         "control": "p901 2654",
         "moves": [
@@ -75,6 +85,9 @@
       },
       {
         "does": "The small steering wheel in the cab turns on its own; it isn't linked to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: it sits on an axle pin in the dashboard (p846 43093), apart from the steering column, which runs up to the roof knob",
         "control": "p847 2819",
         "stays": [
@@ -83,6 +96,9 @@
       },
       {
         "does": "The bonnet, with the grille and front wings, tilts forward to show the engine.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
         "source": "book: overview page 2, function 1 (photo with the bonnet tilted open over the engine)",
         "control": "p1069 32034",
         "moves": [
@@ -94,6 +110,10 @@
       },
       {
         "does": "The knob on top of the sleeper box lowers and raises the two outriggers at the back: a worm on its shaft turns a 24-tooth gear, a long shaft runs back under the deck, and bevel gears turn a cross shaft whose links swing the two black legs down until their feet stand on the ground.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: outriggers"
+        ],
         "source": "book: overview pages 2-3, function 3 (knob, and the photo with arrows at the legs); book 1 steps 5-11 (pages 43-44, worm and 24-tooth gear), book 2 step 53 (page 47, arrows on the knob and a leg)",
         "control": "p1529 2654",
         "moves": [
@@ -106,6 +126,9 @@
       },
       {
         "does": "The front knob on the crane base's left side winds the winch: a 12-tooth gear on its shaft turns the 20-tooth gear on the yellow drum, raising or lowering the hook, whose string runs up over the boom tip.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book: overview pages 2-3, function 5 (knob and the hook's up-down arrow); book 2 steps 12-15 (pages 53-55, the drum and string), book 6 step 57 (page 11, the hook)",
         "control": "p1716 2654",
         "moves": [
@@ -120,12 +143,19 @@
       },
       {
         "does": "A ratchet holds the hook up: the yellow lever over the winch drum carries a pawl, held down by a rubber axle joiner, on the drum's gear; lifting the lever lets the hook be lowered.",
+        "mechanisms": [
+          "ratchet: winch"
+        ],
         "source": "book: overview pages 2-3, function 4 (a hand lifting the yellow lever beside the winch knob); inferred: what it does, from the parts (lever p1689 32056, cross block p1687, rubber joiner p1692)",
         "control": "p1689 32056",
         "skip": "only resists gravity; the winch knob works both ways without it"
       },
       {
         "does": "The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: boom"
+        ],
         "source": "book: overview pages 2-3, function 6 (knob and drawing of the boom); book 2 steps 5-11 (pages 49-52, the worm and gear in the swinging bracket), book 6 step 56 (page 10, the strut fitted under the raised boom); inferred: that the strut p1740 is the link from the gear's arms (p1649/p1650 at the axle p1871) to the boom",
         "control": "p1719 2654",
         "moves": [
@@ -141,6 +171,9 @@
       },
       {
         "does": "The knob on the crane base's right side extends and retracts the boom's inner section: bevel gears turn the boom's pivot axle, a shaft up the boom carries the drive to the tip, and an 8-tooth pinion there runs on the racks under the inner section.",
+        "mechanisms": [
+          "rack-and-pinion: boom"
+        ],
         "source": "book: overview pages 2-3, function 7 (arrow along the boom); book 6 steps 10-15 (pages 2-8, the shaft, racks and pinion)",
         "control": "p1722 2654",
         "moves": [
@@ -153,12 +186,18 @@
       },
       {
         "does": "Pumping the yellow hand pump on the deck fills the pneumatic system with air.",
+        "mechanisms": [
+          "pneumatic-pump: hand"
+        ],
         "source": "book: overview pages 2-3, function 9; book 6 step 72 (page 41)",
         "control": "p2224 2797c01-f2",
         "skip": "pneumatic: works by air pressure"
       },
       {
         "does": "The valve lever on the crane base's right side sends air to the yellow cylinder under the back of the deck, which raises or lowers the wheel-lift arm.",
+        "mechanisms": [
+          "pneumatic-cylinder: wheel-lift arm"
+        ],
         "source": "book: overview pages 2-3, functions 8 and 10 (the lever pushed left and right, the wheel lift photographed down and up); book 1 steps 8-10 (the cylinder), book 6 step 59 (page 23)",
         "control": "p1884 47223a-f1",
         "moves": [
@@ -169,6 +208,9 @@
       },
       {
         "does": "The wheel-lift arm hinges at the back of the deck, so it swings up and down as the cylinder works it, carrying the grey wheel forks.",
+        "mechanisms": [
+          "hinge: wheel-lift arm"
+        ],
         "source": "book: overview pages 2-3, function 10; book 6 steps 9-16 (pages 17-22) and 59 (page 23)",
         "control": "p2092 32278",
         "moves": [
@@ -178,6 +220,10 @@
       },
       {
         "does": "The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back.",
+        "mechanisms": [
+          "hinge: wheel forks",
+          "spring: wheel forks"
+        ],
         "source": "book: book 6 steps 9-16 (pages 17-22, the shock absorber between the arm and the fork frame); inferred: that the forks tilt on it",
         "control": "p2060 40490",
         "moves": [
@@ -187,6 +233,9 @@
       },
       {
         "does": "The two side lockers behind the cab open: each door, with a handle, hinges up at its top edge.",
+        "mechanisms": [
+          "hinge: locker doors"
+        ],
         "source": "inferred: each door (p2158 on the right side, p2241 on the left side) hangs on pins along its top edge and has a handlebar handle (p2172, p2255 30031); the book shows no arrows",
         "control": [
           "p2158 32278",

@@ -18,6 +18,10 @@
     "functions": [
       {
         "does": "The black 12 tooth gear on top of the cab steers the front two axles (hand of God steering): its upright shaft runs down behind the cab to a shaft along the chassis that works the steering links of both front axles, the first axle turning further than the second.",
+        "mechanisms": [
+          "multi-axle-steering: front two axles",
+          "linkage-steering"
+        ],
         "source": "book: book 2 page 88 top-left inset (arrow on the roof gear, arrows at both front axles' wheels)",
         "control": "p1016 32270",
         "moves": [
@@ -39,6 +43,10 @@
       },
       {
         "does": "The eight wheels roll. The four rear wheels drive through a differential on each rear axle; the front wheels roll freely on their steering knuckles.",
+        "mechanisms": [
+          "differential",
+          "free-wheels: front"
+        ],
         "source": "book: book 1 (rear axles with their differentials), book 2 page 89 top inset (arrow along the ground)",
         "control": [
           "p688 56145",
@@ -53,6 +61,10 @@
       },
       {
         "does": "Rolling the truck turns the small engine under the cab: the rear differentials drive a shaft running forward under the chassis, whose 16 tooth gear at the front drives an idler and then a camshaft that pumps four pistons up and down.",
+        "mechanisms": [
+          "piston-engine: 4 pistons",
+          "differential"
+        ],
         "source": "inferred: the model's drive shaft (p15-p160) runs from the rear axles' bevel gears to the front, where gears drive a shaft of liftarm cams (p133-p139) under four upright axles (p170-p181); the book's function pages don't show it",
         "control": [
           "p696 56145",
@@ -73,6 +85,9 @@
       },
       {
         "does": "The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank.",
+        "mechanisms": [
+          "function-selector: drum"
+        ],
         "source": "book: book 2 page 89 insets (the lever with its N label pushed right while the truck rolls, and left while the side crank turns)",
         "control": "p374 32523",
         "moves": [
@@ -82,6 +97,10 @@
       },
       {
         "does": "With the selector set for driving, rolling the truck turns the drum to mix: the drive shaft's 16 tooth gear turns the 20 tooth clutch gear on the drum drive shaft, which runs back to a 24 tooth gear, a shaft through the drum's support, and a universal joint to a 36 tooth gear that turns the drum on the turntable at its front end.",
+        "mechanisms": [
+          "power-take-off: drum",
+          "rotary-tool: mixer drum"
+        ],
         "source": "book: book 2 page 89 top inset (arrow along the ground, the drum turning)",
         "control": [
           "p696 56145",
@@ -103,6 +122,10 @@
       },
       {
         "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
+        "mechanisms": [
+          "rotary-tool: mixer drum",
+          "function-selector"
+        ],
         "source": "book: book 2 page 89 bottom inset (arrow on the crank, the drum turning, concrete pouring)",
         "control": "p1049 42112 - 33299b",
         "moves": [
@@ -121,6 +144,9 @@
       },
       {
         "does": "The drum's back end rides on four small wheels on a rocking frame.",
+        "mechanisms": [
+          "bogie: drum rollers"
+        ],
         "source": "book: book 2 page 88 (the rollers under the drum's back end)",
         "control": "p581 92907",
         "moves": [
@@ -131,6 +157,9 @@
       },
       {
         "does": "The chute at the back swings down from its stowed position for pouring.",
+        "mechanisms": [
+          "hinge: chute"
+        ],
         "source": "book: book 2 page 88 bottom-left insets (stowed, and swung down with an arrow)",
         "control": "p555 32140",
         "moves": [

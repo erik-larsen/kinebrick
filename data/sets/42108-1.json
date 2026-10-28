@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "Either of the two orange knobs on top of the chassis behind the cab steers: their shafts meet on a cross shaft with bevel gears, which turns the long steering shaft down the chassis, and that shaft's 12 tooth gears turn the steering knuckles of all four axles. The front two axles turn one way and the rear two the other, with the outer axles turning further than the inner ones.",
+        "mechanisms": [
+          "multi-axle-steering: all four axles"
+        ],
         "source": "book: steps 1-52 (the chassis: steering shaft, knuckles and links; the step 52 insets show every knuckle turning), page 266 top-left inset (arrows on both orange knobs and on the wheels)",
         "control": [
           "p707 2654",
@@ -38,6 +41,9 @@
       },
       {
         "does": "The eight wheels roll freely; there's no drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: page 266 top-left inset",
         "control": [
           "p1263 56145",
@@ -52,6 +58,9 @@
       },
       {
         "does": "Each of the four outriggers swings out and down onto its foot: turning its black 12 tooth gear (at the back) or its liftarm handle (at the front) swings the leg out from the chassis side and down.",
+        "mechanisms": [
+          "hinge: outriggers"
+        ],
         "source": "book: page 266 top-middle inset (arrows on the rear gears and the legs)",
         "control": [
           "p354 32270",
@@ -73,6 +82,9 @@
       },
       {
         "does": "The superstructure slews all the way round on its turntable, carrying the cab, boom and hook.",
+        "mechanisms": [
+          "turntable: superstructure"
+        ],
         "source": "book: page 266 bottom-left inset (360 arrow)",
         "control": "p483 41239",
         "moves": [
@@ -87,6 +99,9 @@
       },
       {
         "does": "The black knob nearer the cab on the superstructure's left side raises and lowers the boom: its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up.",
+        "mechanisms": [
+          "linear-actuator: boom"
+        ],
         "source": "book: page 267 middle panel (the boom-raising icon on the knob, arrow raising the boom)",
         "control": "p1190 2654",
         "moves": [
@@ -102,6 +117,9 @@
       },
       {
         "does": "The black knob at the back of the superstructure's left side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book: page 267 left panel (the hook icon on the knob, arrow lowering the hook), steps 344-350 (stringing the hook)",
         "control": "p1193 2654",
         "moves": [
@@ -116,6 +134,9 @@
       },
       {
         "does": "The black knob on the superstructure's right side extends the boom: it turns a red 16 tooth gear and a blue 20 tooth gear at the boom's pivot, which drive a shaft along the boom to a gear at the outer section's tip, and that gear runs the rack on top of the inner section.",
+        "mechanisms": [
+          "rack-and-pinion: boom extension"
+        ],
         "source": "book: steps 335-341 (the rack on the inner section, the blue and red gears), page 267 right panel (the knob and arrow along the boom)",
         "control": "p1153 2654",
         "moves": [
@@ -132,6 +153,9 @@
       },
       {
         "does": "A red lever with a white ball on each side of the superstructure locks a drive: one locks the winch, the other the boom extension, and each must be unlocked to lower the hook or work the boom.",
+        "mechanisms": [
+          "catch: winch and boom extension"
+        ],
         "source": "book: page 267 lock insets (locked and unlocked, with arrows on the lever)",
         "control": [
           "p1214 2736",

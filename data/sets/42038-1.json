@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black gear on top of the frame behind the cab steers (hand of god steering): its vertical shaft turns, through 12 tooth bevel gears and two universal joints, a 12 tooth gear on the front axle's rack, which turns both front track units.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book 1: steps 1-9 (the vertical shaft and bevel gears, pages 3-6), front axle steps 1-17 (the rack, pages 38-44), steps 47-53 (front axle fitted; step 53 on page 56 draws the gear turning and the front tracks swinging)",
         "control": "p170 32270",
         "moves": [
@@ -33,6 +36,10 @@
       },
       {
         "does": "With the red selector lever in position 1, the knob on top of the frame (a black axle joiner on a vertical shaft) tips the bed at the back: a 20 tooth bevel gear at the shaft's foot turns the selector shaft through a 12 tooth bevel gear, the driving ring couples one clutch gear, and through a 16 tooth idler, a shaft and two universal joints it runs the linear actuator that lifts the bed.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: bed"
+        ],
         "source": "book 1: steps 5-18 (the selector's shaft, clutch gears, driving ring and lever, pages 4-14; the 1:1 drawing on page 13), steps 54-57 (bed and actuator; step 57 on page 61 draws the knob, the lever and the bed tipping); book 2 pages 67-68 and 76 (the lever's two positions: 1 tips the bed)",
         "first": [
           {
@@ -58,6 +65,10 @@
       },
       {
         "does": "With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: boom"
+        ],
         "source": "book 1: steps 5-11 and 34-40 (the gears, and the vertical shaft through the turntable, pages 4-9 and 25-30); book 2: crane steps 1-12 and steps 106-111 (actuator and boom, pages 52-62); pages 67-68 and 76 (position 2 raises the crane)",
         "first": [
           {
@@ -84,6 +95,9 @@
       },
       {
         "does": "The red selector lever beside the knob slides the driving ring between the two clutch gears: position 1 for the bed, position 2 for the crane.",
+        "mechanisms": [
+          "function-selector: 2 functions"
+        ],
         "source": "book 1: steps 10-12 (the lever and changeover catch, page 13), step 57; book 2 page 67 (the lever's two positions marked with bed and crane symbols)",
         "control": "p84 2736",
         "moves": [
@@ -92,6 +106,9 @@
       },
       {
         "does": "The crane slews round on its turntable behind the cab, turned by hand; a 20 tooth gear beside it meshes with the turntable's teeth.",
+        "mechanisms": [
+          "turntable: crane"
+        ],
         "source": "book 1: steps 34-40 (turntable and gear, pages 25-30); book 2 page 68 (the crane slewing, bottom right)",
         "control": "p158 99010",
         "moves": [
@@ -105,6 +122,9 @@
       },
       {
         "does": "The black gear at the crane's base winds the winch, raising and lowering the hook and its load on the string over the boom tip.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book 2: crane step 11 (reel and string, page 57), steps 107-112 (pages 58-63); inferred: that the gear is the winch's handle",
         "control": "p902 32270",
         "moves": [
@@ -116,6 +136,9 @@
       },
       {
         "does": "The front and rear axles each swing side to side on a central pivot, with a shock absorber either side, so the tracks follow the ground.",
+        "mechanisms": [
+          "pendular-axle"
+        ],
         "source": "book 1: rear axle steps 11 and 47-51 (pages 9 and 44-46), front axle steps 47-53 (step 53 on page 56 draws the front axle rocking); inferred: the rear axle the same",
         "control": [
           "p280 41239",
@@ -131,11 +154,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the axles level and spring back.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book 1: steps 29-30, 45 and 49-51",
         "skip": "springs only matter under force; the axles swing freely without them"
       },
       {
         "does": "Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book 2: track steps 1-8 and 99-101 (pages 38-47)",
         "control": [
           "p646 41239",
@@ -146,16 +175,26 @@
       },
       {
         "does": "The cab's top tips forward on a hinge, to reach inside (where the Power Functions battery box goes).",
+        "mechanisms": [
+          "hinge: cab top"
+        ],
         "source": "book 2: step 90 (page 26, the arrow); page 71 (step 3 of the motor option)",
         "note": "unsure which parts form the hinged top in the model"
       },
       {
         "does": "The steering wheel in the cab turns freely; it isn't linked to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: from the model; the book draws no link",
         "control": "p562 40001"
       },
       {
         "does": "With the Power Functions motor fitted (sold separately, 8293), the motor turns the knob's shaft, and the lever chooses bed or crane as before.",
+        "mechanisms": [
+          "electric-motor: PF",
+          "function-selector"
+        ],
         "source": "book 2 pages 68-75 (the motor option)",
         "note": "the model file has no motor; the knob p190 59443 is worked by hand"
       }

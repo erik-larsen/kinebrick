@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air.",
+        "mechanisms": [
+          "electric-motor: PF L",
+          "pneumatic-pump"
+        ],
         "source": "book: page 203 (the Power Functions and Pneumatic V2 badges; picture 1 of each pair shows the battery box switched on); the pump's build steps are inferred",
         "control": "p820 44294",
         "moves": [
@@ -24,6 +28,9 @@
       },
       {
         "does": "The black gear on the right of the cab turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom.",
+        "mechanisms": [
+          "pneumatic-cylinder: boom"
+        ],
         "source": "book: page 203 (left pair: switch on the motor, turn the valve; the boom moves up and down); which side's valve works the boom is inferred",
         "control": "p1893 42080 - 18575",
         "moves": [
@@ -35,6 +42,9 @@
       },
       {
         "does": "The black gear on the left of the cab turns the second pneumatic valve, which works the small cylinder in the harvester head, opening and closing its two spiked gripper arms.",
+        "mechanisms": [
+          "pneumatic-cylinder: gripper arms"
+        ],
         "source": "book: page 203 (right pair: the gripper arms open and close), page 201 (bottom right photo); which side's valve works the gripper is inferred",
         "control": "p1892 42080 - 18575",
         "moves": [
@@ -46,6 +56,9 @@
       },
       {
         "does": "The cab and boom slew round on a turntable on the front unit, about 270 degrees.",
+        "mechanisms": [
+          "turntable: cab and boom"
+        ],
         "source": "book: page 200 (top left photo, the 270 degree arrow)",
         "control": "p282 18938",
         "moves": [
@@ -55,6 +68,10 @@
       },
       {
         "does": "The black gear on top of the rear unit, just behind the cab, steers the machine: through a pair of gears it turns the 60 tooth turntable joining the front and rear units, and a lever linkage steers the front wheels with it.",
+        "mechanisms": [
+          "articulated-steering",
+          "linkage-steering"
+        ],
         "source": "book: page 201 (top right photo: the gear marked, the arrows on the front wheel and the bend between the units)",
         "control": "p840 42080 - 18575",
         "moves": [
@@ -66,6 +83,9 @@
       },
       {
         "does": "The black gear on the boom's tip turns the harvester head round on its 28 tooth turntable.",
+        "mechanisms": [
+          "turntable: harvester head"
+        ],
         "source": "book: page 201 (bottom right photo, the arrow on the gear at the head)",
         "control": "p1633 42080 - 18575",
         "moves": [
@@ -75,11 +95,17 @@
       },
       {
         "does": "The circular saw blade under the harvester head spins freely.",
+        "mechanisms": [
+          "free-wheels: saw blade"
+        ],
         "source": "inferred: the blade sits on its own pin; the book draws no arrow on it",
         "control": "p1509 61403"
       },
       {
         "does": "All eight wheels roll freely; none is driven.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: page 202",
         "control": [
           "p1073 56145",

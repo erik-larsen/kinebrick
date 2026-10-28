@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The black 12 tooth gear on top of the cab steers the front wheels: its shaft runs down to a 16 tooth gear, which drives a second 16 tooth gear and then a third on the steering post between the front wheels; that post's arm swings the two steering knuckles.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: steps 1-7 (knuckles and steering gears), steps 10-12 (the gear train), step 53 (the shaft and gear on top), page 52 (curved arrow)",
         "control": "p120 32270",
         "moves": [
@@ -33,6 +36,9 @@
       },
       {
         "does": "Pushing the tractor along spins the two rake wheels behind it: the tan 20 tooth bevel gear on the rear axle drives a 12 tooth bevel gear on a shaft running back to the rake, where a 12 tooth gear turns a vertical gear between the two big rake gears, so both turn the same way.",
+        "mechanisms": [
+          "power-take-off: rake"
+        ],
         "source": "book: steps 37-39 (the shaft and its gears), steps 46-49 (the rake gears and the rear axle's bevel gear), page 52 (arrows round the rake)",
         "control": [
           "p125 55982",
@@ -51,6 +57,9 @@
       },
       {
         "does": "The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it.",
+        "mechanisms": [
+          "hinge: rake"
+        ],
         "source": "book: page 52 inset (arrows on the black connector at the top of the arm and on the rake); steps 41-42 and 50-52 show how it hangs",
         "control": "p93 32140",
         "moves": [
@@ -67,6 +76,9 @@
       },
       {
         "does": "The four wheels roll freely: each front wheel on its own short axle in its steering knuckle, the two rear wheels together on the 7-long rear axle that drives the rake.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 1-3, 49 and 54",
         "control": [
           "p121 55982",

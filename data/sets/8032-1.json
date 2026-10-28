@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handwheel works the saw: a pin in the 24 tooth gear on the handwheel's axle is a crank that pushes the toothed blade back and forth, and a link from the blade's far end rocks the tilted frame with the crown gear on top.",
+        "mechanisms": [
+          "crank-and-link: saw"
+        ],
         "source": "book: steps 6-8 (handwheel, gear with its pin, blade) and 9 (links and frame); what the crank and links do inferred from the model file, as the book draws no arrows",
         "control": "p28 3736",
         "moves": [
@@ -27,6 +30,9 @@
       },
       {
         "does": "The crown gear on top of the tilted frame turns freely on its axle, like a saw blade.",
+        "mechanisms": [
+          "free-wheels: saw blade"
+        ],
         "source": "inferred: from the model file and sub-step 5 (crown gear on an axle with two bushes); the book doesn't say",
         "control": "p59 3650c",
         "stays": [

@@ -22,6 +22,9 @@
     "functions": [
       {
         "does": "The black gear on the cab roof steers the front wheels: its upright axle comes down to a knob gear, which turns a long axle forward to a small gear that slides the steering rack across the front axle.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: book 1 steps 13-18 (rack, long axle and gear), book 2 steps 30-48 (the upright axle and roof gear); how it's worked inferred, as the book draws no arrow for it",
         "control": "p779 32270",
         "moves": [
@@ -39,6 +42,10 @@
       },
       {
         "does": "Rolling the truck turns the engine at the front: the rear wheels drive the differential, a long shaft carries the drive forward, and its 16-tooth gear turns the crankshaft, so the yellow pistons pump up and down.",
+        "mechanisms": [
+          "piston-engine",
+          "differential"
+        ],
         "source": "book: book 1 steps 2-9 (differential and long shaft), book 2 steps 28-29 (engine and crankshaft, pages 40-44)",
         "control": [
           "p932 86652",
@@ -57,6 +64,9 @@
       },
       {
         "does": "The red lever beside the seats is a gear selector: it slides a driving ring on the gearbox shaft to engage one of two clutch gears, so the side gear works either the winch or the boom.",
+        "mechanisms": [
+          "function-selector: 2 functions"
+        ],
         "source": "book: book 3 page 34 (insets: the lever pushed one way for the winch, the other for the boom); book 1 pages 8-12 (the gearbox shaft with its driving ring and two clutch gears)",
         "control": "p612 2825",
         "moves": [
@@ -70,6 +80,10 @@
       },
       {
         "does": "With the selector set for the winch, the black gear on the side behind the cab winds the winch: knob gears carry the turn to the gearbox shaft, its clutch gear drives a 16-tooth gear, bevel gears turn the 24-tooth gear on the reel, and the string over the boom tip raises or lowers the hook.",
+        "mechanisms": [
+          "function-selector",
+          "winch: hook"
+        ],
         "source": "book: book 3 page 34 (top: the lever set, the side gear turning and the hook going up and down); book 2 steps 1-12 (winch and gears)",
         "control": "p542 32270",
         "first": [
@@ -95,6 +109,10 @@
       },
       {
         "does": "With the selector set for the boom, the same side gear raises or lowers the boom with its towing fork: the other clutch gear drives a 16-tooth gear on a worm, which turns a 24-tooth gear on the boom's pivot.",
+        "mechanisms": [
+          "function-selector",
+          "worm-drive"
+        ],
         "source": "book: book 3 page 34 (bottom: the lever set the other way, the side gear turning and the boom swinging); book 2 steps 13-21",
         "control": "p542 32270",
         "first": [
@@ -117,6 +135,9 @@
       },
       {
         "does": "The small grey steering wheel in the cab is fixed; it doesn't steer.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: book 2 fits it on a fixed axle, and the steering is worked from the roof",
         "stays": [
           "p260 2819"
@@ -124,6 +145,9 @@
       },
       {
         "does": "The four wheels roll freely, the rear ones turning the engine as they go; the front ones steer.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: book 3 step 82",
         "control": [
           "p930 86652",

@@ -22,6 +22,11 @@
     "functions": [
       {
         "does": "Turning the round exhaust nozzle at the tail sweeps both wings back and forward together: the nozzle's 24-tooth gear turns a small gear on an axle with a worm, the worm turns a 24-tooth gear whose two gears drive a pair of racks along the fuselage, and the racks' cross axle pushes a link to each wing, which pivots near the wing root.",
+        "mechanisms": [
+          "swing-wing",
+          "worm-drive",
+          "rack-and-pinion: wings"
+        ],
         "source": "book: book 1 page 65 (the nozzle turned and the racks sliding forward); book 2 page 55 (bottom left: the nozzle turning and the wings swinging)",
         "control": "p284 56145",
         "moves": [
@@ -39,6 +44,10 @@
       },
       {
         "does": "The smooth grey axle joiner low on the fuselage's left side raises and lowers the landing gear: it turns a worm, which turns a small gear on a long axle along the belly, and knob gears at its ends swing the nose leg and, through a cross axle, the two main legs.",
+        "mechanisms": [
+          "retractable-landing-gear",
+          "worm-drive"
+        ],
         "source": "book: book 2 pages 11-14 (main gear legs, the box shows them turning) and step 68; book 2 page 55 (top right: the knob turning and the three legs swinging)",
         "control": "p25 59443",
         "moves": [
@@ -57,6 +66,10 @@
       },
       {
         "does": "The black gear on the spine behind the cockpit opens the canopy: it turns a worm, which turns a small gear whose two arms push a long beam forward, tilting the canopy up on its hinge at the back of the cockpit.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: canopy"
+        ],
         "source": "book: book 2 page 33 (arrows show the knob turning and the canopy front lifting) and page 55 (bottom right)",
         "control": "p354 32270",
         "moves": [
@@ -72,6 +85,9 @@
       },
       {
         "does": "Moving the control stick in the cockpit forward and back tilts the two tailplanes: rods along the fuselage carry the stick's movement to a crank on the tailplanes' common axle.",
+        "mechanisms": [
+          "control-surfaces: tailplanes"
+        ],
         "source": "book: book 2 page 55 (top left: arrows at the stick and on both tailplanes); inferred: which rods carry it",
         "control": "p194 6553",
         "moves": [
@@ -88,6 +104,9 @@
       },
       {
         "does": "The three landing gear wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: book 1 and book 2 (gear legs)",
         "control": [
           "p57 42610",

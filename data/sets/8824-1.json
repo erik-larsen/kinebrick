@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The black wheel on top of the cabin steers: an 8 tooth gear at the foot of its shaft turns a 24 tooth gear on the upright steering column at the stern, which swivels the rear wheels below and, through two toothed toggle joints, the propeller above.",
+        "mechanisms": [
+          "swivel-axle-steering: rear wheels and propeller"
+        ],
         "source": "book: steps 14-15 (the gears, the column and the rear wheels), 20 (black wheel and propeller) and the cover (turning arrows on the black wheel); the propeller swivelling with the column inferred from the model file",
         "control": "p190 8824 - 4288",
         "moves": [
@@ -30,6 +33,9 @@
       },
       {
         "does": "Rolling the hovercraft on its front wheels spins the propeller: a bevel gear on the front wheels' axle turns a lengthwise shaft, whose crown gear turns an upright shaft with two 16 tooth gears; those drive a chain of 16 tooth clutch gears riding free on the steering knob's shaft and on the steering column, and the last one turns the crown gear on the propeller's shaft.",
+        "mechanisms": [
+          "driven-rotor: propeller"
+        ],
         "source": "book: steps 9 (front wheels and bevel gears), 13-14 and 17 (16 tooth gears), 20 (propeller with its crown gear) and the cover (turning arrow on the propeller); the gear path inferred from the model file",
         "control": [
           "p62 3482",
@@ -48,6 +54,9 @@
       },
       {
         "does": "The two rear wheels roll freely under the steering column.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 15",
         "control": [
           "p151 3482",

@@ -18,6 +18,10 @@
     "functions": [
       {
         "does": "Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further.",
+        "mechanisms": [
+          "rack-and-pinion: mast",
+          "telescopic-mast"
+        ],
         "source": "book 1: steps 19-23 (the centre gearbox), 109-113 (the mast and its rack), 194 (the string); page 118 (top left photo, the arrows on the beacon and the forks)",
         "control": "p448 3941",
         "moves": [
@@ -31,6 +35,9 @@
       },
       {
         "does": "The lever on the side of the body tilts the mast forward and back.",
+        "mechanisms": [
+          "crank-and-link: mast tilt"
+        ],
         "source": "book 1: page 118 (bottom left photo, the arrows on the side lever and the mast); the lever's build steps are inferred",
         "control": "p334 6553",
         "moves": [
@@ -43,6 +50,9 @@
       },
       {
         "does": "The grey exhaust stack on top at the back steers the rear wheels.",
+        "mechanisms": [
+          "linkage-steering: rear wheels"
+        ],
         "source": "book 1: page 119 (bottom right photo, the arrows on the exhaust and the rear wheel)",
         "control": "p578 15535",
         "moves": [
@@ -55,6 +65,10 @@
       },
       {
         "does": "Pushed along, the front wheels drive the two cylinder engine through a differential: a shaft runs back to the engine, where a 16 tooth gear and an idler turn the crankshaft and the two pistons move up and down.",
+        "mechanisms": [
+          "piston-engine: 2 cylinders",
+          "differential"
+        ],
         "source": "book 1: steps 27-30 (the differential), 76-83 (the engine); page 119 (top right photo, the arrows on the pistons)",
         "control": [
           "p458 86652",
@@ -72,6 +86,9 @@
       },
       {
         "does": "The rear wheels roll freely; they aren't driven.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: no drive shaft reaches the rear axle",
         "control": [
           "p454 86652",
@@ -83,6 +100,9 @@
       },
       {
         "does": "The two front wheel arches, with the mirrors, swing out.",
+        "mechanisms": [
+          "hinge: wheel arches"
+        ],
         "source": "inferred: each arch hangs on its own pin (wheelarchfrontleft and right); the book draws no arrow on them",
         "control": [
           "p349 42003",

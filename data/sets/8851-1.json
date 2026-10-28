@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "Pump with the red hand pump and push the valve at the left of the cab's back to the side, and the yellow cylinder at the front of the cab raises or lowers the boom, carrying the stick and bucket with it.",
+        "mechanisms": [
+          "pneumatic-cylinder: boom"
+        ],
         "source": "book: cover diagram (magenta arrow), steps 4-7, 14 and the step 19 inset (first row); the hose from this valve runs to the boom cylinder's base in the model",
         "control": "p17 8851-4694c01-f1",
         "moves": [
@@ -32,6 +35,9 @@
       },
       {
         "does": "The middle valve works the cylinder on top of the boom, which swings the stick in and out at the boom tip.",
+        "mechanisms": [
+          "pneumatic-cylinder: stick"
+        ],
         "source": "book: cover diagram (green arrow), arm steps 3-4 and 14, the step 19 inset (second row); the hose from this valve runs up the boom to the stick cylinder's base in the model",
         "control": "p256 8851-4694c01-f1",
         "moves": [
@@ -47,6 +53,10 @@
       },
       {
         "does": "The valve at the right of the cab's back works the cylinder on the stick, which curls the bucket through a pair of links.",
+        "mechanisms": [
+          "pneumatic-cylinder: bucket",
+          "crank-and-link: bucket"
+        ],
         "source": "book: cover diagram (cyan arrow), arm steps 4-6, the step 19 inset (third row); the hose from this valve runs to the bucket cylinder's base in the model",
         "control": "p542 8851-4694c01-f1",
         "moves": [
@@ -62,12 +72,18 @@
       },
       {
         "does": "The hand pump: pushing the red plunger down blows air through the valves, and its spring pushes it back up.",
+        "mechanisms": [
+          "pneumatic-pump: hand"
+        ],
         "source": "book: page 2 (how the pneumatics work), step 10, the step 19 inset",
         "control": "p580 337",
         "skip": "air pressure and the spring aren't modelled; the pump's parts are all loose, on the frame"
       },
       {
         "does": "The cab and arm slew round on the turntable above the tracks.",
+        "mechanisms": [
+          "turntable: cab"
+        ],
         "source": "book: steps 7-8 and 13 (a turntable, held by a threaded axle and nut); that it slews by hand is inferred",
         "control": "p852 3738",
         "moves": [
@@ -82,6 +98,9 @@
       },
       {
         "does": "The tracks roll freely round the 40-tooth sprockets and the 16-tooth idlers; nothing drives them.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book: steps 7-8",
         "control": [
           "p908 3649",

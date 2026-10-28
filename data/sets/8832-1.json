@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: an 8-tooth gear at the foot of the slanted steering column slides the steering rack across, and the rack's ends swing the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 3-5 (steering arms), 8 (rack), 9-10 (column, gear and steering wheel)",
         "control": "p51 4185",
         "moves": [
@@ -31,6 +34,9 @@
       },
       {
         "does": "The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "book: steps 11-13, the step 13 inset shows the shock absorber behind the seat",
         "control": "p58 3894",
         "moves": [
@@ -47,12 +53,18 @@
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: step 13 inset",
         "control": "p31 73129",
         "skip": "a spring only matters under gravity or force"
       },
       {
         "does": "The four wheels roll freely, each on its own axle pin; there's no drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 5, 11 and 13",
         "control": [
           "p73 3482",

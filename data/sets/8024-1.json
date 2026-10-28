@@ -9,6 +9,9 @@
     "functions": [
       {
         "does": "The knob on the rear deck steers the front wheels: its upright shaft has a crown gear at the foot that turns a 24-tooth gear on a long shaft running forward under the cockpit, and an 8-tooth gear at the shaft's front end slides the steering rack, which swings both steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "inferred: from the gears in the model file (knob p250 on the upright axle p151, crown gear p167, 24-tooth gear p108 and 8-tooth gear p121 on the 10 axle p107, steering rack p98 in its holder); unsure whether the knob is meant as the racer's steering control or the 8-tooth gear under it does something else",
         "control": "p250 120270 - 4185a",
         "moves": [
@@ -26,6 +29,9 @@
       },
       {
         "does": "Rolling the racer works its engine: the right rear half-axle carries a crankshaft, and the connecting rod on it pumps the piston up and down in the cylinder on the rear deck.",
+        "mechanisms": [
+          "piston-engine: 1 cylinder"
+        ],
         "source": "inferred: from the crankshaft p17 on the right rear axle p16, connecting rod p18, piston p28 and cylinder p114 in the model file",
         "control": "p226 3482",
         "moves": [
@@ -37,6 +43,9 @@
       },
       {
         "does": "The four wheels roll freely, the rear two each on its own half-axle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: from the model file",
         "control": [
           "p255 3482",

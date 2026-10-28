@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handwheel with the half-pin handle, low on the tower's side, winds the winch: its 12-long axle across the bottom of the tower is the drum, and the string runs up through the tower and the turntable, along the jib and down the arm at the jib's tip to the hook's pulley, raising or lowering the hook.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book: tower steps 4 (12-long drum axle and string), 6-7 (handwheel and handle), step 13 (the string round the hook's pulley, inset); the cover draws an up-and-down arrow by the hook",
         "control": "p88 8074 - 4185a",
         "moves": [
@@ -29,12 +32,18 @@
       },
       {
         "does": "A pawl on the tower, a 4-long axle hanging from a pin, rests on the 16-tooth gear on the winch's axle so the hook can't run down by itself; lifting it lets the winch unwind.",
+        "mechanisms": [
+          "ratchet: winch"
+        ],
         "source": "book: tower step 7 (the pawl, inset) and step 6; inferred: that it's a ratchet, from how it's built",
         "control": "p90 3705",
         "skip": "a ratchet only matters under gravity"
       },
       {
         "does": "The round yellow knob high on the tower's side slews the crane: its 6-long axle turns a 14-tooth bevel gear, which turns a vertical 4-long axle whose 8-tooth gear runs round the turntable's teeth, so the whole cab, counter-jib and jib turn on top of the tower.",
+        "mechanisms": [
+          "turntable: crane"
+        ],
         "source": "book: tower step 5 (sub-steps 3-5: the bevel gear, and the 4-long axle with its 8-tooth gear beside the turntable), step 7 (the knob, inset)",
         "control": "p95 4150",
         "moves": [
@@ -53,6 +62,11 @@
       },
       {
         "does": "One handwheel at the back of the counter-jib luffs the jib: its 10-long axle's worm turns a 24-tooth gear on a 12-long axle, whose two levers push two Flex System cables forward to a rocker of liftarms on the jib's pivot, and two short links from the rocker raise or lower the jib.",
+        "mechanisms": [
+          "worm-drive",
+          "push-pull-cable: jib",
+          "crank-and-link: jib"
+        ],
         "source": "book: cab steps 3 (the two worms on 10-long axles), 5 (handwheels), 6 (24-tooth gears and levers), steps 9-11 (the rocker, the two 5.6 cm cables and the jib); inferred: that this cable train luffs the jib rather than the arm, from how the parts are joined; the cover shows the jib raised",
         "control": "p134 8074 - 4185a",
         "moves": [
@@ -71,6 +85,10 @@
       },
       {
         "does": "The other handwheel at the back of the counter-jib swings the arm that hangs from the jib's tip: its worm turns a 24-tooth gear on an 8-long axle, whose two levers push a Flex System cable to a crank on the jib's pivot, and from there a long cable along the jib pushes the lever at the top of the arm, swinging the arm (and the hook hanging from it) in and out.",
+        "mechanisms": [
+          "worm-drive",
+          "push-pull-cable: arm"
+        ],
         "source": "book: cab steps 3, 5-6 and 8 (the 4 cm and 7.2 cm cables), steps 12 (the arm on its 8-long axle at the jib's tip, and the 10.4 cm cable along the jib) and 13; the cover shows the arm swung up",
         "control": "p135 8074 - 4185a",
         "moves": [

@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handlebars steer the front wheel: the whole front fork, with its two long fork legs, headlight and handlebars, turns on a 4-long axle pushed down through the frame's motorcycle steering head.",
+        "mechanisms": [
+          "fork-steering"
+        ],
         "source": "book: step 11 (the fork is built in sub-steps 1-7, then the 4-long axle is pushed down through the steering head) and step 12",
         "control": "p51 3176",
         "moves": [
@@ -35,6 +38,9 @@
       },
       {
         "does": "The rear wheel rides on a swinging arm: two 1x6 technic plates pivot on the axle under the frame and carry the rear wheel's axle, and two shock absorbers run from pins high on the frame down to the rear axle, so the rear wheel can rise and fall.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "book: steps 6 (the two shock absorbers hang from the frame), 7 (pivot axle), 8 (rear wheel and axle), 9-10 (the two 1x6 plates and bushes)",
         "control": "p32 4262",
         "moves": [
@@ -54,6 +60,9 @@
       },
       {
         "does": "The two shock absorbers' springs push the rear wheel back down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: step 6 and the cover picture",
         "control": [
           "p15 4255",
@@ -63,6 +72,9 @@
       },
       {
         "does": "The two wheels roll freely; there's no drive. The front wheel turns on its 4-long axle between the fork legs, the rear wheel on its 6-long axle in the swinging arm.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 8 and 11",
         "control": [
           "p53 2695",
@@ -71,6 +83,9 @@
       },
       {
         "does": "The parking stand under the middle of the bike folds: its two legs are hinge plates joined at the foot by a 1x4 plate, so the stand swings down to hold the bike up and up out of the way to ride.",
+        "mechanisms": [
+          "hinge: parking stand"
+        ],
         "source": "inferred: step 9 shows the two legs built from hinge plates (the inset shows how the halves join) and step 10 joins their feet with a 1x4 plate; the book doesn't show the stand folded",
         "control": "p28 4276b",
         "moves": [

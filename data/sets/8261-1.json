@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The 12 tooth gear on the roof steers the front wheels: it turns a vertical shaft down through the cab, whose 12 tooth bevel gear at the foot turns the 20 tooth gear on a shaft running forward under the truck; a knob gear at that shaft's front end turns the knob gear on the front axle's steering post, swinging its steering arm, which pushes the tie rod that turns both front wheels.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: steps 17-18 (vertical shaft, knob gears), 20 (front axle), 21 (20 tooth gear) and 36 (roof); inferred: the book draws no arrow, the drive is worked out from the gears",
         "control": "p131 32270",
         "moves": [
@@ -33,6 +36,9 @@
       },
       {
         "does": "The front axle swings side to side about the steering shaft it hangs from, so the front wheels can follow rough ground; the steering still works as it swings.",
+        "mechanisms": [
+          "pendular-axle"
+        ],
         "source": "inferred: the front axle hangs from a 180 degree angle connector on the steering shaft (book step 20); not shown in the book",
         "control": "p63 32524",
         "moves": [
@@ -49,6 +55,9 @@
       },
       {
         "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "inferred: from the model file (the rear axle's sub-assembly hangs on bent beams pivoting on a 7-long axle, with a shock absorber behind); the book draws no arrow, and the step that fits the shock absorber isn't identified",
         "control": "p45 32271",
         "moves": [
@@ -67,12 +76,18 @@
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "inferred: from the model file",
         "control": "p3 41838",
         "skip": "a spring only matters under gravity or force"
       },
       {
         "does": "The four wheels roll freely; there's no drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 37 (wheels)",
         "control": [
           "p190 56145",

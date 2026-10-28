@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The 24-tooth gear on top of the steering column, used as the steering wheel, steers the front wheels: the column runs down through a universal joint to a lengthwise axle whose 8-tooth gears under the front slide the rack on the tie rod between the two wheel turntables.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 12-13, 18-19 and front axle step 22 (sub-steps 1-10)",
         "control": "p67 3648a",
         "moves": [
@@ -30,6 +33,9 @@
       },
       {
         "does": "The two big rear wheels roll and drive the rotary harrow: the crown gear on the rear half-axle with wheel p239 turns an 8-tooth gear on a short lengthwise axle, whose crown gear at the back drives the harrow's flat 40-tooth gear; that turns an 8-tooth gear on the middle rotor, and the middle rotor's 40-tooth gear turns the two outer rotors, so all three sets of yellow tines spin as the tractor rolls.",
+        "mechanisms": [
+          "power-take-off: rotary harrow"
+        ],
         "source": "book: steps 2-5 (rear axles and the crown-gear take-off), step 33 sub-steps 4-7 and the inset under them",
         "control": [
           "p239 3739",
@@ -49,6 +55,9 @@
       },
       {
         "does": "The two small front wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 22 sub-steps 2-4 and step 32",
         "control": [
           "p241 3482",
@@ -57,6 +66,9 @@
       },
       {
         "does": "The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.",
+        "mechanisms": [
+          "three-point-hitch"
+        ],
         "source": "book: steps 18 and 29-31, step 33; inferred: no motion is drawn, and unsure that the lever is meant to lift the hitch rather than only hold it at one height",
         "control": "p226 3702",
         "moves": [

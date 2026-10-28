@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The 12 tooth gear on the end of the long axle at the back of the boom's mount raises and lowers the boom: a worm on that axle turns the 24 tooth gear on the boom's pivot, and holds the boom wherever it's left.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: steps 30-31 (the worm on its axle, pages 28-29), 32 (the 24 tooth gear on the boom, pages 30-32); cover",
         "control": "p139 32270",
         "moves": [
@@ -27,6 +30,9 @@
       },
       {
         "does": "The boom's mount turns round on a single upright pin on the chassis, swinging the boom and bucket round.",
+        "mechanisms": [
+          "turntable: boom"
+        ],
         "source": "book: step 36 (page 38: the mount set onto the pin); inferred: that it turns, from how it sits on one pin",
         "control": "p111 32138",
         "moves": [
@@ -40,6 +46,9 @@
       },
       {
         "does": "The bucket turns round on the upright pins it hangs from at the boom's tip.",
+        "mechanisms": [
+          "hinge: bucket"
+        ],
         "source": "book: page 37 (the bucket hung on a white connector between two blue pins)",
         "control": "p140 32249",
         "moves": [
@@ -51,11 +60,17 @@
       },
       {
         "does": "The bucket's hanger swings on a pin across the boom's tip, so the bucket hangs upright whatever the boom's angle.",
+        "mechanisms": [
+          "hangs-free: bucket"
+        ],
         "source": "book: page 37; cover",
         "skip": "only matters under gravity: the bucket's hanger is a free hinge"
       },
       {
         "does": "The four wheels roll freely; there's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: each wheel turns on its own pin on the chassis",
         "control": [
           "p94 55981",

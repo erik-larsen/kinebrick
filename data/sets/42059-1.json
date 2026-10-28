@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "Pull the truck back and let go: the pull-back motor at the back turns the rear axle, a 12 long axle straight through it carrying both rear wheels, and the truck races forward.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: steps 1 and 11 (the pull-back motor and the axle through it), 52 (the wheels), page 47 (the hand pulling it back, the arrow forward)",
         "control": [
           "p126 56145",
@@ -26,11 +29,17 @@
       },
       {
         "does": "The pull-back motor's spring winds up as the truck is pulled back and drives it forward when let go.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: page 47",
         "skip": "a spring only matters under force"
       },
       {
         "does": "The front wheels roll freely, both on one 12 long axle; there's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 11 and 52",
         "control": [
           "p0 56145",
@@ -39,6 +48,9 @@
       },
       {
         "does": "The stunt ramp, a printed cardboard sheet folded over two 9 long beams, stands on the ground for the truck to jump off.",
+        "mechanisms": [
+          "accessory: stunt ramp"
+        ],
         "source": "book: steps 53-55, page 47",
         "note": "not a mechanism"
       }

@@ -18,6 +18,11 @@
     "functions": [
       {
         "does": "The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time.",
+        "mechanisms": [
+          "worm-drive",
+          "rack-and-pinion: mast",
+          "telescopic-mast: fork carriage"
+        ],
         "source": "book 1: page 103 (arrows on the crank at the back); steps 6-8 on pages 83-84 (worm, crown gear and universal joint), 7-10 on pages 65-68 (racks on the inner mast), 10-12 on pages 73-77 (strings and pulleys; the page 77 inset shows the inner mast and forks rising), 19 on page 15 (crank and 20-tooth double bevel gear)",
         "control": "p401 33299",
         "moves": [
@@ -40,6 +45,9 @@
       },
       {
         "does": "The levers at the front edge of the cab roof tilt the mast: they turn a crank on the roof, whose two red suspension arms push and pull the top of the mast, and the mast pivots on two pins at the front axle.",
+        "mechanisms": [
+          "crank-and-link: mast tilt"
+        ],
         "source": "book 1: page 103 (curved arrows on the roof levers); steps 42-45 (roof), the red arms on pages 88-96, and step 18 on page 99 (mast mounted on the chassis)",
         "control": "p25 6632",
         "moves": [
@@ -59,6 +67,9 @@
       },
       {
         "does": "The beacon on the cab roof is a knob that steers the rear wheels: its axle runs down through the cab to a pair of bevel gears, and two 8-tooth gears slide a rack sideways between the rear steering knuckles.",
+        "mechanisms": [
+          "rack-steering: rear wheels"
+        ],
         "source": "book 1: steps 14-19 on pages 10-15 (rear steering rack, 8-tooth gears and knuckles), 48 on pages 52-53 (beacon on its axle); inferred: that the beacon is the steering knob, from the gears in the model file (page 103 draws no arrow on it)",
         "control": "p670 6143",
         "moves": [
@@ -79,6 +90,9 @@
       },
       {
         "does": "The four wheels roll freely; nothing drives them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 1: step 51 (wheels)",
         "control": [
           "p708 41896",
@@ -89,11 +103,17 @@
       },
       {
         "does": "The steering wheel in the cab is for show: it sits on an axle pin and turns, but isn't linked to the wheels.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "book 1: step 44 (steering wheel on its pin); inferred: nothing connects it to the steering",
         "control": "p632 2819"
       },
       {
         "does": "The pallet is loose: it rests on the forks and is carried by them.",
+        "mechanisms": [
+          "accessory: pallet"
+        ],
         "source": "book 1: step 19 (pallet, pages 100-101) and step 20 (pallet on the forks)",
         "note": "an accessory, not worked; it should rise and tilt with the forks"
       }

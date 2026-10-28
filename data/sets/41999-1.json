@@ -26,6 +26,12 @@
     "functions": [
       {
         "does": "Driving (remote, one stick): two Power Functions XL motors, one on each axle, each turn their axle's pinion into its differential, and the differential drives both portal hubs, so all four wheels drive.",
+        "mechanisms": [
+          "electric-motor: PF XL",
+          "remote-control",
+          "differential",
+          "portal-axle"
+        ],
         "source": "book 4: function page 64 (the remote's left stick and the wheel arrows); books 2-3: axle sub-builds (steps 26, 48, 61)",
         "control": [
           "p366 32270",
@@ -43,6 +49,12 @@
       },
       {
         "does": "Steering (remote, other stick): the Power Functions servo turns a shaft running front and back under the chassis; through universal joints it turns a gear on each axle's steering rack, so the front and rear wheels steer together, the rear the opposite way (four-wheel steering, crab-free).",
+        "mechanisms": [
+          "electric-motor: PF servo",
+          "remote-control",
+          "rack-steering",
+          "multi-axle-steering"
+        ],
         "source": "book 4: function page 64 (front and rear wheels both turning); book 1: steps 5 and 20 (servo and the shaft with universal joints); steps 30-33 (racks)",
         "control": "p0 32062",
         "moves": [
@@ -57,6 +69,9 @@
       },
       {
         "does": "Each axle is a live axle hung on the chassis with shock absorbers and links, so it can tilt and rise over rough ground (articulation).",
+        "mechanisms": [
+          "sprung-axle"
+        ],
         "source": "book 2: steps 68-72 (the shock absorber sub-builds); inferred: no motion arrows",
         "control": [
           "p79 64178",
@@ -65,11 +80,20 @@
       },
       {
         "does": "The shock absorbers' springs hold the chassis up on its axles.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book 2: steps 70-72",
         "skip": "the springs only push back under the model's weight"
       },
       {
         "does": "The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in.",
+        "mechanisms": [
+          "electric-motor: PF M",
+          "worm-drive",
+          "slip-clutch",
+          "winch: hook"
+        ],
         "source": "book 4: function page 65 (1: turning the switch, 2: the hook going in and out); book 2: step 40 (winch sub-build)",
         "control": "p663 4716",
         "moves": [
@@ -80,6 +104,9 @@
       },
       {
         "does": "The two front doors open.",
+        "mechanisms": [
+          "hinge: doors"
+        ],
         "source": "book 4: step 104 (the white arrows at the doors)",
         "control": [
           "p1190 43093",
@@ -92,6 +119,9 @@
       },
       {
         "does": "The whole body shell tilts up on a hinge at the back, for getting at the battery box and switches, and folds back down.",
+        "mechanisms": [
+          "hinge: body"
+        ],
         "source": "book 4: steps 103-104 (shell standing up, then the big arrow lowering it)",
         "control": "p50 32524",
         "moves": [
@@ -100,6 +130,9 @@
       },
       {
         "does": "The headlights (two Power Functions LEDs) light up when the battery box is switched on.",
+        "mechanisms": [
+          "lights"
+        ],
         "source": "book 4: function page 64 (lights inset); book 3: step 90",
         "note": "electrical only"
       }

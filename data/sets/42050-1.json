@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "Pushing the dragster along runs its V8 engine: the rear axle's 20-tooth bevel gear turns a 12-tooth bevel gear on a shaft running forward under the car, whose 16-tooth sprocket drives a chain up to the crankshaft, so the eight pistons go up and down.",
+        "mechanisms": [
+          "piston-engine: V8",
+          "chain-drive"
+        ],
         "source": "book: engine (pages 8-16), chain and drive shaft (pages 16-24); inferred: the gear path, from the parts",
         "control": [
           "p864 56908",
@@ -37,6 +41,9 @@
       },
       {
         "does": "The 12-tooth gear knob on top of the car, behind the cockpit, steers the front wheels: its shaft runs down and forward through a universal joint to a pair of 16-tooth gears, then along a shaft to a 12-tooth bevel gear at the front, which slides the steering rack and turns the two front hubs.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "inferred: from the parts; the book's function page (page 119) doesn't show the steering",
         "control": "p415 32270",
         "moves": [
@@ -54,6 +61,9 @@
       },
       {
         "does": "Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis.",
+        "mechanisms": [
+          "hinge: bodywork"
+        ],
         "source": "book: page 119 (inset A, the lever swung back, and the body tilted up with an arrow); inferred: which parts the lever turns",
         "control": "p403 32013",
         "moves": [
@@ -69,6 +79,9 @@
       },
       {
         "does": "Function B: turning the knob just in front of the right rear wheel works the linear actuator under the car, which puts the dragster into a wheelie: its nose rises off the ground and the wheelie bars at the back go down.",
+        "mechanisms": [
+          "linear-actuator: wheelie"
+        ],
         "source": "book: page 119 (inset B, the knob turned, and the car with its nose up and the wheelie bars down, with arrows), step 69 (page 38, the inset shows the linear actuator from below); inferred: how the actuator tilts the car",
         "control": "p257 59443",
         "moves": [
@@ -79,6 +92,9 @@
       },
       {
         "does": "The four wheels roll; the front wheels turn on their steering hubs and the wheelie bars' two small wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: page 118 (finished car)",
         "control": [
           "p863 56145",

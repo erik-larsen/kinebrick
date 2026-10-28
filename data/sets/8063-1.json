@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black 20 tooth gear on the cab roof steers the front wheels: its shaft runs down to a pair of knob wheels, which turn a shaft running forward to two 16 tooth gears and on to two 8 tooth gears on the steering rack.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book 1 steps 13-15 (knob wheels and 16 tooth gears) and the steering under the engine; the roof gear on book 2 page 79; that this is the steering is inferred from the model's gears",
         "control": "p499 32269",
         "moves": [
@@ -36,6 +39,9 @@
       },
       {
         "does": "The steering wheel in the cab turns on an axle pin but isn't joined to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: in the model it sits on an axle pin (p192 3749) with nothing below it",
         "control": "p193 2819",
         "stays": [
@@ -45,6 +51,10 @@
       },
       {
         "does": "The rear wheels drive through a differential, and the four pistons of the engine under the bonnet pump as the tractor rolls: a 12 tooth double bevel gear on the differential turns a shaft running forward, whose 16 tooth gear turns the crankshaft through a 16 tooth idler.",
+        "mechanisms": [
+          "differential",
+          "piston-engine: 4 cylinders"
+        ],
         "source": "book 1 step 5 (differential), steps 24-29 (engine, crankshaft and gears)",
         "control": [
           "p701 44772",
@@ -65,6 +75,9 @@
       },
       {
         "does": "The front wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 2 step 62",
         "control": [
           "p700 41896",
@@ -73,6 +86,9 @@
       },
       {
         "does": "The red lever on the tractor's left side slides a driving ring along the drive shaft, locking the 16 tooth clutch gear to it or freeing it.",
+        "mechanisms": [
+          "power-take-off"
+        ],
         "source": "book 1 step 12 (the inset shows the lever and the ring)",
         "control": "p112 32039",
         "moves": [
@@ -83,6 +99,9 @@
       },
       {
         "does": "With the lever engaged, the rear power take-off turns as the tractor rolls: the clutch gear drives a 16 tooth gear above it, whose shaft runs back to the PTO at the rear.",
+        "mechanisms": [
+          "power-take-off"
+        ],
         "source": "book 1 steps 5-12; inferred from the model's gears that the clutch gear drives the PTO",
         "control": [
           "p701 44772",
@@ -103,6 +122,10 @@
       },
       {
         "does": "The black knob behind the cab raises and lowers the rear three-point linkage: it turns a vertical worm, which turns a 24 tooth crown gear on a cross axle; bent liftarms on that axle lift the lower links through two long beams.",
+        "mechanisms": [
+          "worm-drive",
+          "three-point-hitch"
+        ],
         "source": "book 1 steps 9-11 (worm, crown gear and cross axle); book 2 step 56 (lift links)",
         "control": "p81 32270",
         "moves": [
@@ -119,6 +142,9 @@
       },
       {
         "does": "Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.",
+        "mechanisms": [
+          "linear-actuator: bed"
+        ],
         "source": "book 2 trailer steps 12-15 (linear actuator), step 30 (page 77, bed tipped) and page 79",
         "control": [
           "p777 32269",
@@ -138,11 +164,17 @@
       },
       {
         "does": "The trailer's drawbar is hitched behind the tractor and swivels on its pin, so the trailer follows round bends.",
+        "mechanisms": [
+          "hinge: drawbar"
+        ],
         "source": "book 2 page 79 (the inset shows the hitch)",
         "note": "Nothing is worked by hand; checked by steering and rolling the tractor with the trailer behind."
       },
       {
         "does": "The trailer's four wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 2 step 32",
         "control": [
           "p1126 32020",
@@ -153,6 +185,9 @@
       },
       {
         "does": "Each side's two trailer wheels sit at the ends of a beam that rocks on its middle, so all four stay on the ground.",
+        "mechanisms": [
+          "bogie"
+        ],
         "source": "inferred: the 11 long beams (p708 32525, p842 32525) carry a wheel at each end; the book doesn't show them rocking",
         "control": [
           "p708 32525",
@@ -162,6 +197,9 @@
       },
       {
         "does": "A short chain hangs from the trailer's drawbar.",
+        "mechanisms": [
+          "hangs-free: chain"
+        ],
         "source": "book 2 step 30 (page 44)",
         "skip": "only hangs under gravity"
       }

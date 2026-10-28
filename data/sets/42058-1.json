@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "Pull the bike back and let go: the pull-back motor drives the rear wheel through three 16 tooth gears, the middle one an idler, and the bike races forward.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: steps 1-4 (the pull-back motor), 6-8 and 15-17 (the gears and the rear wheel), page 47 (the hand pulling it back, the arrow forward)",
         "control": "p41 56145",
         "moves": [
@@ -25,16 +28,25 @@
       },
       {
         "does": "The pull-back motor's spring winds up as the bike is pulled back and drives it forward when let go.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: page 47",
         "skip": "a spring only matters under force"
       },
       {
         "does": "The front wheel rolls freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 20-23",
         "control": "p56 56145"
       },
       {
         "does": "The stunt ramp, a printed cardboard sheet folded over two 9 long beams, stands on the ground for the bike to jump off.",
+        "mechanisms": [
+          "accessory: ramp"
+        ],
         "source": "book: steps 48-50, page 47",
         "note": "not a mechanism; the model file places the bike mid-jump just above the ramp"
       }

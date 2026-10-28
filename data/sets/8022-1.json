@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "Rolling the plane on its wheels spins the propeller: an 8 tooth gear on the wheels' axle turns a 24 tooth crown gear, which turns an 8 tooth gear on a lengthwise shaft; a second crown gear on that shaft turns the 8 tooth gear on the propeller's shaft, so the propeller turns three times as fast as the wheels.",
+        "mechanisms": [
+          "driven-rotor: propeller"
+        ],
         "source": "book: steps 3-4 (crown gears and 8 tooth gear), 8 (propeller on its shaft), 10 (wheel axle with its 8 tooth gear) and 14 (wheels); the gear path inferred from the model file",
         "control": [
           "p82 3482",

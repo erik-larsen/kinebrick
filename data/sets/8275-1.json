@@ -22,6 +22,11 @@
     "functions": [
       {
         "does": "The left XL motor drives the left track: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the left front sprocket.",
+        "mechanisms": [
+          "electric-motor: PF XL",
+          "remote-control: PF IR",
+          "crawler-tracks"
+        ],
         "source": "book 1 page 5 (the two XL motors, marked 5) and page 8 (the drive remote, marked 6); the gears are inferred from the model",
         "control": "p569 4019",
         "moves": [
@@ -37,6 +42,11 @@
       },
       {
         "does": "The right XL motor drives the right track the same way, from the back: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the right rear sprocket.",
+        "mechanisms": [
+          "electric-motor: PF XL",
+          "remote-control: PF IR",
+          "crawler-tracks"
+        ],
         "source": "book 1 pages 5 and 8; the gears are inferred from the model",
         "control": "p1195 4019",
         "moves": [
@@ -52,6 +62,9 @@
       },
       {
         "does": "With both tracks driven the same way the bulldozer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.",
+        "mechanisms": [
+          "skid-steering"
+        ],
         "source": "book 1 page 8 (the four pictures across the top)",
         "control": [
           "p569 4019",
@@ -64,6 +77,9 @@
       },
       {
         "does": "The six pistons of the V6 engine in the middle of the bulldozer pump in their cylinders as it drives: the left track's drive turns the crankshaft through 12 and 20 tooth double bevel gears.",
+        "mechanisms": [
+          "piston-engine: V6"
+        ],
         "source": "book 1 page 8 (inset 9 shows the pistons moving); that it runs off the left track's drive is inferred from the model's gears (p15 32270, p23 32270, p1437 32269, p1443 32270)",
         "control": "p569 4019",
         "moves": [
@@ -79,6 +95,13 @@
       },
       {
         "does": "One M motor raises and lowers the blade: an 8 tooth gear on its shaft drives a 24 tooth clutch gear, then 16 tooth gears up and forward to a worm at the front, which turns the 24 tooth gear on a cross axle; bent liftarms on that axle pull the blade up through links on both sides, and the long yellow push arms pivot on the frame.",
+        "mechanisms": [
+          "electric-motor: PF M",
+          "remote-control: PF IR",
+          "slip-clutch",
+          "worm-drive",
+          "crank-and-link: blade"
+        ],
         "source": "book 1 pages 5 (M motors, marked 4) and 9 (lower remote picture: blade up and down); book 3 steps 73-76 (blade fitted); the gear train is inferred from the model",
         "control": "p125 3647",
         "moves": [
@@ -98,6 +121,13 @@
       },
       {
         "does": "The other M motor raises and lowers the ripper at the back: an 8 tooth gear on its shaft drives a 24 tooth clutch gear whose shaft runs back through a universal joint to a worm, which turns a 24 tooth gear that swings the ripper's parallel arms up and down.",
+        "mechanisms": [
+          "electric-motor: PF M",
+          "remote-control: PF IR",
+          "slip-clutch",
+          "worm-drive",
+          "crank-and-link: ripper"
+        ],
         "source": "book 1 pages 5 and 9 (top pictures: ripper up and down, remote channel marked 7); book 3 steps 77-79 (ripper fitted); the gear train is inferred from the model",
         "control": "p1247 3647",
         "moves": [
@@ -116,6 +146,9 @@
       },
       {
         "does": "The two 24 tooth clutch gears slip when the blade or the ripper reaches the end of its travel, so the M motors can keep running without breaking anything.",
+        "mechanisms": [
+          "slip-clutch"
+        ],
         "source": "inferred: what the 24 tooth clutch gears (p121 76019, p1261 76019) do in these drives; the book doesn't say",
         "skip": "only matters under force"
       }

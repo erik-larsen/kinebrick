@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The purple striker runs on two rubber tracks, each round three yellow sprocket wheels that turn freely on their axles. Nothing drives them: it's pushed along the floor by its handle.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book 1: steps 10-11; page 27 shows it pushed back and forth",
         "control": [
           "p377 32007",
@@ -27,6 +30,9 @@
       },
       {
         "does": "Pulling the purple striker's trigger, the yellow towball arm under the top of its handle, swings the block that the back end of the scissor arm is pinned to. The scissor arm (lazy tongs of purple and black thin beams) then shoots forward, with the rubber-tipped arrow at its tip, at the other striker's target.",
+        "mechanisms": [
+          "scissor-linkage: arrow"
+        ],
         "source": "book 1: steps 12-19 (the trigger block; the scissor arm, built in its own steps 1-5, is fitted in step 17), page 27 panel 2 (the arm shot out); inferred: the book draws no arrow on the trigger itself",
         "control": "p310 6572",
         "moves": [
@@ -40,6 +46,10 @@
       },
       {
         "does": "The purple striker's seat sits on a lever pivoted at the top of its handle: a black cage with purple hoses that holds the driver. The seat flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever.",
+        "mechanisms": [
+          "hinge: seat",
+          "catch: seat"
+        ],
         "source": "book 1: steps 22 (the lever and its shock absorber), 27 (the seat, built in its own steps 1-6) and 28 (the driver put in; CLICK as it latches), page 26 panels 2-4, page 27 panel 2",
         "control": "p604 32065",
         "moves": [
@@ -53,6 +63,9 @@
       },
       {
         "does": "Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.",
+        "mechanisms": [
+          "catch: target lever"
+        ],
         "source": "book 1: steps 23-26 (step 26 shows the lever pulled back and the seat's lever swinging up), page 26 panel 2, page 27 panel 2",
         "control": "p594 6629",
         "moves": [
@@ -65,6 +78,9 @@
       },
       {
         "does": "The teal striker runs on three wheels that roll freely: one at the front, under the target, and two on an axle under the handle. Nothing drives them: it's pushed along the floor by its handle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 2: steps 8 and 12; book 1 page 27 shows it pushed back and forth",
         "control": [
           "p25 6579",
@@ -74,6 +90,9 @@
       },
       {
         "does": "Pulling the teal striker's trigger, the yellow towball arm under the top of its handle, shoots its scissor arm out at the other striker, just as on the purple one. The arm is teal and black, with a rubber-tipped arrow at its tip.",
+        "mechanisms": [
+          "scissor-linkage: arrow"
+        ],
         "source": "book 2: steps 12-19 (the trigger block; the scissor arm, built in its own steps 1-5, is fitted in step 17), book 1 page 27 panel 2; inferred: the book draws no arrow on the trigger itself",
         "control": "p54 6572",
         "moves": [
@@ -87,6 +106,10 @@
       },
       {
         "does": "The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever.",
+        "mechanisms": [
+          "hinge: seat",
+          "catch: seat"
+        ],
         "source": "book 2: steps 22 (the lever and its shock absorber), 27-28 (the cage) and 29 (the driver put in; CLICK as it latches); book 1 page 26 shows how it's worked",
         "control": "p166 32065",
         "moves": [
@@ -100,6 +123,9 @@
       },
       {
         "does": "Hitting the teal striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that teal lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward.",
+        "mechanisms": [
+          "catch: target lever"
+        ],
         "source": "book 2: steps 23-26 (step 26 shows the lever pulled back and the seat's lever swinging up); book 1 page 26 panel 2",
         "control": "p156 6629",
         "moves": [
@@ -112,11 +138,17 @@
       },
       {
         "does": "On each striker, a spring shock absorber between the seat's lever and the handle flips the seat forward as soon as the target lets go of it. Pushing the seat back down compresses it again.",
+        "mechanisms": [
+          "launcher: seat"
+        ],
         "source": "book 1: step 22, page 26 panel 2; book 2: step 22",
         "skip": "a spring, which only matters under force; the seats swing by hand without it"
       },
       {
         "does": "On each striker, two rubber bands pull the trigger back, which folds the scissor arm away again when the trigger is let go.",
+        "mechanisms": [
+          "spring: trigger"
+        ],
         "source": "book 1: step 20; book 2: step 20; inferred: where they hook on, from the model file (round the towball pins behind the trigger block)",
         "skip": "the rubber bands only pull; the arm folds back by hand without them"
       }

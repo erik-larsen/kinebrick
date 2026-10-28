@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: an 8 tooth gear on its column runs in a rack on the tie plate between the two steering arms, so both front wheels swing the same way.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 12-13 (the steering arms on their axle pins, and the tie plate), 15 (the grey rack) and 16 (the steering wheel and its 8 tooth gear)",
         "control": "p79 2819",
         "moves": [
@@ -28,6 +31,9 @@
       },
       {
         "does": "Pushed along, the four rear wheels, doubled up on one long axle, roll together.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 1 and 17",
         "control": [
           "p74 3482",
@@ -41,6 +47,9 @@
       },
       {
         "does": "The front wheels, doubled up on a short axle in each steering arm, roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 12-13 and 17",
         "control": [
           "p72 3482",

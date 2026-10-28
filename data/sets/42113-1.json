@@ -15,12 +15,22 @@
     "functions": [
       {
         "does": "The motor in the fuselage, run from the hub, drives whichever function is selected by four red push buttons on the fuselage sides (two each side, behind the wing): each button slides a driving ring in a gearbox under the wing, connecting that function's shaft to the motor.",
+        "mechanisms": [
+          "electric-motor",
+          "remote-control",
+          "function-selector: 4 functions"
+        ],
         "source": "book: pages 333-335 (the four functions with the motor icon, and the four buttons with their stickers: rotors, landing gear, nacelle tilt, ramp), steps 10-22 (the hub and motor in the fuselage), the wing base gearbox (pages around 150-200)",
         "control": "p769 22169",
         "note": "the buttons are p591, p594, p944 and p955 (42113 - 51149); which button is which function is read from the stickers on page 335 (upper left pair: rotors and landing gear; lower pair: nacelle tilt and ramp) and is unsure. Each function below is worked by the motor with its button pushed in"
       },
       {
         "does": "With the rotor button pushed in, the motor spins both three-bladed rotors together, in opposite directions, through shafts out along the wing and up into the nacelles.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "driven-rotor: rotors"
+        ],
         "source": "book: page 335 (the rotor sticker), page 333 (both modes), steps 396-417 (the rotors on their hubs, pages 316-332)",
         "control": "p769 22169",
         "moves": [
@@ -31,6 +41,11 @@
       },
       {
         "does": "With the nacelle button pushed in, the motor tilts both engine nacelles together between upright (helicopter mode) and level (aeroplane mode), turning them on turntables at the wingtips.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "turntable: nacelles"
+        ],
         "source": "book: pages 333-334 (the two modes, and the tilt with the motor icon), page 335 (the orange nacelle sticker), the turntables p1346 and p1480 at the wing tips",
         "control": "p769 22169",
         "moves": [
@@ -42,6 +57,12 @@
       },
       {
         "does": "With the landing gear button pushed in, the motor retracts and lowers the three landing gear legs: a linear actuator in the fuselage pushes a linkage that folds the two main legs and the nose leg up into the fuselage.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "linear-actuator: landing gear",
+          "crank-and-link: landing gear"
+        ],
         "source": "book: page 334 (middle: the main gear folding, with arrows), page 335 (the landing gear sticker), steps 12-22 (the gear legs), the actuator in the motor submodel",
         "control": "p769 22169",
         "moves": [
@@ -54,6 +75,11 @@
       },
       {
         "does": "With the ramp button pushed in, the motor opens and closes the rear cargo ramp: a linear actuator at the tail lowers the ramp and lifts the upper tail door.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "linear-actuator: ramp"
+        ],
         "source": "book: page 334 (bottom: the ramp closed and open, with the motor icon), page 335 (the ramp sticker), the hatch submodels",
         "control": "p769 22169",
         "moves": [
@@ -64,6 +90,9 @@
       },
       {
         "does": "The wheels on the three landing gear legs roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 12 and 22 (the wheels)",
         "control": [
           "p105 42610",
@@ -76,6 +105,9 @@
       },
       {
         "does": "The rotor blades are hinged at their roots and can be folded by hand.",
+        "mechanisms": [
+          "hinge: rotor blades"
+        ],
         "source": "inferred: each blade (42113 - 65422) is held on its hub by a pin with a stop bush (steps 396-412) rather than an axle",
         "control": [
           "p1770 42113 - 65422",
@@ -85,6 +117,9 @@
       },
       {
         "does": "The flaps on the wings' trailing edges move with the nacelles.",
+        "mechanisms": [
+          "hinge: flaps"
+        ],
         "source": "inferred: the flap submodels (flap1, flap2) are linked to the nacelle tilt mechanism at the wing tips",
         "control": [
           "p1281 32524"

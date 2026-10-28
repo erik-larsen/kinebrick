@@ -15,6 +15,10 @@
     "functions": [
       {
         "does": "The crank handle on the big grey wheel on the cab's right side raises and lowers the forks: its worm turns a 24-tooth gear on a shaft under the cab, which through two 16-tooth gears and the crown gear on the front axle turns an 8-tooth gear on the mast's bottom axle, and that axle's sprocket drives the chain that carries the forks up the mast.",
+        "mechanisms": [
+          "worm-drive",
+          "chain-drive: forks"
+        ],
         "source": "book: steps 3-4 and 6 (gears and front axle), 8 (24-tooth gear), 12 (worm), 13 (handwheel); mast steps 1-8 on pages 3-4 (chain loop and sprockets)",
         "control": "p212 3736",
         "moves": [
@@ -31,6 +35,9 @@
       },
       {
         "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
+        "mechanisms": [
+          "crank-and-link: mast tilt"
+        ],
         "source": "book: mast steps 4 and 8 (the link on the mast), steps 13 (the wheel and liftarm) and 14 (arrow: the link is swung up onto the liftarm's pin)",
         "control": "p207 4185a",
         "moves": [
@@ -46,6 +53,9 @@
       },
       {
         "does": "The yellow round knob on the cab roof steers the rear wheels: its vertical axle runs down through the cab to a bevel gear, which turns an 8-tooth gear on the rack under the rear, pushing the steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: cover (rotation arrow on the knob); steps 4 (rack), 6 (pinion shaft), 8 (vertical axle and bevel gear), 14 (yellow knob)",
         "control": "p216 3941",
         "moves": [
@@ -64,6 +74,9 @@
       },
       {
         "does": "The four wheels roll freely; there's no drive to them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 17",
         "control": [
           "p231 2695c01",

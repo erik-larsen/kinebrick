@@ -18,6 +18,10 @@
     "functions": [
       {
         "does": "Pushed along, the rear wheels run the V8 engine behind the cab: the rear differential's 28 tooth crown drives a 12 tooth bevel gear on a shaft running forward, two 20 tooth bevel gears turn the drive up and forward into the crankshaft, and the eight pistons pump up and down in their two banks.",
+        "mechanisms": [
+          "piston-engine: V8",
+          "differential"
+        ],
         "source": "book 1: engine steps 1-11 (pages 15-19), steps 27-31 (engine fitted, the gears, step 31 on page 27 draws the pistons moving), rear axle steps 1-13 (differential, pages 22-25), steps 30-33 (pages 26-29)",
         "control": [
           "p647 56908",
@@ -41,6 +45,9 @@
       },
       {
         "does": "The rear differential lets the two rear wheels turn at different speeds; with the truck lifted, turning one rear wheel turns the other the opposite way.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book 1: rear axle steps 1-6 (pages 22-23)",
         "control": "p647 56908",
         "moves": [
@@ -50,6 +57,9 @@
       },
       {
         "does": "The gear on top of the cab's roof steers the front wheels (hand of god steering): a long vertical shaft runs down behind the seat, two knob wheels turn the drive forward, and a 12 tooth gear drives the steering rack, whose links turn both front wheels.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book 1: steps 3-13 (front axle, rack and links, pages 3-7), steps 40-46 (the vertical shaft, its knob wheels and the gear on top, pages 37-45; the arrow on step 42); book 2 step 69 onward (the cab built round it)",
         "control": "p319 32270",
         "moves": [
@@ -70,6 +80,9 @@
       },
       {
         "does": "The front wheels roll freely, and the four wheels together let the truck be pushed along.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 2: step 72 (wheels, page 44)",
         "control": [
           "p645 56908",
@@ -78,6 +91,9 @@
       },
       {
         "does": "The steering wheel in the cab turns freely; it isn't linked to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "book 2: grille steps 1-8 (pages 15-18); inferred: from the model, nothing links it to the steering",
         "control": "p415 2819"
       }

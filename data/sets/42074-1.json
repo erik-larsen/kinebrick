@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The helm, a small steering wheel on the deck, turns the rudder at the stern: its 16 tooth gear drives, through a 16 tooth idler, a 16 tooth gear on the long shaft down the hull, whose 12 tooth bevel gear at the stern turns the 20 tooth bevel gear on the rudder's upright axle.",
+        "mechanisms": [
+          "rudder"
+        ],
         "source": "book: steps 10-21 (the long shaft and gears), 38-44 (the stern bevel gears), page 81 (top insets: the helm turned, the rudder swinging)",
         "control": "p40 2819",
         "moves": [
@@ -34,6 +37,9 @@
       },
       {
         "does": "Either of the two winch cranks on the deck swings the boom and mainsail from side to side: a rubber band loop runs from each crank's reel to a reel in the middle, whose 8 tooth gear turns the 24 tooth gear at the foot of the boom.",
+        "mechanisms": [
+          "belt-drive: boom"
+        ],
         "source": "book: steps 45-66 (reels, rubber bands, 8 and 24 tooth gears), page 81 (lower inset: both cranks turned, the boom swinging)",
         "control": [
           "p161 60483",
@@ -52,6 +58,9 @@
       },
       {
         "does": "The yacht stands on four small wheels under its hull, which roll freely so it can be pushed along a table.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: the wheels are built in at book steps 18-21 and the model has them; the book doesn't say what they are for",
         "control": [
           "p43 42074 - 13971",
@@ -62,6 +71,9 @@
       },
       {
         "does": "The rubber bands slip if the boom is held, so the winches can't jam it.",
+        "mechanisms": [
+          "slip-clutch: rubber bands"
+        ],
         "source": "inferred: what rubber-band drives do; the book doesn't say",
         "skip": "only matters under force"
       }

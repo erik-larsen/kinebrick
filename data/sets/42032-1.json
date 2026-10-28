@@ -18,6 +18,10 @@
     "functions": [
       {
         "does": "The gear-wheel knob at the back turns a worm, which turns a 24-tooth gear behind the cab; cranks on the gear's axle push links that raise and lower the two loader arms, carrying the bucket and the fork with them. The worm holds the arms wherever they're left.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: loader arms"
+        ],
         "source": "book: steps 4-10 (pages 7-9), arms step 21 (pages 24-28), page 52 (the function pictures)",
         "control": "p10 32270",
         "moves": [
@@ -31,6 +35,9 @@
       },
       {
         "does": "The upright lever on the left loader arm tilts the bucket: rocking it pushes a long white link along the arm to the bucket's back.",
+        "mechanisms": [
+          "crank-and-link: bucket"
+        ],
         "source": "book: page 52 (left picture, the arrow on the lever; the right picture shows the bucket tipped), arms step 21 (pages 26-27), bucket step 23 (page 30); inferred: which lever works the bucket and which the fork, from the links' sides",
         "control": "p129 87083",
         "moves": [
@@ -44,6 +51,9 @@
       },
       {
         "does": "The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm.",
+        "mechanisms": [
+          "crank-and-link: fork"
+        ],
         "source": "book: page 52 (left picture, the arrow on the lever), arms step 21 (pages 26-27), fork steps 26-27 (pages 37-41); inferred: which lever works the fork, from the link's side",
         "control": "p107 87083",
         "moves": [
@@ -57,6 +67,9 @@
       },
       {
         "does": "The two tracks run round their wheels, so the loader rolls along.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book: steps 29-30 (pages 43-51)",
         "control": [
           "p156 32556",

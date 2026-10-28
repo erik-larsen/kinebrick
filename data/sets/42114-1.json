@@ -14,6 +14,12 @@
     "functions": [
       {
         "does": "The XL motor in the rear frame, just behind the articulation, drives all six wheels through the gearbox: the gearbox's output runs back to a centre differential, which drives the front axle's differential through a shaft with universal joints across the articulation, and both rear axles' differentials by a shaft running back between them, to the portal hubs.",
+        "mechanisms": [
+          "electric-motor: XL",
+          "remote-control: Control+",
+          "differential: centre",
+          "portal-axle"
+        ],
         "source": "book: pages 6-60 (gearbox), 67 (overview of the rear chassis), 61-109 (rear axles, portal hubs and the two motors), 204 (step 325: the front axle's differential), 218-220 (steps 340-341: the shaft across the articulation); page 441 (driving forwards and back)",
         "first": [
           {
@@ -38,6 +44,11 @@
       },
       {
         "does": "The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels.",
+        "mechanisms": [
+          "electric-motor: L",
+          "sequential-gearbox: 3 speeds and reverse",
+          "function-selector: dump body"
+        ],
         "source": "book: page 31 (inset: the changeover catch, in purple, and the driving ring extension), pages 33-60 (the driving rings), page 441 (the H-pattern 1-3 / 2-R gear icon); the tipping position is inferred from the gearbox driving the actuators' shafts",
         "control": "p602 22169",
         "moves": [
@@ -51,6 +62,11 @@
       },
       {
         "does": "With the gearbox in its tipping position, the XL motor raises and lowers the dump body: a shaft out of the gearbox turns a pair of bevel gears to two cross shafts, each driving one of the two linear actuators on either side, which push the body up about its pivot at the back.",
+        "mechanisms": [
+          "electric-motor: XL",
+          "function-selector",
+          "linear-actuator: dump body"
+        ],
         "source": "book: pages 85-109 (the actuators' turntable mounts and their drive shafts), pages 340-436 (the dump body), page 437, page 441 (the body tipping)",
         "first": [
           {
@@ -75,6 +91,10 @@
       },
       {
         "does": "The large angular motor at the front steers by bending the truck at its articulation: its two cranks push and pull two links on the rear half's hitch, swinging the front and rear halves about the upright hinge behind the cab.",
+        "mechanisms": [
+          "electric-motor: large angular",
+          "articulated-steering"
+        ],
         "source": "book: page 140 (step 221: the angular motor), pages 140-150 (its cranks and links), 218-220 (steps 340-341: the hitch), page 441 (steering left and right)",
         "control": "p1031 42114 - 69730",
         "moves": [
@@ -89,6 +109,9 @@
       },
       {
         "does": "The rear half can roll against the front half on a turntable lying on its side in the hitch, so all six wheels stay on uneven ground.",
+        "mechanisms": [
+          "oscillating-chassis"
+        ],
         "source": "inferred: the hitch's 28 tooth turntable faces along the truck (pages 218-220)",
         "control": "p995 99009",
         "moves": [
@@ -97,6 +120,9 @@
       },
       {
         "does": "The orange beacon on the cab roof switches the hub on and off: turning it turns an upright axle down through the roof to a lever that presses the hub's button.",
+        "mechanisms": [
+          "crank-and-link: hub switch"
+        ],
         "source": "book: page 438 (top: the beacon with turning arrows and the lever on the hub's button)",
         "control": "p2535 3941",
         "moves": [
@@ -105,6 +131,10 @@
       },
       {
         "does": "The black hood over the hub tilts forward once the long axle pin at the front bumper is pulled out, giving access to the hub's batteries.",
+        "mechanisms": [
+          "hinge: hood",
+          "catch: pin"
+        ],
         "source": "book: page 438 (bottom, 1 and 2)",
         "control": "p2928 64782",
         "moves": [

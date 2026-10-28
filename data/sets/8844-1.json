@@ -15,6 +15,10 @@
     "functions": [
       {
         "does": "The crank low on the left side beside the seats retracts and lowers the landing gear: its 24 tooth gear turns the 8 tooth gear on the end of the front axle, which swings the two front legs fixed on its ends, and a chain from a 16 tooth gear on that axle turns the rear leg's 24 tooth gear, so all three legs swing up or down together.",
+        "mechanisms": [
+          "retractable-landing-gear",
+          "chain-drive"
+        ],
         "source": "book: steps 1-3 and 5 (front axle, rear leg's gear, chain), steps 6-7 (the crank and its 24 tooth gear), step 19 (the legs and wheels); what it does is inferred from the gears and the chain, as the book draws no arrows",
         "control": "p69 3705",
         "moves": [
@@ -30,6 +34,9 @@
       },
       {
         "does": "The handwheel high on the left side turns the main rotor: a crown gear on its axle drives the 24 tooth gear at the foot of the rotor mast.",
+        "mechanisms": [
+          "driven-rotor: main rotor"
+        ],
         "source": "book: steps 10, 13 and 17-19",
         "control": "p128 3736",
         "moves": [
@@ -44,6 +51,10 @@
       },
       {
         "does": "The same handwheel turns the tail rotor: a second crown gear on its axle drives an 8 tooth gear on a shaft running back down the tail boom through universal joints to a 16 tooth gear and a crown gear at the tail, whose belt wheel drives the tail rotor's pulley, two round plates, by a rubber band.",
+        "mechanisms": [
+          "driven-rotor: tail rotor",
+          "belt-drive"
+        ],
         "source": "book: steps 10-12 (the rubber band is in step 11's parts)",
         "control": "p128 3736",
         "moves": [
@@ -55,6 +66,9 @@
       },
       {
         "does": "Pushed along, the three wheels roll freely on their axle pins.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 19",
         "control": [
           "p270 3482",
@@ -64,6 +78,9 @@
       },
       {
         "does": "The two yellow engines either side of the rotor housing turn freely on their axles.",
+        "mechanisms": [
+          "free-wheels: engines"
+        ],
         "source": "inferred: book step 14 builds them on plain axles through the housing; unsure they are meant to turn",
         "control": [
           "p179 3707",
@@ -72,6 +89,9 @@
       },
       {
         "does": "The airframe holds its shape: the tail boom and rotor housing, the upright beams behind the seats and the canopy frame of toothed toggle joints all stay fixed to the base whatever is turned.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book: steps 3-8 and 17-18",
         "stays": [
           "p14 3895 against p0 3034",

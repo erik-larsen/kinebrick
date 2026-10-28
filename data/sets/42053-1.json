@@ -14,12 +14,18 @@
     "functions": [
       {
         "does": "Pumping the hand pump on the upper body's right side, pushing its black top down, fills the pneumatic system with air for the three valves.",
+        "mechanisms": [
+          "pneumatic-pump: hand"
+        ],
         "source": "book: page 218, function 2 (the pump pushed down)",
         "control": "p1973 42053 - 19482-f1",
         "skip": "pneumatic: air pressure and the pump's spring aren't modelled"
       },
       {
         "does": "Valve A, the left one of the three valve levers along the back of the upper body (seen from behind), sends air to the big cylinder under the boom, which raises and lowers the boom, carrying the stick and grab with it.",
+        "mechanisms": [
+          "pneumatic-cylinder: boom"
+        ],
         "source": "book: pages 218-219, functions 1 and A; steps 176-183 (pages 102-106, the boom's two cylinders); which valve feeds which cylinder is read from the model's hoses, which run from this valve to the boom cylinder",
         "control": "p522 42053 - 47223d-f1",
         "moves": [
@@ -34,6 +40,9 @@
       },
       {
         "does": "Valve B, the middle lever, sends air to the cylinder on top of the boom, which swings the stick in and out at the boom tip.",
+        "mechanisms": [
+          "pneumatic-cylinder: stick"
+        ],
         "source": "book: pages 218-219, functions 1 and B; steps 183-186 (pages 106-107) and 238-247 (pages 137-146, the stick); the hoses run from this valve to the stick cylinder",
         "control": "p521 42053 - 47223d-f1",
         "moves": [
@@ -48,6 +57,9 @@
       },
       {
         "does": "Valve C, the right lever, sends air to a small cylinder inside the grab at the stick's end, which opens and closes the two clamshell halves together.",
+        "mechanisms": [
+          "pneumatic-cylinder: grab"
+        ],
         "source": "book: pages 218-219, functions 1 and C; steps 220-229 (pages 129-133, the grab and its cylinder); the hoses run from this valve down the boom to the grab's cylinder",
         "control": "p520 42053 - 47223d-f1",
         "moves": [
@@ -63,6 +75,10 @@
       },
       {
         "does": "The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: cab"
+        ],
         "source": "book: pages 218-219, function D; steps 248-272 (pages 146-155, the worm, 24 tooth gear and arms); inferred: that p2207 is the knob a person turns (it is the top of the worm's shaft)",
         "control": "p2207 32270",
         "moves": [
@@ -78,6 +94,9 @@
       },
       {
         "does": "The 20 tooth gear at the back of the chassis steers the front wheels: a long shaft down the middle of the chassis carries its turn to a 12 tooth gear at the front, which slides a rack that turns the front wheels.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 28-29 (pages 13-14, the front gear and the long red shaft), step 62 (page 32, the gear at the back); page 219, function E shows the gear at the back",
         "control": "p201 32269",
         "moves": [
@@ -94,6 +113,9 @@
       },
       {
         "does": "The upper body, with the boom and cab, slews round by hand on the turntable on top of the chassis.",
+        "mechanisms": [
+          "turntable: upper body"
+        ],
         "source": "book: step 90 (page 46, the turntable), step 209 (page 123, the upper body set on it); inferred: that it slews by hand, since nothing drives the turntable and the overview pages don't show it",
         "control": "p284 18939",
         "moves": [
@@ -107,6 +129,10 @@
       },
       {
         "does": "The two rear outriggers swing down from the chassis' back corners onto their feet, and a grey liftarm on each folds over to lock it down.",
+        "mechanisms": [
+          "hinge: outriggers",
+          "catch: outriggers"
+        ],
         "source": "book: page 219, function E (1: the leg swung down, 2: the grey liftarm locking it); steps 30-34 (pages 15-17); inferred: which parts are the leg and which the lock",
         "control": [
           "p182 43857",
@@ -116,6 +142,9 @@
       },
       {
         "does": "The four wheels roll freely; there is no drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 401-403 (pages 215-217, the wheels)",
         "control": [
           "p2692 56145",

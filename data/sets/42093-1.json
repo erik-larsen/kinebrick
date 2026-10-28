@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "Pushed along, the rear wheels drive the V8 through a differential: a 20 tooth gear on the differential turns a shaft forward to the crankshaft, and the eight pistons (brown axles with yellow caps, four in each bank) bob up and down in the engine under the bonnet. The differential lets the two rear wheels turn at different speeds.",
+        "mechanisms": [
+          "piston-engine: V8",
+          "differential"
+        ],
         "source": "book: steps 3-8 (differential), 20-22 (the gears beside it), 37-50 (engine and crankshaft), 118 (the pistons' yellow caps); the drive path from the differential to the crankshaft is inferred from the parts, the book draws no arrows",
         "control": [
           "p570 56904",
@@ -35,6 +39,9 @@
       },
       {
         "does": "The black 12 tooth gear at the back, just above the exhausts, steers the front wheels: its long shaft runs forward over the differential to a 20 tooth idler gear, which turns a second shaft running under the engine to the nose, where a crank pushes the steering link sideways.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: steps 20-22 (the idler gear and its two shafts), 26-27 (the long shaft), 67-68 (the steering link and the crank at the nose), page 144 (the gear at the back in the photo)",
         "control": "p545 32270",
         "moves": [
@@ -52,6 +59,9 @@
       },
       {
         "does": "The front wheels roll freely and turn with the steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 66-69 (hubs), 206 (wheels)",
         "control": [
           "p567 56904",
@@ -60,6 +70,9 @@
       },
       {
         "does": "The steering wheel in the cockpit turns on its pin; it isn't linked to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: book step 109 fits it on a single friction pin with nothing behind it; unsure whether LEGO meant it to be linked",
         "control": "p293 2819"
       }

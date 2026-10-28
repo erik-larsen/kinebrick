@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handlebars steer the front wheel: the whole front fork, with its two triangular clamps, the number board, both front shock absorbers and the front wheel, turns on a 4-long axle in the frame's motorcycle steering head.",
+        "mechanisms": [
+          "fork-steering"
+        ],
         "source": "book: steps 12 (fork clamps and number board), 14-15 (handlebars), 22 (front wheel and shock absorbers)",
         "control": "p106 3706",
         "moves": [
@@ -34,6 +37,9 @@
       },
       {
         "does": "The front wheel has telescopic suspension: it hangs from the piston rods of two long shock absorbers whose cylinders are held in the fork, so the front wheel can rise and fall.",
+        "mechanisms": [
+          "telescopic-fork"
+        ],
         "source": "book: step 22 (inset 1-2: the front wheel on a 6-long axle between the two shock absorbers, hung on the fork's 6-long axles)",
         "control": "p225 2910",
         "moves": [
@@ -50,6 +56,9 @@
       },
       {
         "does": "The rear wheel rides on a swinging arm: a 1x10 brick and a triangular liftarm on each side pivot on the 8-long axle that carries the chain's front gear, and two long shock absorbers run from the rear of the arm up to an axle under the seat, so the rear wheel can rise and fall while the chain stays taut.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "book: steps 19 and 23 (each side's arm and shock absorber, insets), 20 (rear wheel), 21 (chain)",
         "control": "p167 2730",
         "moves": [
@@ -70,6 +79,9 @@
       },
       {
         "does": "The shock absorbers' springs, two front and two rear, hold the bike up and push the wheels back down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: steps 19, 22 and 23",
         "control": [
           "p224 2909",
@@ -81,6 +93,10 @@
       },
       {
         "does": "Turning the rear wheel works the two-cylinder engine: a 24-tooth gear on the rear wheel drives the chain to a 16-tooth gear on the swinging arm's pivot axle; a 24-tooth gear on that axle turns an 8-tooth gear on a 6-long axle, whose 14-tooth bevel gear turns the bevel gear on the crankshaft, so the two pistons go in and out of their cylinders on either side.",
+        "mechanisms": [
+          "piston-engine: 2 cylinders",
+          "chain-drive"
+        ],
         "source": "book: steps 1-5 (crankshaft, connecting rods, pistons, cylinders), 7 (bevel gear on the crankshaft), 10 (gears), 20 (rear wheel's 24-tooth gear, and the 1:1 inset showing the gear train), 21 (chain); inferred: which of the small gears is the 8-tooth and which the bevel, from the inset",
         "control": "p171 8838 - 2903",
         "moves": [
@@ -100,11 +116,17 @@
       },
       {
         "does": "The front wheel rolls freely on its 6-long axle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 22",
         "control": "p220 8838 - 2903"
       },
       {
         "does": "The centre stand under the engine swings down onto its two legs to hold the bike up, and folds back up to ride; its two light grey levers turn on a 4-long axle in the frame and carry the legs on a 6-long axle.",
+        "mechanisms": [
+          "hinge: centre stand"
+        ],
         "source": "book: steps 16 (levers on their axle), 22 (the two legs, 1:1 inset); the cover blueprint draws a leg in a second position; inferred: how far it swings",
         "control": "p138 2825",
         "moves": [
@@ -122,6 +144,9 @@
       },
       {
         "does": "Two rubber bands between the stand's levers and two dark levers on the frame hold the stand up or down.",
+        "mechanisms": [
+          "spring: stand"
+        ],
         "source": "book: steps 18 (two rubber bands, K3) and 19 (the dark levers); inferred: that they hold it both ways",
         "skip": "a rubber band only matters under force"
       }

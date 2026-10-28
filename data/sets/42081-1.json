@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "The knob on top, between the lift arm and the rear body, steers all four wheels: a shaft down through the chassis turns a pinion on the front steering rack, and a second shaft with universal joints runs back to a pinion on the rear rack, so the front and rear wheels steer opposite ways and the loader turns tightly.",
+        "mechanisms": [
+          "rack-steering",
+          "multi-axle-steering"
+        ],
         "source": "book: page 246 (arrows on the top knob and on the front and rear wheels), page 251 (top view with all four wheels steered, front and rear opposite); page 82 shows the rear axle's two steered positions",
         "control": "p559 18575",
         "moves": [
@@ -30,6 +34,9 @@
       },
       {
         "does": "Either of the middle pair of knobs low on the chassis sides, just behind the front wheels, raises and lowers the loader arm: the knob turns the screw of a linear actuator lying along the chassis, which pushes the arm up about its pivot, carrying the bucket with it.",
+        "mechanisms": [
+          "linear-actuator: arm"
+        ],
         "source": "book: page 248 (arrow on the knob and an up arrow on the arm), page 250 (the arm in three positions); arm actuator steps on pages 100-106 and 119-120",
         "control": [
           "p460 32270",
@@ -47,6 +54,10 @@
       },
       {
         "does": "Either of the upper pair of knobs, high on the sides by the arm's pivot, tilts the bucket: a shaft with universal joints runs up the arm to a second linear actuator, which works the bucket through a pair of links at the arm's tip.",
+        "mechanisms": [
+          "linear-actuator: bucket",
+          "crank-and-link: bucket"
+        ],
         "source": "book: page 247 (arrow on the upper knob and a curved arrow on the bucket), page 250 (the bucket tipped); bucket actuator steps on pages 100-112",
         "control": [
           "p553 32270",
@@ -62,6 +73,9 @@
       },
       {
         "does": "Either of the lowest pair of knobs, under the chassis sides just behind the front wheels, raises and lowers the back of the loader: a linear actuator lying under the chassis swings the arms that carry the rear axle, so the rear end rises or sinks over the rear wheels.",
+        "mechanisms": [
+          "linear-actuator: rear end"
+        ],
         "source": "book: page 249 (arrow on the low knob and an up-and-down arrow between the rear body and the rear wheels), page 251 (the back of the loader tilting up); rear actuator steps on pages 50-51; inferred: that it works by swinging the rear axle's arms",
         "control": [
           "p294 32270",
@@ -77,6 +91,10 @@
       },
       {
         "does": "The knob at the very back slides the whole rear body (the battery pack with the drone pad on top) fore and aft as a counterweight: it turns a worm gear in the body, which walks along a toothed rack on the chassis.",
+        "mechanisms": [
+          "worm-drive",
+          "rack-and-pinion: counterweight"
+        ],
         "source": "book: page 245 (arrow on the rear knob and a fore-and-aft arrow on the rear body), page 251 (the rear body slid back); rack and worm steps on pages 136-140",
         "control": "p943 32270",
         "moves": [
@@ -89,6 +107,9 @@
       },
       {
         "does": "The four wheels roll freely; there's no drive to them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: wheels on pages 232-236; inferred: that they only roll",
         "control": [
           "p1098 15038",
@@ -99,6 +120,10 @@
       },
       {
         "does": "The drone's four three-bladed propellers spin, and the drone lifts off its pad on top of the rear body to be played with on its own.",
+        "mechanisms": [
+          "free-wheels: propellers",
+          "accessory: drone"
+        ],
         "source": "book: drone on pages 241-243, shown beside the loader on pages 244-251; inferred: that the propellers spin and the drone comes off",
         "control": [
           "p1160 92842",
@@ -110,6 +135,9 @@
       },
       {
         "does": "The two seven-bladed fans set into the top of the rear body spin.",
+        "mechanisms": [
+          "free-wheels: fans"
+        ],
         "source": "inferred: they're propellers on pins; the book doesn't show them moving",
         "control": [
           "p694 87751",
@@ -118,6 +146,9 @@
       },
       {
         "does": "The work light on its flexible arm above the rear body can be posed on its ball joints.",
+        "mechanisms": [
+          "posable-joint: work light"
+        ],
         "source": "book: pages 229-231 (the light and its arm); inferred: that it's meant to be posed",
         "skip": "ball joints pose only; nothing drives them"
       }

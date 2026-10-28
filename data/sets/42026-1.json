@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The two big rear wheels turn together on their axle, which runs through the pull-back motor at the back.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: steps 3 and 9 (pages 4, 10), wheels step 28 (page 43)",
         "control": [
           "p120 56145",
@@ -33,6 +36,9 @@
       },
       {
         "does": "Pull the racer back along the floor and let go: the pull-back motor's spring drives the rear wheels and it races forward.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: cover; leaflet 42026-1-2 pages 1-5",
         "control": [
           "p120 56145",
@@ -42,6 +48,9 @@
       },
       {
         "does": "The two front wheels roll freely on their axle; there's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 23 (page 38), wheels step 28 (page 43)",
         "control": [
           "p119 56145",
@@ -53,6 +62,9 @@
       },
       {
         "does": "The steering wheel in the cockpit turns, but steers nothing.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: the steering wheel goes on a pin in step 13 (page 17) and isn't linked to the front axle",
         "control": "p49 18352",
         "stays": [

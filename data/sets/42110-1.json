@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The gear knob on the roof (hand of God) steers the front wheels: a vertical shaft down the left of the cab turns a long shaft forward through bevel gears, and a train of gears at the front turns the 12 tooth pinion on the steering rack, which pushes the steering links to swing both front hubs.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book page 491 (top left: the knob on the roof turned, the front wheel swinging); the gear train is inferred from the model",
         "control": "p2368 42110 - 18575",
         "moves": [
@@ -28,6 +31,9 @@
       },
       {
         "does": "The steering wheel turns with the steering, through universal joints from the steering gear train.",
+        "mechanisms": [
+          "driven-detail: steering wheel"
+        ],
         "source": "book page 491 (top left: the steering wheel turns with the knob on the roof)",
         "control": "p2368 42110 - 18575",
         "moves": [
@@ -36,6 +42,11 @@
       },
       {
         "does": "All four wheels are driven: pushing the car along turns the wheels, which through the front and rear differentials, a centre differential, the gearbox and the range and D-N-R selectors turn the engine's crankshaft, so the six pistons of the straight-six engine pump up and down.",
+        "mechanisms": [
+          "piston-engine: straight 6",
+          "differential: front, rear and centre",
+          "sequential-gearbox"
+        ],
         "source": "book page 490 (the drivetrain drawn inside the car), page 491 (top: the pistons moving); the gear train is inferred from the model",
         "control": [
           "p2606 42110 - 49294",
@@ -52,6 +63,9 @@
       },
       {
         "does": "Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way.",
+        "mechanisms": [
+          "differential: front, rear and centre"
+        ],
         "source": "book page 490 (three differentials drawn); inferred: the test, from the model",
         "control": "p2606 42110 - 49294",
         "moves": [
@@ -64,6 +78,9 @@
       },
       {
         "does": "The four-speed sequential gearbox at the back: tipping the + / - lever between the front seats turns a rod running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
+        "mechanisms": [
+          "sequential-gearbox: 4 speeds"
+        ],
         "source": "book page 490 (+ / - picture and the 4-speed sequential gearbox labelled in the drawing); the linkage is inferred from the model",
         "control": "p385 3706",
         "moves": [
@@ -75,6 +92,9 @@
       },
       {
         "does": "The D-N-R lever in the console slides a driving ring in the gearbox in front of the console, choosing forward, neutral or reverse.",
+        "mechanisms": [
+          "driving-ring-gearbox: forward, neutral and reverse"
+        ],
         "source": "book page 490 (D N R picture); inferred: which lever and driving ring",
         "control": "p377 6641",
         "moves": [
@@ -84,6 +104,9 @@
       },
       {
         "does": "The HI-LO lever beside it slides the other driving ring in the same gearbox, choosing the high or low range.",
+        "mechanisms": [
+          "driving-ring-gearbox: high and low range"
+        ],
         "source": "book page 490 (LO HI picture); inferred: which lever and driving ring",
         "control": "p368 6641",
         "moves": [
@@ -92,6 +115,9 @@
       },
       {
         "does": "The winch in the front bumper: the hook pulls the string out, and turning the 12 tooth knob under the bonnet, front right, winds it back in through a vertical shaft, bevel gears and a shaft across the bumper to the reel.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book page 491 (bottom middle, pictures 1 and 2)",
         "control": "p896 32270",
         "moves": [
@@ -100,11 +126,18 @@
       },
       {
         "does": "Four independent suspension arms with shock absorbers let each wheel move up and down on its own; the front wheels steer on theirs.",
+        "mechanisms": [
+          "double-wishbone",
+          "spring: suspension"
+        ],
         "source": "book page 491 (middle: arrows at each wheel); front suspension steps 1-40, rear after",
         "skip": "springs only matter under load"
       },
       {
         "does": "The two front doors open on their hinges.",
+        "mechanisms": [
+          "hinge: doors"
+        ],
         "source": "book page 491 (bottom right)",
         "control": [
           "p1816 64782",
@@ -113,11 +146,18 @@
       },
       {
         "does": "The bonnet lifts, hinged at its back edge, showing the engine.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
         "source": "book page 491 (bottom right; bottom middle shows it open)",
         "control": "p2203 62531"
       },
       {
         "does": "Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways.",
+        "mechanisms": [
+          "catch: tailgate",
+          "hinge: tailgate"
+        ],
         "source": "book page 491 (bottom left, pictures 1 and 2)",
         "control": "p2614 42110 - 49294",
         "moves": [
@@ -127,16 +167,25 @@
       },
       {
         "does": "The lid of the box on the roof rack lifts open.",
+        "mechanisms": [
+          "hinge: lid"
+        ],
         "source": "book page 491 (middle left)",
         "control": "p2586 32739"
       },
       {
         "does": "The lid of the case on the right side of the roof swings open.",
+        "mechanisms": [
+          "hinge: lid"
+        ],
         "source": "book page 491 (middle left)",
         "control": "p2475 3710"
       },
       {
         "does": "The roof, with its rack, lifts off.",
+        "mechanisms": [
+          "removable: roof"
+        ],
         "source": "book page 491 (right: arrow lifting it off)",
         "skip": "taken off by hand, not a mechanism"
       }

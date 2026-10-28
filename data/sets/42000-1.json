@@ -22,6 +22,9 @@
     "functions": [
       {
         "does": "The steering wheel in the cockpit steers the front wheels: its column runs forward under the nose through bevel gears to a gear on the steering rack, which pushes the track rods out to both front uprights.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book 2 and 3: the steering column and front axle; inferred: the book draws no arrow for steering",
         "control": "p706 32138",
         "moves": [
@@ -37,6 +40,10 @@
       },
       {
         "does": "Rolling the car turns the V8 engine: the rear wheels drive a differential through two half-shafts with CV joints, and the differential turns the crankshaft, so the eight pistons go up and down.",
+        "mechanisms": [
+          "piston-engine: V8",
+          "differential"
+        ],
         "source": "book 1: steps 1-17 (differential and rear end), book 2: engine; inferred: the engine is the rear wheels' only load, so it's driven as in every Technic car of the time",
         "control": [
           "p350 92909",
@@ -55,6 +62,11 @@
       },
       {
         "does": "The black knob on the side behind the cockpit, with the yellow selector lever above it, works two things: with the lever one way, the knob tilts the rear wing's upper flap (a small linear actuator behind the engine pushes it); with the lever the other way, it lifts the whole engine cover, raised by two small linear actuators beside the engine.",
+        "mechanisms": [
+          "function-selector: 2 functions",
+          "linear-actuator: rear wing flap",
+          "linear-actuator: engine cover"
+        ],
         "source": "book 1: steps 4-12 (the gearbox with driving ring and the yellow lever); book 3: step 104 (the yellow arrows on the lever, knob and wing); function page book 3 p42 (insets 1 and 2)",
         "control": "p158 32270",
         "moves": [
@@ -67,6 +79,9 @@
       },
       {
         "does": "Each front wheel rides on double wishbones with a pushrod to a rocker inside the nose, which works a shock absorber lying across the car (pushrod suspension).",
+        "mechanisms": [
+          "pushrod-suspension"
+        ],
         "source": "book 2 and 3: front suspension; inferred: no motion arrows",
         "control": [
           "p591 32294",
@@ -79,6 +94,9 @@
       },
       {
         "does": "Each rear wheel rides on double wishbones with a pushrod to a rocker above the gearbox, which works a shock absorber (pushrod suspension).",
+        "mechanisms": [
+          "pushrod-suspension"
+        ],
         "source": "book 2: rear suspension; inferred: no motion arrows",
         "control": [
           "p278 32294",
@@ -91,11 +109,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the car up on its suspension.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book 2 and 3",
         "skip": "the springs only push back under the model's weight"
       },
       {
         "does": "The front wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 3: step 106",
         "control": [
           "p585 92909",

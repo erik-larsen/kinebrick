@@ -26,6 +26,9 @@
     "functions": [
       {
         "does": "The 20-tooth gear on top behind the cab steers the rear wheels: its shaft runs down to a knob gear that meshes with the knob gear on the 8-tooth pinions' shaft, which drive the rack between the rear wheels.",
+        "mechanisms": [
+          "rack-steering: rear wheels"
+        ],
         "source": "book: 1 page 3 (curved arrows over the cab); book 1 step 32 (the 20-tooth gear on top); inferred: the gear train below, from the model",
         "control": "p539 32269",
         "moves": [
@@ -43,6 +46,9 @@
       },
       {
         "does": "The 20-tooth gear on top at the front raises and lowers the header: its shaft runs down to a knob gear, which turns a worm, which turns a 24-tooth gear that lifts the feeder holding the header.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: 1 page 3 (up arrows at the header); book 1 steps 3-5 (worm and 24-tooth gear) and 22 (the 20-tooth gear on top); inferred: how the 24-tooth gear lifts the feeder",
         "control": "p405 32269",
         "moves": [
@@ -59,6 +65,10 @@
       },
       {
         "does": "Pushing the combine along turns the header's reel: the front axle's differential turns a 24-tooth gear on a cross shaft, whose knob gear drives a shaft running forward through a universal joint to a knob gear at the front, which meshes with the header's knob gear; through two 24-tooth gears at the header's right end it turns the reel's red bars round, sweeping the crop down.",
+        "mechanisms": [
+          "power-take-off: header reel",
+          "differential"
+        ],
         "source": "book: 1 page 3 (curved arrows on the reel); book 1 steps 4-9 (differential, cross shaft, universal joint), book 2 header steps 19-29 and page 51",
         "control": "p970 41896",
         "moves": [
@@ -78,6 +88,9 @@
       },
       {
         "does": "The front wheels drive through a differential, so they can turn at different speeds in a bend: with the reel's drive held, turning one front wheel turns the other the opposite way.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: 1 step 4 (the differential on the front axle); inferred: what it's for",
         "control": "p970 41896",
         "moves": [
@@ -90,6 +103,9 @@
       },
       {
         "does": "The white unloading auger swings out from the grain tank to the side and back in along the body.",
+        "mechanisms": [
+          "hinge: unloading auger"
+        ],
         "source": "book: 1 page 3 (curved arrow at the auger); book 2 steps 50-51 (the auger and its pivot)",
         "control": "p919 32278",
         "moves": [
@@ -101,6 +117,9 @@
       },
       {
         "does": "The four wheels roll freely; only the front pair drives anything.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: 2 step 52",
         "control": [
           "p964 56145",
@@ -111,6 +130,9 @@
       },
       {
         "does": "For road travel the header comes off the front and is hitched behind the combine, where it rolls on its two small wheels at one end.",
+        "mechanisms": [
+          "hinge: hitch"
+        ],
         "source": "book: 1 pages 2-3 (the header shown towed behind, the big white arrow), book 2 page 51",
         "note": "a rebuild by hand, not a function of the assembled model; the small wheels are p1084 59895 and p1085 59895"
       }

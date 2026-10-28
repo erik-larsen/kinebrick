@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The wheel on the cab roof steers the front wheels: an 8-tooth gear at the foot of its axle turns a crown gear behind the windscreen, which turns an 8-tooth gear on a cross axle, which slides the toothed rack that joins the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 2 and 4-6 (rack, 8-tooth gears and crown gear) and 13 (the roof wheel on its axle with an 8-tooth gear)",
         "control": "p99 3482",
         "moves": [
@@ -32,6 +35,9 @@
       },
       {
         "does": "The four road wheels roll freely, the front ones on pins in the steering arms, the rear ones on pins in the chassis.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 2 and 14",
         "control": [
           "p101 3482",

@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The grey knob at the back (a 12-tooth double bevel gear) raises and lowers the loader arms and bucket: it turns a worm, which turns an 8-tooth gear on a cross axle at the top of the back; the two arms, long axles along the sides, are fixed on that axle's ends and carry the crossbar the bucket clips onto.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book 1: page 22 (finished model: arrows on the knob and on the bucket); steps 7 (worm and knob), 14 (8-tooth gear on its axle), 16-18 (arms and crossbar), 19 (bucket)",
         "control": "p21 32270",
         "moves": [
@@ -36,6 +39,9 @@
       },
       {
         "does": "The bucket tilts by hand on its click hinge under the arms' crossbar, holding at each click.",
+        "mechanisms": [
+          "posable-joint: bucket"
+        ],
         "source": "book 1: step 19 (bucket on a click hinge); inferred: tilted by hand, nothing drives it",
         "control": "p57 30394",
         "moves": [
@@ -47,6 +53,9 @@
       },
       {
         "does": "The four wheels roll freely on pins; there's no steering (a skid loader).",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 1: steps 2-3 and 19",
         "control": [
           "p58 30285",

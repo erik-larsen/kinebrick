@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black gear on top of the tall yellow column behind the cab steers the front wheels: the column's knob gear turns a knob gear on a lengthwise axle, whose 12-tooth gear at the front drives a steering rack between the front wheels.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 3-9 (pages 4-10), the steering column step 10 (page 13), step 12 (page 16, the inset shows a front wheel's hub turning)",
         "control": "p81 32270",
         "moves": [
@@ -33,6 +36,10 @@
       },
       {
         "does": "As the truck rolls, the right rear wheel drives the engine: its 20-tooth bevel gear turns a 12-tooth bevel on a long shaft running forward, which turns an 8-tooth sprocket whose chain drives a 16-tooth gear on the crankshaft, pumping the piston up and down in its cylinder under the bonnet.",
+        "mechanisms": [
+          "piston-engine",
+          "chain-drive"
+        ],
         "source": "book: steps 5 and 17 (pages 8, 24, the chain), the engine steps; inferred: the order of the gears from the model file",
         "control": "p353 56145",
         "moves": [
@@ -47,6 +54,9 @@
       },
       {
         "does": "The left rear wheel rolls freely on its own axle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: it isn't geared to the drive shaft (book step 33, page 60)",
         "control": "p351 56145",
         "stays": [
@@ -55,6 +65,9 @@
       },
       {
         "does": "The two front wheels roll freely on their steering hubs.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 33 (page 60)",
         "control": [
           "p349 56145",
@@ -63,6 +76,9 @@
       },
       {
         "does": "The black gear on the axle sticking out of the left side behind the cab tips the dump body: it turns cranks under the body, which push a link up and tip the body back on its hinge at the rear.",
+        "mechanisms": [
+          "crank-and-link: dump body"
+        ],
         "source": "book: steps 26-29 and 31 (pages 36-39, 56-58; the finger on page 56 lifts the body)",
         "control": "p335 32270",
         "moves": [

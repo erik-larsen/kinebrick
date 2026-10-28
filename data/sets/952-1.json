@@ -9,6 +9,9 @@
     "functions": [
       {
         "does": "The steering wheel turns the front wheels: its column bends through a universal joint down to an 8 tooth gear on a rack plate, which swings both front wheels the same way on their turntables.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book (851): steps 12-13, 22-23 and 32",
         "control": "p68 3648a",
         "moves": [
@@ -23,6 +26,9 @@
       },
       {
         "does": "The big rear wheels drive the power take-off: a crown gear on the right half axle turns an 8 tooth gear on a short shaft running back, so the crown gear on its end, behind the tractor, turns three times as fast as the wheels.",
+        "mechanisms": [
+          "power-take-off"
+        ],
         "source": "book (851): steps 2-6",
         "control": [
           "p251 952-3739c01",
@@ -39,6 +45,9 @@
       },
       {
         "does": "Pushed along, the front wheels roll freely, and the hitch and its lever stay where they were set.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book (851): steps 23 and 32",
         "control": [
           "p247 3482",
@@ -51,6 +60,9 @@
       },
       {
         "does": "The lever on the right beside the seat raises and lowers the hitch: a short link from it swings the hitch's arms on the rear half axles, and the harrow, hung on the cross axle at the arms' ends and held upright by a top link pivoting behind the seat, rises and falls with them.",
+        "mechanisms": [
+          "three-point-hitch"
+        ],
         "source": "book (851): steps 9, 18 and 30-31 (lever, link and top link), step 33 (the harrow hung on them)",
         "control": "p235 3702",
         "moves": [
@@ -65,6 +77,9 @@
       },
       {
         "does": "Lowered by the lever until it rests on its two small wheels, the harrow's top 40 tooth gear meets the power take-off's crown gear, so as the tractor drives, its three tine rotors spin.",
+        "mechanisms": [
+          "power-take-off: harrow"
+        ],
         "source": "inferred: where the gears sit when lowered (book (851) step 33 and the photo on page 12 show the harrow on the hitch, but no arrows); unsure which way the lever goes to lower it",
         "first": [
           {
@@ -85,6 +100,9 @@
       },
       {
         "does": "Inside the harrow, the top 40 tooth gear drives the middle rotor's 8 tooth gear five times as fast, and the middle rotor's 40 tooth gear turns the two outer rotors the other way at the same speed.",
+        "mechanisms": [
+          "power-take-off: harrow rotors"
+        ],
         "source": "book (851): step 33, sub-steps 4-7 and the inset",
         "control": "p286 3649",
         "moves": [
@@ -98,6 +116,9 @@
       },
       {
         "does": "The harrow's two small wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book (851): step 33, sub-step 7",
         "control": [
           "p298 3464c01",

@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.",
+        "mechanisms": [
+          "driven-rotor: main and tail rotors"
+        ],
         "source": "book: steps 7, 9, 13-15 and 20",
         "control": "p143 3736",
         "moves": [
@@ -31,6 +34,9 @@
       },
       {
         "does": "The two control sticks in front of the seats, on one cross shaft, raise and lower the collar on the rotor mast: two bellcranks under the floor push two rods up behind the seats, and short links from the collar's spinning half twist both rotor blades, changing their pitch together.",
+        "mechanisms": [
+          "rotor-pitch: collective"
+        ],
         "source": "book: steps 2-5 (the rod frame), 9-10 and 16-17 (the rotor head); inferred: no motion is drawn, and unsure that the sticks are meant to work the blade pitch rather than tilt the rotor",
         "control": [
           "p37 3707",
@@ -51,6 +57,9 @@
       },
       {
         "does": "The landing skids stand fixed under the cabin on four struts, braced by two cross axles and two rods between them.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book: step 20 and its inset; inferred: that the frame is meant to be rigid",
         "stays": [
           "p308 3703",

@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The droid changes from its standing attack shape into a wheel: the curved brown shell, hinged to the top of the back, swings forward and down round the body, while the arms, head and legs fold in, until it is a ball that can be rolled along the floor.",
+        "mechanisms": [
+          "hinge: shell"
+        ],
         "source": "book: photos on pages 85-96 and the four small pictures on page 98",
         "control": "p0 32009",
         "moves": [
@@ -23,6 +26,9 @@
       },
       {
         "does": "The head on the front end of the shell, with its red-tipped sensors, folds down against the body.",
+        "mechanisms": [
+          "hinge: head"
+        ],
         "source": "book: photos on pages 85-86",
         "control": "p551 32073",
         "moves": [
@@ -34,6 +40,9 @@
       },
       {
         "does": "Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim.",
+        "mechanisms": [
+          "hinge: arms"
+        ],
         "source": "book: photos on pages 88-90; inferred: which way each arm turns",
         "control": [
           "p238 6632",
@@ -49,6 +58,9 @@
       },
       {
         "does": "Each twin blaster bends at the elbow of its arm.",
+        "mechanisms": [
+          "hinge: elbows"
+        ],
         "source": "inferred: arm steps on pages 71-83 hinge the blasters on long pins; the book doesn't show it moving",
         "control": [
           "p618 32054",
@@ -64,6 +76,9 @@
       },
       {
         "does": "The two front legs fold back under the body for rolling and swing down to stand on.",
+        "mechanisms": [
+          "hinge: front legs"
+        ],
         "source": "book: photo on page 87; inferred: that the two legs fold together on one hinge",
         "control": "p11 3707",
         "moves": [
@@ -73,6 +88,9 @@
       },
       {
         "does": "The single back leg swings up over the back to close the wheel, and down again to stand on.",
+        "mechanisms": [
+          "hinge: back leg"
+        ],
         "source": "book: photos on pages 31-35 (book 1) and 94-95",
         "control": "p197 32310",
         "moves": [
@@ -82,6 +100,10 @@
       },
       {
         "does": "Pressing the red pin on top of the shell pushes a rod down the middle that frees a catch, and a rubber band snaps the back leg up; pulling the pin up resets it. In book 1, before the shell is built, the red trigger under the back does the same.",
+        "mechanisms": [
+          "catch: trigger",
+          "spring: back leg"
+        ],
         "source": "book: photos on pages 31-35 and 92-95; plunger rod in book 2 (axle 10 down the middle)",
         "control": "p297 6538b",
         "moves": [
@@ -91,11 +113,18 @@
       },
       {
         "does": "Catches click to hold the arms and the shell folded in the wheel shape, and rubber bands spring the droid open again into its attack shape when it's set down.",
+        "mechanisms": [
+          "catch",
+          "spring"
+        ],
         "source": "book: photos on pages 89, 91 and 97 (clicks drawn); book 1 steps 7, 10, 25 and 34 (rubber bands)",
         "skip": "catches and rubber bands only matter under force"
       },
       {
         "does": "In the wheel shape the droid rolls along the floor on the rim of its shell.",
+        "mechanisms": [
+          "free-wheels: shell"
+        ],
         "source": "book: photo on page 96",
         "skip": "rolling the whole model on its shell needs gravity"
       }

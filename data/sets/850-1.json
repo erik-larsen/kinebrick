@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.",
+        "mechanisms": [
+          "rack-and-pinion: forks"
+        ],
         "source": "book: forks steps 1-3, main steps 11-13 and the cover photo; the handwheel, the 24-tooth gear and both rack pinions share the top axle",
         "control": "p188 3736",
         "moves": [
@@ -30,6 +33,9 @@
       },
       {
         "does": "The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steering steps 1-5, main steps 6-7, 9 and 12",
         "control": "p178 3736",
         "moves": [
@@ -44,6 +50,9 @@
       },
       {
         "does": "The four wheels roll freely; the front pair are on short axles of their own.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: main steps 7-8",
         "control": [
           "p105 3482",
@@ -54,6 +63,9 @@
       },
       {
         "does": "The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.",
+        "mechanisms": [
+          "for-show: levers"
+        ],
         "source": "inferred: book steps 10-11 put an axle 4 in a pin connector on a sideways pin at each side of the seat; no motion is drawn",
         "control": [
           "p152 3651",

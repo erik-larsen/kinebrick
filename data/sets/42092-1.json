@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The 12 tooth gear under the belly spins the main rotor on its upright shaft, and a 20 tooth bevel gear on that shaft drives a long shaft down the tail to bevel gears at its end, which spin the tail rotor.",
+        "mechanisms": [
+          "driven-rotor: main and tail rotors"
+        ],
         "source": "book: steps 57-58 (the rotor shaft with its 20 tooth gear and the gear under the belly, pages 40-42), 63-76 (the tail shaft and its bevel gears), 98 (the tail rotor, page 60), 118 (the main rotor); page 80 (arrows on the rotor and the belly gear)",
         "control": "p198 32270",
         "moves": [
@@ -29,6 +32,9 @@
       },
       {
         "does": "The tan gear beside the winch drum, high on the left side behind the cockpit, winds the winch, raising and lowering the stretcher on its string over the pulley at the end of the winch's arm.",
+        "mechanisms": [
+          "winch: stretcher"
+        ],
         "source": "book: steps 113-117 (the drum, the string and the tan gear, pages 71-73); page 80 (the arrow on the stretcher)",
         "control": "p312 6589",
         "moves": [
@@ -41,6 +47,9 @@
       },
       {
         "does": "The 12 tooth gear high on the right side turns the winch too: it is on a cross axle whose other end's 12 tooth gear meshes with the tan gear on the drum.",
+        "mechanisms": [
+          "winch: stretcher"
+        ],
         "source": "inferred: from the parts, the cross axle and its two gears; the book shows only the tan gear being used",
         "control": "p291 32270",
         "moves": [
@@ -53,6 +62,9 @@
       },
       {
         "does": "The winch's arm swings out from the side on a pin, carrying the pulley the string runs over.",
+        "mechanisms": [
+          "hinge: winch arm"
+        ],
         "source": "inferred: from step 117 (page 73), the arm on a single pin",
         "control": "p302 74695",
         "moves": [
@@ -64,6 +76,9 @@
       },
       {
         "does": "The two rear doors swing open sideways.",
+        "mechanisms": [
+          "hinge: rear doors"
+        ],
         "source": "book: step 44 (page 26, arrows on both rear corners); page 80 (arrows on both doors)",
         "control": [
           "p95 24116",
@@ -72,6 +87,9 @@
       },
       {
         "does": "The stretcher hangs level from the hook on its string.",
+        "mechanisms": [
+          "hangs-free: stretcher"
+        ],
         "source": "book: step 119 (page 78); page 80",
         "skip": "only matters under gravity: the stretcher swings free on its hook"
       }

@@ -30,6 +30,9 @@
     "functions": [
       {
         "does": "The gear at the back of the truck, under the rear bumper, steers the front wheels: a long shaft runs forward under the chassis to two 8-tooth pinions on the steering rack, and the rack's ends swing the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: book 1 page 64 (photo of a front wheel with a steering arrow); book 1 steps 1-29 (the front axle and the long shaft), book 2 step 92 (page 63, the gear fitted at the back)",
         "control": "p675 32269",
         "moves": [
@@ -44,6 +47,9 @@
       },
       {
         "does": "The small steering wheel in the cab turns on its own; it isn't linked to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: it sits on an axle pin in the dashboard (p365 43093); the steering is worked from the back",
         "control": "p366 2819",
         "stays": [
@@ -52,6 +58,9 @@
       },
       {
         "does": "The four wheels roll freely; there's no drivetrain.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: the wheels sit on plain axles (59426) with no gears",
         "control": [
           "p533 56145",
@@ -62,6 +71,9 @@
       },
       {
         "does": "The two gears on top of the cab's back wall lower and raise the two outriggers, one on each side behind the front wheels: each gear turns a shaft running down to a pair of knob gears, which turn the outrigger's crank axle, and the red-and-white striped leg swings down from along the side until its foot stands on the ground.",
+        "mechanisms": [
+          "crank-and-link: outriggers"
+        ],
         "source": "book: book 1 page 64 (photo of a striped leg swinging down); book 1 steps 37-41 (pages 40-44, the legs), step 50 (page 54, the two gears fitted on top)",
         "control": [
           "p301 32269",
@@ -76,6 +88,10 @@
       },
       {
         "does": "The 12-tooth gears low on the truck's sides beside the turntable slew the ladder round, all the way round: a worm on their cross shaft turns an 8-tooth gear on a vertical shaft, whose 24-tooth gear on top drives the turntable's teeth.",
+        "mechanisms": [
+          "worm-drive",
+          "turntable: ladder"
+        ],
         "source": "book: book 1 page 64 (360 degrees arrow round the turntable); book 3 steps 1-16 (pages 2-10, the worm, 8-tooth and 24-tooth gears), steps 93-99 (pages 11-22, the turntable fitted and the side gears added)",
         "control": [
           "p725 32270",
@@ -94,6 +110,10 @@
       },
       {
         "does": "The other pair of 12-tooth gears on the truck's sides raises and lowers the ladder: their cross shaft turns, through a pair of knob gears, a vertical shaft up through the middle of the turntable to a worm, which turns the 24-tooth gear at the foot of the ladder's first section. As the first section rises, links unfold the second section from it, and the rescue cage at the end stays level.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: ladder"
+        ],
         "source": "book: book 1 page 64 (curved arrows on the raised ladder, the folded and unfolded ladder photos); book 3 steps 12-17 (pages 16-17, the turntable with its central shaft and worm), steps 104-113 (pages 34-55, the ladder, links and cage); inferred: which pair of side gears it is (see the slewing function's note)",
         "control": [
           "p794 32270",
@@ -114,6 +134,9 @@
       },
       {
         "does": "The hose reels at the back, three wheel hubs on a cross axle, turn.",
+        "mechanisms": [
+          "free-wheels: hose reels"
+        ],
         "source": "book: book 2 steps 89-92 (pages 55-63); inferred: that they're meant to turn by hand (nothing drives them)",
         "control": "p653 4185"
       }

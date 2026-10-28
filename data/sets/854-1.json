@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: its column, held at an angle on a frame of rods, turns through a universal joint an axle whose 8-tooth gear slides the rack on the tie rod between the two wheel turntables.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 3-10 (rods in steps 4-6, rack in step 7, universal joint and gear in step 9, wheel in step 10)",
         "control": "p155 3736",
         "moves": [
@@ -31,6 +34,9 @@
       },
       {
         "does": "The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.",
+        "mechanisms": [
+          "piston-engine: 1 cylinder"
+        ],
         "source": "book: step 3 and its inset (the crankshaft), steps 5 and 10-11 (the piston and engine block)",
         "control": [
           "p326 3482",
@@ -47,6 +53,9 @@
       },
       {
         "does": "The front wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 3-4 and 12",
         "control": [
           "p318 3482",
@@ -55,6 +64,9 @@
       },
       {
         "does": "The nose with the number board hangs on the axle across the very front.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book: steps 4-5 and 8; inferred: unsure whether the nose is meant to stay put or to tip on its axle",
         "stays": [
           "p50 3700"

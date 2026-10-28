@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 3 (steering arms), 4 (rack and its holder), 7 (steering wheel on its 6-long column, inset); the cover blueprint draws the front wheels turned",
         "control": "p56 8820 - 4185a",
         "moves": [
@@ -35,6 +38,9 @@
       },
       {
         "does": "The rear wheels ride on a swinging arm: two 1x6 bricks, one each side, pivot on a 10-long axle under the seat and carry the rear wheels on axle pins, joined at the back by an 8-long axle that the shock absorber pushes down, so the rear wheels rise and fall together.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "book: step 5 (shock absorber between a 6-long axle and an 8-long axle; the inset's arrows show it squeezing), step 11 (the 10-long pivot axle pushed through the arms), steps 12-13 (rear wheels)",
         "control": "p102 3894",
         "moves": [
@@ -53,12 +59,18 @@
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: step 5",
         "control": "p29 4255",
         "skip": "a spring only matters under gravity or force"
       },
       {
         "does": "The four wheels roll freely, each on its own axle pin; there's no drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 3 and 12-13",
         "control": [
           "p129 3482",

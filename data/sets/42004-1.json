@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The knob on the cab roof steers: its vertical shaft drives a 20-tooth gear that turns the turntable between the front and rear halves, so the machine bends in the middle (articulated steering).",
+        "mechanisms": [
+          "articulated-steering"
+        ],
         "source": "book: steps 3-5, 11-13 and 18 (the circled knob with the turning arrow); function page 71",
         "control": "p108 32270",
         "moves": [
@@ -32,6 +35,9 @@
       },
       {
         "does": "Turning the exhaust stack raises and lowers the loader arm: the stack is the top of a vertical shaft with a worm at its foot, which turns an 8-tooth gear on the loader arm's pivot axle.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: steps 1-5 of the exhaust sub-build, step 42 (the arm's arrow); function page 71",
         "control": "p40 55013",
         "moves": [
@@ -45,6 +51,9 @@
       },
       {
         "does": "The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links.",
+        "mechanisms": [
+          "crank-and-link: loader bucket"
+        ],
         "source": "book: loader arm sub-build pages 59-62, steps 42-44 (the arrow in step 44); function page 71",
         "control": "p227 32270",
         "moves": [
@@ -57,6 +66,9 @@
       },
       {
         "does": "The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: backhoe sub-build steps 1-8 (the turning arrows in step 8); function page 71",
         "control": "p147 55013",
         "moves": [
@@ -69,6 +81,9 @@
       },
       {
         "does": "The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle.",
+        "mechanisms": [
+          "hinge: stick"
+        ],
         "source": "book: backhoe sub-build steps 12-13 (the arrow on the stick in step 12, the gear added in step 13); function page 71",
         "control": "p171 32270",
         "moves": [
@@ -80,6 +95,9 @@
       },
       {
         "does": "The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand.",
+        "mechanisms": [
+          "posable-joint: bucket"
+        ],
         "source": "book: step 14 of the backhoe sub-build; function page 71 (arrow at the bucket)",
         "control": "p177 30394",
         "moves": [
@@ -89,6 +107,9 @@
       },
       {
         "does": "The four wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 45-46",
         "control": [
           "p234 56145",
@@ -99,6 +120,9 @@
       },
       {
         "does": "The steering wheel in the cab turns on its pin; it isn't connected to anything.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: it sits on a single axle pin in the seat sub-build",
         "control": "p97 30663"
       }

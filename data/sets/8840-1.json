@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel in front of the seat steers the front wheels: the 16 tooth gear on the foot of its sloping column drives the rack on the grey tie-rod plate joining the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: step 6 (steering arms, tie-rod plate, column, gear and wheel), step 9 (the rack on the tie-rod plate)",
         "control": "p63 4185",
         "moves": [
@@ -29,6 +32,9 @@
       },
       {
         "does": "The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls.",
+        "mechanisms": [
+          "piston-engine: V2"
+        ],
         "source": "book: step 8 (half-shafts, bevel gears and 24 tooth gear in the rear frame), step 9 (the engine and its 8 tooth gear); that only the left rear wheel drives it is inferred from step 8, where the right half-shaft is a separate axle with no gear",
         "control": "p210 4266",
         "moves": [
@@ -41,6 +47,9 @@
       },
       {
         "does": "The rear suspension: the whole rear frame, carrying the rear wheels and the engine, swings up and down on the cross axle under the seat, held by two shock absorbers from the body down to the rear half-shafts.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "book: step 8 (rear frame), step 9 (the pivot axle pushed in, red arrow), step 15 (the shock absorbers); the cover",
         "control": "p86 3701",
         "moves": [
@@ -56,11 +65,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the rear frame down and let it bounce back.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: step 15",
         "skip": "springs only matter under gravity or force"
       },
       {
         "does": "Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 6, 8 and 16; the right rear half-shaft is inferred from step 8",
         "control": [
           "p206 4266",
@@ -71,6 +86,9 @@
       },
       {
         "does": "The roll cage of toggle joints and axles over the driver, and the big rear wing on its frame above the engine, hold their shape and stay fixed to the body.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book: steps 12-15",
         "stays": [
           "p193 4273b against p0 3703",

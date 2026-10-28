@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The 12 tooth gear on top of the upright axle behind the seat steers the front wheels: turning it swings a white 2-long arm at the axle's foot, which pulls a link to the tie-rod beam joining the two steering knuckles.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: step 9 (the upright axle on its white arm), steps 19-20 (the knuckles), steps 21-22 (link and tie rod), step 27 (the axle and gear on top)",
         "control": "p94 32270",
         "moves": [
@@ -32,6 +35,9 @@
       },
       {
         "does": "The rear wheels ride on a swinging arm: the arm pivots under the seat and carries the 9-long rear axle, and the shock absorber runs from the frame behind the seat down to the arm's back, so the rear wheels rise and fall together.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "book: step 10 (the swinging arm), step 12 (the shock absorber, arrow), steps 14 and 23-24 (rear axle and wheels)",
         "control": "p22 32140",
         "moves": [
@@ -50,12 +56,18 @@
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: step 12",
         "control": "p30 4255",
         "skip": "a spring only matters under gravity or force"
       },
       {
         "does": "The four wheels roll freely; there's no drive and no engine. The two rear wheels turn together on one 9-long axle; each front wheel turns on its own 3-long axle in its steering knuckle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 19-20 and 23-24",
         "control": [
           "p61 55982",
@@ -66,6 +78,9 @@
       },
       {
         "does": "The steering wheel in front of the seat spins on its half pin; it isn't joined to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: steps 5 and 25 show it on a half pin in a pin with a cross hole, with nothing behind it; the book draws no arrow for it",
         "control": "p91 16091",
         "stays": [

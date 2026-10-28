@@ -22,6 +22,9 @@
     "functions": [
       {
         "does": "The black knob on the cab roof steers the front wheels: its upright axle turns a short crank under the cab, which pushes a link to the two steering hubs.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: steps 8-18 (pages 9-18), knob step 36 (page 32), page 75 (the arrow at the front wheel)",
         "control": "p23 32270",
         "moves": [
@@ -36,6 +39,9 @@
       },
       {
         "does": "Turning the cross axle under the front of the dump body (by either end) tips the body: a 20-tooth bevel gear on it turns the 12-tooth bevel on a linear actuator, which pushes up under the body so it tips back on its hinge at the rear.",
+        "mechanisms": [
+          "linear-actuator: dump body"
+        ],
         "source": "book: steps 12-14 (pages 54-60), step 44 (page 66, the turning arrow), page 75 (the body tipped)",
         "control": [
           "p313 59443",
@@ -53,6 +59,9 @@
       },
       {
         "does": "The dump body's tailgate hangs from pins at its top and swings open as the body tips, letting the load out.",
+        "mechanisms": [
+          "hangs-free: tailgate"
+        ],
         "source": "book: page 75 (the load falling out under the open tailgate); inferred: that it swings freely, from its pins",
         "control": "p256 6558",
         "moves": [
@@ -61,6 +70,9 @@
       },
       {
         "does": "The two front wheels and the four wheels on the two rear axles roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 45-49 (pages 67-71)",
         "control": [
           "p112 55982",

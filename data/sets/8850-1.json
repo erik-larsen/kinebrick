@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The yellow beacon on the roof steers the front wheels: its tall upright shaft carries a 24 tooth gear at the bottom that drives a crown gear on a shaft running forward under the floor, whose 8 tooth gear slides the steering rack on the tie-rod plate between the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 2 and 7 (steering arms, tie-rod plate and rack), step 11 (the forward shaft, its 8 tooth gears and crown gear), step 14 (the upright shaft and 24 tooth gear), step 22 (the beacon on top)",
         "control": "p338 4150",
         "moves": [
@@ -29,6 +32,9 @@
       },
       {
         "does": "Pushed along, the rear wheels drive the differential between them, so they can turn at different speeds round a corner.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: step 4 (the differential and its bevel gears on two half-shafts), step 22 (wheels)",
         "control": [
           "p346 4266",
@@ -40,6 +46,10 @@
       },
       {
         "does": "As the truck rolls, the V6 engine runs: a 14 tooth bevel gear on the long prop shaft meshes the differential and turns the shaft, which runs forward through a universal joint to a 16 tooth gear under the front; through an idler 16 tooth gear this drives the 16 tooth gear on the engine's crankshaft, so the six pistons pump up and down in their cylinders.",
+        "mechanisms": [
+          "piston-engine: V6",
+          "differential"
+        ],
         "source": "book: steps 3 and 5 (the prop shaft, its universal joint, bevel gear and front 16 tooth gear), step 10 (the idler gear), engine steps 1-4 (the crankshaft, rods, pistons and cylinders, and its gear), step 19 (the engine dropped in)",
         "control": "p346 4266",
         "moves": [
@@ -52,6 +62,9 @@
       },
       {
         "does": "The axle sticking out of the back of the chassis turns as the truck rolls: its 8 tooth gear is driven by the 24 tooth gear on the prop shaft, ready to drive something hitched behind.",
+        "mechanisms": [
+          "power-take-off"
+        ],
         "source": "book: step 5 (the 24 tooth gear on the prop shaft), step 7 (the axle and its 8 tooth gear); what it is for is inferred, the book doesn't say",
         "control": "p346 4266",
         "moves": [
@@ -60,6 +73,9 @@
       },
       {
         "does": "The front wheels roll freely on their stub axles.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 4 and 22",
         "control": [
           "p342 4266",
@@ -68,6 +84,9 @@
       },
       {
         "does": "The front bar, an axle held in two toggle joints on short yellow liftarms at the ends of the bumper, swings up and down on the liftarms' pins, and the bar itself turns freely in the toggle joints.",
+        "mechanisms": [
+          "hinge: front bar"
+        ],
         "source": "inferred: step 12 builds the liftarms on axle pins at the ends of the bumper and step 15 hangs the axle on them; unsure whether the bar is meant to swing or turn",
         "control": [
           "p138 2825",
@@ -80,11 +99,17 @@
       },
       {
         "does": "The grey pulley wheel on the side of the engine turns freely on its pin.",
+        "mechanisms": [
+          "free-wheels: pulley"
+        ],
         "source": "inferred: engine step 7 fits it on an axle pin; the book doesn't say it should turn",
         "control": "p303 4185"
       },
       {
         "does": "The cab and roll cage hold their shape: the two sloping beams on the cab sides, running from the top of the windscreen down and back to the doors, stay fixed to the chassis.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book: steps 15-21 and the cover; that the sloping beams are pinned at their lower ends too is inferred from the cover photo",
         "stays": [
           "p339 3702 against p0 3702",

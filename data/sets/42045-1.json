@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "Pushing the hydroplane along on the two small wheels under its nose runs the inline four-cylinder engine: the wheels' axle carries a 20-tooth bevel gear that turns a 12-tooth bevel gear on the front of the crankshaft, so the four pistons go up and down.",
+        "mechanisms": [
+          "piston-engine: inline 4"
+        ],
         "source": "book: engine steps 7-12 (pages 8-10), wheels steps 31-35 (pages 27-28, the tan bevel gear on the wheel axle), steps 38-45 (pages 31-36)",
         "control": [
           "p93 4185",
@@ -34,6 +37,9 @@
       },
       {
         "does": "The engine spins the propeller at the back: an axle in the crankshaft's rear end carries a 24-tooth gear, which turns an 8-tooth gear on the propeller's shaft above it, three times as fast.",
+        "mechanisms": [
+          "driven-rotor: propeller"
+        ],
         "source": "book: step 13 (page 11, the axle goes into the crank's yellow end and takes the 24-tooth gear), steps 64-65 (pages 55-56, the propeller)",
         "control": [
           "p93 4185",

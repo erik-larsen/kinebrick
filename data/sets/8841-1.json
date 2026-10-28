@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: its column runs down through a universal joint to an 8-tooth pinion on a toothed rack, and the rack pushes both steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 5, 12 and 13",
         "control": "p683 4185",
         "moves": [
@@ -30,6 +33,9 @@
       },
       {
         "does": "Rolling the buggy works the engine's piston: a pin in the 24-tooth gear on the left rear axle is a crank, and a connecting rod pushes the piston up and down in its block behind the seat.",
+        "mechanisms": [
+          "piston-engine: 1 cylinder"
+        ],
         "source": "book: steps 3-5 (the inset in step 4 shows the pin in the gear); that rolling drives it is inferred, as the gear only sits on the left rear axle",
         "control": "p700 3482",
         "moves": [
@@ -39,6 +45,9 @@
       },
       {
         "does": "The front wheels turn freely on pins in the steering arms.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 5 and 15",
         "control": [
           "p698 3482",
@@ -47,6 +56,9 @@
       },
       {
         "does": "The rear wheels are on two separate axles; only the left one turns the engine.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 2 and 15",
         "control": [
           "p699 3482",
@@ -56,6 +68,9 @@
       },
       {
         "does": "The roll cage, the seat and the steering column's mounting stay rigid: the toothed toggle joints hold their angle, and the cage is a closed frame.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "inferred: steps 10-14 build the cage from toothed toggle joints, which click and hold, and the seat folds round its hinge axle only while it is built",
         "stays": [
           "p35 3706",

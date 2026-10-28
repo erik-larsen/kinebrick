@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The propeller turns the engine's piston: the propeller's 24-tooth gear and the engine's 24-tooth gear are joined off-centre by an axle that works as a crank, and the connecting rod on it pushes the piston up and down in the engine block.",
+        "mechanisms": [
+          "piston-engine: 1 cylinder"
+        ],
         "source": "book: main steps 5-6 (page 3, crank gear, rod and piston) and 17 (page 13, propeller); page 35 drives the propeller with the 8700 motor",
         "control": "p428 8855-2742c01",
         "moves": [
@@ -28,6 +31,9 @@
       },
       {
         "does": "Tipping the control stick forward and back tilts the tail's elevators: under the cockpit floor a link from the stick's gimbal pushes a rod back to a bellcrank of two small rotors, which pushes a long rod up the tail to the elevators' cross axle.",
+        "mechanisms": [
+          "control-surfaces: elevators"
+        ],
         "source": "book: main steps 10 (page 5, stick and its gimbal of two pulley wheels), 11 (link and rod), 12 (page 6, bellcrank), 15-16 (pages 10 and 12) and tail steps 3-5 (page 11)",
         "control": "p144 3705",
         "moves": [
@@ -45,6 +51,9 @@
       },
       {
         "does": "Tipping the control stick side to side works the ailerons near the wing tips, one up as the other goes down: the stick's gimbal turns a shaft under the floor whose 16-tooth gear, through an idler, rocks a three-bladed rotor behind the cockpit; two links from the rotor rock a toggle on each wing's inner shaft, which turns through a universal joint and a pair of 8-tooth gears to the shaft that tilts the aileron.",
+        "mechanisms": [
+          "control-surfaces: ailerons"
+        ],
         "source": "book: main steps 10 (page 5, gimbal and its 16-tooth gear), 14 (page 9, three-bladed rotor and gears), 18 (page 17, the two links; the inset shows the wing centre), wing steps 4-6 (pages 15-16, shafts, universal joints, 8-tooth gears and ailerons); inferred: that the two ailerons move opposite ways",
         "control": "p144 3705",
         "moves": [
@@ -64,6 +73,9 @@
       },
       {
         "does": "The four small wheels set into the pontoons roll freely, so the seaplane can roll on land.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: pontoons step 8 (page 8)",
         "control": [
           "p319 3482",

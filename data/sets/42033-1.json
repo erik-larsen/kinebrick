@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The two big rear wheels turn together on their axle, which runs through the pull-back motor in the tail.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: steps 4 and 33-34 (pages 6, 45-46)",
         "control": [
           "p118 56145",
@@ -29,6 +32,9 @@
       },
       {
         "does": "Pull the car back along the floor and let go: the pull-back motor's spring drives the rear wheels and the car shoots forward.",
+        "mechanisms": [
+          "pull-back-motor"
+        ],
         "source": "book: pages 49-51 (the pull-back pages)",
         "control": [
           "p118 56145",
@@ -38,6 +44,9 @@
       },
       {
         "does": "The two small front wheels roll freely on their axle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 31-32 (pages 43-44)",
         "control": [
           "p113 2815",
@@ -49,6 +58,9 @@
       },
       {
         "does": "The clear canopy over the cockpit swings up to open.",
+        "mechanisms": [
+          "hinge: canopy"
+        ],
         "source": "book: step 31 (page 43, the red arrow)",
         "control": "p110 92279",
         "moves": [
@@ -60,6 +72,9 @@
       },
       {
         "does": "The steering wheel in the cockpit turns, but steers nothing: the front wheels are on a fixed axle.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: the steering wheel is mounted on a friction pin in step 25 (page 35) and isn't linked to the front axle",
         "control": "p93 40001",
         "stays": [

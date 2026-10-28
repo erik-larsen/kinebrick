@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "Pushed along, the rear wheels run the V8 engine behind the seats: the rear differential's 28 tooth crown drives a 20 tooth bevel gear on a shaft running forward into the crankshaft, and the eight pistons pump up and down in their two banks.",
+        "mechanisms": [
+          "piston-engine: V8",
+          "differential"
+        ],
         "source": "book: the rear axle and differential, the engine and its shaft (the first part of the book); pages 250-251 (the V8 shown under the opened cover)",
         "control": [
           "p1298 15038",
@@ -35,6 +39,9 @@
       },
       {
         "does": "The rear differential lets the two rear wheels turn at different speeds; with the car lifted, turning one rear wheel turns the other the opposite way.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: the rear axle steps",
         "control": "p1298 15038",
         "moves": [
@@ -44,6 +51,9 @@
       },
       {
         "does": "The black gear on top of the roof steers the front wheels (hand of god steering): its vertical shaft drives, through bevel gears, a long shaft running forward to a 12 tooth gear on the steering rack, whose links turn both front hubs.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: front axle steps (rack, links and hubs, pages 66-72), steps 61-66 (the long shaft, pages 83-88); pages 250-251 (the gear on the roof)",
         "control": "p924 32269",
         "moves": [
@@ -62,11 +72,17 @@
       },
       {
         "does": "The steering wheel in the cockpit turns.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: from the model; unsure whether it is meant to steer as well as the gear on the roof",
         "control": "p750 2819"
       },
       {
         "does": "The front wheels each have independent pushrod suspension: each hub rides between an upper and a lower suspension arm, and a pushrod turns a rocker on the frame that works a shock absorber lying across the car.",
+        "mechanisms": [
+          "pushrod-suspension: front"
+        ],
         "source": "book: front axle steps 5-16 (arms, rockers, shock absorbers, pages 64-72); inferred: that it's meant to move",
         "control": [
           "p482 57515",
@@ -81,6 +97,9 @@
       },
       {
         "does": "The rear axle is sprung on two shock absorbers.",
+        "mechanisms": [
+          "sprung-axle: rear"
+        ],
         "source": "book: the rear axle steps; inferred: how far it moves",
         "control": [
           "p52 32494",
@@ -93,11 +112,19 @@
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: the axle steps",
         "skip": "springs only matter under force; the suspension moves freely without them"
       },
       {
         "does": "With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open.",
+        "mechanisms": [
+          "function-selector",
+          "worm-drive",
+          "crank-and-link: doors"
+        ],
         "source": "book: steps 61-66 (the cross shafts, clutch gears, driving ring and lever, and the black gear on the side, pages 83-88), doorlift steps (pages 89-90); page 251 (picture 1, both doors swung up; the inset shows the lever's two positions)",
         "first": [
           {
@@ -123,6 +150,10 @@
       },
       {
         "does": "With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover.",
+        "mechanisms": [
+          "function-selector",
+          "worm-drive: engine cover"
+        ],
         "source": "book: steps 61-66 and the hoodlift steps; page 251 (picture 2, the cover swung back)",
         "first": [
           {
@@ -148,6 +179,9 @@
       },
       {
         "does": "The red selector lever slides the driving ring between the two clutch gears: position 1 for the doors, position 2 for the engine cover.",
+        "mechanisms": [
+          "function-selector: 2 functions"
+        ],
         "source": "book: step 66 (the lever, circled, page 88); page 251 (the inset with positions 1 and 2)",
         "control": "p716 32039",
         "moves": [
@@ -157,6 +191,10 @@
       },
       {
         "does": "With the Power Functions motor fitted (sold separately), the motor in the nose turns the same drive, and the lever chooses doors or cover as before.",
+        "mechanisms": [
+          "electric-motor: PF",
+          "function-selector"
+        ],
         "source": "book pages 240-249 (the motor option) and 250 (the motor in the nose)",
         "note": "the model file has no motor; the gear on the side p813 32270 is worked by hand"
       }

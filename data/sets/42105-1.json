@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The black 12 tooth gear at the back of the deck, between the hulls, steers: turning it swings a black arm on its fore-and-aft axle, which shifts the white crossbar sideways, and black link rods from the crossbar's ball joints turn both rudders together.",
+        "mechanisms": [
+          "rudder: rudders"
+        ],
         "source": "book: page 96 bottom-left inset (arrow over the crossbar and gear, arrows on both rudders); steps 106-113 (rudders), steps 121-122 (link rods)",
         "control": "p59 32270",
         "moves": [
@@ -30,6 +33,10 @@
       },
       {
         "does": "The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull.",
+        "mechanisms": [
+          "worm-drive",
+          "rack-and-pinion: daggerboard"
+        ],
         "source": "book: one hull is built in steps 52-75 and the other in 79-102 (the file's submodel names say which is right); steps 52-68 show the tower, worm, gears and rack, step 74 the arrows (turn the handle, the rack goes down), step 75 the board under the hull; page 96 right insets",
         "control": "p186 42105 - 33299b",
         "moves": [
@@ -45,6 +52,10 @@
       },
       {
         "does": "The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack.",
+        "mechanisms": [
+          "worm-drive",
+          "rack-and-pinion: daggerboard"
+        ],
         "source": "book: steps 79-97 (the tower, worm, gears and rack), step 101 (arrows), step 102 (the board under the hull), page 96 right insets; see the right hull's function for which hull is which",
         "control": "p261 42105 - 33299b",
         "moves": [
@@ -59,6 +70,9 @@
       },
       {
         "does": "The sails swing from side to side: a crank on the deck turns, and black link rods from it swing the booms, so the sails can be set to the wind.",
+        "mechanisms": [
+          "crank-and-link: sails"
+        ],
         "source": "book: page 96 top-left picture (arrow at the boom's end) and its inset (a white part turned, with a black link rod)",
         "control": "p54 42105 - 33299b",
         "moves": [
@@ -73,6 +87,9 @@
       },
       {
         "does": "The boat floats on its two hollow hull shells.",
+        "mechanisms": [
+          "rigid: hulls"
+        ],
         "source": "book: page 96 bottom-right picture, page 97 (draining the hulls after use)",
         "skip": "floating only matters in water"
       }

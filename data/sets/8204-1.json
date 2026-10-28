@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "Rolling the plane on its two wheels spins the propeller: a rubber band runs as a belt from a bush on the wheels' axle up to a half bush on a short axle above, whose 12-tooth bevel gear turns the 12-tooth bevel gear on the propeller's shaft.",
+        "mechanisms": [
+          "driven-rotor: propeller",
+          "belt-drive"
+        ],
         "source": "book: steps 5-8 (the bevel gear, the wheel axle and the band), step 9 (the propeller shaft's bevel gear), step 13 (the propeller)",
         "control": [
           "p16 3139",
@@ -33,6 +37,10 @@
       },
       {
         "does": "The propeller spins by hand, turning the two bevel gears and, through the band, the wheels.",
+        "mechanisms": [
+          "driven-rotor: propeller",
+          "belt-drive"
+        ],
         "source": "inferred: steps 5-9 and 13 build the drive both ways; the book draws no motion",
         "control": "p35 32125",
         "moves": [

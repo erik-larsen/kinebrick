@@ -14,6 +14,11 @@
     "functions": [
       {
         "does": "The XL motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns the two rear half shafts, so the rear wheels can turn at different speeds in a bend.",
+        "mechanisms": [
+          "electric-motor: Control+ XL",
+          "remote-control: Control+",
+          "differential"
+        ],
         "source": "book: steps 6-7 (the differential and rear axle), steps 14-20 (the XL motor and its gear), pages 114-115 (driving from the app)",
         "control": "p40 22172",
         "moves": [
@@ -29,6 +34,9 @@
       },
       {
         "does": "With the XL motor still, turning one rear wheel turns the other the opposite way through the differential.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: step 7 (the differential's gears)",
         "control": "p971 56145",
         "moves": [
@@ -43,6 +51,10 @@
       },
       {
         "does": "The L motor at the front steers: a 12 tooth gear on its shaft slides the steering rack, which turns both front steering knuckles.",
+        "mechanisms": [
+          "electric-motor: Control+ L",
+          "rack-steering"
+        ],
         "source": "book: steps 46-47 (the gear and rack; the step 47 inset), pages 114-115 (steering from the app)",
         "control": "p390 22169",
         "moves": [
@@ -61,6 +73,9 @@
       },
       {
         "does": "The front wheels roll freely, each on its own axle in its steering knuckle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 46-64 and 118",
         "control": [
           "p965 56145",
@@ -69,6 +84,9 @@
       },
       {
         "does": "The Control+ hub runs both motors from the app, with drive and steering controls, gyro steering by tilting the phone, and challenges.",
+        "mechanisms": [
+          "remote-control: Control+"
+        ],
         "source": "book: pages 114-115",
         "note": "not a mechanism"
       }

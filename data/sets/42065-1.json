@@ -14,6 +14,11 @@
     "functions": [
       {
         "does": "The M motor at the back right drives the right track: its shaft's axle runs straight into the right rear sprocket.",
+        "mechanisms": [
+          "electric-motor: M",
+          "remote-control: IR",
+          "crawler-tracks"
+        ],
         "source": "book: steps 40-42 and 48 (motor and sprocket on its shaft), page 69 (remote driving pictures); which motor drives which track is read from the model",
         "control": "p287 32209",
         "moves": [
@@ -27,6 +32,11 @@
       },
       {
         "does": "The M motor at the front left drives the left track: its shaft's axle runs straight into the left front sprocket.",
+        "mechanisms": [
+          "electric-motor: M",
+          "remote-control: IR",
+          "crawler-tracks"
+        ],
         "source": "book: steps 40-42 and 49 (the second motor), page 69; read from the model",
         "control": "p289 32209",
         "moves": [
@@ -40,6 +50,9 @@
       },
       {
         "does": "With both tracks driven the same way the racer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.",
+        "mechanisms": [
+          "skid-steering"
+        ],
         "source": "book: page 69 (the four remote pictures)",
         "control": [
           "p287 32209",
@@ -52,6 +65,9 @@
       },
       {
         "does": "The idler sprockets and the eight white road wheels turn freely as the tracks run round them.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book: steps 41-47 and 98",
         "control": [
           "p523 57519",
@@ -64,6 +80,9 @@
       },
       {
         "does": "The whole green body tilts up on pins at its front, so the battery box can be reached, and folds back down over the chassis.",
+        "mechanisms": [
+          "hinge: body"
+        ],
         "source": "book: step 97 (the red arrow lowers the body onto the chassis), page 68 (inset: body tilted up)",
         "control": "p567 41239",
         "moves": [
@@ -76,6 +95,9 @@
       },
       {
         "does": "The battery box's switch turns the power on and off.",
+        "mechanisms": [
+          "lights: battery box switch"
+        ],
         "source": "book: page 2 and step 100",
         "control": "p400 58119",
         "skip": "electrical only"

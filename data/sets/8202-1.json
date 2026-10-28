@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "Pulling the chopper backwards along the ground winds it up: the rear axle's gear drives the idler gear on the swinging arm, which turns the gear on the purple reel's axle, so the reel winds in the bungee string, stretching it between the reel and the front fork.",
+        "mechanisms": [
+          "launcher: bungee"
+        ],
         "source": "book: 1 cover (hand pulls it back, then it shoots off), reel pages 6-8 and step 13, rear axle step 18, idler arm step 20, wheels step 22; that pulling back winds the reel is inferred from how the string, gears and cover pictures fit together",
         "control": [
           "p65 2994",
@@ -35,6 +38,9 @@
       },
       {
         "does": "Let go, the stretched bungee pulls the string back off the reel, which drives the rear wheels forward through the gears and launches the chopper, over a paper ramp in the book's game.",
+        "mechanisms": [
+          "launcher: bungee"
+        ],
         "source": "book: 1 cover and page 19",
         "control": [
           "p65 2994",
@@ -44,12 +50,18 @@
       },
       {
         "does": "The idler gear rides on a swinging arm hung from a pin at the front of the frame, resting between the rear-axle gear and the reel gear. While the wheels wind the reel, or the reel drives the wheels, the gear forces pull it into mesh; once the bungee is spent and the chopper coasts, or if it's pushed forwards, they kick it up out of mesh so the wheels run free and the string isn't wound the wrong way.",
+        "mechanisms": [
+          "swinging-idler-clutch"
+        ],
         "source": "inferred: book 1 step 20 builds the idler on a pivoting arm rather than a fixed axle; the book doesn't say what it's for. Unsure which way of turning throws it out",
         "control": "p45 32013",
         "skip": "a one-way clutch held by gear forces and gravity, which KineBrick doesn't simulate; for the wind-up the arm should stay down with the idler in mesh"
       },
       {
         "does": "The twin front wheels roll freely together on their short axle at the end of the long fork; there's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: 1 step 22",
         "control": "p61 4185",
         "moves": [

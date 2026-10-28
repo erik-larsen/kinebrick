@@ -22,6 +22,9 @@
     "functions": [
       {
         "does": "The black gear on top behind the cab is a steering knob: it turns an upright axle whose arm pushes a beam across under the front axle and steers the front wheels.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: book 1 sub-steps 1-6 on pages 6-7 (the knob on its upright axle and arm), book 2 steps 32-34 (the steering beam and front wheels)",
         "control": "p13 32270",
         "moves": [
@@ -36,6 +39,9 @@
       },
       {
         "does": "The black gear on the left of the red boom winds the winch: its axle carries the reel, whose string runs over the boom tip down to the hook, raising or lowering it.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book: book 2 steps 26-30 (the axle, reel, string over the boom tip and hook)",
         "control": "p94 32270",
         "moves": [
@@ -48,6 +54,9 @@
       },
       {
         "does": "A small gear on a friction axle pin on the boom's right meshes with the gear on the winch axle, so the winch turns stiffly and holds the hook where it's left.",
+        "mechanisms": [
+          "friction-brake: winch"
+        ],
         "source": "inferred: book 2 steps 26 and 28 show the two small gears, one on a blue axle pin; their purpose isn't drawn",
         "control": "p89 3647",
         "moves": [
@@ -57,6 +66,9 @@
       },
       {
         "does": "The red boom is fixed to the back of the frame; it doesn't luff or slew.",
+        "mechanisms": [
+          "rigid: boom"
+        ],
         "source": "book: book 2 steps 22-25",
         "stays": [
           "p79 32140",
@@ -65,6 +77,9 @@
       },
       {
         "does": "The rear wheels roll freely on their axle.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: book 2 steps 35-36",
         "control": [
           "p521 55982",

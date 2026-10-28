@@ -1,0 +1,87 @@
+# Accessory
+
+A loose item that comes with the model. (Not mechanisms.)
+
+First appears in 2000, in [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1): The blaster is held in the right hand by a magnet, so it can be taken out and put back.
+
+Used in 12 of the 186 surveyed sets, by 12 functions. KineBrick: 1 works, 2 no, 1 skipped, 8 not checked.
+
+## By decade
+
+| | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
+|---|---|---|---|---|---|---|
+| Sets | 0 of 9 | 0 of 18 | 0 of 32 | 2 of 23 | 8 of 83 | 2 of 21 |
+| Functions | 0 | 0 | 0 | 2 | 8 | 2 |
+
+## Details
+
+Each detail by the set it first appears in.
+
+| Detail | First in | Sets |
+|---|---|---|
+| blaster | 2000, [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1) | 1 |
+| pallet | 2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1) | 1 |
+| boom section | 2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1) | 1 |
+| suitcase | 2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1) | 1 |
+| ramp | 2017, [42058 Stunt Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42058-1) | 1 |
+| stunt ramp | 2017, [42059 Stunt Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42059-1) | 1 |
+| drone | 2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1) | 1 |
+| wall frames | 2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1) | 1 |
+| overnight bag | 2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1) | 1 |
+| container | 2018, [42084 Hook Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42084-1) | 1 |
+| stand | 2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1) | 1 |
+| paddock stand | 2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1) | 1 |
+
+## Sets
+
+**2000, [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1)**
+
+- *blaster:* The blaster is held in the right hand by a magnet, so it can be taken out and put back. (skipped)
+
+**2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1)**
+
+- *pallet:* The pallet is loose: it rests on the forks and is carried by them. (not checked)
+
+**2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
+
+- *boom section:* The spare boom section can be fitted into the boom to make it 12 cm longer. (not checked)
+
+**2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
+
+- *suitcase:* The suitcase in the luggage compartment opens. (no)
+
+**2017, [42058 Stunt Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42058-1)**
+
+- *ramp:* The stunt ramp, a printed cardboard sheet folded over two 9 long beams, stands on the ground for the bike to jump off. (not checked)
+
+**2017, [42059 Stunt Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42059-1)**
+
+- *stunt ramp:* The stunt ramp, a printed cardboard sheet folded over two 9 long beams, stands on the ground for the truck to jump off. (not checked)
+
+**2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
+
+- *drone:* The drone's four three-bladed propellers spin, and the drone lifts off its pad on top of the rear body to be played with on its own. (works)
+
+**2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
+
+- *wall frames:* The hook carries the load: a grey wall frame hangs from the hook on four chains, and two more wall frames lie on the ground beside the crane. (not checked)
+
+**2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
+
+- *overnight bag:* The Bugatti overnight bag sits in the storage space at the front, behind the grille. (not checked)
+
+**2018, [42084 Hook Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42084-1)**
+
+- *container:* The container comes off: it rests on the bed held only by the hook through the loop at its front, and rolls on the two small rollers at its back end when set down. (not checked)
+
+**2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1)**
+
+- *stand:* The bike stands on a removable stand on the trailer; it lifts off for its run. (not checked)
+
+**2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
+
+- *paddock stand:* The red paddock stand lifts the rear: pushing its handle down rocks it on its small wheels, and its front arms raise the rear wheel off the ground by pins under the swing arm. (no)
+
+---
+
+[All mechanisms](README.md). Generated by `npm run mechanisms` (`scripts/mechanisms.ts`) from the kinds in [data/mechanisms.json](../../data/mechanisms.json) and the `mechanisms` of each function in [data/sets/](../../data/sets/README.md); don't edit it by hand.

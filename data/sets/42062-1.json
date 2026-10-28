@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black knob on the truck's cab roof steers the front wheels: its shaft runs down through the cab and a universal joint to an arm that swings the two steering knuckles.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: page 85 (the top right picture: the arrow on the roof knob and the truck turning)",
         "control": "p116 32270",
         "moves": [
@@ -32,6 +35,9 @@
       },
       {
         "does": "The semi-trailer turns on its coupling behind the cab as the truck steers.",
+        "mechanisms": [
+          "hinge: semi-trailer coupling"
+        ],
         "source": "book: bag 2 step 28 and page 85 (the truck and trailer)",
         "control": "p32 11214",
         "moves": [
@@ -40,6 +46,9 @@
       },
       {
         "does": "The truck's and the trailer's wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: bag 1 steps 51-52, bag 2 step 23",
         "control": [
           "p177 55982",
@@ -52,6 +61,9 @@
       },
       {
         "does": "Twist locks at the trailer's corners turn to hold a container down on the trailer.",
+        "mechanisms": [
+          "catch: twist locks"
+        ],
         "source": "book: bag 2 step 20 (the yellow arrows on the locks); that long beams under the trailer link the locks so they turn together is inferred from the model",
         "control": [
           "p213 3749",
@@ -61,6 +73,9 @@
       },
       {
         "does": "The gear at the reach stacker's back end, the lower of two, steers its rear wheels: an axle runs forward to a link that swings the two rear steering knuckles.",
+        "mechanisms": [
+          "linkage-steering: rear wheels"
+        ],
         "source": "book: page 85 (the middle right picture: the arrow at the back and the reach stacker turning)",
         "control": "p508 32270",
         "moves": [
@@ -76,6 +91,10 @@
       },
       {
         "does": "The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: boom"
+        ],
         "source": "book: page 85 (the bottom left picture: the arrow at the back and the boom rising); bag 3 step 87 (the inset shows the boom raised)",
         "control": "p507 32270",
         "moves": [
@@ -89,6 +108,9 @@
       },
       {
         "does": "The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure).",
+        "mechanisms": [
+          "rack-and-pinion: boom extension"
+        ],
         "source": "book: page 85 (the bottom middle picture: the arrow at the boom's base, the double arrow along the boom), bag 3 steps 72-84 (the boom and its rack)",
         "control": "p530 6553",
         "moves": [
@@ -101,6 +123,9 @@
       },
       {
         "does": "The spreader turns on the boom's tip to line up with a container.",
+        "mechanisms": [
+          "hinge: spreader"
+        ],
         "source": "book: page 85 (the bottom right picture: the curved arrow over the spreader)",
         "control": "p547 32524",
         "stays": [
@@ -109,6 +134,9 @@
       },
       {
         "does": "Turning the axle at the spreader's end swings its claws in to grip a container's top or out to let it go.",
+        "mechanisms": [
+          "crank-and-link: claws"
+        ],
         "source": "book: bag 3 steps 104 and 110 (the yellow arrows), page 85 (the bottom right picture: the small arrows at the claws)",
         "control": "p574 32073",
         "moves": [
@@ -119,6 +147,9 @@
       },
       {
         "does": "The reach stacker's four wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: bag 3 steps 112-113",
         "control": [
           "p597 55981",

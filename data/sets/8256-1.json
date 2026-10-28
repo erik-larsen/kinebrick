@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: the foot of its slanted column pushes the 9-long tie rod across the front, which swings both steering arms and the wheels on them.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: 1 steps 16 (steering wheel) and 33 (column fitted, turning arrow); inferred: which later steps build the steering arms and tie rod, as the book draws no arrow at the wheels",
         "control": "p52 2819",
         "moves": [
@@ -33,6 +36,9 @@
       },
       {
         "does": "Pushing the kart along turns the engine: the rear axle's 16 tooth gear turns the 16 tooth gear on the crankshaft, and the crank drives the connecting rod and pushes the piston up and down in its cylinder.",
+        "mechanisms": [
+          "piston-engine: 1 cylinder"
+        ],
         "source": "book: 1 steps 4 (rear axle and gear), 6 (cylinder), 7 (crankshaft, rod and piston, 1:1 inset), 8 (crankshaft's gear)",
         "control": [
           "p131 55982",
@@ -50,6 +56,9 @@
       },
       {
         "does": "The wheels roll freely: the two rear wheels together on their 7-long axle, the two front wheels each on its own axle pin in its steering arm.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: 1 step 50 (wheels)",
         "control": [
           "p131 55982",

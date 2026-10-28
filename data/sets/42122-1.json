@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The 12 tooth gear on top at the back, between the roll bars, steers the front wheels: a long shaft with two universal joints runs down and forward through the front axle's turntable, and a crank on its front end swings the steering bar across the axle, which turns both front hubs.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: page 118 (top inset, the gear with a turning arrow and a front wheel steering), steps 25-35 (the shaft and the gear on top), 47-53 (the front axle and steering bar)",
         "control": "p85 32270",
         "moves": [
@@ -27,6 +30,9 @@
       },
       {
         "does": "The front axle swings side to side on a turntable under the chassis, so the front wheels follow rough ground (pendular suspension).",
+        "mechanisms": [
+          "pendular-axle: front"
+        ],
         "source": "book: page 118 (bottom inset, the axle articulating over rough ground), steps 27-35 and 47-53",
         "control": "p122 32524",
         "moves": [
@@ -39,6 +45,9 @@
       },
       {
         "does": "The rear axle swings side to side on its own turntable under the back of the chassis (pendular suspension), between two shock absorbers that telescope as it swings.",
+        "mechanisms": [
+          "pendular-axle: rear"
+        ],
         "source": "book: page 118 (bottom inset), steps 6 (the turntable) and the rear axle and shock steps; the shocks telescoping is inferred from the parts",
         "control": "p157 32524",
         "moves": [
@@ -52,11 +61,17 @@
       },
       {
         "does": "The two shock absorbers' springs push the rear axle back level.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "inferred: the rear shock absorbers carry springs (22977)",
         "skip": "only matters under force; the axle's swing is modelled without it"
       },
       {
         "does": "The 16 tooth gear on the front bumper winds the winch drum, reeling the string in or out to raise or lower the tow hook.",
+        "mechanisms": [
+          "winch: tow hook"
+        ],
         "source": "book: page 118 (main picture, the gear with a turning arrow and the hook on its string), steps 76-82",
         "control": "p234 94925",
         "moves": [
@@ -66,6 +81,9 @@
       },
       {
         "does": "The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
         "source": "book: page 118 (middle inset, the bonnet open)",
         "control": "p457 32524",
         "moves": [
@@ -78,6 +96,9 @@
       },
       {
         "does": "The two doors swing open.",
+        "mechanisms": [
+          "hinge: doors"
+        ],
         "source": "book: page 118 (middle inset, a door open), steps 171-176 (the doors)",
         "control": [
           "p378 32524",
@@ -86,6 +107,9 @@
       },
       {
         "does": "The rear seat's backrest folds forward.",
+        "mechanisms": [
+          "hinge: backrest"
+        ],
         "source": "inferred: steps 132-138 build the rear seat on pins and hubs (10197) so its back can turn; the book doesn't show it folding",
         "control": "p398 32524",
         "moves": [
@@ -94,6 +118,9 @@
       },
       {
         "does": "The four wheels roll freely; there's no drivetrain.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: page 118; steps 47-58 and the rear axle steps (the wheels are on plain axles in the axle beams)",
         "control": [
           "p658 42122 - 70695",

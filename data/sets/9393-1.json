@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black gear on the cab roof steers the front wheels: its upright axle comes down through the cab to a knob gear, which turns a long axle running forward under the bonnet to a gear that slides the steering rack across the front axle.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: step 4 (the rack and gear), step 12 (the long axle's knob gear), step 16 (the upright axle with its knob gear) and the roof steps 42-45; how it's worked inferred, as the book draws no arrow for it",
         "control": "p72 32270",
         "moves": [
@@ -35,6 +38,10 @@
       },
       {
         "does": "The grey smooth axle joiner standing up behind the cab lifts the three-point linkage: it turns a worm, which turns a small gear on the lift arms' cross axle, and the arms raise or lower the hay tedder on their two links.",
+        "mechanisms": [
+          "worm-drive",
+          "three-point-hitch: hay tedder"
+        ],
         "source": "book: step 22 sub-steps 4-5 (the upright axle and worm), step 29 (arrows show the axle turning and the lift arm swinging), step 49 (the tedder hitched on)",
         "control": "p132 59443",
         "moves": [
@@ -51,6 +58,9 @@
       },
       {
         "does": "Rolling the tractor spins the hay tedder's two rotors: the right rear wheel's axle turns a bevel gear on the power take-off shaft, whose universal joints carry the drive back to the tedder, where bevel gears and a 24-tooth gear turn a 24-tooth gear on each arm, and its small gear turns the rotor.",
+        "mechanisms": [
+          "power-take-off: hay tedder"
+        ],
         "source": "book: steps 19-20 (power take-off bevel gears and universal joint, pages 17-20), tedder sub-steps 5-12 (pages 57-62), page 65 (arrows show the rotors turning)",
         "control": "p280 56908",
         "moves": [
@@ -70,6 +80,9 @@
       },
       {
         "does": "The left rear wheel turns on its own short axle, so only the right one drives the tedder.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 48; inferred from the separate left hub",
         "control": "p282 56908",
         "stays": [
@@ -78,6 +91,9 @@
       },
       {
         "does": "The tedder's two arms fold up over it for transport, each swinging its rotor up on a pivot beside the gearbox.",
+        "mechanisms": [
+          "hinge: tedder arms"
+        ],
         "source": "book: page 65 (panel 2 shows the arms swinging up, panel 3 folded)",
         "control": [
           "p299 48989",
@@ -93,6 +109,9 @@
       },
       {
         "does": "The small steering wheel in the cab turns freely on its pin; it doesn't steer.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: book step 36 fits it on a lone axle pin, and the steering is worked from the roof",
         "control": "p220 2819",
         "stays": [

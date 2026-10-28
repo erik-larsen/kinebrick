@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin).",
+        "mechanisms": [
+          "fork-steering",
+          "friction-brake"
+        ],
         "source": "book: fork steps 1-6 (the pin goes in the fork's grey cross block in step 5), frame step 6 (the grey cross block it plugs into) and step 13; inferred: the book draws no steering arrow, and the fork has no other joint to the frame",
         "control": "p36 32073",
         "moves": [
@@ -29,6 +33,9 @@
       },
       {
         "does": "Both wheels roll freely: the front one on an axle between the fork's two toggle joints, the rear one on an axle at the back of the frame; nothing is driven, and the cams of the engine are fixed.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: frame step 10 (rear wheel), fork step 9 (front wheel)",
         "control": [
           "p49 2994",

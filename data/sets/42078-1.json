@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: bag 3 steps (the hogxmit gears), page 420 (bottom left photo, the arrows on the roof gear and the front wheel)",
         "control": "p1146 18575",
         "moves": [
@@ -27,6 +30,10 @@
       },
       {
         "does": "Pushed along, the tractor's two rear axles drive the six cylinder engine under the bonnet: each axle has a differential, a shaft through universal joints runs forward to the crankshaft, and the six pistons run up and down.",
+        "mechanisms": [
+          "piston-engine: 6 cylinders",
+          "differential"
+        ],
         "source": "book: bag 1 steps 3-15 (the two differentials and the shaft between them), engine steps in bag 2; page 420 (top right photo, the arrows on the pistons)",
         "control": [
           "p199 56145",
@@ -47,6 +54,9 @@
       },
       {
         "does": "The front wheels roll freely; they aren't driven.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: no drive shaft reaches the front axle",
         "control": [
           "p502 56145",
@@ -55,6 +65,9 @@
       },
       {
         "does": "The bonnet, with the grille, headlights and front wings, tips forward to show the engine.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
         "source": "book: page 420 (top middle photo, the arrow on the bonnet)",
         "control": "p1326 60485",
         "moves": [
@@ -67,6 +80,9 @@
       },
       {
         "does": "The cab doors swing open.",
+        "mechanisms": [
+          "hinge: doors"
+        ],
         "source": "inferred: page 420 (top left photo) draws an arrow at the cab side; the doors hang on bar hinges (cabindoorhinge1 and 2)",
         "control": [
           "p851 32524",
@@ -76,12 +92,18 @@
       },
       {
         "does": "The fifth wheel at the back of the tractor slides forward and back.",
+        "mechanisms": [
+          "slide: fifth wheel"
+        ],
         "source": "inferred: page 421 (top left photo) draws a long arrow along the tractor's rear frame beside the fifth wheel plate",
         "control": "p17 32278",
         "note": "unsure which part slides, or whether the arrow only shows where the trailer hooks on"
       },
       {
         "does": "The trailer swings on its king pin behind the tractor.",
+        "mechanisms": [
+          "hinge: king pin"
+        ],
         "source": "book: bag 5, the trailer front (trailerfront.ldr) and its king pin",
         "control": "p1634 32278",
         "moves": [
@@ -93,6 +115,9 @@
       },
       {
         "does": "The black gear low on the side of the trailer's front winds the landing gear's two legs, with their little wheels, down to the ground and back up.",
+        "mechanisms": [
+          "crank-and-link: landing gear"
+        ],
         "source": "book: step 68 on page 296 (the arrows on the gear and the legs), page 421 (the gear marked at the trailer's front)",
         "control": "p1706 18575",
         "moves": [
@@ -102,6 +127,9 @@
       },
       {
         "does": "One of the two black gears at the trailer's rear works both cranes' large linear actuators together, swinging each crane's long leg out until it stands on the ground beside the trailer and back in: a shaft runs forward under the deck through constant velocity joints from the rear crane to the front one.",
+        "mechanisms": [
+          "linear-actuator: crane legs"
+        ],
         "source": "book: bag 6 crane steps (the large actuators and the long shafts, page 342 shows the shafts plugging in); page 421 (middle photo, the arrow along the leg; the rear gear marked)",
         "control": "p2084 18575",
         "moves": [
@@ -117,6 +145,9 @@
       },
       {
         "does": "The other black gear at the trailer's rear works both cranes' small linear actuators together, swinging each crane's green arm up and over to lift the container on its four chains, and back: a row of five 16 tooth gears under the deck passes the turn across to a second shaft that runs to both cranes, where bevel gears and universal joints take it up to each actuator.",
+        "mechanisms": [
+          "linear-actuator: crane arms"
+        ],
         "source": "book: bag 5 steps 15-24 (the row of gears, pages 268-271), bag 6 crane steps; page 421 (right photo, the arrows on the arm and the leg)",
         "control": "p2083 18575",
         "moves": [
@@ -133,6 +164,9 @@
       },
       {
         "does": "Each crane leg is a rack in a housing that telescopes, so the leg can reach the ground as it swings out.",
+        "mechanisms": [
+          "slide: crane legs"
+        ],
         "source": "inferred: the legs are built from a 1 x 14 rack and its housing (pages 329-332); page 421 (middle photo, the arrow along the leg)",
         "control": [
           "p2051 18942",
@@ -142,11 +176,17 @@
       },
       {
         "does": "The container's two end doors swing open.",
+        "mechanisms": [
+          "hinge: container doors"
+        ],
         "source": "inferred: container steps 52-53 and 69 (pages 412-418) build the doors on their own hinge axles",
         "control": "p2631 64782"
       },
       {
         "does": "The trailer's four wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: bag 5 step 80",
         "control": [
           "p1890 56145",

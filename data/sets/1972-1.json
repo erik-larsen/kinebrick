@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: a 16-tooth gear on the slanted steering column turns against a rack on the tie rod, which swings both steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 3, 9-10 and 12, and the back-page photo's arrows showing the front wheels turning",
         "control": "p227 4185a",
         "moves": [
@@ -31,6 +34,9 @@
       },
       {
         "does": "The four wheels roll freely, the rear two each on its own short axle; there's no engine drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 4-5, 7 and 13",
         "control": [
           "p219 3482",

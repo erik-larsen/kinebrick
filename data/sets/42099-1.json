@@ -14,6 +14,12 @@
     "functions": [
       {
         "does": "The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs.",
+        "mechanisms": [
+          "electric-motor: Control+ XL",
+          "remote-control: Control+",
+          "differential",
+          "planetary-hub"
+        ],
         "source": "book: front motor steps 72-86 (marked 4), front axle steps 1-37 and 87, hubs steps 39-53; app pages 218-219; the gear train is inferred from the model",
         "control": "p870 42099 - 18575",
         "moves": [
@@ -32,6 +38,11 @@
       },
       {
         "does": "The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs.",
+        "mechanisms": [
+          "electric-motor: Control+ XL",
+          "differential",
+          "planetary-hub"
+        ],
         "source": "book: rear axle steps 127-172, rear motor steps 173-180 (marked 2); app pages 218-219; the gear train is inferred from the model",
         "control": "p359 42099 - 18575",
         "moves": [
@@ -50,6 +61,10 @@
       },
       {
         "does": "With both XL motors driven together the off-roader has four-wheel drive, forwards or back.",
+        "mechanisms": [
+          "electric-motor: Control+ XL",
+          "remote-control: Control+"
+        ],
         "source": "book: app pages 218-219 (drive controls)",
         "control": [
           "p870 42099 - 18575",
@@ -65,6 +80,10 @@
       },
       {
         "does": "The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs.",
+        "mechanisms": [
+          "electric-motor: Control+ L",
+          "rack-steering"
+        ],
         "source": "book: steering motor steps 88-106 (marked 3), steering parts steps 54-71 and 107-126; app pages 218-219 (steering control); the gear and rack are inferred from the model",
         "control": "p1088 32270",
         "moves": [
@@ -80,6 +99,9 @@
       },
       {
         "does": "The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way.",
+        "mechanisms": [
+          "differential: front"
+        ],
         "source": "book: front axle steps 8-37 (the differential in its housing)",
         "control": "p1858 23798",
         "moves": [
@@ -92,6 +114,9 @@
       },
       {
         "does": "The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way.",
+        "mechanisms": [
+          "differential: rear"
+        ],
         "source": "book: rear axle steps 127-140",
         "control": "p1860 23798",
         "moves": [
@@ -104,16 +129,25 @@
       },
       {
         "does": "The front half of the chassis (front axle, both front motors) twists against the rear half (rear axle, its motor, the hub and the body) about a lengthwise axis, on two large turntables, one at the very front and one in the middle, so all four wheels stay on rough ground.",
+        "mechanisms": [
+          "oscillating-chassis"
+        ],
         "source": "book: front turntable steps 102-105 (with an inset showing how it is lined up), middle turntable steps 198-202; inferred: that this is the articulation, from where the turntables sit",
         "note": "Unsure: whether either axle also swings on its own against its half of the chassis."
       },
       {
         "does": "Four red shock absorbers, two on each axle, spring the axles against the chassis.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: front axle step 87, rear axle steps 164-171, body fitted steps 333-335",
         "skip": "springs only matter under load"
       },
       {
         "does": "The small steering wheel on the dashboard turns freely; it isn't joined to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: book body step 302 fits it on a short axle in the dashboard, with nothing behind it",
         "control": "p1444 2819"
       }

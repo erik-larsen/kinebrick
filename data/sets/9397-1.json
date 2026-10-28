@@ -22,12 +22,21 @@
     "functions": [
       {
         "does": "A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with four driving rings; two blue-handled change-over levers, one on each side of the chassis behind the cab, choose which of the crane's four functions it works.",
+        "mechanisms": [
+          "electric-motor: PF M",
+          "function-selector: 4 functions"
+        ],
         "source": "book 1: gearbox sub-build steps 1-15 (pages 43-48) and steps 50-57; book 3: function pages 58-59 (each photo shows a lever's position and the battery box switch)",
         "control": "p240 58120",
         "note": "levers: p217 3749 (handle, with catch p216 6641) and p221 3749 (handle, with catch p220 6641); battery box switch p1287 920; the motor is a control like a crank, and each function below names it with the lever setting it needs"
       },
       {
         "does": "With one lever to one side, the motor lowers and raises the outrigger legs behind the cab, which stand the truck firm for craning.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "linear-actuator: outriggers"
+        ],
         "source": "book 3: page 58 top (lever, switch, and the up-down arrow at the striped leg)",
         "control": "p240 58120",
         "first": [
@@ -43,6 +52,13 @@
       },
       {
         "does": "With the same lever the other way, the motor slews the crane round on its mast through a worm.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "worm-drive",
+          "slip-clutch",
+          "turntable: crane"
+        ],
         "source": "book 3: page 58 bottom (the turning arrow round the crane's mast)",
         "control": "p240 58120",
         "first": [
@@ -59,6 +75,11 @@
       },
       {
         "does": "With the other lever to one side, the motor raises and lowers the crane's main boom by spinning the big linear actuator under it.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "linear-actuator: boom"
+        ],
         "source": "book 3: page 59 top (the arrow lifting the boom)",
         "control": "p240 58120",
         "first": [
@@ -74,6 +95,11 @@
       },
       {
         "does": "With the other lever the other way, the motor folds the crane's outer arm (the yellow jib) in and out with a second linear actuator.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "linear-actuator: jib"
+        ],
         "source": "book 3: page 59 bottom (the arrow at the jib's tip)",
         "control": "p240 58120",
         "first": [
@@ -86,10 +112,16 @@
       },
       {
         "does": "The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level.",
+        "mechanisms": [
+          "hangs-free: grab"
+        ],
         "source": "book 3: steps 140-152 (grab sub-build); inferred: the book draws no arrow for it"
       },
       {
         "does": "The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book 1: steering sub-build (steps 37-42); inferred: no arrow in the book",
         "control": "p1000 3706",
         "moves": [
@@ -102,6 +134,10 @@
       },
       {
         "does": "Rolling the truck turns the engine: the two rear axles' differential drives a shaft forward to the crankshaft under the bonnet, so the four pistons go up and down.",
+        "mechanisms": [
+          "piston-engine: 4 cylinders",
+          "differential"
+        ],
         "source": "book 1: steps 1-24 (differential, long shaft, engine); inferred: no arrow in the book",
         "control": [
           "p1450 86652",
@@ -118,6 +154,9 @@
       },
       {
         "does": "All six wheels roll; the front pair steer.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 3: step 154",
         "control": [
           "p1448 86652",

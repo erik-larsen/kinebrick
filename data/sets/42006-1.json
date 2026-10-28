@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black knob at the back of the superstructure drives a gearbox; two red change-over levers on the superstructure's side choose which function it works (boom, stick or grab), each by sliding a driving ring between two clutch gears.",
+        "mechanisms": [
+          "function-selector: 3 functions"
+        ],
         "source": "book 1: steps 19-32 (the gearbox; step 30's inset circles the two change-over catches), function page book 2 p28",
         "control": "p295 32270",
         "moves": [
@@ -27,6 +30,10 @@
       },
       {
         "does": "With the rear lever's ring on its back gear, the knob raises and lowers the boom: a shaft along the middle of the superstructure turns a 20-tooth bevel that spins the big linear actuator under the boom.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: boom"
+        ],
         "source": "book 1: steps 36-38 (the actuator and its gears); function page book 2 p28 (the boom arrow); inferred: which gear the ring engages for this",
         "control": "p295 32270",
         "first": [
@@ -46,6 +53,10 @@
       },
       {
         "does": "With the rear lever's ring on its front gear, the knob moves the stick (arm) in and out: one of two upper side shafts takes the drive through a CV joint into the boom pivot and up the boom to the second big linear actuator.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: stick"
+        ],
         "source": "book 1: boom sub-build steps 8-15 (pages 50-60); function page book 2 p28 (the arm arrow); inferred: which gear the ring engages for this",
         "control": "p295 32270",
         "first": [
@@ -65,6 +76,10 @@
       },
       {
         "does": "With the front lever's ring engaged, the knob opens and closes the four-claw grab: the other upper side shaft, through an idler gear, a CV joint, the boom pivot and shafts up the boom and stick, turns the small linear actuator in the grab, which swings the four claws together.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: grab"
+        ],
         "source": "book 2: grab sub-build steps 1-15, steps 36-38; function page book 2 p28 (the grab's arrows); inferred: which lever and position engage it",
         "control": "p295 32270",
         "first": [
@@ -89,6 +104,9 @@
       },
       {
         "does": "The superstructure slews all the way round (360 degrees) on the big turntable over the tracks.",
+        "mechanisms": [
+          "turntable"
+        ],
         "source": "book 1: step 38 (the turntable); function page book 2 p28 (360 degree arrow); inferred: unsure whether it's turned by hand or from the gearbox",
         "moves": [
           "p0 32278 against p188 64179"
@@ -97,6 +115,9 @@
       },
       {
         "does": "The tracks run freely round their sprockets; nothing drives them.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book 1: undercarriage steps 1-18",
         "control": [
           "p74 57519",

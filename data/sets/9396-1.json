@@ -22,6 +22,10 @@
     "functions": [
       {
         "does": "One knob on the fuselage's side works everything through a gearbox; two selector levers, one on each side, each slide a driving ring between two gears. With one lever toward the rotor symbol, turning the knob spins the main rotor and, through a long shaft down the tail boom, the tail rotor.",
+        "mechanisms": [
+          "function-selector: 4 functions",
+          "driven-rotor"
+        ],
         "source": "book 3 (9396-1-2.pdf) page 45, top left inset; book 3 steps 140-144",
         "control": "p367 32269",
         "first": [
@@ -39,6 +43,11 @@
       },
       {
         "does": "With the same lever the other way (toward the landing-gear symbol), the knob retracts and lowers the landing gear: two small linear actuators fold the main wheels' struts up into the sponsons, and the nose wheels fold too.",
+        "mechanisms": [
+          "function-selector",
+          "retractable-landing-gear",
+          "linear-actuator: landing gear"
+        ],
         "source": "book 3 page 45, top right inset (arrows on the nose and main wheels)",
         "control": "p367 32269",
         "first": [
@@ -57,6 +66,10 @@
       },
       {
         "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
+        "mechanisms": [
+          "function-selector",
+          "winch: hook"
+        ],
         "source": "book 3 page 45, middle right inset (the up-down arrow at the side door)",
         "control": "p367 32269",
         "first": [
@@ -72,6 +85,10 @@
       },
       {
         "does": "With the other lever toward the helicopter symbol, the knob opens and closes the rear loading ramp under the tail.",
+        "mechanisms": [
+          "function-selector",
+          "crank-and-link: ramp"
+        ],
         "source": "book 3 page 45, middle left inset (the curved arrow at the ramp)",
         "control": "p367 32269",
         "first": [
@@ -88,6 +105,10 @@
       },
       {
         "does": "The main rotor's four blades fold back on their hinges for parking, released by a blue lever in the cockpit.",
+        "mechanisms": [
+          "hinge: rotor blades",
+          "catch"
+        ],
         "source": "book 3 page 45, bottom insets (blue lever, then a blade folding); inferred: how the lever and the blades are connected",
         "control": [
           "p1510 99013p01",
@@ -99,6 +120,9 @@
       },
       {
         "does": "The wheels roll freely when the landing gear is down.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 2 and 3: landing gear sub-builds",
         "control": [
           "p36 42610",

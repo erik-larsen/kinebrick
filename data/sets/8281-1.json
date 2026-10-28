@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The red knob low at the front, under the bonnet, raises and lowers the tedder: it's the front end of a long lever of two thin beams that runs under the tractor and pivots on the rear axle, so pushing the knob down lifts the hitch and the tedder behind.",
+        "mechanisms": [
+          "hinge: hitch lever"
+        ],
         "source": "book 1: page 2 (red knob highlighted, arrow lifting the tedder); steps 8-9 (lever with the red pin at its front end, hung on the rear axle)",
         "control": "p26 32054",
         "moves": [
@@ -32,6 +35,9 @@
       },
       {
         "does": "Pushing the tractor along spins the tedder's three toothed rotors: the rear axle's 20-tooth bevel gear drives a 12-tooth bevel gear on a shaft running back along the lever, through an offset axle joiner to a 16-tooth gear in the tedder, which turns the middle 24-tooth crown gear rotor, and that turns the two outer ones the other way.",
+        "mechanisms": [
+          "power-take-off: tedder"
+        ],
         "source": "book 1: page 2 (inset: tractor rolling, rotors turning opposite ways); steps 8-9 (bevel gears), tedder steps 1-9 (pages 20-23)",
         "control": [
           "p80 2695",
@@ -51,6 +57,9 @@
       },
       {
         "does": "The front wheels roll freely on their axle; nothing steers them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 1: steps 14 and 24; inferred: no steering is built (the front axle carries only bushes)",
         "control": [
           "p90 3482",
@@ -59,6 +68,9 @@
       },
       {
         "does": "The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "book 1: step 16; inferred: nothing connects it to the front axle",
         "control": "p61 30663"
       }

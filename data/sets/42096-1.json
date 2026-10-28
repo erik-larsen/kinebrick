@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "Pushed along, the rear wheels drive the flat six through a differential: half shafts with constant velocity joints run from the differential to the wheels, and the differential's ring gear turns a 20 tooth gear, which drives a 12 tooth gear on the crankshaft, so the six pistons run in and out of their cylinders in the two flat banks.",
+        "mechanisms": [
+          "piston-engine: flat 6",
+          "differential"
+        ],
         "source": "book: steps 1-3 (differential), steps 108-110 (the engine fitted, page 65 on), page 291 (the engine's arrows)",
         "control": [
           "p1686 15038",
@@ -34,6 +38,9 @@
       },
       {
         "does": "The steering wheel steers the front wheels: its column runs forward through two universal joints to a 12 tooth gear, which turns a 20 tooth gear beside it; a pair of 16 tooth gears takes the turn down to a 12 tooth pinion on the steering rack between the front wheels.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: step 130 (the steering wheel), page 290 (the steering's arrows); the gear path to the rack is read from the model",
         "control": "p484 2741",
         "moves": [
@@ -49,6 +56,9 @@
       },
       {
         "does": "The two doors swing open on hinges at their front edges.",
+        "mechanisms": [
+          "hinge: doors"
+        ],
         "source": "book: page 290 (the arrows on the doors)",
         "control": [
           "p851 64682",
@@ -60,6 +70,9 @@
       },
       {
         "does": "The front wheels each have independent suspension: the hub rides between a lower and an upper suspension arm, and a shock absorber lets the wheel rise and fall.",
+        "mechanisms": [
+          "double-wishbone"
+        ],
         "source": "book: page 290; the front axle's arms and shock absorbers are built in the front axle steps",
         "control": [
           "p159 57515",
@@ -69,6 +82,9 @@
       },
       {
         "does": "The rear wheels have independent suspension too, on pairs of arms with a shock absorber each.",
+        "mechanisms": [
+          "double-wishbone: rear"
+        ],
         "source": "book: page 291 (the double arrow on the rear wheel); the rear arms and shock absorbers are built in the first steps, with the differential",
         "control": [
           "p22 32063",

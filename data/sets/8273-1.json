@@ -26,6 +26,9 @@
     "functions": [
       {
         "does": "The gear on the cab roof steers the front wheels: its shaft runs down through the cab to a knob gear that meshes with the chassis's knob gear, whose 8-tooth pinion drives the rack behind the front axle.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: 1 page 2 (arrows on the roof gear and front wheels); book 1 steps 1-17 (front axle, rack and pinion), book 2 cab steps 16 and 63",
         "control": "p644 32269",
         "moves": [
@@ -43,6 +46,9 @@
       },
       {
         "does": "The cab tilts forward on its pivot at the front of the chassis, taking the roof gear's shaft out of mesh with the steering.",
+        "mechanisms": [
+          "hinge: cab"
+        ],
         "source": "book: 1 page 3 (arrow over the cab); book 2 step 63 (the cab's pivot pins)",
         "control": "p556 41239",
         "moves": [
@@ -55,6 +61,9 @@
       },
       {
         "does": "The gear knob at the front bumper winds the winch, pulling in or paying out the hook on its string.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book: 1 page 2 (hook and arrow at the front), page 3 (2 m); book 2 front winch steps 1-8 (pages 38-39)",
         "control": "p3956 32270",
         "moves": [
@@ -64,6 +73,9 @@
       },
       {
         "does": "The rear of the two gear knobs on the chassis's left side slews the crane round on its turntable, all the way round.",
+        "mechanisms": [
+          "turntable: crane"
+        ],
         "source": "book: 1 page 3 (360 degrees), step 32 (green arrows on the turntable and the rear knob)",
         "control": "p187 32270",
         "moves": [
@@ -78,6 +90,9 @@
       },
       {
         "does": "The front of the two gear knobs on the chassis's left side raises and lowers the crane's red arm: a shaft up through the turntable's middle turns a worm, which turns the 24-tooth crown gear on the arm's pivot.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: 1 page 3 (up arrow on the crane); book 1 steps 29-32 (knobs), book 2 steps 52-53 (crown gear and worm shaft)",
         "control": "p184 32270",
         "moves": [
@@ -93,6 +108,10 @@
       },
       {
         "does": "The gear knob at the top of the red arm folds the black jib up and down: it turns a worm inside the arm, which drives an 8-tooth gear and a linkage to the jib.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: jib"
+        ],
         "source": "book: 1 page 3 (curved arrow at the jib); book 2 steps 54 (worm shaft in the arm), 58 (green arrow on the knob), 59-60 (jib)",
         "control": "p465 32270",
         "moves": [
@@ -106,11 +125,17 @@
       },
       {
         "does": "The fork hangs from the jib's end and stays level as the crane moves, carrying the tan load.",
+        "mechanisms": [
+          "hangs-free: fork"
+        ],
         "source": "book: 1 page 3 (arrow at the load); book 2 steps 61-62",
         "note": "hangs under gravity: the fork p492 6629 and the load p501 3701"
       },
       {
         "does": "The gear knob low on the right side, behind the cab, tips the grey bed: its shaft's crank, an offset axle joiner in the middle of the frame, pushes the bed's front up through a lever and links, the bed pivoting at its back end.",
+        "mechanisms": [
+          "crank-and-link: bed"
+        ],
         "source": "book: 1 page 3 (curved arrow over the bed, the bed shown tipped); book 1 steps 19-24 (crank shaft and links), 41-47 (bed); inferred: which knob, from the model",
         "control": "p96 32270",
         "moves": [
@@ -125,6 +150,9 @@
       },
       {
         "does": "The tailgate at the back of the bed swings open.",
+        "mechanisms": [
+          "hinge: tailgate"
+        ],
         "source": "book: 1 page 3 (curved arrow at the tailgate); book 1 step 45",
         "control": "p345 32316",
         "moves": [
@@ -136,6 +164,9 @@
       },
       {
         "does": "The four rear wheels are on a bogie that rocks on one cross axle through the frame, so both rear axles stay on the ground over bumps.",
+        "mechanisms": [
+          "bogie"
+        ],
         "source": "inferred: book 1 step 34 (inset: the bogie hangs on one axle at the frame's middle); not shown moving",
         "control": "p219 2905",
         "moves": [
@@ -148,6 +179,9 @@
       },
       {
         "does": "The six wheels roll freely; nothing drives them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: 2 step 68",
         "control": [
           "p4000 56145",
@@ -160,6 +194,9 @@
       },
       {
         "does": "A second 8-tooth gear meshes with the 8-tooth gear on the winch drum's other end, a brake that holds the hook where it is left.",
+        "mechanisms": [
+          "friction-brake: winch"
+        ],
         "source": "inferred: from the parts beside the winch drum (book 2 front winch steps); what it is for is a guess",
         "control": "p757 3647",
         "skip": "a brake only resists gravity; the winch works both ways without it"

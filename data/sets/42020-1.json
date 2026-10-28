@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "Turning either rotor turns the other: a long shaft under the roof joins the two rotor heads through bevel gears, so the front and rear rotors spin together.",
+        "mechanisms": [
+          "driven-rotor: twin rotors"
+        ],
         "source": "book: steps 20, 25-26 (the red arrows on both rotors in step 26)",
         "control": [
           "p100 57585",
@@ -35,6 +38,9 @@
       },
       {
         "does": "The four wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 24 and 28",
         "control": [
           "p52 42610",
@@ -45,6 +51,9 @@
       },
       {
         "does": "The nose wheels' strut turns on a vertical axle, so the front wheels castor.",
+        "mechanisms": [
+          "free-wheels: castor"
+        ],
         "source": "inferred: the strut (step 24's subassembly) sits on an upright axle in two bushes; the book draws no arrow for it",
         "control": "p83 87083",
         "moves": [
@@ -58,6 +67,9 @@
       },
       {
         "does": "The small bent liftarm with two half-beams under the tail hangs on a pin and swings.",
+        "mechanisms": [
+          "hangs-free"
+        ],
         "source": "inferred: it is held by a single pin; unsure whether it's a tail skid or a ramp, or whether it's meant to move at all",
         "control": "p60 32140"
       }

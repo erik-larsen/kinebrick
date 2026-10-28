@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: the column's foot carries a short liftarm with a half pin in the long beam that ties the two front hubs' pivots together, so turning the wheel slides the beam sideways and turns both hubs.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: steering steps 38-43 (pages 44-46, the tie beam and its pins; the inset on page 46 shows it from above), steering column and wheel (pages 49-53); inferred: how the column's liftarm drives the beam",
         "control": "p371 2741",
         "moves": [
@@ -30,6 +33,9 @@
       },
       {
         "does": "The red gear lever on the seat's left has three positions, 1, N and 2: it turns a cross shaft under the seat, whose liftarm on the right side pushes a black link back to rock the changeover catch at the back, which slides the driving ring on the rear axle to lock one of the two 16-tooth clutch gears to the axle, or neither.",
+        "mechanisms": [
+          "driving-ring-gearbox: 2 speeds"
+        ],
         "source": "book: rear axle and gearbox (pages 4-16), step 66 (page 66, the link), page 81 (the lever in positions 1, N and 2)",
         "control": "p368 32015",
         "moves": [
@@ -45,6 +51,10 @@
       },
       {
         "does": "With a gear engaged, pushing the kart along runs its one-cylinder engine: the rear axle turns the engaged clutch gear, which drives a 16-tooth gear on one of two short shafts; one shaft drives the upper shaft through a pair of 16-tooth gears, the other through an 8-tooth gear on the upper shaft's 24-tooth gear, and the 24-tooth gear turns the 12-tooth bevel gear on the crankshaft, so the piston goes up and down. One gear runs the engine three times as fast as the other; in N the engine stays still.",
+        "mechanisms": [
+          "piston-engine: 1 cylinder",
+          "driving-ring-gearbox: 2 speeds"
+        ],
         "source": "book: rear axle and gearbox (pages 4-16), engine steps 49-57 and 63-68 (pages 52-69), page 81 (the gear diagrams beside each lever position); inferred: the ratios, from the gears",
         "control": [
           "p374 56145",
@@ -67,6 +77,9 @@
       },
       {
         "does": "The four wheels roll; the rear wheels share one axle (made of two 7-long axles joined by the driving ring's joiner), and the front wheels turn on their hubs.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 81-83 (pages 78-80)",
         "control": [
           "p372 56145",

@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: its column runs forward along the cockpit's left side to bevel gears under the nose, and a shaft down the middle turns the pinion on the steering rack.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: book 1 steps 266-285 (front axle, rack and steering links) and 343-375 (column and gears); the finished model on book 2 page 315",
         "control": "p2742 2741",
         "moves": [
@@ -28,6 +31,9 @@
       },
       {
         "does": "The two paddle shifters behind the steering wheel shift the 8-speed sequential gearbox one gear up or down: they sit on one rocker, which pushes a pawl round a pin wheel a quarter turn per click, and that turn is carried back to the gearbox, where two rotary catches slide its driving rings in turn.",
+        "mechanisms": [
+          "sequential-gearbox: 8 speeds"
+        ],
         "source": "book: book 1 steps 351-359 (the pin wheel, pawls and paddle rocker, page 225's inset) and 88-117 (the gearbox, with its rotary catches); inferred: which paddle shifts up, and how the pin wheel's turn reaches the gearbox (the steps don't say in words)",
         "control": [
           "p1366 74695",
@@ -45,11 +51,19 @@
       },
       {
         "does": "Two rubber bands in the paddle mechanism bring the rocker and its pawls back after each shift.",
+        "mechanisms": [
+          "spring: paddle return"
+        ],
         "source": "book: book 1 steps 351-359; inferred: exactly what each band pulls",
         "skip": "a spring: only matters under force"
       },
       {
         "does": "Rolling the car runs the W16 engine: all four wheels are driven, each axle through its own differential, and a shaft between them turns the gearbox, whose output turns the engine's three crankshafts so the sixteen pistons run up and down in their four banks, faster in the low gears.",
+        "mechanisms": [
+          "piston-engine: W16",
+          "differential",
+          "sequential-gearbox: 8 speeds"
+        ],
         "source": "book: book 1 steps 13-64 (rear axle and differential), 88-141 (gearbox), 142-199 (engine) and 254-292 (front axle and differential); inferred: the ratios in each gear",
         "control": [
           "p3516 42083 - 37383p01",
@@ -71,6 +85,9 @@
       },
       {
         "does": "Each axle's differential lets its two wheels turn at different speeds, as in a corner.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: book 1 steps 61-64 (rear) and 266-271 (front)",
         "control": [
           "p3522 42083 - 37383p01",
@@ -79,6 +96,9 @@
       },
       {
         "does": "The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat.",
+        "mechanisms": [
+          "crank-and-link: rear wing"
+        ],
         "source": "book: book 2 steps 965-968 (the key) and page 310 (key in place, arrows on the key and the wing); 480-554 (wing and its shaft); inferred: which way of turning raises it, and whether the wing also tilts",
         "control": "p1938 59443",
         "moves": [
@@ -89,6 +109,9 @@
       },
       {
         "does": "The two doors swing open on hinges at their front edges.",
+        "mechanisms": [
+          "hinge: doors"
+        ],
         "source": "book: book 2 steps 931-943 (doors); the finished model on page 315",
         "control": [
           "p2924 62531",
@@ -97,6 +120,9 @@
       },
       {
         "does": "Each front wheel has independent suspension: its steering knuckle rides between a lower and an upper suspension arm, with two shock absorbers, so the wheel can rise and fall.",
+        "mechanisms": [
+          "double-wishbone"
+        ],
         "source": "book: book 1 steps 254-292 (front axle)",
         "control": [
           "p1051 15459",
@@ -108,6 +134,9 @@
       },
       {
         "does": "Each rear wheel has independent suspension in the same way: its upright rides between two arms, with two shock absorbers.",
+        "mechanisms": [
+          "double-wishbone"
+        ],
         "source": "book: book 1 steps 28-47 (rear wheel supports and shock absorbers)",
         "control": [
           "p137 32316",
@@ -119,11 +148,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: book 1 steps 39-40 (rear) and the front axle steps",
         "skip": "a spring: only matters under force"
       },
       {
         "does": "The Bugatti overnight bag sits in the storage space at the front, behind the grille.",
+        "mechanisms": [
+          "accessory: overnight bag"
+        ],
         "source": "book: book 2 step 970 and page 314",
         "note": "a loose piece of luggage, not a mechanism; listed so it isn't taken for a missing part"
       }

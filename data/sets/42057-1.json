@@ -18,6 +18,10 @@
     "functions": [
       {
         "does": "Turning the main rotor runs the three-cylinder engine behind the pilot: the rotor's mast turns the crankshaft through a pair of 12 tooth bevel gears, the three pistons pump up and down, and a 20 tooth gear on the crankshaft's back end turns the rear propeller's shaft through a 12 tooth gear, faster than the rotor.",
+        "mechanisms": [
+          "piston-engine: 3 cylinders",
+          "driven-rotor: rear propeller"
+        ],
         "source": "book: steps 31-36 (the crankshaft and pistons), 41-42 (the engine and its gears), 55-56 and 62 (the rotor mast, its bevel gear and the turning arrows), 72 (the propeller), 85-86 (the rotor); which part is meant to be turned by hand is inferred",
         "control": "p113 32209",
         "moves": [
@@ -30,6 +34,9 @@
       },
       {
         "does": "The rear propeller turns with the engine and the main rotor.",
+        "mechanisms": [
+          "driven-rotor: rear propeller"
+        ],
         "source": "inferred: from the gears in steps 41-42 and the propeller fitted in step 72",
         "control": "p163 15790",
         "moves": [
@@ -39,6 +46,9 @@
       },
       {
         "does": "The red lever on the helicopter's right side, under the engine, swings the tail rudder: a steering link runs back from the lever's ball to a bellcrank (the beam with the 40 years print) under the engine, and a second steering link runs from the bellcrank to a ball on the rudder.",
+        "mechanisms": [
+          "control-surfaces: rudder"
+        ],
         "source": "book: steps 16-27 (the bellcrank, built as the tail control and fitted under the engine), 66-67 and 69 (the rudder on the tail), 71-72 (the lever and the link to it); that the lever works the rudder is inferred from the links",
         "control": "p161 32062",
         "moves": [
@@ -51,12 +61,18 @@
       },
       {
         "does": "The joystick in front of the pilot's seat tilts.",
+        "mechanisms": [
+          "for-show: joystick"
+        ],
         "source": "inferred: the steering-wheel yoke on a cross block in the cockpit (steps 64-65); the book draws no link from it to anything",
         "control": "p142 40001",
         "note": "unsure whether the joystick is meant to work the rudder too; in the book's steps it isn't linked to it"
       },
       {
         "does": "The nose wheel and the two wheels on the red landing legs roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 4 (the nose wheel), steps 77 and 83 (the landing legs and their wheels)",
         "control": [
           "p7 42057 - 13971",

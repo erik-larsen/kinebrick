@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handlebars steer: the whole front end, with its two fork legs, both front wheels, the yellow mudguards and the headlight, turns on a 4-long axle pushed down through the frame's motorcycle steering head.",
+        "mechanisms": [
+          "fork-steering"
+        ],
         "source": "book: front sub-steps 1-6 (pages 9-11: mudguards, fork legs and handlebars), step 12 (the 4-long axle through the steering head), step 13 (wheels)",
         "control": "p76 2905",
         "moves": [
@@ -37,6 +40,9 @@
       },
       {
         "does": "The four wheels roll freely, each on its own axle pin; there's no drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 8 (rear axle pins) and 13, front sub-step 6",
         "control": [
           "p85 3482",

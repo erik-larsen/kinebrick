@@ -14,6 +14,12 @@
     "functions": [
       {
         "does": "The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down.",
+        "mechanisms": [
+          "electric-motor: L",
+          "differential: centre",
+          "portal-axle",
+          "planetary-hub"
+        ],
         "source": "book: page 372 (main control, 4x4), steps 9-17 (the two motors and the centre differential), the front and rear axle steps (axle differentials and planetary hubs)",
         "control": [
           "p20 22169",
@@ -30,6 +36,9 @@
       },
       {
         "does": "The centre differential lets the front and rear axles turn at different speeds while it's unlocked: holding the motors, turning the front drive shaft turns the rear one the opposite way.",
+        "mechanisms": [
+          "differential: centre"
+        ],
         "source": "book: step 13 (the differential), 16 (the motors' gears on its housing)",
         "control": "p466 99008",
         "moves": [
@@ -38,6 +47,9 @@
       },
       {
         "does": "The front and rear axle differentials let each axle's wheels turn at different speeds in a corner.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: the front and rear axle steps",
         "control": [
           "p2922 42129 - 69912",
@@ -51,6 +63,11 @@
       },
       {
         "does": "The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.",
+        "mechanisms": [
+          "electric-motor: medium",
+          "differential-lock: centre and rear",
+          "slip-clutch"
+        ],
         "source": "book: page 372 (the diff-lock icon), step 23 (the catch and ring at the centre differential, with the inset), steps 32-36 (the medium motor and its gears); the rear axle's lock is from the parts (rearaxlelock submodel)",
         "control": "p550 21980",
         "moves": [
@@ -63,6 +80,10 @@
       },
       {
         "does": "The L motor on the front axle steers the front wheels: its 12 tooth gear slides the steering rack across, and links from the rack turn both front portal hubs.",
+        "mechanisms": [
+          "electric-motor: L",
+          "rack-steering"
+        ],
         "source": "book: page 372 (main control), the front axle and steerbar steps",
         "control": "p1470 22169",
         "moves": [
@@ -74,6 +95,9 @@
       },
       {
         "does": "Each axle is held under the chassis on swinging suspension arms and sways and rises over rough ground, between two shock absorbers.",
+        "mechanisms": [
+          "sprung-axle"
+        ],
         "source": "book: page 372 (left inset, the truck articulating over rough ground), the front and rear axle steps",
         "control": [
           "p958 42129 - 31794",
@@ -88,11 +112,17 @@
       },
       {
         "does": "The four shock absorbers' springs hold the truck up on its axles.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: the axle steps (shock absorbers with springs)",
         "skip": "only matters under gravity or force"
       },
       {
         "does": "The steering wheel in the cab turns freely; it isn't connected to the steering.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: the wheel sits on a short axle in the cab with nothing below it",
         "control": "p1927 2819",
         "stays": [

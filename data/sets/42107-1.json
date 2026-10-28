@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The grey gear lever on the gearbox's right side picks neutral, first or second gear: it turns the selector shaft, whose orange rotary catch slides the driving ring between the two clutch gears.",
+        "mechanisms": [
+          "sequential-gearbox: 2 speeds"
+        ],
         "source": "book: steps 37-39 (the selector shaft, rotary catch and lever; the 1:1 inset), steps 40-50 (the gearbox), pages 54-55 (positions N, 1 and 2 with arrows), page 121 bottom inset",
         "control": "p129 33299a",
         "moves": [
@@ -27,6 +30,10 @@
       },
       {
         "does": "In first or second gear, turning the rear wheel runs the V4 engine: the chain from the rear sprocket drives the output shaft at the swing arm's pivot, which drives the gearbox and then the crankshaft, pumping the four pistons up and down. Second gear turns the engine at a different speed from first.",
+        "mechanisms": [
+          "piston-engine: V4",
+          "chain-drive"
+        ],
         "source": "book: steps 40-60 (gearbox and engine: crankshaft, rods and four yellow pistons), step 97 (the output shaft and sprocket), steps 125-130 (rear wheel and chain), page 121 bottom inset",
         "control": "p247 35189",
         "moves": [
@@ -45,6 +52,9 @@
       },
       {
         "does": "The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall.",
+        "mechanisms": [
+          "swing-arm"
+        ],
         "source": "book: steps 77-97 (swing arm, shock and linkage), page 120 bottom-left inset (arrow at the rear wheel)",
         "control": "p262 40490",
         "moves": [
@@ -59,12 +69,18 @@
       },
       {
         "does": "The rear shock absorber's spring pushes the rear wheel back down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: page 120 bottom-left inset",
         "control": "p284 76537",
         "skip": "a spring only matters under gravity or force"
       },
       {
         "does": "The handlebars steer: they turn the front fork with the front wheel on the steering head.",
+        "mechanisms": [
+          "fork-steering"
+        ],
         "source": "book: steps 116-124 (fork, wheel and steering head), page 120 bottom-right inset (arrow at the front wheel)",
         "control": "p340 15462",
         "moves": [
@@ -80,6 +96,9 @@
       },
       {
         "does": "The front fork's two gold legs are shock absorbers: they shorten so the front wheel can rise.",
+        "mechanisms": [
+          "telescopic-fork"
+        ],
         "source": "book: step 116 (the gold shock absorbers), page 120 bottom-left inset (arrow at the front wheel)",
         "control": [
           "p408 32039",
@@ -97,11 +116,17 @@
       },
       {
         "does": "The front wheel rolls freely on its axle between the fork legs.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 116",
         "control": "p379 88516"
       },
       {
         "does": "The red paddock stand lifts the rear: pushing its handle down rocks it on its small wheels, and its front arms raise the rear wheel off the ground by pins under the swing arm.",
+        "mechanisms": [
+          "accessory: paddock stand"
+        ],
         "source": "book: page 121 top inset (arrow up from the stand's pin to the swing arm); the stand is the stand submodel",
         "control": "p27 25214",
         "moves": [
@@ -112,6 +137,9 @@
       },
       {
         "does": "The side fairings come off to show the engine and gearbox.",
+        "mechanisms": [
+          "removable: fairings"
+        ],
         "source": "book: page 120 top inset (arrows)",
         "note": "not a control: the fairings just unclip"
       }

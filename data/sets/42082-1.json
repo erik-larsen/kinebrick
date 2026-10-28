@@ -18,6 +18,10 @@
     "functions": [
       {
         "does": "The small handwheel at the very back of the chassis steers all four wheels: a shaft along the chassis turns a pinion on the rear steering rack and, through idler gears, one on the front rack, so the front and rear wheels steer opposite ways.",
+        "mechanisms": [
+          "rack-steering",
+          "multi-axle-steering"
+        ],
         "source": "book: book 2 page 322 (top-left inset: arrows on the handwheel and on the front and rear wheels); inferred: that front and rear steer opposite ways, from the inset's arrows",
         "control": "p1169 55982",
         "moves": [
@@ -34,6 +38,10 @@
       },
       {
         "does": "Pushing the crane along runs the V8 engine at the back of the chassis: the axles' differentials drive the crankshaft, so the eight pistons go up and down and the engine's fan spins.",
+        "mechanisms": [
+          "piston-engine: V8",
+          "differential"
+        ],
         "source": "book: book 2 page 322 (middle inset: the engine and fan); inferred: which axles drive it",
         "control": [
           "p2290 92912",
@@ -52,6 +60,9 @@
       },
       {
         "does": "Each axle has a differential: with the engine held, turning one wheel turns the other wheel on that axle the opposite way.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "inferred: both axles carry a differential (book 1, the axle steps); the book doesn't show it working",
         "control": "p2290 92912",
         "moves": [
@@ -63,6 +74,11 @@
       },
       {
         "does": "The motor lowers and raises the four outriggers: with the red lever on the superstructure set to the chassis functions, the lever on the chassis side away from the cab picks up or down, and the drive goes down through the turntable to the chassis gearbox, which turns a small linear actuator at each outrigger, swinging its leg out and down onto its foot pad, or back up.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "linear-actuator: outriggers"
+        ],
         "source": "book: book 2 page 323 (insets 1-3: the battery box switched on, the superstructure lever set to the chassis side, the outrigger lever with up, neutral and down; arrows on all four legs); inferred: which chassis lever is which, from the gear train",
         "control": "p2805 99499",
         "first": [
@@ -93,6 +109,11 @@
       },
       {
         "does": "The motor slews the superstructure round, all the way round: with the red lever on the superstructure set to the chassis functions, the lever on the chassis's cab side picks left or right, and the chassis gearbox turns the turntable.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "turntable: superstructure"
+        ],
         "source": "book: book 2 page 327 (insets 1-3: battery box on, superstructure lever on the chassis side, the slewing lever with left, neutral and right; 360-degree arrow round the superstructure); inferred: which chassis lever is which, from the gear train",
         "control": "p2805 99499",
         "first": [
@@ -117,6 +138,11 @@
       },
       {
         "does": "The motor raises and lowers the boom: with the red lever on the superstructure set to the boom functions, the knob in the gate on top of the superstructure is moved into the luffing column and pushed fore or aft for up or down, and two big linear actuators push the boom up or let it down.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "linear-actuator: boom"
+        ],
         "source": "book: book 2 page 324 (insets 1-3: battery box on, superstructure lever on the boom side, the gate knob in the luffing column with up and down; the boom in three positions); actuators on pages 5-7",
         "control": "p2805 99499",
         "first": [
@@ -142,6 +168,11 @@
       },
       {
         "does": "The motor extends and retracts the boom: with the red lever on the boom side and the gate knob in the middle (telescoping) column, pushed fore or aft, a shaft runs through the boom's pivot and up the boom to a gear at the outer section's tip, which drives the racks under the grey inner section.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "rack-and-pinion: boom extension"
+        ],
         "source": "book: book 2 page 325 (insets 1-3: battery box on, superstructure lever on the boom side, gate knob in the middle column with out and in; arrow along the extending boom)",
         "control": "p2805 99499",
         "first": [
@@ -166,6 +197,12 @@
       },
       {
         "does": "The motor winds the winch, raising or lowering the hook: with the red lever on the boom side and the gate knob in the winch column, pushed fore or aft, the drum on top of the superstructure turns through a slipping clutch gear, and the hook block rises or falls on its rope over the boom tip's pulleys.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "winch: hook",
+          "slip-clutch"
+        ],
         "source": "book: book 2 page 326 (insets 1-3: battery box on, superstructure lever on the boom side, gate knob in the winch column with up and down; the hook in three heights)",
         "control": "p2805 99499",
         "first": [
@@ -190,6 +227,9 @@
       },
       {
         "does": "The cab door on the superstructure swings open on its hinge.",
+        "mechanisms": [
+          "hinge: cab door"
+        ],
         "source": "book: book 2 page 322 (top-right inset: arrow on the opening door)",
         "control": "p3789 32524",
         "moves": [
@@ -198,6 +238,9 @@
       },
       {
         "does": "The hook carries the load: a grey wall frame hangs from the hook on four chains, and two more wall frames lie on the ground beside the crane.",
+        "mechanisms": [
+          "accessory: wall frames"
+        ],
         "source": "book: book 2 pages 300-321 (the three wall frames and their chains), pages 324-327 (a frame on the hook)",
         "note": "props, not a mechanism; the model file hangs one frame on the hook and lays two on the ground"
       }

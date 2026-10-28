@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book 1: page 3 (knob and top view of the front wheels steering); steps 35-36 (column and knob)",
         "control": "p264 6143",
         "moves": [
@@ -35,6 +38,9 @@
       },
       {
         "does": "The left of the two knobs at the back (a 12-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on the boom's pivot axle.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book 1: page 3 (knobs at the back, icon of the boom lifting); steps 8-9 (worm and knob), 11 (24-tooth gear), 23 (boom on its pivot, inset of the worm and gear)",
         "control": "p174 32270",
         "moves": [
@@ -53,6 +59,10 @@
       },
       {
         "does": "The right of the two knobs at the back (a 12-tooth double bevel gear) extends and retracts the boom: it turns a second worm, which turns an 8-tooth gear at the boom's foot, and that slides the inner boom with the bucket out of the outer one.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: inner boom"
+        ],
         "source": "book 1: page 3 (icon of the boom extending); steps 22-24 (inner and outer boom); inferred: the linkage between the 8-tooth gear and the inner boom",
         "control": "p175 32270",
         "moves": [
@@ -69,6 +79,9 @@
       },
       {
         "does": "Turning the axle end at the boom's head tilts the bucket: a worm on that axle turns an 8-tooth gear on the bucket's pivot axle.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book 1: page 3 (inset: the axle end turned, the bucket tilting); steps 5-11 on pages 35-38 (boom head with worm and 8-tooth gear), 39 (bucket)",
         "control": "p203 59426",
         "moves": [
@@ -83,6 +96,9 @@
       },
       {
         "does": "The four wheels roll freely; nothing drives them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 1: step 40",
         "control": [
           "p311 6595",
@@ -93,6 +109,9 @@
       },
       {
         "does": "The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "inferred: from the model file (p231 on the half pin p229); the book shows the yellow roof knob doing the steering",
         "control": "p231 30663"
       }

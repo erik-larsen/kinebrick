@@ -15,6 +15,10 @@
     "functions": [
       {
         "does": "The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.",
+        "mechanisms": [
+          "electric-motor",
+          "belt-drive"
+        ],
         "source": "book: steps 4 (motor), 6 (upper axle), 7 (rear axle with two belt wheels, third belt wheel), 8 (the three bands; inset shows the motor's band) and 9",
         "control": "p72 4265a",
         "moves": [
@@ -27,6 +31,9 @@
       },
       {
         "does": "The two front wheels roll freely on their axle; there's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 2 and 9",
         "control": [
           "p76 3482",
@@ -36,6 +43,9 @@
       },
       {
         "does": "The rubber bands slip when the wheels are held, so the motor can't stall.",
+        "mechanisms": [
+          "slip-clutch: rubber bands"
+        ],
         "source": "inferred: what rubber-band drives do; the book doesn't say",
         "skip": "only matters under force; KineBrick treats the bands as belts that don't slip"
       }

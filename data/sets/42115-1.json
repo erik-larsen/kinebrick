@@ -18,6 +18,10 @@
     "functions": [
       {
         "does": "Pushed along, all four wheels drive together through a differential on each axle, and in gear the V12 turns: its twelve pistons run up and down in their two banks.",
+        "mechanisms": [
+          "piston-engine: V12",
+          "differential"
+        ],
         "source": "book 1: steps 1-180 (gearbox, rear differential, pages 30-130), steps 187-215 (V12 and crankshaft, pages 140-160), front axle and its differential (box 2); the photos on pages 139 and 224",
         "control": [
           "p97 35189",
@@ -36,6 +40,9 @@
       },
       {
         "does": "The paddle shifters behind the steering wheel change gear in the eight-speed sequential gearbox: each pull of a paddle turns the selector one step, which turns two changeover rotary catches through knob gears to slide the gearbox's driving rings in turn.",
+        "mechanisms": [
+          "sequential-gearbox: 8 speeds"
+        ],
         "source": "book 1: pages 104-105 (step 134: the insets show the changeover catches and the driving rings), the paddle shifter submodel (box 1, around page 120); 8 speeds from the set's description, not drawn in the book",
         "control": "p583 11478",
         "moves": [
@@ -49,6 +56,9 @@
       },
       {
         "does": "The lever on the centre console between the seats switches the gearbox between drive and neutral (or reverse): its towball top turns a changeover catch that slides a driving ring on the shaft to the gearbox.",
+        "mechanisms": [
+          "driving-ring-gearbox: drive and neutral (or reverse)"
+        ],
         "source": "inferred: the changeover catch p1081, its towball p1082 and the driving ring p549 sit together on the centre line in front of the gearbox",
         "control": "p1082 2736",
         "moves": [
@@ -59,6 +69,9 @@
       },
       {
         "does": "The steering wheel steers the front wheels: its column turns through universal joints and gears down to a pinion on the steering rack.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book 1: box 2 (front axle and steering rack), box 3 (the column and wheel); the photo on page 259",
         "control": "p1826 2741",
         "moves": [
@@ -73,6 +86,9 @@
       },
       {
         "does": "All four wheels have independent pushrod suspension: each wheel's wishbones push a rocker that compresses a pair of shock absorbers lying across the car.",
+        "mechanisms": [
+          "pushrod-suspension"
+        ],
         "source": "book 1: pages 94-98 (step 127: the yellow arrows show the rear wishbones swinging), box 2 (front suspension); the 'Engine & front suspension' page 138",
         "control": [
           "p97 35189",
@@ -83,11 +99,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book 1: steps building the four pairs of shock absorbers",
         "skip": "springs only matter under gravity or force"
       },
       {
         "does": "The rear spoiler rises and tilts: a lever in the interior pushes a flexible axle, used as a push rod, back to the spoiler lift under the engine cover, whose yellow axles push the wing up.",
+        "mechanisms": [
+          "crank-and-link: spoiler"
+        ],
         "source": "book 1: pages 299-304 (steps 462-471: a lever with a curved yellow arrow, fitted in the chassis), page 315 (step 491, a second lever); book 2: pages 37-39 (steps 555-563: the spoiler lift, the yellow arrow pushing its axle), the 'Rear spoiler' page 54 and the photo on page 55",
         "control": "p2680 43093",
         "moves": [
@@ -98,6 +120,9 @@
       },
       {
         "does": "The two scissor doors swing up and forward on hinges at their front edges.",
+        "mechanisms": [
+          "hinge: scissor doors"
+        ],
         "source": "book 2: box 5 (pages 188-300), the 'Scissor doors' page 190 and the photo on page 191",
         "control": [
           "p3495 55615",
@@ -110,6 +135,9 @@
       },
       {
         "does": "The front hood lifts, showing the luggage space and the set's bag.",
+        "mechanisms": [
+          "hinge: hood"
+        ],
         "source": "book 2: box 5, step 1078 (page 320: the hood shown open) and the hood submodel",
         "control": "p3406 6632",
         "moves": [
@@ -118,6 +146,9 @@
       },
       {
         "does": "The engine cover behind the cabin lifts to show the V12.",
+        "mechanisms": [
+          "hinge: engine cover"
+        ],
         "source": "book 2: box 4, rear hood submodel; inferred that it opens from its hinge pins and the engine photos",
         "control": "p2809 32278",
         "moves": [
@@ -126,6 +157,9 @@
       },
       {
         "does": "The seats' backs tilt.",
+        "mechanisms": [
+          "hinge: seat backs"
+        ],
         "source": "inferred: the seat submodels (book 1, steps 395-447) are pinned to the floor on axles; the book's arrows weren't checked for them",
         "control": [
           "p1528 32073",

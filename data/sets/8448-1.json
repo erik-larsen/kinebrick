@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: its column, through universal joints, turns an 8-tooth pinion on the rack between the front wheels, and the rack's links push the steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: book 1 page 70 (screen with arrows on the steering wheel and front wheels); box 3, the rack and steering arms, and its steering column steps",
         "control": "p436 2741",
         "moves": [
@@ -35,6 +38,11 @@
       },
       {
         "does": "Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins.",
+        "mechanisms": [
+          "piston-engine: V8",
+          "differential",
+          "driving-ring-gearbox"
+        ],
         "source": "book: book 1 pages 26 (propeller shaft), 48 (differential), 84 (gearbox) and 98 (screen with arrows on the drive shaft and the engine's fan)",
         "control": [
           "p478 32196",
@@ -53,6 +61,9 @@
       },
       {
         "does": "The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed.",
+        "mechanisms": [
+          "driving-ring-gearbox"
+        ],
         "source": "book: book 1 page 84 (screen with arrows on the lever, fore, aft and across, and the gate drawn twice from above); box 4 steps 17-22 on pages 77-79 (selector rail and gate) and step 26 on page 83 (the lever)",
         "control": "p576 6587",
         "moves": [
@@ -67,6 +78,9 @@
       },
       {
         "does": "The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: book 1 page 48 (screen showing the car going straight and turning, with arrows on both half shafts)",
         "control": "p478 32196",
         "moves": [
@@ -80,6 +94,9 @@
       },
       {
         "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",
+        "mechanisms": [
+          "double-wishbone: front"
+        ],
         "source": "book: book 1 box 3 (suspension arms, hubs and shock absorbers); inferred: that it's meant to move",
         "control": [
           "p364 32195a",
@@ -94,6 +111,9 @@
       },
       {
         "does": "The rear wheels have independent suspension: each upright rides between two arms with a shock absorber, and the half shafts' universal joints let it move up and down.",
+        "mechanisms": [
+          "double-wishbone: rear"
+        ],
         "source": "book: book 1 box 2 steps 7-11 (arms, uprights, universal joints and shock absorbers); inferred: that it's meant to move",
         "control": [
           "p231 6629",
@@ -108,11 +128,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: book 1 box 2 step 11 and box 3",
         "skip": "springs only matter under gravity or force"
       },
       {
         "does": "The two pop-up headlights at the front swing up and down together, joined by a cross bar.",
+        "mechanisms": [
+          "pop-up-headlights"
+        ],
         "source": "inferred: book 2 box 7 steps 16-17 hinge the two lamp units on pins and join them; the book doesn't show them moving",
         "control": [
           "p1016 32015",
@@ -126,6 +152,9 @@
       },
       {
         "does": "The rear deck behind the seats, with its roll bars, tips up on its hinge, a white damped shock absorber holding it.",
+        "mechanisms": [
+          "hinge: rear deck"
+        ],
         "source": "book: book 2 page 176 (screen showing the deck tipped up); box 8 steps 21-30 on pages 158-168",
         "control": "p1187 6629",
         "moves": [
@@ -140,12 +169,18 @@
       },
       {
         "does": "A hinged catch at the very back holds the rear deck down.",
+        "mechanisms": [
+          "catch: rear deck"
+        ],
         "source": "inferred: box 8 step 22 (page 170) puts a hinged piece with a towball at the back; the book doesn't say what it's for",
         "control": "p1244 32017",
         "skip": "a catch only matters under force"
       },
       {
         "does": "Each seat's backrest folds forward.",
+        "mechanisms": [
+          "hinge: seat backs"
+        ],
         "source": "inferred: book 2 page 212 shows the backrests folding in the wing-door version, whose seats (box 6) are the convertible's too",
         "control": [
           "p757 6536",

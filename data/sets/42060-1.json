@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black gear on the cab roof steers the truck's front wheels: its shaft runs down through the cab to a 12 tooth gear, which turns a 20 tooth gear on an upright shaft whose crank arm pushes the track rod between the two steering knuckles.",
+        "mechanisms": [
+          "linkage-steering"
+        ],
         "source": "book: page 83 (the finished model with the roof knob); the steering is inferred from the model's parts (the roof gear, the 20 tooth gear with the crank arm p74 and the track rod p73)",
         "control": "p156 32270",
         "moves": [
@@ -32,6 +35,9 @@
       },
       {
         "does": "Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it.",
+        "mechanisms": [
+          "crank-and-link: tipper"
+        ],
         "source": "book: page 83 (the arrow at the axle end and the raised tipper)",
         "control": "p30 59443",
         "moves": [
@@ -45,6 +51,9 @@
       },
       {
         "does": "The truck's four wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: page 82 (the finished truck)",
         "control": [
           "p194 55981",
@@ -55,6 +64,10 @@
       },
       {
         "does": "The trailer hangs on a hitch behind the truck and swings from side to side as it is towed; its two small wheels roll.",
+        "mechanisms": [
+          "hinge: trailer hitch",
+          "free-wheels"
+        ],
         "source": "book: page 82 (the truck towing the trailer)",
         "control": "p216 32062",
         "moves": [
@@ -64,6 +77,10 @@
       },
       {
         "does": "The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: boom"
+        ],
         "source": "book: page 83 (the top left pictures: the knob, with the boom lowering)",
         "control": "p270 32270",
         "moves": [
@@ -76,6 +93,9 @@
       },
       {
         "does": "Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom.",
+        "mechanisms": [
+          "crank-and-link: arm"
+        ],
         "source": "book: page 83 (the top right pictures: the axle end with its arrow, and the arm swinging)",
         "control": "p287 59443",
         "moves": [
@@ -89,6 +109,9 @@
       },
       {
         "does": "The excavator rides on two tracks of chain links, each over two 16 tooth gears, and rolls along on them.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book: steps 99-105 (the tracks)",
         "control": [
           "p308 94925",
@@ -98,6 +121,9 @@
       },
       {
         "does": "The excavator's bucket sits on a hinge arm at the end of the arm and can be set at an angle by hand.",
+        "mechanisms": [
+          "posable-joint: bucket"
+        ],
         "source": "book: step 95 (the bucket on its hinge arm)",
         "control": "p294 30394",
         "note": "a click hinge, set by hand; unsure whether it's meant as a function"

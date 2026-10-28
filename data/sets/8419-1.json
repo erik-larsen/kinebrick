@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The upper body slews round on the turntable by hand, carrying the boom with it.",
+        "mechanisms": [
+          "turntable"
+        ],
         "source": "book 1: page 60 (arrows round the turntable); steps 17-19 (turntable)",
         "control": "p212 32009",
         "moves": [
@@ -30,6 +33,10 @@
       },
       {
         "does": "The knob at the back on the right (a 20-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on a cross shaft at the back; cranks and a side link carry that to a cross shaft at the front, whose two arms push the boom up on two thin beams.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: boom"
+        ],
         "source": "book 1: page 61 (knobs and icons); steps 22 and 24 (boom raising, arrows), 23-28 (cranks and shafts), 29-30 (worm and 24-tooth gear), 32 and 36 (knobs, arrows)",
         "control": "p205 32269",
         "moves": [
@@ -48,6 +55,10 @@
       },
       {
         "does": "The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: stick"
+        ],
         "source": "book 1: page 60 (inset: bevel gear and universal joint at the centre), page 61 (knobs and icons); steps 6 (boom with worm, page 19), 19-21 (bevel gears, universal joint, boom on its pivot), 32 and 36 (knobs, arrows)",
         "control": "p204 32269",
         "moves": [
@@ -68,6 +79,9 @@
       },
       {
         "does": "The two tracks run freely round their sprockets; nothing drives them.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book 1: steps 7-16 (sprockets and tracks)",
         "control": [
           "p16 32007",
@@ -82,6 +96,9 @@
       },
       {
         "does": "The bucket is held at a fixed angle on the end of the stick by a grey link; it isn't worked separately.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book 1: steps 42 and 46-48 (grey link and bucket); inferred: no separate control for it is built",
         "stays": [
           "p284 2950 against p279 32525"

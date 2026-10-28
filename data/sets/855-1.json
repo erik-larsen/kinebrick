@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The cab slews round on its turntable, carrying the boom with it.",
+        "mechanisms": [
+          "turntable: cab"
+        ],
         "source": "book: chassis step 9",
         "control": "p162 3404",
         "moves": [
@@ -26,6 +29,9 @@
       },
       {
         "does": "The crank at the front of the cab's left side raises and lowers the boom: two racks slide under the cab and push the boom up on two struts.",
+        "mechanisms": [
+          "rack-and-pinion: boom"
+        ],
         "source": "book: cab steps 7-9 and 17, boom step 14",
         "control": "p272 3736",
         "moves": [
@@ -39,6 +45,9 @@
       },
       {
         "does": "The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.",
+        "mechanisms": [
+          "winch: hook"
+        ],
         "source": "book: cab steps 8 and 10, chassis step 10",
         "control": "p313 3736",
         "moves": [
@@ -50,6 +59,9 @@
       },
       {
         "does": "The crank high on the cab's right side, on the boom's pivot axle, extends the boom's blue inner section: a crown gear and a shaft with two universal joints inside the boom drive a gear at the boom tip, which drives the rack under the blue section.",
+        "mechanisms": [
+          "rack-and-pinion: telescopic boom"
+        ],
         "source": "book: boom steps 5-6, 9 and 13 (the inset shows the gears)",
         "control": "p483 3736",
         "moves": [
@@ -62,6 +74,9 @@
       },
       {
         "does": "The four outriggers slide out on tiles and stand on their feet.",
+        "mechanisms": [
+          "slide: outriggers"
+        ],
         "source": "book: chassis steps 7 and 10",
         "control": [
           "p99 3008",
@@ -72,6 +87,9 @@
       },
       {
         "does": "The four road wheels roll freely; there's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: chassis step 10",
         "control": [
           "p185 3482",
@@ -82,6 +100,9 @@
       },
       {
         "does": "The four black window shutters on the chassis sides swing open.",
+        "mechanisms": [
+          "hinge: window shutters"
+        ],
         "source": "book: chassis step 8",
         "control": [
           "p157 3582",
@@ -92,17 +113,26 @@
       },
       {
         "does": "The hook hangs straight down beneath the boom tip as the cab slews and the boom luffs.",
+        "mechanisms": [
+          "hangs-free: hook"
+        ],
         "source": "book: chassis step 10",
         "note": "checked by tests/sets/855-mobile-crane.test.ts"
       },
       {
         "does": "A ratchet holds the boom up: the yellow lever's pawl rests on the luffing gears, so the boom can be raised, and lifting the lever lets it be lowered.",
+        "mechanisms": [
+          "ratchet: boom"
+        ],
         "source": "book: cab steps 14 and 17; what it does from the user",
         "control": "p294 3701",
         "skip": "only resists gravity; the luffing crank works both ways without it"
       },
       {
         "does": "The rubber band pulls the ratchet's lever down onto the gears.",
+        "mechanisms": [
+          "spring: ratchet pawl"
+        ],
         "source": "book: cab step 17",
         "skip": "only resists gravity; drawn, and should stay on the cab as it slews"
       }

@@ -14,6 +14,11 @@
     "functions": [
       {
         "does": "The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one.",
+        "mechanisms": [
+          "electric-motor: M",
+          "function-selector: 2 functions, forwards or backwards",
+          "slip-clutch"
+        ],
         "source": "book: steps 10-21 (motor and gearbox), page 247 (top inset: the two levers, each up or down); the gear train is read from the model",
         "control": "p136 10928",
         "moves": [
@@ -26,6 +31,12 @@
       },
       {
         "does": "With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose.",
+        "mechanisms": [
+          "electric-motor: M",
+          "function-selector",
+          "worm-drive",
+          "crank-and-link: landing gear"
+        ],
         "source": "book: page 247 (lower orange picture: both legs folding); which lever works the landing gear is inferred from the model's gears and links",
         "control": "p1116 4716",
         "first": [
@@ -48,6 +59,12 @@
       },
       {
         "does": "With the left lever set, the motor opens and closes the canopy, lowers the air brake under the fuselage and swivels the exhaust at the tail, all together: a worm on the left output turns a 24 tooth gear whose arms push links and long rods to all three.",
+        "mechanisms": [
+          "electric-motor: M",
+          "function-selector",
+          "worm-drive",
+          "crank-and-link: canopy, air brake and exhaust"
+        ],
         "source": "book: page 247 (upper orange picture: canopy up, air brake down, exhaust swivelling), page 246 (lower inset: the canopy open); which lever works these, and the links, are inferred from the model",
         "control": "p1117 4716",
         "first": [
@@ -70,6 +87,9 @@
       },
       {
         "does": "The black knob on top of the fuselage between the tail fins turns both red rudders together: it turns a cross block whose two steering links push the rudders' arms.",
+        "mechanisms": [
+          "control-surfaces: rudders"
+        ],
         "source": "book: page 246 (top inset: the knob turned, the rudders swinging)",
         "control": "p1164 32269",
         "moves": [
@@ -83,6 +103,9 @@
       },
       {
         "does": "The black knob on top of the fuselage behind the cockpit steers the nose wheel, through an upright shaft with a universal joint down the nose leg.",
+        "mechanisms": [
+          "swivel-axle-steering: nose wheel"
+        ],
         "source": "book: page 246 (middle inset: the knob turned, the nose wheel turning)",
         "control": "p624 32269",
         "moves": [
@@ -96,6 +119,9 @@
       },
       {
         "does": "The two main wheels and the twin nose wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: pages 245-246",
         "control": [
           "p401 55982",

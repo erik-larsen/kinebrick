@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The black gear on top of the upright axle behind the cab steers the front wheels: knob gears at the axle's foot turn a lengthwise axle whose 12-tooth gear drives the steering rack between the front wheels.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book 1: steps 1-5 and 14 (the rack and hubs); book 2: step 80 (page 16, the knob); inferred: the gear train, from the model file",
         "control": "p468 32269",
         "moves": [
@@ -34,6 +37,9 @@
       },
       {
         "does": "The yellow handle low on the left side, behind the front wheel, works a gearbox in the middle of the chassis: through a crank and a link it slides the driving ring between two clutch gears, choosing whether the black side gear works the container arms or the rear stabiliser legs.",
+        "mechanisms": [
+          "function-selector: 2 functions"
+        ],
         "source": "book 2: page 70 (the lower inset, with the arrow stickers); book 1: the gearbox steps; inferred: the linkage, from the model file",
         "control": "p50 32039",
         "moves": [
@@ -47,6 +53,10 @@
       },
       {
         "does": "With the arms chosen, turning the black gear on the right side behind the front wheel swings the big red container arms back over the rear of the truck, lifting the container on its chains and setting it down behind (or picking it up): the gear's turn goes through two 16-tooth gears, bevels and a lengthwise shaft to the gearbox, then through 24-tooth gears, bevels and universal joints to the two big linear actuators that push the arms.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: container arms"
+        ],
         "source": "book 2: page 70 (the upper inset with the gear, and the container set down), the arms steps 98-100 (pages 47-51); book 1: the drive train steps; inferred: which way the yellow handle goes for the arms",
         "control": "p472 32270",
         "first": [
@@ -72,6 +82,10 @@
       },
       {
         "does": "With the stabilisers chosen, turning the same black gear lowers or raises the two stabiliser legs at the rear: the gearbox's other clutch gear drives a shaft and universal joint to a small linear actuator, which pushes the legs down onto their feet.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: stabiliser legs"
+        ],
         "source": "book 2: page 70 (the lower right picture, legs down); book 1: the stabiliser steps; inferred: which way the yellow handle goes for the legs",
         "control": "p472 32270",
         "first": [
@@ -93,6 +107,9 @@
       },
       {
         "does": "The front wheels and the four wheels on the two rear axles roll freely; nothing is driven from them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 2: steps 101-102 (pages 52-53); inferred: no drive from the wheels",
         "control": [
           "p241 15413",
@@ -105,6 +122,9 @@
       },
       {
         "does": "The optional Power Functions motor and battery box (not in the set) can be fitted under the chassis to drive the gearbox instead of the black side gear.",
+        "mechanisms": [
+          "electric-motor: PF"
+        ],
         "source": "book 2: pages 72-79",
         "note": "not in the model file; the 8-tooth gear under the gearbox's input shaft is where the motor drives"
       }

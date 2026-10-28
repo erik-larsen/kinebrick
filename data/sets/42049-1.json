@@ -22,6 +22,9 @@
     "functions": [
       {
         "does": "The knob on top behind the cab (the hand-of-god gear) steers the loader by bending it in the middle: its upright shaft's lower 12-tooth bevel gear turns a long shaft running forward, whose 12-tooth gear turns the 60-tooth turntable joining the front half (arm and front wheels) to the rear half (engine and rear wheels).",
+        "mechanisms": [
+          "articulated-steering"
+        ],
         "source": "book 1: steps 29-31 (pages 16-17, the knob's shaft and gears), steps 65-71 (pages 34-36, the turntable), step 84 (page 43, red arrows on the articulation); book 3: step 157 (page 33, the knob); inferred: the gear path from the knob to the turntable",
         "control": "p96 32270",
         "moves": [
@@ -41,6 +44,9 @@
       },
       {
         "does": "The 12-tooth gear knob at the back of the top, on the left, opens and closes the claw: it turns a 20-tooth gear on a shaft along the top, whose other 20-tooth gear turns a 16-tooth gear on a long shaft running forward through two universal joints (so it follows the arm and the articulation) to a worm gear in the gripper head; the worm turns a 24-tooth gear that swings the two claw jaws together or apart.",
+        "mechanisms": [
+          "worm-drive: claw"
+        ],
         "source": "book 1: steps 10-23 (pages 8-13, the gears behind the cab), step 85 (page 44, the universal-joint shaft), steps 91-110 (pages 48-59, the gripper head, worm and 24-tooth gear); inferred: which knob drives it",
         "control": "p101 32270",
         "moves": [
@@ -60,6 +66,9 @@
       },
       {
         "does": "The tall yellow lever standing on the front half raises and lowers the arm: pulling it back lifts the two lifting arms and the gripper head on their parallel links, which keep the claw level.",
+        "mechanisms": [
+          "crank-and-link: arm"
+        ],
         "source": "book 1: steps 86-90 (pages 45-47, the lever), steps 74-83 (pages 37-42, the arms and links); book 3: step 111 (page 3, red arrow on the lever); inferred: that the lever works the arm, how it is linked, and which way raises it",
         "control": "p256 32524",
         "moves": [
@@ -76,6 +85,10 @@
       },
       {
         "does": "Pushing the loader along runs its two-cylinder engine: both rear wheels' half axles carry 20-tooth bevel gears that turn a 12-tooth bevel gear on a shaft running back, whose 20-tooth gear turns the crankshaft's 12-tooth gear, so the two pistons go up and down and the fan at the back spins.",
+        "mechanisms": [
+          "piston-engine: 2 cylinders",
+          "driven-rotor: fan"
+        ],
         "source": "book 1: steps 2-9 (pages 4-7, rear axle and gears), steps 32-43 (pages 18-23, the engine, with the fan in step 41)",
         "control": [
           "p464 86652",
@@ -93,6 +106,9 @@
       },
       {
         "does": "The two rear wheels turn together, geared to the same shaft; the two front wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book 1: steps 2-9 (pages 4-7); book 3: step 158 (page 34, wheels); inferred: that the front wheels aren't driven",
         "control": [
           "p464 86652",

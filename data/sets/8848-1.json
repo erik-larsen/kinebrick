@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel on top of the cab turns the front wheels: its column's bevel gear turns a shaft with an 8 tooth gear that drives a rack on a tie plate between the two steering arms.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 9-11 (rack and tie plate), 14-16 (pinion shaft) and 19 (column and wheel)",
         "control": "p221 3736",
         "moves": [
@@ -29,6 +32,9 @@
       },
       {
         "does": "The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: step 7 and its inset",
         "control": [
           "p387 4266",
@@ -45,6 +51,10 @@
       },
       {
         "does": "As it rolls, the differential's big gear also turns two bevel gears: one on a drive shaft running forward under the cab through a universal joint, one on a short axle sticking out at the back.",
+        "mechanisms": [
+          "differential",
+          "power-take-off"
+        ],
         "source": "book: steps 7-8; what the shafts are for is inferred (the motorising photos on pages 21-23 drive the truck through one of them)",
         "control": [
           "p387 4266",
@@ -58,6 +68,10 @@
       },
       {
         "does": "The yellow lever on the right of the steering wheel tips the body: a link from it turns a 24 tooth gear like a crank, whose axle's other 24 tooth gear turns the 8 tooth gears on the cross axle under the body, and they push two racks that lift the body on struts about its hinge at the back.",
+        "mechanisms": [
+          "rack-and-pinion: tipping body",
+          "crank-and-link: lever"
+        ],
         "source": "book: steps 12-13 (racks and struts), 17-18 (the 24 tooth gears and link), 20-21 and 24; what the lever does is inferred",
         "control": "p177 3702",
         "moves": [
@@ -73,6 +87,9 @@
       },
       {
         "does": "The yellow lever on the left of the steering wheel raises and lowers the front bucket's arms through a linkage of toggle joints and axles running forward under the cab.",
+        "mechanisms": [
+          "crank-and-link: bucket arms"
+        ],
         "source": "inferred: book steps 21-22 and 28 show the lever, the linkage and the bucket's arms, but no arrows; unsure how the linkage meets the arms",
         "control": "p239 3702",
         "moves": [
@@ -87,6 +104,9 @@
       },
       {
         "does": "The 24 tooth gear at the front of the cab, behind the bucket, tips the bucket: turned as a knob, it swings a stick on a toggle joint that pushes the bucket's upright yellow arm, tilting the bucket on its axle at the arms' ends.",
+        "mechanisms": [
+          "crank-and-link: bucket"
+        ],
         "source": "inferred: book step 21 (the gear, toggle joint and stick) and step 28 (the bucket and its arm); unsure the gear is meant as a knob rather than a ratchet",
         "control": "p242 3648a",
         "moves": [
@@ -100,6 +120,9 @@
       },
       {
         "does": "Pushed along, the front wheels roll freely on their stub axles in the steering arms.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 4-6 and 28",
         "control": [
           "p386 4266",

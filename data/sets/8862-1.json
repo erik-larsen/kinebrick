@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The round yellow knob on the cab roof steers the front wheels: its shaft runs down through the cab to a bevel pair, and a shaft with a universal joint runs forward to an 8-tooth gear on the steering rack.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 5-6, 13, 18 and 25",
         "control": "p570 3941",
         "moves": [
@@ -25,6 +28,10 @@
       },
       {
         "does": "The handwheel low on the right, in front of the cab, raises and lowers the loader arms: a bevel pair and a worm turn a crown gear on a cross-shaft, whose cranks push the arms up through short links. The bucket stays roughly level.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: loader arms"
+        ],
         "source": "book: steps 8, 10, 25 and 27",
         "control": "p575 3736",
         "moves": [
@@ -40,6 +47,10 @@
       },
       {
         "does": "The handwheel low on the left, in front of the cab, tips the loader bucket: a bevel pair and a worm turn a crown gear on a second cross-shaft, whose cranks work rods along the arms to a three-armed rocker on each arm and on to the bucket.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: loader bucket"
+        ],
         "source": "book: steps 8, 10, 25 and 27 (insets 3-5)",
         "control": "p574 3736",
         "moves": [
@@ -52,6 +63,9 @@
       },
       {
         "does": "The handwheel high in the cab on the right swings both outriggers out and down together: its shaft runs down to a bevel pair and a worm, which turns a crown gear driving two 16-tooth gears, each turning an 8-tooth gear on the 24-tooth gear on one outrigger's arms.",
+        "mechanisms": [
+          "worm-drive: outriggers"
+        ],
         "source": "book: steps 3, 6, 8-9, 18 and 24-25",
         "control": "p573 3736",
         "moves": [
@@ -64,6 +78,9 @@
       },
       {
         "does": "Each outrigger's foot tilts on toothed toggle joints to sit flat on the ground.",
+        "mechanisms": [
+          "posable-joint: outrigger feet"
+        ],
         "source": "book: step 24 (insets 1-5); inferred: the book doesn't show it tilting",
         "control": [
           "p159 3701",
@@ -72,6 +89,10 @@
       },
       {
         "does": "The handwheel high in the cab on the left slews the backhoe: its shaft runs down to a bevel pair and a worm under the turntable, which turns the crown gear on the turntable's post.",
+        "mechanisms": [
+          "worm-drive",
+          "turntable: backhoe"
+        ],
         "source": "book: steps 3, 6, 11, 18 and 24-25",
         "control": "p572 3736",
         "moves": [
@@ -84,6 +105,9 @@
       },
       {
         "does": "The cylinder on the turntable raises and lowers the backhoe's boom.",
+        "mechanisms": [
+          "pneumatic-cylinder: boom"
+        ],
         "source": "book: steps 24-26",
         "control": "p264 3702",
         "moves": [
@@ -93,6 +117,9 @@
       },
       {
         "does": "The cylinder along the top of the boom swings the dipper arm in and out.",
+        "mechanisms": [
+          "pneumatic-cylinder: dipper arm"
+        ],
         "source": "book: steps 25-26",
         "control": "p292 3703",
         "moves": [
@@ -105,6 +132,10 @@
       },
       {
         "does": "The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage.",
+        "mechanisms": [
+          "pneumatic-cylinder: bucket",
+          "crank-and-link: bucket"
+        ],
         "source": "book: step 26 (insets 1-4)",
         "control": "p302 4700",
         "moves": [
@@ -117,6 +148,9 @@
       },
       {
         "does": "Pumping the pump, whose knob stands up through the bonnet, with one of the three valves at the back of the cab's left side pushed one way or the other, works that valve's cylinder.",
+        "mechanisms": [
+          "pneumatic-pump"
+        ],
         "source": "book: steps 14, 20-21 and 25; inferred: which valve works which cylinder",
         "control": [
           "p386 2797c01-f2",
@@ -128,11 +162,17 @@
       },
       {
         "does": "The bonnet over the pump lifts on the axle along its back edge.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
         "source": "inferred: book step 21 builds the bonnet on an axle along its back edge",
         "control": "p525 3958"
       },
       {
         "does": "The four wheels roll freely; nothing drives them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: step 28",
         "control": [
           "p369 4266c01",

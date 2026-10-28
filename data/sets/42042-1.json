@@ -14,6 +14,10 @@
     "functions": [
       {
         "does": "The Power Functions L motor at the back of the superstructure runs the gearbox: a 24 tooth clutch gear on its shaft drives a 24 tooth gear, and rows of 16 tooth clutch gears carry the turn across the gearbox, one pair (one turning each way) beside each of the four driving rings.",
+        "mechanisms": [
+          "electric-motor: PF L",
+          "function-selector: 4 functions"
+        ],
         "source": "book: the gearbox steps (gearbox, gearbox2-4 sub-assemblies) and the motor fitted; page 234 (the motor and battery box, top left)",
         "control": "p539 15462",
         "moves": [
@@ -31,6 +35,10 @@
       },
       {
         "does": "Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets.",
+        "mechanisms": [
+          "function-selector",
+          "crawler-tracks"
+        ],
         "source": "book: page 234 (the levers, B with its icon), page 235 (picture B, the crane driving); the drive gears in the crawler and drivegear sub-assemblies",
         "first": [
           {
@@ -58,6 +66,10 @@
       },
       {
         "does": "Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth.",
+        "mechanisms": [
+          "function-selector",
+          "turntable: superstructure"
+        ],
         "source": "book: page 234 (the levers, C), page 234 picture C (the superstructure slewing)",
         "first": [
           {
@@ -83,6 +95,11 @@
       },
       {
         "does": "Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame.",
+        "mechanisms": [
+          "function-selector",
+          "worm-drive",
+          "winch: boom"
+        ],
         "source": "book: page 234 (the levers, A, and picture A, the boom raised and lowered); winch2 sub-assembly, boompull steps",
         "first": [
           {
@@ -107,6 +124,11 @@
       },
       {
         "does": "Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab.",
+        "mechanisms": [
+          "function-selector",
+          "worm-drive",
+          "winch: grab"
+        ],
         "source": "book: page 234 (the levers, D), page 235 picture D (the grab lowered); winch sub-assembly, boomtip and grabbertop steps",
         "first": [
           {
@@ -132,6 +154,9 @@
       },
       {
         "does": "The four levers on the superstructure (two pairs) each slide one driving ring forward or back, between its two clutch gears: forward drives its function one way, back the other way, and in the middle it's in neutral.",
+        "mechanisms": [
+          "function-selector: 4 functions"
+        ],
         "source": "book: the controlsticks sub-assemblies; page 234 (the levers A-D with their arrows and icons)",
         "control": [
           "p829 15462",
@@ -147,6 +172,9 @@
       },
       {
         "does": "The black knob gear on top of the grab opens and closes its four claws: it turns a 20 tooth bevel gear and a 12 tooth bevel gear on a small linear actuator, whose piston pushes the claws' arms.",
+        "mechanisms": [
+          "linear-actuator: claws"
+        ],
         "source": "book: page 235 (top right: the knob turned, the claws open); grabber steps",
         "control": "p1400 32270",
         "moves": [
@@ -161,11 +189,17 @@
       },
       {
         "does": "The cab's door swings open.",
+        "mechanisms": [
+          "hinge: door"
+        ],
         "source": "book: page 235 (top middle, the door swung open)",
         "control": "p974 32009"
       },
       {
         "does": "The tracks run round their sprockets and rollers when driven.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book: the crawler steps (rollers and tread)",
         "control": [
           "p141 57519",
@@ -174,6 +208,9 @@
       },
       {
         "does": "The spare boom section can be fitted into the boom to make it 12 cm longer.",
+        "mechanisms": [
+          "accessory: boom section"
+        ],
         "source": "book: pages 226-233 (the extra section), page 235 (bottom right)",
         "note": "a building option, not a working function; the model file builds the boom with it fitted (its boomext sub-assemblies)"
       }

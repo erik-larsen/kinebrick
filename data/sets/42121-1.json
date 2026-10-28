@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The black gear knob at the back of the superstructure raises and lowers the boom: through a 20 tooth gear and a long shaft with two universal joints it turns the linear actuator under the boom, which pushes the boom up.",
+        "mechanisms": [
+          "linear-actuator: boom"
+        ],
         "source": "book: page 48 (lower picture), back cover; actuator step 44, rear gears steps 59-66",
         "control": "p188 32270",
         "moves": [
@@ -28,6 +31,9 @@
       },
       {
         "does": "The black gear knob on the side of the superstructure opposite the cab moves the stick in and out: its shaft runs to a 20 tooth bevel gear at the foot of the boom, which turns a 12 tooth bevel and a shaft with universal joints up the boom to the linear actuator inside it.",
+        "mechanisms": [
+          "linear-actuator: stick"
+        ],
         "source": "book: page 48 (upper picture), back cover; actuator step 21, shaft and bevel gear steps 3, 15 and 35",
         "control": "p534 32270",
         "moves": [
@@ -43,6 +49,9 @@
       },
       {
         "does": "The whole superstructure, with cab, boom and stick, slews all the way round on the turntable above the tracks, by hand.",
+        "mechanisms": [
+          "turntable: superstructure"
+        ],
         "source": "book: back cover (360 degrees); turntable step 85",
         "control": "p279 18938",
         "moves": [
@@ -55,6 +64,9 @@
       },
       {
         "does": "The two tracks roll freely round their sprockets and rollers; nothing drives them.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book: tracks steps 94-104",
         "control": [
           "p324 94925",
@@ -65,6 +77,10 @@
       },
       {
         "does": "The bucket is fixed to the end of the stick; the grey cylinder on the stick is only for show.",
+        "mechanisms": [
+          "rigid: bucket",
+          "for-show: cylinder"
+        ],
         "source": "book: stick steps 27-30 (a 3 long beam pins the bucket on)",
         "stays": [
           "p147 24120 against p131 32525"

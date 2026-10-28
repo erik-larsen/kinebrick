@@ -18,6 +18,9 @@
     "functions": [
       {
         "does": "The upright axle behind the cab steers the compactor by bending it in the middle: its 12 tooth bevel gear turns a 20 tooth bevel gear that turns the turntable carrying the front half.",
+        "mechanisms": [
+          "articulated-steering"
+        ],
         "source": "book: steps 6-11 (gears and turntable), page 48 (top inset: the knob behind the cab, the front half swinging)",
         "control": "p92 26287",
         "moves": [
@@ -32,6 +35,10 @@
       },
       {
         "does": "The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises.",
+        "mechanisms": [
+          "worm-drive",
+          "crank-and-link: blade"
+        ],
         "source": "book: steps 41-46 (worm and 20 tooth gear), 53-61 (blade and links), page 48 (lower inset: the knob in front of the cab, the blade swinging up)",
         "control": "p120 32270",
         "moves": [
@@ -46,6 +53,9 @@
       },
       {
         "does": "The four spiked compactor wheels roll freely; there is no drive.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 50-51",
         "control": [
           "p136 57520",

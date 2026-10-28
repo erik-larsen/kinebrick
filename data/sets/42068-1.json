@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The tan gear on top of the body, behind the boom, steers the front and rear axles together, the front wheels further (20 degrees) than the rear (12 degrees); the middle axle doesn't steer.",
+        "mechanisms": [
+          "multi-axle-steering"
+        ],
         "source": "book: page 184 (left insets: the gear turned, the wheels steering, the angles drawn from above)",
         "control": "p783 18575",
         "moves": [
@@ -28,6 +31,10 @@
       },
       {
         "does": "Pushing the truck along turns the V4 engine's pistons in the back: the middle axle's differential drives a shaft back to the crankshaft through two 16 tooth gears and a clutch gear.",
+        "mechanisms": [
+          "piston-engine: V4",
+          "differential"
+        ],
         "source": "inferred: the engine and its drive are in the model (engine submodel, middle axle's differential); the function pages don't show it",
         "control": [
           "p1067 56145",
@@ -43,6 +50,11 @@
       },
       {
         "does": "The black knob at the back of the truck works the boom, through a gearbox chosen by the yellow lever on top: with the lever one way the knob raises and lowers the boom (a long shaft forward and up the turntable's centre to a worm under the boom's 24 tooth gear); with it the other way the knob slews the boom round on its turntable (a shaft forward to a 12 tooth bevel gear on the turntable's teeth).",
+        "mechanisms": [
+          "function-selector: 2 functions",
+          "worm-drive",
+          "turntable: boom"
+        ],
         "source": "book: page 187 (top insets: the lever each way, the boom rising or slewing; lower right inset: the knob at the back); the gear trains are read from the model",
         "control": "p309 32270",
         "moves": [
@@ -53,6 +65,9 @@
       },
       {
         "does": "The black knob at the foot of the boom unfolds and folds the boom's upper section: through bevel gears and a shaft along the boom it turns a worm at the elbow, which turns the upper section's 8 tooth gear.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: page 186 (top inset: the knob turned; lower inset: the upper section folding)",
         "control": "p987 32270",
         "moves": [
@@ -67,22 +82,34 @@
       },
       {
         "does": "A shock absorber at the foot of the boom helps hold it up.",
+        "mechanisms": [
+          "spring: boom"
+        ],
         "source": "book: page 186 (top inset shows the spring)",
         "skip": "a spring; only matters under force"
       },
       {
         "does": "The grey hatch on the side of the body, just behind the cab, swings open.",
+        "mechanisms": [
+          "hinge: hatch"
+        ],
         "source": "book: page 185 (arrow on the hatch)",
         "note": "Not tied to parts: unsure which parts make the hatch and its hinge."
       },
       {
         "does": "The tool tray, with its axe, extinguisher and other tools, slides into the body from the side and can be taken out.",
+        "mechanisms": [
+          "slide: tool tray"
+        ],
         "source": "book: steps 248-252 (tray built and slid in)",
         "control": "p1083 64782",
         "note": "The tray isn't fastened: it only slides in."
       },
       {
         "does": "The six wheels roll freely.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: page 184",
         "control": [
           "p1065 56145",

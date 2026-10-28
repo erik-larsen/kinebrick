@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame.",
+        "mechanisms": [
+          "piston-engine: 1 cylinder"
+        ],
         "source": "book: steps 3-4 (cylinder), 9-12 (axle, crank, connecting rod and piston, wheels; step 11 rings the crank)",
         "control": "p1 2994",
         "moves": [
@@ -29,6 +32,9 @@
       },
       {
         "does": "The left rear wheel turns freely on its own axle pin and doesn't drive the engine.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 9 and 12 (an axle pin in the frame's end hole carries the left wheel; the axle that drives the crank comes in from the right)",
         "control": "p0 2994",
         "stays": [
@@ -38,11 +44,18 @@
       },
       {
         "does": "The front wheel rolls freely on its axle between the fork's tips.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: front fork step 7",
         "control": "p66 2994"
       },
       {
         "does": "The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right.",
+        "mechanisms": [
+          "fork-steering",
+          "friction-brake"
+        ],
         "source": "book: front fork steps 1-7, steps 15-16 (the fork's cross block is pushed onto the friction pin); inferred: that the fork swivels, since one pin is all that holds it, and the book draws no arrow",
         "control": [
           "p60 32062",

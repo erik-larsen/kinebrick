@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The handwheel on the right side turns the main rotor: the crown gear on its cross axle drives the 8 tooth gear at the foot of the rotor mast.",
+        "mechanisms": [
+          "driven-rotor: main rotor"
+        ],
         "source": "book: step 8 (cross axle and crown gear), step 11 (rotor mast and 8 tooth gear), steps 13-14 (rotor and handwheel); cover, page 1",
         "control": "p84 4185",
         "moves": [
@@ -28,6 +31,9 @@
       },
       {
         "does": "The same handwheel turns the tail rotor: the crown gear drives a 14 tooth bevel gear on the front of a shaft running back along the tail boom, whose bevel gear at the tail drives the bevel gear on the tail rotor's cross axle.",
+        "mechanisms": [
+          "driven-rotor: tail rotor"
+        ],
         "source": "book: steps 8 and 10 (the shaft and its bevel gears); the cover's arrow round the tail rotor, page 1; that the front bevel gear is driven by the crown gear is inferred from where step 10 puts it, just behind the crown gear",
         "control": "p84 4185",
         "moves": [
@@ -37,11 +43,17 @@
       },
       {
         "does": "The round white light on the nose turns freely on its pin.",
+        "mechanisms": [
+          "free-wheels: light"
+        ],
         "source": "inferred: step 4 fits it on an axle pin; the book doesn't say it should turn",
         "control": "p17 4032a"
       },
       {
         "does": "The airframe holds its shape: the two skids, their four grey struts and the grey canopy frame of thin liftarms stay fixed to the body whatever is turned.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book: steps 1-3, 13 and 15",
         "stays": [
           "p96 3895 against p0 2825",

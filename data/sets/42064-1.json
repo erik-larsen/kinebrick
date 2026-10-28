@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "Knob A, the left of the two black gears on the bridge roof, raises and lowers the crane's yellow boom: its shaft runs down through a universal joint and bevel gears to a shaft under the deck, back to the crane, and up through the turntable's middle to a worm, which turns a 24 tooth gear on the boom's pivot.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: pages 202-203 (the bridge roof picture with knobs A and B; the crane drawn at three heights, with the arrow at the gear on its pivot marked A)",
         "control": "p999 32270",
         "moves": [
@@ -29,6 +32,9 @@
       },
       {
         "does": "Knob B, the right of the two black gears on the bridge roof, slews the crane round on its turntable: its shaft runs down through a universal joint and bevel gears to three 16 tooth gears under the deck and a shaft back to the crane, where a 12 tooth gear turns the turntable.",
+        "mechanisms": [
+          "turntable: crane"
+        ],
         "source": "book: pages 202-203 (the bridge roof picture with knob B; the crane picture marked B, with the arrow round its base)",
         "control": "p1000 32270",
         "moves": [
@@ -43,6 +49,10 @@
       },
       {
         "does": "Knob C, the gear behind the bridge, steers the ship: its upright shaft turns a long shaft under the deck that runs back to the stern, where cranks on it swing the two rudders together and turn the rear wheel bogie the ship rolls on.",
+        "mechanisms": [
+          "rudder",
+          "swivel-axle-steering: rear bogie"
+        ],
         "source": "book: pages 202-203 (knob C on the bridge picture; the picture marked C shows the ship turning); what the shaft moves at the stern is read from the model",
         "control": "p869 32269",
         "moves": [
@@ -59,6 +69,9 @@
       },
       {
         "does": "The ship rolls on hidden wheels under its hull: a single wheel under the bow, a pair in the middle, and a pair on a bogie at the stern.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: page 201 (the finished ship, the wheels visible under the hull); inferred from the model",
         "control": [
           "p631 42610",
@@ -70,6 +83,9 @@
       },
       {
         "does": "The helicopter's black gear under the rotor mast turns the main rotor, and through a pair of 12 tooth gears and a bevel gear pair a shaft back to the tail turns the tail rotor.",
+        "mechanisms": [
+          "driven-rotor: main and tail rotors"
+        ],
         "source": "book: bag 1 steps 11-14 and 22 (the rotor mast with its gear below), pages 202-203 (the helicopter picture with the arrow at the gear under it)",
         "control": "p1298 10928",
         "moves": [
@@ -83,6 +99,9 @@
       },
       {
         "does": "The submarine's rear knob on top turns its two propellers: a bevel gear pair takes the knob's turn down to a 20 tooth gear, which turns a 12 tooth gear on each propeller shaft.",
+        "mechanisms": [
+          "driven-rotor: propellers"
+        ],
         "source": "book: bag 1 sub steps 4-10 (the propeller gears), pages 202-203 (the submarine seen from behind with the arrow on its knob)",
         "control": "p1171 32270",
         "moves": [
@@ -96,6 +115,9 @@
       },
       {
         "does": "The submarine's front knob on top swings its two arms with their grabbers out and in: the knob turns a worm, which turns a 24 tooth gear between two knob gears, each of which turns an arm's knob gear.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: bag 1 sub steps 8-24 (the worm, the 24 tooth gear and the arms), pages 202-203 (the submarine from the front with the arrow on its knob and the arms swinging)",
         "control": "p1186 32270",
         "moves": [
@@ -110,12 +132,18 @@
       },
       {
         "does": "The hook block hangs from the crane's boom tip, for lifting the submarine.",
+        "mechanisms": [
+          "hangs-free: hook"
+        ],
         "source": "book: steps 253-254, pages 202-203 (the submarine hanging from the crane)",
         "control": "p1122 32062",
         "note": "the function pages show no winch; the submarine seems to be hung on the hook by hand"
       },
       {
         "does": "The hatch on the foredeck, in front of the bridge, lifts open.",
+        "mechanisms": [
+          "hinge: hatch"
+        ],
         "source": "inferred: the hatch submodel sits on its own pins in the model; the book's function pages don't show it",
         "control": "p1059 15458",
         "note": "unsure whether the hatch is meant to open"

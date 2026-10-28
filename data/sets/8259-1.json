@@ -22,6 +22,9 @@
     "functions": [
       {
         "does": "Turning the knob at the back (a bush on the long axle through the body) turns the worm under the seat, which turns the 8 tooth gear on the lift arms' axle: the arms swing and the blade rises and lowers.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: 1 steps 8-12 (the long axle and its joiner); 2 steps 22 (worm and lift arms), 24 (arrow: the arms swing up) and 28 (knob at the back); inferred: the book draws no arrow for the knob",
         "control": "p16 3713",
         "moves": [
@@ -38,6 +41,9 @@
       },
       {
         "does": "The two tracks roll as the bulldozer is pushed along; nothing drives them. Each track runs round a 16 tooth gear at each end of its side, so its two gears turn together: p75 with p46 on one side, p74 with p55 on the other.",
+        "mechanisms": [
+          "crawler-tracks"
+        ],
         "source": "book: 2 steps 29 (front gears) and 30 (tracks, 26 links each)",
         "control": [
           "p75 4019",
@@ -47,6 +53,9 @@
       },
       {
         "does": "The two yellow rams standing on the blade are only for show: each is an axle in an axle joiner, fixed to the blade's side.",
+        "mechanisms": [
+          "for-show: rams"
+        ],
         "source": "book: 2 step 33",
         "skip": "decoration; nothing moves them"
       }

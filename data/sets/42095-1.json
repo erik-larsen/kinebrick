@@ -14,6 +14,11 @@
     "functions": [
       {
         "does": "The left track: a Power Functions L motor, worked by one lever on the remote through the IR receiver, turns a 16 tooth gear on its shaft, which drives the 16 tooth gear on the big yellow sprocket at the back of the left track, running the track forward or back.",
+        "mechanisms": [
+          "electric-motor: PF L",
+          "remote-control: PF IR",
+          "crawler-tracks"
+        ],
         "source": "book: steps 1-12 (the motors, their output gears and the sprocket axles, pages 7-12), 27-30 (the sprockets), 83 (the tracks); page 63 (the remote and the arrows)",
         "control": "p236 94925",
         "moves": [
@@ -29,6 +34,11 @@
       },
       {
         "does": "The right track: the other L motor, worked by the remote's other lever, drives the right track's big yellow sprocket the same way.",
+        "mechanisms": [
+          "electric-motor: PF L",
+          "remote-control: PF IR",
+          "crawler-tracks"
+        ],
         "source": "book: steps 1-12, 27-30, 83; page 63",
         "control": "p277 94925",
         "moves": [
@@ -44,11 +54,17 @@
       },
       {
         "does": "Steering is by the two tracks: both levers the same way drive the racer forward or back, one track alone turns it, and the two tracks running opposite ways spin it on the spot.",
+        "mechanisms": [
+          "skid-steering"
+        ],
         "source": "book: page 63 (the four pictures of the remote and the racer's moves)",
         "note": "follows from the two track functions above; nothing else is worked"
       },
       {
         "does": "The blue top hinges forward on pins at its front to reach the battery box: unplug the two flexible hoses, pull out the pin that holds it down, and tip it up and over.",
+        "mechanisms": [
+          "hinge: top"
+        ],
         "source": "book: pages 64-65 (changing the batteries: steps 2-6, the arrow on the top at step 4)",
         "control": "p250 32524",
         "moves": [
@@ -62,6 +78,9 @@
       },
       {
         "does": "The two small yellow wheels on the tail, behind and above the tracks, roll freely, so the racer can run on them when it rears up.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: from where they sit, behind the tracks and clear of the ground; the book doesn't show them in use",
         "control": [
           "p235 42610",

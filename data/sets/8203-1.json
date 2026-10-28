@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The four wheels roll freely, each on its own pin in the yellow chassis; there's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: chassis step 4 (the pins), final steps 7-8 (the wheels)",
         "control": [
           "p10 6118",
@@ -24,6 +27,9 @@
       },
       {
         "does": "The black arm carrying the hose roll cage tilts on the 4-long axle through the middle of the yellow chassis: pressing the cage's nose down lifts the arm's back end, with its yellow hose connectors, off the chassis.",
+        "mechanisms": [
+          "hinge: roll cage"
+        ],
         "source": "inferred: final steps 6-7 drop the arm between the chassis beams and push the axle through both; the book draws no motion, and it's a guess from the band in step 6 that the nose is meant to be pressed down",
         "control": "p21 6629",
         "moves": [
@@ -42,6 +48,9 @@
       },
       {
         "does": "The rubber band, looped round the two 3/4 pins on the chassis sides and under the black arm just in front of its axle, springs the cage's nose back up when it's let go.",
+        "mechanisms": [
+          "spring: roll cage"
+        ],
         "source": "inferred: chassis steps 5-6 and the band's place in the model file, which runs under the arm; the book draws no motion",
         "skip": "a spring: it only pushes the arm back, which KineBrick doesn't simulate yet"
       }

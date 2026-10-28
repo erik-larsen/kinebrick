@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The Power Functions M motor at the front, under the bonnet, runs all the time it is switched on and drives a long shaft under the tractor to the crane at the back, and a pair of 16 tooth gears turning opposite ways under the cab; the levers choose what it moves and which way.",
+        "mechanisms": [
+          "electric-motor: PF M"
+        ],
         "source": "book: steps 163-164 (pages 104-105, the motor), page 332 (the levers); inferred from the model: the gear train from the motor's 8 tooth gear to the 24 tooth gears on the long shaft p513 and the cab drive",
         "control": "p543 58120",
         "moves": [
@@ -26,12 +29,19 @@
       },
       {
         "does": "The upper of the two grey levers on the fuel tank on the right side, turned up, switches the motor on: a linkage runs forward to the battery box's switch under the bonnet.",
+        "mechanisms": [
+          "crank-and-link: motor switch"
+        ],
         "source": "book: page 332, function 2 (the lever turned up); inferred: that it works the battery box's switch, and through which parts",
         "control": "p824 41669",
         "note": "the battery box is p911 58119; switching it on starts the motor function above"
       },
       {
         "does": "Lever A, the lower grey lever on the fuel tank, turned up or down, rotates the whole cab one way or the other on its turntable (so it can face backwards to work the crane): through a 16 and a 20 tooth gear it tips a changeover catch that slides a driving ring up or down a vertical shaft between two clutch gears turning opposite ways, and the shaft's 12 tooth gear at the top turns the cab's turntable.",
+        "mechanisms": [
+          "function-selector",
+          "turntable: cab"
+        ],
         "source": "book: pages 332-333, function A (the lever, and the cab turned round); step 236 (page 153, the fuel tank); inferred from the model: the gear train",
         "control": "p825 41669",
         "moves": [
@@ -46,6 +56,10 @@
       },
       {
         "does": "Lever B, the left of the two red levers at the back of the crane's base, pushed up or down, raises or lowers the crane's boom: it slides a driving ring between two clutch gears turning opposite ways, and a shaft up through the crane's turntable, with a universal joint, turns a linear actuator that pushes the boom.",
+        "mechanisms": [
+          "function-selector",
+          "linear-actuator: boom"
+        ],
         "source": "book: pages 332-333, function B; inferred from the model: the gear train, and that the left lever seen from behind is p1714's",
         "control": "p1714 43093",
         "moves": [
@@ -60,6 +74,10 @@
       },
       {
         "does": "Lever C, the right red lever, pushed up or down, slews the crane round one way or the other: its driving ring picks a clutch gear, and a 24 and two 12 tooth gears turn a gear on the crane's turntable.",
+        "mechanisms": [
+          "function-selector",
+          "turntable: crane"
+        ],
         "source": "book: pages 332-333, function C; inferred from the model: the gear train",
         "control": "p1715 43093",
         "moves": [
@@ -73,6 +91,9 @@
       },
       {
         "does": "The small gear on top of the boom's end slides the jib in and out: it runs on the rack along the jib.",
+        "mechanisms": [
+          "rack-and-pinion: jib"
+        ],
         "source": "book: pages 332-333, function D; crane steps 122-124 (pages 314-317, the rack and the gear); inferred: which gear part is the knob",
         "control": "p1905 32270",
         "moves": [
@@ -81,6 +102,9 @@
       },
       {
         "does": "Turning the gear at the back of the grab opens and closes it: a worm turns a 24 tooth gear, whose knob gears turn the two claws together.",
+        "mechanisms": [
+          "worm-drive: grab"
+        ],
         "source": "book: pages 332-333, function E; crane steps 130-140 (pages 318-324, the grab); inferred: which part is turned by hand",
         "control": "p1945 10928",
         "moves": [
@@ -92,6 +116,9 @@
       },
       {
         "does": "The grab hangs from the jib's tip on a small turntable, so it can be turned round by hand.",
+        "mechanisms": [
+          "turntable: grab"
+        ],
         "source": "book: crane step 141 (page 324, the turntable in the grab's hanger); inferred: that it turns by hand",
         "control": "p1953 99010",
         "moves": [
@@ -100,6 +127,9 @@
       },
       {
         "does": "The whole crane rises and falls on the back of the tractor: the 12 tooth gears at both sides of the back, used as knobs, turn a cross shaft that lifts it.",
+        "mechanisms": [
+          "crank-and-link: crane lift"
+        ],
         "source": "book: pages 332-333, function F (the crane's base raised and lowered); inferred: which knobs work it and how",
         "control": [
           "p1962 32270",
@@ -112,6 +142,10 @@
       },
       {
         "does": "The crane's two legs fold down from its base to stand on the ground, and lock there.",
+        "mechanisms": [
+          "hinge: legs",
+          "catch: legs"
+        ],
         "source": "book: page 332, function 1 (the leg swung down, and locked)",
         "control": [
           "p1765 32524",
@@ -124,6 +158,10 @@
       },
       {
         "does": "The knob at the top of the cab's back steers the tractor: a pair of bevel gears turns a shaft down through the middle of the cab's turntable, so it steers wherever the cab faces, and its 8 tooth gear turns a 24 tooth gear that works the steering linkages to the front and rear wheels.",
+        "mechanisms": [
+          "multi-axle-steering",
+          "linkage-steering"
+        ],
         "source": "book: pages 334-335 (the steering modes); steps 3-10 and 28-34 (the steering mechanism); inferred: that this knob, rather than the steering wheel, steers",
         "control": "p1345 42054 - 18575",
         "moves": [
@@ -140,12 +178,19 @@
       },
       {
         "does": "The red knob at the back, between the rear mudguards, picks one of three steering modes: four wheel steering (the rear wheels turn opposite to the front), front axle steering (the rear wheels stay straight), and crab steering (the rear wheels turn the same way as the front).",
+        "mechanisms": [
+          "steering-mode-selector: 3 modes",
+          "multi-axle-steering"
+        ],
         "source": "book: pages 334-335 (G, H, I); pages 91-92 (the three positions); step 88 (page 58); inferred: which part is the knob",
         "control": "p250 6628",
         "note": "check with the steering knob: in each mode, turning the knob should turn the rear hubs p145 and p148 42054 - 23801 opposite, not at all, or alongside the front hubs p480 and p484"
       },
       {
         "does": "The four wheels roll freely; there is no drive to them.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "inferred: the long shaft under the tractor goes to the crane, not the axles",
         "control": [
           "p1443 42054 - 23798",
@@ -156,6 +201,9 @@
       },
       {
         "does": "The bonnet tips up, giving access to the battery box.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
         "source": "inferred: the bonnet is hinged in the model; the book's bonnet steps",
         "control": "p1027 32524"
       }

@@ -14,6 +14,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: its column turns a cross shaft and a shaft with a constant velocity joint down to the front axle, where a 12 and a 20 tooth gear drive the steering rack under the axle.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: box 1 (the column and wheel, pages 190-200; the steering rack in the front axle); inferred from the model which gears are which",
         "control": "p467 2741",
         "moves": [
@@ -31,6 +34,11 @@
       },
       {
         "does": "Pushed along in gear, the rear wheels run the flat six engine: half shafts with constant velocity joints take the turn from the rear wheels to the differential, the gearbox turns it, and a 16 tooth gear on the gearbox's output shaft turns the crankshaft, so the six pistons run in and out of their two banks.",
+        "mechanisms": [
+          "piston-engine: flat 6",
+          "differential",
+          "sequential-gearbox"
+        ],
         "source": "book: box 1 introduction (page 39: dual clutch gearbox, paddle shifters, suspension and the 4.0 flat six engine), pages 210-221 (the engine); the gear path is read from the model",
         "control": [
           "p2725 23800",
@@ -50,6 +58,9 @@
       },
       {
         "does": "The paddle shifters behind the steering wheel shift the sequential gearbox up and down: each paddle swings a lever that steps a knob gear round, and a shaft with constant velocity joints takes the turn back to the gearbox, where a selector moves the driving rings through the gears one by one.",
+        "mechanisms": [
+          "sequential-gearbox"
+        ],
         "source": "book: box 1 introduction (paddle shifters, dual clutch gearbox); the paddles and the selector linkage are read from the model (the gearshift submodels)",
         "control": [
           "p424 43093",
@@ -68,6 +79,9 @@
       },
       {
         "does": "The gear lever on the centre console between the seats selects reverse, neutral or drive: it moves a changeover catch that slides a driving ring between the forward and reverse gears.",
+        "mechanisms": [
+          "driving-ring-gearbox: reverse, neutral and drive"
+        ],
         "source": "inferred: the lever on the console (p478, a tile on a cross block) and the changeover catch p317 over the driving ring p39 are read from the model; the book's box 1 introduction names only the dual clutch gearbox and the paddles",
         "control": "p478 87079",
         "moves": [
@@ -78,6 +92,9 @@
       },
       {
         "does": "Each front wheel has independent suspension: a double wishbone with a shock absorber lets the wheel rise and fall, the steering still working.",
+        "mechanisms": [
+          "double-wishbone: front"
+        ],
         "source": "book: box 1 introduction (suspension), the front axle steps in box 1",
         "control": [
           "p535 57515",
@@ -90,6 +107,9 @@
       },
       {
         "does": "Each rear wheel has the same independent suspension, the half shafts reaching the wheels through constant velocity joints.",
+        "mechanisms": [
+          "double-wishbone: rear"
+        ],
         "source": "book: box 1 introduction (suspension), the rear axle steps in box 1",
         "control": [
           "p757 32063",
@@ -102,11 +122,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: box 1",
         "skip": "springs only matter under gravity or force"
       },
       {
         "does": "The two doors swing open on hinges at their front edges.",
+        "mechanisms": [
+          "hinge: doors"
+        ],
         "source": "book: box 4 introduction (page 475: the doors), the door steps near the end of box 4",
         "control": [
           "p2437 64394",
@@ -117,6 +143,9 @@
       },
       {
         "does": "The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment.",
+        "mechanisms": [
+          "hinge: hood"
+        ],
         "source": "book: box 3 introduction (page 363: the hood), page 568 (the finished car with the hood open)",
         "control": "p2132 32278",
         "moves": [
@@ -125,6 +154,9 @@
       },
       {
         "does": "The suitcase in the luggage compartment opens.",
+        "mechanisms": [
+          "accessory: suitcase"
+        ],
         "source": "inferred: the suitcase submodel's lids sit on their own pins in the model",
         "control": [
           "p2757 24119",
@@ -134,6 +166,9 @@
       },
       {
         "does": "The rear wing's angle can be adjusted: the wing tilts on its two supports.",
+        "mechanisms": [
+          "hinge: rear wing"
+        ],
         "source": "book: box 4 introduction (page 475: the adjustable rear wing)",
         "control": "p2530 87083",
         "moves": [
@@ -143,6 +178,9 @@
       },
       {
         "does": "The seats sit on their own pins and can be tipped or slid by hand.",
+        "mechanisms": [
+          "slide: seats"
+        ],
         "source": "book: box 2 steps 513 and 530 (white arrows at the seats); what the arrows mean is unsure",
         "control": [
           "p1697 4519",

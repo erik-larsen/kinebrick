@@ -14,6 +14,13 @@
     "functions": [
       {
         "does": "The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive.",
+        "mechanisms": [
+          "electric-motor: XL",
+          "remote-control",
+          "function-selector",
+          "differential: centre",
+          "portal-axle"
+        ],
         "source": "book: page 394 (top left inset: driving forwards and back with the left lever; middle inset: the lever on the cab's side set to drive); the gears are read from the model",
         "control": "p402 32073",
         "moves": [
@@ -31,6 +38,9 @@
       },
       {
         "does": "As the truck drives, the V8 engine under the bonnet pumps its pistons, turned from the drive's 16 tooth gear.",
+        "mechanisms": [
+          "piston-engine: V8"
+        ],
         "source": "book: page 394 (top middle inset: the engine under the bonnet, arrow on the pistons); the gears are read from the model",
         "control": "p402 32073",
         "moves": [
@@ -41,6 +51,12 @@
       },
       {
         "does": "The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive.",
+        "mechanisms": [
+          "electric-motor: M",
+          "remote-control",
+          "function-selector",
+          "rack-steering"
+        ],
         "source": "book: page 394 (bottom left inset: steering with the right lever); the gears are read from the model",
         "control": "p372 94925",
         "moves": [
@@ -59,6 +75,9 @@
       },
       {
         "does": "The drive/crane lever on the side of the cab switches both motors at once, from driving and steering to working the crane.",
+        "mechanisms": [
+          "function-selector: drive or crane"
+        ],
         "source": "book: page 394 (middle inset: the lever and its two pictures), page 396 (top left inset)",
         "control": "p1770 41669",
         "moves": [
@@ -71,6 +90,9 @@
       },
       {
         "does": "The crane-function lever behind the cab chooses which two crane functions the motors work: in one position the left remote lever slews the crane and the right one works the winch; in the other the left lever works the outriggers and the right one raises and lowers the boom.",
+        "mechanisms": [
+          "function-selector: crane functions"
+        ],
         "source": "book: page 396 (the lever up and down, with its pictures), page 397 (the four crane functions, two above and two below); which pair goes with which lever position is inferred from the page's layout and the model's gears",
         "control": "p994 42070 - 33299a",
         "moves": [
@@ -83,6 +105,12 @@
       },
       {
         "does": "In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable.",
+        "mechanisms": [
+          "electric-motor: XL",
+          "function-selector",
+          "worm-drive",
+          "turntable: crane"
+        ],
         "source": "book: page 397 (top left inset: the boom slewing, the left remote lever); the gears are read from the model",
         "control": "p402 32073",
         "moves": [
@@ -103,6 +131,11 @@
       },
       {
         "does": "In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks.",
+        "mechanisms": [
+          "electric-motor: XL",
+          "function-selector",
+          "linear-actuator: outriggers"
+        ],
         "source": "book: page 397 (bottom left inset: all four legs going down, the left remote lever); the gears and actuators are read from the model",
         "control": "p402 32073",
         "moves": [
@@ -123,6 +156,11 @@
       },
       {
         "does": "In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook.",
+        "mechanisms": [
+          "electric-motor: M",
+          "function-selector",
+          "winch: hook"
+        ],
         "source": "book: page 397 (top right inset: the hook going up and down, the right remote lever); the gears are read from the model",
         "control": "p372 94925",
         "moves": [
@@ -141,6 +179,11 @@
       },
       {
         "does": "In crane mode, the M motor raises and lowers the boom: its crane shaft drives an upright shaft through the turntable's centre to bevel gears that turn the large linear actuator under the boom.",
+        "mechanisms": [
+          "electric-motor: M",
+          "function-selector",
+          "linear-actuator: boom"
+        ],
         "source": "book: page 397 (bottom right inset: the boom rising, the right remote lever); the gears and actuator are read from the model",
         "control": "p372 94925",
         "moves": [
@@ -161,6 +204,9 @@
       },
       {
         "does": "The two rear axles each rock side to side on a turntable, so all six wheels stay on rough ground.",
+        "mechanisms": [
+          "pendular-axle: rear axles"
+        ],
         "source": "inferred: each rear axle hangs from a turntable (axle2 and axle3 submodels); the function pages don't show it",
         "control": [
           "p742 64179",
@@ -169,6 +215,9 @@
       },
       {
         "does": "The 24 tooth clutch gears in the steering and crane drives slip at the end of travel, so the motors can keep running.",
+        "mechanisms": [
+          "slip-clutch"
+        ],
         "source": "inferred: what 24 tooth clutch gears (p390 76244, p84 76244, p2149 76244) do; the book doesn't say",
         "skip": "only matters under force"
       }

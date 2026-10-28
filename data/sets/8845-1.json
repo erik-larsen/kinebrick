@@ -15,6 +15,9 @@
     "functions": [
       {
         "does": "The steering wheel steers the front wheels: its column bends through a universal joint to a 16 tooth gear, which turns a second 16 tooth gear on the pinion's axle; its 8 tooth gear drives a rack on the tie bar, which swings both steering arms the same way.",
+        "mechanisms": [
+          "rack-steering"
+        ],
         "source": "book: steps 4-8 (steering arms, tie bar and rack, pinion, column and wheel)",
         "control": "p100 4185",
         "moves": [
@@ -31,6 +34,9 @@
       },
       {
         "does": "Each rear wheel rides on its own trailing arm, which pivots on the cross axle ahead of it: pushed up, the arm swings up and the shock absorber between it and the frame shortens.",
+        "mechanisms": [
+          "trailing-arm"
+        ],
         "source": "book: steps 1-2 (arms and their axle) and 9 (shock absorbers); the back cover photo shows it sprung",
         "control": [
           "p0 3702",
@@ -49,11 +55,17 @@
       },
       {
         "does": "The shock absorbers' springs hold the rear arms down, so the buggy stands on its rear wheels and springs back when pushed down.",
+        "mechanisms": [
+          "spring: suspension"
+        ],
         "source": "book: step 9; back cover photo",
         "skip": "only matters under load; the arms' swing is the function above"
       },
       {
         "does": "Pushed along, all four wheels roll freely: the front ones on axle pins in the steering arms, the rear ones on axles in the trailing arms.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: steps 1 and 14",
         "control": [
           "p168 3482",
@@ -64,6 +76,9 @@
       },
       {
         "does": "The roll cage holds its shape: its toothed toggle joints grip at the angles they're set to, so the cage stands rigid over the seat.",
+        "mechanisms": [
+          "rigid"
+        ],
         "source": "book: steps 12-14",
         "stays": [
           "p145 3737 against p16 3895",

@@ -22,6 +22,9 @@
     "functions": [
       {
         "does": "Turning the red knob at the back turns the worm under the tractor, which turns the 8 tooth gear on the loader arms' axle: the arms and the bucket on them rise and lower.",
+        "mechanisms": [
+          "worm-drive"
+        ],
         "source": "book: 2 page 18 (arrows: knob turning, arms rising); 1 steps 7-10 (axle, worm, red knob); 2 steps 25-30 (arms and bucket)",
         "control": "p10 3713",
         "moves": [
@@ -38,6 +41,9 @@
       },
       {
         "does": "The bucket tips forward and back by hand on its click hinge at the arms' ends, holding where it's left.",
+        "mechanisms": [
+          "posable-joint: bucket"
+        ],
         "source": "book: 2 page 18 (curved arrow at the bucket); 2 step 29 (click hinge and bucket)",
         "control": "p92 47508",
         "moves": [
@@ -50,6 +56,9 @@
       },
       {
         "does": "The wheels roll freely: the two big rear wheels together on their 8-long axle, the two small front wheels each on its own pin. There's no steering.",
+        "mechanisms": [
+          "free-wheels"
+        ],
         "source": "book: 2 step 31 (wheels)",
         "control": [
           "p98 56904",
@@ -60,6 +69,9 @@
       },
       {
         "does": "The steering wheel turns on its axle in the cab, but steers nothing: the front wheels sit on fixed pins.",
+        "mechanisms": [
+          "for-show: steering wheel"
+        ],
         "source": "book: 2 step 20 (steering wheel); inferred: that nothing joins it to the front wheels",
         "control": "p63 30663",
         "moves": [

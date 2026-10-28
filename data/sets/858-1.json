@@ -9,6 +9,10 @@
     "functions": [
       {
         "does": "2-cycle engine: turning the hand wheel, the 24 tooth gear beside the engine with a pin for a handle, turns the crankshaft through a rubber band, about 2.9 times as fast, so its one piston runs up and down.",
+        "mechanisms": [
+          "piston-engine: 2-cycle, 1 cylinder",
+          "belt-drive"
+        ],
         "source": "inferred: the rubber band runs from the belt wheels on the hand wheel's axle to a bush on the crankshaft",
         "model": "models/858-Auto Engines-2-Cycle Engine.mpd",
         "control": "p20 3648a",
@@ -19,6 +23,9 @@
       },
       {
         "does": "Boxer engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its six pistons run in and out, three each side.",
+        "mechanisms": [
+          "piston-engine: boxer 6"
+        ],
         "source": "inferred: the crankshaft is built of 24 tooth gears joined by axles off their middles",
         "model": "models/858-Auto Engines-Boxer Engine.mpd",
         "control": "p91 3649",
@@ -33,6 +40,9 @@
       },
       {
         "does": "Inline engine: pins on the camshaft's gears lift the three push rods in turn, and each rod tips its valve's rocker on the axle across the top of the cylinders; between pins, each rod drops back onto the plate it stands through, and its rocker onto the rod, or the studs below.",
+        "mechanisms": [
+          "valve-train"
+        ],
         "source": "inferred: the push rods stand on the camshaft's pins, under the rockers; KineBrick keeps each resting on what's highest under it, as gravity would",
         "model": "models/858-Auto Engines-Boxer Engine.mpd",
         "control": "p91 3649",
@@ -43,6 +53,9 @@
       },
       {
         "does": "Inline engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its three pistons run up and down.",
+        "mechanisms": [
+          "piston-engine: inline 3"
+        ],
         "source": "inferred: the crankshaft is built of 24 tooth gears joined by axles off their middles",
         "model": "models/858-Auto Engines-Inline Engine.mpd",
         "control": "p43 3649",
@@ -54,6 +67,9 @@
       },
       {
         "does": "Inline engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the distributor's axle.",
+        "mechanisms": [
+          "belt-drive: fan and distributor"
+        ],
         "source": "inferred: the two rubber bands run from the crankshaft's belt wheels to bushes on the fan's axle pin and the distributor's axle",
         "model": "models/858-Auto Engines-Inline Engine.mpd",
         "control": "p43 3649",
@@ -64,6 +80,9 @@
       },
       {
         "does": "Inline engine: the crankshaft's four 24 tooth gears turn the camshaft's four beside them, at the same speed.",
+        "mechanisms": [
+          "valve-train: camshaft drive"
+        ],
         "source": "inferred: the camshaft's gears sit beside the crankshaft's, in the hole beside its; the model had the camshaft 2 LDU off that hole, 62 LDU from the crankshaft, so the gears missed, which models/ corrects",
         "model": "models/858-Auto Engines-Inline Engine.mpd",
         "control": "p43 3649",
@@ -73,6 +92,9 @@
       },
       {
         "does": "Inline engine: pins on the camshaft's gears lift the three push rods in turn, and each rod tips its valve's rocker on the axle across the top of the cylinders; between pins, each rod drops back onto the plate it stands through, and its rocker onto the rod, or the studs below.",
+        "mechanisms": [
+          "valve-train"
+        ],
         "source": "inferred: the push rods stand on the camshaft's pins, under the rockers; KineBrick keeps each resting on what's highest under it, as gravity would",
         "model": "models/858-Auto Engines-Inline Engine.mpd",
         "control": "p43 3649",
@@ -87,6 +109,9 @@
       },
       {
         "does": "V-6 engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its six pistons run in and out of the two cylinder banks, which stay where they are: an axle across their tops and the engine block hold them in a V.",
+        "mechanisms": [
+          "piston-engine: V6"
+        ],
         "source": "book (Peeron's scans, filed as 8858-2): V-6 steps 1-5 (the crankshaft, its connecting rods, and the 1 x 4 Technic bricks each bank hangs from, on 12 long axles), 9-14 (the banks) and 17 (both swung up to meet at the top)",
         "model": "models/858-Auto Engines-V-6 Engine.mpd",
         "control": "p133 3649",
@@ -105,6 +130,9 @@
       },
       {
         "does": "V-6 engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the long axle along the engine's side.",
+        "mechanisms": [
+          "belt-drive: fan"
+        ],
         "source": "inferred: the two rubber bands run from the crankshaft's belt wheels to bushes on the fan's axle pin and the side axle",
         "model": "models/858-Auto Engines-V-6 Engine.mpd",
         "control": "p133 3649",

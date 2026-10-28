@@ -30,6 +30,10 @@
     "functions": [
       {
         "does": "The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer.",
+        "mechanisms": [
+          "rack-steering",
+          "portal-axle"
+        ],
         "source": "book: book 4 (the roof gear and upright axle through the cab); book 1 and book 2 (front axle with rack and portal hubs); how it's worked inferred, as the book draws no arrow for it",
         "control": "p1504 8110 - 32269",
         "moves": [
@@ -48,12 +52,19 @@
       },
       {
         "does": "The steering wheel in the cab turns with the steering.",
+        "mechanisms": [
+          "driven-detail: steering wheel"
+        ],
         "source": "inferred: the book fits it in the dashboard; unsure whether it's linked to the steering",
         "control": "p1843 2741",
         "note": "unsure whether the steering wheel is linked to the steering or only turns freely"
       },
       {
         "does": "Rolling the truck turns the four-cylinder engine: both axles' differentials are linked by shafts with universal joints (permanent four-wheel drive), and the drive turns the crankshaft, so the pistons pump up and down.",
+        "mechanisms": [
+          "piston-engine: 4 cylinders",
+          "differential"
+        ],
         "source": "book: book 1 (front and rear axles with differentials, drive shafts), book 3 (engine); inferred: that the engine is turned by the wheels",
         "control": [
           "p1437 44772",
@@ -75,6 +86,9 @@
       },
       {
         "does": "Each axle's differential lets its two wheels turn at different speeds round corners.",
+        "mechanisms": [
+          "differential"
+        ],
         "source": "book: book 1 (front and rear differentials)",
         "control": [
           "p1437 44772",
@@ -87,6 +101,10 @@
       },
       {
         "does": "Both portal axles swing about the frame (pendulum suspension), each sprung by two shock absorbers, so the wheels follow rough ground.",
+        "mechanisms": [
+          "pendular-axle",
+          "portal-axle"
+        ],
         "source": "book: book 1 and book 2 (axles hung on pivots, the extra-hard shock absorbers)",
         "control": [
           "p969 62821",
@@ -96,6 +114,10 @@
       },
       {
         "does": "The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of four outputs: the front winch, the crane's slewing, the compressor, or a fourth output.",
+        "mechanisms": [
+          "electric-motor: PF",
+          "function-selector: 4 functions"
+        ],
         "source": "book: book 1 steps 13-38 (motor and gearboxes with two driving rings and catches), book 5 pages 43-44 (the lever settings and what each one works)",
         "control": "p60 58120",
         "moves": [
@@ -105,6 +127,12 @@
       },
       {
         "does": "With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "worm-drive",
+          "winch: hook"
+        ],
         "source": "book: book 5 page 43 (top left: lever settings, the winch hook moving up and down), book 5 pages 33-35 (winch with worm, 24-tooth gear and hook)",
         "control": "p60 58120",
         "first": [
@@ -130,6 +158,12 @@
       },
       {
         "does": "With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "worm-drive",
+          "turntable: crane"
+        ],
         "source": "book: book 5 page 43 (top right: both levers up, the crane turning), book 4 pages 43-48 (crane base with worm and turntable)",
         "control": "p60 58120",
         "first": [
@@ -157,6 +191,11 @@
       },
       {
         "does": "With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector",
+          "pneumatic-pump: compressor"
+        ],
         "source": "book: book 5 page 43 (bottom left) and page 44 (top left: the pump running)",
         "control": "p60 58120",
         "first": [
@@ -177,12 +216,19 @@
       },
       {
         "does": "With the yellow lever down and the red knob pushed in, the motor works a fourth output.",
+        "mechanisms": [
+          "electric-motor",
+          "function-selector"
+        ],
         "source": "book: book 5 page 43 (bottom right: the crane's grab moving up and down)",
         "control": "p60 58120",
         "note": "unsure what this output does: the picture shows the grab moving up and down with the crane reaching over the cab"
       },
       {
         "does": "The first valve on the crane base works the cylinder that raises and lowers the crane's main boom.",
+        "mechanisms": [
+          "pneumatic-cylinder: main boom"
+        ],
         "source": "book: book 5 page 44 (top right: a valve lever and the boom swinging); book 5 pages 6-12 (boom and cylinder); inferred: which valve is which",
         "control": "p2320 2795",
         "moves": [
@@ -192,6 +238,9 @@
       },
       {
         "does": "The second valve works the cylinder that swings the crane's outer arm with the grab up and down.",
+        "mechanisms": [
+          "pneumatic-cylinder: outer arm"
+        ],
         "source": "book: book 5 page 44 (bottom left); book 5 pages 13-16",
         "control": "p2629 2795",
         "moves": [
@@ -201,12 +250,18 @@
       },
       {
         "does": "The third valve works the small cylinder that opens and closes the grab's jaws.",
+        "mechanisms": [
+          "pneumatic-cylinder: grab"
+        ],
         "source": "book: book 5 page 44 (bottom right); book 5 pages 17-20 (the grab)",
         "control": "p3166 2944",
         "note": "worked in the set with a valve after pumping; the jaw parts aren't identified"
       },
       {
         "does": "The black gears at the two sides of the crane's subframe swing the striped stabiliser legs down to the ground or up for driving.",
+        "mechanisms": [
+          "hinge: stabiliser legs"
+        ],
         "source": "book: book 4 page 38 step 10 and pages 47-48 (legs, gears and links); inferred: how they're worked",
         "control": [
           "p2102 32270",
@@ -215,6 +270,9 @@
       },
       {
         "does": "The cab tilts forward on hinges at its front, showing the engine.",
+        "mechanisms": [
+          "hinge: cab"
+        ],
         "source": "book: book 4 page 17 step 52 (a hand tilting the cab forward)",
         "control": "p1563 32278",
         "moves": [
@@ -228,6 +286,9 @@
       },
       {
         "does": "A fourth valve on the truck, by the gearbox, is part of the air system.",
+        "mechanisms": [
+          "pneumatic-cylinder"
+        ],
         "source": "inferred: a fourth valve p826 47223a-f1 sits on the truck by the gearbox",
         "control": "p826 47223a-f1",
         "note": "unsure what this valve does"
