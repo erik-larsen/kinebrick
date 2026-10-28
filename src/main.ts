@@ -918,15 +918,20 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
 // The model picker: KineBrick's own models, and a model of your own, opened from your computer
 // (picked, or dropped on the page). The browser keeps the file and the page reloads with it.
 
-// The models that work in full are grouped under Working; those that don't yet
-// (data/wip-models.json: those marked WIP in the README, and those it doesn't show yet) under
-// Work in progress.
+// KineBrick's own test models are grouped under Test models; the official sets that work in full
+// under Working sets; and those that don't yet (data/wip-models.json: those marked WIP in the
+// README, and those it doesn't show yet) under Work in progress sets.
 const picker = document.getElementById('model') as HTMLSelectElement;
 if (FILE) picker.add(new Option(FILE, '', false, true));
-const working = Object.assign(document.createElement('optgroup'), { label: 'Working' });
-const wip = Object.assign(document.createElement('optgroup'), { label: 'Work in progress' });
-for (const [file, name] of MODELS) (wipModels.includes(file) ? wip : working).append(new Option(name, file, false, !FILE && file === MODEL));
-for (const group of [working, wip]) if (group.children.length) picker.append(group);
+const heading = (label: string) => Object.assign(document.createElement('optgroup'), { label });
+const tests = heading('Test models');
+const working = heading('Working sets');
+const wip = heading('Work in progress sets');
+for (const [file, name] of MODELS) {
+  const group = NAMED_MODELS.some(([named]) => named === file) ? tests : wipModels.includes(file) ? wip : working;
+  group.append(new Option(name, file, false, !FILE && file === MODEL));
+}
+for (const group of [tests, working, wip]) if (group.children.length) picker.append(group);
 picker.add(new Option('Open a model file…', 'open'));
 const chosen = picker.value;
 const filePicker = document.getElementById('file') as HTMLInputElement;
