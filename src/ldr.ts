@@ -323,7 +323,7 @@ export function embeddedParts(text: string): Map<string, string> {
   return parts;
 }
 
-// KineBrick's own settings for a model, from "0 !KINEBRICK" lines in its main file (LDraw
+// Kinebrick's own settings for a model, from "0 !KINEBRICK" lines in its main file (LDraw
 // programs skip meta-commands they don't know, so the file still opens anywhere), e.g.
 //   0 !KINEBRICK SCRUB [percent=10]   tyres may scrub sideways by up to 10% of how far they roll
 //   0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.6 -108.5] [dir=0 0 -1] [positions=0,20]
@@ -361,11 +361,11 @@ export function modelSettings(text: string): ModelSettings {
   return settings;
 }
 
-// A real LEGO set's file from the LDraw Official Model Repository, as KineBrick keeps it in
+// A real LEGO set's file from the LDraw Official Model Repository, as Kinebrick keeps it in
 // models/: the files in it drop the spaces round the dash after the set number ("956 - main.ldr"
-// becomes "956-main.ldr", wherever it's named), and its main file gets KineBrick's own lines for
+// becomes "956-main.ldr", wherever it's named), and its main file gets Kinebrick's own lines for
 // it (from data/sets/) straight after its "0 !LICENSE" line, in place of any "0 !KINEBRICK"
-// or "0 // KineBrick" lines it had. Doing it again changes nothing.
+// or "0 // Kinebrick" lines it had. Doing it again changes nothing.
 export function importSet(text: string, set: string, lines: string[]): string {
   const eol = text.includes('\r\n') ? '\r\n' : '\n';
   const out: string[] = [];
@@ -375,14 +375,14 @@ export function importSet(text: string, set: string, lines: string[]): string {
     const renamed = line.replace(new RegExp(`\\b${set} - `, 'g'), `${set}-`);
     if (/^\s*0\s+FILE\b/.test(renamed)) files++;
     const inMain = files <= 1;
-    if (inMain && /^\s*0\s+(!KINEBRICK\b|\/\/\s*KineBrick\b)/.test(renamed)) continue;
+    if (inMain && /^\s*0\s+(!KINEBRICK\b|\/\/\s*Kine[Bb]rick\b)/.test(renamed)) continue;
     out.push(renamed);
     if (inMain && !added && /^\s*0\s+!LICENSE\b/.test(renamed)) {
       out.push(...lines);
       added = true;
     }
   }
-  if (lines.length && !added) throw new Error(`set ${set}: no "0 !LICENSE" line in its main file to put KineBrick's lines after`);
+  if (lines.length && !added) throw new Error(`set ${set}: no "0 !LICENSE" line in its main file to put Kinebrick's lines after`);
   return out.join(eol);
 }
 

@@ -1,5 +1,5 @@
 // Reads a model file as the viewer does, for the scripts that work its controls (probe-joints.ts,
-// check-functions.ts): one of KineBrick's own in models/, with its connection table and packed
+// check-functions.ts): one of Kinebrick's own in models/, with its connection table and packed
 // pieces, or (`omr`) a set from the OMR in omr/, as a model you open yourself would be read, with
 // the whole LDraw library's table and primitives. Its mechanism, and its kinematics ready to move.
 

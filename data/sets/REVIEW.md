@@ -1,6 +1,6 @@
 # Function lists from before 1990: review
 
-Drafted 2026-10-23 from each set's instructions (scans in `omr/instructions/`), one JSON file per set here (then in `data/functions/`). 26 sets, 146 functions: 11 marked `skip` (only matter under gravity or force), 16 `inferred:` (the book doesn't show them, or there is no book). "Today" is what KineBrick does now, from trying each control as a drag would. This file is for the review only: answers go into the JSON files' `curated`, and its results are to be replaced by each file's `generated`.
+Drafted 2026-10-23 from each set's instructions (scans in `omr/instructions/`), one JSON file per set here (then in `data/functions/`). 26 sets, 146 functions: 11 marked `skip` (only matter under gravity or force), 16 `inferred:` (the book doesn't show them, or there is no book). "Today" is what Kinebrick does now, from trying each control as a drag would. This file is for the review only: answers go into the JSON files' `curated`, and its results are to be replaced by each file's `generated`.
 
 ## Results
 
@@ -104,7 +104,7 @@ Drafted 2026-10-24 from each set's instructions, 55 sets (the OMR's from 1990 to
 | 8272 Snowmobile | partly | Unequal ski steering; the track's links scatter; the track frame swings free. |
 | 8273 Off Road Truck | partly | The roof knob, slewing and luffing don't reach; the bed tips. |
 | 8274 Combine Harvester | none fully | The header (164 parts) isn't joined to the combine; knob gears don't mesh. |
-| 8275 Motorized Bulldozer | none | Every motor's gear is on the frame: KineBrick's Power Functions motors hold their shafts still, so nothing a motor drives can turn. |
+| 8275 Motorized Bulldozer | none | Every motor's gear is on the frame: Kinebrick's Power Functions motors hold their shafts still, so nothing a motor drives can turn. |
 | 8063 Tractor with Trailer | partly | Rolling runs the engine and the power take-off; the three-point linkage partly lifts; the roof gear's steering moves nothing; the trailer partly tips. |
 | 8256 Super Kart | mostly | The steering column's foot isn't joined to the tie rod. |
 | 8258 Crane Truck | partly | The file places no wheels, and its hook is in a submodel it never uses; outriggers and slewing don't work. |

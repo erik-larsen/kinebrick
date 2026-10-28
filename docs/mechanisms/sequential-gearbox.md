@@ -4,7 +4,7 @@ A rotary catch, turned a step at a time, slides the driving rings through the ge
 
 First appears in 2016, in [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1): The paddle shifters behind the steering wheel shift the sequential gearbox up and down: each paddle swings a lever that steps a knob gear round, and a shaft with constant velocity joints takes the turn back to the gearbox, where a selector moves the driving rings through the gears one by one.
 
-Used in 6 of the 186 surveyed sets, by 11 functions. KineBrick: 11 partly.
+Used in 6 of the 186 surveyed sets, by 11 functions. Kinebrick: 11 partly.
 
 ## By decade
 

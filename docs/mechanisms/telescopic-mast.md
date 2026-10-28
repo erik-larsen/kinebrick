@@ -4,7 +4,7 @@ A mast in stages: as one stage rises, a string or chain over a pulley at its top
 
 First appears in 2005, in [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1): The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. KineBrick: 1 partly, 1 no.
+Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 1 partly, 1 no.
 
 ## By decade
 

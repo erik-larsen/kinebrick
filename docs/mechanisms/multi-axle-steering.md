@@ -4,7 +4,7 @@ More than one axle steers: the rear wheels steer too, or two front axles steer t
 
 First appears in 1990, in [8830 Rally 6-Wheeler (Moon Buggy)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8830-1): The handwheel on the roof steers the front and rear wheels together, the middle pair staying straight: its shaft's 24 tooth gear drives a crown gear on a shaft along the chassis, whose two 8 tooth gears slide the front and rear steering racks the same way; as the front tie rods sit behind their pivots and the rear ones in front of theirs, the front and rear wheels turn opposite ways for a tight turn.
 
-Used in 12 of the 186 surveyed sets, by 14 functions. KineBrick: 10 works, 2 partly, 2 no.
+Used in 12 of the 186 surveyed sets, by 14 functions. Kinebrick: 10 works, 2 partly, 2 no.
 
 ## By decade
 

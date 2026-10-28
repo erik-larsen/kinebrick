@@ -4,7 +4,7 @@ Each wheel rides on an arm of its own, pivoting ahead of it. (Suspension.)
 
 First appears in 1981, in [8845 Dune Buggy](https://erik-larsen.github.io/kinebrick/?model=8845-Dune%20Buggy): Each rear wheel rides on its own trailing arm, which pivots on the cross axle ahead of it: pushed up, the arm swings up and the shock absorber between it and the frame shortens.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 partly.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 partly.
 
 ## By decade
 

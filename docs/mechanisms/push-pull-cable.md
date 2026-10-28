@@ -4,7 +4,7 @@ A flexible cable sliding in a sleeve, as in the Flex System, carries a push or p
 
 First appears in 1991, in [8074 Universal Set with Flex System](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8074-1): One handwheel at the back of the counter-jib luffs the jib: its 10-long axle's worm turns a 24-tooth gear on a 12-long axle, whose two levers push two Flex System cables forward to a rocker of liftarms on the jib's pivot, and two short links from the rocker raise or lower the jib.
 
-Used in 1 of the 186 surveyed sets, by 2 functions. KineBrick: 2 partly.
+Used in 1 of the 186 surveyed sets, by 2 functions. Kinebrick: 2 partly.
 
 ## By decade
 

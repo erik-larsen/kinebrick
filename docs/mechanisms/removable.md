@@ -4,7 +4,7 @@ A part of the model lifts off or unclips by hand, to show or reach what's undern
 
 First appears in 2019, in [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1): The roof, with its rack, lifts off.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. KineBrick: 1 skipped, 1 not checked.
+Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 1 skipped, 1 not checked.
 
 ## By decade
 

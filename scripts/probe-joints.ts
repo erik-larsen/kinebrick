@@ -102,7 +102,7 @@ interface Baseline {
   joints: JointFinding[];
 }
 
-// Probes one model file, as the viewer reads it: one of KineBrick's own, or (`omr`) a set from
+// Probes one model file, as the viewer reads it: one of Kinebrick's own, or (`omr`) a set from
 // the OMR, read as a model you open yourself, and then (unless `all`) only the controls a person
 // would use. Only its knobs from `from` up to `to`, so a big model can be shared out between
 // processes. Says how many knobs it has in all. Tells `status` where it has got to as it goes
@@ -413,7 +413,7 @@ async function main() {
   }
 
   // A model that took more than limitHours, once its processes have stopped: what it found by
-  // then, marked as timed out (kept for the OMR's sets, and new models; for one of KineBrick's own
+  // then, marked as timed out (kept for the OMR's sets, and new models; for one of Kinebrick's own
   // with a baseline, a failure). Its batches stay kept, but --resume won't try it again.
   function timeOut(state: Model) {
     end(state);

@@ -4,7 +4,7 @@ A loose item that comes with the model. (Not mechanisms.)
 
 First appears in 2000, in [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1): The blaster is held in the right hand by a magnet, so it can be taken out and put back.
 
-Used in 12 of the 186 surveyed sets, by 12 functions. KineBrick: 1 works, 2 no, 1 skipped, 8 not checked.
+Used in 12 of the 186 surveyed sets, by 12 functions. Kinebrick: 1 works, 2 no, 1 skipped, 8 not checked.
 
 ## By decade
 

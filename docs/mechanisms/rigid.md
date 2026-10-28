@@ -4,7 +4,7 @@ A structure that holds its shape: nothing in it moves. (Not mechanisms.)
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The landing skids stand fixed under the cabin on four struts, braced by two cross axles and two rods between them.
 
-Used in 20 of the 186 surveyed sets, by 20 functions. KineBrick: 1 skipped, 19 not checked.
+Used in 20 of the 186 surveyed sets, by 20 functions. Kinebrick: 1 skipped, 19 not checked.
 
 ## By decade
 

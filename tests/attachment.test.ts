@@ -19,7 +19,7 @@ function looseParts(text: string, name = ''): string[] {
   return inferMechanism(parts, table, roles, paths).loose.map((i) => parts[i].name);
 }
 
-// Real models KineBrick can't fully read yet, and what they need (M7 works through them).
+// Real models Kinebrick can't fully read yet, and what they need (M7 works through them).
 const NOT_YET = [
   '8448-Super Car.mpd', // hinges, universal joints, its tyres
   // Their round caps (a 2 x 2 round brick on an axle, on a bush between four studs) and the

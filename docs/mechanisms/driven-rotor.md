@@ -4,7 +4,7 @@ The drive spins a propeller, rotor or fan: rolling the model, a knob, a motor or
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.
 
-Used in 20 of the 186 surveyed sets, by 25 functions. KineBrick: 11 works, 14 partly.
+Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 11 works, 14 partly.
 
 ## By decade
 

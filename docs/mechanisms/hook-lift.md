@@ -4,7 +4,7 @@ An arm with a hook at its top swings back over the rear to set a container down 
 
 First appears in 2018, in [42084 Hook Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42084-1): The gear low on the side of the bed, behind the cab, swings the hook arm back over the rear through a row of three 8 tooth gears: the hook at the arm's top lifts the container's front, tips it up and sets it down behind the truck, and swinging the arm forward pulls it back up onto the bed.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 works.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 works.
 
 ## By decade
 

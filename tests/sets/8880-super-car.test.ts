@@ -118,7 +118,7 @@ describe('8880 Super Car', () => {
     expect(ratios.slice(1).sort((a, b) => b - a)).toEqual([2.25, 1.5, 0.75, 0.5]);
   });
 
-  it('steered near full lock, a front wheel kept turning by the motor takes it round a corner through its three differentials, its steering left where it was and its tyres scrubbing sideways by up to the 10% KineBrick allows', () => {
+  it('steered near full lock, a front wheel kept turning by the motor takes it round a corner through its three differentials, its steering left where it was and its tyres scrubbing sideways by up to the 10% Kinebrick allows', () => {
     expect(kin.scrub).toBe(0.1);
     kin.reset();
     const steeringWheel = bodyOf('2741.dat');

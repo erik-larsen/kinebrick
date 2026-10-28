@@ -1,12 +1,12 @@
 # Per-set data
 
-Everything KineBrick knows about a real LEGO set that's too long or nested for its row in [models/technic-sets.csv](../../models/technic-sets.csv), one file per set (`<set>.json`, e.g. `855-1.json`), in three sections kept apart by where they come from (see [Per-set data](../../ARCHITECTURE.md#per-set-data)):
+Everything Kinebrick knows about a real LEGO set that's too long or nested for its row in [models/technic-sets.csv](../../models/technic-sets.csv), one file per set (`<set>.json`, e.g. `855-1.json`), in three sections kept apart by where they come from (see [Per-set data](../../ARCHITECTURE.md#per-set-data)):
 
 | Section | What | Written by |
 |---|---|---|
 | `imported` | `instructions`: the set's building instructions as downloaded into `omr/instructions/`, each LEGO PDF (`url`, `file`, in the order LEGO's site lists them) or a folder of scans (`url`, `folder`, `pages`). Empty where neither was found. | `npm run instructions` |
-| `curated` | `model`, `instructions`, `functions` (below), `questions` for someone who knows the set, and `settings`: KineBrick's own lines for a set in `models/`, by its file name there, which `npm run import` puts into that file | People, or agents' drafts that people review |
-| `generated` | What KineBrick does with each of the set's functions today, its model's loose parts, and the commit and date they were measured at (see [The function check](../../ARCHITECTURE.md#the-function-check)) | `npm run functions`, afresh each time |
+| `curated` | `model`, `instructions`, `functions` (below), `questions` for someone who knows the set, and `settings`: Kinebrick's own lines for a set in `models/`, by its file name there, which `npm run import` puts into that file | People, or agents' drafts that people review |
+| `generated` | What Kinebrick does with each of the set's functions today, its model's loose parts, and the commit and date they were measured at (see [The function check](../../ARCHITECTURE.md#the-function-check)) | `npm run functions`, afresh each time |
 
 ```json
 {
@@ -39,7 +39,7 @@ The set's name, year and links are in the CSV, not here.
 | `instructions` | Which book or pages build the model, and where its functions are drawn, in plain English. |
 | `functions` | What each of the set's controls is supposed to do: drafted from its building instructions and checked by someone who knows the set. They're the reference the joints probe lacks: it can tell that a control moved, but not whether it moved the right thing. |
 | `questions` | What the instructions leave open, each a `question`, with its `answer` once someone gives one. |
-| `settings` | KineBrick's own LDraw lines for a set in `models/`, by its file name there (`"854-Go Kart": ["0 !KINEBRICK SCRUB [percent=16]"]`). |
+| `settings` | Kinebrick's own LDraw lines for a set in `models/`, by its file name there (`"854-Go Kart": ["0 !KINEBRICK SCRUB [percent=16]"]`). |
 
 ## Functions
 
@@ -54,7 +54,7 @@ Each function has:
 | `moves` | Parts that must move when the control is worked, each against the frame or `against` another part. The control itself must always move. |
 | `stays` | Parts that must not move, against the frame or `against` another part. |
 | `first` | Controls to work first, in order, each `{"control": "p12 3482", "by": 1.5}` (radians, or LDU for a slide), for a function that only works after another one (lower the implement, then roll). |
-| `skip` | Why it isn't modelled: a ratchet, brake or spring only matters under gravity or force, which KineBrick doesn't simulate yet. Kept so it isn't forgotten. |
+| `skip` | Why it isn't modelled: a ratchet, brake or spring only matters under gravity or force, which Kinebrick doesn't simulate yet. Kept so it isn't forgotten. |
 | `note` | Anything else, such as which test checks a function the fields can't express. |
 | `model` | The model file it's tried on, and its parts counted in, for a set built as several models (the 858 Auto Engines' four engines); otherwise the set's `model`. A loose part in it, if it isn't the set's model, is listed in `generated` with the model it's in. |
 

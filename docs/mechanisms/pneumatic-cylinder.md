@@ -4,7 +4,7 @@ Air let in by a valve pushes a cylinder out or in. (Moving and lifting.)
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): Pump with the red hand pump and push the valve at the left of the cab's back to the side, and the yellow cylinder at the front of the cab raises or lowers the boom, carrying the stick and bucket with it.
 
-Used in 12 of the 186 surveyed sets, by 29 functions. KineBrick: 4 works, 6 partly, 13 no, 6 skipped.
+Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 4 works, 6 partly, 13 no, 6 skipped.
 
 ## By decade
 

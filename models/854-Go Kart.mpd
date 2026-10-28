@@ -4,7 +4,7 @@
 0 Author: Stefan Frenz
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
-0 // KineBrick: its front wheels turn alike, so at full lock, about 33 degrees, where a knuckle meets its chassis, its tyres scrub sideways by up to 16% of how far they roll
+0 // Kinebrick: its front wheels turn alike, so at full lock, about 33 degrees, where a knuckle meets its chassis, its tyres scrub sideways by up to 16% of how far they roll
 0 !KINEBRICK SCRUB [percent=16]
 
 1 1 0 0 0 1 0 0 0 1 -0.024 0 0.024 1 854-Go Kart.ldr

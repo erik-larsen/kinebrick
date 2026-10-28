@@ -7,7 +7,7 @@
 
 export type Vec3 = [number, number, number];
 
-// Cross-section shapes. R, A and S come from the LDCad shadow library; the rest are KineBrick's own.
+// Cross-section shapes. R, A and S come from the LDCad shadow library; the rest are Kinebrick's own.
 //   R  round (Technic hole, pin, stud)
 //   A  axle-shaped (cross)
 //   S  square
@@ -17,7 +17,7 @@ export type Vec3 = [number, number, number];
 //   B  bore: a bore a part may slide along (an engine cylinder's, which a piston slides in)
 //   P  plain surface: a smooth surface a part may slide along (a tile's top, which a plate
 //      slides on). A part may slide in a bore for as long as the two still overlap by half a
-//      stud, and on a surface by a stud. KineBrick only lets parts slide where its corrections
+//      stud, and on a surface by a stud. Kinebrick only lets parts slide where its corrections
 //      say so.
 //   O  ball: a towball (M) or ball socket (F), from the shadow library's spheres; the
 //      cylinder is as long as the ball is wide, centred on the ball

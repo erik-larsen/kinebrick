@@ -1,7 +1,7 @@
 // The mechanism catalog, docs/mechanisms/: which kinds of mechanism the surveyed sets use, when
 // each first appears and how often it's used since. Read from the kinds in data/mechanisms.json
 // and the `mechanisms` each curated function lists in data/sets/<set>.json, with each set's year
-// and name from models/technic-sets.csv and what KineBrick does with each function from the
+// and name from models/technic-sets.csv and what Kinebrick does with each function from the
 // set's `generated`. Writes docs/mechanisms/README.md, the timeline and a table of every kind,
 // and a page per kind, docs/mechanisms/<kind>.md, afresh each time.
 //
@@ -96,16 +96,16 @@ mkdirSync(OUT_DIR, { recursive: true });
 // The index: the timeline of first appearances, and every kind by family.
 const used = kinds.filter((k) => uses.get(k.kind)!.length);
 const firsts = used.map((k) => ({ k, list: uses.get(k.kind)! })).sort((a, b) => a.list[0].year - b.list[0].year || kinds.indexOf(a.k) - kinds.indexOf(b.k));
-let index = `# Mechanisms\n\nThe kinds of mechanism in LEGO Technic sets: when each first appears, and how often it's used since, from the ${functionCount} functions of the ${sets.length} sets KineBrick Viewer has surveyed so far (${firstYear} to ${lastYear}). Each function's kinds are tagged from what its building instructions show it doing. ${generatedNote}\n\n`;
+let index = `# Mechanisms\n\nThe kinds of mechanism in LEGO Technic sets: when each first appears, and how often it's used since, from the ${functionCount} functions of the ${sets.length} sets Kinebrick Viewer has surveyed so far (${firstYear} to ${lastYear}). Each function's kinds are tagged from what its building instructions show it doing. ${generatedNote}\n\n`;
 index += `## Timeline\n\nEach kind by the year it first appears, the newest last.\n\n| Year | Kind | Family | First in |\n|---|---|---|---|\n`;
 for (const { k, list } of firsts) {
   const first = distinctSets(list.filter((u) => u.year === list[0].year));
   index += `| ${list[0].year} | [${k.name}](${k.kind}.md) | ${k.family} | ${first.map(setLink).join(', ')} |\n`;
 }
-index += `\n## Kinds\n\nHow many sets use each kind, by decade (with how many sets of that decade are surveyed), and how many of its functions KineBrick moves as it should.\n`;
+index += `\n## Kinds\n\nHow many sets use each kind, by decade (with how many sets of that decade are surveyed), and how many of its functions Kinebrick moves as it should.\n`;
 for (const family of vocabulary.families) {
   const inFamily = kinds.filter((k) => k.family === family);
-  index += `\n### ${family}\n\n| Kind | Sets | First | ${decades.map((d) => `${d} (${setsIn(d)})`).join(' | ')} | KineBrick |\n|---|---|---|${decades.map(() => '---|').join('')}---|\n`;
+  index += `\n### ${family}\n\n| Kind | Sets | First | ${decades.map((d) => `${d} (${setsIn(d)})`).join(' | ')} | Kinebrick |\n|---|---|---|${decades.map(() => '---|').join('')}---|\n`;
   for (const k of inFamily) {
     const list = uses.get(k.kind)!;
     const byDecade = decades.map((d) => distinctSets(list.filter((u) => decade(u.year) === d)).length || '');
@@ -125,7 +125,7 @@ for (const k of kinds) {
     const first = list.filter((u) => u.year === list[0].year);
     const quote = first.find((u) => u.main) ?? first[0];
     page += `First appears in ${list[0].year}, in ${distinctSets(first).map(setLink).join(' and ')}: ${quote.does}\n\n`;
-    page += `Used in ${distinctSets(list).length} of the ${sets.length} surveyed sets, by ${list.length} functions. KineBrick: ${results(list)}.\n\n`;
+    page += `Used in ${distinctSets(list).length} of the ${sets.length} surveyed sets, by ${list.length} functions. Kinebrick: ${results(list)}.\n\n`;
     page += `## By decade\n\n| | ${decades.join(' | ')} |\n|---|${decades.map(() => '---|').join('')}\n`;
     page += `| Sets | ${decades.map((d) => `${distinctSets(list.filter((u) => decade(u.year) === d)).length} of ${setsIn(d)}`).join(' | ')} |\n`;
     page += `| Functions | ${decades.map((d) => list.filter((u) => decade(u.year) === d).length).join(' | ')} |\n`;

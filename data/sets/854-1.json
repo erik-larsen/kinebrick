@@ -71,7 +71,7 @@
         "stays": [
           "p50 3700"
         ],
-        "note": "KineBrick today lets the nose (p50 and the parts on it) swing freely on the front axle p24."
+        "note": "Kinebrick today lets the nose (p50 and the parts on it) swing freely on the front axle p24."
       }
     ],
     "questions": [
@@ -81,7 +81,7 @@
     ],
     "settings": {
       "854-Go Kart": [
-        "0 // KineBrick: its front wheels turn alike, so at full lock, about 33 degrees, where a knuckle meets its chassis, its tyres scrub sideways by up to 16% of how far they roll",
+        "0 // Kinebrick: its front wheels turn alike, so at full lock, about 33 degrees, where a knuckle meets its chassis, its tyres scrub sideways by up to 16% of how far they roll",
         "0 !KINEBRICK SCRUB [percent=16]"
       ]
     }

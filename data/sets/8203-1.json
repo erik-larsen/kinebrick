@@ -52,7 +52,7 @@
           "spring: roll cage"
         ],
         "source": "inferred: chassis steps 5-6 and the band's place in the model file, which runs under the arm; the book draws no motion",
-        "skip": "a spring: it only pushes the arm back, which KineBrick doesn't simulate yet"
+        "skip": "a spring: it only pushes the arm back, which Kinebrick doesn't simulate yet"
       }
     ]
   },

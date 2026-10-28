@@ -1,12 +1,12 @@
-// Measures how much of the real Technic sets KineBrick understands: reads every model in omr/
+// Measures how much of the real Technic sets Kinebrick understands: reads every model in omr/
 // (npm run omr downloads them) as the viewer reads a model you open yourself, with the connection
 // table for the whole library, and writes omr/coverage.md: for each model, how many of its parts
-// are attached and what moves; and the parts most worth teaching KineBrick next, ranked by how
+// are attached and what moves; and the parts most worth teaching Kinebrick next, ranked by how
 // many models they leave short:
 //   - parts with no connection points at all, which can't connect to anything
-//   - the moving parts KineBrick knows it can't move yet (data/not-moving-yet.json)
+//   - the moving parts Kinebrick knows it can't move yet (data/not-moving-yet.json)
 //   - parts that look like they move (by their LDraw title: a gear, a tyre, a shock absorber) but
-//     have no role and aren't on that list, so nobody has checked yet whether KineBrick takes them
+//     have no role and aren't on that list, so nobody has checked yet whether Kinebrick takes them
 //     for plain structure: a gear that doesn't mesh, a tyre
 //     that doesn't roll
 //   - parts left loose, not attached to the rest of their model
@@ -88,7 +88,7 @@ for (const file of files) {
   }
 }
 
-// The parts ranked by how many models they're in (or loose in), with what KineBrick knows of them.
+// The parts ranked by how many models they're in (or loose in), with what Kinebrick knows of them.
 const ranked = (keep: (name: string, s: PartStats) => boolean, by: (s: PartStats) => number) =>
   [...stats]
     .filter(([name, s]) => keep(name, s))
@@ -108,7 +108,7 @@ for (const [name, s] of stats) {
   kinds.set(kind, k);
 }
 
-const report = `# KineBrick coverage of the OMR's Technic sets
+const report = `# Kinebrick coverage of the OMR's Technic sets
 
 ${files.length} models from the LDraw Official Model Repository, read as the viewer reads a model you open yourself (written by \`npm run scan\`). ${attachedModels} have every part attached.
 
@@ -129,7 +129,7 @@ ${[...stats].filter(([name]) => name in notMovingYet).sort(([, a], [, b]) => b.m
 
 ## Parts that look like they move, unchecked
 
-No role, and not on data/not-moving-yet.json: KineBrick takes them for plain structure, which may be right (a steering arm turns on its pins without one) or not. Check each, and give it a role or put it on the list. By kind (from their LDraw titles):
+No role, and not on data/not-moving-yet.json: Kinebrick takes them for plain structure, which may be right (a steering arm turns on its pins without one) or not. Check each, and give it a role or put it on the list. By kind (from their LDraw titles):
 
 | Kind | Parts | Models |
 |---|---|---|

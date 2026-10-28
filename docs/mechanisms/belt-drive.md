@@ -4,7 +4,7 @@ A rubber band or belt runs round pulleys. (Drivetrain.)
 
 First appears in 1980, in [858 Auto Engines](https://erik-larsen.github.io/kinebrick/?model=858-Auto%20Engines-2-Cycle%20Engine): Inline engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the distributor's axle.
 
-Used in 7 of the 186 surveyed sets, by 12 functions. KineBrick: 6 works, 4 partly, 2 no.
+Used in 7 of the 186 surveyed sets, by 12 functions. Kinebrick: 6 works, 4 partly, 2 no.
 
 ## By decade
 

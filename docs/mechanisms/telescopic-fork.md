@@ -4,7 +4,7 @@ The wheel slides up and down between two shock absorbers, as on a motorbike. (Su
 
 First appears in 1991, in [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1): The front wheel has telescopic suspension: it hangs from the piston rods of two long shock absorbers whose cylinders are held in the fork, so the front wheel can rise and fall.
 
-Used in 3 of the 186 surveyed sets, by 3 functions. KineBrick: 2 partly, 1 no.
+Used in 3 of the 186 surveyed sets, by 3 functions. Kinebrick: 2 partly, 1 no.
 
 ## By decade
 

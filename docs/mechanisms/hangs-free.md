@@ -4,7 +4,7 @@ A part swings free under gravity: a hook, claw or bucket hangs straight, a tailg
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The hook hangs straight down beneath the boom tip as the cab slews and the boom luffs.
 
-Used in 18 of the 186 surveyed sets, by 18 functions. KineBrick: 5 works, 1 partly, 6 skipped, 6 not checked.
+Used in 18 of the 186 surveyed sets, by 18 functions. Kinebrick: 5 works, 1 partly, 6 skipped, 6 not checked.
 
 ## By decade
 

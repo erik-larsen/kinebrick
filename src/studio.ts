@@ -1,6 +1,6 @@
 // BrickLink Studio's .io files: a ZIP archive, encrypted with a password Studio uses for all of
 // them (as the LDraw wiki documents, wiki.ldraw.org/wiki/IO), holding the model as an LDraw file,
-// model.ldr, beside a thumbnail and Studio's own files. KineBrick reads only model.ldr.
+// model.ldr, beside a thumbnail and Studio's own files. Kinebrick reads only model.ldr.
 
 const PASSWORD = 'soho0909';
 
@@ -11,7 +11,7 @@ export async function studioModel(bytes: ArrayBuffer): Promise<string> {
   let data = entry.data;
   if (entry.encrypted) data = zipDecrypt(data, PASSWORD);
   if (entry.method === 8) data = await inflate(data);
-  else if (entry.method !== 0) throw new Error(`its model.ldr is packed in a way KineBrick can't read (ZIP method ${entry.method})`);
+  else if (entry.method !== 0) throw new Error(`its model.ldr is packed in a way Kinebrick can't read (ZIP method ${entry.method})`);
   return new TextDecoder().decode(data);
 }
 

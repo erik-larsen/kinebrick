@@ -4,7 +4,7 @@ A drum winds a string or cable, over pulleys, to a hook, a grab or a boom. (Movi
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.
 
-Used in 26 of the 186 surveyed sets, by 29 functions. KineBrick: 13 works, 14 partly, 2 no.
+Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 13 works, 14 partly, 2 no.
 
 ## By decade
 

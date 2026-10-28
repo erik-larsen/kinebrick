@@ -4,7 +4,7 @@ Speeds, ranges, or forward and reverse are chosen by sliding driving rings onto 
 
 First appears in 1994, in [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car): The gear lever moves in an H gate with four slots: tilted into each, its foot slides one of the gearbox's two driving rings to one side or the other, giving four speeds; in the middle, neutral.
 
-Used in 8 of the 186 surveyed sets, by 13 functions. KineBrick: 8 works, 3 partly, 1 no, 1 not checked.
+Used in 8 of the 186 surveyed sets, by 13 functions. Kinebrick: 8 works, 3 partly, 1 no, 1 not checked.
 
 ## By decade
 

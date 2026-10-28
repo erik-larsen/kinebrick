@@ -96,7 +96,7 @@
           "p300 3649 against p256 3709b",
           "p310 3649 against p256 3709b"
         ],
-        "note": "checked by tests/sets/952-tractor.test.ts, which lowers it the -1.39 way; KineBrick meshes the gears only once it works the mechanism out afresh at the lowered pose"
+        "note": "checked by tests/sets/952-tractor.test.ts, which lowers it the -1.39 way; Kinebrick meshes the gears only once it works the mechanism out afresh at the lowered pose"
       },
       {
         "does": "Inside the harrow, the top 40 tooth gear drives the middle rotor's 8 tooth gear five times as fast, and the middle rotor's 40 tooth gear turns the two outer rotors the other way at the same speed.",

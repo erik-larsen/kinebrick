@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. KineBrick: 12 works, 12 partly, 6 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 12 works, 12 partly, 6 no.
 
 ## By decade
 

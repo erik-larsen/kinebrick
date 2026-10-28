@@ -27,7 +27,7 @@
           "p53 3708",
           "p86 3482"
         ],
-        "note": "KineBrick today: partly. Turning the big belt wheel (p50) or a rear wheel works the two inner bands as belts, so the upper axle and the rear axle turn together. But the motor holds its shaft still and is part of the frame, so the half bush on its shaft (p72) can't be turned, and the band from it to p50 isn't linked."
+        "note": "Kinebrick today: partly. Turning the big belt wheel (p50) or a rear wheel works the two inner bands as belts, so the upper axle and the rear axle turn together. But the motor holds its shaft still and is part of the frame, so the half bush on its shaft (p72) can't be turned, and the band from it to p50 isn't linked."
       },
       {
         "does": "The two front wheels roll freely on their axle; there's no steering.",
@@ -39,7 +39,7 @@
           "p76 3482",
           "p78 3482"
         ],
-        "note": "KineBrick today: works."
+        "note": "Kinebrick today: works."
       },
       {
         "does": "The rubber bands slip when the wheels are held, so the motor can't stall.",
@@ -47,7 +47,7 @@
           "slip-clutch: rubber bands"
         ],
         "source": "inferred: what rubber-band drives do; the book doesn't say",
-        "skip": "only matters under force; KineBrick treats the bands as belts that don't slip"
+        "skip": "only matters under force; Kinebrick treats the bands as belts that don't slip"
       }
     ]
   },

@@ -4,7 +4,7 @@ A belt or chain of treads runs round rollers to carry a load along. (Moving and 
 
 First appears in 2016, in [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1): The XL motor, beside the gearbox on the counterweight boom, drives a gearbox whose three red knobs, on top, choose what it works; with the middle knob pulled back (towards the knob's lower arrow) it turns the bucket wheel and runs the conveyor belts: the boom's belt carrying the spoil from the wheel to the middle, and the discharge belt carrying it out over the back.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 partly.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 partly.
 
 ## By decade
 

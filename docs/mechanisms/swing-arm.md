@@ -4,7 +4,7 @@ One arm carries the rear wheel, both rear wheels or the whole rear unit, pivotin
 
 First appears in 1988, in [8832 Roadster](https://erik-larsen.github.io/kinebrick/?model=8832-Roadster): The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.
 
-Used in 16 of the 186 surveyed sets, by 16 functions. KineBrick: 3 works, 9 partly, 4 no.
+Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 3 works, 9 partly, 4 no.
 
 ## By decade
 

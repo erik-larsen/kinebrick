@@ -228,7 +228,7 @@ export interface Screw {
   lead: number;
 }
 
-// A part resting on others under gravity, which KineBrick keeps touching whichever of them is
+// A part resting on others under gravity, which Kinebrick keeps touching whichever of them is
 // highest under it, as its weight would (see restingParts): the 858 inline engine's push rods,
 // standing on its camshaft's pins, and its valves' rockers, lying on the rods.
 export interface Rest {
@@ -355,7 +355,7 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
 
 // The OMR embeds parts that weren't in the LDraw library yet in the model's file, named
 // "<set> - <part>.dat" (42116 - 42924.dat). Most are in the library now: such a part is read as
-// the library's, if KineBrick knows nothing of its own name.
+// the library's, if Kinebrick knows nothing of its own name.
 export function libraryName(name: string, table: ConnectionTable): string {
   const part = / - ([^/]+)$/.exec(name)?.[1];
   return !table.parts[name] && part && table.parts[part] ? part : name;
@@ -492,7 +492,7 @@ function bushGrips(roles: string[], cyls: WorldCylinder[]): Connection[] {
   return result;
 }
 
-// A shock absorber: its rod slides in its cylinder against a spring. Until KineBrick models
+// A shock absorber: its rod slides in its cylinder against a spring. Until Kinebrick models
 // springs (v2.0), the spring holds it at the length it was built at, so a car sits on its
 // suspension: the rod (square, open at both ends) is fixed in the cylinder (square, closed at
 // one end) it's in.
@@ -599,7 +599,7 @@ function rigidGroups(count: number, connections: Connection[]): number[] {
 // A universal joint's centre is a cross whose two arms turn in the ends of two shafts. As two
 // hinges, the cross would lock the joint solid if the model's shafts miss its middle by a
 // fraction of an LDU, as built models do. What the joint does is pass turning from one shaft
-// to the other, so that's what KineBrick models: the cross is fixed to the first end, its
+// to the other, so that's what Kinebrick models: the cross is fixed to the first end, its
 // other arm lets go of the second end, and the two shafts turn together (see Coupling).
 // Replaces those connections in `connections` with a coupling (which only says the two ends
 // are attached); returns the pairs of ends it couples.
@@ -1862,7 +1862,7 @@ function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connections: Con
   return result;
 }
 
-// Parts resting on others under gravity, which KineBrick has no forces for, so keeps touching
+// Parts resting on others under gravity, which Kinebrick has no forces for, so keeps touching
 // what they rest on (see Rest). Two kinds, both in the 858 inline engine's valve train:
 //
 //   push rods  an upright axle with bushes on it and nothing else, turning in round holes in one

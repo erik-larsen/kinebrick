@@ -4,7 +4,7 @@ A bungee, rubber band or spring, once released, launches or flicks something. (P
 
 First appears in 1998, in [8202 Bungee Chopper](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8202-1) and [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1): Pulling the chopper backwards along the ground winds it up: the rear axle's gear drives the idler gear on the swinging arm, which turns the gear on the purple reel's axle, so the reel winds in the bungee string, stretching it between the reel and the front fork.
 
-Used in 2 of the 186 surveyed sets, by 3 functions. KineBrick: 1 partly, 2 skipped.
+Used in 2 of the 186 surveyed sets, by 3 functions. Kinebrick: 1 partly, 2 skipped.
 
 ## By decade
 

@@ -4,7 +4,7 @@ A spring motor wound by pulling the model back drives it forward when let go. (P
 
 First appears in 1998, in [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1): The robot's rubber-band motor: rolling the robot on its two big wheels turns the purple reel inside it, through an 8-tooth gear on the wheel axle and a 24-tooth gear on the reel's axle, so the reel makes a third of a turn for each turn of the wheels.
 
-Used in 11 of the 186 surveyed sets, by 22 functions. KineBrick: 11 works, 11 skipped.
+Used in 11 of the 186 surveyed sets, by 22 functions. Kinebrick: 11 works, 11 skipped.
 
 ## By decade
 

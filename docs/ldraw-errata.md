@@ -1,17 +1,17 @@
 # Errors found in LDraw models of LEGO Technic sets
 
-[KineBrick Viewer](https://github.com/erik-larsen/kinebrick) is a web LDraw viewer that works out a Technic model's mechanism from where its parts are placed, then lets you turn its gears and levers. To do that it has to decide, for every pin and axle, which hole it sits in, and for every pair of gears, whether they mesh. A part a few LDU out of place shows up as a part that attaches to nothing, or a gear train that doesn't turn.
+[Kinebrick Viewer](https://github.com/erik-larsen/kinebrick) is a web LDraw viewer that works out a Technic model's mechanism from where its parts are placed, then lets you turn its gears and levers. To do that it has to decide, for every pin and axle, which hole it sits in, and for every pair of gears, whether they mesh. A part a few LDU out of place shows up as a part that attaches to nothing, or a gear train that doesn't turn.
 
-This page lists the errors KineBrick has found that way in the LDraw models it uses, so they can be corrected where the models are published. For each one it gives the exact lines, and the correction KineBrick uses where it has one. Coordinates are in LDU (1 stud = 20 LDU).
+This page lists the errors Kinebrick has found that way in the LDraw models it uses, so they can be corrected where the models are published. For each one it gives the exact lines, and the correction Kinebrick uses where it has one. Coordinates are in LDU (1 stud = 20 LDU).
 
 | Set | Model | Author | Published on | Errors | Status |
 | --- | --- | --- | --- | --- | --- |
 | [852-1](#852-1-helicopter) | Helicopter (1977) | Allard van Efferen | LDraw OMR | 1 | Not corrected |
-| [858-1](#858-1-auto-engines-inline-and-v-6-engines) | Auto Engines (1980), Inline and V-6 Engines | Takeshi Takahashi | LDraw forum | 2 | Corrected in KineBrick |
+| [858-1](#858-1-auto-engines-inline-and-v-6-engines) | Auto Engines (1980), Inline and V-6 Engines | Takeshi Takahashi | LDraw forum | 2 | Corrected in Kinebrick |
 | [8844-1](#8844-1-helicopter) | Helicopter (1981) | Allard van Efferen | LDraw OMR | 1 | Not corrected |
-| [8849-1](#8849-1-tractor) | Tractor (1986) | Stefan Frenz | LDraw OMR | 1 | Corrected in KineBrick |
+| [8849-1](#8849-1-tractor) | Tractor (1986) | Stefan Frenz | LDraw OMR | 1 | Corrected in Kinebrick |
 | [8854-1](#8854-1-power-crane) | Power Crane (1989) | Stefan Frenz | LDraw OMR | 1 | Not corrected |
-| [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in KineBrick |
+| [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in Kinebrick |
 
 ## 852-1 Helicopter
 
@@ -22,7 +22,7 @@ This page lists the errors KineBrick has found that way in the LDraw models it u
 | Author | Allard van Efferen (rabbitdesign.nl) |
 | Licence | CCAL 2.0 (CC BY 2.0) |
 | Original | [LDraw Official Model Repository, set 1181](https://library.ldraw.org/omr/sets/1181) |
-| In KineBrick | Used as published, not corrected: [`models/852-Helicopter.mpd`](../models/852-Helicopter.mpd) |
+| In Kinebrick | Used as published, not corrected: [`models/852-Helicopter.mpd`](../models/852-Helicopter.mpd) |
 
 ### The model's name is misspelt (not corrected)
 
@@ -37,11 +37,11 @@ The OMR lists the model as "Reconnaisance Helicopter". "Reconnaissance" has a do
 | Author | Takeshi Takahashi [RainbowDolphin] |
 | Licence | CCAL 2.0 (CC BY 2.0) |
 | Original | Posted to the LDraw forum thread [Lego Technic 1980](https://forums.ldraw.org/thread-26887.html): the inline engine on 18 February 2024, the V-6 on 23 February 2024. Not on the OMR. |
-| In KineBrick | Both corrected: [`models/858-Auto Engines-Inline Engine.mpd`](../models/858-Auto%20Engines-Inline%20Engine.mpd) and [`models/858-Auto Engines-V-6 Engine.mpd`](../models/858-Auto%20Engines-V-6%20Engine.mpd) |
+| In Kinebrick | Both corrected: [`models/858-Auto Engines-Inline Engine.mpd`](../models/858-Auto%20Engines-Inline%20Engine.mpd) and [`models/858-Auto Engines-V-6 Engine.mpd`](../models/858-Auto%20Engines-V-6%20Engine.mpd) |
 
-### Inline engine: the camshaft is 2 LDU from its hole (corrected in KineBrick)
+### Inline engine: the camshaft is 2 LDU from its hole (corrected in Kinebrick)
 
-The camshaft is placed 62 LDU from the crankshaft instead of 60, 2 LDU off the hole it runs in. The 24 tooth gears (3648a) that drive it from the crankshaft mesh at 60 LDU, the sum of their pitch radii, so at 62 they miss and the camshaft doesn't turn. KineBrick found this because the engine's gear train wouldn't mesh. Moving the camshaft back 2 LDU puts it in its hole, and its gears mesh.
+The camshaft is placed 62 LDU from the crankshaft instead of 60, 2 LDU off the hole it runs in. The 24 tooth gears (3648a) that drive it from the crankshaft mesh at 60 LDU, the sum of their pitch radii, so at 62 they miss and the camshaft doesn't turn. Kinebrick found this because the engine's gear train wouldn't mesh. Moving the camshaft back 2 LDU puts it in its hole, and its gears mesh.
 
 In `858-1 - Engine housing.ldr`, the line placing `858-1 - Camshaft.ldr`, just after the crankshaft's:
 
@@ -51,9 +51,9 @@ In `858-1 - Engine housing.ldr`, the line placing `858-1 - Camshaft.ldr`, just a
 + 1 1 20 -38 -40 1 0 0 0 0 1 0 -1 0 858-1 - Camshaft.ldr
 ```
 
-### V-6 engine: the cylinder banks hang a stud too far in (corrected in KineBrick)
+### V-6 engine: the cylinder banks hang a stud too far in (corrected in Kinebrick)
 
-Each bank of three cylinders (`858-1 - Cylinder block 1.ldr` and `2`) hangs from 1 x 4 Technic bricks (3701), but is placed a stud too far in on them, flush with them. So the banks lean 102° apart instead of about 86°, the crankshaft's gears are built into both banks, and the pistons run into the taps at the cylinders' ends. KineBrick found this because the crank wouldn't turn: about a sixteenth of a turn either way, parts ran into each other. With each bank a stud further out on those bricks (and the feet under them), nothing overlaps.
+Each bank of three cylinders (`858-1 - Cylinder block 1.ldr` and `2`) hangs from 1 x 4 Technic bricks (3701), but is placed a stud too far in on them, flush with them. So the banks lean 102° apart instead of about 86°, the crankshaft's gears are built into both banks, and the pistons run into the taps at the cylinders' ends. Kinebrick found this because the crank wouldn't turn: about a sixteenth of a turn either way, parts ran into each other. With each bank a stud further out on those bricks (and the feet under them), nothing overlaps.
 
 That stud is inferred. The instructions' scans (Peeron, 8858-2) and photos of the real engine show how the banks hang, but are too coarse to show it. It's the placement where everything fits, its V is about 90°, as Technicopedia describes the engine, and the crankshaft sits as far from each bank as on the boxer engine.
 
@@ -159,11 +159,11 @@ And to follow the banks: in `858-1 - Engine housing.ldr`, the axle through both 
 | Author | Allard van Efferen (rabbitdesign.nl) |
 | Licence | CCAL 2.0 (CC BY 2.0) |
 | Original | [LDraw Official Model Repository, set 1231](https://library.ldraw.org/omr/sets/1231) |
-| In KineBrick | Used as published, not corrected: [`models/8844-Helicopter.mpd`](../models/8844-Helicopter.mpd) |
+| In Kinebrick | Used as published, not corrected: [`models/8844-Helicopter.mpd`](../models/8844-Helicopter.mpd) |
 
 ### The landing gear chain goes round a second copy of each of its gears (not corrected)
 
-The chain that turns the rear leg from the front axle is placed link by link in `8844 - model.ldr`, and with it a 16 tooth gear (4019) and a 24 tooth gear (3648a) for it to go round. But those two gears are already in the model, on their axles: the 16 tooth gear on the front axle in `8844 - frame-1.ldr` (line 143), and the 24 tooth gear on the rear leg's axle in `8844 - landinggear-1.ldr` (line 180). Each pair overlaps: the second 16 tooth gear is 0.9 LDU from the first, and the second 24 tooth gear 5 LDU from the first, off the rear leg's axle and fixed to a beam instead. The chain goes round these second copies, so at its rear end it misses the gear that should turn the rear leg. KineBrick found this because it reads the chain round the front axle's gear but finds no wheel at its other end.
+The chain that turns the rear leg from the front axle is placed link by link in `8844 - model.ldr`, and with it a 16 tooth gear (4019) and a 24 tooth gear (3648a) for it to go round. But those two gears are already in the model, on their axles: the 16 tooth gear on the front axle in `8844 - frame-1.ldr` (line 143), and the 24 tooth gear on the rear leg's axle in `8844 - landinggear-1.ldr` (line 180). Each pair overlaps: the second 16 tooth gear is 0.9 LDU from the first, and the second 24 tooth gear 5 LDU from the first, off the rear leg's axle and fixed to a beam instead. The chain goes round these second copies, so at its rear end it misses the gear that should turn the rear leg. Kinebrick found this because it reads the chain round the front axle's gear but finds no wheel at its other end.
 
 Lines 41 and 42, in `8844 - model.ldr`:
 
@@ -172,7 +172,7 @@ Lines 41 and 42, in `8844 - model.ldr`:
 1 7 0 -66 175 0 0 1 0 1 0 -1 0 0 3648a.dat
 ```
 
-A correction would take out both lines and lay the chain's rear end round the rear leg's own 24 tooth gear, 5 LDU from where it goes round now. KineBrick hasn't, since taking out two parts would renumber the parts its notes on the set's functions name.
+A correction would take out both lines and lay the chain's rear end round the rear leg's own 24 tooth gear, 5 LDU from where it goes round now. Kinebrick hasn't, since taking out two parts would renumber the parts its notes on the set's functions name.
 
 ## 8849-1 Tractor
 
@@ -183,11 +183,11 @@ A correction would take out both lines and lay the chain's rear end round the re
 | Author | Stefan Frenz [smf] |
 | Licence | CCAL 2.0 (CC BY 2.0) |
 | Original | [LDraw Official Model Repository, set 1108](https://library.ldraw.org/omr/sets/1108) |
-| In KineBrick | Corrected, with a comment saying how: [`models/8849-Tractor.mpd`](../models/8849-Tractor.mpd) |
+| In Kinebrick | Corrected, with a comment saying how: [`models/8849-Tractor.mpd`](../models/8849-Tractor.mpd) |
 
-### The hitch's 24 tooth gear is off its shaft (corrected in KineBrick)
+### The hitch's 24 tooth gear is off its shaft (corrected in Kinebrick)
 
-The 24 tooth gear (3648a) the worm turns, to raise the three-point hitch, is placed 2 LDU off the long shaft under the tractor that it should be on. It's turned 15 degrees, as the bevel gear at the shaft's other end is, but about a point 2 LDU from its middle rather than about its middle. So its hole misses the shaft, and it misses the worm too: they mesh at 40 LDU apart, their two pitch radii, and the gear is 42 LDU from the worm. KineBrick found this because the gear was attached to nothing and the worm didn't mesh. On the shaft, under the worm, it meshes, and the worm turns the shaft.
+The 24 tooth gear (3648a) the worm turns, to raise the three-point hitch, is placed 2 LDU off the long shaft under the tractor that it should be on. It's turned 15 degrees, as the bevel gear at the shaft's other end is, but about a point 2 LDU from its middle rather than about its middle. So its hole misses the shaft, and it misses the worm too: they mesh at 40 LDU apart, their two pitch radii, and the gear is 42 LDU from the worm. Kinebrick found this because the gear was attached to nothing and the worm didn't mesh. On the shaft, under the worm, it meshes, and the worm turns the shaft.
 
 Line 103, in `8849 - Tractor.ldr`:
 
@@ -205,7 +205,7 @@ Line 103, in `8849 - Tractor.ldr`:
 | Author | Stefan Frenz [smf] |
 | Licence | CCAL 2.0 (CC BY 2.0) |
 | Original | [LDraw Official Model Repository, set 1144](https://library.ldraw.org/omr/sets/1144) |
-| In KineBrick | Used as published, not corrected: [`models/8854-Power Crane.mpd`](../models/8854-Power%20Crane.mpd) |
+| In Kinebrick | Used as published, not corrected: [`models/8854-Power Crane.mpd`](../models/8854-Power%20Crane.mpd) |
 
 ### The winch's string is drawn with nothing (not corrected)
 
@@ -216,7 +216,7 @@ The winch's string is an LDCad path, `8854 - Rope.ldr`, from the drum along the 
 0 // warning: 274 of 274 segments are 'empty' please check your (path_skin) configuration.
 ```
 
-So no viewer draws the string, and the hook hangs on nothing. Its 18 points are all bezier points, too, none a circle round the drum or a pulley, so even drawn it wouldn't say what it's wound on. KineBrick found this because it finds no string for the winch. Other files in the OMR (the 855 Mobile Crane's) name LDCad's own rope segment, `ldcLQRopeSeg.dat`, which LDCad draws into the file itself. A correction would name that and generate the path again in LDCad, with circles round the drum and the pulleys.
+So no viewer draws the string, and the hook hangs on nothing. Its 18 points are all bezier points, too, none a circle round the drum or a pulley, so even drawn it wouldn't say what it's wound on. Kinebrick found this because it finds no string for the winch. Other files in the OMR (the 855 Mobile Crane's) name LDCad's own rope segment, `ldcLQRopeSeg.dat`, which LDCad draws into the file itself. A correction would name that and generate the path again in LDCad, with circles round the drum and the pulleys.
 
 ## 8880-1 Super Car
 
@@ -227,13 +227,13 @@ So no viewer draws the string, and the hook hangs on nothing. Its 18 points are 
 | Author | Orion Pobursky [OrionP] |
 | Licence | CCAL 2.0 (CC BY 2.0) |
 | Original | [LDraw Official Model Repository, set 908](https://library.ldraw.org/omr/sets/908) |
-| In KineBrick | Corrected, each change with a comment saying how: [`models/8880-Super Car.mpd`](../models/8880-Super%20Car.mpd) |
+| In Kinebrick | Corrected, each change with a comment saying how: [`models/8880-Super Car.mpd`](../models/8880-Super%20Car.mpd) |
 
-KineBrick found all four because parts wouldn't attach or gears wouldn't mesh. The rear steering rack is corrected as the Technicopedia reconstruction of the set builds it (by Koyan, edited by Eric Albrecht, 2015, published on [Bricksafe](https://bricksafe.com)).
+Kinebrick found all four because parts wouldn't attach or gears wouldn't mesh. The rear steering rack is corrected as the Technicopedia reconstruction of the set builds it (by Koyan, edited by Eric Albrecht, 2015, published on [Bricksafe](https://bricksafe.com)).
 
-### An axle through no holes (corrected in KineBrick)
+### An axle through no holes (corrected in Kinebrick)
 
-A Technic Axle 10 (3737) is placed where it passes through no holes. KineBrick moves it to where it carries the 8 tooth gear below it and fills the axle joiner.
+A Technic Axle 10 (3737) is placed where it passes through no holes. Kinebrick moves it to where it carries the 8 tooth gear below it and fills the axle joiner.
 
 Line 38, in `8880 - main.ldr`:
 
@@ -242,7 +242,7 @@ Line 38, in `8880 - main.ldr`:
 + 1 0 -60 -14 -20 0 0 -1 0 1 0 1 0 0 3737.dat
 ```
 
-### An assembly a stud too far along its slope (corrected in KineBrick)
+### An assembly a stud too far along its slope (corrected in Kinebrick)
 
 The assembly `8880 - step17sub1.ldr` is placed one stud further along its slope than its mirror twin, `8880 - step17sub2.ldr` on the line before, so its pin is in no hole. Placed to mirror its twin, it fits.
 
@@ -254,7 +254,7 @@ Line 249, in `8880 - main.ldr`:
 + 1 0 -220 -54 200 0 0 -1 0.168 0.986 0 0.986 -0.168 0 8880 - step17sub1.ldr
 ```
 
-### A long pin in no hole (corrected in KineBrick)
+### A long pin in no hole (corrected in Kinebrick)
 
 A Technic Pin Long with Friction and Slot (6558) is placed in no hole. Moved to mirror its twin on the line before, it fits; its orientation is kept.
 
@@ -266,9 +266,9 @@ Line 8170, in `8880 - step33.ldr`:
 + 1 0 -90 0 365 1 0 0 0 -0.111 0.994 0 -0.994 -0.111 6558.dat
 ```
 
-### The rear steering rack is a copy of the front one (corrected in KineBrick)
+### The rear steering rack is a copy of the front one (corrected in Kinebrick)
 
-The rear steering rack is built by placing the front one's assembly, `8880 - step19.ldr`, again. But in the set the rear racks sit on a 1 x 8 plate (3460), which raises them a plate so the 8 tooth gears above them mesh; without it they don't, and the rear wheels don't steer. KineBrick's correction places a new assembly, `8880 - step19r.ldr`: the front one with the plate under the racks, the racks (3743) a plate higher, and the steering links (2739a) leaning down to the rear wheels' towballs. The rear wheels then steer the opposite way to the front ones, about half as far.
+The rear steering rack is built by placing the front one's assembly, `8880 - step19.ldr`, again. But in the set the rear racks sit on a 1 x 8 plate (3460), which raises them a plate so the 8 tooth gears above them mesh; without it they don't, and the rear wheels don't steer. Kinebrick's correction places a new assembly, `8880 - step19r.ldr`: the front one with the plate under the racks, the racks (3743) a plate higher, and the steering links (2739a) leaning down to the rear wheels' towballs. The rear wheels then steer the opposite way to the front ones, about half as far.
 
 Line 297, in `8880 - main.ldr`:
 
@@ -311,6 +311,6 @@ The new assembly, against `8880 - step19.ldr` (line 912 on):
 
 ---
 
-Line numbers are those of the OMR files as downloaded on 20 October 2026. KineBrick's copies name their subfiles without the spaces around the dash (`8880-step19.ldr`), but are otherwise line for line the same.
+Line numbers are those of the OMR files as downloaded on 20 October 2026. Kinebrick's copies name their subfiles without the spaces around the dash (`8880-step19.ldr`), but are otherwise line for line the same.
 
 Written from the `errors` and `corrected_model` columns of [`models/technic-sets.csv`](../models/technic-sets.csv), as of 28 October 2026.

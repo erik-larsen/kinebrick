@@ -4,7 +4,7 @@ The machine bends at an upright hinge between its front and rear halves. (Steeri
 
 First appears in 2001, in [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1): The steering wheel in the cab steers the loader by bending it in the middle: an 8-tooth pinion at the foot of its column runs on a 40-tooth gear lying flat on the joint between the two frames, so the front frame, with its wheels, boom and bucket, swings left and right against the rear about a vertical pivot.
 
-Used in 6 of the 186 surveyed sets, by 7 functions. KineBrick: 2 works, 3 partly, 2 no.
+Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 2 works, 3 partly, 2 no.
 
 ## By decade
 

@@ -4,7 +4,7 @@ The motors are worked from a distance: infrared, a Bluetooth hub or an app. (Pow
 
 First appears in 2007, in [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1): The left XL motor drives the left track: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the left front sprocket.
 
-Used in 11 of the 186 surveyed sets, by 21 functions. KineBrick: 4 works, 15 partly, 2 not checked.
+Used in 11 of the 186 surveyed sets, by 21 functions. Kinebrick: 4 works, 15 partly, 2 not checked.
 
 ## By decade
 

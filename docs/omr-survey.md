@@ -4,7 +4,7 @@ How to try the controls of all 183 Technic sets from the LDraw Official Model Re
 
 ## What it does
 
-`npm run joints` (`scripts/probe-joints.ts`; see its opening comment, and "Testing" in [ARCHITECTURE.md](../ARCHITECTURE.md)) tries the controls of a model. For each part a drag turns like a knob, it turns the joint a drag would turn, both ways, holding what a drag would hold, and writes down how far the part turned and which other parts it moved, and how far. For KineBrick's own models it tries every knob, and the results are kept in `tests/joints/`, as a baseline later runs are checked against.
+`npm run joints` (`scripts/probe-joints.ts`; see its opening comment, and "Testing" in [ARCHITECTURE.md](../ARCHITECTURE.md)) tries the controls of a model. For each part a drag turns like a knob, it turns the joint a drag would turn, both ways, holding what a drag would hold, and writes down how far the part turned and which other parts it moved, and how far. For Kinebrick's own models it tries every knob, and the results are kept in `tests/joints/`, as a baseline later runs are checked against.
 
 For the OMR's sets, downloaded into `omr/` (not committed), it tries only the controls a person would use: wheels with tyres, steering wheels, and gears of 20 teeth or more that can be reached from outside the model. Not the pins, axles and small gears inside, nor each link of a track, which make up most of the knobs (in seven of the biggest sets, 109 controls out of 3,185 knobs). The results go in `omr/controls/` (and `omr/controls-0.25/` for the quick survey): which controls in other people's models work, and which don't yet. `--all` tries every knob instead, with results in `omr/joints/` (and `omr/joints-0.25/`); that takes days. With `--commit`, each set's results are committed to the `omr-survey` branch and pushed as soon as they're written, one commit per set per run, so they can be looked at while a survey is still running (see [Reading the results](#reading-the-results)).
 
@@ -22,7 +22,7 @@ The smallest sets go first. Each set is probed in batches of 20 controls, and ea
 
    With a clone already there, `git pull` instead (and `npm ci` again if `package-lock.json` changed). No LDraw parts library is needed: everything the probe reads is in the repository.
 
-2. **Check it works**, on KineBrick's own models (a minute or two on 10 cores):
+2. **Check it works**, on Kinebrick's own models (a minute or two on 10 cores):
 
    ```bash
    npm run joints
@@ -54,7 +54,7 @@ The smallest sets go first. Each set is probed in batches of 20 controls, and ea
    npm run joints -- --omr --reach 0.25 --report > omr/report-0.25.txt
    ```
 
-6. **The full run**: each control turned 1.5 radians each way, as for KineBrick's own models. If it stops, from a restart or a crash, run the same command again: `--resume` carries on where it left off, within a set too.
+6. **The full run**: each control turned 1.5 radians each way, as for Kinebrick's own models. If it stops, from a restart or a crash, run the same command again: `--resume` carries on where it left off, within a set too.
 
    ```bash
    caffeinate -i npm run joints -- --omr --resume --commit --jobs 8
@@ -80,12 +80,12 @@ npm run joints -- --omr --reach 0.25 --report
 
 (Add `--all` for the results of every knob.) `git log origin/omr-survey` lists the sets done so far, newest first, each with its run and how many controls it has.
 
-`--report` lists the sets that timed out first, then each set's controls that **stop** after a little (under 0.2 radians either way), turn only **one way**, or **can't move at all**, each with what kind of control it is (a wheel, a steering wheel, a 40 tooth gear). A gear that would drive a worm from its gear's side can't turn, as in the real model, so those are counted apart, not as stuck. A wheel or steering wheel that can't move is worth a look; so is a set with no controls at all, which usually means KineBrick doesn't know its tyres yet. One-way controls are often at the end of their travel (a bucket at its lowest). Controls that stop after a little are the ones to look at first: that's how the 8880 Super Car's rear steering knob was found, held back by a false dead point. Among every knob (`--all`), most that can't move at all are structure hinged on one pin but held by another, or parts not meant to turn (a worm's gear, a differential's pinion with the car on its wheels).
+`--report` lists the sets that timed out first, then each set's controls that **stop** after a little (under 0.2 radians either way), turn only **one way**, or **can't move at all**, each with what kind of control it is (a wheel, a steering wheel, a 40 tooth gear). A gear that would drive a worm from its gear's side can't turn, as in the real model, so those are counted apart, not as stuck. A wheel or steering wheel that can't move is worth a look; so is a set with no controls at all, which usually means Kinebrick doesn't know its tyres yet. One-way controls are often at the end of their travel (a bucket at its lowest). Controls that stop after a little are the ones to look at first: that's how the 8880 Super Car's rear steering knob was found, held back by a false dead point. Among every knob (`--all`), most that can't move at all are structure hinged on one pin but held by another, or parts not meant to turn (a worm's gear, a differential's pinion with the car on its wheels).
 
 The probe tries the mechanism alone, without the collision checks the viewer adds, so a control can turn further here than in the viewer.
 
 ## Rules
 
-- KineBrick's rules are in [CLAUDE.md](../CLAUDE.md): don't commit or push without asking Erik first. The one exception: Erik has agreed to `--commit` pushing each set's results to the `omr-survey` branch. `omr/` is ignored by git, and nothing from it goes on `main`.
+- Kinebrick's rules are in [CLAUDE.md](../CLAUDE.md): don't commit or push without asking Erik first. The one exception: Erik has agreed to `--commit` pushing each set's results to the `omr-survey` branch. `omr/` is ignored by git, and nothing from it goes on `main`.
 - Use the `erik-larsen` GitHub account for anything on GitHub.
 - No hard-wrapped lines in `.md` files: one line per paragraph or list item.

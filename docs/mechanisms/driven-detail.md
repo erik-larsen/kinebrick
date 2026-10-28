@@ -4,7 +4,7 @@ Another function also turns a decorative part, such as an exhaust stack, beacon 
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The exhaust stack on the bonnet turns as the steering wheel turns: a bevel gear on the steering shaft drives a bevel gear at the foot of the stack's long upright axle.
 
-Used in 4 of the 186 surveyed sets, by 4 functions. KineBrick: 3 works, 1 partly.
+Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 3 works, 1 partly.
 
 ## By decade
 

@@ -4,7 +4,7 @@ The chassis is split into front and rear halves that twist against each other ab
 
 First appears in 2019, in [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1): The front half of the chassis (front axle, both front motors) twists against the rear half (rear axle, its motor, the hub and the body) about a lengthwise axis, on two large turntables, one at the very front and one in the middle, so all four wheels stay on rough ground.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. KineBrick: 1 works, 1 not checked.
+Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 1 works, 1 not checked.
 
 ## By decade
 

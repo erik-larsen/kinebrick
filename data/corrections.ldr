@@ -1,4 +1,4 @@
-0 KineBrick corrections to the connection table
+0 Kinebrick corrections to the connection table
 0 // Snap lines for what neither the LDraw parts nor the LDCad shadow library describe.
 0 // Each "0 FILE" block applies to one part, after that part's shadow lines.
 0 // Same syntax as the LDCad shadow library, plus extra section shapes (T, a tyre seat; K, a
@@ -324,7 +324,7 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=B 13 32] [center=true] [ori=0 -1 0 1 0 0 0 0 1]
 
 0 // Sliding on tiles. A plate resting on smooth tiles slides along them (rails either side keep
-0 // it in line; KineBrick doesn't check for those), for as long as it still overlaps the row of
+0 // it in line; Kinebrick doesn't check for those), for as long as it still overlaps the row of
 0 // tiles by a stud. The plate's underside is a slider (S) along its length, and each tile's top
 0 // a plain surface (P) it may slide on.
 
@@ -389,7 +389,7 @@
 
 0 FILE 3404.dat
 0 // Turntable 4 x 4 Top: its centre pin turns in the base's hole (3403), the two of them one
-0 // LDraw part (3403c01, which KineBrick reads as its pieces). The shadow library closes pin
+0 // LDraw part (3403c01, which Kinebrick reads as its pieces). The shadow library closes pin
 0 // and hole at one end each, so they'd only fit as a stud does; they're open-ended here.
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 10 11   L 11 4] [pos=0 3 0] [ori=1 0 0 0 -1 0 0 0 -1]
 

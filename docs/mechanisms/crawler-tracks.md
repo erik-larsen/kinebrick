@@ -4,7 +4,7 @@ Tracks run round sprockets and idlers. (Drivetrain.)
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.
 
-Used in 22 of the 186 surveyed sets, by 29 functions. KineBrick: 19 works, 10 partly.
+Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 19 works, 10 partly.
 
 ## By decade
 

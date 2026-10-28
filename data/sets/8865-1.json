@@ -32,7 +32,7 @@
           "p904 3739",
           "p833 3958"
         ],
-        "note": "KineBrick today: works."
+        "note": "Kinebrick today: works."
       },
       {
         "does": "Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins.",
@@ -53,7 +53,7 @@
           "p536 3652",
           "p659 4032a"
         ],
-        "note": "KineBrick today: doesn't. The rear wheels, half shafts, differential, gearbox and engine are all locked, by the engine: it won't turn on its own (its crankshaft is built from 24-tooth gears joined by offset axles, held as separate bodies, with the pistons sliding in the cylinder block), and it locks the gearbox through the 16-tooth gears. The differential itself works: its crown wheel (p149) meshes with the 14-tooth pinion (p176) and its planet with both side gears, and with the engine held, turning one rear wheel turns the other the opposite way (tests/bevel.test.ts). The half shafts' universal joints lock nothing. The front wheels just spin on their own; they're 9 LDU above the ground, so the car stands on its rear wheels."
+        "note": "Kinebrick today: doesn't. The rear wheels, half shafts, differential, gearbox and engine are all locked, by the engine: it won't turn on its own (its crankshaft is built from 24-tooth gears joined by offset axles, held as separate bodies, with the pistons sliding in the cylinder block), and it locks the gearbox through the 16-tooth gears. The differential itself works: its crown wheel (p149) meshes with the 14-tooth pinion (p176) and its planet with both side gears, and with the engine held, turning one rear wheel turns the other the opposite way (tests/bevel.test.ts). The half shafts' universal joints lock nothing. The front wheels just spin on their own; they're 9 LDU above the ground, so the car stands on its rear wheels."
       },
       {
         "does": "The blue-knobbed gear lever between the seats picks one of three speeds: moving it fore and aft slides the gearbox's selector shaft, changing which of its 16- and 24-tooth gears mesh with the engine's and the layshaft's gears.",
@@ -72,7 +72,7 @@
           "p514 3708",
           "p178 3737"
         ],
-        "note": "KineBrick today: doesn't. The lever turns round the selector shaft instead of sliding it, and the shaft can't slide. The probe needs a push along the car for this control (about 20 LDU between positions?), not a turn. Which position is first gear, and how far apart are the three positions?"
+        "note": "Kinebrick today: doesn't. The lever turns round the selector shaft instead of sliding it, and the shaft can't slide. The probe needs a push along the car for this control (about 20 LDU between positions?), not a turn. Which position is first gear, and how far apart are the three positions?"
       },
       {
         "does": "The differential lets the rear wheels turn at different speeds in a bend: with the engine held, turning one rear wheel turns the other the opposite way.",
@@ -89,7 +89,7 @@
           "p176 4143",
           "p514 3708"
         ],
-        "note": "KineBrick today: doesn't, as checked, since the check holds nothing: turning the wheel turns the engine, which won't turn (see the drive function). With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts)."
+        "note": "Kinebrick today: doesn't, as checked, since the check holds nothing: turning the wheel turns the engine, which won't turn (see the drive function). With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts)."
       },
       {
         "does": "The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.",
@@ -101,7 +101,7 @@
           "p37 2738",
           "p38 2738"
         ],
-        "note": "KineBrick today: doesn't. Swinging a lower arm turns only its pivot axle; the steering arm and wheel don't follow, and the shock absorbers spin on their pins rather than shortening."
+        "note": "Kinebrick today: doesn't. Swinging a lower arm turns only its pivot axle; the steering arm and wheel don't follow, and the shock absorbers spin on their pins rather than shortening."
       },
       {
         "does": "The rear wheels have independent suspension: each rides on an upright held between two wishbones of 1x6 bricks, with a shock absorber, and moves up and down, the half shafts' universal joints letting it.",
@@ -113,7 +113,7 @@
           "p21 3894",
           "p22 3894"
         ],
-        "note": "KineBrick today: doesn't. Swinging a wishbone turns only its pivot axle; the upright and wheel don't follow (the upright p361 flops on the lower wishbone's outer axle)."
+        "note": "Kinebrick today: doesn't. Swinging a wishbone turns only its pivot axle; the upright and wheel don't follow (the upright p361 flops on the lower wishbone's outer axle)."
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -138,7 +138,7 @@
           "p856 3958",
           "p887 2741"
         ],
-        "note": "KineBrick today: doesn't. The seat is held as turning on one rail rather than sliding along both, so the gear is locked."
+        "note": "Kinebrick today: doesn't. The seat is held as turning on one rail rather than sliding along both, so the gear is locked."
       },
       {
         "does": "The 16-tooth gear outside the right seat slides that seat fore and aft, as on the left.",
@@ -154,7 +154,7 @@
         "stays": [
           "p833 3958"
         ],
-        "note": "KineBrick today: doesn't, as the left seat."
+        "note": "Kinebrick today: doesn't, as the left seat."
       },
       {
         "does": "Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.",
@@ -166,7 +166,7 @@
           "p840 3036",
           "p863 3036"
         ],
-        "note": "KineBrick today: doesn't; each seat is one rigid body. Friction hinges: whether this belongs here or under skip is for the owner to say."
+        "note": "Kinebrick today: doesn't; each seat is one rigid body. Friction hinges: whether this belongs here or under skip is for the owner to say."
       },
       {
         "does": "The red-knobbed lever left of the gear lever raises the pop-up headlights: it turns a long shaft that runs forward under the car through a universal joint to a crank at the front, which, through a short link and crossbar, turns the two headlight axles so the round white headlights flip up.",
@@ -182,7 +182,7 @@
           "p502 6143",
           "p499 6143"
         ],
-        "note": "KineBrick today: doesn't. The lever turns on its own pin without turning the shaft; the shaft (p114) is locked; the headlight axles turn alone and the headlight pods spin loose on their toggle joints. Is this really what the red lever does?"
+        "note": "Kinebrick today: doesn't. The lever turns on its own pin without turning the shaft; the shaft (p114) is locked; the headlight axles turn alone and the headlight pods spin loose on their toggle joints. Is this really what the red lever does?"
       }
     ],
     "questions": [

@@ -4,7 +4,7 @@ A control or part that looks as if it works something but isn't linked to anythi
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.
 
-Used in 33 of the 186 surveyed sets, by 33 functions. KineBrick: 26 works, 2 no, 1 skipped, 4 not checked.
+Used in 33 of the 186 surveyed sets, by 33 functions. Kinebrick: 26 works, 2 no, 1 skipped, 4 not checked.
 
 ## By decade
 

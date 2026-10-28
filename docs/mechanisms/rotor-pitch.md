@@ -4,7 +4,7 @@ A collective or cyclic control twists the rotor blades or tilts the rotor head. 
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The two control sticks in front of the seats, on one cross shaft, raise and lower the collar on the rotor mast: two bellcranks under the floor push two rods up behind the seats, and short links from the collar's spinning half twist both rotor blades, changing their pitch together.
 
-Used in 2 of the 186 surveyed sets, by 3 functions. KineBrick: 2 partly, 1 no.
+Used in 2 of the 186 surveyed sets, by 3 functions. Kinebrick: 2 partly, 1 no.
 
 ## By decade
 

@@ -1,10 +1,10 @@
-# KineBrick Viewer architecture
+# Kinebrick Viewer architecture
 
-How KineBrick works inside, for anyone changing the code. What it does, and how to use it, is in the [README](README.md).
+How Kinebrick works inside, for anyone changing the code. What it does, and how to use it, is in the [README](README.md).
 
 Everything here is kinematics: how a mechanism can move, worked out from its geometry, with no masses or forces. That's version 1.0.
 
-Forces (momentum, springs that spring, clutches that slip) are for version 2.0. It will hand the same bodies and joints to the [MuJoCo](https://mujoco.org) physics engine, rather than add physics of KineBrick's own.
+Forces (momentum, springs that spring, clutches that slip) are for version 2.0. It will hand the same bodies and joints to the [MuJoCo](https://mujoco.org) physics engine, rather than add physics of Kinebrick's own.
 
 ## How it works
 
@@ -26,10 +26,10 @@ From a model file to a mechanism you can drag, in eight steps:
 `LDrawLoader` reads the model, packed into one file with every LDraw part it uses (see `packed/`). A model opened from your own computer is packed the same way in the browser, its parts fetched from an LDraw library online.
 
 - **Each part becomes its own 3D object**, so it can be moved on its own.
-- **Each kind of part is built once.** The loader means to build each kind once and copy it wherever the model places it. But asked for the same part many times at once, it starts building it every time, before the first build is there to copy. So KineBrick has the first request build it and the rest copy it. (The 8880 Super Car's 140 kinds of part were built 1411 times over, most of its loading time.)
+- **Each kind of part is built once.** The loader means to build each kind once and copy it wherever the model places it. But asked for the same part many times at once, it starts building it every time, before the first build is there to copy. So Kinebrick has the first request build it and the rest copy it. (The 8880 Super Car's 140 kinds of part were built 1411 times over, most of its loading time.)
 - **The mechanism comes first.** It's worked out before the shapes are built, since it needs only where the parts are. A string's shape, which isn't shown (see [the solver](#10-show-it)), is built from its first piece only, for its colour.
 - **Progress.** While it loads, the panel says how far the download has got, then which step it's on.
-- **Multi-part files (MPD)** are made of submodels. KineBrick flattens them, placing each submodel's parts where the submodel puts them, and uses any unofficial parts the file brings with it.
+- **Multi-part files (MPD)** are made of submodels. Kinebrick flattens them, placing each submodel's parts where the submodel puts them, and uses any unofficial parts the file brings with it.
 - **A part whose role is `split`** is read as the parts its file is made of.
 
 **Paths drawn by LDCad.** Something flexible the LDCad program drew along a path (a chain or track round its wheels, a rubber band, a string, a hose) comes as a submodel with:
@@ -38,7 +38,7 @@ From a model file to a mechanism you can drag, in eight steps:
 - what it's made of: `PATH_SKIN`;
 - the links or pieces LDCad placed along it, as parts (a chain's links) or shapes (a string's pieces). Some may be in a subpart of the path's submodel: LDCad puts links it gives a colour of their own there, as on the 42131 Cat D11's tracks.
 
-KineBrick keeps the path, and knows those parts as its links.
+Kinebrick keeps the path, and knows those parts as its links.
 
 **Paths drawn by LSynth.** The LSynth program's paths, as the official model repository's files have them, come with nothing to say where they run: just their segments, one after another. They're a rope of `LS60` string segments, `LS51` hose segments or `LS70` cable segments, embedded in the file as `<set> - LS60.dat`.
 
@@ -77,8 +77,8 @@ Connection points from different parts that line up become connections:
 
 How far a sliding joint goes:
 
-- **A piston** slides along its bore for as long as the two still overlap by half a stud. Its skirt may come out of the bottom, as on a real engine. Being round, a real piston could also turn in its bore, but that can't be seen, so KineBrick doesn't let it.
-- **A plate** slides along its row of tiles for as long as it still overlaps them by a stud, overhanging the end. A plate on tiles could really slide any way across them; rails either side keep it in line, and KineBrick takes them as read.
+- **A piston** slides along its bore for as long as the two still overlap by half a stud. Its skirt may come out of the bottom, as on a real engine. Being round, a real piston could also turn in its bore, but that can't be seen, so Kinebrick doesn't let it.
+- **A plate** slides along its row of tiles for as long as it still overlaps them by a stud, overhanging the end. A plate on tiles could really slide any way across them; rails either side keep it in line, and Kinebrick takes them as read.
 
 **Speed.** Only connection points whose boxes share a cube of a 40 LDU grid are compared, rather than every pair. That keeps finding a 1400 part model's connections to about a second.
 
@@ -125,7 +125,7 @@ Hinges hold the angle they're set at, as friction pins do (see [step 6](#6-group
 - A round peg closed at one end and wider than a stud turns in a round socket its size: a turntable's two halves, a linear actuator's end in its bracket.
 - A square one slides along a square socket its size: a rack with a beam under it, in its housing (a telescopic boom).
 
-**Parts a set brings with it.** The OMR embeds parts that weren't in the LDraw library yet in the model's file, named `<set> - <part>.dat` (`42116 - 42924.dat`). Most are in the library now, so such a part is read as the library's, if KineBrick knows nothing of its own name.
+**Parts a set brings with it.** The OMR embeds parts that weren't in the LDraw library yet in the model's file, named `<set> - <part>.dat` (`42116 - 42924.dat`). Most are in the library now, so such a part is read as the library's, if Kinebrick knows nothing of its own name.
 
 **Headlight bricks.** A hole that opens into an anti-stud (through a headlight brick from underneath) sits on a stud as any brick does.
 
@@ -207,7 +207,7 @@ Like a worm, the screw can't be driven from its piston (see [Holds](#holds)): pu
 - **Parts stacked against it** that turn on the axle too ride along with it, turning against it (the swashplate's top half, which turns with the rotor while the bottom one doesn't).
 - **What stays put along its axle:** a connecting rod on a crank, which swings across its axle; the frame's holes; other parts held on the axle in several places; and other parts generally, held there by their neighbours or by friction.
 
-**Resting parts.** KineBrick has no gravity, so a part that only rests on another is kept touching whatever is highest under it, as its weight would keep it (`restingParts`). Both kinds are in the 858 inline engine's valve train:
+**Resting parts.** Kinebrick has no gravity, so a part that only rests on another is kept touching whatever is highest under it, as its weight would keep it (`restingParts`). Both kinds are in the 858 inline engine's valve train:
 
 - **A push rod:** an upright axle with bushes on it and nothing else, turning in round holes in one other body, standing by its bottom bush on a shaft that turns across it below. It rests on the highest of that shaft's cylinders under its foot (the camshaft's pins, or the camshaft itself between them), or by a bush higher up on the hole under it. Its holes become slides that turn, so pins lift it as they come round under it, and it drops back after them.
 - **A rocker:** a part turning on an axle across a push rod, whose underside lies on the rod's top bush. It rests on the rod, or on whatever studs are under its parts' undersides, whichever is higher: when the rod drops, a valve's rocker comes down on the plate the rod stands through.
@@ -236,7 +236,7 @@ Every part should be attached to the rest of the model through some chain of con
 
 - **Parts that aren't** get a red outline and a ⚠ badge, and are listed in the viewer. They're usually in the wrong place: a brick half a stud off, sitting between the studs instead of on them, or floating above the plate.
 - **Loose parts still ride along with the model.** Each group of them attached to each other is fixed to the part with the connection point nearest to one of them, preferring a part of the same submodel.
-- **Why ride along:** left where they were, they'd stand in the way of everything moving past them. (An official bulldozer's bucket plates, before KineBrick knew its tipper ends' grooves, stopped its tracks.)
+- **Why ride along:** left where they were, they'd stand in the way of everything moving past them. (An official bulldozer's bucket plates, before Kinebrick knew its tipper ends' grooves, stopped its tracks.)
 
 ### 6. Group
 
@@ -269,7 +269,7 @@ Joints and ground contact become equations between the bodies' speeds. [The solv
 
 The user drags a part (see [Drags](#drags)); the solver works out how every body moves, in small steps; the viewer moves each body's parts.
 
-**Collisions.** After each step, KineBrick checks whether any two parts have started to pass through each other. If so, it undoes the step and the drag stops there, like a steering wheel turned until the front tyres meet the chassis.
+**Collisions.** After each step, Kinebrick checks whether any two parts have started to pass through each other. If so, it undoes the step and the drag stops there, like a steering wheel turned until the front tyres meet the chassis.
 
 **The ground.** The same goes for a part that would go below the ground (a crane's hook let down too far).
 
@@ -279,7 +279,7 @@ The user drags a part (see [Drags](#drags)); the solver works out how every body
 **Pairs that aren't checked:**
 
 - parts directly connected (an axle in a hole, a tyre on its rim and meshing gear teeth all touch legitimately);
-- any two gears: KineBrick doesn't know where each gear's teeth are round it, so two gears coming into mesh would seem to run into each other tip to tip, short of it (the 952 Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short, its gears not quite meshing);
+- any two gears: Kinebrick doesn't know where each gear's teeth are round it, so two gears coming into mesh would seem to run into each other tip to tip, short of it (the 952 Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short, its gears not quite meshing);
 - parts on the same pin or axle (two beams on one pin lie face to face);
 - parts that already touch when the model loads;
 - parts within an LDU of each other when the model loads: real models are built tight, and a bush built flush against a brick just rubs past it as the wheel steers.
@@ -288,7 +288,7 @@ Each shape is pulled in a quarter of an LDU at each face of its box, so parts th
 
 **Speed.** Pairs are checked by the bodies they're on. Parts on two bodies that haven't moved against each other since last found clear can't have started to overlap, so all their pairs are skipped at once, and a box round each body's parts skips most of the rest. The shapes are the parts' own LDraw meshes, tested with [three-mesh-bvh](https://github.com/gkjohnson/three-mesh-bvh).
 
-**Shifting.** Shifting a gearbox changes what's connected to what, so when a driving ring clicks into a new position, KineBrick works the mechanism out afresh (steps 2 to 7) from where every part now is.
+**Shifting.** Shifting a gearbox changes what's connected to what, so when a driving ring clicks into a new position, Kinebrick works the mechanism out afresh (steps 2 to 7) from where every part now is.
 
 ### Bodies and the frame
 
@@ -461,7 +461,7 @@ Positions aren't stored per body. The solver stores the frame's position and one
 
 A closed loop of parts, like crank, connecting rod, piston, cylinder and back to the frame, has joints the tree doesn't follow: one per loop, and every sliding and ball joint. Small steps would slowly let those drift apart.
 
-So after each step, KineBrick works out how far each has come apart, and moves every body by the smallest amount that closes the gaps while keeping every other rule. It doesn't turn the joint a drag is turning, so that turns by exactly what the drag asked.
+So after each step, Kinebrick works out how far each has come apart, and moves every body by the smallest amount that closes the gaps while keeping every other rule. It doesn't turn the joint a drag is turning, so that turns by exactly what the drag asked.
 
 **When the rules can't all hold.** A model's rounded-off positions can make two rules that should repeat each other disagree slightly. Then it comes as close as it can, by least squares:
 
@@ -490,7 +490,7 @@ Each part on screen gets its body's position, so the plate and bricks move with 
 
 ## The connection table
 
-The connection table lists the connection points of every part KineBrick knows about. The viewer only reads the table; a script builds it from three sources.
+The connection table lists the connection points of every part Kinebrick knows about. The viewer only reads the table; a script builds it from three sources.
 
 ### 1. The LDraw parts library
 
@@ -512,7 +512,7 @@ From the shadow library:
 - **a finger hinge's fingers** and the gaps between them become their own section shape (H), so fingers turn between fingers;
 - **a rim that clicks onto a wheel hub** (its `techWhlCon1` connection) is keyed, so it turns with the hub.
 
-### 3. KineBrick's own corrections
+### 3. Kinebrick's own corrections
 
 A short hand-written file, `data/corrections.ldr`, adds what neither source covers:
 
@@ -526,7 +526,7 @@ A short hand-written file, `data/corrections.ldr`, adds what neither source cove
 - for a track's links, how far they reach out beyond the line through their pins (a chain tread's grousers, 8 LDU): how far beyond its path a track touches the ground;
 - for a part with grooves a plate slides into (a tipper end), where the grooves are.
 
-**Sliding.** The shadow library marks most holes as ones an axle or pin could slide through. But KineBrick doesn't model what stops an axle sliding out (bushes, gears either side), so it only lets parts slide where the corrections say so: a piston in its cylinder, a 1x8 plate along 1x4 tiles, a 1x4 plate on a 1x1 tile.
+**Sliding.** The shadow library marks most holes as ones an axle or pin could slide through. But Kinebrick doesn't model what stops an axle sliding out (bushes, gears either side), so it only lets parts slide where the corrections say so: a piston in its cylinder, a 1x8 plate along 1x4 tiles, a 1x4 plate on a 1x1 tile.
 
 **What the script works out itself:**
 
@@ -543,7 +543,7 @@ The same script builds a second table, `data/library-connections.json`, for ever
 
 - **Size.** Most parts share their connection points with others (each printed version of a part has the same ones). So it lists each cylinder once, and gives each part the places of its cylinders in that list. That takes it from 42 MB to under 7 MB (600 KB as the site sends it, compressed).
 - **Fetched only when needed:** the viewer fetches it only for such a model.
-- **Corrections and roles** are still only those of the parts the test models use, so in another model a gear KineBrick hasn't been told about doesn't mesh.
+- **Corrections and roles** are still only those of the parts the test models use, so in another model a gear Kinebrick hasn't been told about doesn't mesh.
 
 **Tyres and rims are the exception.** Each one the corrections don't give a seat (its title says which it is, "Tyre …" or "Wheel Rim …") gets one measured from its shape, in both tables:
 
@@ -555,7 +555,7 @@ A tyre sits on a rim that reaches out to its bore or as much as 16 LDU past it (
 
 ## Part roles
 
-A role is a short label for what a part does in a mechanism. It tells KineBrick which connections the part makes and how it may move.
+A role is a short label for what a part does in a mechanism. It tells Kinebrick which connections the part makes and how it may move.
 
 - Each part has exactly one role.
 - Parts nobody has described yet get `structure`.
@@ -636,7 +636,7 @@ A shift lever clicks between its gate's five places:
 
 ### Parts that don't move yet
 
-Parts KineBrick knows it can't move yet are listed in `data/not-moving-yet.json`, each with what it doesn't do:
+Parts Kinebrick knows it can't move yet are listed in `data/not-moving-yet.json`, each with what it doesn't do:
 
 - a gear without teeth data, which doesn't mesh;
 - a tyre without a tread, which doesn't roll;
@@ -676,7 +676,7 @@ Only knob-like parts can be kept turning, and only they get a line in the readou
 
 ### Holds
 
-For the length of a drag, KineBrick holds still every part it can without stopping the drag, so that anything the drag doesn't need to move stays put. These holds last only for the drag, are never shown, and are separate from the parts the user freezes (Alt-click), which stay frozen until unfrozen.
+For the length of a drag, Kinebrick holds still every part it can without stopping the drag, so that anything the drag doesn't need to move stays put. These holds last only for the drag, are never shown, and are separate from the parts the user freezes (Alt-click), which stay frozen until unfrozen.
 
 **What it tries to hold, in order:**
 
@@ -731,7 +731,7 @@ Every part's current placement becomes its new starting placement, and the mecha
 
 Gears mesh where the model is built, but a drag can bring gears together or draw them apart. (The 952 Tractor's lever lowers its thresher until its 40 tooth gear meets a crown gear the rear axle drives, a power take-off.)
 
-So when a drag ends, and after each part the address turns (`turn=`), KineBrick looks for meshes with every gear where its body now is. If they're not the mechanism's, it's worked out afresh from where everything now is, as after a shift.
+So when a drag ends, and after each part the address turns (`turn=`), Kinebrick looks for meshes with every gear where its body now is. If they're not the mechanism's, it's worked out afresh from where everything now is, as after a shift.
 
 ### Motor
 
@@ -765,11 +765,11 @@ A part kept turning (Ctrl-click) is driven every frame like a turn drag, but in 
 
 ## Per-set data
 
-What KineBrick knows about each real LEGO set comes from three kinds of source, kept apart so that it's always clear where a fact came from and what may change it:
+What Kinebrick knows about each real LEGO set comes from three kinds of source, kept apart so that it's always clear where a fact came from and what may change it:
 
 - **Imported**: copied from outside sources by scripts: BrickLink's catalogue, the LDraw Official Model Repository, LEGO's building instructions. Running the script again refreshes it.
 - **Curated**: judgements drawn from a set's books, its model and the people who know it: what each control does, what's wrong with a model. Agents draft it and people review it; it changes only in a commit someone has read, never by a script.
-- **Generated**: KineBrick's own measurements, which change whenever its code does: what each of a set's functions does today, how far each control turns. Only scripts write it, afresh each time, with the commit and date it was measured on.
+- **Generated**: Kinebrick's own measurements, which change whenever its code does: what each of a set's functions does today, how far each control turns. Only scripts write it, afresh each time, with the commit and date it was measured on.
 
 Two places hold it:
 
@@ -777,7 +777,7 @@ Two places hold it:
 |---|---|---|
 | What | One row per set: what fits in a column, to sort and filter every set by | One file per set: everything nested or long, in three sections, `imported`, `curated` and `generated` |
 | Imported | Set number, name, year, part counts, BrickLink and OMR links, the pinned OMR file | `instructions`: its instruction books as downloaded, each LEGO PDF or a folder of scans |
-| Curated | `errors` (the model's mistakes, in plain English) and `corrected_model` (the repo file of a model put right) | `model` (the file its parts are counted in), `instructions` (which books build the main model, where its functions are drawn), `functions` (what each control does, and which parts it moves), `questions` and their answers, and `settings` (KineBrick's own lines for a set in `models/`); see [data/sets/README.md](data/sets/README.md) |
+| Curated | `errors` (the model's mistakes, in plain English) and `corrected_model` (the repo file of a model put right) | `model` (the file its parts are counted in), `instructions` (which books build the main model, where its functions are drawn), `functions` (what each control does, and which parts it moves), `questions` and their answers, and `settings` (Kinebrick's own lines for a set in `models/`); see [data/sets/README.md](data/sets/README.md) |
 | Generated | Summary columns at the end, such as `functions_working` (none yet) | `generated`: each function's result, loose parts, and the commit and date, written by `npm run functions` (see [The function check](#the-function-check)) |
 
 The rules that keep them tidy:
@@ -791,14 +791,14 @@ Where the earlier files went:
 | Was | Now |
 |---|---|
 | `data/functions/<set>.json`, the function lists | Each `data/sets/<set>.json`'s `curated` `model`, `instructions` and `functions` |
-| `models/sets.json`, KineBrick's lines for the sets in `models/` | Each set's `curated.settings`, only where it has lines |
+| `models/sets.json`, Kinebrick's lines for the sets in `models/` | Each set's `curated.settings`, only where it has lines |
 | `omr/instructions/index.txt` and the scan folders, which file holds which book | Each set's `imported.instructions`, written by `npm run instructions` |
 | `data/functions/REVIEW.md`, the first review of the function lists | [data/sets/REVIEW.md](data/sets/REVIEW.md). Its questions are each set's `curated.questions`; its results are replaced by `generated`. |
 | `tests/joints/`, the joints probe's baselines | Stays where it is: the tests' own |
 
 ## Testing
 
-`npm test` runs the tests, which are in `tests/`. They check the mechanism logic: given a test model, KineBrick finds the right bodies, joints and gear meshes, and moves them correctly.
+`npm test` runs the tests, which are in `tests/`. They check the mechanism logic: given a test model, Kinebrick finds the right bodies, joints and gear meshes, and moves them correctly.
 
 They run in Node with no browser. Each loads a real model from `models/`, works out its mechanism, moves it, and checks the numbers.
 
@@ -806,10 +806,10 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 
 | File | What it checks |
 |---|---|
-| `ldr.test.ts` | Reading model files: submodels flattened in order, each part placed where its submodels put it, colour 16 inherited through every level, parts the file brings with it, shapes drawn without parts, a part read as the pieces it's made of, KineBrick's own settings from `0 !KINEBRICK` lines, and a part written back as one line. |
+| `ldr.test.ts` | Reading model files: submodels flattened in order, each part placed where its submodels put it, colour 16 inherited through every level, parts the file brings with it, shapes drawn without parts, a part read as the pieces it's made of, Kinebrick's own settings from `0 !KINEBRICK` lines, and a part written back as one line. |
 | `import.test.ts` | Bringing in real LEGO sets. Every set in `models/` already has its own lines from its file in `data/sets/`, so importing it again changes nothing. A fresh set's files are renamed wherever they're named (`956 - main.ldr` to `956-main.ldr`), its lines go after its main file's license, its line endings are kept, and importing twice gives the same file. |
-| `attachment.test.ts` | Every test model is fully attached, and a misplaced brick is caught, sitting between the studs or floating above the plate. Real sets KineBrick can't fully read yet are listed, with what each needs. |
-| `not-moving-yet.test.ts` | A part KineBrick has learned to move comes off the list of those it can't. |
+| `attachment.test.ts` | Every test model is fully attached, and a misplaced brick is caught, sitting between the studs or floating above the plate. Real sets Kinebrick can't fully read yet are listed, with what each needs. |
+| `not-moving-yet.test.ts` | A part Kinebrick has learned to move comes off the list of those it can't. |
 | `paths.test.ts` | A path LDCad drew is read with its circles where its submodel puts them, and its links known; its loop goes round the circles and along the straight runs between them; and its links move along it, half way round swapping places. Links LDCad put in a subpart of the path are its links too. A path's caps are parts of their own. A rubber band round two axles turns them together, at speeds in the inverse ratio of its circles, and crossed, the other way. A run of LSynth segments is a path: a rope wound on a drum is read with the drum's circle, a hose with none; and a winch wound with such a rope raises the hook tied to its end as far as the drum's rim turns, straight up. Chain links placed one by one, out of order, are a looped chain round a circle at each gear, as far round as the chain goes in a turn, and turn the gears together; one a link short is closed, one left open further isn't a chain. The 8835 Forklift's chain turns its top sprocket with the bottom one, and the 8844 Helicopter's is found on its front axle. |
 
 ### Mechanisms built for the tests
@@ -975,7 +975,7 @@ Not the pins, axles and small gears inside, nor each link of a track: in seven o
 
 ### The function check
 
-The joints probe can tell that a control moved, but not whether it moved the right thing. `npm run functions` (`scripts/check-functions.ts`) checks each set's functions, what its controls are supposed to do (`curated.functions` in `data/sets/<set>.json`), against what KineBrick does with its model, and writes what it found into the set's `generated`, afresh each time.
+The joints probe can tell that a control moved, but not whether it moved the right thing. `npm run functions` (`scripts/check-functions.ts`) checks each set's functions, what its controls are supposed to do (`curated.functions` in `data/sets/<set>.json`), against what Kinebrick does with its model, and writes what it found into the set's `generated`, afresh each time.
 
 **What it does.** For each function with a control, from where the model was loaded:
 
@@ -1031,7 +1031,7 @@ Browser-level tests for these paths can come later.
 | `src/pack.ts` | Packs a model with every LDraw file it uses into one file the loader reads, for `npm run pack` and for a model opened from your own computer |
 | `src/studio.ts` | Reads the LDraw model out of a BrickLink Studio file (`.io`): a ZIP archive, encrypted with Studio's password |
 | `src/library.ts` | For a model opened from your own computer: fetches its parts from an LDraw library online (erik-larsen.github.io/ldraw, or another given with `?library=`, such as `?library=/ldraw/` for the one in `ldraw/` under `npm run dev`), and keeps the file and the parts in the browser |
-| `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and KineBrick's own settings in it; brings a real LEGO set's file into the shape KineBrick keeps it in |
+| `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and Kinebrick's own settings in it; brings a real LEGO set's file into the shape Kinebrick keeps it in |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
 | `src/shift.ts` | Finds the parts that slide into set positions (driving rings) and the gear levers that move them, and moves them |
@@ -1051,10 +1051,10 @@ Browser-level tests for these paths can come later.
 |---|---|
 | `models/` | Test models |
 | `models/technic-sets.csv` | Every LEGO Technic set, one row each (see [Per-set data](#per-set-data)) |
-| `data/sets/` | Everything known about each real LEGO set, one file per set, in `imported`, `curated` and `generated` sections (see [Per-set data](#per-set-data)): its instruction books, what its controls should do, and KineBrick's own lines for a set in `models/` (settings such as tyre scrub), which `npm run import` puts into its file |
-| `data/corrections.ldr` | KineBrick's own additions to the connection table |
+| `data/sets/` | Everything known about each real LEGO set, one file per set, in `imported`, `curated` and `generated` sections (see [Per-set data](#per-set-data)): its instruction books, what its controls should do, and Kinebrick's own lines for a set in `models/` (settings such as tyre scrub), which `npm run import` puts into its file |
+| `data/corrections.ldr` | Kinebrick's own additions to the connection table |
 | `data/roles.json` | Each part's role; parts not listed are `structure` |
-| `data/not-moving-yet.json` | The moving parts KineBrick can't move yet, each with what it doesn't do, which the viewer lists |
+| `data/not-moving-yet.json` | The moving parts Kinebrick can't move yet, each with what it doesn't do, which the viewer lists |
 | `data/connections.json` | The connection table (generated, don't edit) |
 | `data/library-connections.json` | The connection table for the whole LDraw library, for models opened from your own computer (generated, don't edit) |
 | `packed/` | The packed models and part titles the viewer loads; the LDraw library's primitives and colours; and `pieces.json`, the pieces of every part read as its pieces, for the scripts that read sets from the OMR (generated, don't edit) |
@@ -1075,5 +1075,5 @@ Browser-level tests for these paths can come later.
 | `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
 | `scripts/load-model.ts` | Reads a model as the viewer does, from `models/` or `omr/`, for the probe and the function check |
 | `scripts/survey-branch.ts` | Commits each OMR set's findings from `npm run joints -- --omr --commit` to the `omr-survey` branch, one commit per set per run, and pushes it |
-| `scripts/scan-omr.ts` | Reads every set in `omr/` as the viewer would and reports what KineBrick connects and what it's missing, in `omr/coverage.md` (`npm run scan`) |
+| `scripts/scan-omr.ts` | Reads every set in `omr/` as the viewer would and reports what Kinebrick connects and what it's missing, in `omr/coverage.md` (`npm run scan`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |

@@ -4,7 +4,7 @@ A driving ring locks a differential, so its two sides turn together. (Drivetrain
 
 First appears in 2021, in [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1): The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 partly.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 partly.
 
 ## By decade
 

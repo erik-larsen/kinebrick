@@ -4,7 +4,7 @@ An idler gear on a swinging arm is pulled into mesh when driven one way and kick
 
 First appears in 1998, in [8202 Bungee Chopper](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8202-1): The idler gear rides on a swinging arm hung from a pin at the front of the frame, resting between the rear-axle gear and the reel gear. While the wheels wind the reel, or the reel drives the wheels, the gear forces pull it into mesh; once the bungee is spent and the chopper coasts, or if it's pushed forwards, they kick it up out of mesh so the wheels run free and the string isn't wound the wrong way.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 skipped.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 skipped.
 
 ## By decade
 

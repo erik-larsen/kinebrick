@@ -4,7 +4,7 @@ A rudder at the stern swings to steer a boat. (Steering.)
 
 First appears in 2017, in [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1): Knob C, the gear behind the bridge, steers the ship: its upright shaft turns a long shaft under the deck that runs back to the stern, where cranks on it swing the two rudders together and turn the rear wheel bogie the ship rolls on.
 
-Used in 3 of the 186 surveyed sets, by 3 functions. KineBrick: 3 partly.
+Used in 3 of the 186 surveyed sets, by 3 functions. Kinebrick: 3 partly.
 
 ## By decade
 

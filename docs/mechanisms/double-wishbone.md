@@ -4,7 +4,7 @@ Each wheel's hub rides between an upper and a lower arm. (Suspension.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.
 
-Used in 17 of the 186 surveyed sets, by 26 functions. KineBrick: 8 works, 7 partly, 10 no, 1 skipped.
+Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 8 works, 7 partly, 10 no, 1 skipped.
 
 ## By decade
 

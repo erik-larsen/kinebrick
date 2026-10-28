@@ -4,7 +4,7 @@ Lift arms raise and lower a tractor's implement on two lower links and a top lin
 
 First appears in 1977, in [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.
 
-Used in 7 of the 186 surveyed sets, by 8 functions. KineBrick: 2 works, 3 partly, 2 no, 1 not checked.
+Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 3 partly, 2 no, 1 not checked.
 
 ## By decade
 

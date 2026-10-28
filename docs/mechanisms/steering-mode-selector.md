@@ -4,7 +4,7 @@ A knob or lever sets how the rear wheels steer: against the front ones, not at a
 
 First appears in 2016, in [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1): The red knob at the back, between the rear mudguards, picks one of three steering modes: four wheel steering (the rear wheels turn opposite to the front), front axle steering (the rear wheels stay straight), and crab steering (the rear wheels turn the same way as the front).
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 works.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 works.
 
 ## By decade
 

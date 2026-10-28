@@ -75,7 +75,7 @@ describe('reading model files', () => {
     expect(parts[1].submodel).toBeUndefined(); // in the main model, as the part was
   });
 
-  it("reads KineBrick's own settings from the main model's meta-commands, which other programs skip", () => {
+  it("reads Kinebrick's own settings from the main model's meta-commands, which other programs skip", () => {
     expect(modelSettings(MPD)).toEqual({});
     const withScrub = MPD.replace('0 !LDRAW_ORG Model\n', '0 !LDRAW_ORG Model\n0 !KINEBRICK SCRUB [percent=12.5]\n');
     expect(modelSettings(withScrub)).toEqual({ scrub: 12.5 });

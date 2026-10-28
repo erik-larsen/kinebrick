@@ -5,7 +5,7 @@ import { modelFiles } from '../src/ldr.ts';
 import { packModel } from '../src/pack.ts';
 
 // A model opened from your own computer is packed in the browser, its parts fetched from an LDraw
-// library online, and connected by the table for the whole library. Opening one of KineBrick's
+// library online, and connected by the table for the whole library. Opening one of Kinebrick's
 // own model files that way must give what its packed copy gives.
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
@@ -15,7 +15,7 @@ const primitives = new Set<string>(JSON.parse(readFileSync('packed/primitives.js
 const colours = readFileSync('packed/colours.ldr', 'utf-8').trimEnd();
 
 describe('the table for the whole library', () => {
-  it("has every part of KineBrick's own models, with the same connection points", () => {
+  it("has every part of Kinebrick's own models, with the same connection points", () => {
     for (const [name, cylinders] of Object.entries(table.parts)) expect(library.parts[name] ?? [], name).toEqual(cylinders);
   });
 

@@ -1,4 +1,4 @@
-// Downloads the building instructions of every real LEGO set KineBrick has a model of (each set
+// Downloads the building instructions of every real LEGO set Kinebrick has a model of (each set
 // in models/technic-sets.csv with an omr_url, and each in models/) into omr/instructions/, and
 // writes what it found into the set's data/sets/<set>.json, as its imported.instructions. LEGO's
 // own PDFs where its site has them (omr/instructions/<set>-<n>.pdf, in the order its site lists

@@ -4,7 +4,7 @@ Lights, fibre optics or switches that only work electrically. (Not mechanisms.)
 
 First appears in 2013, in [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1): The headlights (two Power Functions LEDs) light up when the battery box is switched on.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. KineBrick: 1 skipped, 1 not checked.
+Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 1 skipped, 1 not checked.
 
 ## By decade
 

@@ -4,7 +4,7 @@ The wings pivot near their roots to sweep back and forward together. (Engines an
 
 First appears in 2012, in [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1): Turning the round exhaust nozzle at the tail sweeps both wings back and forward together: the nozzle's 24-tooth gear turns a small gear on an axle with a worm, the worm turns a 24-tooth gear whose two gears drive a pair of racks along the fuselage, and the racks' cross axle pushes a link to each wing, which pivots near the wing root.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 works.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 works.
 
 ## By decade
 

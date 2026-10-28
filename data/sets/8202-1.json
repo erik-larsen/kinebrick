@@ -46,7 +46,7 @@
           "p65 2994",
           "p68 2994"
         ],
-        "skip": "driven by the stretched bungee's pull, a force KineBrick doesn't simulate; kinematically it's the wind-up run backwards"
+        "skip": "driven by the stretched bungee's pull, a force Kinebrick doesn't simulate; kinematically it's the wind-up run backwards"
       },
       {
         "does": "The idler gear rides on a swinging arm hung from a pin at the front of the frame, resting between the rear-axle gear and the reel gear. While the wheels wind the reel, or the reel drives the wheels, the gear forces pull it into mesh; once the bungee is spent and the chopper coasts, or if it's pushed forwards, they kick it up out of mesh so the wheels run free and the string isn't wound the wrong way.",
@@ -55,7 +55,7 @@
         ],
         "source": "inferred: book 1 step 20 builds the idler on a pivoting arm rather than a fixed axle; the book doesn't say what it's for. Unsure which way of turning throws it out",
         "control": "p45 32013",
-        "skip": "a one-way clutch held by gear forces and gravity, which KineBrick doesn't simulate; for the wind-up the arm should stay down with the idler in mesh"
+        "skip": "a one-way clutch held by gear forces and gravity, which Kinebrick doesn't simulate; for the wind-up the arm should stay down with the idler in mesh"
       },
       {
         "does": "The twin front wheels roll freely together on their short axle at the end of the long fork; there's no steering.",

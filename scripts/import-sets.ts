@@ -1,7 +1,7 @@
-// Brings the real LEGO sets in models/ into the shape KineBrick keeps them in (see importSet in
+// Brings the real LEGO sets in models/ into the shape Kinebrick keeps them in (see importSet in
 // src/ldr.ts). A set's file as downloaded from the LDraw Official Model Repository, named like
 // "956 - Auto Chassis.mpd", becomes "956-Auto Chassis.mpd", replacing any older copy, and every
-// set gets KineBrick's own lines for it from its file in data/sets/ (its curated settings, by its
+// set gets Kinebrick's own lines for it from its file in data/sets/ (its curated settings, by its
 // name in models/). Sets already imported are left as they are.
 //
 // Run with: npm run import (npm run data runs it first)
@@ -13,7 +13,7 @@ import { importSet } from '../src/ldr.ts';
 const MODELS_DIR = 'models';
 const SETS_DIR = join('data', 'sets');
 
-// KineBrick's own lines for each set in models/, by its name there.
+// Kinebrick's own lines for each set in models/, by its name there.
 const lines: Record<string, string[]> = {};
 for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
   Object.assign(lines, JSON.parse(readFileSync(join(SETS_DIR, file), 'utf-8')).curated.settings);

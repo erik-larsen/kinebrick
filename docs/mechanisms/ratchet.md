@@ -4,7 +4,7 @@ A pawl on a gear lets it turn one way only until it's lifted. (Holding.)
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): A ratchet holds the boom up: the yellow lever's pawl rests on the luffing gears, so the boom can be raised, and lifting the lever lets it be lowered.
 
-Used in 6 of the 186 surveyed sets, by 6 functions. KineBrick: 6 skipped.
+Used in 6 of the 186 surveyed sets, by 6 functions. Kinebrick: 6 skipped.
 
 ## By decade
 

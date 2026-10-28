@@ -4,7 +4,7 @@ The headlights tip up out of the bodywork and fold back down, by hand or from a 
 
 First appears in 1994, in [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car): The headlights pop up: the small knob on the centre console, just in front of the gear lever, turns a shaft through a universal joint, two 16 tooth gears and a pair of bevel gears to a cross shaft at the nose, which tips both headlight pods up together.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. KineBrick: 1 works, 1 partly.
+Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 1 works, 1 partly.
 
 ## By decade
 

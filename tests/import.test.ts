@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { importSet, modelFiles, modelSettings } from '../src/ldr.ts';
 
-// KineBrick's own lines for each real LEGO set, by its name in models/, from data/sets/.
+// Kinebrick's own lines for each real LEGO set, by its name in models/, from data/sets/.
 const sets: Record<string, string[]> = {};
 for (const file of readdirSync('data/sets').filter((f) => f.endsWith('.json'))) {
   Object.assign(sets, JSON.parse(readFileSync(`data/sets/${file}`, 'utf-8')).curated.settings);
@@ -28,7 +28,7 @@ const FRESH = [
 ].join('\r\n');
 
 // A set's own lines, as its file in data/sets/ has them.
-const LINES = ['0 // KineBrick: its tyres scrub', '0 !KINEBRICK SCRUB [percent=16]'];
+const LINES = ['0 // Kinebrick: its tyres scrub', '0 !KINEBRICK SCRUB [percent=16]'];
 
 describe('Importing real LEGO sets', () => {
   it('leaves every set in models/ as it is: each is already imported, with its own lines from data/sets/', () => {

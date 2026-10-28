@@ -4,7 +4,7 @@ Handlebars turn the whole fork with its wheel or ski, as on a motorbike. (Steeri
 
 First appears in 1991, in [8810 Cafe Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8810-1) and [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1): The handlebars steer the front wheel: the whole front fork, with its two long fork legs, headlight and handlebars, turns on a 4-long axle pushed down through the frame's motorcycle steering head.
 
-Used in 8 of the 186 surveyed sets, by 8 functions. KineBrick: 3 partly, 5 no.
+Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 partly, 5 no.
 
 ## By decade
 

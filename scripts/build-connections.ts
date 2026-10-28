@@ -1,10 +1,10 @@
-// Builds data/connections.json, KineBrick's connection table.
+// Builds data/connections.json, Kinebrick's connection table.
 //
 // For every part used by the test models in models/, it collects the part's connection
 // points (holes, axles, pins, studs) from three sources:
 //   1. the LDraw parts library (ldraw/): which primitives and subparts each part is built from
 //   2. the LDCad shadow library (ldcad-shadow/): snap lines attached to parts and primitives
-//   3. KineBrick's corrections (data/corrections.ldr): snap lines for what 1 and 2 miss
+//   3. Kinebrick's corrections (data/corrections.ldr): snap lines for what 1 and 2 miss
 // It also builds data/library-connections.json, the same for every part in the LDraw library,
 // for models opened from your own computer.
 //
@@ -366,7 +366,7 @@ function ownShadowCylinders(name: string): WorkingCylinder[] {
 }
 
 // All cylinders of an LDraw file: inherited from the files it references, then changed by
-// its shadow lines and KineBrick's corrections, in order.
+// its shadow lines and Kinebrick's corrections, in order.
 function fileCylinders(name: string): WorkingCylinder[] {
   const cached = cache.get(name);
   if (cached) return cached;

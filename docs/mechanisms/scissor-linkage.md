@@ -4,7 +4,7 @@ Lazy tongs that stretch out and fold back. (Moving and lifting.)
 
 First appears in 1998, in [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1) and [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1): The buggy's punch: turning the small black knob low on the buggy's right side swings a lever that opens the scissor arm, shooting its yellow rubber-tipped end forward at the robot.
 
-Used in 2 of the 186 surveyed sets, by 3 functions. KineBrick: 1 works, 2 partly.
+Used in 2 of the 186 surveyed sets, by 3 functions. Kinebrick: 1 works, 2 partly.
 
 ## By decade
 

@@ -65,7 +65,7 @@
           "pull-back-motor: rubber band"
         ],
         "source": "book: robot steps 5-8 (pages 14-16, a hand hooks the band over the towball), page 28 panel 1 (the robot pulled back, then running forward); inferred: which way it's wound",
-        "skip": "a spring: only matters under force, which KineBrick doesn't simulate yet; the band's path is drawn in the model (8245 - ls05 and the cylinder primitives)"
+        "skip": "a spring: only matters under force, which Kinebrick doesn't simulate yet; the band's path is drawn in the model (8245 - ls05 and the cylinder primitives)"
       },
       {
         "does": "The two small black wheels at the end of the purple tail roll freely.",

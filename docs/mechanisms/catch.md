@@ -4,7 +4,7 @@ A latch, lock or detent holds a part in place until it's released. (Holding.)
 
 First appears in 1998, in [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1): Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.
 
-Used in 14 of the 186 surveyed sets, by 19 functions. KineBrick: 6 works, 4 partly, 5 no, 4 skipped.
+Used in 14 of the 186 surveyed sets, by 19 functions. Kinebrick: 6 works, 4 partly, 5 no, 4 skipped.
 
 ## By decade
 

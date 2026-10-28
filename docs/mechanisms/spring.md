@@ -4,7 +4,7 @@ A spring or rubber band holds a part up, pulls it back, or springs it back once 
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The rubber band pulls the ratchet's lever down onto the gears.
 
-Used in 54 of the 186 surveyed sets, by 63 functions. KineBrick: 3 works, 4 partly, 56 skipped.
+Used in 54 of the 186 surveyed sets, by 63 functions. Kinebrick: 3 works, 4 partly, 56 skipped.
 
 ## By decade
 

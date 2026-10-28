@@ -1,5 +1,5 @@
 // Checks each real LEGO set's functions (curated.functions in data/sets/<set>.json, what each
-// control is supposed to do) against what KineBrick does with the set's model, and writes what it
+// control is supposed to do) against what Kinebrick does with the set's model, and writes what it
 // found into the set's generated section, afresh each time. Each function's control is worked
 // both ways from where the model was loaded (after its `first` controls), as a drag on it would
 // (holding what a drag holds): a turn of REACH radians, or a push of PUSH LDU for a slide. A way

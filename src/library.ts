@@ -1,11 +1,11 @@
 // Models opened from your own computer. The site has no LDraw parts library of its own (each of
-// KineBrick's models comes packed with the parts it uses, see src/pack.ts), so the viewer packs
+// Kinebrick's models comes packed with the parts it uses, see src/pack.ts), so the viewer packs
 // such a model itself, fetching the parts it uses from an LDraw library online, and keeps the
 // file in the browser, so the page can reload with it.
 
 // A copy of the LDraw parts library, kept up to date from ldraw.org's complete.zip (whose own
 // site doesn't let other sites fetch from it), in the erik-larsen/ldraw repository, published on
-// the same site as KineBrick. Parts newer than its last update are missing; a model file may
+// the same site as Kinebrick. Parts newer than its last update are missing; a model file may
 // bring those with it.
 export const LDRAW_LIBRARY = 'https://erik-larsen.github.io/ldraw/';
 

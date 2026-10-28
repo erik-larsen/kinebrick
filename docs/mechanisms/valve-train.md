@@ -4,7 +4,7 @@ A camshaft lifts push rods and rockers to open the valves. (Engines and aircraft
 
 First appears in 1980, in [858 Auto Engines](https://erik-larsen.github.io/kinebrick/?model=858-Auto%20Engines-2-Cycle%20Engine): Inline engine: pins on the camshaft's gears lift the three push rods in turn, and each rod tips its valve's rocker on the axle across the top of the cylinders; between pins, each rod drops back onto the plate it stands through, and its rocker onto the rod, or the studs below.
 
-Used in 1 of the 186 surveyed sets, by 3 functions. KineBrick: 3 works.
+Used in 1 of the 186 surveyed sets, by 3 functions. Kinebrick: 3 works.
 
 ## By decade
 

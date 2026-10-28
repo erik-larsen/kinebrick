@@ -4,7 +4,7 @@ A screw or worm slides a track's idler to tighten or slacken the track. (Drivetr
 
 First appears in 2021, in [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1): A worm on each track frame, turned by a gear on the side, slides the front idler to tension the track.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 skipped.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 skipped.
 
 ## By decade
 

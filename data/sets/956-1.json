@@ -76,7 +76,7 @@
         "moves": [
           "p555 3737"
         ],
-        "note": "checked by tests/sets/956-auto-chassis.test.ts; KineBrick lets the lever slide its shaft through the SLIDE line in this file's curated.settings"
+        "note": "checked by tests/sets/956-auto-chassis.test.ts; Kinebrick lets the lever slide its shaft through the SLIDE line in this file's curated.settings"
       },
       {
         "does": "The 24 tooth gear on the right side of the chassis slides the right front seat forward and back: its 8 tooth gear runs in a rack under the seat.",
@@ -122,7 +122,7 @@
     ],
     "settings": {
       "956-Auto Chassis": [
-        "0 // KineBrick: its gear lever slides its input shaft 20 LDU back, from meshing with the gear that drives the engine through a 24 tooth gear to meshing with the crankshaft's own 8 tooth gear",
+        "0 // Kinebrick: its gear lever slides its input shaft 20 LDU back, from meshing with the gear that drives the engine through a 24 tooth gear to meshing with the crankshaft's own 8 tooth gear",
         "0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.615 -108.469] [dir=0 0 -1] [positions=0,20]"
       ]
     }

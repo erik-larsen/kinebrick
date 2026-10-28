@@ -4,7 +4,7 @@ A rigid axle swings side to side on a central pivot or turntable. (Suspension.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.
 
-Used in 8 of the 186 surveyed sets, by 9 functions. KineBrick: 1 works, 2 partly, 4 no, 2 skipped.
+Used in 8 of the 186 surveyed sets, by 9 functions. Kinebrick: 1 works, 2 partly, 4 no, 2 skipped.
 
 ## By decade
 

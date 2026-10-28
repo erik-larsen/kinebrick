@@ -81,7 +81,7 @@ const params = new URLSearchParams(window.location.search);
 const modelParam = params.get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
 // A model opened from your own computer, by its file name, e.g. ?file=my-car.mpd, in place of
-// one of KineBrick's own: the browser keeps the file (see library.ts), so only this browser has it.
+// one of Kinebrick's own: the browser keeps the file (see library.ts), so only this browser has it.
 const FILE = params.get('file');
 // The LDraw library such a model's parts come from, if not the usual one (LDRAW_LIBRARY), e.g.
 // ?library=/ldraw/ for the one in ldraw/, served by npm run dev.
@@ -263,7 +263,7 @@ async function start() {
 
   // The model's file, which of the files it places are LDraw primitives (drawn shapes) and which
   // parts are read as their pieces, as the packer found, its connection table, and the packed
-  // model, loaded. One of KineBrick's own models comes packed (npm run pack); one opened from
+  // model, loaded. One of Kinebrick's own models comes packed (npm run pack); one opened from
   // your own computer is packed here and now, with the parts it uses fetched from the library.
   let modelText: string;
   let packed: { primitives: string[]; pieces: Record<string, string[]> } | undefined;
@@ -463,7 +463,7 @@ async function start() {
       }
     }
     for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
-    // Nor are any two gears: KineBrick doesn't know where each gear's teeth are round it, so
+    // Nor are any two gears: Kinebrick doesn't know where each gear's teeth are round it, so
     // two gears coming into mesh would seem to run into each other tip to tip, short of it (the
     // 952 Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short).
     for (const a of mech.gears) for (const b of mech.gears) if (a.part !== b.part) connected.add(pairKey(a.part, b.part));
@@ -876,7 +876,7 @@ function frameCamera(model: Object3D, groundY: number | null): GridHelper {
   return grid;
 }
 
-// The parts KineBrick knows no connection points for, so they can't connect to anything (by
+// The parts Kinebrick knows no connection points for, so they can't connect to anything (by
 // file name, each once), other than decoration, which needs none.
 function unconnected(parts: PlacedPart[], table: ConnectionTable, roles: Record<string, string>): string[] {
   const names = new Set(parts.filter((p) => !p.path).map((p) => libraryName(p.name, table)));
@@ -884,7 +884,7 @@ function unconnected(parts: PlacedPart[], table: ConnectionTable, roles: Record<
 }
 
 // Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red,
-// marked ⚠), the parts KineBrick can't connect, the moving parts it can't move yet (from
+// marked ⚠), the parts Kinebrick can't connect, the moving parts it can't move yet (from
 // data/not-moving-yet.json, each with what it doesn't do), and the files that couldn't be found,
 // so aren't drawn: under Warnings, which counts each kind, and opens to the list.
 async function showWarnings(names: string[], loose: number[], unconnected: string[], stuck: string[], missing: string[]) {
@@ -901,7 +901,7 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
   }
   if (unconnected.length) {
     const what = unconnected.length === 1 ? 'a part' : `${unconnected.length} parts`;
-    lines.push(`KineBrick doesn't know how ${what} can connect: ${await list(unconnected, 8)}`);
+    lines.push(`Kinebrick doesn't know how ${what} can connect: ${await list(unconnected, 8)}`);
   }
   if (stuck.length) {
     const reasons: Record<string, string> = notMovingYet;
@@ -924,10 +924,10 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
 }
 
 // ---------------------------------------------------------------------------
-// The model picker: KineBrick's own models, and a model of your own, opened from your computer
+// The model picker: Kinebrick's own models, and a model of your own, opened from your computer
 // (picked, or dropped on the page). The browser keeps the file and the page reloads with it.
 
-// KineBrick's own test models are grouped under Test models; the official sets that work in full
+// Kinebrick's own test models are grouped under Test models; the official sets that work in full
 // under Working sets; and those that don't yet (data/wip-models.json: those marked WIP in the
 // README, and those it doesn't show yet) under Work in progress sets.
 const picker = document.getElementById('model') as HTMLSelectElement;
@@ -965,7 +965,7 @@ picker.addEventListener('change', () => {
 async function openFile(file: File | undefined) {
   if (!file) return;
   try {
-    if (!/\.(ldr|mpd|io)$/i.test(file.name)) throw new Error('KineBrick opens LDraw models (.ldr or .mpd files) and BrickLink Studio files (.io)');
+    if (!/\.(ldr|mpd|io)$/i.test(file.name)) throw new Error('Kinebrick opens LDraw models (.ldr or .mpd files) and BrickLink Studio files (.io)');
     // A Studio file is kept as the LDraw model inside it (see studio.ts), under its own name.
     await keepFile(file.name, /\.io$/i.test(file.name) ? await studioModel(await file.arrayBuffer()) : await file.text());
     openModel((p) => p.set('file', file.name));

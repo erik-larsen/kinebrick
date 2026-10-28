@@ -4,7 +4,7 @@ A track's idler or rollers ride on sprung arms. (Suspension.)
 
 First appears in 2019, in [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1): Each track's raised front idler sits on a sprung arm, held out by a small shock absorber.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. KineBrick: 1 skipped.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 skipped.
 
 ## By decade
 
