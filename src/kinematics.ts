@@ -1179,7 +1179,7 @@ export class Kinematics {
     for (const { shafts } of this.couplings) ties.push(shafts.flatMap((sh) => [sh.body, sh.mount]));
     for (const screw of this.mech.screws ?? []) ties.push([screw.input, screw.piston]);
     for (const rest of this.mech.rests ?? []) ties.push([rest.body, ...rest.on.map((c) => c.body)]);
-    for (const loop of this.mech.loops ?? []) ties.push(loop.wheels.flatMap((w) => [w.body, w.mount]));
+    for (const loop of this.mech.loops ?? []) ties.push([...loop.wheels.flatMap((w) => [w.body, w.mount]), ...(loop.hooks ?? []).map((h) => this.mech.joints[h.joint].bodyB)]);
     for (const st of this.mech.strings ?? []) {
       const wheels = [...(st.drum ? [st.drum] : []), ...st.pulleys];
       ties.push([...wheels.flatMap((w) => [w.body, w.mount]), ...(st.start ? [st.start.body] : []), st.end.body, ...(st.hook ? [st.hook.body] : [])]);
@@ -1607,6 +1607,21 @@ export class Kinematics {
         return row;
       });
       for (let r = 1; r < rims.length; r++) add(rims[0].map((x, k) => x - rims[r][k]), 0, DRIVE_WEIGHT);
+      // What's hooked to it slides along its joint at the speed of the loop's run there: as fast
+      // as its wheel's rim turns in what it slides on. Its gap: how far it has slid short of how
+      // far the loop has moved.
+      for (const hook of loop.hooks ?? []) {
+        const joint = this.mech.joints[hook.joint];
+        const w = loop.wheels[hook.wheel];
+        const c = joint.from.clone().applyMatrix4(this.poses[joint.bodyA]);
+        const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+        const row = this.rimRate(w.body, w.mount, loop.path.points[w.point], n);
+        for (let k = 0; k < 3; k++) {
+          addPointVelocity(row, joint.bodyB, c, k, -d.getComponent(k));
+          addPointVelocity(row, joint.bodyA, c, k, d.getComponent(k));
+        }
+        add(row, gaps ? this.slideOffset(hook.joint) - this.wheelTravel(loop.path.points[w.point], w) : 0, DRIVE_WEIGHT);
+      }
     }
 
     // A string keeps its length: as the bodies carrying its circles move, its free length
@@ -1677,9 +1692,12 @@ export class Kinematics {
   // start, in LDU, the way its path goes: as far as its first wheel's rim has turned.
   loopTravel(loop: number): number {
     const { path, wheels } = this.mech.loops[loop];
-    const w = wheels[0];
-    if (!w) return 0;
-    const point = path.points[w.point];
+    return wheels[0] ? this.wheelTravel(path.points[wheels[0].point], wheels[0]) : 0;
+  }
+
+  // How far a wheel's rim has turned in what it turns in since the start, in LDU, the way a
+  // path goes round its circle `point`.
+  private wheelTravel(point: { axis: Vector3; radius: number; turn: number }, w: { body: number; joint: number }): number {
     const j = this.mech.joints[w.joint];
     // The joint turns bodyB relative to bodyA about its own axis; the wheel turns about the
     // circle's.

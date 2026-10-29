@@ -103,6 +103,23 @@ export class LoopPath {
     return new Matrix4().makeBasis(x, y, this.axis).setPosition(p);
   }
 
+  // The straight run `s` LDU along the path is on, or null if it's going round a circle: how far
+  // the run reaches back from there and on from there, and the circles (indices into the path's
+  // points) it runs from and to.
+  runAt(s: number): { back: number; on: number; from: number; to: number } | null {
+    let rest = ((s % this.length) + this.length) % this.length;
+    for (let i = 0; i < this.pieces.length; i++) {
+      const piece = this.pieces[i];
+      if (rest <= piece.length) {
+        if (piece.center) return null;
+        const circles = this.pieces.length / 2;
+        return { back: rest, on: piece.length - rest, from: (i - 1) / 2, to: ((i + 1) / 2) % circles };
+      }
+      rest -= piece.length;
+    }
+    return null;
+  }
+
   // How far along the path the point nearest `p` is (to within a quarter of an LDU).
   nearest(p: Vector3): number {
     let best = 0;

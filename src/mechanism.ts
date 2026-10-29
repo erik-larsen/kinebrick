@@ -5,6 +5,7 @@ import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
 import { acrossDirections, Kinematics, nullSpace } from './kinematics.ts';
 import { PathPoint, PlacedPath, PlacedPart } from './ldr.ts';
+import { LoopPath } from './paths.ts';
 
 // How far apart two connection points may be and still count as connected, in LDU.
 const AXIS_TOLERANCE = 0.5;
@@ -56,6 +57,10 @@ const BALL_TOLERANCE = 2.5;
 // How far beyond a string's circle the middle of the part it goes round may be, in LDU (see
 // findStrings): LSynth runs a crane's rope round the edge of a cross block 12 LDU from its middle.
 const GUIDE_REACH = 15;
+// How near the middle of a chain's gap a connection point of what's hooked to its ends must be,
+// in LDU (see hookedParts): the 8835 Forklift's carriage's nearest is 20 LDU from it, behind the
+// chain tread closing the gap.
+const HOOK_REACH = 24;
 // How far off where it should be on its body's axis a linear actuator's input or piston may be
 // built, and still be taken for it, in LDU (see linearActuators).
 const ACTUATOR_REACH = 3;
@@ -148,6 +153,11 @@ export interface Loop {
   // nearest its middle (the peg a rubber band is hooked round). A loop with no links of its own
   // (a rubber band, drawn as shapes) is drawn afresh round where these have taken its points.
   carriers: number[];
+  // What's hooked to it (a fork-lift's carriage, hooked to both ends of its chain): each a slide
+  // joint (an index into Mechanism.joints) along the run it's hooked on, whose bodyB the loop
+  // carries along it at its speed, as fast as the rim of `wheel` (an index into wheels) turns in
+  // bodyA (see chainHooks).
+  hooks?: { joint: number; wheel: number }[];
 }
 
 // A wheel a loop wraps: the body that turns on `joint`, in `mount`, where the path goes round
@@ -415,10 +425,12 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
   connections.push(...bushesOnFourStuds(roles, cyls, connections));
   connections.push(...onAxleTips(cyls, connections));
-  // Loose parts hanging on a string are held by it; the rest ride along with what's nearest.
+  // Loose parts hanging on a string, or hooked to a chain, are held by it; the rest ride along
+  // with what's nearest.
   connections.push(...looseFits(roles, cyls, connections, frictionRigid));
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections), paths);
-  const loose = findLooseParts(parts.length, connections).filter((i) => !hanging.has(i));
+  const hooked = hookedParts(cyls, connections, findLooseParts(parts.length, connections), paths);
+  const loose = findLooseParts(parts.length, connections).filter((i) => !hanging.has(i) && !hooked.has(i));
   connections.push(...rideAlong(parts, cyls, connections, loose));
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
@@ -436,6 +448,9 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const ballAt = (partA: number, partB: number, center: Vector3) => joints.find((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(bodyOf[partA]) && [j.bodyA, j.bodyB].includes(bodyOf[partB]) && j.from.distanceTo(center) < BALL_LINE)?.from.clone() ?? center;
   const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball' }));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
+  // What's hooked to a chain it can't slide along is loose after all (it rides along with nothing).
+  loose.push(...chainHooks(parts, bodyOf, joints, loops, hooked));
+  loose.sort((a, b) => a - b);
   treads.push(...trackTreads(loops));
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   // An actuator whose input or piston is fixed to its body (by what's built round it) can't work.
@@ -1054,6 +1069,79 @@ function hangingParts(parts: PlacedPart[], connections: Connection[], loose: num
   for (const c of connections) if (isLoose.has(c.male) && isLoose.has(c.female)) leader.set(find(c.male), find(c.female));
   const groups = new Set(loose.filter((i) => ends.includes(i) || circles.some((q) => at[i].distanceTo(q.center) < q.radius)).map(find));
   return new Set(loose.filter((i) => groups.has(find(i))));
+}
+
+// The loose parts hooked to a chain's ends, and the chain each is hooked to: for each chain placed
+// by hand that doesn't close up, the biggest group of loose parts attached to each other with a
+// connection point within HOOK_REACH of the middle of the gap between its ends (a fork-lift's
+// carriage, hooked to both ends of a chain a link short, which closes it). The chain carries it
+// (see chainHooks). Smaller groups there ride along with what's nearest, as loose parts do: the
+// 8835 Forklift's chain tread, the chain's missing link, which in the real model is held between
+// four bushes in the carriage.
+function hookedParts(cyls: WorldCylinder[], connections: Connection[], loose: number[], paths: PlacedPath[]): Map<number, PlacedPath> {
+  const isLoose = new Set(loose);
+  const leader = new Map(loose.map((i) => [i, i]));
+  const find = (i: number): number => {
+    while (leader.get(i) !== i) i = leader.get(i)!;
+    return i;
+  };
+  for (const c of connections) if (isLoose.has(c.male) && isLoose.has(c.female)) leader.set(find(c.male), find(c.female));
+  const size = new Map<number, number>();
+  for (const i of loose) size.set(find(i), (size.get(find(i)) ?? 0) + 1);
+  const hooked = new Map<number, PlacedPath>();
+  for (const path of paths) {
+    if (!path.looped || !path.ends) continue;
+    const middle = path.ends[0].clone().add(path.ends[1]).multiplyScalar(0.5);
+    const near = new Set(cyls.filter((c) => isLoose.has(c.part) && !hooked.has(c.part) && c.start.distanceTo(middle) < HOOK_REACH).map((c) => find(c.part)));
+    const group = [...near].reduce((best, g) => (best < 0 || size.get(g)! > size.get(best)! ? g : best), -1);
+    for (const i of loose) if (group >= 0 && find(i) === group) hooked.set(i, path);
+  }
+  return hooked;
+}
+
+// What's hooked to a chain's ends (see hookedParts) slides along the straight run the chain's gap
+// is on, as far as it goes, on what the wheel at one end of that run turns in: of the two, the
+// one furthest from the frame (a fork-lift's mast, which tilts on the frame about its bottom
+// sprocket's axle). Of the bodies hooked, the one with the most parts slides (a carriage, not the
+// axle pins turning in it); the chain carries it along at the speed that wheel's rim turns in
+// what it slides on (see Loop's hooks). Returns the hooked parts it couldn't slide: on a chain
+// with no wheel at either end of the run its gap is on, or with its gap round a wheel.
+function chainHooks(parts: PlacedPart[], bodyOf: number[], joints: Joint[], loops: Loop[], hooked: Map<number, PlacedPath>): number[] {
+  const steps = stepsFromFrame(joints);
+  const at = (i: number) => new Vector3().setFromMatrixPosition(parts[i].matrix);
+  const slid = new Set<PlacedPath>();
+  for (const loop of loops) {
+    const ends = loop.path.ends;
+    const mine = [...hooked.keys()].filter((i) => hooked.get(i) === loop.path);
+    if (!ends || !mine.length) continue;
+    const count = (b: number) => mine.filter((i) => bodyOf[i] === b).length;
+    const body = mine.map((i) => bodyOf[i]).reduce((best, b) => (count(b) > count(best) ? b : best));
+    let path: LoopPath;
+    try {
+      path = new LoopPath(loop.path.points);
+    } catch {
+      continue;
+    }
+    const middle = ends[0].clone().add(ends[1]).multiplyScalar(0.5);
+    const s = path.nearest(middle);
+    const run = path.runAt(s);
+    if (!run) continue;
+    const wheel = loop.wheels.reduce((best, w, k) => ((w.point === run.from || w.point === run.to) && (best < 0 || steps[w.mount] > steps[loop.wheels[best].mount]) ? k : best), -1);
+    if (wheel < 0) continue;
+    const frame = path.frameAt(s);
+    const from = new Vector3().setFromMatrixPosition(frame);
+    const along = new Vector3().setFromMatrixColumn(frame, 0);
+    const w = loop.wheels[wheel];
+    // Run to either end, it meets a wheel: its part nearest the gap, and the part of that wheel
+    // nearest its circle's middle.
+    const center = loop.path.points[w.point].center;
+    const nearest = (list: number[], p: Vector3) => list.reduce((best, i) => (at(i).distanceTo(p) < at(best).distanceTo(p) ? i : best));
+    const sliding: [number, number] = [nearest(mine.filter((i) => bodyOf[i] === body), middle), nearest(parts.flatMap((_, i) => (bodyOf[i] === w.body ? [i] : [])), center)];
+    joints.push({ kind: 'slide', bodyA: w.mount, bodyB: body, from, to: from.clone().add(along), stiff: false, range: [-run.back, run.on], sliding });
+    loop.hooks = [...(loop.hooks ?? []), { joint: joints.length - 1, wheel }];
+    slid.add(loop.path);
+  }
+  return [...hooked.keys()].filter((i) => !slid.has(hooked.get(i)!));
 }
 
 // A track touches the ground under its wheels, its links reaching `depth` beyond its path: so

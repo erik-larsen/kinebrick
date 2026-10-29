@@ -26,6 +26,7 @@ export interface PlacedPath {
   skin: string; // the part it's made of, e.g. "3873.dat"
   points: PathPoint[]; // in order along the path
   byHand?: boolean; // its links placed one by one, not along a path (see chainPaths): its circles are only roughly where its wheels are
+  ends?: [Vector3, Vector3]; // a chain placed by hand that doesn't close up: its last link's pin and its first link's end, either side of the gap
 }
 
 export interface PathPoint {
@@ -136,6 +137,8 @@ function chainPaths(parts: PlacedPart[]) {
     const circles = chainCircles(points);
     if (!circles.length) continue;
     const path: PlacedPath = { looped: true, skin: CHAIN_LINK, points: circles, byHand: true };
+    const last = pin(chain[chain.length - 1]);
+    if (last.distanceTo(points[0]) > CHAIN_FIT) path.ends = [last, points[0]];
     for (const i of chain) parts[i].path = path;
   }
 }

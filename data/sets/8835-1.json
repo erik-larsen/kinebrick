@@ -31,7 +31,7 @@
           "p231 2695c01",
           "p232 2695c01"
         ],
-        "note": "Kinebrick today: partly. The gears turn as far as the mast's bottom axle and sprocket (p75), and the chain, placed link by link and closed by the fork carriage hooked to both its ends, turns the top sprocket (p71) with it. But the fork carriage is welded to the mast (its parts p35-p70 are loose and lumped onto the mast's body), and nothing ties it to the chain, so the forks don't rise. The front axle is only a shaft here: the front wheels' round holes let them spin freely on it. The worm can't be driven back, so turning the front axle or a gear by hand does nothing, as it should."
+        "note": "Kinebrick today: works. The gears turn the mast's bottom axle and sprocket (p75), and the chain, placed link by link, turns the top sprocket (p71) with it. The chain is a link short, closed by the fork carriage hooked to both its ends: the carriage (p35-p70) slides up and down the mast, and the chain carries it as far as it moves round, about 1.9 LDU per radian of the crank, up to 150 LDU, where the chain tread reaches the top sprocket. The chain tread closing the gap (p52) is held between four bushes on the carriage in the real model, which Kinebrick doesn't read, so it's still listed loose and rides along with the carriage. The front axle is only a shaft here: the front wheels' round holes let them spin freely on it. The worm can't be driven back, so turning the front axle or a gear, or pushing the forks, does nothing, as it should."
       },
       {
         "does": "The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle.",
@@ -94,71 +94,27 @@
     ]
   },
   "generated": {
-    "commit": "940beda",
+    "commit": "aa2d82a",
     "uncommitted": true,
-    "date": "2026-10-28",
+    "date": "2026-10-29",
     "counts": {
-      "partly": 1,
-      "no": 1,
-      "works": 2
+      "works": 3,
+      "no": 1
     },
     "loose": [
-      "p35 3460",
-      "p36 3024",
-      "p37 3024",
-      "p38 3701",
-      "p39 3003",
-      "p40 3003",
-      "p41 3023b",
-      "p42 3023b",
-      "p43 3702",
-      "p44 3749",
-      "p45 3749",
-      "p46 3749",
-      "p47 3749",
-      "p48 4265a",
-      "p49 4265a",
-      "p50 4265a",
-      "p51 4265a",
       "p52 3873",
-      "p53 3024",
-      "p54 3024",
-      "p55 3710",
-      "p56 3710",
-      "p57 2420",
-      "p58 2420",
-      "p59 2420",
-      "p60 2420",
-      "p61 3701",
-      "p62 3701",
-      "p63 2823",
-      "p64 2823",
-      "p65 4459",
-      "p66 4459",
-      "p67 4459",
-      "p68 4459",
-      "p69 3894",
-      "p70 3894",
       "p80 3711",
-      "p81 3711",
-      "p82 3711",
-      "p83 3711",
-      "p119 3711",
-      "p120 3711",
       "p121 3711",
       "p122 3711"
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p63 2823 against p29 3703"
         ]
       },
       {

@@ -225,6 +225,7 @@ A looped path (a chain, a track, a rubber band) goes round wheels:
 
 - **Which circles are on wheels.** A circle of the path whose middle a turning joint's axis runs through, along the circle's axis, is on a wheel. The wheel is the joint's body with a part on that axis nearest the circle's middle along it (a 40 tooth gear a track runs round, or an axle a winch's string is wound on).
 - **A chain placed link by link** is only roughly round its wheels: its circle is on the wheel whose axis passes within 2 LDU of its middle (the 8835 Forklift's are 0.7 LDU off its sprockets), and is moved onto that axis.
+- **What's hooked to a chain's ends.** A chain placed link by link that doesn't close up is closed by what's hooked to both its ends: the biggest group of otherwise loose parts with a connection point within 24 LDU of the middle of its gap (the 8835 Forklift's carriage, 20 LDU from it, behind the chain tread that closes the gap). It isn't loose: it slides along the straight run the gap is on, as far as that run goes, on what the wheel at one end of it turns in (of the two, the one furthest from the frame: a fork-lift's mast, which tilts on the frame about its bottom sprocket's axle), and the chain carries it along at its speed (see [step 7](#7-solve)). Smaller groups there ride along with what's nearest, as loose parts do: the 8835's chain tread, which the real model holds between four bushes on the carriage, rides along with it. With no wheel at either end of that run, or its gap round a wheel, it can't slide, and is loose after all.
 - **What it turns in.** It turns in the joint's other body. Of its joints on that axis, it's the one in what's nearest the frame: a gearbox's output shaft turns in the frame and in the clutch gears freewheeling on it, and it's how it turns in the frame that drives its chain.
 - **A circle on nothing that turns** (a peg a rubber band is hooked round) is left out: the band slides round it.
 - **A rubber band** is drawn afresh round where its circles are now. One whose circles don't lie in one plane keeps the pieces LDCad drew it with, and they move with the first thing it's hooked round (the 855 Mobile Crane's, on its cab, slews with it).
@@ -353,6 +354,7 @@ Each connection is a rule about those numbers, written as "this combination of n
 | A frozen body that turns on a joint | It doesn't turn on that joint | 1 |
 | The frame, frozen or with no tyres on the ground | It doesn't move | 6 |
 | A chain, track or rubber band looped round wheels | Each wheel's rim moves at the loop's speed, relative to what the wheel turns in: wheels it goes round the same way turn the same way, at speeds in the inverse ratio of its radii round them | 1 per wheel after the first |
+| What's hooked to a chain's ends (a fork-lift's carriage) | It slides along its run at the chain's speed: as fast as the rim of the wheel at one end of the run turns in what it slides on | 1 |
 | A string | Its free length changes by just what its drum pays out: worked out from its layout (round each circle and straight between them) and how that changes as the bodies carrying its circles move | 1 |
 | A pulley on a string | Its rim moves at the string's speed past it (what the drum pays out, less how fast the string up to it is getting longer), unless it shares its body with another of the string's pulleys (two pulleys side by side on one axle can't both: one slips) | 1 each |
 | A hook hanging on a string | It stays beneath the middle of the two pulleys either side of its own, as it was at the start, and upright, turning with what it hangs from only about the vertical | 5 |
@@ -467,6 +469,8 @@ So after each step, Kinebrick works out how far each has come apart, and moves e
 
 - **Every rule is scaled to the same size first.** Rules about turning would otherwise count for less than rules about moving, whose numbers (in LDU) run larger, and a single-cylinder engine's piston would tip a little further out of line at every step.
 - **Rules that pass turning on** (gear meshes, universal joints, chains) **count a thousand times as much as the rest.** Being about speeds, a slip in them would never be undone, so where the rules can't all hold, a joint is left apart instead, which a turn notices ([step 7](#7-small-steps)).
+
+**Hooked to a chain.** What's hooked to a chain's ends has a gap of its own too: how far it has slid short of how far the chain has moved round. Closing the loops pulls it back, as for a rack.
 
 **Racks.** A rack that slides in what its gear turns in also has a gap of its own: how far it has slid short of what its gear has turned. A step's motion keeps a gear's rule only at the step's start. For a rack the tree reaches through a linkage (a steering rack on its tie rods), that left it a little behind its gear every step: each step's travel a fifth of a percent short at first, and up to a tenth short in the last steps before a dead point. Closing the loops now pulls it back.
 
@@ -908,6 +912,8 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 
 **8835 Forklift**
 - Its chain, placed link by link, turns the mast's top sprocket as far as the bottom one.
+- Its fork carriage is hooked to both ends of its chain, which is a link short, and slides up and down the mast. Only the chain tread closing the gap, held between four bushes on the carriage in the real model, rides along with it.
+- Its crank raises and lowers the forks as far as the chain moves round, straight up the mast and upright, until the chain tread reaches the top sprocket, 150 LDU up.
 
 **8844 Helicopter**
 - Its landing gear chain, placed link by link, is found on the front axle's sprocket.
