@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { Kinematics } from '../../src/kinematics.ts';
 import { modelSettings } from '../../src/ldr.ts';
 import { inferMechanism } from '../../src/mechanism.ts';
-import { findSliders, sliderMovedTo } from '../../src/shift.ts';
+import { findSliders, sliderMovedTo, sliderPosition } from '../../src/shift.ts';
 import { load, roles, table } from './load.ts';
 
 describe('956 Auto Chassis', () => {
@@ -193,5 +193,40 @@ describe('956 Auto Chassis', () => {
     });
     expect(ratios[0]).toBeCloseTo(9, 6);
     expect(ratios[1]).toBeCloseTo(3, 6);
+  });
+
+  it('steered and driven off, then shifted into its other gear as the viewer does it (read again as built, with only the shaft and lever slid, then posed as it was), it keeps its steering column, and drives on', () => {
+    kin.reset();
+    turn(bodyOf('3736.dat'), (-67.2 * Math.PI) / 180);
+    const drive = (k: Kinematics, axle: number) => {
+      const joint = k.parentLink(axle)!.joint;
+      k.holdWhatTheDragDoesntNeed(axle, () => k.jointMotion(joint) !== null, joint);
+      const from = new Vector3().setFromMatrixPosition(k.poses[0]);
+      for (let i = 0; i < 10; i++) k.turnJoint(joint, 0.26, undefined, 0.26);
+      k.letGoAfterDrag();
+      return new Vector3().setFromMatrixPosition(k.poses[0]).distanceTo(from);
+    };
+    expect(drive(kin, rearAxle)).toBeGreaterThan(200);
+    // The shaft and lever slid 20 LDU back, as the frame sees it, where the model file says the shaft slides.
+    const back = kin.poses[0].clone().invert();
+    const now = parts.map((p, i) => ({ ...p, matrix: back.clone().multiply(kin.poses[mech.bodyOf[i]]).multiply(p.matrix) }));
+    const slides = modelSettings(readFileSync('models/956-Auto Chassis.mpd', 'utf-8')).slides;
+    const shaft = findSliders(parts, mech, table, slides).find((s) => s.origin)!;
+    const by = sliderMovedTo(now, table, shaft, 20).multiply(now[shaft.part].matrix.clone().invert());
+    const placed = parts.map((p, i) => {
+      if (!shaft.riders!.includes(i)) return p;
+      const body = back.clone().multiply(kin.poses[mech.bodyOf[i]]);
+      return { ...p, matrix: body.clone().invert().multiply(by).multiply(body).multiply(p.matrix) };
+    });
+    const shifted = inferMechanism(placed, table, roles, mech.loops.map((l) => l.path));
+    expect(shifted.loose).toEqual([]);
+    expect(shifted.couplings).toHaveLength(2); // the steering column's universal joints
+    const again = findSliders(placed, shifted, table, slides).find((s) => s.origin)!;
+    expect(again.riders).toContain(559); // the lever still rides the shaft, to shift back
+    expect(sliderPosition(placed, table, again)).toBeCloseTo(20, 2);
+    const k = new Kinematics(shifted);
+    k.poseAs(shifted.bodies.map((b) => kin.poses[mech.bodyOf[b.parts[0]]]));
+    expect(new Vector3().setFromMatrixPosition(k.poses[0]).distanceTo(new Vector3().setFromMatrixPosition(kin.poses[0]))).toBeLessThan(1e-6);
+    expect(drive(k, shifted.bodyOf[453])).toBeGreaterThan(200);
   });
 });

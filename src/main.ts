@@ -35,7 +35,7 @@ import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.t
 import { makeJointAxes } from './jointAxes.ts';
 import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PathPoint, PlacedPart } from './ldr.ts';
-import { inferMechanism, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
+import { inferMechanism, Joint, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
@@ -559,6 +559,37 @@ async function start() {
     });
   }
 
+  // Each part where it now is, as the frame sees it: in the model's own coordinates, as the
+  // model file's settings are (where the 956 Auto Chassis's input shaft slides), however far the
+  // model has moved since it loaded.
+  function partsNow(): PlacedPart[] {
+    const back = kin.poses[0].clone().invert();
+    return parts.map((p, i) => ({ ...p, matrix: back.clone().multiply(kin.poses[mech.bodyOf[i]]).multiply(p.matrix) }));
+  }
+
+  // Moves a part as drawn by `by`, a move as the frame sees it (see partsNow).
+  function moveDrawn(i: number, by: Matrix4) {
+    const frame = kin.poses[0];
+    partObjects[i].matrix.premultiply(frame.clone().multiply(by).multiply(frame.clone().invert()));
+    partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
+  }
+
+  // Works the mechanism out afresh from where everything now is, as the frame sees it (parts
+  // placed as given, see partsNow), then stands it back where the frame is: so what was worked
+  // out as the model stood when it loaded still holds, however far it has moved since (which way
+  // a part turns as seen from the camera, where the frame's middle is for the camera to follow).
+  // Shifting the 956 Auto Chassis's gear lever once it had driven off threw its input shaft back
+  // to where the model file has it, and left the camera behind.
+  function readWhereItIs(now: PlacedPart[]) {
+    const frame = kin.poses[0].clone();
+    const back = frame.clone().invert();
+    movePaths(paths, parts, mech.bodyOf, kin.poses.map((pose) => back.clone().multiply(pose)));
+    for (const obj of [...partObjects, ...shapeObjects]) obj.matrix.premultiply(back);
+    read(now);
+    kin.carry(frame);
+    showPoses();
+  }
+
   // A rubber band (a loop with no links of its own) stretches between what it's hooked round,
   // so it's drawn afresh each time, as a thin closed tube round where its circles are now (see
   // Loop.carriers), rather than as the pieces LDCad drew it with for where they were in the model
@@ -594,21 +625,47 @@ async function start() {
     });
   }
 
+  // Works the mechanism out afresh from the parts as they were built (as it was last worked
+  // out), with only the moves a shift makes (for each part it moves, a move as the frame sees it,
+  // see partsNow), then poses it as the one it replaces: so everything else stays where it now
+  // is, and is read as it was built. Read where it now was, the 956 Auto Chassis's steering
+  // column, steered, came apart at its universal joints, whose crosses turn with one shaft only.
+  function readAsBuilt(moves: Map<number, Matrix4>) {
+    const back = kin.poses[0].clone().invert();
+    // A move as the frame sees it, made to a part as it was built: the same move, as the part's
+    // body sees it.
+    const asBuilt = (i: number, by: Matrix4) => {
+      const body = back.clone().multiply(kin.poses[mech.bodyOf[i]]);
+      return body.clone().invert().multiply(by).multiply(body);
+    };
+    const placed = parts.map((p, i) => (moves.has(i) ? { ...p, matrix: asBuilt(i, moves.get(i)!).multiply(p.matrix) } : p));
+    partObjects.forEach((obj, i) => {
+      obj.matrix.copy(obj.userData.startMatrix);
+      if (moves.has(i)) obj.matrix.premultiply(asBuilt(i, moves.get(i)!));
+    });
+    for (const obj of shapeObjects) obj.matrix.copy(obj.userData.startMatrix);
+    const [was, wasKin] = [mech, kin];
+    // Each joint as the bodies of the mechanism it replaces see it, to keep the turns it has made.
+    const key = (a: number, b: number, j: Joint) => `${a},${b},${j.from.toArray().map((x) => x.toFixed(1))}`;
+    const angles = new Map(was.joints.map((j, k) => [key(j.bodyA, j.bodyB, j), wasKin.jointAngles[k]]));
+    read(placed);
+    const old = (body: number) => was.bodyOf[mech.bodies[body].parts[0]];
+    const near = mech.joints.map((j) => angles.get(key(old(j.bodyA), old(j.bodyB), j)) ?? -(angles.get(key(old(j.bodyB), old(j.bodyA), j)) ?? NaN));
+    kin.poseAs(
+      mech.bodies.map((_, body) => wasKin.poses[old(body)]),
+      near.map((a) => (Number.isNaN(a) ? undefined : a)),
+    );
+    showPoses();
+  }
+
   // Slides a part (a driving ring) to one of its click-in positions, then works the mechanism
-  // out afresh from where everything now is.
+  // out afresh (see readAsBuilt).
   function shift(part: number, position: number) {
     const slider = sliderOf(part)!;
-    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const now = partsNow();
     const moved = sliderMovedTo(now, table, slider, position);
     const by = moved.clone().multiply(now[slider.part].matrix.clone().invert());
-    for (const i of slider.riders ?? [slider.part]) {
-      now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
-      partObjects[i].matrix.premultiply(by);
-      partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
-    }
-    movePaths(paths, parts, mech.bodyOf, kin.poses);
-    read(now);
-    showPoses();
+    readAsBuilt(new Map((slider.riders ?? [slider.part]).map((i) => [i, by])));
   }
 
   // The slider a part slides with: it's the slider, or rides on one (a gear lever on the shaft
@@ -616,22 +673,15 @@ async function start() {
   const sliderOf = (part: number) => sliders.find((sl) => sl.part === part || sl.riders?.includes(part));
 
   // Clicks a gear lever into one of its gate positions, sliding the driving rings it moves with
-  // it, then works the mechanism out afresh from where everything now is.
+  // it, then works the mechanism out afresh (see readAsBuilt).
   function shiftStick(part: number, position: number) {
     const stick = sticks.find((st) => mech.bodyOf[st.part] === mech.bodyOf[part])!;
-    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const now = partsNow();
     const target = stickPositions(now, table, stick)[position];
-    const place = (i: number, matrix: Matrix4) => {
-      const by = matrix.clone().multiply(now[i].matrix.clone().invert());
-      now[i] = { ...now[i], matrix };
-      partObjects[i].matrix.premultiply(by);
-      partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
-    };
-    for (const slider of stick.rings) place(slider.part, sliderMovedTo(now, table, slider, target.rings.get(slider.part)!));
-    for (const i of mech.bodies[mech.bodyOf[stick.part]].parts) place(i, target.turn.clone().multiply(now[i].matrix));
-    movePaths(paths, parts, mech.bodyOf, kin.poses);
-    read(now);
-    showPoses();
+    const moves = new Map<number, Matrix4>();
+    for (const slider of stick.rings) moves.set(slider.part, sliderMovedTo(now, table, slider, target.rings.get(slider.part)!).multiply(now[slider.part].matrix.clone().invert()));
+    for (const i of mech.bodies[mech.bodyOf[stick.part]].parts) moves.set(i, target.turn.clone());
+    readAsBuilt(moves);
   }
 
   // Where a gear lever's stick ends in each of its gate positions, and which it's in now, or
@@ -639,9 +689,9 @@ async function start() {
   function stickOf(part: number) {
     const stick = sticks.find((st) => mech.bodyOf[st.part] === mech.bodyOf[part]);
     if (!stick) return null;
-    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const now = partsNow();
     const positions = stickPositions(now, table, stick);
-    return { ends: positions.map((p) => stickEnd(leverAt(now, stick, p))), position: stickPositionNow(now, table, stick, positions) };
+    return { ends: positions.map((p) => stickEnd(leverAt(now, stick, p)).applyMatrix4(kin.poses[0])), position: stickPositionNow(now, table, stick, positions) };
   }
 
   // Works the mechanism out afresh from where everything now is, if gears now mesh that didn't
@@ -649,7 +699,7 @@ async function start() {
   // power take-off), or a changeover catch has swung its driving ring's fork nearer another of
   // the ring's click-in positions, sliding the ring there.
   function meshAfresh() {
-    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const now = partsNow();
     const shifts = catchShifts(now, table, catches);
     if (!shifts.size && !meshesChanged(mech, kin.poses)) return;
     for (const [ring, to] of shifts) {
@@ -657,23 +707,20 @@ async function start() {
       const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
       for (const i of slider.riders ?? [ring]) {
         now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
-        partObjects[i].matrix.premultiply(by);
-        partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
+        moveDrawn(i, by);
       }
     }
-    movePaths(paths, parts, mech.bodyOf, kin.poses);
-    read(now);
-    showPoses();
+    readWhereItIs(now);
   }
 
   // Where a sliding part is and how it slides, or null if it doesn't.
   function slideOf(part: number) {
     const slider = sliderOf(part);
     if (!slider) return null;
-    const now = parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
+    const now = partsNow();
     return {
-      at: new Vector3().setFromMatrixPosition(now[slider.part].matrix),
-      dir: slideDirection(now, table, slider),
+      at: new Vector3().setFromMatrixPosition(now[slider.part].matrix).applyMatrix4(kin.poses[0]),
+      dir: slideDirection(now, table, slider).transformDirection(kin.poses[0]),
       position: sliderPosition(now, table, slider),
       positions: slider.positions,
     };

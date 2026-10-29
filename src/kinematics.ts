@@ -319,6 +319,34 @@ export class Kinematics {
     this.updatePoses();
   }
 
+  // Moves the whole model as one by `pose`, opening no joint: a model worked out afresh where its
+  // frame sees it is stood back where the frame is (see main.ts).
+  carry(pose: Matrix4) {
+    for (const root of this.rootPoses.values()) root.premultiply(pose);
+    this.updatePoses();
+  }
+
+  // Puts each body where `poses` says (one for each body), turning each turning joint to suit:
+  // a model worked out afresh as it was built is posed as the one it replaces was (see main.ts).
+  // A joint's angle is kept within half a turn of `near`'s, where that gives one, so a winch's
+  // drum keeps the turns it has wound.
+  poseAs(poses: Matrix4[], near: (number | undefined)[] = []) {
+    for (const root of this.rootPoses.keys()) this.rootPoses.set(root, poses[root].clone());
+    this.mech.joints.forEach((joint, j) => {
+      if (joint.kind !== 'revolute') return;
+      // bodyB as bodyA sees it: turned about the joint's axis (see updatePoses).
+      const turn = poses[joint.bodyA].clone().invert().multiply(poses[joint.bodyB]);
+      const axis = axisOf(joint.from, joint.to);
+      const across = new Vector3(1, 0, 0).cross(axis).lengthSq() > 0.1 ? new Vector3(1, 0, 0).cross(axis).normalize() : new Vector3(0, 1, 0).cross(axis).normalize();
+      const turned = across.clone().transformDirection(turn);
+      let angle = Math.atan2(new Vector3().crossVectors(across, turned).dot(axis), across.dot(turned));
+      const was = near[j];
+      if (was !== undefined) angle = was + Math.atan2(Math.sin(angle - was), Math.cos(angle - was));
+      this.jointAngles[j] = angle;
+    });
+    this.updatePoses();
+  }
+
   // A body joined to the rest only by two ball joints could spin about the line through the
   // balls without moving anything else. Nothing would make it, so equations() doesn't let it,
   // unless gears or a coupling turn it (a half shaft with a constant velocity joint's ball at
