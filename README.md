@@ -149,7 +149,7 @@ The models' files are in [`models/`](models/).
 Working out how a set moves means reading every part of it closely, and that turns up more than motion:
 
 - **[Mechanism catalog](docs/mechanisms/README.md).** The kinds of mechanism in the 186 Technic sets Kinebrick has surveyed, from rack and pinion steering to swing wings: the year each first appears, which sets use it, and how often, decade by decade. Each set's functions are tagged with their kinds from what its building instructions show, and each kind's page says how many of its functions Kinebrick moves today.
-- **[LDraw errata](docs/ldraw-errata.md).** Ten errors Kinebrick has found in the published LDraw models of six sets (852, 858, 8844, 8849, 8854 and 8880), such as a part a few LDU out of place that attaches to nothing, each with the exact lines and the correction Kinebrick uses where it has one, so they can be corrected where the models are published.
+- **[LDraw errata](docs/ldraw-errata.md).** Eleven errors Kinebrick has found in the published LDraw models of seven sets (852, 858, 8844, 8848, 8849, 8854 and 8880), such as a part a few LDU out of place that attaches to nothing, each with the exact lines and the correction Kinebrick uses where it has one, so they can be corrected where the models are published.
 
 ## What Kinebrick is, and isn't
 

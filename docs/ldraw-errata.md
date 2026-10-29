@@ -9,6 +9,7 @@ This page lists the errors Kinebrick has found that way in the LDraw models it u
 | [852-1](#852-1-helicopter) | Helicopter (1977) | Allard van Efferen | LDraw OMR | 1 | Not corrected |
 | [858-1](#858-1-auto-engines-inline-and-v-6-engines) | Auto Engines (1980), Inline and V-6 Engines | Takeshi Takahashi | LDraw forum | 2 | Corrected in Kinebrick |
 | [8844-1](#8844-1-helicopter) | Helicopter (1981) | Allard van Efferen | LDraw OMR | 1 | Not corrected |
+| [8848-1](#8848-1-power-truck) | Power Truck (1981) | Allard van Efferen | LDraw OMR | 1 | Not corrected |
 | [8849-1](#8849-1-tractor) | Tractor (1986) | Stefan Frenz | LDraw OMR | 1 | Corrected in Kinebrick |
 | [8854-1](#8854-1-power-crane) | Power Crane (1989) | Stefan Frenz | LDraw OMR | 1 | Not corrected |
 | [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in Kinebrick |
@@ -173,6 +174,29 @@ Lines 41 and 42, in `8844 - model.ldr`:
 ```
 
 A correction would take out both lines and lay the chain's rear end round the rear leg's own 24 tooth gear, 5 LDU from where it goes round now. Kinebrick hasn't, since taking out two parts would renumber the parts its notes on the set's functions name.
+
+## 8848-1 Power Truck
+
+| | |
+| --- | --- |
+| Set | 8848 Power Truck, 1981 |
+| Model | Power Truck, `8848-1.mpd` |
+| Author | Allard van Efferen (rabbitdesign.nl) |
+| Licence | CCAL 2.0 (CC BY 2.0) |
+| Original | [LDraw Official Model Repository, set 1197](https://library.ldraw.org/omr/sets/1197) |
+| In Kinebrick | Used as published, not corrected: [`models/8848-Power Truck.mpd`](../models/8848-Power%20Truck.mpd) |
+
+### One of the tipper body's struts is placed 0.36 LDU off the other (not corrected)
+
+The two struts that lift the tipper body, each a rack pushed by an 8 tooth gear with a toothed toggle joint (4273a) at its top, are the same subfile built twice, `8848 - tipper4-l.ldr` and `8848 - tipper4-r.ldr`, and placed side by side, 100 LDU apart, at the same angle. But they aren't quite in line: the right one is 0.31 LDU off the left in y and 0.18 LDU off in z. So where the left strut's toggle joint fits on the axle under the body, 0.95 LDU from its line, the right one's is 1.30 LDU from it, too far to be on it. Kinebrick found this because the right strut's toggle joint was attached to nothing at its top, while the left one's turned on the axle. Kinebrick now reads both toggle joints as locked to the toothed half bushes beside them on that axle, as in the real set, so it moves the same either way, and the file is used as published.
+
+Lines 78 and 79, in `8848 - main.ldr`. A correction would place the right strut as the left one is, 100 LDU along:
+
+```diff
+  1 71 49 -61.049 -62.023 1 0 0 0 0.848048 -0.529919 0 0.529919 0.848048 8848 - tipper4-l.ldr
+- 1 71 -51 -61.358 -62.202 1 0 0 0 0.848048 -0.529919 0 0.529919 0.848048 8848 - tipper4-r.ldr
++ 1 71 -51 -61.049 -62.023 1 0 0 0 0.848048 -0.529919 0 0.529919 0.848048 8848 - tipper4-r.ldr
+```
 
 ## 8849-1 Tractor
 
