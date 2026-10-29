@@ -4,7 +4,7 @@ Lift arms raise and lower a tractor's implement on two lower links and a top lin
 
 First appears in 1977, in [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.
 
-Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 3 partly, 2 no, 1 not checked.
+Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 works, 2 partly, 2 no, 1 not checked.
 
 ## By decade
 
@@ -39,7 +39,7 @@ Each detail by the set it first appears in.
 
 **1986, [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor)**
 
-- The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up. (partly)
+- The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up. (works)
 - *sprayer:* The sprayer hangs on the hitch's two lower links and its top link, so it stays upright as the hitch rises. (not checked)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**

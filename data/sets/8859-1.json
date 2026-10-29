@@ -83,7 +83,7 @@
           "p398 3031",
           "p595 3740"
         ],
-        "note": "Partly works today. The lever's handle p503 3706 hinges freely on its toggle joint p507 4273a, so it turns nothing; turning the 24-tooth gear p488 3648a slides the toothed beams and rocks the drop links p273 4273a and p274 4273a, but they aren't joined to the lower links, so the cultivator doesn't rise. The seat back (p398 3031 and its toggle joints, on the same cross shaft) tilts with the lever, which it shouldn't. The cultivator swings freely on the lower links' axle: its top link p116 3702 isn't joined to it."
+        "note": "Partly works today. The lever's handle p503 3706 now turns the cross shaft, its toothed toggle joint p507 4273a locked to the shaft by the toothed half bush p506 4265a, but only 0.63 rad up and 0.24 down; it turns the 24-tooth gear p488 3648a, which slides the toothed beams and rocks the drop links p273 4273a and p274 4273a, but they aren't joined to the lower links, so the cultivator doesn't rise. The seat back (p398 3031 and its toggle joints, on the same cross shaft) tilts with the lever, which it shouldn't. The cultivator swings freely on the lower links' axle: its top link p116 3702 isn't joined to it."
       },
       {
         "does": "The front wheels turn freely on short axles in the steering arms.",
@@ -133,8 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
-    "date": "2026-10-27",
+    "commit": "31084b1",
+    "uncommitted": true,
+    "date": "2026-10-29",
     "counts": {
       "partly": 5,
       "skipped": 1,
@@ -182,13 +183,9 @@
         "result": "partly",
         "turned": [
           [
-            0.1,
-            -0.21
+            0.17,
+            -0.31
           ]
-        ],
-        "still": [
-          "p430 3652",
-          "p431 3652"
         ]
       },
       {
@@ -196,11 +193,11 @@
         "turned": [
           [
             0.07,
-            -0.17
+            -0.07
           ],
           [
-            0.1,
-            -0.21
+            0.17,
+            -0.31
           ]
         ]
       },
@@ -208,18 +205,17 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.63,
+            -0.24
           ]
         ],
         "still": [
-          "p488 3648a",
-          "p109 3647",
-          "p283 3743",
-          "p284 3743",
           "p340 3706",
           "p337 3706",
           "p117 3700"
+        ],
+        "moved": [
+          "p398 3031"
         ]
       },
       {
@@ -227,11 +223,11 @@
         "turned": [
           [
             0.14,
-            -0.14
+            -0.07
           ],
           [
-            0.07,
-            -0.07
+            0.1,
+            -0.24
           ]
         ]
       },

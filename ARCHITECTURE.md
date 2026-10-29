@@ -202,6 +202,8 @@ Like a worm, the screw can't be driven from its piston (see [Holds](#holds)): pu
 
 **Bushes in Technic plates.** A Technic plate's holes are counterbored 4 LDU deep for a bush's flange (a brick's only 2). So a bush pushed at least 3 LDU into one grips the plate, which turns with the bush's axle: an old helicopter's rotors are Technic plates driven so.
 
+**Toothed half bushes on toggle joints.** A toothed half bush (4265a, 6577) has teeth on one face, which fit those round the pin hole of a toothed toggle joint (4273a, 4273b). So a toothed half bush on an axle, its teeth against a toggle joint turning on that axle (their faces within 2 LDU), locks the toggle joint to the axle: the 8849 Tractor's rear cross axle raises its hitch's lower links so.
+
 **Sliding on axles.** A part turning on an axle may slide along it too, as far as the parts either side of it on the axle let it, when a linkage works it that way. That is, its body turns on another body about an axis across the axle, in a closed loop of joints back to the axle. (An old helicopter's swashplate, raised and lowered on its rotor shaft by the pilot's levers, tilts the blades through their pitch links.)
 
 - **Parts stacked against it** that turn on the axle too ride along with it, turning against it (the swashplate's top half, which turns with the rotor while the bottom one doesn't).
@@ -569,6 +571,8 @@ A role is a short label for what a part does in a mechanism. It tells Kinebrick 
 | `structure` | Bricks, plates, beams | Nothing on its own. Part of the frame. |
 | `axle` | 3706 Technic Axle 6; 32062 Technic Axle 2 Notched; 6538b Technic Axle Joiner Offset | Locks into axle holes, turns freely in round holes. Axle joiners count as axles. |
 | `bush` | 3713 Technic Bush with Two Flanges; 32123a Technic Bush 1/2 Smooth | Locks onto an axle. Doesn't count towards which body is the frame. |
+| `toothed bush` | 4265a, 6577 Technic Bush 1/2 Type 1, Type 2 (the toothed half bushes) | Locks onto an axle. Its teeth, on one face, lock a toothed toggle joint they're pushed against to it ([above](#rules-for-real-models)). Doesn't count towards which body is the frame. |
+| `toothed toggle joint` | 4273b Technic Connector Toggle Joint Toothed; 4273a, the same without slots | An axle hole, and a pin hole across it with teeth round one end. Turns on an axle through the pin hole, unless a toothed bush's teeth are against them ([above](#rules-for-real-models)). Doesn't count towards which body is the frame. |
 | `rim` | 3482 Wheel Rim 8 x 17.5; 2998 Wheel Rim 32 x 56; 56145 Wheel Rim 20 x 30, and the other common studless rims | Carries a tyre. Locks onto an axle through its axle hole, or (2998) clicks onto a wheel hub (2999), turning with it. |
 | `tyre` | 3483 Tyre 56 x 17; 3634 Tyre 10/130 x 17 (a bigger tyre for the same rim); 2997 Tyre 34/38 x 56 ZR; 55976 Tyre 26/52 x 30 Off Road, and the other common studless tyres | Locks onto the rim it sits on. Rolls on the ground without slipping. |
 | `gear` | 3647, 4019, 3648, 3649 Technic Gear 8, 16, 24, 40 Tooth; 3648a, the old 24 tooth gear; 10928, 94925, the reinforced 8 and 16 tooth gears | Locks onto an axle through its axle hole. Meshes with a gear whose axle is parallel and the two gears' pitch radii away. |

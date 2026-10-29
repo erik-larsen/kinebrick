@@ -78,7 +78,7 @@
           "worm-drive",
           "three-point-hitch"
         ],
-        "source": "book: steps 7 (worm and crown gear), 9 (long shaft with 24-tooth gear and bevel), 10 (rear cross axle with bevel), 11 (lower links), 22 (handwheel and upright shaft); inferred: that the lower links turn with the rear cross axle, by the toothed half bushes beside their toggle joints, since the toggle joints themselves only have round holes there",
+        "source": "book: steps 7 (worm and crown gear), 9 (long shaft with 24-tooth gear and bevel), 10 (rear cross axle with bevel), 11 (lower links), 22 (handwheel and upright shaft); inferred: that the lower links turn with the rear cross axle: each turns on it in its toothed toggle joint's pin hole, and the toothed half bush beside it on the axle has its teeth against the teeth round that hole, locking the two together",
         "control": "p200 4185",
         "moves": [
           "p55 4716",
@@ -92,7 +92,7 @@
           "p259 3739",
           "p66 3736"
         ],
-        "note": "Kinebrick today: partly. The worm drives the long shaft and, through the bevel gears, the rear cross axle (its 24 tooth gear corrected onto the shaft; see docs/ldraw-errata.md). But the lower links turn freely on the cross axle: the toothed half bushes that turn them with it, gripping their toothed toggle joints, aren't modelled."
+        "note": "Kinebrick today: works. The worm drives the long shaft and, through the bevel gears, the rear cross axle (its 24 tooth gear corrected onto the shaft; see docs/ldraw-errata.md), a 72nd as far as the handwheel; the toothed half bushes p95 and p96 lock the lower links' toggle joints p92 and p89 to it, so both links swing up together, and the worm holds them where they're left. Kinebrick doesn't stop the hitch at the top or bottom of its travel: past upright, the links come down again on the other side. tests/sets/8849-tractor.test.ts checks it."
       },
       {
         "does": "The sprayer hangs on the hitch's two lower links and its top link, so it stays upright as the hitch rises.",
@@ -100,7 +100,7 @@
           "three-point-hitch: sprayer"
         ],
         "source": "book: steps 11, 22-23 and 26, page 14",
-        "note": "checked with the handwheel above: the sprayer should rise level as the lower links swing up; the worm should then hold the hitch where it's left, so dragging the sprayer or a link by itself shouldn't move it"
+        "note": "checked with the handwheel above: the sprayer should rise level as the lower links swing up; the worm should then hold the hitch where it's left, so dragging the sprayer or a link by itself shouldn't move it. Kinebrick today: it does both. The top link runs parallel to the lower links, so the sprayer rises without tilting at all."
       },
       {
         "does": "The four wheels roll; the front wheels turn freely on their own axles.",
@@ -123,12 +123,11 @@
     ]
   },
   "generated": {
-    "commit": "940beda",
+    "commit": "31084b1",
     "uncommitted": true,
-    "date": "2026-10-28",
+    "date": "2026-10-29",
     "counts": {
-      "works": 5,
-      "partly": 1,
+      "works": 6,
       "not checked": 1
     },
     "loose": [],
@@ -170,17 +169,12 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p90 3705",
-          "p93 3705",
-          "p269 3894"
         ]
       },
       {

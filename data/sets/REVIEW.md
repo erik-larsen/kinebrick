@@ -25,7 +25,7 @@ Drafted 2026-10-23 from each set's instructions (scans in `omr/instructions/`), 
 | 8844 Helicopter | wheels only | Gears loose or overlapping, no chain, the rotors' crown gears tilted 2° out of mesh, the airframe folds. |
 | 8845 Dune Buggy | none | The steering column isn't joined (newer universal joint 62519), the pinion is 6 LDU off the rack, the shocks don't telescope. |
 | 8848 Power Truck | steering, differential | The levers do nothing when dragged; the bucket swings freely. |
-| 8849 Tractor | partly | Steering fixed; a 24 tooth gear sits 2 LDU off its axle, so the lift stops at the worm. |
+| 8849 Tractor | all work | Steering fixed; the 24 tooth gear 2 LDU off its axle is corrected, and the toothed half bushes now lock the hitch's lower links to the cross axle, so the handwheel raises the hitch. |
 | 8851 Excavator | partly | Pneumatic cylinders come apart (barrels and caps have no connection data); track links stuck to the cab. |
 | 8854 Power Crane | partly | Steering and slewing gears don't mesh; the hook and boom extension are loose; cylinders don't slide. |
 | 8855 Prop Plane | partly | The propeller is a merged shortcut part on the frame; the stick and its linkages float or lock. |
@@ -38,7 +38,7 @@ Drafted 2026-10-23 from each set's instructions (scans in `omr/instructions/`), 
 1. ~~**Pinion and rack steering**~~ (1972, 8024, 8832, 8849, 8859): fixed. A slanted column's gear now meshes its rack, gears up to 4.5 LDU off a rack mesh, the 2790 steering rack is a round rack sliding through its holder, and a rack carried round by an axle rocking on the steering shaft isn't given a straight guide that jams it. The 8845's file puts its gear a whole plate into the rack, which is the file's error.
 2. **Pneumatic cylinders** (8851, 8854, 8862): rods turn with what they push instead of sliding in their barrels; barrels and caps (127, 128) have no connection data.
 3. **Shock absorbers** (8832, 8845, 8865): rigid, or their halves don't telescope.
-4. **Toothed toggle joints and half bushes** (8841, 8845, 8849, 8855, 8859): they hinge freely instead of locking.
+4. **Toothed toggle joints and half bushes** (8841, 8845, 8849, 8855, 8859): a toothed half bush with its teeth against a toothed toggle joint's now locks the toggle joint to its axle, as in 11 bundled models (the 8849's hitch rises; the 8854's and 8862's feet tilt). Still to look at: the 8841's and 8845's toggle joints, which hinge, have no toothed half bush against them.
 5. **Gears that should mesh but don't** (8854, 8859, 8865, 8844): the 73071 differential's bevel, and gears placed a little off.
 6. **Chains as drives** (8835, 8844).
 7. **A control part that does nothing while its shaft works** (852 sticks, 8848 levers).

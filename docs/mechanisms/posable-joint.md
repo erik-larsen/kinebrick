@@ -4,7 +4,7 @@ Ball joints, click hinges or friction joints that hold a pose. (Simple motions.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.
 
-Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 3 works, 2 partly, 5 no, 1 skipped.
+Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 5 works, 2 partly, 3 no, 1 skipped.
 
 ## By decade
 
@@ -36,11 +36,11 @@ Each detail by the set it first appears in.
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 
-- *stabiliser feet:* Each stabiliser leg's foot, two pulley wheels on toothed toggle joints, tilts to sit flat on the ground. (no)
+- *stabiliser feet:* Each stabiliser leg's foot, two pulley wheels on toothed toggle joints, tilts to sit flat on the ground. (works)
 
 **1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe)**
 
-- *outrigger feet:* Each outrigger's foot tilts on toothed toggle joints to sit flat on the ground. (no)
+- *outrigger feet:* Each outrigger's foot tilts on toothed toggle joints to sit flat on the ground. (works)
 
 **2000, [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1)**
 
