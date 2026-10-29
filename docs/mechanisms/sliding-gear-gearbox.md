@@ -4,7 +4,7 @@ Speeds are chosen by sliding gears into and out of mesh. (Gearboxes.)
 
 First appears in 1978, in [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The gear lever standing up behind the engine slides the engine's input shaft back and forth between two speeds: as built, its 8 tooth gear drives the crankshaft through an 8 tooth and a 24 tooth gear on a side shaft, so the engine turns 9 times for each turn of the rear axle; slid back 20 LDU, the same gear meshes straight with the crankshaft's own 8 tooth gear, 3 times.
 
-Used in 2 of the 186 surveyed sets, by 4 functions. Kinebrick: 1 works, 2 partly, 1 no.
+Used in 2 of the 186 surveyed sets, by 4 functions. Kinebrick: 2 works, 2 partly.
 
 ## By decade
 
@@ -31,7 +31,7 @@ Each detail by the set it first appears in.
 
 **1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car)**
 
-- *3 speeds:* Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins. (no)
+- *3 speeds:* Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins. (works)
 - *3 speeds:* The blue-knobbed gear lever between the seats picks one of three speeds: moving it fore and aft slides the gearbox's selector shaft, changing which of its 16- and 24-tooth gears mesh with the engine's and the layshaft's gears. (partly)
 
 ---

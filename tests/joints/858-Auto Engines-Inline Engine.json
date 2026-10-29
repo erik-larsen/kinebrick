@@ -10,6 +10,6 @@
     {"joint":"p172 3708 in frame","plus":{"turned":1.5,"moved":2,"bodies":{"p172 3708":[0,86],"p183 3700":[1,3]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p172 3708":[0,86],"p183 3700":[1,3]}}},
     {"joint":"p179 3700 in p172 3708","plus":{"turned":1.5,"moved":2,"bodies":{"p172 3708":[0,86],"p183 3700":[1,3]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p172 3708":[0,86],"p183 3700":[1,3]}}},
     {"joint":"p181 3700 in p172 3708","plus":{"turned":1.5,"moved":2,"bodies":{"p172 3708":[0,86],"p183 3700":[1,3]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p172 3708":[0,86],"p183 3700":[1,3]}}},
-    {"joint":"p183 3700 in p172 3708","plus":{"turned":0,"moved":0,"bodies":{}},"minus":{"turned":0,"moved":0,"bodies":{}}}
+    {"joint":"p183 3700 in p172 3708","plus":{"turned":1.5,"moved":2,"bodies":{"p172 3708":[0,83],"p183 3700":[1,3]}},"minus":{"turned":-1.5,"moved":2,"bodies":{"p172 3708":[0,89],"p183 3700":[1,3]}}}
   ]
 }

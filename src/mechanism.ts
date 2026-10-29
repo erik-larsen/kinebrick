@@ -446,7 +446,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   dropBallsInBearings(joints, joined, roles, bodyOf);
   // A nudged ball's coupling is at its ball joint's middle, where lineUpBalls has put it.
   const ballAt = (partA: number, partB: number, center: Vector3) => joints.find((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(bodyOf[partA]) && [j.bodyA, j.bodyB].includes(bodyOf[partB]) && j.from.distanceTo(center) < BALL_LINE)?.from.clone() ?? center;
-  const couplings = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball' }));
+  const couplings: Coupling[] = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball' }));
+  couplings.push(...crankWebs(joints));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   // What's hooked to a chain it can't slide along is loose after all (it rides along with nothing).
   loose.push(...chainHooks(parts, bodyOf, joints, loops, hooked));
@@ -581,7 +582,9 @@ function linearActuators(parts: PlacedPart[], connections: Connection[]): { body
 
 // A piston with no cylinder of its own to slide in, such as the old 2x2 piston block, whose
 // cylinder is a square of bricks around it, slides along its own axis (its y) against the
-// part nearest to it that it isn't connected to.
+// part nearest to it that it isn't connected to. Not an axle, an axle pin or an axle hole: the
+// walls are bricks and plates, and an axle pin beside the piston may turn (the 8865's, holding
+// the top of a cylinder bank).
 function guidedPistons(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
   const guided: Connection[] = [];
   roles.forEach((role, piston) => {
@@ -593,7 +596,7 @@ function guidedPistons(parts: PlacedPart[], roles: string[], cyls: WorldCylinder
     const at = new Vector3().setFromMatrixPosition(parts[piston].matrix);
     let nearest: WorldCylinder | null = null;
     for (const c of cyls) {
-      if (touching.has(group[c.part])) continue;
+      if (touching.has(group[c.part]) || c.secs.some((s) => s.shape === 'A')) continue;
       if (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at)) nearest = c;
     }
     if (!nearest) return;
@@ -1774,6 +1777,53 @@ function lineUpAxles(joints: Joint[]) {
       end.copy(line.from).addScaledVector(line.dir, along);
     }
   }
+}
+
+// A crankshaft built of webs on crank pins (the 8865 Test Car's: 24 tooth gears, joined by axles
+// in their round holes), whose middle web is held only by two pins on opposite sides of the main
+// axis, is at dead centre always: as the webs either side of it turn on the main axis, the pins
+// don't tie their turning together, as in the real crankshaft they do. So those two turn together
+// (a coupling, of their turning only). Only so: the middle web has no other joint, and the webs
+// either side of it turn on the main axis in one body.
+function crankWebs(joints: Joint[]): Coupling[] {
+  const LINE = 1; // LDU
+  const dirOf = (j: Joint) => new Vector3().subVectors(j.to, j.from).normalize();
+  const parallel = (a: Joint, b: Joint) => Math.abs(dirOf(a).dot(dirOf(b))) > 0.999;
+  // How far a point is from a joint's axis.
+  const offAxis = (j: Joint, p: Vector3) => {
+    const off = new Vector3().subVectors(p, j.from);
+    return off.addScaledVector(dirOf(j), -off.dot(dirOf(j))).length();
+  };
+  const middleOf = (j: Joint) => j.from.clone().add(j.to).multiplyScalar(0.5);
+  const jointsOf = (body: number) => joints.filter((j) => j.bodyA === body || j.bodyB === body);
+  const other = (j: Joint, body: number) => (j.bodyA === body ? j.bodyB : j.bodyA);
+  const found: Coupling[] = [];
+  const bodies = new Set(joints.flatMap((j) => [j.bodyA, j.bodyB]));
+  for (const middle of bodies) {
+    const pins = jointsOf(middle);
+    if (middle === 0 || pins.length !== 2 || pins.some((j) => j.kind !== 'revolute') || !parallel(pins[0], pins[1])) continue;
+    if (other(pins[0], middle) === other(pins[1], middle) || offAxis(pins[0], pins[1].from) < LINE) continue;
+    // The main axis: midway between the two pins.
+    const center = middleOf(pins[0]).add(middleOf(pins[1])).multiplyScalar(0.5);
+    const d = dirOf(pins[0]);
+    const off = new Vector3().subVectors(middleOf(pins[1]), middleOf(pins[0]));
+    center.addScaledVector(d, -off.dot(d) / 2);
+    // Each pin's web beside the middle one: on the pin, and turning on the main axis.
+    const webs = pins.map((pin) => {
+      const p = other(pin, middle);
+      for (const onPin of jointsOf(p)) {
+        const web = other(onPin, p);
+        if (web === middle || onPin.kind !== 'revolute' || !parallel(onPin, pin) || offAxis(pin, onPin.from) > LINE) continue;
+        const main = jointsOf(web).find((j) => j.kind === 'revolute' && parallel(j, pin) && offAxis(j, center) < LINE);
+        if (main) return { web, main };
+      }
+      return null;
+    });
+    const [a, b] = webs;
+    if (!a || !b || a.web === b.web || other(a.main, a.web) !== other(b.main, b.web)) continue;
+    found.push({ bodyA: a.web, bodyB: b.web, center, axisA: dirOf(a.main), axisB: dirOf(b.main), atA: middleOf(a.main), atB: middleOf(b.main), turningOnly: true });
+  }
+  return found;
 }
 
 // A ball joint whose middle sits all but on an axis one of its bodies turns about (within

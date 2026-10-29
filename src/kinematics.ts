@@ -183,6 +183,7 @@ export class Kinematics {
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
   private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
+  private pins: Set<number> | null = null; // bodies free to spin on their one axis (see findPins), once worked out
   private framed: Set<number> | null = null; // the bodies that can't move against the frame (see fixedToFrame), once worked out
   // Bodies held for a drag against the frame rather than against what they turn on (which the
   // drag turns): an assembly hanging on a driven axle stays level, not carried round.
@@ -459,6 +460,10 @@ export class Kinematics {
       const mounts = new Set(own.map((j) => (j.bodyA === root ? j.bodyB : j.bodyA)));
       const geared = this.mech.gears.some((g) => g.body === root) || this.mech.couplings.some((c) => c.bodyA === root || c.bodyB === root) || this.screwed(root);
       if (own.length > 0 && own.every((j) => (j.kind === 'slide' && !j.turns) || j.kind === 'ball') && mounts.size === 1 && !geared) this.mounts.set(root, [...mounts][0]);
+      // Or that only slides along one line, turning or not, in the holes of one or more (a loose
+      // axle, such as the one through the tops of the 8865 Test Car's cylinder banks), on the
+      // first of those: left standing in the world, it would come out of them as the car rolls.
+      else if (own.length > 0 && own.every((j) => j.kind === 'slide' && onOneLine(j, own[0])) && !geared) this.mounts.set(root, [...mounts][0]);
     }
   }
 
@@ -674,6 +679,20 @@ export class Kinematics {
   private inLoop(joint: number): boolean {
     this.loopJoints ??= this.findLoopJoints();
     return this.loopJoints.has(joint);
+  }
+
+  // The bodies that are only pins: every joint they have turns on one line, and nothing turns
+  // them (no gear, tyre or coupling), so how far they turn on it is anyone's guess (a crank pin
+  // in a crankshaft's round holes, carrying connecting rods).
+  private findPins(): Set<number> {
+    const pins = new Set<number>();
+    for (let body = 1; body < this.bodyCount; body++) {
+      const joints = this.mech.joints.filter((j) => j.bodyA === body || j.bodyB === body);
+      if (joints.length < 2 || joints.some((j) => j.kind !== 'revolute')) continue;
+      if (this.mech.gears.some((g) => g.body === body) || this.mech.treads.some((t) => t.body === body) || this.mech.couplings.some((c) => c.bodyA === body || c.bodyB === body) || this.screwed(body)) continue;
+      if (joints.every((j) => onOneLine(j, joints[0]))) pins.add(body);
+    }
+    return pins;
   }
 
   // The joints in closed loops of joints: all but the bridges, the joints whose bodies nothing
@@ -2103,6 +2122,10 @@ export class Kinematics {
       // rod), and with it how fast it goes, as a dead point wouldn't.
       const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
       const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) ? this.jointRate(motion, k) * step : 0));
+      // Nor, once the step is taken, a pin's (see findPins): it turns as it may, which needn't be
+      // as predicted.
+      const pins = this.pins ??= this.findPins();
+      const checked = (j: Joint) => j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) && !pins.has(j.bodyA) && !pins.has(j.bodyB);
       const largest = Math.max(...predicted.map(Math.abs));
       // How fast the fastest joint in a closed loop turns, for each turn of this one (at least
       // 1: this one). Dead points are linkages', and other joints' rates may change from step
@@ -2112,7 +2135,7 @@ export class Kinematics {
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);
-      if (gap > (played ? PLAY : DEAD_POINT_GAP) || predicted.some((p, k) => this.mech.joints[k].kind === 'revolute' && !resting.has(this.mech.joints[k].bodyA) && !resting.has(this.mech.joints[k].bodyB) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
+      if (gap > (played ? PLAY : DEAD_POINT_GAP) || predicted.some((p, k) => checked(this.mech.joints[k]) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
         this.restore(before);
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
         // usual steps, it may go. Only those can tell a dead point.
