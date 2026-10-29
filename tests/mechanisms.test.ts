@@ -1,4 +1,7 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 // data/mechanisms.json lists the kinds of mechanism, and each curated function in
@@ -30,4 +33,18 @@ describe('the mechanism kinds', () => {
       });
     }
   });
+});
+
+describe('the mechanism catalog', () => {
+  it('is up to date with the kinds and the tags: written afresh, every page is as it is in docs/mechanisms/', () => {
+    const fresh = mkdtempSync(join(tmpdir(), 'mechanisms-'));
+    try {
+      execFileSync('npx', ['tsx', 'scripts/mechanisms.ts', fresh]);
+      const pages = readdirSync(fresh).sort();
+      expect(readdirSync('docs/mechanisms').sort()).toEqual(pages);
+      for (const page of pages) expect(readFileSync(join('docs/mechanisms', page), 'utf-8'), `${page}: run npm run mechanisms`).toBe(readFileSync(join(fresh, page), 'utf-8'));
+    } finally {
+      rmSync(fresh, { recursive: true, force: true });
+    }
+  }, 60000);
 });

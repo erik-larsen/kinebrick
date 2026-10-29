@@ -305,4 +305,6 @@ async function main() {
     }),
   );
   clearInterval(progress);
+  // The mechanism catalog quotes each function's result: written afresh with them.
+  execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
 }

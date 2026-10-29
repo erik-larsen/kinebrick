@@ -5,12 +5,13 @@
 // set's `generated`. Writes docs/mechanisms/README.md, the timeline and a table of every kind,
 // and a page per kind, docs/mechanisms/<kind>.md, afresh each time.
 //
-// Run with: npm run mechanisms
+// Run with: npm run mechanisms (or, to write it somewhere else, npx tsx scripts/mechanisms.ts
+// <folder>, as the test that it's up to date does)
 
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const OUT_DIR = join('docs', 'mechanisms');
+const OUT_DIR = process.argv[2] ?? join('docs', 'mechanisms');
 const SETS_DIR = join('data', 'sets');
 const VIEWER = 'https://erik-larsen.github.io/kinebrick/?model=';
 
