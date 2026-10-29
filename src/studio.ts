@@ -1,17 +1,52 @@
 // BrickLink Studio's .io files: a ZIP archive, encrypted with a password Studio uses for all of
 // them (as the LDraw wiki documents, wiki.ldraw.org/wiki/IO), holding the model as an LDraw file,
-// model.ldr, beside a thumbnail and Studio's own files. Kinebrick reads only model.ldr.
+// model.ldr, beside a thumbnail and Studio's own files. Kinebrick reads model.ldr, and from
+// model2.ldr (the model again, with every part it uses written into it) the parts Studio has
+// that the LDraw library may not: a tile with a sticker on it, as one part (the 10242 Mini
+// Cooper's number plates).
 
 const PASSWORD = 'soho0909';
 
-// The model in a .io file, as LDraw text.
-export async function studioModel(bytes: ArrayBuffer): Promise<string> {
-  const entry = zipEntries(bytes).find((e) => e.name.toLowerCase() === 'model.ldr');
-  if (!entry) throw new Error('no model.ldr in it: is it a BrickLink Studio file?');
+// The model in a .io file, as LDraw text, and the parts written into it (model2.ldr, or '' if
+// it has none).
+export async function studioModel(bytes: ArrayBuffer): Promise<{ model: string; parts: string }> {
+  const entries = zipEntries(bytes);
+  const model = entries.find((e) => e.name.toLowerCase() === 'model.ldr');
+  if (!model) throw new Error('no model.ldr in it: is it a BrickLink Studio file?');
+  const parts = entries.find((e) => e.name.toLowerCase() === 'model2.ldr');
+  return { model: await unpack(model), parts: parts ? await unpack(parts) : '' };
+}
+
+// The parts written into a Studio model (see studioModel), each part's file by its name (as the
+// LDraw library names it, in lower case). Studio writes a part's own colour as -1, where LDraw
+// writes 16.
+export function studioParts(text: string): Map<string, string> {
+  const parts = new Map<string, string>();
+  let name = '';
+  let lines: string[] = [];
+  const done = () => {
+    if (/\.dat$/i.test(name)) parts.set(name.toLowerCase(), lines.join('\n').replace(/^(\s*1\s+)-1(\s)/gm, '$116$2'));
+  };
+  for (const line of text.split(/\r?\n/)) {
+    const file = /^\s*0\s+FILE\s+(.+?)\s*$/.exec(line);
+    if (file) {
+      done();
+      [name, lines] = [file[1], []];
+    } else if (/^\s*0\s+NOFILE\b/.test(line)) {
+      done();
+      [name, lines] = ['', []];
+    } else if (name) lines.push(line);
+  }
+  done();
+  return parts;
+}
+
+// A file in the archive, unpacked.
+async function unpack(entry: ZipEntry): Promise<string> {
   let data = entry.data;
   if (entry.encrypted) data = zipDecrypt(data, PASSWORD);
   if (entry.method === 8) data = await inflate(data);
-  else if (entry.method !== 0) throw new Error(`its model.ldr is packed in a way Kinebrick can't read (ZIP method ${entry.method})`);
+  else if (entry.method !== 0) throw new Error(`its ${entry.name} is packed in a way Kinebrick can't read (ZIP method ${entry.method})`);
   return new TextDecoder().decode(data);
 }
 
@@ -82,6 +117,6 @@ async function inflate(data: Uint8Array): Promise<Uint8Array> {
   try {
     return new Uint8Array(await new Response(stream).arrayBuffer());
   } catch {
-    throw new Error("its model.ldr can't be unpacked: it may use a password other than Studio's");
+    throw new Error("it can't be unpacked: it may use a password other than Studio's");
   }
 }

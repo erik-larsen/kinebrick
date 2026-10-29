@@ -41,7 +41,7 @@ import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { packModel, shapeName } from './pack.ts';
-import { studioModel } from './studio.ts';
+import { studioModel, studioParts } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
 import connectionsUrl from '../data/connections.json?url';
 import libraryConnectionsUrl from '../data/library-connections.json?url';
@@ -310,13 +310,21 @@ async function start() {
       fetch(libraryConnectionsUrl).then((r) => r.json()),
     ]);
     const primitiveSet = new Set<string>(primitiveList);
-    const readFile = libraryReader(LIBRARY, primitiveSet, (count) => (summary.textContent = `Fetching parts from the LDraw library: ${count}…`));
-    const result = await packModel(FILE.replace(/\.(ldr|mpd|io)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => primitiveSet.has(name), roles);
+    const fromLibrary = libraryReader(LIBRARY, primitiveSet, (count) => (summary.textContent = `Fetching parts from the LDraw library: ${count}…`));
+    // A part the library hasn't got may be one of Studio's own, written into a Studio file.
+    const studio = studioParts(/\.io$/i.test(FILE) ? ((await keptFile(`${FILE} parts`)) ?? '') : '');
+    const readFile = async (name: string) => (await fromLibrary(name)) ?? studio.get(name.toLowerCase()) ?? null;
+    table = libraryConnections(library);
+    // Such a part made only of parts Kinebrick knows (a tile and its sticker) is read as them.
+    const stickers = new Set(table.stickers ?? []);
+    const known = (piece: string) => table.parts[piece] !== undefined || stickers.has(piece);
+    const pieces = (text: string) => text.split(/\r?\n/).flatMap((line) => (/^\s*1\s/.test(line) ? [normalizePartName(line.trim().split(/\s+/).slice(14).join(' '))] : []));
+    const split = [...studio].filter(([name, text]) => !known(name) && pieces(text).length > 0 && pieces(text).every(known)).map(([name]) => [name, 'split']);
+    const result = await packModel(FILE.replace(/\.(ldr|mpd|io)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => primitiveSet.has(name), { ...roles, ...Object.fromEntries(split) });
     summary.textContent = 'Loading…';
     packed = result;
     titles = Promise.resolve(result.titles);
     missingFiles = result.missing;
-    table = libraryConnections(library);
     load = () => new Promise((resolve, reject) => loader.parse(result.text, resolve, reject));
   } else {
     modelText = await (await fetch(MODEL_URL)).text();
@@ -1052,8 +1060,13 @@ async function openFile(file: File | undefined) {
   if (!file) return;
   try {
     if (!/\.(ldr|mpd|io)$/i.test(file.name)) throw new Error('Kinebrick opens LDraw models (.ldr or .mpd files) and BrickLink Studio files (.io)');
-    // A Studio file is kept as the LDraw model inside it (see studio.ts), under its own name.
-    await keepFile(file.name, /\.io$/i.test(file.name) ? await studioModel(await file.arrayBuffer()) : await file.text());
+    // A Studio file is kept as the LDraw model inside it (see studio.ts), under its own name, and
+    // the parts written into it beside it.
+    if (/\.io$/i.test(file.name)) {
+      const { model, parts } = await studioModel(await file.arrayBuffer());
+      await keepFile(file.name, model);
+      await keepFile(`${file.name} parts`, parts);
+    } else await keepFile(file.name, await file.text());
     openModel((p) => p.set('file', file.name));
   } catch (err) {
     document.getElementById('summary')!.textContent = `Can't open ${file.name}: ${(err as Error).message}`;
