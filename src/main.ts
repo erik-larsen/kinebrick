@@ -122,6 +122,7 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   axes         each joint's axis
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
+//   nosymbols    no symbols pinned to parts (📌 frozen, ⚠ loose), which show otherwise
 const OPTIONS = params.getAll('option').join(',').split(',');
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
@@ -414,6 +415,7 @@ async function start() {
   const contacts = new Group();
   contacts.visible = OPTIONS.includes('contacts');
   ldrawSpace.add(contacts);
+  badgeRenderer.domElement.hidden = OPTIONS.includes('nosymbols');
   const appearance = new Appearance(partObjects, mech, outlines);
   appearance.showBodyColours = OPTIONS.includes('bodycolours');
   // Drivetrain focus (see OPTIONS): the bodies the motion going on (a drag, or a part kept
@@ -739,6 +741,7 @@ async function start() {
     axes: axes.visible,
     contacts: contacts.visible,
     focus: focusOn,
+    symbols: !badgeRenderer.domElement.hidden,
     rpm: RPM,
     scrub,
   };
@@ -768,6 +771,10 @@ async function start() {
     focusOn = on;
     if (!on) clearFocus();
     keepOption('focus', on);
+  });
+  gui.add(settings, 'symbols').name('Symbols').onChange((on: boolean) => {
+    badgeRenderer.domElement.hidden = !on;
+    keepOption('nosymbols', !on);
   });
 
   // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" (in the options panel,
@@ -1011,6 +1018,7 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
 // under Working sets; and those that don't yet (data/wip-models.json: those marked WIP in the
 // README, and those it doesn't show yet) under Work in progress sets.
 const picker = document.getElementById('model') as HTMLSelectElement;
+picker.add(new Option('Open a model file…', 'open'));
 if (FILE) picker.add(new Option(FILE, '', false, true));
 const heading = (label: string) => Object.assign(document.createElement('optgroup'), { label });
 const tests = heading('Test models');
@@ -1021,7 +1029,6 @@ for (const [file, name] of MODELS) {
   group.append(new Option(name, file, false, !FILE && file === MODEL));
 }
 for (const group of [tests, working, wip]) if (group.children.length) picker.append(group);
-picker.add(new Option('Open a model file…', 'open'));
 const chosen = picker.value;
 const filePicker = document.getElementById('file') as HTMLInputElement;
 

@@ -99,7 +99,7 @@ Built for Kinebrick, each to try one kind of mechanism.
 
 ### Your own model
 
-Pick **Open a model file…** at the bottom of the model menu, or drop an LDraw file (`.ldr`, or `.mpd` with submodels) or a BrickLink Studio file (`.io`) anywhere on the page. Kinebrick fetches the parts it uses from [its copy of the LDraw parts library](https://github.com/erik-larsen/ldraw) and works out the mechanism as it does for its own models.
+Pick **Open a model file…** at the top of the model menu, or drop an LDraw file (`.ldr`, or `.mpd` with submodels) or a BrickLink Studio file (`.io`) anywhere on the page. Kinebrick fetches the parts it uses from [its copy of the LDraw parts library](https://github.com/erik-larsen/ldraw) and works out the mechanism as it does for its own models.
 
 Your file stays in your browser; nothing is uploaded. The browser keeps it so the page can reload with it (the address names it, as `file=`), so a link to it only works in that browser.
 
@@ -194,6 +194,7 @@ These are off, or at their usual values, unless you set them, in the Options pan
 - **Joint axes** (`option=axes`): each joint's axis as a thin pink rod.
 - **Gear contacts** (`option=contacts`): a pink dot where each pair of gears' teeth meet.
 - **Drivetrain focus** (`option=focus`): only what a drag or a part kept turning moves draws solid, everything else see-through, so turning a car's steering wheel shows just its steering (the wheel, its column and universal joints, the rack, tie rods and wheels) and rolling it just its wheels and drivetrain. A part counts if it moves against the frame, so a car's frame and what it carries stay see-through as it rolls. Until the next drag or spin moves something, the last one's stay solid; Reset shows everything again.
+- **Symbols** (on unless `option=nosymbols`): the symbols pinned to parts, 📌 on a frozen part and ⚠ on a loose one. Unticked, they're hidden; the parts' outlines stay.
 - **Spin speed** (`rpm=60`): how fast Ctrl-click turns a part, in whole revolutions per minute. It's 15 unless set, and switching model goes back to 15.
 - **Auto spin** (`autospin=271`, or `autospin=271,cw`): a part kept turning from the moment the page opens, as if Ctrl-clicked, by its place in the model file: the number the hover label gives it (counting from 0, submodels flattened). It turns counter-clockwise as seen from where the camera starts, or with `,cw` clockwise; a part kept moving rather than turning starts away from where the camera starts, or with `,cw` towards it. Ctrl-click, Reverse and Stop keep it up to date, so copying the address shares the animation. Switching model drops it.
 - **Turned parts** (`turn=155,60`, again for each part: `turn=155,60&turn=12,-30`): parts turned as the page opens, each as if dragged, by its place in the model file (as for Auto spin) and how many degrees, counter-clockwise as seen from where the camera starts, or clockwise if negative, one after another before Auto spin starts. Dragging a part like a knob keeps it up to date, so copying the address shares how you've set the model (a car's steering, say); Reset clears it. Switching model drops it.
