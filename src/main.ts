@@ -575,13 +575,6 @@ async function start() {
     return parts.map((p, i) => ({ ...p, matrix: back.clone().multiply(kin.poses[mech.bodyOf[i]]).multiply(p.matrix) }));
   }
 
-  // Moves a part as drawn by `by`, a move as the frame sees it (see partsNow).
-  function moveDrawn(i: number, by: Matrix4) {
-    const frame = kin.poses[0];
-    partObjects[i].matrix.premultiply(frame.clone().multiply(by).multiply(frame.clone().invert()));
-    partObjects[i].matrix.decompose(partObjects[i].position, partObjects[i].quaternion, partObjects[i].scale);
-  }
-
   // Works the mechanism out afresh from where everything now is, as the frame sees it (parts
   // placed as given, see partsNow), then stands it back where the frame is: so what was worked
   // out as the model stood when it loaded still holds, however far it has moved since (which way
@@ -709,16 +702,18 @@ async function start() {
   function meshAfresh() {
     const now = partsNow();
     const shifts = catchShifts(now, table, catches);
-    if (!shifts.size && !meshesChanged(mech, kin.poses)) return;
-    for (const [ring, to] of shifts) {
-      const slider = sliderOf(ring)!;
-      const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
-      for (const i of slider.riders ?? [ring]) {
-        now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
-        moveDrawn(i, by);
+    // A catch's ring slid is read as a shift is, as built (see readAsBuilt); gears that now mesh,
+    // or no longer do, only where they now are.
+    if (shifts.size) {
+      const moves = new Map<number, Matrix4>();
+      for (const [ring, to] of shifts) {
+        const slider = sliderOf(ring)!;
+        const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
+        for (const i of slider.riders ?? [ring]) moves.set(i, by);
       }
+      readAsBuilt(moves);
     }
-    readWhereItIs(now);
+    if (meshesChanged(mech, kin.poses)) readWhereItIs(partsNow());
   }
 
   // Where a sliding part is and how it slides, or null if it doesn't.
