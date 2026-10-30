@@ -189,11 +189,50 @@ The quick sets and the 7 with drags that stopped short:
 
 With all seven at stillness 0.2, of the 13 drags that stopped short, 10 come out as with holds. The other three: the race car's V8 (its pistons, above), the 42056's rear suspension (stopped at a dead point, a third of the way) and the 42096's suspension (one of the seven). Better than holds: the 42074's helm, the 42063's rear suspension and the 8001's knees. Worse, apart from the seven and the race car's V8: the 8837's steering knob, which still slews the excavator a little as it steers (0.17 radians for each radian of the knob, shared by least squares), and the 42056's rear suspension. Taking out the three results holds get by a part turning that shouldn't (the 8081's doors, the 42096's suspension, the race car's V8), least motion is a function ahead.
 
+## Fourth round: a fair check, and what was worse
+
+### The check counted turns that didn't happen
+
+A part on an axle free in its holes can have its joint turned with the part itself standing still, the axle spinning back under it. The function check took the joint's angle as how far the control turned, so that counted as working: with holds, the 8865 Test Car's suspension arms and seat backrests "worked" though nothing moved. The check now counts how far the control turns against what its shaft turns in. That's what least motion's drag does since the third round, so the comparison had been tilted toward holds.
+
+The sets least motion is iterated on are now 46: the 40, and six where a full check stopped partway found it worse (the 8865, 8862, 8094, 8830, 42021 and 42041). With the fair check, holds have 128 of their functions working.
+
+### What was wrong, and what changed
+
+Each function least motion did worse on was looked into separately, by agents running probes in parallel, and each fix made in general:
+
+- **What a grabbed part turns against stays still.** Dragging the 8862 Backhoe's dipper cylinder swung the boom the other way and carried the dipper round level, since the turning tier counts every body on the dipper as turning if the dipper turns. A tier just before it now keeps the grabbed part's housing still against the frame, as a hand holding the model by its frame would.
+- **A car on fewer than three tyres keeps its own turning still.** Nothing in the tiers cost the frame's own motion, all of them being measured against it. The 8865, its front tyres built 9.4 LDU clear of the ground, spun round a rear wheel and tipped forward. A tier for the frame's turning, only where the tyres on the ground don't stand the car up, stands in for its weight. On four tyres the scrub rule already rules that out.
+- **Mounts stay held while the loops close**, as tier 1 kept them in the step. The 8865's top axle, built at its end stop, slid a hair past it. A slide also counts as past its end only 1e-6 LDU beyond it, not 1e-9.
+- **A drag keeps its choice of suspension.** Whether a drag's motion uses the suspension is chosen at its first step and kept: the 42056's rear suspension switched to rolling the car a third of the way and stopped as at a dead point. But a drag that chose the plain motion takes the suspension once plain turns the joints four times as much, where it held only to first order (the 42096's rear suspension).
+- **The tyres grip when the frame stays still.** A motion that keeps the frame where it is can still drag the tyres across the ground, and with scrub no longer weighed in the turning tier, nothing cost that: the 8837 Pneumatic Excavator, whose frame is its upper body, slewed its chassis round under it rather than steer. Of the motions that leave the frame still, those in which no tyre scrubs are taken, if any turns the joint; a step taken so that holds only to first order drops the preference for the rest of the drag.
+- **Closing the loops keeps still what the step left still**, now by default (`CLOSE_STILL`, 1e-3). Closing them by plain least squares undid what the tiers kept still a hair a step: the 956 Auto Chassis, driven round a circle, drifted 1.1 LDU off it, and its gear lever was carried round with the drive shaft.
+
+### What's still worse, and why it isn't the solver
+
+Six functions work with holds and not with least motion. In each, holds' result comes from something that shouldn't happen:
+
+- **The 42039 and 42041 V8s.** Their connecting rods are built 1.005 LDU off the crank pins, just outside the 1 LDU tolerance, so the pistons reach no crank. With holds they slide only by drifting, all eight together. A connection fix (a second chance at fitting for parts like these) is being looked into.
+- **The 42107's swing arm and the 8466's suspension.** Their shock absorbers are rigid until springs come in version 2.0, so the arms can't move. With holds the 42107's "partly" was its gearbox shaft spinning under the arm and rolling the bike.
+- **The 42021's handlebars.** The bar hangs on a frictionless pin off the steering column, and spinning it on the pin cancels the steering. Holds steer only because least squares happens to split the motion. A contact or connection fix, not a tier.
+- **The 8094's arm motor.** The function assumes the claws are shut on something; holds raise the arm only by holding the whole claw train to it.
+
+### Tests and function check
+
+All 329 tests pass with least motion (stillness 0.2) as with holds, for the first time. On the 46 sets:
+
+| | Holds | Least motion |
+|---|---|---|
+| Work | 128 | 129 |
+| Partly | 99 | 97 |
+| Don't | 44 | 45 |
+
+Better than holds: the 42063's rear suspension, the 42074's helm, two of the 8862's (its handwheel and its bucket cylinder) and the 9394's control stick.
+
 ## Open questions
 
-- **Spreading.** The 8837's slewing and the swing arms test. Weighting tier 4 by how many parts each body has (mass, roughly) cures the 8837, as stillness at 0.3 does, but fails the 8849's and the 855's tests. Next to try: sparse only in tiers 1 to 3, where it's one thing or another (a pin slips or doesn't).
-- **The car's own motion.** Nothing in the tiers costs the frame moving: they're all measured against it. A car standing on only two tyres (the 8865) so tips and swings as freely as the geometry lets it. Turning measured against the ground instead, with the frame's own turning counted, stopped the 8865 rolling at all and failed one more test. Gravity and mass would settle it.
-- **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback. It may be better as part of the scrub rule: which ways to roll exist with the steering held.
-- **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has helped in the sparse version (the 8849's front axle stays level rather than being carried round by the steering shaft), and needs trying by itself.
-- **The full check again**, once, overnight, when least motion is clearly ahead on the sets it's iterated on. A full check started at stillness 0.2 was stopped after about 100 sets: there, 7 functions came out better than holds and 12 worse, among them four of the 8865's, two of the 8862's, and one each of the 8094's, 8830's, 42021's and 42041's, sets not among the 40.
+- **The full check**, once, overnight, both ways with the fair check: holds' results on every set were measured counting a control's joint angle, and need measuring again before least motion is compared with them. Least motion now passes every test and is ahead on the 46 sets, the half of the adoption test the full check hasn't settled.
+- **Connections behind what's still worse**: parts built just outside the fitting tolerance (the V8 connecting rods), and shock absorbers rigid until springs. Both hurt holds as much, but hide behind results holds get by drifting.
+- **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback; so is the tier for a car's own turning on two tyres. Gravity and mass would replace both.
+- **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has cured the 8837's slewing but failed the 8849's and the 855's tests; the slewing turned out to be scrub, so mass may not be needed.
 - **Pushes.** The prototype only covers drags that turn a joint (the function check uses only those). Pushes still choose holds.

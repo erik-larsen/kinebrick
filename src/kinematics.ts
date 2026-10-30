@@ -110,10 +110,12 @@ const TIER_TOLERANCE = 1e-10;
 // A tier counts as costing nothing at all (see leastTurning) if its costs are at most this, as a
 // fraction of the most a motion of unit size turns the joints (both squared).
 const NOISE = 1e-20;
-// Experimental, within least motion: how much keeping still what a step left still counts in
-// closing the loops, against closing them (see advance). Off unless KINEBRICK_CLOSE_STILL is set;
-// 1e-3 passes the same tests and two more functions in the function check.
-const CLOSE_STILL = typeof process !== 'undefined' && process.env?.KINEBRICK_CLOSE_STILL ? Number(process.env.KINEBRICK_CLOSE_STILL) : 0;
+// Least motion: how much keeping still what a step left still counts in closing the loops,
+// against closing them (see advance). Closing them by plain least squares undoes, a hair a step,
+// what the tiers kept still, and over a long drag that adds up: the 956 Auto Chassis, driven
+// round a circle, drifted off it as its steering crept, and its gear lever was carried round with
+// the drive shaft. KINEBRICK_CLOSE_STILL sets it (0 turns it off).
+const CLOSE_STILL = typeof process !== 'undefined' && process.env?.KINEBRICK_CLOSE_STILL !== undefined ? Number(process.env.KINEBRICK_CLOSE_STILL) : 1e-3;
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
 // sparse friction tier (see leastTiers).
 const SCRUB_WEIGHT = 100;

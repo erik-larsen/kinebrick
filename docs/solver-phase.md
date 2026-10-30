@@ -38,7 +38,7 @@ And faster:
 
 ### 2. Least motion, adopted when it beats holds
 
-[Least motion](least-motion.md) chooses a drag's motion by tiers of least squares instead of holds. It's adopted when all the tests pass and at least as many functions work as with holds on the full check. Its third round fixed the drags that stopped short, each a general flaw, and it now has 2 functions fewer working than holds on 40 sets (109 to 111), though holds get 3 of theirs by a part turning that shouldn't. It's iterated on with the quick sets and those its drags have gone wrong on, and the full check is run once, overnight, when it's clearly ahead there. Next: what a partial full check found worse (the 8865, 8862, 8094, 8830, 42021 and 42041), spreading, and the car's own motion, which no tier costs yet.
+[Least motion](least-motion.md) chooses a drag's motion by tiers of least squares instead of holds. It's adopted when all the tests pass and at least as many functions work as with holds on the full check. Its third and fourth rounds fixed what it did worse, each time a general flaw, and made the function check fair (a control counts as turned only as far as it turns against what its shaft turns in). It now passes every test and has 129 functions working on the 46 sets it's iterated on, against holds' 128; the six it's worse on are holds working by something that shouldn't happen. Next: the full check, both ways, overnight.
 
 ### 3. One problem for each step
 
