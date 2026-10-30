@@ -165,29 +165,35 @@ The drags that stopped short, chased one at a time with a probe that steps a dra
 - **Scrubbing weighed twice.** The turning tier also counted tyres scrubbing sideways, 100 times as much as turning. But the scrub rule already keeps scrub within what's allowed before any tier chooses, and weighing it again made the 42037 Formula Off-Roader roll 41 LDU and swing round for each radian a suspension arm was raised, rather than let a tyre scrub a little. It's no longer weighed in the turning tier, and the tests come out the same at 0, 1 or 100.
 - **A grabbed part turned against its shaft.** A drag turns the grabbed part's joint, against what the part turns on. Where that is a pin free to spin in its holes, the turn was taken by the pin spinning back under the part, which stayed where it was: the 9394 Airliner's control stick turned 1.5 radians and its tailplanes didn't move. Least motion now turns a grabbed part against what its shaft turns in (`housing`, the first body up the tree not on the same line).
 
-That last change turns seven results to "no" that weren't before. In each, the part can't turn against what its shaft turns in, as the model is built: with holds or before the change, the drag only spun the shaft or pin under it, and counted as working or partly working because the control turned. The 8081's doors are both in one body, so neither can swing on its hinge; the 42107's swing arm is locked by a shock absorber that doesn't slide; the 42096's and 42037's suspension uprights, the 42063's front fork, the 42065's tilting body and the 42112's selector lever likewise. These are connection problems the check now shows rather than hides.
+Then two more, after the 40 sets below were first checked:
+
+- **Standing alone on something that turns.** Least motion held everything standing alone, on its own joint, to save work; holds only hold what stands alone on something still. Held on its joint, the 956 Auto Chassis's gear lever, which sits on the drive shaft, was carried round with the shaft. Least motion now holds the same as holds.
+- **Steering a car that's meant to steer.** On a car on its tyres, tier 2 keeps the steering still, so that turning a wheel rolls the car rather than steering it. But the 8837 Pneumatic Excavator's steering knob is on its upper body, whose gear crosses the turntable to the steering below, and with the steering kept still the drag slewed the excavator round instead. A drag that drives any of the steering through its gears now has tier 2 left out.
+- **Stillness at 0.2** rather than 0.1: with these two, 0.1 loses two functions (the 42062's boom extension and the 42056's rear suspension) that 0.2 keeps, and 0.2 brings back the 42062's spreader. 0.3 fails one more test (the 8849's steering, 0.243 radians rather than 0.2525).
+
+The housing change turns seven results to "no" that weren't before. In each, the part can't turn against what its shaft turns in, as the model is built: with holds or before the change, the drag only spun the shaft or pin under it, and counted as working or partly working because the control turned. The 8081's doors are both in one body, so neither can swing on its hinge; the 42107's swing arm is locked by a shock absorber that doesn't slide; the 42096's and 42037's suspension uprights, the 42063's front fork, the 42065's tilting body and the 42112's selector lever likewise. These are connection problems the check now shows rather than hides.
 
 ### Tests
 
-All 329 pass with holds. With least motion and stillness, 4 fail, the same 4 as on the code before this round (which the second round's note had wrong): the swing arms (spreading, as before), two of the 956's (a hair outside their tolerances: 1.09 LDU off a 1755 LDU circle, against 0.5) and the 8865's V4. The 8865's front tyres are built 9.4 LDU above the ground, so only its rear tyres touch it; turning a rear wheel, least motion swings the car round the other rear wheel, which turns the engine half as much, and tips it forward 38° until the drag stops. Holds roll it straight on.
+All 329 pass with holds. With least motion and stillness (0.1 or 0.2), 4 fail, the same 4 as on the code before this round (which the second round's note had wrong): the swing arms (spreading, as before), two of the 956's (a hair outside their tolerances: 1.09 LDU off a 1755 LDU circle, against 0.5) and the 8865's V4. The 8865's front tyres are built 9.4 LDU above the ground, so only its rear tyres touch it; turning a rear wheel, least motion swings the car round the other rear wheel, which turns the engine half as much, and tips it forward 38° until the drag stops. Holds roll it straight on.
 
 ### Function check on 40 sets
 
 The quick sets and the 7 with drags that stopped short:
 
-| | Holds | Least motion |
-|---|---|---|
-| Work | 111 | 109 |
-| Partly | 94 | 89 |
-| Don't | 30 | 37 |
+| | Holds | Least motion, first five changes | All seven, stillness 0.1 | All seven, stillness 0.2 |
+|---|---|---|---|---|
+| Work | 111 | 109 | 107 | 109 |
+| Partly | 94 | 89 | 91 | 88 |
+| Don't | 30 | 37 | 37 | 38 |
 
-Of the 13 drags that stopped short, 10 now come out as with holds. The other three: the race car's V8 (its pistons, above), the 42062's spreader (which now goes, but moves a part it shouldn't) and the 42096's suspension (one of the seven). Better than holds: the 8202's front wheels, the 42074's helm, the 42063's rear suspension, the 42114's hood and the 8081's front suspension. Worse, apart from the seven above and the race car's V8: three where a part that should stay still moves a little (spreading: the 8837's steering knob, the 956's engine and the 42062's spreader).
+With all seven at stillness 0.2, of the 13 drags that stopped short, 10 come out as with holds. The other three: the race car's V8 (its pistons, above), the 42056's rear suspension (stopped at a dead point, a third of the way) and the 42096's suspension (one of the seven). Better than holds: the 42074's helm, the 42063's rear suspension and the 8001's knees. Worse, apart from the seven and the race car's V8: the 8837's steering knob, which still slews the excavator a little as it steers (0.17 radians for each radian of the knob, shared by least squares), and the 42056's rear suspension. Taking out the three results holds get by a part turning that shouldn't (the 8081's doors, the 42096's suspension, the race car's V8), least motion is a function ahead.
 
 ## Open questions
 
-- **Spreading.** Three functions in the 40 sets, and the swing arms test. Next to try: stillness at more than a tenth, and sparse only in tiers 1 to 3, where it's one thing or another (a pin slips or doesn't).
+- **Spreading.** The 8837's slewing and the swing arms test. Weighting tier 4 by how many parts each body has (mass, roughly) cures the 8837, as stillness at 0.3 does, but fails the 8849's and the 855's tests. Next to try: sparse only in tiers 1 to 3, where it's one thing or another (a pin slips or doesn't).
 - **The car's own motion.** Nothing in the tiers costs the frame moving: they're all measured against it. A car standing on only two tyres (the 8865) so tips and swings as freely as the geometry lets it. Turning measured against the ground instead, with the frame's own turning counted, stopped the 8865 rolling at all and failed one more test. Gravity and mass would settle it.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback. It may be better as part of the scrub rule: which ways to roll exist with the steering held.
 - **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has helped in the sparse version (the 8849's front axle stays level rather than being carried round by the steering shaft), and needs trying by itself.
-- **The full check again**, once the 40 sets come out at least level with holds.
+- **The full check again**, at stillness 0.2, to see the whole picture now the 40 sets are about level with holds.
 - **Pushes.** The prototype only covers drags that turn a joint (the function check uses only those). Pushes still choose holds.

@@ -126,7 +126,7 @@ const TURNING_WEIGHT = 1;
 // Least motion: a body the turning tier leaves turning less than this fraction of the body it
 // turns most is held still, if it can be, and the tier solved again (see leastTurning): static
 // friction holds what would only creep, rather than letting everything give a little. Off unless
-// KINEBRICK_STILLNESS is set; 0.1 passes every test.
+// KINEBRICK_STILLNESS is set; 0.2 does best in the function check, and 0.3 fails one more test.
 const STILLNESS = typeof process !== 'undefined' && process.env?.KINEBRICK_STILLNESS !== undefined ? Number(process.env.KINEBRICK_STILLNESS) : 0;
 
 const DOWN = new Vector3(0, 1, 0); // LDraw's y axis points down
@@ -939,11 +939,16 @@ export class Kinematics {
     for (const worm of worms) this.dragHeld.add(worm);
     const wormLocked = worms.length > 0;
     this.dragTurning = joint >= 0 ? { grabbed, joint } : null;
-    // Least motion: only worms are held (they lock), and what stands alone (it can't be needed,
-    // and holding it only saves work); jointMotion chooses the rest, tier by tier.
+    // Least motion: only worms are held (they lock), and what stands alone on what's still (it
+    // can't be needed, and holding it only saves work; held on something that turns, it would
+    // be carried round: the 956 Auto Chassis's gear lever, which sits on the drive shaft);
+    // jointMotion chooses the rest, tier by tier.
     this.dragSteering = null;
     if (experiments.leastMotion && joint >= 0) {
-      for (const body of this.standingAlone(grabbed)) this.dragHeld.add(body);
+      for (const body of this.standingAlone(grabbed)) {
+        const parent = this.parentLink(body)!.parent;
+        if (this.parentJoint[parent] < 0 || this.dragHeld.has(parent) || this.frozen.has(parent)) this.dragHeld.add(body);
+      }
       // A car that can't roll with its steering free (the scrub its steering leaves rules out
       // every way to roll: the 8245's caster fork) has its steering held, as tier 2 would keep
       // it still anyway.
@@ -2456,8 +2461,12 @@ export class Kinematics {
     const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.dragHeld.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
     if (this.contactTreads.length > 0 && !this.dragSteering) this.dragSteering = this.steeringBodies();
-    const steering = this.contactTreads.length > 0 ? [...this.dragSteering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
-    const steers = (z: number[]) => steering.map((j) => rateOf(z, j));
+    // A drag that drives the steering through its gears (a steering knob) is meant to steer, so
+    // the steering isn't kept still for it: kept still, the 8837 Pneumatic Excavator's knob,
+    // whose gear crosses the turntable, slewed the excavator round instead.
+    const keepSteering = this.contactTreads.length > 0 && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.dragSteering!.has(b));
+    const steering = keepSteering ? [...this.dragSteering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
+    const steered = (z: number[]) => steering.map((j) => rateOf(z, j));
     // Friction pins, and motors' outputs, which their gearboxes hold (see chooseHolds).
     const stiff = this.mech.joints.flatMap((j, i) => ((j.stiff || j.motor) && j.kind === 'revolute' && i !== joint ? [i] : []));
     const pins = (z: number[]) => stiff.map((j) => rateOf(z, j));
@@ -2501,7 +2510,7 @@ export class Kinematics {
         return [v.x, v.y, v.z];
       });
     };
-    return [{ cost: mounted }, { cost: steers }, { cost: pins }, turning4, { cost: size, joints: true }, { cost: moves }];
+    return [{ cost: mounted }, { cost: steered }, { cost: pins }, turning4, { cost: size, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
