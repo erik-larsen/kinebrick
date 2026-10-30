@@ -1,4 +1,4 @@
-# Kinebrick Viewer architecture
+# Kinebrick Play architecture
 
 How Kinebrick works inside, for anyone changing the code. What it does, and how to use it, is in the [README](README.md).
 
