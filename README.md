@@ -109,26 +109,26 @@ Kinebrick knows the moving parts of its own models and the most common ones in t
 
 Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
-**Under way: M7, real LEGO sets, oldest first.** Every set under [Models](#models) works in full, except the 8448 Super Street Sensation, whose V8 engine works on its own. Next: more sets.
+**Under way: [the solver phase](docs/solver-phase.md).** Since release 0.850, rather than fixing sets one at a time, the work is on the solver itself: one general way to choose how a mechanism moves in place of special cases, and a quicker check that says how far each part should move. Every set under [Models](#models) works in full, except the 8448 Super Street Sensation, whose V8 engine works on its own.
 
 **[Function check](ARCHITECTURE.md#the-function-check) on all 186 sets.** Each set's functions, from its instruction book, tried on its model.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 517 | 42% |
+| Works | 525 | 43% |
 | Partly | 357 | 29% |
-| Doesn't work | 175 | 14% |
+| Doesn't work | 167 | 14% |
 | Skipped or not checked | 175 | 14% |
 
-Of the functions checked, 49% work in full. Only 13 of the 186 sets have every function working.
+Of the functions checked, 50% work in full. Only 13 of the 186 sets have every function working.
 
 **Major things left:**
 
-1. **Finish the surveys.** The function check is done, and the OMR control surveys' results are on the `omr-survey` branch.
-2. **Refine the kinematics from those results.** This is the bulk of the remaining work: turning the 357 "partly" and 175 "doesn't work" functions into working ones, a part type or connection rule at a time. Grouped by cause, the biggest is a drag choosing the wrong way for a mechanism to move, in about 130 sets; then parts Kinebrick doesn't connect or mesh yet, in about 90.
-3. **Optimize, only once the refine phase is done.** Solve only the part of a mechanism a control reaches, and cache each set's inferred mechanism. Speed matters already: three sets ran past 30 minutes in the function check.
+1. **Checks that say how much.** Gear ratios from tooth counts, rules for each kind of mechanism, and a quick set of about 20 sets to run on every change.
+2. **A general solver.** [Least motion](docs/least-motion.md) in place of holds, then each step solved as one problem, with [MuJoCo](https://mujoco.org) as a second opinion to check it against.
+3. **Connections for every part in the official sets.** Grouped by cause, a drag choosing the wrong way for a mechanism to move affects about 130 sets, and parts Kinebrick doesn't connect or mesh yet about 90.
 4. **Version 2.0, forces through MuJoCo.** Springs and shocks, clutches that slip under load, and momentum.
-5. **[Later](#later):** other LEGO lines (Creator, trains), marching ants on loose parts, and suggested fixes for loose parts.
+5. **[Later](#later):** people's own models and BrickLink Studio's parts, other LEGO lines (Creator, trains), marching ants on loose parts, and suggested fixes for loose parts.
 
 **Done:**
 
