@@ -33,7 +33,7 @@ import { collisionGeometry, Collisions, PartMesh } from './collisions.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
-import { DEFAULT_SCRUB, Kinematics } from './kinematics.ts';
+import { DEFAULT_SCRUB, experiments, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PathPoint, PlacedPart } from './ldr.ts';
 import { inferMechanism, Joint, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
@@ -124,6 +124,8 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
 //   nosymbols    no symbols pinned to parts (📌 frozen, ⚠ loose), which show otherwise
 const OPTIONS = params.getAll('option').join(',').split(',');
+// Experimental: ?least has a drag choose its motion by least motion (see leastTurning in kinematics.ts).
+if (params.has('least')) experiments.leastMotion = true;
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if

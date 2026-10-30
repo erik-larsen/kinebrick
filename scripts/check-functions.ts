@@ -14,10 +14,11 @@
 //                                     30), marking it as timed out
 //
 // Each set is checked in a process of its own. generated has the commit it was checked at (and
-// "uncommitted": true if src/ or data/ had changes not yet committed), the date, how many
-// functions came out each way, the model's loose parts, and one entry per function, in the same
-// order as curated.functions: its result, how far each control went each way, and the parts that
-// didn't do what they should ("still": in `moves` but didn't move; "moved": in `stays` but did).
+// "uncommitted": true if src/ or data/ had changes not yet committed, and "least": true if checked
+// with KINEBRICK_LEAST=1), the date, how many functions came out each way, the model's loose
+// parts, and one entry per function, in the same order as curated.functions: its result, how far
+// each control went each way, and the parts that didn't do what they should ("still": in `moves`
+// but didn't move; "moved": in `stays` but did).
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
@@ -235,6 +236,8 @@ async function main() {
   // No shell, so the pathspec isn't left quoted by Windows' cmd.
   const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets']).toString().trim() !== '';
   const date = new Date().toISOString().slice(0, 10);
+  // Checked with the experimental least-motion drags (KINEBRICK_LEAST=1; see docs/least-motion.md).
+  const least = process.env.KINEBRICK_LEAST === '1';
 
   // The sets with functions, smallest model first.
   const files = readdirSync(SETS_DIR)
@@ -275,7 +278,7 @@ async function main() {
         }
         // Read afresh, so only generated changes, whatever else changed meanwhile.
         const data = JSON.parse(readFileSync(s.file, 'utf-8'));
-        data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), date, ...found };
+        data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(least ? { least } : {}), date, ...found };
         writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
         const summary = 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
         console.log(`${data.set}: ${summary} (${seconds} s)`);
