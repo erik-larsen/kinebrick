@@ -252,8 +252,8 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
-    "date": "2026-10-27",
+    "commit": "1f1e1cb",
+    "date": "2026-10-30",
     "counts": {
       "no": 1,
       "works": 2,
@@ -752,9 +752,6 @@
           "p2941 41239 against p2649 64179",
           "p2383 62274c01 against p2382 62271c01",
           "p2386 62274c01 against p2385 62271c01"
-        ],
-        "moved": [
-          "p2649 64179 against p0 64179"
         ]
       },
       {
@@ -768,9 +765,6 @@
         "still": [
           "p3076 3703 against p2941 41239",
           "p3268 32270 against p2941 41239"
-        ],
-        "moved": [
-          "p2649 64179 against p0 64179"
         ]
       },
       {

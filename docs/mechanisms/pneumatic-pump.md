@@ -4,7 +4,7 @@ A pump, worked by hand or by a motor, fills the pneumatic system with air. (Powe
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): The hand pump: pushing the red plunger down blows air through the valves, and its spring pushes it back up.
 
-Used in 12 of the 186 surveyed sets, by 13 functions. Kinebrick: 1 works, 3 partly, 2 no, 7 skipped.
+Used in 12 of the 186 surveyed sets, by 13 functions. Kinebrick: 1 works, 4 partly, 1 no, 7 skipped.
 
 ## By decade
 
@@ -59,7 +59,7 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *compressor:* With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (no)
+- *compressor:* With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 

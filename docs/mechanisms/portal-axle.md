@@ -4,7 +4,7 @@ Gears in the hub drop the wheel below the axle's line, for ground clearance. (Dr
 
 First appears in 2011, in [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1): The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer.
 
-Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 5 partly.
+Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 4 partly, 1 no.
 
 ## By decade
 
@@ -17,7 +17,7 @@ Used in 5 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 5 partly
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (partly)
+- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (no)
 - Both portal axles swing about the frame (pendulum suspension), each sprung by two shock absorbers, so the wheels follow rough ground. (partly)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
