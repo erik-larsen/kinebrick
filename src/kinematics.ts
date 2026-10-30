@@ -29,6 +29,9 @@ import { StringCircle, stringLayout } from './paths.ts';
 const GROUND_TOLERANCE = 1;
 // Numbers smaller than this count as zero when solving the equations.
 const EPSILON = 1e-9;
+// How far past the end of its travel a slide may go, in LDU, before it counts as there: closing
+// the loops leaves a slide built at its end a hair past it.
+const LIMIT_TOLERANCE = 1e-6;
 // How far a tyre must roll in a step, in LDU, for that step to set its scrub rate (see
 // Kinematics.treadScrubRate): the tiny steps that close a loop or settle the model on the ground
 // would make it meaningless.
@@ -234,6 +237,7 @@ export class Kinematics {
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
   private dragSteering: Set<number> | null = null; // the steering bodies, worked out once a drag (see leastTiers)
+  private dragSuspension: boolean | null = null; // least motion: whether a drag's motion uses the suspension, chosen at its first step (see jointMotion)
   private slipRows: number[][] = []; // the tyres' scrubbing and lifting rows, in the tree basis, as freeMotionsApart last found them
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
@@ -836,7 +840,7 @@ export class Kinematics {
       const { range, sliding } = this.mech.joints[j];
       if (!range || !sliding) continue;
       const offset = this.slideOffset(j);
-      if (offset < range[0] - 1e-9 || offset > range[1] + 1e-9) return sliding;
+      if (offset < range[0] - LIMIT_TOLERANCE || offset > range[1] + LIMIT_TOLERANCE) return sliding;
     }
     // A gear on a rack (or on a row of racks): where it touches must be within the teeth of
     // one of them.
@@ -944,6 +948,7 @@ export class Kinematics {
     // be carried round: the 956 Auto Chassis's gear lever, which sits on the drive shaft);
     // jointMotion chooses the rest, tier by tier.
     this.dragSteering = null;
+    this.dragSuspension = null;
     if (experiments.leastMotion && joint >= 0) {
       for (const body of this.standingAlone(grabbed)) {
         const parent = this.parentLink(body)!.parent;
@@ -2341,7 +2346,15 @@ export class Kinematics {
     const plain = this.chooseMotion(joint, usual, rate, size, tiers);
     const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size, tiers) : plain;
     const length = (z: number[]) => Math.hypot(...size(z));
-    const z = this.choosingHolds && this.plainOnly ? plain : plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
+    let z = this.choosingHolds && this.plainOnly ? plain : plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
+    // Least motion: a drag keeps to the choice its first step made, while it can, rather than
+    // switching as the two come close: the 42056's rear suspension arm, at a third of its drag,
+    // switched to rolling the car, swinging its front linkage fast enough to count as a dead
+    // point.
+    if (tiers && !this.choosingHolds && suspension.length) {
+      if (this.dragSuspension === null) this.dragSuspension = z === any && z !== plain;
+      else if (this.dragSuspension ? any : plain) z = this.dragSuspension ? any : plain;
+    }
     this.played = false;
     if (z) return fromBasis(z, basis);
     // Play only lets a drag go where nothing else would, not choose what it holds: a hold that
@@ -2521,7 +2534,13 @@ export class Kinematics {
         return [v.x, v.y, v.z];
       });
     };
-    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, turning4, { cost: size, joints: true }, { cost: moves }];
+    // A car on fewer than three tyres, which don't stand it up, has its own turning kept as
+    // still as it can be, as its weight would: else nothing costs it, every tier being measured
+    // against it, and turning a rear wheel of the 8865 Test Car, its front tyres built clear of
+    // the ground, swung it round the other rear wheel and tipped it forward.
+    const tipping = this.contactTreads.length > 0 && this.contactTreads.length < 3;
+    const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : []);
+    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
@@ -2587,12 +2606,21 @@ export class Kinematics {
           const most = Math.max(...m.map(Math.abs));
           this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
         }
+        // Least motion: what slides or swivels on the car (see findMounts) and the step leaves
+        // still on it is held there while the loops are closed, as tier 1 kept it, but for
+        // rounding (the 8865 Test Car's top axle, built at its end stop, slid a hair past it).
+        // Not a resting body, which closing the loops sets down on what it rests on.
+        const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
+        const scale = Math.max(1, ...m.map(Math.abs));
+        const mountsHeld = experiments.leastMotion && this.dragTurning !== null ? [...this.mounts].filter(([b, on]) => !resting.has(b) && !this.dragHeld.has(b) && b !== this.dragTurning!.grabbed && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[6 * on + k]) <= 1e-9 * scale)).map(([b]) => b) : [];
+        for (const b of mountsHeld) this.dragHeld.add(b);
         this.move(m, amount);
         let gap: number;
         try {
           gap = this.closeLoops(keep);
         } finally {
           this.closingStill = [];
+          for (const b of mountsHeld) this.dragHeld.delete(b);
         }
         this.settle();
         return gap;
