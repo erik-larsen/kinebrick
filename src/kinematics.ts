@@ -2630,10 +2630,16 @@ export class Kinematics {
       return this.nearOrigin((_, fromModel) => {
         const m = fromModel(motion);
         // Least motion: the bodies the step leaves still against the frame are kept as still as
-        // they can be while the loops are closed (see closeLoops).
+        // they can be while the loops are closed (see closeLoops). Not a body standing on its own
+        // (a root other than the frame) that rests on nothing, held only by the loops: still in
+        // the step only to first order, it's for closing them to move (the 8063 Tractor's
+        // pistons, at top dead centre: kept still, closing the loops turned the crank back,
+        // through the differential). A resting one is still kept still: the 858 Auto Engines'
+        // crank jams a turn short if its push rods and rockers aren't.
         if (experiments.leastMotion && this.dragTurning !== null && CLOSE_STILL > 0) {
           const most = Math.max(...m.map(Math.abs));
-          this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
+          const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
+          this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
         }
         // Least motion: what slides or swivels on the car (see findMounts) and the step leaves
         // still on it is held there while the loops are closed, as tier 1 kept it, but for
