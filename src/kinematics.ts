@@ -237,6 +237,8 @@ export class Kinematics {
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
   private dragSteering: Set<number> | null = null; // the steering bodies, worked out once a drag (see leastTiers)
+  private dragGrip = true; // least motion: whether a drag still prefers, of the motions that leave the frame still, those in which no tyre scrubs (see chooseMotion)
+  private gripped = false; // whether the motion last chosen was one of those
   private dragSuspension: boolean | null = null; // least motion: whether a drag's motion uses the suspension, chosen at its first step (see jointMotion)
   private slipRows: number[][] = []; // the tyres' scrubbing and lifting rows, in the tree basis, as freeMotionsApart last found them
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
@@ -949,6 +951,7 @@ export class Kinematics {
     // jointMotion chooses the rest, tier by tier.
     this.dragSteering = null;
     this.dragSuspension = null;
+    this.dragGrip = true;
     if (experiments.leastMotion && joint >= 0) {
       for (const body of this.standingAlone(grabbed)) {
         const parent = this.parentLink(body)!.parent;
@@ -2186,6 +2189,7 @@ export class Kinematics {
     const steps = Math.ceil(Math.abs(angle) / maxStep);
     const full = angle / steps;
     while (Math.abs(angle - turned) > 1e-12) {
+      this.gripped = false;
       let motion = this.jointMotion(joint);
       // Holds chosen where a drag started may not suit it further on (as a steered car's
       // wheels turn, they turn by more and more different angles, and its differential has to
@@ -2219,6 +2223,13 @@ export class Kinematics {
       const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
       if (gap > (played ? PLAY : DEAD_POINT_GAP) || strayed.length) {
         this.restore(before);
+        // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
+        // held only to first order (the 42037 Formula Off-Roader's front tyre, neither rolling
+        // nor scrubbing); the drag goes on without that preference.
+        if (experiments.leastMotion && this.dragTurning?.joint === joint && this.gripped && this.dragGrip) {
+          this.dragGrip = false;
+          if (this.jointMotion(joint)) continue;
+        }
         // Least motion: joints that strayed from where the step had them going may have moved
         // only to first order, in a linkage that fits only as it is (the 42062 Container Yard's
         // spreader, whose linkage the turning tier would turn back, to keep it level, though it
@@ -2412,7 +2423,19 @@ export class Kinematics {
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
     const frameRows = [0, 1, 2, 3, 4, 5].map((k) => all.map((z) => z.reduce((sum, x, c) => sum + x * basis[k][c], 0)));
     const still = all.length ? orthonormalize(nullSpace(frameRows, all.length).map((a) => combine(all, a))) : [];
-    const parked = smallest(still);
+    // Least motion: of those, the ones in which no tyre on the ground scrubs or lifts, if any
+    // turns the joint, as the frame is kept still if it can be: all or nothing. A motion that
+    // leaves the frame still may still drag the tyres across the ground, and nothing in the
+    // tiers costs that (see leastScrub): the 8837 Pneumatic Excavator, whose frame is its upper
+    // body, slewed its chassis round under it, all four tyres scrubbing, rather than steer.
+    let gripped: number[] | null = null;
+    if (tiers && this.dragGrip && this.slipRows.length && still.length) {
+      const slips = this.slipRows.map((row) => still.map((z) => z.reduce((sum, x, c) => sum + x * row[c], 0)));
+      const grip = orthonormalize(nullSpace(slips, still.length).map((a) => combine(still, a)));
+      if (grip.length) gripped = smallest(grip);
+    }
+    if (gripped) this.gripped = true;
+    const parked = gripped ?? smallest(still);
     if (!parked) return smallest(all);
     const { bodyA, bodyB } = this.mech.joints[joint];
     if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return parked;
