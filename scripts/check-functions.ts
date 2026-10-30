@@ -3,7 +3,8 @@
 // found into the set's generated section, afresh each time. Each function's control is worked
 // both ways from where the model was loaded (after its `first` controls), as a drag on it would
 // (holding what a drag holds): a turn of REACH radians, or a push of PUSH LDU for a slide. A way
-// works if the control goes at least half that far, every part in `moves` moves and no part in
+// works if the control goes at least half that far (turning against what its shaft turns
+// in, not just on its joint, which a shaft spinning back under it could make up), every part in `moves` moves and no part in
 // `stays` does, each against the frame or the part it names. A function works if one way works
 // for each of its controls; it partly works if something moves; otherwise it doesn't.
 //
@@ -70,7 +71,7 @@ const QUICK = ['8270', '42107', '8849', '42061', '42109', '8001', '8204', '8245'
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
-  turned?: [number, number][]; // each control's turn (or push), each way
+  turned?: [number, number][]; // each control's turn against what its shaft turns in (or push), each way
   still?: string[];
   moved?: string[];
   rates?: Record<string, [number, number]>[]; // for each control, in the way taken, each listed part's turning and sliding for each radian it turned
@@ -272,9 +273,18 @@ function checkModel(model: string, functions: Fn[]) {
       const geared = gearRates(mech, (x) => kin.parentLink(x), b);
       const expected: Record<string, number> = {};
       for (const m of listed) if (m.body === 0 && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
+      // How far the control really turns: against what its shaft turns in (see housing), not
+      // just its joint's angle, which a shaft spinning back under it makes up without the
+      // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
+      const slides = mech.joints[link.joint].kind === 'slide';
+      const itself = { part: mech.bodies[b].parts[0], body: kin.housing(b) };
       const each = [1, -1].map((way) => {
         kin.restore(start);
-        const { turned, went } = turnMeasuring(b, way * reach, listed);
+        const measured = turnMeasuring(b, way * reach, [...listed, itself]);
+        const went = measured.went;
+        // The joint's own turn, to work it back again.
+        const joint = measured.turned;
+        const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
         const shifted = catchShifts(placedNow(), table, catches);
         const still = moves.filter((m) => !moved(m, startPoses, shifted)).map((m) => m.ref);
         const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
@@ -285,7 +295,7 @@ function checkModel(model: string, functions: Fn[]) {
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
         // There and back: worked back as far as it went, as a new drag.
         const there = kin.snapshot();
-        if (Math.abs(turned) >= 0.01) turn(b, -turned);
+        if (Math.abs(joint) >= 0.01) turn(b, -joint);
         const most = furthest(startPoses);
         kin.restore(there);
         const back: [number, number] = [round(most.ldu), round(most.degrees)];

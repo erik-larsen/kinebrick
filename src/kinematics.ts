@@ -695,7 +695,7 @@ export class Kinematics {
   // What the shaft a body turns on turns in: up the tree from the body, past everything turning
   // on that same line (the shaft, and anything else on it), the first body that doesn't (a
   // differential's axle housing, round its half shafts), or a root (the frame).
-  private housing(body: number): number {
+  housing(body: number): number {
     const joint = this.mech.joints[this.parentJoint[body]];
     let link = this.parentLink(body)!;
     while (this.parentJoint[link.parent] >= 0 && onOneLine(joint, this.mech.joints[this.parentJoint[link.parent]])) link = this.parentLink(link.parent)!;

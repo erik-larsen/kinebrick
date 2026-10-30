@@ -995,6 +995,7 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 - measures how much: how far each listed part turned and slid for each radian the control turned, adding up every piece of the drag (it's worked in pieces of 0.1, since a part geared up turns further than half a turn, which its pose alone can't tell);
 - compares that with what the gears say, where they alone say it (`scripts/gear-rates.ts`): only for parts that turn or slide straight off the frame, tied to the control by gears, racks, worms, universal joints, chains or a linear actuator's screw, and not through anything that turns in something else (a differential's planets);
 - works each way back again, as a new drag, and checks that everything comes back to where it started.
+- counts how far the control turned against what its shaft turns in (the first body up from it not on the same line), not just its joint's angle. A part on an axle free in its holes can have its joint turned with the part itself standing still, the axle spinning back under it: the 8865 Test Car's suspension arms and seats "worked" so, though nothing moved.
 
 **Results.**
 
