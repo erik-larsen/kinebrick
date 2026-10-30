@@ -153,11 +153,41 @@ The least motion column has the noise fix already. The 14 better: three of the 8
 
 So least motion now matches holds on the tests and is 6 functions behind on these sets. Most of what's behind is a drag that stops short, which, as with the 42055 and the 8245, is likely a bug of its own each time rather than the idea.
 
+## Third round, on the solver branch
+
+The drags that stopped short, chased one at a time with a probe that steps a drag and says why it stopped (no motion left, a limit, or a dead point and which joints strayed from where the step had them going). Each turned out to be a general flaw rather than something about its set.
+
+### What was wrong, and what changed
+
+- **Standing alone, but joined.** A body counts as standing alone, and is held without asking, if nothing but its own joint joins it to the rest. Only its joint in the tree was checked, not joints outside the tree: the 8466 Off-Roader's steering arm, a bridge in the tree, is joined to its tie rods by three ball joints, and the whole front axle hangs on it. Held, the axle couldn't turn, so the car couldn't roll: four of its functions. Joints outside the tree now count as ties. Holds use the same rule, though only for a body on something still, and all 329 tests still pass with them.
+- **Moving that costs nothing.** The tiers count joints' turning and bodies' turning, but not sliding. The 42039 race car's pistons and connecting rods reach no crank (a connection Kinebrick doesn't make yet), so sliding them in their cylinders cost nothing in any tier, and the drag slid one at whatever rate the free motions happened to mix in, 133 LDU per radian, until it ran out of its cylinder. A last tier now keeps every body as still as it can be against the frame, at a point in the middle of its joints, once the joints' turning is settled. Holds leave it to chance too, which is why the race car's V8 "worked" with holds: its pistons moved because they drifted.
+- **A linkage that moves only to first order.** On the 42062 Container Yard's spreader, the turning tier turns a small linkage back against the spreader's turning, to keep it level. But it lies flat, where it moves only to first order, so closing the loops after the step pulls it back and the step fails as at a dead point. Now, when a step's joints stray from where the step had them going, those joints are held for the rest of the drag and the step is tried again. If the drag can't turn then, they're let go, and it is a dead point after all.
+- **Scrubbing weighed twice.** The turning tier also counted tyres scrubbing sideways, 100 times as much as turning. But the scrub rule already keeps scrub within what's allowed before any tier chooses, and weighing it again made the 42037 Formula Off-Roader roll 41 LDU and swing round for each radian a suspension arm was raised, rather than let a tyre scrub a little. It's no longer weighed in the turning tier, and the tests come out the same at 0, 1 or 100.
+- **A grabbed part turned against its shaft.** A drag turns the grabbed part's joint, against what the part turns on. Where that is a pin free to spin in its holes, the turn was taken by the pin spinning back under the part, which stayed where it was: the 9394 Airliner's control stick turned 1.5 radians and its tailplanes didn't move. Least motion now turns a grabbed part against what its shaft turns in (`housing`, the first body up the tree not on the same line).
+
+That last change turns seven results to "no" that weren't before. In each, the part can't turn against what its shaft turns in, as the model is built: with holds or before the change, the drag only spun the shaft or pin under it, and counted as working or partly working because the control turned. The 8081's doors are both in one body, so neither can swing on its hinge; the 42107's swing arm is locked by a shock absorber that doesn't slide; the 42096's and 42037's suspension uprights, the 42063's front fork, the 42065's tilting body and the 42112's selector lever likewise. These are connection problems the check now shows rather than hides.
+
+### Tests
+
+All 329 pass with holds. With least motion and stillness, 4 fail, the same 4 as on the code before this round (which the second round's note had wrong): the swing arms (spreading, as before), two of the 956's (a hair outside their tolerances: 1.09 LDU off a 1755 LDU circle, against 0.5) and the 8865's V4. The 8865's front tyres are built 9.4 LDU above the ground, so only its rear tyres touch it; turning a rear wheel, least motion swings the car round the other rear wheel, which turns the engine half as much, and tips it forward 38° until the drag stops. Holds roll it straight on.
+
+### Function check on 40 sets
+
+The quick sets and the 7 with drags that stopped short:
+
+| | Holds | Least motion |
+|---|---|---|
+| Work | 111 | 109 |
+| Partly | 94 | 89 |
+| Don't | 30 | 37 |
+
+Of the 13 drags that stopped short, 10 now come out as with holds. The other three: the race car's V8 (its pistons, above), the 42062's spreader (which now goes, but moves a part it shouldn't) and the 42096's suspension (one of the seven). Better than holds: the 8202's front wheels, the 42074's helm, the 42063's rear suspension, the 42114's hood and the 8081's front suspension. Worse, apart from the seven above and the race car's V8: three where a part that should stay still moves a little (spreading: the 8837's steering knob, the 956's engine and the 42062's spreader).
+
 ## Open questions
 
-- **The drags that stop short.** Thirteen functions, above. Each needs looking at as the 42055 and 8245 were: which tier or rule leaves the joint no way to turn.
-- **Spreading.** Stillness cured it in the tests, but six functions still move a part a degree or an LDU. Next to try: sparse only in tiers 1 to 3, where it's one thing or another (a pin slips or doesn't).
+- **Spreading.** Three functions in the 40 sets, and the swing arms test. Next to try: stillness at more than a tenth, and sparse only in tiers 1 to 3, where it's one thing or another (a pin slips or doesn't).
+- **The car's own motion.** Nothing in the tiers costs the frame moving: they're all measured against it. A car standing on only two tyres (the 8865) so tips and swings as freely as the geometry lets it. Turning measured against the ground instead, with the frame's own turning counted, stopped the 8865 rolling at all and failed one more test. Gravity and mass would settle it.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback. It may be better as part of the scrub rule: which ways to roll exist with the steering held.
 - **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has helped in the sparse version (the 8849's front axle stays level rather than being carried round by the steering shaft), and needs trying by itself.
-- **The full check again.** The other 153 sets were the same function for function before tonight's changes, and haven't been checked since.
+- **The full check again**, once the 40 sets come out at least level with holds.
 - **Pushes.** The prototype only covers drags that turn a joint (the function check uses only those). Pushes still choose holds.

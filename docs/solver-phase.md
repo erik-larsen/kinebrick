@@ -38,7 +38,7 @@ And faster:
 
 ### 2. Least motion, adopted when it beats holds
 
-[Least motion](least-motion.md) chooses a drag's motion by tiers of least squares instead of holds. It's adopted when all the tests pass and at least as many functions work as with holds on the full check. Next: the 13 functions where its drag stops short.
+[Least motion](least-motion.md) chooses a drag's motion by tiers of least squares instead of holds. It's adopted when all the tests pass and at least as many functions work as with holds on the full check. Its third round fixed the drags that stopped short, each a general flaw, and it's now 2 functions behind holds on 40 sets (109 to 111). Next: spreading, and the car's own motion, which no tier costs yet.
 
 ### 3. One problem for each step
 

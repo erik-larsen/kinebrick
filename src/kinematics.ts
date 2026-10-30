@@ -112,7 +112,7 @@ const NOISE = 1e-20;
 // 1e-3 passes the same tests and two more functions in the function check.
 const CLOSE_STILL = typeof process !== 'undefined' && process.env?.KINEBRICK_CLOSE_STILL ? Number(process.env.KINEBRICK_CLOSE_STILL) : 0;
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
-// friction tier (see leastTiers).
+// sparse friction tier (see leastTiers).
 const SCRUB_WEIGHT = 100;
 // Experimental, within least motion: whether its friction tier is sparse (see leastTiers).
 // Sparse passes one more of the tests, but loses functions in the function check, and takes
@@ -1246,6 +1246,12 @@ export class Kinematics {
     }
     // Groups of bodies something other than a joint ties together.
     const ties: number[][] = [];
+    // Joints outside the tree, too: a body whose own joint is a bridge may still be joined to
+    // the rest by others (the 8466 Off-Roader's steering arm, on ball joints to its tie rods, and
+    // with the front axle, a body of its own, hanging on it).
+    this.mech.joints.forEach((j, i) => {
+      if (!this.inTree(i)) ties.push([j.bodyA, j.bodyB]);
+    });
     for (const m of this.mech.meshes) ties.push([this.mech.gears[m.gearA].body, this.mech.gears[m.gearB].body]);
     for (const { shafts } of this.couplings) ties.push(shafts.flatMap((sh) => [sh.body, sh.mount]));
     for (const screw of this.mech.screws ?? []) ties.push([screw.input, screw.piston]);
@@ -2200,8 +2206,22 @@ export class Kinematics {
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);
-      if (gap > (played ? PLAY : DEAD_POINT_GAP) || predicted.some((p, k) => checked(this.mech.joints[k]) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - p) > DEAD_POINT * largest)) {
+      const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
+      if (gap > (played ? PLAY : DEAD_POINT_GAP) || strayed.length) {
         this.restore(before);
+        // Least motion: joints that strayed from where the step had them going may have moved
+        // only to first order, in a linkage that fits only as it is (the 42062 Container Yard's
+        // spreader, whose linkage the turning tier would turn back, to keep it level, though it
+        // lies flat). Held for the rest of the drag, the drag may go on another way; if it
+        // can't, they're let go, and it's a dead point after all.
+        if (experiments.leastMotion && this.dragTurning?.joint === joint && !played) {
+          // Each strayed joint in the tree is held by holding the body it carries.
+          const carried = (k: number) => (this.parentJoint[this.mech.joints[k].bodyB] === k ? this.mech.joints[k].bodyB : this.mech.joints[k].bodyA);
+          const bodies = strayed.filter((k) => k !== joint && this.inTree(k)).map(carried).filter((b) => !this.dragHeld.has(b) && b !== this.dragTurning!.grabbed);
+          for (const b of bodies) this.dragHeld.add(b);
+          if (bodies.length && this.jointMotion(joint)) continue;
+          for (const b of bodies) this.dragHeld.delete(b);
+        }
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
         // usual steps, it may go. Only those can tell a dead point.
         if (Math.abs(step) <= MAX_TURN_STEP + 1e-12) return stop(turned);
@@ -2283,7 +2303,20 @@ export class Kinematics {
     };
     const axes = this.jointAxes();
     const rateOf = (z: number[], i: number) => this.rateIn(turning(z), axes, i);
-    const rate = (z: number[]) => rateOf(z, joint);
+    // Least motion: a part grabbed turns against what its shaft turns in (see housing), not
+    // just against what it turns on, which a pin free to spin in its holes would be: the turn
+    // would be taken by spinning the pin back under it, leaving the part where it was (the 9394
+    // Airliner's control stick, on a long pin).
+    const grabbed = experiments.leastMotion && this.dragTurning?.joint === joint ? this.dragTurning.grabbed : -1;
+    const housing = grabbed >= 0 && this.parentJoint[grabbed] === joint ? this.housing(grabbed) : -1;
+    const rate = (z: number[]) => {
+      if (housing < 0) return rateOf(z, joint);
+      const w = turning(z);
+      const d = axes[joint];
+      const way = this.mech.joints[joint].bodyB === grabbed ? 1 : -1;
+      const [g, h] = [3 * grabbed, 3 * housing];
+      return way * ((w[g] - w[h]) * d.x + (w[g + 1] - w[h + 1]) * d.y + (w[g + 2] - w[h + 2]) * d.z);
+    };
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.joint] : []))));
     const size = (z: number[]) =>
       this.mech.joints.flatMap((j, i) => {
@@ -2400,15 +2433,18 @@ export class Kinematics {
   //   3. joints on friction pins
   //   4. every body's turning against the frame, but pulleys' (which a string turns): a gear
   //      freewheeling on a shaft turns on it rather than turning the shaft, and an assembly
-  //      hanging on a turning axle stays level; and the tyres on the ground scrubbing sideways or
-  //      lifting, SCRUB_WEIGHT as much (they grip: a car rolls straight on rather than its
-  //      differential letting one tyre scrub so the engine turns a hair less)
+  //      hanging on a turning axle stays level. Not the tyres' scrubbing, which the scrub rule
+  //      already keeps within what's allowed (see leastScrub): weighed here too, a car would
+  //      roll and swing round rather than let a tyre scrub a little (the 42037 Formula Off-Roader,
+  //      rolling 41 LDU for each radian a suspension arm was raised)
   //   5. every joint's turning (`size`), which settles what's left
+  //   6. every body's moving against the frame, for what no joint's turning settles
   // With SPARSE_FRICTION, tier 4 is friction instead, and sparse (see leastTurning: as few
   // things move as can, as static friction holds as many joints as it can rather than letting
   // each slip a little): every joint's turning; every body's turning against the frame, counted
   // by its parts, TURNING_WEIGHT as much (an assembly hanging on a turning axle, heavier than the
-  // gears that would turn instead, stays level); and the tyres' scrubbing, as above.
+  // gears that would turn instead, stays level); and the tyres scrubbing sideways or lifting,
+  // SCRUB_WEIGHT as much.
   private leastTiers(joint: number, turning: (z: number[]) => Float64Array, rateOf: (z: number[], i: number) => number, size: (z: number[]) => number[]): Tier[] {
     const basis = this.treeBasis();
     const grabbed = this.dragTurning?.joint === joint ? this.dragTurning.grabbed : this.mech.joints[joint].bodyB;
@@ -2438,8 +2474,34 @@ export class Kinematics {
     const scrubs = (z: number[]) => slipRows.map((row) => SCRUB_WEIGHT * dot(row, z));
     const turning4 = SPARSE_FRICTION
       ? { cost: (z: number[]) => [...size(z), ...turns(z).map((x) => TURNING_WEIGHT * x), ...scrubs(z)], sparse: true }
-      : { cost: (z: number[]) => [...turns(z), ...scrubs(z)], bodies: bodies.length };
-    return [{ cost: mounted }, { cost: steers }, { cost: pins }, turning4, { cost: size }];
+      : { cost: turns, bodies: bodies.length };
+    // Each body's moving against the frame, at a point in its middle (the middle of its joints):
+    // what's still free once no joint turns any more than it must is a body moving without
+    // turning anything (a piston on a connecting rod that reaches no crank, sliding in its
+    // cylinder), which is kept still rather than left any amount, as it would run off its end.
+    const middles = bodies.map((b) => {
+      const at = new Vector3();
+      let n = 0;
+      for (const j of this.mech.joints) {
+        if (j.bodyA !== b && j.bodyB !== b) continue;
+        at.add(j.from.clone().applyMatrix4(this.poses[j.bodyA])).add(j.to.clone().applyMatrix4(this.poses[j.bodyA]));
+        n += 2;
+      }
+      return n ? at.multiplyScalar(1 / n) : null;
+    });
+    const moves = (z: number[]) => {
+      const twist = (b: number) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z));
+      const frame = twist(0);
+      return bodies.flatMap((b, i) => {
+        const c = middles[i];
+        if (!c) return [];
+        const t = twist(b).map((x, k) => x - frame[k]);
+        const w = new Vector3(t[0], t[1], t[2]);
+        const v = new Vector3(t[3], t[4], t[5]).add(w.cross(c));
+        return [v.x, v.y, v.z];
+      });
+    };
+    return [{ cost: mounted }, { cost: steers }, { cost: pins }, turning4, { cost: size, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
@@ -2675,7 +2737,7 @@ function smallestTurning(motions: number[][], rate: (m: number[]) => number, siz
 // Of orthonormal motions, the mix that turns the joint at rate 1 (by `rate`) and, tier by tier,
 // moves each tier as little as it can (see Kinematics.leastTiers): least squares in the first
 // tier, then among the mixes that cost no more there, least squares in the next, and so on. Null
-// if none turns the joint (judged as smallestTurning judges it, by the last tier).
+// if none turns the joint (judged as smallestTurning judges it, by the joints' tier).
 //
 // The mixes a with Σ a_k rate_k = 1 are a0 + N y: a0 along the rates, N's columns (orthonormal)
 // across them. For each tier, C its components applied to each motion, the y making
@@ -2685,13 +2747,14 @@ interface Tier {
   cost: (m: number[]) => number[]; // what the tier moves, for a motion
   sparse?: boolean; // least sum of sizes rather than of squares (see leastTurning)
   bodies?: number; // its first 3 × bodies components are bodies' turning, which STILLNESS may hold still
+  joints?: boolean; // every joint's turning: what judges whether a motion turns the joint at all
 }
 
 function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers: Tier[]): number[] | null {
   const k = motions.length;
   if (k === 0) return null;
   const rates = motions.map(rate);
-  const last = motions.map(tiers[tiers.length - 1].cost);
+  const last = motions.map(tiers.find((t) => t.joints)!.cost);
   const scale = Math.max(...last.map((s) => s.reduce((sum, x) => sum + x * x, 0)));
   const rr = rates.reduce((sum, r) => sum + r * r, 0);
   if (!(scale > 0) || rr < EPSILON * scale) return null;
