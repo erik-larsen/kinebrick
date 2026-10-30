@@ -2361,10 +2361,14 @@ export class Kinematics {
     // Least motion: a drag keeps to the choice its first step made, while it can, rather than
     // switching as the two come close: the 42056's rear suspension arm, at a third of its drag,
     // switched to rolling the car, swinging its front linkage fast enough to count as a dead
-    // point.
+    // point. But a drag that chose the plain motion takes the suspension once the plain one
+    // turns the joints SUSPENSION_GAIN² times as much, as it does where it held only to first
+    // order (the 42096 Porsche 911 RSR's rear suspension arm, whose plain motion grew from 1.5 times
+    // the suspension's to 90 times in two steps).
     if (tiers && !this.choosingHolds && suspension.length) {
       if (this.dragSuspension === null) this.dragSuspension = z === any && z !== plain;
-      else if (this.dragSuspension ? any : plain) z = this.dragSuspension ? any : plain;
+      else if (!this.dragSuspension && plain && any && length(plain) >= SUSPENSION_GAIN * SUSPENSION_GAIN * length(any)) this.dragSuspension = true;
+      if (this.dragSuspension ? any : plain) z = this.dragSuspension ? any : plain;
     }
     this.played = false;
     if (z) return fromBasis(z, basis);
