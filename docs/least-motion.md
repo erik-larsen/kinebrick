@@ -210,9 +210,9 @@ Each function least motion did worse on was looked into separately, by agents ru
 
 ### What's still worse, and why it isn't the solver
 
-Six functions work with holds and not with least motion. In each, holds' result comes from something that shouldn't happen:
+Six functions worked with holds and not with least motion. In each, holds' result came from something that shouldn't happen:
 
-- **The 42039 and 42041 V8s.** Their connecting rods are built 1.005 LDU off the crank pins, just outside the 1 LDU tolerance, so the pistons reach no crank. With holds they slide only by drifting, all eight together. A connection fix (a second chance at fitting for parts like these) is being looked into.
+- **The 42039 and 42041 V8s.** Their connecting rods are built 1.005 LDU off the crank pins, just outside the 1 LDU tolerance, so the pistons reached no crank. With holds they slid only by drifting, all eight together. Fixed in the connections: parts held to the rest only by slides and balls now get the second chance at fitting that loose parts get, 2 LDU. Across all 186 sets that adds 27 connections in 8 models, all real ones, and both V8s now work, with either solver.
 - **The 42107's swing arm and the 8466's suspension.** Their shock absorbers are rigid until springs come in version 2.0, so the arms can't move. With holds the 42107's "partly" was its gearbox shaft spinning under the arm and rolling the bike.
 - **The 42021's handlebars.** The bar hangs on a frictionless pin off the steering column, and spinning it on the pin cancels the steering. Holds steer only because least squares happens to split the motion. A contact or connection fix, not a tier.
 - **The 8094's arm motor.** The function assumes the claws are shut on something; holds raise the arm only by holding the whole claw train to it.
@@ -221,18 +221,18 @@ Six functions work with holds and not with least motion. In each, holds' result 
 
 All 329 tests pass with least motion (stillness 0.2) as with holds, for the first time. On the 46 sets:
 
-| | Holds | Least motion |
-|---|---|---|
-| Work | 128 | 129 |
-| Partly | 99 | 97 |
-| Don't | 44 | 45 |
+| | Holds | Least motion | Both, with the V8s connected |
+|---|---|---|---|
+| Work | 128 | 129 | 128 and 131 |
+| Partly | 99 | 97 | 99 and 95 |
+| Don't | 44 | 45 | 44 and 45 |
 
 Better than holds: the 42063's rear suspension, the 42074's helm, two of the 8862's (its handwheel and its bucket cylinder) and the 9394's control stick.
 
 ## Open questions
 
-- **The full check**, once, overnight, both ways with the fair check: holds' results on every set were measured counting a control's joint angle, and need measuring again before least motion is compared with them. Least motion now passes every test and is ahead on the 46 sets, the half of the adoption test the full check hasn't settled.
-- **Connections behind what's still worse**: parts built just outside the fitting tolerance (the V8 connecting rods), and shock absorbers rigid until springs. Both hurt holds as much, but hide behind results holds get by drifting.
+- **The full check**, both ways with the fair check, at a592961: holds' results on every set were measured counting a control's joint angle, and need measuring again before least motion is compared with them. Least motion now passes every test and is ahead on the 46 sets; the full check settles the other half of the adoption test.
+- **Shock absorbers rigid until springs**, behind two of the four functions still worse (the 42107's and 8466's suspension): they hurt holds as much, but hide behind results holds get by something spinning.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback; so is the tier for a car's own turning on two tyres. Gravity and mass would replace both.
 - **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has cured the 8837's slewing but failed the 8849's and the 855's tests; the slewing turned out to be scrub, so mass may not be needed.
 - **Pushes.** The prototype only covers drags that turn a joint (the function check uses only those). Pushes still choose holds.
