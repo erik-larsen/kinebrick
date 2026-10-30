@@ -664,14 +664,19 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
 }
 
 // Parts that would be loose get a second chance, fitting with the looser LOOSE_ALIGN_TOLERANCE:
-// connections that join a loose part to anything, found as findConnections finds them. A pin's
-// new joints turn as fixPins has its others do: a friction pin's stiffly.
+// connections that join a loose part to anything, found as findConnections finds them. So do
+// parts held to the rest only by slides and balls, which hold nothing in place: the 42039 and
+// 42041's V8 connecting rods, tied by balls to pistons sliding in their cylinders, are built
+// 1.005 LDU off their crank pins. But not a universal joint's cross, which keeps only the arms
+// universalJoints left it. A pin's new joints turn as fixPins has its others do: a friction
+// pin's stiffly.
 function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  const loose = new Set(findLooseParts(count, connections));
+  const loose = new Set(findLooseParts(count, connections.filter((c) => c.kind !== 'slide' && c.kind !== 'ball')));
   if (loose.size === 0) return [];
   const known = new Set(connections.map((c) => `${c.male},${c.female}`));
-  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`));
+  const settled = (c: Connection) => roles[c.male] === 'universal joint' || roles[c.female] === 'universal joint';
+  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`) && !settled(c));
   for (const c of found) {
     if (c.kind !== 'revolute' || roles[c.male] !== 'friction pin') continue;
     if (frictionRigid) [c.kind, c.held] = ['rigid', true];
