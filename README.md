@@ -1,4 +1,4 @@
-# [Kinebrick Viewer](https://erik-larsen.github.io/kinebrick/)
+# [Kinebrick Play](https://erik-larsen.github.io/kinebrick/)
 
 ![LEGO set 956, Auto Chassis, from 1978, steered halfway to full lock with its rear axle kept turning at 10 rpm: the red, yellow and blue chassis drives round in a circle, its front wheels turned, its four-cylinder engine's pistons running and its rear tyres skidding round the bend](media/auto-chassis.webp)
 
