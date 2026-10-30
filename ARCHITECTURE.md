@@ -991,7 +991,10 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 
 - works the function's `first` controls, in order;
 - works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide;
-- checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°).
+- checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°);
+- measures how much: how far each listed part turned and slid for each radian the control turned, adding up every piece of the drag (it's worked in pieces of 0.1, since a part geared up turns further than half a turn, which its pose alone can't tell);
+- compares that with what the gears say, where they alone say it (`scripts/gear-rates.ts`): only for parts that turn or slide straight off the frame, tied to the control by gears, racks, worms, universal joints, chains or a linear actuator's screw, and not through anything that turns in something else (a differential's planets);
+- works each way back again, as a new drag, and checks that everything comes back to where it started.
 
 **Results.**
 
@@ -1004,13 +1007,26 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 | `not checked` | Nothing is worked by hand |
 | `error` | The check couldn't be made: a part its list names isn't in the model |
 
+Two more counts, beside the result rather than changing it, so results stay comparable with earlier checks:
+
+| Count | |
+|---|---|
+| `wrong amount` | A listed part turned or slid more than 3% off what its gears say |
+| `not back` | After there and back, a part is more than 0.5 LDU or 0.5° from where it started |
+
 **What it writes.**
 
 - The commit it ran at, and `"uncommitted": true` if `src/` or `data/` had changes not yet committed.
 - The date, how many functions came out each way, and the model's loose parts.
 - One entry per function, in the same order as `curated.functions`: its result, how far each control went each way (`turned`), the parts in `moves` that didn't move (`still`), those in `stays` that did (`moved`), and `why`, where it couldn't work a control.
+- For each control, each listed part's turning (radians) and sliding (LDU) for each radian the control turned, the way it was worked that came out best (`rates`); what the gears say, where they do (`expected`), and the parts off it (`wrong`).
+- For each control and way, the furthest any part was left after there and back, in LDU and degrees (`back`), and the part furthest out (`strayed`), if it's beyond 0.5.
 
-**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. A set that takes longer than 30 minutes (`--limit`) is stopped and written down as timed out. `npm run functions -- 855 8880` checks only those sets. Once a minute it says how far it's got: how many sets are done and left, their functions' results so far (works, partly, no, and skipped or not checked, each with its share), and which sets it's checking, with how long each has taken so far.
+**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. As each set finishes, every function that comes out better or worse than the set had before is listed: its result, or how many parts move by the wrong amount or don't come back.
+
+**The quick check.** `npm run functions -- --quick` checks only 33 sets, which between them have every kind of mechanism the check can work in the [mechanism catalog](docs/mechanisms/README.md) (bar two only the slow 42054 and 42055 have), chosen for the least time: about 2 minutes on this Mac, 5 at a time. It's for every change; the whole check, which takes hours (the 8110 alone took 100 minutes before the drags back doubled its drags), is for overnight.
+
+A set that takes longer than 30 minutes (`--limit`) is stopped and written down as timed out. `npm run functions -- 855 8880` checks only those sets. Once a minute it says how far it's got: how many sets are done and left, their functions' results so far (works, partly, no, and skipped or not checked, each with its share), and which sets it's checking, with how long each has taken so far.
 
 **What it can't do yet.** It doesn't click a slide between positions set by a `SLIDE` line, as the viewer does (the 956's gear lever), shift a gearbox's rings, or run a motor, so those functions come out `partly` or `no` here even where the viewer works them.
 
