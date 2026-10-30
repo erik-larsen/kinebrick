@@ -2435,7 +2435,7 @@ export class Kinematics {
   // the model moves. (Before these, chooseMotion keeps the frame where it is, if it can be.)
   //   1. what slides or swivels on the car (a bumper on tiles, a gear lever on its ball)
   //   2. on a car on the ground, what steers it
-  //   3. joints on friction pins
+  //   3. joints on friction pins, then what the grabbed part turns against
   //   4. every body's turning against the frame, but pulleys' (which a string turns): a gear
   //      freewheeling on a shaft turns on it rather than turning the shaft, and an assembly
   //      hanging on a turning axle stays level. Not the tyres' scrubbing, which the scrub rule
@@ -2481,6 +2481,17 @@ export class Kinematics {
     };
     const slipRows = this.slipRows;
     const scrubs = (z: number[]) => slipRows.map((row) => SCRUB_WEIGHT * dot(row, z));
+    // What the grabbed part turns against (see housing) is kept as still as it can be against
+    // the frame: a drag turns the part, as a hand holding the model by its frame would, rather
+    // than swinging what it turns on the other way round it (the 8862 Backhoe's dipper, whose
+    // cylinder drag swung the boom and carried the dipper round level, every body on it costing
+    // nothing more for turning that way). Before the turning tier, which would choose that.
+    const housing = this.dragTurning?.joint === joint && this.parentJoint[grabbed] === joint ? this.housing(grabbed) : 0;
+    const housed = (z: number[]) => {
+      if (housing === 0) return [];
+      const w = turning(z);
+      return [0, 1, 2].map((d) => w[3 * housing + d] - w[d]);
+    };
     const turning4 = SPARSE_FRICTION
       ? { cost: (z: number[]) => [...size(z), ...turns(z).map((x) => TURNING_WEIGHT * x), ...scrubs(z)], sparse: true }
       : { cost: turns, bodies: bodies.length };
@@ -2510,7 +2521,7 @@ export class Kinematics {
         return [v.x, v.y, v.z];
       });
     };
-    return [{ cost: mounted }, { cost: steered }, { cost: pins }, turning4, { cost: size, joints: true }, { cost: moves }];
+    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, turning4, { cost: size, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
