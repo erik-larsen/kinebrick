@@ -3080,52 +3080,153 @@ function dot(x: number[], z: number[]): number {
   return sum;
 }
 
-// The eigenvalues and eigenvectors of a small symmetric matrix (Jacobi's method: rotate away
-// the off-diagonal entries one pair at a time until they're negligible).
+// The eigenvalues and eigenvectors of a symmetric matrix: Householder reflections bring it to
+// tridiagonal form, and the QL method with implicit shifts finds that one's (tred2 and tql2 from
+// EISPACK). Plain loops on flat typed arrays, v[i * n + j] for v[i][j]: on a big model this is
+// much of a step's work, and Jacobi's method, which this replaced, took ten times as long on the
+// 8110 Unimog's 646 motions.
 export function symmetricEigen(matrix: number[][]): { values: number[]; vectors: number[][] } {
-  // Plain loops on flat typed arrays, a[i * n + j] for a[i][j]: on a big model this is most of a
-  // step's work.
   const n = matrix.length;
-  const a = new Float64Array(n * n);
-  matrix.forEach((row, i) => a.set(row, i * n));
-  const v = new Float64Array(n * n); // columns are eigenvectors
-  for (let i = 0; i < n; i++) v[i * n + i] = 1;
-  for (let sweep = 0; sweep < 50; sweep++) {
-    let off = 0;
-    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) off += a[i * n + j] * a[i * n + j];
-    if (off < 1e-24) break;
-    for (let p = 0; p < n; p++) {
-      for (let q = p + 1; q < n; q++) {
-        const apq = a[p * n + q];
-        if (Math.abs(apq) < 1e-30) continue;
-        const theta = (a[q * n + q] - a[p * n + p]) / (2 * apq);
-        const t = Math.sign(theta || 1) / (Math.abs(theta) + Math.sqrt(theta * theta + 1));
-        const c = 1 / Math.sqrt(t * t + 1);
-        const s = t * c;
-        for (let k = 0; k < n; k++) {
-          const akp = a[k * n + p];
-          const akq = a[k * n + q];
-          a[k * n + p] = c * akp - s * akq;
-          a[k * n + q] = s * akp + c * akq;
+  const v = new Float64Array(n * n); // ends with the eigenvectors as its columns
+  matrix.forEach((row, i) => v.set(row, i * n));
+  const d = new Float64Array(n); // the eigenvalues
+  const e = new Float64Array(n);
+  if (n === 0) return { values: [], vectors: [] };
+
+  // Householder: v becomes the product of the reflections, d and e the diagonal and the
+  // entries next to it.
+  for (let j = 0; j < n; j++) d[j] = v[(n - 1) * n + j];
+  for (let i = n - 1; i > 0; i--) {
+    let scale = 0;
+    let h = 0;
+    for (let k = 0; k < i; k++) scale += Math.abs(d[k]);
+    if (scale === 0) {
+      e[i] = d[i - 1];
+      for (let j = 0; j < i; j++) {
+        d[j] = v[(i - 1) * n + j];
+        v[i * n + j] = 0;
+        v[j * n + i] = 0;
+      }
+    } else {
+      for (let k = 0; k < i; k++) {
+        d[k] /= scale;
+        h += d[k] * d[k];
+      }
+      let f = d[i - 1];
+      let g = Math.sqrt(h);
+      if (f > 0) g = -g;
+      e[i] = scale * g;
+      h -= f * g;
+      d[i - 1] = f - g;
+      for (let j = 0; j < i; j++) e[j] = 0;
+      for (let j = 0; j < i; j++) {
+        f = d[j];
+        v[j * n + i] = f;
+        g = e[j] + v[j * n + j] * f;
+        for (let k = j + 1; k <= i - 1; k++) {
+          g += v[k * n + j] * d[k];
+          e[k] += v[k * n + j] * f;
         }
-        for (let k = 0; k < n; k++) {
-          const apk = a[p * n + k];
-          const aqk = a[q * n + k];
-          a[p * n + k] = c * apk - s * aqk;
-          a[q * n + k] = s * apk + c * aqk;
-        }
-        for (let k = 0; k < n; k++) {
-          const vkp = v[k * n + p];
-          const vkq = v[k * n + q];
-          v[k * n + p] = c * vkp - s * vkq;
-          v[k * n + q] = s * vkp + c * vkq;
-        }
+        e[j] = g;
+      }
+      f = 0;
+      for (let j = 0; j < i; j++) {
+        e[j] /= h;
+        f += e[j] * d[j];
+      }
+      const hh = f / (h + h);
+      for (let j = 0; j < i; j++) e[j] -= hh * d[j];
+      for (let j = 0; j < i; j++) {
+        f = d[j];
+        g = e[j];
+        for (let k = j; k <= i - 1; k++) v[k * n + j] -= f * e[k] + g * d[k];
+        d[j] = v[(i - 1) * n + j];
+        v[i * n + j] = 0;
       }
     }
+    d[i] = h;
+  }
+  for (let i = 0; i < n - 1; i++) {
+    v[(n - 1) * n + i] = v[i * n + i];
+    v[i * n + i] = 1;
+    const h = d[i + 1];
+    if (h !== 0) {
+      for (let k = 0; k <= i; k++) d[k] = v[k * n + i + 1] / h;
+      for (let j = 0; j <= i; j++) {
+        let g = 0;
+        for (let k = 0; k <= i; k++) g += v[k * n + i + 1] * v[k * n + j];
+        for (let k = 0; k <= i; k++) v[k * n + j] -= g * d[k];
+      }
+    }
+    for (let k = 0; k <= i; k++) v[k * n + i + 1] = 0;
+  }
+  for (let j = 0; j < n; j++) {
+    d[j] = v[(n - 1) * n + j];
+    v[(n - 1) * n + j] = 0;
+  }
+  v[(n - 1) * n + n - 1] = 1;
+  e[0] = 0;
+
+  // QL with implicit shifts on the tridiagonal matrix, the rotations applied to v as well.
+  for (let i = 1; i < n; i++) e[i - 1] = e[i];
+  e[n - 1] = 0;
+  let f = 0;
+  let tst1 = 0;
+  const eps = 2 ** -52;
+  for (let l = 0; l < n; l++) {
+    tst1 = Math.max(tst1, Math.abs(d[l]) + Math.abs(e[l]));
+    let m = l;
+    while (m < n - 1 && Math.abs(e[m]) > eps * tst1) m++;
+    if (m > l) {
+      for (let iteration = 0; iteration < 60; iteration++) {
+        let g = d[l];
+        let p = (d[l + 1] - g) / (2 * e[l]);
+        let r = Math.hypot(p, 1);
+        if (p < 0) r = -r;
+        d[l] = e[l] / (p + r);
+        d[l + 1] = e[l] * (p + r);
+        const dl1 = d[l + 1];
+        let h = g - d[l];
+        for (let i = l + 2; i < n; i++) d[i] -= h;
+        f += h;
+        p = d[m];
+        let c = 1;
+        let c2 = c;
+        let c3 = c;
+        const el1 = e[l + 1];
+        let s = 0;
+        let s2 = 0;
+        for (let i = m - 1; i >= l; i--) {
+          c3 = c2;
+          c2 = c;
+          s2 = s;
+          g = c * e[i];
+          h = c * p;
+          r = Math.hypot(p, e[i]);
+          e[i + 1] = s * r;
+          s = e[i] / r;
+          c = p / r;
+          p = c * d[i] - s * g;
+          d[i + 1] = h + s * (c * g + s * d[i]);
+          for (let k = 0; k < n; k++) {
+            const vk = k * n;
+            h = v[vk + i + 1];
+            v[vk + i + 1] = s * v[vk + i] + c * h;
+            v[vk + i] = c * v[vk + i] - s * h;
+          }
+        }
+        p = (-s * s2 * c3 * el1 * e[l]) / dl1;
+        e[l] = s * p;
+        d[l] = c * p;
+        if (!(Math.abs(e[l]) > eps * tst1)) break;
+      }
+    }
+    d[l] += f;
+    e[l] = 0;
   }
   return {
-    values: Array.from({ length: n }, (_, i) => a[i * n + i]),
-    vectors: Array.from({ length: n }, (_, e) => Array.from({ length: n }, (_, k) => v[k * n + e])),
+    values: Array.from(d),
+    vectors: Array.from({ length: n }, (_, col) => Array.from({ length: n }, (_, k) => v[k * n + col])),
   };
 }
 
