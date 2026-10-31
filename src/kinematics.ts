@@ -123,6 +123,11 @@ const SCRUB_WEIGHT = 100;
 // Sparse passes one more of the tests, but loses functions in the function check, and takes
 // longer.
 const SPARSE_FRICTION = false;
+// Whether the turning tier counts a balanced body's turning against what it turns on rather
+// than the frame (see leastTiers). KINEBRICK_BALANCED=1 turns it on, for trying out.
+const BALANCED = typeof process !== 'undefined' && process.env?.KINEBRICK_BALANCED === '1';
+// How near its joint's axis a body's middle must be for it to count as balanced on it, in LDU.
+const BALANCE = 2;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
 const SPARSE_ROUNDS = 30;
 // How much each part's turning against the frame (radians) counts against joints' turning in least
@@ -2541,9 +2546,29 @@ export class Kinematics {
     // With SPARSE_FRICTION, each body counts by how many parts it has: heavier.
     const mass = new Array(this.bodyCount).fill(SPARSE_FRICTION ? 0 : 1);
     if (SPARSE_FRICTION) for (const b of this.mech.bodyOf) if (b >= 0) mass[b]++;
+    // With BALANCED, a body balanced on the joint it turns on (its middle on the joint's axis: an
+    // axle, a gear, a propeller) has its turning count against what it turns on (its parent in
+    // the tree), which comes to how fast the joint turns, rather than against the frame: weight
+    // keeps a part that hangs off its axle (a lever, a hook's block) level, but can't keep a
+    // balanced one still, and what it turns on carries it round. The 855 Mobile Crane's boom
+    // shafts, kept as still as they could be as the cab slewed, moved its boom extension out.
+    const centers = this.mech.centers;
+    const against = bodies.map((b) => {
+      const link = BALANCED && centers ? this.parentLink(b) : null;
+      if (!link) return 0;
+      const j = this.mech.joints[link.joint];
+      if (j.kind !== 'revolute') return 0;
+      const from = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+      const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+      const off = centers![b].clone().applyMatrix4(this.poses[b]).sub(from);
+      return off.sub(d.multiplyScalar(off.dot(d))).length() < BALANCE ? link.parent : 0;
+    });
     const turns = (z: number[]) => {
       const w = turning(z);
-      return bodies.flatMap((b) => [mass[b] * (w[3 * b] - w[0]), mass[b] * (w[3 * b + 1] - w[1]), mass[b] * (w[3 * b + 2] - w[2])]);
+      return bodies.flatMap((b, i) => {
+        const a = 3 * against[i];
+        return [mass[b] * (w[3 * b] - w[a]), mass[b] * (w[3 * b + 1] - w[a + 1]), mass[b] * (w[3 * b + 2] - w[a + 2])];
+      });
     };
     const slipRows = this.slipRows;
     const scrubs = (z: number[]) => slipRows.map((row) => SCRUB_WEIGHT * dot(row, z));

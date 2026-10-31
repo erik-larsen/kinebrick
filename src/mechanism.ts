@@ -223,6 +223,7 @@ export interface Mechanism {
   strings: StringLine[]; // strings wound on drums and run over pulleys
   screws: Screw[]; // linear actuators' screws, each driving a piston as its input turns
   rests: Rest[]; // parts resting on others under gravity: push rods on a camshaft, rockers on the rods
+  centers?: Vector3[]; // each body's middle as built: the mean of its parts' origins
 }
 
 // A linear actuator's screw: as the input body turns about the axis, the piston body slides
@@ -457,7 +458,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   // An actuator whose input or piston is fixed to its body (by what's built round it) can't work.
   const screws = actuators.filter((a) => new Set([a.body, a.input, a.piston].map((i) => bodyOf[i])).size === 3).map((a) => ({ input: bodyOf[a.input], piston: bodyOf[a.piston], center: a.center, axis: a.axis, lead: a.lead }));
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests };
+  const centers = bodies.map((b) => b.parts.reduce((sum, i) => sum.add(new Vector3().setFromMatrixPosition(parts[i].matrix)), new Vector3()).multiplyScalar(1 / Math.max(1, b.parts.length)));
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers };
 }
 
 // A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
