@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 35 partly, 7 no.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 37 works, 34 partly, 7 no.
 
 ## By decade
 
@@ -151,7 +151,7 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (partly)
+- Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (works)
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
