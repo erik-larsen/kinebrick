@@ -2133,11 +2133,12 @@ export class Kinematics {
   // (see freeMotionsInBasis), read off the basis's rows without making the whole motion vector.
   private turningIn(z: number[], basis: number[][]): Float64Array {
     const w = new Float64Array(3 * this.bodyCount);
+    const support = supportOf(basis);
     for (let body = 0; body < this.bodyCount; body++) {
       for (let k = 0; k < 3; k++) {
         const row = basis[6 * body + k];
         let sum = 0;
-        for (let c = 0; c < z.length; c++) sum += row[c] * z[c];
+        for (const c of support[6 * body + k]) sum += row[c] * z[c];
         w[3 * body + k] = sum;
       }
     }
@@ -2423,7 +2424,7 @@ export class Kinematics {
     // Tyres on the ground neither scrub nor lift here, so taking up play never stands in for
     // scrubbing more than allowed (a steered car that can't roll).
     const firm = [...rows.filter((_, i) => !play[i]), ...inBasis([...slip.sideways, ...slip.lift], basis)];
-    const apply = (z: number[]) => loops.map((row) => row.reduce((sum, x, c) => sum + x * z[c], 0));
+    const apply = (z: number[]) => loops.map((row) => dot(row, z));
     const motions = orthonormalize(nullSpace(firm, basis[0].length));
     if (motions.length === 0) return null;
     // The mix a of the motions with Σ a_k rate_k = 1 that makes aᵀ G a least, G holding how much
@@ -2431,7 +2432,7 @@ export class Kinematics {
     // a = G⁻¹ rates / (ratesᵀ G⁻¹ rates). (Not smallestTurning, which leaves out as no motion at
     // all a way to move that costs next to nothing, as a loop that all but fits does.)
     const cost = motions.map((m) => [...apply(m), ...size(m).map((x) => x * TIE_BREAK)]);
-    const gram = cost.map((a) => cost.map((b) => a.reduce((sum, x, i) => sum + x * b[i], 0)));
+    const gram = gramOf(cost, cost);
     const rates = motions.map(rate);
     const scale = Math.max(...gram.map((row, i) => row[i]));
     if (!(scale > 0)) return null;
@@ -2866,10 +2867,10 @@ function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers:
   if (!(scale > 0) || rr < EPSILON * scale) return null;
   let a = rates.map((r) => r / rr);
   let free = orthonormalize(nullSpace([rates], k));
-  // Moves the tier as little as it can, of the mixes still free: updates a and free.
-  const keepStill = (tier: Tier) => {
+  // Moves the tier as little as it can, of the mixes still free: updates a and free. `costs` are
+  // each motion's components in the tier.
+  const keepStill = (tier: Tier, costs = motions.map(tier.cost)) => {
     if (free.length === 0) return;
-    const costs = motions.map(tier.cost); // each motion's components in the tier
     const c = costs[0].length;
     if (c === 0) return;
     const tierScale = Math.max(...costs.map((s) => s.reduce((sum, x) => sum + x * x, 0)));
@@ -2895,8 +2896,9 @@ function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers:
     // cost nothing being left free.
     const tiny = TIER_TOLERANCE * tierScale;
     const solve = (w: number[] | null) => {
-      const gram = columns.map((x) => columns.map((z) => x.reduce((sum, xi, j) => sum + (w ? w[j] : 1) * xi * z[j], 0)));
-      const g = columns.map((x) => x.reduce((sum, xi, j) => sum + (w ? w[j] : 1) * xi * b[j], 0));
+      const weighed = w ? columns.map((x) => x.map((xi, j) => w[j] * xi)) : columns;
+      const gram = gramOf(weighed, columns);
+      const g = weighed.map((x) => dot(x, b));
       // Scaled to its largest entry first: symmetricEigen's cut-offs are absolute, and a tier's
       // costs may be small.
       const unit = Math.max(...gram.map((row, i) => row[i]));
@@ -2948,14 +2950,15 @@ function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers:
     const n = tier.bodies;
     const start = { a, free };
     const held = new Set<number>();
+    const costs = motions.map(tier.cost);
     for (let round = 0; round < 6; round++) {
       ({ a, free } = start);
       if (held.size) {
         const list = [...held];
-        keepStill({ cost: (z) => { const all = tier.cost(z); return list.flatMap((b) => [all[3 * b], all[3 * b + 1], all[3 * b + 2]]); } });
+        const heldCosts = costs.map((all) => list.flatMap((b) => [all[3 * b], all[3 * b + 1], all[3 * b + 2]]));
+        keepStill({ cost: () => [] }, heldCosts);
       }
-      keepStill(tier);
-      const costs = motions.map(tier.cost);
+      keepStill(tier, costs);
       const turned = Array.from({ length: n }, (_, b) => Math.hypot(...[0, 1, 2].map((d) => a.reduce((sum, x, i) => sum + x * costs[i][3 * b + d], 0))));
       const most = Math.max(0, ...turned);
       const more = turned.flatMap((t, b) => (!held.has(b) && t > 1e-12 * most && t < STILLNESS * most ? [b] : []));
@@ -3065,45 +3068,65 @@ function solveSymmetric(a: number[][], b: number[], tiny: number): number[] {
   return x;
 }
 
+// The dot products of each of `rows` with each of `columns`, x · z, summed in order: plain loops,
+// as on a big model these take much of a step.
+function gramOf(rows: number[][], columns: number[][]): number[][] {
+  return rows.map((x) => columns.map((z) => dot(x, z)));
+}
+
+function dot(x: number[], z: number[]): number {
+  let sum = 0;
+  for (let j = 0; j < x.length; j++) sum += x[j] * z[j];
+  return sum;
+}
+
 // The eigenvalues and eigenvectors of a small symmetric matrix (Jacobi's method: rotate away
 // the off-diagonal entries one pair at a time until they're negligible).
 export function symmetricEigen(matrix: number[][]): { values: number[]; vectors: number[][] } {
+  // Plain loops on flat typed arrays, a[i * n + j] for a[i][j]: on a big model this is most of a
+  // step's work.
   const n = matrix.length;
-  const a = matrix.map((row) => row.slice());
-  const v: number[][] = a.map((_, i) => a.map((_, j) => (i === j ? 1 : 0))); // columns are eigenvectors
+  const a = new Float64Array(n * n);
+  matrix.forEach((row, i) => a.set(row, i * n));
+  const v = new Float64Array(n * n); // columns are eigenvectors
+  for (let i = 0; i < n; i++) v[i * n + i] = 1;
   for (let sweep = 0; sweep < 50; sweep++) {
     let off = 0;
-    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) off += a[i][j] * a[i][j];
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) off += a[i * n + j] * a[i * n + j];
     if (off < 1e-24) break;
     for (let p = 0; p < n; p++) {
       for (let q = p + 1; q < n; q++) {
-        if (Math.abs(a[p][q]) < 1e-30) continue;
-        const theta = (a[q][q] - a[p][p]) / (2 * a[p][q]);
+        const apq = a[p * n + q];
+        if (Math.abs(apq) < 1e-30) continue;
+        const theta = (a[q * n + q] - a[p * n + p]) / (2 * apq);
         const t = Math.sign(theta || 1) / (Math.abs(theta) + Math.sqrt(theta * theta + 1));
         const c = 1 / Math.sqrt(t * t + 1);
         const s = t * c;
         for (let k = 0; k < n; k++) {
-          const akp = a[k][p];
-          const akq = a[k][q];
-          a[k][p] = c * akp - s * akq;
-          a[k][q] = s * akp + c * akq;
+          const akp = a[k * n + p];
+          const akq = a[k * n + q];
+          a[k * n + p] = c * akp - s * akq;
+          a[k * n + q] = s * akp + c * akq;
         }
         for (let k = 0; k < n; k++) {
-          const apk = a[p][k];
-          const aqk = a[q][k];
-          a[p][k] = c * apk - s * aqk;
-          a[q][k] = s * apk + c * aqk;
+          const apk = a[p * n + k];
+          const aqk = a[q * n + k];
+          a[p * n + k] = c * apk - s * aqk;
+          a[q * n + k] = s * apk + c * aqk;
         }
         for (let k = 0; k < n; k++) {
-          const vkp = v[k][p];
-          const vkq = v[k][q];
-          v[k][p] = c * vkp - s * vkq;
-          v[k][q] = s * vkp + c * vkq;
+          const vkp = v[k * n + p];
+          const vkq = v[k * n + q];
+          v[k * n + p] = c * vkp - s * vkq;
+          v[k * n + q] = s * vkp + c * vkq;
         }
       }
     }
   }
-  return { values: a.map((row, i) => row[i]), vectors: a.map((_, e) => v.map((row) => row[e])) };
+  return {
+    values: Array.from({ length: n }, (_, i) => a[i * n + i]),
+    vectors: Array.from({ length: n }, (_, e) => Array.from({ length: n }, (_, k) => v[k * n + e])),
+  };
 }
 
 // The smallest x with  rows · x = values, or if they can't all hold (a model whose positions
@@ -3224,13 +3247,14 @@ function leastSquares(a: number[][], b: number[], damping: number, order: number
 // Equation rows (on motion vectors) as rows on coordinates in a basis (see treeBasis).
 function inBasis(rows: Row[], basis: number[][]): Row[] {
   const q = basis[0]?.length ?? 0;
+  const support = supportOf(basis);
   return rows.map((row) => {
     const out = new Array(q).fill(0);
     for (let i = 0; i < row.length; i++) {
       const x = row[i];
       if (x === 0) continue;
       const b = basis[i];
-      for (let c = 0; c < q; c++) out[c] += x * b[c];
+      for (const c of support[i]) out[c] += x * b[c];
     }
     return out;
   });
@@ -3238,11 +3262,25 @@ function inBasis(rows: Row[], basis: number[][]): Row[] {
 
 // The motion vector with these coordinates in a basis (see treeBasis).
 function fromBasis(z: number[], basis: number[][]): number[] {
-  return basis.map((b) => {
+  const support = supportOf(basis);
+  return basis.map((b, i) => {
     let sum = 0;
-    for (let c = 0; c < z.length; c++) sum += b[c] * z[c];
+    for (const c of support[i]) sum += b[c] * z[c];
     return sum;
   });
+}
+
+// For each row of a basis, the columns where it isn't 0: a big model's tree basis is mostly 0s
+// (a joint moves only the bodies beyond it), so going over only these makes the sums above many
+// times faster, and leaves them just as they were.
+const supports = new WeakMap<number[][], Int32Array[]>();
+function supportOf(basis: number[][]): Int32Array[] {
+  let support = supports.get(basis);
+  if (!support) {
+    support = basis.map((row) => Int32Array.from(row.flatMap((x, c) => (x !== 0 ? [c] : []))));
+    supports.set(basis, support);
+  }
+  return support;
 }
 
 // The same vectors made orthonormal (unit length, at right angles to each other), by
@@ -3274,6 +3312,12 @@ export function nullSpace(rows: Row[], n: number): number[][] {
   const a = rows.map((r) => Float64Array.from(r));
   const pivotColumns: number[] = [];
   const used = new Array(n).fill(false);
+  // Rows found to have nothing left above RANK_TOLERANCE (rows that depend on others), until
+  // they next change: the search everywhere left (below) skips them, as they can't be chosen. A
+  // row's entries left only get fewer, as columns are used, so it stays tiny until taking a
+  // pivot row from it changes it. Without this, a big model's search went over its dependent rows
+  // again for every pivot, and took most of a step.
+  const tiny = new Set<Float64Array>();
   for (let r = 0; r < a.length; r++) {
     // Pivot on an entry that's the largest in both its row and its column ("rook pivoting"),
     // for accuracy: picking only down a column lets rounding errors grow until an equation
@@ -3301,7 +3345,9 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     }
     if (Math.abs(a[best][c]) < RANK_TOLERANCE) {
       for (let i = r; i < a.length; i++) {
+        if (tiny.has(a[i])) continue;
         const k = largestInRow(i);
+        if (Math.abs(a[i][k]) < RANK_TOLERANCE) tiny.add(a[i]);
         if (Math.abs(a[i][k]) > Math.abs(a[best][c])) [best, c] = [i, k];
       }
       if (Math.abs(a[best][c]) < RANK_TOLERANCE) break;
@@ -3322,6 +3368,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       if (i === r || other[c] === 0) continue;
       const factor = other[c];
       for (const k of nonzero) other[k] -= factor * row[k];
+      tiny.delete(other);
     }
     pivotColumns.push(c);
   }
