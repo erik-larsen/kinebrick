@@ -215,6 +215,7 @@ export class Kinematics {
   private fixedBody = -1; // kept still when the model has no tyres on the ground
   private frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
   private dragHeld = new Set<number>(); // bodies held still for the length of one drag
+  private dragTogether: number[] = []; // bodies turned with the grabbed one for the length of one drag (see turnTogether)
   private dragTurning: { grabbed: number; joint: number } | null = null; // the drag they're held for, if it turns a joint
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
@@ -1387,7 +1388,17 @@ export class Kinematics {
     return Math.sqrt(sum);
   }
 
+  // For the next drag of `grabbed`'s joint, `bodies` turn with it, each about the same axis and
+  // as fast, against what its shaft turns in (see housing): a vehicle's wheels, as pushing it
+  // along turns them, though nothing stands it on the ground (the 8258 Crane Truck, built
+  // without its wheels, whose rear differential would otherwise turn one half shaft back as the
+  // other turned). Until letGoAfterDrag.
+  turnTogether(grabbed: number, bodies: number[]) {
+    this.dragTogether = [grabbed, ...bodies.filter((b) => b !== grabbed)];
+  }
+
   letGoAfterDrag() {
+    this.dragTogether = [];
     this.dragHeld.clear();
     this.heldToFrame.clear();
     this.dragTurning = null;
@@ -1475,6 +1486,18 @@ export class Kinematics {
     const fixed = new Set([...this.frozen, ...this.dragHeld]);
     if (this.fixedBody >= 0) fixed.add(this.fixedBody);
     for (const row of this.holdRows(fixed, this.heldToFrame)) add(row);
+    // Bodies turned together (see turnTogether): each turns against its housing, about the
+    // grabbed body's axis, as fast as the grabbed body does against its own.
+    if (this.dragTogether.length > 1) {
+      const [grabbed, ...others] = this.dragTogether;
+      const joint = this.mech.joints[this.parentJoint[grabbed]];
+      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+      for (const body of others) {
+        const row = new Array(n).fill(0);
+        for (const [b, sign] of [[body, 1], [this.housing(body), -1], [grabbed, -1], [this.housing(grabbed), 1]]) for (let k = 0; k < 3; k++) row[6 * b + k] += sign * d.getComponent(k);
+        add(row);
+      }
+    }
 
     // Joints. Each row says how bodyA moves relative to bodyB in some way must be zero:
     //   revolute  the same at a point on the axis, and no turning about any direction across it

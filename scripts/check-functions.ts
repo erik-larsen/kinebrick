@@ -6,7 +6,9 @@
 // works if the control goes at least half that far (turning against what its shaft turns
 // in, not just on its joint, which a shaft spinning back under it could make up), every part in `moves` moves and no part in
 // `stays` does, each against the frame or the part it names. A function works if one way works
-// for each of its controls; it partly works if something moves; otherwise it doesn't.
+// for each of its controls; it partly works if something moves; otherwise it doesn't. Controls
+// marked `together` are worked as one instead, all turning at once, as pushing a vehicle along
+// turns its wheels: the first is worked, and the others turn with it (see turnTogether).
 //
 // How much, too. For each part in `moves` and `stays`, it writes how far the part turned
 // (radians) and slid (LDU) for each radian the control turned, adding up every step of the way
@@ -86,6 +88,7 @@ interface Fn {
   moves?: string[];
   stays?: string[];
   first?: { control: string; by: number }[];
+  together?: boolean; // the controls are worked as one, turning together (see turnTogether)
   skip?: string;
   model?: string; // its own model, for a set with several (the 858's four engines)
 }
@@ -175,9 +178,12 @@ function checkModel(model: string, functions: Fn[]) {
     const j = mech.joints.find((x) => x.motor && (x.bodyA === b || x.bodyB === b));
     return j ? (j.bodyA === b ? j.bodyB : j.bodyA) : b;
   };
+  // The bodies turned with the one worked, for a function whose controls are worked together.
+  let together: number[] = [];
   // Works a body's joint as a drag does, as far as it goes up to `amount`; how far it went.
   const turn = (body: number, amount: number) => {
     const joint = kin.parentLink(body)!.joint;
+    if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
     const turned = kin.turnJoint(joint, amount, () => kin.atLimit() === null);
     kin.letGoAfterDrag();
@@ -196,6 +202,7 @@ function checkModel(model: string, functions: Fn[]) {
   // (LDU) against its body on the way.
   const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[]) => {
     const joint = kin.parentLink(body)!.joint;
+    if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
     const went = parts.map(() => [0, 0]);
     let was = parts.map((p) => relative(p.part, p.body, kin.poses));
@@ -233,7 +240,10 @@ function checkModel(model: string, functions: Fn[]) {
     if (fn.skip) return { result: 'skipped' };
     if (!fn.control) return { result: 'not checked' };
     const why: string[] = [];
-    const ways = [fn.control].flat().map((ref) => {
+    // Controls worked together are worked as one, by the first, the others turning with it.
+    const controls = [fn.control].flat();
+    const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref) => {
+      together = [];
       use(asLoaded);
       kin.reset();
       for (const first of fn.first ?? []) {
@@ -265,6 +275,7 @@ function checkModel(model: string, functions: Fn[]) {
         return { works: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[] };
       }
       const reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
+      if (fn.together) together = controls.map((r) => worked(part(r)));
       const start = kin.snapshot();
       const startPoses = kin.poses.map((m) => m.clone());
       const listed = [...moves, ...stays];
@@ -303,6 +314,7 @@ function checkModel(model: string, functions: Fn[]) {
         return { turned, still, moved: wrong, rates, off, back, strayed, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
       });
       kin.restore(start);
+      together = [];
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
