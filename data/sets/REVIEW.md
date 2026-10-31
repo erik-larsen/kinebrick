@@ -214,7 +214,7 @@ Drafted 2026-10-24 from each set's instructions, 104 sets (every OMR set from 20
 | 42084 Hook Loader | 2 / 0 / 1 | Hook arm works; steering locked. |
 | 42088 Cherry Picker | 3 / 0 / 1 | Boom worm locked; slewing works. |
 | 42092 Rescue Helicopter | 3 / 1 / 1 | Rotor and winch gears work; tail propeller on a friction pin. |
-| 42093 Chevrolet Corvette ZR1 | 2 / 2 / 0 | Rolling stops short of the crank (12/8 tooth gears 20 LDU apart); steering gear doesn't reach. |
+| 42093 Chevrolet Corvette ZR1 | 2 / 2 / 0 | Rolling skipped: the model has a 12 tooth gear where the set has an 8 tooth one, so the drive can't reach the crank (see the LDraw errata); steering gear doesn't reach. |
 | 42094 Tracked Loader | 2 / 3 / 2 | Actuator jams after 4 LDU; front knob doesn't reach the turntable. |
 | 42095 Remote-Controlled Stunt Racer | 1 / 0 / 3 | Motors' gears and track links on the frame. |
 | 42096 Porsche 911 RSR | 4 / 0 / 1 | Steering works; rolling doesn't reach the half shafts. |
@@ -255,7 +255,7 @@ In all: 277 functions work, 90 partly, 267 not.
 6. **Hinged doors, lids and panels fused to the frame** (42056, 42069, 42077, 42110, 42122, 42123).
 7. **Steering trains that stop short** (8049, 9393, 9395, 42023, 42041, 42076, 42093, 42122): knob wheels, gears just off mesh, a rack jointed as turning (42035).
 8. **Pneumatics** (8049, 8110, 42043, 42053, 42080).
-9. **Errors in the files**: 41999 (every Power Functions element an LDCad path cap, not a part), 42083 (its key lies on the ground), 42123 (leaves out step 220's roof gear), 42107 (its fork shocks, 65151-f1, aren't in the LDraw library), 42055 (the mine truck all loose), 9397 (a 56-part frame, the chassis a chain of bodies), 42093 (two submodels 2 LDU off centre).
+9. **Errors in the files**: 41999 (every Power Functions element an LDCad path cap, not a part), 42083 (its key lies on the ground), 42123 (leaves out step 220's roof gear), 42107 (its fork shocks, 65151-f1, aren't in the LDraw library), 42055 (the mine truck all loose), 9397 (a 56-part frame, the chassis a chain of bodies), 42093 (two submodels 2 LDU off centre, and a 12 tooth gear where the set has an 8 tooth one).
 
 ## Instruction books out of order
 

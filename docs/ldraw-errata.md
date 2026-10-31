@@ -13,6 +13,7 @@ This page lists the errors Kinebrick has found that way in the LDraw models it u
 | [8849-1](#8849-1-tractor) | Tractor (1986) | Stefan Frenz | LDraw OMR | 1 | Corrected in Kinebrick |
 | [8854-1](#8854-1-power-crane) | Power Crane (1989) | Stefan Frenz | LDraw OMR | 1 | Not corrected |
 | [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in Kinebrick |
+| [42093-1](#42093-1-chevrolet-corvette-zr1) | Chevrolet Corvette ZR1 (2019) | Philippe Hurbain | LDraw OMR | 1 | Not corrected |
 
 ## 852-1 Helicopter
 
@@ -333,8 +334,30 @@ The new assembly, against `8880 - step19.ldr` (line 912 on):
 + 1 8 -90 -12 0 0 0.0204 -1 0 1 0.0204 1 0 0 2739a.dat
 ```
 
+## 42093-1 Chevrolet Corvette ZR1
+
+| | |
+| --- | --- |
+| Set | 42093 Chevrolet Corvette ZR1, 2019 |
+| Model | Chevrolet Corvette ZR1, `42093-1.mpd` |
+| Author | Philippe Hurbain [Philo] |
+| Licence | CCAL 2.0 (CC BY 2.0) |
+| Original | [LDraw Official Model Repository, set 927](https://library.ldraw.org/omr/sets/927) |
+| In Kinebrick | Used as published, not corrected, read from the OMR's file |
+
+### The shaft that drives the engine has a 12 tooth gear where the set has an 8 tooth one (not corrected)
+
+Pushed along, the car turns its V8: the differential turns a shaft forward, and an 8 tooth gear (10928) at the shaft's front end turns the 8 tooth gear on the crankshaft, a stud above it. In the model the shaft's gear is a 12 tooth double bevel gear (32270) instead. Two 8 tooth gears mesh 20 LDU apart, the sum of their pitch radii, but a 12 tooth gear and an 8 tooth one need 25, so at 20 the 12 tooth gear overlaps the crankshaft's gear by 5 LDU rather than meshing with it. The instructions put an 8 tooth gear on that shaft (step 2), and their parts list has two 8 tooth gears (element 6012451) and three 12 tooth double bevel gears (element 4177431), where the model has one and four. Kinebrick found this because pushing the car turned the differential and the shaft, but not the engine. With the 8 tooth gear in its place, the shaft turns the crankshaft.
+
+Line 3115, in `42093 - corvette.ldr`. A correction would put the 8 tooth gear in its place, in dark bluish grey like the crankshaft's:
+
+```diff
+- 1 0 0 0 -80 0 1 0 1 0 0 0 0 -1 32270.dat
++ 1 72 0 0 -80 0 1 0 1 0 0 0 0 -1 10928.dat
+```
+
 ---
 
 Line numbers are those of the OMR files as downloaded on 20 October 2026. Kinebrick's copies name their subfiles without the spaces around the dash (`8880-step19.ldr`), but are otherwise line for line the same.
 
-Written from the `errors` and `corrected_model` columns of [`models/technic-sets.csv`](../models/technic-sets.csv), as of 28 October 2026.
+Written from the `errors` and `corrected_model` columns of [`models/technic-sets.csv`](../models/technic-sets.csv), as of 31 October 2026.

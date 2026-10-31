@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 37 works, 34 partly, 7 no.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 37 works, 33 partly, 7 no, 1 skipped.
 
 ## By decade
 
@@ -185,7 +185,7 @@ Each detail by the set it first appears in.
 
 **2019, [42093 Chevrolet Corvette ZR1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42093-1)**
 
-- Pushed along, the rear wheels drive the V8 through a differential: a 20 tooth gear on the differential turns a shaft forward to the crankshaft, and the eight pistons (brown axles with yellow caps, four in each bank) bob up and down in the engine under the bonnet. The differential lets the two rear wheels turn at different speeds. (partly)
+- Pushed along, the rear wheels drive the V8 through a differential: a 20 tooth gear on the differential turns a shaft forward to the crankshaft, and the eight pistons (brown axles with yellow caps, four in each bank) bob up and down in the engine under the bonnet. The differential lets the two rear wheels turn at different speeds. (skipped)
 
 **2019, [42096 Porsche 911 RSR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42096-1)**
 

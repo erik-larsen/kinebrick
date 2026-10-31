@@ -116,9 +116,9 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 | Result | Functions | Share |
 |---|---|---|
 | Works | 523 | 43% |
-| Partly | 328 | 27% |
+| Partly | 327 | 27% |
 | Doesn't work | 197 | 16% |
-| Skipped or not checked | 176 | 14% |
+| Skipped or not checked | 177 | 14% |
 
 Of the functions checked, 50% work in full. Only 14 of the 186 sets have every function working.
 
@@ -150,7 +150,7 @@ The models' files are in [`models/`](models/).
 Working out how a set moves means reading every part of it closely, and that turns up more than motion:
 
 - **[Mechanism catalog](docs/mechanisms/README.md).** The kinds of mechanism in the 186 Technic sets Kinebrick has surveyed, from rack and pinion steering to swing wings: the year each first appears, which sets use it, and how often, decade by decade. Each set's functions are tagged with their kinds from what its building instructions show, and each kind's page says how many of its functions Kinebrick moves today.
-- **[LDraw errata](docs/ldraw-errata.md).** Eleven errors Kinebrick has found in the published LDraw models of seven sets (852, 858, 8844, 8848, 8849, 8854 and 8880), such as a part a few LDU out of place that attaches to nothing, each with the exact lines and the correction Kinebrick uses where it has one, so they can be corrected where the models are published.
+- **[LDraw errata](docs/ldraw-errata.md).** Twelve errors Kinebrick has found in the published LDraw models of eight sets (852, 858, 8844, 8848, 8849, 8854, 8880 and 42093), such as a part a few LDU out of place that attaches to nothing, each with the exact lines and the correction Kinebrick uses where it has one, so they can be corrected where the models are published.
 
 ## What Kinebrick is, and isn't
 
