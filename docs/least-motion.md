@@ -259,7 +259,7 @@ Of the 14, none is the solver doing something it shouldn't, as far as they've be
 - **The 42124's steering.** Its links don't fit as built, a gap of 0.053 LDU that closing the loops doesn't close; holds were only partly working.
 - **Not yet understood:** the 855's cab slewing, which moves a part on the boom 0.93 LDU against the cab; the 8257's seat, which stops at once because the loose driver's leg can't be fitted back on its ball joint; and the 8218's first function.
 
-Five of the losses come from turning one wheel of a model nothing holds on the ground. A check that pushes the vehicle, turning every wheel or dragging the frame along, would be fairer to both, but it would change the check for holds too.
+Several of the losses came from turning one wheel of a model nothing holds on the ground; a check that pushes the vehicle has since fixed three of them (see below).
 
 ### Tests
 
@@ -267,8 +267,19 @@ All 329 tests pass with least motion as with holds.
 
 So both halves of the adoption test are met: every test passes, and at least as many functions work as with holds on the full check.
 
+## After adoption: pushing the vehicle
+
+A function that says a vehicle is pushed along was checked by turning each listed wheel on its own. Where nothing stands the model on the ground, that isn't pushing it: the differential turns the other wheel back, and what's between them (an engine, often) stays still. Holds "worked" there by holding the other wheel.
+
+Now a function can mark its controls `together`: the first is turned, and the others turn with it, each about the same axis and as fast, against what its shaft turns in, as pushing the vehicle along turns them (`turnTogether` in the solver, for one drag). That's the check for both solvers.
+
+It's on the 24 functions in which pushing or rolling a vehicle drives something through more than one wheel. Three now work: the 8258 Crane Truck's V8 (the model has no wheels, so its controls are the rear half shafts), the 42069's V8 and the 8218 Trike Tourer's engine. The trike's other function, that its left rear wheel turns freely, shows only with the trike lifted, so it's skipped: standing on the ground, turning either rear wheel rolls the trike, and both turn. The other 21 come out as before, nothing worse. In most of them the wheels and the differential do turn, and the drive stops further on: the 42093's shaft runs forward to its crankshaft, but its gear there isn't found to mesh with the crankshaft's. That's for connections, not the check.
+
+The 42076 hovercraft wasn't this: its two hidden wheels are on one axle, which does turn the drive. Each propeller sits on a frictionless long pin on its upright shaft, and least motion leaves the propeller still while the pin turns in it, where holds held the propeller on the pin. A real propeller, balanced on its axis, would be carried round by what little friction the pin has. Telling a balanced part (carried round) from a hanging one (kept level by gravity) is for when there's mass.
+
 ## Open questions
 
+- **Balanced parts on free pins.** Least motion keeps still a part free on a turning shaft, which suits a hanging assembly but not a propeller or a wheel, carried round by friction (the 42076's propellers).
 - **Adoption.** Least motion met the adoption test and was adopted: it's on by default, with its stillness at 0.2.
 - **Shock absorbers rigid until springs**, behind two of the four functions still worse (the 42107's and 8466's suspension): they hurt holds as much, but hide behind results holds get by something spinning.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback; so is the tier for a car's own turning on two tyres. Gravity and mass would replace both.

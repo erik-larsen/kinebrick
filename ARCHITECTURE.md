@@ -1005,7 +1005,7 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 **What it does.** For each function with a control, from where the model was loaded:
 
 - works the function's `first` controls, in order;
-- works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide;
+- works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide (each control on its own, or for controls marked `together`, the first with the others turning with it, as pushing a vehicle along turns its wheels);
 - checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°);
 - measures how much: how far each listed part turned and slid for each radian the control turned, adding up every piece of the drag (it's worked in pieces of 0.1, since a part geared up turns further than half a turn, which its pose alone can't tell);
 - compares that with what the gears say, where they alone say it (`scripts/gear-rates.ts`): only for parts that turn or slide straight off the frame, tied to the control by gears, racks, worms, universal joints, chains or a linear actuator's screw, and not through anything that turns in something else (a differential's planets);

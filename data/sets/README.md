@@ -53,6 +53,7 @@ Each function has:
 | `control` | The part a person turns or pushes to work it, or a list of parts that each do it alike (four outriggers). Left out where nothing is worked by hand. |
 | `moves` | Parts that must move when the control is worked, each against the frame or `against` another part. The control itself must always move. |
 | `stays` | Parts that must not move, against the frame or `against` another part. |
+| `together` | `true` for controls worked as one, all turning at once, as pushing a vehicle along turns its wheels: the first is turned, and the others turn with it, about the same axis and as fast. Without it each control is worked on its own, which for a vehicle nothing stands on the ground turns one wheel and lets its differential turn the other back. |
 | `first` | Controls to work first, in order, each `{"control": "p12 3482", "by": 1.5}` (radians, or LDU for a slide), for a function that only works after another one (lower the implement, then roll). |
 | `skip` | Why it isn't modelled: a ratchet, brake or spring only matters under gravity or force, which Kinebrick doesn't simulate yet. Kept so it isn't forgotten. |
 | `note` | Anything else, such as which test checks a function the fields can't express. |

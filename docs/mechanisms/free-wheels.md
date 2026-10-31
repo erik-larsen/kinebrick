@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 140 works, 9 partly, 2 no, 1 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 140 works, 8 partly, 2 no, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -218,7 +218,7 @@ Each detail by the set it first appears in.
 
 **1998, [8218 Trike Tourer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8218-1)**
 
-- The left rear wheel turns freely on its own axle pin and doesn't drive the engine. (partly)
+- The left rear wheel turns freely on its own axle pin and doesn't drive the engine. (skipped)
 - The front wheel rolls freely on its axle between the fork's tips. (works)
 
 **1998, [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1)**

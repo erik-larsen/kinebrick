@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 36 works, 33 partly, 2 no.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 38 works, 31 partly, 2 no.
 
 ## By decade
 
@@ -108,7 +108,7 @@ Each detail by the set it first appears in.
 
 **1998, [8218 Trike Tourer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8218-1)**
 
-- *1 cylinder:* Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame. (partly)
+- *1 cylinder:* Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame. (works)
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
@@ -140,7 +140,7 @@ Each detail by the set it first appears in.
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
-- *V8:* The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down. (partly)
+- *V8:* The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down. (works)
 
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 

@@ -19,15 +19,18 @@
           "piston-engine: 1 cylinder"
         ],
         "source": "book: steps 3-4 (cylinder), 9-12 (axle, crank, connecting rod and piston, wheels; step 11 rings the crank)",
-        "control": "p1 2994",
+        "control": [
+          "p1 2994",
+          "p0 2994"
+        ],
+        "together": true,
         "moves": [
           "p4 2853 against p8 32009",
           "p22 2852 against p8 32009",
           "p46 2851 against p8 32009"
         ],
         "stays": [
-          "p44 2850 against p8 32009",
-          "p0 2994 against p8 32009"
+          "p44 2850 against p8 32009"
         ]
       },
       {
@@ -40,7 +43,8 @@
         "stays": [
           "p46 2851 against p8 32009",
           "p1 2994 against p8 32009"
-        ]
+        ],
+        "skip": "shows only with the trike lifted off the ground: standing on it, turning either rear wheel rolls the trike, and both turn"
       },
       {
         "does": "The front wheel rolls freely on its axle between the fork's tips.",
@@ -79,99 +83,58 @@
     ]
   },
   "generated": {
-    "commit": "4fb2ed7",
+    "commit": "535b763",
     "date": "2026-10-31",
     "counts": {
-      "partly": 2,
-      "works": 1,
+      "works": 2,
+      "skipped": 1,
       "no": 1
     },
     "loose": [],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p0 2994 against p8 32009"
-        ],
         "rates": [
           {
             "p4 2853 against p8 32009": [
               1,
-              1.12e-13
+              1.15e-13
             ],
             "p22 2852 against p8 32009": [
               0.168,
               10
             ],
             "p46 2851 against p8 32009": [
-              1.4e-7,
+              8.43e-8,
               7.04
             ],
             "p44 2850 against p8 32009": [
-              1.12e-7,
-              6.54e-14
-            ],
-            "p0 2994 against p8 32009": [
-              1,
-              1.35e-13
+              5.62e-8,
+              3.9e-14
             ]
           }
         ],
         "back": [
           [
             [
-              0.15,
-              0.03
+              0.1,
+              0.02
             ],
             [
-              0.32,
-              0.07
+              0.17,
+              0.04
             ]
           ]
         ]
       },
       {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "moved": [
-          "p46 2851 against p8 32009",
-          "p1 2994 against p8 32009"
-        ],
-        "rates": [
-          {
-            "p46 2851 against p8 32009": [
-              8.43e-8,
-              7.04
-            ],
-            "p1 2994 against p8 32009": [
-              1,
-              2.03e-13
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0.15,
-              0.04
-            ],
-            [
-              0.27,
-              0.07
-            ]
-          ]
-        ]
+        "result": "skipped"
       },
       {
         "result": "works",
