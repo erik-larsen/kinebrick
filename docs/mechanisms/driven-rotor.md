@@ -4,7 +4,7 @@ The drive spins a propeller, rotor or fan: rolling the model, a knob, a motor or
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.
 
-Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 11 works, 14 partly.
+Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 10 works, 15 partly.
 
 ## By decade
 
@@ -104,7 +104,7 @@ Each detail by the set it first appears in.
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
-- *propellers:* Pushed along, the hovercraft's hidden wheels underneath spin both propellers at the stern: a long shaft runs back to a cross shaft, and bevel gears take the drive up each propeller pod's upright shaft and round to the propeller. (works)
+- *propellers:* Pushed along, the hovercraft's hidden wheels underneath spin both propellers at the stern: a long shaft runs back to a cross shaft, and bevel gears take the drive up each propeller pod's upright shaft and round to the propeller. (partly)
 
 **2019, [42092 Rescue Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42092-1)**
 

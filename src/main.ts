@@ -124,8 +124,9 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
 //   nosymbols    no symbols pinned to parts (📌 frozen, ⚠ loose), which show otherwise
 const OPTIONS = params.getAll('option').join(',').split(',');
-// Experimental: ?least has a drag choose its motion by least motion (see leastTurning in kinematics.ts).
-if (params.has('least')) experiments.leastMotion = true;
+// ?holds has a drag that turns a joint choose its motion by holds, as before least motion (see
+// leastTurning in kinematics.ts).
+if (params.has('holds')) experiments.leastMotion = false;
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if

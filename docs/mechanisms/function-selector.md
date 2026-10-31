@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 17 works, 73 partly, 3 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 16 works, 74 partly, 3 no, 4 not checked.
 
 ## By decade
 
@@ -114,7 +114,7 @@ Each detail by the set it first appears in.
 - *4 functions:* The Power Functions L motor at the back of the superstructure runs the gearbox: a 24 tooth clutch gear on its shaft drives a 24 tooth gear, and rows of 16 tooth clutch gears carry the turn across the gearbox, one pair (one turning each way) beside each of the four driving rings. (works)
 - Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets. (works)
 - Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth. (partly)
-- Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (no)
+- Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (partly)
 - Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab. (works)
 - *4 functions:* The four levers on the superstructure (two pairs) each slide one driving ring forward or back, between its two clutch gears: forward drives its function one way, back the other way, and in the middle it's in neutral. (partly)
 
@@ -171,14 +171,14 @@ Each detail by the set it first appears in.
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
 - The motor lowers and raises the four outriggers: with the red lever on the superstructure set to the chassis functions, the lever on the chassis side away from the cab picks up or down, and the drive goes down through the turntable to the chassis gearbox, which turns a small linear actuator at each outrigger, swinging its leg out and down onto its foot pad, or back up. (partly)
-- The motor slews the superstructure round, all the way round: with the red lever on the superstructure set to the chassis functions, the lever on the chassis's cab side picks left or right, and the chassis gearbox turns the turntable. (works)
+- The motor slews the superstructure round, all the way round: with the red lever on the superstructure set to the chassis functions, the lever on the chassis's cab side picks left or right, and the chassis gearbox turns the turntable. (partly)
 - The motor raises and lowers the boom: with the red lever on the superstructure set to the boom functions, the knob in the gate on top of the superstructure is moved into the luffing column and pushed fore or aft for up or down, and two big linear actuators push the boom up or let it down. (partly)
 - The motor extends and retracts the boom: with the red lever on the boom side and the gate knob in the middle (telescoping) column, pushed fore or aft, a shaft runs through the boom's pivot and up the boom to a gear at the outer section's tip, which drives the racks under the grey inner section. (partly)
 - The motor winds the winch, raising or lowering the hook: with the red lever on the boom side and the gate knob in the winch column, pushed fore or aft, the drum on top of the superstructure turns through a slipping clutch gear, and the hook block rises or falls on its rope over the boom tip's pulleys. (partly)
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
-- *drum:* The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank. (partly)
+- *drum:* The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank. (no)
 - With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft. (partly)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**

@@ -4,7 +4,7 @@ A control or part that looks as if it works something but isn't linked to anythi
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.
 
-Used in 33 of the 186 surveyed sets, by 33 functions. Kinebrick: 26 works, 2 no, 1 skipped, 4 not checked.
+Used in 33 of the 186 surveyed sets, by 33 functions. Kinebrick: 24 works, 4 no, 1 skipped, 4 not checked.
 
 ## By decade
 
@@ -39,7 +39,7 @@ Each detail by the set it first appears in.
 
 **1990, [8830 Rally 6-Wheeler (Moon Buggy)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8830-1)**
 
-- *steering wheel:* The small grey steering wheel the driver holds in front of the seat is for show: it isn't connected to the steering. (works)
+- *steering wheel:* The small grey steering wheel the driver holds in front of the seat is for show: it isn't connected to the steering. (no)
 
 **1998, [8209 Future F1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8209-1)**
 
@@ -151,7 +151,7 @@ Each detail by the set it first appears in.
 
 **2020, [42101 Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42101-1)**
 
-- *steering wheel:* The steering wheel in front of the seat spins on its half pin; it isn't joined to the steering. (works)
+- *steering wheel:* The steering wheel in front of the seat spins on its half pin; it isn't joined to the steering. (no)
 
 **2021, [42121 Heavy Duty Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42121-1)**
 

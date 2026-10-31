@@ -682,9 +682,24 @@ Only knob-like parts can be kept turning, and only they get a line in the readou
   - A pointer that stops moving stops the turn, even while the axle is carried along (a car rolling).
 - **A frame at a time.** Pointer movements are gathered up and worked through once a frame, for at most 25 ms, so a big model on a slow computer keeps redrawing while it catches up with the pointer. What's left (a turn still owed, or a push not yet at the pointer) carries on in the next frame, and letting go first finishes it.
 
+### Least motion
+
+A drag that turns a joint, and a motor, chooses how the rest of the model follows by [least motion](docs/least-motion.md): of the motions that turn the joint as asked, the one that moves least, judged tier by tier, most important first. Each tier is kept as still as the drag allows, all of it at once, and then the next, among the motions that do that:
+
+1. what slides or swivels on the car (a bumper on tiles, a gear lever on its ball);
+2. on a car on the ground, what steers it;
+3. joints on friction pins and motors' outputs, then what the grabbed part turns against, kept still against the frame as a hand holding the model by its frame would;
+4. every part's turning against the frame: a gear freewheeling on a shaft turns on it rather than turning the shaft, and an assembly hanging on a turning axle stays level;
+5. every joint's turning;
+6. every part's moving against the frame, for what no joint's turning settles.
+
+Before these the car's frame stays where it is, if it can. Worms and linear actuators still lock, and frozen parts stay frozen. It's solved afresh at each step, from where the model is, so nothing has to be chosen again as the model moves.
+
+Pushes still choose by holds, below, and so does a turn with `?holds` in the address (`KINEBRICK_LEAST=0` for the tests and scripts).
+
 ### Holds
 
-For the length of a drag, Kinebrick holds still every part it can without stopping the drag, so that anything the drag doesn't need to move stays put. These holds last only for the drag, are never shown, and are separate from the parts the user freezes (Alt-click), which stay frozen until unfrozen.
+For the length of a push (or, with `?holds`, a turn), Kinebrick holds still every part it can without stopping the drag, so that anything the drag doesn't need to move stays put. These holds last only for the drag, are never shown, and are separate from the parts the user freezes (Alt-click), which stay frozen until unfrozen.
 
 **What it tries to hold, in order:**
 

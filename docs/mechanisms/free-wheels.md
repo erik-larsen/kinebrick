@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 138 works, 11 partly, 2 no, 1 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 140 works, 9 partly, 2 no, 1 skipped, 2 not checked.
 
 ## By decade
 
@@ -53,7 +53,7 @@ Each detail by the set it first appears in.
 
 **1978, [952 Tractor](https://erik-larsen.github.io/kinebrick/?model=952-Tractor)**
 
-- Pushed along, the front wheels roll freely, and the hitch and its lever stay where they were set. (partly)
+- Pushed along, the front wheels roll freely, and the hitch and its lever stay where they were set. (works)
 - The harrow's two small wheels roll freely. (works)
 
 **1978, [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis)**
@@ -79,7 +79,7 @@ Each detail by the set it first appears in.
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 
-- The front wheels turn freely on short axles in the steering arms. (partly)
+- The front wheels turn freely on short axles in the steering arms. (works)
 
 **1983, [8841 Dune Buggy / Desert Racer](https://erik-larsen.github.io/kinebrick/?model=8841-Dune%20Buggy)**
 
@@ -218,7 +218,7 @@ Each detail by the set it first appears in.
 
 **1998, [8218 Trike Tourer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8218-1)**
 
-- The left rear wheel turns freely on its own axle pin and doesn't drive the engine. (works)
+- The left rear wheel turns freely on its own axle pin and doesn't drive the engine. (partly)
 - The front wheel rolls freely on its axle between the fork's tips. (works)
 
 **1998, [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1)**
@@ -368,7 +368,7 @@ Each detail by the set it first appears in.
 
 **2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1)**
 
-- Both wheels roll freely. (partly)
+- Both wheels roll freely. (works)
 
 **2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1)**
 

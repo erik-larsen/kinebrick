@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 15 works, 64 partly, 5 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 13 works, 65 partly, 6 no, 5 not checked.
 
 ## By decade
 
@@ -44,7 +44,7 @@ Each detail by the set it first appears in.
 
 - The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth. (partly)
 - The arm motor, at the back of the arm as a counterweight, opens and closes the gripper: through a rubber band and a worm it turns a train of gears along the arm to the elbow's 40 tooth gear, which turns the long shaft down the forearm; at its foot an 8 tooth gear turns two shafts the opposite way to each other through their 16 tooth gears, and their bevel gears swing the two claws together or apart. (partly)
-- The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again. (works)
+- The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again. (partly)
 
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
@@ -151,7 +151,7 @@ Each detail by the set it first appears in.
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
 - The motor lowers and raises the four outriggers: with the red lever on the superstructure set to the chassis functions, the lever on the chassis side away from the cab picks up or down, and the drive goes down through the turntable to the chassis gearbox, which turns a small linear actuator at each outrigger, swinging its leg out and down onto its foot pad, or back up. (partly)
-- The motor slews the superstructure round, all the way round: with the red lever on the superstructure set to the chassis functions, the lever on the chassis's cab side picks left or right, and the chassis gearbox turns the turntable. (works)
+- The motor slews the superstructure round, all the way round: with the red lever on the superstructure set to the chassis functions, the lever on the chassis's cab side picks left or right, and the chassis gearbox turns the turntable. (partly)
 - The motor raises and lowers the boom: with the red lever on the superstructure set to the boom functions, the knob in the gate on top of the superstructure is moved into the luffing column and pushed fore or aft for up or down, and two big linear actuators push the boom up or let it down. (partly)
 - The motor extends and retracts the boom: with the red lever on the boom side and the gate knob in the middle (telescoping) column, pushed fore or aft, a shaft runs through the boom's pivot and up the boom to a gear at the outer section's tip, which drives the racks under the grey inner section. (partly)
 - The motor winds the winch, raising or lowering the hook: with the red lever on the boom side and the gate knob in the winch column, pushed fore or aft, the drum on top of the superstructure turns through a slipping clutch gear, and the hook block rises or falls on its rope over the boom tip's pulleys. (partly)
@@ -164,7 +164,7 @@ Each detail by the set it first appears in.
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
 - *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (partly)
-- *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (no)
+- *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (partly)
 - *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (partly)
 - *Control+ L:* The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs. (works)
 
@@ -199,8 +199,8 @@ Each detail by the set it first appears in.
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (partly)
-- The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (partly)
+- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (no)
+- The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (no)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 

@@ -79,21 +79,97 @@
     ]
   },
   "generated": {
-    "commit": "516e176",
-    "uncommitted": true,
-    "date": "2026-10-27",
+    "commit": "4fb2ed7",
+    "date": "2026-10-31",
     "counts": {
-      "works": 3,
+      "partly": 2,
+      "works": 1,
       "no": 1
     },
     "loose": [],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
             -1.5
+          ]
+        ],
+        "moved": [
+          "p0 2994 against p8 32009"
+        ],
+        "rates": [
+          {
+            "p4 2853 against p8 32009": [
+              1,
+              1.12e-13
+            ],
+            "p22 2852 against p8 32009": [
+              0.168,
+              10
+            ],
+            "p46 2851 against p8 32009": [
+              1.4e-7,
+              7.04
+            ],
+            "p44 2850 against p8 32009": [
+              1.12e-7,
+              6.54e-14
+            ],
+            "p0 2994 against p8 32009": [
+              1,
+              1.35e-13
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.15,
+              0.03
+            ],
+            [
+              0.32,
+              0.07
+            ]
+          ]
+        ]
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "moved": [
+          "p46 2851 against p8 32009",
+          "p1 2994 against p8 32009"
+        ],
+        "rates": [
+          {
+            "p46 2851 against p8 32009": [
+              8.43e-8,
+              7.04
+            ],
+            "p1 2994 against p8 32009": [
+              1,
+              2.03e-13
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.15,
+              0.04
+            ],
+            [
+              0.27,
+              0.07
+            ]
           ]
         ]
       },
@@ -104,14 +180,20 @@
             1.5,
             -1.5
           ]
-        ]
-      },
-      {
-        "result": "works",
-        "turned": [
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
           [
-            1.5,
-            -1.5
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ]
       },
@@ -130,6 +212,14 @@
         "still": [
           "p49 4519 against p8 32009",
           "p66 2994 against p8 32009"
+        ],
+        "rates": [
+          {},
+          {}
+        ],
+        "back": [
+          [],
+          []
         ],
         "why": [
           "p60 32062 is part of the frame",

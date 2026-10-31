@@ -100,10 +100,10 @@ const LOOP_TOLERANCE = 1e-11;
 // joints' equations repeat each other, and a tiny misalignment would make them look
 // independent, jamming it.
 const RANK_TOLERANCE = 1e-6;
-// Experimental: a drag that turns a joint chooses its motion tier by tier (see leastTurning)
-// instead of holding what it doesn't need (see chooseDragHolds). On with ?least in the viewer, or
-// KINEBRICK_LEAST=1 for the tests and scripts.
-export const experiments = { leastMotion: typeof process !== 'undefined' && process.env?.KINEBRICK_LEAST === '1' };
+// A drag that turns a joint chooses its motion by least motion, tier by tier (see leastTurning),
+// rather than by holding what it doesn't need (see chooseDragHolds), as pushes still do. ?holds in
+// the viewer, or KINEBRICK_LEAST=0 for the tests and scripts, has it choose holds instead.
+export const experiments = { leastMotion: !(typeof process !== 'undefined' && process.env?.KINEBRICK_LEAST === '0') };
 // A tier's motions count as costing nothing (see leastTurning) below this, as a fraction of the
 // most a free motion of unit size costs there.
 const TIER_TOLERANCE = 1e-10;
@@ -130,9 +130,9 @@ const SPARSE_ROUNDS = 30;
 const TURNING_WEIGHT = 1;
 // Least motion: a body the turning tier leaves turning less than this fraction of the body it
 // turns most is held still, if it can be, and the tier solved again (see leastTurning): static
-// friction holds what would only creep, rather than letting everything give a little. Off unless
-// KINEBRICK_STILLNESS is set; 0.2 does best in the function check, and 0.3 fails one more test.
-const STILLNESS = typeof process !== 'undefined' && process.env?.KINEBRICK_STILLNESS !== undefined ? Number(process.env.KINEBRICK_STILLNESS) : 0;
+// friction holds what would only creep, rather than letting everything give a little. 0.2 does best
+// in the function check, and 0.3 fails one more test. KINEBRICK_STILLNESS sets it (0 turns it off).
+const STILLNESS = typeof process !== 'undefined' && process.env?.KINEBRICK_STILLNESS !== undefined ? Number(process.env.KINEBRICK_STILLNESS) : 0.2;
 
 const DOWN = new Vector3(0, 1, 0); // LDraw's y axis points down
 

@@ -4,7 +4,7 @@ A drum winds a string or cable, over pulleys, to a hook, a grab or a boom. (Movi
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.
 
-Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 13 works, 15 partly, 1 no.
+Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 13 works, 16 partly.
 
 ## By decade
 
@@ -90,7 +90,7 @@ Each detail by the set it first appears in.
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
-- *boom:* Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (no)
+- *boom:* Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (partly)
 - *grab:* Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab. (works)
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**

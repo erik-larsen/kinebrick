@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 38 works, 31 partly, 2 no.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 36 works, 33 partly, 2 no.
 
 ## By decade
 
@@ -59,7 +59,7 @@ Each detail by the set it first appears in.
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 
-- *2 cylinders:* Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (partly)
+- *2 cylinders:* Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (works)
 
 **1983, [8841 Dune Buggy / Desert Racer](https://erik-larsen.github.io/kinebrick/?model=8841-Dune%20Buggy)**
 
@@ -108,7 +108,7 @@ Each detail by the set it first appears in.
 
 **1998, [8218 Trike Tourer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8218-1)**
 
-- *1 cylinder:* Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame. (works)
+- *1 cylinder:* Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame. (partly)
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
@@ -140,7 +140,7 @@ Each detail by the set it first appears in.
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
-- *V8:* The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down. (works)
+- *V8:* The V8 engine turns as the truck rolls: the two rear axles drive the long shaft along the chassis through a differential, and it turns the crankshaft in front, moving the eight pistons up and down. (partly)
 
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
@@ -238,7 +238,7 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- *V8:* Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (works)
+- *V8:* Pushing the vehicle along turns the V8 engine's pistons: the rear differential drives a shaft forward to the crankshaft. (partly)
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 

@@ -125,7 +125,7 @@ Of the functions checked, 50% work in full. Only 13 of the 186 sets have every f
 **Major things left:**
 
 1. **Checks that say how much.** Gear ratios from tooth counts, rules for each kind of mechanism, and a quick set of about 20 sets to run on every change.
-2. **A general solver.** [Least motion](docs/least-motion.md) in place of holds, then each step solved as one problem, with [MuJoCo](https://mujoco.org) as a second opinion to check it against.
+2. **A general solver.** Each step solved as one problem, with [MuJoCo](https://mujoco.org) as a second opinion to check it against.
 3. **Connections for every part in the official sets.** Grouped by cause, a drag choosing the wrong way for a mechanism to move affects about 130 sets, and parts Kinebrick doesn't connect or mesh yet about 90.
 4. **Version 2.0, forces through MuJoCo.** Springs and shocks, clutches that slip under load, and momentum.
 5. **[Later](#later):** people's own models and BrickLink Studio's parts, other LEGO lines (Creator, trains), marching ants on loose parts, and suggested fixes for loose parts.
@@ -135,6 +135,7 @@ Of the functions checked, 50% work in full. Only 13 of the 186 sets have every f
 - Rolling on tyres, gear trains, bevel gears and differentials (M1–M3)
 - Steering: a pivoting axle, rack and pinion, and Ackermann steering, the inside wheel turning further (M4, M6.2, M6.3)
 - Collisions: parts can't pass through each other (M4.5)
+- [Least motion](docs/least-motion.md): a turned part moves the rest of the model as little as it can, judged in tiers of least squares, rather than by a list of what to hold still
 - Worms, clutches and gearboxes (M5)
 - Closed loops of parts, such as an engine's crank, connecting rod and piston, that stay together however long they run (M6.1)
 - Chains and tracks, on which the bulldozer runs (M8)

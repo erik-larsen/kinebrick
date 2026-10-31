@@ -4,7 +4,7 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 11 works, 10 partly, 8 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 10 works, 11 partly, 8 no.
 
 ## By decade
 
@@ -47,11 +47,11 @@ Each detail by the set it first appears in.
 
 **2012, [9392 Quad Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9392-1)**
 
-- Turning the handlebars steers the front wheels: the steering column turns an arm at its foot, which pushes the two steering links to the front hubs. (no)
+- Turning the handlebars steers the front wheels: the steering column turns an arm at its foot, which pushes the two steering links to the front hubs. (partly)
 
 **2014, [42021 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42021-1)**
 
-- Turning the handlebars steers both front skis: the steering column turns a short arm under the nose, which pushes two steering links out to the ski uprights. (works)
+- Turning the handlebars steers both front skis: the steering column turns a short arm under the nose, which pushes two steering links out to the ski uprights. (partly)
 
 **2014, [42022 Hot Rod](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42022-1)**
 
@@ -136,7 +136,7 @@ Each detail by the set it first appears in.
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (partly)
+- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (no)
 
 ---
 

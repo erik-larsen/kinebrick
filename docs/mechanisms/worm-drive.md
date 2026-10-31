@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 26 works, 47 partly, 9 no, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 26 works, 48 partly, 8 no, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -46,7 +46,7 @@ Each detail by the set it first appears in.
 **1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe)**
 
 - The handwheel low on the right, in front of the cab, raises and lowers the loader arms: a bevel pair and a worm turn a crown gear on a cross-shaft, whose cranks push the arms up through short links. The bucket stays roughly level. (partly)
-- The handwheel low on the left, in front of the cab, tips the loader bucket: a bevel pair and a worm turn a crown gear on a second cross-shaft, whose cranks work rods along the arms to a three-armed rocker on each arm and on to the bucket. (partly)
+- The handwheel low on the left, in front of the cab, tips the loader bucket: a bevel pair and a worm turn a crown gear on a second cross-shaft, whose cranks work rods along the arms to a three-armed rocker on each arm and on to the bucket. (works)
 - *outriggers:* The handwheel high in the cab on the right swings both outriggers out and down together: its shaft runs down to a bevel pair and a worm, which turns a crown gear driving two 16-tooth gears, each turning an 8-tooth gear on the 24-tooth gear on one outrigger's arms. (works)
 - The handwheel high in the cab on the left slews the backhoe: its shaft runs down to a bevel pair and a worm under the turntable, which turns the crown gear on the turntable's post. (works)
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 - The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth. (partly)
 - *gripper:* The arm motor, at the back of the arm as a counterweight, opens and closes the gripper: through a rubber band and a worm it turns a train of gears along the arm to the elbow's 40 tooth gear, which turns the long shaft down the forearm; at its foot an 8 tooth gear turns two shafts the opposite way to each other through their 16 tooth gears, and their bevel gears swing the two claws together or apart. (partly)
-- *arm:* The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again. (works)
+- *arm:* The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again. (partly)
 
 **1991, [8074 Universal Set with Flex System](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8074-1)**
 
@@ -189,7 +189,7 @@ Each detail by the set it first appears in.
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
-- Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (no)
+- Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (partly)
 - Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab. (works)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**

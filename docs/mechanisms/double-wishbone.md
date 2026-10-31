@@ -4,7 +4,7 @@ Each wheel's hub rides between an upper and a lower arm. (Suspension.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.
 
-Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 8 works, 7 partly, 10 no, 1 skipped.
+Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 6 works, 4 partly, 15 no, 1 skipped.
 
 ## By decade
 
@@ -26,8 +26,8 @@ Each detail by the set it first appears in.
 
 **1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car)**
 
-- *front:* The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down. (works)
-- *rear:* The rear wheels have independent suspension: each rides on an upright held between two wishbones of 1x6 bricks, with a shock absorber, and moves up and down, the half shafts' universal joints letting it. (works)
+- *front:* The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down. (no)
+- *rear:* The rear wheels have independent suspension: each rides on an upright held between two wishbones of 1x6 bricks, with a shock absorber, and moves up and down, the half shafts' universal joints letting it. (no)
 
 **1994, [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car)**
 
@@ -41,7 +41,7 @@ Each detail by the set it first appears in.
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
 
-- Each wheel has independent suspension: its hub rides on an upper and a lower suspension arm, with a shock absorber from the lower arm up to the frame, so each wheel moves up and down on its own; pressing the body down lowers it between the wheels, which tilt in. (partly)
+- Each wheel has independent suspension: its hub rides on an upper and a lower suspension arm, with a shock absorber from the lower arm up to the frame, so each wheel moves up and down on its own; pressing the body down lowers it between the wheels, which tilt in. (no)
 
 **2007, [8272 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8272-1)**
 
@@ -62,7 +62,7 @@ Each detail by the set it first appears in.
 
 **2015, [42037 Formula Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42037-1)**
 
-- *front:* The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes. (partly)
+- *front:* The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes. (no)
 - *rear:* The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven. (works)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
@@ -77,11 +77,11 @@ Each detail by the set it first appears in.
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
 - Each front wheel has independent suspension: its steering knuckle rides between a lower and an upper suspension arm, with two shock absorbers, so the wheel can rise and fall. (no)
-- Each rear wheel has independent suspension in the same way: its upright rides between two arms, with two shock absorbers. (partly)
+- Each rear wheel has independent suspension in the same way: its upright rides between two arms, with two shock absorbers. (no)
 
 **2019, [42096 Porsche 911 RSR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42096-1)**
 
-- The front wheels each have independent suspension: the hub rides between a lower and an upper suspension arm, and a shock absorber lets the wheel rise and fall. (works)
+- The front wheels each have independent suspension: the hub rides between a lower and an upper suspension arm, and a shock absorber lets the wheel rise and fall. (no)
 - *rear:* The rear wheels have independent suspension too, on pairs of arms with a shock absorber each. (works)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
@@ -98,7 +98,7 @@ Each detail by the set it first appears in.
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 
-- Each front wheel rides on its own pair of wishbones (independent suspension), sprung by a shock absorber. (no)
+- Each front wheel rides on its own pair of wishbones (independent suspension), sprung by a shock absorber. (works)
 - *rear:* The rear wheels ride on their own suspension arms with shock absorbers. (works)
 
 ---

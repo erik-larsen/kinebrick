@@ -1,6 +1,6 @@
 # Least motion: choosing a drag's motion without holds
 
-A design note and prototype report. The prototype is on the `claude/least-motion` branch, off by default: `?least` in the viewer, `KINEBRICK_LEAST=1` for the tests and scripts.
+A design note and prototype report. Least motion was adopted after the fifth round, below: it's how a drag that turns a joint chooses its motion, and holds are kept for pushes, and behind `?holds` in the viewer (`KINEBRICK_LEAST=0` for the tests and scripts).
 
 ## The problem
 
@@ -269,7 +269,7 @@ So both halves of the adoption test are met: every test passes, and at least as 
 
 ## Open questions
 
-- **Adoption.** Least motion now meets the adoption test. Whether to adopt it into main, as the default, is for deciding together.
+- **Adoption.** Least motion met the adoption test and was adopted: it's on by default, with its stillness at 0.2.
 - **Shock absorbers rigid until springs**, behind two of the four functions still worse (the 42107's and 8466's suspension): they hurt holds as much, but hide behind results holds get by something spinning.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback; so is the tier for a car's own turning on two tyres. Gravity and mass would replace both.
 - **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has cured the 8837's slewing but failed the 8849's and the 855's tests; the slewing turned out to be scrub, so mass may not be needed.

@@ -4,7 +4,7 @@ A screw drives a piston out and in. (Moving and lifting.)
 
 First appears in 2009, in [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) and [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1): Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.
 
-Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 5 works, 38 partly, 7 no.
+Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 5 works, 39 partly, 6 no.
 
 ## By decade
 
@@ -139,7 +139,7 @@ Each detail by the set it first appears in.
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
 - *crane legs:* One of the two black gears at the trailer's rear works both cranes' large linear actuators together, swinging each crane's long leg out until it stands on the ground beside the trailer and back in: a shaft runs forward under the deck through constant velocity joints from the rear crane to the front one. (no)
-- *crane arms:* The other black gear at the trailer's rear works both cranes' small linear actuators together, swinging each crane's green arm up and over to lift the container on its four chains, and back: a row of five 16 tooth gears under the deck passes the turn across to a second shaft that runs to both cranes, where bevel gears and universal joints take it up to each actuator. (no)
+- *crane arms:* The other black gear at the trailer's rear works both cranes' small linear actuators together, swinging each crane's green arm up and over to lift the container on its four chains, and back: a row of five 16 tooth gears under the deck passes the turn across to a second shaft that runs to both cranes, where bevel gears and universal joints take it up to each actuator. (partly)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 
