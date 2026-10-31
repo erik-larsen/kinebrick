@@ -229,9 +229,47 @@ All 329 tests pass with least motion (stillness 0.2) as with holds, for the firs
 
 Better than holds: the 42063's rear suspension, the 42074's helm, two of the 8862's (its handwheel and its bucket cylinder) and the 9394's control stick.
 
+## Fifth round: the full check, both ways
+
+Every set was checked both ways with the fair check: holds at a592961, least motion (stillness 0.2) at 4fb2ed7, which differs from it only in least motion. Each run took about two hours on this Mac. Three sets are left out of the comparison, the 8110 Unimog, 9397 Logging Truck and 42082 Rough Terrain Crane: one run or the other ran out of time on each.
+
+### What was wrong, and what changed
+
+A first least-motion run, at a592961, lost to holds on 20 functions and won on 16. Most of the losses that were the solver's had one cause. Closing the loops kept still every body the step left still, and that included a body standing on its own, held only by the loops, such as a piston at top dead centre: there it's still in the step only to first order. Kept still, closing the loops turned the crank back to it, through the differential, and the drag stalled as at a dead point. The 8063 Tractor's rear wheels, power take-off and trailer, the 42068's, 42035's and 42049's engines, the 42043's six cylinders and the 8024's were all that. Closing the loops now leaves such a body free, unless it rests on something: the 858 Auto Engines' crank jams a turn short if its push rods and rockers aren't kept still.
+
+The 42111 Dodge Charger's bonnet was checked by the long pin it hinges on, which may or may not spin in its holes as the bonnet opens; it's now checked by a panel on the bonnet, and works both ways.
+
+### Results
+
+| | Holds | Least motion |
+|---|---|---|
+| Work | 506 | 508 |
+| Partly | 312 | 315 |
+| Don't | 198 | 193 |
+
+Counting the 42111's bonnet as working both ways. Least motion does better on 19 functions and worse on 14. Better: the 42063's and 42125's, the 42074's helm, the 8285's, three of the 8859's, two of the 8862's, the 9394's control stick and the 952's work where they were partly or didn't; the 42042's, 42099's, two each of the 8810's and 8820's, the 8832's and the 9392's partly work where they didn't.
+
+### What's still worse, and why
+
+Of the 14, none is the solver doing something it shouldn't, as far as they've been looked into:
+
+- **Nothing on the ground.** The 8258 Crane Truck has no wheels, the 42069's tracks and the 42076 hovercraft's hidden wheels touch nothing, so turning one wheel turns the other side of the differential the opposite way. Holds "work" by holding that side. The 8218's second function assumes the trike is lifted, which least motion can't know.
+- **A split the function rules out.** On the 8838, as the swing arm swings, either the chain's pivot axle or the rear wheel has to turn. Least motion shares the turning between them; the function assumes friction holds the axle.
+- **As before:** the 42021's handlebars, the 42107's and 8466's shock absorbers, rigid until springs, and the 8094's claws (see the fourth round).
+- **The 42124's steering.** Its links don't fit as built, a gap of 0.053 LDU that closing the loops doesn't close; holds were only partly working.
+- **Not yet understood:** the 855's cab slewing, which moves a part on the boom 0.93 LDU against the cab; the 8257's seat, which stops at once because the loose driver's leg can't be fitted back on its ball joint; and the 8218's first function.
+
+Five of the losses come from turning one wheel of a model nothing holds on the ground. A check that pushes the vehicle, turning every wheel or dragging the frame along, would be fairer to both, but it would change the check for holds too.
+
+### Tests
+
+All 329 tests pass with least motion as with holds.
+
+So both halves of the adoption test are met: every test passes, and at least as many functions work as with holds on the full check.
+
 ## Open questions
 
-- **The full check**, both ways with the fair check, at a592961: holds' results on every set were measured counting a control's joint angle, and need measuring again before least motion is compared with them. Least motion now passes every test and is ahead on the 46 sets; the full check settles the other half of the adoption test.
+- **Adoption.** Least motion now meets the adoption test. Whether to adopt it into main, as the default, is for deciding together.
 - **Shock absorbers rigid until springs**, behind two of the four functions still worse (the 42107's and 8466's suspension): they hurt holds as much, but hide behind results holds get by something spinning.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback; so is the tier for a car's own turning on two tyres. Gravity and mass would replace both.
 - **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has cured the 8837's slewing but failed the 8849's and the 855's tests; the slewing turned out to be scrub, so mass may not be needed.
