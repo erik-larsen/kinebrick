@@ -277,12 +277,30 @@ It's on the 24 functions in which pushing or rolling a vehicle drives something 
 
 The 42076 hovercraft wasn't this: its two hidden wheels are on one axle, which does turn the drive. Each propeller sits on a frictionless long pin on its upright shaft, and least motion leaves the propeller still while the pin turns in it, where holds held the propeller on the pin. A real propeller, balanced on its axis, would be carried round by what little friction the pin has. Telling a balanced part (carried round) from a hanging one (kept level by gravity) is for when there's mass.
 
-## Open questions
+## After adoption: speed
 
-- **Balanced parts on free pins.** Least motion keeps still a part free on a turning shaft, which suits a hanging assembly but not a propeller or a wheel, carried round by friction (the 42076's propellers).
+The 8110 Unimog (663 bodies, 322 free motions) took 38 s for one step of a drag with least motion, against 4.5 s with holds. Profiled, most of it went on a few sums and one eigen-solve, done many times a step:
+
+- the tiers' Gram matrices and products summed through closures (`reduce`), now plain loops;
+- the eigen-solve (Jacobi's method), first moved onto flat typed arrays, then replaced by Householder reflections and the QL method (EISPACK's tred2 and tql2): a 646 × 646 problem had taken Jacobi 15 sweeps;
+- sums over the tree basis, which is 98% zeros (a joint moves only the bodies beyond it), now over each row's nonzero columns only;
+- `nullSpace`, which for every pivot searched all its dependent rows again, now skipping rows it has found to be negligible until they next change.
+
+All but the eigen-solve leave the arithmetic as it was, so results are the same to the last bit; with the eigen-solve, every function on the 46 iteration sets comes out as before. A step of the Unimog's first function now takes 7.5 s, its second's sub-steps about 3.5 s each. What's left is mostly the turning tier itself: with 322 free motions and nearly every body moving in some of them, its least squares is a 312 × 1,983 problem, twice a sub-step (once without the suspension's motions, once with).
+
+## After adoption: balanced parts
+
+The 855 Mobile Crane's cab slewing moved its boom extension out a little: two shafts on the boom, turning in it, have gears that drive the extension. The turning tier counts each body's turning against the frame, so as the cab slewed, those shafts turned back in their holes to stay as still as they could (one runs along the raised boom, half upright), and drove the extension. It's the 42076's propellers again: a part free on a turning shaft is kept still.
+
+That suits a part that hangs off its axle (a lever, a hook's block), which its weight keeps level. A balanced part, an axle or a gear or a propeller, has nothing to keep it still, and the friction of what it turns on carries it round. So with `KINEBRICK_BALANCED=1`, a body whose middle (the mean of its parts' origins, kept in the Mechanism as `centers`) lies within 2 LDU of its joint's axis counts its turning against its parent in the tree, which comes to how fast its joint turns, and not against the frame. A first try, counting turning about the upright against the parent, failed the 956 Auto Chassis's test: its gear lever, hanging off the drive shaft, was carried round by the hair of the shaft's spinning that's about the upright, the shaft being 0.6° off level. Balance is what tells the lever from a propeller, not which way its axle points.
+
+With the switch on, the 855's slewing works, and so does the 42076's first function; all 329 tests pass. On the 46 iteration sets, two functions are better (8094 f3, 8202 f4) and one worse: the 8824's steering, whose propeller swivels with the rear wheels and is driven from the front wheels. Before, the propeller spun as it swivelled; now it's carried round, and its drive turns the front wheels back instead. Which a real model does depends on how much friction each path has, which Kinebrick doesn't know. Counting a balanced part against its housing (what its shaft turns in, through any parts on one line with it) instead of its parent mends the 8824, but loses the 42076 and 8202 again: the propeller's housing, past the pin and the upright shaft it's on, is the hull.
+
+
+- **Balanced parts.** Least motion keeps still a part free on a turning shaft, which suits a hanging assembly but not a propeller or a wheel, carried round by friction. `KINEBRICK_BALANCED=1` tries counting balanced parts against what they turn on (see After adoption: balanced parts); a full check decides whether it's kept.
 - **Adoption.** Least motion met the adoption test and was adopted: it's on by default, with its stillness at 0.2.
 - **Shock absorbers rigid until springs**, behind two of the four functions still worse (the 42107's and 8466's suspension): they hurt holds as much, but hide behind results holds get by something spinning.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback; so is the tier for a car's own turning on two tyres. Gravity and mass would replace both.
 - **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has cured the 8837's slewing but failed the 8849's and the 855's tests; the slewing turned out to be scrub, so mass may not be needed.
 - **Pushes.** The prototype only covers drags that turn a joint (the function check uses only those). Pushes still choose holds.
-- **Speed on big models.** Rechecked after adoption, the 9397 Logging Truck came out as under holds (4 work, 4 partly), but the 8110 Unimog ran out of its 240 minutes, where holds checked it within the time. Its results are still the ones holds gave. Each step solves several least-squares problems on a model of over 4,000 parts; making that cheaper (smaller problems, or reusing a factorization between tiers) is open.
+- **Speed on big models.** Rechecked after adoption, the 9397 Logging Truck came out as under holds (4 work, 4 partly), but the 8110 Unimog ran out of its 240 minutes, where holds checked it within the time. A step is now several times faster (see After adoption: speed); what's left is the turning tier's least squares over hundreds of free motions, which smaller problems (motions that can't affect each other solved apart) might cut further.
