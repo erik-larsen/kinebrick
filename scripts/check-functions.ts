@@ -12,8 +12,9 @@
 //
 // How much, too. For each part in `moves` and `stays`, it writes how far the part turned
 // (radians) and slid (LDU) for each radian the control turned, adding up every step of the way
-// it went (`rates`). Where tooth counts alone say how fast a part should turn (see gearRates),
-// it writes that (`expected`), and lists the parts more than RATE_OFF off it (`wrong`). And each
+// it went (`rates`). Where tooth counts alone say how fast a part should turn (see gearRates:
+// through differentials too, where controls turned together give both sides), it writes that
+// (`expected`), and lists the parts more than RATE_OFF off it (`wrong`). And each
 // way is worked back again, as a new drag: everything should come back to where it started
 // (`back`: the furthest any part is left from it, LDU and degrees; `strayed`: parts left more
 // than BACK away).
@@ -281,7 +282,7 @@ function checkModel(model: string, functions: Fn[]) {
       const listed = [...moves, ...stays];
       // What the gears say, for listed parts measured against the frame (not those on the
       // control's own body, which turn with it whatever the gears do).
-      const geared = gearRates(mech, (x) => kin.parentLink(x), b);
+      const geared = gearRates(mech, (x) => kin.parentLink(x), b, together);
       const expected: Record<string, number> = {};
       for (const m of listed) if (m.body === 0 && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
       // How far the control really turns: against what its shaft turns in (see housing), not
