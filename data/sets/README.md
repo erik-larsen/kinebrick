@@ -31,6 +31,8 @@ Everything Kinebrick knows about a real LEGO set that's too long or nested for i
 
 The set's name, year and links are in the CSV, not here.
 
+`10001-1.mpd` is the LDraw Official Model Repository's Metroliner layout as published (CCAL 2.0), kept beside its set file because Kinebrick's copy in `models/` corrects it (see [docs/ldraw-errata.md](../../docs/ldraw-errata.md)); the other sets' originals are downloaded into `omr/` by `npm run omr`.
+
 ## Curated
 
 | Field | |
