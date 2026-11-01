@@ -1,10 +1,20 @@
 # Builds the viewer and publishes it to GitHub Pages (erik-larsen.github.io/kinebrick/)
 # whenever main changes.
+#
+# Beside it, a pre-release build of another branch, under /prerelease/
+# (erik-larsen.github.io/kinebrick/prerelease/), for trying work before it reaches main: the
+# repository variable PRERELEASE_BRANCH names the branch, and `npm run prerelease -- <branch>`
+# sets it and runs this (see scripts/prerelease.ts). A deploy replaces the whole site, so both are
+# built every time, from main and from that branch, whichever of the two was pushed. A pre-release
+# that fails to build doesn't stop main's: the site goes out without it.
 name: Publish to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # Any branch: the job runs only for main and the pre-release branch (see its `if`). A push
+    # runs the workflow file of the branch pushed, so a pre-release branch is built on push once
+    # it has this file; until then, `npm run prerelease` runs the workflow by hand.
+    branches: ['**']
   workflow_dispatch:
 
 permissions:
@@ -18,9 +28,12 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name == 'workflow_dispatch' || github.ref_name == 'main' || github.ref_name == vars.PRERELEASE_BRANCH
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: main
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
@@ -28,6 +41,28 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Check out the pre-release branch
+        id: prerelease
+        if: vars.PRERELEASE_BRANCH != ''
+        continue-on-error: true
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ vars.PRERELEASE_BRANCH }}
+          path: prerelease
+      - name: Build the pre-release into dist/prerelease
+        if: steps.prerelease.outcome == 'success'
+        continue-on-error: true
+        working-directory: prerelease
+        env:
+          BRANCH: ${{ vars.PRERELEASE_BRANCH }}
+        # Its tests aren't run: it's a pre-release. The page says which branch and commit it's
+        # of (VITE_PRERELEASE, see src/main.ts) and so does its title.
+        run: |
+          npm ci
+          export VITE_PRERELEASE="$BRANCH @ $(git rev-parse --short HEAD), $(date -u +%Y-%m-%d)"
+          npx vite build --outDir ../dist/prerelease
+          sed -i "s|<title>Kinebrick Play</title>|<title>Kinebrick Play · pre-release ($BRANCH)</title>|" ../dist/prerelease/index.html
+          echo "::notice::Pre-release built: $VITE_PRERELEASE"
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: dist
