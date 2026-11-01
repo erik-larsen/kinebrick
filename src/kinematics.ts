@@ -1870,18 +1870,39 @@ export class Kinematics {
     // and the round tried again.
     let basis = this.treeBasis();
     let fresh = true;
+    // One problem: whether the last round mixed in the free motions the tiers chose, on a basis
+    // worked out afresh, and whether the rest go without them (see below).
+    let mixedFresh = false;
+    let plain = false;
+    let opened = Infinity; // how far apart the step left them
     for (let round = 0; round < 12; round++) {
       const gaps: number[] = [];
       const weights: number[] = [];
       const rows = this.buildEquations(gaps, null, true, weights);
       const biggest = gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
       last = biggest;
+      if (round === 0) opened = biggest;
       if (biggest < LOOP_TOLERANCE) return last;
       if (biggest > previous / 2) {
         // A round that opened the gaps up, rather than closing them, is undone.
         if (before && biggest > previous) {
           this.restore(before);
           last = previous;
+          // One problem: the free motions are free only to first order, and a mix of them may
+          // open the gaps again even from a basis worked out afresh, round after round (the 8002
+          // Destroyer Droid's back leg, which never moved): if that leaves them too far apart for
+          // the step (see turnJoint), the rest of the rounds close them without it. Only then: a
+          // step it leaves close enough goes as it is (the 8865 Test Car's crankshaft, whose
+          // steps, closed without it, stopped it short of a turn). And only for a step that
+          // opened them no more than a joint's play: one that opened them far is no step to take
+          // (the 42037 Formula Off-Roader's rear hub, whose first step back slid the car 2,948
+          // LDU, and closed without the mix, went).
+          if (mixedFresh && last > DEAD_POINT_GAP && opened <= PLAY) {
+            plain = true;
+            previous = Infinity;
+            before = null;
+            continue;
+          }
         }
         if (fresh) return last;
         basis = this.treeBasis();
@@ -1923,7 +1944,8 @@ export class Kinematics {
       }
       let solution = dampedSolution(inBasis(rows, basis), gaps, this.basisOrder, weights);
       if (!solution) return last;
-      if (one) {
+      mixedFresh = one && !plain && fresh;
+      if (one && !plain) {
         const { turning, rateOf, size } = this.measures(keep, basis);
         const tiers = this.leastTiers(keep, turning, rateOf, size, basis);
         // The free motions where the bodies are now: the step's own, from where it started, are
