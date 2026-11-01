@@ -371,6 +371,16 @@ async function start() {
   if (model.children.length !== startParts.length + drawnShapes.length) {
     throw new Error(`Loader made ${model.children.length} parts and shapes, model has ${startParts.length} and ${drawnShapes.length}`);
   }
+  // A shape lies flat on the part it's drawn on (a sticker, a quarter of an LDU above the
+  // surface), where the depth buffer can't tell the two apart: its faces are pulled a hair
+  // towards the camera, so it's drawn on top rather than flickering.
+  for (const obj of shapeObjects) {
+    obj.traverse((o) => {
+      if (!(o instanceof Mesh)) return;
+      const offset = (m: Material) => Object.assign(m.clone(), { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+      o.material = Array.isArray(o.material) ? o.material.map(offset) : offset(o.material);
+    });
+  }
   shapeObjects.forEach((obj, i) => {
     const band = mech.loops.find((loop) => !loop.links.length && loop.path === drawnShapes[i].path);
     obj.userData.nearPart = band ? mech.bodies[band.carriers[0]].parts[0] : drawnShapes[i].nearPart;

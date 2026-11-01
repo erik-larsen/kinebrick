@@ -14,7 +14,7 @@ This page lists the errors Kinebrick has found that way in the LDraw models it u
 | [8854-1](#8854-1-power-crane) | Power Crane (1989) | Stefan Frenz | LDraw OMR | 1 | Not corrected |
 | [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in Kinebrick |
 | [42093-1](#42093-1-chevrolet-corvette-zr1) | Chevrolet Corvette ZR1 (2019) | Philippe Hurbain | LDraw OMR | 1 | Not corrected |
-| [10001-1](#10001-1-metroliner) | Metroliner (2001) | Zoltán Kéri | LDraw OMR | 3 | 2 corrected in Kinebrick |
+| [10001-1](#10001-1-metroliner) | Metroliner (2001) | Zoltán Kéri | LDraw OMR | 3 | Corrected in Kinebrick |
 
 ## 852-1 Helicopter
 
@@ -396,7 +396,7 @@ In every car the coupling holder (2920) stands 1 to 3 LDU from the hole in its b
 
 where the casing and magnet belong at x = 602, 32 LDU from the holder. Kinebrick's copy moves each holder onto its pin and each casing and magnet onto its holder's fingers (by up to 5 LDU), so the couplings connect.
 
-### The dining car's tap stands in its slope (not corrected)
+### The dining car's tap stands in its slope (corrected)
 
 The tap in the second car (a 3496 base with a 3278 spout) is placed with its base 8 LDU down inside the inverted slope it stands on, so its anti-studs miss the slope's studs:
 
@@ -405,4 +405,4 @@ The tap in the second car (a 3496 base with a 3278 spout) is placed with its bas
 1 7 110 -134 20 0 0 -1 0 1 0 1 0 0 3278.DAT
 ```
 
-Raised the 8 LDU onto the studs, its spout runs into the grille brick above it and a passenger's hand, so the tap seems to belong somewhere else. Kinebrick leaves it where the file has it, loose, riding along with the car.
+Kinebrick's copy has both at y = -142, the base on the studs.

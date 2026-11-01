@@ -580,3 +580,11 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 16 10]
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=10 16 -10]
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 16 -10]
+
+0 FILE 3496.dat
+0 // Tap 1 x 2 Base: where its spout's pin (3278) goes in, axle-shaped so that the spout stays as built (free to turn, least motion would keep it facing one way as its car rounds a curve)
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 4 10] [pos=0 -15.575 -13.588] [ori=1 0 0 0 0.492 0.87 0 -0.87 0.492]
+
+0 FILE 3278.dat
+0 // Tap 1 x 2 Spout: its pin as the shadow library has it, axle-shaped too, fixing it in its base (3496)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 4 10] [pos=0 -15.575 -13.588] [ori=1 0 0 0 0.492 0.87 0 -0.87 0.492]
