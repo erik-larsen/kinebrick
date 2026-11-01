@@ -1894,10 +1894,11 @@ export class Kinematics {
           // the step (see turnJoint), the rest of the rounds close them without it. Only then: a
           // step it leaves close enough goes as it is (the 8865 Test Car's crankshaft, whose
           // steps, closed without it, stopped it short of a turn). And only for a step that
-          // opened them no more than a joint's play: one that opened them far is no step to take
-          // (the 42037 Formula Off-Roader's rear hub, whose first step back slid the car 2,948
-          // LDU, and closed without the mix, went).
-          if (mixedFresh && last > DEAD_POINT_GAP && opened <= PLAY) {
+          // opened them no more than a step moves a point a stud from a joint (the 42043
+          // Mercedes-Benz Arocs 3245's rear wheels, 0.11 LDU): one that opened them far is no
+          // step to take (the 42037 Formula Off-Roader's rear hub, whose first step back slid
+          // the car 2,948 LDU, and closed without the mix, went).
+          if (mixedFresh && last > DEAD_POINT_GAP && opened <= STUD * MAX_TURN_STEP) {
             plain = true;
             previous = Infinity;
             before = null;
