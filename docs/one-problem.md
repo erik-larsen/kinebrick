@@ -62,7 +62,19 @@ Three things had to be right before it passed every test:
 
 `parked` stays: nothing in the tiers costs the car moving, and without it a car being steered crept.
 
-With it on, all 329 tests pass, and on the 46 iteration sets (against the same code with it off) as many functions work, 132, and one more partly works (the 8081 Extreme Cruiser's front suspension, which didn't move). It took 3,145 s of the machine's time against 3,335 s. There and back, 15 functions bring back more of what they moved (the 858 Auto Engines' four engines, the 8466 4 x 4 Off-Roader's doors, the 8865 Test Car's engine, the 956's steering, among them), and 8 bring back less, the 42041 Race Truck's worst: its parts were back within 0.1 LDU, and are now hundreds of LDU off. That's for the next round.
+With it on, all 329 tests pass, and on the 46 iteration sets (against the same code with it off) as many functions work, 132, and one more partly works (the 8081 Extreme Cruiser's front suspension, which didn't move). It took 3,145 s of the machine's time against 3,335 s. There and back, 15 functions bring back more of what they moved (the 858 Auto Engines' four engines, the 8466 4 x 4 Off-Roader's doors, the 8865 Test Car's engine, the 956's steering, among them), and 8 bring back less, the 42041 Race Truck's worst: its parts were back within 0.1 LDU, and are now hundreds of LDU off.
+
+### What flings the 42041
+
+Its rear wheel turned 1.5 radians and back, the truck rolls 107 LDU and should roll back; with the switch on, in the first steps back, one round of closing the loops moves it 750 LDU at once, and it doesn't move again. Logged round by round: once the gaps are next to shut (2 × 10⁻¹⁰), the closing itself is 5 × 10⁻⁸, but the mix the steering tier chooses to go with it is 2,370, mostly the whole model moving. It's ill-conditioning: a direction that turns the steering by a hair still counts as one that moves the tier (above TIER_TOLERANCE), and taking out the closing's even smaller hair of steering along it takes a great deal of it. Choosing the step can't do this, since the motion turns the dragged joint at rate 1, which keeps it to a size; a correction has nothing of the kind.
+
+Tried, and not kept:
+
+- **A last tier for the tyres' scrubbing and lifting**, so that moving the whole model costs something: no change.
+- **A cap on the mix**, against the closing (10 times it), or against how far the step turned the joint: the 8865's engine needs a mix 1,000 times the closing near the end of a step, when the closing is tiny; and the mix's size mixes units (a joint's radians with the model's LDU), so a cap the 956 lets through, the 42041 slips past.
+- **Damping the tier solve** (Tikhonov, the directions that move a tier by under a share of the most a free motion does taken out only partly): at 10⁻⁶ of it, the 42041 still flies off; at 10⁻⁴ it comes back as with the switch off, but the 956 fails its tests of driving round a circle and of its gear lever, which need the tiers' cancelling to be exact over many turns.
+
+So the 956 needs a direction that barely moves a tier followed exactly, and the 42041 is flung by following one. What tells them apart is what else the mix moves: the 42041's moves the whole model hundreds of LDU for nothing, the 956's moves next to nothing else. That points to the tiers' order being the wrong tool for a correction: a correction should be judged by everything it moves, each tier counting far more than the next but not infinitely more (weighted least squares with steep weights, rather than strictly one tier after another), so that a hair less in one tier can't buy a great deal more of the next. That's the next round.
 
 ## Risks
 
