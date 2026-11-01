@@ -1119,6 +1119,7 @@ Browser-level tests for these paths can come later.
 | `scripts/gear-rates.ts`, `scripts/slider-cranks.ts` | What gears and slider-cranks say parts should do, without the solver, for the function check |
 | `scripts/bench-solver.ts` | Times the solver on a fixed set of drags, small models to the biggest (`npm run bench`; `--quick` leaves out the 8110 Unimog) |
 | `scripts/load-model.ts` | Reads a model as the viewer does, from `models/` or `omr/`, for the probe and the function check |
+| `scripts/prerelease.ts` | Puts a branch up as the site's pre-release, at `/prerelease/`, by setting the repository variable the Pages workflow reads and running it (`npm run prerelease -- <branch>`; `--off` takes it down) |
 | `scripts/survey-branch.ts` | Commits each OMR set's findings from `npm run joints -- --omr --commit` to the `omr-survey` branch, one commit per set per run, and pushes it |
 | `scripts/scan-omr.ts` | Reads every set in `omr/` as the viewer would and reports what Kinebrick connects and what it's missing, in `omr/coverage.md` (`npm run scan`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |
