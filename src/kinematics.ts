@@ -289,6 +289,10 @@ export class Kinematics {
       if (left >= gap) break;
       gap = left;
     }
+    // Being set on the rails isn't rolling or scrubbing: the readout starts from there.
+    this.treadTravel.fill(0);
+    this.treadScrub.fill(0);
+    this.treadScrubRate.fill(0);
   }
 
   // ---------------------------------------------------------------------------
@@ -2382,7 +2386,9 @@ export class Kinematics {
       // 1: this one). Dead points are linkages', and other joints' rates may change from step
       // to step for other reasons (a steered tractor's front wheels, as it rolls and scrubs).
       const loops = this.loopJoints ??= this.findLoopJoints();
-      const ratio = Math.max(1, ...[...loops].map((k) => Math.abs(predicted[k] / step)));
+      // Not a train coupling's swivel either (see magnetCouplings): its rate changes as the
+      // cars' headings do, from step to step as a bogie crosses from a straight to a curve.
+      const ratio = Math.max(1, ...[...loops].filter((k) => !couplings.has(this.mech.joints[k].bodyA) && !couplings.has(this.mech.joints[k].bodyB)).map((k) => Math.abs(predicted[k] / step)));
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);

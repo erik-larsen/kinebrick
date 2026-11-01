@@ -52,6 +52,18 @@ describe('10001 Metroliner', () => {
     expect(kin.freeMotions().length).toBeLessThanOrEqual(7);
   });
 
+  it('runs on in the small turns the viewer makes a frame at a time, 15 rpm at 60 frames a second, across the joins between pieces of track', () => {
+    kin.reset();
+    const wheelset = mech.bodyOf[wheelsets[2]];
+    const joint = kin.parentLink(wheelset)!.joint;
+    kin.holdWhatTheDragDoesntNeed(wheelset, () => kin.jointMotion(joint) !== null, joint);
+    const frame = (15 / 60) * 2 * Math.PI / 60;
+    let total = 0;
+    for (let i = 0; i < 600; i++) total += kin.turnJoint(joint, frame, () => kin.atLimit() === null, (15 * Math.PI) / 180);
+    kin.letGoAfterDrag();
+    expect(total).toBeCloseTo(600 * frame, 6);
+  });
+
   it('runs round the oval: a wheelset kept turning by the motor takes all three cars through the curves, every axle on the track', () => {
     kin.reset();
     const wheelset = mech.bodyOf[wheelsets[2]];

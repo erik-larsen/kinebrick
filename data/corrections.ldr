@@ -519,3 +519,64 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=50 8 -10]
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=50 8 10]
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=50 8 30]
+
+0 // Window glass. The shadow library describes no glass, so each pane gets a pane connection (N)
+0 // at its origin, upright, and each frame the same where the glass's origin sits in it: the two
+0 // are fixed together (see sectionFit). The 10001 Metroliner's cars have train windows and
+0 // doors; its platform puts an older window's glass (3855b) in a train window frame.
+
+0 FILE 4034.dat
+0 // Glass for Train Window 1 x 4 x 3: a pane, in a train window frame (4033)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 4036.dat
+0 // Glass for Train Window 1 x 2 x 3: a pane, in a train window frame (4035)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 4183.dat
+0 // Glass for Train Door: a pane, in a train door (4181, 4182)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 2918.dat
+0 // Glass for Train Front Sloping Top: a pane, in the sloping front frame (2917)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 2919.dat
+0 // Electric Train Light Prism 1 x 4: a pane, in the slot of the wedge it lights (2916)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 3855b.dat
+0 // Glass for Window 1 x 4 x 3 without Handle: a pane
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 4033.dat
+0 // Train Window 1 x 4 x 3: holds its glass (4034) at its origin, and an older window's glass (3855b) 34 LDU down and 4 in, where the 10001 Metroliner's platform has one
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 1 8] [center=true]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 1 8] [center=true] [pos=0 34 -4]
+
+0 FILE 4035.dat
+0 // Train Window 1 x 2 x 3: holds its glass (4036) at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 4181p04.dat
+0 // Train Door 1 x 4 x 5 Left with Train Logo: holds its glass (4183) at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 4182p04.dat
+0 // Train Door 1 x 4 x 5 Right with Train Logo: holds its glass (4183) 60 LDU along z from its origin, the door being the left one's mirror image
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 1 8] [center=true] [pos=0 0 60]
+
+0 FILE 2917.dat
+0 // Train Front Sloping Top frame: holds its glass (2918) at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 1 8] [center=true]
+
+0 FILE 2916.dat
+0 // Wedge 4 x 6 x 2.333: a train's nose, with the slot its light prism (2919) sits in, 24 LDU down and 30 back from its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 1 8] [center=true] [pos=0 24 -30]
+
+0 FILE 3960.dat
+0 // Dish 4 x 4 Inverted: its underside takes a 2 x 2 brick's four studs (a round brick's, under the 10001's platform lamps), not only one at its middle, which the shadow library has
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=10 16 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 16 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=10 16 -10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 16 -10]

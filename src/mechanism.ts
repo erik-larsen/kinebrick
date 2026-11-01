@@ -430,7 +430,9 @@ function racksToGuide(mech: Mechanism): Set<number> {
 function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[]): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
-  const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? (table.stickers?.includes(p.name) ? 'decoration' : 'structure')));
+  // A printed part (3626bp01, 973p19) has its plain part's role (3626b, 973).
+  const plain = (name: string) => name.replace(/(?:p[0-9a-z]+|pb[0-9a-z]+)\.dat$/, '.dat');
+  const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? roleList[plain(p.name)] ?? (table.stickers?.includes(p.name) ? 'decoration' : 'structure')));
   const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path');
   // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle
   // in it turns, rather than being fixed to the motor and whatever the motor is built into.
@@ -476,7 +478,18 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // on it) is scenery, not loose: it rides along with the track, never with a train that happens
   // to stand beside it. A few parts on their own are loose as ever, and ride along with what's
   // nearest, as elsewhere.
-  const loose = rails.length ? smallGroups(parts.length, connections, riding) : riding;
+  // Nor is what a figure holds or stands with (a porter's hand truck and suitcase, in the
+  // figure's own submodel, one that's mostly figure parts): posed by hand, as the figure is.
+  const bySubmodel = new Map<string, { parts: number; figure: number }>();
+  parts.forEach((p, i) => {
+    if (!p.submodel) return;
+    const n = bySubmodel.get(p.submodel) ?? { parts: 0, figure: 0 };
+    n.parts++;
+    if (roles[i] === 'figure') n.figure++;
+    bySubmodel.set(p.submodel, n);
+  });
+  const figures = new Set([...bySubmodel].filter(([, n]) => n.figure * 2 >= n.parts).map(([sub]) => sub));
+  const loose = (rails.length ? smallGroups(parts.length, connections, riding) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
   const scenery = new Set(riding.filter((i) => !loose.includes(i)));
   connections.push(...rideAlong(parts, cyls, connections, loose));
   if (scenery.size) connections.push(...rideAlong(parts, cyls, connections, [...scenery], new Set(rails.map((r) => r.part))));
@@ -946,7 +959,7 @@ function platesOnEdge(cyls: WorldCylinder[]): Connection[] {
 // such as stickers and the old pneumatic hoses models use for exhausts and cables. Each moves
 // with the part whose connection point (stud, hole, axle) is nearest to it.
 function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]): Connection[] {
-  const isDecoration = (i: number) => roles[i] === 'decoration' || roles[i] === 'path';
+  const isDecoration = (i: number) => roles[i] === 'decoration' || roles[i] === 'path' || roles[i] === 'figure';
   const anchors = cyls.filter((c) => !isDecoration(c.part));
   const result: Connection[] = [];
   parts.forEach((p, i) => {
@@ -1337,28 +1350,44 @@ function anchorsOf(roles: string[]): Set<number> {
 // that's how layouts place the pieces end to end, though the part draws its rails 3 LDU further
 // towards the centre.
 function findRails(parts: PlacedPart[], roles: string[]): Rail[] {
-  const rails: Rail[] = [];
+  const rails: (Rail & { mid: Vector3 })[] = [];
   const HEAD = -16;
   parts.forEach((p, i) => {
     if (roles[i] !== 'rail') return;
     const name = p.name.replace(/\.dat$/, '');
     const at = (x: number, z: number) => new Vector3(x, HEAD, z).applyMatrix4(p.matrix);
-    if (name === '74746' || name === '2865') rails.push({ part: i, from: at(-160, 0), to: at(160, 0) });
+    if (name === '74746' || name === '2865') rails.push({ part: i, from: at(-160, 0), to: at(160, 0), mid: at(0, 0) });
     else if (name === '74747' || name === '2867') {
-      // The arc's ends and middle, as placed, and the circle through them: a layout's curves are
-      // often placed with their rotation rounded (a cosine of 1), which stretches the part a
-      // little, so the arc's centre and radius are taken from the three points rather than
-      // from the part.
       const R = 800;
       const half = Math.PI / 16;
-      const from = at(-R * Math.sin(half), R * Math.cos(half) - R);
-      const to = at(R * Math.sin(half), R * Math.cos(half) - R);
-      const mid = at(0, 0);
-      const circle = circleThrough(from, mid, to);
-      rails.push({ part: i, from, to, center: circle.center, radius: circle.radius });
+      rails.push({ part: i, from: at(-R * Math.sin(half), R * Math.cos(half) - R), to: at(R * Math.sin(half), R * Math.cos(half) - R), mid: at(0, 0), center: new Vector3(), radius: R });
     }
   });
-  return rails;
+  // Pieces laid by hand don't quite meet: their ends are moved to meet halfway, so that the
+  // centreline runs on without a step (a bogie's two axles, one each side of a step, couldn't
+  // both keep to it). Then each curve is the circle through its ends and middle as placed: a
+  // layout often places a curve with its rotation rounded (a cosine of 1), which stretches the
+  // part a little, so the arc's centre and radius come from the three points rather than from
+  // the part.
+  for (let a = 0; a < rails.length; a++) {
+    for (let b = a + 1; b < rails.length; b++) {
+      for (const pa of [rails[a].from, rails[a].to]) {
+        for (const pb of [rails[b].from, rails[b].to]) {
+          if (pa.distanceTo(pb) >= RAIL_JOIN) continue;
+          const meet = pa.clone().lerp(pb, 0.5);
+          pa.copy(meet);
+          pb.copy(meet);
+        }
+      }
+    }
+  }
+  for (const rail of rails) {
+    if (rail.center === undefined) continue;
+    const circle = circleThrough(rail.from, rail.mid, rail.to);
+    rail.center = circle.center;
+    rail.radius = circle.radius;
+  }
+  return rails.map(({ mid: _, ...rail }) => rail);
 }
 
 // The circle through three points, seen from above (in x and z), at the first point's height.
@@ -1371,14 +1400,15 @@ function circleThrough(a: Vector3, b: Vector3, c: Vector3): { center: Vector3; r
   return { center, radius: Math.hypot(a.x - x, a.z - z) };
 }
 
-// Pieces of track whose ends meet are joined, rigidly: the track is one assembly.
+// Pieces of track whose ends meet (findRails has moved them together) are joined, rigidly: the
+// track is one assembly.
 function railJoins(rails: Rail[]): Connection[] {
   const joins: Connection[] = [];
   for (let a = 0; a < rails.length; a++) {
     for (let b = a + 1; b < rails.length; b++) {
       for (const pa of [rails[a].from, rails[a].to]) {
         for (const pb of [rails[b].from, rails[b].to]) {
-          if (pa.distanceTo(pb) < RAIL_JOIN) joins.push({ male: rails[a].part, female: rails[b].part, kind: 'rigid', from: pa.clone(), to: pb.clone() });
+          if (pa.distanceTo(pb) < 1e-6) joins.push({ male: rails[a].part, female: rails[b].part, kind: 'rigid', from: pa.clone(), to: pb.clone() });
         }
       }
     }
@@ -1693,6 +1723,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
   // past the tyre's bore by a flange's height (see shapeSeat in scripts/build-connections.ts).
   if (male.shape === 'T' && female.shape === 'T' && female.radius < male.radius + AXIS_TOLERANCE && male.radius < female.radius + RIM_FLANGE) return 'rigid';
   if (male.shape === 'K' && female.shape === 'K' && same) return 'rigid'; // driving ring in a clutch gear
+  if (male.shape === 'N' && female.shape === 'N' && same) return 'rigid'; // a window's glass in its frame
   if (male.shape === 'A' && female.shape === 'R' && same) return 'revolute'; // axle in round hole
   if (male.shape === 'R' && female.shape === 'R' && same) return 'revolute'; // pin in round hole
   if (male.shape === 'H' && female.shape === 'H' && same) return 'revolute'; // hinge fingers

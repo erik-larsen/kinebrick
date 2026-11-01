@@ -440,7 +440,7 @@ export interface PlacedShape {
   lines: string[]; // those lines, in the submodel's coordinates
   color: number;
   matrix: Matrix4; // submodel coordinates -> model coordinates
-  nearPart: number; // a part placed by the same submodel line (it moves with that part), or -1
+  nearPart: number; // a part placed by the same submodel line (it moves with that part), or else the part nearest where it's drawn; -1 only in a model with no parts
   path?: PlacedPath; // the path they're drawn along, if their submodel is a path's
 }
 
@@ -495,6 +495,19 @@ export function parseModel(
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1, ...(path ? { path } : {}) });
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
+  // A shape whose submodel places no part (a sticker sheet's stickers, drawn in a file of their
+  // own) moves with the part nearest where it's drawn.
+  for (const shape of shapes) {
+    if (shape.nearPart >= 0 || parts.length === 0) continue;
+    const at = new Vector3().setFromMatrixPosition(shape.matrix);
+    let best = 0;
+    let least = Infinity;
+    parts.forEach((p, i) => {
+      const d = new Vector3().setFromMatrixPosition(p.matrix).distanceTo(at);
+      if (d < least) [least, best] = [d, i];
+    });
+    shape.nearPart = best;
+  }
   lsynthPaths(parts);
   chainPaths(parts);
   // Every path placed, whether drawn with parts (a chain's links) or shapes (a string's).

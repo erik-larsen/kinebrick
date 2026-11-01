@@ -123,6 +123,8 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
 //   nosymbols    no symbols pinned to parts (📌 frozen, ⚠ loose), which show otherwise
+//   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
+//                to drive from the browser's console
 const OPTIONS = params.getAll('option').join(',').split(',');
 // ?holds has a drag that turns a joint choose its motion by holds, as before least motion (see
 // leastTurning in kinematics.ts).
@@ -510,6 +512,15 @@ async function start() {
     // two gears coming into mesh would seem to run into each other tip to tip, short of it (the
     // 952 Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short).
     for (const a of mech.gears) for (const b of mech.gears) if (a.part !== b.part) connected.add(pairKey(a.part, b.part));
+    // Nor a train's wheels and the track's rails: the wheels run on them, and reach each piece
+    // of track in turn.
+    const rails = mech.roles.flatMap((r, i) => (r === 'rail' ? [i] : []));
+    for (const t of mech.treads) for (const r of rails) connected.add(pairKey(t.part, r));
+    // Nor the parts of train couplings with each other: two cars' magnets, casings and holders
+    // meet face to face, and with one holder of each coupling fixed (see magnetCouplings) they
+    // run into each other a little as the cars take a curve, where the real ones swivel clear.
+    const couplings = mech.roles.flatMap((r, i) => (r === 'coupling' || r === 'magnet' ? [i] : []));
+    for (const a of couplings) for (const b of couplings) if (a !== b) connected.add(pairKey(a, b));
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
     else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
 
@@ -840,6 +851,7 @@ async function start() {
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions };
   // The spin speed for Ctrl-click, in whole rpm, kept in the address too.
   interaction.setMotorRpm(RPM);
   gui.add(settings, 'rpm', 1, 300, 1).name('Spin speed (rpm)').onFinishChange((value: number) => {
