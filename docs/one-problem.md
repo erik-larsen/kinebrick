@@ -1,6 +1,6 @@
 # One problem for each step: a plan
 
-A design note for line 3 of the [solver phase](solver-phase.md): taking a drag's step as one problem, rather than choosing a motion, moving along it and then closing the loops as separate passes. Nothing here is built yet; this is the plan the prototype will follow, as [least motion](least-motion.md) did.
+A design note and prototype report for line 3 of the [solver phase](solver-phase.md): taking a drag's step as one problem, rather than choosing a motion, moving along it and then closing the loops as separate passes, built as [least motion](least-motion.md) was. The first round is in (see First round, below), behind `KINEBRICK_ONE=1`.
 
 ## How a step is taken now
 
@@ -49,6 +49,20 @@ As least motion was: behind a switch, `KINEBRICK_ONE=1` for tests and scripts an
 4. **Tyres and play as rows.** Then `settle` and `playMotion`.
 
 Adopted, as least motion was, when all the tests pass both ways and at least as many functions work on the full check, now that the check also says how much (line 1).
+
+## First round
+
+Stages 1 and 3, for closing the loops: `leastTurning` takes an offset and a target rate (with neither, its answer is as before, and every test passes so), and with `KINEBRICK_ONE=1`, `closeLoops` closes a tier-chosen step's loops by the damped least-squares closing plus the mix of free motions the tiers choose, taking the place of `closingStill` and `mountsHeld`. The first round of the Newton step, choosing the step's motion, is still `jointMotion`'s, as it was; so is `settle`.
+
+Three things had to be right before it passed every test:
+
+- **The free motions where the bodies are now**, the null space of the rows `closeLoops` builds, with the dragged joint's: the step's own free motions, from where it started, are free only to first order once the bodies have moved, and a mix of them opened the gaps the closing had shut. The 42062 Container Yard's spreader, whose linkage fits only as it lies, couldn't take a step.
+- **Tyres free to scrub and lift a hair** in that null space, as in choosing the step: on the ground exactly, a steered wheel on a slanting kingpin can't turn back, and the 956 Auto Chassis, driven round a circle, crept off it as its steering turned.
+- **A mix that doesn't turn the dragged joint.** Every motion in that null space keeps the joint where it is, so `leastTurning`, finding none that turns it, gave up, and the tiers were never applied: a target of 0 with an offset now takes the mix from all of them.
+
+`parked` stays: nothing in the tiers costs the car moving, and without it a car being steered crept.
+
+With it on, all 329 tests pass, and on the 46 iteration sets (against the same code with it off) as many functions work, 132, and one more partly works (the 8081 Extreme Cruiser's front suspension, which didn't move). It took 3,145 s of the machine's time against 3,335 s. There and back, 15 functions bring back more of what they moved (the 858 Auto Engines' four engines, the 8466 4 x 4 Off-Roader's doors, the 8865 Test Car's engine, the 956's steering, among them), and 8 bring back less, the 42041 Race Truck's worst: its parts were back within 0.1 LDU, and are now hundreds of LDU off. That's for the next round.
 
 ## Risks
 
