@@ -4,7 +4,7 @@ The drive spins a propeller, rotor or fan: rolling the model, a knob, a motor or
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.
 
-Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 10 works, 15 partly.
+Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 13 works, 12 partly.
 
 ## By decade
 
@@ -104,11 +104,11 @@ Each detail by the set it first appears in.
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
-- *propellers:* Pushed along, the hovercraft's hidden wheels underneath spin both propellers at the stern: a long shaft runs back to a cross shaft, and bevel gears take the drive up each propeller pod's upright shaft and round to the propeller. (partly)
+- *propellers:* Pushed along, the hovercraft's hidden wheels underneath spin both propellers at the stern: a long shaft runs back to a cross shaft, and bevel gears take the drive up each propeller pod's upright shaft and round to the propeller. (works)
 
 **2019, [42092 Rescue Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42092-1)**
 
-- *main and tail rotors:* The 12 tooth gear under the belly spins the main rotor on its upright shaft, and a 20 tooth bevel gear on that shaft drives a long shaft down the tail to bevel gears at its end, which spin the tail rotor. (partly)
+- *main and tail rotors:* The 12 tooth gear under the belly spins the main rotor on its upright shaft, and a 20 tooth bevel gear on that shaft drives a long shaft down the tail to bevel gears at its end, which spin the tail rotor. (works)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 
@@ -116,7 +116,7 @@ Each detail by the set it first appears in.
 
 **2021, [42120 Rescue Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42120-1)**
 
-- *fans:* Pushing the hovercraft along spins the two big fans at the back: two hidden rubber-tyred wheels under the hull turn a bevel gear, a shaft running back, two cross shafts and two upright shafts that come up inside the fans' mounts and drive each fan through bevel gears. (partly)
+- *fans:* Pushing the hovercraft along spins the two big fans at the back: two hidden rubber-tyred wheels under the hull turn a bevel gear, a shaft running back, two cross shafts and two upright shafts that come up inside the fans' mounts and drive each fan through bevel gears. (works)
 
 ---
 

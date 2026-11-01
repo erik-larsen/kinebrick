@@ -124,8 +124,8 @@ const SCRUB_WEIGHT = 100;
 // longer.
 const SPARSE_FRICTION = false;
 // Whether the turning tier counts a balanced body's turning against what it turns on rather
-// than the frame (see leastTiers). KINEBRICK_BALANCED=1 turns it on, for trying out.
-const BALANCED = typeof process !== 'undefined' && process.env?.KINEBRICK_BALANCED === '1';
+// than the frame (see leastTiers). KINEBRICK_BALANCED=0 turns it off.
+const BALANCED = !(typeof process !== 'undefined' && process.env?.KINEBRICK_BALANCED === '0');
 // How near its joint's axis a body's middle must be for it to count as balanced on it, in LDU.
 const BALANCE = 2;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
@@ -2546,7 +2546,7 @@ export class Kinematics {
     // With SPARSE_FRICTION, each body counts by how many parts it has: heavier.
     const mass = new Array(this.bodyCount).fill(SPARSE_FRICTION ? 0 : 1);
     if (SPARSE_FRICTION) for (const b of this.mech.bodyOf) if (b >= 0) mass[b]++;
-    // With BALANCED, a body balanced on the joint it turns on (its middle on the joint's axis: an
+    // A body balanced on the joint it turns on (its middle on the joint's axis: an
     // axle, a gear, a propeller) has its turning count against what it turns on (its parent in
     // the tree), which comes to how fast the joint turns, rather than against the frame: weight
     // keeps a part that hangs off its axle (a lever, a hook's block) level, but can't keep a

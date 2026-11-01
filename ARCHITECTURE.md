@@ -689,7 +689,7 @@ A drag that turns a joint, and a motor, chooses how the rest of the model follow
 1. what slides or swivels on the car (a bumper on tiles, a gear lever on its ball);
 2. on a car on the ground, what steers it;
 3. joints on friction pins and motors' outputs, then what the grabbed part turns against, kept still against the frame as a hand holding the model by its frame would;
-4. every part's turning against the frame: a gear freewheeling on a shaft turns on it rather than turning the shaft, and an assembly hanging on a turning axle stays level;
+4. every part's turning against the frame: a gear freewheeling on a shaft turns on it rather than turning the shaft, and an assembly hanging on a turning axle stays level. A balanced part, whose middle is on the axis it turns on (an axle, a gear, a propeller), counts its turning against what it turns on instead: nothing keeps it level, and friction carries it round;
 5. every joint's turning;
 6. every part's moving against the frame, for what no joint's turning settles.
 

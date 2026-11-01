@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 140 works, 8 partly, 2 no, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 141 works, 7 partly, 2 no, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -198,7 +198,7 @@ Each detail by the set it first appears in.
 
 **1998, [8202 Bungee Chopper](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8202-1)**
 
-- The twin front wheels roll freely together on their short axle at the end of the long fork; there's no steering. (partly)
+- The twin front wheels roll freely together on their short axle at the end of the long fork; there's no steering. (works)
 
 **1998, [8203 Rover Discovery](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8203-1)**
 

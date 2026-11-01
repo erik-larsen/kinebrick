@@ -4,7 +4,7 @@ A part slews round on a turntable or an upright pivot, geared or by hand. (Movin
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The cab slews round on its turntable, carrying the boom with it.
 
-Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 8 works, 25 partly, 6 no, 1 not checked.
+Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 9 works, 24 partly, 6 no, 1 not checked.
 
 ## By decade
 
@@ -38,7 +38,7 @@ Each detail by the set it first appears in.
 
 **1978, [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane)**
 
-- *cab:* The cab slews round on its turntable, carrying the boom with it. (partly)
+- *cab:* The cab slews round on its turntable, carrying the boom with it. (works)
 
 **1984, [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator)**
 

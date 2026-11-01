@@ -4,7 +4,7 @@ A drum winds a string or cable, over pulleys, to a hook, a grab or a boom. (Movi
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.
 
-Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 13 works, 16 partly.
+Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 14 works, 15 partly.
 
 ## By decade
 
@@ -120,7 +120,7 @@ Each detail by the set it first appears in.
 
 **2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1)**
 
-- *hook:* The black gear knob on the left side at the back winds the winch drum in the rear, reeling the cable and hook in or letting them out. (partly)
+- *hook:* The black gear knob on the left side at the back winds the winch drum in the rear, reeling the cable and hook in or letting them out. (works)
 - The red lever on top at the back shifts a driving ring between two gears on the winch knob's shaft, giving the winch a fast and a slow speed, with a free middle position where the cable can be pulled out by hand. (works)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**

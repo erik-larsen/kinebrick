@@ -288,6 +288,8 @@ The 8110 Unimog (663 bodies, 322 free motions) took 38 s for one step of a drag 
 
 All but the eigen-solve leave the arithmetic as it was, so results are the same to the last bit; with the eigen-solve, every function on the 46 iteration sets comes out as before. A step of the Unimog's first function now takes 7.5 s, its second's sub-steps about 3.5 s each. What's left is mostly the turning tier itself: with 322 free motions and nearly every body moving in some of them, its least squares is a 312 × 1,983 problem, twice a sub-step (once without the suspension's motions, once with).
 
+Then the tiers themselves. Each tier was solved as an eigenproblem over all the free motions, 312 × 312 on the Unimog, however few components it had: a tier of 3 cost as much as the turning tier. A tier with fewer components than free motions is now solved from its own small eigenproblem, components by components, and what's left free found by a Householder reflection for each direction it rules out. A big tier is solved from the motions' products with each other, 322 × 322, worked out once a step rather than once a round of stillness, and the held bodies' products are added to as each is held. The results are the same to rounding, and a step of the Unimog's second function takes about 11 s on a busy machine, against 12.3 s before. Splitting the motions into groups that can't affect each other doesn't help: on the Unimog, 318 of its 325 motions are one group, since turning a joint moves every body beyond it.
+
 ## After adoption: balanced parts
 
 The 855 Mobile Crane's cab slewing moved its boom extension out a little: two shafts on the boom, turning in it, have gears that drive the extension. The turning tier counts each body's turning against the frame, so as the cab slewed, those shafts turned back in their holes to stay as still as they could (one runs along the raised boom, half upright), and drove the extension. It's the 42076's propellers again: a part free on a turning shaft is kept still.
@@ -296,11 +298,20 @@ That suits a part that hangs off its axle (a lever, a hook's block), which its w
 
 With the switch on, the 855's slewing works, and so does the 42076's first function; all 329 tests pass. On the 46 iteration sets, two functions are better (8094 f3, 8202 f4) and one worse: the 8824's steering, whose propeller swivels with the rear wheels and is driven from the front wheels. Before, the propeller spun as it swivelled; now it's carried round, and its drive turns the front wheels back instead. Which a real model does depends on how much friction each path has, which Kinebrick doesn't know. Counting a balanced part against its housing (what its shaft turns in, through any parts on one line with it) instead of its parent mends the 8824, but loses the 42076 and 8202 again: the propeller's housing, past the pin and the upright shaft it's on, is the hull.
 
+### The full check
 
-- **Balanced parts.** Least motion keeps still a part free on a turning shaft, which suits a hanging assembly but not a propeller or a wheel, carried round by friction. `KINEBRICK_BALANCED=1` tries counting balanced parts against what they turn on (see After adoption: balanced parts); a full check decides whether it's kept.
+On the full check, 185 of the 186 sets (the 8110 Unimog ran out of its time, as it does without the switch), nine functions are better and two worse, the rest as before:
+
+- **Better:** the 855's slewing; the 42076's and 42120's propellers and fans and the 42120's beacon, turned by pushing the hovercraft; the 42092's main rotor, the 42094's winch drum and the 42043's pump; and on the iteration sets, the 8094's arm and the 8202's twin front wheels.
+- **Worse:** the 8824's steering, above, and the 42110's differentials. With the engine held, turning one front wheel should turn the other the opposite way; now the shaft from the engine turns a little too, balanced on its axis, where the friction of the engine's pistons would hold it in a real model.
+
+So it's on by default; `KINEBRICK_BALANCED=0` turns it off.
+
+
+- **Balanced parts.** Least motion kept still a part free on a turning shaft, which suits a hanging assembly but not a propeller or a wheel, carried round by friction. Balanced parts now count their turning against what they turn on (see After adoption: balanced parts). Friction still decides cases it can't: the 8824's propeller drive, and the 42110's engine, held by its pistons.
 - **Adoption.** Least motion met the adoption test and was adopted: it's on by default, with its stillness at 0.2.
 - **Shock absorbers rigid until springs**, behind two of the four functions still worse (the 42107's and 8466's suspension): they hurt holds as much, but hide behind results holds get by something spinning.
 - **Holds creeping back.** Holding a car's steering when it otherwise can't roll is a hold, if only a fallback; so is the tier for a car's own turning on two tyres. Gravity and mass would replace both.
 - **Mass.** Tier 4 counts every body alike. Weighting by how many parts a body has cured the 8837's slewing but failed the 8849's and the 855's tests; the slewing turned out to be scrub, so mass may not be needed.
 - **Pushes.** The prototype only covers drags that turn a joint (the function check uses only those). Pushes still choose holds.
-- **Speed on big models.** Rechecked after adoption, the 9397 Logging Truck came out as under holds (4 work, 4 partly), but the 8110 Unimog ran out of its 240 minutes, where holds checked it within the time. A step is now several times faster (see After adoption: speed); what's left is the turning tier's least squares over hundreds of free motions, which smaller problems (motions that can't affect each other solved apart) might cut further.
+- **Speed on big models.** Rechecked after adoption, the 9397 Logging Truck came out as under holds (4 work, 4 partly), but the 8110 Unimog ran out of its 240 minutes, where holds checked it within the time. A step is now several times faster (see After adoption: speed); what's left is the eigen-solves over hundreds of free motions, several a step.

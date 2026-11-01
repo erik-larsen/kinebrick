@@ -101,11 +101,10 @@
     ]
   },
   "generated": {
-    "commit": "4fb2ed7",
+    "commit": "003aae8",
     "date": "2026-10-31",
     "counts": {
-      "partly": 1,
-      "works": 3,
+      "works": 4,
       "no": 1,
       "skipped": 1
     },
@@ -117,15 +116,12 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p277 92842"
         ],
         "rates": [
           {
@@ -142,8 +138,8 @@
               2.27e-13
             ],
             "p277 92842": [
-              0,
-              9.61e-13
+              1.67,
+              2.27e-13
             ],
             "p309 61510": [
               0,

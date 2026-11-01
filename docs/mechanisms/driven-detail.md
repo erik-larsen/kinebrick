@@ -4,7 +4,7 @@ Another function also turns a decorative part, such as an exhaust stack, beacon 
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The exhaust stack on the bonnet turns as the steering wheel turns: a bevel gear on the steering shaft drives a bevel gear at the foot of the stack's long upright axle.
 
-Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 3 works, 1 partly.
+Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 4 works.
 
 ## By decade
 
@@ -39,7 +39,7 @@ Each detail by the set it first appears in.
 
 **2021, [42120 Rescue Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42120-1)**
 
-- *beacon:* Pushing it along also spins the beacon on the tall post in the middle of the deck, the two blue lights going round: a bevel gear on the post's shaft is driven by the hidden wheels' 20 tooth bevel gear. (partly)
+- *beacon:* Pushing it along also spins the beacon on the tall post in the middle of the deck, the two blue lights going round: a bevel gear on the post's shaft is driven by the hidden wheels' 20 tooth bevel gear. (works)
 
 ---
 

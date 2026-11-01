@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 26 works, 48 partly, 8 no, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 27 works, 47 partly, 8 no, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 - The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth. (partly)
 - *gripper:* The arm motor, at the back of the arm as a counterweight, opens and closes the gripper: through a rubber band and a worm it turns a train of gears along the arm to the elbow's 40 tooth gear, which turns the long shaft down the forearm; at its foot an 8 tooth gear turns two shafts the opposite way to each other through their 16 tooth gears, and their bevel gears swing the two claws together or apart. (partly)
-- *arm:* The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again. (partly)
+- *arm:* The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again. (works)
 
 **1991, [8074 Universal Set with Flex System](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8074-1)**
 

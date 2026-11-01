@@ -136,7 +136,7 @@
     ]
   },
   "generated": {
-    "commit": "4fb2ed7",
+    "commit": "003aae8",
     "date": "2026-10-31",
     "counts": {
       "works": 2,
@@ -397,7 +397,6 @@
           ]
         ],
         "still": [
-          "p547 6542b against p0 4519",
           "p570 3648b against p0 4519",
           "p611 62274c01 against p610 62271c01",
           "p815 6629 against p0 4519",
@@ -418,8 +417,8 @@
               9.47e-15
             ],
             "p547 6542b against p0 4519": [
-              0,
-              5e-14
+              1.67,
+              9.47e-15
             ],
             "p570 3648b against p0 4519": [
               0,
@@ -479,7 +478,6 @@
           ]
         ],
         "still": [
-          "p546 6542b against p0 4519",
           "p584 94925 against p0 4519",
           "p656 92695 against p654 92693c01",
           "p669 6629 against p0 4519",
@@ -488,8 +486,8 @@
         "rates": [
           {
             "p546 6542b against p0 4519": [
-              0,
-              5e-14
+              1.67,
+              9.47e-15
             ],
             "p584 94925 against p0 4519": [
               0,
