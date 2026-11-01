@@ -14,7 +14,11 @@
 // (radians) and slid (LDU) for each radian the control turned, adding up every step of the way
 // it went (`rates`). Where tooth counts alone say how fast a part should turn (see gearRates:
 // through differentials too, where controls turned together give both sides), it writes that
-// (`expected`), and lists the parts more than RATE_OFF off it (`wrong`). And each
+// (`expected`), and lists the parts more than RATE_OFF off it (`wrong`). A piston in `moves`
+// should slide in its cylinder as far as its crank's turn says, whatever turned the crank (see
+// sliderCranks): its `expected` is that, for each radian the control turned, and it's `wrong` if
+// it slid more than RATE_OFF and STROKE_OFF off it (its `rates` are against the frame, as for any
+// other part). And each
 // way is worked back again, as a new drag: everything should come back to where it started
 // (`back`: the furthest any part is left from it, LDU and degrees; `strayed`: parts left more
 // than BACK away).
@@ -46,8 +50,9 @@ import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Mechanism } from '../src/mechanism.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
-import { gearRates } from './gear-rates.ts';
+import { gearRates, line } from './gear-rates.ts';
 import { loadModel } from './load-model.ts';
+import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
 const SETS_DIR = join('data', 'sets');
 // How far a control is turned each way (radians), or pushed (LDU) if it slides.
@@ -63,6 +68,9 @@ const PIECE = 0.1;
 // A part counts as moving by the wrong amount if its rate is more than this share off what its
 // gears say.
 const RATE_OFF = 0.03;
+// A piston counts as sliding by the wrong amount if it's this far (LDU) off what its crank's turn
+// says, besides RATE_OFF of it.
+const STROKE_OFF = 0.1;
 // After there and back, a part counts as having strayed if it's this far (LDU) or this much
 // (degrees) from where it started.
 const BACK = 0.5;
@@ -200,8 +208,8 @@ function checkModel(model: string, functions: Fn[]) {
     return 2 * Math.acos(Math.min(1, Math.abs(q.w)));
   };
   // turn, in pieces (see PIECE), adding up how far each of `parts` turns (radians) and slides
-  // (LDU) against its body on the way.
-  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[]) => {
+  // (LDU) against its body on the way, and calling `each` after each piece.
+  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}) => {
     const joint = kin.parentLink(body)!.joint;
     if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
@@ -212,6 +220,7 @@ function checkModel(model: string, functions: Fn[]) {
       const piece = Math.sign(amount) * Math.min(PIECE, Math.abs(amount) - Math.abs(turned));
       const step = kin.turnJoint(joint, piece, () => kin.atLimit() === null);
       turned += step;
+      each();
       const is = parts.map((p) => relative(p.part, p.body, kin.poses));
       parts.forEach((p, k) => {
         went[k][0] += angle(was[k], is[k]);
@@ -290,9 +299,25 @@ function checkModel(model: string, functions: Fn[]) {
       // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
       const slides = mech.joints[link.joint].kind === 'slide';
       const itself = { part: mech.bodies[b].parts[0], body: kin.housing(b) };
+      // The pistons in `moves`, each with its slider-crank (see sliderCranks): how far it should
+      // slide in its cylinder is set by how far its crank turns, whatever turned the crank.
+      const cranks = sliderCranks(mech, (x) => kin.parentLink(x));
+      const pistons = moves.flatMap((m) => cranks.filter((sc) => sc.piston === mech.bodyOf[m.part]).slice(0, 1).map((sc) => ({ m, sc, in: { part: m.part, body: sc.cylinder } })));
+      // A crank's angle against its housing (see line), from where it was built.
+      const crankAngle = (c: number) => {
+        const l = line(mech, (x) => kin.parentLink(x), c)!.joints;
+        return l.reduce((sum, j) => sum + kin.jointAngles[j.joint] * Math.sign(j.axis.dot(l[0].axis)), 0);
+      };
       const each = [1, -1].map((way) => {
         kin.restore(start);
-        const measured = turnMeasuring(b, way * reach, [...listed, itself]);
+        // How far each piston should slide, piece by piece, as its crank turns.
+        let was = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
+        const should = pistons.map(() => 0);
+        const measured = turnMeasuring(b, way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
+          const now = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
+          now.forEach((x, k) => (should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!)));
+          was = now;
+        });
         const went = measured.went;
         // The joint's own turn, to work it back again.
         const joint = measured.turned;
@@ -305,6 +330,15 @@ function checkModel(model: string, functions: Fn[]) {
         // A rate is the part's turning, or its sliding if it slides on its joint.
         const rateOf = (m: (typeof listed)[number]) => rates[m.ref][kin.parentLink(mech.bodyOf[m.part]) && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide' ? 1 : 0];
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
+        // Each piston's slide in its cylinder, against what its crank's turn says, both for
+        // each radian the control turned.
+        const strokes: Record<string, number> = {};
+        pistons.forEach((p, k) => {
+          if (!Number.isFinite(should[k]) || Math.abs(turned) < 0.01) return;
+          strokes[p.m.ref] = sig(should[k] / Math.abs(turned));
+          const slid = went[listed.length + 1 + k][1];
+          if (Math.abs(slid - should[k]) > RATE_OFF * should[k] + STROKE_OFF) off.push(p.m.ref);
+        });
         // There and back: worked back as far as it went, as a new drag.
         const there = kin.snapshot();
         if (Math.abs(joint) >= 0.01) turn(b, -joint);
@@ -312,14 +346,14 @@ function checkModel(model: string, functions: Fn[]) {
         kin.restore(there);
         const back: [number, number] = [round(most.ldu), round(most.degrees)];
         const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
-        return { turned, still, moved: wrong, rates, off, back, strayed, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
       });
       kin.restore(start);
       together = [];
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
-      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed) };
+      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed) };
     });
     const result: Result = ways.every((w) => w.works) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
     const still = [...new Set(ways.flatMap((w) => w.still))];
