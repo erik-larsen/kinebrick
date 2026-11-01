@@ -16,6 +16,7 @@
     "functions": "tsx scripts/check-functions.ts",
     "thumbs": "tsx scripts/thumbs.ts",
     "mechanisms": "tsx scripts/mechanisms.ts",
+    "prerelease": "tsx scripts/prerelease.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },
   "dependencies": {
