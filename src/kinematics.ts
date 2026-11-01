@@ -2893,12 +2893,13 @@ function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers:
   let a = rates.map((r) => r / rr);
   let free = orthonormalize(nullSpace([rates], k));
   // Moves the tier as little as it can, of the mixes still free: updates a and free. `costs` are
-  // each motion's components in the tier.
-  const keepStill = (tier: Tier, costs = motions.map(tier.cost)) => {
+  // each motion's components in the tier, and `among` (K, if given) their dot products, motion
+  // with motion.
+  const keepStill = (tier: Tier, costs = motions.map(tier.cost), among?: number[][]) => {
     if (free.length === 0) return;
     const c = costs[0].length;
     if (c === 0) return;
-    const tierScale = Math.max(...costs.map((s) => s.reduce((sum, x) => sum + x * x, 0)));
+    const tierScale = among ? Math.max(...among.map((row, i) => row[i])) : Math.max(...costs.map((s) => s.reduce((sum, x) => sum + x * x, 0)));
     // A tier whose costs are only rounding, next to how much the motions turn the joints, has
     // nothing to keep still: scaled up, its rounding would choose the motion (a loose truck's
     // steering, which nothing steers, swinging its wheels round wildly).
@@ -2914,23 +2915,64 @@ function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers:
       }
       return out;
     };
-    const b = apply(a);
-    const columns = free.map(apply);
     const m = free.length;
+    const tiny = TIER_TOLERANCE * tierScale;
+    // The eigenvalues and eigenvectors of a symmetric matrix, scaled to its largest entry first:
+    // symmetricEigen's cut-offs are absolute, and a tier's costs may be small. Null if it's all 0.
+    const eigen = (matrix: number[][]) => {
+      const unit = Math.max(...matrix.map((row, i) => row[i]));
+      if (!(unit > 0)) return null;
+      const scaled = symmetricEigen(matrix.map((row) => row.map((x) => x / unit)));
+      return { values: scaled.values.map((x) => x * unit), vectors: scaled.vectors };
+    };
+    if (!tier.sparse && c < m) {
+      // Fewer components than free directions (most tiers on a big model): C N has rank at most
+      // c, so the problem is solved from (C N)(C N)ᵀ, c by c, rather than (C N)ᵀ(C N), m by m.
+      // Each of its eigenvectors u that costs something (eigenvalue s² above tiny) is the
+      // direction v = (C N)ᵀ u / s of the free ones, which moves the tier by s u: y takes out
+      // as much of C a along u as it can. What's left free is the rest, those taken out.
+      const b = apply(a);
+      const columns = free.map(apply);
+      const outer = Array.from({ length: c }, (_, i) => Array.from({ length: c }, (_, j) => columns.reduce((sum, col) => sum + col[i] * col[j], 0)));
+      const solved = eigen(outer);
+      if (!solved) return;
+      const y = new Array(m).fill(0);
+      const costly: number[][] = [];
+      solved.vectors.forEach((u, e) => {
+        if (solved.values[e] <= tiny) return;
+        const s = Math.sqrt(solved.values[e]);
+        const v = columns.map((col) => dot(col, u) / s);
+        const amount = -dot(u, b) / s;
+        for (let i = 0; i < m; i++) y[i] += amount * v[i];
+        costly.push(v);
+      });
+      a = a.map((x, i) => x + free.reduce((sum, f, j) => sum + y[j] * f[i], 0));
+      free = withoutDirections(free, orthonormalize(costly));
+      return;
+    }
+    if (!tier.sparse) among ??= gramOf(costs, costs);
+    // Only needed without K.
+    const b = among ? [] : apply(a);
+    const columns = among ? [] : free.map(apply);
     // The y making Σ w_j (b + C N y)_j² least, the eigenvectors of the unweighted problem that
     // cost nothing being left free.
-    const tiny = TIER_TOLERANCE * tierScale;
     const solve = (w: number[] | null) => {
-      const weighed = w ? columns.map((x) => x.map((xi, j) => w[j] * xi)) : columns;
-      const gram = gramOf(weighed, columns);
-      const g = weighed.map((x) => dot(x, b));
-      // Scaled to its largest entry first: symmetricEigen's cut-offs are absolute, and a tier's
-      // costs may be small.
-      const unit = Math.max(...gram.map((row, i) => row[i]));
-      if (!(unit > 0)) return { y: new Array(m).fill(0), left: w ? [] : free.slice() };
-      const scaled = symmetricEigen(gram.map((row) => row.map((x) => x / unit)));
-      const values = scaled.values.map((x) => x * unit);
-      const vectors = scaled.vectors;
+      let gram: number[][];
+      let g: number[];
+      if (among) {
+        // (C N)ᵀ(C N) = Nᵀ K N, and (C N)ᵀ C a = Nᵀ K a: a tier with thousands of components,
+        // and only hundreds of motions, is far quicker so.
+        const kn = free.map((f) => among.map((row) => dot(row, f)));
+        gram = gramOf(free, kn);
+        g = kn.map((x) => dot(x, a));
+      } else {
+        const weighed = w ? columns.map((x) => x.map((xi, j) => w[j] * xi)) : columns;
+        gram = gramOf(weighed, columns);
+        g = weighed.map((x) => dot(x, b));
+      }
+      const solved = eigen(gram);
+      if (!solved) return { y: new Array(m).fill(0), left: w ? [] : free.slice() };
+      const { values, vectors } = solved;
       const top = Math.max(0, ...values);
       const y = new Array(m).fill(0);
       const left: number[][] = [];
@@ -2976,19 +3018,24 @@ function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers:
     const start = { a, free };
     const held = new Set<number>();
     const costs = motions.map(tier.cost);
+    const among = gramOf(costs, costs);
+    // K of the held bodies' components, added to as each is held.
+    const heldAmong = Array.from({ length: k }, () => new Array(k).fill(0));
     for (let round = 0; round < 6; round++) {
       ({ a, free } = start);
       if (held.size) {
         const list = [...held];
         const heldCosts = costs.map((all) => list.flatMap((b) => [all[3 * b], all[3 * b + 1], all[3 * b + 2]]));
-        keepStill({ cost: () => [] }, heldCosts);
+        keepStill({ cost: () => [] }, heldCosts, heldAmong);
       }
-      keepStill(tier, costs);
+      keepStill(tier, costs, among);
       const turned = Array.from({ length: n }, (_, b) => Math.hypot(...[0, 1, 2].map((d) => a.reduce((sum, x, i) => sum + x * costs[i][3 * b + d], 0))));
       const most = Math.max(0, ...turned);
       const more = turned.flatMap((t, b) => (!held.has(b) && t > 1e-12 * most && t < STILLNESS * most ? [b] : []));
       if (more.length === 0) break;
       for (const b of more) held.add(b);
+      const moreCosts = costs.map((all) => more.flatMap((b) => [all[3 * b], all[3 * b + 1], all[3 * b + 2]]));
+      gramOf(moreCosts, moreCosts).forEach((row, i) => row.forEach((x, l) => (heldAmong[i][l] += x)));
     }
   }
   return combine(motions, a);
@@ -3066,6 +3113,42 @@ function without(vector: number[], orthonormal: number[][]): number[] {
     for (let i = 0; i < u.length; i++) u[i] -= d * p[i];
   }
   return u;
+}
+
+// What's left of an orthonormal basis once some directions are taken out, as an orthonormal
+// basis: `taken` are orthonormal, in the basis's own coordinates. Householder reflections take
+// each of them to one of the first axes in turn (as in a QR factorization), the basis reflected
+// with them; the rest of the reflected basis spans what's left. Far less work than finding
+// what's left by an eigen-solve, when few are taken.
+function withoutDirections(basis: number[][], taken: number[][]): number[][] {
+  const m = basis.length;
+  const rows = basis.map((r) => r.slice());
+  const t = taken.map((v) => v.slice());
+  for (let e = 0; e < t.length; e++) {
+    // The reflection I − 2 h hᵀ / hᵀh, in coordinates e on, taking t[e] to ±axis e.
+    const h = new Array(m).fill(0);
+    let norm = 0;
+    for (let i = e; i < m; i++) {
+      h[i] = t[e][i];
+      norm += h[i] * h[i];
+    }
+    h[e] += t[e][e] >= 0 ? Math.sqrt(norm) : -Math.sqrt(norm);
+    const hh = dot(h, h);
+    if (!(hh > 0)) continue;
+    for (let f = e + 1; f < t.length; f++) {
+      const s = (2 * dot(h, t[f])) / hh;
+      for (let i = e; i < m; i++) t[f][i] -= s * h[i];
+    }
+    // The basis times the reflection: each vector j less 2 h_j / hᵀh of Σ h_i basis_i.
+    const bh = combine(rows, h);
+    for (let j = e; j < m; j++) {
+      if (h[j] === 0) continue;
+      const s = (2 * h[j]) / hh;
+      const row = rows[j];
+      for (let x = 0; x < row.length; x++) row[x] -= s * bh[x];
+    }
+  }
+  return rows.slice(t.length);
 }
 
 // The mix of `vectors` with these amounts.
