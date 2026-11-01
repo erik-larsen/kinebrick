@@ -84,9 +84,18 @@ Its scale, the most any free motion turns the steering, was 9 × 10⁻²⁶: not
 
 The fix: a correction's tiers are judged against at least a motion of unit size, since its free motions are orthonormal. With it, the 42041's parts come back within 0.14 LDU, as with the switch off, and all 329 tests pass. On the 46 iteration sets, as many functions work as with it off, and one more partly works, as before; there and back, against the switch off, 12 functions bring back more of what they moved and 8 less (none of them the 42041's). It took 2,594 s of the machine's time, against 3,335 s with it off.
 
+### A correction's own turning tier
+
+With the 42041 fixed, the 42029 Customized Pick up Truck, pushed along by a rear wheel, went 127 LDU for each radian the wheel turned, a quarter further than its tyre rolls. Its corrections slid it 12.7 LDU in 5 steps, where with the switch off they move it 0.08. Logged tier by tier, the turning tier did it: keeping the bodies from turning, it slid the whole model on its tyres, which may scrub and lift in a correction's free motions, and which nothing after it costs. Two changes, for corrections only:
+
+- **Scrubbing counts in the turning tier**, each LDU a tyre scrubs or lifts as much as a radian a body turns. A last tier for it, as tried for the 42041, comes too late: the turning tier has already bought its hair with the slide.
+- **No stillness rounds** (`STILLNESS`): in a correction every body turns only a little, and the bodies held still first, solved on their own, slid the model all the same.
+
+The 42029 then goes 102 LDU a radian, as with the switch off, and all 329 tests pass both ways. On the 46 iteration sets, 133 functions work (one more than with it off: the 42056 Porsche 911 GT3 RS's front suspension), and one more partly works (the 8081 Extreme Cruiser's front suspension, as before). There and back, against the switch off, 14 bring back more of what they moved and 6 less. It took 2,378 s of the machine's time, against 3,335 s with it off.
+
 ### What's left
 
-The 8 that bring back less: the 42029 Customized Pick up Truck's f3 and f4 (5 LDU off to 22 and 32), the 42037 Formula Off-Roader's f5, the 42056 Porsche's f6, the 42096 Porsche 911 RSR's f5 (35 to 216), the 8081 Extreme Cruiser's front suspension (which now moves, and doesn't all come back), the 8448 Super Street Sensation's f5 (10 to 88) and the 9394 Jet Plane's f4 (0.3 to 13). Then the Newton step proper (stage 2), and tyres and play as rows (stage 4).
+The 6 that bring back less, against the switch off: the 42021 Snowmobile's f1 and f2 (2.5 and 4.3 LDU off, from next to nothing), the 42096 Porsche 911 RSR's rear suspension (35 to 169), the 8081's front suspension (which moves now, and doesn't all come back), the 8448 Super Street Sensation's front suspension (10 to 58) and the 9394 Jet Plane's f4 (0.3 to 2.2). Then the Newton step proper (stage 2), and tyres and play as rows (stage 4).
 
 ## Risks
 

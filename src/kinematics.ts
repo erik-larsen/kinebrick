@@ -1936,7 +1936,15 @@ export class Kinematics {
         const firm = this.buildEquations(null, slip, true);
         if (keepRow) firm.push(keepRow);
         const motions = orthonormalize(nullSpace(inBasis(firm, basis), basis[0].length));
-        solution = (motions.length ? leastTurning(motions, (z) => rateOf(z, keep), tiers, solution, 0) : null) ?? solution;
+        // A tyre scrubbing or lifting counts in the turning tier, each LDU as much as a body
+        // turning a radian: else that tier, keeping bodies from turning, slid the whole model on
+        // its tyres instead, which nothing after it costs (the 42029 Customized Pick up Truck,
+        // pushed along by a rear wheel, went a quarter further than the wheel rolled). And its
+        // bodies that turn only a little aren't held still first (see STILLNESS): in a
+        // correction, all of them turn only a little, and held still, they slid it all the same.
+        const slid = inBasis([...slip.sideways, ...slip.lift], basis);
+        const corrections = tiers.map((t) => (t.bodies ? { cost: (z: number[]) => [...t.cost(z), ...slid.map((row) => dot(row, z))] } : t));
+        solution = (motions.length ? leastTurning(motions, (z) => rateOf(z, keep), corrections, solution, 0) : null) ?? solution;
       }
       this.move(fromBasis(solution, basis), 1);
       fresh = false;
