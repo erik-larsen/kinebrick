@@ -93,6 +93,8 @@ With the 42041 fixed, the 42029 Customized Pick up Truck, pushed along by a rear
 
 The 42029 then goes 102 LDU a radian, as with the switch off, and all 329 tests pass both ways. On the 46 iteration sets, 133 functions work (one more than with it off: the 42056 Porsche 911 GT3 RS's front suspension), and one more partly works (the 8081 Extreme Cruiser's front suspension, as before). There and back, against the switch off, 14 bring back more of what they moved and 6 less. It took 2,378 s of the machine's time, against 3,335 s with it off.
 
+Tried, and not kept: keeping the stillness rounds in a correction, with the scrubbing held along with the held bodies so that holding them can't buy the slide. The 42021 Snowmobile's steering comes back within 0.5 LDU again, and there and back 16 bring back more and 4 less. But the 42056 Porsche 911 GT3 RS's suspension, two more of its joints straying, stops after 0.1 radians, and only 131 functions work.
+
 ### What's left
 
 The 6 that bring back less, against the switch off: the 42021 Snowmobile's f1 and f2 (2.5 and 4.3 LDU off, from next to nothing), the 42096 Porsche 911 RSR's rear suspension (35 to 169), the 8081's front suspension (which moves now, and doesn't all come back), the 8448 Super Street Sensation's front suspension (10 to 58) and the 9394 Jet Plane's f4 (0.3 to 2.2). Then the Newton step proper (stage 2), and tyres and play as rows (stage 4).
