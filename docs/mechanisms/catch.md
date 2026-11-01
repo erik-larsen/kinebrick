@@ -4,7 +4,7 @@ A latch, lock or detent holds a part in place until it's released. (Holding.)
 
 First appears in 1998, in [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1): Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.
 
-Used in 14 of the 186 surveyed sets, by 19 functions. Kinebrick: 6 works, 4 partly, 5 no, 4 skipped.
+Used in 14 of the 186 surveyed sets, by 19 functions. Kinebrick: 5 works, 3 partly, 7 no, 4 skipped.
 
 ## By decade
 
@@ -37,7 +37,7 @@ Each detail by the set it first appears in.
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
-- *seat:* The purple striker's seat sits on a lever pivoted at the top of its handle: a black cage with purple hoses that holds the driver. The seat flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (partly)
+- *seat:* The purple striker's seat sits on a lever pivoted at the top of its handle: a black cage with purple hoses that holds the driver. The seat flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (no)
 - *target lever:* Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target. (no)
 - *seat:* The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (no)
 - *target lever:* Hitting the teal striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that teal lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. (works)
@@ -70,7 +70,7 @@ Each detail by the set it first appears in.
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
-- *outriggers:* The two rear outriggers swing down from the chassis' back corners onto their feet, and a grey liftarm on each folds over to lock it down. (works)
+- *outriggers:* The two rear outriggers swing down from the chassis' back corners onto their feet, and a grey liftarm on each folds over to lock it down. (no)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 

@@ -4,7 +4,7 @@ A motorbike's front fork is held by an arm pivoting under the tank, with a shock
 
 First appears in 2017, in [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1): The front wheel has suspension: the fork is held by a suspension arm under the tank (BMW's Telelever), and a shock absorber between the arm and the frame lets the wheel rise and fall.
 
-Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 partly.
+Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 no.
 
 ## By decade
 
@@ -17,7 +17,7 @@ Used in 1 of the 186 surveyed sets, by 1 functions. Kinebrick: 1 partly.
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 
-- The front wheel has suspension: the fork is held by a suspension arm under the tank (BMW's Telelever), and a shock absorber between the arm and the frame lets the wheel rise and fall. (partly)
+- The front wheel has suspension: the fork is held by a suspension arm under the tank (BMW's Telelever), and a shock absorber between the arm and the frame lets the wheel rise and fall. (no)
 
 ---
 

@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 38 works, 31 partly, 2 no.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 39 works, 29 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -59,7 +59,7 @@ Each detail by the set it first appears in.
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 
-- *2 cylinders:* Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (partly)
+- *2 cylinders:* Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (works)
 
 **1983, [8841 Dune Buggy / Desert Racer](https://erik-larsen.github.io/kinebrick/?model=8841-Dune%20Buggy)**
 
@@ -270,7 +270,7 @@ Each detail by the set it first appears in.
 
 **2019, [42093 Chevrolet Corvette ZR1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42093-1)**
 
-- *V8:* Pushed along, the rear wheels drive the V8 through a differential: a 20 tooth gear on the differential turns a shaft forward to the crankshaft, and the eight pistons (brown axles with yellow caps, four in each bank) bob up and down in the engine under the bonnet. The differential lets the two rear wheels turn at different speeds. (partly)
+- *V8:* Pushed along, the rear wheels drive the V8 through a differential: a 20 tooth gear on the differential turns a shaft forward to the crankshaft, and the eight pistons (brown axles with yellow caps, four in each bank) bob up and down in the engine under the bonnet. The differential lets the two rear wheels turn at different speeds. (skipped)
 
 **2019, [42096 Porsche 911 RSR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42096-1)**
 

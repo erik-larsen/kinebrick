@@ -4,7 +4,7 @@ Ball joints, click hinges or friction joints that hold a pose. (Simple motions.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.
 
-Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 5 works, 2 partly, 3 no, 1 skipped.
+Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 4 works, 2 partly, 4 no, 1 skipped.
 
 ## By decade
 
@@ -32,7 +32,7 @@ Each detail by the set it first appears in.
 
 **1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car)**
 
-- *backrests and headrests:* Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge. (works)
+- *backrests and headrests:* Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge. (no)
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 

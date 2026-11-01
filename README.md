@@ -109,32 +109,33 @@ Kinebrick knows the moving parts of its own models and the most common ones in t
 
 Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
-**Under way: M7, real LEGO sets, oldest first.** Every set under [Models](#models) works in full, except the 8448 Super Street Sensation, whose V8 engine works on its own. Next: more sets.
+**Under way: [the solver phase](docs/solver-phase.md).** Since release 0.850, rather than fixing sets one at a time, the work is on the solver itself: one general way to choose how a mechanism moves in place of special cases, and a quicker check that says how far each part should move. Every set under [Models](#models) works in full, except the 8448 Super Street Sensation, whose V8 engine works on its own.
 
 **[Function check](ARCHITECTURE.md#the-function-check) on all 186 sets.** Each set's functions, from its instruction book, tried on its model.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 517 | 42% |
-| Partly | 357 | 29% |
-| Doesn't work | 175 | 14% |
-| Skipped or not checked | 175 | 14% |
+| Works | 531 | 43% |
+| Partly | 318 | 26% |
+| Doesn't work | 198 | 16% |
+| Skipped or not checked | 177 | 14% |
 
-Of the functions checked, 49% work in full. Only 13 of the 186 sets have every function working.
+Of the functions checked, 51% work in full. Only 13 of the 186 sets have every function working.
 
 **Major things left:**
 
-1. **Finish the surveys.** The function check is done, and the OMR control surveys' results are on the `omr-survey` branch.
-2. **Refine the kinematics from those results.** This is the bulk of the remaining work: turning the 357 "partly" and 175 "doesn't work" functions into working ones, a part type or connection rule at a time. Grouped by cause, the biggest is a drag choosing the wrong way for a mechanism to move, in about 130 sets; then parts Kinebrick doesn't connect or mesh yet, in about 90.
-3. **Optimize, only once the refine phase is done.** Solve only the part of a mechanism a control reaches, and cache each set's inferred mechanism. Speed matters already: three sets ran past 30 minutes in the function check.
+1. **Checks that say how much.** Gear ratios from tooth counts, rules for each kind of mechanism, and a quick set of about 20 sets to run on every change.
+2. **A general solver.** Each step solved as one problem, with [MuJoCo](https://mujoco.org) as a second opinion to check it against.
+3. **Connections for every part in the official sets.** Grouped by cause, a drag choosing the wrong way for a mechanism to move affects about 130 sets, and parts Kinebrick doesn't connect or mesh yet about 90.
 4. **Version 2.0, forces through MuJoCo.** Springs and shocks, clutches that slip under load, and momentum.
-5. **[Later](#later):** other LEGO lines (Creator, trains), marching ants on loose parts, and suggested fixes for loose parts.
+5. **[Later](#later):** people's own models and BrickLink Studio's parts, other LEGO lines (Creator, trains), marching ants on loose parts, and suggested fixes for loose parts.
 
 **Done:**
 
 - Rolling on tyres, gear trains, bevel gears and differentials (M1–M3)
 - Steering: a pivoting axle, rack and pinion, and Ackermann steering, the inside wheel turning further (M4, M6.2, M6.3)
 - Collisions: parts can't pass through each other (M4.5)
+- [Least motion](docs/least-motion.md): a turned part moves the rest of the model as little as it can, judged in tiers of least squares, rather than by a list of what to hold still
 - Worms, clutches and gearboxes (M5)
 - Closed loops of parts, such as an engine's crank, connecting rod and piston, that stay together however long they run (M6.1)
 - Chains and tracks, on which the bulldozer runs (M8)
@@ -149,7 +150,7 @@ The models' files are in [`models/`](models/).
 Working out how a set moves means reading every part of it closely, and that turns up more than motion:
 
 - **[Mechanism catalog](docs/mechanisms/README.md).** The kinds of mechanism in the 186 Technic sets Kinebrick has surveyed, from rack and pinion steering to swing wings: the year each first appears, which sets use it, and how often, decade by decade. Each set's functions are tagged with their kinds from what its building instructions show, and each kind's page says how many of its functions Kinebrick moves today.
-- **[LDraw errata](docs/ldraw-errata.md).** Eleven errors Kinebrick has found in the published LDraw models of seven sets (852, 858, 8844, 8848, 8849, 8854 and 8880), such as a part a few LDU out of place that attaches to nothing, each with the exact lines and the correction Kinebrick uses where it has one, so they can be corrected where the models are published.
+- **[LDraw errata](docs/ldraw-errata.md).** Twelve errors Kinebrick has found in the published LDraw models of eight sets (852, 858, 8844, 8848, 8849, 8854, 8880 and 42093), such as a part a few LDU out of place that attaches to nothing, each with the exact lines and the correction Kinebrick uses where it has one, so they can be corrected where the models are published.
 
 ## What Kinebrick is, and isn't
 

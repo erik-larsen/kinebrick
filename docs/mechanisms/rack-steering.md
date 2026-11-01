@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 55 works, 15 partly, 6 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 57 works, 13 partly, 6 no.
 
 ## By decade
 
@@ -117,7 +117,7 @@ Each detail by the set it first appears in.
 
 **1991, [8820 Mountain Rambler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8820-1)**
 
-- The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms. (no)
+- The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms. (partly)
 
 **1992, [8828 Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8828-1)**
 
@@ -155,7 +155,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- The knob on the cab roof steers the front wheels: its shaft runs down behind the seats, turns through a pair of bevel gears onto a shaft running forward to an 8-tooth pinion on the steering rack, and the rack's ends swing the two steering arms. (partly)
+- The knob on the cab roof steers the front wheels: its shaft runs down behind the seats, turns through a pair of bevel gears onto a shaft running forward to an 8-tooth pinion on the steering rack, and the rack's ends swing the two steering arms. (works)
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
@@ -187,7 +187,7 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (partly)
+- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (no)
 
 **2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1)**
 
@@ -199,7 +199,7 @@ Each detail by the set it first appears in.
 
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 
-- The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack. (partly)
+- The front wheels steer from a knob on top of the cab (hand of god): its upright shaft turns a horizontal shaft through two knob gears, and a gear at its front end drives the steering rack. (works)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 

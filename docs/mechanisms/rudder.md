@@ -4,7 +4,7 @@ A rudder at the stern swings to steer a boat. (Steering.)
 
 First appears in 2017, in [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1): Knob C, the gear behind the bridge, steers the ship: its upright shaft turns a long shaft under the deck that runs back to the stern, where cranks on it swing the two rudders together and turn the rear wheel bogie the ship rolls on.
 
-Used in 3 of the 186 surveyed sets, by 3 functions. Kinebrick: 3 partly.
+Used in 3 of the 186 surveyed sets, by 3 functions. Kinebrick: 1 works, 2 partly.
 
 ## By decade
 
@@ -29,7 +29,7 @@ Each detail by the set it first appears in.
 
 **2018, [42074 Racing Yacht](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42074-1)**
 
-- The helm, a small steering wheel on the deck, turns the rudder at the stern: its 16 tooth gear drives, through a 16 tooth idler, a 16 tooth gear on the long shaft down the hull, whose 12 tooth bevel gear at the stern turns the 20 tooth bevel gear on the rudder's upright axle. (partly)
+- The helm, a small steering wheel on the deck, turns the rudder at the stern: its 16 tooth gear drives, through a 16 tooth idler, a 16 tooth gear on the long shaft down the hull, whose 12 tooth bevel gear at the stern turns the 20 tooth bevel gear on the rudder's upright axle. (works)
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 

@@ -223,6 +223,7 @@ export interface Mechanism {
   strings: StringLine[]; // strings wound on drums and run over pulleys
   screws: Screw[]; // linear actuators' screws, each driving a piston as its input turns
   rests: Rest[]; // parts resting on others under gravity: push rods on a camshaft, rockers on the rods
+  centers?: Vector3[]; // each body's middle as built: the mean of its parts' origins
 }
 
 // A linear actuator's screw: as the input body turns about the axis, the piston body slides
@@ -457,7 +458,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   // An actuator whose input or piston is fixed to its body (by what's built round it) can't work.
   const screws = actuators.filter((a) => new Set([a.body, a.input, a.piston].map((i) => bodyOf[i])).size === 3).map((a) => ({ input: bodyOf[a.input], piston: bodyOf[a.piston], center: a.center, axis: a.axis, lead: a.lead }));
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests };
+  const centers = bodies.map((b) => b.parts.reduce((sum, i) => sum.add(new Vector3().setFromMatrixPosition(parts[i].matrix)), new Vector3()).multiplyScalar(1 / Math.max(1, b.parts.length)));
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers };
 }
 
 // A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
@@ -664,14 +666,19 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
 }
 
 // Parts that would be loose get a second chance, fitting with the looser LOOSE_ALIGN_TOLERANCE:
-// connections that join a loose part to anything, found as findConnections finds them. A pin's
-// new joints turn as fixPins has its others do: a friction pin's stiffly.
+// connections that join a loose part to anything, found as findConnections finds them. So do
+// parts held to the rest only by slides and balls, which hold nothing in place: the 42039 and
+// 42041's V8 connecting rods, tied by balls to pistons sliding in their cylinders, are built
+// 1.005 LDU off their crank pins. But not a universal joint's cross, which keeps only the arms
+// universalJoints left it. A pin's new joints turn as fixPins has its others do: a friction
+// pin's stiffly.
 function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  const loose = new Set(findLooseParts(count, connections));
+  const loose = new Set(findLooseParts(count, connections.filter((c) => c.kind !== 'slide' && c.kind !== 'ball')));
   if (loose.size === 0) return [];
   const known = new Set(connections.map((c) => `${c.male},${c.female}`));
-  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`));
+  const settled = (c: Connection) => roles[c.male] === 'universal joint' || roles[c.female] === 'universal joint';
+  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`) && !settled(c));
   for (const c of found) {
     if (c.kind !== 'revolute' || roles[c.male] !== 'friction pin') continue;
     if (frictionRigid) [c.kind, c.held] = ['rigid', true];

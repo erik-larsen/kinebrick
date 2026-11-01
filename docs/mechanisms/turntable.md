@@ -4,7 +4,7 @@ A part slews round on a turntable or an upright pivot, geared or by hand. (Movin
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The cab slews round on its turntable, carrying the boom with it.
 
-Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 10 works, 23 partly, 6 no, 1 not checked.
+Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 9 works, 24 partly, 6 no, 1 not checked.
 
 ## By decade
 
@@ -94,7 +94,7 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *crane:* With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (no)
+- *crane:* With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (partly)
 
 **2012, [9391 Crawler Crane (Tracked Crane)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9391-1)**
 
@@ -158,7 +158,7 @@ Each detail by the set it first appears in.
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
-- *superstructure:* The motor slews the superstructure round, all the way round: with the red lever on the superstructure set to the chassis functions, the lever on the chassis's cab side picks left or right, and the chassis gearbox turns the turntable. (works)
+- *superstructure:* The motor slews the superstructure round, all the way round: with the red lever on the superstructure set to the chassis functions, the lever on the chassis's cab side picks left or right, and the chassis gearbox turns the turntable. (partly)
 
 **2019, [42088 Cherry Picker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42088-1)**
 
@@ -174,7 +174,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *superstructure:* The superstructure slews all the way round on its turntable, carrying the cab, boom and hook. (partly)
+- *superstructure:* The superstructure slews all the way round on its turntable, carrying the cab, boom and hook. (no)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 

@@ -4,7 +4,7 @@ A crank, knob or motor swings the landing gear legs up into the airframe and dow
 
 First appears in 1981, in [8844 Helicopter](https://erik-larsen.github.io/kinebrick/?model=8844-Helicopter): The crank low on the left side beside the seats retracts and lowers the landing gear: its 24 tooth gear turns the 8 tooth gear on the end of the front axle, which swings the two front legs fixed on its ends, and a chain from a 16 tooth gear on that axle turns the rear leg's 24 tooth gear, so all three legs swing up or down together.
 
-Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 4 partly.
+Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 1 works, 3 partly.
 
 ## By decade
 
@@ -21,7 +21,7 @@ Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 4 partly.
 
 **1991, [8856 Whirlwind Rescue](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8856-1)**
 
-- The small crank low on the right side retracts and lowers the landing gear: a worm turns the long shaft under the floor, which swings the nose wheel's leg through a bevel pair at the front and the two main wheels' legs through a crown gear on the rear axle. (partly)
+- The small crank low on the right side retracts and lowers the landing gear: a worm turns the long shaft under the floor, which swings the nose wheel's leg through a bevel pair at the front and the two main wheels' legs through a crown gear on the rear axle. (works)
 
 **2012, [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1)**
 

@@ -3,32 +3,56 @@
 // found into the set's generated section, afresh each time. Each function's control is worked
 // both ways from where the model was loaded (after its `first` controls), as a drag on it would
 // (holding what a drag holds): a turn of REACH radians, or a push of PUSH LDU for a slide. A way
-// works if the control goes at least half that far, every part in `moves` moves and no part in
+// works if the control goes at least half that far (turning against what its shaft turns
+// in, not just on its joint, which a shaft spinning back under it could make up), every part in `moves` moves and no part in
 // `stays` does, each against the frame or the part it names. A function works if one way works
-// for each of its controls; it partly works if something moves; otherwise it doesn't.
+// for each of its controls; it partly works if something moves; otherwise it doesn't. Controls
+// marked `together` are worked as one instead, all turning at once, as pushing a vehicle along
+// turns its wheels: the first is worked, and the others turn with it (see turnTogether).
+//
+// How much, too. For each part in `moves` and `stays`, it writes how far the part turned
+// (radians) and slid (LDU) for each radian the control turned, adding up every step of the way
+// it went (`rates`). Where tooth counts alone say how fast a part should turn (see gearRates:
+// through differentials too, where controls turned together give both sides), it writes that
+// (`expected`), and lists the parts more than RATE_OFF off it (`wrong`). A piston in `moves`
+// should slide in its cylinder as far as its crank's turn says, whatever turned the crank (see
+// sliderCranks): its `expected` is that, for each radian the control turned, and it's `wrong` if
+// it slid more than RATE_OFF and STROKE_OFF off it (its `rates` are against the frame, as for any
+// other part). And each
+// way is worked back again, as a new drag: everything should come back to where it started
+// (`back`: the furthest any part is left from it, LDU and degrees; `strayed`: parts left more
+// than BACK away).
 //
 //   npm run functions                 every set with functions
 //   npm run functions -- 855 8880     only sets whose number has one of these in it
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
 //   npm run functions -- --limit 20   stop a set that takes more than this many minutes (default
 //                                     30), marking it as timed out
+//   npm run functions -- --quick      only the quick sets (QUICK): a couple of minutes, for every
+//                                     change; the whole check is for overnight
+//
+// Each set's results are compared with what it had before, and each function that comes out
+// better or worse is listed as the run goes.
 //
 // Each set is checked in a process of its own. generated has the commit it was checked at (and
-// "uncommitted": true if src/ or data/ had changes not yet committed), the date, how many
-// functions came out each way, the model's loose parts, and one entry per function, in the same
-// order as curated.functions: its result, how far each control went each way, and the parts that
-// didn't do what they should ("still": in `moves` but didn't move; "moved": in `stays` but did).
+// "uncommitted": true if src/ or data/ had changes not yet committed, and "holds": true if checked
+// with KINEBRICK_LEAST=0), the date, how many functions came out each way, the model's loose
+// parts, and one entry per function, in the same order as curated.functions: its result, how far
+// each control went each way, and the parts that didn't do what they should ("still": in `moves`
+// but didn't move; "moved": in `stays` but did).
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
-import { Kinematics } from '../src/kinematics.ts';
+import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Mechanism } from '../src/mechanism.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
+import { gearRates, line } from './gear-rates.ts';
 import { loadModel } from './load-model.ts';
+import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
 const SETS_DIR = join('data', 'sets');
 // How far a control is turned each way (radians), or pushed (LDU) if it slides.
@@ -37,13 +61,35 @@ const PUSH = 20;
 // A part counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
 const LIMIT_MINUTES = 30;
+// A drag is measured in pieces of this many radians (or LDU, for a slide), adding up how far each
+// part went in each: a part geared up turns further than half a turn, which its pose alone can't
+// tell.
+const PIECE = 0.1;
+// A part counts as moving by the wrong amount if its rate is more than this share off what its
+// gears say.
+const RATE_OFF = 0.03;
+// A piston counts as sliding by the wrong amount if it's this far (LDU) off what its crank's turn
+// says, besides RATE_OFF of it.
+const STROKE_OFF = 0.1;
+// After there and back, a part counts as having strayed if it's this far (LDU) or this much
+// (degrees) from where it started.
+const BACK = 0.5;
+// The quick sets: between them, every kind of mechanism the check can work (in the mechanism
+// catalog), but two only the slow 42054 and 42055 have, chosen for the least time the check
+// takes: about 6 minutes of one core's time in all, at 0.850.
+const QUICK = ['8270', '42107', '8849', '42061', '42109', '8001', '8204', '8245', '8851', '8856', '8208', '8448', '8824', '8202', '42084', '42074', '42071', '8845', '8837', '858', '8074', '42063', '42057', '42065', '956', '8081', '8049', '8416', '42112', '42129', '9394', '42000', '42114'];
 
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
-  turned?: [number, number][]; // each control's turn (or push), each way
+  turned?: [number, number][]; // each control's turn against what its shaft turns in (or push), each way
   still?: string[];
   moved?: string[];
+  rates?: Record<string, [number, number]>[]; // for each control, in the way taken, each listed part's turning and sliding for each radian it turned
+  expected?: Record<string, number>[]; // for each control, what its gears say for the parts that have a say
+  wrong?: string[];
+  back?: [number, number][][]; // for each control, each way: the furthest a part is left after there and back (LDU, degrees)
+  strayed?: string[];
   why?: string[];
 }
 interface Fn {
@@ -51,6 +97,7 @@ interface Fn {
   moves?: string[];
   stays?: string[];
   first?: { control: string; by: number }[];
+  together?: boolean; // the controls are worked as one, turning together (see turnTogether)
   skip?: string;
   model?: string; // its own model, for a set with several (the 858's four engines)
 }
@@ -69,8 +116,13 @@ function check(set: { curated: { model: string; functions: Fn[] } }) {
     });
     loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
   }
-  const counts: Partial<Record<Result, number>> = {};
-  for (const c of checked) counts[c.result] = (counts[c.result] ?? 0) + 1;
+  const counts: Partial<Record<Result | 'wrong amount' | 'not back', number>> = {};
+  const count = (what: keyof typeof counts) => (counts[what] = (counts[what] ?? 0) + 1);
+  for (const c of checked) {
+    count(c.result);
+    if (c.wrong) count('wrong amount');
+    if (c.strayed) count('not back');
+  }
   return { counts, loose, functions: checked };
 }
 
@@ -135,21 +187,73 @@ function checkModel(model: string, functions: Fn[]) {
     const j = mech.joints.find((x) => x.motor && (x.bodyA === b || x.bodyB === b));
     return j ? (j.bodyA === b ? j.bodyB : j.bodyA) : b;
   };
+  // The bodies turned with the one worked, for a function whose controls are worked together.
+  let together: number[] = [];
   // Works a body's joint as a drag does, as far as it goes up to `amount`; how far it went.
   const turn = (body: number, amount: number) => {
     const joint = kin.parentLink(body)!.joint;
+    if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
     const turned = kin.turnJoint(joint, amount, () => kin.atLimit() === null);
     kin.letGoAfterDrag();
     return turned;
   };
   const round = (x: number) => Math.round(x * 100) / 100;
+  // To 3 significant figures.
+  const sig = (x: number) => Number(x.toPrecision(3));
+  // Where a part is against a body (its place and pose).
+  const relative = (part: number, body: number, poses: Matrix4[]) => poses[body].clone().invert().multiply(poses[mech.bodyOf[part]]);
+  const angle = (a: Matrix4, b: Matrix4) => {
+    const q = new Quaternion().setFromRotationMatrix(a.clone().invert().multiply(b));
+    return 2 * Math.acos(Math.min(1, Math.abs(q.w)));
+  };
+  // turn, in pieces (see PIECE), adding up how far each of `parts` turns (radians) and slides
+  // (LDU) against its body on the way, and calling `each` after each piece.
+  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}) => {
+    const joint = kin.parentLink(body)!.joint;
+    if (together.length) kin.turnTogether(body, together);
+    kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
+    const went = parts.map(() => [0, 0]);
+    let was = parts.map((p) => relative(p.part, p.body, kin.poses));
+    let turned = 0;
+    while (Math.abs(turned) < Math.abs(amount) - 1e-9) {
+      const piece = Math.sign(amount) * Math.min(PIECE, Math.abs(amount) - Math.abs(turned));
+      const step = kin.turnJoint(joint, piece, () => kin.atLimit() === null);
+      turned += step;
+      each();
+      const is = parts.map((p) => relative(p.part, p.body, kin.poses));
+      parts.forEach((p, k) => {
+        went[k][0] += angle(was[k], is[k]);
+        went[k][1] += at[p.part].clone().applyMatrix4(is[k]).distanceTo(at[p.part].clone().applyMatrix4(was[k]));
+      });
+      was = is;
+      if (Math.abs(step) < Math.abs(piece) - 1e-9) break;
+    }
+    kin.letGoAfterDrag();
+    return { turned, went };
+  };
+  // The furthest any part is from where it was in `poses` (LDU, degrees), and the part that's
+  // furthest (by LDU, or degrees for a part that only turns).
+  const furthest = (poses: Matrix4[]) => {
+    let most = { ldu: 0, degrees: 0, part: -1, by: 0 };
+    parts.forEach((_, i) => {
+      const b = mech.bodyOf[i];
+      const ldu = at[i].clone().applyMatrix4(kin.poses[b]).distanceTo(at[i].clone().applyMatrix4(poses[b]));
+      const degrees = (angle(poses[b], kin.poses[b]) * 180) / Math.PI;
+      const by = Math.max(ldu, degrees);
+      most = { ldu: Math.max(most.ldu, ldu), degrees: Math.max(most.degrees, degrees), part: by > most.by ? i : most.part, by: Math.max(by, most.by) };
+    });
+    return most;
+  };
 
   const checkOne = (fn: Fn): Checked => {
     if (fn.skip) return { result: 'skipped' };
     if (!fn.control) return { result: 'not checked' };
     const why: string[] = [];
-    const ways = [fn.control].flat().map((ref) => {
+    // Controls worked together are worked as one, by the first, the others turning with it.
+    const controls = [fn.control].flat();
+    const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref) => {
+      together = [];
       use(asLoaded);
       kin.reset();
       for (const first of fn.first ?? []) {
@@ -178,29 +282,97 @@ function checkModel(model: string, functions: Fn[]) {
       const link = kin.parentLink(b);
       if (b === 0 || !link) {
         why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
-        return { works: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false };
+        return { works: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[] };
       }
       const reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
+      if (fn.together) together = controls.map((r) => worked(part(r)));
       const start = kin.snapshot();
       const startPoses = kin.poses.map((m) => m.clone());
+      const listed = [...moves, ...stays];
+      // What the gears say, for listed parts measured against the frame (not those on the
+      // control's own body, which turn with it whatever the gears do).
+      const geared = gearRates(mech, (x) => kin.parentLink(x), b, together);
+      const expected: Record<string, number> = {};
+      for (const m of listed) if (m.body === 0 && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
+      // How far the control really turns: against what its shaft turns in (see housing), not
+      // just its joint's angle, which a shaft spinning back under it makes up without the
+      // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
+      const slides = mech.joints[link.joint].kind === 'slide';
+      const itself = { part: mech.bodies[b].parts[0], body: kin.housing(b) };
+      // The pistons in `moves`, each with its slider-crank (see sliderCranks): how far it should
+      // slide in its cylinder is set by how far its crank turns, whatever turned the crank.
+      const cranks = sliderCranks(mech, (x) => kin.parentLink(x));
+      const pistons = moves.flatMap((m) => cranks.filter((sc) => sc.piston === mech.bodyOf[m.part]).slice(0, 1).map((sc) => ({ m, sc, in: { part: m.part, body: sc.cylinder } })));
+      // A crank's angle against its housing (see line), from where it was built.
+      const crankAngle = (c: number) => {
+        const l = line(mech, (x) => kin.parentLink(x), c)!.joints;
+        return l.reduce((sum, j) => sum + kin.jointAngles[j.joint] * Math.sign(j.axis.dot(l[0].axis)), 0);
+      };
       const each = [1, -1].map((way) => {
         kin.restore(start);
-        const turned = turn(b, way * reach);
+        // How far each piston should slide, piece by piece, as its crank turns.
+        let was = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
+        const should = pistons.map(() => 0);
+        const measured = turnMeasuring(b, way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
+          const now = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
+          now.forEach((x, k) => (should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!)));
+          was = now;
+        });
+        const went = measured.went;
+        // The joint's own turn, to work it back again.
+        const joint = measured.turned;
+        const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
         const shifted = catchShifts(placedNow(), table, catches);
         const still = moves.filter((m) => !moved(m, startPoses, shifted)).map((m) => m.ref);
         const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
-        return { turned, still, moved: wrong, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
+        const rates: Record<string, [number, number]> = {};
+        listed.forEach((m, k) => (rates[m.ref] = Math.abs(turned) > 1e-6 ? [sig(went[k][0] / Math.abs(turned)), sig(went[k][1] / Math.abs(turned))] : [0, 0]));
+        // A rate is the part's turning, or its sliding if it slides on its joint.
+        const rateOf = (m: (typeof listed)[number]) => rates[m.ref][kin.parentLink(mech.bodyOf[m.part]) && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide' ? 1 : 0];
+        const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
+        // Each piston's slide in its cylinder, against what its crank's turn says, both for
+        // each radian the control turned.
+        const strokes: Record<string, number> = {};
+        pistons.forEach((p, k) => {
+          if (!Number.isFinite(should[k]) || Math.abs(turned) < 0.01) return;
+          strokes[p.m.ref] = sig(should[k] / Math.abs(turned));
+          const slid = went[listed.length + 1 + k][1];
+          if (Math.abs(slid - should[k]) > RATE_OFF * should[k] + STROKE_OFF) off.push(p.m.ref);
+        });
+        // There and back: worked back as far as it went, as a new drag.
+        const there = kin.snapshot();
+        if (Math.abs(joint) >= 0.01) turn(b, -joint);
+        const most = furthest(startPoses);
+        kin.restore(there);
+        const back: [number, number] = [round(most.ldu), round(most.degrees)];
+        const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
       });
       kin.restore(start);
+      together = [];
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
-      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something };
+      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed) };
     });
     const result: Result = ways.every((w) => w.works) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
     const still = [...new Set(ways.flatMap((w) => w.still))];
     const wrong = [...new Set(ways.flatMap((w) => w.moved))];
-    return { result, turned: ways.map((w) => w.turned), ...(still.length ? { still } : {}), ...(wrong.length ? { moved: wrong } : {}), ...(why.length ? { why: [...new Set(why)] } : {}) };
+    const off = [...new Set(ways.flatMap((w) => w.off))];
+    const strayed = [...new Set(ways.flatMap((w) => w.strayed))];
+    const expected = ways.some((w) => Object.keys(w.expected).length) ? { expected: ways.map((w) => w.expected) } : {};
+    return {
+      result,
+      turned: ways.map((w) => w.turned),
+      ...(still.length ? { still } : {}),
+      ...(wrong.length ? { moved: wrong } : {}),
+      rates: ways.map((w) => w.rates),
+      ...expected,
+      ...(off.length ? { wrong: off } : {}),
+      back: ways.map((w) => w.back),
+      ...(strayed.length ? { strayed } : {}),
+      ...(why.length ? { why: [...new Set(why)] } : {}),
+    };
   };
 
   const checked = functions.map((fn) => {
@@ -211,6 +383,30 @@ function checkModel(model: string, functions: Fn[]) {
     }
   });
   return { checked, loose: mech.loose.map(name) };
+}
+
+// How each result ranks, best first, for telling better from worse.
+const RANK: Record<Result, number> = { works: 0, partly: 1, no: 2, error: 3, skipped: 4, 'not checked': 4 };
+
+// What's better or worse in a set's functions than it was before (`was`, its generated
+// functions then): a result, a part moving by the wrong amount, or not coming back.
+function changes(functions: { does: string }[], was: Checked[], now: Checked[]): string[] {
+  const lines: string[] = [];
+  now.forEach((c, i) => {
+    const before = was[i];
+    const what = `function ${i + 1} (${functions[i].does.slice(0, 50)}…)`;
+    if (!before) return;
+    if (RANK[c.result] < RANK[before.result]) lines.push(`better: ${what} ${before.result} → ${c.result}`);
+    if (RANK[c.result] > RANK[before.result]) lines.push(`worse: ${what} ${before.result} → ${c.result}`);
+    // Only once both were measured for amounts.
+    if (before.rates) {
+      const [wrongBefore, wrongNow] = [before.wrong?.length ?? 0, c.wrong?.length ?? 0];
+      if (wrongNow !== wrongBefore) lines.push(`${wrongNow < wrongBefore ? 'better' : 'worse'}: ${what} ${wrongNow} parts by the wrong amount, had ${wrongBefore}`);
+      const [backBefore, backNow] = [before.strayed?.length ?? 0, c.strayed?.length ?? 0];
+      if (backNow !== backBefore) lines.push(`${backNow < backBefore ? 'better' : 'worse'}: ${what} ${backNow} parts not back, had ${backBefore}`);
+    }
+  });
+  return lines;
 }
 
 // ---------------------------------------------------------------------------
@@ -230,11 +426,15 @@ async function main() {
   const jobs = jobsAt >= 0 ? Number(args[jobsAt + 1]) : Math.max(1, Math.floor(availableParallelism() / 2));
   const limitAt = args.indexOf('--limit');
   const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : LIMIT_MINUTES;
-  const filters = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
+  const named = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
+  // A set's number, followed by "-" so that 855 doesn't also pick the 8855.
+  const filters = args.includes('--quick') ? QUICK.map((n) => `${n}-`) : named;
   const commit = execSync('git rev-parse --short HEAD').toString().trim();
   // No shell, so the pathspec isn't left quoted by Windows' cmd.
   const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets']).toString().trim() !== '';
   const date = new Date().toISOString().slice(0, 10);
+  // Checked with holds rather than least motion (KINEBRICK_LEAST=0; see docs/least-motion.md).
+  const holds = !experiments.leastMotion;
 
   // The sets with functions, smallest model first.
   const files = readdirSync(SETS_DIR)
@@ -275,13 +475,14 @@ async function main() {
         }
         // Read afresh, so only generated changes, whatever else changed meanwhile.
         const data = JSON.parse(readFileSync(s.file, 'utf-8'));
-        data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), date, ...found };
+        if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${line}`);
+        data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, ...found };
         writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
         const summary = 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
         console.log(`${data.set}: ${summary} (${seconds} s)`);
         checking.delete(s.data.set);
         done++;
-        if ('counts' in found) for (const [k, n] of Object.entries(found.counts)) results[k as Result] = (results[k as Result] ?? 0) + n;
+        if ('counts' in found) for (const [k, n] of Object.entries(found.counts)) if (k in RANK) results[k as Result] = (results[k as Result] ?? 0) + n;
         resolve();
       });
     });

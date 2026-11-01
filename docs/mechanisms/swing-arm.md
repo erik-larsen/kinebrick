@@ -4,7 +4,7 @@ One arm carries the rear wheel, both rear wheels or the whole rear unit, pivotin
 
 First appears in 1988, in [8832 Roadster](https://erik-larsen.github.io/kinebrick/?model=8832-Roadster): The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.
 
-Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 3 works, 9 partly, 4 no.
+Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 4 works, 5 partly, 7 no.
 
 ## By decade
 
@@ -32,7 +32,7 @@ Each detail by the set it first appears in.
 
 **1990, [8840 Rally Shock n' Roll Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8840-1)**
 
-- The rear suspension: the whole rear frame, carrying the rear wheels and the engine, swings up and down on the cross axle under the seat, held by two shock absorbers from the body down to the rear half-shafts. (partly)
+- The rear suspension: the whole rear frame, carrying the rear wheels and the engine, swings up and down on the cross axle under the seat, held by two shock absorbers from the body down to the rear half-shafts. (no)
 
 **1991, [8810 Cafe Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8810-1)**
 
@@ -44,7 +44,7 @@ Each detail by the set it first appears in.
 
 **1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1)**
 
-- The rear wheel rides on a swinging arm: a 1x10 brick and a triangular liftarm on each side pivot on the 8-long axle that carries the chain's front gear, and two long shock absorbers run from the rear of the arm up to an axle under the seat, so the rear wheel can rise and fall while the chain stays taut. (works)
+- The rear wheel rides on a swinging arm: a 1x10 brick and a triangular liftarm on each side pivot on the 8-long axle that carries the chain's front gear, and two long shock absorbers run from the rear of the arm up to an axle under the seat, so the rear wheel can rise and fall while the chain stays taut. (partly)
 
 **1992, [8836 Sky Ranger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8836-1)**
 
@@ -64,15 +64,15 @@ Each detail by the set it first appears in.
 
 **2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1)**
 
-- The rear wheel rides on a swing arm pivoted under the seat, with a yellow shock absorber from the frame to the swing arm, so the rear wheel moves up and down; the chain runs round the sprocket on the pivot axle, so the drive to the engine keeps working. (partly)
+- The rear wheel rides on a swing arm pivoted under the seat, with a yellow shock absorber from the frame to the swing arm, so the rear wheel moves up and down; the chain runs round the sprocket on the pivot axle, so the drive to the engine keeps working. (works)
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 
-- The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame. (partly)
+- The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame. (works)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
-- *rear axle:* The rear axle is a swinging, sprung unit: it pivots at its front end and a single shock absorber above the differential lets it rise and fall. (partly)
+- *rear axle:* The rear axle is a swinging, sprung unit: it pivots at its front end and a single shock absorber above the differential lets it rise and fall. (no)
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
@@ -84,7 +84,7 @@ Each detail by the set it first appears in.
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
-- The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall. (partly)
+- The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall. (no)
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 

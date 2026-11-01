@@ -4,7 +4,7 @@ A spring or rubber band holds a part up, pulls it back, or springs it back once 
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The rubber band pulls the ratchet's lever down onto the gears.
 
-Used in 54 of the 186 surveyed sets, by 63 functions. Kinebrick: 3 works, 4 partly, 56 skipped.
+Used in 54 of the 186 surveyed sets, by 63 functions. Kinebrick: 3 works, 2 partly, 2 no, 56 skipped.
 
 ## By decade
 
@@ -127,7 +127,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- *wheel forks:* The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back. (partly)
+- *wheel forks:* The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back. (no)
 
 **2007, [8272 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8272-1)**
 
@@ -199,7 +199,7 @@ Each detail by the set it first appears in.
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
-- *suspension:* The rear axle is a swinging, sprung unit: it pivots at its front end and a single shock absorber above the differential lets it rise and fall. (partly)
+- *suspension:* The rear axle is a swinging, sprung unit: it pivots at its front end and a single shock absorber above the differential lets it rise and fall. (no)
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 

@@ -19,10 +19,12 @@
           "differential"
         ],
         "source": "book: steps 3-8 (differential), 20-22 (the gears beside it), 37-50 (engine and crankshaft), 118 (the pistons' yellow caps); the drive path from the differential to the crankshaft is inferred from the parts, the book draws no arrows",
+        "skip": "the model's drive shaft has a 12 tooth gear where the set has an 8 tooth one, so it doesn't mesh with the crankshaft's gear: see the LDraw errata",
         "control": [
           "p570 56904",
           "p572 56904"
         ],
+        "together": true,
         "moves": [
           "p10 62821",
           "p6 18575",
@@ -84,33 +86,17 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
-    "date": "2026-10-27",
+    "commit": "3af00c4",
+    "date": "2026-11-01",
     "counts": {
-      "partly": 2,
+      "skipped": 1,
+      "partly": 1,
       "works": 2
     },
     "loose": [],
     "functions": [
       {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ],
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "still": [
-          "p114 55013",
-          "p320 24316",
-          "p323 24316",
-          "p331 24316",
-          "p334 24316"
-        ]
+        "result": "skipped"
       },
       {
         "result": "partly",
@@ -126,6 +112,54 @@
           "p189 32524",
           "p179 48989",
           "p180 48989"
+        ],
+        "rates": [
+          {
+            "p80 24316": [
+              1,
+              9.47e-15
+            ],
+            "p128 60485": [
+              0,
+              0
+            ],
+            "p194 22961": [
+              0,
+              0
+            ],
+            "p189 32524": [
+              0,
+              0
+            ],
+            "p179 48989": [
+              0,
+              0
+            ],
+            "p180 48989": [
+              0,
+              0
+            ],
+            "p114 55013": [
+              0,
+              0
+            ],
+            "p570 56904": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ]
       },
       {
@@ -139,6 +173,32 @@
             1.5,
             -1.5
           ]
+        ],
+        "rates": [
+          {},
+          {}
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ]
       },
       {
@@ -147,6 +207,21 @@
           [
             1.5,
             -1.5
+          ]
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ]
       }

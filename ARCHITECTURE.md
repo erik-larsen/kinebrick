@@ -682,9 +682,24 @@ Only knob-like parts can be kept turning, and only they get a line in the readou
   - A pointer that stops moving stops the turn, even while the axle is carried along (a car rolling).
 - **A frame at a time.** Pointer movements are gathered up and worked through once a frame, for at most 25 ms, so a big model on a slow computer keeps redrawing while it catches up with the pointer. What's left (a turn still owed, or a push not yet at the pointer) carries on in the next frame, and letting go first finishes it.
 
+### Least motion
+
+A drag that turns a joint, and a motor, chooses how the rest of the model follows by [least motion](docs/least-motion.md): of the motions that turn the joint as asked, the one that moves least, judged tier by tier, most important first. Each tier is kept as still as the drag allows, all of it at once, and then the next, among the motions that do that:
+
+1. what slides or swivels on the car (a bumper on tiles, a gear lever on its ball);
+2. on a car on the ground, what steers it;
+3. joints on friction pins and motors' outputs, then what the grabbed part turns against, kept still against the frame as a hand holding the model by its frame would;
+4. every part's turning against the frame: a gear freewheeling on a shaft turns on it rather than turning the shaft, and an assembly hanging on a turning axle stays level. A balanced part, whose middle is on the axis it turns on (an axle, a gear, a propeller), counts its turning against what it turns on instead: nothing keeps it level, and friction carries it round;
+5. every joint's turning;
+6. every part's moving against the frame, for what no joint's turning settles.
+
+Before these the car's frame stays where it is, if it can. Worms and linear actuators still lock, and frozen parts stay frozen. It's solved afresh at each step, from where the model is, so nothing has to be chosen again as the model moves.
+
+Pushes still choose by holds, below, and so does a turn with `?holds` in the address (`KINEBRICK_LEAST=0` for the tests and scripts).
+
 ### Holds
 
-For the length of a drag, Kinebrick holds still every part it can without stopping the drag, so that anything the drag doesn't need to move stays put. These holds last only for the drag, are never shown, and are separate from the parts the user freezes (Alt-click), which stay frozen until unfrozen.
+For the length of a push (or, with `?holds`, a turn), Kinebrick holds still every part it can without stopping the drag, so that anything the drag doesn't need to move stays put. These holds last only for the drag, are never shown, and are separate from the parts the user freezes (Alt-click), which stay frozen until unfrozen.
 
 **What it tries to hold, in order:**
 
@@ -990,8 +1005,13 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 **What it does.** For each function with a control, from where the model was loaded:
 
 - works the function's `first` controls, in order;
-- works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide;
-- checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°).
+- works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide (each control on its own, or for controls marked `together`, the first with the others turning with it, as pushing a vehicle along turns its wheels);
+- checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°);
+- measures how much: how far each listed part turned and slid for each radian the control turned, adding up every piece of the drag (it's worked in pieces of 0.1, since a part geared up turns further than half a turn, which its pose alone can't tell);
+- compares that with what the gears say, where they alone say it (`scripts/gear-rates.ts`): for parts that turn in the frame (straight off it, or on joints all on one line down to it, as a differential's carrier on its half shaft), tied to the control by gears, racks, worms, universal joints (through a CV joint's middle too), chains or a linear actuator's screw, and through a differential once two of its carrier and side gears are known (controls marked `together` give both sides), each speed signed, about its joint's axis, against its housing;
+- compares each piston in `moves` with what its crank's turn says (`scripts/slider-cranks.ts`): of a piston sliding in a cylinder, a rod and a crank turning in what the cylinder is part of, how far the piston should slide for however far the crank turned, worked out from the parts' places;
+- works each way back again, as a new drag, and checks that everything comes back to where it started.
+- counts how far the control turned against what its shaft turns in (the first body up from it not on the same line), not just its joint's angle. A part on an axle free in its holes can have its joint turned with the part itself standing still, the axle spinning back under it: the 8865 Test Car's suspension arms and seats "worked" so, though nothing moved.
 
 **Results.**
 
@@ -1004,13 +1024,26 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 | `not checked` | Nothing is worked by hand |
 | `error` | The check couldn't be made: a part its list names isn't in the model |
 
+Two more counts, beside the result rather than changing it, so results stay comparable with earlier checks:
+
+| Count | |
+|---|---|
+| `wrong amount` | A listed part turned or slid more than 3% off what its gears say |
+| `not back` | After there and back, a part is more than 0.5 LDU or 0.5° from where it started |
+
 **What it writes.**
 
 - The commit it ran at, and `"uncommitted": true` if `src/` or `data/` had changes not yet committed.
 - The date, how many functions came out each way, and the model's loose parts.
 - One entry per function, in the same order as `curated.functions`: its result, how far each control went each way (`turned`), the parts in `moves` that didn't move (`still`), those in `stays` that did (`moved`), and `why`, where it couldn't work a control.
+- For each control, each listed part's turning (radians) and sliding (LDU) for each radian the control turned, the way it was worked that came out best (`rates`); what the gears say, where they do (`expected`), and the parts off it (`wrong`).
+- For each control and way, the furthest any part was left after there and back, in LDU and degrees (`back`), and the part furthest out (`strayed`), if it's beyond 0.5.
 
-**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. A set that takes longer than 30 minutes (`--limit`) is stopped and written down as timed out. `npm run functions -- 855 8880` checks only those sets. Once a minute it says how far it's got: how many sets are done and left, their functions' results so far (works, partly, no, and skipped or not checked, each with its share), and which sets it's checking, with how long each has taken so far.
+**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. As each set finishes, every function that comes out better or worse than the set had before is listed: its result, or how many parts move by the wrong amount or don't come back.
+
+**The quick check.** `npm run functions -- --quick` checks only 33 sets, which between them have every kind of mechanism the check can work in the [mechanism catalog](docs/mechanisms/README.md) (bar two only the slow 42054 and 42055 have), chosen for the least time: about 2 minutes on this Mac, 5 at a time. It's for every change; the whole check, which takes hours (the 8110 alone took 100 minutes before the drags back doubled its drags), is for overnight.
+
+A set that takes longer than 30 minutes (`--limit`) is stopped and written down as timed out. `npm run functions -- 855 8880` checks only those sets. Once a minute it says how far it's got: how many sets are done and left, their functions' results so far (works, partly, no, and skipped or not checked, each with its share), and which sets it's checking, with how long each has taken so far.
 
 **What it can't do yet.** It doesn't click a slide between positions set by a `SLIDE` line, as the viewer does (the 956's gear lever), shift a gearbox's rings, or run a motor, so those functions come out `partly` or `no` here even where the viewer works them.
 
@@ -1083,6 +1116,8 @@ Browser-level tests for these paths can come later.
 | `scripts/download-instructions.ts` | Downloads each set's building instructions into `omr/instructions/`, LEGO's PDFs or else brickinstructions.com's scans, and writes which are which into its `imported.instructions` (`npm run instructions`) |
 | `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [The joints probe](#the-joints-probe)) |
 | `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
+| `scripts/gear-rates.ts`, `scripts/slider-cranks.ts` | What gears and slider-cranks say parts should do, without the solver, for the function check |
+| `scripts/bench-solver.ts` | Times the solver on a fixed set of drags, small models to the biggest (`npm run bench`; `--quick` leaves out the 8110 Unimog) |
 | `scripts/load-model.ts` | Reads a model as the viewer does, from `models/` or `omr/`, for the probe and the function check |
 | `scripts/prerelease.ts` | Puts a branch up as the site's pre-release, at `/prerelease/`, by setting the repository variable the Pages workflow reads and running it (`npm run prerelease -- <branch>`; `--off` takes it down) |
 | `scripts/survey-branch.ts` | Commits each OMR set's findings from `npm run joints -- --omr --commit` to the `omr-survey` branch, one commit per set per run, and pushes it |
