@@ -2920,7 +2920,12 @@ function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers:
   if (k === 0) return null;
   const rates = motions.map(rate);
   const last = motions.map(tiers.find((t) => t.joints)!.cost);
-  const scale = Math.max(...last.map((s) => s.reduce((sum, x) => sum + x * x, 0)));
+  // How much the motions turn the joints, which says which tiers' costs are only rounding (see
+  // NOISE). For a correction (with an offset), at least as much as a motion of unit size: its
+  // free motions may barely turn a joint (a truck sliding on its tyres, which may scrub), and
+  // judged against them, the rounding in a tier nothing moves (its steering) chose a mix
+  // thousands of times the correction, flinging the 42041 Race Truck hundreds of LDU.
+  const scale = Math.max(offset ? 1 : 0, ...last.map((s) => s.reduce((sum, x) => sum + x * x, 0)));
   const rr = rates.reduce((sum, r) => sum + r * r, 0);
   // With an offset (one problem for each step, see closeLoops), the motion chosen is the offset
   // plus a mix, the mix turning the joint at what's left of `target`, and each tier costing

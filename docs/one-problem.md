@@ -1,6 +1,6 @@
 # One problem for each step: a plan
 
-A design note and prototype report for line 3 of the [solver phase](solver-phase.md): taking a drag's step as one problem, rather than choosing a motion, moving along it and then closing the loops as separate passes, built as [least motion](least-motion.md) was. The first round is in (see First round, below), behind `KINEBRICK_ONE=1`.
+A design note and prototype report for line 3 of the [solver phase](solver-phase.md): taking a drag's step as one problem, rather than choosing a motion, moving along it and then closing the loops as separate passes, built as [least motion](least-motion.md) was. The first round is in (see First round, below), behind `KINEBRICK_ONE=1`, and what flung the 42041 Race Truck in it is found and fixed.
 
 ## How a step is taken now
 
@@ -74,7 +74,19 @@ Tried, and not kept:
 - **A cap on the mix**, against the closing (10 times it), or against how far the step turned the joint: the 8865's engine needs a mix 1,000 times the closing near the end of a step, when the closing is tiny; and the mix's size mixes units (a joint's radians with the model's LDU), so a cap the 956 lets through, the 42041 slips past.
 - **Damping the tier solve** (Tikhonov, the directions that move a tier by under a share of the most a free motion does taken out only partly): at 10⁻⁶ of it, the 42041 still flies off; at 10⁻⁴ it comes back as with the switch off, but the 956 fails its tests of driving round a circle and of its gear lever, which need the tiers' cancelling to be exact over many turns.
 
-So the 956 needs a direction that barely moves a tier followed exactly, and the 42041 is flung by following one. What tells them apart is what else the mix moves: the 42041's moves the whole model hundreds of LDU for nothing, the 956's moves next to nothing else. That points to the tiers' order being the wrong tool for a correction: a correction should be judged by everything it moves, each tier counting far more than the next but not infinitely more (weighted least squares with steep weights, rather than strictly one tier after another), so that a hair less in one tier can't buy a great deal more of the next. That's the next round.
+So the 956 needs a direction that barely moves a tier followed exactly, and the 42041 is flung by following one. The next round looked for what tells them apart.
+
+### What it was
+
+Not the tiers' order. Weighing the tiers softly instead, each counting 10 times the next in one least-squares solve, brought the 42041 back and passed the 956's tests, but let later tiers bleed into earlier ones: the 8880 Super Car's gearbox ratios came out 2.237 for 2.25, and the 858 Auto Engines' push rods and the 854 Go-Kart's tyres failed. Ranking the tiers strictly again, but damping each tier's solve by what its directions move in the tiers after it, also brought the 42041 back, at any damping down to 10⁻³⁰: so it wasn't the damping, and logging the steering tier in the 42041's flinging corrections showed what it was.
+
+Its scale, the most any free motion turns the steering, was 9 × 10⁻²⁶: nothing free steers at all, and what the tier measured was rounding. A tier like that is meant to be passed over (`NOISE`), judged against how much the motions turn the joints. But a correction's free motions are mostly the truck sliding on its tyres, which may scrub, and turn the joints next to nothing: 4 × 10⁻⁶ at most, so the rounding passed for a cost, and its direction, at 5 × 10⁻¹⁰ of it, just above `TIER_TOLERANCE`, was followed thousands of times the correction's size to take a hair out of it.
+
+The fix: a correction's tiers are judged against at least a motion of unit size, since its free motions are orthonormal. With it, the 42041's parts come back within 0.14 LDU, as with the switch off, and all 329 tests pass. On the 46 iteration sets, as many functions work as with it off, and one more partly works, as before; there and back, against the switch off, 12 functions bring back more of what they moved and 8 less (none of them the 42041's). It took 2,594 s of the machine's time, against 3,335 s with it off.
+
+### What's left
+
+The 8 that bring back less: the 42029 Customized Pick up Truck's f3 and f4 (5 LDU off to 22 and 32), the 42037 Formula Off-Roader's f5, the 42056 Porsche's f6, the 42096 Porsche 911 RSR's f5 (35 to 216), the 8081 Extreme Cruiser's front suspension (which now moves, and doesn't all come back), the 8448 Super Street Sensation's f5 (10 to 88) and the 9394 Jet Plane's f4 (0.3 to 13). Then the Newton step proper (stage 2), and tyres and play as rows (stage 4).
 
 ## Risks
 
