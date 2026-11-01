@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 45 works, 21 partly, 56 no, 2 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 45 works, 20 partly, 57 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -233,7 +233,7 @@ Each detail by the set it first appears in.
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
 - *stabiliser legs:* The black gears at the two sides of the crane's subframe swing the striped stabiliser legs down to the ground or up for driving. (works)
-- *cab:* The cab tilts forward on hinges at its front, showing the engine. (partly)
+- *cab:* The cab tilts forward on hinges at its front, showing the engine. (no)
 
 **2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1)**
 
