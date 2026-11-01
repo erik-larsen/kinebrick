@@ -14,6 +14,7 @@
     "scan": "tsx scripts/scan-omr.ts",
     "joints": "tsx scripts/probe-joints.ts",
     "functions": "tsx scripts/check-functions.ts",
+    "bench": "tsx scripts/bench-solver.ts",
     "thumbs": "tsx scripts/thumbs.ts",
     "mechanisms": "tsx scripts/mechanisms.ts",
     "data": "npm run import && npm run connections && npm run pack"

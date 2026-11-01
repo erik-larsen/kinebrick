@@ -42,7 +42,7 @@ And faster:
 
 ### 3. One problem for each step
 
-Choosing the motion, taking the step and closing the loops become one problem: of the positions that keep every connection and turn the dragged joint as far as asked, the one that costs least, least motion's tiers being the cost. Ends of travel and contacts are limits it may not pass. That's how robots' inverse kinematics and position-based physics engines work. Closing the loops as a separate pass goes, a dead point is just a step with no answer, play is a soft weight, and the car standing on its tyres is one more connection.
+Choosing the motion, taking the step and closing the loops become one problem: of the positions that keep every connection and turn the dragged joint as far as asked, the one that costs least, least motion's tiers being the cost. Ends of travel and contacts are limits it may not pass. That's how robots' inverse kinematics and position-based physics engines work. Closing the loops as a separate pass goes, a dead point is just a step with no answer, play is a soft weight, and the car standing on its tyres is one more connection. The plan for it, and what it should retire, is in [One problem for each step](one-problem.md).
 
 ### 4. MuJoCo as a second opinion
 
