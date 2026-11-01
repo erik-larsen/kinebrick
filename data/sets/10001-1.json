@@ -1,0 +1,22 @@
+{
+  "set": "10001-1",
+  "imported": {
+    "instructions": []
+  },
+  "curated": {
+    "model": "models/10001-Metroliner.mpd",
+    "instructions": "",
+    "settings": {
+      "10001-Metroliner": [
+        "0 !KINEBRICK SQUARE"
+      ]
+    },
+    "functions": [],
+    "questions": [
+      {
+        "question": "The file places its trains and curved track with their cosines rounded to 1, which stretches them by 2 to 3%, and its couplings 1 to 3 LDU off their pins and hinges (corrected in models/, see docs/ldraw-errata.md). Is there a better copy of the layout?"
+      }
+    ]
+  },
+  "generated": {}
+}

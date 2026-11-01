@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { modelFiles } from '../src/ldr.ts';
-import { packModel } from '../src/pack.ts';
+import { packModel, drawnDirectly } from '../src/pack.ts';
 
 // A model opened from your own computer is packed in the browser, its parts fetched from an LDraw
 // library online, and connected by the table for the whole library. Opening one of Kinebrick's
@@ -36,7 +36,7 @@ describe('packModel', () => {
     const packed = readFileSync(`packed/${base}.mpd`, 'utf-8');
     const files = modelFiles(packed);
     const readFile = async (name: string) => (files.get(name) ?? files.get('parts/' + name) ?? files.get('p/' + name) ?? models[base].pieces[name])?.join('\n') ?? null;
-    return { packed, result: packModel(base, readFileSync(`models/${file}`, 'utf-8'), colours, readFile, (name) => primitives.has(name), roles) };
+    return { packed, result: packModel(base, readFileSync(`models/${file}`, 'utf-8'), colours, readFile, (name) => drawnDirectly(name, primitives), roles) };
   };
 
   for (const file of readdirSync('models').filter((f) => /\.(ldr|mpd)$/.test(f))) {

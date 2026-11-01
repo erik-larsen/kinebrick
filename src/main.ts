@@ -40,7 +40,7 @@ import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
-import { packModel, shapeName } from './pack.ts';
+import { drawnDirectly, packModel, shapeName } from './pack.ts';
 import { studioModel, studioParts } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
 import connectionsUrl from '../data/connections.json?url';
@@ -324,7 +324,7 @@ async function start() {
     const known = (piece: string) => table.parts[piece] !== undefined || stickers.has(piece);
     const pieces = (text: string) => text.split(/\r?\n/).flatMap((line) => (/^\s*1\s/.test(line) ? [normalizePartName(line.trim().split(/\s+/).slice(14).join(' '))] : []));
     const split = [...studio].filter(([name, text]) => !known(name) && pieces(text).length > 0 && pieces(text).every(known)).map(([name]) => [name, 'split']);
-    const result = await packModel(FILE.replace(/\.(ldr|mpd|io)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => primitiveSet.has(name), { ...roles, ...Object.fromEntries(split) });
+    const result = await packModel(FILE.replace(/\.(ldr|mpd|io)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => drawnDirectly(name, primitiveSet), { ...roles, ...Object.fromEntries(split) });
     summary.textContent = 'Loading…';
     packed = result;
     titles = Promise.resolve(result.titles);

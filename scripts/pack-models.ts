@@ -9,7 +9,10 @@
 // packed/colours.ldr, the library's colours; and for the scripts that read sets from the OMR,
 // packed/pieces.json, the pieces of every part in the library read as its pieces.
 //
-// Needs the LDraw parts library in ldraw/. Run with: npm run pack
+// Needs the LDraw parts library in ldraw/. Run with: npm run pack, or npm run pack -- 10001 to
+// pack only the models whose name has that in it (the rest keep their packed files and their
+// lines in models.json and titles.json: a library newer than the one they were packed with would
+// otherwise pack them afresh, differently).
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -34,15 +37,23 @@ const colours = readFileSync(join(LDRAW_DIR, 'LDConfig.ldr'), 'utf-8')
   .join('\n');
 
 mkdirSync(OUT_DIR, { recursive: true });
-const titles: Record<string, string> = {};
+const only = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const keep = (file: string) => existsSync(file) && only.length ? JSON.parse(readFileSync(file, 'utf-8')) : {};
+const titles: Record<string, string> = keep(join(OUT_DIR, 'titles.json'));
 
-const models: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = {};
+const models: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = keep(join(OUT_DIR, 'models.json'));
 
-// An LDraw primitive (a piece of shape, such as a cylinder), rather than a part.
-const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
+// An LDraw primitive (a piece of shape, such as a cylinder), rather than a part; and a subpart
+// (a file under parts/s/, a piece of a part's shape), which a model file may place directly (a
+// sticker's, in an embedded sticker file): the loader draws it into whatever places it, as it
+// does a primitive, rather than making a part of it.
+const isPrimitive = (name: string) => {
+  const path = name.replace(/\\/g, '/');
+  return /^s\//i.test(path) ? existsSync(join(LDRAW_DIR, 'parts', path)) : !existsSync(join(LDRAW_DIR, 'parts', path)) && existsSync(join(LDRAW_DIR, 'p', path));
+};
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
 
-for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f)).sort()) {
+for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f) && (only.length === 0 || only.some((o) => f.includes(o)))).sort()) {
   const base = file.replace(/\.(ldr|mpd)$/, '');
   const packed = await packModel(base, readFileSync(join(MODELS_DIR, file), 'utf-8'), colours, readLdrawFile, isPrimitive, roles);
   if (packed.missing.length) throw new Error(`${file}: ${packed.missing.join(', ')} not in the LDraw library (${LDRAW_DIR}/) or the model file`);
@@ -56,7 +67,7 @@ for (const file of readdirSync(MODELS_DIR).filter((f) => /\.(ldr|mpd)$/.test(f))
 writeFileSync(join(OUT_DIR, 'models.json'), JSON.stringify(models, null, 2) + '\n');
 // Packed files of models no longer in models/ (renamed or removed) go too.
 for (const file of readdirSync(OUT_DIR).filter((f) => f.endsWith('.mpd'))) {
-  if (!(file.replace(/\.mpd$/, '') in models)) {
+  if (!only.length && !(file.replace(/\.mpd$/, '') in models)) {
     rmSync(join(OUT_DIR, file));
     console.log(`Removed ${file}: no such model`);
   }

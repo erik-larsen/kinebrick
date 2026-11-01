@@ -460,3 +460,62 @@
 0 // across it (the way a plate in it faces) and into the wall.
 0 !KINEBRICK GROOVE [pos=-43.41 36.61 0] [ori=0.5 -0.866025 0 0.866025 0.5 0 0 0 1] [size=80 8 12]
 0 !KINEBRICK GROOVE [pos=43.41 36.61 0] [ori=-0.5 0.866025 0 0.866025 0.5 0 0 0 -1] [size=80 8 12]
+
+0 // Trains. A 9V train's wheelset is a steel axle with a wheel pressed on either end, which
+0 // turns in the clips under a wheel bogie; its wheels run on the rail heads, 16 LDU above the
+0 // sleepers' base, so with the axle 38 LDU up its wheels' running radius is 22 LDU (their
+0 // flanges reach 29). The 9V motor's four wheels are part of it.
+
+0 FILE 70720c01.dat
+0 // Axle Steel 5 x 112 LDU with Conical Ends with Two Train Wheels: the axle, round, 2.5 LDU in radius, along x, and the two wheels' treads, 22 LDU in radius, centred 50 LDU out either side
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 2.5 112] [center=true] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 22 6] [center=true] [pos=50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 22 6] [center=true] [pos=-50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+
+0 FILE 2878.dat
+0 // Train Wheel Bogie Single Axle without Wheelset: the clips at either end that hold the wheelset's axle, round holes 2.5 LDU in radius along x, 32 LDU below its origin, 50 to 58 LDU out
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 8] [center=true] [pos=54 32 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 8] [center=true] [pos=-54 32 0] [ori=0 1 0 -1 0 0 0 0 1]
+
+0 FILE 70358.dat
+0 // Electric Train Motor 9V (Complete): its four wheels, part of the motor, 60 LDU either side of its middle along z and 42 LDU down, their treads 50 LDU out along x and 20 LDU in radius (the motor sits 2 LDU lower than a wheel bogie, its wheels being smaller). The shadow library has its pivot pin, which turns in a train base's hole as a bogie plate's does (4092a)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 20 6] [center=true] [pos=50 42 60] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 20 6] [center=true] [pos=-50 42 60] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 20 6] [center=true] [pos=50 42 -60] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 20 6] [center=true] [pos=-50 42 -60] [ori=0 1 0 -1 0 0 0 0 1]
+
+0 FILE 70023.dat
+0 // Magnet Cylindrical: the magnet, 12 LDU in radius and 16 long along z, whose faces couple train cars (see magnetCouplings). Axle-shaped, so that it's fixed in its casing (2959), which has the matching socket
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 12 16] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2959.dat
+0 // Magnet Cylindrical Casing: holds its magnet (70023) fast, at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 12 16] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 4092a.dat
+0 // Train Bogie Plate with Long Pin: a 4 x 6 plate (6 along x) whose anti-studs the shadow library leaves out, and whose pin it has 8 LDU too high: the pin stands on the plate's top, from y=0 up to -8, with its clip tip above, and turns in a train base's hole (4093c)
+0 !LDCAD SNAP_CYL [gender=M] [caps=one] [secs=R 6 8 L 6.5 2] [pos=0 0 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-50 8 -30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-50 8 -10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-50 8 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-50 8 30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-30 8 -30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-30 8 -10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-30 8 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-30 8 30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 8 -30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 8 -10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 8 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=-10 8 30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=10 8 -30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=10 8 -10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=10 8 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=10 8 30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=30 8 -30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=30 8 -10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=30 8 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=30 8 30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=50 8 -30]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=50 8 -10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=50 8 10]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=50 8 30]

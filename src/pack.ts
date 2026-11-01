@@ -26,6 +26,14 @@ export function shapeName(submodel: string): string {
   return `kinebrick-shape/${submodel}`;
 }
 
+// Whether a file a model places is drawn into whatever places it, rather than being a part of
+// its own: an LDraw primitive (`primitives` lists the library's), or a subpart (a file under
+// parts/s/, a piece of a part's shape), which a sticker file embedded in a model may place
+// directly. The loader draws both so, and parseModel reads them so (see its isPrimitive).
+export function drawnDirectly(name: string, primitives: Set<string>): boolean {
+  return primitives.has(name) || /^s[\\/]/i.test(name);
+}
+
 // The files a file refers to, from its type 1 lines.
 export function references(text: string): string[] {
   const names: string[] = [];

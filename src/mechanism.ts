@@ -140,6 +140,28 @@ export interface Tread {
   // For a track's wheel, the radius it rolls at: its path's. The track's run along the ground
   // moves at the path's speed, though its links reach further out (to `radius`) under the wheel.
   rollRadius?: number;
+  fixed?: boolean; // a wheel that's part of its body and can't turn (a train motor's), which slides along the rail rather than rolling
+}
+
+// A piece of a train track's centreline (see findRails), in model coordinates as built, at the
+// height of the rail heads: straight from `from` to `to`, or, with `center` and `radius`, an arc
+// about `center` from `from` to `to`.
+export interface Rail {
+  part: number;
+  from: Vector3;
+  to: Vector3;
+  center?: Vector3;
+  radius?: number;
+}
+
+// Two train wheels on one axle, running on the rails (see findRiders): their body, the axle's
+// middle and direction in model coordinates as built, and whether the wheels turn with the body
+// as it rolls (not a train motor's, which are part of it).
+export interface Rider {
+  body: number;
+  center: Vector3;
+  axis: Vector3;
+  rolls: boolean;
 }
 
 // A chain, track or rubber band looped round wheels (a looped path, see PlacedPath). It makes
@@ -224,6 +246,8 @@ export interface Mechanism {
   screws: Screw[]; // linear actuators' screws, each driving a piston as its input turns
   rests: Rest[]; // parts resting on others under gravity: push rods on a camshaft, rockers on the rods
   centers?: Vector3[]; // each body's middle as built: the mean of its parts' origins
+  rails?: Rail[]; // a train track's centreline, piece by piece (see findRails)
+  riders?: Rider[]; // pairs of train wheels on the rails (see findRiders)
 }
 
 // A linear actuator's screw: as the input body turns about the axis, the piston body slides
@@ -412,10 +436,25 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // in it turns, rather than being fixed to the motor and whatever the motor is built into.
   for (const c of cyls) if (roles[c.part] === 'motor' && c.secs.some((s) => s.shape === 'A')) c.turns = true;
   const connections = findConnections(cyls, frictionRigid);
+  // A train track's pieces hold together end to end (nothing else joins them), and the track,
+  // the trains' wheels and what's built on them are assemblies of their own, standing apart
+  // from each other, never loose (see findLooseParts).
+  const rails = findRails(parts, roles);
+  connections.push(...railJoins(rails));
+  connections.push(...magnetCouplings(parts, roles, cyls, connections));
+  const anchors = anchorsOf(roles);
   fixPins(connections, roles, frictionRigid);
+  // A train coupling's magnet casing clicks onto its holder's hinge fingers and swings on them,
+  // stiffly, as a friction pin turns: held, unless nothing else can move. Free, the two casings
+  // of a coupling would swing as the magnets met, and the cars behind them lurch.
+  for (const c of connections) {
+    if (c.kind !== 'revolute' || !((roles[c.male] === 'coupling' && roles[c.female] === 'magnet') || (roles[c.male] === 'magnet' && roles[c.female] === 'coupling'))) continue;
+    if (frictionRigid) [c.kind, c.held] = ['rigid', true];
+    else c.stiff = true;
+  }
   connections.push(...platesOnEdge(cyls));
   connections.push(...onFourStuds(cyls));
-  connections.push(...onTiles(cyls, connections));
+  connections.push(...onTiles(roles, cyls, connections));
   connections.push(...inGrooves(parts, cyls, table));
   connections.push(...guidedRacks(parts.length, cyls, connections, guide));
   connections.push(...decorations(parts, roles, cyls));
@@ -426,14 +465,21 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...toothedBushes(roles, cyls));
   const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
   connections.push(...bushesOnFourStuds(roles, cyls, connections));
-  connections.push(...onAxleTips(cyls, connections));
+  connections.push(...onAxleTips(roles, cyls, connections));
   // Loose parts hanging on a string, or hooked to a chain, are held by it; the rest ride along
   // with what's nearest.
   connections.push(...looseFits(roles, cyls, connections, frictionRigid));
-  const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections), paths);
-  const hooked = hookedParts(cyls, connections, findLooseParts(parts.length, connections), paths);
-  const loose = findLooseParts(parts.length, connections).filter((i) => !hanging.has(i) && !hooked.has(i));
+  const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections, anchors), paths);
+  const hooked = hookedParts(cyls, connections, findLooseParts(parts.length, connections, anchors), paths);
+  const riding = findLooseParts(parts.length, connections, anchors).filter((i) => !hanging.has(i) && !hooked.has(i));
+  // On a train layout, what stands on the table beside the track (a platform, with the figures
+  // on it) is scenery, not loose: it rides along with the track, never with a train that happens
+  // to stand beside it. A few parts on their own are loose as ever, and ride along with what's
+  // nearest, as elsewhere.
+  const loose = rails.length ? smallGroups(parts.length, connections, riding) : riding;
+  const scenery = new Set(riding.filter((i) => !loose.includes(i)));
   connections.push(...rideAlong(parts, cyls, connections, loose));
+  if (scenery.size) connections.push(...rideAlong(parts, cyls, connections, [...scenery], new Set(rails.map((r) => r.part))));
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
   const bodies = nameBodies(bodyOf, roles);
@@ -441,7 +487,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const joints = withoutSlidesOnCouplers(findJoints(connections, bodyOf));
   lineUpAxles(joints);
   lineUpBalls(joints);
-  const treads = findTreads(cyls, bodyOf);
+  const treads = findTreads(cyls, bodyOf, roles);
+  const riders = rails.length ? findRiders(treads) : [];
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
@@ -459,7 +506,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // An actuator whose input or piston is fixed to its body (by what's built round it) can't work.
   const screws = actuators.filter((a) => new Set([a.body, a.input, a.piston].map((i) => bodyOf[i])).size === 3).map((a) => ({ input: bodyOf[a.input], piston: bodyOf[a.piston], center: a.center, axis: a.axis, lead: a.lead }));
   const centers = bodies.map((b) => b.parts.reduce((sum, i) => sum.add(new Vector3().setFromMatrixPosition(parts[i].matrix)), new Vector3()).multiplyScalar(1 / Math.max(1, b.parts.length)));
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers };
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
 }
 
 // A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
@@ -674,6 +721,8 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
 // pin's stiffly.
 function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
+  // Every group but the biggest gets the chance, a train's bogies among them (a layout's cars
+  // are placed by hand, and a bogie's pin may sit a hair over 1 LDU from its hole).
   const loose = new Set(findLooseParts(count, connections.filter((c) => c.kind !== 'slide' && c.kind !== 'ball')));
   if (loose.size === 0) return [];
   const known = new Set(connections.map((c) => `${c.male},${c.female}`));
@@ -748,7 +797,7 @@ function onFourStuds(cyls: WorldCylinder[]): Connection[] {
 // between the plate's studs as well, and mustn't hold the axle still.
 function bushesOnFourStuds(roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  const loose = new Set(findLooseParts(count, connections));
+  const loose = new Set(findLooseParts(count, connections, anchorsOf(roles)));
   if (loose.size === 0) return [];
   const studs = cyls.filter((c) => c.gender === 'M' && isStud(c));
   const held: Connection[] = [];
@@ -770,9 +819,9 @@ function bushesOnFourStuds(roles: string[], cyls: WorldCylinder[], connections: 
 // is pushed on that axle: real parts give a little, so a builder may press a part on an axle
 // already filled by others, where in LDraw it can only sit against its tip (the 858 Auto Engines'
 // fans, two round plates pressed on an axle pin past the bush their rubber band runs in).
-function onAxleTips(cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+function onAxleTips(roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  const loose = new Set(findLooseParts(count, connections));
+  const loose = new Set(findLooseParts(count, connections, anchorsOf(roles)));
   if (loose.size === 0) return [];
   const pushed: Connection[] = [];
   for (const axle of cyls.filter((c) => c.gender === 'M' && c.secs[c.secs.length - 1].shape === 'A')) {
@@ -812,9 +861,9 @@ function fourStudsAround(studs: WorldCylinder[], at: Vector3, dir: Vector3, part
 // the corrections), along the tile's length (whatever keeps it in line is taken as read), as
 // long as it still overlaps the tile by a stud. A part attached otherwise (a seat on a rack)
 // is left to that: a tile lets it slide any way, so a slide along the tile could jam it.
-function onTiles(cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+function onTiles(roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  const loose = new Set(findLooseParts(count, connections));
+  const loose = new Set(findLooseParts(count, connections, anchorsOf(roles)));
   if (loose.size === 0) return [];
   const UP = new Vector3(0, -1, 0);
   const tops = cyls.filter((c) => c.gender === 'F' && c.secs.length === 1 && c.secs[0].shape === 'P' && Math.abs(c.dir.dot(UP)) < 0.01);
@@ -1248,15 +1297,163 @@ function worldCylinders(parts: PlacedPart[], table: ConnectionTable): WorldCylin
   return result;
 }
 
-function findTreads(cyls: WorldCylinder[], bodyOf: number[]): Tread[] {
+function findTreads(cyls: WorldCylinder[], bodyOf: number[], roles: string[]): Tread[] {
   const treads: Tread[] = [];
   for (const c of cyls) {
     const sec = c.secs[0];
     if (c.secs.length !== 1 || sec.shape !== 'W') continue;
     const center = c.start.clone().addScaledVector(c.dir, sec.length / 2);
-    treads.push({ part: c.part, body: bodyOf[c.part], center, axis: c.dir.clone(), radius: sec.radius });
+    treads.push({ part: c.part, body: bodyOf[c.part], center, axis: c.dir.clone(), radius: sec.radius, ...(roles[c.part] === 'train motor' ? { fixed: true } : {}) });
   }
   return treads;
+}
+
+// ---------------------------------------------------------------------------
+// Trains: a track of rails, and the wheels that run on it
+
+// How close the ends of two pieces of track must come to join (LDU): half a stud, since a
+// layout's pieces are laid by hand and an oval may not quite close.
+const RAIL_JOIN = 10;
+// A train's wheels are this far apart on their axle, between where they run on the rail heads
+// (LDU): LEGO's gauge is 5 studs between the rails' centres, and a hair more.
+const GAUGE = 101;
+// A group of this many parts or more, standing apart on a train layout, is scenery.
+const SCENERY = 5;
+
+// The parts whose groups stand on their own, never loose: a train track's rails, and trains'
+// wheels and motors, which run on it.
+function anchorsOf(roles: string[]): Set<number> {
+  const anchors = new Set<number>();
+  roles.forEach((r, i) => {
+    if (r === 'rail' || r === 'train wheel' || r === 'train motor') anchors.add(i);
+  });
+  return anchors;
+}
+
+// The track's centreline, a piece for each rail part, at the height of the rail heads (16 LDU
+// above the sleepers' base). A 9V straight (74746, once 2865) is 320 LDU long along its x; a
+// 9V curve (74747, once 2867) is a 22.5 degree arc, one sixteenth of a circle of 800 LDU radius
+// (40 studs) whose centre is 800 LDU along the part's -z from its origin, the middle of the arc:
+// that's how layouts place the pieces end to end, though the part draws its rails 3 LDU further
+// towards the centre.
+function findRails(parts: PlacedPart[], roles: string[]): Rail[] {
+  const rails: Rail[] = [];
+  const HEAD = -16;
+  parts.forEach((p, i) => {
+    if (roles[i] !== 'rail') return;
+    const name = p.name.replace(/\.dat$/, '');
+    const at = (x: number, z: number) => new Vector3(x, HEAD, z).applyMatrix4(p.matrix);
+    if (name === '74746' || name === '2865') rails.push({ part: i, from: at(-160, 0), to: at(160, 0) });
+    else if (name === '74747' || name === '2867') {
+      // The arc's ends and middle, as placed, and the circle through them: a layout's curves are
+      // often placed with their rotation rounded (a cosine of 1), which stretches the part a
+      // little, so the arc's centre and radius are taken from the three points rather than
+      // from the part.
+      const R = 800;
+      const half = Math.PI / 16;
+      const from = at(-R * Math.sin(half), R * Math.cos(half) - R);
+      const to = at(R * Math.sin(half), R * Math.cos(half) - R);
+      const mid = at(0, 0);
+      const circle = circleThrough(from, mid, to);
+      rails.push({ part: i, from, to, center: circle.center, radius: circle.radius });
+    }
+  });
+  return rails;
+}
+
+// The circle through three points, seen from above (in x and z), at the first point's height.
+function circleThrough(a: Vector3, b: Vector3, c: Vector3): { center: Vector3; radius: number } {
+  const d = 2 * (a.x * (b.z - c.z) + b.x * (c.z - a.z) + c.x * (a.z - b.z));
+  const [a2, b2, c2] = [a.x * a.x + a.z * a.z, b.x * b.x + b.z * b.z, c.x * c.x + c.z * c.z];
+  const x = (a2 * (b.z - c.z) + b2 * (c.z - a.z) + c2 * (a.z - b.z)) / d;
+  const z = (a2 * (c.x - b.x) + b2 * (a.x - c.x) + c2 * (b.x - a.x)) / d;
+  const center = new Vector3(x, a.y, z);
+  return { center, radius: Math.hypot(a.x - x, a.z - z) };
+}
+
+// Pieces of track whose ends meet are joined, rigidly: the track is one assembly.
+function railJoins(rails: Rail[]): Connection[] {
+  const joins: Connection[] = [];
+  for (let a = 0; a < rails.length; a++) {
+    for (let b = a + 1; b < rails.length; b++) {
+      for (const pa of [rails[a].from, rails[a].to]) {
+        for (const pb of [rails[b].from, rails[b].to]) {
+          if (pa.distanceTo(pb) < RAIL_JOIN) joins.push({ male: rails[a].part, female: rails[b].part, kind: 'rigid', from: pa.clone(), to: pb.clone() });
+        }
+      }
+    }
+  }
+  return joins;
+}
+
+// How far apart two magnets' faces may be and still hold (LDU): they touch in the real model,
+// but a layout's cars are placed by hand, a stud or so apart, and closing the loops draws them
+// together as the magnets would.
+const MAGNET_REACH = 32;
+
+// Train cars couple by magnets: a magnet (see the corrections for 70023) whose face lies near
+// another's, their axes within 45 degrees, holds it, turning any way about where they meet
+// (midway between the faces), as a ball joint does. Each coupling has two holders (2920), each
+// swivelling on its car's buffer beam; here one of them is fixed, so that the two cars hang
+// together as a drawbar on one swivel would hold them, with nothing left to fold or slide: both
+// swivelling, with the magnets a ball joint, the holders could fold while the cars stood, and
+// with the faces held in line as well, the cars couldn't round a curve, their pins' distance
+// having to change.
+function magnetCouplings(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
+  const magnets = cyls.filter((c) => roles[c.part] === 'magnet' && c.gender === 'M' && c.secs[0].shape === 'A' && c.secs[0].radius >= 10);
+  const couplings: Connection[] = [];
+  const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
+  for (let i = 0; i < magnets.length; i++) {
+    for (let j = i + 1; j < magnets.length; j++) {
+      const [a, b] = [magnets[i], magnets[j]];
+      if (a.part === b.part || Math.abs(a.dir.dot(b.dir)) < 0.7) continue;
+      const ends = (c: WorldCylinder) => [c.start.clone(), c.start.clone().addScaledVector(c.dir, c.secs.reduce((sum, s) => sum + s.length, 0))];
+      let best: { at: Vector3; distance: number } | null = null;
+      for (const pa of ends(a)) for (const pb of ends(b)) {
+        const distance = pa.distanceTo(pb);
+        if (!best || distance < best.distance) best = { at: pa.clone().lerp(pb, 0.5), distance };
+      }
+      if (!best || best.distance > MAGNET_REACH) continue;
+      couplings.push({ male: a.part, female: b.part, kind: 'ball', from: best.at, to: best.at.clone() });
+      // The first magnet's holder, the coupling part nearest it, fixed on its beam.
+      const holder = roles.flatMap((r, p) => (r === 'coupling' ? [p] : [])).sort((p, q) => at(p).distanceTo(at(a.part)) - at(q).distanceTo(at(a.part)))[0];
+      if (holder !== undefined && at(holder).distanceTo(at(a.part)) < 60) for (const c of connections) if (c.kind === 'revolute' && (c.male === holder || c.female === holder) && roles[c.male] !== 'magnet' && roles[c.female] !== 'magnet') c.kind = 'rigid';
+    }
+  }
+  return couplings;
+}
+
+// Pairs of train wheels on one axle: two treads on one body, on one axis, a gauge apart.
+function findRiders(treads: Tread[]): Rider[] {
+  const riders: Rider[] = [];
+  const used = new Set<number>();
+  treads.forEach((a, i) => {
+    if (used.has(i)) return;
+    treads.forEach((b, j) => {
+      if (j <= i || used.has(j) || a.body !== b.body) return;
+      if (new Vector3().crossVectors(a.axis, b.axis).length() > ANGLE_TOLERANCE) return;
+      const offset = new Vector3().subVectors(b.center, a.center);
+      const along = offset.dot(a.axis);
+      if (Math.abs(Math.abs(along) - GAUGE) > 4 || offset.clone().addScaledVector(a.axis, -along).length() > AXIS_TOLERANCE) return;
+      used.add(i).add(j);
+      riders.push({ body: a.body, center: a.center.clone().lerp(b.center, 0.5), axis: a.axis.clone(), rolls: !a.fixed && !b.fixed });
+    });
+  });
+  return riders;
+}
+
+// Of the parts that ride along, those in groups smaller than SCENERY: the loose ones.
+function smallGroups(count: number, connections: Connection[], riding: number[]): number[] {
+  const isRiding = new Set(riding);
+  const leader = Array.from({ length: count }, (_, i) => i);
+  const find = (i: number): number => {
+    while (leader[i] !== i) i = leader[i];
+    return i;
+  };
+  for (const c of connections) if (isRiding.has(c.male) && isRiding.has(c.female)) leader[find(c.male)] = find(c.female);
+  const sizes = new Map<number, number>();
+  for (const i of riding) sizes.set(find(i), (sizes.get(find(i)) ?? 0) + 1);
+  return riding.filter((i) => sizes.get(find(i))! < SCENERY);
 }
 
 function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
@@ -2173,7 +2370,7 @@ function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[
 // with a lever arm that happens to pass close by). They're still listed as loose, but the model can move: left where they were, they'd
 // stand in the way of everything moving past them (an official bulldozer's bucket plates,
 // which slot into grooves no connection data describes, stopped its tracks).
-function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[]): Connection[] {
+function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>): Connection[] {
   if (loose.length === 0) return [];
   const isLoose = new Set(loose);
   const leader = new Map(loose.map((i) => [i, i]));
@@ -2182,7 +2379,8 @@ function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Conn
     return i;
   };
   for (const c of connections) if (isLoose.has(c.male) && isLoose.has(c.female)) leader.set(find(c.male), find(c.female));
-  const anchors = cyls.filter((c) => !isLoose.has(c.part));
+  // Only the parts given (`among`), if any: scenery rides with a train track's rails.
+  const anchors = cyls.filter((c) => !isLoose.has(c.part) && (!among || among.has(c.part)));
   const nearest = new Map<number, { part: number; anchor: number; distance: number }>(); // for each group
   for (const i of loose) {
     const at = new Vector3().setFromMatrixPosition(parts[i].matrix);
@@ -2199,7 +2397,9 @@ function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Conn
   });
 }
 
-function findLooseParts(count: number, connections: Connection[]): number[] {
+// The parts outside the largest group of parts attached to each other, and outside any group
+// with an anchor in it (a train track, or a train on it: see anchorsOf), which stands on its own.
+function findLooseParts(count: number, connections: Connection[], anchors: Set<number> = new Set()): number[] {
   const leader = Array.from({ length: count }, (_, i) => i);
   const find = (i: number): number => {
     while (leader[i] !== i) i = leader[i];
@@ -2210,8 +2410,9 @@ function findLooseParts(count: number, connections: Connection[]): number[] {
   for (let i = 0; i < count; i++) sizes.set(find(i), (sizes.get(find(i)) ?? 0) + 1);
   let biggest = -1;
   for (const [group, size] of sizes) if (biggest < 0 || size > sizes.get(biggest)!) biggest = group;
+  const standing = new Set([biggest, ...[...anchors].map(find)]);
   const loose: number[] = [];
-  for (let i = 0; i < count; i++) if (find(i) !== biggest) loose.push(i);
+  for (let i = 0; i < count; i++) if (!standing.has(find(i))) loose.push(i);
   return loose;
 }
 
@@ -2306,10 +2507,12 @@ function groupIntoBodies(count: number, roles: string[], connections: Connection
     return (a1 === b1 && a2 === b2) || (a1 === b2 && a2 === b1);
   }
 
-  // The frame: the group with the most structure parts.
+  // The frame: the group with the most structure parts, or on a train layout the track, which
+  // stays put while the trains run on it.
   const structureCount = new Map<number, number>();
+  const layout = roles.includes('rail');
   for (let i = 0; i < count; i++) {
-    if (roles[i] === 'structure') structureCount.set(find(i), (structureCount.get(find(i)) ?? 0) + 1);
+    if (roles[i] === (layout ? 'rail' : 'structure')) structureCount.set(find(i), (structureCount.get(find(i)) ?? 0) + 1);
   }
   let frame = -1;
   for (const [group, n] of structureCount) if (frame < 0 || n > structureCount.get(frame)!) frame = group;

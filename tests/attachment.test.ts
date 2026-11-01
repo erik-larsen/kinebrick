@@ -39,6 +39,8 @@ const NOT_YET = [
   '8854-Power Crane.mpd',
   '8855-Prop Plane.mpd',
   '8859-Tractor.mpd',
+  // A train layout: its figures, posed in their seats and on the platform, aren't on studs
+  '10001-Metroliner.mpd',
 ];
 
 describe('every test model is fully attached', () => {
