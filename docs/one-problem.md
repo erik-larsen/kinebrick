@@ -95,6 +95,15 @@ The 42029 then goes 102 LDU a radian, as with the switch off, and all 329 tests 
 
 Tried, and not kept: keeping the stillness rounds in a correction, with the scrubbing held along with the held bodies so that holding them can't buy the slide. The 42021 Snowmobile's steering comes back within 0.5 LDU again, and there and back 16 bring back more and 4 less. But the 42056 Porsche 911 GT3 RS's suspension, two more of its joints straying, stops after 0.1 radians, and only 131 functions work.
 
+### The full check
+
+On all 186 sets (at c0fb208), 524 functions work with the switch on, against 523 with it off: 7 do better and 4 worse. The 8110 Unimog ran past the 200-minute limit, where with the switch off it finishes in 174 minutes, so its functions aren't in either count (with the switch off, 8 of them work). The 4 that do worse:
+
+- **The 8002 Destroyer Droid's back leg** (works → no) never moved: each correction's mix of free motions opened the loops again, round after round, so the step was refused. Fixed in cbfeb45: a closing whose mix is undone even on a fresh basis, and which would leave the step refused, finishes its rounds without the mix. Only for a step that opened the loops no more than a joint's play (`PLAY`), else the 42037 Formula Off-Roader's wild first step back (2,948 LDU of slide) went too. The leg works again, and the 46 iteration sets are unchanged.
+- **The 9392 Quad Bike's steering** (partly → no) isn't a real loss. Its linkage fits only at a tangency: closing its loops gains about half a gap a round, as Newton's method does at a double root, so 12 rounds end 0.003 LDU apart and the step is refused. With the switch off it goes on by holding a strayed joint, but each 0.1 radian of steering slides the whole bike about 10 LDU.
+- **The 8859 Tractor's engine** (works → partly) isn't the switch's doing. Pushed along by one rear wheel, the tractor may roll straight, turning the differential and the engine, or pivot on the spot, its rear wheels turning opposite ways. Rolled forward, it pivots with the switch on and off alike. Rolled back, the drag with the switch off happens to keep rolling straight, and one correction with it on tips it into pivoting, which the next step's jump back reads as a dead point. Making a pushed wheel roll the car straight is a question of its own.
+- **The 42043 Mercedes-Benz Arocs 3245's rear differentials** (works → partly): not yet looked into.
+
 ### What's left
 
 The 6 that bring back less, against the switch off: the 42021 Snowmobile's f1 and f2 (2.5 and 4.3 LDU off, from next to nothing), the 42096 Porsche 911 RSR's rear suspension (35 to 169), the 8081's front suspension (which moves now, and doesn't all come back), the 8448 Super Street Sensation's front suspension (10 to 58) and the 9394 Jet Plane's f4 (0.3 to 2.2). Then the Newton step proper (stage 2), and tyres and play as rows (stage 4).
