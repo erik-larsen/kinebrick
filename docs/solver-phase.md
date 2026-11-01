@@ -22,19 +22,22 @@ The solver works in three layers:
 
 ## Lines of work, in order
 
-### 1. Checks that say how much
+### 1. Checks that say how much: mostly done
+
+Gear ratios, differentials, pistons, there and back, the quick set and a benchmark are in; steering's stops are still to come. 164 of the 1,224 functions have an expected amount (108 at 0.850), and only one part moves by the wrong amount: the 8020 Building Set's steering, its 8 tooth gear tilted 15° on its crown gear.
 
 Expected amounts worked out without the solver:
 
 - **Gear ratios from tooth counts**, along the train from a control to what it drives, so a drag can be checked against the ratio rather than only for moving.
-- **Rules for each kind of mechanism**, from the [mechanism catalog](mechanisms/README.md): a differential's carrier turns at the average of its wheels, a rack moves a set distance for each turn, a piston's stroke is twice its crank's throw, steering stops at a believable angle.
+- **Rules for each kind of mechanism**, from the [mechanism catalog](mechanisms/README.md): a differential's carrier turns at the average of its wheels (done, `scripts/gear-rates.ts`: with a vehicle's wheels pushed together, it gives the carrier, and the engine behind it, their speed), a rack moves a set distance for each turn (done, with the gear ratios), a piston slides as far as its crank's turn says (done, `scripts/slider-cranks.ts`, from the slider-crank's geometry, whatever turned the crank), steering stops at a believable angle (to come).
 - **There and back**: a drag out and back returns everything to where it started, with no joint left apart.
 
 And faster:
 
 - **A quick set** of about 20 sets, chosen so that each kind of mechanism comes up at least once, run on every change in a few minutes. The full check runs overnight, on this Mac.
 - **The OMR control survey retires.** The function check replaced it, and the `omr-survey` branch is no longer added to.
-- **The slowest sets profiled.** Three take more than 30 minutes.
+- **The slowest sets profiled.** Three take more than 30 minutes; the 8110 Unimog, the slowest, takes three hours with least motion.
+- **A benchmark of the solver itself**, `npm run bench`: six drags, from the 956 Auto Chassis to the 8110 Unimog, timed stage by stage.
 
 ### 2. Least motion, adopted when it beats holds: done
 
