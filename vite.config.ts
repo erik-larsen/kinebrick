@@ -6,6 +6,9 @@ export default defineConfig({
   // Relative paths, so the built site works wherever it's served from (such as
   // erik-larsen.github.io/kinebrick/).
   base: './',
+  // The site's icons and web app manifest, copied beside the page as they are (in place of
+  // Vite's public/ folder), so the manifest's icon paths hold.
+  publicDir: 'media/favicons',
   // three.js makes the one script about 650 KB; that's expected, so don't warn about it.
   build: { chunkSizeWarningLimit: 1000 },
   // Serve a plain 404 for missing files, rather than the page itself.
