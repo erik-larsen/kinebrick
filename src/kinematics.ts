@@ -1981,6 +1981,26 @@ export class Kinematics {
         // correction, all of them turn only a little, and held still, they slid it all the same.
         const slid = inBasis([...slip.sideways, ...slip.lift], basis);
         const corrections = tiers.map((t) => (t.bodies ? { cost: (z: number[]) => [...t.cost(z), ...slid.map((row) => dot(row, z))] } : t));
+        // Before them all, what the step left still is kept as still as it can be: stillness
+        // (see STILLNESS) held it for the step, but a correction's bodies all turn only a little,
+        // so it doesn't hold them here, and the free motions it held were stirred, differently
+        // there and back (the 42021 Snowmobile's steering, whose arm swivels as its skis toe in
+        // or out, came back 2.5 LDU off). Only the bodies' coordinates some free motion moves
+        // count: on a big model, the rest are most of them, and cost the tiers' time for nothing.
+        if (this.closingStill.length && motions.length) {
+          const support = supportOf(basis);
+          const moving = (i: number, z: number[]) => {
+            let sum = 0;
+            for (const c of support[i]) sum += basis[i][c] * z[c];
+            return sum;
+          };
+          const coordinates = this.closingStill.flatMap((b) => [0, 1, 2, 3, 4, 5].map((k) => 6 * b + k));
+          const still = (list: number[], z: number[]) => list.map((i) => moving(i, z) - moving(i % 6, z));
+          const moved = motions.map((m) => still(coordinates, m));
+          const most = moved.reduce((max, v) => v.reduce((m, x) => Math.max(m, Math.abs(x)), max), 0);
+          const touched = coordinates.filter((_, r) => moved.some((v) => Math.abs(v[r]) > 1e-9 * most));
+          if (touched.length) corrections.unshift({ cost: (z: number[]) => still(touched, z) });
+        }
         solution = (motions.length ? leastTurning(motions, (z) => rateOf(z, keep), corrections, solution, 0) : null) ?? solution;
       }
       this.move(fromBasis(solution, basis), 1);
@@ -2763,7 +2783,7 @@ export class Kinematics {
         // pistons, at top dead centre: kept still, closing the loops turned the crank back,
         // through the differential). A resting one is still kept still: the 858 Auto Engines'
         // crank jams a turn short if its push rods and rockers aren't.
-        if (experiments.leastMotion && !experiments.oneProblem && this.dragTurning !== null && CLOSE_STILL > 0) {
+        if (experiments.leastMotion && this.dragTurning !== null && CLOSE_STILL > 0) {
           const most = Math.max(...m.map(Math.abs));
           const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
           this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
