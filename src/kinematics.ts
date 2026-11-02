@@ -1916,25 +1916,31 @@ export class Kinematics {
       }
       previous = biggest;
       before = this.snapshot();
+      // One problem (see docs/one-problem.md): the loops are closed as the tiers would have it,
+      // by the gaps' least-squares closing plus the mix of free motions (which keep every
+      // equation, and the dragged joint where it is) the tiers choose, rather than with what the
+      // step left still weighted to stay so.
+      const one = experiments.oneProblem && keep >= 0 && this.dragTurning?.joint === keep && this.stepByTiers;
       let keepRow: Row | null = null;
       if (keep >= 0) {
         const row = new Array(6 * this.bodyCount).fill(0);
         keepRow = row;
         const j = this.mech.joints[keep];
         const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+        // With one problem, the part grabbed is kept where the step left it against what its
+        // shaft turns in (see housing), as the step's motion turned it: kept only on what it turns
+        // on, a pin free to spin in its holes could turn it all the same (the 9394 Airliner's
+        // control stick, on a long pin, and with it the tailplanes, left 2 LDU off there and back).
+        const grabbed = this.dragTurning?.grabbed ?? -1;
+        const [on, under] = one && grabbed >= 0 && this.parentJoint[grabbed] === keep ? [grabbed, this.housing(grabbed)] : [j.bodyB, j.bodyA];
         for (let k = 0; k < 3; k++) {
-          row[6 * j.bodyB + k] += d.getComponent(k);
-          row[6 * j.bodyA + k] -= d.getComponent(k);
+          row[6 * on + k] += d.getComponent(k);
+          row[6 * under + k] -= d.getComponent(k);
         }
         rows.push(row);
         gaps.push(0);
         weights.push(1);
       }
-      // One problem (see docs/one-problem.md): the loops are closed as the tiers would have it,
-      // by the gaps' least-squares closing plus the mix of free motions (which keep every
-      // equation, and the dragged joint where it is) the tiers choose, rather than with what the
-      // step left still weighted to stay so.
-      const one = experiments.oneProblem && keep >= 0 && this.dragTurning?.joint === keep && this.stepByTiers;
       if (!one) for (const b of this.closingStill) {
         for (let k = 0; k < 6; k++) {
           const row = new Array(6 * this.bodyCount).fill(0);
