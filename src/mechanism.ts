@@ -54,6 +54,11 @@ const CROWN_BAND = 3.5;
 // shadow library's sphere for them says (a wheel hub's, 2999's, is a bore an official model
 // seats its driveshaft's ball 1 LDU further into).
 const BALL_TOLERANCE = 2.5;
+// The same for a steering link or connecting rod that would otherwise hang by one end (see
+// looseFits): the 42037's left steering link is built 3 LDU behind its mirror image, its
+// end 3.8 LDU from the rack's towball.
+const LOOSE_BALL_TOLERANCE = 4.5;
+const LINKS = ['steering link', 'connecting rod'];
 // How far beyond a string's circle the middle of the part it goes round may be, in LDU (see
 // findStrings): LSynth runs a crane's rope round the edge of a cross block 12 LDU from its middle.
 const GUIDE_REACH = 15;
@@ -670,7 +675,8 @@ function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylind
 // parts held to the rest only by slides and balls, which hold nothing in place: the 42039 and
 // 42041's V8 connecting rods, tied by balls to pistons sliding in their cylinders, are built
 // 1.005 LDU off their crank pins. But not a universal joint's cross, which keeps only the arms
-// universalJoints left it. A pin's new joints turn as fixPins has its others do: a friction
+// universalJoints left it. Such a steering link or connecting rod's balls fit with the looser
+// LOOSE_BALL_TOLERANCE too. A pin's new joints turn as fixPins has its others do: a friction
 // pin's stiffly.
 function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
@@ -678,7 +684,8 @@ function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connecti
   if (loose.size === 0) return [];
   const known = new Set(connections.map((c) => `${c.male},${c.female}`));
   const settled = (c: Connection) => roles[c.male] === 'universal joint' || roles[c.female] === 'universal joint';
-  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`) && !settled(c));
+  const links = new Set([...loose].filter((p) => LINKS.includes(roles[p])));
+  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE, links).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`) && !settled(c));
   for (const c of found) {
     if (c.kind !== 'revolute' || roles[c.male] !== 'friction pin') continue;
     if (frictionRigid) [c.kind, c.held] = ['rigid', true];
@@ -1508,7 +1515,7 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
 // Step 4: pairs of connection points that line up.
 // Open-ended cylinders (Technic holes, axles, pins, tyre seats) make rigid and revolute
 // connections; studs in anti-studs make stud connections.
-function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, align = ALIGN_TOLERANCE): Connection[] {
+function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, align = ALIGN_TOLERANCE, links = new Set<number>()): Connection[] {
   const connections: Connection[] = [];
   const males = cyls.filter((c) => c.gender === 'M');
   const females = cyls.filter((c) => c.gender === 'F');
@@ -1517,7 +1524,7 @@ function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, align = 
     for (const f of near(m)) {
       if (f.part === m.part) continue;
       let c: Connection | null = null;
-      if (isBall(m) && isBall(f)) c = ballConnect(m, f);
+      if (isBall(m) && isBall(f)) c = ballConnect(m, f, links.has(m.part) || links.has(f.part) ? LOOSE_BALL_TOLERANCE : BALL_TOLERANCE);
       else if (goesInForTechnic(m) && opensForTechnic(f)) c = connect(m, f, align);
       else if (goesInForTechnic(m) && hasRound(m, 6) && isAntiStud(f)) c = studConnect(m, f, align);
       else if ((isStud(m) && (isAntiStud(f) || endsInAntiStud(f))) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f, align);
@@ -1565,11 +1572,11 @@ function isBall(c: WorldCylinder): boolean {
 }
 
 // A towball in a ball socket: same size, centred on the same point.
-function ballConnect(m: WorldCylinder, f: WorldCylinder): Connection | null {
+function ballConnect(m: WorldCylinder, f: WorldCylinder, tolerance: number): Connection | null {
   if (Math.abs(m.secs[0].radius - f.secs[0].radius) > AXIS_TOLERANCE) return null;
   const centre = (c: WorldCylinder) => c.start.clone().addScaledVector(c.dir, c.secs[0].length / 2);
   const point = centre(m);
-  if (point.distanceTo(centre(f)) > BALL_TOLERANCE) return null;
+  if (point.distanceTo(centre(f)) > tolerance) return null;
   return { male: m.part, female: f.part, kind: 'ball', from: point, to: point.clone() };
 }
 
