@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 34 partly, 7 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 35 works, 36 partly, 6 no, 1 skipped.
 
 ## By decade
 
@@ -34,7 +34,7 @@ Each detail by the set it first appears in.
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 
-- Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (works)
+- Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (partly)
 - The differential lets the two rear wheels turn at different speeds in a corner. (works)
 
 **1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car)**
@@ -228,7 +228,7 @@ Each detail by the set it first appears in.
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (no)
+- The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (partly)
 - The differential lets one rear wheel turn while the other is held, or turn backwards against it when the motor's gear is held. (partly)
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**

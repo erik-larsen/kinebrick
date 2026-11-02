@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 14 works, 64 partly, 6 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 15 works, 65 partly, 4 no, 5 not checked.
 
 ## By decade
 
@@ -199,8 +199,8 @@ Each detail by the set it first appears in.
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (no)
-- The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (no)
+- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (works)
+- The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (partly)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
