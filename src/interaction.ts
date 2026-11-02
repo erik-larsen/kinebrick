@@ -88,6 +88,8 @@ export interface InteractionSetup {
   onTurned: (part: number, angle: number) => void; // called after a drag turns a part like a knob, by `angle` radians about its joint
   onDragEnded: () => void; // called after any drag
   onMotionStarted: () => void; // called as a drag that moves the mechanism, or a part kept turning or moving, starts
+  allowScrub: (needed: number) => number | null; // lets the tyres scrub `needed` (a fraction of how far they roll) and a little over, if that's within the Tyre scrub option's limit: the new allowance in percent, or null if it isn't
+  scrubLimit: number; // the most the Tyre scrub option allows, in percent
   blockedBy: () => [number, number] | null; // two parts now passing through each other, or slid to the end of their travel, if any
   slideOf: (part: number) => Slide | null; // how a part slides, if it does
   stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
@@ -234,11 +236,38 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // Why the model can't move the way asked: its tyres would scrub sideways more than Tyre scrub
-  // allows (see Kinematics.scrubNeeded), or it's jammed.
+  // can allow (see Kinematics.scrubNeeded, and raiseScrub), or it's jammed.
   function whyStuck(): string {
     const needed = s.kin.scrubNeeded;
-    const percent = (x: number) => `${Math.round(x * 100)}%`;
-    return needed === null ? "it's jammed" : `its tyres would scrub ${percent(needed)}, over the ${percent(s.kin.scrub)} allowed`;
+    if (needed === null) return "it's jammed";
+    if (needed * 100 > s.scrubLimit) return `its tyres would scrub ${asPercent(needed)}, more than the ${s.scrubLimit}% Tyre scrub can allow`;
+    return `its tyres would scrub ${asPercent(needed)}, over the ${asPercent(s.kin.scrub)} allowed`;
+  }
+
+  function asPercent(x: number): string {
+    return `${Math.round(x * 100)}%`;
+  }
+
+  // A motion the tyres' scrub allowance rules out (see whyStuck) has the allowance raised to
+  // what the motion needs and a little over, if that's within the Tyre scrub option's limit,
+  // and a message says so: the motion can then go on, with its holds worked out afresh (the
+  // option's change lets a motor's go). Returns whether it was raised. A jam stays a jam.
+  function raiseScrub(clientX: number, clientY: number): boolean {
+    const needed = s.kin.scrubNeeded;
+    if (needed === null) return false;
+    const allowed = s.allowScrub(needed);
+    if (allowed === null) return false;
+    showMessage(`Tyre scrub raised to ${allowed}%: its tyres scrub ${asPercent(needed)}`, clientX, clientY);
+    return true;
+  }
+
+  // Whether `step` (which tries a motion, and says whether it's possible) comes out possible,
+  // raising the tyres' scrub allowance (see raiseScrub) as often as it needs and can be.
+  function possibleWithScrub(step: () => boolean, clientX: number, clientY: number): boolean {
+    for (;;) {
+      if (step()) return true;
+      if (!raiseScrub(clientX, clientY)) return false;
+    }
   }
 
   // Where a part is on the screen, in client coordinates.
@@ -542,8 +571,10 @@ export function setUpInteraction(s: InteractionSetup) {
       }
       return;
     }
+    const scrubBefore = s.kin.scrub;
     const why = startMotor(part, s.camera.position, false);
-    showMessage(why ?? `${motorPush ? 'Moving' : 'Turning'} ${name} · Ctrl-click again to reverse`, clientX, clientY);
+    const raised = s.kin.scrub > scrubBefore ? ` · Tyre scrub raised to ${asPercent(s.kin.scrub)}` : '';
+    showMessage(why ?? `${motorPush ? 'Moving' : 'Turning'} ${name} · Ctrl-click again to reverse${raised}`, clientX, clientY);
   }
 
   // Keeps a part turning, counter-clockwise (or clockwise) as seen from `seenFrom` (world
@@ -560,9 +591,18 @@ export function setUpInteraction(s: InteractionSetup) {
     const link = s.kin.parentLink(body);
     if (s.slideOf(part) || s.stickOf(part)) return "A part that clicks into set positions can't be kept moving: drag it";
     if (!link || !s.kin.turnsLikeAKnob(body)) return startPush(part, seenFrom, clockwise);
-    const wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
-    const canTurn = s.kin.jointMotion(link.joint) !== null;
-    s.kin.letGoAfterDrag();
+    const at = onScreen(part);
+    let wormLocked = false;
+    const canTurn = possibleWithScrub(
+      () => {
+        wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
+        const can = s.kin.jointMotion(link.joint) !== null;
+        s.kin.letGoAfterDrag();
+        return can || wormLocked;
+      },
+      at.x,
+      at.y,
+    );
     if (!canTurn) return `This part can't turn: ${wormLocked ? lockedWhy(body) : whyStuck()}`;
     motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
     motorReversed = false;
@@ -579,11 +619,22 @@ export function setUpInteraction(s: InteractionSetup) {
   function startPush(part: number, seenFrom: Vector3, back: boolean): string | null {
     const body = s.mech.bodyOf[part];
     const g = s.ldrawSpace.worldToLocal(new Box3().setFromObject(s.model.children[part]).getCenter(new Vector3()));
-    const directions = pointDirections(body, g);
-    const wormLocked = directions > 0 && s.kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(body, g) === directions);
-    const speeds = s.kin.freeMotions().map((m) => s.kin.pointVelocity(m, body, g));
-    s.kin.letGoAfterDrag();
-    if (directions === 0 || speeds.every((v) => v.length() < 1e-9)) {
+    const at = onScreen(part);
+    let directions = 0;
+    let wormLocked = false;
+    let speeds: Vector3[] = [];
+    const canMove = possibleWithScrub(
+      () => {
+        directions = pointDirections(body, g);
+        wormLocked = directions > 0 && s.kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(body, g) === directions);
+        speeds = s.kin.freeMotions().map((m) => s.kin.pointVelocity(m, body, g));
+        s.kin.letGoAfterDrag();
+        return wormLocked || (directions > 0 && speeds.some((v) => v.length() >= 1e-9));
+      },
+      at.x,
+      at.y,
+    );
+    if (!canMove) {
       const why = wormLocked ? lockedWhy(body) : s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck();
       return `This part can't move: ${why}`;
     }
@@ -699,12 +750,15 @@ export function setUpInteraction(s: InteractionSetup) {
         motorMoved = false;
         s.onMotorChanged();
       } else {
-        // Stuck both ways, or it can't turn at all: it stops, and if that's because its tyres
-        // would have to scrub too much, says so.
-        const scrubbing = !blocked && s.kin.scrubNeeded !== null;
+        // Stuck both ways, or it can't turn at all. If that's because its tyres would have to
+        // scrub too much, the allowance is raised if it can be (see raiseScrub), and it goes on;
+        // else it stops, and says so.
         const at = onScreen(motorPart);
-        setMotor(-1);
-        if (scrubbing) showMessage(`Stopped: ${whyStuck()}`, at.x, at.y);
+        if (blocked || !raiseScrub(at.x, at.y)) {
+          const scrubbing = !blocked && s.kin.scrubNeeded !== null;
+          setMotor(-1);
+          if (scrubbing) showMessage(`Stopped: ${whyStuck()}`, at.x, at.y);
+        }
       }
     }
     s.onMoved();
@@ -720,6 +774,7 @@ export function setUpInteraction(s: InteractionSetup) {
     const distance = push.speed * seconds;
     let moved = 0;
     let stuck = false;
+    let ranInto = false;
     for (let attempt = 0; attempt < 2 && moved < distance - 1e-9; attempt++) {
       if (motorHeldIn !== s.kin || attempt > 0) {
         const g = push.grabStart.clone().applyMatrix4(s.kin.poses[body]);
@@ -751,6 +806,7 @@ export function setUpInteraction(s: InteractionSetup) {
           s.kin.restore(before);
           s.appearance.flashBlocked(pair);
           stuck = true;
+          ranInto = true;
           attempt = 2; // ran into something: fresh holds won't help
           break;
         }
@@ -766,10 +822,13 @@ export function setUpInteraction(s: InteractionSetup) {
         motorReversed = false;
         motorMoved = false;
       } else {
-        const scrubbing = s.kin.scrubNeeded !== null;
+        // As in runMotor: stopped by scrub, it goes on with more if it can.
         const at = onScreen(motorPart);
-        setMotor(-1);
-        if (scrubbing) showMessage(`Stopped: ${whyStuck()}`, at.x, at.y);
+        if (ranInto || !raiseScrub(at.x, at.y)) {
+          const scrubbing = !ranInto && s.kin.scrubNeeded !== null;
+          setMotor(-1);
+          if (scrubbing) showMessage(`Stopped: ${whyStuck()}`, at.x, at.y);
+        }
       }
     }
     s.onMoved();
@@ -872,16 +931,23 @@ export function setUpInteraction(s: InteractionSetup) {
       hideLabel();
       s.onMotionStarted();
 
-      // Hold still whatever this drag doesn't need to move.
+      // Hold still whatever this drag doesn't need to move; a drag the tyres' scrub rules out
+      // gets more (see raiseScrub) if it can.
       const d = drag;
       let wormLocked = false;
-      if (d.joint >= 0) {
-        wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null, d.joint);
-      } else {
-        const directions = grabDirections(d);
-        if (directions > 0) wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
-      }
-      const canMove = d.joint >= 0 ? s.kin.jointMotion(d.joint) !== null : grabDirections(d) > 0;
+      const canMove = possibleWithScrub(
+        () => {
+          if (d.joint >= 0) {
+            wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null, d.joint);
+          } else {
+            const directions = grabDirections(d);
+            if (directions > 0) wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
+          }
+          return wormLocked || (d.joint >= 0 ? s.kin.jointMotion(d.joint) !== null : grabDirections(d) > 0);
+        },
+        e.clientX,
+        e.clientY,
+      );
 
       if (!canMove && wormLocked) {
         showMessage(`This part can't move: ${lockedWhy(body)}`, e.clientX, e.clientY);

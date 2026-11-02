@@ -31,6 +31,8 @@ Everything Kinebrick knows about a real LEGO set that's too long or nested for i
 
 The set's name, year and links are in the CSV, not here.
 
+`10001-1.mpd` is the LDraw Official Model Repository's Metroliner layout as published (CCAL 2.0), kept beside its set file because Kinebrick's copy in `models/` corrects it (see [docs/ldraw-errata.md](../../docs/ldraw-errata.md)); the other sets' originals are downloaded into `omr/` by `npm run omr`.
+
 ## Curated
 
 | Field | |
@@ -39,7 +41,7 @@ The set's name, year and links are in the CSV, not here.
 | `instructions` | Which book or pages build the model, and where its functions are drawn, in plain English. |
 | `functions` | What each of the set's controls is supposed to do: drafted from its building instructions and checked by someone who knows the set. They're the reference the joints probe lacks: it can tell that a control moved, but not whether it moved the right thing. |
 | `questions` | What the instructions leave open, each a `question`, with its `answer` once someone gives one. |
-| `settings` | Kinebrick's own LDraw lines for a set in `models/`, by its file name there (`"854-Go Kart": ["0 !KINEBRICK SCRUB [percent=16]"]`). |
+| `settings` | Kinebrick's own LDraw lines for a set in `models/`, by its file name there (`"854-Go Kart": ["0 !KINEBRICK SCRUB [percent=16]"]`; `"10001-Metroliner": ["0 !KINEBRICK SQUARE"]`, which also has `npm run import` square up the main file's rounded rotations, see [ARCHITECTURE.md](../../ARCHITECTURE.md#trains)). |
 
 ## Functions
 

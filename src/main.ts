@@ -40,7 +40,7 @@ import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
-import { packModel, shapeName } from './pack.ts';
+import { drawnDirectly, packModel, shapeName } from './pack.ts';
 import { studioModel, studioParts } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
 import connectionsUrl from '../data/connections.json?url';
@@ -123,6 +123,8 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
 //   nosymbols    no symbols pinned to parts (📌 frozen, ⚠ loose), which show otherwise
+//   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
+//                to drive from the browser's console
 const OPTIONS = params.getAll('option').join(',').split(',');
 // ?holds has a drag that turns a joint choose its motion by holds, as before least motion (see
 // leastTurning in kinematics.ts).
@@ -135,6 +137,10 @@ const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
 // not the model's own (see modelSettings in ldr.ts).
 const SCRUB_PARAM = percent(params.get('scrub'));
+// The most the Tyre scrub option allows, in percent; and how far over what a motion needs it's
+// raised when a motion needs more than it allows (see allowScrub below).
+const MAX_SCRUB = 30;
+const SCRUB_MARGIN = 2;
 // A part kept turning from the start, by its place in the model file (counting from 0, as
 // the model's parts come, submodels flattened), counter-clockwise as seen from where the
 // camera starts, or with ",cw" clockwise: e.g. ?autospin=271 or ?autospin=271,cw. Ctrl-click
@@ -338,7 +344,7 @@ async function start() {
     const known = (piece: string) => table.parts[piece] !== undefined || stickers.has(piece);
     const pieces = (text: string) => text.split(/\r?\n/).flatMap((line) => (/^\s*1\s/.test(line) ? [normalizePartName(line.trim().split(/\s+/).slice(14).join(' '))] : []));
     const split = [...studio].filter(([name, text]) => !known(name) && pieces(text).length > 0 && pieces(text).every(known)).map(([name]) => [name, 'split']);
-    const result = await packModel(FILE.replace(/\.(ldr|mpd|io)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => primitiveSet.has(name), { ...roles, ...Object.fromEntries(split) });
+    const result = await packModel(FILE.replace(/\.(ldr|mpd|io)$/i, ''), modelText, colours.trimEnd(), readFile, (name) => drawnDirectly(name, primitiveSet), { ...roles, ...Object.fromEntries(split) });
     summary.textContent = 'Loading…';
     packed = result;
     titles = Promise.resolve(result.titles);
@@ -382,6 +388,16 @@ async function start() {
   const shapeObjects: Object3D[] = model.children.slice(startParts.length);
   if (model.children.length !== startParts.length + drawnShapes.length) {
     throw new Error(`Loader made ${model.children.length} parts and shapes, model has ${startParts.length} and ${drawnShapes.length}`);
+  }
+  // A shape lies flat on the part it's drawn on (a sticker, a quarter of an LDU above the
+  // surface), where the depth buffer can't tell the two apart: its faces are pulled a hair
+  // towards the camera, so it's drawn on top rather than flickering.
+  for (const obj of shapeObjects) {
+    obj.traverse((o) => {
+      if (!(o instanceof Mesh)) return;
+      const offset = (m: Material) => Object.assign(m.clone(), { polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+      o.material = Array.isArray(o.material) ? o.material.map(offset) : offset(o.material);
+    });
   }
   shapeObjects.forEach((obj, i) => {
     const band = mech.loops.find((loop) => !loop.links.length && loop.path === drawnShapes[i].path);
@@ -784,6 +800,7 @@ async function start() {
   // added below) shows while any are frozen.
   let unfreezeButton: Controller | undefined;
   let showMotor = () => {}; // shows the motor's buttons, once they're made (below)
+  let setScrub = (_percent: number) => {}; // sets how far tyres may scrub, once the Options panel is made (below)
   let keepTurn = (_part: number, _angle: number) => {}; // keeps a part's turn (radians, counter-clockwise) in the address, once that's set up (below)
   function showFrozen() {
     appearance.frozenBodies = new Set(kin.frozenBodies());
@@ -812,6 +829,16 @@ async function start() {
     },
     onDragEnded: () => meshAfresh(),
     onMotionStarted: () => startFocus(),
+    // A motion the tyres' scrub rules out (a car that can't roll with its steering turned so
+    // far) has the Tyre scrub option raised to what it needs and SCRUB_MARGIN over, whole
+    // percent, as long as that's within MAX_SCRUB.
+    allowScrub: (needed) => {
+      const raised = Math.min(MAX_SCRUB, Math.ceil(needed * 100 + SCRUB_MARGIN));
+      if (raised < needed * 100 || raised <= scrub) return null;
+      setScrub(raised);
+      return raised;
+    },
+    scrubLimit: MAX_SCRUB,
     blockedBy: () => {
       const now = partMatrices();
       return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
@@ -840,6 +867,7 @@ async function start() {
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions };
   // The spin speed for Ctrl-click, in whole rpm, kept in the address too.
   interaction.setMotorRpm(RPM);
   gui.add(settings, 'rpm', 1, 300, 1).name('Spin speed (rpm)').onFinishChange((value: number) => {
@@ -850,14 +878,18 @@ async function start() {
     history.replaceState(null, '', address());
   });
   // How far tyres may scrub sideways, in percent, kept in the address if not the model's own.
-  gui.add(settings, 'scrub', 0, 30, 1).name('Tyre scrub (%)').onFinishChange((value: number) => {
+  // Set with the slider, or raised when a motion needs more than it allows (see allowScrub).
+  const scrubControl = gui.add(settings, 'scrub', 0, MAX_SCRUB, 1).name('Tyre scrub (%)').onFinishChange((value: number) => setScrub(value));
+  setScrub = (value) => {
     scrub = Math.max(0, Math.round(value));
+    settings.scrub = scrub;
+    scrubControl.updateDisplay();
     kin.scrub = scrub / 100;
     interaction.motionsChanged();
     if (scrub === modelScrub) params.delete('scrub');
     else params.set('scrub', String(scrub));
     history.replaceState(null, '', address());
-  });
+  };
   // While a part is kept turning, the camera follows the model: it moves by however far the
   // frame's middle moved, so the model stays in view while you still orbit and zoom around it.
   const frameMiddle = ldrawSpace.worldToLocal(new Box3().setFromObject(model).getCenter(new Vector3())); // LDraw coordinates

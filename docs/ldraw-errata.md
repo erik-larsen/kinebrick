@@ -14,6 +14,7 @@ This page lists the errors Kinebrick has found that way in the LDraw models it u
 | [8854-1](#8854-1-power-crane) | Power Crane (1989) | Stefan Frenz | LDraw OMR | 1 | Not corrected |
 | [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in Kinebrick |
 | [42093-1](#42093-1-chevrolet-corvette-zr1) | Chevrolet Corvette ZR1 (2019) | Philippe Hurbain | LDraw OMR | 1 | Not corrected |
+| [10001-1](#10001-1-metroliner) | Metroliner (2001) | Zoltán Kéri | LDraw OMR | 3 | Corrected in Kinebrick |
 
 ## 852-1 Helicopter
 
@@ -361,3 +362,47 @@ Line 3115, in `42093 - corvette.ldr`. A correction would put the 8 tooth gear in
 Line numbers are those of the OMR files as downloaded on 20 October 2026. Kinebrick's copies name their subfiles without the spaces around the dash (`8880-step19.ldr`), but are otherwise line for line the same.
 
 Written from the `errors` and `corrected_model` columns of [`models/technic-sets.csv`](../models/technic-sets.csv), as of 31 October 2026.
+
+## 10001-1 Metroliner
+
+| | |
+| --- | --- |
+| Set | 10001 Metroliner, 2001 (a re-release of the 4558 Metroliner of 1991) |
+| Model | `10001-1.mpd` (an Official Model): an oval of 9V track, a platform and the three cars |
+| Author | Zoltán Kéri [Zoltank82]; OMR version by Robert Paciorek [bercik] |
+| Licence | CCAL 2.0 |
+| Original | [LDraw Official Model Repository](https://library.ldraw.org/omr) |
+| In Kinebrick | Corrected: [`models/10001-Metroliner.mpd`](../models/10001-Metroliner.mpd) |
+
+### Rotations with their cosines rounded to 1 (corrected)
+
+The main file turns the trains and the eight curved track pieces at 11.25 degrees by matrices whose cosine is written as 1 while the sine is exact, such as train 1's:
+
+```
+1 16 560 0 44 1 0 0.259 0 1 0 -0.259 0 1 10001 - TRAIN 1.LDR
+```
+
+A matrix like that isn't a rotation: it stretches what it places by 3.4% (2% for the curves). Within the stretched trains, parts a stud or more apart no longer meet: a bogie plate's pin misses its hole in the train base by 1 LDU, and the couplings' pins by more. Kinebrick writes these lines again with the nearest rotation on import (`0 !KINEBRICK SQUARE`, see [ARCHITECTURE.md](../ARCHITECTURE.md#trains)): `0.968058 0 0.250727 0 1 0 -0.250727 0 0.968058` for train 1.
+
+### The couplings sit off their pins and hinges (corrected)
+
+In every car the coupling holder (2920) stands 1 to 3 LDU from the hole in its buffer beam (4022) that its pin turns in, and the magnet casing (2959) 1 to 3 LDU from the holder's hinge fingers, for instance train 1's:
+
+```
+1 0 570 -54 0 0 0 -1 0 1 0 1 0 0 2920.DAT
+1 0 604 -50 0 0 0 -1 0 1 0 1 0 0 2959.DAT
+1 0 604 -50 0 0 0 -1 0 1 0 1 0 0 70023.DAT
+```
+
+where the casing and magnet belong at x = 602, 32 LDU from the holder. Kinebrick's copy moves each holder onto its pin and each casing and magnet onto its holder's fingers (by up to 5 LDU), so the couplings connect.
+
+### The dining car's tap stands in its slope (corrected)
+
+The tap in the second car (a 3496 base with a 3278 spout) is placed with its base 8 LDU down inside the inverted slope it stands on, so its anti-studs miss the slope's studs:
+
+```
+1 15 110 -134 20 0 0 -1 0 1 0 1 0 0 3496.DAT
+1 7 110 -134 20 0 0 -1 0 1 0 1 0 0 3278.DAT
+```
+
+Kinebrick's copy has both at y = -142, the base on the studs.

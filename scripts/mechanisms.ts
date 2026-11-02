@@ -53,6 +53,9 @@ const sets: { set: string; year: number }[] = [];
 let functionCount = 0;
 for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
   const data = JSON.parse(readFileSync(join(SETS_DIR, file), 'utf-8'));
+  // A set the CSV doesn't list (the 10001 Metroliner, a train, kept for its settings) has no
+  // functions to catalogue.
+  if (!csv.has(data.set)) continue;
   const year = Number(csv.get(data.set)!.year);
   sets.push({ set: data.set, year });
   data.curated.functions.forEach((f: any, i: number) => {

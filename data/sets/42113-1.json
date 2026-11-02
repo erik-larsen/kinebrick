@@ -34,8 +34,8 @@
         "source": "book: page 335 (the rotor sticker), page 333 (both modes), steps 396-417 (the rotors on their hubs, pages 316-332)",
         "control": "p769 22169",
         "moves": [
-          "p1739 57585",
-          "p1773 57585"
+          "p1729 57585",
+          "p1763 57585"
         ],
         "note": "that the rotors turn opposite ways is inferred from the real aircraft; the owner should check. Unsure whether the rotor sticker means spinning or the blades folding"
       },
@@ -46,13 +46,13 @@
           "function-selector",
           "turntable: nacelles"
         ],
-        "source": "book: pages 333-334 (the two modes, and the tilt with the motor icon), page 335 (the orange nacelle sticker), the turntables p1346 and p1480 at the wing tips",
+        "source": "book: pages 333-334 (the two modes, and the tilt with the motor icon), page 335 (the orange nacelle sticker), the turntables p1336 and p1470 at the wing tips",
         "control": "p769 22169",
         "moves": [
-          "p1345 99010",
-          "p1479 99010",
-          "p1739 57585",
-          "p1773 57585"
+          "p1335 99010",
+          "p1469 99010",
+          "p1729 57585",
+          "p1763 57585"
         ]
       },
       {
@@ -110,8 +110,8 @@
         ],
         "source": "inferred: each blade (42113 - 65422) is held on its hub by a pin with a stop bush (steps 396-412) rather than an axle",
         "control": [
-          "p1770 42113 - 65422",
-          "p1804 42113 - 65422"
+          "p1760 42113 - 65422",
+          "p1794 42113 - 65422"
         ],
         "note": "unsure whether the blades are meant to fold; the owner should check"
       },
@@ -122,7 +122,7 @@
         ],
         "source": "inferred: the flap submodels (flap1, flap2) are linked to the nacelle tilt mechanism at the wing tips",
         "control": [
-          "p1281 32524"
+          "p1271 32524"
         ],
         "note": "unsure: whether the flaps are linked to the nacelles or simply hinged; the owner should check"
       }
@@ -134,13 +134,14 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
+    "commit": "a838eff",
+    "uncommitted": true,
     "date": "2026-11-02",
     "counts": {
-      "works": 3,
+      "works": 2,
       "partly": 4,
-      "not back": 2,
-      "no": 1
+      "not back": 1,
+      "no": 2
     },
     "loose": [
       "p591 42113 - 51149",
@@ -156,8 +157,8 @@
       "p955 42113 - 51149",
       "p956 32062",
       "p957 3713",
-      "p1817 86500",
-      "p1818 86500"
+      "p1807 86500",
+      "p1808 86500"
     ],
     "functions": [
       {
@@ -193,16 +194,16 @@
           ]
         ],
         "still": [
-          "p1739 57585",
-          "p1773 57585"
+          "p1729 57585",
+          "p1763 57585"
         ],
         "rates": [
           {
-            "p1739 57585": [
+            "p1729 57585": [
               0,
               0
             ],
-            "p1773 57585": [
+            "p1763 57585": [
               0,
               0
             ]
@@ -230,26 +231,26 @@
           ]
         ],
         "still": [
-          "p1345 99010",
-          "p1479 99010",
-          "p1739 57585",
-          "p1773 57585"
+          "p1335 99010",
+          "p1469 99010",
+          "p1729 57585",
+          "p1763 57585"
         ],
         "rates": [
           {
-            "p1345 99010": [
+            "p1335 99010": [
               0,
               0
             ],
-            "p1479 99010": [
+            "p1469 99010": [
               0,
               0
             ],
-            "p1739 57585": [
+            "p1729 57585": [
               0,
               0
             ],
-            "p1773 57585": [
+            "p1763 57585": [
               0,
               0
             ]
@@ -500,11 +501,11 @@
         ]
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            0.06,
-            -1.5
+            0,
+            0
           ]
         ],
         "rates": [
@@ -513,17 +514,14 @@
         "back": [
           [
             [
-              15.77,
-              3.82
+              0,
+              0
             ],
             [
-              2.72,
-              0.66
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p1816 4032a"
         ]
       }
     ]

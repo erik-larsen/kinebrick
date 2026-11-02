@@ -27,6 +27,9 @@ export type Vec3 = [number, number, number];
 //      shadow library's finger hinges; fingers of two parts that interleave turn on each other
 //   G  gear: radius is the pitch radius (where the teeth of two meshing gears meet),
 //      length is the width of the teeth
+//   N  pane: a window's glass (M), at its origin, in its frame (F), where the glass's origin
+//      sits in it; the two are fixed together (from the corrections: the shadow library has
+//      nothing for glass)
 export interface Section {
   shape: string;
   radius: number;

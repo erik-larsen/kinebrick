@@ -329,6 +329,9 @@ export function embeddedParts(text: string): Map<string, string> {
 // Kinebrick's own settings for a model, from "0 !KINEBRICK" lines in its main file (LDraw
 // programs skip meta-commands they don't know, so the file still opens anywhere), e.g.
 //   0 !KINEBRICK SCRUB [percent=10]   tyres may scrub sideways by up to 10% of how far they roll
+//   0 !KINEBRICK SQUARE               the main file's placements are squared up on import (see
+//                                     squaredUp): a layout whose trains and curved track are
+//                                     turned with their cosines rounded to 1
 //   0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.6 -108.5] [dir=0 0 -1] [positions=0,20]
 //                                      the part of that name whose middle is there (within 1 LDU,
 //                                      in the model's coordinates) slides that way, with what
@@ -374,10 +377,16 @@ export function importSet(text: string, set: string, lines: string[]): string {
   const out: string[] = [];
   let files = 0;
   let added = false;
+  // With a "0 !KINEBRICK SQUARE" line among the set's, the main file's placements (of its
+  // submodels, and of a layout's track) are squared up (see squaredUp); a submodel's own lines
+  // are left as the set's author drew them, and so is every line of a set without it, whose
+  // author may have scaled a part on purpose.
+  const square = lines.some((l) => /^\s*0\s+!KINEBRICK\s+SQUARE\b/.test(l));
   for (const line of text.split(/\r?\n/)) {
-    const renamed = line.replace(new RegExp(`\\b${set} - `, 'g'), `${set}-`);
+    let renamed = line.replace(new RegExp(`\\b${set} - `, 'g'), `${set}-`);
     if (/^\s*0\s+FILE\b/.test(renamed)) files++;
     const inMain = files <= 1;
+    if (inMain && square) renamed = squaredUp(renamed);
     if (inMain && /^\s*0\s+(!KINEBRICK\b|\/\/\s*Kine[Bb]rick\b)/.test(renamed)) continue;
     out.push(renamed);
     if (inMain && !added && /^\s*0\s+!LICENSE\b/.test(renamed)) {
@@ -389,6 +398,40 @@ export function importSet(text: string, set: string, lines: string[]): string {
   return out.join(eol);
 }
 
+// A placement whose rotation isn't one: a file may write a rotation with its cosines rounded
+// to 1 (a train turned 15 degrees on a curve as "1 0 0.259 / 0 1 0 / -0.259 0 1"), which also
+// stretches what it places, by 3% here, so that its parts' connections no longer meet and its
+// drawn parts aren't where their connections are. Such a line is written again with the nearest
+// rotation (by the polar decomposition, which keeps a mirror image mirrored), to 6 decimals. A
+// placement that's a rotation but for the file's rounding (0.391 and 0.921, to three decimals)
+// is left as it is, and so is a deliberate scale (a part drawn at 0.8 of its size, or a shape
+// stretched to fit: a matrix further from a rotation than a cosine rounded to 1 takes it).
+export function squaredUp(line: string): string {
+  const tokens = line.trim().split(/\s+/);
+  if (tokens[0] !== '1' || tokens.length < 15) return line;
+  const m = tokens.slice(5, 14).map(Number);
+  if (m.some((x) => !Number.isFinite(x))) return line;
+  // Gram's matrix: the identity for a rotation.
+  let off = 0;
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) off = Math.max(off, Math.abs(m[r] * m[c] + m[3 + r] * m[3 + c] + m[6 + r] * m[6 + c] - (r === c ? 1 : 0)));
+  if (off < 1e-2 || off > 0.3) return line;
+  // The polar decomposition's rotation, by Newton's iteration Q <- (Q + Q^-T) / 2.
+  let q = m.slice();
+  for (let n = 0; n < 30; n++) {
+    const [a, b, c, d, e, f, g, h, i] = q;
+    const det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+    if (Math.abs(det) < 1e-9) return line;
+    // The inverse transpose: the cofactors over the determinant.
+    const it = [e * i - f * h, f * g - d * i, d * h - e * g, c * h - b * i, a * i - c * g, b * g - a * h, b * f - c * e, c * d - a * f, a * e - b * d].map((x) => x / det);
+    const next = q.map((x, k) => (x + it[k]) / 2);
+    const change = Math.max(...next.map((x, k) => Math.abs(x - q[k])));
+    q = next;
+    if (change < 1e-13) break;
+  }
+  const num = (x: number) => (Math.abs(x) < 5e-7 ? '0' : String(Number(x.toFixed(6))));
+  return [...tokens.slice(0, 5), ...q.map(num), ...tokens.slice(14)].join(' ');
+}
+
 // Shapes a submodel draws directly, with lines of types 2 to 5, rather than with parts: a hose
 // or a spring bent to fit, as CAD programs generate them. They have no connections, so they
 // don't take part in the mechanism, but they're drawn.
@@ -397,7 +440,7 @@ export interface PlacedShape {
   lines: string[]; // those lines, in the submodel's coordinates
   color: number;
   matrix: Matrix4; // submodel coordinates -> model coordinates
-  nearPart: number; // a part placed by the same submodel line (it moves with that part), or -1
+  nearPart: number; // a part placed by the same submodel line (it moves with that part), or else the part nearest where it's drawn; -1 only in a model with no parts
   path?: PlacedPath; // the path they're drawn along, if their submodel is a path's
 }
 
@@ -452,6 +495,19 @@ export function parseModel(
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1, ...(path ? { path } : {}) });
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
+  // A shape whose submodel places no part (a sticker sheet's stickers, drawn in a file of their
+  // own) moves with the part nearest where it's drawn.
+  for (const shape of shapes) {
+    if (shape.nearPart >= 0 || parts.length === 0) continue;
+    const at = new Vector3().setFromMatrixPosition(shape.matrix);
+    let best = 0;
+    let least = Infinity;
+    parts.forEach((p, i) => {
+      const d = new Vector3().setFromMatrixPosition(p.matrix).distanceTo(at);
+      if (d < least) [least, best] = [d, i];
+    });
+    shape.nearPart = best;
+  }
   lsynthPaths(parts);
   chainPaths(parts);
   // Every path placed, whether drawn with parts (a chain's links) or shapes (a string's).

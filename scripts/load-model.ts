@@ -8,6 +8,7 @@ import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { modelSettings, parseModel, PlacedPart } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
+import { drawnDirectly } from '../src/pack.ts';
 
 export function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}) {
   status('reading it');
@@ -23,7 +24,7 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
     const primitives = new Set<string>(JSON.parse(readFileSync('packed/primitives.json', 'utf-8')));
     // The parts read as their pieces: every such part in the library.
     const pieces: Record<string, string[]> = JSON.parse(readFileSync('packed/pieces.json', 'utf-8'));
-    isPrimitive = (n) => primitives.has(n);
+    isPrimitive = (n) => drawnDirectly(n, primitives);
     piecesOf = (n) => pieces[n] ?? null;
   } else {
     table = JSON.parse(readFileSync('data/connections.json', 'utf-8'));

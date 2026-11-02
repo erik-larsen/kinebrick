@@ -105,6 +105,8 @@ export class Appearance {
 
   // Outlines two parts in red for a moment: they'd have run into each other, so the drag stopped.
   flashBlocked(parts: number[]) {
+    // Named in the browser's console too, for anyone asking what a model ran into.
+    console.debug('blocked by', parts.map((p) => `p${p} ${this.partObjects[p]?.userData?.fileName ?? ''}`).join(' and '));
     this.outlines.set('blocked', parts.map((p) => this.partObjects[p]));
     clearTimeout(this.blockedTimer);
     this.blockedTimer = setTimeout(() => this.outlines.set('blocked', []), 700);

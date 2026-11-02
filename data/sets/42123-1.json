@@ -35,7 +35,7 @@
           "piston-engine: V8"
         ],
         "source": "book: page 144 (middle inset, the yellow pistons with an up-and-down arrow), steps 1-35 (engine and crankshaft); which wheel drives it is from the parts (the left rear wheel turns on its own axle)",
-        "control": "p1109 42123 - 56145",
+        "control": "p1069 42123 - 56145",
         "moves": [
           "p162 55013",
           "p253 32123b against p251 32524",
@@ -53,8 +53,8 @@
         ],
         "source": "book: page 144 (main picture and left inset, both doors up), steps 199-213 (the doors, with red arrows showing them swing)",
         "control": [
-          "p916 32524",
-          "p938 32524"
+          "p896 32524",
+          "p918 32524"
         ]
       },
       {
@@ -64,9 +64,9 @@
         ],
         "source": "book: page 144; steps 219-220",
         "control": [
-          "p1111 30699",
-          "p1114 30699",
-          "p1115 42123 - 56145"
+          "p1071 30699",
+          "p1074 30699",
+          "p1075 42123 - 56145"
         ]
       }
     ],
@@ -77,7 +77,8 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
+    "commit": "a838eff",
+    "uncommitted": true,
     "date": "2026-11-02",
     "counts": {
       "works": 2,
@@ -85,10 +86,10 @@
       "no": 1
     },
     "loose": [
-      "p948 76324",
-      "p1105 11477",
-      "p1107 18677",
-      "p1108 3024"
+      "p928 76324",
+      "p1065 11477",
+      "p1067 18677",
+      "p1068 3024"
     ],
     "functions": [
       {
@@ -207,8 +208,8 @@
           []
         ],
         "why": [
-          "p916 32524 is part of the frame",
-          "p938 32524 is part of the frame"
+          "p896 32524 is part of the frame",
+          "p918 32524 is part of the frame"
         ]
       },
       {

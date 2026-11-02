@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { embeddedParts, modelSettings, parseLdr, parseModel, partLine, PlacedPart } from '../src/ldr.ts';
+import { embeddedParts, modelSettings, parseLdr, parseModel, partLine, PlacedPart, squaredUp } from '../src/ldr.ts';
 
 // A main model placing a wheel submodel twice (once turned half round), which holds an axle
 // and another submodel, a hub; a shape drawn without parts; and a part the file brings with it.
@@ -88,3 +88,14 @@ describe('reading model files', () => {
     expect(at(parseLdr(partLine(hub))[0]).z).toBeCloseTo(-120, 6);
   });
 });
+
+describe('squaredUp', () => {
+  it('writes a placement whose cosines are rounded to 1 again with the nearest rotation, and leaves rotations and deliberate scales alone', () => {
+    expect(squaredUp('1 16 560 0 44 1 0 0.259 0 1 0 -0.259 0 1 10001 - TRAIN 1.LDR')).toBe('1 16 560 0 44 0.968058 0 0.250727 0 1 0 -0.250727 0 0.968058 10001 - TRAIN 1.LDR');
+    expect(squaredUp('1 0 0 0 0 0.7071 0 0.7071 0 1 0 -0.7071 0 0.7071 3001.dat')).toBe('1 0 0 0 0 0.7071 0 0.7071 0 1 0 -0.7071 0 0.7071 3001.dat');
+    expect(squaredUp('1 4 -20 -38 590 0 -0.391 0.921 0 0.921 0.391 -1 0 0 4519.dat')).toBe('1 4 -20 -38 590 0 -0.391 0.921 0 0.921 0.391 -1 0 0 4519.dat');
+    expect(squaredUp('1 383 110 -392.996 69.998 -0.8 0 0 0 1 0 0 0 -0.8 108.dat')).toBe('1 383 110 -392.996 69.998 -0.8 0 0 0 1 0 0 0 -0.8 108.dat');
+    expect(squaredUp('0 !KINEBRICK SQUARE')).toBe('0 !KINEBRICK SQUARE');
+  });
+});
+

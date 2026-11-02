@@ -52,6 +52,15 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   // gears coming into mesh would seem to run into each other tip to tip, short of it (the 952
   // Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short).
   for (const a of mech.gears) for (const b of mech.gears) if (a.part !== b.part) connected.add(pairKey(a.part, b.part));
+  // Nor a train's wheels and the track's rails: the wheels run on them, and reach each piece
+  // of track in turn.
+  const rails = mech.roles.flatMap((r, i) => (r === 'rail' ? [i] : []));
+  for (const t of mech.treads) for (const r of rails) connected.add(pairKey(t.part, r));
+  // Nor the parts of train couplings with each other: two cars' magnets, casings and holders
+  // meet face to face, and with one holder of each coupling fixed (see magnetCouplings) they
+  // run into each other a little as the cars take a curve, where the real ones swivel clear.
+  const couplings = mech.roles.flatMap((r, i) => (r === 'coupling' || r === 'magnet' ? [i] : []));
+  for (const a of couplings) for (const b of couplings) if (a !== b) connected.add(pairKey(a, b));
   return connected;
 }
 
