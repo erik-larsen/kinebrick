@@ -391,7 +391,7 @@ Real steering only gets close to every wheel rolling round one centre, and real 
 | Motion | Kept if |
 |---|---|
 | The tyres roll | It first takes on whatever mix of the non-rolling motions scrubs least; then what's left scrubs sideways by at most 2% of how far the tyres roll, over all the tyres on the ground together |
-| The one way of rolling that scrubs least | It scrubs at most 10%, or as much as the model allows: `0 !KINEBRICK SCRUB [percent=16]` in its main file, or the Tyre scrub option |
+| The one way of rolling that scrubs least | It scrubs at most 10%, or as much as the model allows: `0 !KINEBRICK SCRUB [percent=16]` in its main file, or the Tyre scrub option. A motion asked for that needs more (a drag, or a part kept turning or moving) raises the option to what it needs and 2 points over, whole percent, up to its limit of 30%, and a message says so; past that, the model stays put and the message says by how much |
 | It leaves the frame where it is (steering a parked car) | Always, however much it scrubs: a car whose wheels sit off their steering pivots drags its tyres round, as a real one does |
 | No tyre rolls, and the frame moves | No tyre scrubs at all: a car can't be pushed sideways |
 | The frame rises or sinks over its tyres (a car moving on its suspension) | Its tyres scrub sideways no further than the frame rises or sinks over them, though none may rise or sink itself |

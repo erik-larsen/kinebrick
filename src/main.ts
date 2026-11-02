@@ -134,6 +134,10 @@ const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
 // not the model's own (see modelSettings in ldr.ts).
 const SCRUB_PARAM = percent(params.get('scrub'));
+// The most the Tyre scrub option allows, in percent; and how far over what a motion needs it's
+// raised when a motion needs more than it allows (see allowScrub below).
+const MAX_SCRUB = 30;
+const SCRUB_MARGIN = 2;
 // A part kept turning from the start, by its place in the model file (counting from 0, as
 // the model's parts come, submodels flattened), counter-clockwise as seen from where the
 // camera starts, or with ",cw" clockwise: e.g. ?autospin=271 or ?autospin=271,cw. Ctrl-click
@@ -816,6 +820,7 @@ async function start() {
   // added below) shows while any are frozen.
   let unfreezeButton: Controller | undefined;
   let showMotor = () => {}; // shows the motor's buttons, once they're made (below)
+  let setScrub = (_percent: number) => {}; // sets how far tyres may scrub, once the Options panel is made (below)
   let keepTurn = (_part: number, _angle: number) => {}; // keeps a part's turn (radians, counter-clockwise) in the address, once that's set up (below)
   function showFrozen() {
     appearance.frozenBodies = new Set(kin.frozenBodies());
@@ -844,6 +849,16 @@ async function start() {
     },
     onDragEnded: () => meshAfresh(),
     onMotionStarted: () => startFocus(),
+    // A motion the tyres' scrub rules out (a car that can't roll with its steering turned so
+    // far) has the Tyre scrub option raised to what it needs and SCRUB_MARGIN over, whole
+    // percent, as long as that's within MAX_SCRUB.
+    allowScrub: (needed) => {
+      const raised = Math.min(MAX_SCRUB, Math.ceil(needed * 100 + SCRUB_MARGIN));
+      if (raised < needed * 100 || raised <= scrub) return null;
+      setScrub(raised);
+      return raised;
+    },
+    scrubLimit: MAX_SCRUB,
     blockedBy: () => {
       const now = partMatrices();
       return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
@@ -883,14 +898,18 @@ async function start() {
     history.replaceState(null, '', address());
   });
   // How far tyres may scrub sideways, in percent, kept in the address if not the model's own.
-  gui.add(settings, 'scrub', 0, 30, 1).name('Tyre scrub (%)').onFinishChange((value: number) => {
+  // Set with the slider, or raised when a motion needs more than it allows (see allowScrub).
+  const scrubControl = gui.add(settings, 'scrub', 0, MAX_SCRUB, 1).name('Tyre scrub (%)').onFinishChange((value: number) => setScrub(value));
+  setScrub = (value) => {
     scrub = Math.max(0, Math.round(value));
+    settings.scrub = scrub;
+    scrubControl.updateDisplay();
     kin.scrub = scrub / 100;
     interaction.motionsChanged();
     if (scrub === modelScrub) params.delete('scrub');
     else params.set('scrub', String(scrub));
     history.replaceState(null, '', address());
-  });
+  };
   // While a part is kept turning, the camera follows the model: it moves by however far the
   // frame's middle moved, so the model stays in view while you still orbit and zoom around it.
   const frameMiddle = ldrawSpace.worldToLocal(new Box3().setFromObject(model).getCenter(new Vector3())); // LDraw coordinates
