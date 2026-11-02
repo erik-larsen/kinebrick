@@ -24,7 +24,7 @@ The solver works in three layers:
 
 ### 1. Checks that say how much: mostly done
 
-Gear ratios, differentials, pistons, there and back, the quick set and a benchmark are in. Steering's stops are measured (`npm run functions -- --lock`): a steering control turned each way until it stops, where parts meet as in the viewer, and how far its wheels steered; for now only reported, until a believable range is settled. 164 of the 1,224 functions have an expected amount (108 at 0.850), and only one part moves by the wrong amount: the 8020 Building Set's steering, its 8 tooth gear tilted 15° on its crown gear.
+Gear ratios, differentials, pistons, there and back, the quick set and a benchmark are in. Steering's stops are measured (`npm run functions -- --lock`): a steering control turned each way until it stops, where parts meet as in the viewer, and how far its wheels steered; for now only reported. A survey over the 119 steering sets ([steering-stops.md](steering-stops.md)) has 106 of the 115 ways of working functions stopping between 15° and 50°, the believable range, and lists the outliers. 164 of the 1,224 functions have an expected amount (108 at 0.850), and only one part moves by the wrong amount: the 8020 Building Set's steering, its 8 tooth gear tilted 15° on its crown gear.
 
 Expected amounts worked out without the solver:
 
