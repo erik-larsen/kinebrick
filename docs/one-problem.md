@@ -97,7 +97,7 @@ Tried, and not kept: keeping the stillness rounds in a correction, with the scru
 
 ### The full check
 
-On all 186 sets (at c0fb208), 524 functions work with the switch on, against 523 with it off: 7 do better and 4 worse. The 8110 Unimog ran past the 200-minute limit, where with the switch off it finishes in 174 minutes, so its functions aren't in either count (with the switch off, 8 of them work). The 4 that do worse:
+On all 186 sets (at c0fb208), 524 functions work with the switch on, against 523 with it off: 7 do better and 4 worse. The 8110 Unimog ran past the 200-minute limit, so its functions aren't in either count. Rerun alone with a 7-hour limit, it comes out as with the switch off (8 work, 4 partly, 4 no, 1 not back), but takes 292 minutes against 174. So with the 8110, 532 work against 531. The 4 that do worse:
 
 - **The 8002 Destroyer Droid's back leg** (works → no) never moved: each correction's mix of free motions opened the loops again, round after round, so the step was refused. Fixed in cbfeb45: a closing whose mix is undone even on a fresh basis, and which would leave the step refused, finishes its rounds without the mix. Only for a step that opened the loops only a little, else the 42037 Formula Off-Roader's wild first step back (2,948 LDU of slide) went too. The leg works again, and the 46 iteration sets are unchanged.
 - **The 9392 Quad Bike's steering** (partly → no) isn't a real loss. Its linkage fits only at a tangency: closing its loops gains about half a gap a round, as Newton's method does at a double root, so 12 rounds end 0.003 LDU apart and the step is refused. With the switch off it goes on by holding a strayed joint, but each 0.1 radian of steering slides the whole bike about 10 LDU.
