@@ -44,6 +44,7 @@ The 42037's 3° stop was its left steering link swinging free. The model builds 
 - **42037:** its steering stops at 20° and 27°, both wheels steering. Functions 1 and 2 now come back where they started (function 1 was 48° off). But the steering's there-and-back leaves the drivetrain 0.7 radians round: both front hubs now steer, turning the drive through their constant velocity joints, and the free wheels and shafts don't come all the way back (the free-mode path dependence of [one-problem.md](one-problem.md)).
 - **42000:** functions 4 and 5 come back within 5° (they were 20° off), the links no longer adrift.
 - **42069:** the steering comes back exactly (2 parts were off).
-- **42077, 42129:** unchanged. The 8110 wasn't rechecked (5 hours).
+- **42077, 42129:** unchanged.
+- **8110:** function 14, the crane's stabiliser legs, now comes back where it started (one part was left out of place). Its results are otherwise the same.
 
-All 329 tests pass. The function results (works, partly, no) of these sets don't change; their data/sets files are left for the full check to rewrite.
+All 329 tests pass. The function results (works, partly, no) of these sets don't change.
