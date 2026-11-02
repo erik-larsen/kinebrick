@@ -103,8 +103,10 @@ const RANK_TOLERANCE = 1e-6;
 // A drag that turns a joint chooses its motion by least motion, tier by tier (see leastTurning),
 // rather than by holding what it doesn't need (see chooseDragHolds), as pushes still do. ?holds in
 // the viewer, or KINEBRICK_LEAST=0 for the tests and scripts, has it choose holds instead.
-// One problem for each step (see docs/one-problem.md), on trial: KINEBRICK_ONE=1 turns it on.
-export const experiments = { leastMotion: !(typeof process !== 'undefined' && process.env?.KINEBRICK_LEAST === '0'), oneProblem: typeof process !== 'undefined' && process.env?.KINEBRICK_ONE === '1' };
+// Closing a step's loops keeps to the tiers too, as one problem with choosing the motion (see
+// docs/one-problem.md). ?passes in the viewer, or KINEBRICK_ONE=0 for the tests and scripts, has
+// it close them by the least motion by size, as before.
+export const experiments = { leastMotion: !(typeof process !== 'undefined' && process.env?.KINEBRICK_LEAST === '0'), oneProblem: !(typeof process !== 'undefined' && process.env?.KINEBRICK_ONE === '0') };
 // A tier's motions count as costing nothing (see leastTurning) below this, as a fraction of the
 // most a free motion of unit size costs there.
 const TIER_TOLERANCE = 1e-10;

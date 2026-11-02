@@ -47,6 +47,8 @@ And faster:
 
 Choosing the motion, taking the step and closing the loops become one problem: of the positions that keep every connection and turn the dragged joint as far as asked, the one that costs least, least motion's tiers being the cost. Ends of travel and contacts are limits it may not pass. That's how robots' inverse kinematics and position-based physics engines work. Closing the loops as a separate pass goes, a dead point is just a step with no answer, play is a soft weight, and the car standing on its tyres is one more connection. The plan for it, and what it should retire, is in [One problem for each step](one-problem.md).
 
+Its first round, closing a step's loops by the tiers rather than by size alone, met the adoption test (all the tests pass both ways, and on the full check 532 functions work against 531) and was adopted; `?passes` and `KINEBRICK_ONE=0` turn it off. Next: choosing the step's motion in the same rounds (the Newton step), then tyres and play as rows.
+
 ### 4. MuJoCo as a second opinion
 
 Which way a real mechanism goes is settled by friction, mass and springs, and holds and tiers both stand in for them. [MuJoCo](https://mujoco.org) has those. The mechanism Kinebrick infers is written out as a MuJoCo model (gears and differentials as linear ties between joints, loops as connections it keeps), dragged with friction on each joint, and compared with Kinebrick: where they disagree, one of them is wrong. It runs in Node, through MuJoCo's WebAssembly build, for checking only. [LegoTechnicSimulation](https://github.com/yoff/LegoTechnicSimulation) went this way, and is read first.

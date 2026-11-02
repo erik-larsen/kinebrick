@@ -127,6 +127,9 @@ const OPTIONS = params.getAll('option').join(',').split(',');
 // ?holds has a drag that turns a joint choose its motion by holds, as before least motion (see
 // leastTurning in kinematics.ts).
 if (params.has('holds')) experiments.leastMotion = false;
+// ?passes has a drag close a step's loops by the least motion by size, as before one problem (see
+// closeLoops in kinematics.ts).
+if (params.has('passes')) experiments.oneProblem = false;
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if

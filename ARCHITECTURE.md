@@ -467,6 +467,8 @@ A closed loop of parts, like crank, connecting rod, piston, cylinder and back to
 
 So after each step, Kinebrick works out how far each has come apart, and moves every body by the smallest amount that closes the gaps while keeping every other rule. It doesn't turn the joint a drag is turning, so that turns by exactly what the drag asked.
 
+**Keeping to the tiers.** For a turn chosen by [least motion](#least-motion), the smallest amount isn't by size alone: of the ways to close the gaps, it's the one the tiers prefer, as in choosing the step's motion, so closing them doesn't nudge what the drag leaves still ([one problem for each step](docs/one-problem.md)). Where that only opens the gaps again, and would leave the step refused, the rest of the rounds go by size alone. So do they all with `?passes` in the address (`KINEBRICK_ONE=0` for the tests and scripts).
+
 **When the rules can't all hold.** A model's rounded-off positions can make two rules that should repeat each other disagree slightly. Then it comes as close as it can, by least squares:
 
 - **Every rule is scaled to the same size first.** Rules about turning would otherwise count for less than rules about moving, whose numbers (in LDU) run larger, and a single-cylinder engine's piston would tip a little further out of line at every step.

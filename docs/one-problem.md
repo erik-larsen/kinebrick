@@ -1,6 +1,6 @@
 # One problem for each step: a plan
 
-A design note and prototype report for line 3 of the [solver phase](solver-phase.md): taking a drag's step as one problem, rather than choosing a motion, moving along it and then closing the loops as separate passes, built as [least motion](least-motion.md) was. The first round is in (see First round, below), behind `KINEBRICK_ONE=1`, and what flung the 42041 Race Truck in it is found and fixed.
+A design note and prototype report for line 3 of the [solver phase](solver-phase.md): taking a drag's step as one problem, rather than choosing a motion, moving along it and then closing the loops as separate passes, built as [least motion](least-motion.md) was. Its first round, closing the loops by the tiers (see First round, below), met the adoption test on the full check and was adopted: it's on by default, with `?passes` in the viewer, or `KINEBRICK_ONE=0` for the tests and scripts, closing them as before.
 
 ## How a step is taken now
 
@@ -41,7 +41,7 @@ What it should retire:
 
 ## How it will be built
 
-As least motion was: behind a switch, `KINEBRICK_ONE=1` for tests and scripts and `?one` in the viewer, with today's passes left as they are until it's adopted.
+As least motion was: behind a switch, `KINEBRICK_ONE=1` for tests and scripts, with today's passes left as they are until it's adopted.
 
 1. **Affine tiers.** `leastTurning` takes an offset, the particular solution's costs, so a tier minimises the cost of `δ₀` plus the mix, and a target rate other than 1. With no offset and a target of 1, its answer is as now, to the last bit; a test says so.
 2. **The Newton step.** A `stepOnce` that does the rounds above, reusing the tree's basis and the free motions from round to round while the gaps at least halve (as `closeLoops` reuses the basis now), and falling back to working them out afresh where they don't.
