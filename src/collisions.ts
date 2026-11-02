@@ -18,6 +18,7 @@
 // face to face, don't count.
 
 import { Box3, BufferAttribute, BufferGeometry, Matrix4, Vector3 } from 'three';
+import type { Mechanism } from './mechanism.ts';
 
 // How far each part's shape is pulled in at each face of its box for collision checks, in
 // LDU. Faces that merely touch (a beam sliding across the flush head of a pin) then don't
@@ -33,6 +34,25 @@ export function collisionGeometry(source: BufferGeometry): BufferGeometry {
   geometry.setAttribute('position', new BufferAttribute(new Float32Array(source.getAttribute('position').array), 3));
   if (source.index) geometry.setIndex(source.index.clone());
   return geometry;
+}
+
+// The pairs of parts that may touch, as "a,b" (the lower first), so aren't checked: those directly
+// connected, or on the same pin or axle (two beams on one pin lie face to face), and gears.
+export function connectedPairs(mech: Mechanism): Set<string> {
+  const connected = new Set<string>();
+  const pairKey = (a: number, b: number) => (a < b ? `${a},${b}` : `${b},${a}`);
+  for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
+  for (const a of mech.connections) {
+    for (const b of mech.connections) {
+      if (a.male === b.male && a.female !== b.female && a.kind !== 'stud' && b.kind !== 'stud') connected.add(pairKey(a.female, b.female));
+    }
+  }
+  for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
+  // Nor are any two gears: Kinebrick doesn't know where each gear's teeth are round it, so two
+  // gears coming into mesh would seem to run into each other tip to tip, short of it (the 952
+  // Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short).
+  for (const a of mech.gears) for (const b of mech.gears) if (a.part !== b.part) connected.add(pairKey(a.part, b.part));
+  return connected;
 }
 
 // Pulls a part's meshes in towards the middle of their box, by INSET at each face.

@@ -28,6 +28,7 @@
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
 //   npm run functions -- --limit 20   stop a set that takes more than this many minutes (default
 //                                     30), marking it as timed out
+//   npm run functions -- --lock       steering's stops too (see LOCK), for now only reported
 //   npm run functions -- --quick      only the quick sets (QUICK): a couple of minutes, for every
 //                                     change; the whole check is for overnight
 //
@@ -49,9 +50,11 @@ import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Mechanism } from '../src/mechanism.ts';
+import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
 import { loadModel } from './load-model.ts';
+import { partShapes } from './part-shapes.ts';
 import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
 const SETS_DIR = join('data', 'sets');
@@ -74,11 +77,28 @@ const STROKE_OFF = 0.1;
 // After there and back, a part counts as having strayed if it's this far (LDU) or this much
 // (degrees) from where it started.
 const BACK = 0.5;
+// Steering's stops: with --lock, a steering function's control is also turned each way until it
+// stops, or as far as this (radians: a steering wheel geared down may take turns from lock to
+// lock), and how far it steered is written (`lock`: for each control, each way, the most any
+// steered part turned, in degrees; how far the control turned; and whether a limit stopped it,
+// it stuck, or it went the whole way). The steered parts are those in `moves` (not on the
+// control's body): a wheel, turning on an axle within LEVEL of level, by how far its axle's
+// heading turned against the frame, seen from above; and a knuckle, turning on a joint within
+// LEVEL of upright on something that doesn't (the frame, a suspension arm), by how far it turned
+// against the frame. The turn stops, as in the viewer, where parts meet (see collisions.ts) or at
+// a limit.
+const LOCK = 4 * Math.PI;
+const LEVEL = Math.PI / 6;
+const STEERING = ['rack-steering', 'linkage-steering', 'multi-axle-steering', 'fork-steering', 'articulated-steering', 'swivel-axle-steering'];
+const locks = process.env.KINEBRICK_CHECK_LOCK === '1';
+// With --lock, each model's part shapes (see partShapes), read before it's checked.
+const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
 // The quick sets: between them, every kind of mechanism the check can work (in the mechanism
 // catalog), but two only the slow 42054 and 42055 have, chosen for the least time the check
 // takes: about 6 minutes of one core's time in all, at 0.850.
 const QUICK = ['8270', '42107', '8849', '42061', '42109', '8001', '8204', '8245', '8851', '8856', '8208', '8448', '8824', '8202', '42084', '42074', '42071', '8845', '8837', '858', '8074', '42063', '42057', '42065', '956', '8081', '8049', '8416', '42112', '42129', '9394', '42000', '42114'];
 
+type Stop = 'meets' | 'limit' | 'stuck' | 'free';
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
@@ -89,11 +109,13 @@ interface Checked {
   expected?: Record<string, number>[]; // for each control, what its gears say for the parts that have a say
   wrong?: string[];
   back?: [number, number][][]; // for each control, each way: the furthest a part is left after there and back (LDU, degrees)
+  lock?: [number, number, Stop][][]; // for each steering control, each way: its steered parts' most turn (degrees), its own turn (radians), and what stopped it (see LOCK)
   strayed?: string[];
   why?: string[];
 }
 interface Fn {
   control?: string | string[];
+  mechanisms?: string[];
   moves?: string[];
   stays?: string[];
   first?: { control: string; by: number }[];
@@ -353,7 +375,62 @@ function checkModel(model: string, functions: Fn[]) {
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
-      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed) };
+      // Steering's stops (see LOCK): each way from where it started, turned until it stops.
+      // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
+      const heading = (j: number, poses: Matrix4[]) => {
+        const x = mech.joints[j];
+        const d = x.to.clone().sub(x.from).normalize().transformDirection(poses[0].clone().invert().multiply(poses[x.bodyA]));
+        return new Vector3(d.x, 0, d.z).normalize();
+      };
+      // How upright a body's joint is (the y of its axis), or null if it doesn't turn on one.
+      const upright = (body: number) => {
+        const l = kin.parentLink(body);
+        if (!l || mech.joints[l.joint].kind !== 'revolute') return null;
+        const j = mech.joints[l.joint];
+        return Math.abs(j.to.clone().sub(j.from).normalize().transformDirection(startPoses[j.bodyA]).y);
+      };
+      const steeredBy = moves.flatMap((m) => {
+        const body = mech.bodyOf[m.part];
+        const y = upright(body);
+        if (m.body !== 0 || body === b || y === null) return [];
+        const joint = kin.parentLink(body)!.joint;
+        if (y <= Math.sin(LEVEL)) return [() => Math.acos(Math.min(1, Math.abs(heading(joint, kin.poses).dot(heading(joint, startPoses)))))];
+        const on = upright(kin.parentLink(body)!.parent);
+        if (y >= Math.cos(LEVEL) && !(on !== null && on >= Math.cos(LEVEL))) return [() => angle(relative(m.part, 0, startPoses), relative(m.part, 0, kin.poses))];
+        return [];
+      });
+      const lock = locks && !slides && steeredBy.length && fn.mechanisms?.some((m) => STEERING.includes(m.split(':')[0]))
+        ? [1, -1].map((way) => {
+            kin.restore(start);
+            // The parts' shapes, if they match the model's parts (but a path's, a chain's links,
+            // which only show where it runs, as in the viewer).
+            const known = shapesOf.get(model);
+            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => known[i].name === p.name);
+            const collisions = matches ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            let met = false;
+            const allowed = () => {
+              if (kin.atLimit() !== null) return false;
+              met = collisions !== null && collisions.check(placedNow().map((p) => p.matrix)) !== null;
+              return !met;
+            };
+            kin.holdWhatTheDragDoesntNeed(b, () => kin.jointMotion(link.joint) !== null, link.joint);
+            let turned = 0;
+            let why: Stop = 'free';
+            while (Math.abs(turned) < LOCK - 1e-9) {
+              const piece = way * Math.min(PIECE, LOCK - Math.abs(turned));
+              const step = kin.turnJoint(link.joint, piece, allowed);
+              turned += step;
+              if (Math.abs(step) < Math.abs(piece) - 1e-9) {
+                why = met ? 'meets' : kin.atLimit() !== null ? 'limit' : 'stuck';
+                break;
+              }
+            }
+            kin.letGoAfterDrag();
+            const most = Math.max(...steeredBy.map((f) => f()));
+            return [round((most * 180) / Math.PI), round(turned), why] as [number, number, Stop];
+          })
+        : null;
+      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock };
     });
     const result: Result = ways.every((w) => w.works) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
     const still = [...new Set(ways.flatMap((w) => w.still))];
@@ -371,6 +448,7 @@ function checkModel(model: string, functions: Fn[]) {
       ...(off.length ? { wrong: off } : {}),
       back: ways.map((w) => w.back),
       ...(strayed.length ? { strayed } : {}),
+      ...(ways.some((w) => w.lock) ? { lock: ways.map((w) => w.lock ?? []) } : {}),
       ...(why.length ? { why: [...new Set(why)] } : {}),
     };
   };
@@ -414,7 +492,9 @@ function changes(functions: { does: string }[], was: Checked[], now: Checked[]):
 const args = process.argv.slice(2);
 const one = args.indexOf('--one'); // (internal) check this one set's file and print what it found
 if (one >= 0) {
-  const found = check(JSON.parse(readFileSync(args[one + 1], 'utf-8')));
+  const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
+  if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
+  const found = check(set);
   // Let the output drain before the process ends: a pipe takes it in pieces.
   process.stdout.write(JSON.stringify(found), () => process.exit(0));
 } else {
@@ -429,6 +509,7 @@ async function main() {
   const named = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
   // A set's number, followed by "-" so that 855 doesn't also pick the 8855.
   const filters = args.includes('--quick') ? QUICK.map((n) => `${n}-`) : named;
+  if (args.includes('--lock')) process.env.KINEBRICK_CHECK_LOCK = '1';
   const commit = execSync('git rev-parse --short HEAD').toString().trim();
   // No shell, so the pathspec isn't left quoted by Windows' cmd.
   const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets']).toString().trim() !== '';

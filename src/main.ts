@@ -29,7 +29,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { collisionGeometry, Collisions, PartMesh } from './collisions.ts';
+import { collisionGeometry, Collisions, connectedPairs, PartMesh } from './collisions.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -509,21 +509,7 @@ async function start() {
       contacts.add(dot);
     }
 
-    // Which parts are directly connected, or sit on the same pin or axle (they may touch:
-    // two beams on one pin lie face to face).
-    const connected = new Set<string>();
-    const pairKey = (a: number, b: number) => (a < b ? `${a},${b}` : `${b},${a}`);
-    for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
-    for (const a of mech.connections) {
-      for (const b of mech.connections) {
-        if (a.male === b.male && a.female !== b.female && a.kind !== 'stud' && b.kind !== 'stud') connected.add(pairKey(a.female, b.female));
-      }
-    }
-    for (const m of mech.meshes) connected.add(pairKey(mech.gears[m.gearA].part, mech.gears[m.gearB].part));
-    // Nor are any two gears: Kinebrick doesn't know where each gear's teeth are round it, so
-    // two gears coming into mesh would seem to run into each other tip to tip, short of it (the
-    // 952 Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short).
-    for (const a of mech.gears) for (const b of mech.gears) if (a.part !== b.part) connected.add(pairKey(a.part, b.part));
+    const connected = connectedPairs(mech);
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
     else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
 
