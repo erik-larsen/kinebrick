@@ -64,7 +64,12 @@ About 90 sets have parts Kinebrick doesn't connect or mesh. First, connection da
 | One problem, full check (1a29958) | 534 | 319 | 194 | |
 | Now (8c10691) | 532 | 319 | 196 | 13 |
 
-The 2 lost since 1a29958 are the 42113 Osprey's flaps (function 8) and the 42125 Ferrari 488's front suspension (function 4), works to no at a838eff, outside the 46 iteration sets it was checked on; being looked into. The README's table still shows least motion's 531, 318 and 198.
+The 2 lost since 1a29958 are the 42113 Osprey's flaps (function 8) and the 42125 Ferrari 488's front suspension (function 4), works to no. Both went with fixes made after the full check, which was checked on the 46 iteration sets only, so their losses went unseen until now. Both earlier "works" were loose ones:
+
+- The 42125's went with 3962995, refusing a step that opens the loops more than a stud. With the refusal off, the suspension "works" by flinging parts: 181 LDU off there and back, 3 parts strayed. Its shocks are rigid, so it moves only by play, like the 8448's and 8081's that the refusal was made for.
+- The 42113's went with da41e77, closing the loops with the grabbed part kept against what its shaft turns in. It had come back 15.8 LDU off, with a part strayed.
+
+The README's table still shows least motion's 531, 318 and 198.
 
 The other measure, the solver getting smaller (its lines, its rules and tiers, the sets its code names, about 30 at 0.850), hasn't been counted since.
 
