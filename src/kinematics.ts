@@ -1885,6 +1885,12 @@ export class Kinematics {
       last = biggest;
       if (round === 0) opened = biggest;
       if (biggest < LOOP_TOLERANCE) return last;
+      // One problem: a step that opened the loops more than a stud is no step to take, and is left
+      // for turnJoint to refuse. The tiers' mix can close
+      // what plain closing can't, and a wild step, closed so, kept what's free to go anywhere
+      // (the 8448 Super Street Sensation's front wheels, spun 3.5 radians on their hubs by a step
+      // that opened the loops 1,200 LDU, as the suspension took up its play).
+      if (round === 0 && experiments.oneProblem && keep >= 0 && this.dragTurning?.joint === keep && this.stepByTiers && biggest > STUD) return last;
       if (biggest > previous / 2) {
         // A round that opened the gaps up, rather than closing them, is undone.
         if (before && biggest > previous) {
