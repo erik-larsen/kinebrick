@@ -12,9 +12,26 @@ import { drawnDirectly } from '../src/pack.ts';
 
 export function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}) {
   status('reading it');
-  const text = readFileSync(file, 'utf-8');
+  const { text, table, parts, paths } = readParts(file, omr);
   const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+  status('working out its mechanism');
+  // The mechanism of the parts placed as given, ready to move: the model's own, or worked out
+  // afresh after a shift moved some of them, as the viewer does.
+  const read = (placed: PlacedPart[]) => {
+    const mech = inferMechanism(placed, table, roles, paths);
+    const kin = new Kinematics(mech);
+    kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
+    return { parts: placed, mech, kin };
+  };
+  return { name, table, slides: modelSettings(text).slides, ...read(parts), read };
+}
+
+// A model's parts, in the order the scripts number them ("p483 3736"), with its connection table:
+// read as loadModel reads them, without working out its mechanism.
+export function readParts(file: string, omr: boolean) {
+  const text = readFileSync(file, 'utf-8');
+  const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   const packedModels: Record<string, { primitives: string[]; pieces: Record<string, string[]> }> = JSON.parse(readFileSync('packed/models.json', 'utf-8'));
   let table: ConnectionTable;
   let isPrimitive: (n: string) => boolean;
@@ -34,14 +51,5 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
     piecesOf = (n) => packed?.pieces[n] ?? null;
   }
   const { parts, paths } = parseModel(text, isPrimitive, piecesOf);
-  status('working out its mechanism');
-  // The mechanism of the parts placed as given, ready to move: the model's own, or worked out
-  // afresh after a shift moved some of them, as the viewer does.
-  const read = (placed: PlacedPart[]) => {
-    const mech = inferMechanism(placed, table, roles, paths);
-    const kin = new Kinematics(mech);
-    kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
-    return { parts: placed, mech, kin };
-  };
-  return { name, table, slides: modelSettings(text).slides, ...read(parts), read };
+  return { text, table, parts, paths };
 }
