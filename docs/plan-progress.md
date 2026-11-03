@@ -1,10 +1,10 @@
 # Kinebrick: the plan and where it stands
 
-A snapshot on 2026-11-02, at solver 8c10691, to assess the plan from: its main steps, what's done, what's under way, and what's open. The plan itself lives in three places: the project brief (CLAUDE.md), the milestones in the README, and the solver phase ([solver-phase.md](solver-phase.md)).
+A snapshot on 2026-11-02, at solver 4e2779f, to assess the plan from: its main steps, what's done, what's under way, and what's open. The plan itself lives in three places: the project brief (CLAUDE.md), the milestones in the README, and the solver phase ([solver-phase.md](solver-phase.md)).
 
 ## In one paragraph
 
-Version 1.0, the kinematics, is done but for M7 (real sets, oldest first). Since release 0.850 (2026-10-29) the work has been on the solver itself, on the `solver` branch, 79 commits ahead of `main`: a check that says how much, least motion (adopted), and one problem for each step (its first round adopted). On the function check over all 186 official sets, 532 of 1,224 functions work, 319 partly and 196 don't; 13 sets work in full. MuJoCo (as a second opinion, then as 2.0's forces) and connections from data haven't started.
+Version 1.0, the kinematics, is done but for M7 (real sets, oldest first). Since release 0.850 (2026-10-29) the work has been on the solver itself, on the `solver` branch, 82 commits ahead of `main`, which it contains in full: a check that says how much, least motion (adopted), and one problem for each step (its first round adopted). On the function check over all 186 official sets, 532 of 1,224 functions work, 319 partly and 196 don't; 13 sets work in full. MuJoCo (as a second opinion, then as 2.0's forces) and connections from data haven't started.
 
 ## The project brief's plan
 
@@ -62,12 +62,12 @@ About 90 sets have parts Kinebrick doesn't connect or mesh. First, connection da
 | Least motion adopted | 508 | | | |
 | Least motion, last full check | 531 | 318 | 198 | 13 |
 | One problem, full check (1a29958) | 534 | 319 | 194 | |
-| Now (8c10691) | 532 | 319 | 196 | 13 |
+| Now (4e2779f) | 532 | 319 | 196 | 13 |
 
 The 2 lost since 1a29958 are the 42113 Osprey's flaps (function 8) and the 42125 Ferrari 488's front suspension (function 4), works to no. Both went with fixes made after the full check, which was checked on the 46 iteration sets only, so their losses went unseen until now. Both earlier "works" were loose ones:
 
 - The 42125's went with 3962995, refusing a step that opens the loops more than a stud. With the refusal off, the suspension "works" by flinging parts: 181 LDU off there and back, 3 parts strayed. Its shocks are rigid, so it moves only by play, like the 8448's and 8081's that the refusal was made for.
-- The 42113's went with da41e77, closing the loops with the grabbed part kept against what its shaft turns in. It had come back 15.8 LDU off, with a part strayed.
+- The 42113's went with da41e77, closing the loops with the grabbed part kept against what its shaft turns in. It had come back 15.8 LDU off, with a part strayed. Its linkage moves only to first order (the loops open by the step squared), and before, closing spun the beam's axle back by exactly the step, so the beam never really moved against the frame; where the linkage locks isn't found yet. The function was inferred, unsure whether the flaps are linked to the nacelles at all: the instruction book would settle it.
 
 The README's table still shows least motion's 531, 318 and 198.
 
@@ -76,8 +76,10 @@ The other measure, the solver getting smaller (its lines, its rules and tiers, t
 ## Branches
 
 - `main`: c97d0cf. The user fast-forwards it from `solver` (`git merge --ff-only solver`) and pushes it.
-- `solver`: all the solver phase's work, and since 8c10691 also `solver-train`'s.
+- `solver`: all the solver phase's work, and since 8c10691 also `solver-train`'s. It's the pre-release site's branch (erik-larsen.github.io/kinebrick/prerelease/), which each push to it republishes.
 - `solver-train`, merged into `solver` at 8c10691: the 10001 Metroliner runs round its track; sticker shapes no longer z-fight; subparts placed directly (the OMR's flexible axles) are drawn rather than loaded as parts, which renumbered 8 sets' parts (their curated references renumbered to match, every result as before).
+
+The renumbering exposed that the curated functions name parts by bare numbers nothing checked. A test now does (4e2779f): every reference's name must be that of the part at its number, in all 186 sets, in about 7 seconds.
 
 ## Questions for the assessment
 
