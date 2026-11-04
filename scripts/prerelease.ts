@@ -2,7 +2,8 @@
 // for trying work before it reaches main (the solver branch, say). It sets the repository variable
 // PRERELEASE_BRANCH, which the Pages workflow (.github/workflows/pages.yml) reads, and runs the
 // workflow, which builds main and the branch together and publishes both. From then on a push to
-// main, or to the branch once it has the workflow, publishes both afresh.
+// main, or to the branch once it has the workflow, publishes both afresh. It also runs the
+// branch's tests (.github/workflows/test.yml), as every push to the branch does from then on.
 //
 // It needs the GitHub CLI (gh), signed in as the repository's owner, who alone may change its
 // variables.
@@ -17,6 +18,7 @@ import { execFileSync } from 'node:child_process';
 
 const VARIABLE = 'PRERELEASE_BRANCH';
 const WORKFLOW = 'pages.yml';
+const TESTS = 'test.yml';
 const SITE = 'https://erik-larsen.github.io/kinebrick/prerelease/';
 
 function run(cmd: string, args: string[], quiet = false): string {
@@ -56,6 +58,16 @@ function publish(watch: boolean) {
   run('gh', ['run', 'watch', id, '--exit-status']);
 }
 
+// Runs the branch's tests on GitHub, if it has the test workflow (a branch gets it with main).
+function test(branch: string) {
+  try {
+    run('gh', ['workflow', 'run', TESTS, '--ref', branch], true);
+    console.log(`Testing the ${branch} branch: gh run list --workflow ${TESTS}`);
+  } catch {
+    console.log(`The ${branch} branch has no ${TESTS} yet, so its pushes aren't tested: merge main into it.`);
+  }
+}
+
 const args = process.argv.slice(2);
 const watch = args.includes('--watch');
 const off = args.includes('--off');
@@ -82,5 +94,6 @@ if (off) {
   }
   if (was !== branch) run('gh', ['variable', 'set', VARIABLE, '--body', branch]);
   console.log(`The pre-release is the ${branch} branch${was && was !== branch ? ` (was ${was})` : ''}: ${SITE}`);
+  test(branch);
   publish(watch);
 }

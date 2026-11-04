@@ -1,0 +1,39 @@
+# Runs the tests on the pre-release branch whenever it's pushed. main's tests run before each
+# deploy (see pages.yml), but the pre-release build there doesn't run them, so a test that fails on
+# the pre-release branch shows up here instead: as a failed run, a red mark on the commit, and
+# GitHub's usual mail to whoever pushed it.
+#
+# The repository variable PRERELEASE_BRANCH names the branch (see pages.yml), so this follows it
+# when it changes. A push runs the workflow file of the branch pushed, so the branch needs this
+# file: it has it once main is merged in. Run it by hand on any branch with
+#   gh workflow run test.yml --ref <branch>
+name: Test the pre-release branch
+
+on:
+  push:
+    # Any branch: the job runs only for the pre-release branch (see its `if`).
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  test:
+    if: github.event_name == 'workflow_dispatch' || (github.ref_name != 'main' && github.ref_name == vars.PRERELEASE_BRANCH)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    concurrency:
+      # A newer push to the same branch replaces a run still going.
+      group: test-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # The pre-release build skips the type check (it runs vite build alone), so it's here.
+      - name: Type check
+        run: npx tsc --noEmit -p .
+      - run: npm test

@@ -65,8 +65,9 @@ jobs:
         working-directory: prerelease
         env:
           BRANCH: ${{ vars.PRERELEASE_BRANCH }}
-        # Its tests aren't run: it's a pre-release. The page says which branch and commit it's
-        # of (VITE_PRERELEASE, see src/main.ts) and so does its title.
+        # Its tests aren't run here, so a failing test doesn't hold up the site: test.yml runs
+        # them on each push to the pre-release branch. The page says which branch and commit
+        # it's of (VITE_PRERELEASE, see src/main.ts) and so does its title.
         run: |
           npm ci
           export VITE_PRERELEASE="$BRANCH @ $(git rev-parse --short HEAD), $(date -u +%Y-%m-%d)"
