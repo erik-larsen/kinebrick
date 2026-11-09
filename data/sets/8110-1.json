@@ -243,11 +243,12 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
-      "partly": 4,
-      "works": 5,
+      "partly": 8,
+      "works": 1,
       "no": 7
     },
     "loose": [
@@ -312,7 +313,7 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
+            1.26,
             -1.5
           ]
         ],
@@ -326,16 +327,16 @@
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -353,6 +354,9 @@
             1.5,
             -1.5
           ]
+        ],
+        "moved": [
+          "p1109 2850a"
         ]
       },
       {
@@ -406,6 +410,10 @@
           "p4001 4716",
           "p4029 76019",
           "p4030 32012"
+        ],
+        "why": [
+          "p512 6641, worked first, went 0.03 of 0.4",
+          "p516 6641, worked first, went -0.1 of -0.4"
         ]
       },
       {
@@ -422,6 +430,10 @@
           "p2172 4716",
           "p2216 48168",
           "p2319 47224"
+        ],
+        "why": [
+          "p512 6641, worked first, went 0.03 of 0.4",
+          "p516 6641, worked first, went 0.03 of 0.4"
         ]
       },
       {
@@ -435,6 +447,9 @@
         "still": [
           "p422 94925",
           "p730 6587"
+        ],
+        "why": [
+          "p512 6641, worked first, went -0.03 of -0.4"
         ]
       },
       {
@@ -450,8 +465,8 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ],
         "still": [
@@ -471,24 +486,24 @@
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.21,
+            -0.17
           ],
           [
-            1.5,
-            -1.5
+            0.14,
+            -0.07
           ]
         ]
       },

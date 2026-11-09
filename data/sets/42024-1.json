@@ -116,7 +116,8 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
       "partly": 3,
@@ -302,7 +303,6 @@
           ]
         ],
         "still": [
-          "p547 6542b against p0 4519",
           "p570 3648b against p0 4519",
           "p611 62274c01 against p610 62271c01",
           "p815 6629 against p0 4519",
@@ -321,7 +321,6 @@
           ]
         ],
         "still": [
-          "p546 6542b against p0 4519",
           "p584 94925 against p0 4519",
           "p656 92695 against p654 92693c01",
           "p669 6629 against p0 4519",

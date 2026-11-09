@@ -111,7 +111,8 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
       "partly": 4,
@@ -232,8 +233,8 @@
         "result": "partly",
         "turned": [
           [
-            1.29,
-            -1.08
+            0.31,
+            -1.5
           ]
         ],
         "still": [
@@ -258,8 +259,8 @@
         "result": "partly",
         "turned": [
           [
-            0.31,
-            -0.31
+            0.35,
+            -0.35
           ]
         ]
       },

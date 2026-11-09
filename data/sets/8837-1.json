@@ -109,12 +109,13 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
-      "partly": 3,
+      "partly": 4,
       "not checked": 1,
-      "works": 2,
+      "works": 1,
       "skipped": 1
     },
     "loose": [
@@ -157,12 +158,15 @@
         "result": "not checked"
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
             -1.5
           ]
+        ],
+        "moved": [
+          "p54 3703 against p0 3738"
         ]
       },
       {
@@ -174,8 +178,6 @@
           ]
         ],
         "still": [
-          "p54 3703 against p0 3738",
-          "p174 3895 against p0 3738",
           "p51 3647 against p54 3703"
         ],
         "moved": [

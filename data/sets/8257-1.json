@@ -128,7 +128,8 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
       "works": 3,
@@ -493,25 +494,24 @@
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.26,
             0
           ]
+        ],
+        "moved": [
+          "p604 32065 against p550 32018"
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p457 32009 against p550 32018",
-          "p620 2698 against p550 32018"
         ]
       },
       {

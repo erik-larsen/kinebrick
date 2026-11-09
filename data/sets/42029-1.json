@@ -144,11 +144,13 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
-      "works": 4,
       "partly": 4,
+      "works": 2,
+      "no": 2,
       "skipped": 1,
       "not checked": 1
     },
@@ -157,36 +159,41 @@
     ],
     "functions": [
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ]
-      },
-      {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ]
-      },
-      {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
-          ],
+            0.28,
+            -0.42
+          ]
+        ],
+        "moved": [
+          "p1143 45982 against p674 2850a"
+        ]
+      },
+      {
+        "result": "works",
+        "turned": [
           [
             1.5,
             -1.5
           ]
+        ]
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
         ],
         "still": [
+          "p457 62821 against p674 2850a",
+          "p356 94925 against p674 2850a",
           "p367 6542b against p674 2850a",
           "p828 94925 against p674 2850a",
           "p690 2854 against p674 2850a",
@@ -195,11 +202,11 @@
         ]
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ]
       },
@@ -224,7 +231,6 @@
           ]
         ],
         "still": [
-          "p64 6542b against p0 32278",
           "p55 94925 against p0 32278",
           "p832 4716 against p674 2850a",
           "p837 3648b against p674 2850a",
@@ -240,7 +246,6 @@
           ]
         ],
         "still": [
-          "p49 6542b against p0 32278",
           "p62 94925 against p0 32278",
           "p597 92695 against p596 92693c01",
           "p974 64782 against p0 32278"

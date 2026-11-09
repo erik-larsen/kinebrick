@@ -123,12 +123,13 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
-      "partly": 4,
+      "partly": 3,
       "no": 1,
-      "works": 2
+      "works": 3
     },
     "loose": [
       "p121 18947",
@@ -245,15 +246,12 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p2766 32525"
         ]
       }
     ]

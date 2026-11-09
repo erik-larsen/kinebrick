@@ -112,11 +112,12 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
-      "works": 5,
-      "partly": 2
+      "works": 6,
+      "partly": 1
     },
     "loose": [],
     "functions": [
@@ -143,7 +144,7 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -153,10 +154,6 @@
             1.5,
             -1.5
           ]
-        ],
-        "moved": [
-          "p235 3702 against p0 3035",
-          "p37 3702 against p0 3035"
         ]
       },
       {

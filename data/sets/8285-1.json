@@ -201,12 +201,13 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
       "no": 4,
-      "partly": 4,
-      "works": 4,
+      "works": 5,
+      "partly": 3,
       "skipped": 3
     },
     "loose": [
@@ -289,16 +290,12 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "moved": [
-          "p720 3705",
-          "p60 6573"
         ]
       },
       {

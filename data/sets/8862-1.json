@@ -149,7 +149,8 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
       "works": 8,
@@ -181,18 +182,12 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p609 2814 against p596 3702"
-        ],
-        "moved": [
-          "p596 3702 against p580 3895"
         ]
       },
       {
@@ -245,12 +240,15 @@
         ]
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
             -1.5
           ]
+        ],
+        "moved": [
+          "p292 3703"
         ]
       },
       {

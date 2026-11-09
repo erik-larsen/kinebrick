@@ -159,12 +159,13 @@
     ]
   },
   "generated": {
-    "commit": "04d134e",
+    "commit": "e7c7d3a",
+    "least": true,
     "date": "2026-10-27",
     "counts": {
-      "partly": 7,
+      "partly": 3,
+      "no": 6,
       "not checked": 1,
-      "no": 2,
       "skipped": 2
     },
     "loose": [
@@ -276,14 +277,17 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p1081 22969",
+          "p669 22969",
+          "p690 22969",
           "p1031 6573",
           "p648 6573",
           "p816 6573",
@@ -313,39 +317,34 @@
         ]
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p1081 22969",
           "p1033 6589",
           "p1034 6589"
-        ],
-        "moved": [
-          "p669 22969"
         ]
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
           "p1031 6573",
           "p818 6589"
-        ],
-        "moved": [
-          "p669 22969"
         ]
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
             0,
@@ -357,11 +356,11 @@
           ],
           [
             0,
-            -0.03
+            0
           ],
           [
-            0.03,
-            -0.03
+            0,
+            0
           ]
         ]
       },
