@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "a838eff",
-    "uncommitted": true,
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 5,
     "counts": {
       "works": 4,
       "partly": 1,
@@ -249,6 +249,12 @@
           "p580 42120 - 92842",
           "p581 42120 - 92842"
         ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
         "cause": "stay-chosen",
         "detail": "p51 4185a"
       },
@@ -315,7 +321,6 @@
           ]
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

@@ -196,8 +196,9 @@
     ]
   },
   "generated": {
-    "commit": "cfb6e67",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 11,
     "counts": {
       "partly": 6,
       "works": 1,
@@ -516,6 +517,16 @@
         "strayed": [
           "p1030 2431"
         ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ],
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
         "cause": "stopped-early"
       },
       {
@@ -622,7 +633,17 @@
             ]
           ]
         ],
-        "cause": "too-little",
+        "stop": [
+          [
+            null,
+            null
+          ],
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "cause": "not-driven",
         "detail": "p1016 32015"
       },
       {
@@ -700,7 +721,6 @@
         ],
         "cause": "control-fixed"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

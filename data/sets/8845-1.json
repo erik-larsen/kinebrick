@@ -91,8 +91,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 2,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -223,7 +224,7 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p172 3482"
+        "detail": "p170 3482"
       },
       {
         "result": "skipped"
@@ -300,7 +301,6 @@
       {
         "result": "not checked"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

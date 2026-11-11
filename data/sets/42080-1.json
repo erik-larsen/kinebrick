@@ -129,9 +129,9 @@
     ]
   },
   "generated": {
-    "commit": "a838eff",
-    "uncommitted": true,
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 159,
     "counts": {
       "works": 4,
       "not back": 2,
@@ -398,6 +398,12 @@
         ],
         "strayed": [
           "p2040 32063"
+        ],
+        "stop": [
+          [
+            "dead point",
+            null
+          ]
         ]
       },
       {
@@ -555,6 +561,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
           ]
         ],
         "cause": "stopped-early"
@@ -718,7 +730,6 @@
           "p2048 42080 - 10197"
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

@@ -22,19 +22,19 @@ The goal has two milestones, because some functions need forces.
 
 ## Where we stand
 
-The function check at 67370ba, on all 186 sets:
+The function check on all 186 sets, run in full on this Mac on 2026-11-11 (at e31ee32; 5 hours, of which the 8110 alone took all 5):
 
 | Result | Functions |
 |---|---|
-| Works | 532 |
-| Partly | 319 |
+| Works | 533 |
+| Partly | 318 |
 | Doesn't work | 196 |
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
 In 28 sets, every checked function works. In 13 of those, no function is skipped or unchecked either. 70 more sets are one or two checked functions short.
 
-What we know about the 515 failures:
+What we know about the 514 failures:
 
 - 142 use a mechanism the check cannot operate: a selector, a motor, a gearbox shift, a pneumatic cylinder, a slip clutch. Some of these are failures of the check, not of Kinebrick.
 - 99 part types connect but do not move as they should (`data/not-moving-yet.json`): shock absorbers, the 28 and 60 tooth turntables, constant velocity joints, clutch gears, 39 tyres and wheels that don't roll.
@@ -46,28 +46,30 @@ When this plan was written we did not know the size of each group: the check rec
 
 ### The causes, first measured 2026-11-11
 
-`npm run functions -- --causes` now gives every failing function one cause from a fixed list (see [Causes](../ARCHITECTURE.md#causes)), told from the motions the mechanism allows where the control starts. On the results above:
+`npm run functions -- --causes` now gives every failing function one cause from a fixed list (see [Causes](../ARCHITECTURE.md#causes)), told from the motions the mechanism allows where the control starts. On the full check of 2026-11-11:
 
 | Cause | Functions | For |
 |---|---|---|
-| A part that should move can move, but nothing ties it to the control | 177 | Inference |
+| A part that should move can move, but nothing ties it to the control | 182 | Inference |
 | The control has a joint, but nothing lets it move | 75 | Inference |
-| The control, or a part it should move, is loose | 68 | Inference |
-| A part that should move can't move at all | 61 | Inference |
+| The control, or a part it should move, is loose | 69 | Inference |
+| A part that should move can't move at all | 62 | Inference |
 | The control is part of the frame, or has no joint | 56 | Inference |
-| The mechanism is right, but the drag stopped before half way | 28 | Solver |
-| A part that should stay moved, though the control can move without it | 21 | Solver |
-| The control went far enough, but a part hardly moved | 10 | Solver |
+| The mechanism is right, but the drag stopped before half way | 29 | Solver |
+| A part that should stay moved, though the control can move without it | 22 | Solver |
+| The control went far enough, but a part hardly moved | 6 | Solver |
 | A part that should stay has to move with the control | 9 | Function lists |
-| A control to be worked first didn't go, or none of these | 6 | Check |
+| A control to be worked first didn't go | 4 | Check |
 
 What this says, and what it doesn't:
 
-- **About 437 of the 511 point at the mechanism Kinebrick infers, and about 59 at how the solver moves it.** So phase 3 (connections and parts' behaviour) is where most of the functions are, not phase 4.
-- **79 of the 177 "nothing ties it" are functions with a selector, a motor or a gearbox.** Built in neutral, nothing does tie them: the check has to shift first. Those are the check's to fix.
+- **444 of the 514 point at the mechanism Kinebrick infers, and 57 at how the solver moves it.** So phase 3 (connections and parts' behaviour) is where most of the functions are, not phase 4.
+- **About 75 of the 182 "nothing ties it" are functions with a selector, a motor or a gearbox.** Built in neutral, nothing does tie them: the check has to shift first. Those are the check's to fix.
 - **"Nothing lets it move" is partly the solver's.** A linkage that fits only as built, or a hinge held by a friction pin, has no exact motion. Play as weighted rows (phase 4) would free some of the 75.
 - **The causes are a first cut.** They are told at the start of the drag only, on the first control that fails. "Nothing ties it" can't yet tell a missing connection from a linkage with a second way to move.
-- **The total hides losses.** Against release 0.850, 532 functions work where 522 did, but 38 functions' results got worse (`npm run ratchet -- 0.850`).
+- **The total hides losses.** Against release 0.850, 533 functions work where 522 did, but 38 functions' results got worse (`npm run ratchet -- 0.850`).
+- **Two runs of the same code do not agree in full.** Against the results stored before it, this run has 9 functions better and 2 worse (42111 function 4 and 8110 function 14, each with one more part that did not come back), with no change to the solver between them. These results are kept as the new base all the same, as the code is the same. The jitter test of phase 1 has to say how much a result moves from run to run, so the ratchet can tell a real loss from this.
+- **One set takes most of the time.** The 8110 took 5 hours; the next slowest, the 42082, took under 1. The nightly run needs the 8110 made faster, or run less often.
 
 ## Principles
 

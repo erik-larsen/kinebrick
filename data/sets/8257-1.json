@@ -160,8 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 41,
     "counts": {
       "works": 4,
       "not back": 4,
@@ -615,11 +616,11 @@
             ],
             "p594 6629 against p550 32018": [
               0,
-              4.28e-10
+              8.94e-9
             ],
             "p604 32065 against p550 32018": [
               0,
-              4.17e-8
+              2.33e-9
             ]
           }
         ],
@@ -637,6 +638,12 @@
         ],
         "strayed": [
           "p69 32134"
+        ],
+        "stop": [
+          [
+            null,
+            "dead point"
+          ]
         ]
       },
       {
@@ -653,16 +660,16 @@
         "rates": [
           {
             "p457 32009 against p550 32018": [
-              0.00225,
-              80.1
+              0.000708,
+              79.9
             ],
             "p620 2698 against p550 32018": [
-              0.999,
+              1,
               36.2
             ],
             "p457 32009 against p604 32065": [
-              0.998,
-              79.8
+              1,
+              79.9
             ]
           }
         ],
@@ -717,6 +724,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
           ]
         ],
         "cause": "control-jammed"
@@ -778,8 +791,22 @@
           "p69 32134",
           "p291 80"
         ],
+        "stop": [
+          [
+            null,
+            null
+          ],
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "loose-part",
-        "detail": "p25 6579"
+        "detail": "p43 6579"
       },
       {
         "result": "works",
@@ -805,7 +832,7 @@
             ],
             "p166 32065 against p112 32018": [
               0,
-              1.89e-14
+              0
             ]
           }
         ],
@@ -823,6 +850,12 @@
         ],
         "strayed": [
           "p145 32002"
+        ],
+        "stop": [
+          [
+            null,
+            "dead point"
+          ]
         ]
       },
       {
@@ -863,6 +896,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
           ]
         ],
         "cause": "loose-part",
@@ -907,7 +946,6 @@
       {
         "result": "skipped"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

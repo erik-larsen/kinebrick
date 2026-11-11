@@ -118,8 +118,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 3,
     "counts": {
       "no": 3,
       "skipped": 1,
@@ -343,7 +344,6 @@
           "p1073 4265a"
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

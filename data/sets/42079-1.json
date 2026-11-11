@@ -113,9 +113,9 @@
     ]
   },
   "generated": {
-    "commit": "a838eff",
-    "uncommitted": true,
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 44,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -230,6 +230,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
           ]
         ],
         "cause": "loose-part",
@@ -485,9 +491,18 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "control-jammed"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

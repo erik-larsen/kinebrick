@@ -144,8 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 9,
     "counts": {
       "partly": 2,
       "works": 5,
@@ -357,6 +358,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "dead point",
+            null
           ]
         ],
         "cause": "loose-part",
@@ -645,7 +652,6 @@
           ]
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }
