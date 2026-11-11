@@ -20,10 +20,16 @@ function csvFields(line: string): string[] {
   return [...line.matchAll(/("([^"]*(?:""[^"]*)*)"|[^,]*)(,|$)/g)].slice(0, -1).map((m) => (m[2] !== undefined ? m[2].replaceAll('""', '"') : m[1]));
 }
 
+// A model file's name as the viewer knows it: "models/855-Mobile Crane.mpd" is "855-Mobile Crane".
+const modelName = (file: string | undefined) => (file ?? '').replace(/^.*\//, '').replace(/\.(ldr|mpd)$/i, '');
+
 const lines = readFileSync('models/technic-sets.csv', 'utf-8').trim().split('\n');
 const header = csvFields(lines[0]);
 const rows = lines.slice(1).map((line) => Object.fromEntries(header.map((name, i) => [name, csvFields(line)[i] ?? ''])));
 const csv = new Map(rows.map((row) => [row.set_num, row]));
+
+// The models the viewer has, so a set built in one links to it on the pre-release site.
+const viewerModels = new Set(Object.keys(JSON.parse(readFileSync('packed/models.json', 'utf-8'))));
 
 // One entry per set that has results: what the page shows for it.
 const sets = [];
@@ -39,6 +45,9 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
     year: Number(row.year) || 0,
     pieces: Number(row.parts) || Number(row.omr_parts) || 1,
     loose: (set.generated.loose ?? []).length,
+    // Its model's name in the viewer, if the viewer has it, and its page in the OMR.
+    viewer: viewerModels.has(modelName(set.curated?.model)) ? modelName(set.curated?.model) : '',
+    omr: row.omr_url ?? '',
     // Each function: what it does, its result, and if it doesn't work, why (see causes.ts) and the part that's about.
     functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? '').slice(0, 160), r.result, r.cause ?? '', r.detail ?? '']),
   });
