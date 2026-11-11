@@ -949,7 +949,9 @@
       {"gender":"F","caps":"one","start":[10,24,-20],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
       {"gender":"F","caps":"one","start":[30,24,-20],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
       {"gender":"F","caps":"none","start":[58,32,0],"dir":[-1,0,0],"secs":[{"shape":"R","radius":2.5,"length":8}]},
-      {"gender":"F","caps":"none","start":[-50,32,0],"dir":[-1,0,0],"secs":[{"shape":"R","radius":2.5,"length":8}]}
+      {"gender":"F","caps":"none","start":[-50,32,0],"dir":[-1,0,0],"secs":[{"shape":"R","radius":2.5,"length":8}]},
+      {"gender":"F","caps":"none","start":[58,34,0],"dir":[-1,0,0],"secs":[{"shape":"R","radius":2.5,"length":8}]},
+      {"gender":"F","caps":"none","start":[-50,34,0],"dir":[-1,0,0],"secs":[{"shape":"R","radius":2.5,"length":8}]}
     ],
     "2905.dat": [
       {"gender":"F","caps":"none","start":[0,5,40],"dir":[0,-1,0],"secs":[{"shape":"R","radius":8,"length":2},{"shape":"R","radius":6,"length":6},{"shape":"R","radius":8,"length":2}]},
@@ -1032,7 +1034,10 @@
       {"gender":"F","caps":"one","start":[0,8,0],"dir":[0,1,0],"secs":[{"shape":"R","radius":4,"length":10}]},
       {"gender":"F","caps":"none","start":[20,4,-32],"dir":[-1,0,0],"secs":[{"shape":"H","radius":2,"length":4}]},
       {"gender":"M","caps":"none","start":[16,4,-32],"dir":[-1,0,0],"secs":[{"shape":"H","radius":2,"length":32}]},
-      {"gender":"F","caps":"none","start":[-16,4,-32],"dir":[-1,0,0],"secs":[{"shape":"H","radius":2,"length":4}]}
+      {"gender":"F","caps":"none","start":[-16,4,-32],"dir":[-1,0,0],"secs":[{"shape":"H","radius":2,"length":4}]},
+      {"gender":"F","caps":"none","start":[20,4,-35],"dir":[-1,0,0],"secs":[{"shape":"H","radius":2,"length":4}]},
+      {"gender":"M","caps":"none","start":[16,4,-35],"dir":[-1,0,0],"secs":[{"shape":"H","radius":2,"length":32}]},
+      {"gender":"F","caps":"none","start":[-16,4,-35],"dir":[-1,0,0],"secs":[{"shape":"H","radius":2,"length":4}]}
     ],
     "2922a.dat": [
       {"gender":"M","caps":"none","start":[-10,22,0],"dir":[1,0,0],"secs":[{"shape":"H","radius":4,"length":4}]},

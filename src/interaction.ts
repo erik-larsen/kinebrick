@@ -95,6 +95,7 @@ export interface InteractionSetup {
   stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
   shiftStick: (part: number, position: number) => void; // clicks a gear lever into one of its gate positions
   shift: (part: number, position: number) => void; // slides a part to one of its positions
+  flipSwitch?: (part: number) => string | null; // flips a train track's switch, saying so, if the part is one (see trains.ts)
 }
 
 // A part that slides into set positions, as it is now (LDraw coordinates, LDU).
@@ -899,6 +900,12 @@ export function setUpInteraction(s: InteractionSetup) {
         e.stopImmediatePropagation();
         ctrlClickHandled = true;
         cycleMotor(hit.part, e.clientX, e.clientY);
+        return;
+      }
+      const flipped = s.flipSwitch?.(hit.part);
+      if (flipped) {
+        e.stopImmediatePropagation();
+        showMessage(flipped, e.clientX, e.clientY);
         return;
       }
       s.controls.enabled = false;

@@ -43,6 +43,7 @@ import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { drawnDirectly, packModel, shapeName } from './pack.ts';
 import { studioModel, studioParts } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
+import { flipSwitch, switchMarks, TRAIN, TRAIN_SETS, trainText } from './trains.ts';
 import connectionsUrl from '../data/connections.json?url';
 import libraryConnectionsUrl from '../data/library-connections.json?url';
 import rolesUrl from '../data/roles.json?url';
@@ -112,7 +113,7 @@ const modelParam = params.get('model');
 const MODEL = MODELS.some(([file]) => file === modelParam) ? modelParam! : MODELS[0][0];
 // A model opened from your own computer, by its file name, e.g. ?file=my-car.mpd, in place of
 // one of Kinebrick's own: the browser keeps the file (see library.ts), so only this browser has it.
-const FILE = params.get('file');
+const FILE = params.get('file') ?? TRAIN; // or a train set (see trains.ts), opened the same way
 // The LDraw library such a model's parts come from, if not the usual one (LDRAW_LIBRARY), e.g.
 // ?library=/ldraw/ for the one in ldraw/, served by npm run dev.
 const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
@@ -325,7 +326,7 @@ async function start() {
   let load: (onProgress: (event: ProgressEvent) => void) => Promise<Group>;
   let missingFiles: string[] = [];
   if (FILE) {
-    const kept = await keptFile(FILE);
+    const kept = FILE === TRAIN ? await trainText(FILE) : await keptFile(FILE);
     if (kept === null) throw new Error(`${FILE} isn't kept in this browser: open it again with "Open a model file…" above`);
     modelText = kept;
     const [colours, primitiveList, library] = await Promise.all([
@@ -866,6 +867,10 @@ async function start() {
   model.visible = true;
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
+  // A train set's switches: which way each is set, and a click flips it.
+  const marks = switchMarks(mech);
+  ldrawSpace.add(marks);
+  setup.flipSwitch = (part) => flipSwitch(mech, marks, part);
   const interaction = setUpInteraction(setup);
   if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions };
   // The spin speed for Ctrl-click, in whole rpm, kept in the address too.
@@ -1056,7 +1061,7 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
 // models under Test models.
 const modelButton = document.getElementById('modelButton') as HTMLButtonElement;
 const modelMenu = document.getElementById('modelMenu') as HTMLDivElement;
-modelButton.textContent = `${FILE || MODELS.find(([file]) => file === MODEL)?.[1] || MODEL} ▾`;
+modelButton.textContent = `${TRAIN_SETS.find(([file]) => file === FILE)?.[1] || FILE || MODELS.find(([file]) => file === MODEL)?.[1] || MODEL} ▾`;
 const menuItem = (label: string, pick: () => void) => {
   const b = document.createElement('button');
   b.type = 'button';
@@ -1087,9 +1092,10 @@ const lists: [string, (file: string) => boolean][] = [
   ['Working sets', (file) => !isTest(file) && !wipModels.includes(file)],
   ['Work in progress sets', (file) => !isTest(file) && wipModels.includes(file)],
   ['Test models', isTest],
+  ['Trains', () => false],
 ];
 for (const [label, belongs] of lists) {
-  const models = MODELS.filter(([file]) => belongs(file));
+  const models = label === 'Trains' ? TRAIN_SETS : MODELS.filter(([file]) => belongs(file));
   if (models.length === 0) continue;
   const group = document.createElement('div');
   group.className = 'group';
@@ -1105,8 +1111,8 @@ for (const [label, belongs] of lists) {
     if (window.matchMedia('(hover: hover)').matches) showGroup(sub);
   });
   for (const [file, name] of models) {
-    const item = menuItem(name, () => chooseModel(file));
-    if (!FILE && file === MODEL) item.setAttribute('aria-current', 'true');
+    const item = menuItem(name, () => (label === 'Trains' ? openModel((p) => p.set('train', file)) : chooseModel(file)));
+    if (FILE ? file === FILE : file === MODEL) item.setAttribute('aria-current', 'true');
     sub.append(item);
   }
   groups.push({ button, sub });
@@ -1128,7 +1134,7 @@ const filePicker = document.getElementById('file') as HTMLInputElement;
 // Switching model keeps the options, except tyre scrub, turned parts, spinning and spin speed:
 // the next model has its own.
 function openModel(set: (params: URLSearchParams) => void) {
-  for (const name of ['model', 'file', 'scrub', 'turn', 'autospin', 'rpm']) params.delete(name);
+  for (const name of ['model', 'file', 'train', 'scrub', 'turn', 'autospin', 'rpm']) params.delete(name);
   set(params);
   window.location.search = address();
 }
