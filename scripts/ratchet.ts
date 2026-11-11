@@ -6,13 +6,14 @@
 //
 //   npm run ratchet                against the last commit (HEAD)
 //   npm run ratchet -- preview     against a branch, tag or commit
+//   npm run ratchet -- --trains    the train sets' results (data/trains/) instead
 
 import { execFileSync } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const SETS_DIR = 'data/sets';
-const ref = process.argv[2] ?? 'HEAD';
+const SETS_DIR = process.argv.includes('--trains') ? 'data/trains' : 'data/sets';
+const ref = process.argv.slice(2).find((a) => !a.startsWith('--')) ?? 'HEAD';
 // How each result ranks, best first.
 const RANK: Record<string, number> = { works: 0, partly: 1, no: 2, error: 3 };
 

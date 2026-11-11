@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Kinebrick Set Status</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
@@ -46,7 +47,7 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
 </style>
 <div class="page">
   <header>
-    <h1>Every OMR Technic set, by how much of it works</h1>
+    <h1 id="heading">Every OMR Technic set, by how much of it works</h1>
     <p class="sub" id="when"></p>
   </header>
   <div class="totals" id="totals"></div>
@@ -113,12 +114,14 @@ function show(s) {
   document.querySelectorAll('.box').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === s.set)));
   const d = document.getElementById('detail');
   const link = (text, href) => { const a = el('a', '', text); a.href = href; a.target = '_blank'; a.rel = 'noopener'; return a; };
-  // The title opens the set in the preview viewer, where the viewer has it; the pieces, its page in the OMR.
+  // The title opens the set in the preview viewer, where the viewer has it (at its own address, if
+  // the page gives one: a train set's); the pieces, its page in the OMR.
   const title = el('h2');
-  title.append(s.viewer ? link(`${s.number} ${s.name}`, PREVIEW + '?model=' + encodeURIComponent(s.viewer).replace(/%20/g, '+')) : `${s.number} ${s.name}`);
+  const href = s.link || (s.viewer ? PREVIEW + '?model=' + encodeURIComponent(s.viewer).replace(/%20/g, '+') : '');
+  title.append(href ? link(`${s.number} ${s.name}`, href) : `${s.number} ${s.name}`);
   const sub = el('p', 'sub', `${s.year} · `);
   const pieces = `${s.pieces.toLocaleString('en')} pieces`;
-  sub.append(s.omr ? link(pieces, s.omr) : pieces, ` · ${s.works} of ${s.checked} checked functions work (${pct(s)})` + (s.loose ? ` · ${s.loose.toLocaleString('en')} loose parts` : '') + (s.viewer ? '' : ' · not in the viewer yet'));
+  sub.append(s.omr ? link(pieces, s.omr) : pieces, ` · ${s.works} of ${s.checked} checked functions work (${pct(s)})` + (s.loose ? ` · ${s.loose.toLocaleString('en')} loose parts` : '') + (href ? '' : ' · not in the viewer yet'));
   d.replaceChildren(title, sub);
   const list = el('ul');
   const order = { no: 0, partly: 1, works: 2 };
@@ -156,6 +159,7 @@ function draw() {
 if (DATA) {
   const sum = (k) => sets.reduce((t, s) => t + s[k], 0);
   const checked = sum('checked');
+  if (DATA.title) document.getElementById('heading').textContent = document.title = DATA.title;
   document.getElementById('when').textContent = `${sets.length} sets. Results as stored at commit ${DATA.commit}, page made ${DATA.date}. Share working = functions that work ÷ functions checked.`;
   const totals = document.getElementById('totals');
   for (const [n, text] of [[sum('works'), `of ${checked.toLocaleString('en')} checked functions work (${Math.round((100 * sum('works')) / checked)}%)`], [sum('partly'), 'work partly'], [sum('no'), "don't work"], [sets.filter((s) => s.bucket === 4).length, 'sets with every checked function working']]) {

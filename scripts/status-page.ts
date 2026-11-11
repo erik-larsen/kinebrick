@@ -6,14 +6,20 @@
 //
 //   npm run status                 writes dist/status.html
 //   npm run status -- some/file    writes it there instead
+//   npm run status -- --trains     the train sets' page instead (see docs/plan.md, "The train
+//                                  track"), from data/trains/ and models/train-sets.csv: every set
+//                                  with track, each linked to its model in the preview-train
+//                                  viewer; written to dist/trains.html
 
 import { execSync } from 'node:child_process';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { CAUSES } from './causes.ts';
 
-const SETS_DIR = join('data', 'sets');
-const out = process.argv[2] ?? join('dist', 'status.html');
+const trains = process.argv.includes('--trains');
+const SETS_DIR = trains ? join('data', 'trains') : join('data', 'sets');
+const out = process.argv.slice(2).find((a) => !a.startsWith('--')) ?? join('dist', trains ? 'trains.html' : 'status.html');
+const TRAIN_VIEWER = 'https://erik-larsen.github.io/kinebrick/preview-train/?train=';
 
 // The fields of a CSV line. Fields may be quoted, with commas inside.
 function csvFields(line: string): string[] {
@@ -23,7 +29,7 @@ function csvFields(line: string): string[] {
 // A model file's name as the viewer knows it: "models/855-Mobile Crane.mpd" is "855-Mobile Crane".
 const modelName = (file: string | undefined) => (file ?? '').replace(/^.*\//, '').replace(/\.(ldr|mpd)$/i, '');
 
-const lines = readFileSync('models/technic-sets.csv', 'utf-8').trim().split('\n');
+const lines = readFileSync(trains ? 'models/train-sets.csv' : 'models/technic-sets.csv', 'utf-8').trim().split('\n');
 const header = csvFields(lines[0]);
 const rows = lines.slice(1).map((line) => Object.fromEntries(header.map((name, i) => [name, csvFields(line)[i] ?? ''])));
 const csv = new Map(rows.map((row) => [row.set_num, row]));
@@ -36,7 +42,7 @@ const sets = [];
 for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
   const set = JSON.parse(readFileSync(join(SETS_DIR, file), 'utf-8'));
   const results = set.generated?.functions ?? [];
-  if (results.length === 0) continue;
+  if (results.length === 0 || (trains && !csv.has(set.set))) continue;
   const row: Record<string, string> = csv.get(set.set) ?? {};
   const curated = set.curated?.functions ?? [];
   sets.push({
@@ -48,13 +54,22 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
     // Its model's name in the viewer, if the viewer has it, and its page in the OMR.
     viewer: viewerModels.has(modelName(set.curated?.model)) ? modelName(set.curated?.model) : '',
     omr: row.omr_url ?? '',
+    ...(trains ? { link: TRAIN_VIEWER + encodeURIComponent(modelName(set.curated?.model) + '.mpd') } : {}),
     // Each function: what it does, its result, and if it doesn't work, why (see causes.ts) and the part that's about.
     functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? '').slice(0, 160), r.result, r.cause ?? '', r.detail ?? '']),
   });
 }
 
+// On the train sets' page, every set with track has a box: those not checked yet too.
+if (trains) {
+  for (const row of rows) {
+    if (sets.some((s) => s.set === row.set_num)) continue;
+    sets.push({ set: row.set_num, name: row.name, year: Number(row.year) || 0, pieces: Number(row.parts) || 1, loose: 0, viewer: '', omr: row.omr_url ?? '', functions: [] });
+  }
+}
+
 const commit = execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
-const data = { commit, date: new Date().toISOString().slice(0, 10), causes: CAUSES, sets };
+const data = { commit, date: new Date().toISOString().slice(0, 10), causes: CAUSES, sets, ...(trains ? { title: 'Every OMR set with train track, by how much of it works' } : {}) };
 const page = readFileSync(join('scripts', 'status-page.html'), 'utf-8').replace('/*DATA*/null', () => JSON.stringify(data).replaceAll('</', '<\\/'));
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, page);
