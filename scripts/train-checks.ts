@@ -99,6 +99,9 @@ export function trainFunctions(file: string): TrainFunction[] {
     const wheelsets = [...new Set(train.map((r) => r.body))].map((b) => name(mech.bodies[b].parts[0]));
     functions.push({ kind: 'run', does: 'Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled', control: name(wheel), wheelsets });
   }
+  // Every set in the list has a train (see scripts/find-train-sets.ts). If none of its wheels ride
+  // the track as Kinebrick reads it, its run is still a function, and doesn't work.
+  if (!functions.some((f) => f.kind === 'run')) functions.push({ kind: 'run', does: 'Turning a wheel of the train runs it the full length of the track (no train found on the track yet)' });
   for (const s of track.switches) functions.push({ kind: 'switch', does: 'The switch flips, and a train taking it from its shared end goes the other way', control: name(s.part) });
   return functions;
 }
@@ -151,7 +154,8 @@ export function checkTrainSet(set: { curated: { model: string; functions: TrainF
             checked.push(train === false ? { result: 'partly', why: ["the train didn't take the way the switch is set"] } : { result: 'works' });
           }
         }
-      } else checked.push(run(mech, kin, track, partOf(fn.control!), (fn.wheelsets ?? []).map((w) => mech.bodyOf[partOf(w)])));
+      } else if (!fn.control) checked.push({ result: 'no', why: ["Kinebrick doesn't find the train's wheels on the track"] });
+      else checked.push(run(mech, kin, track, partOf(fn.control!), (fn.wheelsets ?? []).map((w) => mech.bodyOf[partOf(w)])));
     } catch (err) {
       checked.push({ result: 'error', why: [(err as Error).message] });
     }

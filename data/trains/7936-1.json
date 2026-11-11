@@ -6,15 +6,20 @@
       {
         "kind": "track",
         "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (no train found on the track yet)"
       }
     ]
   },
   "generated": {
-    "commit": "2578d8d",
+    "commit": "e4e05ce",
     "date": "2026-11-11",
-    "seconds": 1,
+    "seconds": 0,
     "counts": {
-      "works": 1
+      "works": 1,
+      "no": 1
     },
     "loose": [
       "p11 4515",
@@ -36,6 +41,12 @@
     "functions": [
       {
         "result": "works"
+      },
+      {
+        "result": "no",
+        "why": [
+          "Kinebrick doesn't find the train's wheels on the track"
+        ]
       }
     ]
   }
