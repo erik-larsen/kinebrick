@@ -1,0 +1,86 @@
+{
+  "set": "4563-1",
+  "curated": {
+    "model": "models/trains/4563-Load and Haul Railroad.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p74 57877c01"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6b5e7a8",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 5,
+    "counts": {
+      "works": 2
+    },
+    "loose": [
+      "p16 4517",
+      "p29 4624",
+      "p30 3641",
+      "p31 4624",
+      "p32 3641",
+      "p57 6014",
+      "p58 6015",
+      "p59 6014",
+      "p60 6015",
+      "p137 4084",
+      "p138 4624",
+      "p139 4084",
+      "p140 4624",
+      "p141 4624",
+      "p142 3641",
+      "p143 4624",
+      "p144 3641",
+      "p158 4079",
+      "p292 2919",
+      "p294 2919",
+      "p354 4183",
+      "p355 4183",
+      "p394 2495c01",
+      "p408 4032a",
+      "p409 4032a",
+      "p410 4032a",
+      "p411 4032a",
+      "p412 4032a",
+      "p413 4032a",
+      "p414 4032a",
+      "p415 4032a",
+      "p474 2874",
+      "p475 2874",
+      "p476 2874",
+      "p477 2874",
+      "p484 2869c02",
+      "p487 5306",
+      "p488 4563 - 4480c01",
+      "p489 6141",
+      "p490 6141",
+      "p491 3641",
+      "p492 3464",
+      "p493 3641",
+      "p494 3464"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 5652,
+        "length": 5660,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 22.1,
+        "radius": 22
+      }
+    ]
+  }
+}

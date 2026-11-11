@@ -1,0 +1,53 @@
+{
+  "set": "10128-1",
+  "curated": {
+    "model": "models/trains/10128-Train Level Crossing.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6b5e7a8",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 0,
+    "counts": {
+      "works": 1
+    },
+    "loose": [
+      "p37 10128 - 30178c02",
+      "p89 4081b",
+      "p90 3069bp08",
+      "p91 3069bp08",
+      "p174 30258",
+      "p175 30258",
+      "p176 30258",
+      "p177 30258",
+      "p179 30258",
+      "p180 30258",
+      "p182 30258",
+      "p183 30258",
+      "p260 2927",
+      "p261 2927",
+      "p265 2927",
+      "p266 2927",
+      "p291 30228",
+      "p304 6014",
+      "p305 6015",
+      "p306 6014",
+      "p307 6015",
+      "p308 6014",
+      "p309 6015",
+      "p310 6014",
+      "p311 6015"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      }
+    ]
+  }
+}

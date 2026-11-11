@@ -472,10 +472,19 @@
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 22 6] [center=true] [pos=50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 22 6] [center=true] [pos=-50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
 
+0 FILE 57877c01.dat
+0 // Axle Steel 5 x 100 LDU with Two Train Wheels with Closed Centres: as 70720c01: the axle, round, 2.5 LDU in radius, along x, reaching into a bogie's clips (112 LDU, as 70720c01's: the library draws it 100 long, but its ends sit in the clips), and the two wheels' treads, 22 LDU in radius, centred 50 LDU out either side
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 2.5 112] [center=true] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 22 6] [center=true] [pos=50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 22 6] [center=true] [pos=-50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+
 0 FILE 2878.dat
 0 // Train Wheel Bogie Single Axle without Wheelset: the clips at either end that hold the wheelset's axle, round holes 2.5 LDU in radius along x, 32 LDU below its origin, 50 to 58 LDU out
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 8] [center=true] [pos=54 32 0] [ori=0 1 0 -1 0 0 0 0 1]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 8] [center=true] [pos=-54 32 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 // The library's assembled bogies (2878c01, 2878c02) seat their wheelset 2 LDU lower in the clips, 34 LDU below the origin: the clips hold it there too
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 8] [center=true] [pos=54 34 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 8] [center=true] [pos=-54 34 0] [ori=0 1 0 -1 0 0 0 0 1]
 
 0 FILE 70358.dat
 0 // Electric Train Motor 9V (Complete): its four wheels, part of the motor, 60 LDU either side of its middle along z and 42 LDU down, their treads 50 LDU out along x and 20 LDU in radius (the motor sits 2 LDU lower than a wheel bogie, its wheels being smaller). The shadow library has its pivot pin, which turns in a train base's hole as a bogie plate's does (4092a)
@@ -487,6 +496,10 @@
 0 FILE 70023.dat
 0 // Magnet Cylindrical: the magnet, 12 LDU in radius and 16 long along z, whose faces couple train cars (see magnetCouplings). Axle-shaped, so that it's fixed in its casing (2959), which has the matching socket
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 12 16] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2920.dat
+0 // Train Coupling Type 2: its hook's fingers hold the magnet casing's pin (2959) where the shadow library has it, 32 LDU out, and also 35 LDU out, where the OMR's train sets seat it (the fingers' arcs reach from 31.5 to 37.8 LDU out)
+0 !LDCAD SNAP_FGR [group=magnet] [genderOfs=F] [seq=4 32 4] [radius=2] [pos=0 4 -35] [ori=0 1 0 -1 0 0 0 0 1]
 
 0 FILE 2959.dat
 0 // Magnet Cylindrical Casing: holds its magnet (70023) fast, at its origin

@@ -524,6 +524,8 @@ export class Kinematics {
     // On a train layout the frame is the track, which stays put on the table while the trains
     // run on it (see Rail).
     if (this.mech.rails?.length) this.fixedBody = 0;
+    // Its trains' wheels stand on the rail heads, whatever else stands lower on the table.
+    if (this.mech.track) lowest = this.mech.track.head();
     this.groundY = lowest;
     this.mech.treads.forEach((t, i) => {
       const p = lowestPoint(t.center, t.axis, t.radius);
@@ -1783,7 +1785,7 @@ export class Kinematics {
     for (const rider of ridersOn) {
       const pose = this.poses[rider.body];
       const c = rider.center.clone().applyMatrix4(pose);
-      const near = this.nearestRail(c, rider.body);
+      const near = this.nearestRail(c, this.mech.riders!.indexOf(rider));
       if (!near) continue;
       const across = new Array(n).fill(0);
       for (let k = 0; k < 3; k++) {
@@ -2514,7 +2516,8 @@ export class Kinematics {
         if (Math.abs(done - step) > 1e-12) return turned;
         continue;
       }
-      if (allowed && !allowed()) {
+      // Nor past the end of a train's track (see src/track.ts).
+      if ((allowed && !allowed()) || this.mech.track?.pastBuffer(this.mech.riders!.map((r, i) => [i, r.center.clone().applyMatrix4(this.poses[r.body])]), this.poses[0])) {
         this.restore(before);
         break;
       }

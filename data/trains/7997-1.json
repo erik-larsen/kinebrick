@@ -1,0 +1,37 @@
+{
+  "set": "7997-1",
+  "curated": {
+    "model": "models/trains/7997-Train Station.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6b5e7a8",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 0,
+    "counts": {
+      "works": 1
+    },
+    "loose": [
+      "p213 3062b",
+      "p214 3062b",
+      "p215 6141",
+      "p216 6141",
+      "p217 33125",
+      "p338 2495c01",
+      "p339 3003",
+      "p340 3069b",
+      "p341 3069b"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      }
+    ]
+  }
+}

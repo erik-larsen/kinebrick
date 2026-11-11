@@ -34,6 +34,7 @@
 //                                     already written, and writes each one's `cause`
 //   npm run functions -- --quick      only the quick sets (QUICK): a couple of minutes, for every
 //                                     change; the whole check is for overnight
+//   npm run functions -- --trains     the train sets in data/trains/ instead (see train-checks.ts)
 //
 // Each set's results are compared with what it had before, and each function that comes out
 // better or worse is listed as the run goes.
@@ -58,10 +59,11 @@ import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
 import { loadModel } from './load-model.ts';
+import { checkTrainSet } from './train-checks.ts';
 import { partShapes } from './part-shapes.ts';
 import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
-const SETS_DIR = join('data', 'sets');
+const SETS_DIR = process.argv.includes('--trains') ? join('data', 'trains') : join('data', 'sets');
 // How far a control is turned each way (radians), or pushed (LDU) if it slides.
 const REACH = 1.5;
 const PUSH = 20;
@@ -545,7 +547,7 @@ const one = args.indexOf('--one'); // (internal) check this one set's file and p
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
-  const found = check(set);
+  const found = args[one + 1].startsWith(join('data', 'trains')) ? checkTrainSet(set) : check(set);
   // Let the output drain before the process ends: a pipe takes it in pieces.
   process.stdout.write(JSON.stringify(found), () => process.exit(0));
 } else {
@@ -565,7 +567,7 @@ async function main() {
   if (causes) process.env.KINEBRICK_CAUSES = '1';
   const commit = execSync('git rev-parse --short HEAD').toString().trim();
   // No shell, so the pathspec isn't left quoted by Windows' cmd.
-  const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets']).toString().trim() !== '';
+  const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets', ':!data/trains']).toString().trim() !== '';
   const date = new Date().toISOString().slice(0, 10);
   // Checked with holds rather than least motion (KINEBRICK_LEAST=0; see docs/least-motion.md).
   const holds = !experiments.leastMotion;
@@ -656,5 +658,5 @@ async function main() {
   const byCount = (Object.entries(caused) as [Cause, number][]).sort((a, b) => b[1] - a[1]);
   if (byCount.length) console.log('Causes:\n' + byCount.map(([c, n]) => `  ${String(n).padStart(4)}  ${c} (${CAUSES[c].owner}): ${CAUSES[c].says}`).join('\n'));
   // The mechanism catalog quotes each function's result: written afresh with them.
-  if (!causes) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
+  if (!causes && !args.includes('--trains')) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
 }

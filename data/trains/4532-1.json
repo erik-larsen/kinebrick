@@ -1,0 +1,29 @@
+{
+  "set": "4532-1",
+  "curated": {
+    "model": "models/trains/4532-Manual Level Crossing.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6b5e7a8",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 0,
+    "counts": {
+      "works": 1
+    },
+    "loose": [
+      "p128 3471"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      }
+    ]
+  }
+}

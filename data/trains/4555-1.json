@@ -1,0 +1,84 @@
+{
+  "set": "4555-1",
+  "curated": {
+    "model": "models/trains/4555-Cargo Station.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p221 57877c01"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6b5e7a8",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 1,
+    "counts": {
+      "works": 2
+    },
+    "loose": [
+      "p42 3228b",
+      "p43 3228b",
+      "p48 3228b",
+      "p49 3228b",
+      "p101 3228b",
+      "p102 3228b",
+      "p103 3228b",
+      "p104 3228b",
+      "p173 2927",
+      "p174 2927",
+      "p176 2927",
+      "p177 2927",
+      "p180 2927",
+      "p181 2927",
+      "p183 2927",
+      "p184 2927",
+      "p185 4870",
+      "p256 6141",
+      "p257 2412b",
+      "p258 6141",
+      "p261 4624",
+      "p262 3641",
+      "p263 4624",
+      "p264 3641",
+      "p265 4624",
+      "p266 3641",
+      "p267 4624",
+      "p268 3641",
+      "p319 6014",
+      "p321 6014",
+      "p322 6015",
+      "p323 6014",
+      "p324 6015",
+      "p325 6014",
+      "p326 6015",
+      "p327 6014",
+      "p328 6015",
+      "p329 6014",
+      "p330 6015",
+      "p357 4740",
+      "p359 4740",
+      "p361 4740"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 409,
+        "length": 260,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 22,
+        "radius": 22
+      }
+    ]
+  }
+}

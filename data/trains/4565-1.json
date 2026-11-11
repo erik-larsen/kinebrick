@@ -1,0 +1,99 @@
+{
+  "set": "4565-1",
+  "curated": {
+    "model": "models/trains/4565-Freight and Crane Railway.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p386 57877c01"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6b5e7a8",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 19,
+    "counts": {
+      "works": 2
+    },
+    "loose": [
+      "p65 3002",
+      "p66 3020",
+      "p68 4459",
+      "p69 2357",
+      "p87 2739a",
+      "p113 3436",
+      "p114 3436",
+      "p131 3031",
+      "p132 3031",
+      "p204 4459",
+      "p205 2636",
+      "p207 2636",
+      "p216 6632",
+      "p217 6632",
+      "p218 3705",
+      "p219 3705",
+      "p220 2638",
+      "p246 4459",
+      "p247 2636",
+      "p249 2636",
+      "p258 6632",
+      "p259 6632",
+      "p260 3705",
+      "p261 3705",
+      "p262 2638",
+      "p263 3127a",
+      "p264 3023",
+      "p265 3023",
+      "p266 3492c01",
+      "p331 6014",
+      "p332 6015",
+      "p333 6014",
+      "p334 6015",
+      "p335 6014",
+      "p336 6015",
+      "p337 6014",
+      "p338 6015",
+      "p339 6014",
+      "p341 6014",
+      "p342 6015",
+      "p498 4742",
+      "p532 4742",
+      "p653 3436",
+      "p654 3436",
+      "p655 3031",
+      "p656 3031",
+      "p670 3436",
+      "p671 3436",
+      "p672 3031",
+      "p673 3031",
+      "p687 3436",
+      "p688 3436",
+      "p689 3031",
+      "p690 3031",
+      "p737 2919",
+      "p739 2919",
+      "p858 6583"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 5657,
+        "length": 5660,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 22,
+        "radius": 22
+      }
+    ]
+  }
+}

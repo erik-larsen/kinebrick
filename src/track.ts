@@ -141,6 +141,7 @@ export interface TrackLine {
   rails: Rail[];
   lengths: number[];
   length: number;
+  ends: { point: Vector3; out: Vector3 }[]; // its start and end, each with the way out of the line there (level)
 }
 
 // One end of a line: the line, and 0 for its start or 1 for its end.
@@ -173,6 +174,12 @@ export class Track {
     return this.lines.flatMap((l) => l.rails);
   }
 
+  // The rail heads' height (LDraw y), where most of the track is.
+  head(): number {
+    const ys = this.lines.map((l) => l.rails[0].from.y).sort((a, b) => a - b);
+    return ys[Math.floor(ys.length / 2)];
+  }
+
   // The switch whose part this is, or undefined.
   switchOf(part: number): TrackSwitch | undefined {
     return this.switches.find((s) => s.part === part);
@@ -187,12 +194,13 @@ export class Track {
 
   // Where along a line a point is nearest, measured level, with the line's direction there, as
   // `s` beyond the line's ends if the point lies past them (along the end's tangent).
-  private project(line: number, point: Vector3, frame: Matrix4) {
+  // (Past its ends only if `open`: else the nearest point is on the line itself.)
+  private project(line: number, point: Vector3, frame: Matrix4, open = true) {
     const l = this.lines[line];
     let best = { s: 0, q: new Vector3(), t: new Vector3(), curvature: 0, distance: Infinity };
     let before = 0;
     for (let i = 0; i < l.rails.length; i++) {
-      const found = onRail(l.rails[i], point, frame, i === 0, i === l.rails.length - 1);
+      const found = onRail(l.rails[i], point, frame, open && i === 0, open && i === l.rails.length - 1);
       const off = new Vector3().subVectors(point, found.q);
       off.addScaledVector(UP, -off.dot(UP));
       const distance = off.length();
@@ -202,9 +210,55 @@ export class Track {
     return best;
   }
 
+  // The point at `s` along a line (on the rail heads), and the direction along it there.
+  pointAt(line: number, s: number): { point: Vector3; t: Vector3 } {
+    const l = this.lines[line];
+    let left = Math.max(0, Math.min(l.length, s));
+    for (let i = 0; i < l.rails.length; i++) {
+      const rail = l.rails[i];
+      if (left > l.lengths[i] && i < l.rails.length - 1) {
+        left -= l.lengths[i];
+        continue;
+      }
+      if (rail.center === undefined) {
+        const t = new Vector3().subVectors(rail.to, rail.from).normalize();
+        return { point: rail.from.clone().addScaledVector(t, left), t };
+      }
+      const a = new Vector3().subVectors(rail.from, rail.center);
+      const b = new Vector3().subVectors(rail.to, rail.center);
+      const turn = Math.sign(new Vector3().crossVectors(a, b).dot(UP)) || 1;
+      const radial = a.clone().applyAxisAngle(UP, (turn * left) / rail.radius!);
+      const t = new Vector3().crossVectors(UP, radial).multiplyScalar(turn).normalize();
+      return { point: rail.center.clone().add(radial), t };
+    }
+    return { point: l.ends[0].point.clone(), t: l.ends[0].out.clone().negate() };
+  }
+
+  // Goes `distance` along the track from `s` along a line, forwards (along the line) or back if
+  // `distance` is negative, on through the lines that meet its ends (taking each switch the way
+  // its state picks). Where it ends up: the line, how far along it, and which way along it is
+  // still forwards (1 or -1). Stops at a buffer, `short` of the distance by what it couldn't go.
+  walk(line: number, s: number, distance: number): { line: number; s: number; dir: number; short: number } {
+    let dir = Math.sign(distance) || 1;
+    let left = Math.abs(distance);
+    for (let hop = 0; hop < 1000; hop++) {
+      const length = this.lines[line].length;
+      const room = dir > 0 ? length - s : s;
+      if (left <= room) return { line, s: s + dir * left, dir, short: 0 };
+      const next = this.beyond(line, dir > 0 ? 1 : 0);
+      if (!next) return { line, s: dir > 0 ? length : 0, dir, short: left - room };
+      left -= room;
+      line = next[0];
+      // Entering a line at its start goes along it; at its end, back along it.
+      dir = next[1] === 0 ? 1 : -1;
+      s = dir > 0 ? 0 : this.lines[line].length;
+    }
+    return { line, s, dir, short: 0 };
+  }
+
   // The line a train goes on to past one end of a line, or null at a buffer (a dead end): the
   // other piece's line that meets it there, or of a switch's two, the one its state picks.
-  private next(line: number, end: number): End | null {
+  beyond(line: number, end: number): [number, number] | null {
     const ends = this.links[line][end];
     if (ends.length === 0) return null;
     if (ends.length === 1) return ends[0];
@@ -226,7 +280,7 @@ export class Track {
       let best: { line: number; distance: number } | null = null;
       for (let line = 0; line < this.lines.length; line++) {
         const sw = this.switches.find((s) => s.lines.includes(line));
-        const distance = this.project(line, point, frame).distance + (!sw || sw.lines[sw.state] === line ? 0 : 0.5);
+        const distance = this.project(line, point, frame, false).distance + (!sw || sw.lines[sw.state] === line ? 0 : 0.5);
         if (!best || distance < best.distance) best = { line, distance };
       }
       place = { line: best!.line, s: 0 };
@@ -237,7 +291,7 @@ export class Track {
     for (let hop = 0; hop < 8; hop++) {
       const end = found.s < 0 ? 0 : found.s > this.lines[place.line].length ? 1 : -1;
       if (end < 0) break;
-      const next = this.next(place.line, end);
+      const next = this.beyond(place.line, end);
       if (!next) break;
       place = { line: next[0], s: 0 };
       found = this.project(place.line, point, frame);
@@ -248,6 +302,16 @@ export class Track {
     const off = new Vector3().subVectors(point, found.q);
     off.addScaledVector(UP, -off.dot(UP));
     return { t: found.t, n, offset: off.dot(n), curvature: found.curvature };
+  }
+
+  // Whether any of these wheelsets (each its key and middle) has gone past a buffer: the end of
+  // a line that meets no other.
+  pastBuffer(wheelsets: [number, Vector3][], frame: Matrix4): boolean {
+    return wheelsets.some(([key, point]) => {
+      this.near(point, frame, key);
+      const place = this.places.get(key)!;
+      return (place.s < 0 && !this.beyond(place.line, 0)) || (place.s > this.lines[place.line].length && !this.beyond(place.line, 1));
+    });
   }
 
   // Where a wheelset is now, as last found (see near): its line and how far along it.
@@ -379,7 +443,7 @@ export function buildTrack(parts: { name: string; matrix: Matrix4 }[]): Track | 
   }
   // A switch's lines share their start: wherever it moved, both go there.
   for (const s of track.switches) placed[s.lines[1]].points[0].from.copy(placed[s.lines[0]].points[0].from);
-  track.lines = placed.map(({ part, points }) => {
+  track.lines = placed.map(({ part, points }, line) => {
     const rails: Rail[] = points.map(({ from, mid, to }) => {
       if (!mid) return { part, from, to };
       const circle = circleThrough(from, mid, to);
@@ -391,7 +455,7 @@ export function buildTrack(parts: { name: string; matrix: Matrix4 }[]): Track | 
       const b = new Vector3().subVectors(r.to, r.center);
       return r.radius! * a.angleTo(b);
     });
-    return { part, rails, lengths, length: lengths.reduce((a, b) => a + b, 0) };
+    return { part, rails, lengths, length: lengths.reduce((a, b) => a + b, 0), ends: [0, 1].map((end) => ({ point: (end === 0 ? rails[0].from : rails[rails.length - 1].to).clone(), out: endOf(line, end).out })) };
   });
   return track;
 }

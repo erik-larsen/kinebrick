@@ -1,0 +1,41 @@
+{
+  "set": "4558-1",
+  "curated": {
+    "model": "models/trains/4558-Metroliner.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p116 70720c01"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "6b5e7a8",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 8,
+    "counts": {
+      "works": 2
+    },
+    "loose": [],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 6298,
+        "length": 6307,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 22,
+        "radius": 22
+      }
+    ]
+  }
+}
