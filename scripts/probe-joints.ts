@@ -39,9 +39,6 @@
 //   npm run joints -- --report        no probing: from the baselines, each model's knobs that
 //                                     stop after a little, or turn only one way, or can't move at
 //                                     all, and the models that timed out
-//   npm run joints -- --omr --commit  as each OMR set's baseline is written, commit it to the
-//                                     omr-survey branch and push it (see survey-branch.ts), with
-//                                     any already written that the branch doesn't have
 //
 // The smallest models go first. A model is probed in batches of BATCH knobs, each in a process of
 // its own, and each batch's findings are kept as it finishes (in .batches/ beside the baselines,
@@ -55,7 +52,6 @@ import { availableParallelism } from 'node:os';
 import { basename, join } from 'node:path';
 import { Quaternion, Vector3 } from 'three';
 import { loadModel } from './load-model.ts';
-import { commitFindings } from './survey-branch.ts';
 
 // How far each knob is turned each way, in radians (unless --reach says otherwise), in steps of STEP.
 const REACH = 1.5;
@@ -313,18 +309,6 @@ async function main() {
     .sort((a, b) => statSync(a).size - statSync(b).size || a.localeCompare(b, undefined, { numeric: true }));
   if (args.includes('--report')) return report(baselineDir, filters);
   mkdirSync(baselineDir, { recursive: true });
-  // With --commit, the OMR's findings go to the omr-survey branch as they're written. Git
-  // trouble is reported, not fatal: the survey goes on.
-  const commit = () => {
-    if (!omr || !args.includes('--commit')) return;
-    try {
-      commitFindings(baselineDir, (all ? 'every knob, ' : '') + (reach === REACH ? 'full' : `quick, reach ${reach}`));
-    } catch (err) {
-      console.log(`Couldn't commit to the omr-survey branch: ${(err as Error).message}`);
-    }
-  };
-  commit();
-
   // A model under way: how many knobs it has (-1 while they're being counted), what the batches
   // done so far found, and its processes, so one that takes too long can be stopped.
   interface Model {
@@ -395,7 +379,6 @@ async function main() {
     if (update || !existsSync(path)) {
       writeFileSync(path, baselineText(now));
       console.log(`${now.model}: ${now.joints.length} knobs, baseline written (${elapsed(state)})`);
-      commit();
       return;
     }
     const before: Baseline = JSON.parse(readFileSync(path, 'utf-8'));
@@ -422,7 +405,6 @@ async function main() {
     console.log(`${state.model}: timed out after ${limitHours} hours, ${joints.length} knobs done by then; to look into`);
     if (omr || update || !existsSync(path)) {
       writeFileSync(path, baselineText({ model: state.model, reach, timedOut: limitHours, joints }));
-      commit();
     } else {
       failed = true;
     }

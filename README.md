@@ -109,15 +109,15 @@ Kinebrick knows the moving parts of its own models and the most common ones in t
 
 Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
-**Under way: [the solver phase](docs/solver-phase.md).** Since release 0.850, rather than fixing sets one at a time, the work is on the solver itself: one general way to choose how a mechanism moves in place of special cases, and a quicker check that says how far each part should move. Every set under [Models](#models) works in full, except the 8448 Super Street Sensation, whose V8 engine works on its own.
+**Under way: [the solver phase](docs/solver-phase.md).** Since release 0.850, rather than fixing sets one at a time, the work is on the solver itself: one general way to choose how a mechanism moves in place of special cases, and a quicker check that says how far each part should move. Every set under [Models](#models) works in full, except the 8448 Super Street Sensation, whose V8 engine works on its own. The plan to get every set's every function working is in [docs/plan.md](docs/plan.md).
 
 **[Function check](ARCHITECTURE.md#the-function-check) on all 186 sets.** Each set's functions, from its instruction book, tried on its model.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 531 | 43% |
-| Partly | 318 | 26% |
-| Doesn't work | 198 | 16% |
+| Works | 532 | 43% |
+| Partly | 319 | 26% |
+| Doesn't work | 196 | 16% |
 | Skipped or not checked | 177 | 14% |
 
 Of the functions checked, 51% work in full. Only 13 of the 186 sets have every function working.

@@ -838,7 +838,6 @@ Where the earlier files went:
 | `data/functions/<set>.json`, the function lists | Each `data/sets/<set>.json`'s `curated` `model`, `instructions` and `functions` |
 | `models/sets.json`, Kinebrick's lines for the sets in `models/` | Each set's `curated.settings`, only where it has lines |
 | `omr/instructions/index.txt` and the scan folders, which file holds which book | Each set's `imported.instructions`, written by `npm run instructions` |
-| `data/functions/REVIEW.md`, the first review of the function lists | [data/sets/REVIEW.md](data/sets/REVIEW.md). Its questions are each set's `curated.questions`; its results are replaced by `generated`. |
 | `tests/joints/`, the joints probe's baselines | Stays where it is: the tests' own |
 
 ## Testing
@@ -1009,7 +1008,6 @@ Not the pins, axles and small gears inside, nor each link of a track: in seven o
 | `--reach 0.25` | Turns each only a quarter radian each way: enough to tell which are stuck |
 | `--resume` | Carries on where a run stopped, within a model too |
 | `--limit` | Stops a model that takes longer (4 hours by default), and writes it down as timed out, to be looked into |
-| `--commit` | Commits each set's findings to the `omr-survey` branch and pushes them as they're written (`scripts/survey-branch.ts`), without checking that branch out, so a survey that takes days can be looked at while it runs, from another machine or session |
 
 **How a survey runs.**
 
@@ -1017,8 +1015,6 @@ Not the pins, axles and small gears inside, nor each link of a track: in seven o
 - Each is probed in batches of 20 knobs, a process to each batch. Each batch's findings are kept as it finishes, so a run says how far a big model has got.
 - Every five minutes, a run says, for each process that has been going that long, where it has got to and how long since that changed, so a process stuck in one step shows.
 - Once a minute, it says how many models are done and to go.
-
-[docs/omr-survey.md](docs/omr-survey.md) gives the steps for a survey on a spare machine.
 
 ### The function check
 
@@ -1142,6 +1138,5 @@ Browser-level tests for these paths can come later.
 | `scripts/bench-solver.ts` | Times the solver on a fixed set of drags, small models to the biggest (`npm run bench`; `--quick` leaves out the 8110 Unimog) |
 | `scripts/load-model.ts` | Reads a model as the viewer does, from `models/` or `omr/`, for the probe and the function check |
 | `scripts/prerelease.ts` | Puts a branch up as the site's pre-release, at `/prerelease/`, by setting the repository variable the Pages workflow reads and running it (`npm run prerelease -- <branch>`; `--off` takes it down) |
-| `scripts/survey-branch.ts` | Commits each OMR set's findings from `npm run joints -- --omr --commit` to the `omr-survey` branch, one commit per set per run, and pushes it |
 | `scripts/scan-omr.ts` | Reads every set in `omr/` as the viewer would and reports what Kinebrick connects and what it's missing, in `omr/coverage.md` (`npm run scan`) |
 | `scripts/mpdflatten.py` | Flattens an LDraw multi-part model (.mpd) into one parts-only .ldr. No longer needed for test models, which may be MPDs |
