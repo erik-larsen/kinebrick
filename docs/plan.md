@@ -69,7 +69,7 @@ What this says, and what it doesn't:
 - **The causes are a first cut.** They are told at the start of the drag only, on the first control that fails. "Nothing ties it" can't yet tell a missing connection from a linkage with a second way to move.
 - **The total hides losses.** Against release 0.850, 533 functions work where 522 did, but 38 functions' results got worse (`npm run ratchet -- 0.850`).
 - **Two runs of the same code do not agree in full.** Against the results stored before it, this run has 9 functions better and 2 worse (42111 function 4 and 8110 function 14, each with one more part that did not come back), with no change to the solver between them. These results are kept as the new base all the same, as the code is the same. The jitter test of phase 1 has to say how much a result moves from run to run, so the ratchet can tell a real loss from this.
-- **One set takes most of the time.** The 8110 took 5 hours; the next slowest, the 42082, took under 1. The nightly run needs the 8110 made faster, or run less often.
+- **One set took most of the time.** The 8110 took 5 hours in one process; the next slowest, the 42082, took under 1. Since then (2026-11-11) a slow set is checked a function to a process, with the same results, and the 8110 is checked once a week, apart from the nightly run: even side by side, it takes 1 hour 55 minutes, as long as its slowest function. See [Where the 8110's time goes](#where-the-8110s-time-goes).
 
 ## Principles
 
@@ -98,14 +98,14 @@ Make the function check say why, make it complete, and make it fast.
 | The check shifts gearboxes, clicks slides and runs motors, as the viewer does | `scripts/check-functions.ts` | The 956's gear lever and the 8880's gearbox, through the check |
 | Results leave `data/sets/` for a folder of their own, all from one commit | `scripts/check-functions.ts`, `results/` (new) | The curated files no longer change when the check runs |
 | Slowest sets first, by the last run's times | `scripts/check-functions.ts` | None needed |
-| The full check runs every night on the Mac, as a scheduled command, and a ratchet compares it with the commit before | `scripts/ratchet.ts` (new), and a schedule | The ratchet against a known commit |
+| The full check runs every night on the Mac, as a scheduled command, and a ratchet compares it with the commit before. The slowest sets (for now the 8110) run once a week instead, on a schedule of their own | `scripts/ratchet.ts` (new), and a schedule | The ratchet against a known commit |
 | The scan counts each large separate group in a file as a model of its own | `scripts/scan-omr.ts` | A two-model file |
 | Invariance: a model moved and turned about the upright gives the same results. Jitter: parts moved by 0.05 LDU give the same results | `tests/invariance.test.ts` (new) | Itself |
 | Skip reasons from a fixed list: needs gravity, needs force, model error, check limit | `data/sets/*.json` (`skip`), `data/sets/README.md` | A test that each reason is on the list |
 
 **Done when:** every failing function has a cause; the full check runs unattended each night; one command says what a change gained and lost.
 
-**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the nightly run; the scan's count of second models; the invariance and jitter tests; skip reasons from a fixed list.
+**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, a slow set checked a function to a process, the weekly check for the 8110 (`npm run functions -- --weekly`), the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the nightly run; the scan's count of second models; the invariance and jitter tests; skip reasons from a fixed list.
 
 ### Phase 2. Structure
 
@@ -124,6 +124,24 @@ Make the code safe for more than one writer, and make the check fast enough to u
 | A small test model for each set a comment names (27 in `kinematics.ts`, 13 in `mechanism.ts`) | `tests/fixtures/` | Each fails without its fix |
 
 **Done when:** `kinematics.ts` and `mechanism.ts` are each a short file that calls others; the full check takes under an hour; `KINEBRICK_LEAST` and `KINEBRICK_ONE` are gone.
+
+#### Where the 8110's time goes
+
+Measured on 2026-11-11, for the line "A drag solved only over the parts it can reach". The 8110 has 663 bodies, 1,093 joints, 713 tree coordinates and about 320 free motions. Every step of every drag is solved over all 320, wherever the control is.
+
+| What | Time | Where it goes |
+|---|---|---|
+| One step of a drag | 2.7 s | Finding the free motions 0.7 s; choosing among them 1.9 s, in two rounds of tiers at 0.8 s each (about 6 eigen-solves of a 312 by 312 matrix, 51 ms each) |
+| Closing the loops after a step, when the step opened them | 7.4 s | 7 rounds, about 1 s each. Each round finds the free motions afresh (0.2 s) and chooses a mix of them by 9 tiers (0.5 s) |
+| Function 2 (steering wheel), 1 control | 9 minutes | Choosing the motion 68%, finding the free motions 28% |
+| Function 3 (rolling the truck), 4 controls | 1 hour 55 minutes | Closing the loops 76% |
+
+There is no one slow routine to fix: the time is spread over the null space, the Gram matrices, the eigen-solves and the tiers, and each is as large as the whole model. Two changes would cut it, both the solver owner's:
+
+- **Solve over what the drag can reach.** A drag at the steering wheel can't reach the crane, the winch or the stabiliser legs, but their motions are solved with it all the same. The cost of each routine above grows with the square or the cube of the number of motions. How many each control reaches is not measured yet.
+- **Fewer or cheaper rounds to close the loops.** 7 rounds a step is many for a method that should about square its error each round. The free motions are found afresh each round for a reason (the 42062 Container Yard's spreader), so this needs its own test before it changes.
+
+Splitting the check further, a control to a process, would bring the 8110 to about half an hour beside the other sets. It is not done: it would not cut the 6 hours of work, which the changes above would.
 
 ### Phase 3. Burn down by cause
 
