@@ -32,7 +32,7 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-11 (at e3
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
-In 28 sets, every checked function works. In 13 of those, no function is skipped or unchecked either. 70 more sets are one or two checked functions short.
+In 28 sets, every checked function works. In 13 of those, no function is skipped or unchecked either. 71 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
