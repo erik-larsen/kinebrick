@@ -1135,6 +1135,7 @@ Browser-level tests for these paths can come later.
 | `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [The joints probe](#the-joints-probe)) |
 | `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
 | `scripts/gear-rates.ts`, `scripts/slider-cranks.ts` | What gears and slider-cranks say parts should do, without the solver, for the function check |
+| `scripts/status-page.ts`, `scripts/status-page.html` | Writes the status page from each set's results: every set as a box, sized by its pieces and coloured by the share of its checked functions that work (`npm run status`; see [docs/plan.md](docs/plan.md)) |
 | `scripts/bench-solver.ts` | Times the solver on a fixed set of drags, small models to the biggest (`npm run bench`; `--quick` leaves out the 8110 Unimog) |
 | `scripts/load-model.ts` | Reads a model as the viewer does, from `models/` or `omr/`, for the probe and the function check |
 | `scripts/prerelease.ts` | Puts a branch up as the site's pre-release, at `/prerelease/`, by setting the repository variable the Pages workflow reads and running it (`npm run prerelease -- <branch>`; `--off` takes it down) |

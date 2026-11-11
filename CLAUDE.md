@@ -28,5 +28,5 @@ Connection inference from LDraw transforms: axle-in-hole, friction vs frictionle
 7. Walk the parts catalog, tagging mechanical roles.
 
 ## Working rules
-- Never run git commit or git push; stage and offer a commit message.
+- Branches (see docs/plan.md): `main` is Erik's. Never commit or push to it; stage and offer a commit message. The orchestrator session commits and pushes to `preview` at will. Any other branch belongs to the session or worker that made it, which commits and pushes to it at will.
 - Start answers with a concise solution summary; ask for files rather than speculate.

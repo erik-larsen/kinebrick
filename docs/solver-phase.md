@@ -1,6 +1,6 @@
 # The solver phase
 
-After release 0.850 (named after the 850 Fork Lift, the first Technic set), work moved from fixing sets one at a time to making the solver itself general. This page is the plan, on the `solver` branch, which goes back to `main` once it's better there.
+After release 0.850 (named after the 850 Fork Lift, the first Technic set), work moved from fixing sets one at a time to making the solver itself general. This page is the solver's own plan. It was worked on the `solver` branch, which went into `main` on 2026-11-10; the plan for the whole project since then is [plan.md](plan.md).
 
 ## Why
 

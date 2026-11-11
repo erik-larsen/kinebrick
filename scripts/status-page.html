@@ -1,0 +1,164 @@
+<title>Kinebrick Set Status</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: a short summary, then one treemap of every set (area = pieces, colour = share working), then the picked set's functions. */
+:root {
+  --bg: #f6f5f0; --panel: #ffffff; --fg: #17202e; --muted: #5a6474; --line: #d9d6cc;
+  --all: #2f9e5b; --most: #f2c230; --half: #f08a24; --few: #d43d2f; --none: #101114; --unchecked: #a9aeb8;
+  --on-dark: #ffffff; --on-light: #17202e;
+  --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --text: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--text); font-size: 15px; line-height: 1.45; padding-block: 28px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.page { max-width: 1280px; margin-inline: auto; display: flex; flex-direction: column; gap: 20px; }
+h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1.15; text-wrap: balance; }
+.sub { color: var(--muted); }
+.totals { display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: baseline; }
+.totals b { font-family: var(--display); font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; font-variant-numeric: tabular-nums; }
+.legend i { width: 15px; height: 15px; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--line); }
+#map { position: relative; width: 100%; height: clamp(420px, 58vw, 760px); }
+.box { position: absolute; overflow: hidden; border: 0; border-radius: 3px; padding: 3px 5px; text-align: left; font: 600 12px/1.25 var(--text); cursor: pointer; box-shadow: inset 0 0 0 1px var(--line); }
+.box small { display: block; font-weight: 400; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.box:hover, .box:focus-visible, .box[aria-pressed="true"] { outline: 3px solid var(--fg); outline-offset: -3px; }
+.b4 { background: var(--all); color: var(--on-dark); } .b3 { background: var(--most); color: var(--on-light); } .b2 { background: var(--half); color: var(--on-light); }
+.b1 { background: var(--few); color: var(--on-dark); } .b0 { background: var(--none); color: var(--on-dark); } .b5 { background: var(--unchecked); color: var(--on-light); }
+#detail { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-height: 96px; }
+#detail h2 { font-family: var(--display); font-size: 21px; font-weight: 700; }
+#detail ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+#detail li { display: flex; gap: 10px; align-items: baseline; }
+.tag { flex: none; width: 92px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.works { color: var(--all); } .partly { color: var(--half); } .no { color: var(--few); } .other { color: var(--muted); }
+@media (max-width: 640px) { #map { height: 150vw; } h1 { font-size: 24px; } }
+</style>
+<div class="page">
+  <header>
+    <h1>Every OMR Technic set, by how much of it works</h1>
+    <p class="sub" id="when"></p>
+  </header>
+  <div class="totals" id="totals"></div>
+  <div class="legend" id="legend"></div>
+  <div id="map" aria-label="One box for each set. A box's area is the set's number of pieces. Its colour is the share of its checked functions that work."></div>
+  <section id="detail" aria-live="polite"><p class="sub">Pick a box to see that set's functions. A box's area is the set's number of pieces.</p></section>
+</div>
+<script>
+const DATA = /*DATA*/null;
+const BUCKETS = [
+  { id: 4, label: 'All work' }, { id: 3, label: '75% to 99%' }, { id: 2, label: '50% to 74%' },
+  { id: 1, label: '1% to 49%' }, { id: 0, label: 'None work' }, { id: 5, label: 'Nothing checked' },
+];
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
+const count = (s, r) => s.functions.filter((f) => f[1] === r).length;
+
+// Each set's counts, its share working, and its colour bucket.
+const sets = (DATA ? DATA.sets : []).map((s) => {
+  const works = count(s, 'works'), partly = count(s, 'partly'), no = count(s, 'no');
+  const checked = works + partly + no;
+  const share = checked ? works / checked : null;
+  const bucket = share === null ? 5 : share >= 1 ? 4 : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
+  return { ...s, works, partly, no, checked, share, bucket, number: s.set.replace(/-1$/, '') };
+}).sort((a, b) => b.pieces - a.pieces);
+
+// A squarified treemap: rectangles whose areas are in proportion to each set's pieces.
+function treemap(items, W, H) {
+  const total = items.reduce((sum, d) => sum + d.pieces, 0);
+  const nodes = items.map((d) => ({ d, area: (d.pieces * W * H) / total }));
+  const out = [];
+  let x = 0, y = 0, w = W, h = H, row = [], i = 0;
+  const worst = (r, side) => {
+    const sum = r.reduce((s, n) => s + n.area, 0);
+    const max = Math.max(...r.map((n) => n.area)), min = Math.min(...r.map((n) => n.area));
+    return Math.max((side * side * max) / (sum * sum), (sum * sum) / (side * side * min));
+  };
+  const place = (r) => {
+    const sum = r.reduce((s, n) => s + n.area, 0);
+    if (w >= h) {
+      const cw = sum / h; let cy = y;
+      for (const n of r) { const ch = n.area / cw; out.push({ d: n.d, x, y: cy, w: cw, h: ch }); cy += ch; }
+      x += cw; w -= cw;
+    } else {
+      const rh = sum / w; let cx = x;
+      for (const n of r) { const rw = n.area / rh; out.push({ d: n.d, x: cx, y, w: rw, h: rh }); cx += rw; }
+      y += rh; h -= rh;
+    }
+  };
+  while (i < nodes.length) {
+    const side = Math.min(w, h), next = row.concat([nodes[i]]);
+    if (row.length === 0 || worst(next, side) <= worst(row, side)) { row = next; i++; } else { place(row); row = []; }
+  }
+  if (row.length) place(row);
+  return out;
+}
+
+const pct = (s) => (s.share === null ? 'nothing checked' : Math.round(s.share * 100) + '%');
+let picked = null;
+
+function show(s) {
+  picked = s.set;
+  document.querySelectorAll('.box').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === s.set)));
+  const d = document.getElementById('detail');
+  d.replaceChildren(
+    el('h2', '', `${s.number} ${s.name}`),
+    el('p', 'sub', `${s.year} · ${s.pieces.toLocaleString('en')} pieces · ${s.works} of ${s.checked} checked functions work (${pct(s)})` + (s.loose ? ` · ${s.loose.toLocaleString('en')} loose parts` : '')),
+  );
+  const list = el('ul');
+  const order = { no: 0, partly: 1, works: 2 };
+  for (const [does, result] of [...s.functions].sort((a, b) => (order[a[1]] ?? 3) - (order[b[1]] ?? 3))) {
+    const li = el('li');
+    const label = result === 'no' ? "doesn't work" : result;
+    li.append(el('span', 'tag ' + (result in order ? result : 'other'), label), el('span', '', does));
+    list.append(li);
+  }
+  d.append(list);
+}
+
+function draw() {
+  const map = document.getElementById('map');
+  const W = map.clientWidth, H = map.clientHeight;
+  map.replaceChildren();
+  for (const r of treemap(sets, W, H)) {
+    const s = r.d;
+    const b = el('button', 'box b' + s.bucket);
+    b.type = 'button';
+    b.dataset.set = s.set;
+    b.style.cssText = `left:${r.x}px;top:${r.y}px;width:${Math.max(1, r.w - 1)}px;height:${Math.max(1, r.h - 1)}px`;
+    b.title = `${s.number} ${s.name}: ${s.works} of ${s.checked} work (${pct(s)}), ${s.pieces} pieces`;
+    b.setAttribute('aria-label', b.title);
+    b.setAttribute('aria-pressed', String(picked === s.set));
+    if (r.w > 44 && r.h > 20) b.append(s.number);
+    if (r.w > 96 && r.h > 50) b.append(el('small', '', s.name), el('small', '', pct(s)));
+    b.addEventListener('click', () => show(s));
+    map.append(b);
+  }
+}
+
+if (DATA) {
+  const sum = (k) => sets.reduce((t, s) => t + s[k], 0);
+  const checked = sum('checked');
+  document.getElementById('when').textContent = `${sets.length} sets. Results as stored at commit ${DATA.commit}, page made ${DATA.date}. Share working = functions that work ÷ functions checked.`;
+  const totals = document.getElementById('totals');
+  for (const [n, text] of [[sum('works'), `of ${checked.toLocaleString('en')} checked functions work (${Math.round((100 * sum('works')) / checked)}%)`], [sum('partly'), 'work partly'], [sum('no'), "don't work"], [sets.filter((s) => s.bucket === 4).length, 'sets with every checked function working']]) {
+    const span = el('span');
+    span.append(el('b', '', n.toLocaleString('en')), ' ' + text);
+    totals.append(span);
+  }
+  const legend = document.getElementById('legend');
+  for (const k of BUCKETS) {
+    const n = sets.filter((s) => s.bucket === k.id).length;
+    if (!n) continue;
+    const span = el('span');
+    const swatch = el('i', 'b' + k.id);
+    span.append(swatch, `${k.label}: ${n} sets`);
+    legend.append(span);
+  }
+  draw();
+  let timer = 0;
+  window.addEventListener('resize', () => { clearTimeout(timer); timer = setTimeout(draw, 120); });
+} else {
+  document.getElementById('when').textContent = 'No data: make this page with npm run status.';
+}
+</script>

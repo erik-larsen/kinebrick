@@ -17,6 +17,7 @@
     "bench": "tsx scripts/bench-solver.ts",
     "thumbs": "tsx scripts/thumbs.ts",
     "mechanisms": "tsx scripts/mechanisms.ts",
+    "status": "tsx scripts/status-page.ts",
     "prerelease": "tsx scripts/prerelease.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },

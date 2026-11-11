@@ -1,5 +1,5 @@
 // Puts a branch on the site as its pre-release, at erik-larsen.github.io/kinebrick/prerelease/,
-// for trying work before it reaches main (the solver branch, say). It sets the repository variable
+// for trying work before it reaches main (the preview branch). It sets the repository variable
 // PRERELEASE_BRANCH, which the Pages workflow (.github/workflows/pages.yml) reads, and runs the
 // workflow, which builds main and the branch together and publishes both. From then on a push to
 // main, or to the branch once it has the workflow, publishes both afresh. It also runs the
@@ -8,8 +8,8 @@
 // It needs the GitHub CLI (gh), signed in as the repository's owner, who alone may change its
 // variables.
 //
-//   npm run prerelease -- solver           put the solver branch up as the pre-release
-//   npm run prerelease -- solver --watch   and watch the workflow run through
+//   npm run prerelease -- preview          put the preview branch up as the pre-release
+//   npm run prerelease -- preview --watch  and watch the workflow run through
 //   npm run prerelease                     say which branch is the pre-release, if any
 //   npm run prerelease -- --off            take the pre-release down: the site is published
 //                                          again without it

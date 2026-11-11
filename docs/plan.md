@@ -1,6 +1,6 @@
 # The road to 100%: technical and management plan
 
-Written 2026-11-10, at `main` = `solver` = 67370ba. This plan is a proposal until Erik accepts it. It builds on two reviews of the solver branch made the same week. The solver's own line of work stays in [solver-phase.md](solver-phase.md) and [one-problem.md](one-problem.md).
+Written 2026-11-10, at `main` = `solver` = 67370ba. Erik accepted it on 2026-11-10, with the branches, models, early physics and status page written in below. It builds on two reviews of the solver branch made the same week. The solver's own line of work stays in [solver-phase.md](solver-phase.md) and [one-problem.md](one-problem.md).
 
 ## The goal
 
@@ -58,6 +58,7 @@ We do not know the size of each group. The check records a result, not a cause. 
 
 - `main` fast-forwarded to `solver`.
 - Stale branches, worktrees and planning notes removed.
+- `solver` removed and `preview` made (see [Branches](#branches)).
 
 ### Phase 1. Measure
 
@@ -111,12 +112,22 @@ This phase runs in lanes, at the same time as phase 4. Each lane takes its work 
 
 ### Phase 4. A general solver
 
-One owner. The order may change as the triage shows which faults are most common.
+One owner. This phase starts as soon as phase 1's triage exists, beside phase 2. It does not wait for phase 3.
+
+**A touch of physics, early.** Gravity and springs come first, as costs in the tiers the solver already has. They are not a physics engine: nothing has mass that accelerates, and nothing balances a weight against a spring. The reasons to bring them forward:
+
+- They replace code. The balanced-part rule, the tipping tier and the rigid shocks are stand-ins for gravity and springs. It is cheaper to remove them now than to restructure them in phase 2 and remove them later.
+- They reach many functions. 51 failing functions are suspension, and 99 are hinges, hooks and other parts that hang. Of the 119 skipped functions, most give a spring or gravity as the reason. These are upper limits: the triage will say how many each one fixes.
+- They are cheap to try. Each goes in behind a switch, and is kept only if the full check gains by it, as least motion was.
+
+Forces proper (a weight against a spring, friction under load, air pressure, momentum) still wait for phase 5.
+
+The order of the rest may change as the triage shows which faults are most common.
 
 | Work | What it replaces |
 |---|---|
-| Gravity as a tier: a part's centre of mass is kept from rising or falling | The balanced-part rule, the two-tyre tipping tier |
-| Springs as a soft cost: a shock absorber may change length, at a cost | Rigid shocks, and suspension that moves only by play |
+| First: gravity as a tier. A part's centre of mass is kept from rising or falling | The balanced-part rule, the two-tyre tipping tier |
+| Second: springs as a soft cost. A shock absorber may change length, at a cost | Rigid shocks, and suspension that moves only by play |
 | Play as weighted rows: every loop-closing connection may give a little | `playMotion`, and the rules that line axles and balls up |
 | A continuity tier: prefer the motion nearest the last step's | `STILLNESS`'s threshold, `dragGrip`, `dragSuspension`, strayed-joint holds |
 | The Newton step (stage 2 of [one-problem.md](one-problem.md)), then tyres as rows | `settle`, `parked`, most of the dead-point code |
@@ -126,7 +137,7 @@ One owner. The order may change as the triage shows which faults are most common
 
 ### Phase 5. Forces
 
-The 119 skipped functions: springs that return, air pressure, ratchets, brakes, clutches that slip. This is version 2.0, through MuJoCo. It starts when phase 4's springs and gravity show how far kinematics can go.
+The skipped functions that phase 4's gravity and springs do not reach: a weight against a spring, air pressure, ratchets, brakes, clutches that slip. This is version 2.0, through MuJoCo. It starts when phase 4 shows how far costs in the tiers can go.
 
 **Done when:** milestone B.
 
@@ -137,10 +148,28 @@ The 119 skipped functions: springs that return, air pressure, ratchets, brakes, 
 | Role | Who | Does | Writes |
 |---|---|---|---|
 | Owner | Erik | Decides scope and order. Signs off function lists and errata. Reads the status page. Moves `main`. | Nothing he doesn't choose to |
-| Orchestrator | One Claude Fable session | Keeps this plan, the backlog and the gate. Briefs workers and merges their branches. Publishes the status page. | `scripts/`, `.github/`, `docs/plan.md`, `results/` |
-| Solver owner | One Claude Fable session | Phase 4, and phase 2's work in the solver core | `src/kinematics.ts`, later `src/constraints/` and `src/linalg.ts` |
-| Workers | Claude Opus 5.5 agents, one task each, each in a worktree of its own | Phase 3's lanes | Only the files their lane names |
+| Orchestrator | One Claude Fable 5.2 session, medium effort | Keeps this plan, the backlog and the gate. Briefs workers and merges their branches into `preview`. Publishes the status page. | `scripts/`, `.github/`, `docs/plan.md`, `results/` |
+| Solver owner | One Claude Opus 5.5 session, high effort | Phase 4, and phase 2's work in the solver core | `src/kinematics.ts`, later `src/constraints/` and `src/linalg.ts` |
+| Workers | Claude Opus 5.5 agents, medium effort, one task each, each in a worktree of its own | Phase 3's lanes | Only the files their lane names |
 | CI | GitHub Actions | Tests on each push. The full check and the ratchet each night. | `results/` |
+
+These models are where we start, to keep the cost down. The gate's log shows how often each role's work is kept or reverted; if the solver owner's work is reverted often, that role is the first to move to a stronger model.
+
+### Branches
+
+| Branch | Owner | Rule |
+|---|---|---|
+| `main` | Erik | Only Erik commits and pushes. It moves when he merges `preview` into it. The site publishes from it. |
+| `preview` | The orchestrator | Commits and pushes at will. Holds only work that passed the gate. The pre-release site publishes from it, and every push runs the tests. |
+| Any other, named `<lane>/<task>` (`solver/gravity-tier`, `parts/turntables`) | The session or worker that made it | Made from `preview`. Its owner commits and pushes at will. The orchestrator merges it into `preview` when it passes the gate, and deletes it then, or when the task is dropped. |
+
+Work that is retired but worth keeping gets a tag under `archive/`, not a branch.
+
+Erik moves `main` when he chooses, after a look at the pre-release site and the log:
+
+```bash
+git merge --ff-only origin/preview
+```
 
 ### Who may write which file
 
@@ -163,11 +192,11 @@ A worker's change is kept only if all of these are true.
 5. A fix in the solver or the inference comes with a fixture that fails without it.
 6. No new tolerance or weight comes without a test that shows what it is for.
 
-If any is false, the orchestrator reverts the change and logs why. A worker that fails the gate twice on one task stops, and the task goes back to the backlog with its notes.
+A branch is merged into `preview` only when all are true. If the night's check then fails on `preview`, the orchestrator reverts the merge and logs why. A worker that fails the gate twice on one task stops, and the task goes back to the backlog with its notes.
 
 ### What Erik sees
 
-- **A status page**, refreshed after each night's check: a grid of the 186 sets coloured by share working, the count of failing functions by cause over time, each lane's queue, and what waits for him.
+- **A status page**, refreshed after each night's check (`npm run status`). First, a grid of boxes, one for each OMR set, each sized by the set's number of pieces and coloured by the share of its checked functions that work: green for all, yellow for 75% to 99%, orange for 50% to 74%, red for 1% to 49%, black for none. Then the count of failing functions by cause over time, each lane's queue, and what waits for him.
 - **A sign-off queue**: function-list answers and errata, in batches, each with the book page that supports it.
 - **A log**: one line for each change kept or reverted, with the score before and after.
 
@@ -175,18 +204,19 @@ If any is false, the orchestrator reverts the change and logs why. A worker that
 
 - Workers run only in lanes with a gate a script can check.
 - A fleet starts only when Erik says so, with a stated number of workers.
-- The nightly check runs on GitHub's machines, not on a Claude session.
+- The nightly check runs on GitHub's machines or on the Windows PC (which ran all 186 sets, 15 at a time, for the survey), not on a Claude session.
+- The models in [Who does what](#who-does-what) are the cheapest that we expect to do each job.
 
-## Decisions for Erik
+## Decisions, made 2026-11-10
 
-1. **The commit rule.** Today no Claude session may commit or push. Workers need to commit on branches of their own (`auto/<lane>/<task>`), and the orchestrator needs to merge them into one branch (`auto/integration`). `main` and `solver` stay Erik's to move. Without this, every change waits for him.
-2. **One branch.** `main` and `solver` are now the same commit. Keep `solver` as the solver owner's branch and the pre-release site's, or work on `main` alone.
-3. **Milestone A first.** Agree that forces (phase 5) wait until kinematics is complete.
-4. **Old branches on GitHub.** `omr-survey` holds the retired survey's findings. `claude/least-motion` holds a prototype that was replaced, with a results commit from 2026-11-08. Delete both, or keep them.
+1. **Who commits.** `main` is Erik's alone. The orchestrator commits and pushes to `preview` at will, and each other branch's owner to that branch (see [Branches](#branches)).
+2. **Branches.** `main` and `preview`. `solver` is removed.
+3. **Milestone A first, with a touch of physics early.** Gravity and springs come in at the start of phase 4, as costs in the tiers. Forces proper wait for phase 5.
+4. **Old branches.** The retired survey and the least-motion prototype are kept as the tags `archive/omr-survey` and `archive/least-motion-prototype`. Neither needs a branch.
 
 ## First steps
 
 1. The triage and the stop-reason probe (phase 1), on a branch of their own.
 2. Slowest sets first, and results in a folder of their own.
 3. The nightly check and the ratchet.
-4. The first status page, from the first night with causes.
+4. The status page: its first version, the grid of sets, was published on 2026-11-10 from that day's results. Causes join it from the first night that has them.
