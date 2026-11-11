@@ -28,7 +28,7 @@ const header = csvFields(lines[0]);
 const rows = lines.slice(1).map((line) => Object.fromEntries(header.map((name, i) => [name, csvFields(line)[i] ?? ''])));
 const csv = new Map(rows.map((row) => [row.set_num, row]));
 
-// The models the viewer has, so a set built in one links to it on the pre-release site.
+// The models the viewer has, so a set built in one links to it on the preview site.
 const viewerModels = new Set(Object.keys(JSON.parse(readFileSync('packed/models.json', 'utf-8'))));
 
 // One entry per set that has results: what the page shows for it.

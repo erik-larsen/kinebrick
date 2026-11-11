@@ -20,7 +20,6 @@
     "status": "tsx scripts/status-page.ts",
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",
-    "prerelease": "tsx scripts/prerelease.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },
   "dependencies": {

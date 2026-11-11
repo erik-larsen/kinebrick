@@ -57,7 +57,7 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
 </div>
 <script>
 const DATA = /*DATA*/null;
-const PRERELEASE = 'https://erik-larsen.github.io/kinebrick/prerelease/';
+const PREVIEW = 'https://erik-larsen.github.io/kinebrick/preview/';
 const BUCKETS = [
   { id: 4, label: 'All work' }, { id: 3, label: '75% to 99%' }, { id: 2, label: '50% to 74%' },
   { id: 1, label: '1% to 49%' }, { id: 0, label: 'None work' }, { id: 5, label: 'Nothing checked' },
@@ -113,9 +113,9 @@ function show(s) {
   document.querySelectorAll('.box').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === s.set)));
   const d = document.getElementById('detail');
   const link = (text, href) => { const a = el('a', '', text); a.href = href; a.target = '_blank'; a.rel = 'noopener'; return a; };
-  // The title opens the set in the pre-release viewer, where the viewer has it; the pieces, its page in the OMR.
+  // The title opens the set in the preview viewer, where the viewer has it; the pieces, its page in the OMR.
   const title = el('h2');
-  title.append(s.viewer ? link(`${s.number} ${s.name}`, PRERELEASE + '?model=' + encodeURIComponent(s.viewer).replace(/%20/g, '+')) : `${s.number} ${s.name}`);
+  title.append(s.viewer ? link(`${s.number} ${s.name}`, PREVIEW + '?model=' + encodeURIComponent(s.viewer).replace(/%20/g, '+')) : `${s.number} ${s.name}`);
   const sub = el('p', 'sub', `${s.year} · `);
   const pieces = `${s.pieces.toLocaleString('en')} pieces`;
   sub.append(s.omr ? link(pieces, s.omr) : pieces, ` · ${s.works} of ${s.checked} checked functions work (${pct(s)})` + (s.loose ? ` · ${s.loose.toLocaleString('en')} loose parts` : '') + (s.viewer ? '' : ' · not in the viewer yet'));

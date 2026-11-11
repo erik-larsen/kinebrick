@@ -1,23 +1,22 @@
-# Runs the tests on the pre-release branch whenever it's pushed. main's tests run before each
-# deploy (see pages.yml), but the pre-release build there doesn't run them, so a test that fails on
-# the pre-release branch shows up here instead: as a failed run, a red mark on the commit, and
-# GitHub's usual mail to whoever pushed it.
+# Runs the tests on a preview branch (preview, preview-train: any branch whose name starts with
+# preview) whenever it's pushed. main's tests run before each deploy (see pages.yml), but the
+# preview builds there don't run them, so a test that fails on a preview branch shows up here
+# instead: as a failed run, a red mark on the commit, and GitHub's usual mail to whoever pushed it.
 #
-# The repository variable PRERELEASE_BRANCH names the branch (see pages.yml), so this follows it
-# when it changes. A push runs the workflow file of the branch pushed, so the branch needs this
-# file: it has it once main is merged in. Run it by hand on any branch with
+# A push runs the workflow file of the branch pushed, so the branch needs this file. Run it by
+# hand on any branch with
 #   gh workflow run test.yml --ref <branch>
-name: Test the pre-release branch
+name: Test the preview branches
 
 on:
   push:
-    # Any branch: the job runs only for the pre-release branch (see its `if`).
+    # Any branch: the job runs only for the preview branches (see its `if`).
     branches: ['**']
   workflow_dispatch:
 
 jobs:
   test:
-    if: github.event_name == 'workflow_dispatch' || (github.ref_name != 'main' && github.ref_name == vars.PRERELEASE_BRANCH)
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref_name, 'preview')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -33,7 +32,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # The pre-release build skips the type check (it runs vite build alone), so it's here.
+      # The preview build skips the type check (it runs vite build alone), so it's here.
       - name: Type check
         run: npx tsc --noEmit -p .
       - run: npm test

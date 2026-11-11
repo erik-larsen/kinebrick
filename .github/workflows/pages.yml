@@ -1,29 +1,29 @@
 # Builds the viewer and publishes it to GitHub Pages (erik-larsen.github.io/kinebrick/)
 # whenever main changes.
 #
-# Beside it, a pre-release build of another branch, under /prerelease/
-# (erik-larsen.github.io/kinebrick/prerelease/), for trying work before it reaches main: the
-# repository variable PRERELEASE_BRANCH names the branch, and `npm run prerelease -- <branch>`
-# sets it and runs this (see scripts/prerelease.ts). A deploy replaces the whole site, so both are
-# built every time, from main and from that branch, whichever of the two was pushed. A pre-release
-# that fails to build doesn't stop main's: the site goes out without it.
+# Beside it, a build of each preview branch, under its own name, for trying work before it reaches
+# main: the preview branch at /preview/ (erik-larsen.github.io/kinebrick/preview/), preview-train
+# at /preview-train/, and so on for any branch named preview or preview-<something>. A deploy
+# replaces the whole site, so all are built every time, from main and from each preview branch,
+# whichever was pushed. A preview that fails to build doesn't stop the others: the site goes out
+# without it.
 #
 # The site can only be published from main (the github-pages environment allows no other branch),
-# so a push to the pre-release branch doesn't build: it runs this workflow on main (the rebuild
-# job), and that run builds both.
+# so a push to a preview branch doesn't build: it runs this workflow on main (the rebuild job), and
+# that run builds them all. So it's main's copy of this file that says how the site is built.
 name: Publish to GitHub Pages
 
 on:
   push:
-    # Any branch: the jobs run only for main and the pre-release branch (see their `if`s). A push
-    # runs the workflow file of the branch pushed, so a pre-release branch is rebuilt on push once
-    # it has this file; until then, `npm run prerelease` runs the workflow by hand.
+    # Any branch: the jobs run only for main and the preview branches (see their `if`s). A push
+    # runs the workflow file of the branch pushed, so a preview branch is rebuilt on push once it
+    # has this file.
     branches: ['**']
   workflow_dispatch:
 
 jobs:
   rebuild:
-    if: github.event_name == 'push' && github.ref_name != 'main' && github.ref_name == vars.PRERELEASE_BRANCH
+    if: github.event_name == 'push' && startsWith(github.ref_name, 'preview')
     runs-on: ubuntu-latest
     permissions:
       actions: write
@@ -51,29 +51,32 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
-      - name: Check out the pre-release branch
-        id: prerelease
-        if: vars.PRERELEASE_BRANCH != ''
+      - name: Build each preview branch into dist/<its name>
         continue-on-error: true
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        with:
-          ref: ${{ vars.PRERELEASE_BRANCH }}
-          path: prerelease
-      - name: Build the pre-release into dist/prerelease
-        if: steps.prerelease.outcome == 'success'
-        continue-on-error: true
-        working-directory: prerelease
-        env:
-          BRANCH: ${{ vars.PRERELEASE_BRANCH }}
-        # Its tests aren't run here, so a failing test doesn't hold up the site: test.yml runs
-        # them on each push to the pre-release branch. The page says which branch and commit
-        # it's of (VITE_PRERELEASE, see src/main.ts) and so does its title.
+        # Their tests aren't run here, so a failing test doesn't hold up the site: test.yml runs
+        # them on each push to a preview branch. Each page says which branch and commit it's of
+        # (VITE_PREVIEW, see src/main.ts) and so does its title.
         run: |
-          npm ci
-          export VITE_PRERELEASE="$BRANCH @ $(git rev-parse --short HEAD), $(date -u +%Y-%m-%d)"
-          npx vite build --outDir ../dist/prerelease
-          sed -i "s|<title>Kinebrick Play</title>|<title>Kinebrick Play · pre-release ($BRANCH)</title>|" ../dist/prerelease/index.html
-          echo "::notice::Pre-release built: $VITE_PRERELEASE"
+          for branch in $(git ls-remote --heads origin 'preview*' | sed 's|.*refs/heads/||' | grep -E '^preview(-[a-z0-9]+)*$'); do
+            (
+              set -e
+              git fetch --quiet --depth 1 origin "$branch"
+              git worktree add --quiet "../$branch" FETCH_HEAD
+              cd "../$branch"
+              npm ci
+              export VITE_PREVIEW="$branch @ $(git rev-parse --short HEAD), $(date -u +%Y-%m-%d)"
+              npx vite build --outDir "$GITHUB_WORKSPACE/dist/$branch"
+              sed -i "s|<title>Kinebrick Play</title>|<title>Kinebrick Play · $branch</title>|" "$GITHUB_WORKSPACE/dist/$branch/index.html"
+              echo "::notice::Built /$branch/ from $VITE_PREVIEW"
+            ) || {
+              rm -rf "dist/$branch"
+              echo "::warning::The $branch branch didn't build: the site goes out without it"
+            }
+          done
+      - name: Send the preview's old address, /prerelease/, on to /preview/
+        run: |
+          mkdir -p dist/prerelease
+          echo '<!doctype html><meta charset="utf-8"><title>Kinebrick Play</title><script>location.replace("../preview/" + location.search + location.hash)</script><a href="../preview/">The preview is now at /preview/</a>' > dist/prerelease/index.html
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: dist

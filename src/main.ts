@@ -296,15 +296,15 @@ function firstPieceOnly(loader: LDrawLoader, files: string[]) {
   };
 }
 
-// A pre-release build of a branch (see .github/workflows/pages.yml) names the branch beside the
+// A preview build of a branch (see .github/workflows/pages.yml) names the branch beside the
 // heading, in italics, with the commit and date it was built from as its tooltip, and in the
-// page's title, so a pre-release is never mistaken for the release. (The workflow writes the
-// title too, for a branch without this code.)
-const PRERELEASE: string | undefined = import.meta.env.VITE_PRERELEASE;
-if (PRERELEASE) {
-  const [branch, built] = PRERELEASE.split(' @ ');
-  if (!document.title.includes('pre-release')) document.title += ` · pre-release (${branch})`;
-  document.getElementById('title')!.append(Object.assign(document.createElement('i'), { textContent: `${branch} branch`, title: `Pre-release build from ${built}` }));
+// page's title, so a preview is never mistaken for the release. (The workflow writes the title
+// too, for a branch without this code.)
+const PREVIEW: string | undefined = import.meta.env.VITE_PREVIEW;
+if (PREVIEW) {
+  const [branch, built] = PREVIEW.split(' @ ');
+  if (!document.title.includes(branch)) document.title += ` · ${branch}`;
+  document.getElementById('title')!.append(Object.assign(document.createElement('i'), { textContent: `${branch} branch`, title: `Built from ${built}` }));
 }
 
 async function start() {

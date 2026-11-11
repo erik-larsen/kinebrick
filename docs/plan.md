@@ -168,6 +168,33 @@ The skipped functions that phase 4's gravity and springs do not reach: a weight 
 
 **Done when:** milestone B.
 
+## The train track: a second line of work
+
+Started 2026-11-11, to get more work going in parallel. It is separate from the milestones above: it does not count toward them, and it does not wait for them.
+
+**The goal.** Very basic train motion on every OMR train set that comes with track: a train moves along straights, curves, switches and crossings, and each switch can be flipped to change the route. As everywhere else in Kinebrick, the user moves the train by turning one of its wheels.
+
+**Not yet.** Electrics, control boxes, motors, signals. No real wheel-on-rail contact.
+
+### Steps
+
+1. **Gather the sets.** Every OMR set that includes track (10001 Metroliner is one), in a list like `models/technic-sets.csv`. The first report is three numbers: train sets in the OMR, those that include track, and those whose file lays the track out as a layout a train can run on.
+2. **Layouts.** OMR files follow the building instructions, so the track is often a pile of pieces, not a layout. For those sets, a layout is generated from the set's own track pieces: a loop, with the set's switches and crossings in it.
+3. **Track as a path.** The track pieces' ends are joined into a graph. Each piece gives a centre line (a straight, an arc, two crossing lines, or for a switch, two lines that share an end). A switch is a control with two states, and its state picks the branch.
+4. **Trains on the path.** Each wheelset is held to the centre line of the piece it is on. Bogies pivot, cars are coupled, wheels roll: their turning is tied to the distance gone. A train is then close to one freedom, the distance along the track.
+5. **The viewer.** A Trains group in the model menu, beside Working sets, Work in progress sets and Test models.
+6. **The check and the status page.** Each train set gets a function list a machine can check: the train goes the full length of the track (on a loop, a full lap, back to its start), every wheelset stays on the path, the cars stay coupled, and each switch flips and changes the route. The same function check and ratchet run on them. A status page of the train sets follows, as for Technic: one box for each set, sized by its pieces, green to black by the share of its functions that work.
+
+### Order
+
+The 9 V track and the plastic track that followed it (RC, Power Functions) share one geometry, so they come first. The older 4.5 V and 12 V track, with separate rails and sleepers, comes after.
+
+### Keeping the two lines apart
+
+- The train code lives in files of its own, with small hooks into the solver, the inference and the viewer.
+- `preview-train` takes `preview` in each day. Nothing goes the other way yet.
+- The train check runs four sets at a time by day, so the Technic work keeps its share of the Mac's 12 cores. The night belongs to the full Technic check.
+
 ## Management plan
 
 ### Who does what
@@ -178,6 +205,7 @@ The skipped functions that phase 4's gravity and springs do not reach: a weight 
 | Orchestrator | One Claude Fable 5.2 session, medium effort | Keeps this plan, the backlog and the gate. Briefs workers and merges their branches into `preview`. Publishes the status page. | `scripts/`, `.github/`, `docs/plan.md`, `results/` |
 | Solver owner | One Claude Opus 5.5 session, high effort | Phase 4, and phase 2's work in the solver core | `src/kinematics.ts`, later `src/constraints/` and `src/linalg.ts` |
 | Workers | Claude Opus 5.5 agents, medium effort, one task each, each in a worktree of its own | Phase 3's lanes | Only the files their lane names |
+| Train owner | One Claude Opus 5.5 session, high effort, in a worktree of its own on `preview-train` | [The train track](#the-train-track-a-second-line-of-work), all of it | New files of its own for track and trains, and small hooks into the files of others |
 | CI | GitHub Actions, and this Mac | GitHub runs the tests on each push. The Mac runs the full check and the ratchet each night. | `results/` |
 
 These models are where we start, to keep the cost down. The gate's log shows how often each role's work is kept or reverted; if the solver owner's work is reverted often, that role is the first to move to a stronger model.
@@ -187,12 +215,15 @@ These models are where we start, to keep the cost down. The gate's log shows how
 | Branch | Owner | Rule |
 |---|---|---|
 | `main` | Erik | Only Erik commits and pushes. It moves when he merges `preview` into it. The site publishes from it. |
-| `preview` | The orchestrator | Commits and pushes at will. Holds only work that passed the gate. The pre-release site publishes from it, and every push runs the tests. |
+| `preview` | The orchestrator | Commits and pushes at will. Holds only work that passed the gate. The preview site, [/preview/](https://erik-larsen.github.io/kinebrick/preview/), publishes from it, and every push runs the tests. |
+| `preview-train` | The train owner | Downstream of `preview`: made from it, and each day the orchestrator merges `preview` into it (a merge, never a rebase) and runs the tests. Its owner commits and pushes at will. Its site is [/preview-train/](https://erik-larsen.github.io/kinebrick/preview-train/). Nothing flows back to `preview` until Erik decides how. |
 | Any other, named `<lane>/<task>` (`solver/gravity-tier`, `parts/turntables`) | The session or worker that made it | Made from `preview`. Its owner commits and pushes at will. The orchestrator merges it into `preview` when it passes the gate, and deletes it then, or when the task is dropped. |
 
 Work that is retired but worth keeping gets a tag under `archive/`, not a branch.
 
-Erik moves `main` when he chooses, after a look at the pre-release site and the log:
+Any branch named `preview` or `preview-<something>` is built onto the site under its own name, and its tests run on each push. The site is built by `main`'s copy of the workflow, so a change to how the site is built takes effect when Erik moves `main`.
+
+Erik moves `main` when he chooses, after a look at the preview site and the log:
 
 ```bash
 git merge --ff-only origin/preview
@@ -207,6 +238,9 @@ git merge --ff-only origin/preview
 | `data/corrections.ldr`, `data/roles.json` | Connection and part-behaviour workers, one part type each |
 | `data/sets/*.json` `curated` | Function-list and errata workers draft. Erik signs off. No other worker edits it. |
 | `results/` | The check only |
+| Track and train files (new: the track graph, the path constraint, the train sets' list, results and status page) | The train owner only, on `preview-train` |
+
+The train owner keeps its edits to files in this table small: a call into its own files, not logic. Each day's merge from `preview` then stays easy, even while phase 2 reshapes the solver.
 
 ### The gate
 
@@ -240,6 +274,13 @@ A branch is merged into `preview` only when all are true. If the night's check t
 2. **Branches.** `main` and `preview`. `solver` is removed.
 3. **Milestone A first, with a touch of physics early.** Gravity and springs come in at the start of phase 4, as costs in the tiers. Forces proper wait for phase 5.
 4. **Old branches.** The retired survey and the least-motion prototype are kept as the tags `archive/omr-survey` and `archive/least-motion-prototype`. Neither needs a branch.
+
+## Decisions, made 2026-11-11
+
+1. **A train track beside the Technic work**, on `preview-train`, by its own Opus 5.5 high session (see [The train track](#the-train-track-a-second-line-of-work)).
+2. **Generated layouts.** Where a set's OMR file doesn't lay its track out, a layout is generated from the set's own track pieces.
+3. **The site.** The pre-release site, `/prerelease/`, is now `/preview/`, and `preview-train` has a site of its own, `/preview-train/`. The old address sends visitors on.
+4. **How train work comes back upstream to `preview`** is decided later.
 
 ## First steps
 
