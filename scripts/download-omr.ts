@@ -8,13 +8,15 @@
 // omr/versions.json says which version each downloaded file is, so a file is downloaded again
 // only when its pin changes.
 //
-// Run with: npm run omr
+// Run with: npm run omr, or npm run omr -- --trains for the train sets in models/train-sets.csv,
+// into omr/trains/ (see scripts/find-train-sets.ts).
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const CSV = 'models/technic-sets.csv';
-const OUT_DIR = 'omr';
+const trains = process.argv.includes('--trains');
+const CSV = trains ? 'models/train-sets.csv' : 'models/technic-sets.csv';
+const OUT_DIR = trains ? join('omr', 'trains') : 'omr';
 const VERSIONS = join(OUT_DIR, 'versions.json');
 
 // The fields of a CSV line. Fields may be quoted, with commas inside.

@@ -1783,7 +1783,7 @@ export class Kinematics {
     for (const rider of ridersOn) {
       const pose = this.poses[rider.body];
       const c = rider.center.clone().applyMatrix4(pose);
-      const near = this.nearestRail(c);
+      const near = this.nearestRail(c, rider.body);
       if (!near) continue;
       const across = new Array(n).fill(0);
       for (let k = 0; k < 3; k++) {
@@ -2216,7 +2216,9 @@ export class Kinematics {
   // across it to the left of `t` (`n`), how far the point is off it along `n` (`offset`) and how
   // sharply it bends there, turning towards `n` (`curvature`, 1 over the radius, 0 on a
   // straight). Null if the model has no track.
-  private nearestRail(point: Vector3): { t: Vector3; n: Vector3; offset: number; curvature: number } | null {
+  private nearestRail(point: Vector3, rider?: number): { t: Vector3; n: Vector3; offset: number; curvature: number } | null {
+    // A track with switches and crossings: each wheelset keeps to its line (see src/track.ts).
+    if (this.mech.track && rider !== undefined) return this.mech.track.near(point, this.poses[0], rider);
     let best: { t: Vector3; n: Vector3; offset: number; curvature: number; distance: number } | null = null;
     const frame = this.poses[0];
     for (const rail of this.mech.rails ?? []) {

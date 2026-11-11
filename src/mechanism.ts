@@ -1,6 +1,7 @@
 // Works out a model's mechanism: which parts move together (bodies) and how bodies can
 // move relative to each other (joints). See "How it works" in ARCHITECTURE.md, steps 2 to 6.
 
+import { buildTrack, Track } from './track.ts';
 import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
 import { acrossDirections, Kinematics, nullSpace } from './kinematics.ts';
@@ -253,6 +254,7 @@ export interface Mechanism {
   centers?: Vector3[]; // each body's middle as built: the mean of its parts' origins
   rails?: Rail[]; // a train track's centreline, piece by piece (see findRails)
   riders?: Rider[]; // pairs of train wheels on the rails (see findRiders)
+  track?: Track; // the track as a graph, with its switches (see src/track.ts)
 }
 
 // A linear actuator's screw: as the input body turns about the axis, the piston body slides
@@ -446,7 +448,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // A train track's pieces hold together end to end (nothing else joins them), and the track,
   // the trains' wheels and what's built on them are assemblies of their own, standing apart
   // from each other, never loose (see findLooseParts).
-  const rails = findRails(parts, roles);
+  const track = buildTrack(parts.map((p, i) => (roles[i] === 'rail' ? p : { ...p, name: '' })));
+  const rails = track ? track.rails() : findRails(parts, roles);
   connections.push(...railJoins(rails));
   connections.push(...magnetCouplings(parts, roles, cyls, connections));
   const anchors = anchorsOf(roles);
@@ -524,7 +527,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // An actuator whose input or piston is fixed to its body (by what's built round it) can't work.
   const screws = actuators.filter((a) => new Set([a.body, a.input, a.piston].map((i) => bodyOf[i])).size === 3).map((a) => ({ input: bodyOf[a.input], piston: bodyOf[a.piston], center: a.center, axis: a.axis, lead: a.lead }));
   const centers = bodies.map((b) => b.parts.reduce((sum, i) => sum.add(new Vector3().setFromMatrixPosition(parts[i].matrix)), new Vector3()).multiplyScalar(1 / Math.max(1, b.parts.length)));
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}), ...(track ? { track } : {}) };
 }
 
 // A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
