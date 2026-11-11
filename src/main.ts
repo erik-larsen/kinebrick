@@ -1049,22 +1049,80 @@ async function showWarnings(names: string[], loose: number[], unconnected: strin
 // The model picker: Kinebrick's own models, and a model of your own, opened from your computer
 // (picked, or dropped on the page). The browser keeps the file and the page reloads with it.
 
-// Kinebrick's own test models are grouped under Test models; the official sets that work in full
-// under Working sets; and those that don't yet (data/wip-models.json: those marked WIP in the
-// README, and those it doesn't show yet) under Work in progress sets.
-const picker = document.getElementById('model') as HTMLSelectElement;
-picker.add(new Option('Open a model file…', 'open'));
-if (FILE) picker.add(new Option(FILE, '', false, true));
-const heading = (label: string) => Object.assign(document.createElement('optgroup'), { label });
-const tests = heading('Test models');
-const working = heading('Working sets');
-const wip = heading('Work in progress sets');
-for (const [file, name] of MODELS) {
-  const group = NAMED_MODELS.some(([named]) => named === file) ? tests : wipModels.includes(file) ? wip : working;
-  group.append(new Option(name, file, false, !FILE && file === MODEL));
+// The menu cascades: a button with the open model's name opens a list of Open a model file and
+// three groups, each of which opens its own list beside it. The official sets that work in full
+// are under Working sets; those that don't yet (data/wip-models.json: those marked WIP in the
+// README, and those it doesn't show yet) under Work in progress sets; and Kinebrick's own test
+// models under Test models.
+const modelButton = document.getElementById('modelButton') as HTMLButtonElement;
+const modelMenu = document.getElementById('modelMenu') as HTMLDivElement;
+modelButton.textContent = `${FILE || MODELS.find(([file]) => file === MODEL)?.[1] || MODEL} ▾`;
+const menuItem = (label: string, pick: () => void) => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.setAttribute('role', 'menuitem');
+  b.textContent = label;
+  b.addEventListener('click', pick);
+  return b;
+};
+const showMenu = (open: boolean) => {
+  modelMenu.hidden = !open;
+  modelButton.setAttribute('aria-expanded', String(open));
+  if (!open) showGroup(null);
+};
+// Opens one group's list (or none), closing the others.
+const groups: { button: HTMLButtonElement; sub: HTMLDivElement }[] = [];
+const showGroup = (which: HTMLDivElement | null) => {
+  for (const g of groups) {
+    g.sub.hidden = g.sub !== which;
+    g.button.setAttribute('aria-expanded', String(g.sub === which));
+  }
+};
+modelMenu.append(menuItem('Open a model file…', () => {
+  showMenu(false);
+  filePicker.click();
+}));
+const isTest = (file: string) => NAMED_MODELS.some(([named]) => named === file);
+const lists: [string, (file: string) => boolean][] = [
+  ['Working sets', (file) => !isTest(file) && !wipModels.includes(file)],
+  ['Work in progress sets', (file) => !isTest(file) && wipModels.includes(file)],
+  ['Test models', isTest],
+];
+for (const [label, belongs] of lists) {
+  const models = MODELS.filter(([file]) => belongs(file));
+  if (models.length === 0) continue;
+  const group = document.createElement('div');
+  group.className = 'group';
+  const sub = document.createElement('div');
+  sub.className = 'sub';
+  sub.setAttribute('role', 'menu');
+  sub.hidden = true;
+  const button = menuItem('', () => showGroup(sub.hidden ? sub : null));
+  button.setAttribute('aria-haspopup', 'menu');
+  button.append(label, Object.assign(document.createElement('span'), { textContent: '▸' }));
+  // A mouse opens a group by pointing at it; a finger, by tapping it.
+  group.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(hover: hover)').matches) showGroup(sub);
+  });
+  for (const [file, name] of models) {
+    const item = menuItem(name, () => chooseModel(file));
+    if (!FILE && file === MODEL) item.setAttribute('aria-current', 'true');
+    sub.append(item);
+  }
+  groups.push({ button, sub });
+  group.append(button, sub);
+  modelMenu.append(group);
 }
-for (const group of [tests, working, wip]) if (group.children.length) picker.append(group);
-const chosen = picker.value;
+modelButton.addEventListener('click', () => showMenu(Boolean(modelMenu.hidden)));
+// A press anywhere else, or Escape, closes it.
+document.addEventListener('pointerdown', (e) => {
+  if (!modelMenu.hidden && !(e.target as Element).closest('#model')) showMenu(false);
+});
+document.getElementById('model')!.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  showMenu(false);
+  modelButton.focus();
+});
 const filePicker = document.getElementById('file') as HTMLInputElement;
 
 // Switching model keeps the options, except tyre scrub, turned parts, spinning and spin speed:
@@ -1075,23 +1133,18 @@ function openModel(set: (params: URLSearchParams) => void) {
   window.location.search = address();
 }
 
-picker.addEventListener('change', () => {
-  if (picker.value === 'open') {
-    picker.value = chosen;
-    filePicker.click();
-  } else if (picker.value) {
-    openModel((p) => {
-      // The views the model being left opened with (the V8 engine's drivetrain focus) were its
-      // own: not kept for the next one, as views turned on in the Options are.
-      const own = new URLSearchParams(OPENINGS[MODEL] ?? '').getAll('option').join(',').split(',');
-      const kept = p.getAll('option').join(',').split(',').filter((o) => o && !own.includes(o));
-      p.delete('option');
-      if (kept.length) p.set('option', kept.join(','));
-      p.set('model', picker.value);
-      for (const [name, value] of new URLSearchParams(OPENINGS[picker.value] ?? '')) p.append(name, value);
-    });
-  }
-});
+function chooseModel(file: string) {
+  openModel((p) => {
+    // The views the model being left opened with (the V8 engine's drivetrain focus) were its
+    // own: not kept for the next one, as views turned on in the Options are.
+    const own = new URLSearchParams(OPENINGS[MODEL] ?? '').getAll('option').join(',').split(',');
+    const kept = p.getAll('option').join(',').split(',').filter((o) => o && !own.includes(o));
+    p.delete('option');
+    if (kept.length) p.set('option', kept.join(','));
+    p.set('model', file);
+    for (const [name, value] of new URLSearchParams(OPENINGS[file] ?? '')) p.append(name, value);
+  });
+}
 
 async function openFile(file: File | undefined) {
   if (!file) return;

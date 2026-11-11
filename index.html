@@ -32,13 +32,24 @@
       #warning { margin-top: 4px; max-width: 260px; color: #b3261e; font-size: 12px; }
       #warning p { margin: 0 0 4px; }
       #panel select { font: inherit; margin: 2px 0 4px; }
-      /* The model menu's headings, Test models, Working sets and Work in progress sets, in bold
-         italics rather than grey. Only a browser that lets a page style its menus (Chrome and
-         Edge, from 135) shows them so; the others draw their own menu. */
-      #model, #model::picker(select) { appearance: base-select; }
-      #model optgroup { font-weight: bold; font-style: italic; color: inherit; }
-      #model option { font-weight: normal; font-style: normal; }
-      #model optgroup option { padding-inline-start: 1.5em; }
+      /* The model menu: a button with the open model's name, which opens a list of Open a model
+         file and the three groups; each group opens its own list beside it (under it, on a
+         narrow screen). */
+      #model { position: relative; display: inline-block; margin: 2px 0 4px; }
+      #model button { font: inherit; color: inherit; background: none; border: 0; padding: 4px 10px; text-align: left; white-space: nowrap; cursor: pointer; }
+      #modelButton { border: 1px solid #b9c0cc !important; border-radius: 6px; background: #fff !important; max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
+      #modelMenu, #model .sub { position: absolute; z-index: 20; display: flex; flex-direction: column; min-width: 100%; padding: 4px 0; background: #fff; border: 1px solid #b9c0cc; border-radius: 6px; box-shadow: 0 6px 18px rgba(29, 36, 48, 0.18); }
+      #modelMenu { left: 0; top: 100%; }
+      #model [hidden] { display: none; }
+      #model .group { display: flex; flex-direction: column; }
+      #model .group > button { display: flex; justify-content: space-between; gap: 16px; }
+      /* Beside the menu, from its top, however far down its group is: a long list has the room. */
+      #model .sub { left: 100%; top: -1px; min-width: 0; max-height: calc(100vh - 150px); overflow-y: auto; }
+      #modelMenu button:hover, #modelMenu button:focus-visible, #model .group > button[aria-expanded="true"] { background: #e8edf5; outline: none; }
+      #model .sub button[aria-current="true"] { font-weight: 600; }
+      @media (max-width: 640px) {
+        #model .sub { position: static; border: 0; box-shadow: none; padding: 0 0 4px 14px; max-height: 40vh; }
+      }
       #details { margin-top: 6px; }
       #details summary { cursor: pointer; color: #5a6475; }
       /* As wide as the panel's other lines make it (width 0, at least 100%), scrolling both ways,
@@ -82,7 +93,10 @@
         </a>
       </h1>
       <div id="inputs"><b>move</b> drag · <b>spin part</b> ctrl-click · <b>freeze part</b> alt/option-click</div>
-      <select id="model"></select>
+      <div id="model">
+        <button id="modelButton" type="button" aria-haspopup="menu" aria-expanded="false"></button>
+        <div id="modelMenu" role="menu" hidden></div>
+      </div>
       <input id="file" type="file" accept=".ldr,.mpd,.io" hidden />
       <div id="summary">Loading…</div>
       <details id="warnings" hidden>
