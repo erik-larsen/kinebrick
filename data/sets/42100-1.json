@@ -176,9 +176,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "29ee0b0",
     "date": "2026-11-11",
-    "seconds": 613,
+    "seconds": 694,
     "counts": {
       "partly": 6,
       "no": 3
@@ -355,7 +355,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p313 42100 - 42529"
+        "detail": "p313 42100 - 42529",
+        "seconds": 26.6
       },
       {
         "result": "partly",
@@ -402,7 +403,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p1099 42100 - 42529"
+        "detail": "p1099 42100 - 42529",
+        "seconds": 24
       },
       {
         "result": "partly",
@@ -465,7 +467,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p313 42100 - 42529"
+        "detail": "p313 42100 - 42529",
+        "seconds": 46.1
       },
       {
         "result": "partly",
@@ -508,7 +511,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p1927 42003 against p87 42003"
+        "detail": "p1927 42003 against p87 42003",
+        "seconds": 24.3
       },
       {
         "result": "partly",
@@ -556,7 +560,8 @@
           ]
         ],
         "cause": "too-little",
-        "detail": "p2971 42003 against p1927 42003"
+        "detail": "p2971 42003 against p1927 42003",
+        "seconds": 165.5
       },
       {
         "result": "partly",
@@ -636,7 +641,8 @@
           ]
         ],
         "cause": "too-little",
-        "detail": "p3322 42003 against p2971 42003"
+        "detail": "p3322 42003 against p2971 42003",
+        "seconds": 260.7
       },
       {
         "result": "no",
@@ -690,7 +696,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p3600 15458 against p3322 42003"
+        "detail": "p3600 15458 against p3322 42003",
+        "seconds": 1.4
       },
       {
         "result": "no",
@@ -729,7 +736,8 @@
             "no motion"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 1.5
       },
       {
         "result": "no",
@@ -751,7 +759,8 @@
         "why": [
           "p4660 40490 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       }
     ]
   }
