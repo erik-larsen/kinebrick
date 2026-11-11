@@ -266,16 +266,19 @@ function setTrainsOnTrack(text: string): { text: string; trains: number; moved: 
     }
     return best.g;
   };
+  // A kept car's lift, one move for each lift (to a tenth of an LDU), so that a submodel holding
+  // several cars lifted alike moves as one.
+  const lifts = new Map<number, Matrix4>();
+  const lifted = (dy: number) => {
+    const key = Math.round(dy * 10);
+    if (!lifts.has(key)) lifts.set(key, new Matrix4().makeTranslation(0, key / 10, 0));
+    return lifts.get(key)!;
+  };
   for (const train of trains) {
     // A train on the track whose cars' magnets all come within reach of each other keeps its
     // place: each car only raised or lowered, its wheels to the rail heads (the viewer sets it on
     // the line and couples it, see setOnRails).
     const kept = train[0].g !== null && train.every((c, k) => k === 0 || c.g! + c.front - (train[k - 1].g! + train[k - 1].rear) < REACH);
-    // Kept: one lift for the whole train, its wheels on average on the rail heads, so that a
-    // submodel holding several of its cars moves as one.
-    const allRiders = train.flatMap((c) => c.mine.map((r, i) => ({ r, c: c.centers[i] })));
-    const lift = allRiders.reduce((sum, { r, c }) => sum + track.head() - radius(r) - c.y, 0) / allRiders.length;
-    const keptMove = new Matrix4().makeTranslation(0, lift, 0);
     let cursor = train[0].g !== null ? train[0].g! + train[0].front : clearStretch(free, train.reduce((n, c) => n + c.rear - c.front + COUPLE, 0));
     train.forEach((c, k) => {
       const middle = cursor - c.front;
@@ -298,7 +301,7 @@ function setTrainsOnTrack(text: string): { text: string; trains: number; moved: 
         angle = Math.atan2(cross, dot);
       } else angle = heading(at(middle).t) - heading(c.u);
       const turned = c.mean.clone().applyMatrix4(levelMove(angle, new Vector3()));
-      moves.set(c.car, kept ? keptMove : levelMove(angle, ct.clone().sub(turned)));
+      moves.set(c.car, kept ? lifted(ct.y - c.centers.reduce((sum, p) => sum + p.y, 0) / c.centers.length) : levelMove(angle, ct.clone().sub(turned)));
     });
     free = Math.max(free, cursor + GAP);
   }
