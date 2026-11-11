@@ -1,0 +1,116 @@
+{
+  "set": "7715-1",
+  "curated": {
+    "model": "models/trains/7715-Push-Along Passenger Steam Train.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p23 996",
+        "wheelsets": [
+          "p21 2344",
+          "p33 2344",
+          "p152 2344",
+          "p158 2344",
+          "p279 2344",
+          "p285 2344"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 220,
+    "counts": {
+      "works": 1,
+      "partly": 1
+    },
+    "loose": [
+      "p13 4023",
+      "p14 73092",
+      "p21 2344",
+      "p22 2344",
+      "p27 2344",
+      "p28 2344",
+      "p33 2344",
+      "p34 2344",
+      "p37 44728",
+      "p38 3068b",
+      "p39 44728",
+      "p40 3068b",
+      "p108 4183",
+      "p109 4183",
+      "p152 2344",
+      "p153 2344",
+      "p158 2344",
+      "p159 2344",
+      "p196 4183",
+      "p197 4183",
+      "p198 3070b",
+      "p199 4449-f1",
+      "p279 2344",
+      "p280 2344",
+      "p285 2344",
+      "p286 2344",
+      "p323 4183",
+      "p324 4183",
+      "p325 3070b",
+      "p326 4449-f1",
+      "p398 4166b",
+      "p399 4166b",
+      "p402 4166b",
+      "p403 4166b",
+      "p406 4166b",
+      "p407 4166b",
+      "p410 4166b",
+      "p411 4166b",
+      "p414 4166b",
+      "p415 4166b",
+      "p418 4166b",
+      "p419 4166b",
+      "p422 4166b",
+      "p423 4166b",
+      "p426 4166b",
+      "p427 4166b",
+      "p430 4166b",
+      "p431 4166b",
+      "p434 4166b",
+      "p435 4166b",
+      "p438 4166b",
+      "p439 4166b",
+      "p442 4166b",
+      "p443 4166b",
+      "p446 4166b",
+      "p447 4166b",
+      "p450 4166b",
+      "p451 4166b",
+      "p454 4166b",
+      "p455 4166b",
+      "p458 4166b",
+      "p459 4166b"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "partly",
+        "why": [
+          "4 of the train's 6 wheelsets stayed behind: a coupling didn't hold"
+        ],
+        "travelled": 5030,
+        "length": 5037,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 20,
+        "radius": 20
+      }
+    ]
+  }
+}

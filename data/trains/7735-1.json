@@ -1,0 +1,107 @@
+{
+  "set": "7735-1",
+  "curated": {
+    "model": "models/trains/7735-Freight Train.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p67 996",
+        "wheelsets": [
+          "p65 2344",
+          "p71 2344",
+          "p138 2344",
+          "p144 2344",
+          "p219 2344",
+          "p225 2344",
+          "p282 502"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 1,
+    "counts": {
+      "works": 1,
+      "no": 1
+    },
+    "loose": [
+      "p20 3033",
+      "p21 3033",
+      "p32 4083",
+      "p33 4522",
+      "p34 4006",
+      "p65 2344",
+      "p66 2344",
+      "p71 2344",
+      "p72 2344",
+      "p138 2344",
+      "p139 2344",
+      "p144 2344",
+      "p145 2344",
+      "p219 2344",
+      "p220 2344",
+      "p225 2344",
+      "p226 2344",
+      "p263 4183",
+      "p264 4183",
+      "p265 4511",
+      "p266 4511",
+      "p282 502",
+      "p283 502",
+      "p372 4183",
+      "p373 4183",
+      "p407 3641",
+      "p408 3464",
+      "p409 3641",
+      "p410 3464",
+      "p417 3641",
+      "p418 3464",
+      "p419 3641",
+      "p420 3464",
+      "p424 4166a",
+      "p425 4166a",
+      "p426 4166a",
+      "p430 4166a",
+      "p431 4166a",
+      "p434 4166a",
+      "p435 4166a",
+      "p436 4166a",
+      "p438 3240a",
+      "p439 3240a",
+      "p467 3641",
+      "p468 4624",
+      "p469 3641",
+      "p470 4624",
+      "p471 3641",
+      "p472 4624",
+      "p473 3641",
+      "p474 4624"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "no",
+        "why": [
+          "went 0 of a 5667 LDU lap",
+          "went 0.0 LDU for each radian its wheel turned, not 20"
+        ],
+        "travelled": 0,
+        "length": 5667,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 0,
+        "radius": 20
+      }
+    ]
+  }
+}

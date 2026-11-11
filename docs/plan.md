@@ -197,6 +197,27 @@ The 9 V track and the plastic track that followed it (RC, Power Functions) share
 - `preview-train` takes `preview` in each day. Nothing goes the other way yet.
 - The train check runs four sets at a time by day, so the Technic work keeps its share of the Mac's 12 cores. The night belongs to the full Technic check.
 
+### The three numbers (2026-11-11)
+
+- **70** of the OMR's 1470 sets are train sets: those filed under Train, Train > 4.5V, 9V or 12V, and City > Trains.
+- **37** OMR sets include track, in any theme: 27 of the train sets, and 10 others (Town, Space, Western, Legoland, Icons, Universal Building Set). By kind: 8 have 9 V track, 2 plastic, 15 4.5 V, 9 12 V and 3 monorail. They are listed in `models/train-sets.csv`.
+- **27** of them lay their track out as a layout a train can run on: 11 a loop, 16 a short line (2 to 4 straights). 3 more give their track as pieces apart, and Kinebrick lays them out (165, 7866, 7936). 4 use single rails that are not a train's track (a crane's runway, a mine cart's), and the 3 monorail sets are not read yet.
+
+### How it works
+
+- `scripts/find-train-sets.ts` reads the OMR's list of sets, downloads each set's main model into `omr/all/` and finds the track pieces in it. It writes `models/train-sets.csv`, with each set's file pinned. `npm run omr -- --trains` downloads them into `omr/trains/`.
+- `src/track.ts` is the track as a path. Each piece gives its centre lines (a straight, an arc, a switch's two lines, a crossing's two). The ends that meet are joined into a graph. A switch's state picks which of its lines a train takes from the end they share. Each wheelset keeps to the line it is on, and goes on to the next line past its end. Past a buffer the train stops. 4.5 V and 12 V track built from single rails is read as the pieces the rails make.
+- Hooks into the files of others, each a line or two: `src/mechanism.ts` builds the track with `buildTrack` and adds the wheel pairs that `findRiders` leaves out (`wheelPairs`); `src/kinematics.ts` asks the track where each wheelset's line is, takes the rail heads as the trains' ground, and stops a drag at a buffer; `src/main.ts` and `src/interaction.ts` add the Trains group and the click that flips a switch; `scripts/check-functions.ts`, `scripts/ratchet.ts` and `scripts/status-page.ts` take `--trains`.
+- `scripts/train-layouts.ts` makes each set's model in `models/trains/` from its OMR file: the track as laid out, or laid out afresh from the set's own pieces; then each train set on the track, its cars closed up magnet to magnet. It also writes each set's function list to `data/trains/<set>.json`, and a test layout with a switch and a crossing (no OMR set with 9 V track has either).
+- `scripts/train-checks.ts` checks the functions: the track joins up into one layout; turning one wheel runs each train a full lap (or, on a line, to each end), every wheelset on the track, the cars coupled, and the train going as far as its wheel's rim turns; each switch flips, and a train then takes its other way. `npm run functions -- --trains` runs them, `npm run ratchet -- --trains` compares them, and `npm run status -- --trains` writes `dist/trains.html`.
+- The viewer opens a train set from the Trains group in the model menu. It packs the model itself, with parts from the LDraw library online, as for a model you open yourself, so no packed copy is committed.
+
+### Where it stands, and what is next
+
+A running record, newest first. The orchestrator's daily merge and Erik read it here.
+
+- **2026-11-11.** All 9 V and plastic sets work: the 4 ovals (4558, 4563, 4565, 10001) lap, 4555's wagon runs end to end, and every track joins up. The test layout's train laps through a switch and a crossing, and takes the switch's branch once it is flipped. The 4.5 V and 12 V sets have their track and their trains on it; some of their trains run and some don't yet (see the status page). Their known faults: a coupling or magnet the file leaves off its car splits a train in two (7715, 7730, 7740, 7745), and in 7722 the driver, as the file stands him, joins the locomotive to the track. Next: those, then the 4 sets whose rails are not a train's track, then the 3 monorail sets.
+
 ## Management plan
 
 ### Who does what

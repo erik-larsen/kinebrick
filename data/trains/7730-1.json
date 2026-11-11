@@ -1,0 +1,120 @@
+{
+  "set": "7730-1",
+  "curated": {
+    "model": "models/trains/7730-Electric Goods Train.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p139 996",
+        "wheelsets": [
+          "p0 501ac01",
+          "p137 2344",
+          "p143 2344",
+          "p212 2344",
+          "p218 2344",
+          "p308 2344",
+          "p314 2344"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 20,
+    "counts": {
+      "works": 1,
+      "partly": 1
+    },
+    "loose": [
+      "p20 3710",
+      "p35 502",
+      "p36 502",
+      "p37 502",
+      "p38 502",
+      "p137 2344",
+      "p138 2344",
+      "p143 2344",
+      "p144 2344",
+      "p212 2344",
+      "p213 2344",
+      "p218 2344",
+      "p219 2344",
+      "p287 4022",
+      "p288 4023",
+      "p289 2959c01",
+      "p308 2344",
+      "p309 2344",
+      "p314 2344",
+      "p315 2344",
+      "p319 3023",
+      "p320 4175",
+      "p321 4175",
+      "p324 3666",
+      "p325 3666",
+      "p328 3024",
+      "p329 3024",
+      "p342 3063b",
+      "p343 3063b",
+      "p344 3063b",
+      "p345 3063b",
+      "p346 3063b",
+      "p347 3063b",
+      "p348 3063b",
+      "p349 3063b",
+      "p350 3063b",
+      "p351 3063b",
+      "p352 3063b",
+      "p353 3063b",
+      "p354 3063b",
+      "p355 3063b",
+      "p356 3063b",
+      "p357 3063b",
+      "p358 3063b",
+      "p359 3063b",
+      "p360 3063b",
+      "p361 3063b",
+      "p362 3063b",
+      "p363 3063b",
+      "p364 3063b",
+      "p365 3063b",
+      "p366 3651",
+      "p367 3651",
+      "p368 3943a",
+      "p369 3943a",
+      "p370 3943a",
+      "p376 4166a",
+      "p380 4166a",
+      "p381 4166a",
+      "p382 4166a",
+      "p394 3430c02",
+      "p397 87414",
+      "p398 87414",
+      "p399 87414",
+      "p400 87414"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "partly",
+        "why": [
+          "6 of the train's 8 wheelsets stayed behind: a coupling didn't hold"
+        ],
+        "travelled": 5652,
+        "length": 5659,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 20.2,
+        "radius": 20
+      }
+    ]
+  }
+}

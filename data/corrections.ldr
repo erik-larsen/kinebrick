@@ -497,9 +497,39 @@
 0 // Magnet Cylindrical: the magnet, 12 LDU in radius and 16 long along z, whose faces couple train cars (see magnetCouplings). Axle-shaped, so that it's fixed in its casing (2959), which has the matching socket
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 12 16] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 // The 4.5V and 12V trains' wheel block (4180c02) is read as its pieces: a 2 x 4 brick in two halves (4180a, 4179), and two small wheels (996), each turning on a pin (2344) in the brick's lower half. The shadow library describes none of them.
+
+0 FILE 996.dat
+0 // Train Wheel Small with Pin Axle Hole: its tread, 20 LDU in radius (its flange reaches 28), where it runs on the rail, about its z axis at its origin; and its hole, which turns on the pin the brick holds (here the brick's hole, see 4180a)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 20 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 2 12] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 4180a.dat
+0 // Brick 2 x 4 for Train Wheels Base: the pins its wheels (996) turn on, 50 LDU either side of its middle along x and 10 LDU below its origin, as holes the wheels' axle stubs turn in
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2 20] [center=true] [pos=50 10 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2 20] [center=true] [pos=-50 10 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 // and the block's other half (4179), which is one brick with it: held fast, as an axle in an axle hole, at their shared origin
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 8] [center=true]
+
+0 FILE 4179.dat
+0 // Brick 2 x 4 for Train Wheels Top: one brick with its lower half (4180a), held fast to it at their shared origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 8] [center=true]
+
 0 FILE 2920.dat
 0 // Train Coupling Type 2: its hook's fingers hold the magnet casing's pin (2959) where the shadow library has it, 32 LDU out, and also 35 LDU out, where the OMR's train sets seat it (the fingers' arcs reach from 31.5 to 37.8 LDU out)
 0 !LDCAD SNAP_FGR [group=magnet] [genderOfs=F] [seq=4 32 4] [radius=2] [pos=0 4 -35] [ori=0 1 0 -1 0 0 0 0 1]
+
+0 FILE 4023.dat
+0 // Train Coupling Type 1 (the 4.5V and 12V trains'): its hook's fingers hold the magnet casing's pin (2959c01) where the shadow library has it, 34 LDU out, and also where the library's own assemblies seat it: 36 LDU out in the coupled position (4023c01), and 34 out and 1 lower, turned up, in the uncoupled (4023c02)
+0 !LDCAD SNAP_FGR [group=magnet] [genderOfs=F] [seq=4 32 4] [radius=2] [pos=0 4 -36] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_FGR [group=magnet] [genderOfs=F] [seq=4 32 4] [radius=2] [pos=0 5 -34] [ori=0 1 0 -1 0 0 0 0 1]
+
+0 FILE 4093a.dat
+0 // Train Base 6 x 28 with 23 Holes: the shadow library gives it only its top studs. Its underside takes studs, 28 by 6, as the 8-hole base's does (4093c); and a bogie plate's pin (4092a) turns in any of its 21 round holes along its middle, 20 LDU apart, from 60 to 240 LDU either side of its middle
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=0 8 0] [grid=C 28 C 6 20 20]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 8 R 8 4] [pos=0 8 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 8 R 8 4] [pos=150 8 0] [grid=C 10 1 20 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 8 R 8 4] [pos=-150 8 0] [grid=C 10 1 20 0]
 
 0 FILE 2959.dat
 0 // Magnet Cylindrical Casing: holds its magnet (70023) fast, at its origin

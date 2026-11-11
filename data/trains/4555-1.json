@@ -10,12 +10,18 @@
       {
         "kind": "run",
         "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
-        "control": "p221 57877c01"
+        "control": "p221 57877c01",
+        "wheelsets": [
+          "p221 57877c01",
+          "p223 57877c01",
+          "p231 57877c01",
+          "p233 57877c01"
+        ]
       }
     ]
   },
   "generated": {
-    "commit": "38a3909",
+    "commit": "12df7e9",
     "uncommitted": true,
     "date": "2026-11-11",
     "seconds": 1,
@@ -23,14 +29,6 @@
       "works": 2
     },
     "loose": [
-      "p42 3228b",
-      "p43 3228b",
-      "p48 3228b",
-      "p49 3228b",
-      "p101 3228b",
-      "p102 3228b",
-      "p103 3228b",
-      "p104 3228b",
       "p173 2927",
       "p174 2927",
       "p176 2927",

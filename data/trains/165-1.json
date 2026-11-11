@@ -1,0 +1,49 @@
+{
+  "set": "165-1",
+  "curated": {
+    "model": "models/trains/165-Cargo Station.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 0,
+    "counts": {
+      "works": 1
+    },
+    "loose": [
+      "p153 165-1 - 004760a",
+      "p158 165-1 - 004760b",
+      "p159 165-1 - 004760b",
+      "p160 165-1 - 004760b",
+      "p161 165-1 - 004760b",
+      "p162 165-1 - 004760b",
+      "p163 165-1 - 004760b",
+      "p164 165-1 - 004760b",
+      "p165 165-1 - 004760b",
+      "p166 165-1 - 004760b",
+      "p167 165-1 - 004760b",
+      "p185 3001",
+      "p186 8",
+      "p187 8",
+      "p188 3464",
+      "p189 3464",
+      "p190 3139",
+      "p191 3139",
+      "p232 3176",
+      "p235 165-1 - 004760b",
+      "p236 165-1 - 004760b"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      }
+    ]
+  }
+}

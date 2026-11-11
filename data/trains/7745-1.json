@@ -1,0 +1,111 @@
+{
+  "set": "7745-1",
+  "curated": {
+    "model": "models/trains/7745-High-Speed City Express Passenger Train.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p95 996",
+        "wheelsets": [
+          "p93 2344",
+          "p99 2344",
+          "p127 2344",
+          "p139 2344",
+          "p297 2344",
+          "p303 2344",
+          "p318 2344",
+          "p324 2344",
+          "p514 2344",
+          "p520 2344",
+          "p531 501bc01"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 1,
+    "counts": {
+      "works": 1,
+      "no": 1
+    },
+    "loose": [
+      "p9 6141",
+      "p10 6141",
+      "p44 6141",
+      "p45 6141",
+      "p68 4183",
+      "p70 4183",
+      "p93 2344",
+      "p94 2344",
+      "p99 2344",
+      "p100 2344",
+      "p127 2344",
+      "p128 2344",
+      "p133 2344",
+      "p134 2344",
+      "p139 2344",
+      "p140 2344",
+      "p216 4183",
+      "p218 4183",
+      "p220 4183",
+      "p222 4183",
+      "p240 3496c01",
+      "p297 2344",
+      "p298 2344",
+      "p303 2344",
+      "p304 2344",
+      "p318 2344",
+      "p319 2344",
+      "p324 2344",
+      "p325 2344",
+      "p361 6264",
+      "p372 6141",
+      "p373 6141",
+      "p443 6141",
+      "p444 6141",
+      "p477 4183",
+      "p479 4183",
+      "p514 2344",
+      "p515 2344",
+      "p520 2344",
+      "p521 2344",
+      "p558 4166a",
+      "p559 4166a",
+      "p560 4166a",
+      "p561 4166a",
+      "p630 3710",
+      "p723 4449-f1",
+      "p724 4449-f1",
+      "p725 4449-f1",
+      "p726 4449-f1",
+      "p727 3070b",
+      "p728 3070b"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "no",
+        "why": [
+          "went 0 of a 6947 LDU lap",
+          "went 0.0 LDU for each radian its wheel turned, not 20"
+        ],
+        "travelled": 0,
+        "length": 6947,
+        "offTrack": 0.4,
+        "apart": 0.1,
+        "rolled": 0,
+        "radius": 20
+      }
+    ]
+  }
+}

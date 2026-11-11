@@ -1,0 +1,116 @@
+{
+  "set": "7722-1",
+  "curated": {
+    "model": "models/trains/7722-Steam Cargo Train.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p143 996",
+        "wheelsets": [
+          "p141 2344",
+          "p147 2344",
+          "p233 2344",
+          "p239 2344"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 29,
+    "counts": {
+      "works": 1,
+      "no": 1
+    },
+    "loose": [
+      "p5 4084",
+      "p6 4084",
+      "p7 3641",
+      "p8 3641",
+      "p34 4517",
+      "p56 3641",
+      "p57 3641",
+      "p59 3641",
+      "p60 3641",
+      "p93 7722 - 3443c12",
+      "p95 3488",
+      "p96 3488",
+      "p97 3488",
+      "p98 3488",
+      "p141 2344",
+      "p142 2344",
+      "p147 2344",
+      "p148 2344",
+      "p233 2344",
+      "p234 2344",
+      "p239 2344",
+      "p240 2344",
+      "p259 4079",
+      "p287 4183",
+      "p288 4183",
+      "p289 4511",
+      "p290 4511",
+      "p306 502",
+      "p307 502",
+      "p308 502",
+      "p309 502",
+      "p318 4023",
+      "p319 2959c01",
+      "p320 4023",
+      "p321 2959c01",
+      "p322 947b",
+      "p323 947b",
+      "p357 755",
+      "p401 754",
+      "p402 754",
+      "p403 754",
+      "p407 755",
+      "p451 754",
+      "p452 754",
+      "p453 754",
+      "p477 4183",
+      "p478 4183",
+      "p528 4166a",
+      "p529 4166a",
+      "p530 4166a",
+      "p533 4166a",
+      "p534 4166a",
+      "p538 4166a",
+      "p539 4166a",
+      "p542 4166a",
+      "p543 4166a",
+      "p544 4166a",
+      "p547 4166a",
+      "p548 4166a",
+      "p550 304c01",
+      "p551 3218",
+      "p552 3218"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "no",
+        "why": [
+          "went 0 of a 6307 LDU lap",
+          "a wheelset came 390.0 LDU off the track",
+          "went 0.0 LDU for each radian its wheel turned, not 20"
+        ],
+        "travelled": 0,
+        "length": 6307,
+        "offTrack": 390,
+        "apart": 0,
+        "rolled": 0,
+        "radius": 20
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "set": "7822-1",
+  "curated": {
+    "model": "models/trains/7822-Railway Station.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 0,
+    "counts": {
+      "works": 1
+    },
+    "loose": [
+      "p163 3644",
+      "p164 3644",
+      "p226 767",
+      "p227 767",
+      "p230 767",
+      "p231 767",
+      "p232 767",
+      "p235 767",
+      "p236 767",
+      "p239 767",
+      "p240 767"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      }
+    ]
+  }
+}

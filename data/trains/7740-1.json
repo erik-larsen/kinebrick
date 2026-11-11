@@ -1,0 +1,104 @@
+{
+  "set": "7740-1",
+  "curated": {
+    "model": "models/trains/7740-Inter-City Passenger Train.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p305 996",
+        "wheelsets": [
+          "p303 2344",
+          "p314 2344",
+          "p324 2344",
+          "p335 2344",
+          "p468 2344",
+          "p479 2344",
+          "p489 2344",
+          "p500 2344",
+          "p746 501bc01",
+          "p755 2344",
+          "p767 2344"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 1,
+    "counts": {
+      "works": 1,
+      "no": 1
+    },
+    "loose": [
+      "p0 4166a",
+      "p1 4166a",
+      "p2 4166a",
+      "p3 4166a",
+      "p256 7740 - 4182p02c01",
+      "p257 7740 - 4182p02c01",
+      "p258 7740 - 4181p02c01",
+      "p259 7740 - 4181p02c01",
+      "p303 2344",
+      "p304 2344",
+      "p314 2344",
+      "p315 2344",
+      "p324 2344",
+      "p325 2344",
+      "p335 2344",
+      "p336 2344",
+      "p432 7740 - 4182p02c01",
+      "p433 7740 - 4182p02c01",
+      "p434 7740 - 4181p02c01",
+      "p435 7740 - 4181p02c01",
+      "p468 2344",
+      "p469 2344",
+      "p479 2344",
+      "p480 2344",
+      "p489 2344",
+      "p490 2344",
+      "p500 2344",
+      "p501 2344",
+      "p652 7740 - 4181p02c01",
+      "p653 7740 - 4181p02c01",
+      "p654 7740 - 4182p02c01",
+      "p655 7740 - 4182p02c01",
+      "p726 6141",
+      "p727 6141",
+      "p728 6141",
+      "p729 6141",
+      "p744 765c02",
+      "p745 765c02",
+      "p755 2344",
+      "p756 2344",
+      "p761 2344",
+      "p762 2344",
+      "p767 2344",
+      "p768 2344"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "no",
+        "why": [
+          "went 0 of a 6947 LDU lap",
+          "went 0.0 LDU for each radian its wheel turned, not 20"
+        ],
+        "travelled": 0,
+        "length": 6947,
+        "offTrack": 0.1,
+        "apart": 0,
+        "rolled": 0,
+        "radius": 20
+      }
+    ]
+  }
+}

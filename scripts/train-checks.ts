@@ -29,6 +29,9 @@ const APART = 4;
 const BACK = 10;
 // A run reaches an end of the track if a wheelset comes this close to it (LDU).
 const AT_END = 40;
+// Wheelsets this close together (LDU, middle to middle) are of one train: a train's cars stand
+// closed up, their wheelsets less far apart across a coupling than this.
+const CLOSE = 300;
 // The train goes as far as its wheel's rim turns, within this share.
 const ROLL_OFF = 0.05;
 
@@ -36,6 +39,7 @@ export interface TrainFunction {
   kind: 'track' | 'run' | 'switch';
   does: string;
   control?: string;
+  wheelsets?: string[]; // a run's: the train's wheelsets, each by a part of it, all of which should go along
 }
 
 export interface TrainChecked {
@@ -91,17 +95,23 @@ export function trainFunctions(file: string): TrainFunction[] {
     if (!rider) continue;
     train.forEach((r) => seen.add(r.body));
     const wheel = mech.bodies[rider.body].parts.find((p) => mech.roles[p] === 'train wheel') ?? mech.bodies[rider.body].parts[0];
-    functions.push({ kind: 'run', does: 'Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled', control: name(wheel) });
+    // Each wheelset's body, by one of its parts, so the check can see that every car goes along.
+    const wheelsets = [...new Set(train.map((r) => r.body))].map((b) => name(mech.bodies[b].parts[0]));
+    functions.push({ kind: 'run', does: 'Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled', control: name(wheel), wheelsets });
   }
   for (const s of track.switches) functions.push({ kind: 'switch', does: 'The switch flips, and a train taking it from its shared end goes the other way', control: name(s.part) });
   return functions;
 }
 
-// The trains: wheelsets whose bodies are joined, couplings and all (as the solver keeps them).
+// The trains: wheelsets whose bodies are joined (couplings and all, as the solver keeps them),
+// and those standing close together, as scripts/train-layouts.ts sets a train's cars on the track,
+// closed up, whether or not their couplings hold.
 function trains(mech: Mechanism) {
   const lead = mech.bodies.map((_, i) => i);
   const find = (i: number): number => (lead[i] === i ? i : (lead[i] = find(lead[i])));
   for (const j of mech.joints) lead[find(j.bodyA)] = find(j.bodyB);
+  const riders = mech.riders ?? [];
+  for (const a of riders) for (const b of riders) if (a.center.distanceTo(b.center) < CLOSE) lead[find(a.body)] = find(b.body);
   const groups = new Map<number, NonNullable<Mechanism['riders']>>();
   for (const r of mech.riders ?? []) groups.set(find(r.body), [...(groups.get(find(r.body)) ?? []), r]);
   return [...groups.values()];
@@ -141,7 +151,7 @@ export function checkTrainSet(set: { curated: { model: string; functions: TrainF
             checked.push(train === false ? { result: 'partly', why: ["the train didn't take the way the switch is set"] } : { result: 'works' });
           }
         }
-      } else checked.push(run(mech, kin, track, partOf(fn.control!)));
+      } else checked.push(run(mech, kin, track, partOf(fn.control!), (fn.wheelsets ?? []).map((w) => mech.bodyOf[partOf(w)])));
     } catch (err) {
       checked.push({ result: 'error', why: [(err as Error).message] });
     }
@@ -152,7 +162,7 @@ export function checkTrainSet(set: { curated: { model: string; functions: TrainF
 }
 
 // Runs a train by turning one of its wheels: a lap of a loop, or to each end of a line.
-function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, wheel: number): TrainChecked {
+function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, wheel: number, wheelsets: number[]): TrainChecked {
   const body = mech.bodyOf[wheel];
   const joint = mech.joints.findIndex((j) => j.kind === 'revolute' && (j.bodyA === body || j.bodyB === body));
   if (joint < 0) return { result: 'no', why: ['the wheel turns on nothing'] };
@@ -161,6 +171,12 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   const lead = riders.find((r) => r.body === body) ?? riders[0];
   const radius = mech.treads.find((t) => t.body === lead.body)?.radius ?? 22;
   const center = (r: (typeof riders)[number]) => r.center.clone().applyMatrix4(poses[r.body]);
+  // Where the train's going is measured: at the wheelset's middle if its wheels are on one axle
+  // (on a curve they skid, and the middle keeps to the turning); at the wheel itself if it turns
+  // on a pin of its own (the 4.5V and 12V trains' wheel block), whose rim then rolls the way it
+  // goes, the inner wheel on a curve going less far than the middle.
+  const own = mech.treads.filter((t) => t.body === body).length === 1 ? mech.treads.find((t) => t.body === body)! : null;
+  const gauge = () => (own ? own.center.clone().applyMatrix4(poses[body]) : center(lead));
   const head = track.head();
   // Couplings: ball joints between magnets' bodies.
   const magnets = new Set(mech.roles.flatMap((role, i) => (role === 'magnet' ? [mech.bodyOf[i]] : [])));
@@ -170,6 +186,8 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   let apart = 0;
   const measure = () => {
     for (const [i, r] of riders.entries()) {
+      // Only the train's own wheelsets (another train, or spare wheels, may stand elsewhere).
+      if (wheelsets.length && !wheelsets.includes(r.body)) continue;
       const c = center(r);
       const near = track.near(c, poses[0], i)!;
       const rr = mech.treads.find((t) => t.body === r.body)?.radius ?? radius;
@@ -178,6 +196,9 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
     for (const j of couplings) apart = Math.max(apart, j.from.clone().applyMatrix4(poses[j.bodyA]).distanceTo(j.to.clone().applyMatrix4(poses[j.bodyB])));
   };
   measure();
+  // Every wheelset of the train, where it starts: each should go as far as the lead one.
+  const train = riders.filter((r) => wheelsets.includes(r.body));
+  const starts = train.map(center);
   const start = center(lead);
   track.near(start, poses[0], riders.indexOf(lead));
   const place = track.placeOf(riders.indexOf(lead))!;
@@ -192,14 +213,26 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   // How far the train goes (LDU, along the way it goes) and how far the wheel turned.
   let travelled = 0;
   let turned = 0;
+  // How far the wheel's rim went, for how far it turned; and how many of the train's wheelsets
+  // were left behind on the way.
+  let rimWent = 0;
+  let stragglers = 0;
+  let checkedOnce = false;
   const go = (way: number, until: () => boolean, most: number) => {
     let last = center(lead);
+    let lastRim = gauge();
     for (let i = 0; i < most; i++) {
       const done = kin.turnJoint(joint, way * STEP);
       turned += Math.abs(done);
       const now = center(lead);
       travelled += now.clone().sub(last).setY(0).length();
       last = now;
+      rimWent += gauge().sub(lastRim).setY(0).length();
+      lastRim = gauge();
+      if (!checkedOnce && center(lead).distanceTo(start) > 200) {
+        checkedOnce = true;
+        stragglers = train.filter((r, k) => center(r).distanceTo(starts[k]) < 100).length;
+      }
       measure();
       if (Math.abs(done) < STEP - 1e-9 || until()) return;
     }
@@ -226,7 +259,10 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
     reached = firstEnd && secondEnd && back > 0;
     if (!firstEnd || !secondEnd) why.push(`stopped short of ${!firstEnd && !secondEnd ? 'both ends' : 'an end'} of the track`);
   }
-  const rolled = turned > 0 ? travelled / turned : 0;
+  const rolled = turned > 0 ? rimWent / turned : 0;
+  // A car left behind: a wheelset that, once the lead one was 200 LDU from where it started, was
+  // less than 100 from where it did (measured then, as a lap brings each back to its start).
+  if (stragglers > 0) why.push(`${stragglers} of the train's ${train.length} wheelsets stayed behind: a coupling didn't hold`);
   if (offTrack > OFF) why.push(`a wheelset came ${offTrack.toFixed(1)} LDU off the track`);
   if (apart > APART) why.push(`a coupling came ${apart.toFixed(1)} LDU apart`);
   if (Math.abs(rolled - radius) > ROLL_OFF * radius) why.push(`went ${rolled.toFixed(1)} LDU for each radian its wheel turned, not ${radius}`);

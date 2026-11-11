@@ -10,12 +10,25 @@
       {
         "kind": "run",
         "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
-        "control": "p116 70720c01"
+        "control": "p116 70720c01",
+        "wheelsets": [
+          "p116 70720c01",
+          "p117 70720c01",
+          "p136 70358",
+          "p395 70720c01",
+          "p398 70720c01",
+          "p431 70720c01",
+          "p432 70720c01",
+          "p693 70720c01",
+          "p696 70720c01",
+          "p731 70720c01",
+          "p732 70720c01"
+        ]
       }
     ]
   },
   "generated": {
-    "commit": "38a3909",
+    "commit": "12df7e9",
     "uncommitted": true,
     "date": "2026-11-11",
     "seconds": 9,

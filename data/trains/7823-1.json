@@ -1,0 +1,69 @@
+{
+  "set": "7823-1",
+  "curated": {
+    "model": "models/trains/7823-Container Crane Depot.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p402 996",
+        "wheelsets": [
+          "p400 2344",
+          "p406 2344"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 3,
+    "counts": {
+      "works": 2
+    },
+    "loose": [
+      "p50 4624",
+      "p51 3641",
+      "p53 4624",
+      "p54 3641",
+      "p68 4624",
+      "p69 3641",
+      "p71 4624",
+      "p72 3641",
+      "p293 70278",
+      "p306 4166b",
+      "p307 4166b",
+      "p308 4166b",
+      "p309 4166b",
+      "p310 4166b",
+      "p315 3240b",
+      "p316 3240b",
+      "p365 4084",
+      "p366 4084",
+      "p368 4084",
+      "p400 2344",
+      "p401 2344",
+      "p406 2344",
+      "p407 2344"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 701,
+        "length": 439,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 20,
+        "radius": 20
+      }
+    ]
+  }
+}

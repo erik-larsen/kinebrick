@@ -9,10 +9,12 @@
 // curve, and a crossing is 16 studs each way.
 
 import { Matrix4, Vector3 } from 'three';
-import type { Rail } from './mechanism.ts';
+import type { Joint, Rail, Rider, Tread } from './mechanism.ts';
 
 const UP = new Vector3(0, -1, 0);
-// The rail heads' height above the sleepers' base (LDraw y, which points down).
+// The rail heads' height in a 9V piece, above the sleepers' base (LDraw y, which points down).
+// The older 4.5V and 12V track has the same geometry, its rails drawn with their heads at the
+// piece's origin.
 export const HEAD = -16;
 // How close two pieces' ends must come to join (LDU): half a stud, since a layout's pieces are
 // laid by hand and an oval may not quite close.
@@ -37,6 +39,7 @@ interface Segment {
 // the same end; its state is 0 for straight and 1 for the branch, as the part's file draws it.
 export interface PieceShape {
   system: string;
+  head: number; // the rail heads' height in the part (LDraw y)
   kind: 'straight' | 'curve' | 'switch' | 'crossing';
   lines: Segment[][];
   state?: number;
@@ -90,7 +93,7 @@ const curve = (): Segment => arc([-RADIUS * Math.sin(CURVE / 2), RADIUS * Math.c
 const switchLines = (side: number): Segment[][] => [[straight(640)], biarc([-320, 0], 0, [333.853, -259.104 * side], CURVE * side)];
 
 // Every kind of track piece Kinebrick knows, by part name (without .dat).
-const SHAPES: Record<string, () => Omit<PieceShape, 'system'>> = {
+const SHAPES: Record<string, () => Omit<PieceShape, 'system' | 'head'>> = {
   straight: () => ({ kind: 'straight', lines: [[straight(320)]] }),
   curve: () => ({ kind: 'curve', lines: [[curve()]] }),
   quarter: () => ({ kind: 'curve', lines: [[arc([0, 0], 0, Math.PI / 2)]] }),
@@ -120,7 +123,81 @@ const PIECES: Record<string, [string, string, number?]> = {
   '53401': ['plastic', 'straight'],
   '53400': ['plastic', 'curve'],
   '53400c04': ['plastic', 'quarter'],
+  // 4.5V and 12V: straights and curves, whole (a piece's rails and sleepers in one part), or a
+  // single rail of one (see railPieces).
+  '3228ac01': ['4.5V', 'straight'],
+  '3228ac02': ['4.5V', 'straight'],
+  '3228bc01': ['4.5V', 'straight'],
+  '3228bc02': ['4.5V', 'straight'],
+  '304c03': ['4.5V', 'straight'],
+  '304c04': ['4.5V', 'straight'],
+  '304c07': ['4.5V', 'straight'],
+  '304c08': ['4.5V', 'straight'],
+  '813c02-f1': ['4.5V', 'straight'],
+  '813c02-f2': ['4.5V', 'straight'],
+  '3229ac01': ['4.5V', 'curve'],
+  '3229bc01': ['4.5V', 'curve'],
+  '3229ac04': ['4.5V', 'quarter'],
+  '3229bc04': ['4.5V', 'quarter'],
+  '861c01': ['12V', 'straight'],
+  '861c02': ['12V', 'straight'],
+  '3240ac01': ['12V', 'straight'],
+  '3240ac02': ['12V', 'straight'],
+  '3240bc01': ['12V', 'straight'],
+  '3240bc02': ['12V', 'straight'],
+  '862ac01': ['12V', 'straight'],
+  '862ac02': ['12V', 'straight'],
+  '813c03-f1': ['12V', 'straight'],
+  '813c03-f2': ['12V', 'straight'],
+  '866c01': ['12V', 'curve'],
+  '3241ac01': ['12V', 'curve'],
+  '866c04': ['12V', 'quarter'],
+  '3241ac04': ['12V', 'quarter'],
 };
+
+// The single rails of 4.5V and 12V track, as some sets build it: a straight rail (3228), or a
+// curve's outer (3229) or inner (3230) rail. Each lies 50 LDU to one side of its piece's centre
+// line: a curve's outer rail to +z, its inner to -z; a straight's either way.
+const RAILS: Record<string, 'straight' | 'outer' | 'inner'> = {
+  '3228a': 'straight',
+  '3228b': 'straight',
+  '3228c': 'straight',
+  '3229a': 'outer',
+  '3229b': 'outer',
+  '3230a': 'inner',
+  '3230b': 'inner',
+};
+const railKind = (name: string) => RAILS[name.toLowerCase().replace(/\.dat$/, '').replace(/^.*[\\/]/, '')];
+
+// The pieces that single rails make (see RAILS), as whole pieces (3228bc01, 3229bc01) placed
+// where they'd be, each with one of its rails' parts: two straight rails side by side, 100 LDU
+// apart, make a straight; a curve's rail makes its curve (the curve's other rail makes the same
+// one again, and only one is kept).
+export function railPieces(parts: { name: string; matrix: Matrix4 }[]): { part: number; name: string; matrix: Matrix4 }[] {
+  const pieces: { part: number; name: string; matrix: Matrix4 }[] = [];
+  const at = (m: Matrix4) => new Vector3().setFromMatrixPosition(m);
+  const taken = new Set<number>();
+  parts.forEach((p, i) => {
+    const kind = railKind(p.name);
+    if (!kind || taken.has(i)) return;
+    if (kind === 'straight') {
+      // Its partner: a straight rail 100 LDU along its z, either way, lying the same way.
+      for (const side of [1, -1]) {
+        const other = new Vector3(0, 0, 100 * side).applyMatrix4(p.matrix);
+        const j = parts.findIndex((q, k) => k !== i && !taken.has(k) && railKind(q.name) === 'straight' && at(q.matrix).distanceTo(other) < 4);
+        if (j < 0) continue;
+        taken.add(i).add(j);
+        pieces.push({ part: i, name: '3228bc01.dat', matrix: p.matrix.clone().multiply(new Matrix4().makeTranslation(0, 0, 50 * side)) });
+        return;
+      }
+    } else {
+      const matrix = p.matrix.clone().multiply(new Matrix4().makeTranslation(0, 0, kind === 'outer' ? -50 : 50));
+      if (pieces.some((q) => at(q.matrix).distanceTo(at(matrix)) < 4 && q.name === '3229bc01.dat')) return;
+      pieces.push({ part: i, name: '3229bc01.dat', matrix });
+    }
+  });
+  return pieces;
+}
 
 // A part's shape as track, or null if it isn't track Kinebrick knows.
 export function trackPiece(name: string): PieceShape | null {
@@ -128,7 +205,7 @@ export function trackPiece(name: string): PieceShape | null {
   const known = PIECES[key];
   if (!known) return null;
   const [system, shape, state] = known;
-  return { system, ...SHAPES[shape](), ...(state !== undefined ? { state } : {}) };
+  return { system, head: system === '9V' || system === 'plastic' ? HEAD : 0, ...SHAPES[shape](), ...(state !== undefined ? { state } : {}) };
 }
 
 // ---------------------------------------------------------------------------
@@ -398,14 +475,15 @@ export function buildTrack(parts: { name: string; matrix: Matrix4 }[]): Track | 
   const track = new Track();
   // Each line's segments as placed: start, middle (for an arc) and end points.
   const placed: { part: number; points: { from: Vector3; mid?: Vector3; to: Vector3 }[] }[] = [];
-  parts.forEach((p, part) => {
-    const shape = trackPiece(p.name);
-    if (!shape) return;
-    const at = ([x, z]: [number, number]) => new Vector3(x, HEAD, z).applyMatrix4(p.matrix);
+  const pieces = [...parts.map((p, part) => ({ part, name: p.name, matrix: p.matrix })), ...railPieces(parts)];
+  for (const { part, name, matrix } of pieces) {
+    const shape = trackPiece(name);
+    if (!shape) continue;
+    const at = ([x, z]: [number, number]) => new Vector3(x, shape.head, z).applyMatrix4(matrix);
     const first = placed.length;
     for (const line of shape.lines) placed.push({ part, points: line.map((seg) => ({ from: at(seg.from), ...(seg.mid ? { mid: at(seg.mid) } : {}), to: at(seg.to) })) });
     if (shape.kind === 'switch') track.switches.push({ part, lines: [first, first + 1], state: shape.state ?? 0 });
-  });
+  }
   if (placed.length === 0) return null;
   // Each line's ends, with the way out of the line there.
   const endOf = (line: number, end: number) => {
@@ -537,4 +615,59 @@ export function layOutTrack(names: string[]): Matrix4[] {
   } else [at, out] = [new Vector3(0, 0, 400), new Vector3(1, 0, 0)];
   for (const i of left) place(i);
   return placed;
+}
+
+// ---------------------------------------------------------------------------
+// Wheelsets
+
+// Pairs of train wheels that findRiders (in mechanism.ts) leaves out, as wheelsets: two wheels
+// each turning on a pin of its own, on one line a gauge apart (the 4.5V and 12V trains' wheel
+// block, 4180c02), or a train motor's wheels set a little wider apart (the 12V motor's, 108 LDU).
+// Only train wheels and motors (by their roles) count.
+// The wheelset's body is the first wheel's: its middle lies on that wheel's axis, so it moves
+// with the block, whichever way the wheel turns.
+export function wheelPairs(treads: Tread[], riders: Rider[], roles: string[]): Rider[] {
+  const used = new Set(riders.map((r) => r.body));
+  // Only train wheels' and motors' (not a road vehicle's, crossing the track).
+  treads = treads.filter((t) => roles[t.part] === 'train wheel' || roles[t.part] === 'train motor');
+  const pairs: Rider[] = [];
+  const paired = new Set<number>();
+  treads.forEach((a, i) => {
+    if (used.has(a.body) || paired.has(i)) return;
+    treads.forEach((b, j) => {
+      if (j <= i || paired.has(i) || paired.has(j) || used.has(b.body)) return;
+      if (new Vector3().crossVectors(a.axis, b.axis).length() > 0.035) return;
+      const offset = new Vector3().subVectors(b.center, a.center);
+      const along = offset.dot(a.axis);
+      if (Math.abs(along) < 96 || Math.abs(along) > 112 || offset.clone().addScaledVector(a.axis, -along).length() > 1) return;
+      paired.add(i).add(j);
+      pairs.push({ body: a.body, center: a.center.clone().lerp(b.center, 0.5), axis: a.axis.clone(), rolls: !a.fixed && !b.fixed });
+    });
+  });
+  return pairs;
+}
+
+// Of the wheelsets one rigid body carries (a car's wheel blocks and its motor, all fixed in its
+// frame, or a motor's three axles), only the two outermost are held to the track's line: on a
+// curve no rigid body can keep three or more axles on it (two 120 LDU apart on a 40-stud curve
+// put a third between them 9 LDU off), and on a real train the others have play. A wheelset's
+// body is the one it turns in (its axle's joint about a level axis), or its own if it's fixed.
+export function outermostRiders(riders: Rider[], joints: Joint[]): Rider[] {
+  const carrier = (r: Rider) => {
+    const axle = joints.find((j) => j.kind === 'revolute' && (j.bodyA === r.body || j.bodyB === r.body) && Math.abs(j.to.clone().sub(j.from).normalize().dot(r.axis)) > 0.9);
+    return axle ? (axle.bodyA === r.body ? axle.bodyB : axle.bodyA) : r.body;
+  };
+  const groups = new Map<number, Rider[]>();
+  for (const r of riders) groups.set(carrier(r), [...(groups.get(carrier(r)) ?? []), r]);
+  const kept = new Set<Rider>();
+  for (const mine of groups.values()) {
+    if (mine.length < 3) {
+      mine.forEach((r) => kept.add(r));
+      continue;
+    }
+    let ends = [mine[0], mine[1]];
+    for (const a of mine) for (const b of mine) if (a.center.distanceTo(b.center) > ends[0].center.distanceTo(ends[1].center)) ends = [a, b];
+    ends.forEach((r) => kept.add(r));
+  }
+  return riders.filter((r) => kept.has(r));
 }

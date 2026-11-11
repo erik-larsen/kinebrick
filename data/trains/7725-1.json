@@ -1,0 +1,75 @@
+{
+  "set": "7725-1",
+  "curated": {
+    "model": "models/trains/7725-Electric Passenger Train.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p118 996",
+        "wheelsets": [
+          "p116 2344",
+          "p122 2344",
+          "p269 2344",
+          "p275 2344",
+          "p285 7725 - 4181d01c01"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 6,
+    "counts": {
+      "works": 1,
+      "partly": 1
+    },
+    "loose": [
+      "p22 7725 - 4181d01c01",
+      "p40 7725 - 4182d01c01",
+      "p116 2344",
+      "p117 2344",
+      "p122 2344",
+      "p123 2344",
+      "p128 2344",
+      "p129 2344",
+      "p218 7725 - 4181d01c01",
+      "p219 7725 - 4182d01c01",
+      "p269 2344",
+      "p270 2344",
+      "p275 2344",
+      "p276 2344",
+      "p285 7725 - 4181d01c01",
+      "p395 7725 - 4182d01c01",
+      "p412 4023",
+      "p413 2959c01",
+      "p417 4166a",
+      "p418 4166a",
+      "p419 4166a",
+      "p420 4166a"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "partly",
+        "why": [
+          "2 of the train's 6 wheelsets stayed behind: a coupling didn't hold"
+        ],
+        "travelled": 5020,
+        "length": 5027,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 20,
+        "radius": 20
+      }
+    ]
+  }
+}

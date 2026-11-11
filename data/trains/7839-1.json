@@ -1,0 +1,71 @@
+{
+  "set": "7839-1",
+  "curated": {
+    "model": "models/trains/7839-Car Transport Depot.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p310 996",
+        "wheelsets": [
+          "p308 2344",
+          "p314 2344"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 1,
+    "counts": {
+      "works": 2
+    },
+    "loose": [
+      "p200 4343",
+      "p236 2494",
+      "p246 4166b",
+      "p247 4166b",
+      "p248 4166b",
+      "p249 4166b",
+      "p250 4166b",
+      "p251 3240a",
+      "p252 3240a",
+      "p308 2344",
+      "p309 2344",
+      "p314 2344",
+      "p315 2344",
+      "p318 4023",
+      "p319 4023",
+      "p320 2959c01",
+      "p321 2959c01",
+      "p356 4624",
+      "p357 4624",
+      "p358 4624",
+      "p359 4624",
+      "p360 3641",
+      "p361 3641",
+      "p362 3641",
+      "p363 3641"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 610,
+        "length": 440,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 20,
+        "radius": 20
+      }
+    ]
+  }
+}

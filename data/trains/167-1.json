@@ -1,0 +1,38 @@
+{
+  "set": "167-1",
+  "curated": {
+    "model": "models/trains/167-Loading Ramp and Car Transport Wagon.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "12df7e9",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 0,
+    "counts": {
+      "works": 1
+    },
+    "loose": [
+      "p57 3034",
+      "p58 3034",
+      "p60 3488",
+      "p61 3488",
+      "p62 3488",
+      "p63 3488",
+      "p85 3641",
+      "p86 3641",
+      "p87 3641",
+      "p88 3641"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      }
+    ]
+  }
+}

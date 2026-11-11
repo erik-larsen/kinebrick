@@ -1,7 +1,7 @@
 // Works out a model's mechanism: which parts move together (bodies) and how bodies can
 // move relative to each other (joints). See "How it works" in ARCHITECTURE.md, steps 2 to 6.
 
-import { buildTrack, Track } from './track.ts';
+import { buildTrack, outermostRiders, Track, wheelPairs } from './track.ts';
 import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
 import { acrossDirections, Kinematics, nullSpace } from './kinematics.ts';
@@ -510,6 +510,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   lineUpBalls(joints);
   const treads = findTreads(cyls, bodyOf, roles);
   const riders = rails.length ? findRiders(treads) : [];
+  if (rails.length) riders.splice(0, riders.length, ...outermostRiders([...riders, ...wheelPairs(treads, riders, roles)], joints));
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);

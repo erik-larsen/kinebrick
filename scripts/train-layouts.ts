@@ -7,12 +7,12 @@
 // layOut): an oval if it has curves enough for one, else a line, with its switches and crossings
 // in it.
 //
-// Then each train is set on the track. A train already near the track keeps its place, each car
-// only raised or lowered so that its wheels stand on the rail heads. One beside the track (or
-// standing where a layout made here doesn't run) is set on at the start of the track: every car
-// moved, level, so that its wheelsets are on the track's centre line, their wheels on the rail
-// heads, the cars in the order and at the spacing the file gives them. The viewer then closes
-// what gaps are left (see setOnRails in src/kinematics.ts).
+// Then each train is set on the track: its cars in order along the track, each moved, level, so
+// that its wheelsets are on the track's centre line and its wheels on the rail heads, and closed
+// up magnet to magnet (cars a file couples already keep their gap). A train on the track keeps
+// its place along it; cars beside the track (or standing where a layout made here doesn't run)
+// are set on after the trains on it, as one train. The viewer then closes what gaps are left
+// (see setOnRails in src/kinematics.ts).
 //
 // Each set's function list, what the check checks (see scripts/train-checks.ts), is written to
 // data/trains/<set>.json, keeping the results already there.
@@ -29,11 +29,14 @@ import { join } from 'node:path';
 import { Matrix4, Vector3 } from 'three';
 import { parseModel } from '../src/ldr.ts';
 import { drawnDirectly } from '../src/pack.ts';
-import { buildTrack, layOutTrack, trackPiece } from '../src/track.ts';
+import { buildTrack, layOutTrack, railPieces, Track, trackPiece } from '../src/track.ts';
 import { loadModel } from './load-model.ts';
 import { trainFunctions } from './train-checks.ts';
 
 const CSV = 'models/train-sets.csv';
+// The sleepers that single rails (see railPieces) lie on: taken out with them where a layout is
+// made afresh, the whole pieces it lays bringing their own.
+const SLEEPERS = /^(4166a?b?|767|3034)\.dat$/i;
 // Sets whose model starts from a corrected file of Kinebrick's own rather than the OMR's: the
 // Metroliner (4558, and its re-release 10001) places its couplings 1 to 3 LDU off their hinges,
 // as no rule could set right, and models/ has it corrected (see docs/ldraw-errata.md).
@@ -54,6 +57,15 @@ const SETS_DIR = join('data', 'trains');
 // A train whose wheelsets are all within this distance (LDU) of the track is on it already: a
 // file may place a train on a curve 2 studs off, its rotations rounded.
 const NEAR = 60;
+// Cars on the track whose ends are less than this far apart (LDU) are of one train, which is
+// closed up, magnet to magnet; and how far apart two magnets' middles are when their faces meet.
+const TRAIN_GAP = 200;
+const COUPLE = 16;
+// Magnets this far apart (LDU, between their middles) couple as they are (see magnetCouplings in
+// src/mechanism.ts, whose reach is between their faces).
+const REACH = 40;
+// A figure this close (LDU) to a car's part, as built, rides in or on it.
+const RIDING = 40;
 // The gap left between trains set on at the start of the track, and before the first (LDU).
 const GAP = 80;
 
@@ -145,91 +157,150 @@ function setTrainsOnTrack(text: string): { text: string; trains: number; moved: 
   if (!track || riders.length === 0) return { text, trains: 0, moved: 0 };
   const lineOf = lineOfEachPart(lines);
   if (lineOf.length !== parts.length) throw new Error(`read ${lineOf.length} parts line by line, but ${parts.length} in all`);
-  // Cars: what's joined together, the track and the magnets' couplings aside. Trains: cars
-  // coupled by their magnets.
+  // Cars: what's joined together, the track, the magnets' couplings and figures aside (a figure
+  // stands on a platform or rides in a car: it joins neither to the other).
   const lead = parts.map((_, i) => i);
   const find = (i: number): number => (lead[i] === i ? i : (lead[i] = find(lead[i])));
   const coupled: [number, number][] = [];
   for (const c of mech.connections) {
-    if (mech.roles[c.male] === 'rail' || mech.roles[c.female] === 'rail') continue;
+    if (['rail', 'figure'].includes(mech.roles[c.male]) || ['rail', 'figure'].includes(mech.roles[c.female])) continue;
     if (mech.roles[c.male] === 'magnet' && mech.roles[c.female] === 'magnet') coupled.push([c.male, c.female]);
     else lead[find(c.male)] = find(c.female);
   }
   const carOf = (body: number) => find(mech.bodies[body].parts[0]);
-  const trainLead = new Map<number, number>();
-  const trainOf = (car: number): number => (trainLead.has(car) && trainLead.get(car) !== car ? trainOf(trainLead.get(car)!) : car);
-  for (const [a, b] of coupled) {
-    const [ta, tb] = [trainOf(find(a)), trainOf(find(b))];
-    if (ta !== tb) trainLead.set(ta, tb);
-  }
-  const trains = new Map<number, typeof riders>();
-  for (const r of riders) {
-    const t = trainOf(carOf(r.body));
-    trains.set(t, [...(trains.get(t) ?? []), r]);
-  }
   // Each rider's running radius: how far its wheels reach below the axle.
   const radius = (r: (typeof riders)[number]) => mech.treads.find((t) => t.body === r.body)?.radius ?? 22;
   const identity = new Matrix4();
-  // Where the next train set on at the start of the track goes.
-  let cursor = track.walk(0, 0, GAP);
-  const moves = new Map<number, Matrix4>(); // by car
+  const run = trackRun(track);
   let key = -1;
-  for (const group of trains.values()) {
-    // In order along the train: by how far along its length each is.
-    const centers = group.map((r) => r.center.clone());
-    const mean = centers.reduce((s, c) => s.add(c), new Vector3()).multiplyScalar(1 / centers.length);
-    let along = new Vector3(1, 0, 0);
-    if (group.length > 1) {
-      // The way the wheelsets spread most, level: the two furthest apart.
-      let best = 0;
-      for (const a of centers) for (const b of centers) if (a.distanceTo(b) > best) [best, along] = [a.distanceTo(b), b.clone().sub(a).setY(0).normalize()];
-    } else along = new Vector3().crossVectors(new Vector3(0, -1, 0), group[0].axis).normalize();
-    const order = group.map((r, i) => ({ r, c: centers[i], at: centers[i].clone().sub(mean).dot(along) })).sort((a, b) => a.at - b.at);
-    // How far along the track each is from the first: the distances between them as built.
-    const spacing = order.map((o, i) => (i === 0 ? 0 : o.c.clone().sub(order[i - 1].c).setY(0).length()));
-    const from = order.map((_, i) => spacing.slice(0, i + 1).reduce((a, b) => a + b, 0));
-    const length = from[from.length - 1];
-    // Near the track already: each car only raised or lowered, its wheels to the rail heads
-    // (moved across, cars on a curve would come apart at their couplings; the viewer sets them
-    // on the line, see setOnRails). Otherwise the train is set on at the cursor, in order, at
-    // its spacing.
-    const near = order.map((o) => track.near(o.c, identity, key--));
-    let targets: Vector3[];
-    let start = cursor;
-    if (near.every((n) => n && Math.abs(n.offset) < NEAR)) {
-      targets = order.map((o) => o.c.clone().setY(track.head() - radius(o.r)));
-    } else {
-      cursor = track.walk(start.line, start.s, start.dir * (length + GAP));
-      targets = from.map((d, i) => {
-        const w = track.walk(start.line, start.s, start.dir * d);
-        return track.pointAt(w.line, w.s).point.addScaledVector(new Vector3(0, 1, 0), -radius(order[i].r));
-      });
+  // How far along the run a point is nearest, or null if that's off the run (a siding).
+  const along = (p: Vector3) => {
+    track.near(p, identity, key);
+    const place = track.placeOf(key--)!;
+    const e = run.entries.find((x) => x.line === place.line);
+    return e ? e.from + (e.dir > 0 ? place.s : track.lines[place.line].length - place.s) : null;
+  };
+  // The point at a distance along the run, and which way the run goes there.
+  const at = (g: number) => {
+    if (run.loop) g = ((g % run.length) + run.length) % run.length;
+    else g = Math.max(run.start, Math.min(run.length, g));
+    const e = run.entries.find((x) => g >= x.from - 1e-6 && g <= x.from + track.lines[x.line].length + 1e-6) ?? run.entries[0];
+    const length = track.lines[e.line].length;
+    const { point, t } = track.pointAt(e.line, e.dir > 0 ? g - e.from : length - (g - e.from));
+    return { point, t: t.multiplyScalar(e.dir) };
+  };
+  // Each car with wheelsets: its wheelsets' middles and its magnets', where along the run its
+  // middle is (null if it's off the track), which way along it it points, and where its ends are
+  // and each wheelset is, measured along it from its middle.
+  const magnets = mech.roles.flatMap((r, i) => (r === 'magnet' ? [i] : []));
+  const partAt = (i: number) => new Vector3().setFromMatrixPosition(parts[i].matrix);
+  // A magnet's car: the one it's joined to, or if it's joined to none (a file may place it, or
+  // its coupling, a little off where it hangs), the car with a part nearest its coupling's pin
+  // (or, with no coupling, nearest the magnet).
+  const carParts = parts.flatMap((_, i) => (riders.some((r) => carOf(r.body) === find(i)) ? [i] : []));
+  const magnetCar = (m: number) => {
+    const group = find(m);
+    if (riders.some((r) => carOf(r.body) === group)) return group;
+    const pin = mech.roles.findIndex((r, i) => r === 'coupling' && find(i) === group);
+    const from = partAt(pin >= 0 ? pin : m);
+    const near = carParts.reduce((best, i) => (partAt(i).distanceTo(from) < partAt(best).distanceTo(from) ? i : best), carParts[0]);
+    return find(near);
+  };
+  const row = riders[riders.length - 1].center.clone().sub(riders[0].center).setY(0).normalize();
+  const cars = [...new Set(riders.map((r) => carOf(r.body)))].map((car) => {
+    const mine = riders.filter((r) => carOf(r.body) === car);
+    const centers = mine.map((r) => r.center.clone());
+    const mean = centers.reduce((sum, c) => sum.add(c), new Vector3()).multiplyScalar(1 / centers.length);
+    let u = new Vector3().crossVectors(new Vector3(0, -1, 0), mine[0].axis).normalize();
+    let far = 0;
+    for (const a of centers) for (const b of centers) if (a.distanceTo(b) > far) [far, u] = [a.distanceTo(b), b.clone().sub(a).setY(0).normalize()];
+    const on = mine.every((r) => Math.abs(track.near(r.center, identity, key--)?.offset ?? Infinity) < NEAR);
+    const g = on ? along(mean) : null;
+    // Pointing the way the run goes; off the track, the way the cars stand in a row (from the
+    // first car's wheelsets to the last's, as the file lists them).
+    if (g !== null && u.dot(at(g).t) < 0) u.negate();
+    if (g === null && u.dot(row) < 0) u.negate();
+    const ends = [...centers, ...magnets.filter((m) => magnetCar(m) === car).map(partAt)].map((p) => p.clone().sub(mean).dot(u));
+    return { car, mine, centers, mean, u, g, front: Math.min(...ends), rear: Math.max(...ends), wheels: centers.map((c) => c.clone().sub(mean).dot(u)) };
+  });
+  // The trains: the cars on the track in order along it, a car joining the one before it if
+  // their ends are less than TRAIN_GAP apart; and the cars off the track, in the order they stand
+  // in, as one more.
+  const onTrack = cars.filter((c) => c.g !== null).sort((a, b) => a.g! - b.g!);
+  const trains: (typeof cars)[] = [];
+  for (const c of onTrack) {
+    const last = trains[trains.length - 1]?.at(-1);
+    if (last && c.g! + c.front - (last.g! + last.rear) < TRAIN_GAP) trains[trains.length - 1].push(c);
+    else trains.push([c]);
+  }
+  // On a loop, a train may stand across where the run starts: its two parts are one.
+  if (run.loop && trains.length > 1) {
+    const [first, last] = [trains[0], trains[trains.length - 1]];
+    const end = last[last.length - 1];
+    if (first[0].g! + first[0].front + run.length - (end.g! + end.rear) < TRAIN_GAP) {
+      for (const c of first) c.g! += run.length;
+      last.push(...trains.shift()!);
     }
-    // Each car: turned about the upright and moved, as one, to put its wheelsets on theirs.
-    const cars = new Set(order.map((o) => carOf(o.r.body)));
-    for (const car of cars) {
-      const mine = order.flatMap((o, i) => (carOf(o.r.body) === car ? [{ src: o.c, dst: targets[i], r: o.r }] : []));
-      const cs = mine.reduce((s, m) => s.add(m.src), new Vector3()).multiplyScalar(1 / mine.length);
-      const ct = mine.reduce((s, m) => s.add(m.dst), new Vector3()).multiplyScalar(1 / mine.length);
-      let angle: number;
-      if (mine.length > 1) {
-        let [cross, dot] = [0, 0];
-        for (const m of mine) {
-          const [u, v] = [m.src.clone().sub(cs), m.dst.clone().sub(ct)];
-          cross += u.z * v.x - u.x * v.z;
-          dot += u.x * v.x + u.z * v.z;
-        }
-        angle = Math.atan2(cross, dot);
-      } else {
-        // A wheelset alone: its axle square to the track.
-        const across = track.near(mine[0].dst, identity, key--)!.n;
-        const axis = mine[0].r.axis.clone().setY(0).normalize();
-        angle = heading(across) - heading(axis);
-        if (Math.cos(angle) < 0) angle += Math.PI;
+  }
+  const off = cars.filter((c) => c.g === null);
+  if (off.length) trains.push(off.sort((a, b) => a.mean.dot(row) - b.mean.dot(row)));
+  // Each train laid along the track from where its first car's front end is (or, off the track,
+  // after the trains on it), car after car, magnet to magnet: two cars coupled as built keep
+  // the gap they have; the rest close up.
+  const moves = new Map<number, Matrix4>(); // by car
+  let free = onTrack.length ? Math.max(...onTrack.map((c) => c.g! + c.rear)) + GAP : (run.loop ? 0 : run.start) + GAP;
+  const coupledAsBuilt = (c: (typeof cars)[number], next: (typeof cars)[number]) => coupled.some(([a, b]) => [find(a), find(b)].includes(c.car) && [find(a), find(b)].includes(next.car));
+  // Where along the run, from `from` on, a stretch this long has the fewest other parts on it
+  // (a figure or a platform standing on the track), for a train set on from beside it.
+  const others = parts.flatMap((p, i) => (mech.roles[i] !== 'rail' && !SLEEPERS.test(p.name) && !carParts.includes(i) && magnets.every((m) => find(m) !== find(i)) ? [new Vector3().setFromMatrixPosition(p.matrix)] : []));
+  const clearStretch = (from: number, length: number) => {
+    const end = run.loop ? from + run.length : run.length - length;
+    let best = { g: from, count: Infinity };
+    for (let g = from; g <= Math.max(from, end); g += 40) {
+      let count = 0;
+      for (let d = 0; d <= length; d += 40) {
+        const p = at(g + d).point;
+        count += others.filter((o) => Math.hypot(o.x - p.x, o.z - p.z) < 80).length;
       }
-      const turned = cs.clone().applyMatrix4(levelMove(angle, new Vector3()));
-      moves.set(car, levelMove(angle, ct.clone().sub(turned)));
+      if (count < best.count) best = { g, count };
     }
+    return best.g;
+  };
+  for (const train of trains) {
+    // A train on the track whose cars' magnets all come within reach of each other keeps its
+    // place: each car only raised or lowered, its wheels to the rail heads (the viewer sets it on
+    // the line and couples it, see setOnRails).
+    const kept = train[0].g !== null && train.every((c, k) => k === 0 || c.g! + c.front - (train[k - 1].g! + train[k - 1].rear) < REACH);
+    // Kept: one lift for the whole train, its wheels on average on the rail heads, so that a
+    // submodel holding several of its cars moves as one.
+    const allRiders = train.flatMap((c) => c.mine.map((r, i) => ({ r, c: c.centers[i] })));
+    const lift = allRiders.reduce((sum, { r, c }) => sum + track.head() - radius(r) - c.y, 0) / allRiders.length;
+    const keptMove = new Matrix4().makeTranslation(0, lift, 0);
+    let cursor = train[0].g !== null ? train[0].g! + train[0].front : clearStretch(free, train.reduce((n, c) => n + c.rear - c.front + COUPLE, 0));
+    train.forEach((c, k) => {
+      const middle = cursor - c.front;
+      const targets = kept ? c.mine.map((r, i) => c.centers[i].clone().setY(track.head() - radius(r))) : c.wheels.map((w, i) => at(middle + w).point.addScaledVector(new Vector3(0, 1, 0), -radius(c.mine[i])));
+      const next = train[k + 1];
+      const coupledToNext = next && coupledAsBuilt(c, next);
+      // The gap to the next car's front end: as built, if they're coupled (measured between their
+      // middles), else magnet to magnet.
+      cursor = middle + c.rear + (coupledToNext ? Math.abs(next.mean.clone().sub(c.mean).dot(c.u)) - c.rear + next.front : COUPLE);
+      // Turned about the upright and moved, as one, to put its wheelsets on their places.
+      const ct = targets.reduce((sum, t) => sum.add(t), new Vector3()).multiplyScalar(1 / targets.length);
+      let angle: number;
+      if (targets.length > 1) {
+        let [cross, dot] = [0, 0];
+        c.centers.forEach((src, i) => {
+          const [a, b] = [src.clone().sub(c.mean), targets[i].clone().sub(ct)];
+          cross += a.z * b.x - a.x * b.z;
+          dot += a.x * b.x + a.z * b.z;
+        });
+        angle = Math.atan2(cross, dot);
+      } else angle = heading(at(middle).t) - heading(c.u);
+      const turned = c.mean.clone().applyMatrix4(levelMove(angle, new Vector3()));
+      moves.set(c.car, kept ? keptMove : levelMove(angle, ct.clone().sub(turned)));
+    });
+    free = Math.max(free, cursor + GAP);
   }
   // Every main line whose parts are mostly in a car that moves, moved with it.
   const votes = new Map<number, Map<number, number>>();
@@ -240,17 +311,59 @@ function setTrainsOnTrack(text: string): { text: string; trains: number; moved: 
     v.set(car, (v.get(car) ?? 0) + 1);
     votes.set(lineOf[i], v);
   });
+  // A figure's line moves with the car it stood in or on: the one with a part nearest it, within
+  // RIDING.
+  const carPartsAt = parts.flatMap((p, i) => (moves.has(find(i)) && mech.roles[i] !== 'figure' ? [{ car: find(i), at: new Vector3().setFromMatrixPosition(p.matrix) }] : []));
+  parts.forEach((p, i) => {
+    if (mech.roles[i] !== 'figure' || votes.has(lineOf[i])) return;
+    const at = new Vector3().setFromMatrixPosition(p.matrix);
+    const near = carPartsAt.reduce((best, c) => (c.at.distanceTo(at) < (best?.at.distanceTo(at) ?? Infinity) ? c : best), null as (typeof carPartsAt)[number] | null);
+    if (!near || near.at.distanceTo(at) > RIDING) return;
+    const lineParts = lineOf.filter((l) => l === lineOf[i]).length;
+    votes.set(lineOf[i], new Map([[near.car, lineParts]]));
+  });
   const partsOnLine = new Map<number, number>();
   for (const l of lineOf) partsOnLine.set(l, (partsOnLine.get(l) ?? 0) + 1);
   let moved = 0;
   for (const [line, v] of votes) {
-    const [car, n] = [...v].sort((a, b) => b[1] - a[1])[0];
+    // Cars that move alike count together (a kept train's, all lifted as one).
+    const byMove = new Map<Matrix4, number>();
+    for (const [car, n] of v) byMove.set(moves.get(car)!, (byMove.get(moves.get(car)!) ?? 0) + n);
+    const [move, n] = [...byMove].sort((a, b) => b[1] - a[1])[0];
     if (n * 2 < partsOnLine.get(line)!) continue;
     const tokens = lines[line].trim().split(/\s+/);
-    lines[line] = partLine(tokens, moves.get(car)!.clone().multiply(lineMatrix(tokens)));
+    lines[line] = partLine(tokens, move.clone().multiply(lineMatrix(tokens)));
     moved++;
   }
-  return { text: lines.join('\n'), trains: trains.size, moved };
+  return { text: lines.join('\n'), trains: trains.length, moved };
+}
+
+// The track as one run, for laying trains along it: from the start of its first line, on through
+// the lines that follow, to a buffer or (a loop) back to the start; and for a line rather than a
+// loop, back from that start the other way too. Each line on it: where along the run it starts,
+// and which way along the run it goes (1 from its start to its end).
+function trackRun(track: Track) {
+  const entries: { line: number; dir: number; from: number }[] = [];
+  let [line, dir, from] = [0, 1, 0];
+  for (;;) {
+    entries.push({ line, dir, from });
+    from += track.lines[line].length;
+    const next = track.beyond(line, dir > 0 ? 1 : 0);
+    if (!next) break;
+    [line, dir] = [next[0], next[1] === 0 ? 1 : -1];
+    if (line === 0 && dir === 1) return { entries, length: from, loop: true, start: 0 };
+    if (entries.some((e) => e.line === line)) break;
+  }
+  let [l, d, back] = [0, -1, 0];
+  for (;;) {
+    const next = track.beyond(l, d > 0 ? 1 : 0);
+    if (!next) break;
+    [l, d] = [next[0], next[1] === 0 ? 1 : -1];
+    if (entries.some((e) => e.line === l)) break;
+    back += track.lines[l].length;
+    entries.unshift({ line: l, dir: -d, from: -back });
+  }
+  return { entries, length: from, loop: false, start: -back };
 }
 
 // The library's assembled wheel bogies (2878c01, 2878c02) seat their wheelset 34 LDU below the
@@ -291,11 +404,14 @@ function makeModel(set: string, name: string, source: string, add: string[] = []
     text = text.replace(wrong, right);
   }
   text = splitBogies(text);
+  // A coupling's magnet turned up, out of use (4022c02, 4023c02), is turned down, so that the
+  // train runs coupled (4022c01, 4023c01).
+  text = text.replace(/\b(4022|4023)c02\.dat\b/gi, '$1c01.dat');
   const parts = readText(text);
-  const known = parts.filter((p) => trackPiece(p.name));
-  if (known.length === 0) return;
   // Laid out: every piece joined to the rest, in one piece.
-  const track = buildTrack(parts)!;
+  const track = buildTrack(parts);
+  if (!track) return;
+  const known = [...new Set(track.lines.map((l) => l.part))];
   const lead = track.lines.map((_, i) => i);
   const find = (i: number): number => (lead[i] === i ? i : (lead[i] = find(lead[i])));
   track.links.forEach((ends, l) => ends.forEach((e) => e.forEach(([m]) => (lead[find(l)] = find(m)))));
@@ -304,12 +420,16 @@ function makeModel(set: string, name: string, source: string, add: string[] = []
   let lines = text.split(/\r?\n/);
   let note = 'the track as the OMR file lays it out';
   if (!laid) {
-    // Every track piece taken out, wherever it was, and laid out afresh in the main model.
-    const pieces: { name: string; color: string }[] = [];
+    // Every track piece taken out, wherever it was, and laid out afresh in the main model. Single
+    // rails go as the whole pieces they make (see railPieces), with their sleepers.
+    const pieces: { name: string; color: string }[] = railPieces(parts).map((p) => ({ name: p.name, color: '7' }));
     lines = lines.filter((l) => {
       const tokens = l.trim().split(/\s+/);
-      if (tokens[0] !== '1' || tokens.length < 15 || !trackPiece(tokens.slice(14).join(' '))) return true;
-      pieces.push({ name: tokens.slice(14).join(' '), color: tokens[1] });
+      const name = tokens.slice(14).join(' ');
+      if (tokens[0] !== '1' || tokens.length < 15) return true;
+      if (SLEEPERS.test(name) || railPieces([{ name, matrix: new Matrix4() }, { name, matrix: new Matrix4().makeTranslation(0, 0, 100) }]).length) return false;
+      if (!trackPiece(name)) return true;
+      pieces.push({ name, color: tokens[1] });
       return false;
     });
     pieces.push(...add.map((name) => ({ name, color: '7' })));
