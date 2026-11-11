@@ -209,7 +209,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p210 42049 - 18938"
       },
       {
         "result": "no",
@@ -292,7 +294,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "no",
@@ -353,7 +356,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p329 32316"
       },
       {
         "result": "works",
@@ -536,6 +541,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

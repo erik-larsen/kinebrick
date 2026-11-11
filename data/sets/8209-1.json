@@ -103,7 +103,8 @@
         ],
         "why": [
           "p6 32056 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -180,6 +181,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

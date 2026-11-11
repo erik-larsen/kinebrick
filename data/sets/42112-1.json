@@ -577,7 +577,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p17 60485"
       },
       {
         "result": "no",
@@ -609,7 +611,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p354 18947"
       },
       {
         "result": "partly",
@@ -675,7 +679,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p231 94925"
       },
       {
         "result": "partly",
@@ -742,7 +748,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1118 42112 - 65421p01"
       },
       {
         "result": "works",
@@ -814,6 +822,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

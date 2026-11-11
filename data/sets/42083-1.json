@@ -423,7 +423,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1345 24505"
       },
       {
         "result": "skipped"
@@ -499,7 +501,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p682 2851"
       },
       {
         "result": "works",
@@ -638,7 +642,8 @@
         "why": [
           "p1051 15459 is part of the frame",
           "p1044 15459 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -690,7 +695,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p3525 42083 - 37383p01"
       },
       {
         "result": "skipped"
@@ -698,6 +705,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

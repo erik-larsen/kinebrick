@@ -370,7 +370,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -455,7 +456,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p773 48168"
       },
       {
         "result": "partly",
@@ -555,7 +558,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p955 32271 against p946 32278"
       },
       {
         "result": "works",
@@ -581,6 +586,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

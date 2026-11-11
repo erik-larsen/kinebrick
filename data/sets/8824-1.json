@@ -149,7 +149,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p62 3482"
       },
       {
         "result": "works",
@@ -281,6 +283,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -248,7 +248,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p59 62821"
       },
       {
         "result": "works",
@@ -398,7 +400,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p808 18944"
       },
       {
         "result": "no",
@@ -423,7 +427,8 @@
         "why": [
           "p888 64682 is part of the frame",
           "p901 64392 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -468,8 +473,11 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p922 62531"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -343,7 +343,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p531 64781"
       },
       {
         "result": "partly",
@@ -393,7 +395,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p2097 62274c01"
       },
       {
         "result": "partly",
@@ -447,7 +451,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p2027 48168"
       },
       {
         "result": "partly",
@@ -488,7 +494,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p2167 62274c01 against p2166 62271c01"
       },
       {
         "result": "works",
@@ -621,6 +629,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

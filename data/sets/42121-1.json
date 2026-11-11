@@ -190,7 +190,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "too-little",
+        "detail": "p84 32271"
       },
       {
         "result": "no",
@@ -213,7 +215,8 @@
         ],
         "why": [
           "p534 32270 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -324,6 +327,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

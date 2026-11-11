@@ -181,7 +181,8 @@
         ],
         "why": [
           "p0 2905 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "partly",
@@ -239,7 +240,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p30 57779 against p0 2905"
       },
       {
         "result": "partly",
@@ -279,7 +282,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p57 30395"
       },
       {
         "result": "partly",
@@ -323,7 +328,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p55 32278 against p30 57779"
       },
       {
         "result": "no",
@@ -400,7 +407,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -482,6 +490,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

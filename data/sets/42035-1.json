@@ -253,7 +253,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-forced",
+        "detail": "p38 60485 against p0 32525"
       },
       {
         "result": "works",
@@ -335,6 +337,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

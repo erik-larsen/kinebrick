@@ -331,7 +331,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -424,7 +425,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p55 59426 against p0 92907"
       },
       {
         "result": "no",
@@ -463,7 +466,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "works",
@@ -538,6 +542,7 @@
           "p2061 32123a"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

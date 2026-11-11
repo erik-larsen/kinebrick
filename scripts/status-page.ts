@@ -1,5 +1,6 @@
 // Writes the status page: every OMR set as a box, sized by its number of pieces and coloured by
-// the share of its checked functions that work (see docs/plan.md, "What Erik sees"). It reads each
+// the share of its checked functions that work, and why the functions that don't work don't, by
+// cause (see docs/plan.md, "What Erik sees"). It reads each
 // set's results from data/sets/ (written by npm run functions) and its name, year and piece count
 // from models/technic-sets.csv, and puts them into the page in scripts/status-page.html.
 //
@@ -9,6 +10,7 @@
 import { execSync } from 'node:child_process';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { CAUSES } from './causes.ts';
 
 const SETS_DIR = join('data', 'sets');
 const out = process.argv[2] ?? join('dist', 'status.html');
@@ -37,13 +39,13 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
     year: Number(row.year) || 0,
     pieces: Number(row.parts) || Number(row.omr_parts) || 1,
     loose: (set.generated.loose ?? []).length,
-    // Each function: what it does, and its result.
-    functions: results.map((r: { result: string }, i: number) => [String(curated[i]?.does ?? '').slice(0, 160), r.result]),
+    // Each function: what it does, its result, and if it doesn't work, why (see causes.ts) and the part that's about.
+    functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? '').slice(0, 160), r.result, r.cause ?? '', r.detail ?? '']),
   });
 }
 
 const commit = execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
-const data = { commit, date: new Date().toISOString().slice(0, 10), sets };
+const data = { commit, date: new Date().toISOString().slice(0, 10), causes: CAUSES, sets };
 const page = readFileSync(join('scripts', 'status-page.html'), 'utf-8').replace('/*DATA*/null', () => JSON.stringify(data).replaceAll('</', '<\\/'));
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, page);

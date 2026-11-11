@@ -319,7 +319,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p156 32278"
       },
       {
         "result": "partly",
@@ -383,7 +385,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p178 32525"
       },
       {
         "result": "works",
@@ -556,6 +560,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

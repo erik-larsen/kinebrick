@@ -353,7 +353,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1854 23798"
       },
       {
         "result": "partly",
@@ -418,7 +420,8 @@
         "strayed": [
           "p1525 77",
           "p1666 77"
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -501,7 +504,9 @@
         "strayed": [
           "p1525 77",
           "p1666 77"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1854 23798"
       },
       {
         "result": "works",
@@ -568,7 +573,8 @@
         ],
         "why": [
           "p1858 23798 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -609,7 +615,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1856 23798"
       },
       {
         "result": "not checked"
@@ -641,6 +649,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

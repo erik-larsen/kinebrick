@@ -186,7 +186,9 @@
         ],
         "strayed": [
           "p261 4274"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p270 3482 against p0 3034"
       },
       {
         "result": "partly",
@@ -239,7 +241,9 @@
         ],
         "strayed": [
           "p123 3737"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p172 3648a against p65 3673"
       },
       {
         "result": "partly",
@@ -284,7 +288,9 @@
         ],
         "strayed": [
           "p123 3737"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p134 3650b against p65 3673"
       },
       {
         "result": "works",
@@ -386,6 +392,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

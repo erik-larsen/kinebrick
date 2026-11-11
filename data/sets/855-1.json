@@ -335,7 +335,8 @@
           "p106 3008 has no joint to work",
           "p113 3008 has no joint to work",
           "p120 3008 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -443,7 +444,8 @@
           "p158 3582 is part of the frame",
           "p159 3582 is part of the frame",
           "p160 3582 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "not checked"
@@ -454,6 +456,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

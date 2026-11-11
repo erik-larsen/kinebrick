@@ -152,7 +152,9 @@
         "strayed": [
           "p58 2420",
           "p61 2420"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p53 3705"
       },
       {
         "result": "works",
@@ -243,6 +245,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

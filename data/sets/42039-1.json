@@ -579,7 +579,9 @@
         "strayed": [
           "p510 32123b",
           "p502 4519"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p515 11949"
       },
       {
         "result": "no",
@@ -608,7 +610,8 @@
         "why": [
           "p52 32494 has no joint to work",
           "p53 32494 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -685,7 +688,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p653 4716"
       },
       {
         "result": "works",
@@ -790,6 +795,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

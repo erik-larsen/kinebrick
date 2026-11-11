@@ -280,7 +280,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p307 74695"
       },
       {
         "result": "works",
@@ -324,6 +326,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

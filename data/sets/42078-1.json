@@ -1400,7 +1400,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -1463,7 +1464,9 @@
         ],
         "strayed": [
           "p436 62520"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p405 4519"
       },
       {
         "result": "works",
@@ -1568,7 +1571,8 @@
         "why": [
           "p851 32524 is part of the frame",
           "p889 32524 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -1592,7 +1596,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -1715,7 +1720,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2084 18575"
       },
       {
         "result": "partly",
@@ -1770,7 +1777,9 @@
               0.01
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2083 18575"
       },
       {
         "result": "no",
@@ -1809,7 +1818,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2051 18942"
       },
       {
         "result": "no",
@@ -1827,7 +1838,9 @@
         ],
         "why": [
           "p2631 64782 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2631 64782"
       },
       {
         "result": "works",
@@ -1902,6 +1915,7 @@
           "p2085 32123b"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

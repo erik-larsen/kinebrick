@@ -438,7 +438,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p214 4716"
       },
       {
         "result": "no",
@@ -495,7 +497,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p224 99010"
       },
       {
         "result": "partly",
@@ -554,7 +558,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p17 11946"
       },
       {
         "result": "works",
@@ -682,7 +688,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p1298 10928"
       },
       {
         "result": "works",
@@ -832,6 +840,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

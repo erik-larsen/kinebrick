@@ -282,7 +282,9 @@
         ],
         "why": [
           "p897 32269 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p897 32269"
       },
       {
         "result": "works",
@@ -380,11 +382,14 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p71 32165 against p91 32177"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

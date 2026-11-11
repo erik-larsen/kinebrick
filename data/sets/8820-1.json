@@ -172,7 +172,9 @@
         "strayed": [
           "p131 3482",
           "p129 3482"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p125 3482"
       },
       {
         "result": "partly",
@@ -236,7 +238,9 @@
         "strayed": [
           "p103 3749",
           "p12 3749"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p129 3482"
       },
       {
         "result": "skipped"
@@ -334,8 +338,11 @@
         ],
         "strayed": [
           "p103 3749"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p102 3894"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

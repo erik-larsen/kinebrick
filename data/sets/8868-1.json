@@ -236,7 +236,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "works",
@@ -495,7 +496,8 @@
         ],
         "why": [
           "p1952 4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -517,7 +519,8 @@
         ],
         "why": [
           "p1951 4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -539,7 +542,8 @@
         ],
         "why": [
           "p1950 4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -562,7 +566,8 @@
         ],
         "why": [
           "p1949 4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -570,6 +575,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

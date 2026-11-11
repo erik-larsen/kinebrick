@@ -209,7 +209,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p174 3895"
       },
       {
         "result": "partly",
@@ -264,7 +266,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p212 2950 against p183 3895"
       },
       {
         "result": "not checked"
@@ -365,7 +369,9 @@
               0.45
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p54 3703 against p0 3738"
       },
       {
         "result": "works",
@@ -445,6 +451,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

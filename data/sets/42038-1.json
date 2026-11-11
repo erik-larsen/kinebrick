@@ -278,7 +278,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -347,7 +348,9 @@
         ],
         "strayed": [
           "p32 55013"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p113 92695"
       },
       {
         "result": "partly",
@@ -416,7 +419,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p866 92696"
       },
       {
         "result": "works",
@@ -584,7 +589,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
@@ -688,6 +694,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

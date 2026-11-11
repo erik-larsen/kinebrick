@@ -558,7 +558,8 @@
         ],
         "why": [
           "p595 6549 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -746,7 +747,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "no",
@@ -785,7 +787,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
@@ -810,7 +813,8 @@
         ],
         "why": [
           "p1240 4477 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -838,7 +842,8 @@
         "why": [
           "p1092 3031 is part of the frame",
           "p1126 3031 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -887,6 +892,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

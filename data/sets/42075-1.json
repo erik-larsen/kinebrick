@@ -242,7 +242,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p352 2851"
       },
       {
         "result": "works",
@@ -362,7 +364,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p506 56145"
       },
       {
         "result": "works",
@@ -432,7 +436,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -473,6 +478,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

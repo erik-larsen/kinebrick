@@ -374,7 +374,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p3606 42529"
       },
       {
         "result": "partly",
@@ -415,7 +417,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p3609 42529"
       },
       {
         "result": "partly",
@@ -476,7 +480,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p3606 42529"
       },
       {
         "result": "partly",
@@ -565,7 +571,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p5 62821"
       },
       {
         "result": "partly",
@@ -602,7 +610,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p3293 18947"
       },
       {
         "result": "partly",
@@ -652,7 +662,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p3395 62274c01 against p3394 42131 - u9559c01"
       },
       {
         "result": "partly",
@@ -703,7 +715,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p4118 62274c01 against p4117 42131 - u9559c01"
       },
       {
         "result": "partly",
@@ -753,7 +767,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p6074 62274c01"
       },
       {
         "result": "partly",
@@ -798,7 +814,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p5713 42131 - 71710"
       },
       {
         "result": "works",
@@ -838,6 +856,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

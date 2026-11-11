@@ -118,7 +118,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p16 3139"
       },
       {
         "result": "works",
@@ -162,6 +164,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

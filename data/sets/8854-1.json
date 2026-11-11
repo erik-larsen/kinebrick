@@ -343,7 +343,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p533 3709b"
       },
       {
         "result": "works",
@@ -487,7 +489,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p951 70644"
       },
       {
         "result": "skipped"
@@ -531,7 +535,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p903 2428"
       },
       {
         "result": "partly",
@@ -575,7 +581,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p692 2793 against p533 3709b"
       },
       {
         "result": "skipped"
@@ -652,6 +660,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

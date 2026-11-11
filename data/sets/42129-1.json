@@ -300,7 +300,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1305 65414c01"
       },
       {
         "result": "works",
@@ -358,7 +360,8 @@
         "why": [
           "p2922 42129 - 69912 has no joint to work",
           "p2924 42129 - 69912 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "partly",
@@ -405,7 +408,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p513 18947"
       },
       {
         "result": "works",
@@ -524,7 +529,8 @@
         ],
         "strayed": [
           "p2953 42129 - 11055"
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
@@ -558,6 +564,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

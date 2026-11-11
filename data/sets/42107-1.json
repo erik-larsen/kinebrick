@@ -226,7 +226,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p127 18947"
       },
       {
         "result": "partly",
@@ -301,7 +303,9 @@
               0.01
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p185 2854"
       },
       {
         "result": "no",
@@ -346,7 +350,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p284 76537"
       },
       {
         "result": "skipped"
@@ -372,7 +378,8 @@
         ],
         "why": [
           "p340 15462 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -401,7 +408,8 @@
         "why": [
           "p408 32039 is part of the frame",
           "p419 32039 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -462,11 +470,13 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

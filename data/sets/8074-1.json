@@ -193,7 +193,9 @@
         ],
         "strayed": [
           "p88 8074 - 4185a"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p231 8074 - 4185a"
       },
       {
         "result": "skipped"
@@ -263,7 +265,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p96 3738"
       },
       {
         "result": "partly",
@@ -336,7 +340,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p177 3708"
       },
       {
         "result": "partly",
@@ -409,8 +415,11 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p223 3705"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -29,6 +29,9 @@
 //   npm run functions -- --limit 20   stop a set that takes more than this many minutes (default
 //                                     30), marking it as timed out
 //   npm run functions -- --lock       steering's stops too (see LOCK), for now only reported
+//   npm run functions -- --causes     no drags: only works out afresh why each function that
+//                                     doesn't work doesn't (see causes.ts), from the results
+//                                     already written, and writes each one's `cause`
 //   npm run functions -- --quick      only the quick sets (QUICK): a couple of minutes, for every
 //                                     change; the whole check is for overnight
 //
@@ -51,6 +54,7 @@ import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Mechanism } from '../src/mechanism.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
+import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
 import { loadModel } from './load-model.ts';
@@ -99,6 +103,11 @@ const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
 const QUICK = ['8270', '42107', '8849', '42061', '42109', '8001', '8204', '8245', '8851', '8856', '8208', '8448', '8824', '8202', '42084', '42074', '42071', '8845', '8837', '858', '8074', '42063', '42057', '42065', '956', '8081', '8049', '8416', '42112', '42129', '9394', '42000', '42114'];
 
 type Stop = 'meets' | 'limit' | 'stuck' | 'free';
+// What stopped a drag short of its reach: the end of a slide's or rack's travel, a dead point,
+// no motion left that turns the joint, or a step that couldn't be taken.
+type Halt = 'limit' | 'dead point' | 'no motion' | 'stuck';
+// With --causes, nothing is dragged: each failing function's cause is worked out afresh.
+const causesOnly = process.env.KINEBRICK_CAUSES === '1';
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
@@ -112,6 +121,9 @@ interface Checked {
   lock?: [number, number, Stop][][]; // for each steering control, each way: its steered parts' most turn (degrees), its own turn (radians), and what stopped it (see LOCK)
   strayed?: string[];
   why?: string[];
+  stop?: (Halt | null)[][]; // for each control, each way: what stopped it short of its reach, if anything did
+  cause?: Cause; // for a function that doesn't work: why (see causes.ts)
+  detail?: string; // the part the cause is about
 }
 interface Fn {
   control?: string | string[];
@@ -126,13 +138,15 @@ interface Fn {
 
 // Checks one set's functions on its model, or each on its own; what goes in its generated
 // section, but for the commit and date.
-function check(set: { curated: { model: string; functions: Fn[] } }) {
+function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }) {
   const { model, functions } = set.curated;
+  // What each function came to the last time, for --causes.
+  const priors = set.generated?.functions ?? [];
   const modelOf = (fn: Fn) => fn.model ?? model;
   const checked: Checked[] = [];
   const loose: string[] = [];
   for (const m of new Set(functions.map(modelOf))) {
-    const found = checkModel(m, functions.filter((fn) => modelOf(fn) === m));
+    const found = checkModel(m, functions.filter((fn) => modelOf(fn) === m), functions.flatMap((fn, i) => (modelOf(fn) === m ? [priors[i]] : [])));
     functions.forEach((fn, i) => {
       if (modelOf(fn) === m) checked[i] = found.checked.shift()!;
     });
@@ -149,7 +163,7 @@ function check(set: { curated: { model: string; functions: Fn[] } }) {
 }
 
 // Checks functions on one model: each one's result, and the model's loose parts.
-function checkModel(model: string, functions: Fn[]) {
+function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
   const loaded = loadModel(model, model.startsWith('omr/'));
   const { table, slides } = loaded;
   // The model as it's being worked: as loaded, or worked out afresh after a shift (see shiftTo).
@@ -238,9 +252,17 @@ function checkModel(model: string, functions: Fn[]) {
     const went = parts.map(() => [0, 0]);
     let was = parts.map((p) => relative(p.part, p.body, kin.poses));
     let turned = 0;
+    // What stops it short, if anything does: a limit is told as the step that reached it is undone.
+    let limited = false;
+    let halt: Halt | null = null;
+    const allowed = () => {
+      if (kin.atLimit() === null) return true;
+      limited = true;
+      return false;
+    };
     while (Math.abs(turned) < Math.abs(amount) - 1e-9) {
       const piece = Math.sign(amount) * Math.min(PIECE, Math.abs(amount) - Math.abs(turned));
-      const step = kin.turnJoint(joint, piece, () => kin.atLimit() === null);
+      const step = kin.turnJoint(joint, piece, allowed);
       turned += step;
       each();
       const is = parts.map((p) => relative(p.part, p.body, kin.poses));
@@ -249,10 +271,13 @@ function checkModel(model: string, functions: Fn[]) {
         went[k][1] += at[p.part].clone().applyMatrix4(is[k]).distanceTo(at[p.part].clone().applyMatrix4(was[k]));
       });
       was = is;
-      if (Math.abs(step) < Math.abs(piece) - 1e-9) break;
+      if (Math.abs(step) < Math.abs(piece) - 1e-9) {
+        halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
+        break;
+      }
     }
     kin.letGoAfterDrag();
-    return { turned, went };
+    return { turned, went, halt };
   };
   // The furthest any part is from where it was in `poses` (LDU, degrees), and the part that's
   // furthest (by LDU, or degrees for a part that only turns).
@@ -268,16 +293,19 @@ function checkModel(model: string, functions: Fn[]) {
     return most;
   };
 
-  const checkOne = (fn: Fn): Checked => {
+  const checkOne = (fn: Fn, prior?: Checked): Checked => {
     if (fn.skip) return { result: 'skipped' };
     if (!fn.control) return { result: 'not checked' };
+    // With --causes, only a function that didn't work is looked at, and nothing is dragged.
+    if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
     // Controls worked together are worked as one, by the first, the others turning with it.
     const controls = [fn.control].flat();
-    const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref) => {
+    const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref, wi) => {
       together = [];
       use(asLoaded);
       kin.reset();
+      const whyBefore = why.length;
       for (const first of fn.first ?? []) {
         const p = part(first.control);
         // A driving ring is slid by hand, `by` LDU, to the click-in position nearest that.
@@ -302,9 +330,14 @@ function checkModel(model: string, functions: Fn[]) {
       const control = part(ref);
       const b = worked(control);
       const link = kin.parentLink(b);
+      // Why it doesn't work, if it doesn't (see causes.ts). Told before anything else: a loose
+      // part (the control, or one it should move), or a control worked first that didn't go.
+      const loosePart = [control, ...moves.map((m) => m.part)].find((p) => mech.loose.includes(p));
+      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
+      const nothing = (explained: Explained) => ({ works: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null });
       if (b === 0 || !link) {
         why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
-        return { works: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[] };
+        return nothing(early ?? { cause: 'control-fixed' });
       }
       const reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
       if (fn.together) together = controls.map((r) => worked(part(r)));
@@ -316,6 +349,12 @@ function checkModel(model: string, functions: Fn[]) {
       const geared = gearRates(mech, (x) => kin.parentLink(x), b, together);
       const expected: Record<string, number> = {};
       for (const m of listed) if (m.body === 0 && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
+      // The cause, from where the control starts: given the parts that didn't move and should
+      // have, those that moved and shouldn't have, and how far the control went.
+      const listedAs = (m: { ref: string; part: number; body: number }): Listed => ({ ref: m.ref, body: mech.bodyOf[m.part], against: m.body });
+      const explain = (still: string[], wrong: string[], turned: number): Explained =>
+        early ?? causeOf(kin, { body: b, parent: link.parent }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= reach / 2);
+      if (causesOnly) return nothing(explain(prior!.still ?? [], prior!.moved ?? [], Math.max(0, ...(prior!.turned?.[wi] ?? []).map(Math.abs))));
       // How far the control really turns: against what its shaft turns in (see housing), not
       // just its joint's angle, which a shaft spinning back under it makes up without the
       // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
@@ -368,13 +407,14 @@ function checkModel(model: string, functions: Fn[]) {
         kin.restore(there);
         const back: [number, number] = [round(most.ldu), round(most.degrees)];
         const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
       });
       kin.restore(start);
       together = [];
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
+      const explained = best.works ? null : explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
       const heading = (j: number, poses: Matrix4[]) => {
@@ -430,8 +470,17 @@ function checkModel(model: string, functions: Fn[]) {
             return [round((most * 180) / Math.PI), round(turned), why] as [number, number, Stop];
           })
         : null;
-      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock };
+      return { works: best.works, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
     });
+    // The cause is that of the first control that doesn't work.
+    const first = ways.find((w) => w.explained)?.explained;
+    const explained = first ? { cause: first.cause, ...(first.detail ? { detail: first.detail } : {}) } : {};
+    if (causesOnly) {
+      const kept: Checked = { ...prior! };
+      delete kept.cause;
+      delete kept.detail;
+      return { ...kept, ...explained };
+    }
     const result: Result = ways.every((w) => w.works) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
     const still = [...new Set(ways.flatMap((w) => w.still))];
     const wrong = [...new Set(ways.flatMap((w) => w.moved))];
@@ -450,14 +499,16 @@ function checkModel(model: string, functions: Fn[]) {
       ...(strayed.length ? { strayed } : {}),
       ...(ways.some((w) => w.lock) ? { lock: ways.map((w) => w.lock ?? []) } : {}),
       ...(why.length ? { why: [...new Set(why)] } : {}),
+      ...(ways.some((w) => w.stop.some((h) => h)) ? { stop: ways.map((w) => w.stop) } : {}),
+      ...(result === 'works' ? {} : explained),
     };
   };
 
-  const checked = functions.map((fn) => {
+  const checked = functions.map((fn, i): Checked => {
     try {
-      return checkOne(fn);
+      return checkOne(fn, priors[i]);
     } catch (err) {
-      return { result: 'error' as Result, why: [(err as Error).message] };
+      return { result: 'error', cause: 'bad-reference', why: [(err as Error).message] };
     }
   });
   return { checked, loose: mech.loose.map(name) };
@@ -510,6 +561,8 @@ async function main() {
   // A set's number, followed by "-" so that 855 doesn't also pick the 8855.
   const filters = args.includes('--quick') ? QUICK.map((n) => `${n}-`) : named;
   if (args.includes('--lock')) process.env.KINEBRICK_CHECK_LOCK = '1';
+  const causes = args.includes('--causes');
+  if (causes) process.env.KINEBRICK_CAUSES = '1';
   const commit = execSync('git rev-parse --short HEAD').toString().trim();
   // No shell, so the pathspec isn't left quoted by Windows' cmd.
   const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets']).toString().trim() !== '';
@@ -517,18 +570,24 @@ async function main() {
   // Checked with holds rather than least motion (KINEBRICK_LEAST=0; see docs/least-motion.md).
   const holds = !experiments.leastMotion;
 
-  // The sets with functions, smallest model first.
+  // The sets with functions, slowest first, by how long each took the last time (a set that timed
+  // out before any), so that the longest set starts at once rather than last, on its own: then
+  // the whole check takes about as long as its slowest set. A set not timed yet goes by its
+  // model's size, biggest first.
+  const took = (s: { data: { generated?: { seconds?: number; timedOut?: number } } }) => (s.data.generated?.timedOut ? Infinity : (s.data.generated?.seconds ?? -1));
   const files = readdirSync(SETS_DIR)
     .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
     .map((f) => ({ file: join(SETS_DIR, f), data: JSON.parse(readFileSync(join(SETS_DIR, f), 'utf-8')) }))
     .filter((s) => s.data.curated.functions?.length)
-    .sort((a, b) => statSync(a.data.curated.model).size - statSync(b.data.curated.model).size);
+    .sort((a, b) => took(b) - took(a) || statSync(b.data.curated.model).size - statSync(a.data.curated.model).size);
 
   // The sets being checked, and when each was started; how many are done, and their functions'
   // results so far.
   const checking = new Map<string, number>();
   let done = 0;
   const results: Partial<Record<Result, number>> = {};
+  // How many functions have each cause, of the sets checked.
+  const caused: Partial<Record<Cause, number>> = {};
   const run = (s: (typeof files)[number]) =>
     new Promise<void>((resolve) => {
       const started = Date.now();
@@ -556,10 +615,16 @@ async function main() {
         }
         // Read afresh, so only generated changes, whatever else changed meanwhile.
         const data = JSON.parse(readFileSync(s.file, 'utf-8'));
-        if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${line}`);
-        data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, ...found };
+        if (causes) {
+          // Only the causes change: the results stay those of the commit they were checked at.
+          if ('functions' in found && data.generated) data.generated = { ...data.generated, causes: commit, functions: found.functions };
+        } else {
+          if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${line}`);
+          data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
+        }
         writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
-        const summary = 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
+        if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
+        const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
         console.log(`${data.set}: ${summary} (${seconds} s)`);
         checking.delete(s.data.set);
         done++;
@@ -587,6 +652,9 @@ async function main() {
     }),
   );
   clearInterval(progress);
+  // Why the functions that don't work don't, most common first, with who looks into each.
+  const byCount = (Object.entries(caused) as [Cause, number][]).sort((a, b) => b[1] - a[1]);
+  if (byCount.length) console.log('Causes:\n' + byCount.map(([c, n]) => `  ${String(n).padStart(4)}  ${c} (${CAUSES[c].owner}): ${CAUSES[c].says}`).join('\n'));
   // The mechanism catalog quotes each function's result: written afresh with them.
-  execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
+  if (!causes) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
 }

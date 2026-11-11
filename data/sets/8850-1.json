@@ -279,7 +279,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p240 2853 against p0 3702"
       },
       {
         "result": "partly",
@@ -311,7 +313,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p94 3737 against p0 3702"
       },
       {
         "result": "works",
@@ -411,7 +415,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p139 2825 against p0 3702"
       },
       {
         "result": "works",
@@ -440,6 +446,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

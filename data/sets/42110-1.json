@@ -356,7 +356,9 @@
         "strayed": [
           "p43 62520",
           "p46 62520"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p211 4519"
       },
       {
         "result": "partly",
@@ -399,7 +401,9 @@
         ],
         "strayed": [
           "p43 62520"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p242 3708"
       },
       {
         "result": "partly",
@@ -440,7 +444,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p715 32072"
       },
       {
         "result": "works",
@@ -569,7 +575,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -640,7 +647,8 @@
         ],
         "why": [
           "p2586 32739 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -658,11 +666,13 @@
         ],
         "why": [
           "p2475 3710 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

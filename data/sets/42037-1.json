@@ -227,7 +227,9 @@
               0.03
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p126 2851"
       },
       {
         "result": "works",
@@ -325,7 +327,9 @@
         "strayed": [
           "p490 56908",
           "p494 56908"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p489 45982"
       },
       {
         "result": "no",
@@ -404,7 +408,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p96 76537"
       },
       {
         "result": "works",
@@ -511,6 +517,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

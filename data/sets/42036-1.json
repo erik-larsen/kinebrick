@@ -220,7 +220,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p117 6542b"
       },
       {
         "result": "works",
@@ -314,7 +316,9 @@
         ],
         "why": [
           "p228 2910 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p228 2910"
       },
       {
         "result": "skipped"
@@ -340,7 +344,9 @@
         ],
         "why": [
           "p268 32016 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p233 88517"
       },
       {
         "result": "no",
@@ -361,7 +367,8 @@
         ],
         "why": [
           "p290 32192 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -402,6 +409,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

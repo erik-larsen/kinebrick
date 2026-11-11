@@ -195,7 +195,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "no",
@@ -231,7 +232,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "no",
@@ -277,7 +279,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
@@ -331,7 +334,8 @@
         ],
         "why": [
           "p457 32524 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -356,7 +360,8 @@
         "why": [
           "p378 32524 is part of the frame",
           "p421 32524 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -456,6 +461,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

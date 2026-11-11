@@ -431,7 +431,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1716 76019"
       },
       {
         "result": "partly",
@@ -520,7 +522,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1710 18946"
       },
       {
         "result": "works",
@@ -654,7 +658,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1722 18947"
       },
       {
         "result": "partly",
@@ -725,7 +731,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1722 18947"
       },
       {
         "result": "partly",
@@ -795,7 +803,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "too-little",
+        "detail": "p1536 4716"
       },
       {
         "result": "skipped"
@@ -1084,7 +1094,9 @@
         "strayed": [
           "p22 62520",
           "p5319 166"
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p66 2851"
       },
       {
         "result": "works",
@@ -1178,7 +1190,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p7226 32073"
       },
       {
         "result": "works",
@@ -1262,8 +1276,11 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p6909 2741"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

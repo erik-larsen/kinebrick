@@ -242,7 +242,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "no",
@@ -268,7 +269,8 @@
         ],
         "why": [
           "p45 32271 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -342,6 +344,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

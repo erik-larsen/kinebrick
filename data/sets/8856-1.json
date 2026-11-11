@@ -369,7 +369,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p468 70278"
       },
       {
         "result": "partly",
@@ -420,7 +422,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p468 70278"
       },
       {
         "result": "partly",
@@ -475,7 +479,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p462 2908"
       },
       {
         "result": "partly",
@@ -525,7 +531,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p462 2908"
       },
       {
         "result": "skipped"
@@ -599,6 +607,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

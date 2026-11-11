@@ -285,7 +285,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p135 76019"
       },
       {
         "result": "partly",
@@ -346,7 +348,9 @@
         "strayed": [
           "p406 32123a",
           "p525 4519"
-        ]
+        ],
+        "cause": "too-little",
+        "detail": "p499 11478"
       },
       {
         "result": "partly",
@@ -405,7 +409,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p669 60483"
       },
       {
         "result": "partly",
@@ -446,7 +452,8 @@
               0.11
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "no",
@@ -492,7 +499,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -548,6 +556,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

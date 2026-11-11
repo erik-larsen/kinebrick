@@ -296,7 +296,9 @@
               0.15
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p856 6536 against p0 32009"
       },
       {
         "result": "partly",
@@ -365,7 +367,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p619 6536 against p238 6632"
       },
       {
         "result": "works",
@@ -442,6 +446,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

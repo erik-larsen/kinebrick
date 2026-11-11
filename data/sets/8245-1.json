@@ -358,7 +358,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p4 3749"
       },
       {
         "result": "works",
@@ -604,7 +606,8 @@
         ],
         "why": [
           "p242 32009 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -642,6 +645,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

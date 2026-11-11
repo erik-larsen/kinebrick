@@ -126,7 +126,9 @@
               0.12
             ]
           ]
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p75 4019 against p0 32523"
       },
       {
         "result": "works",
@@ -170,6 +172,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

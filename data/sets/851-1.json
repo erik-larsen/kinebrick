@@ -158,7 +158,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -350,8 +351,10 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -212,7 +212,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p569 2995"
       },
       {
         "result": "no",
@@ -263,7 +265,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p569 2995"
       },
       {
         "result": "partly",
@@ -338,7 +342,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p565 2995"
       },
       {
         "result": "works",
@@ -448,7 +454,8 @@
         ],
         "why": [
           "p394 4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -470,8 +477,10 @@
         ],
         "why": [
           "p400 4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

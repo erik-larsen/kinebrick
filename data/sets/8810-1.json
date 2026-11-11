@@ -187,7 +187,8 @@
         ],
         "strayed": [
           "p26 2695"
-        ]
+        ],
+        "cause": "unknown"
       },
       {
         "result": "partly",
@@ -255,7 +256,9 @@
         "strayed": [
           "p74 3704",
           "p50 6141"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p53 2695"
       },
       {
         "result": "skipped"
@@ -346,8 +349,10 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -173,7 +173,9 @@
         ],
         "strayed": [
           "p49 32013"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p45 32013"
       },
       {
         "result": "skipped"
@@ -218,6 +220,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

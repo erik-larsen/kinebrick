@@ -373,7 +373,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p400 3707"
       },
       {
         "result": "partly",
@@ -421,7 +423,9 @@
         ],
         "strayed": [
           "p223 3326b"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p176 4143"
       },
       {
         "result": "no",
@@ -460,7 +464,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "no",
@@ -499,7 +504,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "skipped"
@@ -547,7 +553,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "no",
@@ -588,7 +595,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "no",
@@ -627,7 +635,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "partly",
@@ -679,8 +688,11 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p114 3708"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

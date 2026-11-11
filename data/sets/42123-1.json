@@ -185,7 +185,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p253 32123b against p251 32524"
       },
       {
         "result": "no",
@@ -210,7 +212,8 @@
         "why": [
           "p896 32524 is part of the frame",
           "p918 32524 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -266,6 +269,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -129,7 +129,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p57 3706 against p0 2825"
       },
       {
         "result": "partly",
@@ -166,7 +168,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p45 3708 against p0 2825"
       },
       {
         "result": "works",
@@ -195,6 +199,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

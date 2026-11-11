@@ -457,7 +457,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p588 76019"
       },
       {
         "result": "partly",
@@ -531,7 +533,9 @@
         "strayed": [
           "p898 42610",
           "p900 42610"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p906 44294"
       },
       {
         "result": "works",
@@ -681,7 +685,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p575 18947"
       },
       {
         "result": "works",
@@ -758,7 +764,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -802,6 +809,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -218,7 +218,9 @@
         "strayed": [
           "p344 87083",
           "p346 87083"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p889 32498"
       },
       {
         "result": "partly",
@@ -250,7 +252,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p974 56908 against p464 65414c01"
       },
       {
         "result": "no",
@@ -311,7 +315,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
@@ -336,7 +341,8 @@
         ],
         "why": [
           "p470 40490 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -380,6 +386,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

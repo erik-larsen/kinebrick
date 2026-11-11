@@ -223,7 +223,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p467 3736"
       },
       {
         "result": "partly",
@@ -286,7 +288,9 @@
         "strayed": [
           "p415 3749",
           "p414 3749"
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p430 3652"
       },
       {
         "result": "works",
@@ -407,7 +411,8 @@
         ],
         "strayed": [
           "p108 3708"
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -459,6 +464,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

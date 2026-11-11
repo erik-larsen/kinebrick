@@ -267,7 +267,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p274 62821"
       },
       {
         "result": "partly",
@@ -314,7 +316,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p105 92693c01"
       },
       {
         "result": "partly",
@@ -381,7 +385,9 @@
           "p1343 64391",
           "p1333 64683",
           "p1057 64683"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p559 32056"
       },
       {
         "result": "partly",
@@ -442,7 +448,8 @@
         "strayed": [
           "p335 32293",
           "p336 32293"
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "skipped"
@@ -486,6 +493,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

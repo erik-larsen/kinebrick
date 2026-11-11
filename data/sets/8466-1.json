@@ -291,7 +291,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p657 32495"
       },
       {
         "result": "partly",
@@ -351,7 +353,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p657 32495"
       },
       {
         "result": "partly",
@@ -428,7 +432,9 @@
         ],
         "strayed": [
           "p211 32123a"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p676 22969"
       },
       {
         "result": "not checked"
@@ -454,7 +460,9 @@
         ],
         "why": [
           "p655 22969 has no joint to work"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p676 22969"
       },
       {
         "result": "partly",
@@ -509,7 +517,9 @@
         ],
         "strayed": [
           "p211 32123a"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1019 6589"
       },
       {
         "result": "partly",
@@ -560,7 +570,9 @@
         ],
         "strayed": [
           "p211 32123a"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1017 6573"
       },
       {
         "result": "no",
@@ -629,7 +641,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
@@ -693,7 +706,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p274 32189"
       },
       {
         "result": "skipped"
@@ -735,8 +750,10 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

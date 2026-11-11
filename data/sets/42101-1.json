@@ -173,7 +173,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "works",
@@ -341,8 +342,10 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

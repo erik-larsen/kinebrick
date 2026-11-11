@@ -352,7 +352,9 @@
         ],
         "why": [
           "p2324 32020 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2332 32020"
       },
       {
         "result": "no",
@@ -392,7 +394,9 @@
         "why": [
           "p2320 32020 is part of the frame",
           "p2322 32020 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2336 32020"
       },
       {
         "result": "works",
@@ -550,7 +554,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p611 3648b"
       },
       {
         "result": "partly",
@@ -594,7 +600,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p1877 70496"
       },
       {
         "result": "skipped"
@@ -648,7 +656,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -728,7 +737,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "no",
@@ -760,7 +770,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1993 32183c02 against p1992 32181c05"
       },
       {
         "result": "no",
@@ -799,8 +811,10 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

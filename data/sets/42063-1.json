@@ -151,7 +151,8 @@
         "why": [
           "p418 32016 has no joint to work",
           "p419 32016 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -268,7 +269,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p386 88517"
       },
       {
         "result": "works",
@@ -317,6 +320,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

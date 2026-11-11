@@ -559,7 +559,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p87 48989"
       },
       {
         "result": "partly",
@@ -591,7 +593,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p188 32525"
       },
       {
         "result": "works",
@@ -733,7 +737,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -788,7 +793,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p508 32270"
       },
       {
         "result": "partly",
@@ -834,7 +841,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p507 32270"
       },
       {
         "result": "works",
@@ -937,7 +946,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p574 32073"
       },
       {
         "result": "works",
@@ -1008,6 +1019,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

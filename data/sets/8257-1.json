@@ -680,7 +680,9 @@
         ],
         "strayed": [
           "p617 2706"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p620 2698"
       },
       {
         "result": "no",
@@ -716,7 +718,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -774,7 +777,9 @@
         "strayed": [
           "p69 32134",
           "p291 80"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p25 6579"
       },
       {
         "result": "works",
@@ -859,7 +864,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p166 32065"
       },
       {
         "result": "works",
@@ -900,6 +907,7 @@
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

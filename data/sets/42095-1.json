@@ -266,7 +266,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p541 98138p0e"
       },
       {
         "result": "works",
@@ -307,6 +309,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

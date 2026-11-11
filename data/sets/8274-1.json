@@ -457,7 +457,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p1045 3708"
       },
       {
         "result": "partly",
@@ -528,7 +530,9 @@
         ],
         "strayed": [
           "p1081 6536"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p1002 32072"
       },
       {
         "result": "partly",
@@ -571,7 +575,9 @@
         ],
         "strayed": [
           "p1081 6536"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p123 3648b"
       },
       {
         "result": "partly",
@@ -607,7 +613,8 @@
         ],
         "strayed": [
           "p926 3673"
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "works",
@@ -684,6 +691,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

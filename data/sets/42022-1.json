@@ -214,7 +214,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-forced",
+        "detail": "p314 2851 against p0 99008"
       },
       {
         "result": "works",
@@ -311,6 +313,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

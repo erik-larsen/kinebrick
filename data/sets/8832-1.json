@@ -214,7 +214,9 @@
         "strayed": [
           "p50 4150",
           "p70 4265a"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p9 2738"
       },
       {
         "result": "skipped"
@@ -288,6 +290,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

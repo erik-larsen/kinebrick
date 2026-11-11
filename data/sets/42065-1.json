@@ -163,7 +163,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p651 57518"
       },
       {
         "result": "partly",
@@ -203,7 +205,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-forced",
+        "detail": "p521 57519"
       },
       {
         "result": "works",
@@ -400,11 +404,14 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p529 6558"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

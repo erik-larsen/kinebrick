@@ -304,7 +304,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p206 60485"
       },
       {
         "result": "partly",
@@ -350,7 +352,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p250 55013"
       },
       {
         "result": "partly",
@@ -420,7 +424,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p648 92695 against p647 92693c01"
       },
       {
         "result": "not checked"
@@ -494,6 +500,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

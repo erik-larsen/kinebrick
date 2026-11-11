@@ -287,7 +287,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p513 3648b"
       },
       {
         "result": "no",
@@ -311,7 +313,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -356,7 +359,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p692 42054 - 18938"
       },
       {
         "result": "partly",
@@ -401,7 +406,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1820 92696 against p1818 92693c01"
       },
       {
         "result": "partly",
@@ -441,7 +448,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1659 42054 - 18938 against p1660 18939"
       },
       {
         "result": "works",
@@ -592,7 +601,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "no",
@@ -653,7 +663,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -712,7 +723,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p12 87083"
       },
       {
         "result": "works",
@@ -831,6 +844,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

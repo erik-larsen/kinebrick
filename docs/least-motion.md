@@ -84,36 +84,13 @@ The 9397 timed out at 20 minutes both ways; the 9396 timed out with holds, and f
 - **The difference is spreading.** Where something must give, holds let one thing go entirely; least squares lets several give a little. Most of what's worse is a part that should stay still moving a degree.
 - **The real question is physical.** Which of two ways a mechanism goes, when its geometry allows both, is settled in a real model by friction, weight and springs, none of which KineBrick knows yet. Holds and tiers are both stand-ins for those. The tiers make the stand-in one explicit place (a list of what costs what) instead of an order of tries, which is what would let version 2.0's forces replace it: Kelvin's theorem says a mechanism set moving from rest moves with the least kinetic energy its constraints allow, so with masses (and friction as tiers above them), tier 4 becomes the physics rather than a guess.
 
-## The full function check, on the Windows PC
-
-To compare with holds on every set, as the last full check (6da8518) was run: in Git Bash, in the PC's clone, with the PC set never to sleep while it runs. The same limits as that check: 15 sets at a time, 150 minutes a set. The sets' models are read from `omr/` (not committed), so `npm run omr` downloads any that clone doesn't have yet.
-
-```bash
-git fetch origin
-git switch claude/least-motion
-git pull
-npm ci
-npm run omr
-KINEBRICK_LEAST=1 npm run functions -- --jobs 15 --limit 150
-```
-
-Each set's results then say `"least": true` beside the commit they were checked at. Commit them to the branch and push:
-
-```bash
-git add data/sets
-git commit -m "Check the functions of every set with least-motion drags"
-git push origin claude/least-motion
-```
-
-Then they're compared set by set and function by function with 6da8518's (and the 858's with 516e176's, which added it).
-
 ## Second round, on main as of 1f1e1cb
 
 The prototype was carried onto main at 1f1e1cb, on the `claude/least-motion-2` branch, still off by default. With the switch off, all 329 tests pass.
 
 ### The full function check
 
-It was run on every set on the Mac rather than the PC, at a16c825, with the same 150-minute limit. Compared function by function with 6da8518's holds:
+It was run on every set on the Mac, at a16c825, with the same 150-minute limit. Compared function by function with 6da8518's holds:
 
 | | Holds | Least motion |
 |---|---|---|

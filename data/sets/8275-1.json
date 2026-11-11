@@ -337,7 +337,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2625 57518"
       },
       {
         "result": "partly",
@@ -392,7 +394,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2669 57518"
       },
       {
         "result": "partly",
@@ -461,7 +465,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p2613 57519"
       },
       {
         "result": "works",
@@ -583,7 +589,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p1449 4716"
       },
       {
         "result": "partly",
@@ -648,11 +656,14 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p2943 4716"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

@@ -184,7 +184,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p57 30394 against p47 3706"
       },
       {
         "result": "no",
@@ -223,8 +225,11 @@
           "p61 30285 is part of the frame",
           "p63 30285 is part of the frame",
           "p65 30285 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p58 30285"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

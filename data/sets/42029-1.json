@@ -343,7 +343,9 @@
         "strayed": [
           "p485 32556",
           "p470 32556"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p367 6542b against p674 2850a"
       },
       {
         "result": "works",
@@ -472,7 +474,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p55 94925 against p0 32278"
       },
       {
         "result": "partly",
@@ -522,7 +526,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p62 94925 against p0 32278"
       },
       {
         "result": "works",
@@ -559,6 +565,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

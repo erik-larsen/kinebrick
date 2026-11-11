@@ -125,7 +125,8 @@
         ],
         "why": [
           "p100 4185 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "partly",
@@ -220,7 +221,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p172 3482"
       },
       {
         "result": "skipped"
@@ -297,6 +300,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

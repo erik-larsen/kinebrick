@@ -253,7 +253,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p219 3706"
       },
       {
         "result": "partly",
@@ -307,7 +309,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p225 2910"
       },
       {
         "result": "partly",
@@ -379,7 +383,9 @@
         "strayed": [
           "p210 3711",
           "p215 3651"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p61 3707"
       },
       {
         "result": "skipped"
@@ -455,7 +461,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p25 4143"
       },
       {
         "result": "works",
@@ -544,11 +552,13 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

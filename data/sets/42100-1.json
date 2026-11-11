@@ -352,7 +352,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p313 42100 - 42529"
       },
       {
         "result": "partly",
@@ -397,7 +399,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1099 42100 - 42529"
       },
       {
         "result": "partly",
@@ -458,7 +462,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p313 42100 - 42529"
       },
       {
         "result": "partly",
@@ -499,7 +505,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1927 42003 against p87 42003"
       },
       {
         "result": "partly",
@@ -545,7 +553,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "too-little",
+        "detail": "p2971 42003 against p1927 42003"
       },
       {
         "result": "partly",
@@ -623,7 +633,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "too-little",
+        "detail": "p3322 42003 against p2971 42003"
       },
       {
         "result": "no",
@@ -669,7 +681,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p3600 15458 against p3322 42003"
       },
       {
         "result": "no",
@@ -701,7 +715,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "no",
@@ -722,8 +737,10 @@
         ],
         "why": [
           "p4660 40490 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

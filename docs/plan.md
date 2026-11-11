@@ -42,7 +42,32 @@ What we know about the 515 failures:
 - 144 questions about the function lists are open, and 148 functions are inferred from the model, not from the book. A wrong function list makes a correct model fail.
 - The rest are the solver's: it chooses the wrong motion, stops early, or does not come back.
 
-We do not know the size of each group. The check records a result, not a cause. Measuring the causes is the first job.
+When this plan was written we did not know the size of each group: the check recorded a result, not a cause. Measuring the causes was the first job.
+
+### The causes, first measured 2026-11-11
+
+`npm run functions -- --causes` now gives every failing function one cause from a fixed list (see [Causes](../ARCHITECTURE.md#causes)), told from the motions the mechanism allows where the control starts. On the results above:
+
+| Cause | Functions | For |
+|---|---|---|
+| A part that should move can move, but nothing ties it to the control | 177 | Inference |
+| The control has a joint, but nothing lets it move | 75 | Inference |
+| The control, or a part it should move, is loose | 68 | Inference |
+| A part that should move can't move at all | 61 | Inference |
+| The control is part of the frame, or has no joint | 56 | Inference |
+| The mechanism is right, but the drag stopped before half way | 28 | Solver |
+| A part that should stay moved, though the control can move without it | 21 | Solver |
+| The control went far enough, but a part hardly moved | 10 | Solver |
+| A part that should stay has to move with the control | 9 | Function lists |
+| A control to be worked first didn't go, or none of these | 6 | Check |
+
+What this says, and what it doesn't:
+
+- **About 437 of the 511 point at the mechanism Kinebrick infers, and about 59 at how the solver moves it.** So phase 3 (connections and parts' behaviour) is where most of the functions are, not phase 4.
+- **79 of the 177 "nothing ties it" are functions with a selector, a motor or a gearbox.** Built in neutral, nothing does tie them: the check has to shift first. Those are the check's to fix.
+- **"Nothing lets it move" is partly the solver's.** A linkage that fits only as built, or a hinge held by a friction pin, has no exact motion. Play as weighted rows (phase 4) would free some of the 75.
+- **The causes are a first cut.** They are told at the start of the drag only, on the first control that fails. "Nothing ties it" can't yet tell a missing connection from a linkage with a second way to move.
+- **The total hides losses.** Against release 0.850, 532 functions work where 522 did, but 38 functions' results got worse (`npm run ratchet -- 0.850`).
 
 ## Principles
 
@@ -67,16 +92,18 @@ Make the function check say why, make it complete, and make it fast.
 | Work | Code | Tests |
 |---|---|---|
 | A `cause` for each failing function, from a fixed list: control fused to the frame; loose part; jammed with nothing held; moves, but the solver chose another motion; stops early; wrong amount; not back; the check cannot operate it | `scripts/triage.ts` (new), reading each set's results and re-running the failing drag with a trace | One fixture for each cause |
-| A stop-reason probe: for one drag, each step's tier costs, held bodies, strayed joints and loop gap, as text and as JSON | `scripts/probe-drag.ts` (new) | Its output for two known drags |
+| A stop-reason probe: for one drag, piece by piece, which bodies moved most, how far each listed part went, and what stopped it, as text and as JSON. Later, from inside the solver: each step's tier costs, held bodies, strayed joints and loop gap | `scripts/probe-drag.ts` (new) | Its output for two known drags |
 | The check shifts gearboxes, clicks slides and runs motors, as the viewer does | `scripts/check-functions.ts` | The 956's gear lever and the 8880's gearbox, through the check |
 | Results leave `data/sets/` for a folder of their own, all from one commit | `scripts/check-functions.ts`, `results/` (new) | The curated files no longer change when the check runs |
 | Slowest sets first, by the last run's times | `scripts/check-functions.ts` | None needed |
-| The full check runs every night away from the Mac, and a ratchet compares it with the night before | `.github/workflows/check.yml` (new), `scripts/ratchet.ts` (new) | The ratchet on two saved result folders |
+| The full check runs every night on the Mac, as a scheduled command, and a ratchet compares it with the commit before | `scripts/ratchet.ts` (new), and a schedule | The ratchet against a known commit |
 | The scan counts each large separate group in a file as a model of its own | `scripts/scan-omr.ts` | A two-model file |
 | Invariance: a model moved and turned about the upright gives the same results. Jitter: parts moved by 0.05 LDU give the same results | `tests/invariance.test.ts` (new) | Itself |
 | Skip reasons from a fixed list: needs gravity, needs force, model error, check limit | `data/sets/*.json` (`skip`), `data/sets/README.md` | A test that each reason is on the list |
 
 **Done when:** every failing function has a cause; the full check runs unattended each night; one command says what a change gained and lost.
+
+**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the nightly run; the scan's count of second models; the invariance and jitter tests; skip reasons from a fixed list.
 
 ### Phase 2. Structure
 
@@ -151,7 +178,7 @@ The skipped functions that phase 4's gravity and springs do not reach: a weight 
 | Orchestrator | One Claude Fable 5.2 session, medium effort | Keeps this plan, the backlog and the gate. Briefs workers and merges their branches into `preview`. Publishes the status page. | `scripts/`, `.github/`, `docs/plan.md`, `results/` |
 | Solver owner | One Claude Opus 5.5 session, high effort | Phase 4, and phase 2's work in the solver core | `src/kinematics.ts`, later `src/constraints/` and `src/linalg.ts` |
 | Workers | Claude Opus 5.5 agents, medium effort, one task each, each in a worktree of its own | Phase 3's lanes | Only the files their lane names |
-| CI | GitHub Actions | Tests on each push. The full check and the ratchet each night. | `results/` |
+| CI | GitHub Actions, and this Mac | GitHub runs the tests on each push. The Mac runs the full check and the ratchet each night. | `results/` |
 
 These models are where we start, to keep the cost down. The gate's log shows how often each role's work is kept or reverted; if the solver owner's work is reverted often, that role is the first to move to a stronger model.
 
@@ -204,7 +231,7 @@ A branch is merged into `preview` only when all are true. If the night's check t
 
 - Workers run only in lanes with a gate a script can check.
 - A fleet starts only when Erik says so, with a stated number of workers.
-- The nightly check runs on GitHub's machines or on the Windows PC (which ran all 186 sets, 15 at a time, for the survey), not on a Claude session.
+- The nightly check runs on this Mac (a Mac mini, 12 cores) as a scheduled command, not inside a Claude session.
 - The models in [Who does what](#who-does-what) are the cheapest that we expect to do each job.
 
 ## Decisions, made 2026-11-10

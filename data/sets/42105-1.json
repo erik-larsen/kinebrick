@@ -165,7 +165,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p60 40490"
       },
       {
         "result": "partly",
@@ -219,7 +221,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p155 42105 - 18575"
       },
       {
         "result": "partly",
@@ -268,7 +272,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p230 42105 - 18575"
       },
       {
         "result": "no",
@@ -313,11 +319,13 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

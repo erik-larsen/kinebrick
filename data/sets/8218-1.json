@@ -192,8 +192,10 @@
         "why": [
           "p60 32062 is part of the frame",
           "p61 32062 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

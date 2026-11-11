@@ -363,7 +363,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p471 3648b"
       },
       {
         "result": "works",
@@ -432,7 +434,9 @@
         ],
         "why": [
           "p1083 64782 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p1083 64782"
       },
       {
         "result": "works",
@@ -533,6 +537,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

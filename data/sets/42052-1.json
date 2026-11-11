@@ -302,7 +302,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p311 76019"
       },
       {
         "result": "partly",
@@ -383,7 +385,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p272 18947"
       },
       {
         "result": "partly",
@@ -454,7 +458,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p272 18947"
       },
       {
         "result": "partly",
@@ -525,7 +531,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p602 62531"
       },
       {
         "result": "partly",
@@ -596,7 +604,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p271 18947"
       },
       {
         "result": "not checked"
@@ -670,6 +680,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

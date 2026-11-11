@@ -213,7 +213,9 @@
         "strayed": [
           "p13 15460",
           "p12 15460"
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p12 15460"
       },
       {
         "result": "partly",
@@ -288,7 +290,9 @@
         "strayed": [
           "p12 15460",
           "p13 15460"
-        ]
+        ],
+        "cause": "too-little",
+        "detail": "p11 15459 against p8 15459"
       },
       {
         "result": "skipped"
@@ -404,6 +408,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

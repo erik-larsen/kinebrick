@@ -727,7 +727,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "partly",
@@ -777,7 +778,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2426 42055 - 24120"
       },
       {
         "result": "partly",
@@ -809,7 +812,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p418 64178 against p1175 18939"
       },
       {
         "result": "partly",
@@ -860,7 +865,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p911 57520"
       },
       {
         "result": "partly",
@@ -906,7 +913,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1616 32270"
       },
       {
         "result": "works",
@@ -985,7 +994,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "too-little",
+        "detail": "p1510 62274c01"
       },
       {
         "result": "works",
@@ -1146,6 +1157,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

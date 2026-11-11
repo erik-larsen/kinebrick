@@ -286,7 +286,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p596 3702 against p580 3895"
       },
       {
         "result": "works",
@@ -637,6 +639,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

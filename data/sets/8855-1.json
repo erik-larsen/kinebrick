@@ -144,7 +144,8 @@
         ],
         "why": [
           "p428 8855-2742c01 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "partly",
@@ -204,7 +205,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p347 3707"
       },
       {
         "result": "partly",
@@ -279,7 +282,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p154 3706"
       },
       {
         "result": "works",
@@ -353,6 +358,7 @@
           "p143 4273a"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

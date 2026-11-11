@@ -245,7 +245,9 @@
         ],
         "strayed": [
           "p48 59443"
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p201 41896 against p0 32316"
       },
       {
         "result": "no",
@@ -277,7 +279,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p3 87082 against p230 32278"
       },
       {
         "result": "partly",
@@ -345,7 +349,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p404 48452"
       },
       {
         "result": "partly",
@@ -386,7 +392,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p424 32278 against p417 32009"
       },
       {
         "result": "partly",
@@ -427,7 +435,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p455 32278 against p424 32278"
       },
       {
         "result": "works",
@@ -620,6 +630,7 @@
           "p62 32072"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

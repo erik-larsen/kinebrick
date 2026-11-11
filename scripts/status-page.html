@@ -2,11 +2,11 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
-/* Layout: a short summary, then one treemap of every set (area = pieces, colour = share working), then the picked set's functions. */
+/* Layout: a short summary, then one treemap of every set (area = pieces, colour = share working), then the picked set's functions, then failing functions by cause. */
 :root {
   --bg: #f6f5f0; --panel: #ffffff; --fg: #17202e; --muted: #5a6474; --line: #d9d6cc;
   --all: #2f9e5b; --most: #f2c230; --half: #f08a24; --few: #d43d2f; --none: #101114; --unchecked: #a9aeb8;
-  --on-dark: #ffffff; --on-light: #17202e;
+  --on-dark: #ffffff; --on-light: #17202e; --bar: #3d6fb4;
   --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --text: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -33,6 +33,14 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
 #detail li { display: flex; gap: 10px; align-items: baseline; }
 .tag { flex: none; width: 92px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
 .works { color: var(--all); } .partly { color: var(--half); } .no { color: var(--few); } .other { color: var(--muted); }
+.why { color: var(--muted); font-size: 13px; }
+#causes { display: flex; flex-direction: column; gap: 10px; }
+#causes h2 { font-family: var(--display); font-size: 21px; font-weight: 700; }
+.cause { display: grid; grid-template-columns: 3.2em minmax(0, 1fr); gap: 2px 12px; align-items: center; }
+.cause b { font-family: var(--display); font-size: 19px; text-align: right; font-variant-numeric: tabular-nums; }
+.cause .track { grid-column: 2; height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.cause .fill { display: block; height: 100%; background: var(--bar); border-radius: 4px; }
+.cause .who { color: var(--muted); font-size: 13px; }
 @media (max-width: 640px) { #map { height: 150vw; } h1 { font-size: 24px; } }
 </style>
 <div class="page">
@@ -44,6 +52,7 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
   <div class="legend" id="legend"></div>
   <div id="map" aria-label="One box for each set. A box's area is the set's number of pieces. Its colour is the share of its checked functions that work."></div>
   <section id="detail" aria-live="polite"><p class="sub">Pick a box to see that set's functions. A box's area is the set's number of pieces.</p></section>
+  <section id="causes" hidden></section>
 </div>
 <script>
 const DATA = /*DATA*/null;
@@ -107,10 +116,12 @@ function show(s) {
   );
   const list = el('ul');
   const order = { no: 0, partly: 1, works: 2 };
-  for (const [does, result] of [...s.functions].sort((a, b) => (order[a[1]] ?? 3) - (order[b[1]] ?? 3))) {
+  for (const [does, result, cause, about] of [...s.functions].sort((a, b) => (order[a[1]] ?? 3) - (order[b[1]] ?? 3))) {
     const li = el('li');
     const label = result === 'no' ? "doesn't work" : result;
-    li.append(el('span', 'tag ' + (result in order ? result : 'other'), label), el('span', '', does));
+    const text = el('span', '', does);
+    if (cause && DATA.causes[cause]) text.append(el('br'), el('span', 'why', `Why: ${DATA.causes[cause].says}${about ? ` (${about})` : ''}. For: ${DATA.causes[cause].owner}.`));
+    li.append(el('span', 'tag ' + (result in order ? result : 'other'), label), text);
     list.append(li);
   }
   d.append(list);
@@ -154,6 +165,28 @@ if (DATA) {
     const swatch = el('i', 'b' + k.id);
     span.append(swatch, `${k.label}: ${n} sets`);
     legend.append(span);
+  }
+  // Why the functions that don't work don't: how many have each cause, most common first.
+  const tally = {};
+  for (const s of sets) for (const f of s.functions) if (f[2]) tally[f[2]] = (tally[f[2]] || 0) + 1;
+  const rows = Object.entries(tally).sort((a, b) => b[1] - a[1]);
+  if (rows.length) {
+    const box = document.getElementById('causes');
+    box.hidden = false;
+    const explained = rows.reduce((t, r) => t + r[1], 0);
+    box.append(el('h2', '', 'Why functions fail'), el('p', 'sub', `${explained.toLocaleString('en')} of the ${(sum('partly') + sum('no')).toLocaleString('en')} functions that don't work in full have a cause, told from the motions the mechanism allows where the control starts.`));
+    for (const [cause, n] of rows) {
+      const c = DATA.causes[cause] || { says: cause, owner: '' };
+      const row = el('div', 'cause');
+      const track = el('span', 'track');
+      const fill = el('span', 'fill');
+      fill.style.width = (100 * n) / rows[0][1] + '%';
+      track.append(fill);
+      const words = el('span', '', c.says + ' ');
+      words.append(el('span', 'who', `· for: ${c.owner}`));
+      row.append(el('b', '', n.toLocaleString('en')), words, track);
+      box.append(row);
+    }
   }
   draw();
   let timer = 0;

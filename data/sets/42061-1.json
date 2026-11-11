@@ -239,7 +239,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p170 18942 against p90 18940"
       },
       {
         "result": "partly",
@@ -279,7 +281,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p170 18942 against p90 18940"
       },
       {
         "result": "works",
@@ -374,6 +378,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

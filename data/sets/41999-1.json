@@ -333,7 +333,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p299 87761"
       },
       {
         "result": "no",
@@ -358,7 +360,8 @@
         "why": [
           "p79 64178 has no joint to work",
           "p177 64178 has no joint to work"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -398,7 +401,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p722 76244"
       },
       {
         "result": "partly",
@@ -459,7 +464,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1216 11954"
       },
       {
         "result": "no",
@@ -491,11 +498,14 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p50 32524"
       },
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

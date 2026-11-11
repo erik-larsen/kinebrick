@@ -259,7 +259,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p84 65414c01"
       },
       {
         "result": "partly",
@@ -308,7 +310,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p121 18947"
       },
       {
         "result": "partly",
@@ -373,7 +377,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p779 32198"
       },
       {
         "result": "no",
@@ -424,7 +430,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -518,8 +525,11 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p2766 32525"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

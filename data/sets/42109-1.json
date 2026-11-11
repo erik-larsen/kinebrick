@@ -153,7 +153,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p16 42109 - 65414c01"
       },
       {
         "result": "no",
@@ -176,7 +178,8 @@
         ],
         "why": [
           "p971 56145 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "partly",
@@ -246,7 +249,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p692 32270"
       },
       {
         "result": "partly",
@@ -285,11 +290,13 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

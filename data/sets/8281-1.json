@@ -135,7 +135,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p25 32063 against p5 32271"
       },
       {
         "result": "partly",
@@ -196,7 +198,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p27 3707 against p5 32271"
       },
       {
         "result": "works",
@@ -253,8 +257,10 @@
         ],
         "why": [
           "p61 30663 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

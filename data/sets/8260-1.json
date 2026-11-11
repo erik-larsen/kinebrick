@@ -195,7 +195,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p92 47508"
       },
       {
         "result": "works",
@@ -303,6 +305,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

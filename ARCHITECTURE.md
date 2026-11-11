@@ -1056,8 +1056,32 @@ Two more counts, beside the result rather than changing it, so results stay comp
 - One entry per function, in the same order as `curated.functions`: its result, how far each control went each way (`turned`), the parts in `moves` that didn't move (`still`), those in `stays` that did (`moved`), and `why`, where it couldn't work a control.
 - For each control, each listed part's turning (radians) and sliding (LDU) for each radian the control turned, the way it was worked that came out best (`rates`); what the gears say, where they do (`expected`), and the parts off it (`wrong`).
 - For each control and way, the furthest any part was left after there and back, in LDU and degrees (`back`), and the part furthest out (`strayed`), if it's beyond 0.5.
+- For each control and way, what stopped it short of its reach, if anything did (`stop`): `limit` (the end of a slide's or a rack's travel), `dead point`, `no motion` (nothing left that turns it) or `stuck` (a step that couldn't be taken).
+- For a function that doesn't work, why (`cause`, and `detail`, the part it's about): see [Causes](#causes).
 
-**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, smallest model first. As each set finishes, every function that comes out better or worse than the set had before is listed: its result, or how many parts move by the wrong amount or don't come back.
+#### Causes
+
+Every function that comes out `partly` or `no` gets one cause from a fixed list (`scripts/causes.ts`), which says where to look and who looks. Most are told without dragging anything, from the motions the mechanism allows where the control starts: whether the control can move at all, whether a part that should move can move at all against what it's measured against, and whether that part must move whenever the control does.
+
+| Cause | Says | For |
+|---|---|---|
+| `bad-reference` | The function names a part that isn't in the model | The function lists |
+| `loose-part` | The control, or a part it should move, is loose | The inference |
+| `control-fixed` | The control is part of the frame, or has no joint to work | The inference |
+| `first-failed` | A control that has to be worked first didn't go | The check |
+| `control-jammed` | The control has a joint, but nothing lets it move | The inference |
+| `part-fixed` | A part that should move can't move at all against what it's measured against | The inference |
+| `not-driven` | A part that should move can move, but the control can move without it, and no gears tie the two | The inference |
+| `other-motion` | Gears tie a part to the control, but the control can also move without it, and did (a differential's other side) | The solver |
+| `stopped-early` | The part must move with the control, but the drag stopped before half way | The solver |
+| `too-little` | The control went far enough, but a part it must move hardly moved | The solver |
+| `stay-forced` | A part that should stay has to move whenever the control does | The function lists |
+| `stay-chosen` | A part that should stay moved, though the control can move without it | The solver |
+| `unknown` | None of these | The check |
+
+`npm run functions -- --causes` works the causes out afresh from the results already written, without a drag: a few minutes for every set. `npm run probe -- 8880 2` works one function's control piece by piece and says which bodies moved most at each, how far each listed part went, and what stopped it (`scripts/probe-drag.ts`).
+
+**How it runs.** Each set is checked in a process of its own, half the cores' worth at once, slowest first, by how long each took the last time (`seconds`, in its results), so the check takes about as long as its slowest set rather than starting that one last. As each set finishes, every function that comes out better or worse than the set had before is listed: its result, or how many parts move by the wrong amount or don't come back.
 
 **The quick check.** `npm run functions -- --quick` checks only 33 sets, which between them have every kind of mechanism the check can work in the [mechanism catalog](docs/mechanisms/README.md) (bar two only the slow 42054 and 42055 have), chosen for the least time: about 2 minutes on this Mac, 5 at a time. It's for every change; the whole check, which takes hours (the 8110 alone took 100 minutes before the drags back doubled its drags), is for overnight.
 
@@ -1134,6 +1158,8 @@ Browser-level tests for these paths can come later.
 | `scripts/download-instructions.ts` | Downloads each set's building instructions into `omr/instructions/`, LEGO's PDFs or else brickinstructions.com's scans, and writes which are which into its `imported.instructions` (`npm run instructions`) |
 | `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [The joints probe](#the-joints-probe)) |
 | `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
+| `scripts/causes.ts` | Why a function that doesn't work doesn't: one cause from a fixed list, for the function check (see [Causes](#causes)) |
+| `scripts/probe-drag.ts` | Works one function's control piece by piece and says what moved and what stopped it (`npm run probe`) |
 | `scripts/gear-rates.ts`, `scripts/slider-cranks.ts` | What gears and slider-cranks say parts should do, without the solver, for the function check |
 | `scripts/status-page.ts`, `scripts/status-page.html` | Writes the status page from each set's results: every set as a box, sized by its pieces and coloured by the share of its checked functions that work (`npm run status`; see [docs/plan.md](docs/plan.md)) |
 | `scripts/bench-solver.ts` | Times the solver on a fixed set of drags, small models to the biggest (`npm run bench`; `--quick` leaves out the 8110 Unimog) |

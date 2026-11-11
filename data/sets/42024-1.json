@@ -386,7 +386,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p561 6539 against p558 3706"
       },
       {
         "result": "partly",
@@ -467,7 +469,8 @@
         ],
         "why": [
           "p50 32039, worked first, went 0 of 0.5"
-        ]
+        ],
+        "cause": "first-failed"
       },
       {
         "result": "partly",
@@ -525,7 +528,8 @@
         ],
         "why": [
           "p50 32039, worked first, went 0 of -0.5"
-        ]
+        ],
+        "cause": "first-failed"
       },
       {
         "result": "works",
@@ -629,6 +633,7 @@
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

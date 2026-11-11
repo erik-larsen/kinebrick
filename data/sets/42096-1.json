@@ -188,7 +188,9 @@
               0.01
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p6 62821"
       },
       {
         "result": "works",
@@ -331,7 +333,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "works",
@@ -378,6 +381,7 @@
           "p1653 87079"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

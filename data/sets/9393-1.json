@@ -346,7 +346,9 @@
               0.09
             ]
           ]
-        ]
+        ],
+        "cause": "stay-forced",
+        "detail": "p301 6587 against p299 48989"
       },
       {
         "result": "partly",
@@ -415,7 +417,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p311 6587"
       },
       {
         "result": "works",
@@ -450,6 +454,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

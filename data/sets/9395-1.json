@@ -418,7 +418,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p60 6539"
       },
       {
         "result": "partly",
@@ -489,7 +491,8 @@
         ],
         "why": [
           "p612 2825, worked first, went 0 of 0.3"
-        ]
+        ],
+        "cause": "first-failed"
       },
       {
         "result": "partly",
@@ -547,7 +550,8 @@
         ],
         "why": [
           "p612 2825, worked first, went 0 of -0.3"
-        ]
+        ],
+        "cause": "first-failed"
       },
       {
         "result": "not checked"
@@ -626,6 +630,7 @@
           "p675 6141"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

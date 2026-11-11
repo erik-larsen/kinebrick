@@ -185,7 +185,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p113 32209"
       },
       {
         "result": "partly",
@@ -226,7 +228,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p60 42057 -32523p01"
       },
       {
         "result": "works",
@@ -306,6 +310,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

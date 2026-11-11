@@ -239,7 +239,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p557 99012"
       },
       {
         "result": "works",
@@ -350,7 +352,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p226 60483"
       },
       {
         "result": "skipped"
@@ -410,7 +414,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p384 32072"
       },
       {
         "result": "no",
@@ -452,7 +458,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p330 2736"
       },
       {
         "result": "no",
@@ -484,7 +492,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "works",
@@ -555,6 +564,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

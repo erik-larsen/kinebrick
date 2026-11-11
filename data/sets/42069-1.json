@@ -535,7 +535,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p567 6589"
       },
       {
         "result": "works",
@@ -708,7 +710,9 @@
               0.14
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p1033 62531"
       },
       {
         "result": "partly",
@@ -741,7 +745,8 @@
         ],
         "why": [
           "p722 64782 is part of the frame"
-        ]
+        ],
+        "cause": "unknown"
       },
       {
         "result": "no",
@@ -766,11 +771,13 @@
         "why": [
           "p884 64782 is part of the frame",
           "p896 64782 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

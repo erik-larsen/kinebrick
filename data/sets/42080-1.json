@@ -421,7 +421,8 @@
         ],
         "why": [
           "p1893 42080 - 18575 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -444,7 +445,8 @@
         ],
         "why": [
           "p1892 42080 - 18575 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -515,7 +517,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p586 18938"
       },
       {
         "result": "no",
@@ -552,7 +556,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stopped-early"
       },
       {
         "result": "works",
@@ -713,6 +718,7 @@
           "p2048 42080 - 10197"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

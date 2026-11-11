@@ -193,7 +193,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p129 87083 against p120 32278"
       },
       {
         "result": "no",
@@ -238,7 +240,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p107 87083 against p97 32278"
       },
       {
         "result": "works",
@@ -282,6 +286,7 @@
           "p134 4274"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

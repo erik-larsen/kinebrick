@@ -350,7 +350,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p405 18946"
       },
       {
         "result": "partly",
@@ -392,7 +394,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p592 18946"
       },
       {
         "result": "partly",
@@ -456,7 +460,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p390 76244"
       },
       {
         "result": "works",
@@ -612,7 +618,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p124 18946"
       },
       {
         "result": "partly",
@@ -688,7 +696,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p139 18946"
       },
       {
         "result": "partly",
@@ -754,7 +764,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p161 18946"
       },
       {
         "result": "partly",
@@ -830,7 +842,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p161 18946"
       },
       {
         "result": "no",
@@ -869,11 +883,13 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

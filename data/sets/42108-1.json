@@ -666,7 +666,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p355 32062"
       },
       {
         "result": "no",
@@ -711,7 +713,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p808 11954"
       },
       {
         "result": "no",
@@ -766,7 +770,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "control-jammed"
       },
       {
         "result": "partly",
@@ -814,7 +819,9 @@
               0.02
             ]
           ]
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p957 2730"
       },
       {
         "result": "partly",
@@ -873,11 +880,14 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "not-driven",
+        "detail": "p835 42108 - 35185"
       },
       {
         "result": "skipped"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

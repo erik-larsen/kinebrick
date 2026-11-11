@@ -167,7 +167,8 @@
         ],
         "why": [
           "p17 8851-4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -190,7 +191,8 @@
         ],
         "why": [
           "p256 8851-4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "no",
@@ -213,7 +215,8 @@
         ],
         "why": [
           "p542 8851-4694c01-f1 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "skipped"
@@ -261,7 +264,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p908 3649 against p852 3738"
       },
       {
         "result": "works",
@@ -338,6 +343,7 @@
           "p1073 4265a"
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

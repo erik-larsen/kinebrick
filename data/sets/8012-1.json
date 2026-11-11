@@ -1576,7 +1576,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p3833 3705"
       },
       {
         "result": "not checked"
@@ -1659,11 +1661,14 @@
           "p2378 41681 is part of the frame",
           "p2012 41681 is part of the frame",
           "p2396 41681 is part of the frame"
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2378 41681"
       },
       {
         "result": "not checked"
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }

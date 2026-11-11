@@ -377,7 +377,9 @@
               0.11
             ]
           ]
-        ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p917 2851"
       },
       {
         "result": "partly",
@@ -464,7 +466,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p235 18947"
       },
       {
         "result": "partly",
@@ -501,7 +505,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p478 87079"
       },
       {
         "result": "works",
@@ -674,7 +680,8 @@
         ],
         "why": [
           "p2437 64394 is part of the frame"
-        ]
+        ],
+        "cause": "control-fixed"
       },
       {
         "result": "works",
@@ -742,7 +749,9 @@
               0
             ]
           ]
-        ]
+        ],
+        "cause": "loose-part",
+        "detail": "p2757 24119"
       },
       {
         "result": "works",
@@ -812,6 +821,7 @@
           ]
         ]
       }
-    ]
+    ],
+    "causes": "6987cc1"
   }
 }
