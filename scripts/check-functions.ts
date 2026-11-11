@@ -578,8 +578,6 @@ const one = args.indexOf('--one'); // (internal) check this one set's file and p
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
-  // Stopped from outside, it ends as a process should (and a profile being taken is written).
-  process.on('SIGTERM', () => process.exit(1));
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
   const found = check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // Let the output drain before the process ends: a pipe takes it in pieces.
