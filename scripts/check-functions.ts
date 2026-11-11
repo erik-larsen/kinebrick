@@ -26,8 +26,9 @@
 //   npm run functions                 every set with functions
 //   npm run functions -- 855 8880     only sets whose number has one of these in it
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
-//   npm run functions -- --limit 20   stop a set that takes more than this many minutes (default
-//                                     30), marking it as timed out
+//   npm run functions -- --limit 20   stop a process (a set, or one function of a slow set) that
+//                                     takes more than this many minutes (default 30), marking
+//                                     the set as timed out
 //   npm run functions -- --lock       steering's stops too (see LOCK), for now only reported
 //   npm run functions -- --causes     no drags: only works out afresh why each function that
 //                                     doesn't work doesn't (see causes.ts), from the results
@@ -39,10 +40,13 @@
 // Each set's results are compared with what it had before, and each function that comes out
 // better or worse is listed as the run goes.
 //
-// Each set is checked in a process of its own. generated has the commit it was checked at (and
+// Each set is checked in a process of its own, and a set that took more than SPLIT_OVER seconds
+// the last time, a function to a process (see main): the whole check then takes about as long as
+// its work shared out over the jobs, not as long as its slowest set. generated has the commit it was checked at (and
 // "uncommitted": true if src/ or data/ had changes not yet committed, and "holds": true if checked
 // with KINEBRICK_LEAST=0), the date, how many functions came out each way, the model's loose
-// parts, and one entry per function, in the same order as curated.functions: its result, how far
+// parts, and one entry per function, in the same order as curated.functions: its result, how long
+// it took (`seconds`), how far
 // each control went each way, and the parts that didn't do what they should ("still": in `moves`
 // but didn't move; "moved": in `stays` but did).
 
@@ -102,6 +106,8 @@ const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
 // The quick sets: between them, every kind of mechanism the check can work (in the mechanism
 // catalog), but two only the slow 42054 and 42055 have, chosen for the least time the check
 // takes: about 6 minutes of one core's time in all, at 0.850.
+// A set that took more than this many seconds the last time is checked a function to a process.
+const SPLIT_OVER = 300;
 const QUICK = ['8270', '42107', '8849', '42061', '42109', '8001', '8204', '8245', '8851', '8856', '8208', '8448', '8824', '8202', '42084', '42074', '42071', '8845', '8837', '858', '8074', '42063', '42057', '42065', '956', '8081', '8049', '8416', '42112', '42129', '9394', '42000', '42114'];
 
 type Stop = 'meets' | 'limit' | 'stuck' | 'free';
@@ -113,6 +119,7 @@ const causesOnly = process.env.KINEBRICK_CAUSES === '1';
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
+  seconds?: number; // how long the function took to check
   turned?: [number, number][]; // each control's turn against what its shaft turns in (or push), each way
   still?: string[];
   moved?: string[];
@@ -140,28 +147,47 @@ interface Fn {
 
 // Checks one set's functions on its model, or each on its own; what goes in its generated
 // section, but for the commit and date.
-function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }) {
+// Given `only`, just that function (by its place in the list) is checked, and only its model is
+// loaded: the others' entries are left out (null), for a set checked a function to a process
+// (see SPLIT_OVER).
+function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
   const { model, functions } = set.curated;
   // What each function came to the last time, for --causes.
   const priors = set.generated?.functions ?? [];
   const modelOf = (fn: Fn) => fn.model ?? model;
   const checked: Checked[] = [];
   const loose: string[] = [];
+  const wanted = (i: number) => only === null || i === only;
   for (const m of new Set(functions.map(modelOf))) {
-    const found = checkModel(m, functions.filter((fn) => modelOf(fn) === m), functions.flatMap((fn, i) => (modelOf(fn) === m ? [priors[i]] : [])));
-    functions.forEach((fn, i) => {
-      if (modelOf(fn) === m) checked[i] = found.checked.shift()!;
-    });
+    const mine = functions.flatMap((fn, i) => (modelOf(fn) === m && wanted(i) ? [i] : []));
+    if (mine.length === 0) continue;
+    const found = checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
+    mine.forEach((i, at) => (checked[i] = found.checked[at]));
     loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
   }
+  return { counts: countsOf(checked), loose, functions: checked };
+}
+
+// How many functions came out each way, and how many moved a part by the wrong amount or left
+// one not back.
+function countsOf(checked: Checked[]) {
   const counts: Partial<Record<Result | 'wrong amount' | 'not back', number>> = {};
   const count = (what: keyof typeof counts) => (counts[what] = (counts[what] ?? 0) + 1);
   for (const c of checked) {
+    if (!c) continue; // left out (see check's `only`)
     count(c.result);
     if (c.wrong) count('wrong amount');
     if (c.strayed) count('not back');
   }
-  return { counts, loose, functions: checked };
+  return counts;
+}
+
+// What a function comes to without its model: skipped, or with no control, not checked. Null if
+// it has to be checked.
+function withoutChecking(fn: Fn): Checked | null {
+  if (fn.skip) return { result: 'skipped' };
+  if (!fn.control) return { result: 'not checked' };
+  return null;
 }
 
 // Checks functions on one model: each one's result, and the model's loose parts.
@@ -296,13 +322,13 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   };
 
   const checkOne = (fn: Fn, prior?: Checked): Checked => {
-    if (fn.skip) return { result: 'skipped' };
-    if (!fn.control) return { result: 'not checked' };
+    const known = withoutChecking(fn);
+    if (known) return known;
     // With --causes, only a function that didn't work is looked at, and nothing is dragged.
     if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
     // Controls worked together are worked as one, by the first, the others turning with it.
-    const controls = [fn.control].flat();
+    const controls = [fn.control!].flat();
     const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref, wi) => {
       together = [];
       use(asLoaded);
@@ -506,12 +532,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     };
   };
 
+  // Each function's entry says how long it took (`seconds`), so a slow set shows which function
+  // is slow. KINEBRICK_TIMES=1 says it as the set goes, too.
   const checked = functions.map((fn, i): Checked => {
+    const started = Date.now();
+    let found: Checked;
     try {
-      return checkOne(fn, priors[i]);
+      found = checkOne(fn, priors[i]);
     } catch (err) {
-      return { result: 'error', cause: 'bad-reference', why: [(err as Error).message] };
+      found = { result: 'error', cause: 'bad-reference', why: [(err as Error).message] };
     }
+    const seconds = Math.round((Date.now() - started) / 100) / 10;
+    if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
+    return { ...found, seconds };
   });
   return { checked, loose: mech.loose.map(name) };
 }
@@ -547,7 +580,8 @@ const one = args.indexOf('--one'); // (internal) check this one set's file and p
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
-  const found = args[one + 1].startsWith(join('data', 'trains')) ? checkTrainSet(set) : check(set);
+  const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
+  const found = args[one + 1].startsWith(join('data', 'trains')) ? checkTrainSet(set) : check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // Let the output drain before the process ends: a pipe takes it in pieces.
   process.stdout.write(JSON.stringify(found), () => process.exit(0));
 } else {
@@ -590,11 +624,13 @@ async function main() {
   const results: Partial<Record<Result, number>> = {};
   // How many functions have each cause, of the sets checked.
   const caused: Partial<Record<Cause, number>> = {};
-  const run = (s: (typeof files)[number]) =>
-    new Promise<void>((resolve) => {
+  type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
+  // Checks a set in a process of its own, or with `only`, one of its functions: what it found,
+  // and how long it took.
+  const inProcess = (s: (typeof files)[number], only: number | null) =>
+    new Promise<{ found: Found; seconds: number }>((resolve) => {
       const started = Date.now();
-      checking.set(s.data.set, started);
-      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file], { stdio: ['ignore', 'pipe', 'inherit'] });
+      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)])], { stdio: ['ignore', 'pipe', 'inherit'] });
       let out = '';
       let timedOut = false;
       const timer = setTimeout(() => {
@@ -605,7 +641,7 @@ async function main() {
       child.on('close', (code) => {
         clearTimeout(timer);
         const seconds = Math.round((Date.now() - started) / 1000);
-        let found: ReturnType<typeof check> | { timedOut: number } | { failed: string };
+        let found: Found;
         if (timedOut) found = { timedOut: limit };
         else {
           try {
@@ -615,25 +651,72 @@ async function main() {
             found = { failed: (err as Error).message };
           }
         }
-        // Read afresh, so only generated changes, whatever else changed meanwhile.
-        const data = JSON.parse(readFileSync(s.file, 'utf-8'));
-        if (causes) {
-          // Only the causes change: the results stay those of the commit they were checked at.
-          if ('functions' in found && data.generated) data.generated = { ...data.generated, causes: commit, functions: found.functions };
-        } else {
-          if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${line}`);
-          data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
-        }
-        writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
-        if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
-        const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
-        console.log(`${data.set}: ${summary} (${seconds} s)`);
-        checking.delete(s.data.set);
-        done++;
-        if ('counts' in found) for (const [k, n] of Object.entries(found.counts)) if (k in RANK) results[k as Result] = (results[k as Result] ?? 0) + n;
-        resolve();
+        resolve({ found, seconds });
       });
     });
+  // Writes what a set's check found into its file, and says it.
+  const finish = (s: (typeof files)[number], found: Found, seconds: number) => {
+    // Read afresh, so only generated changes, whatever else changed meanwhile.
+    const data = JSON.parse(readFileSync(s.file, 'utf-8'));
+    if (causes) {
+      // Only the causes change: the results stay those of the commit they were checked at.
+      if ('functions' in found && data.generated) data.generated = { ...data.generated, causes: commit, functions: found.functions };
+    } else {
+      if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${line}`);
+      data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
+    }
+    writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
+    if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
+    const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
+    console.log(`${data.set}: ${summary} (${seconds} s)`);
+    checking.delete(s.data.set);
+    done++;
+    if ('counts' in found) for (const [k, n] of Object.entries(found.counts)) if (k in RANK) results[k as Result] = (results[k as Result] ?? 0) + n;
+  };
+  // The work to do, each piece a process: a set, or one function of a set that took more than
+  // SPLIT_OVER seconds the last time (or timed out). Such a set's functions are checked a function
+  // to a process, the slowest first, side by side with everything else, and put together when
+  // the last is done: each starts from the model as loaded anyway, so the results are the same,
+  // and the set takes as long as its slowest function, not as all of them (the 8110 Unimog, 5
+  // hours in one process). Its `seconds` are its functions' added up, to compare with a set
+  // checked in one.
+  const queue: (() => Promise<void>)[] = [];
+  for (const s of files) {
+    const functions: Fn[] = s.data.curated.functions;
+    const modelOf = (fn: Fn): string => fn.model ?? s.data.curated.model;
+    const models = [...new Set(functions.map(modelOf))];
+    // Not a set with a model none of whose functions is checked: no process would load it, to
+    // list its loose parts.
+    const everyModelChecked = models.every((m) => functions.some((fn) => modelOf(fn) === m && !withoutChecking(fn)));
+    // (A train set is checked whole: train-checks.ts checks its functions together.)
+    if (causes || args.includes('--trains') || functions.length < 2 || !(took(s) > SPLIT_OVER) || !everyModelChecked) {
+      queue.push(async () => {
+        checking.set(s.data.set, Date.now());
+        const { found, seconds } = await inProcess(s, null);
+        finish(s, found, seconds);
+      });
+      continue;
+    }
+    const last: Checked[] = s.data.generated?.functions ?? [];
+    const checked: Checked[] = functions.map((fn) => withoutChecking(fn) ?? { result: 'error' });
+    const todo = functions.flatMap((fn, i) => (withoutChecking(fn) ? [] : [i])).sort((i, j) => (last[j]?.seconds ?? Infinity) - (last[i]?.seconds ?? Infinity));
+    let left = todo.length;
+    let total = 0;
+    let failed: Found | null = null;
+    const loose = new Map<string, string[]>(); // each model's loose parts
+    for (const i of todo) {
+      queue.push(async () => {
+        if (!checking.has(s.data.set)) checking.set(s.data.set, Date.now());
+        const { found, seconds } = await inProcess(s, i);
+        total += seconds;
+        if ('functions' in found) {
+          checked[i] = found.functions[i];
+          loose.set(modelOf(functions[i]), found.loose);
+        } else failed ??= found;
+        if (--left === 0) finish(s, failed ?? { counts: countsOf(checked), loose: models.flatMap((m) => loose.get(m) ?? []), functions: checked }, total);
+      });
+    }
+  }
 
   console.log(`Checking ${files.length} sets, ${jobs} at a time`);
   // Once a minute, how far it's got, with its functions' results so far as shares of all their
@@ -647,10 +730,9 @@ async function main() {
     const shares = [share(results.works ?? 0, 'works'), share(results.partly ?? 0, 'partly'), share(results.no ?? 0, 'no'), share((results.skipped ?? 0) + (results['not checked'] ?? 0), 'skipped or not checked')];
     console.log(`${done} done, ${files.length - done} left; ${shares.join(', ')}; checking ${sets.join(', ')}`);
   }, 60_000);
-  const queue = [...files];
   await Promise.all(
     Array.from({ length: jobs }, async () => {
-      for (let s = queue.shift(); s; s = queue.shift()) await run(s);
+      for (let work = queue.shift(); work; work = queue.shift()) await work();
     }),
   );
   clearInterval(progress);
