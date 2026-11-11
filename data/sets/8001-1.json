@@ -132,9 +132,9 @@
     ]
   },
   "generated": {
-    "commit": "a838eff",
-    "uncommitted": true,
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 4,
     "counts": {
       "works": 4,
       "skipped": 2,
@@ -389,7 +389,6 @@
       {
         "result": "skipped"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

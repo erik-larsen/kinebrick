@@ -84,8 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 1,
     "counts": {
       "works": 2,
       "no": 2,
@@ -112,7 +113,7 @@
             ],
             "p28 3648b against p0 32009": [
               0.0417,
-              4.55e-32
+              4.85e-32
             ],
             "p97 32278 against p0 32009": [
               0.0181,
@@ -194,6 +195,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p129 87083 against p120 32278"
       },
@@ -241,6 +248,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p107 87083 against p97 32278"
       },
@@ -286,7 +299,6 @@
           "p134 4274"
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

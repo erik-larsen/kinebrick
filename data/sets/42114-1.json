@@ -153,8 +153,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 77,
     "counts": {
       "partly": 4,
       "no": 1,
@@ -431,6 +432,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "control-jammed"
       },
       {
@@ -529,7 +536,6 @@
         "cause": "not-driven",
         "detail": "p2766 32525"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

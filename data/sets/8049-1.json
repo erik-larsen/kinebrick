@@ -153,8 +153,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 12,
     "counts": {
       "partly": 4,
       "not back": 2,
@@ -278,6 +279,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
           ]
         ],
         "cause": "not-driven",
@@ -628,9 +635,42 @@
           "p207 55976",
           "p136 32009",
           "p62 32072"
+        ],
+        "stop": [
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            "no motion",
+            null
+          ],
+          [
+            "no motion",
+            null
+          ],
+          [
+            null,
+            "no motion"
+          ],
+          [
+            null,
+            "no motion"
+          ]
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

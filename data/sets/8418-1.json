@@ -67,8 +67,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 0,
     "counts": {
       "works": 1,
       "no": 2
@@ -185,6 +186,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p57 30394 against p47 3706"
       },
@@ -229,7 +236,6 @@
         "cause": "loose-part",
         "detail": "p58 30285"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

@@ -155,8 +155,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 186,
     "counts": {
       "no": 1,
       "partly": 4,
@@ -257,6 +258,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "control-jammed"
       },
       {
@@ -344,6 +351,16 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ],
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
         "cause": "control-jammed"
       },
       {
@@ -411,6 +428,16 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ],
+          [
+            "dead point",
+            "dead point"
           ]
         ],
         "cause": "control-jammed"
@@ -706,7 +733,6 @@
       {
         "result": "skipped"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

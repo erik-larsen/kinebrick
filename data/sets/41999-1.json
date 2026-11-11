@@ -144,8 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 42,
     "counts": {
       "works": 1,
       "partly": 3,
@@ -499,13 +500,18 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p50 32524"
       },
       {
         "result": "not checked"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

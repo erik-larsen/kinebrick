@@ -101,8 +101,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 1,
     "counts": {
       "works": 4,
       "no": 1,
@@ -281,6 +282,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p307 74695"
       },
@@ -326,7 +333,6 @@
       {
         "result": "skipped"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

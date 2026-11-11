@@ -169,8 +169,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 6,
     "counts": {
       "works": 4,
       "partly": 4,
@@ -367,7 +368,7 @@
             ],
             "p533 3709b": [
               0,
-              3.62e-43
+              1.72e-49
             ]
           }
         ],
@@ -660,7 +661,6 @@
       {
         "result": "not checked"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }
