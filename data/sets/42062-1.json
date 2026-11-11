@@ -166,8 +166,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 69,
     "counts": {
       "partly": 4,
       "works": 4,
@@ -738,6 +739,16 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "control-jammed"
       },
       {
@@ -856,16 +867,16 @@
         "rates": [
           {
             "p511 18942 against p510 18940": [
-              5.62e-8,
+              2.81e-8,
               69.8
             ],
             "p547 32524 against p510 18940": [
-              5.62e-8,
+              2.75e-7,
               69.8
             ],
             "p510 18940": [
-              0,
-              4.8e-12
+              1.97e-7,
+              0.0000363
             ]
           }
         ],
@@ -947,6 +958,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p574 32073"
       },
@@ -1019,7 +1036,6 @@
           ]
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

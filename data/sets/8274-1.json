@@ -144,8 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 14,
     "counts": {
       "works": 2,
       "no": 1,
@@ -458,6 +459,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p1045 3708"
       },
@@ -614,6 +621,12 @@
         "strayed": [
           "p926 3673"
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "stopped-early"
       },
       {
@@ -691,7 +704,6 @@
       {
         "result": "not checked"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

@@ -250,8 +250,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 82,
     "counts": {
       "no": 6,
       "works": 4,
@@ -353,6 +354,16 @@
         "why": [
           "p2324 32020 is part of the frame"
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            null,
+            null
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p2332 32020"
       },
@@ -394,6 +405,20 @@
         "why": [
           "p2320 32020 is part of the frame",
           "p2322 32020 is part of the frame"
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ]
         ],
         "cause": "loose-part",
         "detail": "p2336 32020"
@@ -657,6 +682,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "control-jammed"
       },
       {
@@ -738,6 +769,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "control-jammed"
       },
       {
@@ -769,6 +806,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
           ]
         ],
         "cause": "not-driven",
@@ -812,9 +855,18 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "stopped-early"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

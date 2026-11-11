@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 35 works, 36 partly, 6 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 35 partly, 6 no, 1 skipped.
 
 ## By decade
 
@@ -34,7 +34,7 @@ Each detail by the set it first appears in.
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 
-- Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (partly)
+- Rolling the tractor runs the engine: the rear wheels turn the differential, a 14-tooth bevel on the drive shaft takes the drive forward, and under the bonnet a 24-tooth gear, two 8-tooth idlers and a second 24-tooth gear turn a crankshaft built from gears, which pumps two pistons up and down. (works)
 - The differential lets the two rear wheels turn at different speeds in a corner. (works)
 
 **1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car)**

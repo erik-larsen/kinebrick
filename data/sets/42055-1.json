@@ -181,8 +181,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 1580,
     "counts": {
       "no": 1,
       "partly": 5,
@@ -728,6 +729,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "stopped-early"
       },
       {
@@ -979,7 +986,7 @@
             ],
             "p418 64178": [
               0.00000471,
-              4.13e-32
+              8.51e-46
             ]
           }
         ],
@@ -993,6 +1000,12 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
           ]
         ],
         "cause": "too-little",
@@ -1086,6 +1099,12 @@
               0
             ]
           ]
+        ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
         ]
       },
       {
@@ -1157,7 +1176,6 @@
           ]
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

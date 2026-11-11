@@ -181,9 +181,9 @@
     ]
   },
   "generated": {
-    "commit": "a838eff",
-    "uncommitted": true,
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 45,
     "counts": {
       "works": 4,
       "partly": 3,
@@ -612,6 +612,12 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p354 18947"
       },
@@ -822,7 +828,6 @@
           ]
         ]
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }

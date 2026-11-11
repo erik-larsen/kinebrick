@@ -133,8 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "2052c80",
-    "date": "2026-11-02",
+    "commit": "cc84ec0",
+    "date": "2026-11-11",
+    "seconds": 3,
     "counts": {
       "partly": 3,
       "not checked": 1,
@@ -451,7 +452,6 @@
       {
         "result": "skipped"
       }
-    ],
-    "causes": "6987cc1"
+    ]
   }
 }
