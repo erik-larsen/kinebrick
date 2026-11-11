@@ -29,7 +29,7 @@ import { join } from 'node:path';
 import { Matrix4, Vector3 } from 'three';
 import { parseModel } from '../src/ldr.ts';
 import { drawnDirectly } from '../src/pack.ts';
-import { buildTrack, trackPiece } from '../src/track.ts';
+import { buildTrack, layOutTrack, trackPiece } from '../src/track.ts';
 import { loadModel } from './load-model.ts';
 import { trainFunctions } from './train-checks.ts';
 
@@ -129,58 +129,9 @@ function mechanismOf(text: string) {
 // ---------------------------------------------------------------------------
 // Laying the track out
 
-// Places a set's track pieces end to end, from the origin along x, and gives their lines. With
-// 16 curves or more (a full circle), an oval: half the curves at each end, the straights shared
-// between its sides, the switches (their straight way) and crossings on one side and as much
-// straight on the other. With fewer, a line: straights, then the curves, then straights. What
-// doesn't fit (a straight left over from an odd number) goes on a switch's branch if there is
-// one, else beside the layout.
+// The set's track pieces laid out afresh (see layOutTrack in src/track.ts), as model lines.
 function layOut(pieces: { name: string; color: string }[]): string[] {
-  const kind = (p: { name: string }) => trackPiece(p.name)!.kind;
-  const curveCount = (p: { name: string }) => (/c04\.dat$/i.test(p.name) ? 4 : 1);
-  const straights = pieces.filter((p) => kind(p) === 'straight');
-  const curves = pieces.filter((p) => kind(p) === 'curve');
-  const others = pieces.filter((p) => kind(p) === 'switch' || kind(p) === 'crossing');
-  const turns = curves.reduce((n, p) => n + curveCount(p), 0);
-  const out: string[] = [];
-  // The open end: where the next piece goes, and the way out of the track there.
-  let at = new Vector3(0, 0, 0);
-  let out_ = new Vector3(1, 0, 0);
-  const place = (p: { name: string; color: string }, entry = 0, exit = 1, line = 0) => {
-    const local = buildTrack([{ name: p.name, matrix: new Matrix4() }])!;
-    const ends = local.lines[line].ends;
-    const [e, x] = [ends[entry], ends[exit]];
-    // Turned so that its entry faces back the way the open end faces out, and moved onto it.
-    const angle = heading(out_.clone().negate()) - heading(e.out);
-    const turn = levelMove(angle, new Vector3());
-    const point = e.point.clone().setY(0).applyMatrix4(turn);
-    const m = levelMove(angle, at.clone().sub(point));
-    out.push(['1', p.color, ...[m.elements[12], 0, m.elements[14], m.elements[0], 0, m.elements[8], 0, 1, 0, m.elements[2], 0, m.elements[10]].map(num), p.name].join(' '));
-    at = x.point.clone().setY(0).applyMatrix4(m);
-    out_ = x.out.clone().transformDirection(m);
-    return m;
-  };
-  const left: { name: string; color: string }[] = [];
-  if (turns >= 16) {
-    const half = Math.floor(straights.length / 2);
-    // One side: the switches and crossings, then straights; the other as long, in straights.
-    const sideA = [...others, ...straights.slice(0, half)];
-    const sideB = straights.slice(half, 2 * half);
-    left.push(...straights.slice(2 * half));
-    const ends = [curves.slice(0, Math.ceil(curves.length / 2)), curves.slice(Math.ceil(curves.length / 2))];
-    for (const p of sideA) place(p);
-    for (const p of ends[0]) place(p);
-    for (const p of sideB) place(p);
-    for (const p of ends[1]) place(p);
-  } else {
-    const half = Math.floor(straights.length / 2);
-    for (const p of [...straights.slice(0, half), ...others, ...curves, ...straights.slice(half)]) place(p);
-  }
-  // Left over: beside the layout, in a row.
-  at = new Vector3(0, 0, 400);
-  out_ = new Vector3(1, 0, 0);
-  for (const p of left) place(p);
-  return out;
+  return layOutTrack(pieces.map((p) => p.name)).map((m, i) => partLine(['1', pieces[i].color, ...new Array(12).fill('0'), pieces[i].name], m));
 }
 
 // ---------------------------------------------------------------------------
@@ -317,37 +268,39 @@ function splitBogies(text: string): string {
 
 // ---------------------------------------------------------------------------
 
-const only = process.argv.slice(2);
-const csv = readFileSync(CSV, 'utf-8').trim().split(/\r?\n/);
-const header = csvFields(csv[0]);
-mkdirSync(OUT_DIR, { recursive: true });
-mkdirSync(SETS_DIR, { recursive: true });
-for (const row of csv.slice(1).map((l) => Object.fromEntries(header.map((h, i) => [h, csvFields(l)[i] ?? ''])))) {
-  if (only.length && !only.some((o) => row.set_num.includes(o))) continue;
-  const source = CORRECTED[row.set_num] ?? join('omr', 'trains', `${row.set_num} ${row.name}`.replace(/[/\\:]/g, '-') + '.mpd');
+// Kinebrick's own test layouts, made as a set's are: a set's model with track pieces added, laid
+// out afresh. No OMR set with 9V track has a switch or a crossing, so the first runs the 4563's
+// train on its oval with a switch and a crossing added, a siding on the switch's branch.
+const TESTS: { set: string; name: string; from: string; add: string[] }[] = [
+  { set: 'test-1', name: 'Switch and crossing', from: '4563-1', add: ['75542-f1.dat', '32087.dat', ...new Array(6).fill('74746.dat')] },
+];
+
+// Makes one set's model, and its function list (see the top of this file). `add`: track pieces
+// to add, which has the track laid out afresh.
+function makeModel(set: string, name: string, source: string, add: string[] = []) {
   let text: string;
   try {
     text = readFileSync(source, 'utf-8');
   } catch {
-    console.log(`${row.set_num}: no ${source} (npm run omr -- --trains downloads it)`);
-    continue;
+    console.log(`${set}: no ${source} (npm run omr -- --trains downloads it)`);
+    return;
   }
   text = text.replace(/\r\n/g, '\n');
-  for (const [why, wrong, right] of ERRATA[row.set_num] ?? []) {
-    if (!text.includes(wrong)) throw new Error(`${row.set_num}: no line ${wrong} to correct (${why})`);
+  for (const [why, wrong, right] of ERRATA[set] ?? []) {
+    if (!text.includes(wrong)) throw new Error(`${set}: no line ${wrong} to correct (${why})`);
     text = text.replace(wrong, right);
   }
   text = splitBogies(text);
   const parts = readText(text);
   const known = parts.filter((p) => trackPiece(p.name));
-  if (known.length === 0) continue;
+  if (known.length === 0) return;
   // Laid out: every piece joined to the rest, in one piece.
   const track = buildTrack(parts)!;
   const lead = track.lines.map((_, i) => i);
   const find = (i: number): number => (lead[i] === i ? i : (lead[i] = find(lead[i])));
   track.links.forEach((ends, l) => ends.forEach((e) => e.forEach(([m]) => (lead[find(l)] = find(m)))));
   track.lines.forEach((line, l) => track.lines.forEach((other, m) => line.part === other.part && (lead[find(l)] = find(m))));
-  const laid = new Set(track.lines.map((_, i) => find(i))).size === 1;
+  const laid = new Set(track.lines.map((_, i) => find(i))).size === 1 && add.length === 0;
   let lines = text.split(/\r?\n/);
   let note = 'the track as the OMR file lays it out';
   if (!laid) {
@@ -359,20 +312,37 @@ for (const row of csv.slice(1).map((l) => Object.fromEntries(header.map((h, i) =
       pieces.push({ name: tokens.slice(14).join(' '), color: tokens[1] });
       return false;
     });
+    pieces.push(...add.map((name) => ({ name, color: '7' })));
     const [, end] = mainRange(lines);
     lines.splice(end, 0, ...layOut(pieces));
-    note = "the track laid out afresh from the set's own pieces";
+    note = add.length ? `a test layout: the track of ${set.replace(/^test-\d+$/, 'a set')}, with pieces added, laid out afresh` : "the track laid out afresh from the set's own pieces";
   }
   // Kinebrick's note, after the main model's header.
   const [start] = mainRange(lines);
   const firstPart = lines.findIndex((l, i) => i > start && !/^\s*0\s/.test(l) && l.trim() !== '');
   lines.splice(firstPart < 0 ? start + 1 : firstPart, 0, `0 // Kinebrick: ${note}, with the trains set on it (scripts/train-layouts.ts)`);
-  const set = setTrainsOnTrack(lines.join('\n'));
-  const out = join(OUT_DIR, `${row.set_num.replace(/-1$/, '')}-${row.name}`.replace(/[/\\:]/g, '-') + '.mpd');
-  writeFileSync(out, set.text.replace(/\n*$/, '\n'));
-  const json = join(SETS_DIR, `${row.set_num}.json`);
+  const made = setTrainsOnTrack(lines.join('\n'));
+  const out = join(OUT_DIR, `${set.startsWith('test') ? 'Test' : set.replace(/-1$/, '')}-${name}`.replace(/[/\\:]/g, '-') + '.mpd');
+  writeFileSync(out, made.text.replace(/\n*$/, '\n'));
+  const json = join(SETS_DIR, `${set}.json`);
   const was = existsSync(json) ? JSON.parse(readFileSync(json, 'utf-8')) : {};
   const functions = trainFunctions(out);
-  writeFileSync(json, JSON.stringify({ set: row.set_num, curated: { model: out, functions }, generated: was.generated ?? {} }, null, 2) + '\n');
-  console.log(`${out}: ${laid ? 'laid out' : 'layout made'}, ${known.length} track pieces, ${set.trains} trains, ${set.moved} lines moved, ${functions.length} functions`);
+  writeFileSync(json, JSON.stringify({ set, curated: { model: out, functions }, generated: was.generated ?? {} }, null, 2) + '\n');
+  console.log(`${out}: ${laid ? 'laid out' : 'layout made'}, ${known.length + add.length} track pieces, ${made.trains} trains, ${made.moved} lines moved, ${functions.length} functions`);
+}
+
+const only = process.argv.slice(2);
+const csv = readFileSync(CSV, 'utf-8').trim().split(/\r?\n/);
+const header = csvFields(csv[0]);
+mkdirSync(OUT_DIR, { recursive: true });
+mkdirSync(SETS_DIR, { recursive: true });
+const sourceOf = (row: Record<string, string>) => CORRECTED[row.set_num] ?? join('omr', 'trains', `${row.set_num} ${row.name}`.replace(/[/\\:]/g, '-') + '.mpd');
+const rows = csv.slice(1).map((l) => Object.fromEntries(header.map((h, i) => [h, csvFields(l)[i] ?? ''])));
+for (const row of rows) {
+  if (only.length && !only.some((o) => row.set_num.includes(o))) continue;
+  makeModel(row.set_num, row.name, sourceOf(row));
+}
+for (const test of TESTS) {
+  if (only.length && !only.some((o) => test.set.includes(o))) continue;
+  makeModel(test.set, test.name, sourceOf(rows.find((r) => r.set_num === test.from)!), test.add);
 }

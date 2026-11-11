@@ -133,7 +133,13 @@ export function checkTrainSet(set: { curated: { model: string; functions: TrainF
           const before = into();
           track.flip(part);
           const after = into();
-          checked.push(before !== after && sw.lines.includes(after!) ? { result: 'works' } : { result: 'no', why: ['flipping it changes nothing'] });
+          if (before === after || !sw.lines.includes(after!)) checked.push({ result: 'no', why: ['flipping it changes nothing'] });
+          else {
+            // With a train on the track: run it, each way round, and see that it goes the way the
+            // switch is set now (a train meets it from its shared end going one way round).
+            const train = mech.riders?.length ? onto(mech, kin, track, sw.lines[sw.state]) : null;
+            checked.push(train === false ? { result: 'partly', why: ["the train didn't take the way the switch is set"] } : { result: 'works' });
+          }
         }
       } else checked.push(run(mech, kin, track, partOf(fn.control!)));
     } catch (err) {
@@ -226,6 +232,29 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   if (Math.abs(rolled - radius) > ROLL_OFF * radius) why.push(`went ${rolled.toFixed(1)} LDU for each radian its wheel turned, not ${radius}`);
   const result = travelled < 1 ? 'no' : reached && why.length === 0 ? 'works' : 'partly';
   return { result, ...(why.length ? { why } : {}), travelled: Math.round(travelled), length: Math.round(length), offTrack: round(offTrack), apart: round(apart), rolled: round(rolled), radius };
+}
+
+// Whether a train, run by its first rolling wheelset's axle each way in turn, gets onto a line
+// with its first wheelset (null if it has no wheel to turn).
+function onto(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, line: number): boolean | null {
+  const riders = mech.riders ?? [];
+  const lead = riders.findIndex((r) => r.rolls);
+  if (lead < 0) return null;
+  const joint = mech.joints.findIndex((j) => j.kind === 'revolute' && (j.bodyA === riders[lead].body || j.bodyB === riders[lead].body));
+  if (joint < 0) return null;
+  const poses = (kin as unknown as { poses: import('three').Matrix4[] }).poses;
+  const start = kin.snapshot();
+  const lap = track.lines.reduce((sum, l) => sum + l.length, 0);
+  for (const way of [1, -1]) {
+    kin.restore(start);
+    track.places.clear();
+    for (let i = 0; i < lap / (22 * STEP); i++) {
+      if (Math.abs(kin.turnJoint(joint, way * STEP)) < STEP - 1e-9) break;
+      track.near(riders[lead].center.clone().applyMatrix4(poses[riders[lead].body]), poses[0], lead);
+      if (track.placeOf(lead)!.line === line) return true;
+    }
+  }
+  return false;
 }
 
 const round = (x: number) => Math.round(x * 10) / 10;

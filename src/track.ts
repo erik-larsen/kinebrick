@@ -471,3 +471,70 @@ function tangentOut(from: Vector3, mid: Vector3, to: Vector3, end: number): Vect
   const away = new Vector3().subVectors(point, mid);
   return t.dot(away) < 0 ? t.negate() : t;
 }
+
+// ---------------------------------------------------------------------------
+// Laying track out
+
+// A turn about the upright by `angle` (a heading: x turns towards -z), then a shift.
+function levelMove(angle: number, shift: Vector3): Matrix4 {
+  const [c, s] = [Math.cos(angle), Math.sin(angle)];
+  return new Matrix4().set(c, 0, s, shift.x, 0, 1, 0, shift.y, -s, 0, c, shift.z, 0, 0, 0, 1);
+}
+const heading = (v: Vector3) => Math.atan2(-v.z, v.x);
+
+// Lays track pieces out end to end, from the origin along x, for a set whose file gives its
+// track as a pile of pieces: each piece's placement (part -> model), in the order given. With 16
+// curves or more (a full circle), an oval: half the curves at each end, the switches (their
+// straight way) and crossings on one side with straights, and as much straight on the other.
+// With fewer, a line: straights, the switches and crossings, the curves, then straights. What
+// doesn't fit (a straight left over from an odd number) runs on from the first switch's branch,
+// as a siding, or if there is none, lies beside the layout.
+export function layOutTrack(names: string[]): Matrix4[] {
+  const shapes = names.map((n) => trackPiece(n)!);
+  const of = (kind: string) => shapes.flatMap((s, i) => (s.kind === kind ? [i] : []));
+  const [straights, curves] = [of('straight'), of('curve')];
+  const others = [...of('switch'), ...of('crossing')];
+  const turnsOf = (i: number) => (/c04(\.dat)?$/i.test(names[i]) ? 4 : 1);
+  const turns = curves.reduce((n, i) => n + turnsOf(i), 0);
+  const placed: Matrix4[] = names.map(() => new Matrix4());
+  // The open end: where the next piece goes, and the way out of the track there.
+  let at = new Vector3();
+  let out = new Vector3(1, 0, 0);
+  const place = (i: number) => {
+    const ends = buildTrack([{ name: names[i], matrix: new Matrix4() }])!.lines[0].ends;
+    // Turned so that its start faces back the way the open end faces out, and moved onto it.
+    const angle = heading(out.clone().negate()) - heading(ends[0].out);
+    const start = ends[0].point.clone().setY(0).applyMatrix4(levelMove(angle, new Vector3()));
+    placed[i] = levelMove(angle, at.clone().sub(start));
+    at = ends[1].point.clone().setY(0).applyMatrix4(placed[i]);
+    out = ends[1].out.clone().transformDirection(placed[i]);
+  };
+  // How long each piece's straight way is, in straights: a switch is two, a crossing one.
+  const units = others.reduce((n, i) => n + (shapes[i].kind === 'switch' ? 2 : 1), 0);
+  let left: number[] = [];
+  if (turns >= 16) {
+    // The sides: one with the switches and crossings, each as long as the other.
+    const S = straights.length;
+    const onA = S >= units ? Math.floor((S + units) / 2) - units : Math.floor(S / 2);
+    const onB = S >= units ? onA + units : onA;
+    const sideA = [...(S >= units ? others : []), ...straights.slice(0, onA)];
+    const sideB = straights.slice(onA, onA + onB);
+    left = [...(S >= units ? [] : others), ...straights.slice(onA + onB)];
+    // The curves, half at each end of the oval.
+    let half = 0;
+    const firstEnd = curves.filter((i) => (half += turnsOf(i)) <= turns / 2);
+    const secondEnd = curves.filter((i) => !firstEnd.includes(i));
+    for (const i of [...sideA, ...firstEnd, ...sideB, ...secondEnd]) place(i);
+  } else {
+    const half = Math.floor(straights.length / 2);
+    for (const i of [...straights.slice(0, half), ...others, ...curves, ...straights.slice(half)]) place(i);
+  }
+  // What's left: on from the first switch's branch, or beside the layout.
+  const sw = others.find((i) => shapes[i].kind === 'switch' && !left.includes(i));
+  if (sw !== undefined) {
+    const branch = buildTrack([{ name: names[sw], matrix: placed[sw] }])!.lines[1].ends[1];
+    [at, out] = [branch.point.clone().setY(0), branch.out.clone()];
+  } else [at, out] = [new Vector3(0, 0, 400), new Vector3(1, 0, 0)];
+  for (const i of left) place(i);
+  return placed;
+}

@@ -6,7 +6,7 @@
 // itself, with the parts it uses fetched from the LDraw library (see library.ts), so the site
 // needn't carry a packed copy of each.
 
-import { BufferGeometry, Group, Line, LineBasicMaterial, Vector3 } from 'three';
+import { CatmullRomCurve3, Group, Mesh, MeshBasicMaterial, TubeGeometry, Vector3 } from 'three';
 import type { Mechanism } from './mechanism.ts';
 
 const urls: Record<string, string> = import.meta.glob('../models/trains/*.mpd', { query: '?url', import: 'default', eager: true });
@@ -16,7 +16,7 @@ const urls: Record<string, string> = import.meta.glob('../models/trains/*.mpd', 
 export const TRAIN_SETS: [string, string][] = Object.keys(urls)
   .map((path): [string, string] => {
     const file = path.replace(/^.*\//, '');
-    return [file, file.replace(/\.mpd$/, '').replace(/^(\d+)-/, '$1 ')];
+    return [file, file.replace(/\.mpd$/, '').replace(/^(\d+|Test)-/, '$1 ')];
   })
   .sort((a, b) => a[0].localeCompare(b[0], undefined, { numeric: true }));
 
@@ -29,10 +29,11 @@ export async function trainText(file: string): Promise<string> {
   return (await fetch(urls[`../models/trains/${file}`])).text();
 }
 
-// How the switches show which way they're set: each switch's route through it drawn as a line
-// along the rail heads, bright the way it's set and faint the other way.
-const SET = new LineBasicMaterial({ color: 0xffd400, depthTest: false, transparent: true });
-const UNSET = new LineBasicMaterial({ color: 0x808080, depthTest: false, transparent: true, opacity: 0.4 });
+// How the switches show which way they're set: each switch's route through it drawn as a thin
+// tube along its centre line, just above the rail heads, bright the way it's set and faint the
+// other way.
+const SET = new MeshBasicMaterial({ color: 0xffd400 });
+const UNSET = new MeshBasicMaterial({ color: 0x808080, transparent: true, opacity: 0.35 });
 
 export function switchMarks(mech: Mechanism): Group {
   const group = new Group();
@@ -43,9 +44,8 @@ export function switchMarks(mech: Mechanism): Group {
       const points: Vector3[] = [];
       const length = track.lines[line].length;
       for (let i = 0; i <= 32; i++) points.push(track.pointAt(line, (length * i) / 32).point.add(new Vector3(0, -2, 0)));
-      const mark = new Line(new BufferGeometry().setFromPoints(points), UNSET);
+      const mark = new Mesh(new TubeGeometry(new CatmullRomCurve3(points), 64, 2, 6), UNSET);
       mark.userData = { part: s.part, line };
-      mark.renderOrder = 10;
       group.add(mark);
     }
   }
@@ -54,7 +54,7 @@ export function switchMarks(mech: Mechanism): Group {
 }
 
 function showSwitches(mech: Mechanism, marks: Group) {
-  for (const mark of marks.children as Line[]) {
+  for (const mark of marks.children as Mesh[]) {
     const s = mech.track!.switchOf(mark.userData.part)!;
     mark.material = s.lines[s.state] === mark.userData.line ? SET : UNSET;
   }

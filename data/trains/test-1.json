@@ -1,0 +1,96 @@
+{
+  "set": "test-1",
+  "curated": {
+    "model": "models/trains/Test-Switch and crossing.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p74 57877c01"
+      },
+      {
+        "kind": "switch",
+        "does": "The switch flips, and a train taking it from its shared end goes the other way",
+        "control": "p495 75542-f1"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "38a3909",
+    "uncommitted": true,
+    "date": "2026-11-11",
+    "seconds": 19,
+    "counts": {
+      "works": 3
+    },
+    "loose": [
+      "p16 4517",
+      "p29 4624",
+      "p30 3641",
+      "p31 4624",
+      "p32 3641",
+      "p57 6014",
+      "p58 6015",
+      "p59 6014",
+      "p60 6015",
+      "p137 4084",
+      "p138 4624",
+      "p139 4084",
+      "p140 4624",
+      "p141 4624",
+      "p142 3641",
+      "p143 4624",
+      "p144 3641",
+      "p158 4079",
+      "p292 2919",
+      "p294 2919",
+      "p354 4183",
+      "p355 4183",
+      "p376 2495c01",
+      "p390 4032a",
+      "p391 4032a",
+      "p392 4032a",
+      "p393 4032a",
+      "p394 4032a",
+      "p395 4032a",
+      "p396 4032a",
+      "p397 4032a",
+      "p456 2874",
+      "p457 2874",
+      "p458 2874",
+      "p459 2874",
+      "p466 2869c02",
+      "p467 2913c01",
+      "p468 2913c01",
+      "p469 5306",
+      "p470 4563 - 4480c01",
+      "p471 6141",
+      "p472 6141",
+      "p473 3641",
+      "p474 3464",
+      "p475 3641",
+      "p476 3464"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 8226,
+        "length": 8227,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 22.1,
+        "radius": 22
+      },
+      {
+        "result": "works"
+      }
+    ]
+  }
+}
