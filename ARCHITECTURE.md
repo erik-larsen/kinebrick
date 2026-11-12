@@ -1169,6 +1169,7 @@ Browser-level tests for these paths can come later.
 | `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [The joints probe](#the-joints-probe)) |
 | `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
 | `scripts/invariance.ts` | Checks changed copies of each quick set's model (moved, turned, nudged) and says which functions come out differently (`npm run invariance`; see [The function check](#the-function-check)) |
+| `scripts/digest.ts` | `npm run digest`: a fingerprint of the mechanism worked out for every set's model, field by field, to the last bit of every number. Written to a file before a change and compared after it, it shows in under a minute whether a change to the inference altered any set's mechanism |
 | `scripts/probe-nudge.ts` | Says what a nudge of every part changes in the mechanism worked out from each quick set's model (`npm run nudge`) |
 | `scripts/variants.ts` | The changed copies of a model that the two scripts above check: moved, turned, nudged |
 | `scripts/causes.ts` | Why a function that doesn't work doesn't: one cause from a fixed list, for the function check (see [Causes](#causes)) |

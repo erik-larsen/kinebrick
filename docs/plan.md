@@ -158,7 +158,7 @@ Make the code safe for more than one writer, and make the check fast enough to u
 
 **Done when:** `kinematics.ts` and `mechanism.ts` are each a short file that calls others; the full check takes under an hour; `KINEBRICK_LEAST` and `KINEBRICK_ONE` are gone.
 
-**Where it stands, 2026-11-11.** The solver owner's first five steps are merged into `preview`, each with results the same to the last bit: the linear algebra in `src/linalg.ts`, each kind of connection's equations in `src/constraints/`, a `Drag` object for a drag's state, the switches as options on each solver, and a drag solved only over the parts it can reach. `src/kinematics.ts` is 2,641 lines, from 3,862. Left: the inference split (`src/mechanism.ts`, not yet given to anyone), the part tables into data, pushes by least motion (which waits for push functions in the check), and the test models for the sets that comments name.
+**Where it stands, 2026-11-11.** The solver owner's first five steps are merged into `preview`, each with results the same to the last bit: the linear algebra in `src/linalg.ts`, each kind of connection's equations in `src/constraints/`, a `Drag` object for a drag's state, the switches as options on each solver, and a drag solved only over the parts it can reach. `src/kinematics.ts` is 2,641 lines, from 3,862. Left: the inference split (`src/mechanism.ts`, given to one worker on 2026-11-12, on the branch `inference/split`), the part tables into data, pushes by least motion (which waits for push functions in the check), and the test models for the sets that comments name.
 
 **Reach is merged switched off** (`KINEBRICK_REACH=1` turns it on). On, the full check takes 30 minutes where it took 51 (5.0 hours of work where it was 8.3), and the same 533 functions work, but not the same ones: 8 get better and 5 worse, so it does not pass the ratchet. The 5 are all drags that roll a model on its wheels or leave a part not back: 42079 function 4 and 8273 function 11 (works to partly), and 855 function 6, 42110 function 3 and 9394 function 3 (more parts not back). It is turned on when those 5 are fixed. On 2026-11-12 the solver owner's fixes (a drag leaves out the rows on nothing but what it holds, and holds what it can't reach whole on the frame) took the 5 to 3: 9394 function 3, 42079 function 2 and 42110 function 3, each with one more part named as not back. Those three were the ratchet's fault, not reach's: the check names the one part left furthest each way a control is worked, and where two parts are left as far as each other (the 9394's p56 and p57, to the eighth decimal) rounding picks the name. The ratchet now counts the ways that leave a part not back, from `back`, and not the names. By that count the three are no worse. What is left with reach on is in the 8859: rolling it by a rear wheel stops at a dead point after 0.1 of 1.5, and function 5 has 4 ways not back where it had 3. The solver owner traced the stop to a fault that is there with reach off too (whether function 5's fourth way has the same cause is not checked): the differential's bevel gears are built with their axes exactly 0.5 LDU apart, which is `AXIS_TOLERANCE`, and after one step rounding puts them a hair over, so the spider gear's two meshes drop out of the equations. That fix, and the 42110's car sliding sideways as it rolls, change results with reach off, so each goes in as a commit of its own with its own full check.
 
@@ -210,9 +210,9 @@ The order of the rest may change as the triage shows which faults are most commo
 
 | Work | What it replaces |
 |---|---|
-| First: gravity as a tier. A part's centre of mass is kept from rising or falling | The balanced-part rule, the two-tyre tipping tier |
-| Second: springs as a soft cost. A shock absorber may change length, at a cost | Rigid shocks, and suspension that moves only by play |
-| Play as weighted rows: every loop-closing connection may give a little | `playMotion`, and the rules that line axles and balls up |
+| First (moved up on 2026-11-12): play as weighted rows. Every loop-closing connection may give a little | `playMotion`, and the rules that line axles and balls up |
+| Second: gravity as a tier. A part's centre of mass is kept from rising or falling | The balanced-part rule, the two-tyre tipping tier |
+| Third: springs as a soft cost. A shock absorber may change length, at a cost | Rigid shocks, and suspension that moves only by play |
 | A continuity tier: prefer the motion nearest the last step's | `STILLNESS`'s threshold, `dragGrip`, `dragSuspension`, strayed-joint holds |
 | The Newton step (stage 2 of [one-problem.md](one-problem.md)), then tyres as rows | `settle`, `parked`, most of the dead-point code |
 | Lengths in studs, and one relative tolerance | About 30 separate tolerances |
@@ -258,8 +258,8 @@ The 9 V track and the plastic track that followed it (RC, Power Functions) share
 
 | Role | Who | Does | Writes |
 |---|---|---|---|
-| Owner | Erik | Decides scope and order. Signs off function lists and errata. Reads the status page. Moves `main`. | Nothing he doesn't choose to |
-| Orchestrator | One Claude Fable 5.2 session, medium effort | Keeps this plan, the backlog and the gate. Briefs workers and merges their branches into `preview`. Publishes the status page. | `scripts/`, `.github/`, `docs/plan.md`, `results/` |
+| Owner | Erik | Sets the goal. Signs off function lists and errata. Reads the status page. Moves `main`. | Nothing he doesn't choose to |
+| Orchestrator | One Claude Fable 5.2 session, medium effort | Owns the design of the code and decides the order of the work (since 2026-11-12, see the decisions below). Keeps this plan, the backlog and the gate. Briefs workers and merges their branches into `preview`. Publishes the status page. | `scripts/`, `.github/`, `docs/plan.md`, `results/` |
 | Solver owner | One Claude Opus 5.5 session, high effort | Phase 4, and phase 2's work in the solver core | `src/kinematics.ts`, later `src/constraints/` and `src/linalg.ts` |
 | Workers | Claude Opus 5.5 agents, medium effort, one task each, each in a worktree of its own | Phase 3's lanes | Only the files their lane names |
 | Train owner | One Claude Opus 5.5 session, high effort, in a worktree of its own on `preview-train` | [The train track](#the-train-track-a-second-line-of-work), all of it | New files of its own for track and trains, and small hooks into the files of others |
@@ -345,6 +345,15 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 5. **The full check runs on demand**, when the orchestrator decides, now that it takes 51 minutes. No check is scheduled on any machine.
 6. **Each worker runs the full check before it hands its work to the orchestrator**, once workers are in use. Open, for when a fleet starts: a full check uses ten of the Mac's twelve cores, so six workers taking turns need about five hours a round. The orchestrator's suggestion is that a worker runs the quick check and the sets its change touches, and the orchestrator runs one full check on each batch it merges.
 7. **The 8110 is checked before a merge to `main`**, not on a schedule. It is not a focus until the work on the other sets is done.
+
+## Decisions, made 2026-11-12
+
+1. **The orchestrator owns the design.** Erik's words: "You are the owner and long-term maintainer of this codebase, and its design is up to you." The orchestrator decides design questions and the order of the work, records each decision here with its reason, and directs the other sessions. `main` is still Erik's alone, and he still signs off function lists and errata, which are facts about the real sets.
+2. **Play comes first in phase 4**, before gravity and springs. The reason is measured: of the 24 results that a nudge of 0.05 LDU changes on the quick sets, 18 jam because the solver allows no play, and 73 functions in the full check fail as jammed. Results that turn on rounding also make every later gain hard to measure. Gravity and springs keep their order after it. The solver owner starts it when reach is on by default.
+3. **The inference split goes to one worker now** (Claude Opus 5.5, medium effort, branch `inference/split`): `src/mechanism.ts`, 2,720 lines, becomes a short file that calls one file for each rule in `src/inference/`. It is the last thing that keeps phase 3's lanes from having more than one writer. Its gate is the fingerprint of every set's mechanism (`npm run digest`, 47 seconds for 190 models): no fingerprint may change.
+4. **A worker's gate** (this settles the open point in decision 6 of 2026-11-11). A worker runs the type check, the tests, the quick check with the ratchet, the sets its change touches, and, where its change must not alter what is inferred, the fingerprints. The orchestrator runs one full check on each batch it merges. The solver owner still runs the full check itself, since its changes reach every set.
+5. **The ratchet counts ways, not names.** Coming back is counted by the ways a function's controls are worked that leave a part out of place, not by the parts the check names, which turned on rounding where two parts were left equally far.
+6. **Workers and cost.** One worker for a task in phase 2 is the orchestrator's call. A fleet, several workers at once on phase 3's lanes, still starts only on Erik's word, with a stated number.
 
 ## First steps
 

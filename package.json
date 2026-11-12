@@ -21,6 +21,7 @@
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",
     "invariance": "tsx scripts/invariance.ts",
+    "digest": "tsx scripts/digest.ts",
     "nudge": "tsx scripts/probe-nudge.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },
