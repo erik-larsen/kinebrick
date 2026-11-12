@@ -86,7 +86,21 @@ What this says, and what it doesn't:
 - **The plain copy agrees in full**, with the stored results too. So the check is repeatable, and the differences below are real.
 - **Moving the model changes 14 functions.** The solver's answer hangs on how far the model is from the origin. That is the solver's to fix (phase 4): a model's place should not matter.
 - **Turning it changes 5 or 6.** Fewer than moving it, and about as many at 37 degrees as at a quarter turn, so little hangs on parts being square to the axes.
-- **A nudge of 0.05 LDU changes 38, and the result of 24 (11%).** 20 of the 24 get worse, 8 of them from works to no; 4 get better. A stud is 20 LDU, so the nudge is a quarter of a percent of a stud: a tolerance somewhere is tighter than that. A model in the OMR with a part that far off would fail the same way, so some of today's failures may be this and not a missing rule. Finding which tolerances is the first task of the inference lanes.
+- **A nudge of 0.05 LDU changes 38, and the result of 24 (11%).** 20 of the 24 get worse, 8 of them from works to no; 4 get better. A stud is 20 LDU, so the nudge is a quarter of a percent of a stud.
+
+**What the nudge trips** (2026-11-11, from the causes the check gives and from `npm run nudge`, which compares the mechanism worked out from a nudged model with the model's own):
+
+| What changes | Where | How much, on the 33 quick sets | Results it changes |
+|---|---|---|---|
+| The mechanism jams: the control has a joint, but nothing lets it move | The solver. A motion is free only if it keeps every equation exactly (`RANK_TOLERANCE`, 1e-6, in `src/linalg.ts`), so a shaft in two holes that are 0.05 LDU out of line can't turn | 18 functions | 18 of the 24, 16 of them to no |
+| Which of its holes a free pin is fixed in | The inference: `fixPins` in `src/mechanism.ts` picks the hole the pin goes furthest into, and two equal overlaps of 18 LDU become 18.00 and 17.96 | 406 parts change body, in 18 sets | None. A trial that counted overlaps within 0.5 LDU as equal left all 24 as they were, and changed no result of the models as built |
+| Which of two parts a piece is counted as fixed to: mostly hose and cable segments and chain links | The inference. The rule that chooses is not traced yet | 757 attachments, in 15 sets; 251 parts change body | Not measured |
+| A connection found or lost | The inference: `ALIGN_TOLERANCE`, 1 LDU. Some parts are built that far off their hole (an axle of the 8851 through two plates), and the nudge takes them either side of it | 6 connections in 3 sets; 2 parts come loose in 2 sets | At most the 6 that don't jam |
+| Gear meshes | | None | None |
+
+- **The nudge trips the solver, not the inference's tolerances.** Those are 0.5 LDU and more, ten times the nudge. What it trips is the solver's exactness: it allows no play at all.
+- **This is a second reading of "nothing lets it move".** That cause has 73 functions in the full check. A model in the OMR is not exact either: its parts are placed to three decimals, through sub-models turned by rounded matrices. Some of those 73, and some drags that stop early, are likely the same jam. Play as weighted rows (phase 4) is the fix, and this measure is its test: it should bring the 18 back.
+- **The inference's ties move parts between bodies.** The pin tie changes no result; the other is not measured. Both can be made steady by counting near-equal amounts as equal. That is a small task for an inference lane.
 
 The measure fails while any result changes. It joins the gate once it passes on the quick sets.
 
