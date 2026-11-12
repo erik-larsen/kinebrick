@@ -23,17 +23,14 @@
     ]
   },
   "generated": {
-    "commit": "cd9403b",
+    "commit": "3cdfe80",
     "uncommitted": true,
-    "date": "2026-11-11",
-    "seconds": 115,
+    "date": "2026-11-12",
+    "seconds": 53,
     "counts": {
-      "works": 1,
-      "partly": 1
+      "works": 2
     },
     "loose": [
-      "p13 4023",
-      "p14 73092",
       "p21 2344",
       "p22 2344",
       "p27 2344",
@@ -100,10 +97,7 @@
         "result": "works"
       },
       {
-        "result": "partly",
-        "why": [
-          "4 of the train's 6 wheelsets stayed behind: a coupling didn't hold"
-        ],
+        "result": "works",
         "travelled": 5030,
         "length": 5037,
         "offTrack": 0,

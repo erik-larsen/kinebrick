@@ -388,6 +388,20 @@ function trackRun(track: Track) {
   return { entries, length: from, loop: false, start: -back };
 }
 
+// A shortcut the OMR file carries itself (an assembly the library doesn't have yet, such as
+// 7722's battery box car, 3443c12) is read as one part, which Kinebrick knows nothing of. One
+// that holds train wheels (itself, or through another such shortcut) is read as its pieces
+// instead, as a submodel, so that its wheels ride the rails.
+const ROLES: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+function wheelShortcutsAsPieces(text: string): string {
+  const files = text.split(/^(?=0\s+FILE\s)/im);
+  const nameOf = (file: string) => /^0\s+FILE\s+(.+?)\s*$/im.exec(file)?.[1].toLowerCase() ?? '';
+  const refs = (file: string) => [...file.matchAll(/^\s*1(?:\s+\S+){13}\s+(.+?)\s*$/gm)].map((m) => m[1].toLowerCase());
+  const shortcuts = new Map(files.filter((f) => /^\s*0\s+!LDRAW_ORG\s+(Unofficial_)?Shortcut\b/im.test(f)).map((f) => [nameOf(f), f]));
+  const holdsWheels = (name: string, depth = 0): boolean => depth < 4 && refs(shortcuts.get(name)!).some((r) => ['train wheel', 'train motor'].includes(ROLES[r]) || (shortcuts.has(r) && holdsWheels(r, depth + 1)));
+  return files.map((f) => (shortcuts.has(nameOf(f)) && holdsWheels(nameOf(f)) ? f.replace(/^\s*0\s+!LDRAW_ORG\s+(Unofficial_)?Shortcut\b.*$/im, '0 // Kinebrick: read as its pieces, for its train wheels') : f)).join('');
+}
+
 // The library's assembled wheel bogies (2878c01, 2878c02) seat their wheelset 34 LDU below the
 // bogie's origin, 2 LDU lower than the 10001 Metroliner's file seats it in the bogie (2878), and
 // than a 9V motor's wheels stand beside it: a locomotive with both (the 4565's) couldn't stand on
@@ -426,6 +440,7 @@ function makeModel(set: string, name: string, source: string, add: string[] = []
     text = text.replace(wrong, right);
   }
   text = splitBogies(text);
+  text = wheelShortcutsAsPieces(text);
   // A coupling's magnet turned up, out of use (4022c02, 4023c02), is turned down, so that the
   // train runs coupled (4022c01, 4023c01).
   text = text.replace(/\b(4022|4023)c02\.dat\b/gi, '$1c01.dat');

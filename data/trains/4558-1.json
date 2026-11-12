@@ -28,14 +28,19 @@
     ]
   },
   "generated": {
-    "commit": "cd9403b",
+    "commit": "3cdfe80",
     "uncommitted": true,
-    "date": "2026-11-11",
-    "seconds": 24,
+    "date": "2026-11-12",
+    "seconds": 10,
     "counts": {
       "works": 2
     },
-    "loose": [],
+    "loose": [
+      "p120 70023",
+      "p551 70023",
+      "p554 70023",
+      "p839 70023"
+    ],
     "functions": [
       {
         "result": "works"

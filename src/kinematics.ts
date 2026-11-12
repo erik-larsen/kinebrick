@@ -27,6 +27,7 @@ import { StringCircle, stringLayout } from './paths.ts';
 // How close a tyre must be to the ground to count as touching it, in LDU. Models are often
 // built half an LDU out (an official tractor's front tyres sit half an LDU above its rear ones).
 const GROUND_TOLERANCE = 1;
+const RAIL_TOLERANCE = 4; // on a train layout (see findGround)
 // Numbers smaller than this count as zero when solving the equations.
 const EPSILON = 1e-9;
 // How far past the end of its travel a slide may go, in LDU, before it counts as there: closing
@@ -527,12 +528,15 @@ export class Kinematics {
     // Its trains' wheels stand on the rail heads, whatever else stands lower on the table.
     if (this.mech.track) lowest = this.mech.track.head();
     this.groundY = lowest;
-    // Only train wheels touch it there (a road-rail vehicle's road wheels ride just above it).
+    // Only train wheels touch it there (a road-rail vehicle's road wheels ride just above it),
+    // within RAIL_TOLERANCE of the rail heads: a file may stand a locomotive's wheels a little
+    // apart in height, and their rails hold them all.
     const onRails = (part: number) => !this.mech.track || ['train wheel', 'train motor'].includes(this.mech.roles[part]);
+    const tolerance = this.mech.track ? RAIL_TOLERANCE : GROUND_TOLERANCE;
     this.mech.treads.forEach((t, i) => {
       const p = lowestPoint(t.center, t.axis, t.radius);
       this.contactHeights[i] = p ? p.y : 0;
-      if (p && Math.abs(p.y - lowest) < GROUND_TOLERANCE && onRails(t.part)) this.contactTreads.push(i);
+      if (p && Math.abs(p.y - lowest) < tolerance && onRails(t.part)) this.contactTreads.push(i);
     });
   }
 
@@ -1740,8 +1744,10 @@ export class Kinematics {
       if (onRails) {
         // A train wheel neither lifts off its rail nor sinks into it, exactly; its flanges keep
         // it across the track (the riders' rows below, for the axle as a whole). Its gap, for
-        // closing the loops: how far it stands off the rail head.
-        add(along(p, DOWN), (this.groundY ?? p.y) - p.y);
+        // closing the loops: how far it stands off the height it started at (the layout sets the
+        // trains on the rail heads; a file may stand a locomotive's wheels a little apart in height,
+        // and each rides at its own).
+        add(along(p, DOWN), this.contactHeights[i] - p.y);
       } else if (slip) {
         if (tread.track === undefined) slip.sideways.push(along(p, sideways));
         slip.travel.push(along(hub, forward));

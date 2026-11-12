@@ -524,6 +524,11 @@
 0 !LDCAD SNAP_FGR [group=magnet] [genderOfs=F] [seq=4 32 4] [radius=2] [pos=0 4 -36] [ori=0 1 0 -1 0 0 0 0 1]
 0 !LDCAD SNAP_FGR [group=magnet] [genderOfs=F] [seq=4 32 4] [radius=2] [pos=0 5 -34] [ori=0 1 0 -1 0 0 0 0 1]
 
+0 FILE 4178.dat
+0 // Train Base 6 x 16: the holes at its ends that its couplings' pins (4023) turn in, 150 LDU either side of its middle, 32 LDU below its top, as the OMR's train sets seat them. The shadow library describes none of its holes.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=150 32 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=-150 32 0]
+
 0 FILE 4093a.dat
 0 // Train Base 6 x 28 with 23 Holes: the shadow library gives it only its top studs. Its underside takes studs, 28 by 6, as the 8-hole base's does (4093c); and a bogie plate's pin (4092a) turns in any of its 21 round holes along its middle, 20 LDU apart, from 60 to 240 LDU either side of its middle
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=0 8 0] [grid=C 28 C 6 20 20]
@@ -532,6 +537,10 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 8 R 8 4] [pos=-150 8 0] [grid=C 10 1 20 0]
 
 0 // The older train bases with wheels (736c02, 270c02, and 736c01, 270c01 inside them) are read as their pieces: the base, two magnet holders (735) and two wheelsets (u9550c01), whose axles turn in the base's holders.
+
+0 FILE 735.dat
+0 // Magnet Holder for Train Base 6 x 16 Type 1 with Magnet: its magnet, 12 LDU in radius and 16 long, along its x axis, 48.5 LDU out, whose faces couple train cars (see magnetCouplings)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 12 16] [center=true] [pos=48.5 -5 0] [ori=0 1 0 -1 0 0 0 0 1]
 
 0 FILE u9550c01.dat
 0 // Train Wheels Spoked with Cylindrical Rim with Axle Steel 6 x 96 LDU: the axle, round, along x, turning in a train base's holders (736, 270); and the two wheels' treads, 18 LDU in radius (as high as the bases hold the axle above the rail heads), centred 50 LDU out either side
@@ -544,6 +553,31 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 4 80] [center=true] [pos=0 42 70] [ori=0 1 0 -1 0 0 0 0 1]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 4 80] [center=true] [pos=0 42 -70] [ori=0 1 0 -1 0 0 0 0 1]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 38 R 8 4] [pos=0 38 -100] [grid=1 2 0 200]
+
+0 // The 4.5V battery box car (3443c12, as 7722 has it): its body (3443) holds two steel axles (944), each with two spoked wheels (243), and two magnet holders (735), as a train base does. The shadow library describes none of them.
+
+0 FILE 3443.dat
+0 // Train Body for Train Battery Box Car: the holders its axles turn in, along x, 135 LDU below its origin and 70 LDU either side of its middle; and the sockets its magnet holders (735) turn in, 100 LDU either side
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 3 80] [center=true] [pos=0 135 70] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 3 80] [center=true] [pos=0 135 -70] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 38 R 8 4] [pos=0 133 -100] [grid=1 2 0 200]
+0 // and its roof (699), which sits on its top: held fast, as an axle in an axle hole, at its origin
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 8] [center=true]
+
+0 FILE 699.dat
+0 // Train Battery Box Car Roof 6 x 14: one with the body it sits on (3443), held fast at the body's origin, 16 LDU below its own
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 8] [center=true] [pos=0 16 0]
+
+0 FILE 944.dat
+0 // Axle Steel 6 x 96 LDU, along its x axis: round in its middle, 3 LDU in radius, where it turns in the car's holders; and its ends fixed in its wheels' hubs (as if axle-shaped), 45 to 57 LDU out either side (the battery box car places it 2 LDU off its middle, its wheels 51 LDU out)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 3 80] [center=true] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 3 12] [center=true] [pos=51 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 3 12] [center=true] [pos=-51 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+
+0 FILE 243.dat
+0 // Train Wheel Spoked with Cylindrical Rim: its tread, 20 LDU in radius (its flange reaches 28), about its z axis at its origin; and its hole, fixed on a steel axle's end (944)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 20 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 3 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 50254.dat
 0 // Train Wheel Small with Notched Hole: its tread is its hub, 10 LDU in radius, about its z axis at its origin (the disc on its inner side, 18 LDU in radius, is its flange)

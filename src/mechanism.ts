@@ -483,7 +483,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...looseFits(roles, cyls, connections, frictionRigid));
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections, anchors), paths);
   const hooked = hookedParts(cyls, connections, findLooseParts(parts.length, connections, anchors), paths);
-  const riding = findLooseParts(parts.length, connections, anchors).filter((i) => !hanging.has(i) && !hooked.has(i));
+  // (On a layout, a part joined to a car only by its magnet's coupling to the next car, a buffer
+  // beam the file places off its car, is loose: it rides along with its own car.)
+  const uncoupled = rails.length ? connections.filter((c) => !(roles[c.male] === 'magnet' && roles[c.female] === 'magnet')) : connections;
+  const riding = findLooseParts(parts.length, uncoupled, anchors).filter((i) => !hanging.has(i) && !hooked.has(i));
   // On a train layout, what stands on the table beside the track (a platform, with the figures
   // on it) is scenery, not loose: it rides along with the track, never with a train that happens
   // to stand beside it. A few parts on their own are loose as ever, and ride along with what's
@@ -499,10 +502,12 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
     bySubmodel.set(p.submodel, n);
   });
   const figures = new Set([...bySubmodel].filter(([, n]) => n.figure * 2 >= n.parts).map(([sub]) => sub));
-  const loose = (rails.length ? smallGroups(parts.length, connections, riding) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
+  // (Two cars' loose bits, coupled by their magnets, aren't one group either: each is its own car's.)
+  const trainSubmodels = new Set(parts.flatMap((p, i) => (p.submodel && ['train wheel', 'train motor'].includes(roles[i]) ? [p.submodel] : [])));
+  const loose = (rails.length ? smallGroups(parts.length, uncoupled, riding, track ? track.head() - ABOVE_RAILS : undefined, parts, trainSubmodels) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
   const scenery = new Set(riding.filter((i) => !loose.includes(i)));
-  connections.push(...rideAlong(parts, cyls, connections, loose));
-  if (scenery.size) connections.push(...rideAlong(parts, cyls, connections, [...scenery], new Set(rails.map((r) => r.part))));
+  connections.push(...rideAlong(parts, cyls, uncoupled, loose));
+  if (scenery.size) connections.push(...rideAlong(parts, cyls, uncoupled, [...scenery], new Set(rails.map((r) => r.part))));
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
   const bodies = nameBodies(bodyOf, roles);
@@ -998,9 +1003,12 @@ function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]
     const was = lowest.get(find(i));
     if (was === undefined || p.matrix.elements[13] > parts[was].matrix.elements[13]) lowest.set(find(i), i);
   });
+  // A figure already joined to something (its feet on a cab floor's studs) is held by that.
+  const held = new Set<number>();
+  if (layout) for (const c of connections) if ((roles[c.male] === 'figure') !== (roles[c.female] === 'figure')) held.add(find(roles[c.male] === 'figure' ? c.male : c.female));
   const result: Connection[] = [];
   parts.forEach((p, i) => {
-    if (!isDecoration(i)) return;
+    if (!isDecoration(i) || (roles[i] === 'figure' && held.has(find(i)))) return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
     const feet = lowest.get(find(i));
     const nearest = nearestTo(feet === undefined ? at : new Vector3().setFromMatrixPosition(parts[feet].matrix));
@@ -1485,6 +1493,8 @@ function magnetCouplings(parts: PlacedPart[], roles: string[], cyls: WorldCylind
       // The first magnet's holder, the coupling part nearest it, fixed on its beam.
       const holder = roles.flatMap((r, p) => (r === 'coupling' ? [p] : [])).sort((p, q) => at(p).distanceTo(at(a.part)) - at(q).distanceTo(at(a.part)))[0];
       if (holder !== undefined && at(holder).distanceTo(at(a.part)) < 60) for (const c of connections) if (c.kind === 'revolute' && (c.male === holder || c.female === holder) && roles[c.male] !== 'magnet' && roles[c.female] !== 'magnet') c.kind = 'rigid';
+      // A magnet that is its own holder (the older train bases', 735) has its own swivel fixed.
+      if (holder === undefined || at(holder).distanceTo(at(a.part)) >= 60) for (const c of connections) if (c.kind === 'revolute' && (c.male === a.part || c.female === a.part) && roles[c.male] !== roles[c.female]) c.kind = 'rigid';
     }
   }
   return couplings;
@@ -1510,7 +1520,13 @@ function findRiders(treads: Tread[]): Rider[] {
 }
 
 // Of the parts that ride along, those in groups smaller than SCENERY: the loose ones.
-function smallGroups(count: number, connections: Connection[], riding: number[]): number[] {
+// A group whose every part stands higher than this above the rail heads (a locomotive's
+// pantograph, on its roof) stands on no table or platform: it's loose, not scenery.
+const ABOVE_RAILS = 100;
+
+// On a layout (`above` given): a group of a train's own submodel (`trains`: those holding train
+// wheels; a car's buffer beams, the file places off it) is loose too, and rides with its car.
+function smallGroups(count: number, connections: Connection[], riding: number[], above?: number, parts?: PlacedPart[], trains?: Set<string>): number[] {
   const isRiding = new Set(riding);
   const leader = Array.from({ length: count }, (_, i) => i);
   const find = (i: number): number => {
@@ -1520,7 +1536,11 @@ function smallGroups(count: number, connections: Connection[], riding: number[])
   for (const c of connections) if (isRiding.has(c.male) && isRiding.has(c.female)) leader[find(c.male)] = find(c.female);
   const sizes = new Map<number, number>();
   for (const i of riding) sizes.set(find(i), (sizes.get(find(i)) ?? 0) + 1);
-  return riding.filter((i) => sizes.get(find(i))! < SCENERY);
+  // Each group's lowest part (the greatest y, as y points down).
+  const lowest = new Map<number, number>();
+  if (above !== undefined && parts) for (const i of riding) lowest.set(find(i), Math.max(lowest.get(find(i)) ?? -Infinity, parts[i].matrix.elements[13]));
+  const ofTrain = new Set(riding.filter((i) => parts && trains?.has(parts[i].submodel ?? '')).map(find));
+  return riding.filter((i) => sizes.get(find(i))! < SCENERY || (above !== undefined && lowest.get(find(i))! < above) || ofTrain.has(find(i)));
 }
 
 function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
