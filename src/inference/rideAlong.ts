@@ -55,3 +55,18 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
     return { male: part, female: anchor, kind: 'rigid' as ConnectionKind, from: at, to: at.clone() };
   });
 }
+
+// The submodels that are a figure's own: what a figure holds or stands with (a porter's hand
+// truck and suitcase, in the figure's own submodel, one that's mostly figure parts) is posed by
+// hand, as the figure is, so it isn't loose.
+export function figureSubmodels(parts: PlacedPart[], roles: string[]): Set<string> {
+  const bySubmodel = new Map<string, { parts: number; figure: number }>();
+  parts.forEach((p, i) => {
+    if (!p.submodel) return;
+    const n = bySubmodel.get(p.submodel) ?? { parts: 0, figure: 0 };
+    n.parts++;
+    if (roles[i] === 'figure') n.figure++;
+    bySubmodel.set(p.submodel, n);
+  });
+  return new Set([...bySubmodel].filter(([, n]) => n.figure * 2 >= n.parts).map(([sub]) => sub));
+}

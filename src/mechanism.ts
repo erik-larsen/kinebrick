@@ -5,11 +5,11 @@ import { Vector3 } from 'three';
 import { ConnectionTable } from './connections.ts';
 import { Kinematics } from './kinematics.ts';
 import { PlacedPart, PlacedPath } from './ldr.ts';
-import { linearActuators } from './inference/actuators.ts';
+import { actuatorScrews, linearActuators } from './inference/actuators.ts';
 import { slidingOnAxles } from './inference/axleSlides.ts';
-import { groupIntoBodies, nameBodies } from './inference/bodies.ts';
+import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts';
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
-import { crankWebs, dropBallsInBearings, groovedBalls, universalJoints } from './inference/couplings.ts';
+import { crankWebs, dropBallsInBearings, findCouplings, groovedBalls, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
 import { findGears, findMeshes } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
@@ -22,12 +22,12 @@ import { fixPins } from './inference/pins.ts';
 import { guidedPistons, shockAbsorbers } from './inference/pistons.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
 import { restingParts } from './inference/rests.ts';
-import { decorations, rideAlong } from './inference/rideAlong.ts';
-import { BALL_LINE, findLooseParts, worldCylinders } from './inference/shared.ts';
+import { decorations, figureSubmodels, rideAlong } from './inference/rideAlong.ts';
+import { findLooseParts, worldCylinders } from './inference/shared.ts';
 import { findStrings, hangingParts } from './inference/strings.ts';
 import { bushesOnFourStuds, onFourStuds, platesOnEdge } from './inference/studs.ts';
 import { onTiles } from './inference/tiles.ts';
-import { anchorsOf, findRails, findRiders, magnetCouplings, railJoins, smallGroups } from './inference/trains.ts';
+import { anchorsOf, findRails, findRiders, magnetCouplings, railJoins, smallGroups, stiffMagnetHinges } from './inference/trains.ts';
 import { findTreads, trackTreads } from './inference/treads.ts';
 export { axesCrossing, closestPoints, findMeshes, meshesChanged } from './inference/gears.ts';
 export { withoutSlidesOnCouplers } from './inference/joints.ts';
@@ -289,7 +289,15 @@ export function libraryName(name: string, table: ConnectionTable): string {
   return !table.parts[name] && part && table.parts[part] ? part : name;
 }
 
-// The mechanism, with friction pins treated as rigid or as stiff joints.
+// The mechanism, with friction pins treated as rigid or as stiff joints. Each rule is a file in
+// src/inference/. They run in this order, in five stages: each stage reads what the ones before
+// it found.
+//
+//   1. Connections   which parts are joined, and how
+//   2. Loose parts   what the rules above left attached to nothing
+//   3. Bodies        parts fixed to each other move as one
+//   4. Joints        how the bodies move against each other
+//   5. The rest      gears, couplings, loops, strings and screws between bodies
 function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[]): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
@@ -299,7 +307,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path');
   // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle
   // in it turns, rather than being fixed to the motor and whatever the motor is built into.
+  // Before findConnections, which reads it.
   for (const c of cyls) if (roles[c.part] === 'motor' && c.secs.some((s) => s.shape === 'A')) c.turns = true;
+
+  // 1. Connections. First the connection points that fit (fits.ts).
   const connections = findConnections(cyls, frictionRigid);
   // A train track's pieces hold together end to end (nothing else joins them), and the track,
   // the trains' wheels and what's built on them are assemblies of their own, standing apart
@@ -308,32 +319,33 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...railJoins(rails));
   connections.push(...magnetCouplings(parts, roles, cyls, connections));
   const anchors = anchorsOf(roles);
+  // Pins and hinges, among the connections found so far.
   fixPins(connections, roles, frictionRigid);
-  // A train coupling's magnet casing clicks onto its holder's hinge fingers and swings on them,
-  // stiffly, as a friction pin turns: held, unless nothing else can move. Free, the two casings
-  // of a coupling would swing as the magnets met, and the cars behind them lurch.
-  for (const c of connections) {
-    if (c.kind !== 'revolute' || !((roles[c.male] === 'coupling' && roles[c.female] === 'magnet') || (roles[c.male] === 'magnet' && roles[c.female] === 'coupling'))) continue;
-    if (frictionRigid) [c.kind, c.held] = ['rigid', true];
-    else c.stiff = true;
-  }
+  stiffMagnetHinges(connections, roles, frictionRigid);
+  // Parts held by more than their connection points say.
   connections.push(...platesOnEdge(cyls));
   connections.push(...onFourStuds(cyls));
+  // onTiles and guidedRacks take only parts still loose, so they come after the rules that
+  // attach parts; guidedPistons slides a piston against a part it isn't connected to.
   connections.push(...onTiles(roles, cyls, connections));
   connections.push(...inGrooves(parts, cyls, table));
   connections.push(...guidedRacks(parts.length, cyls, connections, guide));
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
   connections.push(...shockAbsorbers(cyls));
+  // linearActuators, universalJoints and groovedBalls replace connections already found.
   const actuators = linearActuators(parts, connections);
   connections.push(...bushGrips(roles, cyls));
   connections.push(...toothedBushes(roles, cyls));
   const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
+
+  // 2. Loose parts. Second chances first, for parts no rule above attached (looseFits leaves a
+  // universal joint's cross the arms universalJoints left it).
   connections.push(...bushesOnFourStuds(roles, cyls, connections));
   connections.push(...onAxleTips(roles, cyls, connections));
+  connections.push(...looseFits(roles, cyls, connections, frictionRigid));
   // Loose parts hanging on a string, or hooked to a chain, are held by it; the rest ride along
   // with what's nearest.
-  connections.push(...looseFits(roles, cyls, connections, frictionRigid));
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections, anchors), paths);
   const hooked = hookedParts(cyls, connections, findLooseParts(parts.length, connections, anchors), paths);
   const riding = findLooseParts(parts.length, connections, anchors).filter((i) => !hanging.has(i) && !hooked.has(i));
@@ -341,47 +353,44 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // on it) is scenery, not loose: it rides along with the track, never with a train that happens
   // to stand beside it. A few parts on their own are loose as ever, and ride along with what's
   // nearest, as elsewhere.
-  // Nor is what a figure holds or stands with (a porter's hand truck and suitcase, in the
-  // figure's own submodel, one that's mostly figure parts): posed by hand, as the figure is.
-  const bySubmodel = new Map<string, { parts: number; figure: number }>();
-  parts.forEach((p, i) => {
-    if (!p.submodel) return;
-    const n = bySubmodel.get(p.submodel) ?? { parts: 0, figure: 0 };
-    n.parts++;
-    if (roles[i] === 'figure') n.figure++;
-    bySubmodel.set(p.submodel, n);
-  });
-  const figures = new Set([...bySubmodel].filter(([, n]) => n.figure * 2 >= n.parts).map(([sub]) => sub));
+  // Nor is what a figure holds or stands with (see figureSubmodels).
+  const figures = figureSubmodels(parts, roles);
   const loose = (rails.length ? smallGroups(parts.length, connections, riding) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
   const scenery = new Set(riding.filter((i) => !loose.includes(i)));
   connections.push(...rideAlong(parts, cyls, connections, loose));
   if (scenery.size) connections.push(...rideAlong(parts, cyls, connections, [...scenery], new Set(rails.map((r) => r.part))));
+
+  // 3. Bodies, from every connection above.
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
+  // slidingOnAxles and restingParts read the bodies, and turn connections into slides, so they
+  // come before the joints are found.
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
   const bodies = nameBodies(bodyOf, roles);
   const rests = restingParts(parts, roles, cyls, connections, bodyOf);
+
+  // 4. Joints, then put on one line where built a hair out of it.
   const joints = withoutSlidesOnCouplers(findJoints(connections, bodyOf));
   lineUpAxles(joints);
   lineUpBalls(joints);
+
+  // 5. The rest, between bodies.
   const treads = findTreads(cyls, bodyOf, roles);
   const riders = rails.length ? findRiders(treads) : [];
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
-  const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
+  // After lineUpBalls: dropBallsInBearings and findCouplings find a nudged ball's joint where
+  // lineUpBalls has put it.
   dropBallsInBearings(joints, joined, roles, bodyOf);
-  // A nudged ball's coupling is at its ball joint's middle, where lineUpBalls has put it.
-  const ballAt = (partA: number, partB: number, center: Vector3) => joints.find((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(bodyOf[partA]) && [j.bodyA, j.bodyB].includes(bodyOf[partB]) && j.from.distanceTo(center) < BALL_LINE)?.from.clone() ?? center;
-  const couplings: Coupling[] = joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball' }));
+  const couplings = findCouplings(joined, joints, parts, roles, bodyOf);
   couplings.push(...crankWebs(joints));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   // What's hooked to a chain it can't slide along is loose after all (it rides along with nothing).
   loose.push(...chainHooks(parts, bodyOf, joints, loops, hooked));
   loose.sort((a, b) => a - b);
   treads.push(...trackTreads(loops));
+  // After chainHooks, as a string reads which parts are loose.
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
-  // An actuator whose input or piston is fixed to its body (by what's built round it) can't work.
-  const screws = actuators.filter((a) => new Set([a.body, a.input, a.piston].map((i) => bodyOf[i])).size === 3).map((a) => ({ input: bodyOf[a.input], piston: bodyOf[a.piston], center: a.center, axis: a.axis, lead: a.lead }));
-  const centers = bodies.map((b) => b.parts.reduce((sum, i) => sum.add(new Vector3().setFromMatrixPosition(parts[i].matrix)), new Vector3()).multiplyScalar(1 / Math.max(1, b.parts.length)));
+  const screws = actuatorScrews(actuators, bodyOf);
+  const centers = bodyCenters(bodies, parts);
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
 }
-

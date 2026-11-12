@@ -1,6 +1,7 @@
 // Bodies: the parts that move as one, and their names.
 
 import { Vector3 } from 'three';
+import { PlacedPart } from '../ldr.ts';
 import type { Body, Connection } from '../mechanism.ts';
 import { AXIS_TOLERANCE } from './shared.ts';
 
@@ -106,4 +107,9 @@ function coaxial(a: Connection, b: Connection): boolean {
     return offset.addScaledVector(dir, -offset.dot(dir)).length();
   };
   return distance(b.from) < AXIS_TOLERANCE && distance(b.to) < AXIS_TOLERANCE;
+}
+
+// Each body's middle as built: the mean of its parts' origins.
+export function bodyCenters(bodies: Body[], parts: PlacedPart[]): Vector3[] {
+  return bodies.map((b) => b.parts.reduce((sum, i) => sum.add(new Vector3().setFromMatrixPosition(parts[i].matrix)), new Vector3()).multiplyScalar(1 / Math.max(1, b.parts.length)));
 }

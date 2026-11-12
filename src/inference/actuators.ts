@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import { PlacedPart } from '../ldr.ts';
-import type { Connection } from '../mechanism.ts';
+import type { Connection, Screw } from '../mechanism.ts';
 
 // How far off where it should be on its body's axis a linear actuator's input or piston may be
 // built, and still be taken for it, in LDU (see linearActuators).
@@ -62,4 +62,10 @@ export function linearActuators(parts: PlacedPart[], connections: Connection[]):
     found.push({ body, input, piston, center: along(kind.input), axis, lead: kind.lead });
   });
   return found;
+}
+
+// The screws of the actuators linearActuators found, between bodies. An actuator whose input or
+// piston is fixed to its body (by what's built round it) can't work.
+export function actuatorScrews(actuators: { body: number; input: number; piston: number; center: Vector3; axis: Vector3; lead: number }[], bodyOf: number[]): Screw[] {
+  return actuators.filter((a) => new Set([a.body, a.input, a.piston].map((i) => bodyOf[i])).size === 3).map((a) => ({ input: bodyOf[a.input], piston: bodyOf[a.piston], center: a.center, axis: a.axis, lead: a.lead }));
 }
