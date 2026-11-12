@@ -479,7 +479,7 @@ function wheelKind(name: string): 'tyre' | 'rim' | null {
 // coordinate axis it's thinnest along, through the middle of it), as long as the part is wide,
 // at a rim's largest radius (its flanges too) or a tyre's smallest (its bore). Measured on the
 // rims and tyres the corrections give seats, a rim reaches 2 to 14 LDU past its tyre's bore, so
-// a tyre fits any rim it's on that reaches its bore (see sectionFit in src/mechanism.ts). Null
+// a tyre fits any rim it's on that reaches its bore (see sectionFit in src/inference/fits.ts). Null
 // for a part that isn't round.
 function shapeSeat(name: string, kind: 'tyre' | 'rim'): Cylinder | null {
   const vertices: Vec3[] = [];

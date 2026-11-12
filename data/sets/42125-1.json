@@ -126,14 +126,15 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 313,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 262,
     "counts": {
       "partly": 1,
       "works": 5,
       "no": 1,
-      "skipped": 1
+      "skipped": 1,
+      "not back": 1
     },
     "loose": [
       "p415 22977",
@@ -264,7 +265,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 6
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -346,7 +347,7 @@
             ]
           ]
         ],
-        "seconds": 84
+        "seconds": 55.8
       },
       {
         "result": "works",
@@ -376,7 +377,7 @@
             ]
           ]
         ],
-        "seconds": 39.7
+        "seconds": 27.3
       },
       {
         "result": "no",
@@ -452,8 +453,7 @@
         "seconds": 0.4
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       },
       {
         "result": "works",
@@ -493,18 +493,18 @@
             ]
           ]
         ],
-        "seconds": 82.9
+        "seconds": 56.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.51,
+            -1.51
           ],
           [
-            1.5,
-            -1.5
+            1.51,
+            -1.51
           ]
         ],
         "rates": [
@@ -514,26 +514,35 @@
         "back": [
           [
             [
-              0,
-              0
+              21.84,
+              8.55
             ],
             [
-              0,
-              0
+              12.77,
+              3.86
             ]
           ],
           [
             [
-              0,
-              0
+              12.77,
+              3.86
             ],
             [
-              0,
-              0
+              21.84,
+              8.55
             ]
           ]
         ],
-        "seconds": 14
+        "strayed": [
+          "p805 42125 - 33299a",
+          "p2894 43093",
+          "p2944 43093"
+        ],
+        "pushed": [
+          true,
+          true
+        ],
+        "seconds": 50.2
       },
       {
         "result": "works",
@@ -573,7 +582,7 @@
             ]
           ]
         ],
-        "seconds": 84.4
+        "seconds": 56.3
       }
     ]
   }

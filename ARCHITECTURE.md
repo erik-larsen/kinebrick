@@ -639,6 +639,8 @@ A role is a short label for what a part does in a mechanism. It tells Kinebrick 
   - a 12 tooth bevel and the old 20 tooth one, as in the 8281 Mini Tractor's power take-off;
   - a differential's 28 tooth ring and a 20 tooth gear.
 
+Once found, a bevel mesh keeps its crossing as the gears turn: the middle of the shortest line between the axles, even where rounding takes them a hair further apart than the meshes are found with. The 8859 Tractor's differential has its half shafts half an LDU off the spider's axis, right at that limit; after one step its spider lost both meshes, and the prop shaft stopped as the tractor rolled on.
+
 **Racks.**
 
 - **Their teeth.** A plate with teeth along its top, its pitch line 4 LDU above it. The 1980s steering rack (2790a) is a round bar whose teeth are rings round it, its pitch radius 8 LDU, which slides through its holder (2791a).
@@ -719,7 +721,7 @@ Before these the car's frame stays where it is, if it can. Worms and linear actu
 
 Pushes still choose by holds, below, and so does a turn with `?holds` in the address (`KINEBRICK_LEAST=0` for the tests and scripts). These switches are each solver's own, its `options` (see `Options` in `src/kinematics.ts`): those set from the address or the environment are only what a new solver starts with, so a test or script can compare two settings on one loaded model.
 
-**Only what the drag can reach** (the `reach` option, off for now; `KINEBRICK_REACH=1` for the tests and scripts). Each step is solved over every part of the model, wherever the control is: on the 42082 Rough Terrain Crane, rolling it along means choosing among about 320 free motions, most of them the crane's own. With `reach`, a drag holds where they are on the frame the parts it can't reach: those no chain of connections (joints, gears, universal joints, chains, strings, screws, resting parts) joins to the grabbed part, or to a tyre on the ground, but through the frame. On the 42082 that leaves one free motion, and a step takes a fifth of the time. It isn't on by default because it's not the same to the last bit: the held parts stand exactly still, where the whole solve leaves them moving by rounding, and choosing among fewer motions rounds differently. On the quick check most results come out the same to the figures written down, but some don't (see the commit that added it).
+**Only what the drag can reach** (the `reach` option, off for now; `KINEBRICK_REACH=1` for the tests and scripts). Each step is solved over every part of the model, wherever the control is: on the 42082 Rough Terrain Crane, rolling it along means choosing among about 320 free motions, most of them the crane's own. With `reach`, a drag holds where they are on the frame the parts it can't reach: those no chain of connections (joints, gears, universal joints, chains, strings, screws, resting parts) joins to the grabbed part, or to a tyre on the ground, but through the frame. On the 42082 that leaves one free motion, and a step takes a fifth of the time. Each held part is held whole on the frame, not just on its joint, so the rows on nothing but held parts (and the frame) have nothing left to say but their rounding, and are left out. (Held only on their joints, without those rows, the 8859 Tractor's cab and hitch came loose, and rolling it back on a front wheel stopped at a dead point.) Kept, a string's rows on the 855 Mobile Crane's held hook block, a hundred-thousandth out when the crane moves as one, held back the car rolling on its wheels, turning it a little until the rolling stopped. It isn't on by default because it's not the same to the last bit: the held parts stand exactly still, where the whole solve leaves them moving by rounding, and choosing among fewer motions rounds differently. On the quick check most results come out the same to the figures written down, but some don't (see the commit that added it).
 
 ### Holds
 
@@ -1026,6 +1028,7 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 
 - works the function's `first` controls, in order;
 - works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide (each control on its own, or for controls marked `together`, the first with the others turning with it, as pushing a vehicle along turns its wheels);
+- pushes its control instead, where the viewer would push it and not turn it: a part that hangs on a hinge but doesn't spin on it like a knob (a door, an arm of a linkage, a gear on a shaft that also slides; see `turnsLikeAKnob`). The control is grabbed by a point on it that moves as its hinge turns (its part's middle, or a point 10 LDU from it along one of the part's own axes), and pushed the way the hinge carries that point, by the viewer's own steps (`pushStep` in `src/push.ts`), holding what a push holds, until it has turned 1.5 radians or can go no further. It is then pushed back the same length. Such a function's results have `pushed`. Until 2026-11-12 the check turned these controls on their joints, which no drag in the viewer does, and passed functions that a push does not work;
 - checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°);
 - measures how much: how far each listed part turned and slid for each radian the control turned, adding up every piece of the drag (it's worked in pieces of 0.1, since a part geared up turns further than half a turn, which its pose alone can't tell);
 - compares that with what the gears say, where they alone say it (`scripts/gear-rates.ts`): for parts that turn in the frame (straight off it, or on joints all on one line down to it, as a differential's carrier on its half shaft), tied to the control by gears, racks, worms, universal joints (through a CV joint's middle too), chains or a linear actuator's screw, and through a differential once two of its carrier and side gears are known (controls marked `together` give both sides), each speed signed, about its joint's axis, against its housing;
@@ -1057,7 +1060,7 @@ Two more counts, beside the result rather than changing it, so results stay comp
 - The date, how many functions came out each way, and the model's loose parts.
 - One entry per function, in the same order as `curated.functions`: its result, how far each control went each way (`turned`), the parts in `moves` that didn't move (`still`), those in `stays` that did (`moved`), and `why`, where it couldn't work a control.
 - For each control, each listed part's turning (radians) and sliding (LDU) for each radian the control turned, the way it was worked that came out best (`rates`); what the gears say, where they do (`expected`), and the parts off it (`wrong`).
-- For each control and way, the furthest any part was left after there and back, in LDU and degrees (`back`), and the part furthest out (`strayed`), if it's beyond 0.5.
+- For each control and way, the furthest any part was left after there and back, in LDU and degrees (`back`), and the part furthest out (`strayed`), if it's beyond 0.5. The ratchet (`npm run ratchet`) counts the ways beyond 0.5 in `back`, not the parts named: where two parts are left equally far, rounding picks which is named.
 - For each control and way, what stopped it short of its reach, if anything did (`stop`): `limit` (the end of a slide's or a rack's travel), `dead point`, `no motion` (nothing left that turns it) or `stuck` (a step that couldn't be taken).
 - For a function that doesn't work, why (`cause`, and `detail`, the part it's about): see [Causes](#causes).
 
@@ -1123,7 +1126,8 @@ Browser-level tests for these paths can come later.
 | `src/studio.ts` | Reads the LDraw model out of a BrickLink Studio file (`.io`): a ZIP archive, encrypted with Studio's password |
 | `src/library.ts` | For a model opened from your own computer: fetches its parts from an LDraw library online (erik-larsen.github.io/ldraw, or another given with `?library=`, such as `?library=/ldraw/` for the one in `ldraw/` under `npm run dev`), and keeps the file and the parts in the browser |
 | `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and Kinebrick's own settings in it; brings a real LEGO set's file into the shape Kinebrick keeps it in |
-| `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
+| `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6): the types the rest of the code reads, and the order the rules run in (see [The inference](#the-inference)) |
+| `src/inference/` | The inference rules, a file for each rule or group of rules that belong together, and in `shared.ts` what they share (see [The inference](#the-inference)) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
 | `src/constraints/` | The equations each kind of connection writes (see [Connections become equations](#3-connections-become-equations)), a file for each kind, and in `equations.ts` what they share |
 | `src/linalg.ts` | The solver's linear algebra: null spaces, orthonormal bases, the symmetric eigen-solve, the tiers' least squares and the damped solution that closes the loops |
@@ -1131,12 +1135,27 @@ Browser-level tests for these paths can come later.
 | `src/paths.ts` | Where a chain's or track's links go as it moves round its wheels, and a string's layout round its drum and pulleys |
 | `src/collisions.ts` | Stops parts passing through each other |
 | `src/interaction.ts` | Hover, press, drag, freeze, keep turning (see [Drags](#drags)) |
+| `src/push.ts` | One step of a push, and the helpers it needs: shared by the viewer's pushes and the function check's |
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
 | `src/appearance.ts` | How parts look: fill colour (LEGO colours, or one per body), yellow glow for hover, outlines and badges for status, and see-through for what drivetrain focus leaves out |
 | `src/outlines.ts` | Outlines drawn around parts after the scene renders |
 | `src/thumbnail.ts` | A picture of the model for its card in the README, taken when the page is opened with `?thumb` |
 | `src/jointAxes.ts` | Draws joint axes |
 | `src/connections.ts` | What a connection point looks like in the table |
+
+### The inference
+
+`buildMechanism` in `src/mechanism.ts` runs the rules in `src/inference/` in five stages. Each stage reads what the ones before it found. Within a stage, the order matters where a rule reads what an earlier one did: a rule for parts that would be loose comes after the rules that attach parts, and a rule that replaces connections comes after the rules that find them. The comments in `buildMechanism` say where.
+
+| Stage | Files, in the order they first run | What they do |
+|---|---|---|
+| 1. Connections | `shared.ts`, `fits.ts`, `trains.ts`, `pins.ts`, `studs.ts`, `tiles.ts`, `grooves.ts`, `racks.ts`, `rideAlong.ts`, `pistons.ts`, `actuators.ts`, `bushes.ts`, `couplings.ts` | Connection points in model coordinates; which of them fit (axles and pins in holes, studs in anti-studs, balls in sockets, tyres on rims); a train track's pieces and the magnets that couple its cars; which part each pin turns with; parts held between studs, on tiles or in grooves; racks guided past their gear; decorations; pistons, shock absorbers and linear actuators; bushes that lock a part to their axle; universal joints and balls in wheel hubs |
+| 2. Loose parts | `studs.ts`, `looseFits.ts`, `strings.ts`, `hooks.ts`, `rideAlong.ts`, `trains.ts` | A second chance for parts no rule attached; what hangs on a string or is hooked to a chain; what is a figure's own or a layout's scenery; the rest ride along with what's nearest |
+| 3. Bodies | `bodies.ts`, `axleSlides.ts`, `rests.ts` | Parts fixed to each other become bodies; parts a linkage slides along their axle, and parts resting on others, which turn connections into slides |
+| 4. Joints | `joints.ts`, `lineUp.ts` | Joints between bodies, then axles and balls built a hair out of line put on one line |
+| 5. Between bodies | `treads.ts`, `trains.ts`, `gears.ts`, `couplings.ts`, `loops.ts`, `hooks.ts`, `strings.ts`, `actuators.ts`, `bodies.ts` | Tyres and train wheels; gears and their meshes; couplings; loops of chain, track and rubber band; what's hooked to a chain; strings; the actuators' screws; each body's middle |
+
+`inferMechanism` runs `buildMechanism` with friction pins rigid, and again with them as stiff joints if the model can't move so. Then `racksToGuide` (`racks.ts`) asks which racks need a guide, and if any do, it all runs again with them guided.
 
 ### Data
 
@@ -1167,6 +1186,7 @@ Browser-level tests for these paths can come later.
 | `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [The joints probe](#the-joints-probe)) |
 | `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
 | `scripts/invariance.ts` | Checks changed copies of each quick set's model (moved, turned, nudged) and says which functions come out differently (`npm run invariance`; see [The function check](#the-function-check)) |
+| `scripts/digest.ts` | `npm run digest`: a fingerprint of the mechanism worked out for every set's model, field by field, to the last bit of every number. Written to a file before a change and compared after it, it shows in under a minute whether a change to the inference altered any set's mechanism |
 | `scripts/probe-nudge.ts` | Says what a nudge of every part changes in the mechanism worked out from each quick set's model (`npm run nudge`) |
 | `scripts/variants.ts` | The changed copies of a model that the two scripts above check: moved, turned, nudged |
 | `scripts/causes.ts` | Why a function that doesn't work doesn't: one cause from a fixed list, for the function check (see [Causes](#causes)) |

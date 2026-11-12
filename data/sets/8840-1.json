@@ -106,9 +106,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 4,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 2,
     "counts": {
       "partly": 2,
       "works": 2,
@@ -169,7 +169,7 @@
         ],
         "cause": "not-driven",
         "detail": "p51 4261 against p0 3703",
-        "seconds": 0.5
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -221,7 +221,7 @@
         ],
         "cause": "not-driven",
         "detail": "p120 2851 against p86 3701",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -275,7 +275,7 @@
           "p117 2852",
           "p120 2851"
         ],
-        "seconds": 1
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -349,7 +349,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 0.7
       },
       {
         "result": "not checked",

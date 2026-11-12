@@ -129,14 +129,14 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 203,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 185,
     "counts": {
       "works": 4,
-      "not back": 2,
-      "no": 3,
-      "partly": 1
+      "not back": 3,
+      "no": 2,
+      "partly": 2
     },
     "loose": [
       "p403 165",
@@ -368,8 +368,8 @@
         "result": "works",
         "turned": [
           [
-            0.33,
-            -1.5
+            -1.17,
+            0.35
           ]
         ],
         "rates": [
@@ -387,25 +387,29 @@
         "back": [
           [
             [
-              43.14,
-              8.22
+              237.45,
+              68.8
             ],
             [
-              0,
-              0
+              232.38,
+              59.25
             ]
           ]
         ],
         "strayed": [
-          "p2040 32063"
+          "p2044 3062b",
+          "p2048 42080 - 10197"
         ],
         "stop": [
           [
-            "dead point",
-            null
+            "stuck",
+            "stuck"
           ]
         ],
-        "seconds": 22.2
+        "pushed": [
+          true
+        ],
+        "seconds": 27
       },
       {
         "result": "no",
@@ -485,7 +489,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 4.3
       },
       {
         "result": "partly",
@@ -530,52 +534,55 @@
         ],
         "cause": "not-driven",
         "detail": "p586 18938",
-        "seconds": 6.4
+        "seconds": 4
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
             0,
             0
           ]
         ],
-        "still": [
-          "p1485 99010",
-          "p1509 61403"
-        ],
         "rates": [
           {
             "p1485 99010": [
-              0,
-              0
+              231,
+              138000
             ],
             "p1509 61403": [
-              0,
-              0
+              231,
+              142000
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              11.41,
+              2.52
             ],
             [
-              0,
-              0
+              60.92,
+              23.39
             ]
           ]
         ],
+        "strayed": [
+          "p2014 60474",
+          "p2048 42080 - 10197"
+        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "stuck",
+            "stuck"
           ]
         ],
+        "pushed": [
+          true
+        ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 43.1
       },
       {
         "result": "works",
@@ -600,7 +607,7 @@
             ]
           ]
         ],
-        "seconds": 7.7
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -736,7 +743,7 @@
           "p931 6141",
           "p2048 42080 - 10197"
         ],
-        "seconds": 157.2
+        "seconds": 100.9
       }
     ]
   }

@@ -30,4 +30,16 @@ describe('8859 Tractor', () => {
     expect(turned().angleTo(start)).toBeCloseTo(0.5, 3);
     expect(frameMoved()).toBeGreaterThan(1);
   });
+  // The half shafts' bevels sit half an LDU off the spider's axis, right at the tolerance their
+  // meshes are found with: a hair past it after the first step, the spider lost both its meshes,
+  // and the prop shaft stopped as the tractor rolled on.
+  it('rolling it on a rear wheel turns the prop shaft twice as far, all the way', () => {
+    const [wheel, prop] = [595, 6].map((i) => mech.bodyOf[i]);
+    expect(parts[595].name).toBe('3740.dat');
+    kin.reset();
+    const start = angleOf(prop);
+    expect(Math.abs(turn(wheel, 1))).toBeCloseTo(1, 6);
+    expect(Math.abs(angleOf(prop) - start)).toBeCloseTo(2, 3);
+    expect(frameMoved()).toBeGreaterThan(50);
+  });
 });

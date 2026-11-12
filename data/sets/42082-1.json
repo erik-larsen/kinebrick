@@ -252,9 +252,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
+    "commit": "4839cc2",
     "date": "2026-11-12",
-    "seconds": 3601,
+    "seconds": 4084,
     "counts": {
       "no": 1,
       "works": 1,
@@ -727,7 +727,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 9.1
+        "seconds": 11.9
       },
       {
         "result": "works",
@@ -923,7 +923,7 @@
             ]
           ]
         ],
-        "seconds": 1364.4
+        "seconds": 1741.5
       },
       {
         "result": "partly",
@@ -962,7 +962,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 420
+        "seconds": 488.2
       },
       {
         "result": "partly",
@@ -1041,7 +1041,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 249.9
+        "seconds": 235.9
       },
       {
         "result": "partly",
@@ -1089,7 +1089,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 197.6
+        "seconds": 205.6
       },
       {
         "result": "partly",
@@ -1142,7 +1142,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 196.9
+        "seconds": 225.9
       },
       {
         "result": "partly",
@@ -1190,7 +1190,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 197
+        "seconds": 224.5
       },
       {
         "result": "partly",
@@ -1238,7 +1238,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 198.7
+        "seconds": 176.6
       },
       {
         "result": "partly",
@@ -1276,7 +1276,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 289.3
+        "seconds": 325.4
       },
       {
         "result": "not checked"

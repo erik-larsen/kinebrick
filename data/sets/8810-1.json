@@ -106,15 +106,15 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
+    "commit": "4839cc2",
+    "date": "2026-11-12",
     "seconds": 1,
     "counts": {
-      "partly": 2,
-      "not back": 2,
+      "partly": 1,
+      "not back": 1,
+      "no": 2,
       "skipped": 1,
-      "works": 1,
-      "no": 1
+      "works": 1
     },
     "loose": [],
     "functions": [
@@ -196,83 +196,86 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            0.03,
-            -0.03
+            0,
+            0
           ]
         ],
-        "moved": [
-          "p53 2695"
+        "still": [
+          "p33 4262",
+          "p21 3706",
+          "p26 2695",
+          "p16 4254",
+          "p18 4254"
         ],
         "rates": [
           {
             "p33 4262": [
-              1,
-              50
+              0,
+              0
             ],
             "p21 3706": [
-              0.659,
-              100
+              0,
+              0
             ],
             "p26 2695": [
-              0.318,
-              100
+              0,
+              0
             ],
             "p16 4254": [
-              0.659,
-              100
+              0,
+              0
             ],
             "p18 4254": [
-              0.659,
-              100
+              0,
+              0
             ],
             "p5 2904": [
               0,
-              4.05e-16
+              0
             ],
             "p24 3894": [
               0,
-              2.5e-14
+              0
             ],
             "p25 3894": [
               0,
-              2.5e-14
+              0
             ],
             "p53 2695": [
-              0.925,
-              14
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              5.6,
-              5.05
+              0,
+              0
             ],
             [
-              2930.81,
-              163.42
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p74 3704",
-          "p50 6141"
-        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "no motion",
+            "no motion"
           ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p53 2695",
+        "pushed": [
+          true
+        ],
+        "cause": "not-driven",
+        "detail": "p33 4262",
         "seconds": 0
       },
       {
@@ -317,7 +320,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "no",

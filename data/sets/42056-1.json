@@ -197,13 +197,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 548,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 679,
     "counts": {
-      "works": 6,
-      "partly": 4,
-      "not back": 2,
+      "works": 5,
+      "partly": 5,
+      "not back": 4,
       "skipped": 1,
       "no": 1
     },
@@ -302,7 +302,7 @@
             ]
           ]
         ],
-        "seconds": 37.4
+        "seconds": 25
       },
       {
         "result": "partly",
@@ -382,7 +382,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 105.6
+        "seconds": 71.9
       },
       {
         "result": "partly",
@@ -472,7 +472,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 36
+        "seconds": 24.3
       },
       {
         "result": "partly",
@@ -512,7 +512,7 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 18.6
+        "seconds": 12
       },
       {
         "result": "works",
@@ -584,7 +584,7 @@
             "dead point"
           ]
         ],
-        "seconds": 46.6
+        "seconds": 30.7
       },
       {
         "result": "works",
@@ -656,7 +656,7 @@
             "dead point"
           ]
         ],
-        "seconds": 52
+        "seconds": 34.5
       },
       {
         "result": "skipped"
@@ -709,14 +709,14 @@
           "p2437 64394 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 35.2
+        "seconds": 24.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.01,
+            -1.08
           ]
         ],
         "rates": [
@@ -730,16 +730,29 @@
         "back": [
           [
             [
-              0,
-              0
+              26.43,
+              14.98
             ],
             [
-              0,
-              0
+              16.17,
+              8.09
             ]
           ]
         ],
-        "seconds": 15.8
+        "strayed": [
+          "p2327 2780",
+          "p2583 11947"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "seconds": 165.4
       },
       {
         "result": "no",
@@ -789,39 +802,56 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "loose-part",
         "detail": "p2757 24119",
-        "seconds": 3.5
+        "seconds": 25.7
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.2,
+            -0.15
           ]
         ],
         "rates": [
           {
             "p2553 32523": [
-              0.428,
-              26.1
+              0.413,
+              37.8
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              124.04,
+              56.02
             ],
             [
-              0,
-              0
+              120.25,
+              62.63
             ]
           ]
         ],
-        "seconds": 37.1
+        "strayed": [
+          "p2583 11947"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "stopped-early",
+        "seconds": 150.1
       },
       {
         "result": "works",
@@ -861,7 +891,7 @@
             ]
           ]
         ],
-        "seconds": 39.9
+        "seconds": 27.6
       }
     ]
   }

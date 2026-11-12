@@ -192,9 +192,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 61,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 44,
     "counts": {
       "works": 2,
       "not back": 2,
@@ -260,7 +260,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 5.3
       },
       {
         "result": "works",
@@ -321,7 +321,7 @@
         "strayed": [
           "p223 3326b"
         ],
-        "seconds": 19.8
+        "seconds": 14
       },
       {
         "result": "partly",
@@ -379,7 +379,7 @@
         ],
         "cause": "not-driven",
         "detail": "p400 3707",
-        "seconds": 3.1
+        "seconds": 2.2
       },
       {
         "result": "partly",
@@ -430,7 +430,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p176 4143",
-        "seconds": 21
+        "seconds": 13.7
       },
       {
         "result": "no",
@@ -480,8 +480,12 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 1.9
       },
       {
         "result": "no",
@@ -531,8 +535,12 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "stopped-early",
-        "seconds": 0.6
+        "seconds": 1.9
       },
       {
         "result": "skipped",
@@ -589,7 +597,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.5
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -638,7 +646,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.6
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -688,8 +696,12 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 1.9
       },
       {
         "result": "partly",
@@ -744,7 +756,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 3708",
-        "seconds": 4.3
+        "seconds": 2
       }
     ]
   }

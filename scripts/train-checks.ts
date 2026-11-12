@@ -166,7 +166,7 @@ export async function checkTrainSet(set: { curated: { model: string; functions: 
           }
         }
       } else if (!fn.control) checked.push({ result: 'no', why: ["Kinebrick doesn't find the train's wheels on the track"] });
-      else checked.push(run(mech, kin, track, partOf(fn.control!), (fn.wheelsets ?? []).map((w) => mech.bodyOf[partOf(w)]), blocker(mech, kin, parts, shapes)));
+      else checked.push(await run(mech, kin, track, partOf(fn.control!), (fn.wheelsets ?? []).map((w) => mech.bodyOf[partOf(w)]), blocker(mech, kin, parts, shapes)));
     } catch (err) {
       checked.push({ result: 'error', why: [(err as Error).message] });
     }
@@ -208,7 +208,7 @@ function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], part
 }
 
 // Runs a train by turning one of its wheels: a lap of a loop, or to each end of a line.
-function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, wheel: number, wheelsets: number[], blockedBy: () => string | null): TrainChecked {
+async function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, wheel: number, wheelsets: number[], blockedBy: () => string | null): Promise<TrainChecked> {
   const body = mech.bodyOf[wheel];
   const joint = mech.joints.findIndex((j) => j.kind === 'revolute' && (j.bodyA === body || j.bodyB === body));
   if (joint < 0) return { result: 'no', why: ['the wheel turns on nothing'] };
@@ -287,11 +287,13 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   };
   // Whether it ran into something (and was stopped by it) on its way: set by each go.
   let stopped = false;
-  const go = (way: number, until: () => boolean, most: number) => {
+  const go = async (way: number, until: () => boolean, most: number) => {
     ranInto = null;
     let last = center(lead);
     let lastRim = gauge();
     for (let i = 0; i < most; i++) {
+      // (Now and then, a turn for whatever else waits: a long run held a test runner's worker past its timeout.)
+      if (i % 20 === 19) await new Promise((resolve) => setImmediate(resolve));
       const done = kin.turnJoint(joint, way * STEP, allowed);
       turned += Math.abs(done);
       const now = center(lead);
@@ -316,18 +318,18 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   let reached: boolean;
   if (lap !== null) {
     length = lap;
-    go(way, () => travelled > lap - BACK && center(lead).distanceTo(start) < BACK, most);
+    await go(way, () => travelled > lap - BACK && center(lead).distanceTo(start) < BACK, most);
     reached = travelled > lap - BACK && center(lead).distanceTo(start) < BACK;
     if (!reached) why.push(`went ${Math.round(travelled)} of a ${Math.round(lap)} LDU lap`);
   } else {
     // A line: to the end it goes towards, then back to the other.
     // (Stopped at an end by something there, it has reached that end: that's no fault.)
     const atEnd = () => bufferNear(track, riders.map((_, i) => track.placeOf(i)!), stopped ? STOPPED_AT_END : AT_END);
-    go(1, () => false, most);
+    await go(1, () => false, most);
     const there = travelled;
     const firstEnd = atEnd();
     const firstHit = firstEnd ? null : ranInto;
-    go(-1, () => false, most);
+    await go(-1, () => false, most);
     const back = travelled - there;
     const secondEnd = atEnd();
     ranInto = firstHit ?? (secondEnd ? null : ranInto);

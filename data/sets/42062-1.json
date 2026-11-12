@@ -166,14 +166,14 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 79,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 97,
     "counts": {
-      "partly": 4,
-      "works": 4,
-      "not back": 1,
-      "no": 2
+      "partly": 6,
+      "works": 3,
+      "not back": 3,
+      "no": 1
     },
     "loose": [
       "p298 64179",
@@ -563,7 +563,7 @@
         ],
         "cause": "not-driven",
         "detail": "p87 48989",
-        "seconds": 3.5
+        "seconds": 2.5
       },
       {
         "result": "partly",
@@ -598,7 +598,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 3.7
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -702,7 +702,7 @@
           "p240 98138",
           "p239 98138"
         ],
-        "seconds": 28.9
+        "seconds": 21.1
       },
       {
         "result": "no",
@@ -752,8 +752,12 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "control-jammed",
-        "seconds": 0.6
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -811,7 +815,7 @@
         ],
         "cause": "loose-part",
         "detail": "p508 32270",
-        "seconds": 4.6
+        "seconds": 3.1
       },
       {
         "result": "partly",
@@ -860,45 +864,62 @@
         ],
         "cause": "loose-part",
         "detail": "p507 32270",
-        "seconds": 4.8
+        "seconds": 3.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.21,
+            -0.18
           ]
+        ],
+        "moved": [
+          "p510 18940"
         ],
         "rates": [
           {
             "p511 18942 against p510 18940": [
-              2.81e-8,
-              69.8
+              0.00000983,
+              11.5
             ],
             "p547 32524 against p510 18940": [
-              2.75e-7,
-              69.8
+              0.00000983,
+              11.5
             ],
             "p510 18940": [
-              1.97e-7,
-              0.0000363
+              3,
+              860
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              74.69,
+              16.33
             ],
             [
-              0,
-              0
+              69.09,
+              15.07
             ]
           ]
         ],
-        "seconds": 10.5
+        "strayed": [
+          "p586 32073"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "loose-part",
+        "detail": "p530 6553",
+        "seconds": 22.9
       },
       {
         "result": "works",
@@ -928,53 +949,55 @@
             ]
           ]
         ],
-        "seconds": 4.5
+        "seconds": 3.1
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
             0,
             0
           ]
         ],
-        "still": [
-          "p581 6553",
-          "p568 32526"
-        ],
         "rates": [
           {
             "p581 6553": [
-              0,
-              0
+              337,
+              182000
             ],
             "p568 32526": [
-              0,
-              0
+              336,
+              154000
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              47.24,
+              5.04
             ],
             [
-              0,
-              0
+              38.44,
+              4.2
             ]
           ]
         ],
+        "strayed": [
+          "p507 32270"
+        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "stuck",
+            "stuck"
           ]
+        ],
+        "pushed": [
+          true
         ],
         "cause": "loose-part",
         "detail": "p574 32073",
-        "seconds": 0.4
+        "seconds": 21.8
       },
       {
         "result": "works",
@@ -1044,7 +1067,7 @@
             ]
           ]
         ],
-        "seconds": 16.9
+        "seconds": 12.3
       }
     ]
   }

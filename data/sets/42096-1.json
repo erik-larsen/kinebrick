@@ -102,14 +102,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 172,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 175,
     "counts": {
       "partly": 1,
-      "works": 3,
-      "no": 1,
-      "not back": 1
+      "works": 4,
+      "not back": 2
     },
     "loose": [
       "p241 22977",
@@ -192,7 +191,7 @@
         ],
         "cause": "not-driven",
         "detail": "p6 62821",
-        "seconds": 66.6
+        "seconds": 42.7
       },
       {
         "result": "works",
@@ -248,7 +247,7 @@
             ]
           ]
         ],
-        "seconds": 26.4
+        "seconds": 18.3
       },
       {
         "result": "works",
@@ -298,18 +297,18 @@
             ]
           ]
         ],
-        "seconds": 22.1
+        "seconds": 14.9
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            -1.13,
+            -0.99
           ],
           [
-            0,
-            0
+            0.99,
+            1.13
           ]
         ],
         "rates": [
@@ -319,37 +318,46 @@
         "back": [
           [
             [
-              0,
-              0
+              128.43,
+              58.84
             ],
             [
-              0,
-              0
+              130.44,
+              59.37
             ]
           ],
           [
             [
-              0,
-              0
+              130.44,
+              59.37
             ],
             [
-              0,
-              0
+              128.43,
+              58.84
             ]
           ]
+        ],
+        "strayed": [
+          "p1129 18651",
+          "p1157 6141",
+          "p1146 6141",
+          "p1136 18651"
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "stuck",
+            "stuck"
           ],
           [
-            "dead point",
-            "dead point"
+            "stuck",
+            "stuck"
           ]
         ],
-        "cause": "stopped-early",
-        "seconds": 0.7
+        "pushed": [
+          true,
+          true
+        ],
+        "seconds": 55.3
       },
       {
         "result": "works",
@@ -405,7 +413,7 @@
             "dead point"
           ]
         ],
-        "seconds": 53.8
+        "seconds": 42.7
       }
     ]
   }

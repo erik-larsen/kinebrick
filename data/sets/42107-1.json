@@ -152,13 +152,14 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 20,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 13,
     "counts": {
-      "partly": 2,
-      "no": 4,
+      "partly": 3,
+      "not back": 1,
       "skipped": 1,
+      "no": 3,
       "works": 1,
       "not checked": 1
     },
@@ -230,7 +231,7 @@
         ],
         "cause": "loose-part",
         "detail": "p127 18947",
-        "seconds": 1.3
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -308,10 +309,10 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 9.5
+        "seconds": 4.5
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
             0,
@@ -319,50 +320,58 @@
           ]
         ],
         "still": [
-          "p247 35189",
           "p284 76537"
+        ],
+        "moved": [
+          "p379 88516"
         ],
         "rates": [
           {
             "p247 35189": [
-              0,
-              0
+              156000,
+              0.00000491
             ],
             "p284 76537": [
-              0,
-              0
+              1,
+              0.00000621
             ],
             "p379 88516": [
-              0,
-              0
+              157000,
+              0.00000592
             ],
             "p185 2854": [
-              0,
-              0
+              0.962,
+              0.00000406
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              79.05,
+              31.73
             ],
             [
-              0,
-              0
+              78.93,
+              31.67
             ]
           ]
         ],
+        "strayed": [
+          "p639 42107 - 67144p01c01"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "stuck",
+            "stuck"
           ]
+        ],
+        "pushed": [
+          true
         ],
         "cause": "part-fixed",
         "detail": "p284 76537",
-        "seconds": 0.1
+        "seconds": 2.7
       },
       {
         "result": "skipped",
@@ -447,7 +456,7 @@
             ]
           ]
         ],
-        "seconds": 8.4
+        "seconds": 4.2
       },
       {
         "result": "no",
@@ -491,8 +500,11 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true
+        ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "not checked",

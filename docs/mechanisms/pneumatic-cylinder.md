@@ -4,7 +4,7 @@ Air let in by a valve pushes a cylinder out or in. (Moving and lifting.)
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): Pump with the red hand pump and push the valve at the left of the cab's back to the side, and the yellow cylinder at the front of the cab raises or lowers the boom, carrying the stick and bucket with it.
 
-Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 4 works, 6 partly, 13 no, 6 skipped.
+Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 2 works, 8 partly, 13 no, 6 skipped.
 
 ## By decade
 
@@ -50,8 +50,8 @@ Each detail by the set it first appears in.
 **1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe)**
 
 - *boom:* The cylinder on the turntable raises and lowers the backhoe's boom. (works)
-- *dipper arm:* The cylinder along the top of the boom swings the dipper arm in and out. (works)
-- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (works)
+- *dipper arm:* The cylinder along the top of the boom swings the dipper arm in and out. (partly)
+- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (partly)
 
 **1992, [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1)**
 
