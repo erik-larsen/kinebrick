@@ -232,9 +232,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 1264,
+    "seconds": 766,
     "counts": {
       "partly": 9,
       "works": 1,
@@ -378,7 +378,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3606 42529",
-        "seconds": 96.8
+        "seconds": 46.9
       },
       {
         "result": "partly",
@@ -422,7 +422,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3609 42529",
-        "seconds": 97.4
+        "seconds": 46.9
       },
       {
         "result": "partly",
@@ -486,7 +486,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3606 42529",
-        "seconds": 193.4
+        "seconds": 93.5
       },
       {
         "result": "partly",
@@ -510,7 +510,7 @@
           {
             "p5 62821": [
               0,
-              1.65e-78
+              1.8e-80
             ],
             "p3657 2853": [
               0,
@@ -528,7 +528,7 @@
           {
             "p5 62821": [
               0,
-              5.82e-79
+              1.8e-80
             ],
             "p3657 2853": [
               0,
@@ -578,7 +578,7 @@
         ],
         "cause": "not-driven",
         "detail": "p5 62821",
-        "seconds": 192
+        "seconds": 94.5
       },
       {
         "result": "partly",
@@ -618,7 +618,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3293 18947",
-        "seconds": 83.7
+        "seconds": 45.7
       },
       {
         "result": "partly",
@@ -637,7 +637,7 @@
           {
             "p3395 62274c01 against p3394 42131 - u9559c01": [
               0,
-              3.79e-14
+              0
             ],
             "p3404 62274c01 against p3403 42131 - u9559c01": [
               0,
@@ -645,7 +645,7 @@
             ],
             "p5913 32524": [
               0,
-              6.31e-62
+              1.17e-63
             ],
             "p6006 62274c01 against p6005 42131 - u9559c01": [
               0,
@@ -671,7 +671,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3395 62274c01 against p3394 42131 - u9559c01",
-        "seconds": 83.1
+        "seconds": 46.2
       },
       {
         "result": "partly",
@@ -707,7 +707,7 @@
             ],
             "p3395 62274c01 against p3394 42131 - u9559c01": [
               0,
-              3.79e-14
+              0
             ]
           }
         ],
@@ -725,7 +725,7 @@
         ],
         "cause": "not-driven",
         "detail": "p4118 62274c01 against p4117 42131 - u9559c01",
-        "seconds": 78.7
+        "seconds": 46.5
       },
       {
         "result": "partly",
@@ -752,7 +752,7 @@
             ],
             "p6204 32525 against p5943 42131 - 32523": [
               0,
-              0
+              3.79e-14
             ],
             "p4118 62274c01 against p4117 42131 - u9559c01": [
               0,
@@ -760,7 +760,7 @@
             ],
             "p3395 62274c01 against p3394 42131 - u9559c01": [
               0,
-              3.79e-14
+              0
             ]
           }
         ],
@@ -778,7 +778,7 @@
         ],
         "cause": "loose-part",
         "detail": "p6074 62274c01",
-        "seconds": 77.6
+        "seconds": 46.1
       },
       {
         "result": "partly",
@@ -826,7 +826,7 @@
         ],
         "cause": "not-driven",
         "detail": "p5713 42131 - 71710",
-        "seconds": 78.7
+        "seconds": 46.6
       },
       {
         "result": "works",
@@ -856,7 +856,7 @@
             ]
           ]
         ],
-        "seconds": 91.2
+        "seconds": 48.1
       },
       {
         "result": "not checked"

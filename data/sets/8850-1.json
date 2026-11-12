@@ -127,9 +127,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 5,
+    "seconds": 3,
     "counts": {
       "works": 4,
       "partly": 2,
@@ -154,7 +154,7 @@
             ],
             "p29 4261 against p0 3702": [
               0.256,
-              1.64e-31
+              3.35e-32
             ],
             "p54 3743 against p0 3702": [
               2.81e-8,
@@ -182,7 +182,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -200,13 +200,13 @@
           {
             "p76 73071 against p0 3702": [
               1,
-              6.67e-13
+              7.34e-13
             ]
           },
           {
             "p76 73071 against p0 3702": [
               1,
-              1.1e-12
+              9.79e-13
             ]
           }
         ],
@@ -232,7 +232,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -251,23 +251,23 @@
           {
             "p21 3708 against p0 3702": [
               2,
-              1.16e-13
+              1.09e-13
             ],
             "p264 4019 against p0 3702": [
               2,
-              1.95e-13
+              2.35e-13
             ],
             "p240 2853 against p0 3702": [
-              8.43e-8,
-              1.11e-13
+              1.4e-7,
+              1.14e-13
             ],
             "p252 2851 against p0 3702": [
-              8.43e-8,
-              1.11e-9
+              1.4e-7,
+              9.65e-10
             ],
             "p255 2851 against p0 3702": [
-              8.43e-8,
-              1.5e-9
+              1.4e-7,
+              9.65e-10
             ]
           }
         ],
@@ -285,7 +285,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.5
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -301,8 +301,8 @@
         "rates": [
           {
             "p94 3737 against p0 3702": [
-              8.43e-8,
-              3.47e-13
+              1.4e-7,
+              7.65e-13
             ]
           }
         ],
@@ -320,7 +320,7 @@
         ],
         "cause": "not-driven",
         "detail": "p94 3737 against p0 3702",
-        "seconds": 0.5
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -360,7 +360,7 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 0.5
       },
       {
         "result": "no",
@@ -463,7 +463,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "not checked",
