@@ -24,6 +24,10 @@ import type { Mechanism } from './mechanism.ts';
 // LDU. Faces that merely touch (a beam sliding across the flush head of a pin) then don't
 // count as overlapping; anything that really passes through still does.
 const INSET = 0.25;
+// On a train layout, by more: its scenery is placed by hand, to a LDU or two, and a train's
+// cars swing out a little on a curve, so a car that grazes a platform or a pillar by that much
+// goes by, as on the real layout.
+export const LAYOUT_INSET = 1;
 // Parts this close when the model loads, in LDU (after INSET), aren't checked against each
 // other: real models are built tight, and parts that rub on the real thing don't stop it.
 const NEAR = 1;
@@ -56,6 +60,16 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   // of track in turn.
   const rails = mech.roles.flatMap((r, i) => (r === 'rail' ? [i] : []));
   for (const t of mech.treads) for (const r of rails) connected.add(pairKey(t.part, r));
+  // Nor a monorail's wheel chassis, motor and the motor's clips and the rails, or the plates
+  // studded to the rails' sides that join one piece to the next: they wrap round the rail beam,
+  // close to its sides (on a curve or a ramp, a straight chassis meets them); nor the motor's
+  // drive gear, which runs in the rack between them; nor the motor's switch, which a stop/go
+  // switch's lever on the track flips to stop the train (Kinebrick doesn't: the lever is set
+  // to go).
+  const drives = mech.roles.flatMap((r, i) => (['monorail chassis', 'monorail motor', 'monorail clip', 'monorail drive gear', 'monorail motor switch'].includes(r) ? [i] : []));
+  const railSet = new Set(rails);
+  const joining = mech.connections.flatMap((c) => (c.kind === 'stud' && railSet.has(c.male) && !railSet.has(c.female) ? [c.female] : []));
+  for (const d of drives) for (const r of [...rails, ...joining]) connected.add(pairKey(d, r));
   // Nor the parts of train couplings with each other: two cars' magnets, casings and holders
   // meet face to face, and with one holder of each coupling fixed (see magnetCouplings) they
   // run into each other a little as the cars take a curve, where the real ones swivel clear.
@@ -64,8 +78,8 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   return connected;
 }
 
-// Pulls a part's meshes in towards the middle of their box, by INSET at each face.
-function shrink(list: PartMesh[]) {
+// Pulls a part's meshes in towards the middle of their box, by `inset` at each face.
+function shrink(list: PartMesh[], inset: number) {
   const box = new Box3();
   for (const m of list) {
     m.geometry.computeBoundingBox();
@@ -75,7 +89,7 @@ function shrink(list: PartMesh[]) {
   const size = box.getSize(new Vector3());
   const scale = new Vector3(1, 1, 1);
   for (let k = 0; k < 3; k++) {
-    if (size.getComponent(k) > 4 * INSET) scale.setComponent(k, 1 - (2 * INSET) / size.getComponent(k));
+    if (size.getComponent(k) > 4 * inset) scale.setComponent(k, 1 - (2 * inset) / size.getComponent(k));
   }
   for (const m of list) {
     const toMesh = m.matrix.clone().invert();
@@ -118,10 +132,10 @@ export class Collisions {
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
-  // placement (part -> model coordinates).
-  constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]) {
+  // placement (part -> model coordinates); `inset`, how far each part's shape is pulled in.
+  constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], inset = INSET) {
     this.shapes = meshes.map((list) => {
-      shrink(list);
+      shrink(list, inset);
       const box = new Box3();
       const built = list.map((m) => {
         const bvh = new MeshBVH(m.geometry);

@@ -29,7 +29,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { collisionGeometry, Collisions, connectedPairs, PartMesh } from './collisions.ts';
+import { collisionGeometry, Collisions, connectedPairs, LAYOUT_INSET, PartMesh } from './collisions.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -528,7 +528,7 @@ async function start() {
 
     const connected = connectedPairs(mech);
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
-    else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
+    else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices(), mech.track ? LAYOUT_INSET : undefined);
 
     // The counts go in the Stats card; the summary line is only for what's going on while loading.
     summary.textContent = '';

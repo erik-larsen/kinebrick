@@ -53,11 +53,27 @@ const ERRATA: Record<string, [string, string, string][]> = {
   ],
   '6399-1': [
     [
-      "The two cars stand 3.7 LDU too far from the motor: their bars miss its clips",
+      "The two cars stand 3.7 LDU too far from the motor: their bars miss its clips. And the train's three parts are drawn off the track's centre line, 0.6, 0.25 and 1.5 LDU towards the platforms: the last car's floor, 80 LDU wide, would run into station 1's platform, 40 LDU from the centre line. Each is placed on the centre line",
       '1 4 -387 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train A.ldr',
-      '1 4 -383.3 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train A.ldr',
+      '1 4 -383.3 -304 -455.556 1 0 0 0 1 0 0 0 1 6399 - train A.ldr',
     ],
-    ['', '1 4 253 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train C.ldr', '1 4 249.3 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train C.ldr'],
+    ['', '1 4 253 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train C.ldr', '1 4 249.3 -304 -456.484 1 0 0 0 1 0 0 0 1 6399 - train C.ldr'],
+    ['', '1 4 -67 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train B.ldr', '1 4 -67 -304 -455.25 1 0 0 0 1 0 0 0 1 6399 - train B.ldr'],
+    [
+      "Three of the plates that join one piece of track to the next are placed 2 LDU off the joint they join, so their studs miss the track's: two at the far curve of the lower track, 2 LDU along it, and one at the top of the far ramp, 2 LDU low",
+      '1 7 -1746.713 -14.001 -1337.052 0 -1 0 0 0 1 -1 0 0 3710.dat',
+      '1 7 -1746.713 -14.001 -1335.052 0 -1 0 0 0 1 -1 0 0 3710.dat',
+    ],
+    ['', '1 7 -1826.713 -14.001 -1337.046 0 1 0 0 0 -1 -1 0 0 3710.dat', '1 7 -1826.713 -14.001 -1335.046 0 1 0 0 0 -1 -1 0 0 3710.dat'],
+    ['', '1 7 1012.009 -256.001 -1934.495 -1 0 0 0 0 1 0 1 0 3710.dat', '1 7 1012.009 -254.001 -1934.495 -1 0 0 0 0 1 0 1 0 3710.dat'],
+    [
+      "A pillar of station 1, under its platform, stands inside the lower track's curve at its east end, its top 61 LDU from the centre line: a car, 373 LDU between its pivots, cuts 31 LDU inside the centre line on a curve, and its side comes to 71 LDU from it. The pillar is moved a stud further from the track",
+      '1 0 240 -192 400 -1 0 0 0 1 0 0 0 -1 3660.dat',
+      '1 0 240 -192 380 -1 0 0 0 1 0 0 0 -1 3660.dat',
+    ],
+    ['', '1 0 240 -168 400 1 0 0 0 1 0 0 0 1 3004.dat', '1 0 240 -168 380 1 0 0 0 1 0 0 0 1 3004.dat'],
+    ['', '1 7 240 -144 400 1 0 0 0 1 0 0 0 1 3004.dat', '1 7 240 -144 380 1 0 0 0 1 0 0 0 1 3004.dat'],
+    ['', '1 0 240 -120 400 1 0 0 0 1 0 0 0 1 2454.dat', '1 0 240 -120 380 1 0 0 0 1 0 0 0 1 2454.dat'],
   ],
   '6990-1': [
     [

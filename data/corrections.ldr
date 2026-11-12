@@ -604,10 +604,21 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 8] [center=true]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=O 6 12] [center=true] [pos=18 128.75 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=O 6 12] [center=true] [pos=-18 128.75 0]
+0 // And held fast: its switch (2682), 111.5 below its origin, and its brass drive gear (u9075), 135 below and 14 behind
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 8] [center=true] [pos=0 111.5 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 8] [center=true] [pos=0 135 -14]
 
 0 FILE 2683.dat
 0 // Monorail Motor Case: held fast to its base (2684) at their shared origin
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 8] [center=true]
+
+0 FILE 2682.dat
+0 // Monorail Motor Switch: held fast to the motor's base (2684), at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 8] [center=true]
+
+0 FILE u9075.dat
+0 // Monorail Motor - Brass Metal Twelve Tooth Gear: held fast to the motor's base (2684), at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 8] [center=true]
 
 0 FILE 2685.dat
 0 // Monorail Motor Clip: swinging on the motor's base (2684), at its origin

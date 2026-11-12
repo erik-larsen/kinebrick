@@ -34,7 +34,7 @@ import { rails } from './constraints/rails.ts';
 import { rests } from './constraints/rests.ts';
 import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
-import { tyres } from './constraints/tyres.ts';
+import { railLift, tyres } from './constraints/tyres.ts';
 import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
 // mechanism.ts imports these from here.
 export { acrossDirections, nullSpace };
@@ -349,7 +349,7 @@ export class Kinematics {
         const pose = this.poses[t.body];
         const p = lowestPoint(t.center.clone().applyMatrix4(pose), t.axis.clone().transformDirection(pose), t.radius);
         const under = p && this.railUnder(i, p, this.poses[0]);
-        if (p && under) this.railOffsets[i] = p.y - under.y;
+        if (p && under) this.railOffsets[i] = p.y - under.y + railLift(t.radius, under.rise);
       }
       this.closeLoops(-1);
     }
@@ -494,7 +494,9 @@ export class Kinematics {
       const balls = joints.filter((i) => this.mech.joints[i].kind === 'ball');
       const geared = this.mech.gears.some((g) => g.body === body) || this.mech.couplings.some((c) => c.bodyA === body || c.bodyB === body) || this.screwed(body);
       const tyred = this.mech.treads.some((t) => t.body === body);
-      if (joints.length === 2 && balls.length === 2 && !geared && !tyred) this.links.push({ body, balls: [balls[0], balls[1]] });
+      // (Not a monorail car hung on its wheel chassis: it doesn't roll on it, see rails.)
+      const hung = balls.some((i) => [this.mech.joints[i].bodyA, this.mech.joints[i].bodyB].some((b) => b !== body && this.mech.bodies[b].parts.some((p) => this.mech.roles[p] === 'monorail chassis')));
+      if (joints.length === 2 && balls.length === 2 && !geared && !tyred && !hung) this.links.push({ body, balls: [balls[0], balls[1]] });
       // Nor could one joined only by a turning joint and a ball on that joint's axis spin about
       // it (the 8448 Super Car's towballs, in its steering rack): equations() keeps that joint
       // still.
@@ -596,8 +598,9 @@ export class Kinematics {
       const p = lowestPoint(t.center, t.axis, t.radius);
       this.contactHeights[i] = p ? p.y : 0;
       // (On a track, the rail heads under the wheel: a monorail's run at more than one height.)
-      const ground = p && this.mech.track ? (this.railUnder(i, p, new Matrix4())?.y ?? lowest) : lowest;
-      this.railOffsets[i] = p ? p.y - ground : 0;
+      const under = p && this.mech.track ? this.railUnder(i, p, new Matrix4()) : null;
+      const ground = under?.y ?? lowest;
+      this.railOffsets[i] = p ? p.y - ground + (under ? railLift(t.radius, under.rise) : 0) : 0;
       if (p && Math.abs(p.y - ground) < tolerance && onRails(t.part)) this.contactTreads.push(i);
     });
   }
@@ -2685,4 +2688,3 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
 
   return orthonormalize(kept.map((a) => combine(motions, a)));
 }
-

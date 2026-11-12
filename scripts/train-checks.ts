@@ -7,16 +7,22 @@
 //            full length of the track: on a loop, a full lap and back to where it started; on a
 //            line, to one end and back to the other. All the way, every wheelset keeps to the
 //            track's centre line, its wheels on the rail heads, the cars stay coupled, and the
-//            train goes as far as its wheel's rim turns.
+//            train goes as far as its wheel's rim turns. As in the viewer, it stops where a part
+//            runs into another (a collision), so a train that the viewer's motor turns back
+//            doesn't pass.
 //   switch   a switch (`control`, its part) flips, and a train taking it from its shared end then
 //            goes the other way
 //
 // A function works if all it asks for happens; a run partly works if the train moves but not
 // all the way, or leaves the track or its coupling on the way.
 
+import type { Matrix4 } from 'three';
+import { Collisions, connectedPairs, LAYOUT_INSET, PartMesh } from '../src/collisions.ts';
+import { railLift } from '../src/constraints/tyres.ts';
 import type { Mechanism } from '../src/mechanism.ts';
 import type { Track } from '../src/track.ts';
 import { loadModel } from './load-model.ts';
+import { partShapes } from './part-shapes.ts';
 
 // How far the control is turned at a time (radians).
 const STEP = 0.5;
@@ -120,8 +126,10 @@ function trains(mech: Mechanism) {
   return [...groups.values()];
 }
 
-export function checkTrainSet(set: { curated: { model: string; functions: TrainFunction[] } }) {
+export async function checkTrainSet(set: { curated: { model: string; functions: TrainFunction[] } }) {
   const { model, functions } = set.curated;
+  // The parts' shapes, for collisions, as the viewer makes them.
+  const shapes = await partShapes(model);
   const checked: TrainChecked[] = [];
   let loose: string[] = [];
   for (const fn of functions) {
@@ -155,7 +163,7 @@ export function checkTrainSet(set: { curated: { model: string; functions: TrainF
           }
         }
       } else if (!fn.control) checked.push({ result: 'no', why: ["Kinebrick doesn't find the train's wheels on the track"] });
-      else checked.push(run(mech, kin, track, partOf(fn.control!), (fn.wheelsets ?? []).map((w) => mech.bodyOf[partOf(w)])));
+      else checked.push(run(mech, kin, track, partOf(fn.control!), (fn.wheelsets ?? []).map((w) => mech.bodyOf[partOf(w)]), blocker(mech, kin, parts, shapes)));
     } catch (err) {
       checked.push({ result: 'error', why: [(err as Error).message] });
     }
@@ -165,8 +173,27 @@ export function checkTrainSet(set: { curated: { model: string; functions: TrainF
   return { counts, loose, functions: checked };
 }
 
+// The viewer's collision test (blockedBy in src/main.ts), for a model's parts: what stops them
+// where they stand now (two parts that run into each other, a joint at its limit), or null.
+function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], parts: { name: string; matrix: Matrix4 }[], shapes: { name: string; shape: PartMesh[] }[]) {
+  if (shapes.length < parts.length || parts.some((p, i) => shapes[i].name !== p.name)) throw new Error("the parts' shapes don't match the model's parts");
+  const poses = (kin as unknown as { poses: Matrix4[] }).poses;
+  const now = () => parts.map((p, i) => poses[mech.bodyOf[i]].clone().multiply(p.matrix));
+  const collisions = new Collisions(parts.map((_, i) => shapes[i].shape), mech.bodyOf, connectedPairs(mech), now(), LAYOUT_INSET);
+  const starts = parts.map((p) => p.matrix);
+  const name = (i: number) => `p${i} ${parts[i].name.replace(/\.dat$/, '')}`;
+  return (): string | null => {
+    const at = now();
+    const hit = collisions.check(at);
+    if (hit) return `${name(hit[0])} ran into ${name(hit[1])}`;
+    if (kin.atLimit() !== null) return 'a joint came to its limit';
+    const below = kin.groundY === null ? null : collisions.belowGround(at, kin.groundY, starts);
+    return below ? `${name(below[0])} went into the ground` : null;
+  };
+}
+
 // Runs a train by turning one of its wheels: a lap of a loop, or to each end of a line.
-function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, wheel: number, wheelsets: number[]): TrainChecked {
+function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: Track, wheel: number, wheelsets: number[], blockedBy: () => string | null): TrainChecked {
   const body = mech.bodyOf[wheel];
   const joint = mech.joints.findIndex((j) => j.kind === 'revolute' && (j.bodyA === body || j.bodyB === body));
   if (joint < 0) return { result: 'no', why: ['the wheel turns on nothing'] };
@@ -196,8 +223,10 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
       const near = track.near(c, poses[0], i)!;
       const rr = mech.treads.find((t) => t.body === r.body)?.radius ?? radius;
       // (Its height against the rail heads under it: a monorail's run at more than one height.)
-      const under = track.under(c.clone().setY(c.y + rr), poses[0])?.y ?? head;
-      offTrack = Math.max(offTrack, Math.abs(near.offset), Math.abs(c.y + rr - under));
+      // (Up a slope it stands a little higher, its radius square to the rail.)
+      const under = track.under(c.clone().setY(c.y + rr), poses[0]);
+      const rail = under ? under.y - railLift(rr, under.rise) : head;
+      offTrack = Math.max(offTrack, Math.abs(near.offset), Math.abs(c.y + rr - rail));
     }
     for (const j of couplings) apart = Math.max(apart, j.from.clone().applyMatrix4(poses[j.bodyA]).distanceTo(j.to.clone().applyMatrix4(poses[j.bodyB])));
   };
@@ -231,11 +260,18 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   let rimWent = 0;
   let stragglers = 0;
   let checkedOnce = false;
+  // The first two parts that ran into each other on the way, if any.
+  let ranInto: string | null = null;
+  const allowed = () => {
+    const pair = blockedBy();
+    if (pair && !ranInto) ranInto = pair;
+    return pair === null;
+  };
   const go = (way: number, until: () => boolean, most: number) => {
     let last = center(lead);
     let lastRim = gauge();
     for (let i = 0; i < most; i++) {
-      const done = kin.turnJoint(joint, way * STEP);
+      const done = kin.turnJoint(joint, way * STEP, allowed);
       turned += Math.abs(done);
       const now = center(lead);
       // (As it goes, up and down a ramp too, as the track's lengths are measured.)
@@ -274,6 +310,7 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
     if (!firstEnd || !secondEnd) why.push(`stopped short of ${!firstEnd && !secondEnd ? 'both ends' : 'an end'} of the track`);
   }
   const rolled = turned > 0 ? rimWent / turned : 0;
+  if (ranInto) why.push(`stopped: ${ranInto}`);
   // A car left behind: a wheelset that, once the lead one was 200 LDU from where it started, was
   // less than 100 from where it did (measured then, as a lap brings each back to its start).
   if (stragglers > 0) why.push(`${stragglers} of the train's ${train.length} wheelsets stayed behind: a coupling didn't hold`);

@@ -6,9 +6,9 @@ import { describe, expect, it } from 'vitest';
 import { checkTrainSet } from '../scripts/train-checks.ts';
 
 describe('trains on track', () => {
-  it('runs the test layout\'s train a full lap through a switch and a crossing, and the switch, flipped, sends it onto its branch', () => {
+  it('runs the test layout\'s train a full lap through a switch and a crossing, and the switch, flipped, sends it onto its branch', async () => {
     const set = JSON.parse(readFileSync('data/trains/test-1.json', 'utf-8'));
-    const found = checkTrainSet(set);
+    const found = await checkTrainSet(set);
     expect(found.functions.map((f) => f.result)).toEqual(['works', 'works', 'works']);
     const run = found.functions[1];
     // A lap of 16 curves, 10 straights, a switch and a crossing, in LDU.

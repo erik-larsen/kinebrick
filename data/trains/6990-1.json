@@ -23,12 +23,13 @@
     ]
   },
   "generated": {
-    "commit": "26c3175",
+    "commit": "065d788",
     "uncommitted": true,
     "date": "2026-11-12",
-    "seconds": 193,
+    "seconds": 16,
     "counts": {
-      "works": 2
+      "works": 1,
+      "error": 1
     },
     "loose": [
       "p61 4740",
@@ -221,7 +222,6 @@
       "p601 756",
       "p602 756",
       "p603 756",
-      "p657 2682",
       "p720 755",
       "p721 755",
       "p722 756",
@@ -478,13 +478,10 @@
         "result": "works"
       },
       {
-        "result": "works",
-        "travelled": 8048,
-        "length": 8057,
-        "offTrack": 2.6,
-        "apart": 0,
-        "rolled": 12,
-        "radius": 12
+        "result": "error",
+        "why": [
+          "the parts' shapes don't match the model's parts"
+        ]
       }
     ]
   }

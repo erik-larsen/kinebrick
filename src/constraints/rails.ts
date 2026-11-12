@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, axisOf, UP, type Equations } from './equations.ts';
+import { addPointVelocity, axisOf, STUD, UP, type Equations } from './equations.ts';
 
 export function rails(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -52,5 +52,35 @@ export function rails(solver: Kinematics, eq: Equations) {
       addPointVelocity(square, 0, c, k, near.curvature * near.t.getComponent(k));
     }
     add(square, -skew);
+  }
+  // A monorail car hangs on a ball joint at each end, on its wheel chassis and on the motor's
+  // clip, and could roll about the line between them, as the real one can't. So it doesn't roll
+  // against its wheel chassis: its own across (the chassis's axles' direction as it was built)
+  // stays square to the chassis's up, as it started; turning and tipping on the chassis don't
+  // change that, rolling does. The gap: how far it has rolled from that.
+  const { mech, poses } = solver;
+  const chassisOf = (b: number) => mech.bodies[b].parts.some((p) => mech.roles[p] === 'monorail chassis');
+  const held = new Set<number>();
+  for (const joint of mech.joints) {
+    if (joint.kind !== 'ball') continue;
+    const chassis = chassisOf(joint.bodyA) ? joint.bodyA : chassisOf(joint.bodyB) ? joint.bodyB : -1;
+    const car = chassis === joint.bodyA ? joint.bodyB : joint.bodyA;
+    if (chassis < 0 || held.has(car)) continue;
+    // The chassis's axles: its turning joint with one of its wheelsets.
+    const axle = mech.joints.find((j) => j.kind === 'revolute' && (j.bodyA === chassis || j.bodyB === chassis));
+    if (!axle) continue;
+    held.add(car);
+    const start = axisOf(axle.from, axle.to);
+    const across = start.clone().transformDirection(poses[car]);
+    const up = UP.clone().transformDirection(poses[chassis]);
+    // (In LDU: as far as the roll moves a point a stud from the line it rolls about, so it
+    // counts alike with the rows that hold points.)
+    const turn = new Vector3().crossVectors(across, up).multiplyScalar(400);
+    const roll = new Array(n).fill(0);
+    for (let k = 0; k < 3; k++) {
+      roll[6 * car + k] += turn.getComponent(k);
+      roll[6 * chassis + k] -= turn.getComponent(k);
+    }
+    add(roll, 400 * (start.dot(UP) - across.dot(up)));
   }
 }

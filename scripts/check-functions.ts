@@ -593,7 +593,7 @@ if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
-  const found = args[one + 1].startsWith(join('data', 'trains')) ? checkTrainSet(set) : check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
+  const found = args[one + 1].startsWith(join('data', 'trains')) ? await checkTrainSet(set) : check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // Let the output drain before the process ends: a pipe takes it in pieces.
   process.stdout.write(JSON.stringify(found), () => process.exit(0));
 } else {

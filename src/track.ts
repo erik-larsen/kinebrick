@@ -101,8 +101,9 @@ const MONORAIL_RADIUS = 560;
 // degrees off it from the same end (to +z for a left point, -z for a right one).
 const monorailPoint = (side: number): Segment[][] => [[straight(640)], [arc([-320, 0], 0, (-side * Math.PI) / 4, MONORAIL_RADIUS)]];
 // A monorail ramp section: 640 long, climbing (`rise` negative, LDraw y up) or falling 120 LDU,
-// level at its start and steepest at its end (as a parabola), in 32 straight steps (short, so
-// that the slope changes little from one to the next, as a wheelset rolls across).
+// level at its start and steepest at its end (as a parabola, which it is to within 1 LDU), in 32
+// straight steps (short, so that the slope changes little from one to the next, as a wheelset
+// rolls across; see project for how the slope is smoothed across them).
 function monorailRamp(rise: number): Segment[] {
   const height = (x: number) => (rise * x * x) / (640 * 640);
   return Array.from({ length: 32 }, (_, i): Segment => ({ from: [i * 20, 0], to: [(i + 1) * 20, 0], y: [height(i * 20), height((i + 1) * 20)] }));
@@ -315,15 +316,26 @@ export class Track {
   // (Past its ends only if `open`: else the nearest point is on the line itself.)
   private project(line: number, point: Vector3, frame: Matrix4, open = true) {
     const l = this.lines[line];
-    let best = { s: 0, q: new Vector3(), t: new Vector3(), curvature: 0, rise: 0, distance: Infinity };
+    let best = { s: 0, q: new Vector3(), t: new Vector3(), curvature: 0, rise: 0, share: 0, distance: Infinity };
     let before = 0;
+    let at = 0;
+    let share = 0;
     for (let i = 0; i < l.rails.length; i++) {
       const found = onRail(l.rails[i], point, frame, open && i === 0, open && i === l.rails.length - 1);
       const off = new Vector3().subVectors(point, found.q);
       off.addScaledVector(UP, -off.dot(UP));
       const distance = off.length();
-      if (distance < best.distance - 1e-9) best = { ...found, s: before + found.s, distance };
+      if (distance < best.distance - 1e-9) [best, at, share] = [{ ...found, s: before + found.s, distance }, i, found.share];
       before += l.lengths[i];
+    }
+    // On a ramp's steps, the slope changes smoothly from step to step, as on the ramp itself: at
+    // each end of a step, halfway between its slope and the next one's, and in between, in
+    // proportion. (A wheel's height on a slope depends on the slope: see railLift.)
+    const rise = (i: number) => (i >= 0 && i < l.rails.length ? onRail(l.rails[i], point, frame, false, false).rise : null);
+    if (best.rise !== 0) {
+      const start = (best.rise + (rise(at - 1) ?? best.rise)) / 2;
+      const end = (best.rise + (rise(at + 1) ?? best.rise)) / 2;
+      best.rise = start + (end - start) * share;
     }
     return best;
   }
@@ -477,7 +489,7 @@ function onRail(rail: Rail, point: Vector3, frame: Matrix4, openStart: boolean, 
     if (!openStart) along = Math.max(0, along);
     if (!openEnd) along = Math.min(length, along);
     const share = along / length;
-    return { s: share * from.distanceTo(to), q: from.clone().lerp(to, share), t: d, curvature: 0, rise: (to.y - from.y) / length };
+    return { s: share * from.distanceTo(to), q: from.clone().lerp(to, share), t: d, curvature: 0, rise: (to.y - from.y) / length, share };
   }
   const center = rail.center.clone().applyMatrix4(frame);
   const r = level(new Vector3().subVectors(point, center));
@@ -499,7 +511,7 @@ function onRail(rail: Rail, point: Vector3, frame: Matrix4, openStart: boolean, 
     const q = center.clone().addScaledVector(a.clone().normalize(), radius);
     q.y = from.y;
     const s = level(new Vector3().subVectors(point, q)).dot(t);
-    return openStart ? { s: Math.min(0, s), q: q.clone().addScaledVector(t, Math.min(0, s)), t, curvature: 0, rise: 0 } : { s: 0, q, t, curvature: turn / radius, rise: 0 };
+    return openStart ? { s: Math.min(0, s), q: q.clone().addScaledVector(t, Math.min(0, s)), t, curvature: 0, rise: 0, share: 0 } : { s: 0, q, t, curvature: turn / radius, rise: 0, share: 0 };
   }
   if (at > sweep) {
     const t = tangentAt(b.clone().normalize());
@@ -507,12 +519,12 @@ function onRail(rail: Rail, point: Vector3, frame: Matrix4, openStart: boolean, 
     q.y = from.y;
     const s = level(new Vector3().subVectors(point, q)).dot(t);
     const length = radius * sweep;
-    return openEnd ? { s: length + Math.max(0, s), q: q.clone().addScaledVector(t, Math.max(0, s)), t, curvature: 0, rise: 0 } : { s: length, q, t, curvature: turn / radius, rise: 0 };
+    return openEnd ? { s: length + Math.max(0, s), q: q.clone().addScaledVector(t, Math.max(0, s)), t, curvature: 0, rise: 0, share: 0 } : { s: length, q, t, curvature: turn / radius, rise: 0, share: 0 };
   }
   const radial = r.clone().normalize();
   const q = center.clone().addScaledVector(radial, radius);
   q.y = from.y;
-  return { s: radius * at, q, t: tangentAt(radial), curvature: turn / radius, rise: 0 };
+  return { s: radius * at, q, t: tangentAt(radial), curvature: turn / radius, rise: 0, share: 0 };
 }
 
 // The circle through three points, seen from above (in x and z), at the first point's height.

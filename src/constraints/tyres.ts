@@ -68,7 +68,10 @@ export function tyres(solver: Kinematics, eq: Equations) {
         const row = along(hub, DOWN);
         const ahead = along(middle, under.t);
         for (let k = 0; k < n; k++) row[k] -= under.rise * ahead[k];
-        add(row, under.y + solver.railOffsets[i] - p.y);
+        // (On a slope its hub stands its radius from the rail square to it, so higher above it
+        // than on the level: else it would sink into the rail, 0.8 LDU for a monorail wheel on a
+        // ramp's steepest part.)
+        add(row, under.y + solver.railOffsets[i] - railLift(tread.radius, under.rise) - p.y);
       } else add(along(p, DOWN), solver.contactHeights[i] - p.y);
     } else if (slip) {
       if (tread.track === undefined) slip.sideways.push(along(p, sideways));
@@ -90,4 +93,10 @@ export function tyres(solver: Kinematics, eq: Equations) {
     for (const row of tyres) for (let k = 0; k < n; k++) average[k] += row[k] / tyres.length;
     add(average);
   }
+}
+
+// How much higher a wheel's lowest point stands above a rail sloping `rise` (LDU down for each
+// LDU along) than on the level: its hub stands its radius from the rail square to it.
+export function railLift(radius: number, rise: number): number {
+  return radius * (Math.sqrt(1 + rise * rise) - 1);
 }
