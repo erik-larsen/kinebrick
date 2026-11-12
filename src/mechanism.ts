@@ -10,10 +10,11 @@ import { groupIntoBodies, nameBodies } from './inference/bodies.ts';
 import { crankWebs, dropBallsInBearings, groovedBalls, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
 import { findGears, findMeshes, rackMesh } from './inference/gears.ts';
+import { inGrooves } from './inference/grooves.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
 import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
 import { fixPins } from './inference/pins.ts';
-import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, axialOverlap, AXIS_TOLERANCE, BALL_LINE, findLooseParts, isAntiStud, LOOSE_ALIGN_TOLERANCE, rigidGroups, type WorldCylinder, worldCylinders } from './inference/shared.ts';
+import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, axialOverlap, AXIS_TOLERANCE, BALL_LINE, findLooseParts, LOOSE_ALIGN_TOLERANCE, rigidGroups, type WorldCylinder, worldCylinders } from './inference/shared.ts';
 import { bushesOnFourStuds, onFourStuds, platesOnEdge } from './inference/studs.ts';
 import { onTiles } from './inference/tiles.ts';
 import { anchorsOf, findRails, findRiders, magnetCouplings, railJoins, smallGroups } from './inference/trains.ts';
@@ -688,32 +689,6 @@ function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]
     let nearest: WorldCylinder | null = null;
     for (const c of anchors) if (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at)) nearest = c;
     if (nearest) result.push({ male: i, female: nearest.part, kind: 'rigid', from: at, to: at.clone() });
-  });
-  return result;
-}
-
-// A plate slid edge first into a groove (a tipper end's, see ConnectionTable.grooves) is held
-// there: one of its anti-studs lies in the groove (within ALIGN_TOLERANCE of its box), the
-// plate facing across the groove.
-function inGrooves(parts: PlacedPart[], cyls: WorldCylinder[], table: ConnectionTable): Connection[] {
-  const result: Connection[] = [];
-  parts.forEach((part, g) => {
-    for (const groove of table.grooves?.[part.name] ?? []) {
-      const center = new Vector3(...groove.center).applyMatrix4(part.matrix);
-      const along = new Vector3(...groove.along).transformDirection(part.matrix);
-      const across = new Vector3(...groove.across).transformDirection(part.matrix);
-      const into = new Vector3().crossVectors(along, across);
-      const held = new Set<number>();
-      for (const c of cyls) {
-        if (c.part === g || held.has(c.part) || c.gender !== 'F' || !isAntiStud(c)) continue;
-        if (new Vector3().crossVectors(c.dir, across).length() > ANGLE_TOLERANCE) continue;
-        const d = new Vector3().subVectors(c.start, center);
-        const inside = [along, across, into].every((axis, k) => Math.abs(d.dot(axis)) <= groove.size[k] / 2 + ALIGN_TOLERANCE);
-        if (!inside) continue;
-        held.add(c.part);
-        result.push({ male: g, female: c.part, kind: 'rigid', from: c.start.clone(), to: c.start.clone() });
-      }
-    }
   });
   return result;
 }
