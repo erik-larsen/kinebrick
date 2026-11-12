@@ -84,7 +84,7 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
     "seconds": 1,
     "counts": {
@@ -113,7 +113,7 @@
             ],
             "p28 3648b against p0 32009": [
               0.0417,
-              4.85e-32
+              6.69e-32
             ],
             "p97 32278 against p0 32009": [
               0.0181,
@@ -150,7 +150,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -301,7 +301,7 @@
         "strayed": [
           "p134 4274"
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       }
     ]
   }

@@ -93,9 +93,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "partly": 3,
       "no": 1,
@@ -139,7 +139,7 @@
             ],
             "p686 87761": [
               0,
-              2.36e-48
+              0
             ]
           }
         ],
@@ -204,11 +204,11 @@
           {
             "p692 32270": [
               0,
-              1.03e-48
+              0
             ],
             "p686 87761": [
               0,
-              2.36e-48
+              0
             ],
             "p670 48989": [
               0,
@@ -255,7 +255,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -306,7 +306,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "not checked",

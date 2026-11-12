@@ -189,9 +189,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 30,
+    "seconds": 32,
     "counts": {
       "works": 8,
       "partly": 3,
@@ -236,7 +236,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -273,7 +273,7 @@
             ],
             "p224 3404": [
               0,
-              4.42e-53
+              5.36e-53
             ]
           }
         ],
@@ -291,7 +291,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 2.1
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -304,16 +304,16 @@
         "rates": [
           {
             "p609 2814 against p596 3702": [
-              0.037,
-              2.22
+              0.0368,
+              2.21
             ],
             "p580 3895": [
               0,
-              4.06e-13
+              5.31e-13
             ],
             "p596 3702 against p580 3895": [
-              0.00387,
-              0.235
+              0.0039,
+              0.237
             ]
           }
         ],
@@ -329,7 +329,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -351,7 +351,7 @@
             ],
             "p224 3404": [
               0,
-              1.98e-53
+              5.27e-53
             ]
           }
         ],
@@ -367,7 +367,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -407,7 +407,7 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -450,7 +450,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -480,7 +480,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -678,7 +678,7 @@
             ]
           ]
         ],
-        "seconds": 4.8
+        "seconds": 5.5
       }
     ]
   }

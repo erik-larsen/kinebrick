@@ -98,7 +98,7 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
     "seconds": 2,
     "counts": {
@@ -177,11 +177,11 @@
           {
             "p297 2825 against p281 3709b": [
               2.81e-8,
-              3.71e-13
+              3.7e-13
             ],
             "p305 2825 against p281 3709b": [
               2.81e-8,
-              3.71e-13
+              3.7e-13
             ],
             "p316 3708 against p281 3709b": [
               0,
@@ -237,7 +237,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "not checked",

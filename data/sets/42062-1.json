@@ -166,9 +166,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 97,
+    "seconds": 105,
     "counts": {
       "partly": 6,
       "works": 3,
@@ -598,7 +598,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 2.7
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -702,7 +702,7 @@
           "p240 98138",
           "p239 98138"
         ],
-        "seconds": 21.1
+        "seconds": 24.2
       },
       {
         "result": "no",
@@ -757,7 +757,7 @@
           true
         ],
         "cause": "control-jammed",
-        "seconds": 3.6
+        "seconds": 3.7
       },
       {
         "result": "partly",
@@ -785,11 +785,11 @@
             ],
             "p597 55981": [
               0,
-              4.85e-14
+              2.84e-14
             ],
             "p601 55981": [
               0,
-              3.79e-14
+              2.37e-14
             ],
             "p603 55981": [
               0,
@@ -797,7 +797,7 @@
             ],
             "p510 18940": [
               0,
-              1.89e-13
+              2.27e-13
             ]
           }
         ],
@@ -864,7 +864,7 @@
         ],
         "cause": "loose-part",
         "detail": "p507 32270",
-        "seconds": 3.1
+        "seconds": 3.2
       },
       {
         "result": "partly",
@@ -919,7 +919,7 @@
         ],
         "cause": "loose-part",
         "detail": "p530 6553",
-        "seconds": 22.9
+        "seconds": 24.2
       },
       {
         "result": "works",
@@ -933,7 +933,7 @@
           {
             "p511 18942": [
               0,
-              4.42e-13
+              5.17e-13
             ]
           }
         ],
@@ -949,7 +949,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -997,7 +997,7 @@
         ],
         "cause": "loose-part",
         "detail": "p574 32073",
-        "seconds": 21.8
+        "seconds": 23.9
       },
       {
         "result": "works",
@@ -1067,7 +1067,7 @@
             ]
           ]
         ],
-        "seconds": 12.3
+        "seconds": 12.6
       }
     ]
   }

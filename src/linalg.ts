@@ -18,8 +18,12 @@ export const RANK_TOLERANCE = 1e-6;
 // most a free motion of unit size costs there.
 const TIER_TOLERANCE = 1e-10;
 // A tier counts as costing nothing at all (see leastTurning) if its costs are at most this, as a
-// fraction of the most a motion of unit size turns the joints (both squared).
-const NOISE = 1e-20;
+// fraction of the most a motion of unit size turns the joints (both squared): a hundred-millionth
+// of a radian for each unit of motion is what's left of rounding, not a motion of the tier. At a
+// ten-billionth, the 42110 Land Rover Defender's steering, which its free motions turn about a
+// billionth, was kept still in closing the loops by sliding the car tens of LDU sideways on its
+// tyres, to undo a turn of a ten-thousandth of a radian.
+const NOISE = 1e-16;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
 const SPARSE_ROUNDS = 30;
 

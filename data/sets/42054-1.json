@@ -216,9 +216,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 151,
+    "seconds": 183,
     "counts": {
       "partly": 5,
       "no": 3,
@@ -260,15 +260,15 @@
             ],
             "p513 3648b": [
               0,
-              0
+              1.04e-140
             ],
             "p366 94925": [
               0,
-              0
+              4.69e-79
             ],
             "p367 94925": [
               0,
-              0
+              4.69e-79
             ]
           }
         ],
@@ -291,7 +291,7 @@
         ],
         "cause": "not-driven",
         "detail": "p513 3648b",
-        "seconds": 9.1
+        "seconds": 9.6
       },
       {
         "result": "no",
@@ -323,7 +323,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -353,7 +353,7 @@
             ],
             "p1659 42054 - 18938 against p1660 18939": [
               0,
-              0
+              9.15e-77
             ]
           }
         ],
@@ -371,7 +371,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 42054 - 18938",
-        "seconds": 9.1
+        "seconds": 9.8
       },
       {
         "result": "partly",
@@ -393,7 +393,7 @@
             ],
             "p1820 92696 against p1818 92693c01": [
               0,
-              1.07e-60
+              1.7e-62
             ],
             "p1841 40490 against p1659 42054 - 18938": [
               0,
@@ -419,7 +419,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1820 92696 against p1818 92693c01",
-        "seconds": 12
+        "seconds": 23.8
       },
       {
         "result": "partly",
@@ -462,7 +462,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1659 42054 - 18938 against p1660 18939",
-        "seconds": 12.1
+        "seconds": 14.3
       },
       {
         "result": "works",
@@ -492,7 +492,7 @@
             ]
           ]
         ],
-        "seconds": 9
+        "seconds": 11.3
       },
       {
         "result": "works",
@@ -506,19 +506,19 @@
           {
             "p1943 4716": [
               1,
-              6.08e-13
+              1.89e-13
             ],
             "p1924 3648b": [
               0.0417,
-              3.23e-13
+              2.46e-13
             ],
             "p1929 32348": [
               0.0417,
-              3.6e-13
+              9.47e-14
             ],
             "p1933 32348": [
               0.0417,
-              3.51e-13
+              8.53e-14
             ]
           }
         ],
@@ -534,7 +534,7 @@
             ]
           ]
         ],
-        "seconds": 9.5
+        "seconds": 11
       },
       {
         "result": "works",
@@ -564,7 +564,7 @@
             ]
           ]
         ],
-        "seconds": 9.5
+        "seconds": 10.4
       },
       {
         "result": "no",
@@ -628,7 +628,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "no",
@@ -701,7 +701,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "partly",
@@ -763,7 +763,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p12 87083",
-        "seconds": 9
+        "seconds": 9.2
       },
       {
         "result": "works",
@@ -788,7 +788,7 @@
             ]
           ]
         ],
-        "seconds": 10
+        "seconds": 8.7
       },
       {
         "result": "works",
@@ -858,7 +858,7 @@
             ]
           ]
         ],
-        "seconds": 40.1
+        "seconds": 54.4
       },
       {
         "result": "works",
@@ -883,7 +883,7 @@
             ]
           ]
         ],
-        "seconds": 12.1
+        "seconds": 10.8
       }
     ]
   }
