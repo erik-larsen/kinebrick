@@ -105,19 +105,45 @@ const PLAY = 0.1;
 const TIE_BREAK = 0.1;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
 const LOOP_TOLERANCE = 1e-11;
-// A drag that turns a joint chooses its motion by least motion, tier by tier (see leastTurning),
-// rather than by holding what it doesn't need (see chooseDragHolds), as pushes still do. ?holds in
-// the viewer, or KINEBRICK_LEAST=0 for the tests and scripts, has it choose holds instead.
-// Closing a step's loops keeps to the tiers too, as one problem with choosing the motion (see
-// docs/one-problem.md). ?passes in the viewer, or KINEBRICK_ONE=0 for the tests and scripts, has
-// it close them by the least motion by size, as before.
-export const experiments = { leastMotion: !(typeof process !== 'undefined' && process.env?.KINEBRICK_LEAST === '0'), oneProblem: !(typeof process !== 'undefined' && process.env?.KINEBRICK_ONE === '0') };
-// Least motion: how much keeping still what a step left still counts in closing the loops,
-// against closing them (see advance). Closing them by plain least squares undoes, a hair a step,
-// what the tiers kept still, and over a long drag that adds up: the 956 Auto Chassis, driven
-// round a circle, drifted off it as its steering crept, and its gear lever was carried round with
-// the drive shaft. KINEBRICK_CLOSE_STILL sets it (0 turns it off).
-const CLOSE_STILL = typeof process !== 'undefined' && process.env?.KINEBRICK_CLOSE_STILL !== undefined ? Number(process.env.KINEBRICK_CLOSE_STILL) : 1e-3;
+// The solver's switches. Each Kinematics has its own (see Kinematics.options), which may be
+// changed at any time: two settings can be compared on one loaded model.
+export interface Options {
+  // A drag that turns a joint chooses its motion by least motion, tier by tier (see leastTurning),
+  // rather than by holding what it doesn't need (see chooseDragHolds), as pushes still do. ?holds in
+  // the viewer, or KINEBRICK_LEAST=0 for the tests and scripts, has it choose holds instead.
+  // Closing a step's loops keeps to the tiers too, as one problem with choosing the motion (see
+  // docs/one-problem.md). ?passes in the viewer, or KINEBRICK_ONE=0 for the tests and scripts, has
+  // it close them by the least motion by size, as before.
+  leastMotion: boolean;
+  oneProblem: boolean;
+  // Least motion: how much keeping still what a step left still counts in closing the loops,
+  // against closing them (see advance). Closing them by plain least squares undoes, a hair a step,
+  // what the tiers kept still, and over a long drag that adds up: the 956 Auto Chassis, driven
+  // round a circle, drifted off it as its steering crept, and its gear lever was carried round with
+  // the drive shaft. KINEBRICK_CLOSE_STILL sets it (0 turns it off).
+  closeStill: number;
+  // Whether the turning tier counts a balanced body's turning against what it turns on rather
+  // than the frame (see leastTiers). KINEBRICK_BALANCED=0 turns it off.
+  balanced: boolean;
+  // Least motion: a body the turning tier leaves turning less than this fraction of the body it
+  // turns most is held still, if it can be, and the tier solved again (see leastTurning): static
+  // friction holds what would only creep, rather than letting everything give a little. 0.2 does best
+  // in the function check, and 0.3 fails one more test. KINEBRICK_STILLNESS sets it (0 turns it off).
+  stillness: number;
+}
+
+// The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
+// its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
+// KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0 and KINEBRICK_STILLNESS.
+const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
+export const experiments: Options = {
+  leastMotion: setting('KINEBRICK_LEAST') !== '0',
+  oneProblem: setting('KINEBRICK_ONE') !== '0',
+  closeStill: setting('KINEBRICK_CLOSE_STILL') !== undefined ? Number(setting('KINEBRICK_CLOSE_STILL')) : 1e-3,
+  balanced: setting('KINEBRICK_BALANCED') !== '0',
+  stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
+};
+
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
 // sparse friction tier (see leastTiers).
 const SCRUB_WEIGHT = 100;
@@ -125,19 +151,11 @@ const SCRUB_WEIGHT = 100;
 // Sparse passes one more of the tests, but loses functions in the function check, and takes
 // longer.
 const SPARSE_FRICTION = false;
-// Whether the turning tier counts a balanced body's turning against what it turns on rather
-// than the frame (see leastTiers). KINEBRICK_BALANCED=0 turns it off.
-const BALANCED = !(typeof process !== 'undefined' && process.env?.KINEBRICK_BALANCED === '0');
 // How near its joint's axis a body's middle must be for it to count as balanced on it, in LDU.
 const BALANCE = 2;
 // How much each part's turning against the frame (radians) counts against joints' turning in least
 // motion's friction tier (see leastTiers).
 const TURNING_WEIGHT = 1;
-// Least motion: a body the turning tier leaves turning less than this fraction of the body it
-// turns most is held still, if it can be, and the tier solved again (see leastTurning): static
-// friction holds what would only creep, rather than letting everything give a little. 0.2 does best
-// in the function check, and 0.3 fails one more test. KINEBRICK_STILLNESS sets it (0 turns it off).
-const STILLNESS = typeof process !== 'undefined' && process.env?.KINEBRICK_STILLNESS !== undefined ? Number(process.env.KINEBRICK_STILLNESS) : 0.2;
 
 
 
@@ -215,6 +233,8 @@ export class Kinematics {
   // front wheels turned alike, say) roll at a bigger steering angle; but too much would let a
   // car with no steering at all turn, its tyres scrubbing round.
   scrub = DEFAULT_SCRUB;
+  // Its switches (see Options): those of experiments when it was made, unless it was given others.
+  options: Options;
 
   // What follows is the solver's own. Some of it isn't private, as the connections in
   // src/constraints/ read it to write their equations; nothing else should.
@@ -270,7 +290,8 @@ export class Kinematics {
   // hung then, relative to the middle of the two pulleys it hangs from (model coordinates).
   strings: { length: number; hookOffset: Vector3 | null }[] = [];
 
-  constructor(mech: Mechanism) {
+  constructor(mech: Mechanism, options: Partial<Options> = {}) {
+    this.options = { ...experiments, ...options };
     this.mech = mech;
     this.bodyCount = mech.bodies.length;
     this.findLinks();
@@ -997,7 +1018,7 @@ export class Kinematics {
     // can't be needed, and holding it only saves work; held on something that turns, it would
     // be carried round: the 956 Auto Chassis's gear lever, which sits on the drive shaft);
     // jointMotion chooses the rest, tier by tier.
-    if (experiments.leastMotion && joint >= 0) {
+    if (this.options.leastMotion && joint >= 0) {
       for (const body of this.standingAlone(grabbed)) {
         const parent = this.parentLink(body)!.parent;
         if (this.parentJoint[parent] < 0 || this.drag.held.has(parent) || this.frozen.has(parent)) this.drag.held.add(body);
@@ -1540,7 +1561,7 @@ export class Kinematics {
       // what plain closing can't, and a wild step, closed so, kept what's free to go anywhere
       // (the 8448 Super Street Sensation's front wheels, spun 3.5 radians on their hubs by a step
       // that opened the loops 1,200 LDU, as the suspension took up its play).
-      if (round === 0 && experiments.oneProblem && keep >= 0 && this.drag.turning?.joint === keep && this.stepByTiers && biggest > STUD) return last;
+      if (round === 0 && this.options.oneProblem && keep >= 0 && this.drag.turning?.joint === keep && this.stepByTiers && biggest > STUD) return last;
       if (biggest > previous / 2) {
         // A round that opened the gaps up, rather than closing them, is undone.
         if (before && biggest > previous) {
@@ -1576,7 +1597,7 @@ export class Kinematics {
       // by the gaps' least-squares closing plus the mix of free motions (which keep every
       // equation, and the dragged joint where it is) the tiers choose, rather than with what the
       // step left still weighted to stay so.
-      const one = experiments.oneProblem && keep >= 0 && this.drag.turning?.joint === keep && this.stepByTiers;
+      const one = this.options.oneProblem && keep >= 0 && this.drag.turning?.joint === keep && this.stepByTiers;
       let keepRow: Row | null = null;
       if (keep >= 0) {
         const row = new Array(6 * this.bodyCount).fill(0);
@@ -1604,7 +1625,7 @@ export class Kinematics {
           row[k] -= 1;
           rows.push(row);
           gaps.push(0);
-          weights.push(CLOSE_STILL);
+          weights.push(this.options.closeStill);
         }
       }
       let solution = dampedSolution(inBasis(rows, basis), gaps, this.basisOrder, weights);
@@ -1627,12 +1648,12 @@ export class Kinematics {
         // turning a radian: else that tier, keeping bodies from turning, slid the whole model on
         // its tyres instead, which nothing after it costs (the 42029 Customized Pick up Truck,
         // pushed along by a rear wheel, went a quarter further than the wheel rolled). And its
-        // bodies that turn only a little aren't held still first (see STILLNESS): in a
+        // bodies that turn only a little aren't held still first (see Options.stillness): in a
         // correction, all of them turn only a little, and held still, they slid it all the same.
         const slid = inBasis([...slip.sideways, ...slip.lift], basis);
         const corrections = tiers.map((t) => (t.bodies ? { cost: (z: number[]) => [...t.cost(z), ...slid.map((row) => dot(row, z))] } : t));
         // Before them all, what the step left still is kept as still as it can be: stillness
-        // (see STILLNESS) held it for the step, but a correction's bodies all turn only a little,
+        // (see Options.stillness) held it for the step, but a correction's bodies all turn only a little,
         // so it doesn't hold them here, and the free motions it held were stirred, differently
         // there and back (the 42021 Snowmobile's steering, whose arm swivels as its skis toe in
         // or out, came back 2.5 LDU off). Only the bodies' coordinates some free motion moves
@@ -1938,7 +1959,7 @@ export class Kinematics {
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
         // held only to first order (the 42037 Formula Off-Roader's front tyre, neither rolling
         // nor scrubbing); the drag goes on without that preference.
-        if (experiments.leastMotion && this.drag.turning?.joint === joint && this.gripped && this.drag.grip) {
+        if (this.options.leastMotion && this.drag.turning?.joint === joint && this.gripped && this.drag.grip) {
           this.drag.grip = false;
           if (this.jointMotion(joint)) continue;
         }
@@ -1947,7 +1968,7 @@ export class Kinematics {
         // spreader, whose linkage the turning tier would turn back, to keep it level, though it
         // lies flat). Held for the rest of the drag, the drag may go on another way; if it
         // can't, they're let go, and it's a dead point after all.
-        if (experiments.leastMotion && this.drag.turning?.joint === joint && !played) {
+        if (this.options.leastMotion && this.drag.turning?.joint === joint && !played) {
           // Each strayed joint in the tree is held by holding the body it carries.
           const carried = (k: number) => (this.parentJoint[this.mech.joints[k].bodyB] === k ? this.mech.joints[k].bodyB : this.mech.joints[k].bodyA);
           const bodies = strayed.filter((k) => k !== joint && this.inTree(k)).map(carried).filter((b) => !this.drag.held.has(b) && b !== this.drag.turning!.grabbed);
@@ -2038,7 +2059,7 @@ export class Kinematics {
     // just against what it turns on, which a pin free to spin in its holes would be: the turn
     // would be taken by spinning the pin back under it, leaving the part where it was (the 9394
     // Airliner's control stick, on a long pin).
-    const grabbed = experiments.leastMotion && this.drag.turning?.joint === joint ? this.drag.turning.grabbed : -1;
+    const grabbed = this.options.leastMotion && this.drag.turning?.joint === joint ? this.drag.turning.grabbed : -1;
     const housing = grabbed >= 0 && this.parentJoint[grabbed] === joint ? this.housing(grabbed) : -1;
     const rate = (z: number[]) => {
       if (housing < 0) return rateOf(z, joint);
@@ -2073,7 +2094,7 @@ export class Kinematics {
     // up, as for the arm a wheel hangs on): rolling, it would mix in a little of its suspension
     // to turn the other joints a little less, a motion that, closing the loops, can jump far from
     // where it had them going (the 41999 Crawler's portal hubs, stopped as at a dead point).
-    const tiers = experiments.leastMotion && this.drag.turning?.joint === joint ? this.leastTiers(joint, turning, rateOf, size) : undefined;
+    const tiers = this.options.leastMotion && this.drag.turning?.joint === joint ? this.leastTiers(joint, turning, rateOf, size) : undefined;
     const plain = this.chooseMotion(joint, usual, rate, size, tiers);
     const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size, tiers) : plain;
     const length = (z: number[]) => Math.hypot(...size(z));
@@ -2091,7 +2112,7 @@ export class Kinematics {
       if (this.drag.suspension ? any : plain) z = this.drag.suspension ? any : plain;
     }
     // One problem: a step chosen by the tiers has its loops closed by them too (see closeLoops).
-    this.stepByTiers = tiers !== undefined && experiments.oneProblem && z !== null;
+    this.stepByTiers = tiers !== undefined && this.options.oneProblem && z !== null;
     this.played = false;
     if (z) return fromBasis(z, basis);
     // Play only lets a drag go where nothing else would, not choose what it holds: a hold that
@@ -2247,7 +2268,7 @@ export class Kinematics {
     const centers = this.mech.centers;
     const couplings = this.couplingBodies ??= new Set(this.mech.roles.flatMap((r, i) => (r === 'coupling' ? [this.mech.bodyOf[i]] : [])));
     const against = bodies.map((b) => {
-      const link = BALANCED && centers ? this.parentLink(b) : null;
+      const link = this.options.balanced && centers ? this.parentLink(b) : null;
       if (!link) return 0;
       const j = this.mech.joints[link.joint];
       if (j.kind !== 'revolute') return 0;
@@ -2279,7 +2300,7 @@ export class Kinematics {
     };
     const turning4 = SPARSE_FRICTION
       ? { cost: (z: number[]) => [...size(z), ...turns(z).map((x) => TURNING_WEIGHT * x), ...scrubs(z)], sparse: true }
-      : { cost: turns, bodies: bodies.length, stillness: STILLNESS };
+      : { cost: turns, bodies: bodies.length, stillness: this.options.stillness };
     // Each body's moving against the frame, at a point in its middle (the middle of its joints):
     // what's still free once no joint turns any more than it must is a body moving without
     // turning anything (a piston on a connecting rod that reaches no crank, sliding in its
@@ -2367,7 +2388,7 @@ export class Kinematics {
   advance(motion: number[], amount: number, keep = -1): number {
     // Least motion: a step that leaves the car where it is (steering it) keeps it there while the
     // loops are closed, and doesn't set it down again, as a car held still for a drag (see settle).
-    const parked = experiments.leastMotion && this.drag.turning !== null && !this.drag.held.has(0) && motion.slice(0, 6).every((x) => Math.abs(x * amount) <= 1e-9);
+    const parked = this.options.leastMotion && this.drag.turning !== null && !this.drag.held.has(0) && motion.slice(0, 6).every((x) => Math.abs(x * amount) <= 1e-9);
     if (parked) this.drag.held.add(0);
     try {
       return this.nearOrigin((_, fromModel) => {
@@ -2379,7 +2400,7 @@ export class Kinematics {
         // pistons, at top dead centre: kept still, closing the loops turned the crank back,
         // through the differential). A resting one is still kept still: the 858 Auto Engines'
         // crank jams a turn short if its push rods and rockers aren't.
-        if (experiments.leastMotion && this.drag.turning !== null && CLOSE_STILL > 0) {
+        if (this.options.leastMotion && this.drag.turning !== null && this.options.closeStill > 0) {
           const most = Math.max(...m.map(Math.abs));
           const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
           this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
@@ -2390,7 +2411,7 @@ export class Kinematics {
         // Not a resting body, which closing the loops sets down on what it rests on.
         const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
         const scale = Math.max(1, ...m.map(Math.abs));
-        const mountsHeld = experiments.leastMotion && !experiments.oneProblem && this.drag.turning !== null ? [...this.mounts].filter(([b, on]) => !resting.has(b) && !this.drag.held.has(b) && b !== this.drag.turning!.grabbed && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[6 * on + k]) <= 1e-9 * scale)).map(([b]) => b) : [];
+        const mountsHeld = this.options.leastMotion && !this.options.oneProblem && this.drag.turning !== null ? [...this.mounts].filter(([b, on]) => !resting.has(b) && !this.drag.held.has(b) && b !== this.drag.turning!.grabbed && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[6 * on + k]) <= 1e-9 * scale)).map(([b]) => b) : [];
         for (const b of mountsHeld) this.drag.held.add(b);
         this.move(m, amount);
         let gap: number;
