@@ -1028,6 +1028,7 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 
 - works the function's `first` controls, in order;
 - works its control both ways, as a drag would, holding what a drag would hold: a turn of 1.5 radians, or a push of 20 LDU for a slide (each control on its own, or for controls marked `together`, the first with the others turning with it, as pushing a vehicle along turns its wheels);
+- pushes its control instead, where the viewer would push it and not turn it: a part that hangs on a hinge but doesn't spin on it like a knob (a door, an arm of a linkage, a gear on a shaft that also slides; see `turnsLikeAKnob`). The control is grabbed by a point on it that moves as its hinge turns (its part's middle, or a point 10 LDU from it along one of the part's own axes), and pushed the way the hinge carries that point, by the viewer's own steps (`pushStep` in `src/push.ts`), holding what a push holds, until it has turned 1.5 radians or can go no further. It is then pushed back the same length. Such a function's results have `pushed`. Until 2026-11-12 the check turned these controls on their joints, which no drag in the viewer does, and passed functions that a push does not work;
 - checks that every part in `moves` moved and every part in `stays` didn't, each against the frame or the part it names (a part moved if it went 1 LDU or turned 1°);
 - measures how much: how far each listed part turned and slid for each radian the control turned, adding up every piece of the drag (it's worked in pieces of 0.1, since a part geared up turns further than half a turn, which its pose alone can't tell);
 - compares that with what the gears say, where they alone say it (`scripts/gear-rates.ts`): for parts that turn in the frame (straight off it, or on joints all on one line down to it, as a differential's carrier on its half shaft), tied to the control by gears, racks, worms, universal joints (through a CV joint's middle too), chains or a linear actuator's screw, and through a differential once two of its carrier and side gears are known (controls marked `together` give both sides), each speed signed, about its joint's axis, against its housing;
@@ -1133,6 +1134,7 @@ Browser-level tests for these paths can come later.
 | `src/paths.ts` | Where a chain's or track's links go as it moves round its wheels, and a string's layout round its drum and pulleys |
 | `src/collisions.ts` | Stops parts passing through each other |
 | `src/interaction.ts` | Hover, press, drag, freeze, keep turning (see [Drags](#drags)) |
+| `src/push.ts` | One step of a push, and the helpers it needs: shared by the viewer's pushes and the function check's |
 | `src/turn.ts` | How far to turn a part when the pointer moves, like a knob |
 | `src/appearance.ts` | How parts look: fill colour (LEGO colours, or one per body), yellow glow for hover, outlines and badges for status, and see-through for what drivetrain focus leaves out |
 | `src/outlines.ts` | Outlines drawn around parts after the scene renders |
