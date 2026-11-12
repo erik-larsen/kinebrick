@@ -471,6 +471,8 @@ So after each step, Kinebrick works out how far each has come apart, and moves e
 
 **Keeping to the tiers.** For a turn chosen by [least motion](#least-motion), the smallest amount isn't by size alone: of the ways to close the gaps, it's the one the tiers prefer, as in choosing the step's motion, so closing them doesn't nudge what the drag leaves still ([one problem for each step](docs/one-problem.md)). Where that only opens the gaps again, and would leave the step refused, the rest of the rounds go by size alone. So do they all with `?passes` in the address (`KINEBRICK_ONE=0` for the tests and scripts).
 
+**Tyre scrub in closing.** Closing the loops, the tiers that keep the steering still (tier 2) and every part's turning (tier 4) also count a tyre scrubbing sideways or lifting off the ground: each LDU as much as a part turning a radian. Else, to close a gap of a hundred-thousandth of an LDU, the cheapest way would be to slide the whole car sideways on its tyres, which no tier counts, rather than turn the steering or a part a hair. Without it in tier 4, the 42029 Customized Pick up Truck, pushed along by a rear wheel, went a quarter further than the wheel rolled. Without it in tier 2, the 42110 Land Rover Defender, rolled 0.4 radians forward on its four wheels and back, came back 116 LDU to one side.
+
 **When the rules can't all hold.** A model's rounded-off positions can make two rules that should repeat each other disagree slightly. Then it comes as close as it can, by least squares:
 
 - **Every rule is scaled to the same size first.** Rules about turning would otherwise count for less than rules about moving, whose numbers (in LDU) run larger, and a single-cylinder engine's piston would tip a little further out of line at every step.
@@ -711,7 +713,7 @@ Only knob-like parts can be kept turning, and only they get a line in the readou
 A drag that turns a joint, and a motor, chooses how the rest of the model follows by [least motion](docs/least-motion.md): of the motions that turn the joint as asked, the one that moves least, judged tier by tier, most important first. Each tier is kept as still as the drag allows, all of it at once, and then the next, among the motions that do that:
 
 1. what slides or swivels on the car (a bumper on tiles, a gear lever on its ball);
-2. on a car on the ground, what steers it;
+2. on a car on the ground, what steers it: the parts that turn when its wheels turn to steer (see [Holds](#holds)). Kept still, the car rolls on as it was steered rather than steering itself;
 3. joints on friction pins and motors' outputs, then what the grabbed part turns against, kept still against the frame as a hand holding the model by its frame would;
 4. every part's turning against the frame: a gear freewheeling on a shaft turns on it rather than turning the shaft, and an assembly hanging on a turning axle stays level. A balanced part, whose middle is on the axis it turns on (an axle, a gear, a propeller), counts its turning against what it turns on instead: nothing keeps it level, and friction carries it round;
 5. every joint's turning;
@@ -970,6 +972,7 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 **8859 Tractor**
 - Its 24 tooth steering gear, 4 LDU further from its rack than its pitch radius, slides it 30 LDU per radian.
 - Its prop shaft turns the old differential's 28 tooth crown wheel half as far, through the 14 tooth bevel pinion on its end, and the tractor rolls.
+- Rolled a radian on a rear wheel, it turns the prop shaft two radians, all the way: the half shafts' bevels, half an LDU off the spider's axis, keep their meshes.
 
 **8865 Test Car**
 - Its old differential (73071), with the engine held, turns one rear wheel the opposite way to the other, the car standing on the ground.
@@ -981,6 +984,9 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 - Steered near full lock, a front wheel kept turning by the motor takes it round a corner, its steering left where it was, within the usual 10% scrub.
 - Each of its two driving rings, shifted either way, puts the engine in a gear: 2.25, 1.5, 0.75 and 0.5 turns per turn of the wheels.
 - Its gear lever clicks into its gate's five places, neutral in the middle and each slot's end sliding one ring, so the engine is in each of those four gears.
+
+**42110 Land Rover Defender** (from the OMR: checked only where `omr/` has been downloaded)
+- Rolled 0.4 radians forward on its four wheels, turned together, and back, it comes back where it started.
 
 ### The joints probe
 

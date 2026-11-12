@@ -58,6 +58,7 @@ export interface Tier {
   bodies?: number; // its first 3 × bodies components are bodies' turning, which `stillness` may hold still
   stillness?: number; // a body this tier leaves turning less than this fraction of the most is held still (see Options.stillness in kinematics.ts)
   joints?: boolean; // every joint's turning: what judges whether a motion turns the joint at all
+  steering?: boolean; // a car's steering, kept still: closing the loops counts tyres' scrub in it too (see closeLoops in kinematics.ts)
 }
 
 export function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers: Tier[], offset: number[] | null = null, target = 1): number[] | null {
