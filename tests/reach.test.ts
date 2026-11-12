@@ -62,3 +62,27 @@ describe('a drag solved over what it can reach', () => {
     whole.poses.forEach((pose, body) => pose.elements.forEach((x, i) => expect(Math.abs(x - reach.poses[body].elements[i])).toBeLessThan(b.out.includes(body) ? 1e-2 : 1e-6)));
   });
 });
+
+// Those rows left out, what's out of reach is held whole on the frame, not just on its joint: held
+// only on their joints, the 8859 Tractor's cab, hitch and cultivator came loose, and rolling the
+// tractor back on a front wheel stopped at a dead point after a fifteenth of a radian.
+describe("a drag holding what it can't reach whole", () => {
+  const { mech, parts, kin } = load('models/8859-Tractor.mpd');
+  const wheel = mech.bodyOf[596];
+
+  it('rolls the tractor back on a front wheel, everything out of reach standing still on the frame', () => {
+    expect(parts[596].name).toBe('3740.dat');
+    const reach = new Kinematics(mech, { reach: true });
+    reach.scrub = kin.scrub;
+    const joint = reach.parentLink(wheel)!.joint;
+    reach.holdWhatTheDragDoesntNeed(wheel, () => reach.jointMotion(joint) !== null, joint);
+    const out = [...reach.drag.outOfReach];
+    const onFrame = (body: number) => reach.poses[0].clone().invert().multiply(reach.poses[body]);
+    const before = out.map(onFrame);
+    let turned = 0;
+    for (let i = 0; i < 15; i++) turned += reach.turnJoint(joint, -0.1, () => reach.atLimit() === null);
+    expect(out.length).toBeGreaterThan(40);
+    expect(turned).toBeCloseTo(-1.5, 9);
+    out.forEach((body, k) => onFrame(body).elements.forEach((x, i) => expect(Math.abs(x - before[k].elements[i])).toBeLessThan(1e-9)));
+  });
+});
