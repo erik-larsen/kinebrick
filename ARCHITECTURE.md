@@ -307,7 +307,7 @@ Moving one part affects the others, but the solver doesn't pass motion along a c
 - then solves all the rules at once;
 - and chains only at the very end, to place the bodies on screen.
 
-The code is in `src/kinematics.ts`.
+The code is in `src/kinematics.ts`. The linear algebra it runs on (the null space of step 4, the eigen-solve and the tiers' least squares of [least motion](#least-motion), and the damped solution of step 9) is in `src/linalg.ts`, which knows nothing of parts or joints.
 
 | Step | In short |
 |---|---|
@@ -337,7 +337,7 @@ From those six, the speed of any point on the body follows. With three bodies, t
 
 ### 3. Connections become equations
 
-Each connection is a rule about those numbers, written as "this combination of numbers must equal zero":
+Each connection is a rule about those numbers, written as "this combination of numbers must equal zero". Each kind of connection writes its rules in a file of its own in `src/constraints/`, each rule with its gap (how far the connection has come apart, for [step 9](#9-close-the-loops)) and its weight there: `joints.ts`, `gears.ts`, `tyres.ts` and so on, called in a fixed order by `buildEquations` (the order of the rules decides which step 4 takes first, and so the motions to the last bit):
 
 | Connection | Rule | Equations |
 |---|---|---|
@@ -681,7 +681,7 @@ They connect as plain parts. The viewer lists any in a model, so a part that sil
 
 ## Drags
 
-What a drag does for the user is in the README's [Interaction](README.md#interaction) section. Underneath:
+What a drag does for the user is in the README's [Interaction](README.md#interaction) section. In the solver, a drag's state (what it holds, what it turns, what it has found out on the way) is one object, a `Drag`, made when the drag starts (`holdWhatTheDragDoesntNeed`) and dropped when it ends (`letGoAfterDrag`); between drags the solver has an empty one, which holds nothing. Underneath:
 
 ### Push or turn
 
@@ -717,7 +717,9 @@ A drag that turns a joint, and a motor, chooses how the rest of the model follow
 
 Before these the car's frame stays where it is, if it can. Worms and linear actuators still lock, and frozen parts stay frozen. It's solved afresh at each step, from where the model is, so nothing has to be chosen again as the model moves.
 
-Pushes still choose by holds, below, and so does a turn with `?holds` in the address (`KINEBRICK_LEAST=0` for the tests and scripts).
+Pushes still choose by holds, below, and so does a turn with `?holds` in the address (`KINEBRICK_LEAST=0` for the tests and scripts). These switches are each solver's own, its `options` (see `Options` in `src/kinematics.ts`): those set from the address or the environment are only what a new solver starts with, so a test or script can compare two settings on one loaded model.
+
+**Only what the drag can reach** (the `reach` option, off for now; `KINEBRICK_REACH=1` for the tests and scripts). Each step is solved over every part of the model, wherever the control is: on the 42082 Rough Terrain Crane, rolling it along means choosing among about 320 free motions, most of them the crane's own. With `reach`, a drag holds where they are on the frame the parts it can't reach: those no chain of connections (joints, gears, universal joints, chains, strings, screws, resting parts) joins to the grabbed part, or to a tyre on the ground, but through the frame. On the 42082 that leaves one free motion, and a step takes a fifth of the time. It isn't on by default because it's not the same to the last bit: the held parts stand exactly still, where the whole solve leaves them moving by rounding, and choosing among fewer motions rounds differently. On the quick check most results come out the same to the figures written down, but some don't (see the commit that added it).
 
 ### Holds
 
@@ -1085,6 +1087,8 @@ Every function that comes out `partly` or `no` gets one cause from a fixed list 
 
 **The slow check.** A set that took more than 2 hours of work the last time (`SLOW_OVER`) is left out of the plain run, and the run says which it left. `npm run functions -- --slow` checks only those sets, with 4 hours for each process, and naming a set checks it too. For now that's one set, the 8110 Unimog: 5 to 6 hours of work, and 2 hours even with its 16 functions side by side, since one of them, rolling the truck by each of its four wheels, takes that long alone. The slow check is run before `preview` is merged into `main` (see [the plan](docs/plan.md#the-gate)); till then the set's results stay as the last one left them, with their commit and date. Without it, the plain run took 51 minutes on this Mac (12 cores, 10 processes at a time) on 2026-11-11, for 7.6 hours of work: short enough to run whenever it's wanted, so nothing is scheduled.
 
+**Invariance and jitter.** `npm run invariance` (`scripts/invariance.ts`) asks whether a set's results hang on where its model sits. It copies each quick set's model five ways (as it is; moved; turned a quarter turn about the upright; turned 37 degrees; every part nudged by up to 0.05 LDU, at random but the same every run), runs the check on each copy, and compares each function with the plain copy's: the same, a control that went a different distance, other parts listed, or another result. The plain copy must match the set's stored results, which shows the comparison itself is sound. It fails if any result changes; today some do (see [the plan](docs/plan.md#results-that-hang-on-where-the-model-sits)). About 8 minutes for the 33 quick sets, 6 at a time. Each changed result is listed with the cause the check now gives. `npm run nudge` (`scripts/probe-nudge.ts`) asks the same of the mechanism alone, without a drag: it works out the mechanism of each quick set's model as built and nudged, and lists the connections, joints, gear meshes and loose parts lost and gained, and the parts that change body. Both take their changed copies from `scripts/variants.ts`.
+
 **The quick check.** `npm run functions -- --quick` checks only 33 sets, which between them have every kind of mechanism the check can work in the [mechanism catalog](docs/mechanisms/README.md) (bar two only the slow 42054 and 42055 have), chosen for the least time: about 2 minutes on this Mac, 5 at a time. It's for every change; the whole check, about an hour, is for a piece of work before it's handed in.
 
 A process (a set, or one function of a slow set) that takes longer than 60 minutes (`--limit`) is stopped, and its set written down as timed out. (The slowest function of the daily check, the 42082's second, takes 23 minutes alone and over 30 beside nine other processes.) `npm run functions -- 855 8880` checks only those sets. Once a minute it says how far it's got: how many sets are done and left, their functions' results so far (works, partly, no, and skipped or not checked, each with its share), and which sets it's checking, with how long each has taken so far.
@@ -1121,6 +1125,8 @@ Browser-level tests for these paths can come later.
 | `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and Kinebrick's own settings in it; brings a real LEGO set's file into the shape Kinebrick keeps it in |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
+| `src/constraints/` | The equations each kind of connection writes (see [Connections become equations](#3-connections-become-equations)), a file for each kind, and in `equations.ts` what they share |
+| `src/linalg.ts` | The solver's linear algebra: null spaces, orthonormal bases, the symmetric eigen-solve, the tiers' least squares and the damped solution that closes the loops |
 | `src/shift.ts` | Finds the parts that slide into set positions (driving rings) and the gear levers that move them, and moves them |
 | `src/paths.ts` | Where a chain's or track's links go as it moves round its wheels, and a string's layout round its drum and pulleys |
 | `src/collisions.ts` | Stops parts passing through each other |
@@ -1160,6 +1166,9 @@ Browser-level tests for these paths can come later.
 | `scripts/download-instructions.ts` | Downloads each set's building instructions into `omr/instructions/`, LEGO's PDFs or else brickinstructions.com's scans, and writes which are which into its `imported.instructions` (`npm run instructions`) |
 | `scripts/probe-joints.ts` | Tries every knob of every model both ways and compares what each moves with `tests/joints/` (`npm run joints`; see [The joints probe](#the-joints-probe)) |
 | `scripts/check-functions.ts` | Works each set's functions and writes what happened into its `generated` (`npm run functions`; see [The function check](#the-function-check)) |
+| `scripts/invariance.ts` | Checks changed copies of each quick set's model (moved, turned, nudged) and says which functions come out differently (`npm run invariance`; see [The function check](#the-function-check)) |
+| `scripts/probe-nudge.ts` | Says what a nudge of every part changes in the mechanism worked out from each quick set's model (`npm run nudge`) |
+| `scripts/variants.ts` | The changed copies of a model that the two scripts above check: moved, turned, nudged |
 | `scripts/causes.ts` | Why a function that doesn't work doesn't: one cause from a fixed list, for the function check (see [Causes](#causes)) |
 | `scripts/probe-drag.ts` | Works one function's control piece by piece and says what moved and what stopped it (`npm run probe`) |
 | `scripts/gear-rates.ts`, `scripts/slider-cranks.ts` | What gears and slider-cranks say parts should do, without the solver, for the function check |

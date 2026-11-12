@@ -530,7 +530,9 @@ async function start() {
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
     else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
 
-    summary.textContent =
+    // The counts go in the Stats card; the summary line is only for what's going on while loading.
+    summary.textContent = '';
+    document.getElementById('counts')!.textContent =
       `${parts.length} parts · ${mech.bodies.length} bodies · ${mech.joints.length} joints` +
       (mech.meshes.length ? ` · ${mech.meshes.length} gear meshes` : '');
     setup.mech = mech;
@@ -755,7 +757,15 @@ async function start() {
 
   // The options panel, upper right. Each option is kept in the address, so switching model
   // keeps it.
-  const gui = new GUI({ title: 'Options' });
+  const cards = document.getElementById('cards')!;
+  const gui = new GUI({ title: 'Options', container: cards });
+  gui.close();
+  // Under it, the Stats card: the model's counts and the readout (see index.html). Both cards
+  // start closed.
+  const statsCard = new GUI({ title: 'Stats', container: cards });
+  statsCard.$children.append(document.getElementById('stats')!);
+  statsCard.close();
+  statsCard.onOpenClose(showReadoutFade);
   const settings = {
     bodyColours: appearance.showBodyColours,
     axes: axes.visible,
@@ -1189,7 +1199,6 @@ function showReadoutFade() {
   box.style.setProperty('--bar-h', `${readout.offsetHeight - readout.clientHeight}px`);
 }
 document.getElementById('readout')!.addEventListener('scroll', showReadoutFade);
-document.getElementById('details')!.addEventListener('toggle', showReadoutFade);
 
 function updateReadout(mech: Mechanism, kin: Kinematics) {
   const readout = document.getElementById('readout')!;

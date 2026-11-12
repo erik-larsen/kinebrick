@@ -50,9 +50,10 @@
       @media (max-width: 640px) {
         #model .sub { position: static; border: 0; box-shadow: none; padding: 0 0 4px 14px; max-height: 40vh; }
       }
-      #details { margin-top: 6px; }
-      #details summary { cursor: pointer; color: #5a6475; }
-      /* As wide as the panel's other lines make it (width 0, at least 100%), scrolling both ways,
+      /* The Stats card's contents: the model's counts, and under them the readout. */
+      #stats { padding: 6px 8px 8px; }
+      #counts { color: #5a6475; }
+      /* As wide as its card (width 0, at least 100%), scrolling both ways,
          with thin scrollbars that always show (macOS otherwise hides them until you scroll), and
          a fade at the right edge while there's more to the right (Firefox keeps hiding them). */
       #readoutBox { position: relative; margin-top: 4px; }
@@ -61,8 +62,11 @@
       #readout::-webkit-scrollbar-thumb { background: rgba(29, 36, 48, 0.25); border-radius: 3px; }
       #readout::-webkit-scrollbar-track, #readout::-webkit-scrollbar-corner { background: transparent; }
       #readoutBox.more::after { content: ''; position: absolute; top: 0; right: var(--bar-v, 0px); bottom: var(--bar-h, 0px); width: 32px; pointer-events: none; background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95)); }
-      /* The options panel (lil-gui, as in the three.js examples), in the same light colours. */
-      .lil-gui.root { top: 12px; right: 12px; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); }
+      /* The cards at the upper right, one under the other: Options and Stats (lil-gui panels, as
+         in the three.js examples), in the same light colours. The padding leaves room for their
+         shadows, which the scrolling (for a window too short to show them whole) would cut off. */
+      #cards { z-index: 1001; position: fixed; top: 8px; right: 8px; padding: 4px 4px 6px; display: flex; flex-direction: column; gap: 8px; max-height: calc(100% - 26px); overflow-y: auto; }
+      .lil-gui.root { border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); }
       .lil-gui {
         --background-color: rgba(255, 255, 255, 0.9);
         --text-color: #1d2430;
@@ -103,10 +107,13 @@
         <summary></summary>
         <div id="warning"></div>
       </details>
-      <details id="details">
-        <summary>Readout</summary>
-        <div id="readoutBox"><div id="readout"></div></div>
-      </details>
+    </div>
+    <!-- The cards at the upper right, each closed until it's clicked: Options, and under it Stats
+         (see src/main.ts, which makes them and puts #stats in the second). -->
+    <div id="cards"></div>
+    <div id="stats">
+      <div id="counts"></div>
+      <div id="readoutBox"><div id="readout"></div></div>
     </div>
     <div id="label"></div>
     <script type="module" src="/src/main.ts"></script>

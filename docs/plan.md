@@ -64,12 +64,45 @@ When this plan was written we did not know the size of each group: the check rec
 What this says, and what it doesn't:
 
 - **444 of the 514 point at the mechanism Kinebrick infers, and 57 at how the solver moves it.** So phase 3 (connections and parts' behaviour) is where most of the functions are, not phase 4.
-- **About 75 of the 182 "nothing ties it" are functions with a selector, a motor or a gearbox.** Built in neutral, nothing does tie them: the check has to shift first. Those are the check's to fix.
+- **75 of the 182 "nothing ties it" are functions with a selector, a motor or a gearbox.** The check already shifts: it slides a driving ring or turns a lever that a function lists as worked `first`, and it turns a motor's output. 28 of the 75 list a control worked first and still fail, so those are the inference's. The other 47 list none: for each, either the function list lacks its `first`, or the model is built in gear and the fault is the inference's. Telling the two apart is a lane's first task. What the check can't work yet is a gear stick with a gate (the 956, the 8880).
 - **"Nothing lets it move" is partly the solver's.** A linkage that fits only as built, or a hinge held by a friction pin, has no exact motion. Play as weighted rows (phase 4) would free some of the 75.
 - **The causes are a first cut.** They are told at the start of the drag only, on the first control that fails. "Nothing ties it" can't yet tell a missing connection from a linkage with a second way to move.
 - **The total hides losses.** Against release 0.850, 533 functions work where 522 did, but 38 functions' results got worse (`npm run ratchet -- 0.850`).
 - **Two runs of the same code do not agree in full.** Against the results stored before it, this run has 9 functions better and 2 worse (42111 function 4 and 8110 function 14, each with one more part that did not come back), with no change to the solver between them. These results are kept as the new base all the same, as the code is the same. The jitter test of phase 1 has to say how much a result moves from run to run, so the ratchet can tell a real loss from this. A second run the same day, of every set but the 8110, agreed with this one in full: so the 11 differences may come from the stored results' older commits and not from chance.
 - **One set took most of the time.** The 8110 took 5 hours in one process; the next slowest, the 42082, took under 1. Since then (2026-11-11) a slow set is checked a function to a process, with the same results, and the 8110 is checked apart from the rest, before a merge to `main`: even side by side, it takes 1 hour 55 minutes, as long as its slowest function. The daily check of the other 185 sets then took 51 minutes, and came out the same as the run before it, function for function. See [Where the 8110's time goes](#where-the-8110s-time-goes).
+
+### Results that hang on where the model sits
+
+`npm run invariance` checks each set's functions on changed copies of its model, and compares each with a plain copy. None of the changes alters the mechanism, so every function should come out the same. On the 33 quick sets (209 functions), 2026-11-11:
+
+| The model is | Same | A control went a different distance | Other parts listed | Another result |
+|---|---|---|---|---|
+| copied as it is | 209 | 0 | 0 | 0 |
+| moved 1,000 LDU along and 600 back | 195 | 1 | 12 | 1 |
+| turned a quarter turn about the upright | 204 | 1 | 4 | 0 |
+| turned 37 degrees about the upright | 203 | 1 | 4 | 1 |
+| nudged: every part by up to 0.05 LDU each way | 171 | 2 | 12 | 24 |
+
+- **The plain copy agrees in full**, with the stored results too. So the check is repeatable, and the differences below are real.
+- **Moving the model changes 14 functions.** The solver's answer hangs on how far the model is from the origin. That is the solver's to fix (phase 4): a model's place should not matter.
+- **Turning it changes 5 or 6.** Fewer than moving it, and about as many at 37 degrees as at a quarter turn, so little hangs on parts being square to the axes.
+- **A nudge of 0.05 LDU changes 38, and the result of 24 (11%).** 20 of the 24 get worse, 8 of them from works to no; 4 get better. A stud is 20 LDU, so the nudge is a quarter of a percent of a stud.
+
+**What the nudge trips** (2026-11-11, from the causes the check gives and from `npm run nudge`, which compares the mechanism worked out from a nudged model with the model's own):
+
+| What changes | Where | How much, on the 33 quick sets | Results it changes |
+|---|---|---|---|
+| The mechanism jams: the control has a joint, but nothing lets it move | The solver. A motion is free only if it keeps every equation exactly (`RANK_TOLERANCE`, 1e-6, in `src/linalg.ts`), so a shaft in two holes that are 0.05 LDU out of line can't turn | 18 functions | 18 of the 24, 16 of them to no |
+| Which of its holes a free pin is fixed in | The inference: `fixPins` in `src/mechanism.ts` picks the hole the pin goes furthest into, and two equal overlaps of 18 LDU become 18.00 and 17.96 | 406 parts change body, in 18 sets | None. A trial that counted overlaps within 0.5 LDU as equal left all 24 as they were, and changed no result of the models as built |
+| Which of two parts a piece is counted as fixed to: mostly hose and cable segments and chain links | The inference. The rule that chooses is not traced yet | 757 attachments, in 15 sets; 251 parts change body | Not measured |
+| A connection found or lost | The inference: `ALIGN_TOLERANCE`, 1 LDU. Some parts are built that far off their hole (an axle of the 8851 through two plates), and the nudge takes them either side of it | 6 connections in 3 sets; 2 parts come loose in 2 sets | At most the 6 that don't jam |
+| Gear meshes | | None | None |
+
+- **The nudge trips the solver, not the inference's tolerances.** Those are 0.5 LDU and more, ten times the nudge. What it trips is the solver's exactness: it allows no play at all.
+- **This is a second reading of "nothing lets it move".** That cause has 73 functions in the full check. A model in the OMR is not exact either: its parts are placed to three decimals, through sub-models turned by rounded matrices. Some of those 73, and some drags that stop early, are likely the same jam. Play as weighted rows (phase 4) is the fix, and this measure is its test: it should bring the 18 back.
+- **The inference's ties move parts between bodies.** The pin tie changes no result; the other is not measured. Both can be made steady by counting near-equal amounts as equal. That is a small task for an inference lane.
+
+The measure fails while any result changes. It joins the gate once it passes on the quick sets.
 
 ## Principles
 
@@ -100,12 +133,12 @@ Make the function check say why, make it complete, and make it fast.
 | Slowest sets first, by the last run's times | `scripts/check-functions.ts` | None needed |
 | The full check runs on demand, with no schedule on any machine, and a ratchet compares it with any commit. The slowest sets (for now the 8110) are left out of it, and checked before `main` moves | `scripts/check-functions.ts` (`--slow`), `scripts/ratchet.ts` (new) | The ratchet against a known commit |
 | The scan counts each large separate group in a file as a model of its own | `scripts/scan-omr.ts` | A two-model file |
-| Invariance: a model moved and turned about the upright gives the same results. Jitter: parts moved by 0.05 LDU give the same results | `tests/invariance.test.ts` (new) | Itself |
+| Invariance: a model moved and turned about the upright gives the same results. Jitter: parts moved by 0.05 LDU give the same results | `scripts/invariance.ts` (`npm run invariance`): a measure for now, a gate once it passes | Its plain copy matches the stored results |
 | Skip reasons from a fixed list: needs gravity, needs force, model error, check limit | `data/sets/*.json` (`skip`), `data/sets/README.md` | A test that each reason is on the list |
 
 **Done when:** every failing function has a cause; the full check takes under an hour, so it can run whenever it is wanted; one command says what a change gained and lost.
 
-**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, a slow set checked a function to a process, the 8110 checked apart (`npm run functions -- --slow`), the full check at 51 minutes, the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the scan's count of second models; the invariance and jitter tests; skip reasons from a fixed list.
+**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, a slow set checked a function to a process, the 8110 checked apart (`npm run functions -- --slow`), the full check at 51 minutes, the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the scan's count of second models; skip reasons from a fixed list; the gear stick with a gate. The invariance and jitter measure is written, and does not pass: see [Results that hang on where the model sits](#results-that-hang-on-where-the-model-sits).
 
 ### Phase 2. Structure
 
@@ -124,6 +157,10 @@ Make the code safe for more than one writer, and make the check fast enough to u
 | A small test model for each set a comment names (27 in `kinematics.ts`, 13 in `mechanism.ts`) | `tests/fixtures/` | Each fails without its fix |
 
 **Done when:** `kinematics.ts` and `mechanism.ts` are each a short file that calls others; the full check takes under an hour; `KINEBRICK_LEAST` and `KINEBRICK_ONE` are gone.
+
+**Where it stands, 2026-11-11.** The solver owner's first five steps are merged into `preview`, each with results the same to the last bit: the linear algebra in `src/linalg.ts`, each kind of connection's equations in `src/constraints/`, a `Drag` object for a drag's state, the switches as options on each solver, and a drag solved only over the parts it can reach. `src/kinematics.ts` is 2,641 lines, from 3,862. Left: the inference split (`src/mechanism.ts`, not yet given to anyone), the part tables into data, pushes by least motion (which waits for push functions in the check), and the test models for the sets that comments name.
+
+**Reach is merged switched off** (`KINEBRICK_REACH=1` turns it on). On, the full check takes 30 minutes where it took 51 (5.0 hours of work where it was 8.3), and the same 533 functions work, but not the same ones: 8 get better and 5 worse, so it does not pass the ratchet. The 5 are all drags that roll a model on its wheels or leave a part not back: 42079 function 4 and 8273 function 11 (works to partly), and 855 function 6, 42110 function 3 and 9394 function 3 (more parts not back). It is turned on when those 5 are fixed.
 
 #### Where the 8110's time goes
 

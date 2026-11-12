@@ -20,6 +20,8 @@
     "status": "tsx scripts/status-page.ts",
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",
+    "invariance": "tsx scripts/invariance.ts",
+    "nudge": "tsx scripts/probe-nudge.ts",
     "data": "npm run import && npm run connections && npm run pack"
   },
   "dependencies": {

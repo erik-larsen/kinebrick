@@ -202,7 +202,9 @@ function withoutChecking(fn: Fn): Checked | null {
 
 // Checks functions on one model: each one's result, and the model's loose parts.
 function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
-  const loaded = loadModel(model, model.startsWith('omr/'));
+  // A model from the OMR, or a changed copy of one (see invariance.ts), is read with the library's
+  // connections.
+  const loaded = loadModel(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
   const { table, slides } = loaded;
   // The model as it's being worked: as loaded, or worked out afresh after a shift (see shiftTo).
   let { parts, mech, kin } = loaded;
