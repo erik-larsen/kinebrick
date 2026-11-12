@@ -2,8 +2,9 @@
 // centred between four.
 
 import { Vector3 } from 'three';
-import { anchorsOf, type Connection } from '../mechanism.ts';
+import type { Connection } from '../mechanism.ts';
 import { ALIGN_TOLERANCE, AXIS_TOLERANCE, findLooseParts, isAntiStud, isStud, type WorldCylinder } from './shared.ts';
+import { anchorsOf } from './trains.ts';
 
 // A part with a single round opening underneath (a 1x1 round brick's or plate's anti-stud,
 // or the open end of an axle hole, as on a Technic connector) sitting centred between four
