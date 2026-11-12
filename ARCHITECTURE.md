@@ -639,6 +639,8 @@ A role is a short label for what a part does in a mechanism. It tells Kinebrick 
   - a 12 tooth bevel and the old 20 tooth one, as in the 8281 Mini Tractor's power take-off;
   - a differential's 28 tooth ring and a 20 tooth gear.
 
+Once found, a bevel mesh keeps its crossing as the gears turn: the middle of the shortest line between the axles, even where rounding takes them a hair further apart than the meshes are found with. The 8859 Tractor's differential has its half shafts half an LDU off the spider's axis, right at that limit; after one step its spider lost both meshes, and the prop shaft stopped as the tractor rolled on.
+
 **Racks.**
 
 - **Their teeth.** A plate with teeth along its top, its pitch line 4 LDU above it. The 1980s steering rack (2790a) is a round bar whose teeth are rings round it, its pitch radius 8 LDU, which slides through its holder (2791a).
