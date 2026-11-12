@@ -56,7 +56,7 @@ export interface Tier {
   cost: (m: number[]) => number[]; // what the tier moves, for a motion
   sparse?: boolean; // least sum of sizes rather than of squares (see leastTurning)
   bodies?: number; // its first 3 × bodies components are bodies' turning, which `stillness` may hold still
-  stillness?: number; // a body this tier leaves turning less than this fraction of the most is held still (see Kinematics' STILLNESS)
+  stillness?: number; // a body this tier leaves turning less than this fraction of the most is held still (see Options.stillness in kinematics.ts)
   joints?: boolean; // every joint's turning: what judges whether a motion turns the joint at all
 }
 

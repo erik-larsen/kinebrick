@@ -337,7 +337,7 @@ From those six, the speed of any point on the body follows. With three bodies, t
 
 ### 3. Connections become equations
 
-Each connection is a rule about those numbers, written as "this combination of numbers must equal zero":
+Each connection is a rule about those numbers, written as "this combination of numbers must equal zero". Each kind of connection writes its rules in a file of its own in `src/constraints/`, each rule with its gap (how far the connection has come apart, for [step 9](#9-close-the-loops)) and its weight there: `joints.ts`, `gears.ts`, `tyres.ts` and so on, called in a fixed order by `buildEquations` (the order of the rules decides which step 4 takes first, and so the motions to the last bit):
 
 | Connection | Rule | Equations |
 |---|---|---|
@@ -681,7 +681,7 @@ They connect as plain parts. The viewer lists any in a model, so a part that sil
 
 ## Drags
 
-What a drag does for the user is in the README's [Interaction](README.md#interaction) section. Underneath:
+What a drag does for the user is in the README's [Interaction](README.md#interaction) section. In the solver, a drag's state (what it holds, what it turns, what it has found out on the way) is one object, a `Drag`, made when the drag starts (`holdWhatTheDragDoesntNeed`) and dropped when it ends (`letGoAfterDrag`); between drags the solver has an empty one, which holds nothing. Underneath:
 
 ### Push or turn
 
@@ -717,7 +717,9 @@ A drag that turns a joint, and a motor, chooses how the rest of the model follow
 
 Before these the car's frame stays where it is, if it can. Worms and linear actuators still lock, and frozen parts stay frozen. It's solved afresh at each step, from where the model is, so nothing has to be chosen again as the model moves.
 
-Pushes still choose by holds, below, and so does a turn with `?holds` in the address (`KINEBRICK_LEAST=0` for the tests and scripts).
+Pushes still choose by holds, below, and so does a turn with `?holds` in the address (`KINEBRICK_LEAST=0` for the tests and scripts). These switches are each solver's own, its `options` (see `Options` in `src/kinematics.ts`): those set from the address or the environment are only what a new solver starts with, so a test or script can compare two settings on one loaded model.
+
+**Only what the drag can reach** (the `reach` option, off for now; `KINEBRICK_REACH=1` for the tests and scripts). Each step is solved over every part of the model, wherever the control is: on the 42082 Rough Terrain Crane, rolling it along means choosing among about 320 free motions, most of them the crane's own. With `reach`, a drag holds where they are on the frame the parts it can't reach: those no chain of connections (joints, gears, universal joints, chains, strings, screws, resting parts) joins to the grabbed part, or to a tyre on the ground, but through the frame. On the 42082 that leaves one free motion, and a step takes a fifth of the time. It isn't on by default because it's not the same to the last bit: the held parts stand exactly still, where the whole solve leaves them moving by rounding, and choosing among fewer motions rounds differently. On the quick check most results come out the same to the figures written down, but some don't (see the commit that added it).
 
 ### Holds
 
@@ -1123,6 +1125,7 @@ Browser-level tests for these paths can come later.
 | `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and Kinebrick's own settings in it; brings a real LEGO set's file into the shape Kinebrick keeps it in |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
+| `src/constraints/` | The equations each kind of connection writes (see [Connections become equations](#3-connections-become-equations)), a file for each kind, and in `equations.ts` what they share |
 | `src/linalg.ts` | The solver's linear algebra: null spaces, orthonormal bases, the symmetric eigen-solve, the tiers' least squares and the damped solution that closes the loops |
 | `src/shift.ts` | Finds the parts that slide into set positions (driving rings) and the gear levers that move them, and moves them |
 | `src/paths.ts` | Where a chain's or track's links go as it moves round its wheels, and a string's layout round its drum and pulleys |
