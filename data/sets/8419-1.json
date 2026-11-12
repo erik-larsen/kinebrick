@@ -112,9 +112,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "no": 2,
       "works": 1,
@@ -147,7 +147,8 @@
         "why": [
           "p212 32009 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -209,7 +210,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.4
       },
       {
         "result": "no",
@@ -297,7 +299,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -408,10 +411,12 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p69 71372c01"
+        "detail": "p69 71372c01",
+        "seconds": 1.1
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

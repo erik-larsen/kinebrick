@@ -252,9 +252,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
-    "date": "2026-11-11",
-    "seconds": 3384,
+    "commit": "fdb1b39",
+    "date": "2026-11-12",
+    "seconds": 3601,
     "counts": {
       "no": 1,
       "works": 1,
@@ -726,7 +726,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 9.1
       },
       {
         "result": "works",
@@ -921,7 +922,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1364.4
       },
       {
         "result": "partly",
@@ -959,7 +961,8 @@
           ]
         ],
         "cause": "stay-forced",
-        "detail": "p1223 2854"
+        "detail": "p1223 2854",
+        "seconds": 420
       },
       {
         "result": "partly",
@@ -1037,7 +1040,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p3886 3958"
+        "detail": "p3886 3958",
+        "seconds": 249.9
       },
       {
         "result": "partly",
@@ -1084,7 +1088,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p2649 64179 against p0 64179"
+        "detail": "p2649 64179 against p0 64179",
+        "seconds": 197.6
       },
       {
         "result": "partly",
@@ -1136,7 +1141,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p2941 41239 against p2649 64179"
+        "detail": "p2941 41239 against p2649 64179",
+        "seconds": 196.9
       },
       {
         "result": "partly",
@@ -1183,7 +1189,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p3076 3703 against p2941 41239"
+        "detail": "p3076 3703 against p2941 41239",
+        "seconds": 197
       },
       {
         "result": "partly",
@@ -1230,7 +1237,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p3371 2736"
+        "detail": "p3371 2736",
+        "seconds": 198.7
       },
       {
         "result": "partly",
@@ -1267,7 +1275,8 @@
           "p4057 18651"
         ],
         "cause": "part-fixed",
-        "detail": "p3789 32524 against p2649 64179"
+        "detail": "p3789 32524 against p2649 64179",
+        "seconds": 289.3
       },
       {
         "result": "not checked"

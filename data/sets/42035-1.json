@@ -93,9 +93,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 6,
+    "seconds": 9,
     "counts": {
       "works": 4,
       "partly": 1
@@ -169,7 +169,8 @@
               0.18
             ]
           ]
-        ]
+        ],
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -222,7 +223,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -256,7 +258,8 @@
           ]
         ],
         "cause": "stay-forced",
-        "detail": "p38 60485 against p0 32525"
+        "detail": "p38 60485 against p0 32525",
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -295,7 +298,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 3.6
       },
       {
         "result": "works",
@@ -342,7 +346,8 @@
             "dead point",
             "dead point"
           ]
-        ]
+        ],
+        "seconds": 1
       }
     ]
   }

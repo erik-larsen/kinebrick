@@ -104,9 +104,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "works": 2,
       "no": 2,
@@ -183,7 +183,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -250,7 +251,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -277,10 +279,12 @@
         "why": [
           "p45 32271 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -349,7 +353,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.8
       }
     ]
   }

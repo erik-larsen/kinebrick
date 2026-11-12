@@ -74,7 +74,7 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
     "seconds": 1,
     "counts": {
@@ -146,10 +146,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.4
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -198,7 +200,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -227,7 +230,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.2
       }
     ]
   }

@@ -189,9 +189,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 31,
+    "seconds": 50,
     "counts": {
       "works": 10,
       "partly": 1,
@@ -234,7 +234,8 @@
               0.04
             ]
           ]
-        ]
+        ],
+        "seconds": 2.5
       },
       {
         "result": "partly",
@@ -288,7 +289,8 @@
           ]
         ],
         "cause": "stay-chosen",
-        "detail": "p596 3702 against p580 3895"
+        "detail": "p596 3702 against p580 3895",
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -325,7 +327,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -362,7 +365,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 4.9
       },
       {
         "result": "works",
@@ -401,7 +405,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 4
       },
       {
         "result": "works",
@@ -443,7 +448,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -472,7 +478,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -505,7 +512,8 @@
               0.09
             ]
           ]
-        ]
+        ],
+        "seconds": 5.1
       },
       {
         "result": "works",
@@ -538,10 +546,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 7.5
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -565,7 +575,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -634,7 +645,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 9.7
       }
     ]
   }

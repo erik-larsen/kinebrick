@@ -111,9 +111,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "works": 2,
       "partly": 2,
@@ -1475,7 +1475,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -1516,7 +1517,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -1579,13 +1581,16 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p3833 3705"
+        "detail": "p3833 3705",
+        "seconds": 0.3
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -1664,10 +1669,12 @@
           "p2396 41681 is part of the frame"
         ],
         "cause": "loose-part",
-        "detail": "p2378 41681"
+        "detail": "p2378 41681",
+        "seconds": 0.4
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

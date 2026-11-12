@@ -101,9 +101,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "partly": 3,
       "no": 1,
@@ -168,7 +168,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p60 40490"
+        "detail": "p60 40490",
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -224,7 +225,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p155 42105 - 18575"
+        "detail": "p155 42105 - 18575",
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -275,7 +277,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p230 42105 - 18575"
+        "detail": "p230 42105 - 18575",
+        "seconds": 0.6
       },
       {
         "result": "no",
@@ -327,10 +330,12 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0.1
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
     ]
   }

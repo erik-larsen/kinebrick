@@ -83,7 +83,7 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
     "seconds": 1,
     "counts": {
@@ -137,10 +137,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.4
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -164,7 +166,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -194,7 +197,8 @@
           "p60 32062 is part of the frame",
           "p61 32062 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       }
     ]
   }

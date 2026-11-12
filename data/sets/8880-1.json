@@ -222,9 +222,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 60,
+    "seconds": 79,
     "counts": {
       "works": 6,
       "no": 5,
@@ -383,7 +383,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -538,7 +539,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 41.1
       },
       {
         "result": "no",
@@ -560,7 +562,8 @@
         "why": [
           "p595 6549 has no joint to work"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -613,7 +616,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 6.6
       },
       {
         "result": "works",
@@ -659,7 +663,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -709,7 +714,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 2.4
       },
       {
         "result": "no",
@@ -759,7 +765,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0.8
       },
       {
         "result": "no",
@@ -809,10 +816,12 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0.8
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -835,10 +844,12 @@
         "why": [
           "p1240 4477 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -864,7 +875,8 @@
           "p1092 3031 is part of the frame",
           "p1126 3031 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -911,7 +923,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 6.1
       }
     ]
   }

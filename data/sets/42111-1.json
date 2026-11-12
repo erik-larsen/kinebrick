@@ -190,9 +190,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 52,
+    "seconds": 74,
     "counts": {
       "works": 5,
       "partly": 1,
@@ -272,7 +272,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 11.3
       },
       {
         "result": "works",
@@ -401,7 +402,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 18
       },
       {
         "result": "works",
@@ -430,7 +432,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 9.3
       },
       {
         "result": "partly",
@@ -526,10 +529,12 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p297 15460"
+        "detail": "p297 15460",
+        "seconds": 23.5
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -553,10 +558,12 @@
         "why": [
           "p0 92910 has no joint to work"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -589,7 +596,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 5.2
       },
       {
         "result": "works",
@@ -630,7 +638,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 4.9
       },
       {
         "result": "no",
@@ -687,7 +696,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0.7
       }
     ]
   }

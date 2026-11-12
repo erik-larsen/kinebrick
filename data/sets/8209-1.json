@@ -71,9 +71,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 0,
+    "seconds": 1,
     "counts": {
       "no": 1,
       "skipped": 1,
@@ -105,10 +105,12 @@
         "why": [
           "p6 32056 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -177,10 +179,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.2
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

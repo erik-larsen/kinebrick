@@ -28,7 +28,7 @@
 //   npm run functions -- 855 8880     only sets whose number has one of these in it
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
 //   npm run functions -- --limit 20   stop a process (a set, or one function of a slow set) that
-//                                     takes more than this many minutes (default 30), marking
+//                                     takes more than this many minutes (default 60), marking
 //                                     the set as timed out
 //   npm run functions -- --lock       steering's stops too (see LOCK), for now only reported
 //   npm run functions -- --causes     no drags: only works out afresh why each function that
@@ -72,7 +72,7 @@ const REACH = 1.5;
 const PUSH = 20;
 // A part counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
-const LIMIT_MINUTES = 30;
+const LIMIT_MINUTES = 60;
 // A drag is measured in pieces of this many radians (or LDU, for a slide), adding up how far each
 // part went in each: a part geared up turns further than half a turn, which its pose alone can't
 // tell.

@@ -117,9 +117,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 4,
+    "seconds": 7,
     "counts": {
       "works": 2,
       "not back": 2,
@@ -177,7 +177,8 @@
             "dead point",
             "dead point"
           ]
-        ]
+        ],
+        "seconds": 1.9
       },
       {
         "result": "partly",
@@ -233,7 +234,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p889 32498"
+        "detail": "p889 32498",
+        "seconds": 1.7
       },
       {
         "result": "partly",
@@ -267,7 +269,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p974 56908 against p464 65414c01"
+        "detail": "p974 56908 against p464 65414c01",
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -339,10 +342,12 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0.1
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -365,10 +370,12 @@
         "why": [
           "p470 40490 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -407,7 +414,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.5
       }
     ]
   }

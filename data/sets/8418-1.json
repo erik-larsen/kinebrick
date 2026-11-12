@@ -67,7 +67,7 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
     "seconds": 0,
     "counts": {
@@ -149,7 +149,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -193,7 +194,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p57 30394 against p47 3706"
+        "detail": "p57 30394 against p47 3706",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -234,7 +236,8 @@
           "p65 30285 is part of the frame"
         ],
         "cause": "loose-part",
-        "detail": "p58 30285"
+        "detail": "p58 30285",
+        "seconds": 0
       }
     ]
   }

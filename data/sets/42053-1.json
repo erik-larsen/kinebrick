@@ -161,9 +161,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 36,
+    "seconds": 60,
     "counts": {
       "skipped": 4,
       "no": 2,
@@ -262,16 +262,20 @@
     ],
     "functions": [
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -339,7 +343,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -392,7 +397,8 @@
               0.17
             ]
           ]
-        ]
+        ],
+        "seconds": 8.3
       },
       {
         "result": "partly",
@@ -434,7 +440,8 @@
           ]
         ],
         "cause": "stay-chosen",
-        "detail": "p55 59426 against p0 92907"
+        "detail": "p55 59426 against p0 92907",
+        "seconds": 9.5
       },
       {
         "result": "no",
@@ -484,7 +491,8 @@
             "no motion"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 1
       },
       {
         "result": "works",
@@ -557,7 +565,8 @@
         "strayed": [
           "p2017 32123a",
           "p2061 32123a"
-        ]
+        ],
+        "seconds": 38.7
       }
     ]
   }

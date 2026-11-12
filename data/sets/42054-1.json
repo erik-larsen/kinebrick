@@ -216,9 +216,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 165,
+    "seconds": 233,
     "counts": {
       "partly": 5,
       "no": 3,
@@ -290,7 +290,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p513 3648b"
+        "detail": "p513 3648b",
+        "seconds": 13.6
       },
       {
         "result": "no",
@@ -321,7 +322,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -368,7 +370,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p692 42054 - 18938"
+        "detail": "p692 42054 - 18938",
+        "seconds": 15.4
       },
       {
         "result": "partly",
@@ -415,7 +418,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p1820 92696 against p1818 92693c01"
+        "detail": "p1820 92696 against p1818 92693c01",
+        "seconds": 19.4
       },
       {
         "result": "partly",
@@ -457,7 +461,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p1659 42054 - 18938 against p1660 18939"
+        "detail": "p1659 42054 - 18938 against p1660 18939",
+        "seconds": 17.8
       },
       {
         "result": "works",
@@ -486,7 +491,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 13.4
       },
       {
         "result": "works",
@@ -527,7 +533,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 13.9
       },
       {
         "result": "works",
@@ -556,7 +563,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 13.8
       },
       {
         "result": "no",
@@ -619,7 +627,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 2.5
       },
       {
         "result": "no",
@@ -691,7 +700,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 2.5
       },
       {
         "result": "partly",
@@ -752,7 +762,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p12 87083"
+        "detail": "p12 87083",
+        "seconds": 12.7
       },
       {
         "result": "works",
@@ -776,7 +787,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 15
       },
       {
         "result": "works",
@@ -845,7 +857,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 63.8
       },
       {
         "result": "works",
@@ -869,7 +882,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 20.5
       }
     ]
   }
