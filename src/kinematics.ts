@@ -130,6 +130,10 @@ export interface Options {
   // friction holds what would only creep, rather than letting everything give a little. 0.2 does best
   // in the function check, and 0.3 fails one more test. KINEBRICK_STILLNESS sets it (0 turns it off).
   stillness: number;
+  // Least motion: a drag that turns a joint is solved only over the parts it can reach, the rest
+  // held where they are on the frame (see outOfReach). Off by default, for now: it's far quicker
+  // on a big model, but not the same to the last bit.
+  reach: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
@@ -142,6 +146,7 @@ export const experiments: Options = {
   closeStill: setting('KINEBRICK_CLOSE_STILL') !== undefined ? Number(setting('KINEBRICK_CLOSE_STILL')) : 1e-3,
   balanced: setting('KINEBRICK_BALANCED') !== '0',
   stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
+  reach: setting('KINEBRICK_REACH') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -202,6 +207,7 @@ class Drag {
   choosingHolds = false; // while its holds are chosen (see holdWhatTheDragDoesntNeed and jointMotion)
   plainOnly = false; // while they are, whether its motions may not use the suspension (see chooseDragHolds)
   drivenLast = false; // while they are, whether what its part drives is tried last (see chooseDragHolds)
+  outOfReach = new Set<number>(); // the bodies it can't reach, held where they are on the frame (see Options.reach)
 
   constructor(together: number[] = []) {
     this.together = together;
@@ -1023,6 +1029,7 @@ export class Kinematics {
         const parent = this.parentLink(body)!.parent;
         if (this.parentJoint[parent] < 0 || this.drag.held.has(parent) || this.frozen.has(parent)) this.drag.held.add(body);
       }
+      if (this.options.reach) this.drag.outOfReach = this.outOfReach(grabbed);
       // A car that can't roll with its steering free (the scrub its steering leaves rules out
       // every way to roll: the 8245's caster fork) has its steering held, as tier 2 would keep
       // it still anyway.
@@ -1309,6 +1316,40 @@ export class Kinematics {
       recent = [next, ...recent.filter((t) => t !== from).slice(0, 6), ...(from === start ? [] : [from])];
       return dot(next.left, next.left) >= EPSILON;
     };
+  }
+
+  // The bodies a drag of `grabbed` can't reach, the frame held (see Options.reach): those no
+  // chain of connections joins to it, or to a tyre on the ground, but through the frame. A tyre
+  // on the ground is in reach, as the frame may move (rolling, or on its suspension) and its tyres
+  // must keep to the ground. The rest only move as the frame does: the crane, the winch and the
+  // stabiliser legs, for a truck's steering wheel.
+  private outOfReach(grabbed: number): Set<number> {
+    const mech = this.mech;
+    const next: number[][] = Array.from({ length: this.bodyCount }, () => []);
+    const tie = (bodies: number[]) => {
+      const list = bodies.filter((b) => b !== 0);
+      for (const b of list) for (const c of list) if (b !== c) next[b].push(c);
+    };
+    for (const j of mech.joints) tie([j.bodyA, j.bodyB]);
+    for (const m of mech.meshes) tie([mech.gears[m.gearA].body, mech.gears[m.gearB].body]);
+    for (const { shafts } of this.couplings) tie(shafts.flatMap((sh) => [sh.body, sh.mount]));
+    for (const loop of mech.loops ?? []) tie([...loop.wheels.flatMap((w) => [w.body, w.mount]), ...(loop.hooks ?? []).flatMap((h) => [mech.joints[h.joint].bodyA, mech.joints[h.joint].bodyB])]);
+    for (const s of mech.strings ?? []) tie([...[s.drum, ...s.pulleys].flatMap((w) => (w ? [w.body, w.mount] : [])), ...(s.start ? [s.start.body] : []), s.end.body, ...(s.hook ? [s.hook.body] : [])]);
+    for (const screw of mech.screws ?? []) tie([screw.input, screw.piston]);
+    for (const rest of mech.rests ?? []) tie([rest.body, ...rest.on.map((o) => o.body)]);
+    const reached = new Set<number>([grabbed, ...this.drag.together, ...this.contactTreads.map((i) => mech.treads[i].body)]);
+    const queue = [...reached];
+    while (queue.length) {
+      const b = queue.pop()!;
+      for (const c of next[b]) {
+        if (reached.has(c)) continue;
+        reached.add(c);
+        queue.push(c);
+      }
+    }
+    const out = new Set<number>();
+    for (let b = 1; b < this.bodyCount; b++) if (!reached.has(b) && !this.frozen.has(b)) out.add(b);
+    return out;
   }
 
   // The bodies that stand alone: each with everything that hangs on it (its descendants in the
