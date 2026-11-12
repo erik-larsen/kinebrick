@@ -1,5 +1,7 @@
 // Works out a model's mechanism: which parts move together (bodies) and how bodies can
 // move relative to each other (joints). See "How it works" in ARCHITECTURE.md, steps 2 to 6.
+// Here are the types the rest of the code reads, and the order the rules run in (see
+// buildMechanism). Each rule is a file in src/inference/.
 
 import { Vector3 } from 'three';
 import { ConnectionTable } from './connections.ts';
