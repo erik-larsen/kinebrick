@@ -57,7 +57,7 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
     "seconds": 1,
     "counts": {
@@ -155,7 +155,8 @@
           "p61 2420"
         ],
         "cause": "not-driven",
-        "detail": "p53 3705"
+        "detail": "p53 3705",
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -244,7 +245,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.4
       }
     ]
   }

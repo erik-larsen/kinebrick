@@ -90,9 +90,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "works": 2,
@@ -169,7 +169,8 @@
           ]
         ],
         "cause": "too-little",
-        "detail": "p189 3895"
+        "detail": "p189 3895",
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -242,7 +243,8 @@
             null,
             "dead point"
           ]
-        ]
+        ],
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -311,10 +313,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 2.3
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

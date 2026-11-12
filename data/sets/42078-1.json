@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 663,
+    "seconds": 899,
     "counts": {
       "no": 6,
       "partly": 2,
@@ -1408,7 +1408,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 2.7
       },
       {
         "result": "partly",
@@ -1473,7 +1474,8 @@
           "p436 62520"
         ],
         "cause": "not-driven",
-        "detail": "p405 4519"
+        "detail": "p405 4519",
+        "seconds": 142.7
       },
       {
         "result": "works",
@@ -1516,7 +1518,8 @@
         "strayed": [
           "p2085 32123b",
           "p2086 32123b"
-        ]
+        ],
+        "seconds": 296.1
       },
       {
         "result": "works",
@@ -1553,7 +1556,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 23.5
       },
       {
         "result": "no",
@@ -1579,7 +1583,8 @@
           "p851 32524 is part of the frame",
           "p889 32524 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -1610,7 +1615,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -1646,7 +1652,8 @@
         ],
         "strayed": [
           "p1929 62520"
-        ]
+        ],
+        "seconds": 62.7
       },
       {
         "result": "works",
@@ -1682,7 +1689,8 @@
         ],
         "strayed": [
           "p1929 62520"
-        ]
+        ],
+        "seconds": 62.5
       },
       {
         "result": "no",
@@ -1741,7 +1749,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p2084 18575"
+        "detail": "p2084 18575",
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -1798,7 +1807,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p2083 18575"
+        "detail": "p2083 18575",
+        "seconds": 24.8
       },
       {
         "result": "no",
@@ -1849,7 +1859,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p2051 18942"
+        "detail": "p2051 18942",
+        "seconds": 4.7
       },
       {
         "result": "no",
@@ -1869,7 +1880,8 @@
           "p2631 64782 is part of the frame"
         ],
         "cause": "loose-part",
-        "detail": "p2631 64782"
+        "detail": "p2631 64782",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -1942,7 +1954,8 @@
         "strayed": [
           "p2086 32123b",
           "p2085 32123b"
-        ]
+        ],
+        "seconds": 141.7
       }
     ]
   }

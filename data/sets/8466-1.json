@@ -197,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 106,
+    "seconds": 145,
     "counts": {
       "partly": 6,
       "not back": 3,
@@ -293,7 +293,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p657 32495"
+        "detail": "p657 32495",
+        "seconds": 5.5
       },
       {
         "result": "partly",
@@ -355,7 +356,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p657 32495"
+        "detail": "p657 32495",
+        "seconds": 5.2
       },
       {
         "result": "partly",
@@ -434,10 +436,12 @@
           "p211 32123a"
         ],
         "cause": "loose-part",
-        "detail": "p676 22969"
+        "detail": "p676 22969",
+        "seconds": 38.9
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -462,7 +466,8 @@
           "p655 22969 has no joint to work"
         ],
         "cause": "loose-part",
-        "detail": "p676 22969"
+        "detail": "p676 22969",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -519,7 +524,8 @@
           "p211 32123a"
         ],
         "cause": "not-driven",
-        "detail": "p1019 6589"
+        "detail": "p1019 6589",
+        "seconds": 38.5
       },
       {
         "result": "partly",
@@ -572,7 +578,8 @@
           "p211 32123a"
         ],
         "cause": "not-driven",
-        "detail": "p1017 6573"
+        "detail": "p1017 6573",
+        "seconds": 35.6
       },
       {
         "result": "no",
@@ -660,10 +667,12 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 2.1
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -736,10 +745,12 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p274 32189"
+        "detail": "p274 32189",
+        "seconds": 16.8
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -789,7 +800,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 1.2
       }
     ]
   }

@@ -86,9 +86,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "partly": 3,
       "not back": 3,
@@ -175,7 +175,8 @@
           "p129 3482"
         ],
         "cause": "stay-chosen",
-        "detail": "p125 3482"
+        "detail": "p125 3482",
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -241,10 +242,12 @@
           "p12 3749"
         ],
         "cause": "stay-chosen",
-        "detail": "p129 3482"
+        "detail": "p129 3482",
+        "seconds": 0.3
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -341,7 +344,8 @@
           "p103 3749"
         ],
         "cause": "stay-chosen",
-        "detail": "p102 3894"
+        "detail": "p102 3894",
+        "seconds": 1.4
       }
     ]
   }

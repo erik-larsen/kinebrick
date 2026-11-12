@@ -83,9 +83,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "works": 3,
       "no": 1
@@ -151,7 +151,8 @@
               0.05
             ]
           ]
-        ]
+        ],
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -200,7 +201,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -269,7 +271,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.6
       },
       {
         "result": "no",
@@ -291,7 +294,8 @@
         "why": [
           "p43 3938 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       }
     ]
   }

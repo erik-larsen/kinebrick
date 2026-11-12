@@ -165,9 +165,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 9,
+    "seconds": 13,
     "counts": {
       "partly": 1,
       "works": 3,
@@ -254,7 +254,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p216 6574"
+        "detail": "p216 6574",
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -377,7 +378,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 6.2
       },
       {
         "result": "works",
@@ -406,7 +408,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 3.2
       },
       {
         "result": "no",
@@ -449,7 +452,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -509,7 +513,8 @@
             "no motion"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -533,7 +538,8 @@
         "why": [
           "p415 32278 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -605,10 +611,12 @@
             "dead point"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 0.1
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -637,7 +645,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.1
       }
     ]
   }

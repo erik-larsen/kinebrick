@@ -77,9 +77,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 4,
+    "seconds": 6,
     "counts": {
       "works": 2,
       "partly": 1,
@@ -131,7 +131,8 @@
               0.14
             ]
           ]
-        ]
+        ],
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -187,7 +188,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p253 32123b against p251 32524"
+        "detail": "p253 32123b against p251 32524",
+        "seconds": 1
       },
       {
         "result": "no",
@@ -213,7 +215,8 @@
           "p896 32524 is part of the frame",
           "p918 32524 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -267,7 +270,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 2.8
       }
     ]
   }

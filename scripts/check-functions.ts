@@ -23,18 +23,20 @@
 // (`back`: the furthest any part is left from it, LDU and degrees; `strayed`: parts left more
 // than BACK away).
 //
-//   npm run functions                 every set with functions
+//   npm run functions                 every set with functions, but for the slowest (SLOW_OVER)
+//   npm run functions -- --slow       only the slowest sets, left out of the plain run: hours,
+//                                     before a merge to main
 //   npm run functions -- 855 8880     only sets whose number has one of these in it
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
 //   npm run functions -- --limit 20   stop a process (a set, or one function of a slow set) that
-//                                     takes more than this many minutes (default 30), marking
+//                                     takes more than this many minutes (default 60), marking
 //                                     the set as timed out
 //   npm run functions -- --lock       steering's stops too (see LOCK), for now only reported
 //   npm run functions -- --causes     no drags: only works out afresh why each function that
 //                                     doesn't work doesn't (see causes.ts), from the results
 //                                     already written, and writes each one's `cause`
 //   npm run functions -- --quick      only the quick sets (QUICK): a couple of minutes, for every
-//                                     change; the whole check is for overnight
+//                                     change; the whole check takes about an hour
 //   npm run functions -- --trains     the train sets in data/trains/ instead (see train-checks.ts)
 //
 // Each set's results are compared with what it had before, and each function that comes out
@@ -73,7 +75,7 @@ const REACH = 1.5;
 const PUSH = 20;
 // A part counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
-const LIMIT_MINUTES = 30;
+const LIMIT_MINUTES = 60;
 // A drag is measured in pieces of this many radians (or LDU, for a slide), adding up how far each
 // part went in each: a part geared up turns further than half a turn, which its pose alone can't
 // tell.
@@ -108,6 +110,14 @@ const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
 // takes: about 6 minutes of one core's time in all, at 0.850.
 // A set that took more than this many seconds the last time is checked a function to a process.
 const SPLIT_OVER = 300;
+// A set that took more than this many seconds of work the last time is left out of the plain run,
+// which is run whenever it's wanted, and checked by `--slow` (or when named), before a merge to
+// main: 2 hours. Only the 8110 Unimog does (5 to 6 hours of work; 2 hours side by side, as long
+// as its slowest function). Its results stay as its last check left them, with their commit and
+// date.
+const SLOW_OVER = 7200;
+// How long a process may take in the slow check, in minutes, where --limit doesn't say.
+const SLOW_LIMIT_MINUTES = 240;
 const QUICK = ['8270', '42107', '8849', '42061', '42109', '8001', '8204', '8245', '8851', '8856', '8208', '8448', '8824', '8202', '42084', '42074', '42071', '8845', '8837', '858', '8074', '42063', '42057', '42065', '956', '8081', '8049', '8416', '42112', '42129', '9394', '42000', '42114'];
 
 type Stop = 'meets' | 'limit' | 'stuck' | 'free';
@@ -592,7 +602,8 @@ async function main() {
   const jobsAt = args.indexOf('--jobs');
   const jobs = jobsAt >= 0 ? Number(args[jobsAt + 1]) : Math.max(1, Math.floor(availableParallelism() / 2));
   const limitAt = args.indexOf('--limit');
-  const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : LIMIT_MINUTES;
+  const slowOnly = args.includes('--slow');
+  const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : slowOnly ? SLOW_LIMIT_MINUTES : LIMIT_MINUTES;
   const named = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
   // A set's number, followed by "-" so that 855 doesn't also pick the 8855.
   const filters = args.includes('--quick') ? QUICK.map((n) => `${n}-`) : named;
@@ -611,10 +622,16 @@ async function main() {
   // the whole check takes about as long as its slowest set. A set not timed yet goes by its
   // model's size, biggest first.
   const took = (s: { data: { generated?: { seconds?: number; timedOut?: number } } }) => (s.data.generated?.timedOut ? Infinity : (s.data.generated?.seconds ?? -1));
-  const files = readdirSync(SETS_DIR)
+  const withFunctions = readdirSync(SETS_DIR)
     .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
     .map((f) => ({ file: join(SETS_DIR, f), data: JSON.parse(readFileSync(join(SETS_DIR, f), 'utf-8')) }))
-    .filter((s) => s.data.curated.functions?.length)
+    .filter((s) => s.data.curated.functions?.length);
+  // The slowest sets are for the slow check (see SLOW_OVER), unless named. Finding the causes
+  // afresh works no control, and leaves none out.
+  const slow = (s: { data: { generated?: { seconds?: number } } }) => (s.data.generated?.seconds ?? 0) > SLOW_OVER;
+  const leftOut = filters.length === 0 && !slowOnly && !causes ? withFunctions.filter(slow) : [];
+  const files = withFunctions
+    .filter((s) => (slowOnly ? slow(s) : !leftOut.includes(s)))
     .sort((a, b) => took(b) - took(a) || statSync(b.data.curated.model).size - statSync(a.data.curated.model).size);
 
   // The sets being checked, and when each was started; how many are done, and their functions'
@@ -719,6 +736,7 @@ async function main() {
   }
 
   console.log(`Checking ${files.length} sets, ${jobs} at a time`);
+  if (leftOut.length) console.log(`Left for the slow check, before a merge to main (npm run functions -- --slow): ${leftOut.map((s) => s.data.set).join(', ')}`);
   // Once a minute, how far it's got, with its functions' results so far as shares of all their
   // functions, as the README has them: "12 done, 173 left; 30 works (37%), 21 partly (26%), 9 no
   // (11%), 21 skipped or not checked (26%); checking 42082-1 (14 min), 9397-1 (3 min)".

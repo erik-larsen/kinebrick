@@ -304,9 +304,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "29ee0b0",
     "date": "2026-11-11",
-    "seconds": 17900,
+    "seconds": 22539,
     "counts": {
       "no": 4,
       "works": 8,
@@ -446,7 +446,8 @@
             "dead point"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 56.8
       },
       {
         "result": "works",
@@ -470,7 +471,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 816.3
       },
       {
         "result": "works",
@@ -655,7 +657,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 6912
       },
       {
         "result": "works",
@@ -712,7 +715,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 3846.2
       },
       {
         "result": "works",
@@ -751,7 +755,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 2523.7
       },
       {
         "result": "works",
@@ -780,7 +785,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 623.2
       },
       {
         "result": "partly",
@@ -833,7 +839,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p4019 94925"
+        "detail": "p4019 94925",
+        "seconds": 752.1
       },
       {
         "result": "partly",
@@ -895,7 +902,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p767 94925"
+        "detail": "p767 94925",
+        "seconds": 750.3
       },
       {
         "result": "partly",
@@ -942,7 +950,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p422 94925"
+        "detail": "p422 94925",
+        "seconds": 622.3
       },
       {
         "result": "works",
@@ -966,7 +975,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 617.7
       },
       {
         "result": "partly",
@@ -1000,7 +1010,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p2320 2795"
+        "detail": "p2320 2795",
+        "seconds": 781.4
       },
       {
         "result": "no",
@@ -1040,7 +1051,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p2629 2795"
+        "detail": "p2629 2795",
+        "seconds": 49.8
       },
       {
         "result": "works",
@@ -1064,7 +1076,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 540.4
       },
       {
         "result": "works",
@@ -1106,7 +1119,8 @@
         ],
         "strayed": [
           "p2107 60484"
-        ]
+        ],
+        "seconds": 3238.5
       },
       {
         "result": "no",
@@ -1155,7 +1169,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p1761 32278"
+        "detail": "p1761 32278",
+        "seconds": 47.4
       },
       {
         "result": "no",
@@ -1186,7 +1201,8 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 42.4
       }
     ]
   }

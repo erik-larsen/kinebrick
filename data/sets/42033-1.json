@@ -84,7 +84,7 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
     "seconds": 1,
     "counts": {
@@ -157,10 +157,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.2
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -214,7 +216,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p111 3706"
+        "detail": "p111 3706",
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -247,7 +250,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -276,7 +280,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.1
       }
     ]
   }

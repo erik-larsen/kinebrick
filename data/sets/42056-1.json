@@ -197,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 310,
+    "seconds": 548,
     "counts": {
       "works": 6,
       "partly": 4,
@@ -301,7 +301,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 37.4
       },
       {
         "result": "partly",
@@ -380,7 +381,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p917 2851"
+        "detail": "p917 2851",
+        "seconds": 105.6
       },
       {
         "result": "partly",
@@ -469,7 +471,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p235 18947"
+        "detail": "p235 18947",
+        "seconds": 36
       },
       {
         "result": "partly",
@@ -508,7 +511,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p478 87079"
+        "detail": "p478 87079",
+        "seconds": 18.6
       },
       {
         "result": "works",
@@ -579,7 +583,8 @@
             "dead point",
             "dead point"
           ]
-        ]
+        ],
+        "seconds": 46.6
       },
       {
         "result": "works",
@@ -650,7 +655,8 @@
             "dead point",
             "dead point"
           ]
-        ]
+        ],
+        "seconds": 52
       },
       {
         "result": "skipped"
@@ -702,7 +708,8 @@
         "why": [
           "p2437 64394 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 35.2
       },
       {
         "result": "works",
@@ -731,7 +738,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 15.8
       },
       {
         "result": "no",
@@ -782,7 +790,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p2757 24119"
+        "detail": "p2757 24119",
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -811,7 +820,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 37.1
       },
       {
         "result": "works",
@@ -850,7 +860,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 39.9
       }
     ]
   }

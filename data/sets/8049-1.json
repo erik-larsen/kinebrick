@@ -153,9 +153,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 12,
+    "seconds": 19,
     "counts": {
       "partly": 4,
       "not back": 2,
@@ -248,7 +248,8 @@
           "p48 59443"
         ],
         "cause": "stay-chosen",
-        "detail": "p201 41896 against p0 32316"
+        "detail": "p201 41896 against p0 32316",
+        "seconds": 2.5
       },
       {
         "result": "no",
@@ -288,7 +289,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p3 87082 against p230 32278"
+        "detail": "p3 87082 against p230 32278",
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -358,7 +360,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p404 48452"
+        "detail": "p404 48452",
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -401,7 +404,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p424 32278 against p417 32009"
+        "detail": "p424 32278 against p417 32009",
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -444,7 +448,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p455 32278 against p424 32278"
+        "detail": "p455 32278 against p424 32278",
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -497,10 +502,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.3
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -669,7 +676,8 @@
             null,
             "no motion"
           ]
-        ]
+        ],
+        "seconds": 10.4
       }
     ]
   }

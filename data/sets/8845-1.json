@@ -91,9 +91,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -127,7 +127,8 @@
         "why": [
           "p100 4185 has no joint to work"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -224,10 +225,12 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p170 3482"
+        "detail": "p170 3482",
+        "seconds": 1.1
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -296,10 +299,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.6
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

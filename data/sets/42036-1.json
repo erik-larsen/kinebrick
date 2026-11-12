@@ -120,9 +120,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "partly": 2,
       "works": 2,
@@ -223,7 +223,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p117 6542b"
+        "detail": "p117 6542b",
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -268,7 +269,8 @@
         "strayed": [
           "p59 2780",
           "p217 14696"
-        ]
+        ],
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -319,10 +321,12 @@
           "p228 2910 is part of the frame"
         ],
         "cause": "loose-part",
-        "detail": "p228 2910"
+        "detail": "p228 2910",
+        "seconds": 0.5
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -347,7 +351,8 @@
           "p268 32016 is part of the frame"
         ],
         "cause": "loose-part",
-        "detail": "p233 88517"
+        "detail": "p233 88517",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -369,7 +374,8 @@
         "why": [
           "p290 32192 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -408,7 +414,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.8
       }
     ]
   }
