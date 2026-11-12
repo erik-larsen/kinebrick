@@ -13,8 +13,9 @@ import { findGears, findMeshes, rackMesh } from './inference/gears.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
 import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
 import { fixPins } from './inference/pins.ts';
-import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, axialOverlap, AXIS_TOLERANCE, BALL_LINE, findLooseParts, isAntiStud, LOOSE_ALIGN_TOLERANCE, rigidGroups, SURFACE_OVERLAP, type WorldCylinder, worldCylinders } from './inference/shared.ts';
+import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, axialOverlap, AXIS_TOLERANCE, BALL_LINE, findLooseParts, isAntiStud, LOOSE_ALIGN_TOLERANCE, rigidGroups, type WorldCylinder, worldCylinders } from './inference/shared.ts';
 import { bushesOnFourStuds, onFourStuds, platesOnEdge } from './inference/studs.ts';
+import { onTiles } from './inference/tiles.ts';
 import { anchorsOf, findRails, findRiders, magnetCouplings, railJoins, smallGroups } from './inference/trains.ts';
 export { axesCrossing, closestPoints, findMeshes, meshesChanged } from './inference/gears.ts';
 export { withoutSlidesOnCouplers } from './inference/joints.ts';
@@ -672,49 +673,6 @@ function onAxleTips(roles: string[], cyls: WorldCylinder[], connections: Connect
     }
   }
   return pushed;
-}
-
-// A part held by nothing but smooth tiles under it slides along them: nothing grips a tile
-// from above (an official crane's outriggers slide out on tiles). Like a plate on tiles (see
-// the corrections), along the tile's length (whatever keeps it in line is taken as read), as
-// long as it still overlaps the tile by a stud. A part attached otherwise (a seat on a rack)
-// is left to that: a tile lets it slide any way, so a slide along the tile could jam it.
-function onTiles(roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
-  const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  const loose = new Set(findLooseParts(count, connections, anchorsOf(roles)));
-  if (loose.size === 0) return [];
-  const UP = new Vector3(0, -1, 0);
-  const tops = cyls.filter((c) => c.gender === 'F' && c.secs.length === 1 && c.secs[0].shape === 'P' && Math.abs(c.dir.dot(UP)) < 0.01);
-  const antiStuds = cyls.filter((c) => c.gender === 'F' && isAntiStud(c) && c.dir.dot(UP) > 0.99);
-  const group = rigidGroups(count, connections);
-  const slides: Connection[] = [];
-  for (const top of tops) {
-    const length = top.secs[0].length;
-    const width = top.secs[0].radius;
-    const resting = new Set<number>(); // parts with anti-studs on this tile
-    for (const a of antiStuds) {
-      if (a.part === top.part || !loose.has(a.part) || loose.has(top.part) || group[a.part] === group[top.part]) continue;
-      const offset = new Vector3().subVectors(a.start, top.start);
-      if (Math.abs(offset.y) > AXIS_TOLERANCE) continue;
-      const along = offset.dot(top.dir);
-      const across = offset.clone().addScaledVector(top.dir, -along).length();
-      if (across > width - 4 || along < 0 || along > length) continue;
-      resting.add(a.part);
-    }
-    for (const part of resting) {
-      const ownAlong = antiStuds.filter((a) => a.part === part).map((a) => new Vector3().subVectors(a.start, top.start).dot(top.dir));
-      const from = top.start.clone();
-      slides.push({
-        male: part,
-        female: top.part,
-        kind: 'slide',
-        from,
-        to: from.clone().add(top.dir),
-        extents: { male: [Math.min(...ownAlong) - 10, Math.max(...ownAlong) + 10], female: [0, length], overlap: SURFACE_OVERLAP },
-      });
-    }
-  }
-  return slides;
 }
 
 // Decoration: parts that are there for looks and connect to nothing in a way that matters,
