@@ -1714,12 +1714,8 @@ export class Kinematics {
         // pushed along by a rear wheel, went a quarter further than the wheel rolled). And its
         // bodies that turn only a little aren't held still first (see Options.stillness): in a
         // correction, all of them turn only a little, and held still, they slid it all the same.
-        // The steering tier, which keeps a car's steering still, counts it too: else it slid the
-        // car sideways on its tyres to close the loops rather than let the steering turn a hair,
-        // and the 42110 Land Rover, rolled forward and back, came back 116 LDU to one side.
         const slid = inBasis([...slip.sideways, ...slip.lift], basis);
-        const scrubbing = (t: Tier) => ({ cost: (z: number[]) => [...t.cost(z), ...slid.map((row) => dot(row, z))] });
-        const corrections = tiers.map((t) => (t.bodies || t.steering ? scrubbing(t) : t));
+        const corrections = tiers.map((t) => (t.bodies ? { cost: (z: number[]) => [...t.cost(z), ...slid.map((row) => dot(row, z))] } : t));
         // Before them all, what the step left still is kept as still as it can be: stillness
         // (see Options.stillness) held it for the step, but a correction's bodies all turn only a little,
         // so it doesn't hold them here, and the free motions it held were stirred, differently
@@ -2401,7 +2397,7 @@ export class Kinematics {
     // the ground, swung it round the other rear wheel and tipped it forward.
     const tipping = this.contactTreads.length > 0 && this.contactTreads.length < 3;
     const frameTurning = (z: number[]) => (tipping ? [0, 1, 2].map((k) => dot(basis[k], z)) : []);
-    return [{ cost: mounted }, { cost: steered, steering: true }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
+    return [{ cost: mounted }, { cost: steered }, { cost: pins }, { cost: housed }, { cost: frameTurning }, turning4, { cost: size, joints: true }, { cost: moves }];
   }
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
