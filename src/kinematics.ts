@@ -168,6 +168,28 @@ export interface Slip {
   rise: Row[]; // how fast the frame rises or sinks over each tyre's hub, on its suspension
 }
 
+// A drag's state: what it holds still and what it has found out, made when the drag starts
+// (holdWhatTheDragDoesntNeed) and dropped when it ends (letGoAfterDrag). Between drags the solver
+// has an empty one, which holds nothing.
+class Drag {
+  held = new Set<number>(); // bodies held still for the length of the drag
+  // Bodies held against the frame rather than against what they turn on (which the drag turns):
+  // an assembly hanging on a driven axle stays level, not carried round.
+  heldToFrame = new Set<number>();
+  together: number[]; // bodies turned with the grabbed one (see turnTogether)
+  turning: { grabbed: number; joint: number } | null = null; // the part grabbed and the joint it turns, if the drag turns a joint
+  steering: Set<number> | null = null; // the steering bodies, worked out once a drag (see leastTiers)
+  grip = true; // least motion: whether the drag still prefers, of the motions that leave the frame still, those in which no tyre scrubs (see chooseMotion)
+  suspension: boolean | null = null; // least motion: whether the drag's motion uses the suspension, chosen at its first step (see jointMotion)
+  choosingHolds = false; // while its holds are chosen (see holdWhatTheDragDoesntNeed and jointMotion)
+  plainOnly = false; // while they are, whether its motions may not use the suspension (see chooseDragHolds)
+  drivenLast = false; // while they are, whether what its part drives is tried last (see chooseDragHolds)
+
+  constructor(together: number[] = []) {
+    this.together = together;
+  }
+}
+
 export class Kinematics {
   // Each body's pose: from its starting position (model coordinates) to where it is now.
   poses: Matrix4[] = [];
@@ -218,10 +240,8 @@ export class Kinematics {
   private columns = 0; // how many coordinates
   fixedBody = -1; // kept still when the model has no tyres on the ground
   frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
-  dragHeld = new Set<number>(); // bodies held still for the length of one drag
+  drag = new Drag(); // the drag going on, or an empty one between drags (see Drag)
   private stepByTiers = false; // one problem: whether the last step's motion was chosen by least motion's tiers (see jointMotion)
-  dragTogether: number[] = []; // bodies turned with the grabbed one for the length of one drag (see turnTogether)
-  private dragTurning: { grabbed: number; joint: number } | null = null; // the drag they're held for, if it turns a joint
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
   private built = false; // the constructor done: reset() may then set a layout's cars on the rails (see setOnRails)
@@ -229,9 +249,6 @@ export class Kinematics {
   private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
   private pins: Set<number> | null = null; // bodies free to spin on their one axis (see findPins), once worked out
   private framed: Set<number> | null = null; // the bodies that can't move against the frame (see fixedToFrame), once worked out
-  // Bodies held for a drag against the frame rather than against what they turn on (which the
-  // drag turns): an assembly hanging on a driven axle stays level, not carried round.
-  heldToFrame = new Set<number>();
   contactTreads: number[] = []; // indices into mech.treads
   private contactHeights: number[] = []; // for each tyre, where it touched the ground at the start (LDraw y)
   // Bodies held only by a ball joint at each end (a steering link), and those two joints.
@@ -239,17 +256,11 @@ export class Kinematics {
   // Bodies held only by a turning joint and a ball on its axis (a towball in a steering rack, its
   // tie rod's socket on the ball), by that turning joint.
   spinners: number[] = [];
-  private choosingHolds = false; // while holdWhatTheDragDoesntNeed is at work (see jointMotion)
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
-  private plainOnly = false; // while it is, whether the drag's motions may not use the suspension (see chooseDragHolds)
-  private drivenLast = false; // while holds are chosen, whether what the drag's part drives is tried last (see chooseDragHolds)
   private played = false; // whether jointMotion's last motion took up play (see playMotion)
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
-  private dragSteering: Set<number> | null = null; // the steering bodies, worked out once a drag (see leastTiers)
-  private dragGrip = true; // least motion: whether a drag still prefers, of the motions that leave the frame still, those in which no tyre scrubs (see chooseMotion)
   private gripped = false; // whether the motion last chosen was one of those
-  private dragSuspension: boolean | null = null; // least motion: whether a drag's motion uses the suspension, chosen at its first step (see jointMotion)
   private slipRows: number[][] = []; // the tyres' scrubbing and lifting rows, in the tree basis, as freeMotionsApart last found them
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
@@ -822,15 +833,17 @@ export class Kinematics {
   // holds in a V. Worked out once, from the joints alone.
   private fixedToFrame(): Set<number> {
     if (this.framed) return this.framed;
-    const holds = { frozen: this.frozen, dragHeld: this.dragHeld, heldToFrame: this.heldToFrame, fixedBody: this.fixedBody };
+    const holds = { frozen: this.frozen, fixedBody: this.fixedBody };
+    const drag = { held: this.drag.held, heldToFrame: this.drag.heldToFrame };
     this.frozen = new Set();
-    this.dragHeld = new Set();
-    this.heldToFrame = new Set();
+    this.drag.held = new Set();
+    this.drag.heldToFrame = new Set();
     this.fixedBody = -1;
     const basis = this.treeBasis();
     const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] }; // tyre rows go here, not into the equations
     const motions = nullSpace(inBasis(this.buildEquations(null, slip, true), basis), basis[0].length).map((z) => fromBasis(z, basis));
     Object.assign(this, holds);
+    Object.assign(this.drag, drag);
     this.framed = new Set();
     for (let body = 0; body < this.bodyCount; body++) {
       if (motions.every((m) => [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * body + k] - m[k]) < RANK_TOLERANCE))) this.framed.add(body);
@@ -962,42 +975,40 @@ export class Kinematics {
   holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean, joint = -1): boolean {
     return this.nearOrigin(() => {
       const scrub = this.scrub;
-      this.choosingHolds = true;
+      // A drag starts (or starts again, its holds chosen afresh): what it held and found before is
+      // dropped, but for what turns with its part (see turnTogether).
+      this.drag = new Drag(this.drag.together);
+      this.drag.choosingHolds = true;
       try {
         return this.chooseDragHolds(grabbed, stillPossible, joint);
       } finally {
-        this.choosingHolds = false;
+        this.drag.choosingHolds = false;
         this.scrub = scrub;
       }
     });
   }
 
   private chooseDragHolds(grabbed: number, stillPossible: () => boolean, joint: number): boolean {
-    this.dragHeld.clear();
-    this.heldToFrame.clear();
     const worms = this.wormsAgainst(grabbed);
-    for (const worm of worms) this.dragHeld.add(worm);
+    for (const worm of worms) this.drag.held.add(worm);
     const wormLocked = worms.length > 0;
-    this.dragTurning = joint >= 0 ? { grabbed, joint } : null;
+    this.drag.turning = joint >= 0 ? { grabbed, joint } : null;
     // Least motion: only worms are held (they lock), and what stands alone on what's still (it
     // can't be needed, and holding it only saves work; held on something that turns, it would
     // be carried round: the 956 Auto Chassis's gear lever, which sits on the drive shaft);
     // jointMotion chooses the rest, tier by tier.
-    this.dragSteering = null;
-    this.dragSuspension = null;
-    this.dragGrip = true;
     if (experiments.leastMotion && joint >= 0) {
       for (const body of this.standingAlone(grabbed)) {
         const parent = this.parentLink(body)!.parent;
-        if (this.parentJoint[parent] < 0 || this.dragHeld.has(parent) || this.frozen.has(parent)) this.dragHeld.add(body);
+        if (this.parentJoint[parent] < 0 || this.drag.held.has(parent) || this.frozen.has(parent)) this.drag.held.add(body);
       }
       // A car that can't roll with its steering free (the scrub its steering leaves rules out
       // every way to roll: the 8245's caster fork) has its steering held, as tier 2 would keep
       // it still anyway.
       if (this.contactTreads.length > 0 && !stillPossible()) {
-        const steering = [...this.steeringBodies()].filter((b) => b !== grabbed && !this.frozen.has(b) && !this.dragHeld.has(b));
-        for (const b of steering) this.dragHeld.add(b);
-        if (!stillPossible()) for (const b of steering) this.dragHeld.delete(b);
+        const steering = [...this.steeringBodies()].filter((b) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
+        for (const b of steering) this.drag.held.add(b);
+        if (!stillPossible()) for (const b of steering) this.drag.held.delete(b);
       }
       return wormLocked;
     }
@@ -1005,23 +1016,23 @@ export class Kinematics {
     // that left it only the suspension would be let go (on the 42125 Ferrari 488 GTE, holding
     // the driveshaft its front wheels drive, through constant velocity joints, left turning one
     // of them only a lurch of the car on its suspension, which stopped it a step on).
-    this.plainOnly = false;
+    this.drag.plainOnly = false;
     const [usual] = this.freeMotionsApart();
     if (joint >= 0) {
       const axes = this.jointAxes();
       const basis = this.treeBasis();
-      this.plainOnly = usual.some((z) => Math.abs(this.rateIn(this.turningIn(z, basis), axes, joint)) > EPSILON);
+      this.drag.plainOnly = usual.some((z) => Math.abs(this.rateIn(this.turningIn(z, basis), axes, joint)) > EPSILON);
     }
     // While the holds are chosen, the tyres may scrub no more than the drag needs with only the
     // car's steering held, as it's held first (see holdWhatTheDragDoesntNeed).
     let least = this.leastScrub;
     if (this.contactTreads.length > 0) {
-      const steering = [...this.steeringBodies()].filter((b) => b !== grabbed && !this.frozen.has(b) && !this.dragHeld.has(b));
+      const steering = [...this.steeringBodies()].filter((b) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
       if (steering.length > 0 && !steering.includes(grabbed)) {
-        for (const b of steering) this.dragHeld.add(b);
+        for (const b of steering) this.drag.held.add(b);
         this.freeMotionsApart();
         least = Math.max(least, this.leastScrub);
-        for (const b of steering) this.dragHeld.delete(b);
+        for (const b of steering) this.drag.held.delete(b);
       }
     }
     this.scrub = Math.min(this.scrub, Math.max(USUAL_SCRUB, least * 1.01));
@@ -1033,16 +1044,16 @@ export class Kinematics {
       // holding the pinion on its extension rack, deep in the boom, left the knob turning only
       // by luffing the boom, its gear rolling round the one it drives, the luffing knob spinning
       // 80 times as far.)
-      this.drivenLast = false;
+      this.drag.drivenLast = false;
       const loose = this.motionSize(joint);
       let order = this.chooseHolds(grabbed, quick);
       const held = this.motionSize(joint);
       if (loose > 0 && held > HOLDS_DETOUR * loose) {
-        this.dragHeld = new Set(worms);
-        this.heldToFrame.clear();
-        this.drivenLast = true;
+        this.drag.held = new Set(worms);
+        this.drag.heldToFrame.clear();
+        this.drag.drivenLast = true;
         order = this.chooseHolds(grabbed, quick);
-        this.drivenLast = false;
+        this.drag.drivenLast = false;
       }
       if (stillPossible()) return wormLocked;
       // Too many: keep as many of them as the drag allows, in the order they were chosen
@@ -1050,10 +1061,10 @@ export class Kinematics {
       // Auto Chassis's gear lever, held against the frame, is chosen before its drive shaft,
       // which leaves its tyres too much to scrub; listed after it, the lever was let go too, and
       // swung round with the shaft it sits on, into the engine.
-      const chosen = order.flatMap((b) => (this.heldToFrame.has(b) ? [{ b, toFrame: true }] : this.dragHeld.has(b) && !worms.includes(b) ? [{ b, toFrame: false }] : []));
+      const chosen = order.flatMap((b) => (this.drag.heldToFrame.has(b) ? [{ b, toFrame: true }] : this.drag.held.has(b) && !worms.includes(b) ? [{ b, toFrame: false }] : []));
       const keep = (count: number) => {
-        this.dragHeld = new Set([...worms, ...chosen.slice(0, count).flatMap((h) => (h.toFrame ? [] : [h.b]))]);
-        this.heldToFrame = new Set(chosen.slice(0, count).flatMap((h) => (h.toFrame ? [h.b] : [])));
+        this.drag.held = new Set([...worms, ...chosen.slice(0, count).flatMap((h) => (h.toFrame ? [] : [h.b]))]);
+        this.drag.heldToFrame = new Set(chosen.slice(0, count).flatMap((h) => (h.toFrame ? [h.b] : [])));
       };
       keep(0);
       if (!stillPossible()) return wormLocked; // impossible whatever's held
@@ -1077,19 +1088,19 @@ export class Kinematics {
   // doesn't roll them.
   private steeringBodies(): Set<number> {
     const treads = this.contactTreads.map((i) => this.mech.treads[i].body);
-    const [contact, held, toFrame] = [this.contactTreads, this.dragHeld, this.heldToFrame];
+    const [contact, held, toFrame] = [this.contactTreads, this.drag.held, this.drag.heldToFrame];
     // What working out the free motions sets, as it was (this works them out for a car that isn't there).
     const [scrubNeeded, leastScrub, slipRows] = [this.scrubNeeded, this.leastScrub, this.slipRows];
     this.contactTreads = [];
-    this.dragHeld = new Set(treads);
-    this.heldToFrame = new Set();
+    this.drag.held = new Set(treads);
+    this.drag.heldToFrame = new Set();
     // The motions' bodies' turning only (see turningIn): that's all this needs of them.
     let motions: Float64Array[];
     try {
       const basis = this.treeBasis();
       motions = this.freeMotionsInBasis().map((z) => this.turningIn(z, basis));
     } finally {
-      [this.contactTreads, this.dragHeld, this.heldToFrame] = [contact, held, toFrame];
+      [this.contactTreads, this.drag.held, this.drag.heldToFrame] = [contact, held, toFrame];
       [this.scrubNeeded, this.leastScrub, this.slipRows] = [scrubNeeded, leastScrub, slipRows];
     }
     const axes = this.jointAxes();
@@ -1128,8 +1139,8 @@ export class Kinematics {
     // (the 8880 Super Car's steering knob, a small tyre on its back).
     const onGround = new Set(this.contactTreads.map((i) => this.mech.treads[i].body));
     if (this.contactTreads.length > 0 && grabbed !== 0 && !onGround.has(grabbed)) {
-      this.dragHeld.add(0);
-      if (!stillPossible()) this.dragHeld.delete(0);
+      this.drag.held.add(0);
+      if (!stillPossible()) this.drag.held.delete(0);
     }
     // Nor does what only slides on the car (a bumper resting on tiles) slide along it, nor what
     // swivels on a ball in it (a gear lever) swivel. But a resting body (see Rest) isn't held:
@@ -1138,8 +1149,8 @@ export class Kinematics {
     const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
     for (const body of this.mounts.keys()) {
       if (body === grabbed || this.frozen.has(body) || resting.has(body)) continue;
-      this.dragHeld.add(body);
-      if (!stillPossible()) this.dragHeld.delete(body);
+      this.drag.held.add(body);
+      if (!stillPossible()) this.drag.held.delete(body);
     }
     // A string's pulleys aren't held either: they turn as it runs round them.
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.flatMap((w) => (w.joint >= 0 ? [w.body] : []))));
@@ -1151,16 +1162,16 @@ export class Kinematics {
     const steering = this.contactTreads.length > 0 ? this.steeringBodies() : new Set<number>();
     const steers = (body: number) => (steering.has(body) ? 1 : 0);
     const stiff = (body: number) => (this.mech.joints[this.parentJoint[body]].stiff ? 1 : 0);
-    const driven = this.drivenLast && this.dragTurning ? this.gearedTo(grabbed) : new Set<number>();
+    const driven = this.drag.drivenLast && this.drag.turning ? this.gearedTo(grabbed) : new Set<number>();
     const free = (body: number) => (driven.has(body) ? 0 : 1);
     candidates.sort((a, b) => steers(b) - steers(a) || stiff(b) - stiff(a) || free(b) - free(a) || depth(b) - depth(a) || a - b);
     const alone = this.standingAlone(grabbed);
     for (const body of candidates) {
-      if (this.dragHeld.has(body)) continue;
+      if (this.drag.held.has(body)) continue;
       // A body standing alone on what's still is held without asking: it can't be needed.
       const parent = this.parentLink(body)!.parent;
-      if (alone.has(body) && (this.parentJoint[parent] < 0 || this.dragHeld.has(parent) || this.frozen.has(parent))) {
-        this.dragHeld.add(body);
+      if (alone.has(body) && (this.parentJoint[parent] < 0 || this.drag.held.has(parent) || this.frozen.has(parent))) {
+        this.drag.held.add(body);
         continue;
       }
       // A hold mustn't carry along what the body turns on, if that could have stayed still:
@@ -1172,9 +1183,9 @@ export class Kinematics {
       // assembly hanging on a driven axle): hold it against the frame instead, if the drag
       // allows.
       if (!shaftCouldStay && this.sharesAxisWithShaft(body)) {
-        this.heldToFrame.add(body);
+        this.drag.heldToFrame.add(body);
         if (stillPossible()) continue;
-        this.heldToFrame.delete(body);
+        this.drag.heldToFrame.delete(body);
       }
       // Parts of a closed loop aren't held: whether one is needed can't be told from this
       // instant alone (a steering tie rod doesn't turn at all at straight ahead, but must as
@@ -1183,8 +1194,8 @@ export class Kinematics {
       // their axles through one beam, drive its centre differential's housing, which turns the
       // rear axles against the front ones only with the motors held).
       if (this.inLoop(link.joint) && !this.mech.joints[link.joint].motor) continue;
-      this.dragHeld.add(body);
-      if (!stillPossible() || (shaftCouldStay && !this.couldStayStill(shaft, stillPossible))) this.dragHeld.delete(body);
+      this.drag.held.add(body);
+      if (!stillPossible() || (shaftCouldStay && !this.couldStayStill(shaft, stillPossible))) this.drag.held.delete(body);
     }
     return [0, ...this.mounts.keys(), ...candidates];
   }
@@ -1223,8 +1234,8 @@ export class Kinematics {
     }
     const rate = inBasis([row], basis)[0];
     const rates = free.map((z) => dot(z, rate));
-    const heldBefore = new Set(this.dragHeld);
-    const toFrameBefore = new Set(this.heldToFrame);
+    const heldBefore = new Set(this.drag.held);
+    const toFrameBefore = new Set(this.drag.heldToFrame);
     // Each hold's rows in the free motions' coordinates, by "held 12" or "to frame 12".
     const holdRowsOf = new Map<string, number[][]>();
     const rowsOf = (hold: string): number[][] => {
@@ -1248,7 +1259,7 @@ export class Kinematics {
     const start: Try = { holds: new Set(), from: null, directions: [], left: rates };
     let recent: Try[] = [];
     return () => {
-      const holds = new Set([...[...this.dragHeld].filter((b) => !heldBefore.has(b)).map((b) => `held ${b}`), ...[...this.heldToFrame].filter((b) => !toFrameBefore.has(b)).map((b) => `to frame ${b}`)]);
+      const holds = new Set([...[...this.drag.held].filter((b) => !heldBefore.has(b)).map((b) => `held ${b}`), ...[...this.drag.heldToFrame].filter((b) => !toFrameBefore.has(b)).map((b) => `to frame ${b}`)]);
       // Of the recent tries with no holds this one hasn't, the one with the most.
       let from = start;
       for (const t of recent) if (t.holds.size > from.holds.size && [...t.holds].every((h) => holds.has(h))) from = t;
@@ -1308,7 +1319,7 @@ export class Kinematics {
       const wheels = [...(st.drum ? [st.drum] : []), ...st.pulleys];
       ties.push([...wheels.flatMap((w) => [w.body, w.mount]), ...(st.start ? [st.start.body] : []), st.end.body, ...(st.hook ? [st.hook.body] : [])]);
     }
-    const anchored = new Set([grabbed, this.fixedBody, ...this.frozen, ...this.heldToFrame, ...this.mech.treads.map((t) => t.body)]);
+    const anchored = new Set([grabbed, this.fixedBody, ...this.frozen, ...this.drag.heldToFrame, ...this.mech.treads.map((t) => t.body)]);
     const alone = new Set<number>();
     const subtree = (body: number): Set<number> => {
       const all = new Set([body]);
@@ -1336,10 +1347,10 @@ export class Kinematics {
 
   // Whether the drag could still happen with `body` not turning on its joint.
   private couldStayStill(body: number, stillPossible: () => boolean): boolean {
-    if (this.parentJoint[body] < 0 || this.dragHeld.has(body) || this.heldToFrame.has(body) || this.frozen.has(body)) return true;
-    this.dragHeld.add(body);
+    if (this.parentJoint[body] < 0 || this.drag.held.has(body) || this.drag.heldToFrame.has(body) || this.frozen.has(body)) return true;
+    this.drag.held.add(body);
     const possible = stillPossible();
-    this.dragHeld.delete(body);
+    this.drag.held.delete(body);
     return possible;
   }
 
@@ -1351,12 +1362,12 @@ export class Kinematics {
     if (this.jointMotion(joint) !== null) return false;
     const worms = this.wormsAgainst(grabbed);
     if (worms.length === 0) return false;
-    const held = this.dragHeld;
-    this.dragHeld = new Set([...held].filter((b) => !worms.includes(b)));
+    const held = this.drag.held;
+    this.drag.held = new Set([...held].filter((b) => !worms.includes(b)));
     try {
       return this.jointMotion(joint) !== null;
     } finally {
-      this.dragHeld = held;
+      this.drag.held = held;
     }
   }
 
@@ -1425,15 +1436,12 @@ export class Kinematics {
   // without its wheels, whose rear differential would otherwise turn one half shaft back as the
   // other turned). Until letGoAfterDrag.
   turnTogether(grabbed: number, bodies: number[]) {
-    this.dragTogether = [grabbed, ...bodies.filter((b) => b !== grabbed)];
+    this.drag.together = [grabbed, ...bodies.filter((b) => b !== grabbed)];
   }
 
+  // A drag ends: what it held and found is dropped.
   letGoAfterDrag() {
-    this.dragTogether = [];
-    this.dragHeld.clear();
-    this.heldToFrame.clear();
-    this.dragTurning = null;
-    this.dragSteering = null;
+    this.drag = new Drag();
   }
 
   // ---------------------------------------------------------------------------
@@ -1532,7 +1540,7 @@ export class Kinematics {
       // what plain closing can't, and a wild step, closed so, kept what's free to go anywhere
       // (the 8448 Super Street Sensation's front wheels, spun 3.5 radians on their hubs by a step
       // that opened the loops 1,200 LDU, as the suspension took up its play).
-      if (round === 0 && experiments.oneProblem && keep >= 0 && this.dragTurning?.joint === keep && this.stepByTiers && biggest > STUD) return last;
+      if (round === 0 && experiments.oneProblem && keep >= 0 && this.drag.turning?.joint === keep && this.stepByTiers && biggest > STUD) return last;
       if (biggest > previous / 2) {
         // A round that opened the gaps up, rather than closing them, is undone.
         if (before && biggest > previous) {
@@ -1568,7 +1576,7 @@ export class Kinematics {
       // by the gaps' least-squares closing plus the mix of free motions (which keep every
       // equation, and the dragged joint where it is) the tiers choose, rather than with what the
       // step left still weighted to stay so.
-      const one = experiments.oneProblem && keep >= 0 && this.dragTurning?.joint === keep && this.stepByTiers;
+      const one = experiments.oneProblem && keep >= 0 && this.drag.turning?.joint === keep && this.stepByTiers;
       let keepRow: Row | null = null;
       if (keep >= 0) {
         const row = new Array(6 * this.bodyCount).fill(0);
@@ -1579,7 +1587,7 @@ export class Kinematics {
         // shaft turns in (see housing), as the step's motion turned it: kept only on what it turns
         // on, a pin free to spin in its holes could turn it all the same (the 9394 Airliner's
         // control stick, on a long pin, and with it the tailplanes, left 2 LDU off there and back).
-        const grabbed = this.dragTurning?.grabbed ?? -1;
+        const grabbed = this.drag.turning?.grabbed ?? -1;
         const [on, under] = one && grabbed >= 0 && this.parentJoint[grabbed] === keep ? [grabbed, this.housing(grabbed)] : [j.bodyB, j.bodyA];
         for (let k = 0; k < 3; k++) {
           row[6 * on + k] += d.getComponent(k);
@@ -1893,8 +1901,8 @@ export class Kinematics {
       // Holds chosen where a drag started may not suit it further on (as a steered car's
       // wheels turn, they turn by more and more different angles, and its differential has to
       // turn a little too): stuck, the drag chooses them afresh where it now is.
-      if (!motion && this.dragTurning?.joint === joint) {
-        this.holdWhatTheDragDoesntNeed(this.dragTurning.grabbed, () => this.jointMotion(joint) !== null, joint);
+      if (!motion && this.drag.turning?.joint === joint) {
+        this.holdWhatTheDragDoesntNeed(this.drag.turning.grabbed, () => this.jointMotion(joint) !== null, joint);
         motion = this.jointMotion(joint);
       }
       if (!motion) break;
@@ -1930,8 +1938,8 @@ export class Kinematics {
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
         // held only to first order (the 42037 Formula Off-Roader's front tyre, neither rolling
         // nor scrubbing); the drag goes on without that preference.
-        if (experiments.leastMotion && this.dragTurning?.joint === joint && this.gripped && this.dragGrip) {
-          this.dragGrip = false;
+        if (experiments.leastMotion && this.drag.turning?.joint === joint && this.gripped && this.drag.grip) {
+          this.drag.grip = false;
           if (this.jointMotion(joint)) continue;
         }
         // Least motion: joints that strayed from where the step had them going may have moved
@@ -1939,13 +1947,13 @@ export class Kinematics {
         // spreader, whose linkage the turning tier would turn back, to keep it level, though it
         // lies flat). Held for the rest of the drag, the drag may go on another way; if it
         // can't, they're let go, and it's a dead point after all.
-        if (experiments.leastMotion && this.dragTurning?.joint === joint && !played) {
+        if (experiments.leastMotion && this.drag.turning?.joint === joint && !played) {
           // Each strayed joint in the tree is held by holding the body it carries.
           const carried = (k: number) => (this.parentJoint[this.mech.joints[k].bodyB] === k ? this.mech.joints[k].bodyB : this.mech.joints[k].bodyA);
-          const bodies = strayed.filter((k) => k !== joint && this.inTree(k)).map(carried).filter((b) => !this.dragHeld.has(b) && b !== this.dragTurning!.grabbed);
-          for (const b of bodies) this.dragHeld.add(b);
+          const bodies = strayed.filter((k) => k !== joint && this.inTree(k)).map(carried).filter((b) => !this.drag.held.has(b) && b !== this.drag.turning!.grabbed);
+          for (const b of bodies) this.drag.held.add(b);
           if (bodies.length && this.jointMotion(joint)) continue;
-          for (const b of bodies) this.dragHeld.delete(b);
+          for (const b of bodies) this.drag.held.delete(b);
         }
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
         // usual steps, it may go. Only those can tell a dead point.
@@ -2030,7 +2038,7 @@ export class Kinematics {
     // just against what it turns on, which a pin free to spin in its holes would be: the turn
     // would be taken by spinning the pin back under it, leaving the part where it was (the 9394
     // Airliner's control stick, on a long pin).
-    const grabbed = experiments.leastMotion && this.dragTurning?.joint === joint ? this.dragTurning.grabbed : -1;
+    const grabbed = experiments.leastMotion && this.drag.turning?.joint === joint ? this.drag.turning.grabbed : -1;
     const housing = grabbed >= 0 && this.parentJoint[grabbed] === joint ? this.housing(grabbed) : -1;
     const rate = (z: number[]) => {
       if (housing < 0) return rateOf(z, joint);
@@ -2065,11 +2073,11 @@ export class Kinematics {
     // up, as for the arm a wheel hangs on): rolling, it would mix in a little of its suspension
     // to turn the other joints a little less, a motion that, closing the loops, can jump far from
     // where it had them going (the 41999 Crawler's portal hubs, stopped as at a dead point).
-    const tiers = experiments.leastMotion && this.dragTurning?.joint === joint ? this.leastTiers(joint, turning, rateOf, size) : undefined;
+    const tiers = experiments.leastMotion && this.drag.turning?.joint === joint ? this.leastTiers(joint, turning, rateOf, size) : undefined;
     const plain = this.chooseMotion(joint, usual, rate, size, tiers);
     const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size, tiers) : plain;
     const length = (z: number[]) => Math.hypot(...size(z));
-    let z = this.choosingHolds && this.plainOnly ? plain : plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
+    let z = this.drag.choosingHolds && this.drag.plainOnly ? plain : plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
     // Least motion: a drag keeps to the choice its first step made, while it can, rather than
     // switching as the two come close: the 42056's rear suspension arm, at a third of its drag,
     // switched to rolling the car, swinging its front linkage fast enough to count as a dead
@@ -2077,10 +2085,10 @@ export class Kinematics {
     // turns the joints SUSPENSION_GAIN² times as much, as it does where it held only to first
     // order (the 42096 Porsche 911 RSR's rear suspension arm, whose plain motion grew from 1.5 times
     // the suspension's to 90 times in two steps).
-    if (tiers && !this.choosingHolds && suspension.length) {
-      if (this.dragSuspension === null) this.dragSuspension = z === any && z !== plain;
-      else if (!this.dragSuspension && plain && any && length(plain) >= SUSPENSION_GAIN * SUSPENSION_GAIN * length(any)) this.dragSuspension = true;
-      if (this.dragSuspension ? any : plain) z = this.dragSuspension ? any : plain;
+    if (tiers && !this.drag.choosingHolds && suspension.length) {
+      if (this.drag.suspension === null) this.drag.suspension = z === any && z !== plain;
+      else if (!this.drag.suspension && plain && any && length(plain) >= SUSPENSION_GAIN * SUSPENSION_GAIN * length(any)) this.drag.suspension = true;
+      if (this.drag.suspension ? any : plain) z = this.drag.suspension ? any : plain;
     }
     // One problem: a step chosen by the tiers has its loops closed by them too (see closeLoops).
     this.stepByTiers = tiers !== undefined && experiments.oneProblem && z !== null;
@@ -2089,7 +2097,7 @@ export class Kinematics {
     // Play only lets a drag go where nothing else would, not choose what it holds: a hold that
     // left the drag only play would be kept, and the drag would turn a joint it needn't (the
     // 42112 Concrete Mixer Truck's wheels, which stopped partway round).
-    if (this.choosingHolds) return null;
+    if (this.drag.choosingHolds) return null;
     const played = this.playMotion(rate, size);
     this.played = played !== null;
     return played ? fromBasis(played, basis) : null;
@@ -2147,7 +2155,7 @@ export class Kinematics {
     // tiers costs that (see leastScrub): the 8837 Pneumatic Excavator, whose frame is its upper
     // body, slewed its chassis round under it, all four tyres scrubbing, rather than steer.
     let gripped: number[] | null = null;
-    if (tiers && this.dragGrip && this.slipRows.length && still.length) {
+    if (tiers && this.drag.grip && this.slipRows.length && still.length) {
       const slips = this.slipRows.map((row) => still.map((z) => z.reduce((sum, x, c) => sum + x * row[c], 0)));
       const grip = orthonormalize(nullSpace(slips, still.length).map((a) => combine(still, a)));
       if (grip.length) gripped = smallest(grip);
@@ -2178,7 +2186,7 @@ export class Kinematics {
       }),
       1e-6,
     );
-    return smallest(rest) ?? (this.choosingHolds ? null : parked);
+    return smallest(rest) ?? (this.drag.choosingHolds ? null : parked);
   }
 
   // Least motion's tiers, most important first, each saying how much a motion (in the tree
@@ -2205,20 +2213,20 @@ export class Kinematics {
   // gears that would turn instead, stays level); and the tyres scrubbing sideways or lifting,
   // SCRUB_WEIGHT as much.
   private leastTiers(joint: number, turning: (z: number[]) => Float64Array, rateOf: (z: number[], i: number) => number, size: (z: number[]) => number[], basis = this.treeBasis()): Tier[] {
-    const grabbed = this.dragTurning?.joint === joint ? this.dragTurning.grabbed : this.mech.joints[joint].bodyB;
+    const grabbed = this.drag.turning?.joint === joint ? this.drag.turning.grabbed : this.mech.joints[joint].bodyB;
     const dot = (row: number[], z: number[]) => {
       let sum = 0;
       for (let c = 0; c < z.length; c++) sum += row[c] * z[c];
       return sum;
     };
-    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.dragHeld.has(b));
+    const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
-    if (this.contactTreads.length > 0 && !this.dragSteering) this.dragSteering = this.steeringBodies();
+    if (this.contactTreads.length > 0 && !this.drag.steering) this.drag.steering = this.steeringBodies();
     // A drag that drives the steering through its gears (a steering knob) is meant to steer, so
     // the steering isn't kept still for it: kept still, the 8837 Pneumatic Excavator's knob,
     // whose gear crosses the turntable, slewed the excavator round instead.
-    const keepSteering = this.contactTreads.length > 0 && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.dragSteering!.has(b));
-    const steering = keepSteering ? [...this.dragSteering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
+    const keepSteering = this.contactTreads.length > 0 && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
+    const steering = keepSteering ? [...this.drag.steering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
     const steered = (z: number[]) => steering.map((j) => rateOf(z, j));
     // Friction pins, and motors' outputs, which their gearboxes hold (see chooseHolds).
     const stiff = this.mech.joints.flatMap((j, i) => ((j.stiff || j.motor) && j.kind === 'revolute' && i !== joint ? [i] : []));
@@ -2263,7 +2271,7 @@ export class Kinematics {
     // than swinging what it turns on the other way round it (the 8862 Backhoe's dipper, whose
     // cylinder drag swung the boom and carried the dipper round level, every body on it costing
     // nothing more for turning that way). Before the turning tier, which would choose that.
-    const housing = this.dragTurning?.joint === joint && this.parentJoint[grabbed] === joint ? this.housing(grabbed) : 0;
+    const housing = this.drag.turning?.joint === joint && this.parentJoint[grabbed] === joint ? this.housing(grabbed) : 0;
     const housed = (z: number[]) => {
       if (housing === 0) return [];
       const w = turning(z);
@@ -2359,8 +2367,8 @@ export class Kinematics {
   advance(motion: number[], amount: number, keep = -1): number {
     // Least motion: a step that leaves the car where it is (steering it) keeps it there while the
     // loops are closed, and doesn't set it down again, as a car held still for a drag (see settle).
-    const parked = experiments.leastMotion && this.dragTurning !== null && !this.dragHeld.has(0) && motion.slice(0, 6).every((x) => Math.abs(x * amount) <= 1e-9);
-    if (parked) this.dragHeld.add(0);
+    const parked = experiments.leastMotion && this.drag.turning !== null && !this.drag.held.has(0) && motion.slice(0, 6).every((x) => Math.abs(x * amount) <= 1e-9);
+    if (parked) this.drag.held.add(0);
     try {
       return this.nearOrigin((_, fromModel) => {
         const m = fromModel(motion);
@@ -2371,7 +2379,7 @@ export class Kinematics {
         // pistons, at top dead centre: kept still, closing the loops turned the crank back,
         // through the differential). A resting one is still kept still: the 858 Auto Engines'
         // crank jams a turn short if its push rods and rockers aren't.
-        if (experiments.leastMotion && this.dragTurning !== null && CLOSE_STILL > 0) {
+        if (experiments.leastMotion && this.drag.turning !== null && CLOSE_STILL > 0) {
           const most = Math.max(...m.map(Math.abs));
           const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
           this.closingStill = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && (!this.rootPoses.has(b) || resting.has(b)) && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[k]) <= 1e-9 * most));
@@ -2382,21 +2390,21 @@ export class Kinematics {
         // Not a resting body, which closing the loops sets down on what it rests on.
         const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
         const scale = Math.max(1, ...m.map(Math.abs));
-        const mountsHeld = experiments.leastMotion && !experiments.oneProblem && this.dragTurning !== null ? [...this.mounts].filter(([b, on]) => !resting.has(b) && !this.dragHeld.has(b) && b !== this.dragTurning!.grabbed && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[6 * on + k]) <= 1e-9 * scale)).map(([b]) => b) : [];
-        for (const b of mountsHeld) this.dragHeld.add(b);
+        const mountsHeld = experiments.leastMotion && !experiments.oneProblem && this.drag.turning !== null ? [...this.mounts].filter(([b, on]) => !resting.has(b) && !this.drag.held.has(b) && b !== this.drag.turning!.grabbed && [0, 1, 2, 3, 4, 5].every((k) => Math.abs(m[6 * b + k] - m[6 * on + k]) <= 1e-9 * scale)).map(([b]) => b) : [];
+        for (const b of mountsHeld) this.drag.held.add(b);
         this.move(m, amount);
         let gap: number;
         try {
           gap = this.closeLoops(keep);
         } finally {
           this.closingStill = [];
-          for (const b of mountsHeld) this.dragHeld.delete(b);
+          for (const b of mountsHeld) this.drag.held.delete(b);
         }
         this.settle();
         return gap;
       });
     } finally {
-      if (parked) this.dragHeld.delete(0);
+      if (parked) this.drag.held.delete(0);
     }
   }
 
@@ -2408,7 +2416,7 @@ export class Kinematics {
   // squares, since four tyres on a frame that can't twist may not all fit). Moving it all as
   // one opens no joint. A car held still (steering it, or frozen) isn't moved.
   private settle() {
-    if (this.contactTreads.length < 3 || this.fixedBody >= 0 || this.frozen.has(0) || this.dragHeld.has(0)) return;
+    if (this.contactTreads.length < 3 || this.fixedBody >= 0 || this.frozen.has(0) || this.drag.held.has(0)) return;
     for (let round = 0; round < 3; round++) {
       // For each tyre, how its contact point would rise or sink (LDraw y) for each of: the
       // model moving down, turning about x, turning about z (about the origin); and how far it

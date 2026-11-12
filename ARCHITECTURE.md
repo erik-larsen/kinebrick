@@ -681,7 +681,7 @@ They connect as plain parts. The viewer lists any in a model, so a part that sil
 
 ## Drags
 
-What a drag does for the user is in the README's [Interaction](README.md#interaction) section. Underneath:
+What a drag does for the user is in the README's [Interaction](README.md#interaction) section. In the solver, a drag's state (what it holds, what it turns, what it has found out on the way) is one object, a `Drag`, made when the drag starts (`holdWhatTheDragDoesntNeed`) and dropped when it ends (`letGoAfterDrag`); between drags the solver has an empty one, which holds nothing. Underneath:
 
 ### Push or turn
 

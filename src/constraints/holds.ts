@@ -57,16 +57,16 @@ export function holdRows(solver: Kinematics, fixed: Set<number>, toFrame: Set<nu
 
 export function holds(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
-  const fixed = new Set([...solver.frozen, ...solver.dragHeld]);
+  const fixed = new Set([...solver.frozen, ...solver.drag.held]);
   if (solver.fixedBody >= 0) fixed.add(solver.fixedBody);
   // Held bodies stay held while the loops close too (the weights are closing's): where the
   // rules can't all hold, what's held gives last. Else a layout's track gave a little as its
   // cars, far off the rails as built, were drawn onto it.
-  for (const row of holdRows(solver, fixed, solver.heldToFrame)) add(row, 0, DRIVE_WEIGHT);
+  for (const row of holdRows(solver, fixed, solver.drag.heldToFrame)) add(row, 0, DRIVE_WEIGHT);
   // Bodies turned together (see turnTogether): each turns against its housing, about the
   // grabbed body's axis, as fast as the grabbed body does against its own.
-  if (solver.dragTogether.length > 1) {
-    const [grabbed, ...others] = solver.dragTogether;
+  if (solver.drag.together.length > 1) {
+    const [grabbed, ...others] = solver.drag.together;
     const joint = solver.mech.joints[solver.parentJoint[grabbed]];
     const d = axisOf(joint.from, joint.to).transformDirection(solver.poses[joint.bodyA]);
     for (const body of others) {
