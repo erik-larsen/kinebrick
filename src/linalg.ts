@@ -18,8 +18,15 @@ export const RANK_TOLERANCE = 1e-6;
 // most a free motion of unit size costs there.
 const TIER_TOLERANCE = 1e-10;
 // A tier counts as costing nothing at all (see leastTurning) if its costs are at most this, as a
-// fraction of the most a motion of unit size turns the joints (both squared).
-const NOISE = 1e-20;
+// fraction of the most a motion of unit size turns the joints (both squared): a hundred-millionth
+// of a radian for each unit of motion is what's left of rounding, not a motion of the tier. At a
+// ten-billionth, the 42110 Land Rover Defender's steering, which its free motions turn about a
+// billionth, was kept still in closing the loops by sliding the car tens of LDU sideways on its
+// tyres, to undo a turn of a ten-thousandth of a radian.
+const NOISE = 1e-16;
+// With KINEBRICK_COUNT_NOISE set, each tier left out that a floor of 1e-20 would have kept is
+// written to the error output, with the set the function check is working (its --one).
+const countNoise = typeof process !== 'undefined' && !!process.env?.KINEBRICK_COUNT_NOISE;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
 const SPARSE_ROUNDS = 30;
 
@@ -92,7 +99,10 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
     // A tier whose costs are only rounding, next to how much the motions turn the joints, has
     // nothing to keep still: scaled up, its rounding would choose the motion (a loose truck's
     // steering, which nothing steers, swinging its wheels round wildly).
-    if (!(tierScale > NOISE * scale)) return;
+    if (!(tierScale > NOISE * scale)) {
+      if (countNoise && tierScale > 1e-20 * scale) console.error(`noise ${process.argv.includes('--one') ? process.argv[process.argv.indexOf('--one') + 1] : ''}`);
+      return;
+    }
     // C a, and C N (one column per free direction).
     const apply = (v: number[]) => {
       const out = new Array(c).fill(0);

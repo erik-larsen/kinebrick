@@ -471,7 +471,7 @@ So after each step, Kinebrick works out how far each has come apart, and moves e
 
 **Keeping to the tiers.** For a turn chosen by [least motion](#least-motion), the smallest amount isn't by size alone: of the ways to close the gaps, it's the one the tiers prefer, as in choosing the step's motion, so closing them doesn't nudge what the drag leaves still ([one problem for each step](docs/one-problem.md)). Where that only opens the gaps again, and would leave the step refused, the rest of the rounds go by size alone. So do they all with `?passes` in the address (`KINEBRICK_ONE=0` for the tests and scripts).
 
-**Tyre scrub in closing.** Closing the loops, the tier of every part's turning (tier 4) also counts a tyre scrubbing sideways or lifting off the ground: each LDU as much as a part turning a radian. Else, to close a gap of a hundred-thousandth of an LDU, the cheapest way would be to slide the whole car sideways on its tyres, which no tier counts, rather than turn a part a hair: the 42029 Customized Pick up Truck, pushed along by a rear wheel, went a quarter further than the wheel rolled. The tier that keeps the steering still (tier 2) still slides a car this way: the 42110 Land Rover Defender, rolled 0.4 radians forward on its four wheels and back, comes back 116 LDU to one side (a known fault; its test is marked to fail). Counting scrub in tier 2 too cured it, but changed how 16 sets move and left 6 functions worse.
+**Tyre scrub in closing.** Closing the loops, the tier of every part's turning (tier 4) also counts a tyre scrubbing sideways or lifting off the ground: each LDU as much as a part turning a radian. Else, to close a gap of a hundred-thousandth of an LDU, the cheapest way would be to slide the whole car sideways on its tyres, which no tier counts, rather than turn a part a hair: the 42029 Customized Pick up Truck, pushed along by a rear wheel, went a quarter further than the wheel rolled. A tier whose free motions move it by next to nothing is left out altogether: by a hundred-millionth of a radian or less for each unit of motion, which is what's left of rounding. Kept, the tier that keeps the steering still (tier 2) slid a car this way to undo its rounding: the 42110 Land Rover Defender, whose free motions turn its steering about a billionth, rolled 0.4 radians forward on its four wheels and back, came back 116 LDU to one side.
 
 **When the rules can't all hold.** A model's rounded-off positions can make two rules that should repeat each other disagree slightly. Then it comes as close as it can, by least squares:
 
@@ -986,7 +986,7 @@ They run in Node with no browser. Each loads a real model from `models/`, works 
 - Its gear lever clicks into its gate's five places, neutral in the middle and each slot's end sliding one ring, so the engine is in each of those four gears.
 
 **42110 Land Rover Defender** (from the OMR: checked only where `omr/` has been downloaded)
-- Rolled 0.4 radians forward on its four wheels, turned together, and back, it should come back where it started. It doesn't yet (it comes back 116 LDU to one side), so the test is marked to fail.
+- Rolled 0.4 radians forward on its four wheels, turned together, and back, it comes back where it started.
 
 ### The joints probe
 
