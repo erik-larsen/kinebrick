@@ -576,8 +576,10 @@ function changes(functions: { does: string }[], was: Checked[], now: Checked[]):
     if (before.rates) {
       const [wrongBefore, wrongNow] = [before.wrong?.length ?? 0, c.wrong?.length ?? 0];
       if (wrongNow !== wrongBefore) lines.push(`${wrongNow < wrongBefore ? 'better' : 'worse'}: ${what} ${wrongNow} parts by the wrong amount, had ${wrongBefore}`);
-      const [backBefore, backNow] = [before.strayed?.length ?? 0, c.strayed?.length ?? 0];
-      if (backNow !== backBefore) lines.push(`${backNow < backBefore ? 'better' : 'worse'}: ${what} ${backNow} parts not back, had ${backBefore}`);
+      // (By the ways worked that leave a part out of place, not the parts named: see ratchet.ts.)
+      const notBack = (x: Checked) => (x.back ?? []).flat().filter(([ldu, degrees]) => ldu > BACK || degrees > BACK).length;
+      const [backBefore, backNow] = [notBack(before), notBack(c)];
+      if (backNow !== backBefore) lines.push(`${backNow < backBefore ? 'better' : 'worse'}: ${what} ${backNow} ways not back, had ${backBefore}`);
     }
   });
   return lines;

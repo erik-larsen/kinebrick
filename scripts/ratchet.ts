@@ -1,8 +1,12 @@
 // The ratchet: what works may not break (see docs/plan.md, "The gate"). Compares each set's
 // function check results as they are now, in data/sets/, with what they were at a commit, and
 // lists every function that got worse: a result that fell (works to partly or no, partly to no),
-// a part that now moves by the wrong amount, or one that no longer comes back. Fails if any did.
-// What got better is counted too.
+// a part that now moves by the wrong amount, or a way worked that no longer comes back. Fails if
+// any did. What got better is counted too.
+// (Coming back is counted by the ways worked that leave a part out of place, from `back`, not by
+// the parts the check names in `strayed`: it names the one part left furthest each way, and where
+// two parts are left as far as each other to the eighth decimal, as the 9394's are, which one it
+// names turns on rounding, so the number of names went up and down with nothing changed.)
 //
 //   npm run ratchet                against the last commit (HEAD)
 //   npm run ratchet -- preview     against a branch, tag or commit
@@ -18,10 +22,14 @@ const RANK: Record<string, number> = { works: 0, partly: 1, no: 2, error: 3 };
 
 interface Checked {
   result: string;
-  back?: unknown; // there and back was measured
+  back?: [number, number][][]; // there and back was measured: for each control, each way, the furthest a part is left (LDU, degrees)
   wrong?: string[];
-  strayed?: string[];
 }
+
+// As BACK in check-functions.ts: how far from its start, in LDU or degrees, a part counts as not back.
+const BACK = 0.5;
+// How many of the ways a function's controls were worked leave a part not back.
+const notBack = (c: Checked) => (c.back ?? []).flat().filter(([ldu, degrees]) => ldu > BACK || degrees > BACK).length;
 
 // A set's file as it was at the commit, or null if it wasn't there.
 function before(file: string) {
@@ -57,9 +65,9 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
       return;
     }
     if ((c.wrong?.length ?? 0) > (b.wrong?.length ?? 0)) lines.push(`${c.wrong!.length} parts by the wrong amount, had ${b.wrong?.length ?? 0}`);
-    if ((c.strayed?.length ?? 0) > (b.strayed?.length ?? 0)) lines.push(`${c.strayed!.length} parts not back, had ${b.strayed?.length ?? 0}`);
+    if (notBack(c) > notBack(b)) lines.push(`${notBack(c)} ways not back, had ${notBack(b)}`);
     if (lines.length) worse.push(`${what}: ${lines.join('; ')}`);
-    else if (RANK[c.result] < RANK[b.result] || (c.wrong?.length ?? 0) < (b.wrong?.length ?? 0) || (c.strayed?.length ?? 0) < (b.strayed?.length ?? 0)) better++;
+    else if (RANK[c.result] < RANK[b.result] || (c.wrong?.length ?? 0) < (b.wrong?.length ?? 0) || notBack(c) < notBack(b)) better++;
   });
 }
 
