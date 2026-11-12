@@ -23,11 +23,12 @@ import { guidedPistons, shockAbsorbers } from './inference/pistons.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
 import { restingParts } from './inference/rests.ts';
 import { decorations, rideAlong } from './inference/rideAlong.ts';
-import { BALL_LINE, findLooseParts, type WorldCylinder, worldCylinders } from './inference/shared.ts';
+import { BALL_LINE, findLooseParts, worldCylinders } from './inference/shared.ts';
 import { findStrings, hangingParts } from './inference/strings.ts';
 import { bushesOnFourStuds, onFourStuds, platesOnEdge } from './inference/studs.ts';
 import { onTiles } from './inference/tiles.ts';
 import { anchorsOf, findRails, findRiders, magnetCouplings, railJoins, smallGroups } from './inference/trains.ts';
+import { findTreads, trackTreads } from './inference/treads.ts';
 export { axesCrossing, closestPoints, findMeshes, meshesChanged } from './inference/gears.ts';
 export { withoutSlidesOnCouplers } from './inference/joints.ts';
 export { lineUpBalls } from './inference/lineUp.ts';
@@ -384,26 +385,3 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
 }
 
-// A track touches the ground under its wheels, its links reaching `depth` beyond its path: so
-// each wheel of a track rolls on the ground like a tyre that reaches as far.
-function trackTreads(loops: Loop[]): Tread[] {
-  return loops.flatMap((loop, track) =>
-    loop.depth === null
-      ? []
-      : loop.wheels.map((w) => {
-          const point = loop.path.points[w.point];
-          return { part: loop.links[0], body: w.body, center: point.center.clone(), axis: point.axis.clone(), radius: point.radius + loop.depth!, track, rollRadius: point.radius };
-        }),
-  );
-}
-
-function findTreads(cyls: WorldCylinder[], bodyOf: number[], roles: string[]): Tread[] {
-  const treads: Tread[] = [];
-  for (const c of cyls) {
-    const sec = c.secs[0];
-    if (c.secs.length !== 1 || sec.shape !== 'W') continue;
-    const center = c.start.clone().addScaledVector(c.dir, sec.length / 2);
-    treads.push({ part: c.part, body: bodyOf[c.part], center, axis: c.dir.clone(), radius: sec.radius, ...(roles[c.part] === 'train motor' ? { fixed: true } : {}) });
-  }
-  return treads;
-}
