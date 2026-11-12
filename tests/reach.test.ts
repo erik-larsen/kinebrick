@@ -22,7 +22,7 @@ describe('a drag solved over what it can reach', () => {
   };
 
   it('holds the outriggers, has fewer motions to choose from, and comes out the same but for rounding', () => {
-    const whole = new Kinematics(mech);
+    const whole = new Kinematics(mech, { reach: false });
     const reach = new Kinematics(mech, { reach: true });
     const a = wind(whole);
     const b = wind(reach);
@@ -50,7 +50,7 @@ describe('a drag solved over what it can reach', () => {
       kin.letGoAfterDrag();
       return { out, turned };
     };
-    const whole = new Kinematics(mech);
+    const whole = new Kinematics(mech, { reach: false });
     const reach = new Kinematics(mech, { reach: true });
     const a = roll(whole);
     const b = roll(reach);

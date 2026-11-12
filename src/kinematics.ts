@@ -131,14 +131,15 @@ export interface Options {
   // in the function check, and 0.3 fails one more test. KINEBRICK_STILLNESS sets it (0 turns it off).
   stillness: number;
   // Least motion: a drag that turns a joint is solved only over the parts it can reach, the rest
-  // held where they are on the frame (see outOfReach). Off by default, for now: it's far quicker
-  // on a big model, but not the same to the last bit.
+  // held where they are on the frame (see outOfReach). It's far quicker on a big model.
+  // KINEBRICK_REACH=0 turns it off.
   reach: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
-// KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0 and KINEBRICK_STILLNESS.
+// KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS and
+// KINEBRICK_REACH=0.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -146,7 +147,7 @@ export const experiments: Options = {
   closeStill: setting('KINEBRICK_CLOSE_STILL') !== undefined ? Number(setting('KINEBRICK_CLOSE_STILL')) : 1e-3,
   balanced: setting('KINEBRICK_BALANCED') !== '0',
   stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
-  reach: setting('KINEBRICK_REACH') === '1',
+  reach: setting('KINEBRICK_REACH') !== '0',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's

@@ -181,9 +181,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 1733,
+    "seconds": 1399,
     "counts": {
       "no": 1,
       "partly": 5,
@@ -736,7 +736,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 6.2
+        "seconds": 6.3
       },
       {
         "result": "partly",
@@ -763,15 +763,15 @@
             ],
             "p1869 57520": [
               0,
-              4.71e-15
+              6.9e-15
             ],
             "p418 64178": [
               0,
-              0
+              1.15e-138
             ],
             "p1599 42055 - 18938": [
               0,
-              0
+              5.77e-138
             ]
           }
         ],
@@ -789,7 +789,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 115.4
+        "seconds": 117.5
       },
       {
         "result": "partly",
@@ -806,7 +806,7 @@
           {
             "p418 64178 against p1175 18939": [
               0,
-              0
+              8.4e-139
             ]
           }
         ],
@@ -824,7 +824,7 @@
         ],
         "cause": "not-driven",
         "detail": "p418 64178 against p1175 18939",
-        "seconds": 114.3
+        "seconds": 117.6
       },
       {
         "result": "partly",
@@ -878,7 +878,7 @@
         ],
         "cause": "not-driven",
         "detail": "p911 57520",
-        "seconds": 155.3
+        "seconds": 159.2
       },
       {
         "result": "partly",
@@ -897,19 +897,19 @@
           {
             "p1616 32270": [
               0,
-              0
+              3.16e-128
             ],
             "p1599 42055 - 18938": [
               0,
-              0
+              3.16e-128
             ],
             "p1869 57520": [
               0,
-              1.55e-14
+              3.07e-50
             ],
             "p418 64178": [
               0,
-              0
+              6.31e-129
             ]
           }
         ],
@@ -927,7 +927,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1616 32270",
-        "seconds": 75.4
+        "seconds": 52
       },
       {
         "result": "works",
@@ -941,7 +941,7 @@
           {
             "p1710 18947": [
               0,
-              0
+              2.29e-142
             ]
           }
         ],
@@ -957,7 +957,7 @@
             ]
           ]
         ],
-        "seconds": 118.7
+        "seconds": 54.3
       },
       {
         "result": "partly",
@@ -992,7 +992,7 @@
             ],
             "p418 64178": [
               0.00000471,
-              8.51e-46
+              6.12e-31
             ]
           }
         ],
@@ -1016,7 +1016,7 @@
         ],
         "cause": "too-little",
         "detail": "p1510 62274c01",
-        "seconds": 170.7
+        "seconds": 198.3
       },
       {
         "result": "works",
@@ -1070,7 +1070,7 @@
             ]
           ]
         ],
-        "seconds": 75.2
+        "seconds": 53.2
       },
       {
         "result": "works",
@@ -1114,7 +1114,7 @@
             "dead point"
           ]
         ],
-        "seconds": 198.1
+        "seconds": 199.8
       },
       {
         "result": "works",
@@ -1184,7 +1184,7 @@
             ]
           ]
         ],
-        "seconds": 482.4
+        "seconds": 214.6
       }
     ]
   }

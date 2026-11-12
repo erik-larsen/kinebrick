@@ -105,9 +105,9 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
-    "seconds": 5,
+    "seconds": 4,
     "counts": {
       "partly": 2,
       "not back": 2,
@@ -219,7 +219,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p8 15459",
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -308,7 +308,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p13 15460",
-        "seconds": 2.5
+        "seconds": 2.2
       },
       {
         "result": "skipped",
@@ -422,7 +422,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "not checked",

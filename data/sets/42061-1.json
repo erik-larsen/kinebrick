@@ -106,7 +106,7 @@
     ]
   },
   "generated": {
-    "commit": "4839cc2",
+    "commit": "a6f719f",
     "date": "2026-11-12",
     "seconds": 3,
     "counts": {
@@ -165,7 +165,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -274,15 +274,15 @@
           {
             "p184 10928": [
               0.125,
-              2.58
+              2.73
             ],
             "p178 42061 - 28216 against p170 18942": [
-              0.14,
-              2.8
+              0.151,
+              3.01
             ],
             "p170 18942 against p90 18940": [
               0,
-              2.58
+              2.73
             ]
           }
         ],
@@ -300,7 +300,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p170 18942 against p90 18940",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -370,7 +370,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.9
       },
       {
         "result": "works",
