@@ -8,7 +8,7 @@
 0 // Kinebrick: the track laid out afresh from the set's own pieces, with the trains set on it (scripts/train-layouts.ts)
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 7936 - Crossing.ldr
 1 0 320 0 300 1 0 0 0 1 0 0 0 1 7936 - Track.ldr
-1 0 0 -39 150 1 0 0 0 1 0 0 0 1 7936 - Crane.ldr
+1 0 570 -39 0 0 0 1 0 1 0 -1 0 0 7936 - Crane.ldr
 1 0 380 -64 -45 0.707107 0 -0.707107 0 1 0 0.707107 0 0.707107 7936 - Worker.ldr
 1 14 210 -22 -290 0 0 -1 0 1 0 1 0 0 30394.dat
 

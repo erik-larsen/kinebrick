@@ -28,12 +28,12 @@
     ]
   },
   "generated": {
-    "commit": "e4e05ce",
+    "commit": "cd9403b",
+    "uncommitted": true,
     "date": "2026-11-11",
-    "seconds": 1,
+    "seconds": 100,
     "counts": {
-      "works": 1,
-      "no": 1
+      "works": 2
     },
     "loose": [
       "p9 6141",
@@ -93,16 +93,12 @@
         "result": "works"
       },
       {
-        "result": "no",
-        "why": [
-          "went 0 of a 6947 LDU lap",
-          "went 0.0 LDU for each radian its wheel turned, not 20"
-        ],
-        "travelled": 0,
+        "result": "works",
+        "travelled": 6940,
         "length": 6947,
-        "offTrack": 0.4,
-        "apart": 0.1,
-        "rolled": 0,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 20,
         "radius": 20
       }
     ]

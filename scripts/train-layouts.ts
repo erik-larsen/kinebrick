@@ -41,7 +41,7 @@ const SLEEPERS = /^(4166a?b?|767|3034)\.dat$/i;
 // Metroliner (4558, and its re-release 10001) places its couplings 1 to 3 LDU off their hinges,
 // as no rule could set right, and models/ has it corrected (see docs/ldraw-errata.md).
 const CORRECTED: Record<string, string> = { '4558-1': 'models/10001-Metroliner.mpd', '10001-1': 'models/10001-Metroliner.mpd' };
-// Lines of an OMR file that are wrong, and what they should be, by set: [what's wrong, the line
+// Lines of an OMR file that are wrong, or that Kinebrick changes for its layouts, and what they should be, by set: [why, the line
 // as the file has it, the line as it should be].
 const ERRATA: Record<string, [string, string, string][]> = {
   '4565-1': [
@@ -49,6 +49,21 @@ const ERRATA: Record<string, [string, string, string][]> = {
       "The locomotive's front bogie is placed 8 LDU lower than its motor, though both turn in the same train base: its wheels would stand 10 LDU lower than the motor's",
       '1 0 -120 8 -0.008 0 0 -1 0 1 0 1 0 0 4565 - locomotive - wheels 2.ldr',
       '1 0 -120 0 -0.008 0 0 -1 0 1 0 1 0 0 4565 - locomotive - wheels 2.ldr',
+    ],
+  ],
+  // Not errors, but changes for Kinebrick's layouts.
+  'test-1': [
+    [
+      "The test layout lays the 4563's track out afresh, larger: its speed regulator, where the 4563 has it, would stand across the new oval's straight; moved outside the oval",
+      '1 0 270 -128 -1400 1 0 0 0 1 0 0 0 1 2869C02.DAT',
+      '1 0 270 -128 -1720 1 0 0 0 1 0 0 0 1 2869C02.DAT',
+    ],
+  ],
+  '10277-1': [
+    [
+      "The display stand's two bricks between the rails hold the locomotive's middle section up, clipped to it: left out, it stands on its wheels",
+      '1 0 0 -56 -1560 1 0 0 0 1 0 0 0 1 3010.dat\n1 0 0 -56 -1360 1 0 0 0 1 0 0 0 1 3010.dat\n',
+      '0 // Kinebrick: the display stand\'s two bricks under the middle section left out\n',
     ],
   ],
 };
@@ -325,15 +340,19 @@ function setTrainsOnTrack(text: string): { text: string; trains: number; moved: 
     const lineParts = lineOf.filter((l) => l === lineOf[i]).length;
     votes.set(lineOf[i], new Map([[near.car, lineParts]]));
   });
+  // The parts on each line, those joined to nothing aside (they don't hold a line back: a
+  // road-rail vehicle's loose road wheels).
   const partsOnLine = new Map<number, number>();
-  for (const l of lineOf) partsOnLine.set(l, (partsOnLine.get(l) ?? 0) + 1);
+  lineOf.forEach((l, i) => {
+    if (!mech.loose.includes(i)) partsOnLine.set(l, (partsOnLine.get(l) ?? 0) + 1);
+  });
   let moved = 0;
   for (const [line, v] of votes) {
     // Cars that move alike count together (a kept train's, all lifted as one).
     const byMove = new Map<Matrix4, number>();
     for (const [car, n] of v) byMove.set(moves.get(car)!, (byMove.get(moves.get(car)!) ?? 0) + n);
     const [move, n] = [...byMove].sort((a, b) => b[1] - a[1])[0];
-    if (n * 2 < partsOnLine.get(line)!) continue;
+    if (n * 2 < (partsOnLine.get(line) ?? 0)) continue;
     const tokens = lines[line].trim().split(/\s+/);
     lines[line] = partLine(tokens, move.clone().multiply(lineMatrix(tokens)));
     moved++;

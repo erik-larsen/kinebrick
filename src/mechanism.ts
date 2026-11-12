@@ -445,6 +445,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // in it turns, rather than being fixed to the motor and whatever the motor is built into.
   for (const c of cyls) if (roles[c.part] === 'motor' && c.secs.some((s) => s.shape === 'A')) c.turns = true;
   const connections = findConnections(cyls, frictionRigid);
+  // A train wheel on a wheel pin (a handcar's) rolls freely: the pin's lip doesn't hold it.
+  for (const c of connections) if (c.held && (roles[c.male] === 'train wheel' || roles[c.female] === 'train wheel')) [c.kind, c.held] = ['revolute', false];
   // A train track's pieces hold together end to end (nothing else joins them), and the track,
   // the trains' wheels and what's built on them are assemblies of their own, standing apart
   // from each other, never loose (see findLooseParts).
@@ -467,7 +469,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...onTiles(roles, cyls, connections));
   connections.push(...inGrooves(parts, cyls, table));
   connections.push(...guidedRacks(parts.length, cyls, connections, guide));
-  connections.push(...decorations(parts, roles, cyls));
+  connections.push(...decorations(parts, roles, cyls, connections));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
   connections.push(...shockAbsorbers(cyls));
   const actuators = linearActuators(parts, connections);
@@ -969,15 +971,39 @@ function platesOnEdge(cyls: WorldCylinder[]): Connection[] {
 // Decoration: parts that are there for looks and connect to nothing in a way that matters,
 // such as stickers and the old pneumatic hoses models use for exhausts and cables. Each moves
 // with the part whose connection point (stud, hole, axle) is nearest to it.
-function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]): Connection[] {
+function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
   const isDecoration = (i: number) => roles[i] === 'decoration' || roles[i] === 'path' || roles[i] === 'figure';
   const anchors = cyls.filter((c) => !isDecoration(c.part));
+  const nearestTo = (at: Vector3) => {
+    let nearest: WorldCylinder | null = null;
+    for (const c of anchors) if (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at)) nearest = c;
+    return nearest;
+  };
+  // On a train layout, a figure is fixed as one, to what its lowest piece (its feet) is nearest:
+  // a figure standing on the track beside a train joins neither to the other. Its pieces are
+  // those joined to each other, or in one submodel and within 40 LDU of each other (arms and
+  // hands, posed by hand, may not sit in their sockets).
+  const layout = roles.includes('rail');
+  const lead = parts.map((_, i) => i);
+  const find = (i: number): number => (lead[i] === i ? i : (lead[i] = find(lead[i])));
+  if (layout) {
+    for (const c of connections) if (roles[c.male] === 'figure' && roles[c.female] === 'figure') lead[find(c.male)] = find(c.female);
+    const figures = parts.flatMap((p, i) => (roles[i] === 'figure' ? [i] : []));
+    const at = (i: number) => new Vector3().setFromMatrixPosition(parts[i].matrix);
+    for (const a of figures) for (const b of figures) if (a < b && parts[a].submodel === parts[b].submodel && at(a).distanceTo(at(b)) < 40) lead[find(a)] = find(b);
+  }
+  const lowest = new Map<number, number>();
+  parts.forEach((p, i) => {
+    if (!layout || roles[i] !== 'figure') return;
+    const was = lowest.get(find(i));
+    if (was === undefined || p.matrix.elements[13] > parts[was].matrix.elements[13]) lowest.set(find(i), i);
+  });
   const result: Connection[] = [];
   parts.forEach((p, i) => {
     if (!isDecoration(i)) return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
-    let nearest: WorldCylinder | null = null;
-    for (const c of anchors) if (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at)) nearest = c;
+    const feet = lowest.get(find(i));
+    const nearest = nearestTo(feet === undefined ? at : new Vector3().setFromMatrixPosition(parts[feet].matrix));
     if (nearest) result.push({ male: i, female: nearest.part, kind: 'rigid', from: at, to: at.clone() });
   });
   return result;

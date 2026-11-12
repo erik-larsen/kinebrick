@@ -9,30 +9,38 @@
       },
       {
         "kind": "run",
-        "does": "Turning a wheel of the train runs it the full length of the track (no train found on the track yet)"
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p1 u9550c01",
+        "wheelsets": [
+          "p1 u9550c01",
+          "p2 u9550c01"
+        ]
       }
     ]
   },
   "generated": {
-    "commit": "e4e05ce",
+    "commit": "cd9403b",
+    "uncommitted": true,
     "date": "2026-11-11",
-    "seconds": 0,
+    "seconds": 1,
     "counts": {
-      "works": 1,
-      "no": 1
+      "works": 2
     },
     "loose": [
-      "p50 3034"
+      "p54 3034"
     ],
     "functions": [
       {
         "result": "works"
       },
       {
-        "result": "no",
-        "why": [
-          "Kinebrick doesn't find the train's wheels on the track"
-        ]
+        "result": "works",
+        "travelled": 659,
+        "length": 439,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 18,
+        "radius": 18
       }
     ]
   }

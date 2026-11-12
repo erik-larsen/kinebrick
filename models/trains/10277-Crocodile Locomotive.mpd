@@ -8,10 +8,10 @@
 0 // Kinebrick: the track as the OMR file lays it out, with the trains set on it (scripts/train-layouts.ts)
 1 16 0 0 0 1 0 0 0 1 0 0 0 1 10277 - Rails for Presentation.ldr
 1 0 124 -60 -930 0 -1 0 0 0 1 -1 0 0 10277 - Data Display.ldr
-1 16 130 -112 -1650 1 0 0 0 1 0 0 0 1 10277 - Middle Drivetrain.ldr
-1 71 0 -248 -1450 1 0 0 0 1 0 0 0 1 10277 - Driver's Cab Roof.ldr
-1 16 0 -72 -1730 0 0 -1 0 1 0 1 0 0 10277 - Front Driveline.ldr
-1 16 0 -72 -1170 0 0 1 0 1 0 -1 0 0 10277 - Front Driveline.ldr
+1 16 130 -111 -1650 1 0 0 0 1 0 0 0 1 10277 - Middle Drivetrain.ldr
+1 71 0 -247 -1450 1 0 0 0 1 0 0 0 1 10277 - Driver's Cab Roof.ldr
+1 16 0 -71 -1730 0 0 -1 0 1 0 1 0 0 10277 - Front Driveline.ldr
+1 16 0 -71 -1170 0 0 1 0 1 0 -1 0 0 10277 - Front Driveline.ldr
 
 
 
@@ -71,8 +71,7 @@
 1 0 -90 -16 -2010 0 0 -1 0 1 0 1 0 0 4162.dat
 1 0 90 -16 -2010 0 0 -1 0 1 0 1 0 0 4162.dat
 0 STEP
-1 0 0 -56 -1560 1 0 0 0 1 0 0 0 1 3010.dat
-1 0 0 -56 -1360 1 0 0 0 1 0 0 0 1 3010.dat
+0 // Kinebrick: the display stand's two bricks under the middle section left out
 0 STEP
 1 72 50 -48 -1930 0 0 -1 0 1 0 1 0 0 3228c.dat
 1 72 -50 -48 -1930 0 0 -1 0 1 0 1 0 0 3228c.dat

@@ -531,6 +531,41 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 8 R 8 4] [pos=150 8 0] [grid=C 10 1 20 0]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 8 R 8 4] [pos=-150 8 0] [grid=C 10 1 20 0]
 
+0 // The older train bases with wheels (736c02, 270c02, and 736c01, 270c01 inside them) are read as their pieces: the base, two magnet holders (735) and two wheelsets (u9550c01), whose axles turn in the base's holders.
+
+0 FILE u9550c01.dat
+0 // Train Wheels Spoked with Cylindrical Rim with Axle Steel 6 x 96 LDU: the axle, round, along x, turning in a train base's holders (736, 270); and the two wheels' treads, 18 LDU in radius (as high as the bases hold the axle above the rail heads), centred 50 LDU out either side
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 80] [center=true] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 18 6] [center=true] [pos=50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 18 6] [center=true] [pos=-50 0 0] [ori=0 1 0 -1 0 0 0 0 1]
+
+0 FILE 270.dat
+0 // Train Base 6 x 12 Type 1: as 736 has in the shadow library, the holders its wheelsets' axles turn in, along x, 42 LDU below its origin and 70 LDU either side of its middle; and the sockets its magnet holders (735) turn in, 100 LDU either side
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 4 80] [center=true] [pos=0 42 70] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 4 80] [center=true] [pos=0 42 -70] [ori=0 1 0 -1 0 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 38 R 8 4] [pos=0 38 -100] [grid=1 2 0 200]
+
+0 FILE 50254.dat
+0 // Train Wheel Small with Notched Hole: its tread is its hub, 10 LDU in radius, about its z axis at its origin (the disc on its inner side, 18 LDU in radius, is its flange)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 10 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2927.dat
+0 // Train Wheel Tiny: as 50254, its tread is its hub, 10 LDU in radius, about its z axis at its origin; and its hole as 50254's, which turns on a plate's wheel pin (2926) (the shadow library closes it at one end, so that it takes no pin)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 10 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 4 10] [pos=0 0 9] [ori=1 0 0 0 0 -1 0 1 0]
+
+0 FILE 85489a.dat
+0 // Train Wheel Large with Axlehole and Pinhole: its tread, 38 LDU in radius (its flange reaches 46), about its z axis at its origin
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 38 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 85489b.dat
+0 // Train Wheel Large without Flange: its tread, 38 LDU in radius, about its z axis at its origin
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 38 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 55423.dat
+0 // Train Wheel for RC Train: its tread, 22 LDU in radius (its flange reaches 30), about its z axis at its origin
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 22 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 2959.dat
 0 // Magnet Cylindrical Casing: holds its magnet (70023) fast, at its origin
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 12 16] [center=true] [ori=1 0 0 0 0 1 0 -1 0]

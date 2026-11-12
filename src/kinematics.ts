@@ -527,10 +527,12 @@ export class Kinematics {
     // Its trains' wheels stand on the rail heads, whatever else stands lower on the table.
     if (this.mech.track) lowest = this.mech.track.head();
     this.groundY = lowest;
+    // Only train wheels touch it there (a road-rail vehicle's road wheels ride just above it).
+    const onRails = (part: number) => !this.mech.track || ['train wheel', 'train motor'].includes(this.mech.roles[part]);
     this.mech.treads.forEach((t, i) => {
       const p = lowestPoint(t.center, t.axis, t.radius);
       this.contactHeights[i] = p ? p.y : 0;
-      if (p && Math.abs(p.y - lowest) < GROUND_TOLERANCE) this.contactTreads.push(i);
+      if (p && Math.abs(p.y - lowest) < GROUND_TOLERANCE && onRails(t.part)) this.contactTreads.push(i);
     });
   }
 
@@ -1728,7 +1730,9 @@ export class Kinematics {
       const rollAt = tread.rollRadius === undefined ? p : hub.clone().lerp(p, tread.rollRadius / tread.radius);
       // A train motor's wheels are part of it and can't turn: it slides along the rails.
       if (!tread.fixed) rolling.get(tread.body)!.rows.push(along(rollAt, forward));
-      const onRails = riderBodies.has(tread.body);
+      // (On a track, every train wheel is on its rail: a wheelset of two wheels turning apart,
+      // a 4.5V wheel block's, has its rider on one of them.)
+      const onRails = riderBodies.has(tread.body) || (this.mech.track !== undefined && ['train wheel', 'train motor'].includes(this.mech.roles[tread.part]));
       if (tread.track !== undefined) {
         if (!tracks.has(tread.track)) tracks.set(tread.track, { axis, rows: [] });
         tracks.get(tread.track)!.rows.push(along(p, sideways));
