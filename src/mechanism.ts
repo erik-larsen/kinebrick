@@ -12,6 +12,7 @@ import { findConnections } from './inference/fits.ts';
 import { findGears, findMeshes, rackMesh } from './inference/gears.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
 import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
+import { fixPins } from './inference/pins.ts';
 import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, axialOverlap, AXIS_TOLERANCE, BALL_LINE, findLooseParts, isAntiStud, isStud, LOOSE_ALIGN_TOLERANCE, rigidGroups, SURFACE_OVERLAP, type WorldCylinder, worldCylinders } from './inference/shared.ts';
 export { axesCrossing, closestPoints, findMeshes, meshesChanged } from './inference/gears.ts';
 export { withoutSlidesOnCouplers } from './inference/joints.ts';
@@ -1346,30 +1347,6 @@ export function movePaths(paths: PlacedPath[], parts: PlacedPart[], bodyOf: numb
   paths.forEach((path, i) => path.points.forEach((point, k) => Object.assign(point, moved[i][k])));
 }
 
-
-// A pin joins two parts through round holes, and both turn on it. Which of them the pin turns
-// with doesn't matter, so it's locked to one (the one it goes furthest into, or the first in
-// the model), saving a body that only spins to no purpose. A friction pin's other joints are
-// stiff, or, if `frictionRigid`, rigid too (marked `held`, so inferMechanism knows).
-function fixPins(connections: Connection[], roles: string[], frictionRigid: boolean) {
-  roles.forEach((role, pin) => {
-    if (role !== 'pin' && role !== 'friction pin') return;
-    const turning = connections.filter((c) => c.male === pin && c.kind === 'revolute');
-    if (turning.length === 0) return;
-    const length = (c: Connection) => c.from.distanceTo(c.to);
-    turning.sort((a, b) => length(b) - length(a) || a.female - b.female);
-    turning[0].kind = 'rigid';
-    if (role !== 'friction pin') return;
-    for (const c of turning.slice(1)) {
-      if (frictionRigid) {
-        c.kind = 'rigid';
-        c.held = true;
-      } else {
-        c.stiff = true;
-      }
-    }
-  });
-}
 
 // A part turning on an axle may slide along it too, as far as the parts either side of it on
 // the axle let it, if a linkage works it that way: its body turns on another body about an
