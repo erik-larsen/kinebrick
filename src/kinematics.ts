@@ -134,12 +134,16 @@ export interface Options {
   // held where they are on the frame (see outOfReach). It's far quicker on a big model.
   // KINEBRICK_REACH=0 turns it off.
   reach: boolean;
+  // A gear's or tyre's centre is taken on the axis of the joint its body turns on (see
+  // onAxis), not where the part itself is placed. Off by default, for now; KINEBRICK_CENTRES=1
+  // turns it on.
+  centres: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
-// KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS and
-// KINEBRICK_REACH=0.
+// KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
+// KINEBRICK_REACH=0 and KINEBRICK_CENTRES=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -148,6 +152,7 @@ export const experiments: Options = {
   balanced: setting('KINEBRICK_BALANCED') !== '0',
   stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
   reach: setting('KINEBRICK_REACH') !== '0',
+  centres: setting('KINEBRICK_CENTRES') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -307,6 +312,14 @@ export class Kinematics {
     this.findCouplings();
     this.findMounts();
     this.reset();
+    // With centres (see onAxis), where each tyre touches the ground at the start is where it
+    // touches with its centre on its axle's axis, so that settling doesn't move the car at once.
+    if (this.options.centres) {
+      this.mech.treads.forEach((_, i) => {
+        const p = this.contactPoint(i);
+        if (p) this.contactHeights[i] = p.y;
+      });
+    }
     this.strings = (mech.strings ?? []).map((s) => ({
       length: this.stringNow(s).layout.length,
       hookOffset: s.hook ? this.hookOffset(s) : null,
@@ -1800,7 +1813,28 @@ export class Kinematics {
   contactPoint(treadIndex: number): Vector3 | null {
     const t = this.mech.treads[treadIndex];
     const pose = this.poses[t.body];
-    return lowestPoint(t.center.clone().applyMatrix4(pose), t.axis.clone().transformDirection(pose), t.radius);
+    const axis = t.axis.clone().transformDirection(pose);
+    return lowestPoint(this.onAxis(t.body, t.center.clone().applyMatrix4(pose), axis), axis, t.radius);
+  }
+
+  // With the centres option: a round part's centre (`c`, where it is now, a gear's or a tyre's
+  // turning about `axis`) taken on the axis of the joint its body turns on, if that's a turning
+  // joint along the same axis. A joint's axis comes from the axle and its hole, and the gear or
+  // tyre is a part of its own, which may be placed a hair off it (a model's positions are rounded
+  // off). Off it, the gear's teeth would be taken to go round a little faster on one side and
+  // slower on the other, so two gears no longer turn in the ratio of their teeth, and a gear train
+  // that closes on itself jams (the 858 Auto Engines' gears, every part nudged by up to 0.05 LDU).
+  // Without the option, or for any other body, `c` as it is.
+  onAxis(body: number, c: Vector3, axis: Vector3): Vector3 {
+    if (!this.options.centres) return c;
+    const link = this.parentLink(body);
+    if (!link) return c;
+    const j = this.mech.joints[link.joint];
+    if (j.kind !== 'revolute') return c;
+    const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+    if (Math.abs(d.dot(axis)) < 0.999) return c;
+    const from = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+    return from.addScaledVector(d, new Vector3().subVectors(c, from).dot(d));
   }
 
   // ---------------------------------------------------------------------------
