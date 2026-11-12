@@ -1126,7 +1126,8 @@ Browser-level tests for these paths can come later.
 | `src/studio.ts` | Reads the LDraw model out of a BrickLink Studio file (`.io`): a ZIP archive, encrypted with Studio's password |
 | `src/library.ts` | For a model opened from your own computer: fetches its parts from an LDraw library online (erik-larsen.github.io/ldraw, or another given with `?library=`, such as `?library=/ldraw/` for the one in `ldraw/` under `npm run dev`), and keeps the file and the parts in the browser |
 | `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and Kinebrick's own settings in it; brings a real LEGO set's file into the shape Kinebrick keeps it in |
-| `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
+| `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6): the types the rest of the code reads, and the order the rules run in (see [The inference](#the-inference)) |
+| `src/inference/` | The inference rules, a file for each rule or group of rules that belong together, and in `shared.ts` what they share (see [The inference](#the-inference)) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
 | `src/constraints/` | The equations each kind of connection writes (see [Connections become equations](#3-connections-become-equations)), a file for each kind, and in `equations.ts` what they share |
 | `src/linalg.ts` | The solver's linear algebra: null spaces, orthonormal bases, the symmetric eigen-solve, the tiers' least squares and the damped solution that closes the loops |
@@ -1141,6 +1142,20 @@ Browser-level tests for these paths can come later.
 | `src/thumbnail.ts` | A picture of the model for its card in the README, taken when the page is opened with `?thumb` |
 | `src/jointAxes.ts` | Draws joint axes |
 | `src/connections.ts` | What a connection point looks like in the table |
+
+### The inference
+
+`buildMechanism` in `src/mechanism.ts` runs the rules in `src/inference/` in five stages. Each stage reads what the ones before it found. Within a stage, the order matters where a rule reads what an earlier one did: a rule for parts that would be loose comes after the rules that attach parts, and a rule that replaces connections comes after the rules that find them. The comments in `buildMechanism` say where.
+
+| Stage | Files, in the order they first run | What they do |
+|---|---|---|
+| 1. Connections | `shared.ts`, `fits.ts`, `trains.ts`, `pins.ts`, `studs.ts`, `tiles.ts`, `grooves.ts`, `racks.ts`, `rideAlong.ts`, `pistons.ts`, `actuators.ts`, `bushes.ts`, `couplings.ts` | Connection points in model coordinates; which of them fit (axles and pins in holes, studs in anti-studs, balls in sockets, tyres on rims); a train track's pieces and the magnets that couple its cars; which part each pin turns with; parts held between studs, on tiles or in grooves; racks guided past their gear; decorations; pistons, shock absorbers and linear actuators; bushes that lock a part to their axle; universal joints and balls in wheel hubs |
+| 2. Loose parts | `studs.ts`, `looseFits.ts`, `strings.ts`, `hooks.ts`, `rideAlong.ts`, `trains.ts` | A second chance for parts no rule attached; what hangs on a string or is hooked to a chain; what is a figure's own or a layout's scenery; the rest ride along with what's nearest |
+| 3. Bodies | `bodies.ts`, `axleSlides.ts`, `rests.ts` | Parts fixed to each other become bodies; parts a linkage slides along their axle, and parts resting on others, which turn connections into slides |
+| 4. Joints | `joints.ts`, `lineUp.ts` | Joints between bodies, then axles and balls built a hair out of line put on one line |
+| 5. Between bodies | `treads.ts`, `trains.ts`, `gears.ts`, `couplings.ts`, `loops.ts`, `hooks.ts`, `strings.ts`, `actuators.ts`, `bodies.ts` | Tyres and train wheels; gears and their meshes; couplings; loops of chain, track and rubber band; what's hooked to a chain; strings; the actuators' screws; each body's middle |
+
+`inferMechanism` runs `buildMechanism` with friction pins rigid, and again with them as stiff joints if the model can't move so. Then `racksToGuide` (`racks.ts`) asks which racks need a guide, and if any do, it all runs again with them guided.
 
 ### Data
 
