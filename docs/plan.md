@@ -71,6 +71,25 @@ What this says, and what it doesn't:
 - **Two runs of the same code do not agree in full.** Against the results stored before it, this run has 9 functions better and 2 worse (42111 function 4 and 8110 function 14, each with one more part that did not come back), with no change to the solver between them. These results are kept as the new base all the same, as the code is the same. The jitter test of phase 1 has to say how much a result moves from run to run, so the ratchet can tell a real loss from this. A second run the same day, of every set but the 8110, agreed with this one in full: so the 11 differences may come from the stored results' older commits and not from chance.
 - **One set took most of the time.** The 8110 took 5 hours in one process; the next slowest, the 42082, took under 1. Since then (2026-11-11) a slow set is checked a function to a process, with the same results, and the 8110 is checked apart from the rest, before a merge to `main`: even side by side, it takes 1 hour 55 minutes, as long as its slowest function. The daily check of the other 185 sets then took 51 minutes, and came out the same as the run before it, function for function. See [Where the 8110's time goes](#where-the-8110s-time-goes).
 
+### Results that hang on where the model sits
+
+`npm run invariance` checks each set's functions on changed copies of its model, and compares each with a plain copy. None of the changes alters the mechanism, so every function should come out the same. On the 33 quick sets (209 functions), 2026-11-11:
+
+| The model is | Same | A control went a different distance | Other parts listed | Another result |
+|---|---|---|---|---|
+| copied as it is | 209 | 0 | 0 | 0 |
+| moved 1,000 LDU along and 600 back | 195 | 1 | 12 | 1 |
+| turned a quarter turn about the upright | 204 | 1 | 4 | 0 |
+| turned 37 degrees about the upright | 203 | 1 | 4 | 1 |
+| nudged: every part by up to 0.05 LDU each way | 171 | 2 | 12 | 24 |
+
+- **The plain copy agrees in full**, with the stored results too. So the check is repeatable, and the differences below are real.
+- **Moving the model changes 14 functions.** The solver's answer hangs on how far the model is from the origin. That is the solver's to fix (phase 4): a model's place should not matter.
+- **Turning it changes 5 or 6.** Fewer than moving it, and about as many at 37 degrees as at a quarter turn, so little hangs on parts being square to the axes.
+- **A nudge of 0.05 LDU changes 38, and the result of 24 (11%).** 20 of the 24 get worse, 8 of them from works to no; 4 get better. A stud is 20 LDU, so the nudge is a quarter of a percent of a stud: a tolerance somewhere is tighter than that. A model in the OMR with a part that far off would fail the same way, so some of today's failures may be this and not a missing rule. Finding which tolerances is the first task of the inference lanes.
+
+The measure fails while any result changes. It joins the gate once it passes on the quick sets.
+
 ## Principles
 
 1. **Measure before you fix.** Every failing function has a recorded cause. Work is chosen by cause, largest first.
@@ -100,12 +119,12 @@ Make the function check say why, make it complete, and make it fast.
 | Slowest sets first, by the last run's times | `scripts/check-functions.ts` | None needed |
 | The full check runs on demand, with no schedule on any machine, and a ratchet compares it with any commit. The slowest sets (for now the 8110) are left out of it, and checked before `main` moves | `scripts/check-functions.ts` (`--slow`), `scripts/ratchet.ts` (new) | The ratchet against a known commit |
 | The scan counts each large separate group in a file as a model of its own | `scripts/scan-omr.ts` | A two-model file |
-| Invariance: a model moved and turned about the upright gives the same results. Jitter: parts moved by 0.05 LDU give the same results | `tests/invariance.test.ts` (new) | Itself |
+| Invariance: a model moved and turned about the upright gives the same results. Jitter: parts moved by 0.05 LDU give the same results | `scripts/invariance.ts` (`npm run invariance`): a measure for now, a gate once it passes | Its plain copy matches the stored results |
 | Skip reasons from a fixed list: needs gravity, needs force, model error, check limit | `data/sets/*.json` (`skip`), `data/sets/README.md` | A test that each reason is on the list |
 
 **Done when:** every failing function has a cause; the full check takes under an hour, so it can run whenever it is wanted; one command says what a change gained and lost.
 
-**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, a slow set checked a function to a process, the 8110 checked apart (`npm run functions -- --slow`), the full check at 51 minutes, the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the scan's count of second models; the invariance and jitter tests; skip reasons from a fixed list.
+**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, a slow set checked a function to a process, the 8110 checked apart (`npm run functions -- --slow`), the full check at 51 minutes, the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the scan's count of second models; skip reasons from a fixed list; the gear stick with a gate. The invariance and jitter measure is written, and does not pass: see [Results that hang on where the model sits](#results-that-hang-on-where-the-model-sits).
 
 ### Phase 2. Structure
 
