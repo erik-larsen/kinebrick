@@ -1525,19 +1525,42 @@ export class Kinematics {
   // taking up play (1, or STUD for a turning row), and 0 for every other row (see playMotion).
   private buildEquations(gaps: number[] | null, slip: Slip | null, skipTree = false, weights: number[] | null = null, play: number[] | null = null): Row[] {
     const rows: Row[] = [];
+    // What a drag can't reach is held where it is on the frame (see holds), so a row on nothing
+    // but those bodies and the frame has nothing left to say, but its rounding: left out, so that
+    // can't hold back what the drag moves. (The 855 Mobile Crane's hook block hangs from the boom
+    // on a string whose rows are a hundred-thousandth out when the whole crane moves as one. Held
+    // with the boom, it turned the car a little as it rolled, until the rolling stopped.) Only
+    // tyres touch the ground, and they're always in reach.
+    const held = this.drag.outOfReach;
+    let all = true; // whether every row is kept: the holds' own always are
+    const onlyHeld = (row: Row) => {
+      let touches = false;
+      for (let b = 1; b < this.bodyCount; b++) {
+        for (let k = 0; k < 6; k++) {
+          if (row[6 * b + k] === 0) continue;
+          if (!held.has(b)) return false;
+          touches = true;
+        }
+      }
+      return touches;
+    };
     const eq: Equations = {
       n: 6 * this.bodyCount,
       gaps: gaps !== null,
       skipTree,
       slip,
       add: (row: Row, gap = 0, weight = 1, playScale = 0) => {
+        if (!all && onlyHeld(row)) return;
         rows.push(row);
         gaps?.push(gap);
         weights?.push(weight);
         play?.push(playScale);
       },
     };
-    for (const connection of CONNECTIONS) connection(this, eq);
+    for (const connection of CONNECTIONS) {
+      all = connection === holds || held.size === 0;
+      connection(this, eq);
+    }
     return rows;
   }
 
