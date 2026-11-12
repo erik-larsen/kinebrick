@@ -7,6 +7,7 @@ import { acrossDirections, Kinematics, nullSpace } from './kinematics.ts';
 import { PathPoint, PlacedPart, PlacedPath } from './ldr.ts';
 import { LoopPath } from './paths.ts';
 import { groupIntoBodies, nameBodies } from './inference/bodies.ts';
+import { crankWebs, dropBallsInBearings, groovedBalls, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
 import { findGears, findMeshes, rackMesh } from './inference/gears.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
@@ -469,28 +470,6 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
 }
 
-// A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
-// or the part it sits in, has nothing else to hold it (a half shaft, a universal joint at its
-// other end). Where both turn in bearings of their own, on axes through the ball (a drive shaft
-// joined at an angle to another, as an official bucket wheel excavator's are), the joint would
-// tie them a second way, which shafts built a hair out of line can't keep: they locked.
-function dropBallsInBearings(joints: Joint[], joined: { partA: number; partB: number; center: Vector3 }[], roles: string[], bodyOf: number[]) {
-  const turnsThrough = (body: number, center: Vector3) =>
-    joints.some((j) => {
-      if (j.kind !== 'revolute' || (j.bodyA !== body && j.bodyB !== body)) return false;
-      const dir = new Vector3().subVectors(j.to, j.from).normalize();
-      const rel = new Vector3().subVectors(center, j.from);
-      return rel.addScaledVector(dir, -rel.dot(dir)).length() < BALL_LINE;
-    });
-  for (const { partA, partB, center } of joined) {
-    if (roles[partA] !== 'nudged ball') continue;
-    const [a, b] = [bodyOf[partA], bodyOf[partB]];
-    if (!turnsThrough(a, center) || !turnsThrough(b, center)) continue;
-    const k = joints.findIndex((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(a) && [j.bodyA, j.bodyB].includes(b) && j.from.distanceTo(center) < BALL_LINE);
-    if (k >= 0) joints.splice(k, 1);
-  }
-}
-
 // A bush seated in a Technic plate's hole grips the plate: the plate's hole is counterbored
 // 4 LDU deep for a bush's flange (a brick's only 2), and the bush reaches at least
 // BUSH_SEAT into it. Clamped so, the plate turns with the bush's axle, as an old helicopter's
@@ -637,33 +616,6 @@ function guidedPistons(parts: PlacedPart[], roles: string[], cyls: WorldCylinder
   return guided;
 }
 
-// A universal joint's centre is a cross whose two arms turn in the ends of two shafts. As two
-// hinges, the cross would lock the joint solid if the model's shafts miss its middle by a
-// fraction of an LDU, as built models do. What the joint does is pass turning from one shaft
-// to the other, so that's what Kinebrick models: the cross is fixed to the first end, its
-// other arm lets go of the second end, and the two shafts turn together (see Coupling).
-// Replaces those connections in `connections` with a coupling (which only says the two ends
-// are attached); returns the pairs of ends it couples.
-function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]) {
-  const joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[] = [];
-  const axisOfEnd = (end: number) => cyls.find((c) => c.part === end && c.secs.some((s) => s.shape === 'A'))?.dir.clone() ?? new Vector3(0, 0, 1);
-  roles.forEach((role, cross) => {
-    if (role !== 'universal joint') return;
-    const arms = connections.filter((c) => c.kind === 'revolute' && (c.male === cross || c.female === cross));
-    const ends = [...new Set(arms.map((c) => (c.male === cross ? c.female : c.male)))];
-    if (ends.length !== 2) return;
-    for (const c of arms) {
-      const end = c.male === cross ? c.female : c.male;
-      if (end === ends[0]) c.kind = 'rigid';
-      else connections.splice(connections.indexOf(c), 1);
-    }
-    const center = new Vector3().setFromMatrixPosition(parts[cross].matrix);
-    connections.push({ male: ends[0], female: ends[1], kind: 'coupling', from: center, to: center.clone() });
-    joined.push({ partA: ends[0], partB: ends[1], center, axisA: axisOfEnd(ends[0]), axisB: axisOfEnd(ends[1]) });
-  });
-  return joined;
-}
-
 // Parts that would be loose get a second chance, fitting with the looser LOOSE_ALIGN_TOLERANCE:
 // connections that join a loose part to anything, found as findConnections finds them. So do
 // parts held to the rest only by slides and balls, which hold nothing in place: the 42039 and
@@ -688,41 +640,6 @@ function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connecti
     else c.stiff = true;
   }
   return found;
-}
-
-// A grooved ball (2907) on the end of a driveshaft, in a wheel hub's socket (2999's): ridges
-// in the socket fit its grooves, so the hub turns with the shaft, at any angle the ball sits
-// at (a constant velocity joint: steered wheels are driven through it). Like a universal
-// joint, the ball's connection is replaced with a coupling at the ball's middle, between the
-// shaft (the ball's axle hole's axis) and the hub (the axis of its holes through the socket: a
-// socket, a sphere, has none of its own), tying only their turning (see Coupling): shaft and
-// hub each turn in holes of their own.
-//
-// A nudged ball (32494) does the same in a portal axle's steering hub (92909), nudges on it
-// fitting slots in the socket; but its shaft often hangs on nothing else (a half shaft, a
-// universal joint at its other end), so its ball joint is kept as well, where it's needed
-// (see dropBallsInBearings).
-function groovedBalls(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]) {
-  const joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[] = [];
-  const axisOf = (part: number, shape: string) => cyls.find((c) => c.part === part && c.secs.some((s) => s.shape === shape))?.dir.clone() ?? new Vector3(0, 0, 1);
-  // The hole whose axis passes nearest the ball's middle, within BALL_LINE (a model may set
-  // the ball a little off it, as lineUpBalls allows).
-  const through = (part: number, center: Vector3) => {
-    let best: { dir: Vector3; off: number } | null = null;
-    for (const c of cyls) {
-      if (c.part !== part || c.secs.some((s) => s.shape === 'O')) continue;
-      const rel = new Vector3().subVectors(center, c.start);
-      const off = rel.addScaledVector(c.dir, -rel.dot(c.dir)).length();
-      if (off < BALL_LINE && (!best || off < best.off)) best = { dir: c.dir, off };
-    }
-    return best ? best.dir.clone() : axisOf(part, 'O');
-  };
-  for (const c of connections) {
-    if (c.kind !== 'ball' || (roles[c.male] !== 'grooved ball' && roles[c.male] !== 'nudged ball')) continue;
-    if (roles[c.male] === 'grooved ball') c.kind = 'coupling';
-    joined.push({ partA: c.male, partB: c.female, center: c.from.clone(), axisA: axisOf(c.male, 'A'), axisB: through(c.female, c.from) });
-  }
-  return joined;
 }
 
 // A part with a single round opening underneath (a 1x1 round brick's or plate's anti-stud,
@@ -1452,53 +1369,6 @@ function fixPins(connections: Connection[], roles: string[], frictionRigid: bool
       }
     }
   });
-}
-
-// A crankshaft built of webs on crank pins (the 8865 Test Car's: 24 tooth gears, joined by axles
-// in their round holes), whose middle web is held only by two pins on opposite sides of the main
-// axis, is at dead centre always: as the webs either side of it turn on the main axis, the pins
-// don't tie their turning together, as in the real crankshaft they do. So those two turn together
-// (a coupling, of their turning only). Only so: the middle web has no other joint, and the webs
-// either side of it turn on the main axis in one body.
-function crankWebs(joints: Joint[]): Coupling[] {
-  const LINE = 1; // LDU
-  const dirOf = (j: Joint) => new Vector3().subVectors(j.to, j.from).normalize();
-  const parallel = (a: Joint, b: Joint) => Math.abs(dirOf(a).dot(dirOf(b))) > 0.999;
-  // How far a point is from a joint's axis.
-  const offAxis = (j: Joint, p: Vector3) => {
-    const off = new Vector3().subVectors(p, j.from);
-    return off.addScaledVector(dirOf(j), -off.dot(dirOf(j))).length();
-  };
-  const middleOf = (j: Joint) => j.from.clone().add(j.to).multiplyScalar(0.5);
-  const jointsOf = (body: number) => joints.filter((j) => j.bodyA === body || j.bodyB === body);
-  const other = (j: Joint, body: number) => (j.bodyA === body ? j.bodyB : j.bodyA);
-  const found: Coupling[] = [];
-  const bodies = new Set(joints.flatMap((j) => [j.bodyA, j.bodyB]));
-  for (const middle of bodies) {
-    const pins = jointsOf(middle);
-    if (middle === 0 || pins.length !== 2 || pins.some((j) => j.kind !== 'revolute') || !parallel(pins[0], pins[1])) continue;
-    if (other(pins[0], middle) === other(pins[1], middle) || offAxis(pins[0], pins[1].from) < LINE) continue;
-    // The main axis: midway between the two pins.
-    const center = middleOf(pins[0]).add(middleOf(pins[1])).multiplyScalar(0.5);
-    const d = dirOf(pins[0]);
-    const off = new Vector3().subVectors(middleOf(pins[1]), middleOf(pins[0]));
-    center.addScaledVector(d, -off.dot(d) / 2);
-    // Each pin's web beside the middle one: on the pin, and turning on the main axis.
-    const webs = pins.map((pin) => {
-      const p = other(pin, middle);
-      for (const onPin of jointsOf(p)) {
-        const web = other(onPin, p);
-        if (web === middle || onPin.kind !== 'revolute' || !parallel(onPin, pin) || offAxis(pin, onPin.from) > LINE) continue;
-        const main = jointsOf(web).find((j) => j.kind === 'revolute' && parallel(j, pin) && offAxis(j, center) < LINE);
-        if (main) return { web, main };
-      }
-      return null;
-    });
-    const [a, b] = webs;
-    if (!a || !b || a.web === b.web || other(a.main, a.web) !== other(b.main, b.web)) continue;
-    found.push({ bodyA: a.web, bodyB: b.web, center, axisA: dirOf(a.main), axisB: dirOf(b.main), atA: middleOf(a.main), atB: middleOf(b.main), turningOnly: true });
-  }
-  return found;
 }
 
 // A part turning on an axle may slide along it too, as far as the parts either side of it on
