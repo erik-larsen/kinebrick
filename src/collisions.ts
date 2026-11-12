@@ -26,8 +26,9 @@ import type { Mechanism } from './mechanism.ts';
 const INSET = 0.25;
 // On a train layout, by more: its scenery is placed by hand, to a LDU or two, and a train's
 // cars swing out a little on a curve, so a car that grazes a platform or a pillar by that much
-// goes by, as on the real layout.
-export const LAYOUT_INSET = 1;
+// goes by, as on the real layout (6990's monorail car, its long base cutting in on the end
+// curve, grazes the gate's foot by under 2 LDU).
+export const LAYOUT_INSET = 2;
 // Parts this close when the model loads, in LDU (after INSET), aren't checked against each
 // other: real models are built tight, and parts that rub on the real thing don't stop it.
 const NEAR = 1;
@@ -57,17 +58,33 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   // Tractor's harrow, lowered onto its power take-off, stopped 3 LDU short).
   for (const a of mech.gears) for (const b of mech.gears) if (a.part !== b.part) connected.add(pairKey(a.part, b.part));
   // Nor a train's wheels and the track's rails: the wheels run on them, and reach each piece
-  // of track in turn.
+  // of track in turn. Nor what turns with a wheel's tyre (its rim, its hub): a road-rail
+  // vehicle's road wheels run on the rail heads. Nor the wheels and what's studded or fixed to
+  // the rails: a 12 V track's sleepers (4166), which a flange passes just over.
   const rails = mech.roles.flatMap((r, i) => (r === 'rail' ? [i] : []));
-  for (const t of mech.treads) for (const r of rails) connected.add(pairKey(t.part, r));
+  const railSet = new Set(rails);
+  const under = mech.connections.flatMap((c) => (['stud', 'rigid'].includes(c.kind) && railSet.has(c.male) !== railSet.has(c.female) ? [railSet.has(c.male) ? c.female : c.male] : []));
+  const wheelBodies = new Set(mech.treads.map((t) => t.body).filter((b) => b !== 0));
+  const onWheels = mech.bodyOf.flatMap((b, i) => (wheelBodies.has(b) ? [i] : []));
+  for (const w of new Set([...mech.treads.map((t) => t.part), ...onWheels])) for (const r of [...rails, ...under]) connected.add(pairKey(w, r));
+  // Nor a road-rail vehicle's road wheels (a tyre's, not a train wheel's) and what stands with
+  // the track: they'd roll over a level crossing's road, where Kinebrick keeps the vehicle on its
+  // rail wheels (10128's car, its road tyres 14 LDU below the crossing's top).
+  const roadWheels = new Set(mech.treads.filter((t) => t.body !== 0 && mech.roles[t.part] !== 'train wheel').map((t) => t.body));
+  const withTrack = mech.bodyOf.flatMap((b, i) => (b === 0 ? [i] : []));
+  if (rails.length) for (const w of mech.bodyOf.flatMap((b, i) => (roadWheels.has(b) ? [i] : []))) for (const g of withTrack) connected.add(pairKey(w, g));
+  // Nor two train wheels: a 4.5 V wheel block's wheels, each on its own pin, stand close to the
+  // next block's, and their spokes, turning, aren't round.
+  const wheels = mech.roles.flatMap((r, i) => (r === 'train wheel' ? [i] : []));
+  for (const a of wheels) for (const b of wheels) if (a < b) connected.add(pairKey(a, b));
   // Nor a monorail's wheel chassis, motor and the motor's clips and the rails, or the plates
   // studded to the rails' sides that join one piece to the next: they wrap round the rail beam,
   // close to its sides (on a curve or a ramp, a straight chassis meets them); nor the motor's
   // drive gear, which runs in the rack between them; nor the motor's switch, which a stop/go
   // switch's lever on the track flips to stop the train (Kinebrick doesn't: the lever is set
-  // to go).
-  const drives = mech.roles.flatMap((r, i) => (['monorail chassis', 'monorail motor', 'monorail clip', 'monorail drive gear', 'monorail motor switch'].includes(r) ? [i] : []));
-  const railSet = new Set(rails);
+  // to go); nor a car's base (2687), just over the beam: on a ramp's bends, the straight car
+  // meets it; nor the connector (2697) that joins two cars' chassis round the beam.
+  const drives = mech.roles.flatMap((r, i) => (['monorail chassis', 'monorail motor', 'monorail clip', 'monorail drive gear', 'monorail motor switch', 'monorail base', 'monorail coupling'].includes(r) ? [i] : []));
   const joining = mech.connections.flatMap((c) => (c.kind === 'stud' && railSet.has(c.male) && !railSet.has(c.female) ? [c.female] : []));
   for (const d of drives) for (const r of [...rails, ...joining]) connected.add(pairKey(d, r));
   // Nor the parts of train couplings with each other: two cars' magnets, casings and holders
@@ -189,6 +206,14 @@ export class Collisions {
     }
     return null;
   }
+
+  // The table a train layout stands on: as low as any part reaches at `start`. (Its trains'
+  // ground is the rail heads, but a monorail's chassis wraps its beam below them.)
+  table(start: Matrix4[]): number {
+    if (this.tableY === null) this.tableY = Math.max(...this.shapes.map((s, i) => (s.box.isEmpty() ? -Infinity : s.box.clone().applyMatrix4(start[i]).max.y)));
+    return this.tableY;
+  }
+  private tableY: number | null = null;
 
   // How low a part's shape reaches (its greatest LDraw y), placed as `matrix` says.
   private lowest(part: number, matrix: Matrix4): number {

@@ -33,8 +33,11 @@ const OFF = 3;
 const APART = 4;
 // A lap is back where it started if the wheel is this close (LDU) to where it was.
 const BACK = 10;
-// A run reaches an end of the track if a wheelset comes this close to it (LDU).
+// A run reaches an end of the track if a wheelset comes this close to it (LDU); or, stopped by
+// something there (a buffer stop, a loading ramp the line runs into), this close: a car's end
+// stands well past its wheelset (167's wagon meets the ramp 122 LDU short of the line's end).
 const AT_END = 40;
+const STOPPED_AT_END = 150;
 // Wheelsets this close together (LDU, middle to middle) are of one train: a train's cars stand
 // closed up, their wheelsets less far apart across a coupling than this.
 const CLOSE = 300;
@@ -175,11 +178,22 @@ export async function checkTrainSet(set: { curated: { model: string; functions: 
 
 // The viewer's collision test (blockedBy in src/main.ts), for a model's parts: what stops them
 // where they stand now (two parts that run into each other, a joint at its limit), or null.
-function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], parts: { name: string; matrix: Matrix4 }[], shapes: { name: string; shape: PartMesh[] }[]) {
-  if (shapes.length < parts.length || parts.some((p, i) => shapes[i].name !== p.name)) throw new Error("the parts' shapes don't match the model's parts");
+function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], parts: { name: string; matrix: Matrix4; path?: unknown }[], shapes: { name: string; shape: PartMesh[] }[]) {
+  // Each part's shape, in order, passing over shapes with no part's name: primitives a split
+  // part's pieces draw (the monorail motor's shaft), which the scripts' part list leaves out.
+  const shapeOf: PartMesh[][] = [];
+  let k = 0;
+  for (const p of parts) {
+    while (k < shapes.length && shapes[k].name !== p.name && shapes[k].name === '') k++;
+    if (k >= shapes.length || shapes[k].name !== p.name) throw new Error("the parts' shapes don't match the model's parts");
+    // (A path's links, a hose's or a chain's, only show where it runs, as in the viewer: no
+    // shape. Nor a cable's pieces, which bend out of the way.)
+    shapeOf.push(p.path || mech.roles[shapeOf.length] === 'cable' ? [] : shapes[k].shape);
+    k++;
+  }
   const poses = (kin as unknown as { poses: Matrix4[] }).poses;
   const now = () => parts.map((p, i) => poses[mech.bodyOf[i]].clone().multiply(p.matrix));
-  const collisions = new Collisions(parts.map((_, i) => shapes[i].shape), mech.bodyOf, connectedPairs(mech), now(), LAYOUT_INSET);
+  const collisions = new Collisions(shapeOf, mech.bodyOf, connectedPairs(mech), now(), LAYOUT_INSET);
   const starts = parts.map((p) => p.matrix);
   const name = (i: number) => `p${i} ${parts[i].name.replace(/\.dat$/, '')}`;
   return (): string | null => {
@@ -187,7 +201,8 @@ function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], part
     const hit = collisions.check(at);
     if (hit) return `${name(hit[0])} ran into ${name(hit[1])}`;
     if (kin.atLimit() !== null) return 'a joint came to its limit';
-    const below = kin.groundY === null ? null : collisions.belowGround(at, kin.groundY, starts);
+    // (The ground is the table under the track, as in the viewer: not the rail heads.)
+    const below = kin.groundY === null ? null : collisions.belowGround(at, collisions.table(starts), starts);
     return below ? `${name(below[0])} went into the ground` : null;
   };
 }
@@ -244,6 +259,9 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   kin.restore(before);
   const t = track.pointAt(place.line, place.s).t;
   const dir = tried.dot(t) >= 0 ? 1 : -1;
+  // As the viewer's motor does: whatever the turning doesn't need is held where it is (a cab
+  // roof on a slide rides with its cab, rather than staying put as the cab moves on).
+  kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
   // A lap if the track loops the way the train goes; or, if it leads that way into a siding and
   // the other way round a loop (as 6991's, its points set as built), a lap the other way.
   let lap = loopLength(track, place.line, place.s, dir);
@@ -267,7 +285,10 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
     if (pair && !ranInto) ranInto = pair;
     return pair === null;
   };
+  // Whether it ran into something (and was stopped by it) on its way: set by each go.
+  let stopped = false;
   const go = (way: number, until: () => boolean, most: number) => {
+    ranInto = null;
     let last = center(lead);
     let lastRim = gauge();
     for (let i = 0; i < most; i++) {
@@ -284,8 +305,9 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
         stragglers = train.filter((r, k) => center(r).distanceTo(starts[k]) < 100).length;
       }
       measure();
-      if (Math.abs(done) < STEP - 1e-9 || until()) return;
+      if (Math.abs(done) < STEP - 1e-9 || until()) break;
     }
+    stopped = ranInto !== null;
   };
   const total = (lap ?? track.lines.reduce((sum, l) => sum + l.length, 0)) * 1.5;
   const most = Math.ceil(total / (radius * STEP));
@@ -299,12 +321,16 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
     if (!reached) why.push(`went ${Math.round(travelled)} of a ${Math.round(lap)} LDU lap`);
   } else {
     // A line: to the end it goes towards, then back to the other.
+    // (Stopped at an end by something there, it has reached that end: that's no fault.)
+    const atEnd = () => bufferNear(track, riders.map((_, i) => track.placeOf(i)!), stopped ? STOPPED_AT_END : AT_END);
     go(1, () => false, most);
     const there = travelled;
-    const firstEnd = bufferNear(track, riders.map((_, i) => track.placeOf(i)!));
+    const firstEnd = atEnd();
+    const firstHit = firstEnd ? null : ranInto;
     go(-1, () => false, most);
     const back = travelled - there;
-    const secondEnd = bufferNear(track, riders.map((_, i) => track.placeOf(i)!));
+    const secondEnd = atEnd();
+    ranInto = firstHit ?? (secondEnd ? null : ranInto);
     length = back;
     reached = firstEnd && secondEnd && back > 0;
     if (!firstEnd || !secondEnd) why.push(`stopped short of ${!firstEnd && !secondEnd ? 'both ends' : 'an end'} of the track`);
@@ -347,6 +373,6 @@ function onto(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: 
 const round = (x: number) => Math.round(x * 10) / 10;
 
 // Whether any of these places is near a buffer: the end of a line that meets no other.
-function bufferNear(track: Track, places: { line: number; s: number }[]): boolean {
-  return places.some((p) => track.walk(p.line, p.s, -AT_END).short > 0 || track.walk(p.line, p.s, AT_END).short > 0);
+function bufferNear(track: Track, places: { line: number; s: number }[], reach = AT_END): boolean {
+  return places.some((p) => track.walk(p.line, p.s, -reach).short > 0 || track.walk(p.line, p.s, reach).short > 0);
 }

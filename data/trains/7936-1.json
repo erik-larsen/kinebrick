@@ -10,52 +10,79 @@
       {
         "kind": "run",
         "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
-        "control": "p80 50254",
+        "control": "p83 50254",
         "wheelsets": [
-          "p80 50254",
-          "p84 50254"
+          "p83 50254",
+          "p87 50254"
         ]
       }
     ]
   },
   "generated": {
-    "commit": "065d788",
+    "commit": "dd95591",
     "uncommitted": true,
     "date": "2026-11-12",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
-      "works": 1,
-      "partly": 1
+      "works": 2
     },
     "loose": [
-      "p11 4515",
-      "p12 4515",
-      "p59 2376",
-      "p86 6014",
-      "p87 6015",
-      "p88 6014",
-      "p89 6015",
-      "p90 6014",
-      "p91 6015",
-      "p92 6014",
-      "p93 6015",
-      "p98 2877",
-      "p105 3829c01",
-      "p129 30395",
-      "p140 30394"
+      "p89 6014",
+      "p90 6015",
+      "p91 6014",
+      "p92 6015",
+      "p93 6014",
+      "p94 6015",
+      "p95 6014",
+      "p96 6015",
+      "p97 3958",
+      "p98 3795",
+      "p99 3034",
+      "p100 3034",
+      "p101 60474",
+      "p102 30414",
+      "p103 2877",
+      "p104 2877",
+      "p105 2877",
+      "p106 2456",
+      "p107 30389b",
+      "p108 3710",
+      "p109 3710",
+      "p110 3829c01",
+      "p111 3023",
+      "p112 3795",
+      "p113 3710",
+      "p114 2412b",
+      "p115 2412b",
+      "p116 54200",
+      "p117 54200",
+      "p118 50950",
+      "p119 50950",
+      "p120 52031",
+      "p121 2412b",
+      "p122 61409",
+      "p123 61409",
+      "p124 3010",
+      "p125 3010",
+      "p126 3710",
+      "p127 84954",
+      "p128 45677",
+      "p129 3069b",
+      "p130 30388",
+      "p131 30387",
+      "p132 30386",
+      "p133 30396",
+      "p134 30395",
+      "p145 30394"
     ],
     "functions": [
       {
         "result": "works"
       },
       {
-        "result": "partly",
-        "why": [
-          "stopped short of an end of the track",
-          "stopped: p80 50254 ran into p137 3820"
-        ],
-        "travelled": 725,
-        "length": 672,
+        "result": "works",
+        "travelled": 1640,
+        "length": 1100,
         "offTrack": 0,
         "apart": 0,
         "rolled": 10,

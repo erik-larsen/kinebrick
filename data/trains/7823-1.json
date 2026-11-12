@@ -19,13 +19,12 @@
     ]
   },
   "generated": {
-    "commit": "065d788",
+    "commit": "dd95591",
     "uncommitted": true,
     "date": "2026-11-12",
-    "seconds": 6,
+    "seconds": 9,
     "counts": {
-      "works": 1,
-      "partly": 1
+      "works": 2
     },
     "loose": [
       "p50 4624",
@@ -160,13 +159,9 @@
         "result": "works"
       },
       {
-        "result": "partly",
-        "why": [
-          "stopped short of both ends of the track",
-          "stopped: p447 754 ran into p561 3856"
-        ],
-        "travelled": 8,
-        "length": 5,
+        "result": "works",
+        "travelled": 701,
+        "length": 439,
         "offTrack": 0,
         "apart": 0,
         "rolled": 20,

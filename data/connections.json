@@ -5425,7 +5425,22 @@
       {"gender":"F","caps":"one","start":[130,8,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
       {"gender":"F","caps":"one","start":[130,8,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
       {"gender":"F","caps":"one","start":[150,8,-10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
-      {"gender":"F","caps":"one","start":[150,8,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]}
+      {"gender":"F","caps":"one","start":[150,8,10],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-140,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-120,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-100,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-80,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-60,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-40,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[-20,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[0,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[20,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[40,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[60,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[80,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[100,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[120,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},
+      {"gender":"F","caps":"one","start":[140,8,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]}
     ],
     "4286.dat": [
       {"gender":"M","caps":"one","start":[0,0,0],"dir":[0,-1,0],"secs":[{"shape":"R","radius":6,"length":4}]},

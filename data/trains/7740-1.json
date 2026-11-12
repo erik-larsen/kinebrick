@@ -28,23 +28,18 @@
     ]
   },
   "generated": {
-    "commit": "065d788",
+    "commit": "dd95591",
     "uncommitted": true,
     "date": "2026-11-12",
-    "seconds": 12,
+    "seconds": 193,
     "counts": {
-      "works": 1,
-      "partly": 1
+      "works": 2
     },
     "loose": [
       "p0 4166a",
       "p1 4166a",
       "p2 4166a",
       "p3 4166a",
-      "p256 7740 - 4182p02c01",
-      "p257 7740 - 4182p02c01",
-      "p258 7740 - 4181p02c01",
-      "p259 7740 - 4181p02c01",
       "p303 2344",
       "p304 2344",
       "p314 2344",
@@ -53,10 +48,6 @@
       "p325 2344",
       "p335 2344",
       "p336 2344",
-      "p432 7740 - 4182p02c01",
-      "p433 7740 - 4182p02c01",
-      "p434 7740 - 4181p02c01",
-      "p435 7740 - 4181p02c01",
       "p468 2344",
       "p469 2344",
       "p479 2344",
@@ -87,12 +78,8 @@
         "result": "works"
       },
       {
-        "result": "partly",
-        "why": [
-          "went 35 of a 6947 LDU lap",
-          "stopped: p548 3031 ran into p658 973p18"
-        ],
-        "travelled": 35,
+        "result": "works",
+        "travelled": 6940,
         "length": 6947,
         "offTrack": 0,
         "apart": 0,

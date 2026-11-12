@@ -19,13 +19,12 @@
     ]
   },
   "generated": {
-    "commit": "065d788",
+    "commit": "dd95591",
     "uncommitted": true,
     "date": "2026-11-12",
-    "seconds": 7,
+    "seconds": 8,
     "counts": {
-      "works": 1,
-      "partly": 1
+      "works": 2
     },
     "loose": [
       "p37 10128 - 30178c02",
@@ -40,14 +39,9 @@
       "p180 30258",
       "p182 30258",
       "p183 30258",
-      "p291 30228",
-      "p304 6014",
       "p305 6015",
-      "p306 6014",
       "p307 6015",
-      "p308 6014",
       "p309 6015",
-      "p310 6014",
       "p311 6015"
     ],
     "functions": [
@@ -55,13 +49,9 @@
         "result": "works"
       },
       {
-        "result": "partly",
-        "why": [
-          "stopped short of both ends of the track",
-          "stopped: p136 2865 ran into p306 6014"
-        ],
-        "travelled": 144,
-        "length": 88,
+        "result": "works",
+        "travelled": 1284,
+        "length": 742,
         "offTrack": 0,
         "apart": 0,
         "rolled": 10,

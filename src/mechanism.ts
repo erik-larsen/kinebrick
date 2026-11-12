@@ -515,8 +515,17 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const figures = new Set([...bySubmodel].filter(([, n]) => n.figure * 2 >= n.parts).map(([sub]) => sub));
   // (Two cars' loose bits, coupled by their magnets, aren't one group either: each is its own car's.)
   const trainSubmodels = new Set(parts.flatMap((p, i) => (p.submodel && ['train wheel', 'train motor'].includes(roles[i]) ? [p.submodel] : [])));
-  const loose = (rails.length ? smallGroups(parts.length, uncoupled, riding, track ? track.head() - ABOVE_RAILS : undefined, parts, trainSubmodels) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
+  let loose = (rails.length ? smallGroups(parts.length, uncoupled, riding, track ? track.head() - ABOVE_RAILS : undefined, parts, trainSubmodels) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
   const scenery = new Set(riding.filter((i) => !loose.includes(i)));
+  // What stands on a train rides with it (see loads): scenery, or a loose group not of a train's
+  // own submodel (a container on a monorail car, too high above the rails to be scenery).
+  if (track) {
+    const loadable = new Set([...scenery, ...loose.filter((i) => !trainSubmodels.has(parts[i].submodel ?? ''))]);
+    const before = new Set(loadable);
+    connections.push(...loads(parts, roles, cyls, uncoupled, loadable));
+    for (const i of before) if (!loadable.has(i)) scenery.delete(i);
+    loose = loose.filter((i) => !before.has(i) || loadable.has(i));
+  }
   connections.push(...rideAlong(parts, cyls, uncoupled, loose));
   if (scenery.size) connections.push(...rideAlong(parts, cyls, uncoupled, [...scenery], new Set(rails.map((r) => r.part))));
   const bodyOf = groupIntoBodies(parts.length, roles, connections);
@@ -928,6 +937,12 @@ function onTiles(roles: string[], cyls: WorldCylinder[], connections: Connection
     for (const part of resting) {
       const ownAlong = antiStuds.filter((a) => a.part === part).map((a) => new Vector3().subVectors(a.start, top.start).dot(top.dir));
       const from = top.start.clone();
+      // (On a train layout, nothing is slid along tiles: what rests on them, such as a battery
+      // box on a monorail car, stays where it is on them.)
+      if (roles.includes('rail')) {
+        slides.push({ male: part, female: top.part, kind: 'rigid', from, to: from.clone() });
+        continue;
+      }
       slides.push({
         male: part,
         female: top.part,
@@ -989,7 +1004,8 @@ function platesOnEdge(cyls: WorldCylinder[]): Connection[] {
 // with the part whose connection point (stud, hole, axle) is nearest to it.
 function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
   const isDecoration = (i: number) => roles[i] === 'decoration' || roles[i] === 'path' || roles[i] === 'figure';
-  const anchors = cyls.filter((c) => !isDecoration(c.part));
+  // Not a train's wheels, which turn: a figure standing by the track beside them stays put.
+  const anchors = cyls.filter((c) => !isDecoration(c.part) && roles[c.part] !== 'train wheel');
   const nearestTo = (at: Vector3) => {
     let nearest: WorldCylinder | null = null;
     for (const c of anchors) if (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at)) nearest = c;
@@ -1014,12 +1030,19 @@ function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[]
     const was = lowest.get(find(i));
     if (was === undefined || p.matrix.elements[13] > parts[was].matrix.elements[13]) lowest.set(find(i), i);
   });
-  // A figure already joined to something (its feet on a cab floor's studs) is held by that.
-  const held = new Set<number>();
-  if (layout) for (const c of connections) if ((roles[c.male] === 'figure') !== (roles[c.female] === 'figure')) held.add(find(roles[c.male] === 'figure' ? c.male : c.female));
+  // A figure already joined to something (its feet on a cab floor's studs) is held by that, all
+  // of it: its other pieces are fixed to the piece that is (legs on a seat take the hips on pins,
+  // which join nothing, and the rest would stand as a loose group of its own).
+  const held = new Map<number, number>();
+  if (layout) for (const c of connections) if ((roles[c.male] === 'figure') !== (roles[c.female] === 'figure')) held.set(find(roles[c.male] === 'figure' ? c.male : c.female), roles[c.male] === 'figure' ? c.male : c.female);
   const result: Connection[] = [];
   parts.forEach((p, i) => {
-    if (!isDecoration(i) || (roles[i] === 'figure' && held.has(find(i)))) return;
+    const holder = roles[i] === 'figure' ? held.get(find(i)) : undefined;
+    if (holder !== undefined && holder !== i) {
+      const at = new Vector3().setFromMatrixPosition(p.matrix);
+      result.push({ male: i, female: holder, kind: 'rigid', from: at, to: at.clone() });
+    }
+    if (!isDecoration(i) || holder !== undefined) return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
     const feet = lowest.get(find(i));
     const nearest = nearestTo(feet === undefined ? at : new Vector3().setFromMatrixPosition(parts[feet].matrix));
@@ -1532,6 +1555,40 @@ function findRiders(treads: Tread[], roles: string[]): Rider[] {
     });
   });
   return riders;
+}
+
+// On a layout: a group that would be scenery but stands on a train (a car on a car transporter,
+// a pallet on a wagon) is the train's load, and rides with it. It stands on a train if the
+// connection point nearest its lowest part, of those no higher than it, is a train's: of a part
+// joined, other than through the rails, to a train's wheels or motor. And at most LOAD_REACH
+// from it (a car's chassis stands on its wheels, 31 LDU above the wagon's deck in 167). Such
+// groups are taken out of `riding`, the groups to look at. A train's wheels don't count: they
+// turn, and what stands beside them (a signalman by the track) is no load.
+const LOAD_REACH = 40;
+function loads(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[], riding: Set<number>): Connection[] {
+  const joined = parts.map((_, i) => i);
+  const top = (i: number): number => (joined[i] === i ? i : (joined[i] = top(joined[i])));
+  for (const c of connections) if (roles[c.male] !== 'rail' && roles[c.female] !== 'rail') joined[top(c.male)] = top(c.female);
+  const trains = new Set(parts.flatMap((_, i) => (['train wheel', 'train motor'].includes(roles[i]) ? [top(i)] : [])));
+  const leader = new Map([...riding].map((i) => [i, i]));
+  const find = (i: number): number => {
+    while (leader.get(i) !== i) i = leader.get(i)!;
+    return i;
+  };
+  for (const c of connections) if (riding.has(c.male) && riding.has(c.female)) leader.set(find(c.male), find(c.female));
+  // Each group's lowest part (the greatest y, as y points down).
+  const lowest = new Map<number, number>();
+  for (const i of riding) if (!lowest.has(find(i)) || parts[i].matrix.elements[13] > parts[lowest.get(find(i))!].matrix.elements[13]) lowest.set(find(i), i);
+  const result: Connection[] = [];
+  for (const [group, low] of lowest) {
+    const at = new Vector3().setFromMatrixPosition(parts[low].matrix);
+    let nearest: WorldCylinder | null = null;
+    for (const c of cyls) if (!riding.has(c.part) && roles[c.part] !== 'train wheel' && c.start.y >= at.y - 1 && (!nearest || c.start.distanceTo(at) < nearest.start.distanceTo(at))) nearest = c;
+    if (!nearest || !trains.has(top(nearest.part)) || nearest.start.distanceTo(at) > LOAD_REACH) continue;
+    result.push({ male: low, female: nearest.part, kind: 'rigid', from: at, to: at.clone() });
+    for (const i of [...riding]) if (find(i) === group) riding.delete(i);
+  }
+  return result;
 }
 
 // Of the parts that ride along, those in groups smaller than SCENERY: the loose ones.

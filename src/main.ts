@@ -416,10 +416,11 @@ async function start() {
   const loadedMatrices = partObjects.map((obj) => obj.matrix.clone());
 
   // Collision checks: each part's meshes in the part's own coordinates. A path's parts (a
-  // chain's links) aren't checked: they only show where it runs.
+  // chain's links) aren't checked: they only show where it runs. Nor a cable's pieces (993),
+  // which bend out of the way.
   model.updateMatrixWorld(true);
   const shapes: PartMesh[][] = partObjects.map((obj, i) => {
-    if (startParts[i].path) return [];
+    if (startParts[i].path || mech.roles[i] === 'cable') return [];
     const toPart = obj.matrixWorld.clone().invert();
     const list: PartMesh[] = [];
     obj.traverse((child) => {
@@ -852,7 +853,9 @@ async function start() {
     scrubLimit: MAX_SCRUB,
     blockedBy: () => {
       const now = partMatrices();
-      return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, kin.groundY, partObjects.map((obj) => obj.userData.startMatrix)));
+      const start = partObjects.map((obj) => obj.userData.startMatrix);
+      // (On a train layout, the ground is the table under the track.)
+      return collisions!.check(now) ?? kin.atLimit() ?? (kin.groundY === null ? null : collisions!.belowGround(now, mech.track ? collisions!.table(start) : kin.groundY, start));
     },
     slideOf,
     stickOf,

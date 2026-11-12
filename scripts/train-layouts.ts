@@ -83,6 +83,31 @@ const ERRATA: Record<string, [string, string, string][]> = {
     ],
     ['', '1 0 0 25.617 95.402 0 0 -1 0.0958458 0.995396 0 0.995396 -0.0958458 0 2688.dat', '1 0 0 28 95 0 0 -1 0 1 0 1 0 0 2688.dat'],
     ['', '1 0 0 30.411 145.173 0 0 -1 0.0958458 0.995396 0 0.995396 -0.0958458 0 2688.dat', '1 0 0 28 145 0 0 -1 0 1 0 1 0 0 2688.dat'],
+    [
+      "Station 1's two lamps are posed swung in on their swivels, over the track: 72 LDU from its centre line and 81 LDU over the rail heads, they stand in a car's way. Each is swung half a turn on its swivel, out over the platform",
+      '1 0 -160 -354 -112 -0.707107 0 0.707107 0 1 0 -0.707107 0 -0.707107 6990 - Station 1 - Lamp.ldr',
+      '1 0 -160 -354 -112 0.707107 0 -0.707107 0 1 0 0.707107 0 0.707107 6990 - Station 1 - Lamp.ldr',
+    ],
+    ['', '1 0 -160 -354 112 0.707107 0 0.707107 0 1 0 -0.707107 0 0.707107 6990 - Station 1 - Lamp.ldr', '1 0 -160 -354 112 -0.707107 0 -0.707107 0 1 0 0.707107 0 -0.707107 6990 - Station 1 - Lamp.ldr'],
+  ],
+  '7839-1': [
+    [
+      "The depot's loading platform reaches 5 LDU over the freight car's side, as for driving cars onto it: the train can't leave without it being lifted. Moved 8 LDU back from the track",
+      '1 16 90 -69 0 -1 0 0 0 1 0 0 0 -1 7839 - depot - loading platform.ldr',
+      '1 16 90 -69 8 -1 0 0 0 1 0 0 0 -1 7839 - depot - loading platform.ldr',
+    ],
+  ],
+  '7936-1': [
+    [
+      "The set's fourth piece of track stands apart, beside the crossing, not joined to the crossing's three: Kinebrick would lay the four out afresh, in a line that runs along the crossing's road, its lowered barriers over the rails. Set end to end with the crossing's three, as one line through the crossing",
+      '1 0 320 0 300 1 0 0 0 1 0 0 0 1 7936 - Track.ldr',
+      '1 0 0 0 640 1 0 0 0 1 0 0 0 1 7936 - Track.ldr',
+    ],
+    [
+      "And the round tile with a lifting ring on that piece's middle, by which the excavator lifts it, stands up between the rails, in the excavator's way: left out",
+      '1 0 0 -8 0 0 0 1 0 1 0 -1 0 0 2376.dat\n',
+      "0 // Kinebrick: the round tile with a lifting ring left out\n",
+    ],
   ],
   // Not errors, but changes for Kinebrick's layouts.
   'test-1': [

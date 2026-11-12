@@ -24,13 +24,12 @@
     ]
   },
   "generated": {
-    "commit": "065d788",
+    "commit": "dd95591",
     "uncommitted": true,
     "date": "2026-11-12",
-    "seconds": 4,
+    "seconds": 95,
     "counts": {
-      "works": 1,
-      "partly": 1
+      "works": 2
     },
     "loose": [
       "p5 4084",
@@ -68,14 +67,6 @@
       "p320 502",
       "p333 947b",
       "p334 947b",
-      "p368 755",
-      "p412 754",
-      "p413 754",
-      "p414 754",
-      "p418 755",
-      "p462 754",
-      "p463 754",
-      "p464 754",
       "p488 4183",
       "p489 4183",
       "p539 4166a",
@@ -99,16 +90,12 @@
         "result": "works"
       },
       {
-        "result": "partly",
-        "why": [
-          "went 3 of a 6307 LDU lap",
-          "stopped: p164 3633 ran into p175 3710"
-        ],
-        "travelled": 3,
+        "result": "works",
+        "travelled": 6299,
         "length": 6307,
         "offTrack": 0,
         "apart": 0,
-        "rolled": 20,
+        "rolled": 20.1,
         "radius": 20
       }
     ]

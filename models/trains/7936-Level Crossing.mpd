@@ -5,19 +5,15 @@
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 
-0 // Kinebrick: the track laid out afresh from the set's own pieces, with the trains set on it (scripts/train-layouts.ts)
+0 // Kinebrick: the track as the OMR file lays it out, with the trains set on it (scripts/train-layouts.ts)
 1 0 0 0 0 1 0 0 0 1 0 0 0 1 7936 - Crossing.ldr
-1 0 320 0 300 1 0 0 0 1 0 0 0 1 7936 - Track.ldr
-1 0 570 -39 0 0 0 1 0 1 0 -1 0 0 7936 - Crane.ldr
+1 0 0 0 640 1 0 0 0 1 0 0 0 1 7936 - Track.ldr
+1 0 0 -39 150 1 0 0 0 1 0 0 0 1 7936 - Crane.ldr
 1 0 380 -64 -45 0.707107 0 -0.707107 0 1 0 0.707107 0 0.707107 7936 - Worker.ldr
 1 14 210 -22 -290 0 0 -1 0 1 0 1 0 0 30394.dat
 
 
 
-1 72 160 0 0 1 0 0 0 1 0 0 0 1 53401.dat
-1 72 480 0 0 1 0 0 0 1 0 0 0 1 53401.dat
-1 72 800 0 0 1 0 0 0 1 0 0 0 1 53401.dat
-1 72 1120 0 0 1 0 0 0 1 0 0 0 1 53401.dat
 0 FILE 7936 - Crossing.ldr
 0 Crossing
 0 Name: 7936 - Crossing.ldr
@@ -25,6 +21,7 @@
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 
+1 72 0 0 0 0 0 1 0 1 0 -1 0 0 53401.dat
 0 STEP
 1 2 0 -8 -150 -1 0 0 0 1 0 0 0 -1 3710.dat
 1 2 0 -8 150 -1 0 0 0 1 0 0 0 -1 3710.dat
@@ -45,6 +42,8 @@
 1 71 120 -16 80 0 0 -1 0 1 0 1 0 0 4515.dat
 1 71 120 -16 -80 0 0 -1 0 1 0 1 0 0 4515.dat
 0 STEP
+1 72 0 0 320 0 0 1 0 1 0 -1 0 0 53401.dat
+1 72 0 0 -320 0 0 1 0 1 0 -1 0 0 53401.dat
 0 STEP
 1 2 120 0 200 1 0 0 0 1 0 0 0 1 3795.dat
 0 STEP
@@ -179,6 +178,8 @@
 1 14 0 -40 20 -1 0 0 0 1 0 0 0 -1 3958.dat
 0 STEP
 1 72 -40 -48 20 0 0 -1 0 1 0 1 0 0 3795.dat
+1 72 0 -48 0 0 0 -1 0 1 0 1 0 0 3034.dat
+1 72 40 -48 0 0 0 -1 0 1 0 1 0 0 3034.dat
 0 STEP
 1 71 0 -32 0 -1 0 0 0 1 0 0 0 -1 60474.dat
 0 STEP
@@ -241,7 +242,8 @@
 0 !LDRAW_ORG Model
 0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
 
-1 0 0 -8 0 0 0 1 0 1 0 -1 0 0 2376.dat
+1 72 0 0 0 0 0 1 0 1 0 -1 0 0 53401.dat
+0 // Kinebrick: the round tile with a lifting ring left out
 
 
 

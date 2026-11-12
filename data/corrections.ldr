@@ -636,10 +636,14 @@
 0 FILE 85489a.dat
 0 // Train Wheel Large with Axlehole and Pinhole: its tread, 38 LDU in radius (its flange reaches 46), about its z axis at its origin
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 38 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 // and its pinhole, for a side rod's crank pin: 20 LDU from its middle, through it along z
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=0 -20 0] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 85489b.dat
 0 // Train Wheel Large without Flange: its tread, 38 LDU in radius, about its z axis at its origin
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 38 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 // and its pinhole, for a side rod's crank pin: 20 LDU from its middle, through it along z
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=0 -20 0] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 55423.dat
 0 // Train Wheel for RC Train: its tread, 22 LDU in radius (its flange reaches 30), about its z axis at its origin
@@ -745,3 +749,7 @@
 0 FILE 3278.dat
 0 // Tap 1 x 2 Spout: its pin as the shadow library has it, axle-shaped too, fixing it in its base (3496)
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 4 10] [pos=0 -15.575 -13.588] [ori=1 0 0 0 0.492 0.87 0 -0.87 0.492]
+
+0 FILE 4282.dat
+0 // Plate 2 x 16: a stud fits in each of the 15 tubes along its underside's middle, 20 LDU apart (10277's cab roof stands on two jumpers' studs in them), which the shadow library leaves out
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=0 8 0] [grid=C 15 C 1 20 20]
