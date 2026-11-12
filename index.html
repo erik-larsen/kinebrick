@@ -26,11 +26,6 @@
       #inputs b { color: #1d2430; font-weight: 600; }
       /* Which branch a preview build is of, beside the heading (see src/main.ts); the release has none. */
       #title i { margin-left: 6px; font-size: 12px; font-weight: normal; color: #8a5a00; }
-      /* What's wrong with the model, if anything: a count of each kind, opening to the list. */
-      #warnings { margin-top: 6px; }
-      #warnings summary { cursor: pointer; color: #b3261e; }
-      #warning { margin-top: 4px; max-width: 260px; color: #b3261e; font-size: 12px; }
-      #warning p { margin: 0 0 4px; }
       #panel select { font: inherit; margin: 2px 0 4px; }
       /* The model menu: a button with the open model's name, which opens a list of Open a model
          file and the three groups; each group opens its own list beside it (under it, on a
@@ -50,9 +45,15 @@
       @media (max-width: 640px) {
         #model .sub { position: static; border: 0; box-shadow: none; padding: 0 0 4px 14px; max-height: 40vh; }
       }
-      /* The Stats card's contents: the model's counts, and under them the readout. */
+      /* The Stats card's contents: the model's counts, under them what's wrong with the model, if
+         anything (a count of each kind, opening to the list), and then the readout. */
       #stats { padding: 6px 8px 8px; }
-      #counts { color: #5a6475; }
+      #counts { color: #5a6475; white-space: nowrap; }
+      #warnings { margin-top: 6px; }
+      #warnings summary { cursor: pointer; color: #b3261e; white-space: nowrap; }
+      /* The list is as wide as its card, and wraps there: it doesn't widen the card. */
+      #warning { margin-top: 4px; width: 0; min-width: 100%; color: #b3261e; font-size: 12px; }
+      #warning p { margin: 0 0 4px; }
       /* As wide as its card (width 0, at least 100%), scrolling both ways,
          with thin scrollbars that always show (macOS otherwise hides them until you scroll), and
          a fade at the right edge while there's more to the right (Firefox keeps hiding them). */
@@ -65,7 +66,11 @@
       /* The cards at the upper right, one under the other: Options and Stats (lil-gui panels, as
          in the three.js examples), in the same light colours. The padding leaves room for their
          shadows, which the scrolling (for a window too short to show them whole) would cut off. */
-      #cards { z-index: 1001; position: fixed; top: 8px; right: 8px; padding: 4px 4px 6px; display: flex; flex-direction: column; gap: 8px; max-height: calc(100% - 26px); overflow-y: auto; }
+      #cards { z-index: 1001; position: fixed; top: 8px; right: 8px; padding: 4px 4px 6px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; max-height: calc(100% - 26px); overflow-y: auto; }
+      /* The Stats card, open, is as wide as what's in it (its counts, its warnings' heading and the
+         readout's longest line), up to the window's width; closed, as narrow as Options. */
+      .lil-gui.root.stats:not(.closed) { width: max-content; min-width: var(--width); max-width: calc(100vw - 24px); }
+      .lil-gui.root.stats:not(.closed) #readout { width: auto; }
       .lil-gui.root { border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); }
       .lil-gui {
         --background-color: rgba(255, 255, 255, 0.9);
@@ -103,16 +108,16 @@
       </div>
       <input id="file" type="file" accept=".ldr,.mpd,.io" hidden />
       <div id="summary">Loading…</div>
-      <details id="warnings" hidden>
-        <summary></summary>
-        <div id="warning"></div>
-      </details>
     </div>
     <!-- The cards at the upper right, each closed until it's clicked: Options, and under it Stats
          (see src/main.ts, which makes them and puts #stats in the second). -->
     <div id="cards"></div>
     <div id="stats">
       <div id="counts"></div>
+      <details id="warnings" hidden>
+        <summary></summary>
+        <div id="warning"></div>
+      </details>
       <div id="readoutBox"><div id="readout"></div></div>
     </div>
     <div id="label"></div>
