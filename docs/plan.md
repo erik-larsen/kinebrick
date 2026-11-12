@@ -64,7 +64,7 @@ When this plan was written we did not know the size of each group: the check rec
 What this says, and what it doesn't:
 
 - **444 of the 514 point at the mechanism Kinebrick infers, and 57 at how the solver moves it.** So phase 3 (connections and parts' behaviour) is where most of the functions are, not phase 4.
-- **About 75 of the 182 "nothing ties it" are functions with a selector, a motor or a gearbox.** Built in neutral, nothing does tie them: the check has to shift first. Those are the check's to fix.
+- **75 of the 182 "nothing ties it" are functions with a selector, a motor or a gearbox.** The check already shifts: it slides a driving ring or turns a lever that a function lists as worked `first`, and it turns a motor's output. 28 of the 75 list a control worked first and still fail, so those are the inference's. The other 47 list none: for each, either the function list lacks its `first`, or the model is built in gear and the fault is the inference's. Telling the two apart is a lane's first task. What the check can't work yet is a gear stick with a gate (the 956, the 8880).
 - **"Nothing lets it move" is partly the solver's.** A linkage that fits only as built, or a hinge held by a friction pin, has no exact motion. Play as weighted rows (phase 4) would free some of the 75.
 - **The causes are a first cut.** They are told at the start of the drag only, on the first control that fails. "Nothing ties it" can't yet tell a missing connection from a linkage with a second way to move.
 - **The total hides losses.** Against release 0.850, 533 functions work where 522 did, but 38 functions' results got worse (`npm run ratchet -- 0.850`).
