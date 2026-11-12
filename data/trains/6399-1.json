@@ -1,0 +1,68 @@
+{
+  "set": "6399-1",
+  "curated": {
+    "model": "models/trains/6399-Airport Shuttle.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p81 2688",
+        "wheelsets": [
+          "p81 2688",
+          "p82 2688",
+          "p175 2688",
+          "p176 2688",
+          "p178 2688",
+          "p179 2688"
+        ]
+      }
+    ]
+  },
+  "generated": {
+    "commit": "26c3175",
+    "uncommitted": true,
+    "date": "2026-11-12",
+    "seconds": 142,
+    "counts": {
+      "works": 2
+    },
+    "loose": [
+      "p49 4762",
+      "p112 4079",
+      "p113 4079",
+      "p114 4079",
+      "p115 4079",
+      "p181 u9075",
+      "p183 2682",
+      "p269 4862",
+      "p271 4862",
+      "p444 3741c01",
+      "p445 3741c01",
+      "p446 3741c01",
+      "p447 3741c01",
+      "p597 3741ac01",
+      "p600 3741ac01",
+      "p662 3710",
+      "p663 3710",
+      "p693 3710"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 14772,
+        "length": 14779,
+        "offTrack": 0,
+        "apart": 0,
+        "rolled": 12,
+        "radius": 12
+      }
+    ]
+  }
+}

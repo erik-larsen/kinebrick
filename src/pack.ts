@@ -112,5 +112,8 @@ export async function packModel(
 
   let text = `0 FILE ${name}.ldr\n${colours}\n${model}\n`;
   for (const [file, lines] of included) text += `\n0 NOFILE\n0 FILE ${packedName(file)}\n${smallS(lines).trimEnd()}\n`;
-  return { text, parts, shapes, paths, primitives: placed.filter(isPrimitive), pieces, titles, files: included.size, missing };
+  // (Primitives placed by the pieces of a part read as its pieces too: the monorail motor's
+  // shortcut, 2683c01, draws its shaft as a cylinder.)
+  const piecesPlace = Object.values(pieces).flat().flatMap((line) => references(line));
+  return { text, parts, shapes, paths, primitives: [...new Set([...placed, ...piecesPlace])].filter(isPrimitive), pieces, titles, files: included.size, missing };
 }

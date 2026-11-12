@@ -579,6 +579,40 @@
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 20 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 3 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 // The monorail's vehicles: a car's base (2687) rides on a wheel chassis (2686) at one end, by its connector's pin (2697), and is clipped at the other to the motor's clips (2685); the chassis and the motor (2684, in its case 2683) each carry two steel axles with two wheels (2688), which run on the beam's top. The shadow library describes none of the chassis, the axles or the motor's base.
+
+0 FILE 2686.dat
+0 // Monorail Wheel Chassis: the holes its two axles (2688) turn in, along z, 25 LDU either side of its middle and 12 below its origin; and its connector (2697), held fast 15 below its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 60] [center=true] [pos=25 12 0] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 60] [center=true] [pos=-25 12 0] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 8] [center=true] [pos=0 15 0]
+
+0 FILE 2697.dat
+0 // Monorail Wheel Connector: held fast to its chassis (2686), at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 8] [center=true]
+
+0 FILE 2688.dat
+0 // Axle Steel 5 x 67.5 with Two Wheels 1.6 x 10 (the monorail's): the axle, round, 2.5 LDU in radius, along z; and its two wheels' treads, 12 LDU in radius, 28.25 LDU either side, which run on the beam's top
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 2.5 60] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 12 3] [center=true] [pos=0 0 28.25] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 12 3] [center=true] [pos=0 0 -28.25] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2684.dat
+0 // Monorail Motor Base: the holes its two axles (2688) turn in, along z, 39 LDU either side of its middle and 124 below its origin; held fast to its case (2683) at their shared origin; and its two clips (2685), which swing any way (as on a ball) 18 LDU either side of its middle, 128.75 below its origin, so that the cars clipped to them turn and tip
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 60] [center=true] [pos=39 124 0] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 2.5 60] [center=true] [pos=-39 124 0] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 8] [center=true]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=O 6 12] [center=true] [pos=18 128.75 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=O 6 12] [center=true] [pos=-18 128.75 0]
+
+0 FILE 2683.dat
+0 // Monorail Motor Case: held fast to its base (2684) at their shared origin
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 6 8] [center=true]
+
+0 FILE 2685.dat
+0 // Monorail Motor Clip: swinging on the motor's base (2684), at its origin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=O 6 12] [center=true]
+
 0 FILE 50254.dat
 0 // Train Wheel Small with Notched Hole: its tread is its hub, 10 LDU in radius, about its z axis at its origin (the disc on its inner side, 18 LDU in radius, is its flange)
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=W 10 8] [center=true] [ori=1 0 0 0 0 1 0 -1 0]

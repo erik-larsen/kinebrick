@@ -195,7 +195,9 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
       const c = center(r);
       const near = track.near(c, poses[0], i)!;
       const rr = mech.treads.find((t) => t.body === r.body)?.radius ?? radius;
-      offTrack = Math.max(offTrack, Math.abs(near.offset), Math.abs(c.y + rr - head));
+      // (Its height against the rail heads under it: a monorail's run at more than one height.)
+      const under = track.under(c.clone().setY(c.y + rr), poses[0])?.y ?? head;
+      offTrack = Math.max(offTrack, Math.abs(near.offset), Math.abs(c.y + rr - under));
     }
     for (const j of couplings) apart = Math.max(apart, j.from.clone().applyMatrix4(poses[j.bodyA]).distanceTo(j.to.clone().applyMatrix4(poses[j.bodyB])));
   };
@@ -213,7 +215,14 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   kin.restore(before);
   const t = track.pointAt(place.line, place.s).t;
   const dir = tried.dot(t) >= 0 ? 1 : -1;
-  const lap = loopLength(track, place.line, place.s, dir);
+  // A lap if the track loops the way the train goes; or, if it leads that way into a siding and
+  // the other way round a loop (as 6991's, its points set as built), a lap the other way.
+  let lap = loopLength(track, place.line, place.s, dir);
+  let way = 1;
+  if (lap === null) {
+    const other = loopLength(track, place.line, place.s, -dir);
+    if (other !== null) [lap, way] = [other, -1];
+  }
   // How far the train goes (LDU, along the way it goes) and how far the wheel turned.
   let travelled = 0;
   let turned = 0;
@@ -229,7 +238,8 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
       const done = kin.turnJoint(joint, way * STEP);
       turned += Math.abs(done);
       const now = center(lead);
-      travelled += now.clone().sub(last).setY(0).length();
+      // (As it goes, up and down a ramp too, as the track's lengths are measured.)
+      travelled += now.distanceTo(last);
       last = now;
       rimWent += gauge().sub(lastRim).setY(0).length();
       lastRim = gauge();
@@ -248,7 +258,7 @@ function run(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], track: T
   let reached: boolean;
   if (lap !== null) {
     length = lap;
-    go(1, () => travelled > lap - BACK && center(lead).distanceTo(start) < BACK, most);
+    go(way, () => travelled > lap - BACK && center(lead).distanceTo(start) < BACK, most);
     reached = travelled > lap - BACK && center(lead).distanceTo(start) < BACK;
     if (!reached) why.push(`went ${Math.round(travelled)} of a ${Math.round(lap)} LDU lap`);
   } else {

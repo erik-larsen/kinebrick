@@ -27,11 +27,13 @@ const RADIUS = 800;
 const CURVE = Math.PI / 8;
 
 // A piece of centre line in a part's own coordinates, as [x, z] at the rail heads: straight from
-// `from` to `to`, or an arc that also passes through `mid`.
+// `from` to `to`, or an arc that also passes through `mid`. A straight that climbs or falls (a
+// monorail ramp's) has `y`: how far above or below the rail heads (LDraw y) it starts and ends.
 interface Segment {
   from: [number, number];
   to: [number, number];
   mid?: [number, number];
+  y?: [number, number];
 }
 
 // A kind of track piece: its centre lines, each a run of segments from one end to the other.
@@ -92,6 +94,20 @@ const curve = (): Segment => arc([-RADIUS * Math.sin(CURVE / 2), RADIUS * Math.c
 // to the side after one more curve (z negative for a right switch, as LDraw draws it).
 const switchLines = (side: number): Segment[][] => [[straight(640)], biarc([-320, 0], 0, [333.853, -259.104 * side], CURVE * side)];
 
+// The monorail's pieces: a beam whose wheels run on its top at its origin's height, its curves
+// all of one radius (28 studs), 45 or 90 degrees.
+const MONORAIL_RADIUS = 560;
+// A monorail point's lines: straight from (-320, 0) to (320, 0), and the branch, curving 45
+// degrees off it from the same end (to +z for a left point, -z for a right one).
+const monorailPoint = (side: number): Segment[][] => [[straight(640)], [arc([-320, 0], 0, (-side * Math.PI) / 4, MONORAIL_RADIUS)]];
+// A monorail ramp section: 640 long, climbing (`rise` negative, LDraw y up) or falling 120 LDU,
+// level at its start and steepest at its end (as a parabola), in 32 straight steps (short, so
+// that the slope changes little from one to the next, as a wheelset rolls across).
+function monorailRamp(rise: number): Segment[] {
+  const height = (x: number) => (rise * x * x) / (640 * 640);
+  return Array.from({ length: 32 }, (_, i): Segment => ({ from: [i * 20, 0], to: [(i + 1) * 20, 0], y: [height(i * 20), height((i + 1) * 20)] }));
+}
+
 // Every kind of track piece Kinebrick knows, by part name (without .dat).
 const SHAPES: Record<string, () => Omit<PieceShape, 'system' | 'head'>> = {
   straight: () => ({ kind: 'straight', lines: [[straight(320)]] }),
@@ -100,6 +116,16 @@ const SHAPES: Record<string, () => Omit<PieceShape, 'system' | 'head'>> = {
   right: () => ({ kind: 'switch', lines: switchLines(1) }),
   left: () => ({ kind: 'switch', lines: switchLines(-1) }),
   crossing: () => ({ kind: 'crossing', lines: [[straight(320)], [{ from: [0, -160], to: [0, 160] }]] }),
+  'monorail short': () => ({ kind: 'straight', lines: [[straight(160)]] }),
+  'monorail long': () => ({ kind: 'straight', lines: [[straight(640)]] }),
+  'monorail stop': () => ({ kind: 'straight', lines: [[straight(320)]] }),
+  'monorail quarter': () => ({ kind: 'curve', lines: [[arc([160, -400], -Math.PI / 2, -Math.PI / 2, MONORAIL_RADIUS)]] }),
+  'monorail short right': () => ({ kind: 'curve', lines: [[arc([0, 0], -Math.PI / 4, Math.PI / 4, MONORAIL_RADIUS)]] }),
+  'monorail short left': () => ({ kind: 'curve', lines: [[arc([0, 0], Math.PI / 4, -Math.PI / 4, MONORAIL_RADIUS)]] }),
+  'monorail right point': () => ({ kind: 'switch', lines: monorailPoint(-1) }),
+  'monorail left point': () => ({ kind: 'switch', lines: monorailPoint(1) }),
+  'monorail ramp up': () => ({ kind: 'straight', lines: [monorailRamp(-120)] }),
+  'monorail ramp down': () => ({ kind: 'straight', lines: [monorailRamp(120)] }),
 };
 const PIECES: Record<string, [string, string, number?]> = {
   '74746': ['9V', 'straight'],
@@ -153,6 +179,21 @@ const PIECES: Record<string, [string, string, number?]> = {
   '3241ac01': ['12V', 'curve'],
   '866c04': ['12V', 'quarter'],
   '3241ac04': ['12V', 'quarter'],
+  // The monorail: straights (and the stop/go switch's), curves, points and ramps (a ramp's lower
+  // section climbs from its start, its upper section falls from its start, as placed in a set).
+  '2670': ['monorail', 'monorail short'],
+  '2671': ['monorail', 'monorail long'],
+  '74013': ['monorail', 'monorail stop'],
+  '2774c01': ['monorail', 'monorail stop'],
+  '2672': ['monorail', 'monorail quarter'],
+  '2891': ['monorail', 'monorail short right'],
+  '2892': ['monorail', 'monorail short left'],
+  '74780-f1': ['monorail', 'monorail right point', 0],
+  '74780-f2': ['monorail', 'monorail right point', 1],
+  '74781-f1': ['monorail', 'monorail left point', 0],
+  '74781-f2': ['monorail', 'monorail left point', 1],
+  '2677': ['monorail', 'monorail ramp up'],
+  '2678': ['monorail', 'monorail ramp down'],
 };
 
 // The single rails of 4.5V and 12V track, as some sets build it: a straight rail (3228), or a
@@ -274,7 +315,7 @@ export class Track {
   // (Past its ends only if `open`: else the nearest point is on the line itself.)
   private project(line: number, point: Vector3, frame: Matrix4, open = true) {
     const l = this.lines[line];
-    let best = { s: 0, q: new Vector3(), t: new Vector3(), curvature: 0, distance: Infinity };
+    let best = { s: 0, q: new Vector3(), t: new Vector3(), curvature: 0, rise: 0, distance: Infinity };
     let before = 0;
     for (let i = 0; i < l.rails.length; i++) {
       const found = onRail(l.rails[i], point, frame, open && i === 0, open && i === l.rails.length - 1);
@@ -357,7 +398,8 @@ export class Track {
       let best: { line: number; distance: number } | null = null;
       for (let line = 0; line < this.lines.length; line++) {
         const sw = this.switches.find((s) => s.lines.includes(line));
-        const distance = this.project(line, point, frame, false).distance + (!sw || sw.lines[sw.state] === line ? 0 : 0.5);
+        // (Measured in 3D, so that a wheelset takes the line at its own level, where one runs above another.)
+        const distance = this.project(line, point, frame, false).q.distanceTo(point) + (!sw || sw.lines[sw.state] === line ? 0 : 0.5);
         if (!best || distance < best.distance) best = { line, distance };
       }
       place = { line: best!.line, s: 0 };
@@ -392,6 +434,20 @@ export class Track {
   }
 
   // Where a wheelset is now, as last found (see near): its line and how far along it.
+  // The track under a point, with the track placed by `frame`: the height of its rail heads
+  // (LDraw y) at the nearest point of the nearest line (the line at its own level, where one
+  // runs above another), and how the height changes along it there (`rise`, for each LDU level
+  // along `t`).
+  under(point: Vector3, frame: Matrix4): { y: number; rise: number; t: Vector3 } | null {
+    let best: { y: number; rise: number; t: Vector3; distance: number } | null = null;
+    for (let line = 0; line < this.lines.length; line++) {
+      const found = this.project(line, point, frame, false);
+      const distance = found.q.distanceTo(point);
+      if (!best || distance < best.distance) best = { y: found.q.y, rise: found.rise, t: found.t, distance };
+    }
+    return best;
+  }
+
   placeOf(key: number): { line: number; s: number } | undefined {
     return this.places.get(key);
   }
@@ -412,13 +468,16 @@ function onRail(rail: Rail, point: Vector3, frame: Matrix4, openStart: boolean, 
   const to = rail.to.clone().applyMatrix4(frame);
   const level = (v: Vector3) => v.clone().addScaledVector(UP, -v.dot(UP));
   if (rail.center === undefined) {
+    // (A straight that climbs or falls is measured by the share of its level length: `s` along
+    // it as it slopes, and `rise`, how far it falls (LDraw y) for each LDU level.)
     const d = level(new Vector3().subVectors(to, from));
     const length = d.length();
     d.divideScalar(length);
-    let s = level(new Vector3().subVectors(point, from)).dot(d);
-    if (!openStart) s = Math.max(0, s);
-    if (!openEnd) s = Math.min(length, s);
-    return { s, q: from.clone().addScaledVector(d, s), t: d, curvature: 0 };
+    let along = level(new Vector3().subVectors(point, from)).dot(d);
+    if (!openStart) along = Math.max(0, along);
+    if (!openEnd) along = Math.min(length, along);
+    const share = along / length;
+    return { s: share * from.distanceTo(to), q: from.clone().lerp(to, share), t: d, curvature: 0, rise: (to.y - from.y) / length };
   }
   const center = rail.center.clone().applyMatrix4(frame);
   const r = level(new Vector3().subVectors(point, center));
@@ -440,7 +499,7 @@ function onRail(rail: Rail, point: Vector3, frame: Matrix4, openStart: boolean, 
     const q = center.clone().addScaledVector(a.clone().normalize(), radius);
     q.y = from.y;
     const s = level(new Vector3().subVectors(point, q)).dot(t);
-    return openStart ? { s: Math.min(0, s), q: q.clone().addScaledVector(t, Math.min(0, s)), t, curvature: 0 } : { s: 0, q, t, curvature: turn / radius };
+    return openStart ? { s: Math.min(0, s), q: q.clone().addScaledVector(t, Math.min(0, s)), t, curvature: 0, rise: 0 } : { s: 0, q, t, curvature: turn / radius, rise: 0 };
   }
   if (at > sweep) {
     const t = tangentAt(b.clone().normalize());
@@ -448,12 +507,12 @@ function onRail(rail: Rail, point: Vector3, frame: Matrix4, openStart: boolean, 
     q.y = from.y;
     const s = level(new Vector3().subVectors(point, q)).dot(t);
     const length = radius * sweep;
-    return openEnd ? { s: length + Math.max(0, s), q: q.clone().addScaledVector(t, Math.max(0, s)), t, curvature: 0 } : { s: length, q, t, curvature: turn / radius };
+    return openEnd ? { s: length + Math.max(0, s), q: q.clone().addScaledVector(t, Math.max(0, s)), t, curvature: 0, rise: 0 } : { s: length, q, t, curvature: turn / radius, rise: 0 };
   }
   const radial = r.clone().normalize();
   const q = center.clone().addScaledVector(radial, radius);
   q.y = from.y;
-  return { s: radius * at, q, t: tangentAt(radial), curvature: turn / radius };
+  return { s: radius * at, q, t: tangentAt(radial), curvature: turn / radius, rise: 0 };
 }
 
 // The circle through three points, seen from above (in x and z), at the first point's height.
@@ -479,9 +538,9 @@ export function buildTrack(parts: { name: string; matrix: Matrix4 }[]): Track | 
   for (const { part, name, matrix } of pieces) {
     const shape = trackPiece(name);
     if (!shape) continue;
-    const at = ([x, z]: [number, number]) => new Vector3(x, shape.head, z).applyMatrix4(matrix);
+    const at = ([x, z]: [number, number], y = 0) => new Vector3(x, shape.head + y, z).applyMatrix4(matrix);
     const first = placed.length;
-    for (const line of shape.lines) placed.push({ part, points: line.map((seg) => ({ from: at(seg.from), ...(seg.mid ? { mid: at(seg.mid) } : {}), to: at(seg.to) })) });
+    for (const line of shape.lines) placed.push({ part, points: line.map((seg) => ({ from: at(seg.from, seg.y?.[0]), ...(seg.mid ? { mid: at(seg.mid) } : {}), to: at(seg.to, seg.y?.[1]) })) });
     if (shape.kind === 'switch') track.switches.push({ part, lines: [first, first + 1], state: shape.state ?? 0 });
   }
   if (placed.length === 0) return null;

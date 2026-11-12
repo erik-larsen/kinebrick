@@ -51,6 +51,23 @@ const ERRATA: Record<string, [string, string, string][]> = {
       '1 0 -120 0 -0.008 0 0 -1 0 1 0 1 0 0 4565 - locomotive - wheels 2.ldr',
     ],
   ],
+  '6399-1': [
+    [
+      "The two cars stand 3.7 LDU too far from the motor: their bars miss its clips",
+      '1 4 -387 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train A.ldr',
+      '1 4 -383.3 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train A.ldr',
+    ],
+    ['', '1 4 253 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train C.ldr', '1 4 249.3 -304 -455 1 0 0 0 1 0 0 0 1 6399 - train C.ldr'],
+  ],
+  '6990-1': [
+    [
+      "The third car's wheel chassis and its axles are placed tipped 5.5 degrees, as on the ramp, but not its connector, which is one with the chassis: placed level under the car, as the first car's are (Kinebrick tips the chassis on the car as it runs)",
+      '1 0 0 16.069 121.438 0 0 -1 0.0958458 0.995396 0 0.995396 -0.0958458 0 2686.dat',
+      '1 0 0 16 120 0 0 -1 0 1 0 1 0 0 2686.dat',
+    ],
+    ['', '1 0 0 25.617 95.402 0 0 -1 0.0958458 0.995396 0 0.995396 -0.0958458 0 2688.dat', '1 0 0 28 95 0 0 -1 0 1 0 1 0 0 2688.dat'],
+    ['', '1 0 0 30.411 145.173 0 0 -1 0.0958458 0.995396 0 0.995396 -0.0958458 0 2688.dat', '1 0 0 28 145 0 0 -1 0 1 0 1 0 0 2688.dat'],
+  ],
   // Not errors, but changes for Kinebrick's layouts.
   'test-1': [
     [
@@ -297,7 +314,7 @@ function setTrainsOnTrack(text: string): { text: string; trains: number; moved: 
     let cursor = train[0].g !== null ? train[0].g! + train[0].front : clearStretch(free, train.reduce((n, c) => n + c.rear - c.front + COUPLE, 0));
     train.forEach((c, k) => {
       const middle = cursor - c.front;
-      const targets = kept ? c.mine.map((r, i) => c.centers[i].clone().setY(track.head() - radius(r))) : c.wheels.map((w, i) => at(middle + w).point.addScaledVector(new Vector3(0, 1, 0), -radius(c.mine[i])));
+      const targets = kept ? c.mine.map((r, i) => c.centers[i].clone().setY((track.under(c.centers[i], identity)?.y ?? track.head()) - radius(r))) : c.wheels.map((w, i) => at(middle + w).point.addScaledVector(new Vector3(0, 1, 0), -radius(c.mine[i])));
       const next = train[k + 1];
       const coupledToNext = next && coupledAsBuilt(c, next);
       // The gap to the next car's front end: as built, if they're coupled (measured between their

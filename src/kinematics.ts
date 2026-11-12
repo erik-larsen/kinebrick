@@ -240,6 +240,8 @@ export class Kinematics {
   private heldToFrame = new Set<number>();
   private contactTreads: number[] = []; // indices into mech.treads
   private contactHeights: number[] = []; // for each tyre, where it touched the ground at the start (LDraw y)
+  private railOffsets: number[] = [];
+  private trainWheelBodies?: Set<number>; // on a track, the bodies of its wheels (see turnJoint) // for each train wheel on a track, how far it stood off the rail heads under it at the start
   // Bodies held only by a ball joint at each end (a steering link), and those two joints.
   private links: { body: number; balls: [number, number] }[] = [];
   // Bodies held only by a turning joint and a ball on its axis (a towball in a steering rack, its
@@ -282,6 +284,17 @@ export class Kinematics {
     this.setOnRails();
   }
 
+  // The track under a train wheel (see Track.under), whose lowest point is `p`, with the track
+  // placed by `frame`: under its axle's middle, if it's a wheelset's (both its wheels stand at
+  // one place along the track), else under the wheel itself.
+  private railUnder(tread: number, p: Vector3, frame: Matrix4) {
+    const t = this.mech.treads[tread];
+    const rider = this.mech.riders?.find((r) => r.body === t.body);
+    const pose = this.poses[t.body] ?? new Matrix4();
+    const at = rider ? rider.center.clone().applyMatrix4(pose).setY(p.y) : p;
+    return this.mech.track?.under(at, frame) ?? null;
+  }
+
   // A train layout's cars set on the rails, coupled: a layout places them by hand, a few LDU off
   // the track's centreline (or a stud or more, on a curve), and its magnets a little apart, so
   // the loops are closed from where it was built, as many times as it takes (closing them once
@@ -293,6 +306,19 @@ export class Kinematics {
       const left = this.closeLoops(-1);
       if (left >= gap) break;
       gap = left;
+    }
+    // On a track, where that left them: each train wheel rides at its height above the rail heads
+    // as it is now (a train the file stands across where a curve meets a ramp, as 6990's, is
+    // drawn onto the line sideways, and can't keep every wheel's height as it was).
+    if (this.mech.track && gap > LOOP_TOLERANCE) {
+      for (const i of this.contactTreads) {
+        const t = this.mech.treads[i];
+        const pose = this.poses[t.body];
+        const p = lowestPoint(t.center.clone().applyMatrix4(pose), t.axis.clone().transformDirection(pose), t.radius);
+        const under = p && this.railUnder(i, p, this.poses[0]);
+        if (p && under) this.railOffsets[i] = p.y - under.y;
+      }
+      this.closeLoops(-1);
     }
     // Being set on the rails isn't rolling or scrubbing: the readout starts from there.
     this.treadTravel.fill(0);
@@ -536,7 +562,10 @@ export class Kinematics {
     this.mech.treads.forEach((t, i) => {
       const p = lowestPoint(t.center, t.axis, t.radius);
       this.contactHeights[i] = p ? p.y : 0;
-      if (p && Math.abs(p.y - lowest) < tolerance && onRails(t.part)) this.contactTreads.push(i);
+      // (On a track, the rail heads under the wheel: a monorail's run at more than one height.)
+      const ground = p && this.mech.track ? (this.railUnder(i, p, new Matrix4())?.y ?? lowest) : lowest;
+      this.railOffsets[i] = p ? p.y - ground : 0;
+      if (p && Math.abs(p.y - ground) < tolerance && onRails(t.part)) this.contactTreads.push(i);
     });
   }
 
@@ -1744,10 +1773,24 @@ export class Kinematics {
       if (onRails) {
         // A train wheel neither lifts off its rail nor sinks into it, exactly; its flanges keep
         // it across the track (the riders' rows below, for the axle as a whole). Its gap, for
-        // closing the loops: how far it stands off the height it started at (the layout sets the
-        // trains on the rail heads; a file may stand a locomotive's wheels a little apart in height,
-        // and each rides at its own).
-        add(along(p, DOWN), this.contactHeights[i] - p.y);
+        // closing the loops: how far it stands off where it started, above the rail heads under it
+        // (the layout sets the trains on the rail heads; a file may stand a locomotive's wheels a
+        // little apart in height, and each rides at its own). Up or down a ramp, it goes up or
+        // down with it: the row holds its height as the rail heads' changes along the track.
+        // (How fast it goes along is measured at its axle's middle, which travels along the track,
+        // as the point it touches the rail at, rolling, doesn't; and the same for both wheels of
+        // an axle, which stand at the same place along the track, though round a curve the outer
+        // goes faster.)
+        const under = this.railUnder(i, p, this.poses[0]);
+        if (under) {
+          const rider = this.mech.riders?.find((r) => r.body === tread.body);
+          const middle = rider ? rider.center.clone().applyMatrix4(pose) : hub;
+          const row = along(hub, DOWN);
+          const ahead = along(middle, under.t);
+          for (let k = 0; k < n; k++) row[k] -= under.rise * ahead[k];
+          add(row, under.y + this.railOffsets[i] - p.y);
+        }
+        else add(along(p, DOWN), this.contactHeights[i] - p.y);
       } else if (slip) {
         if (tread.track === undefined) slip.sideways.push(along(p, sideways));
         slip.travel.push(along(hub, forward));
@@ -2483,7 +2526,14 @@ export class Kinematics {
       // Nor a train coupling's swivel (see magnetCouplings): it turns as the magnets' meeting
       // asks, which closing the loops settles, not the step's first order.
       const couplings = this.couplingBodies ??= new Set(this.mech.roles.flatMap((r, i) => (r === 'coupling' ? [this.mech.bodyOf[i]] : [])));
-      const checked = (j: Joint) => j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) && !pins.has(j.bodyA) && !pins.has(j.bodyB) && !couplings.has(j.bodyA) && !couplings.has(j.bodyB);
+      // Nor, on a track, a wheel's: a train wheel turns as far as its train goes, which closing
+      // the loops settles (a monorail's cars, on ball joints, go a little faster or slower, from
+      // step to step, than the step's first order has it, over a ramp's crest). Nor anything
+      // there outside a closed loop, which no dead point stops (a road vehicle a train carries:
+      // its wheels touch nothing, and spin as they may).
+      const wheels = this.trainWheelBodies ??= new Set(this.mech.track ? this.mech.treads.map((t) => t.body) : []);
+      const inLoop = (k: number) => !this.mech.track || (this.loopJoints ??= this.findLoopJoints()).has(k);
+      const checked = (j: Joint, k: number) => j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) && !pins.has(j.bodyA) && !pins.has(j.bodyB) && !couplings.has(j.bodyA) && !couplings.has(j.bodyB) && !wheels.has(j.bodyA) && !wheels.has(j.bodyB) && inLoop(k);
       const largest = Math.max(...predicted.map(Math.abs));
       // How fast the fastest joint in a closed loop turns, for each turn of this one (at least
       // 1: this one). Dead points are linkages', and other joints' rates may change from step
@@ -2495,7 +2545,7 @@ export class Kinematics {
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);
-      const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
+      const strayed = this.mech.joints.flatMap((j, k) => (checked(j, k) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
       if (gap > (played ? PLAY : DEAD_POINT_GAP) || strayed.length) {
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have

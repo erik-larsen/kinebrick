@@ -1,0 +1,105 @@
+{
+  "set": "6991-1",
+  "curated": {
+    "model": "models/trains/6991-Monorail Transport Base.mpd",
+    "functions": [
+      {
+        "kind": "track",
+        "does": "The track's pieces join end to end into one layout"
+      },
+      {
+        "kind": "run",
+        "does": "Turning a wheel of the train runs it the full length of the track (on a loop, a full lap back to its start), every wheelset on the track and its cars coupled",
+        "control": "p513 2688",
+        "wheelsets": [
+          "p513 2688",
+          "p514 2688",
+          "p544 2688",
+          "p545 2688",
+          "p587 2688",
+          "p588 2688"
+        ]
+      },
+      {
+        "kind": "switch",
+        "does": "The switch flips, and a train taking it from its shared end goes the other way",
+        "control": "p95 74781-f1"
+      },
+      {
+        "kind": "switch",
+        "does": "The switch flips, and a train taking it from its shared end goes the other way",
+        "control": "p119 74780-f2"
+      }
+    ]
+  },
+  "generated": {
+    "commit": "26c3175",
+    "uncommitted": true,
+    "date": "2026-11-12",
+    "seconds": 188,
+    "counts": {
+      "works": 4
+    },
+    "loose": [
+      "p9 4740",
+      "p11 4740",
+      "p83 3960",
+      "p84 3960",
+      "p185 3959",
+      "p186 3959",
+      "p189 4740",
+      "p190 4740",
+      "p245 2569",
+      "p246 2569",
+      "p313 4733",
+      "p314 2569",
+      "p411 755",
+      "p414 754",
+      "p415 754",
+      "p416 754",
+      "p417 754",
+      "p418 754",
+      "p419 754",
+      "p420 754",
+      "p421 754",
+      "p422 754",
+      "p462 755",
+      "p465 754",
+      "p466 754",
+      "p467 754",
+      "p468 754",
+      "p469 754",
+      "p470 754",
+      "p471 754",
+      "p472 754",
+      "p473 754",
+      "p540 2569",
+      "p541 2569",
+      "p547 u9075",
+      "p549 2682",
+      "p590 3960",
+      "p613 2569",
+      "p614 2569"
+    ],
+    "functions": [
+      {
+        "result": "works"
+      },
+      {
+        "result": "works",
+        "travelled": 6069,
+        "length": 6079,
+        "offTrack": 0.2,
+        "apart": 0,
+        "rolled": 12,
+        "radius": 12
+      },
+      {
+        "result": "works"
+      },
+      {
+        "result": "works"
+      }
+    ]
+  }
+}

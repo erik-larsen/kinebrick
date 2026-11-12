@@ -447,6 +447,17 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const connections = findConnections(cyls, frictionRigid);
   // A train wheel on a wheel pin (a handcar's) rolls freely: the pin's lip doesn't hold it.
   for (const c of connections) if (c.held && (roles[c.male] === 'train wheel' || roles[c.female] === 'train wheel')) [c.kind, c.held] = ['revolute', false];
+  // A monorail car's pin on its wheel chassis lets it turn any way (as a ball joint does): round
+  // a curve, and up or down a ramp. At its other end it's clipped to the motor: the clip holds
+  // it fast, and swings on the motor (on a ball, see the corrections for 2684).
+  for (const c of connections) {
+    const role = [roles[c.male], roles[c.female]];
+    if (c.kind !== 'revolute' && !c.held) continue;
+    if (role.includes('monorail clip')) Object.assign(c, { kind: 'rigid', held: false });
+    if (!role.includes('monorail coupling')) continue;
+    const middle = c.from.clone().lerp(c.to, 0.5);
+    Object.assign(c, { kind: 'ball', from: middle, to: middle.clone(), held: false });
+  }
   // A train track's pieces hold together end to end (nothing else joins them), and the track,
   // the trains' wheels and what's built on them are assemblies of their own, standing apart
   // from each other, never loose (see findLooseParts).
@@ -516,7 +527,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   lineUpAxles(joints);
   lineUpBalls(joints);
   const treads = findTreads(cyls, bodyOf, roles);
-  const riders = rails.length ? findRiders(treads) : [];
+  const riders = rails.length ? findRiders(treads, roles) : [];
   if (rails.length) riders.splice(0, riders.length, ...outermostRiders([...riders, ...wheelPairs(treads, riders, roles)], joints));
   const gears = findGears(cyls, bodyOf);
   const meshes = findMeshes(gears);
@@ -1375,6 +1386,8 @@ const RAIL_JOIN = 10;
 // A train's wheels are this far apart on their axle, between where they run on the rail heads
 // (LDU): LEGO's gauge is 5 studs between the rails' centres, and a hair more.
 const GAUGE = 101;
+// A monorail's wheels run on its beam's top, 56.5 LDU apart.
+const MONORAIL_GAUGE = 56.5;
 // A group of this many parts or more, standing apart on a train layout, is scenery.
 const SCENERY = 5;
 
@@ -1501,7 +1514,7 @@ function magnetCouplings(parts: PlacedPart[], roles: string[], cyls: WorldCylind
 }
 
 // Pairs of train wheels on one axle: two treads on one body, on one axis, a gauge apart.
-function findRiders(treads: Tread[]): Rider[] {
+function findRiders(treads: Tread[], roles: string[]): Rider[] {
   const riders: Rider[] = [];
   const used = new Set<number>();
   treads.forEach((a, i) => {
@@ -1511,7 +1524,9 @@ function findRiders(treads: Tread[]): Rider[] {
       if (new Vector3().crossVectors(a.axis, b.axis).length() > ANGLE_TOLERANCE) return;
       const offset = new Vector3().subVectors(b.center, a.center);
       const along = offset.dot(a.axis);
-      if (Math.abs(Math.abs(along) - GAUGE) > 4 || offset.clone().addScaledVector(a.axis, -along).length() > AXIS_TOLERANCE) return;
+      // (A monorail's gauge only for train wheels: a lorry's wheels may stand as far apart.)
+      const gauges = roles[a.part] === 'train wheel' ? [GAUGE, MONORAIL_GAUGE] : [GAUGE];
+      if (Math.min(...gauges.map((g) => Math.abs(Math.abs(along) - g))) > 4 || offset.clone().addScaledVector(a.axis, -along).length() > AXIS_TOLERANCE) return;
       used.add(i).add(j);
       riders.push({ body: a.body, center: a.center.clone().lerp(b.center, 0.5), axis: a.axis.clone(), rolls: !a.fixed && !b.fixed });
     });
