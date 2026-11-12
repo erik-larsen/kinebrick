@@ -196,9 +196,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 19,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 11,
     "counts": {
       "partly": 6,
       "works": 1,
@@ -283,7 +283,7 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 2.8
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -354,7 +354,7 @@
         ],
         "cause": "not-driven",
         "detail": "p577 32073",
-        "seconds": 2.9
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -396,7 +396,7 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -444,7 +444,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p31 3706",
-        "seconds": 3.2
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -532,7 +532,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -650,9 +650,13 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          false,
+          true
+        ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 2.8
+        "seconds": 2.5
       },
       {
         "result": "partly",
@@ -699,7 +703,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 2.3
+        "seconds": 1.2
       },
       {
         "result": "skipped",

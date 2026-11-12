@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 24 works, 34 partly, 19 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 22 works, 37 partly, 18 no, 1 not checked.
 
 ## By decade
 
@@ -94,7 +94,7 @@ Each detail by the set it first appears in.
 
 - *loader arms:* The handwheel low on the right, in front of the cab, raises and lowers the loader arms: a bevel pair and a worm turn a crown gear on a cross-shaft, whose cranks push the arms up through short links. The bucket stays roughly level. (partly)
 - *loader bucket:* The handwheel low on the left, in front of the cab, tips the loader bucket: a bevel pair and a worm turn a crown gear on a second cross-shaft, whose cranks work rods along the arms to a three-armed rocker on each arm and on to the bucket. (works)
-- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (works)
+- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (partly)
 
 **1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1)**
 
@@ -178,7 +178,7 @@ Each detail by the set it first appears in.
 
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
-- *loader bucket:* The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links. (works)
+- *loader bucket:* The black gear on the side of the loader arm's front tilts the loader bucket: it turns a pair of short cranks that push the bucket round its hinge through two half-beam links. (partly)
 
 **2014, [42022 Hot Rod](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42022-1)**
 
@@ -240,7 +240,7 @@ Each detail by the set it first appears in.
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
 - *boom:* The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot. (partly)
-- *claws:* Turning the axle at the spreader's end swings its claws in to grip a container's top or out to let it go. (no)
+- *claws:* Turning the axle at the spreader's end swings its claws in to grip a container's top or out to let it go. (partly)
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 

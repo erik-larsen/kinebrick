@@ -89,9 +89,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 13,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 6,
     "counts": {
       "partly": 1,
       "no": 1,
@@ -200,7 +200,7 @@
         ],
         "cause": "too-little",
         "detail": "p84 32271",
-        "seconds": 6.1
+        "seconds": 2.7
       },
       {
         "result": "no",
@@ -263,7 +263,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -333,7 +333,7 @@
             ]
           ]
         ],
-        "seconds": 5.6
+        "seconds": 2.8
       },
       {
         "result": "not checked",

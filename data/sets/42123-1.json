@@ -77,9 +77,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 6,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 3,
     "counts": {
       "works": 2,
       "partly": 1,
@@ -132,7 +132,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -189,7 +189,7 @@
         ],
         "cause": "not-driven",
         "detail": "p253 32123b against p251 32524",
-        "seconds": 1
+        "seconds": 0.5
       },
       {
         "result": "no",
@@ -271,7 +271,7 @@
             ]
           ]
         ],
-        "seconds": 2.8
+        "seconds": 1.4
       }
     ]
   }

@@ -161,15 +161,15 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 60,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 64,
     "counts": {
       "skipped": 4,
       "no": 2,
-      "works": 2,
-      "partly": 1,
-      "not back": 1
+      "partly": 2,
+      "not back": 2,
+      "works": 1
     },
     "loose": [
       "p412 42053 - 26288-p2",
@@ -344,61 +344,80 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.9
+        "seconds": 0.4
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.21,
+            -1.23
           ]
+        ],
+        "moved": [
+          "p96 59426",
+          "p97 59426"
         ],
         "rates": [
           {
             "p78 32270": [
               1,
-              1.89e-14
+              0.00000116
             ],
             "p66 87761": [
-              2.81e-8,
-              15.9
+              0.00000151,
+              15.6
             ],
             "p55 59426": [
-              0.476,
-              10.7
+              2.86,
+              10.5
             ],
             "p56 59426": [
-              0.476,
-              10.7
+              2.45,
+              10.5
             ],
             "p96 59426": [
-              0,
-              9.47e-15
+              2.55,
+              8.68e-7
             ],
             "p97 59426": [
-              0,
-              1.89e-14
+              1.85,
+              8.68e-7
             ],
             "p284 18939": [
-              0,
-              0
+              8.91e-7,
+              3.33e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0.18,
-              0.17
+              298,
+              179.03
             ],
             [
-              0.18,
-              0.17
+              295.23,
+              179.42
             ]
           ]
         ],
-        "seconds": 8.3
+        "strayed": [
+          "p2017 32123a",
+          "p2061 32123a"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "stay-chosen",
+        "detail": "p96 59426",
+        "seconds": 27.2
       },
       {
         "result": "partly",
@@ -441,7 +460,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p55 59426 against p0 92907",
-        "seconds": 9.5
+        "seconds": 4.3
       },
       {
         "result": "no",
@@ -491,8 +510,12 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 10.3
       },
       {
         "result": "works",
@@ -566,7 +589,7 @@
           "p2017 32123a",
           "p2061 32123a"
         ],
-        "seconds": 38.7
+        "seconds": 21.3
       }
     ]
   }

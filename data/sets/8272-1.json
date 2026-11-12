@@ -121,14 +121,15 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 11,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 8,
     "counts": {
-      "works": 3,
+      "works": 2,
       "not back": 2,
       "no": 2,
-      "skipped": 1
+      "skipped": 1,
+      "partly": 1
     },
     "loose": [
       "p330 8272 - ls40",
@@ -204,7 +205,7 @@
           "p621 32449",
           "p83 32054"
         ],
-        "seconds": 4.9
+        "seconds": 2.4
       },
       {
         "result": "no",
@@ -277,7 +278,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "no",
@@ -350,63 +351,66 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            0.37,
-            -1.5
+            -0.25,
+            0.05
           ]
         ],
         "rates": [
           {
             "p142 57520": [
-              0.901,
-              4.53e-12
+              3.59,
+              1600
             ],
             "p150 57520": [
-              0.943,
-              3.85e-12
+              3.64,
+              1470
             ],
             "p166 57518": [
-              0.21,
-              30
+              2.23,
+              811
             ],
             "p180 57518": [
-              0.0909,
-              27
+              3.07,
+              1610
             ]
           }
         ],
         "back": [
           [
             [
-              8.22,
-              15.48
+              58.25,
+              25.36
             ],
             [
-              20.83,
-              33.51
+              33.75,
+              17.25
             ]
           ]
         ],
         "strayed": [
-          "p176 57518",
-          "p182 57518"
+          "p177 57518"
         ],
         "stop": [
           [
-            "dead point",
-            null
+            "stuck",
+            "stuck"
           ]
         ],
-        "seconds": 2.6
+        "pushed": [
+          true
+        ],
+        "cause": "stopped-early",
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -464,7 +468,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 1.2
       }
     ]
   }

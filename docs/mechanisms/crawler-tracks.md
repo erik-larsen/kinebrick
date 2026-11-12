@@ -4,7 +4,7 @@ Tracks run round sprockets and idlers. (Drivetrain.)
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.
 
-Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 19 works, 10 partly.
+Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 18 works, 11 partly.
 
 ## By decade
 
@@ -33,7 +33,7 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 19 works, 10 pa
 
 **2007, [8272 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8272-1)**
 
-- The track runs round its three black sprockets and the grey wheels beside them as the snowmobile is pushed along; nothing drives it. (works)
+- The track runs round its three black sprockets and the grey wheels beside them as the snowmobile is pushed along; nothing drives it. (partly)
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 

@@ -117,9 +117,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 7,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 3,
     "counts": {
       "works": 2,
       "not back": 2,
@@ -178,7 +178,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.9
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -235,7 +235,7 @@
         ],
         "cause": "not-driven",
         "detail": "p889 32498",
-        "seconds": 1.7
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -270,7 +270,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -415,7 +415,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 0.6
       }
     ]
   }

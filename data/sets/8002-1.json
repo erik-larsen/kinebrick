@@ -136,12 +136,12 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 22,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 13,
     "counts": {
       "works": 4,
-      "not back": 2,
+      "not back": 3,
       "partly": 2,
       "skipped": 3
     },
@@ -168,41 +168,43 @@
         "result": "works",
         "turned": [
           [
-            0.6,
-            -1.5
+            1.2,
+            -1.38
           ]
         ],
         "rates": [
           {
             "p0 32009 against p305 32016": [
-              0.628,
-              141
+              0.62,
+              139
             ]
           }
         ],
         "back": [
           [
             [
-              264.93,
-              88.92
+              718.51,
+              179.66
             ],
             [
-              108.26,
-              42.49
+              3.08,
+              1.4
             ]
           ]
         ],
         "strayed": [
-          "p197 32310",
-          "p852 6538b"
+          "p614 6538b"
         ],
         "stop": [
           [
-            "dead point",
-            null
+            "stuck",
+            "stuck"
           ]
         ],
-        "seconds": 5.4
+        "pushed": [
+          true
+        ],
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -236,79 +238,86 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 0.6
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.56,
+            -1.52
           ],
           [
-            1.5,
-            -1.5
+            1.51,
+            -1.55
           ]
         ],
-        "still": [
-          "p856 6536 against p0 32009",
-          "p619 6536 against p0 32009"
+        "moved": [
+          "p0 32009"
         ],
         "rates": [
           {
             "p619 6536 against p0 32009": [
-              0.924,
-              135
+              1,
+              143
             ],
             "p856 6536 against p0 32009": [
-              0,
-              2.35e-12
+              0.0299,
+              4.27
             ],
             "p0 32009": [
-              0,
-              2.39e-12
+              0.0551,
+              14.1
             ]
           },
           {
             "p619 6536 against p0 32009": [
-              0,
-              5.23e-12
+              0.0671,
+              9.59
             ],
             "p856 6536 against p0 32009": [
-              0.924,
-              135
+              1,
+              143
             ],
             "p0 32009": [
-              0,
-              4.14e-12
+              0.0275,
+              7.28
             ]
           }
         ],
         "back": [
           [
             [
-              0.28,
-              0.42
+              56.73,
+              15.01
             ],
             [
-              0.1,
-              0.15
+              43.09,
+              8.5
             ]
           ],
           [
             [
-              0.28,
-              0.42
+              28.67,
+              8.76
             ],
             [
-              0.1,
-              0.15
+              31.4,
+              8.24
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p856 6536 against p0 32009",
-        "seconds": 7.9
+        "strayed": [
+          "p614 6538b",
+          "p851 6538b"
+        ],
+        "pushed": [
+          true,
+          true
+        ],
+        "cause": "stay-chosen",
+        "detail": "p0 32009",
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -380,7 +389,7 @@
         ],
         "cause": "not-driven",
         "detail": "p619 6536 against p238 6632",
-        "seconds": 2.5
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -414,14 +423,14 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.5
       },
       {
         "result": "works",
         "turned": [
           [
-            0.1,
-            -1.3
+            -0.52,
+            -1.39
           ]
         ],
         "rates": [
@@ -435,26 +444,29 @@
         "back": [
           [
             [
-              13.65,
-              7.07
+              4.74,
+              4.12
             ],
             [
-              108.64,
-              112.94
+              5.23,
+              2.7
             ]
           ]
         ],
         "strayed": [
           "p851 6538b",
-          "p265 6587"
+          "p614 6538b"
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "stuck",
+            "stuck"
           ]
         ],
-        "seconds": 2.7
+        "pushed": [
+          true
+        ],
+        "seconds": 4.5
       },
       {
         "result": "skipped",

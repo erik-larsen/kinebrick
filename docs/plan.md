@@ -22,17 +22,17 @@ The goal has two milestones, because some functions need forces.
 
 ## Where we stand
 
-The function check on all 186 sets, run in full on this Mac on 2026-11-11 (at e31ee32; 5 hours, of which the 8110 alone took all 5):
+The function check on all 186 sets, run in full on this Mac on 2026-11-12 (the 8110 is checked apart, and its results are those of 2026-11-11). Since 2026-11-12 the check pushes the controls a user would push, which took 11 functions out of "works" (decision 9 of that day):
 
 | Result | Functions |
 |---|---|
-| Works | 533 |
-| Partly | 318 |
+| Works | 522 |
+| Partly | 329 |
 | Doesn't work | 196 |
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
-In 28 sets, every checked function works. In 13 of those, no function is skipped or unchecked either. 71 more sets are one or two checked functions short.
+In 27 sets, every checked function works. In 13 of those, no function is skipped or unchecked either. 69 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
@@ -356,6 +356,7 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 6. **Workers and cost.** One worker for a task in phase 2 is the orchestrator's call. A fleet, several workers at once on phase 3's lanes, still starts only on Erik's word, with a stated number.
 7. **The 42110's sideways slide is not fixed by what a correction costs.** Rolled by a wheel, the 42110 Land Rover Defender slides tens of LDU sideways while the solver closes gaps of 0.00001 LDU: the correction is a million times the gap. The first fix counted tyre scrub in the step of the correction that keeps the steering still. It cured the slide and failed its full check: 530 functions work where 533 did, 1 better and 6 worse, and 799 numbers changed in 16 sets, since it changes what every correction costs on every car with tyres and steering. It is dropped. A fix must act only on a correction that is out of proportion to the gap it closes, and leave every other correction the same to the last bit. The solver owner makes one attempt of that kind. If that has any function worse in the full check, the slide is recorded as a known fault and left, since play is worth more (73 functions with a jammed control against 1).
 8. **How play is built** (the solver owner's design, approved with conditions). Only the rows of a joint that closes a loop give: a pin or axle in its hole, a ball in its socket, a slide across its axis. Rules about speeds (gear meshes, universal joints, chains, strings, tyres, holds) give nothing, since a slip in them is never undone. A connection may sit up to 0.1 LDU off (a real pin has about 0.25 LDU of clearance in its hole), and a loop may open at most 1 LDU for each radian the control turns. Free motions are found from the other rows only, and the loop rows are the first thing a step keeps small, so a loop that fits exactly still moves exactly. The conditions: it is a solver option, `play`, off by default, and with it off every result is the same to the last bit; which motions open the loops alike is said by a figure in LDU per radian, not by a relative tolerance, so that no result turns on rounding; closing the loops still closes them wherever it can; a step may take no more than 1.5 times as long. It is measured by the nudge of 0.05 LDU on the quick sets (24 results change today), by the ratchet (none worse), and by how many of the 73 functions with a jammed control then turn the whole way. It is built after the full checks that decide reach.
+9. **The check pushes what the viewer pushes.** In the viewer, a part that hangs on a hinge but does not spin on it like a knob (a door, a bonnet, a swing arm, an arm of a linkage) is pushed: the point grabbed follows the pointer. The check turned every control on its joint, which no drag in the viewer does, so for these parts it measured a motion no user gets. It now grabs such a part by a point on it and pushes it the way its hinge carries that point, with the viewer's own steps and holds, and pushes it back the same length. 83 functions have such a control. Turned, 26 of them worked, 12 partly and 45 not; pushed, 15 work, 23 partly and 45 not, and 31 have more ways that leave a part out of place. So the count of working functions is 522, where it was 533. The solver did not get worse: no function without a pushed control changed in any figure, and that same full check is the one for the inference split (decision 3), which it passes. The new results are the stored ones the ratchet compares with. They are the measure for the solver owner's step "pushes chosen by least motion, and holds removed": the viewer's push takes the least-squares mix of the free motions, not the one the solver's tiers would choose, and that is what these 68 functions wait for. The 8110 is checked apart, so its functions keep their turned results until the slow check before the next merge to `main`.
 
 ## First steps
 
