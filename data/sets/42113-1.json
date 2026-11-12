@@ -134,13 +134,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 95,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 100,
     "counts": {
       "works": 2,
       "partly": 4,
-      "not back": 1,
+      "not back": 2,
       "no": 2
     },
     "loose": [
@@ -184,7 +184,7 @@
             ]
           ]
         ],
-        "seconds": 7.4
+        "seconds": 5.2
       },
       {
         "result": "partly",
@@ -224,7 +224,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1729 57585",
-        "seconds": 7.2
+        "seconds": 5.1
       },
       {
         "result": "partly",
@@ -274,7 +274,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1469 99010",
-        "seconds": 7.1
+        "seconds": 5
       },
       {
         "result": "partly",
@@ -324,7 +324,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p882 92693c01",
-        "seconds": 7.2
+        "seconds": 5
       },
       {
         "result": "partly",
@@ -369,7 +369,7 @@
         ],
         "cause": "not-driven",
         "detail": "p974 92693c01",
-        "seconds": 7.1
+        "seconds": 5.1
       },
       {
         "result": "works",
@@ -473,7 +473,7 @@
           "p131 42610",
           "p105 42610"
         ],
-        "seconds": 54.2
+        "seconds": 39.4
       },
       {
         "result": "no",
@@ -523,8 +523,12 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "control-jammed",
-        "seconds": 1.3
+        "seconds": 17.1
       },
       {
         "result": "no",
@@ -540,23 +544,30 @@
         "back": [
           [
             [
-              0,
-              0
+              2.54,
+              1.1
             ],
             [
-              0,
-              0
+              1.51,
+              1.09
             ]
           ]
         ],
+        "strayed": [
+          "p1716 41239",
+          "p556 43093"
+        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "stuck",
+            "stuck"
           ]
         ],
+        "pushed": [
+          true
+        ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 16.3
       }
     ]
   }

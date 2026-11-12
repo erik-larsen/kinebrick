@@ -75,8 +75,8 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
+    "commit": "4839cc2",
+    "date": "2026-11-12",
     "seconds": 1,
     "counts": {
       "works": 1,
@@ -142,7 +142,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -264,6 +264,10 @@
             "no motion",
             "no motion"
           ]
+        ],
+        "pushed": [
+          true,
+          true
         ],
         "cause": "control-jammed",
         "seconds": 0.1

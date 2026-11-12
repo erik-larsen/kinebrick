@@ -762,6 +762,7 @@ async function start() {
   // Under it, the Stats card: the model's counts and the readout (see index.html). Both cards
   // start closed.
   const statsCard = new GUI({ title: 'Stats', container: cards });
+  statsCard.domElement.classList.add('stats'); // as wide as what's in it while it's open (see index.html)
   statsCard.$children.append(document.getElementById('stats')!);
   statsCard.close();
   statsCard.onOpenClose(showReadoutFade);

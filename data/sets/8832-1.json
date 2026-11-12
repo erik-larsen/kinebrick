@@ -81,13 +81,12 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 2,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 1,
     "counts": {
       "works": 2,
-      "partly": 1,
-      "not back": 1,
+      "no": 1,
       "skipped": 1
     },
     "loose": [
@@ -159,67 +158,74 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
-        "moved": [
-          "p9 2738",
-          "p32 3707"
+        "still": [
+          "p59 3894",
+          "p42 3707",
+          "p61 3749",
+          "p60 3749"
         ],
         "rates": [
           {
             "p59 3894": [
-              1,
-              41.2
+              0,
+              0
             ],
             "p42 3707": [
-              1,
-              79.6
+              0,
+              0
             ],
             "p61 3749": [
-              1,
-              60.3
+              0,
+              0
             ],
             "p60 3749": [
-              1,
-              60.3
+              0,
+              0
             ],
             "p9 2738": [
-              1.37,
-              68.6
+              0,
+              0
             ],
             "p32 3707": [
-              5.62e-8,
-              110
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              2.59,
-              0.73
+              0,
+              0
             ],
             [
-              2.81,
+              0,
               0
             ]
           ]
         ],
-        "strayed": [
-          "p80 3713",
-          "p36 3713"
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p9 2738",
-        "seconds": 0.8
+        "pushed": [
+          true
+        ],
+        "cause": "not-driven",
+        "detail": "p59 3894",
+        "seconds": 0
       },
       {
         "result": "skipped",
@@ -293,7 +299,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.5
       }
     ]
   }

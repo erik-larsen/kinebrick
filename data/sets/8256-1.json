@@ -70,9 +70,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 5,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "works": 2
@@ -136,7 +136,7 @@
         ],
         "cause": "not-driven",
         "detail": "p83 32068",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -228,7 +228,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -298,7 +298,7 @@
             ]
           ]
         ],
-        "seconds": 2.8
+        "seconds": 1.4
       }
     ]
   }

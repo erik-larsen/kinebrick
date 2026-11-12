@@ -36,7 +36,7 @@ import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
 import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
-// mechanism.ts imports these from here.
+// The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
 
 // Each kind of connection's equations (see src/constraints/), in the order they're written: the

@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 8,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 4,
     "counts": {
       "partly": 1,
       "works": 3
@@ -158,7 +158,7 @@
         ],
         "cause": "not-driven",
         "detail": "p132 40490",
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -210,7 +210,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -306,7 +306,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -376,7 +376,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 1.3
       }
     ]
   }

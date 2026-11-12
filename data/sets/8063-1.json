@@ -211,9 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 393,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 284,
     "counts": {
       "works": 8,
       "not back": 3,
@@ -301,7 +301,7 @@
             ]
           ]
         ],
-        "seconds": 4.9
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -331,7 +331,7 @@
             ]
           ]
         ],
-        "seconds": 5.2
+        "seconds": 3.8
       },
       {
         "result": "works",
@@ -441,7 +441,7 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 85.4
+        "seconds": 56.5
       },
       {
         "result": "works",
@@ -481,7 +481,7 @@
             ]
           ]
         ],
-        "seconds": 9.8
+        "seconds": 6.7
       },
       {
         "result": "works",
@@ -515,7 +515,7 @@
             ]
           ]
         ],
-        "seconds": 5.3
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -585,7 +585,7 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 82
+        "seconds": 56.5
       },
       {
         "result": "partly",
@@ -652,7 +652,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 12.5
+        "seconds": 8
       },
       {
         "result": "works",
@@ -750,11 +750,10 @@
             ]
           ]
         ],
-        "seconds": 21.8
+        "seconds": 13.3
       },
       {
-        "result": "not checked",
-        "seconds": 0
+        "result": "not checked"
       },
       {
         "result": "works",
@@ -828,7 +827,7 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 163.8
+        "seconds": 118.7
       },
       {
         "result": "no",
@@ -878,12 +877,15 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "stopped-early",
-        "seconds": 0.9
+        "seconds": 8.2
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       }
     ]
   }

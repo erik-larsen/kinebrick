@@ -89,11 +89,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 2,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 1,
     "counts": {
-      "works": 3,
+      "partly": 1,
+      "not back": 1,
+      "works": 2,
       "skipped": 1,
       "not checked": 1
     },
@@ -122,50 +124,63 @@
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.51,
+            -1.51
           ]
+        ],
+        "moved": [
+          "p521 55982",
+          "p523 55982"
         ],
         "rates": [
           {
             "p491 32316": [
-              8.43e-8,
+              1.39e-7,
               20
             ],
             "p505 55982": [
-              1.27,
+              1.25,
               30
             ],
             "p515 55982": [
-              1.27,
+              1.29,
               30
             ],
             "p521 55982": [
-              0,
-              0
+              0.0237,
+              5.85e-14
             ],
             "p523 55982": [
-              0,
-              0
+              0.0237,
+              5.85e-14
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              1.99,
+              2.57
             ],
             [
-              0,
-              0
+              1.99,
+              2.57
             ]
           ]
         ],
-        "seconds": 0.4
+        "strayed": [
+          "p504 6587",
+          "p514 6587"
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "stay-chosen",
+        "detail": "p521 55982",
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -199,7 +214,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -247,7 +262,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.2
       }
     ]
   }

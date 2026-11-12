@@ -113,9 +113,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 65,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 35,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -240,7 +240,7 @@
         ],
         "cause": "loose-part",
         "detail": "p524 32524",
-        "seconds": 12.6
+        "seconds": 8.1
       },
       {
         "result": "works",
@@ -281,7 +281,7 @@
         "strayed": [
           "p210 32054"
         ],
-        "seconds": 12.4
+        "seconds": 7.8
       },
       {
         "result": "works",
@@ -319,7 +319,7 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -401,7 +401,7 @@
             ]
           ]
         ],
-        "seconds": 18.1
+        "seconds": 8.4
       },
       {
         "result": "partly",
@@ -456,7 +456,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p245 2853",
-        "seconds": 17.3
+        "seconds": 8.3
       },
       {
         "result": "no",
@@ -507,7 +507,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.3
       }
     ]
   }

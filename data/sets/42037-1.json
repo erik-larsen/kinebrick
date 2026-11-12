@@ -132,13 +132,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 77,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 73,
     "counts": {
       "partly": 2,
       "works": 3,
-      "not back": 2,
+      "not back": 3,
       "no": 1,
       "skipped": 1
     },
@@ -231,41 +231,47 @@
         ],
         "cause": "part-fixed",
         "detail": "p126 2851",
-        "seconds": 23.4
+        "seconds": 15.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.51,
+            -1.51
           ]
         ],
         "rates": [
           {
             "p493 45982": [
               1,
-              0.0027
+              81.6
             ],
             "p225 62821": [
               1,
-              6.18e-13
+              9.38e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              182.91,
+              86.5
             ],
             [
-              0,
-              0
+              38.25,
+              20.8
             ]
           ]
         ],
-        "seconds": 23.3
+        "strayed": [
+          "p478 32009"
+        ],
+        "pushed": [
+          true
+        ],
+        "seconds": 30.8
       },
       {
         "result": "partly",
@@ -333,7 +339,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p489 45982",
-        "seconds": 12
+        "seconds": 9.7
       },
       {
         "result": "no",
@@ -423,9 +429,13 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true,
+          true
+        ],
         "cause": "part-fixed",
         "detail": "p96 76537",
-        "seconds": 0.9
+        "seconds": 3
       },
       {
         "result": "works",
@@ -514,7 +524,7 @@
             "dead point"
           ]
         ],
-        "seconds": 12.3
+        "seconds": 9.9
       },
       {
         "result": "skipped",
@@ -543,7 +553,7 @@
             ]
           ]
         ],
-        "seconds": 4.1
+        "seconds": 3.2
       }
     ]
   }

@@ -189,12 +189,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 50,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 30,
     "counts": {
-      "works": 10,
-      "partly": 1,
+      "works": 8,
+      "partly": 3,
+      "not back": 2,
       "skipped": 1
     },
     "loose": [],
@@ -235,7 +236,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -290,7 +291,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 4.6
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -328,7 +329,7 @@
             ]
           ]
         ],
-        "seconds": 4.8
+        "seconds": 2
       },
       {
         "result": "works",
@@ -366,7 +367,7 @@
             ]
           ]
         ],
-        "seconds": 4.9
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -406,7 +407,7 @@
             ]
           ]
         ],
-        "seconds": 4
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -449,7 +450,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -479,75 +480,106 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.22,
+            -0.23
           ]
         ],
         "rates": [
           {
             "p281 2796c01 against p280 2793c03": [
-              1,
-              60.2
+              0.174,
+              134
             ],
             "p264 3702": [
-              0,
-              6.74e-12
+              0.00000709,
+              7.09e-11
             ]
           }
         ],
         "back": [
           [
             [
-              0.16,
-              0.11
+              15.05,
+              5.82
             ],
             [
-              0.13,
-              0.09
+              7.32,
+              2.82
             ]
           ]
         ],
-        "seconds": 5.1
+        "strayed": [
+          "p317 4265a"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "stopped-early",
+        "seconds": 6.6
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            -0.13,
+            0.12
           ]
+        ],
+        "moved": [
+          "p292 3703"
         ],
         "rates": [
           {
             "p319 2796c01 against p318 2793c03": [
-              1.19,
-              71.1
+              0.0769,
+              132
             ],
             "p292 3703": [
-              0,
-              1.08e-11
+              1.61,
+              130
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              9.18,
+              2.65
             ],
             [
-              0,
-              0
+              19.93,
+              5.34
             ]
           ]
         ],
-        "seconds": 7.5
+        "strayed": [
+          "p312 4265a",
+          "p283 3713"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "stay-chosen",
+        "detail": "p292 3703",
+        "seconds": 5.6
       },
       {
         "result": "skipped",
@@ -576,7 +608,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -646,7 +678,7 @@
             ]
           ]
         ],
-        "seconds": 9.7
+        "seconds": 4.8
       }
     ]
   }

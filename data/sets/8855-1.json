@@ -92,9 +92,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 42,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 21,
     "counts": {
       "no": 1,
       "partly": 2,
@@ -210,7 +210,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p347 3707",
-        "seconds": 2
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -288,7 +288,7 @@
         ],
         "cause": "not-driven",
         "detail": "p154 3706",
-        "seconds": 2
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -361,7 +361,7 @@
         "strayed": [
           "p143 4273a"
         ],
-        "seconds": 37.5
+        "seconds": 18.1
       }
     ]
   }

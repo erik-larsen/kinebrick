@@ -118,9 +118,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 5,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 2,
     "counts": {
       "no": 3,
       "skipped": 1,
@@ -272,7 +272,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p908 3649 against p852 3738",
-        "seconds": 0.6
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -348,7 +348,7 @@
           "p1095 3001",
           "p1073 4265a"
         ],
-        "seconds": 3.8
+        "seconds": 1.9
       }
     ]
   }

@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 2,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 1,
     "counts": {
       "no": 2,
       "works": 2,
@@ -182,7 +182,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",
@@ -243,7 +243,7 @@
         "strayed": [
           "p79 60485"
         ],
-        "seconds": 0.3
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -320,7 +320,7 @@
         "strayed": [
           "p79 60485"
         ],
-        "seconds": 1
+        "seconds": 0.5
       },
       {
         "result": "no",
@@ -359,6 +359,9 @@
             "no motion",
             "no motion"
           ]
+        ],
+        "pushed": [
+          true
         ],
         "cause": "stopped-early",
         "seconds": 0

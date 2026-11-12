@@ -171,9 +171,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 80,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 58,
     "counts": {
       "no": 5,
       "works": 3,
@@ -245,7 +245,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -291,7 +291,7 @@
             ]
           ]
         ],
-        "seconds": 3.9
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -331,7 +331,7 @@
             ]
           ]
         ],
-        "seconds": 24.6
+        "seconds": 18.8
       },
       {
         "result": "works",
@@ -483,7 +483,7 @@
             ]
           ]
         ],
-        "seconds": 49.5
+        "seconds": 34.6
       },
       {
         "result": "no",
