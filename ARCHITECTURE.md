@@ -307,7 +307,7 @@ Moving one part affects the others, but the solver doesn't pass motion along a c
 - then solves all the rules at once;
 - and chains only at the very end, to place the bodies on screen.
 
-The code is in `src/kinematics.ts`.
+The code is in `src/kinematics.ts`. The linear algebra it runs on (the null space of step 4, the eigen-solve and the tiers' least squares of [least motion](#least-motion), and the damped solution of step 9) is in `src/linalg.ts`, which knows nothing of parts or joints.
 
 | Step | In short |
 |---|---|
@@ -1123,6 +1123,7 @@ Browser-level tests for these paths can come later.
 | `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and Kinebrick's own settings in it; brings a real LEGO set's file into the shape Kinebrick keeps it in |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
+| `src/linalg.ts` | The solver's linear algebra: null spaces, orthonormal bases, the symmetric eigen-solve, the tiers' least squares and the damped solution that closes the loops |
 | `src/shift.ts` | Finds the parts that slide into set positions (driving rings) and the gear levers that move them, and moves them |
 | `src/paths.ts` | Where a chain's or track's links go as it moves round its wheels, and a string's layout round its drum and pulleys |
 | `src/collisions.ts` | Stops parts passing through each other |
