@@ -78,9 +78,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
       "works": 2,
       "no": 1,
@@ -173,7 +173,8 @@
               0.05
             ]
           ]
-        ]
+        ],
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -272,7 +273,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 3.5
       },
       {
         "result": "no",
@@ -291,10 +293,12 @@
         "why": [
           "p146 4185 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

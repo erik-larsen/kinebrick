@@ -211,9 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 284,
+    "seconds": 393,
     "counts": {
       "works": 8,
       "not back": 3,
@@ -300,7 +300,8 @@
               0.04
             ]
           ]
-        ]
+        ],
+        "seconds": 4.9
       },
       {
         "result": "works",
@@ -329,7 +330,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 5.2
       },
       {
         "result": "works",
@@ -438,7 +440,8 @@
         "strayed": [
           "p1115 32526",
           "p1114 32526"
-        ]
+        ],
+        "seconds": 85.4
       },
       {
         "result": "works",
@@ -477,7 +480,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 9.8
       },
       {
         "result": "works",
@@ -510,7 +514,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 5.3
       },
       {
         "result": "works",
@@ -579,7 +584,8 @@
         "strayed": [
           "p1115 32526",
           "p1114 32526"
-        ]
+        ],
+        "seconds": 82
       },
       {
         "result": "partly",
@@ -645,7 +651,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p13 32009"
+        "detail": "p13 32009",
+        "seconds": 12.5
       },
       {
         "result": "works",
@@ -742,10 +749,12 @@
               0.01
             ]
           ]
-        ]
+        ],
+        "seconds": 21.8
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -818,7 +827,8 @@
         "strayed": [
           "p1115 32526",
           "p1114 32526"
-        ]
+        ],
+        "seconds": 163.8
       },
       {
         "result": "no",
@@ -868,10 +878,12 @@
             "no motion"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 0.9
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
     ]
   }

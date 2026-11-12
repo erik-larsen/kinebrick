@@ -44,9 +44,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 0,
+    "seconds": 1,
     "counts": {
       "partly": 1,
       "not checked": 1
@@ -144,10 +144,12 @@
           ]
         ],
         "cause": "stay-forced",
-        "detail": "p30 4282"
+        "detail": "p30 4282",
+        "seconds": 0.1
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

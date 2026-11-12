@@ -232,9 +232,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 1241,
+    "seconds": 1732,
     "counts": {
       "partly": 9,
       "works": 1,
@@ -377,7 +377,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p3606 42529"
+        "detail": "p3606 42529",
+        "seconds": 150.3
       },
       {
         "result": "partly",
@@ -420,7 +421,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p3609 42529"
+        "detail": "p3609 42529",
+        "seconds": 146.3
       },
       {
         "result": "partly",
@@ -483,7 +485,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p3606 42529"
+        "detail": "p3606 42529",
+        "seconds": 257.1
       },
       {
         "result": "partly",
@@ -574,7 +577,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p5 62821"
+        "detail": "p5 62821",
+        "seconds": 256.3
       },
       {
         "result": "partly",
@@ -613,7 +617,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p3293 18947"
+        "detail": "p3293 18947",
+        "seconds": 125.9
       },
       {
         "result": "partly",
@@ -665,7 +670,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p3395 62274c01 against p3394 42131 - u9559c01"
+        "detail": "p3395 62274c01 against p3394 42131 - u9559c01",
+        "seconds": 109.2
       },
       {
         "result": "partly",
@@ -718,7 +724,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p4118 62274c01 against p4117 42131 - u9559c01"
+        "detail": "p4118 62274c01 against p4117 42131 - u9559c01",
+        "seconds": 103
       },
       {
         "result": "partly",
@@ -770,7 +777,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p6074 62274c01"
+        "detail": "p6074 62274c01",
+        "seconds": 99.2
       },
       {
         "result": "partly",
@@ -817,7 +825,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p5713 42131 - 71710"
+        "detail": "p5713 42131 - 71710",
+        "seconds": 97.8
       },
       {
         "result": "works",
@@ -846,7 +855,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 109.2
       },
       {
         "result": "not checked"

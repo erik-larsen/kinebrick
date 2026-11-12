@@ -102,9 +102,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 126,
+    "seconds": 172,
     "counts": {
       "partly": 1,
       "works": 3,
@@ -191,7 +191,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p6 62821"
+        "detail": "p6 62821",
+        "seconds": 66.6
       },
       {
         "result": "works",
@@ -246,7 +247,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 26.4
       },
       {
         "result": "works",
@@ -295,7 +297,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 22.1
       },
       {
         "result": "no",
@@ -345,7 +348,8 @@
             "dead point"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -400,7 +404,8 @@
             "dead point",
             "dead point"
           ]
-        ]
+        ],
+        "seconds": 53.8
       }
     ]
   }

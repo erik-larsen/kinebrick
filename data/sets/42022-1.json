@@ -88,9 +88,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 5,
+    "seconds": 7,
     "counts": {
       "works": 3,
       "partly": 1
@@ -156,7 +156,8 @@
               0.13
             ]
           ]
-        ]
+        ],
+        "seconds": 2
       },
       {
         "result": "partly",
@@ -217,7 +218,8 @@
           ]
         ],
         "cause": "stay-forced",
-        "detail": "p314 2851 against p0 99008"
+        "detail": "p314 2851 against p0 99008",
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -271,7 +273,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -318,7 +321,8 @@
             "dead point",
             null
           ]
-        ]
+        ],
+        "seconds": 1
       }
     ]
   }

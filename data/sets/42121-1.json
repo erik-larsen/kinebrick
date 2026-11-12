@@ -89,9 +89,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 8,
+    "seconds": 13,
     "counts": {
       "partly": 1,
       "no": 1,
@@ -199,7 +199,8 @@
           ]
         ],
         "cause": "too-little",
-        "detail": "p84 32271"
+        "detail": "p84 32271",
+        "seconds": 6.1
       },
       {
         "result": "no",
@@ -223,7 +224,8 @@
         "why": [
           "p534 32270 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -260,7 +262,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -329,10 +332,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 5.6
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

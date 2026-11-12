@@ -171,9 +171,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 70,
+    "seconds": 80,
     "counts": {
       "no": 5,
       "works": 3,
@@ -244,7 +244,8 @@
             "dead point"
           ]
         ],
-        "cause": "stopped-early"
+        "cause": "stopped-early",
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -289,7 +290,8 @@
               0.04
             ]
           ]
-        ]
+        ],
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -328,7 +330,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 24.6
       },
       {
         "result": "works",
@@ -479,7 +482,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 49.5
       },
       {
         "result": "no",
@@ -504,7 +508,8 @@
         "why": [
           "p1952 4694c01-f1 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -527,7 +532,8 @@
         "why": [
           "p1951 4694c01-f1 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -550,7 +556,8 @@
         "why": [
           "p1950 4694c01-f1 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -574,13 +581,16 @@
         "why": [
           "p1949 4694c01-f1 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

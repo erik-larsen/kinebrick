@@ -139,9 +139,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 25,
+    "seconds": 41,
     "counts": {
       "works": 5,
       "no": 2,
@@ -181,7 +181,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 5.2
       },
       {
         "result": "works",
@@ -227,7 +228,8 @@
               0.01
             ]
           ]
-        ]
+        ],
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -260,7 +262,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -297,7 +300,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 5.3
       },
       {
         "result": "no",
@@ -337,7 +341,8 @@
           "p113 3008 has no joint to work",
           "p120 3008 has no joint to work"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -406,7 +411,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 25.3
       },
       {
         "result": "no",
@@ -446,16 +452,20 @@
           "p159 3582 is part of the frame",
           "p160 3582 is part of the frame"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
     ]
   }

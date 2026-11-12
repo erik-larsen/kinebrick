@@ -136,9 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 24,
+    "seconds": 38,
     "counts": {
       "works": 2,
       "no": 1,
@@ -341,7 +341,8 @@
               0.18
             ]
           ]
-        ]
+        ],
+        "seconds": 3.8
       },
       {
         "result": "no",
@@ -395,7 +396,8 @@
           ]
         ],
         "cause": "part-fixed",
-        "detail": "p561 6539 against p558 3706"
+        "detail": "p561 6539 against p558 3706",
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -477,7 +479,8 @@
         "why": [
           "p50 32039, worked first, went 0 of 0.5"
         ],
-        "cause": "first-failed"
+        "cause": "first-failed",
+        "seconds": 4
       },
       {
         "result": "partly",
@@ -536,7 +539,8 @@
         "why": [
           "p50 32039, worked first, went 0 of -0.5"
         ],
-        "cause": "first-failed"
+        "cause": "first-failed",
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -635,10 +639,12 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 23.8
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       }
     ]
   }

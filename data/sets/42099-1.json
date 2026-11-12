@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "cc84ec0",
+    "commit": "fdb1b39",
     "date": "2026-11-11",
-    "seconds": 109,
+    "seconds": 132,
     "counts": {
       "partly": 3,
       "not back": 2,
@@ -356,7 +356,8 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p1854 23798"
+        "detail": "p1854 23798",
+        "seconds": 11.5
       },
       {
         "result": "partly",
@@ -422,7 +423,8 @@
           "p1525 77",
           "p1666 77"
         ],
-        "cause": "control-jammed"
+        "cause": "control-jammed",
+        "seconds": 38.8
       },
       {
         "result": "partly",
@@ -507,7 +509,8 @@
           "p1666 77"
         ],
         "cause": "not-driven",
-        "detail": "p1854 23798"
+        "detail": "p1854 23798",
+        "seconds": 45.8
       },
       {
         "result": "works",
@@ -552,7 +555,8 @@
               0.05
             ]
           ]
-        ]
+        ],
+        "seconds": 22.3
       },
       {
         "result": "no",
@@ -575,7 +579,8 @@
         "why": [
           "p1858 23798 has no joint to work"
         ],
-        "cause": "control-fixed"
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "no",
@@ -624,13 +629,16 @@
           ]
         ],
         "cause": "not-driven",
-        "detail": "p1856 23798"
+        "detail": "p1856 23798",
+        "seconds": 0.9
       },
       {
-        "result": "not checked"
+        "result": "not checked",
+        "seconds": 0
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -654,7 +662,8 @@
               0
             ]
           ]
-        ]
+        ],
+        "seconds": 11.1
       }
     ]
   }
