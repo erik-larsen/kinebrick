@@ -337,7 +337,7 @@ From those six, the speed of any point on the body follows. With three bodies, t
 
 ### 3. Connections become equations
 
-Each connection is a rule about those numbers, written as "this combination of numbers must equal zero":
+Each connection is a rule about those numbers, written as "this combination of numbers must equal zero". Each kind of connection writes its rules in a file of its own in `src/constraints/`, each rule with its gap (how far the connection has come apart, for [step 9](#9-close-the-loops)) and its weight there: `joints.ts`, `gears.ts`, `tyres.ts` and so on, called in a fixed order by `buildEquations` (the order of the rules decides which step 4 takes first, and so the motions to the last bit):
 
 | Connection | Rule | Equations |
 |---|---|---|
@@ -1121,6 +1121,7 @@ Browser-level tests for these paths can come later.
 | `src/ldr.ts` | Reads the parts of an LDraw model file, .ldr or .mpd, flattening submodels, the paths LDCad and LSynth drew, and Kinebrick's own settings in it; brings a real LEGO set's file into the shape Kinebrick keeps it in |
 | `src/mechanism.ts` | Works out bodies and joints from the connection table ([How it works](#how-it-works), steps 2 to 6) |
 | `src/kinematics.ts` | Works out the allowed motions and moves the bodies (step 7), and the holds of a drag |
+| `src/constraints/` | The equations each kind of connection writes (see [Connections become equations](#3-connections-become-equations)), a file for each kind, and in `equations.ts` what they share |
 | `src/linalg.ts` | The solver's linear algebra: null spaces, orthonormal bases, the symmetric eigen-solve, the tiers' least squares and the damped solution that closes the loops |
 | `src/shift.ts` | Finds the parts that slide into set positions (driving rings) and the gear levers that move them, and moves them |
 | `src/paths.ts` | Where a chain's or track's links go as it moves round its wheels, and a string's layout round its drum and pulleys |

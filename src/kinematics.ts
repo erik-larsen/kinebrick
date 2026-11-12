@@ -20,12 +20,28 @@
 // joint) are pulled back together after each step (see closeLoops). A body reached only
 // through those, such as a piston, is a root of its own.
 
-import { Matrix4, Quaternion, Vector3 } from 'three';
-import { axesCrossing, closestPoints, Gear, Joint, Mechanism, Mesh, Rest, restTouch, StringLine } from './mechanism.ts';
+import { Matrix4, Vector3 } from 'three';
+import { Joint, Mechanism, StringLine } from './mechanism.ts';
 import { StringCircle, stringLayout } from './paths.ts';
+import { links, spinners } from './constraints/balls.ts';
+import { couplings } from './constraints/couplings.ts';
+import { acrossDirections, axisOf, type Connection, DOWN, DRIVE_WEIGHT, type Equations, STUD, UP } from './constraints/equations.ts';
+import { gears, meshContact } from './constraints/gears.ts';
+import { holdRows, holds } from './constraints/holds.ts';
+import { joints } from './constraints/joints.ts';
+import { loops } from './constraints/loops.ts';
+import { rails } from './constraints/rails.ts';
+import { rests } from './constraints/rests.ts';
+import { screws } from './constraints/screws.ts';
+import { hungFrom, strings } from './constraints/strings.ts';
+import { tyres } from './constraints/tyres.ts';
 import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
-// mechanism.ts imports nullSpace from here.
-export { nullSpace };
+// mechanism.ts imports these from here.
+export { acrossDirections, nullSpace };
+
+// Each kind of connection's equations (see src/constraints/), in the order they're written: the
+// order of the rows decides which the elimination takes first, and so the motions to the last bit.
+const CONNECTIONS: Connection[] = [holds, joints, couplings, spinners, links, gears, screws, rests, tyres, rails, loops, strings];
 
 // How close a tyre must be to the ground to count as touching it, in LDU. Models are often
 // built half an LDU out (an official tractor's front tyres sit half an LDU above its rear ones).
@@ -71,11 +87,6 @@ const DEAD_POINT_SAMPLE = (10 * Math.PI) / 180;
 // How far apart a joint may be left after closing the loops, in LDU, before the step counts as
 // past a dead point (see turnJoint). Models' rounded-off positions leave a hundred-thousandth.
 const DEAD_POINT_GAP = 1e-3;
-// How much more a rule that passes turning on (a gear mesh, a universal joint, a chain) counts
-// than any other in closing loops. These rules are about speeds, so nothing would ever undo a
-// slip: where the rules can't all hold (a step past a dead point), a joint is left apart
-// instead, which shows (see turnJoint).
-const DRIVE_WEIGHT = 1000;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
 // How much faster the joints may turn in a drag's motion without the car moving on its
@@ -89,7 +100,6 @@ const SUSPENSION_GAIN = 2;
 // compares with the rest.
 const PLAY_RATE = 1;
 const PLAY = 0.1;
-const STUD = 20;
 // How much the joints' turning counts against the loops' opening in choosing a motion that takes
 // up play: only enough to choose between motions that open them alike.
 const TIE_BREAK = 0.1;
@@ -129,8 +139,6 @@ const TURNING_WEIGHT = 1;
 // in the function check, and 0.3 fails one more test. KINEBRICK_STILLNESS sets it (0 turns it off).
 const STILLNESS = typeof process !== 'undefined' && process.env?.KINEBRICK_STILLNESS !== undefined ? Number(process.env.KINEBRICK_STILLNESS) : 0.2;
 
-const DOWN = new Vector3(0, 1, 0); // LDraw's y axis points down
-const UP = new Vector3(0, -1, 0);
 
 
 // Everything that says where the mechanism is (see Kinematics.snapshot).
@@ -153,7 +161,7 @@ interface Shaft {
   near: Vector3; // the point on its axis nearest the joint's middle, at the start
 }
 
-interface Slip {
+export interface Slip {
   sideways: Row[]; // how fast each tyre scrubs sideways
   travel: Row[]; // how fast each tyre's hub travels along the way it rolls
   lift: Row[]; // how fast each tyre's contact point rises or sinks
@@ -186,11 +194,13 @@ export class Kinematics {
   // car with no steering at all turn, its tyres scrubbing round.
   scrub = DEFAULT_SCRUB;
 
-  private mech: Mechanism;
-  private bodyCount: number;
+  // What follows is the solver's own. Some of it isn't private, as the connections in
+  // src/constraints/ read it to write their equations; nothing else should.
+  mech: Mechanism;
+  bodyCount: number;
   // The tree that rebuilds poses: for each body, the joint that connects it to its parent
   // body, or -1 for a root body.
-  private parentJoint: number[] = [];
+  parentJoint: number[] = [];
   private order: number[] = []; // bodies, parents before children
   private rootPoses = new Map<number, Matrix4>();
   private basis: number[][] | null = null; // the tree's basis at the current poses (see treeBasis)
@@ -199,18 +209,18 @@ export class Kinematics {
   // own, joined by nothing but slides and ball joints to it, with no gears (a rack, which its
   // gear moves, or holds) and no universal joint (a half shaft on a ball in its wheel's hub,
   // which the differential turns).
-  private mounts = new Map<number, number>();
+  mounts = new Map<number, number>();
   private basisOrder: number[] = []; // its columns, deepest bodies' first (see leastSquares)
   // The tree's coordinates, in which the solver works (see treeBasis): six for each root body
   // (how it turns and moves), then one for each joint in the tree (how fast it turns).
   private rootColumn = new Map<number, number>(); // a root body's first coordinate
   private jointColumn: number[] = []; // a joint's coordinate, or -1 if it's not in the tree
   private columns = 0; // how many coordinates
-  private fixedBody = -1; // kept still when the model has no tyres on the ground
-  private frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
-  private dragHeld = new Set<number>(); // bodies held still for the length of one drag
+  fixedBody = -1; // kept still when the model has no tyres on the ground
+  frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
+  dragHeld = new Set<number>(); // bodies held still for the length of one drag
   private stepByTiers = false; // one problem: whether the last step's motion was chosen by least motion's tiers (see jointMotion)
-  private dragTogether: number[] = []; // bodies turned with the grabbed one for the length of one drag (see turnTogether)
+  dragTogether: number[] = []; // bodies turned with the grabbed one for the length of one drag (see turnTogether)
   private dragTurning: { grabbed: number; joint: number } | null = null; // the drag they're held for, if it turns a joint
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
@@ -221,14 +231,14 @@ export class Kinematics {
   private framed: Set<number> | null = null; // the bodies that can't move against the frame (see fixedToFrame), once worked out
   // Bodies held for a drag against the frame rather than against what they turn on (which the
   // drag turns): an assembly hanging on a driven axle stays level, not carried round.
-  private heldToFrame = new Set<number>();
-  private contactTreads: number[] = []; // indices into mech.treads
+  heldToFrame = new Set<number>();
+  contactTreads: number[] = []; // indices into mech.treads
   private contactHeights: number[] = []; // for each tyre, where it touched the ground at the start (LDraw y)
   // Bodies held only by a ball joint at each end (a steering link), and those two joints.
-  private links: { body: number; balls: [number, number] }[] = [];
+  links: { body: number; balls: [number, number] }[] = [];
   // Bodies held only by a turning joint and a ball on its axis (a towball in a steering rack, its
   // tie rod's socket on the ball), by that turning joint.
-  private spinners: number[] = [];
+  spinners: number[] = [];
   private choosingHolds = false; // while holdWhatTheDragDoesntNeed is at work (see jointMotion)
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private plainOnly = false; // while it is, whether the drag's motions may not use the suspension (see chooseDragHolds)
@@ -244,10 +254,10 @@ export class Kinematics {
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
   // on that axis nearest the middle (model coordinates, at the start).
-  private couplings: { shafts: Shaft[]; turningOnly: boolean }[] = [];
+  couplings: { shafts: Shaft[]; turningOnly: boolean }[] = [];
   // For each string (see Mechanism.strings): its free length at the start, and where its hook
   // hung then, relative to the middle of the two pulleys it hangs from (model coordinates).
-  private strings: { length: number; hookOffset: Vector3 | null }[] = [];
+  strings: { length: number; hookOffset: Vector3 | null }[] = [];
 
   constructor(mech: Mechanism) {
     this.mech = mech;
@@ -291,7 +301,7 @@ export class Kinematics {
   // start; its pulleys; where it's tied at its end), each with the body carrying its middle,
   // and its layout (see stringLayout). `moved` gives the bodies' poses to use instead (to see
   // how the layout changes as a body moves).
-  private stringNow(s: StringLine, poseOf = (body: number) => this.poses[body]): { circles: StringCircle[]; bodies: number[]; axis: Vector3; layout: ReturnType<typeof stringLayout> } {
+  stringNow(s: StringLine, poseOf = (body: number) => this.poses[body]): { circles: StringCircle[]; bodies: number[]; axis: Vector3; layout: ReturnType<typeof stringLayout> } {
     const circles: StringCircle[] = [];
     const bodies: number[] = [];
     const point = (index: number) => s.path.points[index];
@@ -317,7 +327,7 @@ export class Kinematics {
 
   // How much string its drum has paid out since the start, in LDU (0 if it isn't wound on one):
   // as far as the drum's rim has turned, the way the string goes round it.
-  private payout(s: StringLine): number {
+  payout(s: StringLine): number {
     if (!s.drum) return 0;
     const p = s.path.points[s.drum.point];
     const j = this.mech.joints[s.drum.joint];
@@ -337,7 +347,7 @@ export class Kinematics {
   // Rows saying how fast a length worked out from a string's layout (by `measure`) changes as
   // the bodies carrying its circles move: for each circle, the change of the length with its
   // middle (by finite differences), times how fast that middle moves.
-  private stringRate(s: StringLine, measure: (layout: ReturnType<typeof stringLayout>) => number, n: number): Row {
+  stringRate(s: StringLine, measure: (layout: ReturnType<typeof stringLayout>) => number, n: number): Row {
     const { circles, axis, bodies } = this.stringNow(s);
     const row = new Array(n).fill(0);
     const base = measure(stringLayout(circles, axis));
@@ -360,7 +370,7 @@ export class Kinematics {
 
   // A row for how fast a wheel's rim turns relative to what it turns in, about a circle's axis,
   // the way the string goes round it.
-  private rimRate(body: number, mount: number, point: { axis: Vector3; radius: number; turn: number }, n: number): Row {
+  rimRate(body: number, mount: number, point: { axis: Vector3; radius: number; turn: number }, n: number): Row {
     const row = new Array(n).fill(0);
     const z = point.axis.clone().transformDirection(this.poses[mount]).multiplyScalar(point.turn * point.radius);
     for (let k = 0; k < 3; k++) {
@@ -488,7 +498,7 @@ export class Kinematics {
 
   // A shaft's axis now (the joint it turns on, or for a floating shaft its own axis), in model
   // coordinates.
-  private shaftAxis(shaft: Shaft): Vector3 {
+  shaftAxis(shaft: Shaft): Vector3 {
     if (shaft.joint < 0) return shaft.axis.clone().transformDirection(this.poses[shaft.body]);
     const j = this.mech.joints[shaft.joint];
     return axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
@@ -733,7 +743,7 @@ export class Kinematics {
   }
 
   // Whether a joint is in the tree that places the bodies.
-  private inTree(joint: number): boolean {
+  inTree(joint: number): boolean {
     const j = this.mech.joints[joint];
     return this.parentJoint[j.bodyA] === joint || this.parentJoint[j.bodyB] === joint;
   }
@@ -875,7 +885,7 @@ export class Kinematics {
       let nearest: [number, number] | null = null;
       let onTeeth = false;
       for (const mesh of rackMeshes.filter((m) => m.gearA === gearIndex)) {
-        const contact = this.meshContact(mesh)!;
+        const contact = meshContact(this, mesh)!;
         const rack = contact.b;
         const middle = rack.center.clone().applyMatrix4(this.poses[rack.body]);
         const along = Math.abs(new Vector3().subVectors(contact.pitchPoint, middle).dot(contact.across));
@@ -1222,7 +1232,7 @@ export class Kinematics {
       if (!rows) {
         const body = Number(hold.slice(hold.lastIndexOf(' ') + 1));
         const toFrame = hold.startsWith('to frame');
-        rows = inBasis(this.holdRows(toFrame ? new Set() : new Set([body]), toFrame ? new Set([body]) : new Set()), basis).map((r) => free.map((z) => dot(r, z)));
+        rows = inBasis(holdRows(this, toFrame ? new Set() : new Set([body]), toFrame ? new Set([body]) : new Set()), basis).map((r) => free.map((z) => dot(r, z)));
         holdRowsOf.set(hold, rows);
       }
       return rows;
@@ -1433,450 +1443,31 @@ export class Kinematics {
     return this.buildEquations(null, null);
   }
 
-
-  // The equations, as rows. If `gaps` is given, it also gets, for each row, the value its
+  // The equations, as rows: each kind of connection's in turn (see CONNECTIONS). If `gaps` is given, it also gets, for each row, the value its
   // motion should take to close the gap in a joint the tree doesn't follow (how far the joint
   // has come apart), or 0 for every other row (see closeLoops).
   // If `slip` is given, it gets, for each tyre on the ground, a row for how fast it scrubs
   // sideways and one for how fast it travels.
   // With `skipTree`, the tree's joints are left out, for solving in the tree's coordinates
   // (see treeBasis), which keep them together anyway.
-  // Rows for bodies held still: `fixed` on their joints (or, for a root body, altogether), and
-  // `toFrame` against the frame.
-  private holdRows(fixed: Set<number>, toFrame: Set<number>): Row[] {
-    const rows: Row[] = [];
-    const n = 6 * this.bodyCount;
-    for (const body of toFrame) {
-      // Held against the frame: no turning about its joint's axis relative to what its shaft
-      // turns in (see housing), which is the frame, or what stands for it: the 42111 Dodge
-      // Charger's rear axle, hung on a ball joint (held against the car, the differential on its
-      // half shafts left a rear wheel turning only by swinging the whole axle on its ball); the
-      // 8110 Unimog's axles (its frame, the body with the most structure parts, is the cab,
-      // which tilts: held against the cab, a differential left a wheel turning only by tipping
-      // the cab with it, while the truck itself couldn't roll).
-      const joint = this.mech.joints[this.parentJoint[body]];
-      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
-      const root = this.housing(body);
-      const row = new Array(n).fill(0);
-      for (let k = 0; k < 3; k++) {
-        row[6 * body + k] += d.getComponent(k);
-        row[6 * root + k] -= d.getComponent(k);
-      }
-      rows.push(row);
-    }
-    for (const body of fixed) {
-      const j = this.parentJoint[body];
-      if (j >= 0 && body !== this.fixedBody) {
-        // Frozen, or held for a drag, on its joint: no turning relative to the body it turns on.
-        const joint = this.mech.joints[j];
-        const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
-        const row = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) {
-          row[6 * joint.bodyB + k] += d.getComponent(k);
-          row[6 * joint.bodyA + k] -= d.getComponent(k);
-        }
-        rows.push(row);
-      } else {
-        // Held still altogether: a root body (the frame), or a body that only slides or swivels
-        // on another (see mounts), on that.
-        const mount = body === this.fixedBody ? undefined : this.mounts.get(body);
-        for (let k = 0; k < 6; k++) {
-          const row = new Array(n).fill(0);
-          row[6 * body + k] = 1;
-          if (mount !== undefined) row[6 * mount + k] = -1;
-          rows.push(row);
-        }
-      }
-    }
-    return rows;
-  }
-
   // `weights`, if given, gets how much each row counts in closing loops (see DRIVE_WEIGHT).
   // `play`, if given, gets for each row of a joint that closes a loop how much it counts in
   // taking up play (1, or STUD for a turning row), and 0 for every other row (see playMotion).
   private buildEquations(gaps: number[] | null, slip: Slip | null, skipTree = false, weights: number[] | null = null, play: number[] | null = null): Row[] {
     const rows: Row[] = [];
-    const n = 6 * this.bodyCount;
-    const add = (row: Row, gap = 0, weight = 1, playScale = 0) => {
-      rows.push(row);
-      gaps?.push(gap);
-      weights?.push(weight);
-      play?.push(playScale);
+    const eq: Equations = {
+      n: 6 * this.bodyCount,
+      gaps: gaps !== null,
+      skipTree,
+      slip,
+      add: (row: Row, gap = 0, weight = 1, playScale = 0) => {
+        rows.push(row);
+        gaps?.push(gap);
+        weights?.push(weight);
+        play?.push(playScale);
+      },
     };
-
-    const fixed = new Set([...this.frozen, ...this.dragHeld]);
-    if (this.fixedBody >= 0) fixed.add(this.fixedBody);
-    // Held bodies stay held while the loops close too (the weights are closing's): where the
-    // rules can't all hold, what's held gives last. Else a layout's track gave a little as its
-    // cars, far off the rails as built, were drawn onto it.
-    for (const row of this.holdRows(fixed, this.heldToFrame)) add(row, 0, DRIVE_WEIGHT);
-    // Bodies turned together (see turnTogether): each turns against its housing, about the
-    // grabbed body's axis, as fast as the grabbed body does against its own.
-    if (this.dragTogether.length > 1) {
-      const [grabbed, ...others] = this.dragTogether;
-      const joint = this.mech.joints[this.parentJoint[grabbed]];
-      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
-      for (const body of others) {
-        const row = new Array(n).fill(0);
-        for (const [b, sign] of [[body, 1], [this.housing(body), -1], [grabbed, -1], [this.housing(grabbed), 1]]) for (let k = 0; k < 3; k++) row[6 * b + k] += sign * d.getComponent(k);
-        add(row);
-      }
-    }
-
-    // Joints. Each row says how bodyA moves relative to bodyB in some way must be zero:
-    //   revolute  the same at a point on the axis, and no turning about any direction across it
-    //   slide     the same across the axis, and no turning at all (or, if it turns, none
-    //             about any direction across it)
-    //   ball      the same at the ball's centre
-    this.mech.joints.forEach((joint, index) => {
-      if (skipTree && this.inTree(index)) return;
-      const poseA = this.poses[joint.bodyA];
-      const c = joint.from.clone().applyMatrix4(poseA);
-      const d = joint.kind === 'ball' ? new Vector3(0, 1, 0) : axisOf(joint.from, joint.to).transformDirection(poseA);
-      // How far the joint has come apart, if it's not in the tree (else it can't have).
-      const closesLoop = !this.inTree(index);
-      const loose = gaps !== null && closesLoop;
-      const gap = loose ? joint.from.clone().applyMatrix4(this.poses[joint.bodyB]).sub(c) : new Vector3();
-      const twist = loose ? this.misalignment(joint) : new Vector3();
-
-      const pointRow = (dir: Vector3) => {
-        const row = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) {
-          addPointVelocity(row, joint.bodyA, c, k, dir.getComponent(k));
-          addPointVelocity(row, joint.bodyB, c, k, -dir.getComponent(k));
-        }
-        add(row, gap.dot(dir), 1, closesLoop ? 1 : 0);
-      };
-      const turnRow = (dir: Vector3) => {
-        const row = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) {
-          row[6 * joint.bodyA + k] += dir.getComponent(k);
-          row[6 * joint.bodyB + k] -= dir.getComponent(k);
-        }
-        add(row, -twist.dot(dir), 1, closesLoop ? STUD : 0);
-      };
-      const xyz = [new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1)];
-
-      if (joint.kind === 'revolute' || joint.kind === 'ball') for (const dir of xyz) pointRow(dir);
-      if (joint.kind === 'slide') for (const dir of acrossDirections(d)) pointRow(dir);
-      if (joint.kind === 'revolute') for (const dir of acrossDirections(d)) turnRow(dir);
-      if (joint.kind === 'slide') for (const dir of joint.turns ? acrossDirections(d) : xyz) turnRow(dir);
-    });
-
-    // A universal joint: its two shafts turn at the same rate, each relative to what it turns
-    // in, about its own axis pointing away from the joint's middle (so a straight joint turns
-    // both the same way). And its two ends stay together, where each shaft's axis passes the
-    // joint's middle (points on the axes, so turning the shafts doesn't move them), unless
-    // only their turning is tied (a grooved ball in a wheel hub, see Coupling). Shafts that
-    // both turn in one body (a steering column's, in the frame) are kept together by it
-    // already: as rows, their ends would come out, from parts placed only so precisely in an
-    // LDraw file, as a hair's breadth short of that, and stop some other motion altogether (a
-    // car turning a corner).
-    for (const { shafts, turningOnly } of this.couplings) {
-      if (turningOnly) continue;
-      if (shafts.every((sh) => sh.joint >= 0 && sh.mount === shafts[0].mount)) continue;
-      const [a, b] = shafts.map((sh) => ({ body: sh.body, at: sh.near.clone().applyMatrix4(this.poses[sh.body]) }));
-      for (let k = 0; k < 3; k++) {
-        const row = new Array(n).fill(0);
-        addPointVelocity(row, a.body, a.at, k, 1);
-        addPointVelocity(row, b.body, b.at, k, -1);
-        add(row);
-      }
-    }
-    for (const { shafts } of this.couplings) {
-      const row = new Array(n).fill(0);
-      for (const shaft of shafts) {
-        const d = this.shaftAxis(shaft);
-        for (let k = 0; k < 3; k++) {
-          row[6 * shaft.body + k] += shaft.away * d.getComponent(k);
-          row[6 * shaft.mount + k] -= shaft.away * d.getComponent(k);
-        }
-      }
-      add(row, 0, DRIVE_WEIGHT);
-    }
-
-    // A towball and the like (see findLinks) doesn't spin on its axis.
-    for (const j of this.spinners) {
-      const joint = this.mech.joints[j];
-      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
-      const row = new Array(n).fill(0);
-      for (let k = 0; k < 3; k++) {
-        row[6 * joint.bodyB + k] += d.getComponent(k);
-        row[6 * joint.bodyA + k] -= d.getComponent(k);
-      }
-      add(row);
-    }
-
-    // A link between two balls turns about its length as the bodies at its ends do, on average.
-    for (const { body, balls } of this.links) {
-      const [a, b] = balls.map((i) => this.mech.joints[i]);
-      const ends = [a, b].map((j) => j.from.clone().applyMatrix4(this.poses[j.bodyA]));
-      const d = ends[1].sub(ends[0]).normalize();
-      const row = new Array(n).fill(0);
-      for (const j of [a, b]) {
-        const other = j.bodyA === body ? j.bodyB : j.bodyA;
-        for (let k = 0; k < 3; k++) row[6 * other + k] -= d.getComponent(k) / 2;
-      }
-      for (let k = 0; k < 3; k++) row[6 * body + k] += d.getComponent(k);
-      add(row);
-    }
-
-    // Meshing gears: where their teeth touch (the pitch point), both gears' teeth move at the
-    // same speed across the mesh. (Moving the other ways would pull the teeth apart, which the
-    // joints already prevent.) A rack that slides in what its gear turns in has its own gap: how
-    // far it has slid short of what its gear has turned (see rackSlip).
-    for (const mesh of this.mech.meshes) {
-      const contact = this.meshContact(mesh);
-      if (!contact) continue;
-      const { a, b, pitchPoint, across } = contact;
-      const row = new Array(n).fill(0);
-      for (let k = 0; k < 3; k++) {
-        const ra = new Array(n).fill(0);
-        const rb = new Array(n).fill(0);
-        addPointVelocity(ra, a.body, pitchPoint, k, 1);
-        addPointVelocity(rb, b.body, pitchPoint, k, -1);
-        for (let i = 0; i < n; i++) row[i] += across.getComponent(k) * (ra[i] + rb[i]);
-      }
-      add(row, gaps && mesh.kind === 'rack' ? -this.rackSlip(contact) : 0, DRIVE_WEIGHT);
-    }
-
-    // A linear actuator's screw: its thread and the piston's nut move together across the
-    // thread's surface, as a worm's thread and its gear's tooth do (see meshContact), so the
-    // piston goes one lead along the axis for each turn of the input. Taken at any point off the
-    // axis: the thread leans the same at any radius, for a given lead.
-    for (const screw of this.mech.screws ?? []) {
-      const pose = this.poses[screw.input];
-      const d = screw.axis.clone().transformDirection(pose);
-      const [out] = acrossDirections(d);
-      const point = screw.center.clone().applyMatrix4(pose).addScaledVector(out, STUD);
-      const surface = new Vector3().crossVectors(d, out); // how the thread moves there as the input turns
-      const lean = Math.atan(screw.lead / (2 * Math.PI * STUD));
-      const across = d.clone().multiplyScalar(Math.cos(lean)).addScaledVector(surface, Math.sin(lean));
-      const row = new Array(n).fill(0);
-      for (let k = 0; k < 3; k++) {
-        addPointVelocity(row, screw.input, point, k, across.getComponent(k));
-        addPointVelocity(row, screw.piston, point, k, -across.getComponent(k));
-      }
-      add(row, 0, DRIVE_WEIGHT);
-    }
-
-    // A part resting on others (see Rest): where its face touches the highest of them now, the
-    // two move alike towards each other, so it stays on it, neither lifting off nor sinking in.
-    // Its gap: how far the face is off it.
-    for (const rest of this.mech.rests ?? []) {
-      const touch = this.restingOn(rest);
-      if (!touch) continue;
-      const { body, point, dir, clearance } = touch;
-      const row = new Array(n).fill(0);
-      for (let k = 0; k < 3; k++) {
-        addPointVelocity(row, rest.body, point, k, dir.getComponent(k));
-        addPointVelocity(row, body, point, k, -dir.getComponent(k));
-      }
-      add(row, clearance);
-    }
-
-    // A tyre on the ground rolls without slipping: the point touching the ground doesn't move
-    // along the way the tyre rolls, nor up or down. Sideways it may scrub a little, and up or
-    // down it may move a very little, which freeMotions sees to, from the rows in `slip`.
-    // Tyres on one body (a solid axle, with no differential between its wheels) roll without
-    // slipping on average, but each may skid along the way it rolls: going round a corner, the
-    // inside one travels less than the outside one, though both turn alike, so one skids back
-    // and the other forward, as on a real car.
-    // (Each tyre's forward is taken with its axis turned to point the way the body's first
-    // tyre's does: tyres either side of a car face opposite ways.)
-    // A track (a tyre whose `track` is set, see trackTreads) skids sideways freely where it
-    // touches the ground under each of its wheels, as a tracked vehicle does to turn, but its
-    // middle doesn't slide sideways: the average of its wheels' sideways speeds is 0.
-    const rolling = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each body, its tyres' rows
-    const tracks = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each track, its sideways rows
-    const riderBodies = new Set((this.mech.riders ?? []).map((r) => r.body));
-    for (const i of this.contactTreads) {
-      const p = this.contactPoint(i);
-      if (!p) continue;
-      const tread = this.mech.treads[i];
-      const pose = this.poses[tread.body];
-      const axis = tread.axis.clone().transformDirection(pose);
-      const first = tread.track === undefined ? rolling.get(tread.body)?.axis : tracks.get(tread.track)?.axis;
-      if (first && axis.dot(first) < 0) axis.negate();
-      const forward = new Vector3().crossVectors(DOWN, axis).normalize();
-      const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
-      const along = (point: Vector3, dir: Vector3) => {
-        const row = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) addPointVelocity(row, tread.body, point, k, dir.getComponent(k));
-        return row;
-      };
-      if (!rolling.has(tread.body)) rolling.set(tread.body, { axis, rows: [] });
-      // (A track rolls at its path's radius, nearer the axle than where it touches; see Tread.)
-      const hub = tread.center.clone().applyMatrix4(pose);
-      const rollAt = tread.rollRadius === undefined ? p : hub.clone().lerp(p, tread.rollRadius / tread.radius);
-      // A train motor's wheels are part of it and can't turn: it slides along the rails.
-      if (!tread.fixed) rolling.get(tread.body)!.rows.push(along(rollAt, forward));
-      const onRails = riderBodies.has(tread.body);
-      if (tread.track !== undefined) {
-        if (!tracks.has(tread.track)) tracks.set(tread.track, { axis, rows: [] });
-        tracks.get(tread.track)!.rows.push(along(p, sideways));
-      }
-      if (onRails) {
-        // A train wheel neither lifts off its rail nor sinks into it, exactly; its flanges keep
-        // it across the track (the riders' rows below, for the axle as a whole). Its gap, for
-        // closing the loops: how far it stands off the rail head.
-        add(along(p, DOWN), (this.groundY ?? p.y) - p.y);
-      } else if (slip) {
-        if (tread.track === undefined) slip.sideways.push(along(p, sideways));
-        slip.travel.push(along(hub, forward));
-        slip.lift.push(along(p, DOWN));
-        const rise = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) {
-          addPointVelocity(rise, 0, hub, k, DOWN.getComponent(k));
-          addPointVelocity(rise, tread.body, hub, k, -DOWN.getComponent(k));
-        }
-        slip.rise.push(rise);
-      } else {
-        add(along(p, DOWN));
-      }
-    }
-    for (const { rows: tyres } of [...rolling.values(), ...tracks.values()]) {
-      if (tyres.length === 0) continue;
-      const average = new Array(n).fill(0);
-      for (const row of tyres) for (let k = 0; k < n; k++) average[k] += row[k] / tyres.length;
-      add(average);
-    }
-
-    // Train wheels on the rails (see Rider): their flanges keep each axle's middle on the
-    // track's centreline, so it doesn't move across the track; and an axle alone in its truck
-    // (a single-axle bogie) keeps square to the track, so it turns about the upright as fast
-    // as the track bends under it (its curvature times how fast it moves along). Two axles in
-    // one truck (a two-axle bogie, whose axles turn in it about level axes) are kept square by
-    // both their middles being on the line: a row each would disagree where the truck straddles
-    // a straight and a curve. The gaps, for closing the loops: how far the middle is off the
-    // line, and how far the axle is from square to it.
-    const ridersOn = (this.mech.riders ?? []).filter((r) => this.contactTreads.some((i) => this.mech.treads[i].body === r.body));
-    // The body a rider's axle yaws with: up the tree through joints about level axes (its axle
-    // in its bogie), stopping at one about the upright (the bogie's pivot).
-    const truckOf = (b: number) => {
-      let body = b;
-      for (;;) {
-        const j = this.parentJoint[body];
-        if (j < 0) break;
-        const joint = this.mech.joints[j];
-        if (Math.abs(axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]).dot(UP)) > 0.5) break;
-        body = joint.bodyA === body ? joint.bodyB : joint.bodyA;
-      }
-      return body;
-    };
-    const trucks = ridersOn.map((r) => truckOf(r.body));
-    for (const rider of ridersOn) {
-      const pose = this.poses[rider.body];
-      const c = rider.center.clone().applyMatrix4(pose);
-      const near = this.nearestRail(c);
-      if (!near) continue;
-      const across = new Array(n).fill(0);
-      for (let k = 0; k < 3; k++) {
-        addPointVelocity(across, rider.body, c, k, near.n.getComponent(k));
-        addPointVelocity(across, 0, c, k, -near.n.getComponent(k));
-      }
-      add(across, -near.offset);
-      if (trucks.filter((t) => t === trucks[ridersOn.indexOf(rider)]).length > 1) continue;
-      const axis = rider.axis.clone().transformDirection(pose);
-      if (axis.dot(near.n) < 0) axis.negate();
-      const skew = Math.atan2(new Vector3().crossVectors(near.n, axis).dot(UP), axis.dot(near.n));
-      const square = new Array(n).fill(0);
-      for (let k = 0; k < 3; k++) {
-        square[6 * rider.body + k] += UP.getComponent(k);
-        square[k] -= UP.getComponent(k);
-        addPointVelocity(square, rider.body, c, k, -near.curvature * near.t.getComponent(k));
-        addPointVelocity(square, 0, c, k, near.curvature * near.t.getComponent(k));
-      }
-      add(square, -skew);
-    }
-
-    // A chain, track or rubber band looped round wheels: each wheel's rim moves at the loop's
-    // speed, relative to what the wheel turns in, the way the loop goes round it.
-    for (const loop of this.mech.loops ?? []) {
-      const rims = loop.wheels.map((w) => {
-        const point = loop.path.points[w.point];
-        const z = point.axis.clone().transformDirection(this.poses[w.mount]).multiplyScalar(point.turn * point.radius);
-        const row = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) {
-          row[6 * w.body + k] += z.getComponent(k);
-          row[6 * w.mount + k] -= z.getComponent(k);
-        }
-        return row;
-      });
-      for (let r = 1; r < rims.length; r++) add(rims[0].map((x, k) => x - rims[r][k]), 0, DRIVE_WEIGHT);
-      // What's hooked to it slides along its joint at the speed of the loop's run there: as fast
-      // as its wheel's rim turns in what it slides on. Its gap: how far it has slid short of how
-      // far the loop has moved.
-      for (const hook of loop.hooks ?? []) {
-        const joint = this.mech.joints[hook.joint];
-        const w = loop.wheels[hook.wheel];
-        const c = joint.from.clone().applyMatrix4(this.poses[joint.bodyA]);
-        const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
-        const row = this.rimRate(w.body, w.mount, loop.path.points[w.point], n);
-        for (let k = 0; k < 3; k++) {
-          addPointVelocity(row, joint.bodyB, c, k, -d.getComponent(k));
-          addPointVelocity(row, joint.bodyA, c, k, d.getComponent(k));
-        }
-        add(row, gaps ? this.slideOffset(hook.joint) - this.wheelTravel(loop.path.points[w.point], w) : 0, DRIVE_WEIGHT);
-      }
-    }
-
-    // A string keeps its length: as the bodies carrying its circles move, its free length
-    // changes by just what its drum pays out (or winds in). A pulley turns as the string runs
-    // round it, without slipping, unless it shares its body with another of the string's
-    // pulleys (two pulleys side by side on one axle, which the string runs round at different
-    // speeds: one of them must slip). The body hanging on the string (its hook) hangs
-    // beneath the middle of the two pulleys either side of its own, as it did at the start,
-    // and stays upright, turning with what it hangs from only about the vertical.
-    (this.mech.strings ?? []).forEach((s, i) => {
-      const start = this.strings[i];
-      if (!start) return; // still being set up
-      const { circles, bodies, layout } = this.stringNow(s);
-      const payout = s.drum ? this.rimRate(s.drum.body, s.drum.mount, s.path.points[s.drum.point], n) : new Array(n).fill(0);
-      const length = this.stringRate(s, (l) => l.length, n);
-      add(
-        length.map((x, k) => x - payout[k]),
-        -(layout.length - start.length - this.payout(s)),
-      );
-      s.pulleys.forEach((w, k) => {
-        if (w.joint < 0 || s.pulleys.some((o) => o !== w && o.body === w.body) || s.drum?.body === w.body) return;
-        // The string runs past at what the drum pays out, less how fast the string up to here
-        // is getting longer.
-        const upTo = this.stringRate(s, (l) => l.upTo[k + 1], n);
-        const rim = this.rimRate(w.body, w.mount, s.path.points[w.point], n);
-        add(rim.map((x, m) => x - payout[m] + upTo[m]));
-      });
-      if (!s.hook || !start.hookOffset) return;
-      const h = s.hook.pulley + 1; // circles start with the drum (or where it's tied)
-      const hook = s.hook.body;
-      const off = circles[h].center.clone().sub(hungFrom(circles, h)).sub(start.hookOffset);
-      const level = [new Vector3(1, 0, 0), new Vector3(0, 0, 1)];
-      const either = h + 1 < circles.length ? [h - 1, h + 1] : [h - 1];
-      for (const dir of level) {
-        const row = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) {
-          addPointVelocity(row, hook, circles[h].center, k, dir.getComponent(k));
-          for (const e of either) addPointVelocity(row, bodies[e], circles[e].center, k, -dir.getComponent(k) / either.length);
-        }
-        add(row, -off.dot(dir));
-      }
-      // Upright: turned from the start only about the vertical, as far as what it hangs from
-      // has turned about it.
-      const above = bodies[h - 1];
-      let heading = new Vector3(1, 0, 0).transformDirection(this.poses[above]);
-      if (Math.hypot(heading.x, heading.z) < 0.1) heading = new Vector3(0, 0, 1).transformDirection(this.poses[above]).applyAxisAngle(DOWN, -Math.PI / 2);
-      const target = new Matrix4().makeRotationY(Math.atan2(-heading.z, heading.x));
-      const q = new Quaternion().setFromRotationMatrix(new Matrix4().extractRotation(this.poses[hook]).multiply(target.transpose()));
-      const tilt = new Vector3(q.x, q.y, q.z).multiplyScalar(2 * (q.w < 0 ? -1 : 1));
-      for (const dir of [...level, DOWN]) {
-        const row = new Array(n).fill(0);
-        for (let k = 0; k < 3; k++) {
-          row[6 * hook + k] += dir.getComponent(k);
-          if (dir === DOWN) row[6 * above + k] -= dir.getComponent(k);
-        }
-        add(row, -tilt.dot(dir));
-      }
-    });
+    for (const connection of CONNECTIONS) connection(this, eq);
     return rows;
   }
 
@@ -1894,33 +1485,12 @@ export class Kinematics {
 
   // How far a wheel's rim has turned in what it turns in since the start, in LDU, the way a
   // path goes round its circle `point`.
-  private wheelTravel(point: { axis: Vector3; radius: number; turn: number }, w: { body: number; joint: number }): number {
+  wheelTravel(point: { axis: Vector3; radius: number; turn: number }, w: { body: number; joint: number }): number {
     const j = this.mech.joints[w.joint];
     // The joint turns bodyB relative to bodyA about its own axis; the wheel turns about the
     // circle's.
     const angle = (j.bodyB === w.body ? 1 : -1) * Math.sign(axisOf(j.from, j.to).dot(point.axis)) * this.jointAngles[w.joint];
     return point.turn * point.radius * angle;
-  }
-
-  // How far bodyA has turned out of line with bodyB at a joint, as a small turn (its axis is
-  // the direction, its length the angle in radians): for a revolute joint (or a slide joint
-  // that turns), how far its axis as carried by bodyA has tipped away from its axis as carried
-  // by bodyB; for a slide joint, which mustn't turn at all, bodyA's whole turn relative to bodyB.
-  private misalignment(joint: Joint): Vector3 {
-    const poseA = this.poses[joint.bodyA];
-    const poseB = this.poses[joint.bodyB];
-    if (joint.kind === 'revolute' || joint.turns) {
-      const dA = axisOf(joint.from, joint.to).transformDirection(poseA);
-      const dB = axisOf(joint.from, joint.to).transformDirection(poseB);
-      return new Vector3().crossVectors(dB, dA);
-    }
-    if (joint.kind === 'slide') {
-      const relative = new Matrix4().extractRotation(poseA).multiply(new Matrix4().extractRotation(poseB).transpose());
-      const q = new Quaternion().setFromRotationMatrix(relative);
-      const sign = q.w < 0 ? -1 : 1;
-      return new Vector3(q.x, q.y, q.z).multiplyScalar(2 * sign);
-    }
-    return new Vector3();
   }
 
   // After a step: pulls the joints the tree doesn't follow (one per closed loop, and every
@@ -2083,125 +1653,13 @@ export class Kinematics {
     return gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
   }
 
-  // What a resting body (see Rest) rests on now: of the ways it may, the one where it's nearest
-  // to touching, or deepest in (the highest thing under it), with where and which way (see
-  // restTouch); or null if nothing is under it.
-  private restingOn(rest: Rest): { body: number; point: Vector3; dir: Vector3; clearance: number } | null {
-    let best: { body: number; point: Vector3; dir: Vector3; clearance: number } | null = null;
-    for (const contact of rest.on) {
-      const touch = restTouch(contact, this.poses[rest.body], this.poses[contact.body]);
-      if (touch && (!best || touch.clearance < best.clearance)) best = { body: contact.body, ...touch };
-    }
-    return best;
-  }
-
-  // Where two meshing gears' teeth touch now (the pitch point), and the direction their teeth
-  // move there. Recomputed from where the gears are, since in a differential the gears'
-  // axles themselves go round.
-  private meshContact(mesh: Mesh): { a: Gear; b: Gear; pitchPoint: Vector3; across: Vector3 } | null {
-    const a = this.mech.gears[mesh.gearA];
-    const b = this.mech.gears[mesh.gearB];
-    const ca = a.center.clone().applyMatrix4(this.poses[a.body]);
-    const cb = b.center.clone().applyMatrix4(this.poses[b.body]);
-    const axisA = a.axis.clone().transformDirection(this.poses[a.body]);
-    const axisB = b.axis.clone().transformDirection(this.poses[b.body]);
-    if (mesh.kind === 'worm') {
-      // a is the worm. Where it meets the gear: from the worm's axis towards the gear's, out
-      // by the worm's pitch radius. There the worm's thread surface and the gear's tooth must
-      // move together across that surface. The thread is a helix leaning at the lead angle λ
-      // (tan λ = lead ÷ circumference), so the surface faces mostly along the worm's axis,
-      // tipped by λ towards the way the worm's surface moves: as the worm turns once, the gear's
-      // tooth is pushed one lead along.
-      const closest = closestPoints(ca, axisA, cb, axisB);
-      const out = new Vector3().subVectors(closest.onB, closest.onA).normalize();
-      const pitchPoint = closest.onA.clone().addScaledVector(out, a.radius);
-      const surface = new Vector3().crossVectors(axisA, out); // how the worm's surface moves there
-      const lean = Math.atan(a.worm / (2 * Math.PI * a.radius));
-      const across = axisA.clone().multiplyScalar(Math.cos(lean)).addScaledVector(surface, -Math.sin(lean));
-      return { a, b, pitchPoint, across };
-    }
-    if (mesh.kind === 'rack') {
-      // b is the rack. Where the gear's pitch circle touches the rack's pitch line, the gear's
-      // teeth and the rack move at the same speed along the rack. That's towards the rack's
-      // teeth, in the gear's plane (a slanted gear's axle tips from square to them; see rackMesh),
-      // or for a round rack, whose teeth face every way, towards the gear from the rack's axis.
-      const face = b.radius ? new Vector3().subVectors(ca, cb).addScaledVector(axisB, -new Vector3().subVectors(ca, cb).dot(axisB)) : b.face!.clone().transformDirection(this.poses[b.body]);
-      const toward = face.addScaledVector(axisA, -face.dot(axisA)).normalize();
-      const pitchPoint = ca.clone().addScaledVector(toward, -a.radius);
-      return { a, b, pitchPoint, across: axisB };
-    }
-    if (mesh.kind === 'crown') {
-      // a is the crown gear. Where the spur gear's pitch circle touches the crown gear's pitch
-      // plane, both gears' teeth move at the same speed round the crown gear's axis. Their teeth
-      // mesh one for one wherever the spur gear sits along the crown's radius (its teeth run
-      // radially), so the crown's are taken at its pitch radius, in line with the spur gear (out
-      // along the spur gear's axis, which doesn't change how fast the spur gear's teeth move):
-      // their speeds come out in the ratio of their tooth counts, as built (a helicopter's spur
-      // gear sits 2 LDU in from it) or not.
-      const toward = axisA.clone().multiplyScalar(-a.crown);
-      const touch = cb.clone().addScaledVector(toward, b.radius);
-      const height = new Vector3().subVectors(touch, ca).dot(axisA);
-      const out = new Vector3().subVectors(touch, ca).addScaledVector(axisA, -height).normalize();
-      const pitchPoint = ca.clone().addScaledVector(axisA, height).addScaledVector(out, a.radius);
-      const across = new Vector3().crossVectors(axisA, out).normalize();
-      return { a, b, pitchPoint, across };
-    }
-    if (mesh.kind === 'spur') {
-      // On the line between the centres, split in the ratio of the pitch radii.
-      const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));
-      const across = new Vector3().crossVectors(axisA, new Vector3().subVectors(cb, ca)).normalize();
-      return { a, b, pitchPoint, across };
-    }
-    // Bevel: from where the axes cross, out towards each gear in the ratio of the *other*
-    // gear's teeth, so that each gear's teeth move at (its turning speed) x (its tooth count)
-    // there, which makes the speeds come out in the ratio of the tooth counts.
-    const crossing = axesCrossing(ca, axisA, cb, axisB);
-    if (!crossing) return null;
-    const towardA = new Vector3().subVectors(ca, crossing).normalize();
-    const towardB = new Vector3().subVectors(cb, crossing).normalize();
-    const pitchPoint = crossing.clone().addScaledVector(towardA, b.teeth).addScaledVector(towardB, a.teeth);
-    const across = new Vector3().crossVectors(towardA, towardB).normalize();
-    return { a, b, pitchPoint, across };
-  }
-
-  // How far a rack's gear has slipped along it since the start, in LDU: how far the gear's teeth
-  // have gone along the rack, for the turn of the joint it turns on, less how far the rack has
-  // slid on its slide joint, both relative to what the gear turns in. A gear mesh is a rule
-  // about speeds, and each step only keeps to it at the step's start, so a rack the tree reaches
-  // through a linkage (a steering rack on its tie rods) would slip a little every step, and
-  // nothing would undo it. 0 if the rack doesn't slide in what its gear turns in, or if the gear
-  // meshes another rack too: two racks on one gear, both in a linkage (the 856 Bulldozer's
-  // bucket), can't both be kept exactly in step, since the model's rounded-off positions leave
-  // them a hair apart, and taking up the slip of each would wrench the linkage until it couldn't
-  // move at all.
-  private rackSlip(contact: { a: Gear; b: Gear; pitchPoint: Vector3; across: Vector3 }): number {
-    const { a, b, pitchPoint, across } = contact;
-    const racks = new Set(this.mech.meshes.filter((m) => m.kind === 'rack' && this.mech.gears[m.gearA].body === a.body).map((m) => this.mech.gears[m.gearB].body));
-    if (racks.size > 1) return 0;
-    const link = this.parentLink(a.body);
-    if (!link) return 0;
-    const mount = link.parent;
-    const slide = this.mech.joints.findIndex((j) => j.kind === 'slide' && ((j.bodyA === mount && j.bodyB === b.body) || (j.bodyA === b.body && j.bodyB === mount)));
-    if (slide < 0) return 0;
-    // Turning the joint by 1 moves the gear's teeth, at the pitch point, by d × (pitch point - c).
-    const turn = this.mech.joints[link.joint];
-    const d = axisOf(turn.from, turn.to).transformDirection(this.poses[turn.bodyA]);
-    const c = turn.from.clone().applyMatrix4(this.poses[turn.bodyA]);
-    const teeth = new Vector3().crossVectors(d, new Vector3().subVectors(pitchPoint, c)).dot(across);
-    const turned = (turn.bodyB === a.body ? 1 : -1) * this.jointAngles[link.joint] * teeth;
-    const s = this.mech.joints[slide];
-    const along = axisOf(s.from, s.to).transformDirection(this.poses[s.bodyA]).dot(across);
-    const slid = (s.bodyB === b.body ? 1 : -1) * this.slideOffset(slide) * along;
-    return turned - slid;
-  }
-
   // Where a tyre touches the ground now.
   // Where the track's centreline passes nearest a point (see Rail), with the track where the
   // frame now is: the direction along it there (`t`, level, either way along), the direction
   // across it to the left of `t` (`n`), how far the point is off it along `n` (`offset`) and how
   // sharply it bends there, turning towards `n` (`curvature`, 1 over the radius, 0 on a
   // straight). Null if the model has no track.
-  private nearestRail(point: Vector3): { t: Vector3; n: Vector3; offset: number; curvature: number } | null {
+  nearestRail(point: Vector3): { t: Vector3; n: Vector3; offset: number; curvature: number } | null {
     let best: { t: Vector3; n: Vector3; offset: number; curvature: number; distance: number } | null = null;
     const frame = this.poses[0];
     for (const rail of this.mech.rails ?? []) {
@@ -2245,7 +1703,7 @@ export class Kinematics {
     return best;
   }
 
-  private contactPoint(treadIndex: number): Vector3 | null {
+  contactPoint(treadIndex: number): Vector3 | null {
     const t = this.mech.treads[treadIndex];
     const pose = this.poses[t.body];
     return lowestPoint(t.center.clone().applyMatrix4(pose), t.axis.clone().transformDirection(pose), t.radius);
@@ -3006,9 +2464,6 @@ export class Kinematics {
 // ---------------------------------------------------------------------------
 // Helpers
 
-function axisOf(from: Vector3, to: Vector3): Vector3 {
-  return new Vector3().subVectors(to, from).normalize();
-}
 
 // Whether two joints turn about one line (to within half a degree and an LDU, as built).
 function onOneLine(a: Joint, b: Joint): boolean {
@@ -3026,30 +2481,7 @@ function lowestPoint(center: Vector3, axis: Vector3, radius: number): Vector3 | 
   return center.clone().addScaledVector(down.normalize(), radius);
 }
 
-// Two directions at right angles to `d` and to each other.
-export function acrossDirections(d: Vector3): Vector3[] {
-  const helper = Math.abs(d.x) < 0.9 ? new Vector3(1, 0, 0) : new Vector3(0, 1, 0);
-  const a = new Vector3().crossVectors(d, helper).normalize();
-  const b = new Vector3().crossVectors(d, a).normalize();
-  return [a, b];
-}
 
-// Adds (sign ×) component k of a body's point velocity, v + ω × p, to an equation row.
-function addPointVelocity(row: Row, body: number, p: Vector3, k: number, sign: number) {
-  const w = 6 * body;
-  const v = w + 3;
-  if (k === 0) {
-    row[w + 1] += sign * p.z;
-    row[w + 2] -= sign * p.y;
-  } else if (k === 1) {
-    row[w + 2] += sign * p.x;
-    row[w + 0] -= sign * p.z;
-  } else {
-    row[w + 0] += sign * p.y;
-    row[w + 1] -= sign * p.x;
-  }
-  row[v + k] += sign;
-}
 
 // Rotation by `angle` about the line through `point` along unit vector `axis`.
 function rotationAbout(point: Vector3, axis: Vector3, angle: number): Matrix4 {
@@ -3137,8 +2569,3 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
   return orthonormalize(kept.map((a) => combine(motions, a)));
 }
 
-// Where a hook on a string's circle h hangs from: the middle of the circles either side, or, for
-// a hook tied to the string's end, the last circle before it.
-function hungFrom(circles: StringCircle[], h: number): Vector3 {
-  return h + 1 < circles.length ? circles[h - 1].center.clone().add(circles[h + 1].center).multiplyScalar(0.5) : circles[h - 1].center.clone();
-}
