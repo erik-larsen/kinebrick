@@ -69,7 +69,7 @@ What this says, and what it doesn't:
 - **The causes are a first cut.** They are told at the start of the drag only, on the first control that fails. "Nothing ties it" can't yet tell a missing connection from a linkage with a second way to move.
 - **The total hides losses.** Against release 0.850, 533 functions work where 522 did, but 38 functions' results got worse (`npm run ratchet -- 0.850`).
 - **Two runs of the same code do not agree in full.** Against the results stored before it, this run has 9 functions better and 2 worse (42111 function 4 and 8110 function 14, each with one more part that did not come back), with no change to the solver between them. These results are kept as the new base all the same, as the code is the same. The jitter test of phase 1 has to say how much a result moves from run to run, so the ratchet can tell a real loss from this. A second run the same day, of every set but the 8110, agreed with this one in full: so the 11 differences may come from the stored results' older commits and not from chance.
-- **One set took most of the time.** The 8110 took 5 hours in one process; the next slowest, the 42082, took under 1. Since then (2026-11-11) a slow set is checked a function to a process, with the same results, and the 8110 is checked once a week, apart from the nightly run: even side by side, it takes 1 hour 55 minutes, as long as its slowest function. The daily check of the other 185 sets then took 51 minutes, and came out the same as the run before it, function for function. See [Where the 8110's time goes](#where-the-8110s-time-goes).
+- **One set took most of the time.** The 8110 took 5 hours in one process; the next slowest, the 42082, took under 1. Since then (2026-11-11) a slow set is checked a function to a process, with the same results, and the 8110 is checked apart from the rest, before a merge to `main`: even side by side, it takes 1 hour 55 minutes, as long as its slowest function. The daily check of the other 185 sets then took 51 minutes, and came out the same as the run before it, function for function. See [Where the 8110's time goes](#where-the-8110s-time-goes).
 
 ## Principles
 
@@ -98,14 +98,14 @@ Make the function check say why, make it complete, and make it fast.
 | The check shifts gearboxes, clicks slides and runs motors, as the viewer does | `scripts/check-functions.ts` | The 956's gear lever and the 8880's gearbox, through the check |
 | Results leave `data/sets/` for a folder of their own, all from one commit | `scripts/check-functions.ts`, `results/` (new) | The curated files no longer change when the check runs |
 | Slowest sets first, by the last run's times | `scripts/check-functions.ts` | None needed |
-| The full check runs every night on the Mac, as a scheduled command, and a ratchet compares it with the commit before. The slowest sets (for now the 8110) run once a week instead, on a schedule of their own | `scripts/ratchet.ts` (new), and a schedule | The ratchet against a known commit |
+| The full check runs on demand, with no schedule on any machine, and a ratchet compares it with any commit. The slowest sets (for now the 8110) are left out of it, and checked before `main` moves | `scripts/check-functions.ts` (`--slow`), `scripts/ratchet.ts` (new) | The ratchet against a known commit |
 | The scan counts each large separate group in a file as a model of its own | `scripts/scan-omr.ts` | A two-model file |
 | Invariance: a model moved and turned about the upright gives the same results. Jitter: parts moved by 0.05 LDU give the same results | `tests/invariance.test.ts` (new) | Itself |
 | Skip reasons from a fixed list: needs gravity, needs force, model error, check limit | `data/sets/*.json` (`skip`), `data/sets/README.md` | A test that each reason is on the list |
 
-**Done when:** every failing function has a cause; the full check runs unattended each night; one command says what a change gained and lost.
+**Done when:** every failing function has a cause; the full check takes under an hour, so it can run whenever it is wanted; one command says what a change gained and lost.
 
-**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, a slow set checked a function to a process, the weekly check for the 8110 (`npm run functions -- --weekly`), the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the nightly run; the scan's count of second models; the invariance and jitter tests; skip reasons from a fixed list.
+**Where it stands, 2026-11-11.** Done: the causes, what stopped each drag (`stop`), the drag probe (`npm run probe`), slowest sets first, a slow set checked a function to a process, the 8110 checked apart (`npm run functions -- --slow`), the full check at 51 minutes, the ratchet (`npm run ratchet`, against any commit), and the status page with causes. Left: the check shifting, clicking and running motors; results in a folder of their own; the scan's count of second models; the invariance and jitter tests; skip reasons from a fixed list.
 
 ### Phase 2. Structure
 
@@ -141,7 +141,7 @@ There is no one slow routine to fix: the time is spread over the null space, the
 - **Solve over what the drag can reach.** A drag at the steering wheel can't reach the crane, the winch or the stabiliser legs, but their motions are solved with it all the same. The cost of each routine above grows with the square or the cube of the number of motions. How many each control reaches is not measured yet.
 - **Fewer or cheaper rounds to close the loops.** 7 rounds a step is many for a method that should about square its error each round. The free motions are found afresh each round for a reason (the 42062 Container Yard's spreader), so this needs its own test before it changes.
 
-Splitting the check further, a control to a process, would bring the 8110 to about half an hour beside the other sets. It is not done: it would not cut the 6 hours of work, which the changes above would.
+Splitting the check further, a control to a process, would bring the 8110 to about half an hour beside the other sets. It is not done: it would not cut the 6 hours of work, which the changes above would. None of this is pressing: the 8110 is not a focus until the work on the other sets is done.
 
 ### Phase 3. Burn down by cause
 
@@ -213,7 +213,7 @@ The 9 V track and the plastic track that followed it (RC, Power Functions) share
 
 - The train code lives in files of its own, with small hooks into the solver, the inference and the viewer.
 - `preview-train` takes `preview` in each day. Nothing goes the other way yet.
-- The train check runs four sets at a time by day, so the Technic work keeps its share of the Mac's 12 cores. The night belongs to the full Technic check.
+- The train check runs four sets at a time, so the Technic work keeps its share of the Mac's 12 cores.
 
 ### The three numbers (2026-11-11)
 
@@ -251,7 +251,7 @@ A running record, newest first. The orchestrator's daily merge and Erik read it 
 | Solver owner | One Claude Opus 5.5 session, high effort | Phase 4, and phase 2's work in the solver core | `src/kinematics.ts`, later `src/constraints/` and `src/linalg.ts` |
 | Workers | Claude Opus 5.5 agents, medium effort, one task each, each in a worktree of its own | Phase 3's lanes | Only the files their lane names |
 | Train owner | One Claude Opus 5.5 session, high effort, in a worktree of its own on `preview-train` | [The train track](#the-train-track-a-second-line-of-work), all of it | New files of its own for track and trains, and small hooks into the files of others |
-| CI | GitHub Actions, and this Mac | GitHub runs the tests on each push. The Mac runs the full check and the ratchet each night. | `results/` |
+| CI | GitHub Actions, and this Mac | GitHub runs the tests on each push. The full check and the ratchet run on this Mac on demand, with no schedule: the orchestrator starts them when it chooses, and each worker runs them before it hands its work in. | `results/` |
 
 These models are where we start, to keep the cost down. The gate's log shows how often each role's work is kept or reverted; if the solver owner's work is reverted often, that role is the first to move to a stronger model.
 
@@ -259,7 +259,7 @@ These models are where we start, to keep the cost down. The gate's log shows how
 
 | Branch | Owner | Rule |
 |---|---|---|
-| `main` | Erik | Only Erik commits and pushes. It moves when he merges `preview` into it. The site publishes from it. |
+| `main` | Erik | Only Erik commits and pushes. It moves when he merges `preview` into it, after the slow check (see [The gate](#the-gate)). The site publishes from it. |
 | `preview` | The orchestrator | Commits and pushes at will. Holds only work that passed the gate. The preview site, [/preview/](https://erik-larsen.github.io/kinebrick/preview/), publishes from it, and every push runs the tests. |
 | `preview-train` | The train owner | Downstream of `preview`: made from it, and each day the orchestrator merges `preview` into it (a merge, never a rebase) and runs the tests. Its owner commits and pushes at will. Its site is [/preview-train/](https://erik-larsen.github.io/kinebrick/preview-train/). Nothing flows back to `preview` until Erik decides how. |
 | Any other, named `<lane>/<task>` (`solver/gravity-tier`, `parts/turntables`) | The session or worker that made it | Made from `preview`. Its owner commits and pushes at will. The orchestrator merges it into `preview` when it passes the gate, and deletes it then, or when the task is dropped. |
@@ -268,7 +268,7 @@ Work that is retired but worth keeping gets a tag under `archive/`, not a branch
 
 Any branch named `preview` or `preview-<something>` is built onto the site under its own name, and its tests run on each push. The site is built by `main`'s copy of the workflow, so a change to how the site is built takes effect when Erik moves `main`.
 
-Erik moves `main` when he chooses, after a look at the preview site and the log:
+Erik moves `main` when he chooses, after a look at the preview site, the log and the slow check's results:
 
 ```bash
 git merge --ff-only origin/preview
@@ -293,16 +293,20 @@ A worker's change is kept only if all of these are true.
 
 1. The tests and the type check pass.
 2. The quick check loses nothing.
-3. The night's full check loses nothing: no function goes from works to partly or no, and no more functions move by the wrong amount or fail to come back.
+3. The full check loses nothing (`npm run functions`, then `npm run ratchet -- preview`): no function goes from works to partly or no, and no more functions move by the wrong amount or fail to come back. The worker runs it on its own branch before it hands the work in.
 4. The change does not touch `curated` data, unless its lane drafts curated data for Erik.
 5. A fix in the solver or the inference comes with a fixture that fails without it.
 6. No new tolerance or weight comes without a test that shows what it is for.
 
-A branch is merged into `preview` only when all are true. If the night's check then fails on `preview`, the orchestrator reverts the merge and logs why. A worker that fails the gate twice on one task stops, and the task goes back to the backlog with its notes.
+A branch is merged into `preview` only when all are true. The orchestrator runs the full check on `preview` whenever it chooses; if it fails there, the orchestrator reverts the merge and logs why. A worker that fails the gate twice on one task stops, and the task goes back to the backlog with its notes.
+
+**The full check** is `npm run functions`: every set but the slowest, 185 sets in 51 minutes on this Mac (2026-11-11). It runs on demand. Nothing is scheduled on any machine. One runs at a time: two at once take about twice as long, so the orchestrator gives workers their turns.
+
+**The slow check** is `npm run functions -- --slow`: the sets the full check leaves out, for now only the 8110 (about 2 hours). The orchestrator runs it on `preview`, with the ratchet, before it offers `main` to Erik, and reports what it found with the offer. That is about once a week. The 8110 is not a focus until the work on the other sets is done: between merges to `main`, its results stay as the last slow check left them.
 
 ### What Erik sees
 
-- **A status page**, refreshed after each night's check (`npm run status`). First, a grid of boxes, one for each OMR set, each sized by the set's number of pieces and coloured by the share of its checked functions that work: green for all, yellow for 75% to 99%, orange for 50% to 74%, red for 1% to 49%, black for none. Then the count of failing functions by cause over time, each lane's queue, and what waits for him.
+- **A status page**, refreshed after each full check on `preview` (`npm run status`). First, a grid of boxes, one for each OMR set, each sized by the set's number of pieces and coloured by the share of its checked functions that work: green for all, yellow for 75% to 99%, orange for 50% to 74%, red for 1% to 49%, black for none. Then the count of failing functions by cause over time, each lane's queue, and what waits for him.
 - **A sign-off queue**: function-list answers and errata, in batches, each with the book page that supports it.
 - **A log**: one line for each change kept or reverted, with the score before and after.
 
@@ -310,7 +314,7 @@ A branch is merged into `preview` only when all are true. If the night's check t
 
 - Workers run only in lanes with a gate a script can check.
 - A fleet starts only when Erik says so, with a stated number of workers.
-- The nightly check runs on this Mac (a Mac mini, 12 cores) as a scheduled command, not inside a Claude session.
+- The checks run on this Mac (a Mac mini, 12 cores) as plain commands, on demand. No schedule is installed on any machine.
 - The models in [Who does what](#who-does-what) are the cheapest that we expect to do each job.
 
 ## Decisions, made 2026-11-10
@@ -326,10 +330,13 @@ A branch is merged into `preview` only when all are true. If the night's check t
 2. **Generated layouts.** Where a set's OMR file doesn't lay its track out, a layout is generated from the set's own track pieces.
 3. **The site.** The pre-release site, `/prerelease/`, is now `/preview/`, and `preview-train` has a site of its own, `/preview-train/`. The old address sends visitors on.
 4. **How train work comes back upstream to `preview`** is decided later.
+5. **The full check runs on demand**, when the orchestrator decides, now that it takes 51 minutes. No check is scheduled on any machine.
+6. **Each worker runs the full check before it hands its work to the orchestrator**, once workers are in use. Open, for when a fleet starts: a full check uses ten of the Mac's twelve cores, so six workers taking turns need about five hours a round. The orchestrator's suggestion is that a worker runs the quick check and the sets its change touches, and the orchestrator runs one full check on each batch it merges.
+7. **The 8110 is checked before a merge to `main`**, not on a schedule. It is not a focus until the work on the other sets is done.
 
 ## First steps
 
 1. The triage and the stop-reason probe (phase 1), on a branch of their own.
 2. Slowest sets first, and results in a folder of their own.
-3. The nightly check and the ratchet.
-4. The status page: its first version, the grid of sets, was published on 2026-11-10 from that day's results. Causes join it from the first night that has them.
+3. The ratchet, and a full check quick enough to run on demand (done 2026-11-11).
+4. The status page: its first version, the grid of sets, was published on 2026-11-10 from that day's results. Causes joined it on 2026-11-11.
