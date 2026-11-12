@@ -158,6 +158,10 @@ Make the code safe for more than one writer, and make the check fast enough to u
 
 **Done when:** `kinematics.ts` and `mechanism.ts` are each a short file that calls others; the full check takes under an hour; `KINEBRICK_LEAST` and `KINEBRICK_ONE` are gone.
 
+**Where it stands, 2026-11-11.** The solver owner's first five steps are merged into `preview`, each with results the same to the last bit: the linear algebra in `src/linalg.ts`, each kind of connection's equations in `src/constraints/`, a `Drag` object for a drag's state, the switches as options on each solver, and a drag solved only over the parts it can reach. `src/kinematics.ts` is 2,641 lines, from 3,862. Left: the inference split (`src/mechanism.ts`, not yet given to anyone), the part tables into data, pushes by least motion (which waits for push functions in the check), and the test models for the sets that comments name.
+
+**Reach is merged switched off** (`KINEBRICK_REACH=1` turns it on). On, the full check takes 30 minutes where it took 51 (5.0 hours of work where it was 8.3), and the same 533 functions work, but not the same ones: 8 get better and 5 worse, so it does not pass the ratchet. The 5 are all drags that roll a model on its wheels or leave a part not back: 42079 function 4 and 8273 function 11 (works to partly), and 855 function 6, 42110 function 3 and 9394 function 3 (more parts not back). It is turned on when those 5 are fixed.
+
 #### Where the 8110's time goes
 
 Measured on 2026-11-11, for the line "A drag solved only over the parts it can reach". The 8110 has 663 bodies, 1,093 joints, 713 tree coordinates and about 320 free motions. Every step of every drag is solved over all 320, wherever the control is.
