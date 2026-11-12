@@ -15,6 +15,7 @@ import { findGears, findMeshes, rackMesh } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
 import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
+import { looseFits, onAxleTips } from './inference/looseFits.ts';
 import { fixPins } from './inference/pins.ts';
 import { guidedPistons, shockAbsorbers } from './inference/pistons.ts';
 import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, axialOverlap, AXIS_TOLERANCE, BALL_LINE, findLooseParts, LOOSE_ALIGN_TOLERANCE, type WorldCylinder, worldCylinders } from './inference/shared.ts';
@@ -28,7 +29,6 @@ export { lineUpBalls } from './inference/lineUp.ts';
 // How far the middle of a circle a chain placed link by link goes round may be from its wheel's
 // axis, in LDU (see findLoops): the 8835 Forklift's chain is 0.7 LDU off its sprockets.
 const CHAIN_REACH = 2;
-const LINKS = ['steering link', 'connecting rod'];
 // How far beyond a string's circle the middle of the part it goes round may be, in LDU (see
 // findStrings): LSynth runs a crane's rope round the edge of a cross block 12 LDU from its middle.
 const GUIDE_REACH = 15;
@@ -473,61 +473,6 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const screws = actuators.filter((a) => new Set([a.body, a.input, a.piston].map((i) => bodyOf[i])).size === 3).map((a) => ({ input: bodyOf[a.input], piston: bodyOf[a.piston], center: a.center, axis: a.axis, lead: a.lead }));
   const centers = bodies.map((b) => b.parts.reduce((sum, i) => sum.add(new Vector3().setFromMatrixPosition(parts[i].matrix)), new Vector3()).multiplyScalar(1 / Math.max(1, b.parts.length)));
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
-}
-
-// Parts that would be loose get a second chance, fitting with the looser LOOSE_ALIGN_TOLERANCE:
-// connections that join a loose part to anything, found as findConnections finds them. So do
-// parts held to the rest only by slides and balls, which hold nothing in place: the 42039 and
-// 42041's V8 connecting rods, tied by balls to pistons sliding in their cylinders, are built
-// 1.005 LDU off their crank pins. But not a universal joint's cross, which keeps only the arms
-// universalJoints left it. Such a steering link or connecting rod's balls fit with the looser
-// LOOSE_BALL_TOLERANCE too. A pin's new joints turn as fixPins has its others do: a friction
-// pin's stiffly.
-function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean): Connection[] {
-  const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  // Every group but the biggest gets the chance, a train's bogies among them (a layout's cars
-  // are placed by hand, and a bogie's pin may sit a hair over 1 LDU from its hole).
-  const loose = new Set(findLooseParts(count, connections.filter((c) => c.kind !== 'slide' && c.kind !== 'ball')));
-  if (loose.size === 0) return [];
-  const known = new Set(connections.map((c) => `${c.male},${c.female}`));
-  const settled = (c: Connection) => roles[c.male] === 'universal joint' || roles[c.female] === 'universal joint';
-  const links = new Set([...loose].filter((p) => LINKS.includes(roles[p])));
-  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE, links).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`) && !settled(c));
-  for (const c of found) {
-    if (c.kind !== 'revolute' || roles[c.male] !== 'friction pin') continue;
-    if (frictionRigid) [c.kind, c.held] = ['rigid', true];
-    else c.stiff = true;
-  }
-  return found;
-}
-
-// A part that would be loose, its axle hole lined up with an axle's tip and starting right there,
-// is pushed on that axle: real parts give a little, so a builder may press a part on an axle
-// already filled by others, where in LDraw it can only sit against its tip (the 858 Auto Engines'
-// fans, two round plates pressed on an axle pin past the bush their rubber band runs in).
-function onAxleTips(roles: string[], cyls: WorldCylinder[], connections: Connection[]): Connection[] {
-  const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
-  const loose = new Set(findLooseParts(count, connections, anchorsOf(roles)));
-  if (loose.size === 0) return [];
-  const pushed: Connection[] = [];
-  for (const axle of cyls.filter((c) => c.gender === 'M' && c.secs[c.secs.length - 1].shape === 'A')) {
-    const tip = axle.start.clone().addScaledVector(axle.dir, axle.secs.reduce((sum, sec) => sum + sec.length, 0));
-    for (const hole of cyls) {
-      if (hole.gender !== 'F' || hole.part === axle.part || !loose.has(hole.part) || loose.has(axle.part)) continue;
-      if (new Vector3().crossVectors(axle.dir, hole.dir).length() > ANGLE_TOLERANCE) continue;
-      // Where each of the hole's sections starts and ends, along the axle from its tip.
-      let at = new Vector3().subVectors(hole.start, tip).dot(axle.dir);
-      const sideways = new Vector3().subVectors(hole.start, tip).addScaledVector(axle.dir, -at).length();
-      if (sideways > LOOSE_ALIGN_TOLERANCE) continue;
-      const way = Math.sign(hole.dir.dot(axle.dir));
-      for (const sec of hole.secs) {
-        const end = at + way * sec.length;
-        if (sec.shape === 'A' && Math.abs(Math.min(at, end)) < AXIS_TOLERANCE) pushed.push({ male: axle.part, female: hole.part, kind: 'rigid', from: tip.clone(), to: tip.clone() });
-        at = end;
-      }
-    }
-  }
-  return pushed;
 }
 
 // Decoration: parts that are there for looks and connect to nothing in a way that matters,
