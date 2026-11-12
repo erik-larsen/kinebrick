@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 1307,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 1099,
     "counts": {
       "partly": 3,
       "works": 3,
@@ -332,7 +332,7 @@
         ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 51.5
+        "seconds": 38.6
       },
       {
         "result": "partly",
@@ -387,7 +387,7 @@
         ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 68.2
+        "seconds": 53.4
       },
       {
         "result": "works",
@@ -421,7 +421,7 @@
             ]
           ]
         ],
-        "seconds": 73.1
+        "seconds": 56.9
       },
       {
         "result": "works",
@@ -467,7 +467,7 @@
             ]
           ]
         ],
-        "seconds": 306.1
+        "seconds": 219.4
       },
       {
         "result": "works",
@@ -537,7 +537,7 @@
             ]
           ]
         ],
-        "seconds": 336.2
+        "seconds": 240
       },
       {
         "result": "skipped"
@@ -580,7 +580,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 73.2
+        "seconds": 56.5
       },
       {
         "result": "no",
@@ -653,7 +653,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 14.8
+        "seconds": 10.6
       },
       {
         "result": "no",
@@ -693,7 +693,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 7.1
+        "seconds": 5.4
       },
       {
         "result": "no",
@@ -732,9 +732,12 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true
+        ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 7
+        "seconds": 114.2
       },
       {
         "result": "no",
@@ -785,7 +788,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 14.1
+        "seconds": 10.7
       }
     ]
   }

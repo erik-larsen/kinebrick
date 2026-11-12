@@ -114,9 +114,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 6,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 3,
     "counts": {
       "partly": 4,
       "not back": 1,
@@ -203,7 +203,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 8074 - 4185a",
-        "seconds": 2.3
+        "seconds": 1.2
       },
       {
         "result": "skipped",
@@ -277,7 +277,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p96 3738",
-        "seconds": 0.9
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -353,7 +353,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p177 3708",
-        "seconds": 1.2
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -429,7 +429,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p223 3705",
-        "seconds": 1.2
+        "seconds": 0.5
       }
     ]
   }

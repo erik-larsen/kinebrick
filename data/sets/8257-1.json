@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 66,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 33,
     "counts": {
       "works": 4,
       "not back": 4,
@@ -595,45 +595,45 @@
             ]
           ]
         ],
-        "seconds": 24.4
+        "seconds": 11.9
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            0
+            1.51,
+            -0.03
           ]
         ],
         "rates": [
           {
             "p323 32133 against p550 32018": [
-              0.811,
-              712
+              0.874,
+              755
             ],
             "p567 32065 against p550 32018": [
-              1.4,
-              83.6
+              1.46,
+              87.6
             ],
             "p594 6629 against p550 32018": [
               0,
-              8.94e-9
+              1.65e-10
             ],
             "p604 32065 against p550 32018": [
               0,
-              2.33e-9
+              2.59e-11
             ]
           }
         ],
         "back": [
           [
             [
-              0.72,
-              0.08
+              23.66,
+              2.46
             ],
             [
-              0,
-              0
+              99.21,
+              10.03
             ]
           ]
         ],
@@ -643,10 +643,13 @@
         "stop": [
           [
             null,
-            "dead point"
+            "no motion"
           ]
         ],
-        "seconds": 11
+        "pushed": [
+          true
+        ],
+        "seconds": 3.2
       },
       {
         "result": "partly",
@@ -692,7 +695,7 @@
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 6.6
+        "seconds": 4.5
       },
       {
         "result": "no",
@@ -736,7 +739,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -811,7 +814,7 @@
         ],
         "cause": "loose-part",
         "detail": "p43 6579",
-        "seconds": 11
+        "seconds": 6.4
       },
       {
         "result": "works",
@@ -862,7 +865,7 @@
             "dead point"
           ]
         ],
-        "seconds": 8.5
+        "seconds": 4.2
       },
       {
         "result": "no",
@@ -912,7 +915,7 @@
         ],
         "cause": "loose-part",
         "detail": "p166 32065",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -946,7 +949,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 1.6
       },
       {
         "result": "skipped",

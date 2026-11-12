@@ -112,9 +112,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 3,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 2,
     "counts": {
       "no": 2,
       "works": 1,
@@ -211,7 +211,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -412,7 +412,7 @@
         ],
         "cause": "loose-part",
         "detail": "p69 71372c01",
-        "seconds": 1.1
+        "seconds": 0.6
       },
       {
         "result": "not checked",

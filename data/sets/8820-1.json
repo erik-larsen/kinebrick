@@ -86,12 +86,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 3,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 1,
     "counts": {
-      "partly": 3,
-      "not back": 3,
+      "partly": 2,
+      "not back": 2,
+      "no": 1,
       "skipped": 1
     },
     "loose": [
@@ -176,74 +177,83 @@
         ],
         "cause": "stay-chosen",
         "detail": "p125 3482",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
-        "moved": [
-          "p129 3482"
+        "still": [
+          "p105 3894",
+          "p32 3707",
+          "p30 4254",
+          "p125 3482",
+          "p127 3482"
         ],
         "rates": [
           {
             "p105 3894": [
-              1,
-              41.2
+              0,
+              0
             ],
             "p32 3707": [
-              1,
-              79.9
+              0,
+              0
             ],
             "p30 4254": [
-              1,
-              79.9
+              0,
+              0
             ],
             "p125 3482": [
-              0.308,
-              60
+              0,
+              0
             ],
             "p127 3482": [
-              0.308,
-              60
+              0,
+              0
             ],
             "p31 3706": [
-              2.81e-8,
-              5.73e-14
+              0,
+              0
             ],
             "p47 2717": [
-              2.81e-8,
-              3.44e-14
+              0,
+              0
             ],
             "p129 3482": [
-              1.11,
-              5.05e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.87,
-              1.24
+              0,
+              0
             ],
             [
-              1.05,
-              1.78
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p103 3749",
-          "p12 3749"
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p129 3482",
-        "seconds": 0.3
+        "pushed": [
+          true
+        ],
+        "cause": "not-driven",
+        "detail": "p105 3894",
+        "seconds": 0
       },
       {
         "result": "skipped",
@@ -345,7 +355,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p102 3894",
-        "seconds": 1.4
+        "seconds": 0.6
       }
     ]
   }

@@ -190,13 +190,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 74,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 107,
     "counts": {
-      "works": 5,
-      "partly": 1,
-      "not back": 1,
+      "works": 4,
+      "partly": 2,
+      "not back": 2,
       "skipped": 2,
       "no": 2
     },
@@ -273,7 +273,7 @@
             ]
           ]
         ],
-        "seconds": 11.3
+        "seconds": 7.7
       },
       {
         "result": "works",
@@ -403,7 +403,7 @@
             ]
           ]
         ],
-        "seconds": 18
+        "seconds": 12.7
       },
       {
         "result": "works",
@@ -433,7 +433,7 @@
             ]
           ]
         ],
-        "seconds": 9.3
+        "seconds": 6.3
       },
       {
         "result": "partly",
@@ -530,7 +530,7 @@
         ],
         "cause": "not-driven",
         "detail": "p297 15460",
-        "seconds": 23.5
+        "seconds": 15.6
       },
       {
         "result": "skipped",
@@ -597,20 +597,23 @@
             ]
           ]
         ],
-        "seconds": 5.2
+        "seconds": 2.7
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.61,
+            -0.42
           ]
+        ],
+        "moved": [
+          "p471 56908"
         ],
         "rates": [
           {
             "p964 26287": [
-              1,
+              0.639,
               120
             ],
             "p978 32524": [
@@ -622,24 +625,39 @@
               60
             ],
             "p471 56908": [
-              0,
-              3.47e-13
+              2.08,
+              152
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              402.72,
+              136.58
             ],
             [
-              0,
-              0
+              31,
+              12.22
             ]
           ]
         ],
-        "seconds": 4.9
+        "strayed": [
+          "p709 2780",
+          "p531 25214"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "stay-chosen",
+        "detail": "p471 56908",
+        "seconds": 61.2
       },
       {
         "result": "no",
@@ -697,7 +715,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.7
+        "seconds": 0.4
       }
     ]
   }

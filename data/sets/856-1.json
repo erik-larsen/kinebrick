@@ -90,9 +90,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 5,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 2,
     "counts": {
       "partly": 1,
       "works": 2,
@@ -170,7 +170,7 @@
         ],
         "cause": "too-little",
         "detail": "p189 3895",
-        "seconds": 1.1
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -244,7 +244,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -314,7 +314,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 1
       },
       {
         "result": "not checked",

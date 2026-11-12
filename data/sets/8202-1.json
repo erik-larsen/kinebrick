@@ -78,9 +78,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 1,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 0,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -177,7 +177,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p45 32013",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -223,7 +223,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0
       }
     ]
   }

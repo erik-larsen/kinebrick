@@ -33,4 +33,56 @@ describe('a drag solved over what it can reach', () => {
     expect(b.turned).toBe(a.turned);
     whole.poses.forEach((pose, body) => pose.elements.forEach((x, i) => expect(Math.abs(x - reach.poses[body].elements[i])).toBeLessThan(1e-6)));
   });
+
+  // Rolled on a road wheel, the crane can't reach its hook block, which hangs from the boom on a
+  // string. The string's rows are a hundred-thousandth out when the whole crane moves as one, so
+  // with the block held, they were left to hold back the rolling: the car turned a little as it
+  // went, and stopped at 0.93 of 1.5. Rows on nothing but what's held are left out.
+  it('rolls the crane on a road wheel as the whole solve does, its hook block held', () => {
+    const wheel = mech.treads[0].body;
+    const block = mech.strings[0].hook!.body;
+    const roll = (kin: Kinematics) => {
+      const joint = kin.parentLink(wheel)!.joint;
+      kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(joint) !== null, joint);
+      const out = [...kin.drag.outOfReach];
+      let turned = 0;
+      for (let i = 0; i < 15; i++) turned += kin.turnJoint(joint, 0.1, () => kin.atLimit() === null);
+      kin.letGoAfterDrag();
+      return { out, turned };
+    };
+    const whole = new Kinematics(mech);
+    const reach = new Kinematics(mech, { reach: true });
+    const a = roll(whole);
+    const b = roll(reach);
+    expect(b.out).toContain(block);
+    expect(a.turned).toBeCloseTo(1.5, 9);
+    expect(b.turned).toBeCloseTo(1.5, 9);
+    // Taking up the string's rounding, the whole solve turns the block's pulley a few thousandths
+    // of a radian; held, it doesn't turn. Everything in reach comes out the same.
+    whole.poses.forEach((pose, body) => pose.elements.forEach((x, i) => expect(Math.abs(x - reach.poses[body].elements[i])).toBeLessThan(b.out.includes(body) ? 1e-2 : 1e-6)));
+  });
+});
+
+// Those rows left out, what's out of reach is held whole on the frame, not just on its joint: held
+// only on their joints, the 8859 Tractor's cab, hitch and cultivator came loose, and rolling the
+// tractor back on a front wheel stopped at a dead point after a fifteenth of a radian.
+describe("a drag holding what it can't reach whole", () => {
+  const { mech, parts, kin } = load('models/8859-Tractor.mpd');
+  const wheel = mech.bodyOf[596];
+
+  it('rolls the tractor back on a front wheel, everything out of reach standing still on the frame', () => {
+    expect(parts[596].name).toBe('3740.dat');
+    const reach = new Kinematics(mech, { reach: true });
+    reach.scrub = kin.scrub;
+    const joint = reach.parentLink(wheel)!.joint;
+    reach.holdWhatTheDragDoesntNeed(wheel, () => reach.jointMotion(joint) !== null, joint);
+    const out = [...reach.drag.outOfReach];
+    const onFrame = (body: number) => reach.poses[0].clone().invert().multiply(reach.poses[body]);
+    const before = out.map(onFrame);
+    let turned = 0;
+    for (let i = 0; i < 15; i++) turned += reach.turnJoint(joint, -0.1, () => reach.atLimit() === null);
+    expect(out.length).toBeGreaterThan(40);
+    expect(turned).toBeCloseTo(-1.5, 9);
+    out.forEach((body, k) => onFrame(body).elements.forEach((x, i) => expect(Math.abs(x - before[k].elements[i])).toBeLessThan(1e-9)));
+  });
 });

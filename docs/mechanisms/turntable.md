@@ -4,7 +4,7 @@ A part slews round on a turntable or an upright pivot, geared or by hand. (Movin
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The cab slews round on its turntable, carrying the boom with it.
 
-Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 9 works, 24 partly, 6 no, 1 not checked.
+Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 9 works, 25 partly, 5 no, 1 not checked.
 
 ## By decade
 
@@ -154,7 +154,7 @@ Each detail by the set it first appears in.
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
 - *cab and boom:* The cab and boom slew round on a turntable on the front unit, about 270 degrees. (works)
-- *harvester head:* The black gear on the boom's tip turns the harvester head round on its 28 tooth turntable. (no)
+- *harvester head:* The black gear on the boom's tip turns the harvester head round on its 28 tooth turntable. (partly)
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 

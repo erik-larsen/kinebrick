@@ -93,9 +93,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 3,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 1,
     "counts": {
       "partly": 3,
       "no": 1,
@@ -157,7 +157,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.6
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -255,7 +255,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -306,7 +306,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 0.5
       },
       {
         "result": "not checked",

@@ -87,8 +87,17 @@ export function meshContact(solver: Kinematics, mesh: Mesh): { a: Gear; b: Gear;
   // Bevel: from where the axes cross, out towards each gear in the ratio of the *other*
   // gear's teeth, so that each gear's teeth move at (its turning speed) x (its tooth count)
   // there, which makes the speeds come out in the ratio of the tooth counts.
-  const crossing = axesCrossing(ca, axisA, cb, axisB);
-  if (!crossing) return null;
+  // The mesh was found with the axes no further apart than a tolerance, but a pair built right at
+  // it may drift a hair past it as it turns (the 8859 Tractor's differential, its half shafts'
+  // bevels half an LDU off the spider's axis: after one step, the spider lost both its meshes,
+  // and the engine stopped as the tractor rolled on). So a mesh found keeps its crossing: the
+  // middle of the shortest line between the axes, unless they've come into line.
+  let crossing = axesCrossing(ca, axisA, cb, axisB);
+  if (!crossing) {
+    if (new Vector3().crossVectors(axisA, axisB).lengthSq() < 1e-6) return null;
+    const { onA, onB } = closestPoints(ca, axisA, cb, axisB);
+    crossing = onA.add(onB).multiplyScalar(0.5);
+  }
   const towardA = new Vector3().subVectors(ca, crossing).normalize();
   const towardB = new Vector3().subVectors(cb, crossing).normalize();
   const pitchPoint = crossing.clone().addScaledVector(towardA, b.teeth).addScaledVector(towardB, a.teeth);

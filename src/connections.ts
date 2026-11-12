@@ -73,11 +73,11 @@ export interface ConnectionTable {
   tracks?: Record<string, { depth: number }>;
   // Grooves a plate slides into edge first (a tipper end's): boxes in the part's own
   // coordinates. A plate whose anti-studs lie in one, its thickness across the groove, is held
-  // there (see inGrooves in mechanism.ts).
+  // there (see inGrooves in inference/grooves.ts).
   grooves?: Record<string, Groove[]>;
   // Stickers (parts the LDraw library describes as one), and flexible sections (a ribbed hose's
   // or a cable's segments): decoration, moving with what they're stuck on or lie next to (see
-  // decorations in mechanism.ts).
+  // decorations in inference/rideAlong.ts).
   stickers?: string[];
 }
 

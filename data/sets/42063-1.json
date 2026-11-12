@@ -111,13 +111,13 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 7,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 3,
     "counts": {
-      "no": 2,
-      "works": 3,
-      "not back": 2,
+      "no": 3,
+      "works": 2,
+      "not back": 1,
       "skipped": 2
     },
     "loose": [
@@ -207,7 +207,7 @@
         "strayed": [
           "p131 62520"
         ],
-        "seconds": 4.2
+        "seconds": 2
       },
       {
         "result": "works",
@@ -232,7 +232,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -280,51 +280,65 @@
             "no motion"
           ]
         ],
+        "pushed": [
+          true
+        ],
         "cause": "not-driven",
         "detail": "p386 88517",
         "seconds": 0.1
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p334 88517",
+          "p198 4254"
         ],
         "rates": [
           {
             "p334 88517": [
-              1,
-              200
+              0,
+              0
             ],
             "p198 4254": [
-              1,
-              72.1
+              0,
+              0
             ],
             "p142 32526": [
-              8.43e-8,
-              3.84e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              99.45,
-              14.37
+              0,
+              0
             ],
             [
-              170.39,
-              14.45
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p358 3713",
-          "p471 24116"
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
         ],
-        "seconds": 0.8
+        "pushed": [
+          true
+        ],
+        "cause": "not-driven",
+        "detail": "p334 88517",
+        "seconds": 0.1
       },
       {
         "result": "skipped",

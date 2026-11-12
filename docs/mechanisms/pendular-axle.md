@@ -4,7 +4,7 @@ A rigid axle swings side to side on a central pivot or turntable. (Suspension.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.
 
-Used in 8 of the 186 surveyed sets, by 9 functions. Kinebrick: 2 works, 1 partly, 4 no, 2 skipped.
+Used in 8 of the 186 surveyed sets, by 9 functions. Kinebrick: 2 works, 5 no, 2 skipped.
 
 ## By decade
 
@@ -40,7 +40,7 @@ Each detail by the set it first appears in.
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- The front and rear axles each swing side to side on a central pivot, with a shock absorber either side, so the tracks follow the ground. (partly)
+- The front and rear axles each swing side to side on a central pivot, with a shock absorber either side, so the tracks follow the ground. (no)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 

@@ -91,9 +91,9 @@
     ]
   },
   "generated": {
-    "commit": "fdb1b39",
-    "date": "2026-11-11",
-    "seconds": 3,
+    "commit": "4839cc2",
+    "date": "2026-11-12",
+    "seconds": 2,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -226,7 +226,7 @@
         ],
         "cause": "not-driven",
         "detail": "p170 3482",
-        "seconds": 1.1
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -300,7 +300,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 0.8
       },
       {
         "result": "not checked",

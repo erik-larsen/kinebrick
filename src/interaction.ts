@@ -38,6 +38,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
 import { Mechanism } from './mechanism.ts';
+import { leastSquares, pointDirections as directionsOf, pushStep } from './push.ts';
 import { knobTurn } from './turn.ts';
 
 const HANDLE_COLOUR = 0x1d6fe0;
@@ -786,33 +787,19 @@ export function setUpInteraction(s: InteractionSetup) {
       stuck = false;
       while (moved < distance - 1e-9) {
         const step = Math.min(MAX_STEP, distance - moved);
-        const g = push.grabStart.clone().applyMatrix4(s.kin.poses[body]);
-        const motions = s.kin.freeMotions();
-        const speeds = motions.map((m) => s.kin.pointVelocity(m, body, g));
-        const amounts = motions.length ? leastSquares(speeds, push.dir) : null;
-        const move = new Vector3();
-        if (amounts) amounts.forEach((a, i) => move.addScaledVector(speeds[i], a));
-        // Nowhere to go, or only well off the way it was going.
-        if (!amounts || move.length() < 1e-6 || move.clone().normalize().dot(push.dir) < 0.5) {
+        const went = pushStep(s.kin, body, push.grabStart, push.dir, step, () => {
+          const pair = s.blockedBy();
+          if (pair) s.appearance.flashBlocked(pair);
+          return !pair;
+        });
+        if (went !== 'moved') {
           stuck = true;
+          if (went === 'blocked') {
+            ranInto = true;
+            attempt = 2; // ran into something: fresh holds won't help
+          }
           break;
         }
-        const scale = step / move.length();
-        const combined = new Array(motions[0].length).fill(0);
-        motions.forEach((m, i) => m.forEach((x, k) => (combined[k] += x * amounts[i] * scale)));
-        const before = s.kin.snapshot();
-        s.kin.advance(combined, 1);
-        const pair = s.blockedBy();
-        if (pair) {
-          s.kin.restore(before);
-          s.appearance.flashBlocked(pair);
-          stuck = true;
-          ranInto = true;
-          attempt = 2; // ran into something: fresh holds won't help
-          break;
-        }
-        const now = push.grabStart.clone().applyMatrix4(s.kin.poses[body]).sub(g);
-        if (now.length() > 1e-9) push.dir.copy(now.normalize());
         moved += step;
         motorMoved = true;
       }
@@ -845,13 +832,7 @@ export function setUpInteraction(s: InteractionSetup) {
 
   // In how many independent directions a point on a body can move.
   function pointDirections(body: number, g: Vector3): number {
-    const basis: Vector3[] = [];
-    for (const m of s.kin.freeMotions()) {
-      const v = s.kin.pointVelocity(m, body, g);
-      for (const b of basis) v.addScaledVector(b, -v.dot(b));
-      if (v.length() > 1e-6) basis.push(v.normalize());
-    }
-    return basis.length;
+    return directionsOf(s.kin, body, g);
   }
 
   function endDrag() {
@@ -1098,33 +1079,4 @@ function onTop(group: Group): Group {
 function perpendicularTo(d: Vector3): Vector3 {
   const helper = Math.abs(d.x) < 0.9 ? new Vector3(1, 0, 0) : new Vector3(0, 1, 0);
   return new Vector3().crossVectors(d, helper).normalize();
-}
-
-// The amounts a_i that make  Σ a_i · columns_i  as close as possible to `target`, slightly
-// damped so a motion that barely shows on screen doesn't get a huge amount.
-function leastSquares(columns: (Vector2 | Vector3)[], target: Vector2 | Vector3): number[] | null {
-  const dot = (u: Vector2 | Vector3, v: Vector2 | Vector3) => u.toArray().reduce((sum: number, x: number, i: number) => sum + x * v.toArray()[i], 0);
-  const k = columns.length;
-  const a: number[][] = [];
-  const b: number[] = [];
-  for (let i = 0; i < k; i++) {
-    a.push([]);
-    for (let j = 0; j < k; j++) a[i].push(dot(columns[i], columns[j]) + (i === j ? 1e-3 : 0));
-    b.push(dot(columns[i], target));
-  }
-  // Gaussian elimination on the small k × k system.
-  for (let c = 0; c < k; c++) {
-    let best = c;
-    for (let r = c + 1; r < k; r++) if (Math.abs(a[r][c]) > Math.abs(a[best][c])) best = r;
-    if (Math.abs(a[best][c]) < 1e-12) return null;
-    [a[c], a[best]] = [a[best], a[c]];
-    [b[c], b[best]] = [b[best], b[c]];
-    for (let r = 0; r < k; r++) {
-      if (r === c) continue;
-      const f = a[r][c] / a[c][c];
-      for (let j = c; j < k; j++) a[r][j] -= f * a[c][j];
-      b[r] -= f * b[c];
-    }
-  }
-  return b.map((x, i) => x / a[i][i]);
 }
