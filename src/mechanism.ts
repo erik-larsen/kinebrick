@@ -4,29 +4,13 @@
 import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable, Section } from './connections.ts';
 import { acrossDirections, Kinematics, nullSpace } from './kinematics.ts';
-import { PathPoint, PlacedPath, PlacedPart } from './ldr.ts';
+import { PathPoint, PlacedPart, PlacedPath } from './ldr.ts';
 import { LoopPath } from './paths.ts';
+import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, axialOverlap, AXIS_TOLERANCE, BALL_LINE, BORE_OVERLAP, closedAtOneEnd, findLooseParts, isAntiStud, isStud, LOOSE_ALIGN_TOLERANCE, MIN_OVERLAP, rigidGroups, SURFACE_OVERLAP, type WorldCylinder, worldCylinders } from './inference/shared.ts';
 
-// How far apart two connection points may be and still count as connected, in LDU.
-const AXIS_TOLERANCE = 0.5;
 // How far the middle of a circle a chain placed link by link goes round may be from its wheel's
 // axis, in LDU (see findLoops): the 8835 Forklift's chain is 0.7 LDU off its sprockets.
 const CHAIN_REACH = 2;
-// How far off the axis of the part it sits in a ball may be built, and still be taken to sit on
-// it (see lineUpBalls).
-const BALL_LINE = 3;
-// How far off each other's axis a pin and its hole (or a tyre and its rim) may be and still
-// fit, in LDU. Models are often built half an LDU out.
-const ALIGN_TOLERANCE = 1;
-// The same for a part that would otherwise be loose (see looseFits): an official helicopter's
-// rotor linkage is built a little stretched, its levers' ends 1.8 and 1.2 LDU off their pins.
-// Not for every part: some parts have holes this close together (a steering arm's two pin holes,
-// 2 LDU apart), and a pin would catch both.
-const LOOSE_ALIGN_TOLERANCE = 2;
-// How far apart two connection points' directions may be and still line up, as the sine of
-// the angle between them: 2 degrees. Models are sometimes built a little askew (an official
-// model tilts a go-kart's engine by a degree), as real parts allow.
-const ANGLE_TOLERANCE = 0.035;
 // How far meshing gears' axles (or a gear and a rack's pitch line) may be from exactly their
 // pitch radii apart, in LDU. Real teeth still engage a little closer or further, and models
 // built by hand often have them so: an official model may put a gear 2 LDU into a rack.
@@ -69,25 +53,6 @@ const HOOK_REACH = 24;
 // How far off where it should be on its body's axis a linear actuator's input or piston may be
 // built, and still be taken for it, in LDU (see linearActuators).
 const ACTUATOR_REACH = 3;
-// Minimum length two connection points must overlap along their axis, in LDU.
-const MIN_OVERLAP = 1;
-// How much two sliding parts must still overlap, in LDU (see slideRange): a plate on tiles a
-// stud, so it rests on them; a piston in its bore half a stud, so it stays in it.
-const SURFACE_OVERLAP = 20;
-const BORE_OVERLAP = 10;
-
-// A connection point in model coordinates.
-interface WorldCylinder {
-  part: number; // index into the model's parts
-  gender: 'M' | 'F';
-  caps: string;
-  start: Vector3;
-  dir: Vector3; // unit vector
-  secs: Section[];
-  face?: Vector3; // a rack: the way its teeth face
-  turns?: boolean; // a motor's output: what's fixed in it turns in the motor (see buildMechanism)
-}
-
 // rigid     the parts turn together (an axle in an axle hole, a tyre on a rim)
 // revolute  the parts can turn about the shared axis (an axle in a round hole)
 // slide     the parts can slide along the shared axis, but not turn (a piston in its bore)
@@ -695,14 +660,6 @@ function guidedPistons(parts: PlacedPart[], roles: string[], cyls: WorldCylinder
   return guided;
 }
 
-// For each part, a representative of the parts fixed to it (rigid and stud connections).
-function rigidGroups(count: number, connections: Connection[]): number[] {
-  const leader = Array.from({ length: count }, (_, i) => i);
-  const find = (i: number): number => (leader[i] === i ? i : (leader[i] = find(leader[i])));
-  for (const c of connections) if (c.kind === 'rigid' || c.kind === 'stud') leader[find(c.male)] = find(c.female);
-  return leader.map((_, i) => find(i));
-}
-
 // A universal joint's centre is a cross whose two arms turn in the ends of two shafts. As two
 // hinges, the cross would lock the joint solid if the model's shafts miss its middle by a
 // fraction of an LDU, as built models do. What the joint does is pass turning from one shaft
@@ -1302,21 +1259,6 @@ function mountsOf(gear: number, connections: Connection[]): number[] {
   return connections.flatMap((c) => (c.kind !== 'revolute' || fixed.has(c.male) === fixed.has(c.female) ? [] : [fixed.has(c.male) ? c.female : c.male]));
 }
 
-// Step 3: every part's connection points, moved into model coordinates.
-function worldCylinders(parts: PlacedPart[], table: ConnectionTable): WorldCylinder[] {
-  const result: WorldCylinder[] = [];
-  parts.forEach((part, index) => {
-    for (const cyl of table.parts[part.name] ?? []) {
-      const start = new Vector3(...cyl.start).applyMatrix4(part.matrix);
-      const dir = new Vector3(...cyl.dir).transformDirection(part.matrix);
-      const rack = cyl.secs[0].rack;
-      const face = rack ? new Vector3(...rack).transformDirection(part.matrix) : undefined;
-      result.push({ part: index, gender: cyl.gender, caps: cyl.caps, start, dir, secs: cyl.secs, face });
-    }
-  });
-  return result;
-}
-
 function findTreads(cyls: WorldCylinder[], bodyOf: number[], roles: string[]): Tread[] {
   const treads: Tread[] = [];
   for (const c of cyls) {
@@ -1860,12 +1802,6 @@ function opensForTechnic(f: WorldCylinder): boolean {
   return f.caps === 'none' || (closedAtOneEnd(f) && (f.secs.some((s) => s.shape === 'A') || hasPinCollar(f)));
 }
 
-// Closed at one end: most connection points just say so, some say which (A: the start, B: the
-// far end), as a round tile's anti-stud does.
-function closedAtOneEnd(c: WorldCylinder): boolean {
-  return c.caps === 'one' || c.caps === 'A' || c.caps === 'B';
-}
-
 // A Technic pin's collar and shaft, or a pin hole's counterbore and bore: round sections of
 // radius 8 and 6 LDU.
 function hasPinCollar(c: WorldCylinder): boolean {
@@ -1884,11 +1820,6 @@ function isBar(c: WorldCylinder): boolean {
 
 function hasRound(c: WorldCylinder, radius: number): boolean {
   return c.secs.some((s) => s.shape === 'R' && Math.abs(s.radius - radius) < AXIS_TOLERANCE);
-}
-
-// A stud: a short round peg, closed at one end, on top of a brick or plate.
-function isStud(c: WorldCylinder): boolean {
-  return c.caps === 'one' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 6) < AXIS_TOLERANCE;
 }
 
 // A bottom pin: the small peg under a 1-wide plate or tile, between its anti-studs.
@@ -1940,13 +1871,6 @@ function isTechnicHole(c: WorldCylinder): boolean {
   return c.caps === 'none' && c.secs.some((s) => s.shape === 'R' && Math.abs(s.radius - 6) < AXIS_TOLERANCE);
 }
 
-// An anti-stud: the socket for a stud, underneath a brick or plate. A pin's end holds in one as
-// a stud does (a 1 x 1 round tile on a half pin, a plate on a long pin's end).
-function isAntiStud(c: WorldCylinder): boolean {
-  const sec = c.secs[0];
-  return closedAtOneEnd(c) && c.secs.length === 1 && (sec.shape === 'R' || sec.shape === 'S') && Math.abs(sec.radius - 6) < AXIS_TOLERANCE;
-}
-
 // A hole that opens into an anti-stud: a headlight brick's (4070), through the brick from
 // its underside, which sits on a stud as any brick does.
 function endsInAntiStud(c: WorldCylinder): boolean {
@@ -1964,21 +1888,6 @@ function studConnect(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE
   const overlap = axialOverlap(m, f, align);
   if (!overlap) return null;
   return { male: m.part, female: f.part, kind: 'stud', from: overlap.from, to: overlap.to };
-}
-
-// Where two cylinders on the same axis overlap, or null if they're not on the same axis or
-// overlap by less than MIN_OVERLAP.
-function axialOverlap(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): { from: Vector3; to: Vector3 } | null {
-  if (new Vector3().crossVectors(m.dir, f.dir).length() > ANGLE_TOLERANCE) return null;
-  const offset = new Vector3().subVectors(f.start, m.start);
-  const along = offset.dot(m.dir);
-  if (offset.clone().addScaledVector(m.dir, -along).length() > align) return null;
-  const mLength = m.secs.reduce((sum, s) => sum + s.length, 0);
-  const fEnd = along + Math.sign(f.dir.dot(m.dir)) * f.secs.reduce((sum, s) => sum + s.length, 0);
-  const lo = Math.max(0, Math.min(along, fEnd));
-  const hi = Math.min(mLength, Math.max(along, fEnd));
-  if (hi - lo < MIN_OVERLAP) return null;
-  return { from: m.start.clone().addScaledVector(m.dir, lo), to: m.start.clone().addScaledVector(m.dir, hi) };
 }
 
 // A part pinned to two arms that turn on one body, all on parallel axes (a steering rack
@@ -2433,25 +2342,6 @@ function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Conn
     const at = new Vector3().setFromMatrixPosition(parts[part].matrix);
     return { male: part, female: anchor, kind: 'rigid' as ConnectionKind, from: at, to: at.clone() };
   });
-}
-
-// The parts outside the largest group of parts attached to each other, and outside any group
-// with an anchor in it (a train track, or a train on it: see anchorsOf), which stands on its own.
-function findLooseParts(count: number, connections: Connection[], anchors: Set<number> = new Set()): number[] {
-  const leader = Array.from({ length: count }, (_, i) => i);
-  const find = (i: number): number => {
-    while (leader[i] !== i) i = leader[i];
-    return i;
-  };
-  for (const c of connections) leader[find(c.male)] = find(c.female);
-  const sizes = new Map<number, number>();
-  for (let i = 0; i < count; i++) sizes.set(find(i), (sizes.get(find(i)) ?? 0) + 1);
-  let biggest = -1;
-  for (const [group, size] of sizes) if (biggest < 0 || size > sizes.get(biggest)!) biggest = group;
-  const standing = new Set([biggest, ...[...anchors].map(find)]);
-  const loose: number[] = [];
-  for (let i = 0; i < count; i++) if (!standing.has(find(i))) loose.push(i);
-  return loose;
 }
 
 function connect(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): Connection | null {
