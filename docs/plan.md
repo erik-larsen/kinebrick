@@ -93,7 +93,7 @@ What this says, and what it doesn't:
 | What changes | Where | How much, on the 33 quick sets | Results it changes |
 |---|---|---|---|
 | The mechanism jams: the control has a joint, but nothing lets it move | The solver. A motion is free only if it keeps every equation exactly (`RANK_TOLERANCE`, 1e-6, in `src/linalg.ts`), so a shaft in two holes that are 0.05 LDU out of line can't turn | 18 functions | 18 of the 24, 16 of them to no |
-| Which of its holes a free pin is fixed in | The inference: `fixPins` in `src/mechanism.ts` picks the hole the pin goes furthest into, and two equal overlaps of 18 LDU become 18.00 and 17.96 | 406 parts change body, in 18 sets | None. A trial that counted overlaps within 0.5 LDU as equal left all 24 as they were, and changed no result of the models as built |
+| Which of its holes a free pin is fixed in | The inference: `fixPins` in `src/inference/pins.ts` picks the hole the pin goes furthest into, and two equal overlaps of 18 LDU become 18.00 and 17.96 | 406 parts change body, in 18 sets | None. A trial that counted overlaps within 0.5 LDU as equal left all 24 as they were, and changed no result of the models as built |
 | Which of two parts a piece is counted as fixed to: mostly hose and cable segments and chain links | The inference. The rule that chooses is not traced yet | 757 attachments, in 15 sets; 251 parts change body | Not measured |
 | A connection found or lost | The inference: `ALIGN_TOLERANCE`, 1 LDU. Some parts are built that far off their hole (an axle of the 8851 through two plates), and the nudge takes them either side of it | 6 connections in 3 sets; 2 parts come loose in 2 sets | At most the 6 that don't jam |
 | Gear meshes | | None | None |
