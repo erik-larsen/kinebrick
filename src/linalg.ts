@@ -62,6 +62,10 @@ export interface Tier {
   bodies?: number; // its first 3 × bodies components are bodies' turning, which `stillness` may hold still
   stillness?: number; // a body this tier leaves turning less than this fraction of the most is held still (see Options.stillness in kinematics.ts)
   joints?: boolean; // every joint's turning: what judges whether a motion turns the joint at all
+  // Mixes whose costs differ by at most this, for each radian the motions turn the joints, cost
+  // the tier alike: an absolute figure, rather than TIER_TOLERANCE, a fraction of the tier's own
+  // costs (the loops' tier, with play: see Kinematics.jointMotion).
+  alike?: number;
 }
 
 export function leastTurning(motions: number[][], rate: (m: number[]) => number, tiers: Tier[], offset: number[] | null = null, target = 1): number[] | null {
@@ -96,7 +100,9 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
     // A tier whose costs are only rounding, next to how much the motions turn the joints, has
     // nothing to keep still: scaled up, its rounding would choose the motion (a loose truck's
     // steering, which nothing steers, swinging its wheels round wildly).
-    if (!(tierScale > NOISE * scale)) return;
+    // A tier with an absolute figure for what costs it alike leaves out what costs it no more.
+    const floor = tier.alike === undefined ? NOISE : tier.alike * tier.alike;
+    if (!(tierScale > floor * scale)) return;
     // C a, and C N (one column per free direction).
     const apply = (v: number[]) => {
       const out = new Array(c).fill(0);
@@ -109,7 +115,7 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       return out;
     };
     const m = free.length;
-    const tiny = TIER_TOLERANCE * tierScale;
+    const tiny = tier.alike === undefined ? TIER_TOLERANCE * tierScale : tier.alike * tier.alike * scale;
     // The eigenvalues and eigenvectors of a symmetric matrix, scaled to its largest entry first:
     // symmetricEigen's cut-offs are absolute, and a tier's costs may be small. Null if it's all 0.
     const eigen = (matrix: number[][]) => {
