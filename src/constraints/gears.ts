@@ -79,8 +79,9 @@ export function meshContact(solver: Kinematics, mesh: Mesh): { a: Gear; b: Gear;
     return { a, b, pitchPoint, across };
   }
   if (mesh.kind === 'spur') {
-    // On the line between the centres, split in the ratio of the pitch radii.
-    const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));
+    // On the line between the centres, split in the ratio of the pitch radii. (With the centres
+    // option, the centres on the gears' axes: see Kinematics.onAxis.)
+    const pitchPoint = solver.onAxis(a.body, ca.clone(), axisA).lerp(solver.onAxis(b.body, cb, axisB), a.radius / (a.radius + b.radius));
     const across = new Vector3().crossVectors(axisA, new Vector3().subVectors(cb, ca)).normalize();
     return { a, b, pitchPoint, across };
   }
