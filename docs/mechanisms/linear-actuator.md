@@ -4,7 +4,7 @@ A screw drives a piston out and in. (Moving and lifting.)
 
 First appears in 2009, in [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) and [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1): Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.
 
-Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 5 works, 39 partly, 6 no.
+Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 5 works, 40 partly, 5 no.
 
 ## By decade
 
@@ -165,7 +165,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *boom:* The black knob nearer the cab on the superstructure's left side raises and lowers the boom: its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up. (no)
+- *boom:* The black knob nearer the cab on the superstructure's left side raises and lowers the boom: its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up. (partly)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 

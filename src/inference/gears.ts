@@ -184,8 +184,8 @@ function crownMesh(crown: Gear, gear: Gear): boolean {
   return Math.abs(along - crown.crown * gear.radius) <= (gear.bevel ? BEVEL_TOLERANCE : MESH_TOLERANCE);
 }
 
-// Bevel gears on crossing axes mesh when the tips of their bevel cones meet where the axes cross
-// (to within BEVEL_TOLERANCE). On axes at right angles, two 45 degree cones also touch all along
+// Bevel gears on axes crossing at right angles mesh when the tips of their bevel cones meet where
+// the axes cross (to within BEVEL_TOLERANCE). Two 45 degree cones also touch all along
 // a line when their tips are either side of the crossing, as far from it as each other; gears with
 // teeth of the same size mesh there if their pitch circles meet on that line. (An official
 // model's differential has a 28 tooth ring whose tip is 10 LDU one side of the crossing, and the
@@ -195,8 +195,10 @@ function bevelMesh(ga: Gear, gb: Gear): boolean {
   const crossing = axesCrossing(ga.center, ga.axis, gb.center, gb.axis);
   if (!crossing) return false;
   if (Math.abs(ga.radius / ga.teeth - gb.radius / gb.teeth) > 0.01) return false; // different tooth sizes (a knob wheel's knobs and a bevel gear's teeth)
-  if (coneTipAt(ga, crossing) && coneTipAt(gb, crossing)) return true;
+  // LEGO's bevel gears mesh only at right angles: two 12 tooth gears whose tips meet on axes 53
+  // degrees apart (the 42114's) would turn each other at another rate than they turn a third.
   if (Math.abs(ga.axis.dot(gb.axis)) > ANGLE_TOLERANCE) return false; // not at right angles
+  if (coneTipAt(ga, crossing) && coneTipAt(gb, crossing)) return true;
   // Where a gear's pitch circle is on the line along which its cone touches the other's: as far
   // from its tip along its own axis as along the other's.
   const pitchPoint = (cone: Cone, other: Cone, radius: number) => cone.tip.clone().addScaledVector(cone.out, radius).addScaledVector(other.out, radius);

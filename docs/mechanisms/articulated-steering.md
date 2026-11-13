@@ -4,7 +4,7 @@ The machine bends at an upright hinge between its front and rear halves. (Steeri
 
 First appears in 2001, in [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1): The steering wheel in the cab steers the loader by bending it in the middle: an 8-tooth pinion at the foot of its column runs on a 40-tooth gear lying flat on the joint between the two frames, so the front frame, with its wheels, boom and bucket, swings left and right against the rear about a vertical pivot.
 
-Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 2 works, 3 partly, 2 no.
+Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 2 works, 4 partly, 1 no.
 
 ## By decade
 
@@ -38,7 +38,7 @@ Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 2 works, 3 partly
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
-- The large angular motor at the front steers by bending the truck at its articulation: its two cranks push and pull two links on the rear half's hitch, swinging the front and rear halves about the upright hinge behind the cab. (no)
+- The large angular motor at the front steers by bending the truck at its articulation: its two cranks push and pull two links on the rear half's hitch, swinging the front and rear halves about the upright hinge behind the cab. (partly)
 
 ---
 

@@ -83,11 +83,14 @@ export async function packModel(
   // their pieces read as theirs in turn (a linear actuator's old name, moved to its shortcut).
   const placed = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)))].sort();
   const pieces: Record<string, string[]> = {};
-  const split = placed.filter((file) => roles[file] === 'split');
+  // A part the model file embeds ("42108 - 40918-f1.dat", as the OMR names them) is read as its
+  // pieces if the library's part of that name is (as scripts/load-model.ts reads it).
+  const isSplit = (file: string) => roles[file] === 'split' || (embedded.has(file) && roles[file.replace(/^.* - /, '')] === 'split');
+  const split = placed.filter(isSplit);
   for (const file of split) {
     if (pieces[file]) continue;
     pieces[file] = (await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line));
-    split.push(...pieces[file].flatMap((line) => references(line)).filter((piece) => roles[piece] === 'split'));
+    split.push(...pieces[file].flatMap((line) => references(line)).filter(isSplit));
   }
   const { parts, shapes, paths } = parseModel(source, isPrimitive, (file) => pieces[file] ?? null);
   const model = [
