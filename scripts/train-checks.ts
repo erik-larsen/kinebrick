@@ -65,6 +65,16 @@ export interface TrainChecked {
 // A part named as the function lists name it ("p483 70720c01").
 const partOf = (ref: string) => Number(/^p(\d+)\b/.exec(ref.trim())![1]);
 
+// Why a reference doesn't name the part at its number, or null if it does: the model's parts
+// renumbered (a part read as its pieces adds parts), a stale reference would check another part.
+function wrongPart(parts: { name: string }[], ref: string): string | null {
+  const name = ref.trim().replace(/^p\d+\s*/, ''); // (a part's name may have spaces: "7725 - 4181d01c01")
+  const part = parts[partOf(ref)];
+  const actual = part ? part.name.replace(/\.dat$/i, '') : '';
+  if (part && actual.toLowerCase() === name.toLowerCase()) return null;
+  return part ? `${ref} names a ${name}, but p${partOf(ref)} is a ${actual}: the model's parts are numbered differently` : `${ref}: the model has no part p${partOf(ref)}`;
+}
+
 // The groups the track's lines join into (lines of one piece count as joined).
 function trackGroups(track: Track): number {
   const lead = track.lines.map((_, i) => i);
@@ -141,7 +151,9 @@ export async function checkTrainSet(set: { curated: { model: string; functions: 
     loose = mech.loose.map((p) => `p${p} ${parts[p].name.replace(/\.dat$/, '')}`);
     const track = mech.track;
     try {
-      if (!track) checked.push({ result: 'no', why: ['no track'] });
+      const wrong = [fn.control, ...(fn.wheelsets ?? [])].flatMap((ref) => (ref ? [wrongPart(parts, ref)] : [])).filter((why) => why !== null);
+      if (wrong.length) checked.push({ result: 'no', why: wrong });
+      else if (!track) checked.push({ result: 'no', why: ['no track'] });
       else if (fn.kind === 'track') {
         const groups = trackGroups(track);
         checked.push(groups === 1 ? { result: 'works' } : { result: 'no', why: [`the track is in ${groups} pieces`] });
