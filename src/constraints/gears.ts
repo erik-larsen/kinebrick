@@ -33,10 +33,12 @@ export function gears(solver: Kinematics, eq: Equations) {
 export function meshContact(solver: Kinematics, mesh: Mesh): { a: Gear; b: Gear; pitchPoint: Vector3; across: Vector3 } | null {
   const a = solver.mech.gears[mesh.gearA];
   const b = solver.mech.gears[mesh.gearB];
-  const ca = a.center.clone().applyMatrix4(solver.poses[a.body]);
-  const cb = b.center.clone().applyMatrix4(solver.poses[b.body]);
   const axisA = a.axis.clone().transformDirection(solver.poses[a.body]);
   const axisB = b.axis.clone().transformDirection(solver.poses[b.body]);
+  // With the centres option, each gear's centre is taken on the axis of the joint it turns on
+  // (see Kinematics.onAxis), for every kind of mesh.
+  const ca = solver.onAxis(a.body, a.center.clone().applyMatrix4(solver.poses[a.body]), axisA);
+  const cb = solver.onAxis(b.body, b.center.clone().applyMatrix4(solver.poses[b.body]), axisB);
   if (mesh.kind === 'worm') {
     // a is the worm. Where it meets the gear: from the worm's axis towards the gear's, out
     // by the worm's pitch radius. There the worm's thread surface and the gear's tooth must
@@ -79,9 +81,8 @@ export function meshContact(solver: Kinematics, mesh: Mesh): { a: Gear; b: Gear;
     return { a, b, pitchPoint, across };
   }
   if (mesh.kind === 'spur') {
-    // On the line between the centres, split in the ratio of the pitch radii. (With the centres
-    // option, the centres on the gears' axes: see Kinematics.onAxis.)
-    const pitchPoint = solver.onAxis(a.body, ca.clone(), axisA).lerp(solver.onAxis(b.body, cb, axisB), a.radius / (a.radius + b.radius));
+    // On the line between the centres, split in the ratio of the pitch radii.
+    const pitchPoint = ca.clone().lerp(cb, a.radius / (a.radius + b.radius));
     const across = new Vector3().crossVectors(axisA, new Vector3().subVectors(cb, ca)).normalize();
     return { a, b, pitchPoint, across };
   }
