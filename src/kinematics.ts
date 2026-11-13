@@ -145,15 +145,15 @@ export interface Options {
   // Least motion for a push of a part that hangs on a turning joint (a door, an arm of a
   // linkage): its holds as a drag that turns that joint has them, and each step's motion chosen
   // by the tiers, the point pushed going the way it is pushed (see pushStepByTiers), rather than
-  // the least-squares mix of the free motions left by holding all that can be held. Off by
-  // default, for now; KINEBRICK_LEAST_PUSH=1 turns it on.
+  // the least-squares mix of the free motions left by holding all that can be held. On by
+  // default; KINEBRICK_LEAST_PUSH=0 turns it off.
   leastPush: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1 and KINEBRICK_LEAST_PUSH=1.
+// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1 and KINEBRICK_LEAST_PUSH=0.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -163,7 +163,7 @@ export const experiments: Options = {
   stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
   reach: setting('KINEBRICK_REACH') !== '0',
   centres: setting('KINEBRICK_CENTRES') === '1',
-  leastPush: setting('KINEBRICK_LEAST_PUSH') === '1',
+  leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
