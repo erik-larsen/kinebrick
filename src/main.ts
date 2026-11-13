@@ -429,6 +429,45 @@ async function start() {
     return list;
   });
 
+  // The friction pins freed so far, so that a part they held can move (see pinsToFree), until
+  // Reset. The helper beside the page (pinWorker.ts) finds them, from the model built with every
+  // friction pin free, which on a big model takes seconds; it's started once the model shows. If
+  // the browser can't start it, parts held by friction pins stay held.
+  const freed = new Set<number>();
+  let pinWorker: Worker | null = null;
+  let asked = 0;
+  const answers = new Map<number, (pins: number[]) => void>();
+  function startPinWorker() {
+    try {
+      pinWorker = new Worker(new URL('./pinWorker.ts', import.meta.url), { type: 'module' });
+    } catch {
+      return;
+    }
+    pinWorker.onmessage = (e: MessageEvent) => {
+      answers.get(e.data.ask)?.(e.data.pins);
+      answers.delete(e.data.ask);
+    };
+    pinWorker.onerror = () => {
+      pinWorker = null;
+      for (const answer of answers.values()) answer([]);
+      answers.clear();
+    };
+    pinWorker.postMessage({ model: { text: modelText, primitives: [...primitives], pieces: packed?.pieces ?? {}, table, roles } });
+  }
+  const pinsToFree = (part: number) =>
+    new Promise<number[]>((resolve) => {
+      if (!pinWorker) return resolve([]);
+      asked++;
+      answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
+      pinWorker.postMessage({ ask: asked, part });
+    });
+  // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
+  // does (see readAsBuilt), so everything stays where it now is.
+  const freePins = (pins: number[]) => {
+    for (const pin of pins) freed.add(pin);
+    readAsBuilt(new Map());
+  };
+
   // The mechanism, and everything worked out from it. read() sets these, at the start and
   // again after each shift, when the mechanism is worked out afresh from where the parts are.
   let parts = startParts;
@@ -489,7 +528,7 @@ async function start() {
   // partObjects already there.
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
-    mech = known ?? inferMechanism(parts, table, roles, paths);
+    mech = known ?? inferMechanism(parts, table, roles, paths, freed);
     kin = new Kinematics(mech);
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
@@ -858,6 +897,8 @@ async function start() {
     stickOf,
     shiftStick,
     shift,
+    pinsToFree,
+    freePins,
   };
   summary.textContent = 'Checking for collisions…';
   await shown();
@@ -919,6 +960,7 @@ async function start() {
     grid.position.z = home.z + Math.round((controls.target.z - home.z) / cell) * cell;
   };
   showPoses();
+  startPinWorker();
 
   // Back to the model as loaded, shifted back too, with nothing turning, and the camera and
   // grid back where they started.
@@ -940,6 +982,7 @@ async function start() {
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     });
     paths.forEach((path, i) => (path.points = startPaths[i].map(copyPoint)));
+    freed.clear();
     read(startParts);
     showPoses();
   };
