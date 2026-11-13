@@ -2213,14 +2213,25 @@ export class Kinematics {
       const plain = this.chooseMotion(joint, usual, along, size, tiers);
       const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), along, size, tiers) : plain;
       const length = (z: number[]) => Math.hypot(...size(z));
-      const z = plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
-      if (!z) return null;
+      let z = plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
+      // chooseMotion keeps the frame still, and the tyres from scrubbing, if any motion that does
+      // turns the joint, before the tiers choose: for a push, that may leave the point going well
+      // off the way it's pushed (the 8049 Tractor's steering knob, a quarter of the way). Then
+      // the tiers choose from every motion.
+      const off = (m: number[] | null) => !m || velocity(m).length() < 1e-9 || velocity(m).normalize().dot(dir) < 0.5;
+      if (off(z)) z = leastTurning(orthonormalize([...usual, ...suspension]), along, tiers) ?? z;
+      if (!z) {
+        if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'no motion' });
+        return null;
+      }
       // Nowhere to go but well off the way it's pushed.
       const v = velocity(z);
-      if (v.length() < 1e-9 || v.clone().normalize().dot(dir) < 0.5) return null;
+      if (v.length() < 1e-9 || v.clone().normalize().dot(dir) < 0.5) {
+        if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'off the way', along: v.length() > 1e-9 ? v.clone().normalize().dot(dir) : 0, motions: usual.length + suspension.length });
+        return null;
+      }
       return toModel(fromBasis(z, basis));
     });
-    if (TRACE && !motion) trace({ event: 'push stuck', body, byTiers: true });
     if (!motion) return 'stuck';
     // One problem: the step's loops are closed by the tiers too (see closeLoops).
     this.stepByTiers = this.options.oneProblem;
