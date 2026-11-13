@@ -13,6 +13,7 @@ Kinebrick does two things: it reads a model into a mechanism that can move, and 
 ### Reading: from files to a movable set in memory
 
 ```mermaid
+%%{init: {'flowchart': {'wrappingWidth': 320}}}%%
 flowchart TD
   parts["LDraw parts library<br/>part shapes"]
   shadow["LDCad shadow library<br/>holes, axles, pins, studs"]
@@ -47,6 +48,7 @@ In the eight steps of [How it works](#how-it-works), level 1 is step 3, level 2 
 ### Motion: from an input to parts moving on screen
 
 ```mermaid
+%%{init: {'flowchart': {'wrappingWidth': 320}}}%%
 flowchart TD
   input["Input<br/>a drag, a motor, or the function check"]
   mech(["Movable set<br/>bodies, joints, gear meshes"])
@@ -76,39 +78,22 @@ flowchart TD
 ### Kinebrick's pieces
 
 ```mermaid
-flowchart LR
+%%{init: {'flowchart': {'wrappingWidth': 320}}}%%
+flowchart TD
   k(["Kinebrick"])
   k --> data["Data"]
   k --> reading["Reading"]
   k --> motion["Motion"]
   k --> viewer["Viewer"]
   k --> check["Check"]
-  data --> d1["LDraw parts library"]
-  data --> d2["LDCad shadow library"]
-  data --> d3["Corrections"]
-  data --> d4["Role list"]
-  data --> d5["Set models and their function lists"]
-  reading --> r1["Load"]
-  reading --> r2["Level 1: connection points"]
-  reading --> r3["Level 2: roles"]
-  reading --> r4["Level 3: assembly rules"]
-  reading --> r5["Bodies"]
-  motion --> m1["Equations"]
-  motion --> m2["Free motions"]
-  motion --> m3["Least motion"]
-  motion --> m4["Pushes and holds"]
-  motion --> m5["Steps and closing loops"]
-  viewer --> v1["Drawing"]
-  viewer --> v2["Dragging"]
-  viewer --> v3["Motor"]
-  viewer --> v4["Gear shift"]
-  check --> c1["Function check of every set"]
-  check --> c2["Ratchet: results against an earlier commit"]
-  check --> c3["Fingerprints: which mechanisms a change alters"]
-  check --> c4["Tests"]
+  data --> d["LDraw parts library<br/>LDCad shadow library<br/>Corrections<br/>Role list<br/>Set models<br/>Function lists"]
+  reading --> r["Load<br/>Level 1: connection points<br/>Level 2: roles<br/>Level 3: assembly rules<br/>Bodies"]
+  motion --> m["Equations<br/>Free motions<br/>Least motion<br/>Pushes and holds<br/>Steps and closing loops"]
+  viewer --> v["Drawing<br/>Dragging<br/>Motor<br/>Gear shift"]
+  check --> c["Function check<br/>Ratchet<br/>Fingerprints<br/>Tests"]
 ```
 
-Where each piece is in the code is in the [code map](#code-map).
+Under Check, the function check tries every set's functions on its model, the ratchet compares the results with an earlier commit's, and the fingerprints show which models' mechanisms a change to the code alters. Where each piece is in the code is in the [code map](#code-map).
 
 ## How it works
 
