@@ -134,6 +134,8 @@ if (params.has('holds')) experiments.leastMotion = false;
 if (params.has('passes')) experiments.oneProblem = false;
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
+// The fastest the speed's box and buttons set it.
+const MAX_RPM = 300;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
 // not the model's own (see modelSettings in ldr.ts).
 const SCRUB_PARAM = percent(params.get('scrub'));
@@ -429,6 +431,45 @@ async function start() {
     return list;
   });
 
+  // The friction pins freed so far, so that a part they held can move (see pinsToFree), until
+  // Reset. The helper beside the page (pinWorker.ts) finds them, from the model built with every
+  // friction pin free, which on a big model takes seconds; it's started once the model shows. If
+  // the browser can't start it, parts held by friction pins stay held.
+  const freed = new Set<number>();
+  let pinWorker: Worker | null = null;
+  let asked = 0;
+  const answers = new Map<number, (pins: number[]) => void>();
+  function startPinWorker() {
+    try {
+      pinWorker = new Worker(new URL('./pinWorker.ts', import.meta.url), { type: 'module' });
+    } catch {
+      return;
+    }
+    pinWorker.onmessage = (e: MessageEvent) => {
+      answers.get(e.data.ask)?.(e.data.pins);
+      answers.delete(e.data.ask);
+    };
+    pinWorker.onerror = () => {
+      pinWorker = null;
+      for (const answer of answers.values()) answer([]);
+      answers.clear();
+    };
+    pinWorker.postMessage({ model: { text: modelText, primitives: [...primitives], pieces: packed?.pieces ?? {}, table, roles } });
+  }
+  const pinsToFree = (part: number) =>
+    new Promise<number[]>((resolve) => {
+      if (!pinWorker) return resolve([]);
+      asked++;
+      answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
+      pinWorker.postMessage({ ask: asked, part });
+    });
+  // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
+  // does (see readAsBuilt), so everything stays where it now is.
+  const freePins = (pins: number[]) => {
+    for (const pin of pins) freed.add(pin);
+    readAsBuilt(new Map());
+  };
+
   // The mechanism, and everything worked out from it. read() sets these, at the start and
   // again after each shift, when the mechanism is worked out afresh from where the parts are.
   let parts = startParts;
@@ -489,7 +530,7 @@ async function start() {
   // partObjects already there.
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
-    mech = known ?? inferMechanism(parts, table, roles, paths);
+    mech = known ?? inferMechanism(parts, table, roles, paths, freed);
     kin = new Kinematics(mech);
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
@@ -772,7 +813,6 @@ async function start() {
     contacts: contacts.visible,
     focus: focusOn,
     symbols: !badgeRenderer.domElement.hidden,
-    rpm: RPM,
     scrub,
   };
   const keepOption = (name: string, on: boolean) => {
@@ -858,6 +898,8 @@ async function start() {
     stickOf,
     shiftStick,
     shift,
+    pinsToFree,
+    freePins,
   };
   summary.textContent = 'Checking for collisions…';
   await shown();
@@ -879,15 +921,25 @@ async function start() {
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
   if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions };
-  // The spin speed for Ctrl-click, in whole rpm, kept in the address too.
-  interaction.setMotorRpm(RPM);
-  gui.add(settings, 'rpm', 1, 300, 1).name('Spin speed (rpm)').onFinishChange((value: number) => {
-    const rpm = Math.max(1, Math.round(value));
+  // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
+  // on the title card: a box to type it in, and a button either side that changes it by 10,
+  // never below 1 or above MAX_RPM.
+  const rpmBox = document.getElementById('rpm') as HTMLInputElement;
+  let rpm = RPM;
+  interaction.setMotorRpm(rpm);
+  rpmBox.value = String(rpm);
+  const setRpm = (value: number) => {
+    rpm = Math.min(MAX_RPM, Math.max(1, Math.round(value)));
+    rpmBox.value = String(rpm);
     interaction.setMotorRpm(rpm);
     if (rpm === DEFAULT_RPM) params.delete('rpm');
     else params.set('rpm', String(rpm));
     history.replaceState(null, '', address());
-  });
+  };
+  // A box left empty, or with something that is no number, goes back to the speed it had.
+  rpmBox.onchange = () => setRpm(Number(rpmBox.value) || rpm);
+  (document.getElementById('slower') as HTMLButtonElement).onclick = () => setRpm(rpm - 10);
+  (document.getElementById('faster') as HTMLButtonElement).onclick = () => setRpm(rpm + 10);
   // How far tyres may scrub sideways, in percent, kept in the address if not the model's own.
   // Set with the slider, or raised when a motion needs more than it allows (see allowScrub).
   const scrubControl = gui.add(settings, 'scrub', 0, MAX_SCRUB, 1).name('Tyre scrub (%)').onFinishChange((value: number) => setScrub(value));
@@ -919,6 +971,7 @@ async function start() {
     grid.position.z = home.z + Math.round((controls.target.z - home.z) / cell) * cell;
   };
   showPoses();
+  startPinWorker();
 
   // Back to the model as loaded, shifted back too, with nothing turning, and the camera and
   // grid back where they started.
@@ -940,6 +993,7 @@ async function start() {
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     });
     paths.forEach((path, i) => (path.points = startPaths[i].map(copyPoint)));
+    freed.clear();
     read(startParts);
     showPoses();
   };

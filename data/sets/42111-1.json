@@ -190,15 +190,16 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 100,
+    "seconds": 109,
     "counts": {
-      "works": 5,
+      "works": 6,
       "partly": 1,
-      "not back": 1,
+      "not back": 2,
       "skipped": 2,
-      "no": 2
+      "no": 1
     },
     "loose": [
       "p54 90370",
@@ -273,7 +274,7 @@
             ]
           ]
         ],
-        "seconds": 14.7
+        "seconds": 13.7
       },
       {
         "result": "works",
@@ -403,7 +404,7 @@
             ]
           ]
         ],
-        "seconds": 24.8
+        "seconds": 22.2
       },
       {
         "result": "works",
@@ -433,7 +434,7 @@
             ]
           ]
         ],
-        "seconds": 12.5
+        "seconds": 11.1
       },
       {
         "result": "partly",
@@ -530,7 +531,7 @@
         ],
         "cause": "not-driven",
         "detail": "p297 15460",
-        "seconds": 33
+        "seconds": 27.8
       },
       {
         "result": "skipped",
@@ -559,7 +560,7 @@
           "p0 92910 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.4
       },
       {
         "result": "skipped",
@@ -597,7 +598,7 @@
             ]
           ]
         ],
-        "seconds": 4.3
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -642,42 +643,37 @@
         "pushed": [
           true
         ],
-        "seconds": 9.4
+        "seconds": 8.8
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.43
           ]
-        ],
-        "still": [
-          "p326 15462",
-          "p463 3749",
-          "p466 3749"
         ],
         "rates": [
           {
             "p326 15462": [
-              0,
-              0
+              1,
+              2.84e-14
             ],
             "p463 3749": [
-              0,
-              0
+              1,
+              89.4
             ],
             "p466 3749": [
-              0,
-              0
+              1,
+              89.4
             ],
             "p471 56908": [
               0,
-              0
+              1.9e-16
             ],
             "p475 56908": [
               0,
-              0
+              5.23e-14
             ]
           }
         ],
@@ -685,22 +681,26 @@
           [
             [
               0,
-              0
+              1.77
             ],
             [
               0,
-              0
+              3.25
             ]
           ]
         ],
+        "strayed": [
+          "p174 32054",
+          "p175 32054"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "dead point"
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 0.5
+        "freed": 2,
+        "seconds": 21.1
       }
     ]
   }

@@ -144,14 +144,14 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 16,
+    "seconds": 19,
     "counts": {
-      "works": 2,
-      "no": 1,
+      "works": 3,
+      "not back": 5,
       "partly": 3,
-      "not back": 4,
       "not checked": 1
     },
     "loose": [
@@ -399,76 +399,71 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 2.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.53,
+            -1.13
           ]
-        ],
-        "still": [
-          "p141 32072",
-          "p31 32072",
-          "p34 4716",
-          "p45 3648b",
-          "p1045 3708"
         ],
         "rates": [
           {
             "p141 32072": [
-              0,
-              0
+              1,
+              1.16e-12
             ],
             "p31 32072": [
-              0,
-              0
+              1,
+              1.32e-12
             ],
             "p34 4716": [
-              0,
-              0
+              1,
+              1.33e-12
             ],
             "p45 3648b": [
-              0,
-              0
+              0.0417,
+              1.05e-12
             ],
             "p1045 3708": [
-              0,
-              0
+              0.038,
+              8.13
             ],
             "p968 41896": [
-              0,
-              0
+              1.12e-7,
+              1.37e-12
             ],
             "p970 41896": [
-              0,
-              0
+              1.12e-7,
+              8.99e-13
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              1247.95,
+              119.05
             ],
             [
-              0,
-              0
+              1609.53,
+              157.76
             ]
           ]
         ],
+        "strayed": [
+          "p673 3023"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            null
           ]
         ],
-        "cause": "loose-part",
-        "detail": "p1045 3708",
-        "seconds": 0.2
+        "freed": 4,
+        "seconds": 4
       },
       {
         "result": "partly",
@@ -542,7 +537,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 2.1
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -588,7 +583,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p123 3648b",
-        "seconds": 2
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -705,7 +700,7 @@
         "strayed": [
           "p1081 6536"
         ],
-        "seconds": 8.1
+        "seconds": 7.5
       },
       {
         "result": "not checked",

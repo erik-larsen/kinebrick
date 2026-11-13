@@ -153,7 +153,8 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
     "seconds": 11,
     "counts": {
@@ -259,7 +260,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p201 41896 against p0 32316",
-        "seconds": 3.5
+        "seconds": 3.4
       },
       {
         "result": "no",
@@ -371,7 +372,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p404 48452",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -415,7 +416,7 @@
         ],
         "cause": "not-driven",
         "detail": "p424 32278 against p417 32009",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -687,7 +688,7 @@
             "no motion"
           ]
         ],
-        "seconds": 4.2
+        "seconds": 4
       }
     ]
   }

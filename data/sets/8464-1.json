@@ -149,12 +149,13 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
-      "partly": 2,
-      "no": 3,
+      "partly": 4,
+      "no": 1,
       "works": 2,
       "skipped": 1
     },
@@ -216,7 +217,7 @@
         ],
         "cause": "loose-part",
         "detail": "p569 2995",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "no",
@@ -276,7 +277,7 @@
         ],
         "cause": "loose-part",
         "detail": "p569 2995",
-        "seconds": 0
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -445,11 +446,11 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -460,23 +461,60 @@
           "p558 32030"
         ],
         "rates": [
-          {}
+          {
+            "p234 3702": [
+              0,
+              0
+            ],
+            "p250 3702": [
+              0,
+              0
+            ],
+            "p201 2793c01-f1": [
+              0,
+              0
+            ],
+            "p202 2793c01-f1": [
+              0,
+              0
+            ],
+            "p558 32030": [
+              0,
+              0
+            ],
+            "p565 2995": [
+              0,
+              0
+            ],
+            "p569 2995": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p394 4694c01-f1 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "cause": "part-fixed",
+        "detail": "p234 3702",
+        "seconds": 0.7
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -484,16 +522,41 @@
           "p203 2793c01-f1"
         ],
         "rates": [
-          {}
+          {
+            "p558 32030 against p234 3702": [
+              0,
+              0
+            ],
+            "p203 2793c01-f1": [
+              0,
+              0
+            ],
+            "p234 3702": [
+              0,
+              0
+            ],
+            "p250 3702": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p400 4694c01-f1 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "cause": "not-driven",
+        "detail": "p558 32030 against p234 3702",
+        "seconds": 0.8
       }
     ]
   }

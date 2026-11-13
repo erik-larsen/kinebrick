@@ -100,9 +100,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 10,
+    "seconds": 8,
     "counts": {
       "works": 4,
       "no": 1
@@ -275,7 +276,7 @@
             ]
           ]
         ],
-        "seconds": 3.7
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -309,7 +310,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -385,7 +386,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -425,7 +426,7 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "seconds": 2.8
       },
       {
         "result": "no",
@@ -445,7 +446,7 @@
           "p415 2819 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

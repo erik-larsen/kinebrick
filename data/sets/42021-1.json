@@ -105,7 +105,8 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
     "seconds": 2,
     "counts": {
@@ -219,7 +220,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p8 15459",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -311,7 +312,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p13 15460",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -355,7 +356,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",

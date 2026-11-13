@@ -4,7 +4,7 @@ Handlebars turn the whole fork with its wheel or ski, as on a motorbike. (Steeri
 
 First appears in 1991, in [8810 Cafe Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8810-1) and [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1): The handlebars steer the front wheel: the whole front fork, with its two long fork legs, headlight and handlebars, turns on a 4-long axle pushed down through the frame's motorcycle steering head.
 
-Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 partly, 5 no.
+Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 4 partly, 2 no.
 
 ## By decade
 
@@ -29,11 +29,11 @@ Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 partly, 5 no.
 
 **1998, [8208 Custom Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8208-1)**
 
-- The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin). (no)
+- The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin). (works)
 
 **1998, [8218 Trike Tourer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8218-1)**
 
-- The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right. (no)
+- The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right. (works)
 
 **2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1)**
 
@@ -45,7 +45,7 @@ Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 partly, 5 no.
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
-- The handlebars steer: they turn the front fork with the front wheel on the steering head. (no)
+- The handlebars steer: they turn the front fork with the front wheel on the steering head. (partly)
 
 ---
 

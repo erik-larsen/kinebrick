@@ -12,30 +12,37 @@ export function groupIntoBodies(count: number, roles: string[], connections: Con
   // Union-find: each part points towards a representative part of its group.
   const leader = Array.from({ length: count }, (_, i) => i);
   const find = (i: number): number => {
-    while (leader[i] !== i) i = leader[i];
+    while (leader[i] !== i) i = leader[i] = leader[leader[i]];
     return i;
   };
   for (const c of connections) {
     if (c.kind === 'rigid' || c.kind === 'stud') leader[find(c.male)] = find(c.female);
   }
   // Two groups joined on two different axes can't turn on either, so they're one body (a
-  // part pinned on at two places). Repeat, since each merge can make more.
+  // part pinned on at two places). Repeat, since each merge can make more. Which groups end up
+  // merged doesn't depend on the order (a merge only adds to what joins two groups), so each
+  // round merges every pair of groups so joined, found by sorting the turning connections by the
+  // groups they join: comparing every connection with every other after each merge took minutes
+  // on a big model with its friction pins free (see pinsToFree).
   let merged = true;
   while (merged) {
     merged = false;
-    const turning = connections.filter((c) => c.kind === 'revolute' && find(c.male) !== find(c.female));
-    for (const a of turning) {
-      const other = turning.find((b) => b !== a && sameGroups(a, b) && !coaxial(a, b));
-      if (other) {
-        leader[find(a.male)] = find(a.female);
-        merged = true;
-        break;
-      }
+    const between = new Map<string, Connection[]>();
+    for (const c of connections) {
+      if (c.kind !== 'revolute') continue;
+      const [g, h] = [find(c.male), find(c.female)];
+      if (g === h) continue;
+      const key = g < h ? `${g} ${h}` : `${h} ${g}`;
+      if (!between.has(key)) between.set(key, []);
+      between.get(key)!.push(c);
     }
-  }
-  function sameGroups(a: Connection, b: Connection): boolean {
-    const [a1, a2, b1, b2] = [find(a.male), find(a.female), find(b.male), find(b.female)];
-    return (a1 === b1 && a2 === b2) || (a1 === b2 && a2 === b1);
+    for (const joining of between.values()) {
+      if (!joining.some((a) => joining.some((b) => b !== a && !coaxial(a, b)))) continue;
+      const [g, h] = [find(joining[0].male), find(joining[0].female)];
+      if (g === h) continue;
+      leader[g] = h;
+      merged = true;
+    }
   }
 
   // The frame: the group with the most structure parts, or on a train layout the track, which

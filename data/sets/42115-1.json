@@ -177,14 +177,15 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 796,
+    "seconds": 827,
     "counts": {
       "partly": 3,
-      "works": 3,
+      "works": 4,
       "skipped": 1,
-      "no": 4
+      "no": 3
     },
     "loose": [
       "p186 87994",
@@ -332,7 +333,7 @@
         ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 36
+        "seconds": 46.7
       },
       {
         "result": "partly",
@@ -387,7 +388,7 @@
         ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 28.9
+        "seconds": 41.4
       },
       {
         "result": "works",
@@ -421,7 +422,7 @@
             ]
           ]
         ],
-        "seconds": 39.1
+        "seconds": 41.7
       },
       {
         "result": "works",
@@ -467,7 +468,7 @@
             ]
           ]
         ],
-        "seconds": 142.7
+        "seconds": 154.8
       },
       {
         "result": "works",
@@ -537,7 +538,7 @@
             ]
           ]
         ],
-        "seconds": 164.4
+        "seconds": 180.4
       },
       {
         "result": "skipped"
@@ -580,7 +581,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 30.6
+        "seconds": 41.7
       },
       {
         "result": "no",
@@ -653,24 +654,21 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 6.4
+        "seconds": 29.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p3361 6632"
         ],
         "rates": [
           {
             "p3361 6632": [
-              0,
-              0
+              1,
+              240
             ]
           }
         ],
@@ -686,14 +684,8 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 3.2
+        "freed": 2,
+        "seconds": 164
       },
       {
         "result": "no",
@@ -737,7 +729,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 2.1
+        "seconds": 3.1
       },
       {
         "result": "no",
@@ -788,7 +780,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 6.3
+        "seconds": 50.6
       }
     ]
   }

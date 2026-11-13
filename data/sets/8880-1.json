@@ -222,12 +222,13 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 79,
+    "seconds": 74,
     "counts": {
-      "works": 6,
-      "no": 5,
+      "works": 7,
+      "no": 4,
       "skipped": 2
     },
     "loose": [],
@@ -384,7 +385,7 @@
             ]
           ]
         ],
-        "seconds": 9.6
+        "seconds": 7.7
       },
       {
         "result": "works",
@@ -540,7 +541,7 @@
             ]
           ]
         ],
-        "seconds": 40.7
+        "seconds": 30.7
       },
       {
         "result": "no",
@@ -563,7 +564,7 @@
           "p595 6549 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 6.4
       },
       {
         "result": "works",
@@ -617,7 +618,7 @@
             ]
           ]
         ],
-        "seconds": 7.3
+        "seconds": 5.7
       },
       {
         "result": "works",
@@ -664,7 +665,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 5.6
       },
       {
         "result": "works",
@@ -715,7 +716,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -852,15 +853,15 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -868,15 +869,29 @@
           {}
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p1092 3031 is part of the frame",
-          "p1126 3031 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 4,
+        "seconds": 8.2
       },
       {
         "result": "works",
@@ -924,7 +939,7 @@
             ]
           ]
         ],
-        "seconds": 7.2
+        "seconds": 4.8
       }
     ]
   }

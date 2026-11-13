@@ -112,14 +112,14 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 55,
+    "seconds": 57,
     "counts": {
       "works": 3,
       "not back": 1,
-      "no": 1,
-      "partly": 1
+      "partly": 2
     },
     "loose": [],
     "functions": [
@@ -295,7 +295,7 @@
             ]
           ]
         ],
-        "seconds": 21.2
+        "seconds": 22.7
       },
       {
         "result": "works",
@@ -369,35 +369,32 @@
           "p718 98138",
           "p715 98138"
         ],
-        "seconds": 3.2
+        "seconds": 2.7
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p400 32140",
-          "p550 32140",
-          "p398 64451",
           "p804 64782"
         ],
         "rates": [
           {
             "p400 32140": [
-              0,
-              0
+              0.278,
+              30.8
             ],
             "p550 32140": [
-              0,
-              0
+              0.278,
+              30.8
             ],
             "p398 64451": [
-              0,
-              0
+              0.514,
+              74.1
             ],
             "p804 64782": [
               0,
@@ -421,14 +418,10 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.2
+        "freed": 1,
+        "cause": "not-driven",
+        "detail": "p804 64782",
+        "seconds": 4.3
       },
       {
         "result": "partly",
@@ -467,7 +460,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p242 92696",
-        "seconds": 1.7
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -537,7 +530,7 @@
             ]
           ]
         ],
-        "seconds": 28.7
+        "seconds": 25.4
       }
     ]
   }

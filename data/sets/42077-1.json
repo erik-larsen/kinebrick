@@ -121,13 +121,14 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 66,
+    "seconds": 56,
     "counts": {
-      "works": 3,
+      "works": 4,
       "partly": 2,
-      "no": 2
+      "no": 1
     },
     "loose": [
       "p212 4519",
@@ -189,7 +190,7 @@
             ]
           ]
         ],
-        "seconds": 11.4
+        "seconds": 8.1
       },
       {
         "result": "partly",
@@ -253,7 +254,7 @@
         ],
         "cause": "not-driven",
         "detail": "p59 62821",
-        "seconds": 12.6
+        "seconds": 7.8
       },
       {
         "result": "works",
@@ -303,7 +304,7 @@
             ]
           ]
         ],
-        "seconds": 8.7
+        "seconds": 6.4
       },
       {
         "result": "works",
@@ -373,7 +374,7 @@
             ]
           ]
         ],
-        "seconds": 27.5
+        "seconds": 21.6
       },
       {
         "result": "partly",
@@ -408,18 +409,18 @@
         ],
         "cause": "part-fixed",
         "detail": "p808 18944",
-        "seconds": 4.2
+        "seconds": 3.2
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -427,15 +428,29 @@
           {}
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p888 64682 is part of the frame",
-          "p901 64392 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 8.3
       },
       {
         "result": "no",

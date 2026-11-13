@@ -129,9 +129,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 136,
+    "seconds": 135,
     "counts": {
       "works": 4,
       "not back": 2,
@@ -409,7 +410,7 @@
         "pushed": [
           true
         ],
-        "seconds": 26
+        "seconds": 25.7
       },
       {
         "result": "no",
@@ -434,7 +435,7 @@
           "p1893 42080 - 18575 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -489,7 +490,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -743,7 +744,7 @@
           "p931 6141",
           "p2048 42080 - 10197"
         ],
-        "seconds": 96.3
+        "seconds": 95.7
       }
     ]
   }

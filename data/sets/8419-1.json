@@ -112,12 +112,13 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
     "seconds": 2,
     "counts": {
-      "no": 2,
-      "works": 1,
+      "no": 1,
+      "works": 2,
       "partly": 1,
       "not checked": 1
     },
@@ -211,63 +212,53 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p188 32269 against p212 32009",
-          "p176 4019 against p212 32009",
-          "p98 32198 against p212 32009",
-          "p102 3326b against p212 32009",
-          "p129 4716 against p115 32140",
-          "p135 3647 against p115 32140",
-          "p279 32525 against p115 32140",
-          "p284 2950 against p115 32140"
         ],
         "rates": [
           {
             "p188 32269 against p212 32009": [
-              0,
+              1,
               0
             ],
             "p176 4019 against p212 32009": [
-              0,
-              0
+              1.25,
+              7.58e-14
             ],
             "p98 32198 against p212 32009": [
-              0,
-              0
+              1.25,
+              5.74e-14
             ],
             "p102 3326b against p212 32009": [
-              0,
-              0
+              1.25,
+              0.00353
             ],
             "p129 4716 against p115 32140": [
-              0,
-              0
+              1.25,
+              2.63e-13
             ],
             "p135 3647 against p115 32140": [
-              0,
+              0.156,
               0
             ],
             "p279 32525 against p115 32140": [
-              0,
-              0
+              0.315,
+              18.9
             ],
             "p284 2950 against p115 32140": [
-              0,
-              0
+              0.702,
+              50.3
             ],
             "p115 32140 against p212 32009": [
               0,
-              0
+              1.94e-13
             ],
             "p205 32269 against p212 32009": [
               0,
@@ -293,14 +284,8 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -412,7 +397,7 @@
         ],
         "cause": "loose-part",
         "detail": "p69 71372c01",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "not checked",

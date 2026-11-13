@@ -170,10 +170,10 @@ export function magnetCouplings(parts: PlacedPart[], roles: string[], cyls: Worl
 // A train coupling's magnet casing clicks onto its holder's hinge fingers and swings on them,
 // stiffly, as a friction pin turns: held, unless nothing else can move. Free, the two casings
 // of a coupling would swing as the magnets met, and the cars behind them lurch.
-export function stiffMagnetHinges(connections: Connection[], roles: string[], frictionRigid: boolean) {
+export function stiffMagnetHinges(connections: Connection[], roles: string[], frictionRigid: boolean, freed: Set<number>) {
   for (const c of connections) {
     if (c.kind !== 'revolute' || !((roles[c.male] === 'coupling' && roles[c.female] === 'magnet') || (roles[c.male] === 'magnet' && roles[c.female] === 'coupling'))) continue;
-    if (frictionRigid) [c.kind, c.held] = ['rigid', true];
+    if (frictionRigid && !freed.has(c.male)) [c.kind, c.held] = ['rigid', true];
     else c.stiff = true;
   }
 }

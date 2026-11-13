@@ -334,9 +334,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 1733,
+    "seconds": 2058,
     "counts": {
       "partly": 7,
       "works": 5,
@@ -435,7 +436,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1716 76019",
-        "seconds": 30.5
+        "seconds": 40.4
       },
       {
         "result": "partly",
@@ -527,7 +528,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1710 18946",
-        "seconds": 44.2
+        "seconds": 51.9
       },
       {
         "result": "works",
@@ -582,7 +583,7 @@
             ]
           ]
         ],
-        "seconds": 83.3
+        "seconds": 99.7
       },
       {
         "result": "partly",
@@ -665,7 +666,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1722 18947",
-        "seconds": 44.1
+        "seconds": 52.6
       },
       {
         "result": "partly",
@@ -739,7 +740,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1722 18947",
-        "seconds": 43.9
+        "seconds": 52.2
       },
       {
         "result": "partly",
@@ -812,7 +813,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1536 4716",
-        "seconds": 156.7
+        "seconds": 190.4
       },
       {
         "result": "skipped"
@@ -978,7 +979,7 @@
             ]
           ]
         ],
-        "seconds": 495.5
+        "seconds": 595
       },
       {
         "result": "works",
@@ -1003,7 +1004,7 @@
             ]
           ]
         ],
-        "seconds": 34
+        "seconds": 43
       },
       {
         "result": "partly",
@@ -1105,7 +1106,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p66 2851",
-        "seconds": 185.9
+        "seconds": 222.8
       },
       {
         "result": "works",
@@ -1160,7 +1161,7 @@
           "p25 62520",
           "p22 62520"
         ],
-        "seconds": 366.6
+        "seconds": 451.5
       },
       {
         "result": "skipped"
@@ -1203,7 +1204,7 @@
         ],
         "cause": "not-driven",
         "detail": "p7226 32073",
-        "seconds": 31.9
+        "seconds": 42.2
       },
       {
         "result": "works",
@@ -1243,7 +1244,7 @@
             ]
           ]
         ],
-        "seconds": 63.2
+        "seconds": 75.9
       },
       {
         "result": "no",
@@ -1300,7 +1301,7 @@
         ],
         "cause": "not-driven",
         "detail": "p6909 2741",
-        "seconds": 1.7
+        "seconds": 2
       }
     ]
   }

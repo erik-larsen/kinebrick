@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 44 works, 22 partly, 56 no, 2 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 66 works, 23 partly, 33 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -107,7 +107,7 @@ Each detail by the set it first appears in.
 
 **1978, [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane)**
 
-- *window shutters:* The four black window shutters on the chassis sides swing open. (no)
+- *window shutters:* The four black window shutters on the chassis sides swing open. (works)
 
 **1978, [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis)**
 
@@ -123,11 +123,11 @@ Each detail by the set it first appears in.
 
 **1991, [8810 Cafe Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8810-1)**
 
-- *parking stand:* The parking stand under the middle of the bike folds: its two legs are hinge plates joined at the foot by a 1x4 plate, so the stand swings down to hold the bike up and up out of the way to ride. (no)
+- *parking stand:* The parking stand under the middle of the bike folds: its two legs are hinge plates joined at the foot by a 1x4 plate, so the stand swings down to hold the bike up and up out of the way to ride. (works)
 
 **1991, [8815 Speedway Bandit](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8815-1)**
 
-- *number board:* The number board at the front tilts on its hinge. (no)
+- *number board:* The number board at the front tilts on its hinge. (works)
 
 **1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1)**
 
@@ -141,7 +141,7 @@ Each detail by the set it first appears in.
 
 - *rear body:* The whole rear body, from the roof back to the tail, lifts as one hatch on two axles behind the cockpit, showing the V8. (no)
 - *prop rod:* A prop rod with a toggle joint, pinned to the chassis on the right of the engine, folds up to hold the hatch open. (skipped)
-- *seat backs:* The two seat backs tilt on their finger hinges. (no)
+- *seat backs:* The two seat backs tilt on their finger hinges. (works)
 
 **1998, [8203 Rover Discovery](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8203-1)**
 
@@ -226,7 +226,7 @@ Each detail by the set it first appears in.
 
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
-- *bonnet:* The bonnet tilts up on a hinge at the windscreen, showing the engine. (no)
+- *bonnet:* The bonnet tilts up on a hinge at the windscreen, showing the engine. (works)
 - *doors:* The two front doors open, each swinging out on a hinge at its front edge. (no)
 - *tailgate:* The tailgate at the back swings up on a hinge at the roof. (no)
 
@@ -254,7 +254,7 @@ Each detail by the set it first appears in.
 
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
-- *stick:* The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle. (no)
+- *stick:* The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle. (works)
 
 **2014, [42021 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42021-1)**
 
@@ -270,7 +270,7 @@ Each detail by the set it first appears in.
 
 **2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1)**
 
-- *kickstand:* The kickstand under the right side swings down to hold the bike up, and folds back up. (no)
+- *kickstand:* The kickstand under the right side swings down to hold the bike up, and folds back up. (works)
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
@@ -296,7 +296,7 @@ Each detail by the set it first appears in.
 
 **2016, [42050 Drag Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42050-1)**
 
-- *bodywork:* Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis. (no)
+- *bodywork:* Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis. (partly)
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
@@ -304,12 +304,12 @@ Each detail by the set it first appears in.
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
-- *legs:* The crane's two legs fold down from its base to stand on the ground, and lock there. (no)
+- *legs:* The crane's two legs fold down from its base to stand on the ground, and lock there. (partly)
 - *bonnet:* The bonnet tips up, giving access to the battery box. (works)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
 
-- *doors:* The two doors swing open on hinges at their front edges. (partly)
+- *doors:* The two doors swing open on hinges at their front edges. (works)
 - *hood:* The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment. (works)
 - *rear wing:* The rear wing's angle can be adjusted: the wing tilts on its two supports. (works)
 
@@ -342,7 +342,7 @@ Each detail by the set it first appears in.
 
 - *doors:* Each front door swings open, and a steering link from the door lowers the side step under it. (partly)
 - *rear door:* The rear door, with the spare wheel on it, swings open, and the white tray inside slides out. (partly)
-- *side panels:* The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it. (no)
+- *side panels:* The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it. (works)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
@@ -353,13 +353,13 @@ Each detail by the set it first appears in.
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
 - *bonnet:* The bonnet lifts up at its back edge, hinged at the front. (partly)
-- *doors:* The two doors swing open. (no)
+- *doors:* The two doors swing open. (works)
 - *rear body:* The rear of the body, with the rear roof, rear wings and spoiler, tilts up from the back to show the engine and rear suspension; the engine and rear axle stay on the chassis. (no)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
 - *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
-- *doors:* The cab doors swing open. (no)
+- *doors:* The cab doors swing open. (works)
 - *king pin:* The trailer swings on its king pin behind the tractor. (works)
 - *container doors:* The container's two end doors swing open. (no)
 
@@ -386,7 +386,7 @@ Each detail by the set it first appears in.
 
 **2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1)**
 
-- *grab:* The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines. (no)
+- *grab:* The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines. (works)
 - *armrest consoles:* The armrest consoles beside the seat, carrying the control levers, tip up on hinges at the back of the cab. (partly)
 
 **2019, [42095 Remote-Controlled Stunt Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42095-1)**
@@ -399,19 +399,19 @@ Each detail by the set it first appears in.
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
 
-- *ladder:* The access ladder at the back left of the superstructure swings up out of the way and down to the ground. (no)
+- *ladder:* The access ladder at the back left of the superstructure swings up out of the way and down to the ground. (works)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
-- *doors:* The two front doors open on their hinges. (no)
+- *doors:* The two front doors open on their hinges. (works)
 - *bonnet:* The bonnet lifts, hinged at its back edge, showing the engine. (works)
 - *tailgate:* Turning the spare wheel on the tailgate works the tailgate's latch, and the tailgate then swings open sideways. (works)
-- *lid:* The lid of the box on the roof rack lifts open. (no)
-- *lid:* The lid of the case on the right side of the roof swings open. (no)
+- *lid:* The lid of the box on the roof rack lifts open. (works)
+- *lid:* The lid of the case on the right side of the roof swings open. (works)
 
 **2020, [42102 Mini CLAAS XERION](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42102-1)**
 
-- *rake:* The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it. (no)
+- *rake:* The rotary rake lifts up behind the tractor: the lime arm it hangs from swings up, and the rake rides up with it. (works)
 
 **2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1)**
 
@@ -426,7 +426,7 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet opens: it lifts on hinges at the windscreen end to show the engine and supercharger. (works)
 - *boot lid:* The boot lid opens on its hinges at the back of the car. (works)
-- *wheelie bar:* The red lever between the seats works the wheelie bar: pushing it swings a bar down under the car, so the car rears up as in the film. (no)
+- *wheelie bar:* The red lever between the seats works the wheelie bar: pushing it swings a bar down under the car, so the car rears up as in the film. (works)
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
@@ -444,19 +444,19 @@ Each detail by the set it first appears in.
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 
 - *scissor doors:* The two scissor doors swing up and forward on hinges at their front edges. (no)
-- *hood:* The front hood lifts, showing the luggage space and the set's bag. (no)
+- *hood:* The front hood lifts, showing the luggage space and the set's bag. (works)
 - *engine cover:* The engine cover behind the cabin lifts to show the V12. (no)
 - *seat backs:* The seats' backs tilt. (no)
 
 **2021, [42122 Jeep Wrangler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42122-1)**
 
-- *bonnet:* The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine. (no)
-- *doors:* The two doors swing open. (no)
+- *bonnet:* The bonnet lifts open, hinged at its back edge by the windscreen, showing the engine. (works)
+- *doors:* The two doors swing open. (works)
 - *backrest:* The rear seat's backrest folds forward. (works)
 
 **2021, [42123 McLaren Senna GTR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42123-1)**
 
-- *dihedral doors:* The two doors swing up and forward on hinges at their front corners (dihedral doors). (no)
+- *dihedral doors:* The two doors swing up and forward on hinges at their front corners (dihedral doors). (works)
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 

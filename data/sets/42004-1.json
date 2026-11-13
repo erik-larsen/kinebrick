@@ -134,12 +134,12 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 2,
+    "seconds": 4,
     "counts": {
-      "works": 5,
-      "no": 3,
+      "works": 8,
       "not back": 1
     },
     "loose": [],
@@ -195,7 +195,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -281,30 +281,26 @@
         "seconds": 0.2
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p159 32525",
-          "p158 10928"
         ],
         "rates": [
           {
             "p159 32525": [
-              0,
-              0
+              0.131,
+              13.1
             ],
             "p158 10928": [
-              0,
+              0.125,
               0
             ],
             "p25 40490": [
               0,
-              0
+              3.63e-21
             ]
           }
         ],
@@ -316,35 +312,26 @@
             ],
             [
               0,
-              0
+              0.02
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p169 40490 against p159 32525"
         ],
         "rates": [
           {
             "p169 40490 against p159 32525": [
-              0,
-              0
+              1,
+              80
             ],
             "p159 32525": [
               0,
@@ -364,31 +351,22 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 2,
+        "seconds": 0.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p177 30394 against p169 40490"
         ],
         "rates": [
           {
             "p177 30394 against p169 40490": [
-              0,
-              0
+              1,
+              0.00283
             ]
           }
         ],
@@ -404,14 +382,8 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.2
       },
       {
         "result": "works",
