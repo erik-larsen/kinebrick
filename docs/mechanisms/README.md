@@ -94,7 +94,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 56 works, 14 partly, 6 no |
+| [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 57 works, 14 partly, 5 no |
 | [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 10 works, 11 partly, 8 no |
 | [Swivelling axle steering](swivel-axle-steering.md) | 4 | 1993 |  |  | 1 |  | 3 |  | 3 partly, 1 no |
 | [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 2 works, 4 partly, 1 no |
