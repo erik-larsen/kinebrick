@@ -134,6 +134,8 @@ if (params.has('holds')) experiments.leastMotion = false;
 if (params.has('passes')) experiments.oneProblem = false;
 // How fast Ctrl-click spins a part, in whole revolutions per minute, e.g. ?rpm=60.
 const RPM = whole(params.get('rpm')) ?? DEFAULT_RPM;
+// The fastest the speed's box and buttons set it.
+const MAX_RPM = 300;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
 // not the model's own (see modelSettings in ldr.ts).
 const SCRUB_PARAM = percent(params.get('scrub'));
@@ -772,7 +774,6 @@ async function start() {
     contacts: contacts.visible,
     focus: focusOn,
     symbols: !badgeRenderer.domElement.hidden,
-    rpm: RPM,
     scrub,
   };
   const keepOption = (name: string, on: boolean) => {
@@ -879,15 +880,25 @@ async function start() {
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
   if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions };
-  // The spin speed for Ctrl-click, in whole rpm, kept in the address too.
-  interaction.setMotorRpm(RPM);
-  gui.add(settings, 'rpm', 1, 300, 1).name('Spin speed (rpm)').onFinishChange((value: number) => {
-    const rpm = Math.max(1, Math.round(value));
+  // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
+  // on the title card: a box to type it in, and a button either side that changes it by 10,
+  // never below 1 or above MAX_RPM.
+  const rpmBox = document.getElementById('rpm') as HTMLInputElement;
+  let rpm = RPM;
+  interaction.setMotorRpm(rpm);
+  rpmBox.value = String(rpm);
+  const setRpm = (value: number) => {
+    rpm = Math.min(MAX_RPM, Math.max(1, Math.round(value)));
+    rpmBox.value = String(rpm);
     interaction.setMotorRpm(rpm);
     if (rpm === DEFAULT_RPM) params.delete('rpm');
     else params.set('rpm', String(rpm));
     history.replaceState(null, '', address());
-  });
+  };
+  // A box left empty, or with something that is no number, goes back to the speed it had.
+  rpmBox.onchange = () => setRpm(Number(rpmBox.value) || rpm);
+  (document.getElementById('slower') as HTMLButtonElement).onclick = () => setRpm(rpm - 10);
+  (document.getElementById('faster') as HTMLButtonElement).onclick = () => setRpm(rpm + 10);
   // How far tyres may scrub sideways, in percent, kept in the address if not the model's own.
   // Set with the slider, or raised when a motion needs more than it allows (see allowScrub).
   const scrubControl = gui.add(settings, 'scrub', 0, MAX_SCRUB, 1).name('Tyre scrub (%)').onFinishChange((value: number) => setScrub(value));

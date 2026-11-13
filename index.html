@@ -36,14 +36,21 @@
       #modelMenu, #model .sub { position: absolute; z-index: 20; display: flex; flex-direction: column; min-width: 100%; padding: 4px 0; background: #fff; border: 1px solid #b9c0cc; border-radius: 6px; box-shadow: 0 6px 18px rgba(29, 36, 48, 0.18); }
       #modelMenu { left: 0; top: 100%; }
       #model [hidden] { display: none; }
-      /* The card's last row: the model menu, and at the right the three buttons (pause or play,
-         reverse, reset), which go under the menu where the window is too narrow for both. */
+      /* The card's last row: the model menu, and at the right the speed and the three buttons
+         (pause or play, reverse, reset), which go under the menu where the window is too narrow
+         for both. */
       #row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 12px; }
       #motor { display: flex; gap: 4px; margin: 2px 0 4px auto; }
       #motor button { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; padding: 0; color: #1d2430; background: #fff; border: 1px solid #b9c0cc; border-radius: 6px; cursor: pointer; }
       #motor button:hover:not(:disabled), #motor button:focus-visible { background: #e8edf5; outline: none; }
       #motor button:disabled { color: #b9c0cc; border-color: #dde1e8; cursor: default; }
       #motor svg { width: 14px; height: 14px; fill: currentColor; }
+      /* The speed of a part kept moving, in rpm: a box to type it in, between a button that
+         slows it by 10 and one that speeds it by 10. The box shows no arrows of its own. */
+      #speed { display: flex; gap: 2px; margin-right: 8px; }
+      #rpm { width: 44px; height: 26px; box-sizing: border-box; padding: 0 2px; font: inherit; text-align: center; color: #1d2430; background: #fff; border: 1px solid #b9c0cc; border-radius: 6px; appearance: textfield; -moz-appearance: textfield; }
+      #rpm::-webkit-inner-spin-button, #rpm::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+      #rpm:focus-visible { outline: none; border-color: #1d2430; }
       /* The pause button shows its pause mark, or, while the part waits, its play mark. */
       #pause .play, #pause.paused .pause { display: none; }
       #pause.paused .play { display: block; }
@@ -118,8 +125,17 @@
           <button id="modelButton" type="button" aria-haspopup="menu" aria-expanded="false"></button>
           <div id="modelMenu" role="menu" hidden></div>
         </div>
-        <!-- Pause (or play), reverse and reset: see showMotor in src/main.ts. -->
+        <!-- The speed, then pause (or play), reverse and reset: see showMotor in src/main.ts. -->
         <div id="motor">
+          <div id="speed">
+            <button id="slower" type="button" title="Slower by 10 rpm" aria-label="Slower by 10 rpm">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 7.25h10v1.5H3z" /></svg>
+            </button>
+            <input id="rpm" type="number" min="1" max="300" step="1" inputmode="numeric" title="Speed of a part kept moving, in turns per minute (rpm)" aria-label="Speed in turns per minute" />
+            <button id="faster" type="button" title="Faster by 10 rpm" aria-label="Faster by 10 rpm">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7.25 3h1.5v4.25H13v1.5H8.75V13h-1.5V8.75H3v-1.5h4.25z" /></svg>
+            </button>
+          </div>
           <button id="pause" type="button" disabled title="Pause" aria-label="Pause">
             <svg class="pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" /></svg>
             <svg class="play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z" /></svg>
