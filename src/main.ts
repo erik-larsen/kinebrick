@@ -156,6 +156,10 @@ const TURNS = params.getAll('turn').flatMap((t) => {
   const m = /^(\d+),(-?[\d.]+)$/.exec(t);
   return m && Number.isFinite(Number(m[2])) ? [{ part: Number(m[1]), degrees: Number(m[2]) }] : [];
 });
+// The friction pins that turn freely, by their places in the model file, as a grab of a part
+// they held freed them (see freePins): e.g. ?free=1086,1087. Kept in the address so that a link
+// plays its turns back as they were made.
+const FREE = (params.get('free') ?? '').split(',').filter((p) => /^\d+$/.test(p)).map(Number);
 
 // The address's query, from params, with commas left as they are (option=bodycolours,axes),
 // rather than written %2C.
@@ -364,7 +368,7 @@ async function start() {
   // needn't build the pieces of a string's shape that won't be shown (see showStrings).
   summary.textContent = 'Working out how it moves…';
   await shown();
-  let mech = inferMechanism(startParts, table, roles, paths);
+  let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)));
   // The paths as the file drew them, for Reset: working the mechanism out afresh moves them with
   // the parts they run round (see movePaths).
   const copyPoint = (p: PathPoint) => ({ ...p, center: p.center.clone(), axis: p.axis.clone() });
@@ -434,8 +438,14 @@ async function start() {
   // The friction pins freed so far, so that a part they held can move (see pinsToFree), until
   // Reset. The helper beside the page (pinWorker.ts) finds them, from the model built with every
   // friction pin free, which on a big model takes seconds; it's started once the model shows. If
-  // the browser can't start it, parts held by friction pins stay held.
-  const freed = new Set<number>();
+  // the browser can't start it, parts held by friction pins stay held. The address keeps them
+  // (see FREE).
+  const freed = new Set(FREE.filter((p) => p < startParts.length));
+  const showFreed = () => {
+    if (freed.size) params.set('free', [...freed].sort((a, b) => a - b).join(','));
+    else params.delete('free');
+    history.replaceState(null, '', address());
+  };
   let pinWorker: Worker | null = null;
   let asked = 0;
   const answers = new Map<number, (pins: number[]) => void>();
@@ -467,6 +477,7 @@ async function start() {
   // does (see readAsBuilt), so everything stays where it now is.
   const freePins = (pins: number[]) => {
     for (const pin of pins) freed.add(pin);
+    showFreed();
     readAsBuilt(new Map());
   };
 
@@ -994,6 +1005,7 @@ async function start() {
     });
     paths.forEach((path, i) => (path.points = startPaths[i].map(copyPoint)));
     freed.clear();
+    showFreed();
     read(startParts);
     showPoses();
   };
@@ -1207,7 +1219,7 @@ const filePicker = document.getElementById('file') as HTMLInputElement;
 // Switching model keeps the options, except tyre scrub, turned parts, spinning and spin speed:
 // the next model has its own.
 function openModel(set: (params: URLSearchParams) => void) {
-  for (const name of ['model', 'file', 'scrub', 'turn', 'autospin', 'rpm']) params.delete(name);
+  for (const name of ['model', 'file', 'scrub', 'turn', 'free', 'autospin', 'rpm']) params.delete(name);
   set(params);
   window.location.search = address();
 }
