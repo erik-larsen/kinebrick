@@ -42,7 +42,9 @@ export function readParts(file: string, omr: boolean) {
     // The parts read as their pieces: every such part in the library.
     const pieces: Record<string, string[]> = JSON.parse(readFileSync('packed/pieces.json', 'utf-8'));
     isPrimitive = (n) => drawnDirectly(n, primitives);
-    piecesOf = (n) => pieces[n] ?? null;
+    // A part the OMR embeds in the model's file ("42108 - 40918-f1.dat") is read as its pieces if
+    // the library's part of that name is (see libraryName in src/mechanism.ts).
+    piecesOf = (n) => pieces[n] ?? (table.parts[n] ? null : pieces[/ - ([^/]+)$/.exec(n)?.[1] ?? '']) ?? null;
   } else {
     table = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
     const packed = packedModels[name];

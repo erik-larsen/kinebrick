@@ -267,6 +267,9 @@ export interface Coupling {
   turningOnly?: boolean;
 }
 
+// Whether inferMechanism first tries friction pins as rigid (on unless KINEBRICK_FRICTION_RIGID=0).
+const FRICTION_RIGID = typeof process === 'undefined' || process.env?.KINEBRICK_FRICTION_RIGID !== '0';
+
 // `paths`: every path in the model (see parseModel), including those drawn with shapes rather
 // than parts (a string), which the parts alone don't show.
 export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = []): Mechanism {
@@ -276,8 +279,12 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
   // still move, that's it; if not, they stay joints, stiff ones.
   const allPaths = [...new Set([...paths, ...parts.flatMap((p) => (p.path ? [p.path] : []))])];
   const build = (guide: Set<number>) => {
-    const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths);
-    if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
+    // KINEBRICK_FRICTION_RIGID=0 skips that first try: friction pins are always stiff joints.
+    // For measuring what the rule does; unset, nothing changes.
+    if (FRICTION_RIGID) {
+      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths);
+      if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
+    }
     return buildMechanism(parts, table, roleList, false, guide, allPaths);
   };
   const mech = build(new Set());

@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 15 works, 65 partly, 4 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 15 works, 66 partly, 3 no, 5 not checked.
 
 ## By decade
 
@@ -195,7 +195,7 @@ Each detail by the set it first appears in.
 - *XL:* The XL motor in the rear frame, just behind the articulation, drives all six wheels through the gearbox: the gearbox's output runs back to a centre differential, which drives the front axle's differential through a shaft with universal joints across the articulation, and both rear axles' differentials by a shaft running back between them, to the portal hubs. (partly)
 - *L:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (partly)
 - *XL:* With the gearbox in its tipping position, the XL motor raises and lowers the dump body: a shaft out of the gearbox turns a pair of bevel gears to two cross shafts, each driving one of the two linear actuators on either side, which push the body up about its pivot at the back. (partly)
-- *large angular:* The large angular motor at the front steers by bending the truck at its articulation: its two cranks push and pull two links on the rear half's hitch, swinging the front and rear halves about the upright hinge behind the cab. (no)
+- *large angular:* The large angular motor at the front steers by bending the truck at its articulation: its two cranks push and pull two links on the rear half's hitch, swinging the front and rear halves about the upright hinge behind the cab. (partly)
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
