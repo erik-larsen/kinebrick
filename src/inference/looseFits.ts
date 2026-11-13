@@ -17,7 +17,7 @@ const LINKS = ['steering link', 'connecting rod'];
 // universalJoints left it. Such a steering link or connecting rod's balls fit with the looser
 // LOOSE_BALL_TOLERANCE too. A pin's new joints turn as fixPins has its others do: a friction
 // pin's stiffly.
-export function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean): Connection[] {
+export function looseFits(roles: string[], cyls: WorldCylinder[], connections: Connection[], frictionRigid: boolean, freed: Set<number>): Connection[] {
   const count = Math.max(0, ...cyls.map((c) => c.part)) + 1;
   // Every group but the biggest gets the chance, a train's bogies among them (a layout's cars
   // are placed by hand, and a bogie's pin may sit a hair over 1 LDU from its hole).
@@ -26,10 +26,10 @@ export function looseFits(roles: string[], cyls: WorldCylinder[], connections: C
   const known = new Set(connections.map((c) => `${c.male},${c.female}`));
   const settled = (c: Connection) => roles[c.male] === 'universal joint' || roles[c.female] === 'universal joint';
   const links = new Set([...loose].filter((p) => LINKS.includes(roles[p])));
-  const found = findConnections(cyls, frictionRigid, LOOSE_ALIGN_TOLERANCE, links).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`) && !settled(c));
+  const found = findConnections(cyls, frictionRigid, freed, LOOSE_ALIGN_TOLERANCE, links).filter((c) => (loose.has(c.male) || loose.has(c.female)) && !known.has(`${c.male},${c.female}`) && !settled(c));
   for (const c of found) {
     if (c.kind !== 'revolute' || roles[c.male] !== 'friction pin') continue;
-    if (frictionRigid) [c.kind, c.held] = ['rigid', true];
+    if (frictionRigid && !freed.has(c.male)) [c.kind, c.held] = ['rigid', true];
     else c.stiff = true;
   }
   return found;

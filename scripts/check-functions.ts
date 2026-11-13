@@ -72,6 +72,7 @@ import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
 import { loadModel } from './load-model.ts';
+import { FREE_PINS, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
 import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
@@ -155,6 +156,7 @@ interface Checked {
   why?: string[];
   stop?: (Halt | null)[][]; // for each control, each way: what stopped it short of its reach, if anything did
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
+  freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
 }
@@ -233,6 +235,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   };
   const asLoaded = { parts, mech, kin };
   use(asLoaded);
+  // The friction pins freed for the control being checked (see pinsToFree), and the model with
+  // every pin free, worked out the first time a control needs it.
+  let freed = new Set<number>();
+  let allFree: Mechanism | null = null;
   // Where everything is now, as parts placed in the model.
   const placedNow = () => parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
   // Slides driving rings to the click-in positions given (by each ring's part), and works the
@@ -244,7 +250,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
       for (const i of slider.riders ?? [ring]) now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
     }
-    use(loaded.read(now));
+    use(loaded.read(now, freed));
   };
   // A part named as the joints probe names it: "p483 3736".
   const part = (ref: string) => {
@@ -436,12 +442,28 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     // With --causes, only a function that didn't work is looked at, and nothing is dragged.
     if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
+    let freedPins = 0;
     // Controls worked together are worked as one, by the first, the others turning with it.
     const controls = [fn.control!].flat();
     const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref, wi) => {
       together = [];
       use(asLoaded);
       kin.reset();
+      freed = new Set();
+      // A control with no motion at the start, held by friction pins: those pins are freed, and
+      // the model worked out again, for this control only (see pinsToFree).
+      if (FREE_PINS) {
+        const c = part(ref);
+        const l = kin.parentLink(worked(c));
+        if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null) {
+          allFree ??= loaded.allFree(asLoaded.parts);
+          freed = new Set(pinsToFree(allFree, c));
+          if (freed.size) {
+            use(loaded.read(asLoaded.parts, freed));
+            freedPins = Math.max(freedPins, freed.size);
+          }
+        }
+      }
       const whyBefore = why.length;
       for (const first of fn.first ?? []) {
         const p = part(first.control);
@@ -643,6 +665,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       ...(why.length ? { why: [...new Set(why)] } : {}),
       ...(ways.some((w) => w.stop.some((h) => h)) ? { stop: ways.map((w) => w.stop) } : {}),
       ...(ways.some((w) => w.pushed) ? { pushed: ways.map((w) => w.pushed) } : {}),
+      ...(freedPins ? { freed: freedPins } : {}),
       ...(result === 'works' ? {} : explained),
     };
   };

@@ -17,14 +17,17 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
   status('working out its mechanism');
   // The mechanism of the parts placed as given, ready to move: the model's own, or worked out
-  // afresh after a shift moved some of them, as the viewer does.
-  const read = (placed: PlacedPart[]) => {
-    const mech = inferMechanism(placed, table, roles, paths);
+  // afresh after a shift moved some of them, as the viewer does; with the friction pins `freed`
+  // left to turn (see pinsToFree).
+  const read = (placed: PlacedPart[], freed = new Set<number>()) => {
+    const mech = inferMechanism(placed, table, roles, paths, freed);
     const kin = new Kinematics(mech);
     kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
     return { parts: placed, mech, kin };
   };
-  return { name, table, slides: modelSettings(text).slides, ...read(parts), read };
+  // The mechanism with every friction pin free, for pinsToFree.
+  const allFree = (placed: PlacedPart[]) => inferMechanism(placed, table, roles, paths, new Set(), true);
+  return { name, table, slides: modelSettings(text).slides, ...read(parts), read, allFree };
 }
 
 // A model's parts, in the order the scripts number them ("p483 3736"), with its connection table:
