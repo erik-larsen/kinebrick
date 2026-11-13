@@ -141,7 +141,7 @@ Each detail by the set it first appears in.
 
 **2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
 
-- *crane:* Knob B, the right of the two black gears on the bridge roof, slews the crane round on its turntable: its shaft runs down through a universal joint and bevel gears to three 16 tooth gears under the deck and a shaft back to the crane, where a 12 tooth gear turns the turntable. (no)
+- *crane:* Knob B, the right of the two black gears on the bridge roof, slews the crane round on its turntable: its shaft runs down through a universal joint and bevel gears to three 16 tooth gears under the deck and a shaft back to the crane, where a 12 tooth gear turns the turntable. (partly)
 
 **2017, [42068 Airport Rescue Vehicle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42068-1)**
 
@@ -154,7 +154,7 @@ Each detail by the set it first appears in.
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
 - *cab and boom:* The cab and boom slew round on a turntable on the front unit, about 270 degrees. (works)
-- *harvester head:* The black gear on the boom's tip turns the harvester head round on its 28 tooth turntable. (partly)
+- *harvester head:* The black gear on the boom's tip turns the harvester head round on its 28 tooth turntable. (no)
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 

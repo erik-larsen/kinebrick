@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 11 works, 13 partly, 6 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 11 works, 14 partly, 5 no.
 
 ## By decade
 
@@ -86,7 +86,7 @@ Each detail by the set it first appears in.
 
 **2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1)**
 
-- *mast:* The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time. (no)
+- *mast:* The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time. (partly)
 
 **2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1)**
 

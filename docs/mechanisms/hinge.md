@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 41 works, 25 partly, 56 no, 2 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 44 works, 22 partly, 56 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -311,7 +311,7 @@ Each detail by the set it first appears in.
 
 - *doors:* The two doors swing open on hinges at their front edges. (partly)
 - *hood:* The front hood opens, hinged at its back edge by the windscreen, showing the luggage compartment. (works)
-- *rear wing:* The rear wing's angle can be adjusted: the wing tilts on its two supports. (partly)
+- *rear wing:* The rear wing's angle can be adjusted: the wing tilts on its two supports. (works)
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
@@ -358,7 +358,7 @@ Each detail by the set it first appears in.
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (partly)
+- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
 - *doors:* The cab doors swing open. (no)
 - *king pin:* The trailer swings on its king pin behind the tractor. (works)
 - *container doors:* The container's two end doors swing open. (no)
@@ -425,7 +425,7 @@ Each detail by the set it first appears in.
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 
 - *bonnet:* The bonnet opens: it lifts on hinges at the windscreen end to show the engine and supercharger. (works)
-- *boot lid:* The boot lid opens on its hinges at the back of the car. (partly)
+- *boot lid:* The boot lid opens on its hinges at the back of the car. (works)
 - *wheelie bar:* The red lever between the seats works the wheelie bar: pushing it swings a bar down under the car, so the car rears up as in the film. (no)
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**

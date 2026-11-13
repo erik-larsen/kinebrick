@@ -160,13 +160,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 31,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 46,
     "counts": {
       "works": 4,
-      "not back": 4,
       "partly": 2,
+      "not back": 3,
       "no": 2,
       "skipped": 2
     },
@@ -595,61 +595,58 @@
             ]
           ]
         ],
-        "seconds": 11.2
+        "seconds": 14.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.51,
-            -0.03
+            1.5,
+            -0.02
           ]
         ],
         "rates": [
           {
             "p323 32133 against p550 32018": [
-              0.874,
-              755
+              0.81,
+              715
             ],
             "p567 32065 against p550 32018": [
-              1.46,
-              87.6
+              1.41,
+              84.3
             ],
             "p594 6629 against p550 32018": [
               0,
-              1.65e-10
+              1.31e-9
             ],
             "p604 32065 against p550 32018": [
               0,
-              2.59e-11
+              3.46e-10
             ]
           }
         ],
         "back": [
           [
             [
-              23.66,
-              2.46
+              0,
+              0
             ],
             [
-              99.21,
-              10.03
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p69 32134"
         ],
         "stop": [
           [
             null,
-            "no motion"
+            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 3
+        "seconds": 10.2
       },
       {
         "result": "partly",
@@ -695,7 +692,7 @@
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 4
+        "seconds": 5.4
       },
       {
         "result": "no",
@@ -814,7 +811,7 @@
         ],
         "cause": "loose-part",
         "detail": "p43 6579",
-        "seconds": 5.8
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -865,7 +862,7 @@
             "dead point"
           ]
         ],
-        "seconds": 4.2
+        "seconds": 5.4
       },
       {
         "result": "no",
@@ -949,7 +946,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.1
       },
       {
         "result": "skipped",

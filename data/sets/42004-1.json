@@ -134,14 +134,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 3,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 2,
     "counts": {
-      "works": 4,
-      "partly": 1,
-      "not back": 2,
-      "no": 3
+      "works": 5,
+      "no": 3,
+      "not back": 1
     },
     "loose": [],
     "functions": [
@@ -196,7 +195,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -241,60 +240,45 @@
         "seconds": 0.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.48,
-            -0.46
+            1.5,
+            -1.5
           ]
-        ],
-        "moved": [
-          "p50 44294"
         ],
         "rates": [
           {
             "p229 2951 against p50 44294": [
-              0.779,
-              2.51e-11
+              0.917,
+              1.45e-13
             ],
             "p207 6632 against p50 44294": [
               1,
-              2.03e-11
+              4.73e-14
             ],
             "p50 44294": [
-              2.11,
-              126
+              0,
+              9.77e-13
             ]
           }
         ],
         "back": [
           [
             [
-              13.22,
-              25.42
+              0.01,
+              0.01
             ],
             [
-              50.92,
-              54.18
+              0.01,
+              0.01
             ]
-          ]
-        ],
-        "strayed": [
-          "p205 3749",
-          "p60 3713"
-        ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "stay-chosen",
-        "detail": "p50 44294",
-        "seconds": 1.2
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -501,7 +485,7 @@
           "p233 4274",
           "p232 4274"
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",

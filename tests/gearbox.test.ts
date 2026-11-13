@@ -20,10 +20,11 @@ function gearbox(position: number) {
 }
 
 // The gearbox's mechanism, as its parts now are, and how far its output shaft turns for a
-// quarter turn of the input.
+// quarter turn of the input. Its holds are a push's without least motion (leastPush off): with
+// least motion, in neutral, the output shaft turns with the gear that should spin free on it.
 function turnInput(parts: PlacedPart[]) {
   const mech = inferMechanism(parts, table, roles);
-  const kin = new Kinematics(mech);
+  const kin = new Kinematics(mech, { leastPush: false });
   const bodyOf = (name: string) => mech.bodyOf[parts.findIndex((p) => p.name === name)];
   const input = kin.parentLink(bodyOf('3707.dat'))!.joint;
   // Turn the input a quarter turn, as a drag would, and see how far the output shaft turned in

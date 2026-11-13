@@ -111,8 +111,8 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "a36889e",
+    "date": "2026-11-13",
     "seconds": 3,
     "counts": {
       "no": 3,
@@ -207,7 +207,7 @@
         "strayed": [
           "p131 62520"
         ],
-        "seconds": 2
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -285,7 +285,7 @@
         ],
         "cause": "not-driven",
         "detail": "p386 88517",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "no",
@@ -338,7 +338,7 @@
         ],
         "cause": "not-driven",
         "detail": "p334 88517",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",

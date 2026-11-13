@@ -120,8 +120,8 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "a36889e",
+    "date": "2026-11-13",
     "seconds": 2,
     "counts": {
       "partly": 2,
@@ -270,7 +270,7 @@
           "p59 2780",
           "p217 14696"
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -322,7 +322,7 @@
         ],
         "cause": "loose-part",
         "detail": "p228 2910",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",

@@ -126,15 +126,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 227,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 145,
     "counts": {
       "partly": 1,
       "works": 5,
       "no": 1,
-      "skipped": 1,
-      "not back": 1
+      "skipped": 1
     },
     "loose": [
       "p415 22977",
@@ -265,7 +264,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 5.8
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -347,7 +346,7 @@
             ]
           ]
         ],
-        "seconds": 43.8
+        "seconds": 34.4
       },
       {
         "result": "works",
@@ -377,7 +376,7 @@
             ]
           ]
         ],
-        "seconds": 21.8
+        "seconds": 17.1
       },
       {
         "result": "no",
@@ -450,7 +449,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -494,18 +493,18 @@
             ]
           ]
         ],
-        "seconds": 44.5
+        "seconds": 34.9
       },
       {
         "result": "works",
         "turned": [
           [
-            1.51,
-            -1.51
+            1.5,
+            -1.5
           ],
           [
-            1.51,
-            -1.51
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -515,35 +514,30 @@
         "back": [
           [
             [
-              21.84,
-              8.55
+              0,
+              0
             ],
             [
-              12.77,
-              3.86
+              0,
+              0
             ]
           ],
           [
             [
-              12.77,
-              3.86
+              0,
+              0
             ],
             [
-              21.84,
-              8.55
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p805 42125 - 33299a",
-          "p2894 43093",
-          "p2944 43093"
         ],
         "pushed": [
           true,
           true
         ],
-        "seconds": 60.5
+        "seconds": 17.4
       },
       {
         "result": "works",
@@ -583,7 +577,7 @@
             ]
           ]
         ],
-        "seconds": 48.6
+        "seconds": 34.6
       }
     ]
   }
