@@ -54,9 +54,9 @@ export function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, a
       else if (goesInForTechnic(m) && hasRound(m, 6) && isAntiStud(f)) c = studConnect(m, f, align);
       else if ((isStud(m) && (isAntiStud(f) || endsInAntiStud(f))) || (isBottomPin(m) && isHollowStud(f))) c = studConnect(m, f, align);
       else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f, align);
-      else if (isSwivelPin(m) && isSwivelHole(f)) c = studInHole(m, f, align);
+      else if (isSwivelPin(m) && (isSwivelHole(f) || isWheelHole(f))) c = studInHole(m, f, align);
       else if ((isRoundSocket(m) && isRoundSocket(f)) || (isSquareSocket(m) && isSquareSocket(f))) c = connect(m, f, align);
-      if (c && (isSwivelPin(m) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid);
+      if (c && ((isSwivelPin(m) && !isWheelHole(f)) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid);
       if (c) connections.push(c);
     }
   }
@@ -172,6 +172,13 @@ function isSwivelPin(c: WorldCylinder): boolean {
 
 function isSwivelHole(c: WorldCylinder): boolean {
   return c.caps === 'none' && c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 4) < AXIS_TOLERANCE;
+}
+
+// A small wheel's hole for a wheel pin (the 2926 plate's): thin and round, closed at one end,
+// with a wider mouth or a narrower end (the 6014a rim, the 30027 rims, the 4624 wheel). A wheel
+// on a wheel pin rolls freely: the pin's lip keeps it on, but doesn't hold it still.
+function isWheelHole(c: WorldCylinder): boolean {
+  return c.gender === 'F' && c.caps !== 'none' && c.secs.length > 1 && c.secs.every((s) => s.shape === 'R') && Math.abs(c.secs[0].radius - 4) < AXIS_TOLERANCE;
 }
 
 // Hinges (a swivel hinge, hinge plates' fingers) turn stiffly, like a friction pin (see

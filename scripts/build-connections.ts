@@ -420,7 +420,7 @@ function fileCylinders(name: string): WorkingCylinder[] {
   // its shape.
   const kind = wheelKind(name);
   if (kind && !result.some((c) => c.secs.some((sec) => sec.shape === 'T'))) {
-    const seat = shapeSeat(name, kind);
+    const seat = shapeSeat(name, kind, result);
     if (seat) result.push({ ...seat, id: '', scaleRule: 'none', mirrorRule: 'cor' });
   }
 
@@ -480,8 +480,9 @@ function wheelKind(name: string): 'tyre' | 'rim' | null {
 // at a rim's largest radius (its flanges too) or a tyre's smallest (its bore). Measured on the
 // rims and tyres the corrections give seats, a rim reaches 2 to 14 LDU past its tyre's bore, so
 // a tyre fits any rim it's on that reaches its bore (see sectionFit in src/inference/fits.ts). Null
-// for a part that isn't round.
-function shapeSeat(name: string, kind: 'tyre' | 'rim'): Cylinder | null {
+// for a part that isn't round. A rim with an axle or pin hole turns about that hole's axis, not
+// the way it's thinnest: a rim as wide as it is round (6014a, 12 x 11) would get a seat across it.
+function shapeSeat(name: string, kind: 'tyre' | 'rim', cylinders: Cylinder[]): Cylinder | null {
   const vertices: Vec3[] = [];
   collectVertices(name, IDENTITY, vertices);
   if (vertices.length === 0) return null;
@@ -494,7 +495,8 @@ function shapeSeat(name: string, kind: 'tyre' | 'rim'): Cylinder | null {
     }
   }
   const extent = [0, 1, 2].map((k) => hi[k] - lo[k]);
-  const axis = extent.indexOf(Math.min(...extent));
+  const holeAxes = new Set(cylinders.filter((c) => c.secs.some((sec) => sec.shape === 'R' || sec.shape === 'A')).map((c) => c.dir.findIndex((d) => Math.abs(d) > 0.99)));
+  const axis = holeAxes.size === 1 && !holeAxes.has(-1) ? [...holeAxes][0] : extent.indexOf(Math.min(...extent));
   const [a, b] = [0, 1, 2].filter((k) => k !== axis);
   if (Math.abs(extent[a] - extent[b]) > 2) return null;
   const center: Vec3 = [0, 0, 0];

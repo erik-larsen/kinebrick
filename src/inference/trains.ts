@@ -139,9 +139,11 @@ export function loads(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[
     return i;
   };
   for (const c of connections) if (riding.has(c.male) && riding.has(c.female)) leader.set(find(c.male), find(c.female));
-  // Each group's lowest part (the greatest y, as y points down).
+  // Each group's lowest part (the greatest y, as y points down). Not a wheel or a tyre: it is
+  // placed by its middle, down beside the deck it stands on (7839's car, on 4624 wheels).
+  const wheels = new Set(cyls.filter((c) => c.secs.some((s) => s.shape === 'T' || s.shape === 'W')).map((c) => c.part));
   const lowest = new Map<number, number>();
-  for (const i of riding) if (!lowest.has(find(i)) || parts[i].matrix.elements[13] > parts[lowest.get(find(i))!].matrix.elements[13]) lowest.set(find(i), i);
+  for (const i of riding) if (!wheels.has(i) && (!lowest.has(find(i)) || parts[i].matrix.elements[13] > parts[lowest.get(find(i))!].matrix.elements[13])) lowest.set(find(i), i);
   const result: Connection[] = [];
   for (const [group, low] of lowest) {
     const at = new Vector3().setFromMatrixPosition(parts[low].matrix);

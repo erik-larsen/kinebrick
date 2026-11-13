@@ -19,9 +19,10 @@
     ]
   },
   "generated": {
-    "commit": "2d4e3cd",
+    "commit": "9ec3c9a",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 8,
+    "seconds": 9,
     "counts": {
       "works": 2
     },
@@ -37,11 +38,7 @@
       "p179 30258",
       "p180 30258",
       "p182 30258",
-      "p183 30258",
-      "p305 6015",
-      "p307 6015",
-      "p309 6015",
-      "p311 6015"
+      "p183 30258"
     ],
     "functions": [
       {
