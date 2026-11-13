@@ -150,6 +150,7 @@ export function setUpInteraction(s: InteractionSetup) {
   let motorDirection = 1;
   let motorReversed = false; // whether it's been reversed since it started (a third Ctrl-click stops it)
   let motorMoved = false; // whether it's turned at all since it started or last turned back
+  let motorPaused = false; // the part kept turning waits (the pause button): it's still the one chosen
   let motorSpeed = (DEFAULT_RPM / 60) * 2 * Math.PI; // radians per second
   // A part kept moving rather than turning: the point moved (in its body's starting position),
   // the way it's going now (LDraw coordinates, a unit vector), and how fast, in LDU per second.
@@ -553,6 +554,7 @@ export function setUpInteraction(s: InteractionSetup) {
     motorHeldIn = null;
     if (part < 0) motorPush = null;
     motorPart = part;
+    motorPaused = false;
     s.appearance.drivenPart = part;
     s.appearance.update();
     s.onMotorChanged();
@@ -564,6 +566,11 @@ export function setUpInteraction(s: InteractionSetup) {
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
+      if (motorPaused) {
+        pauseMotor(false);
+        showMessage(`${motorPush ? 'Moving' : 'Turning'} ${name} again`, clientX, clientY);
+        return;
+      }
       if (!motorReversed) {
         reverseMotor();
         showMessage(`${motorPush ? 'Moving' : 'Turning'} ${name} the other way · Ctrl-click again to stop`, clientX, clientY);
@@ -708,13 +715,23 @@ export function setUpInteraction(s: InteractionSetup) {
     s.onMotorChanged();
   }
 
+  // Makes the part kept turning wait, or go on. Waiting, it's still the part chosen, with its
+  // direction, so it goes on as it was.
+  function pauseMotor(paused: boolean) {
+    if (motorPart < 0) return;
+    motorPaused = paused;
+    if (motorHeldIn === s.kin) s.kin.letGoAfterDrag();
+    motorHeldIn = null;
+    s.onMotorChanged();
+  }
+
   // Turns the driven part on by however far it goes in `seconds`, as a turn drag would but in
   // steps of up to MOTOR_MAX_STEP. Waits while the user drags something else. Stops for good if
   // it can't turn (it's run into something, or a frozen part jams it). Its holds are worked out
   // once and kept while it runs (working them out takes longer than the step itself on a big
   // model), and again if a step fails with them, before giving up.
   function runMotor(seconds: number) {
-    if (motorPart < 0 || drag) return;
+    if (motorPart < 0 || drag || motorPaused) return;
     if (motorPush) return runPush(motorPush, seconds);
     const body = s.mech.bodyOf[motorPart];
     const link = s.kin.parentLink(body);
@@ -1016,6 +1033,8 @@ export function setUpInteraction(s: InteractionSetup) {
     runMotor, // call every frame with the seconds since the last
     stopMotor: () => setMotor(-1),
     reverseMotor,
+    pauseMotor, // (paused): see pauseMotor
+    motorPaused: () => motorPaused,
     startMotor, // (part, seenFrom, clockwise): see startMotor
     motorPart: () => motorPart,
     turnSense, // (part, seenFrom): see turnSense

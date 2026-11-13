@@ -39,7 +39,7 @@ export function tyres(solver: Kinematics, eq: Equations) {
     };
     if (!rolling.has(tread.body)) rolling.set(tread.body, { axis, rows: [] });
     // (A track rolls at its path's radius, nearer the axle than where it touches; see Tread.)
-    const hub = tread.center.clone().applyMatrix4(pose);
+    const hub = solver.onAxis(tread.body, tread.center.clone().applyMatrix4(pose), axis);
     const rollAt = tread.rollRadius === undefined ? p : hub.clone().lerp(p, tread.rollRadius / tread.radius);
     // A train motor's wheels are part of it and can't turn: it slides along the rails.
     if (!tread.fixed) rolling.get(tread.body)!.rows.push(along(rollAt, forward));
