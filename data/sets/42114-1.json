@@ -153,12 +153,12 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 54,
+    "commit": "9edd2dc",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 63,
     "counts": {
-      "partly": 4,
-      "no": 1,
+      "partly": 5,
       "works": 2,
       "not back": 1
     },
@@ -263,7 +263,7 @@
         ],
         "cause": "not-driven",
         "detail": "p84 65414c01",
-        "seconds": 9.3
+        "seconds": 9.8
       },
       {
         "result": "partly",
@@ -315,7 +315,7 @@
         ],
         "cause": "loose-part",
         "detail": "p121 18947",
-        "seconds": 7.5
+        "seconds": 7.9
       },
       {
         "result": "partly",
@@ -383,14 +383,14 @@
         ],
         "cause": "not-driven",
         "detail": "p779 32198",
-        "seconds": 9.4
+        "seconds": 9.8
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -411,11 +411,11 @@
             ],
             "p994 99010": [
               0,
-              0
+              2.84e-40
             ],
             "p0 64179": [
               0,
-              0
+              2.64e-24
             ],
             "p4617 15038 against p919 92908": [
               0,
@@ -435,14 +435,9 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.7
+        "cause": "part-fixed",
+        "detail": "p2038 32140",
+        "seconds": 7.7
       },
       {
         "result": "works",
@@ -476,7 +471,7 @@
           "p4506 32278",
           "p4493 32009"
         ],
-        "seconds": 7.8
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -506,7 +501,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 8
       },
       {
         "result": "partly",
@@ -541,7 +536,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2766 32525",
-        "seconds": 8.5
+        "seconds": 8.9
       }
     ]
   }
