@@ -93,9 +93,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 5,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 6,
     "counts": {
       "works": 4,
       "partly": 1
@@ -299,7 +300,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -347,7 +348,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       }
     ]
   }

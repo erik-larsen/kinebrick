@@ -209,9 +209,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 30,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 31,
     "counts": {
       "works": 5,
       "no": 2,
@@ -293,7 +294,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.4
       },
       {
         "result": "no",
@@ -317,7 +318,7 @@
           "p556 41239 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -357,7 +358,7 @@
             null
           ]
         ],
-        "seconds": 3.3
+        "seconds": 3.2
       },
       {
         "result": "partly",
@@ -465,7 +466,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p212 48168",
-        "seconds": 1.3
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -507,7 +508,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 2.7
       },
       {
         "result": "not checked",
@@ -557,7 +558,7 @@
             ]
           ]
         ],
-        "seconds": 4
+        "seconds": 4.1
       },
       {
         "result": "partly",
@@ -602,7 +603,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p370 40490",
-        "seconds": 6.1
+        "seconds": 6.2
       },
       {
         "result": "no",
@@ -651,7 +652,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -751,7 +752,7 @@
             ]
           ]
         ],
-        "seconds": 9.2
+        "seconds": 9.5
       },
       {
         "result": "skipped",

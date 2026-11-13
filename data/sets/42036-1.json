@@ -120,15 +120,16 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
     "seconds": 2,
     "counts": {
       "partly": 2,
-      "works": 2,
+      "works": 3,
       "not back": 1,
       "skipped": 1,
-      "no": 2
+      "no": 1
     },
     "loose": [
       "p228 2910",
@@ -355,27 +356,35 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
-        "still": [
-          "p291 4519"
-        ],
         "rates": [
-          {}
+          {
+            "p291 4519": [
+              1,
+              88.2
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p290 32192 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.3
       },
       {
         "result": "works",

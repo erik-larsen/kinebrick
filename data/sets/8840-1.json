@@ -106,8 +106,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
     "seconds": 2,
     "counts": {
       "partly": 2,
@@ -275,7 +276,7 @@
           "p118 2852",
           "p120 2851"
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "skipped",

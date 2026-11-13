@@ -157,13 +157,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 10,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 16,
     "counts": {
       "works": 7,
-      "not back": 2,
-      "no": 1,
+      "not back": 3,
+      "partly": 1,
       "skipped": 1,
       "not checked": 1
     },
@@ -1454,7 +1455,7 @@
         "strayed": [
           "p2150 2525"
         ],
-        "seconds": 3.4
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -1492,68 +1493,73 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.06,
+            -0.09
           ]
         ],
-        "still": [
-          "p2084 40490",
-          "p2089 32524",
-          "p2095 32524"
+        "moved": [
+          "p2060 64782",
+          "p2136 55982"
         ],
         "rates": [
           {
             "p2084 40490": [
-              0,
-              0
+              7.36,
+              1770
             ],
             "p2089 32524": [
-              0,
-              0
+              7.46,
+              1210
             ],
             "p2095 32524": [
-              0,
-              0
+              7.46,
+              1210
             ],
             "p2060 64782": [
-              0,
-              0
+              7.31,
+              2960
             ],
             "p2136 55982": [
-              0,
-              0
+              8.35,
+              2800
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              107.35,
+              24.59
             ],
             [
-              0,
-              0
+              8.79,
+              7.23
             ]
           ]
         ],
+        "strayed": [
+          "p2194 6629",
+          "p2150 2525"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "stuck",
+            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "control-jammed",
-        "seconds": 0.3
+        "freed": 1,
+        "cause": "stay-chosen",
+        "detail": "p2060 64782",
+        "seconds": 5.9
       },
       {
         "result": "works",
@@ -1596,7 +1602,7 @@
         "strayed": [
           "p2141 48729b"
         ],
-        "seconds": 1.7
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -1646,7 +1652,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -1675,7 +1681,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "not checked",

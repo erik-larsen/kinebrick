@@ -148,13 +148,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 34,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 46,
     "counts": {
       "works": 4,
-      "no": 1,
-      "partly": 2
+      "partly": 3
     },
     "loose": [
       "p547 6141"
@@ -204,7 +204,7 @@
             ]
           ]
         ],
-        "seconds": 2.8
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -234,7 +234,7 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -304,18 +304,18 @@
             ]
           ]
         ],
-        "seconds": 12.4
+        "seconds": 13.2
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.23
           ],
           [
-            0,
-            0
+            0.23,
+            -1.5
           ]
         ],
         "still": [
@@ -326,22 +326,22 @@
         "rates": [
           {
             "p281 32072": [
-              0,
-              0
+              1,
+              1.83e-13
             ],
             "p282 32072": [
-              0,
-              0
+              1,
+              9.47e-15
             ],
             "p232 40490": [
-              0,
-              0
+              0.0733,
+              64.4
             ]
           },
           {
             "p281 32072": [
               0,
-              0
+              9.47e-15
             ],
             "p282 32072": [
               0,
@@ -349,7 +349,7 @@
             ],
             "p232 40490": [
               0,
-              0
+              4.03e-14
             ]
           }
         ],
@@ -377,16 +377,18 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "dead point"
           ],
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            null
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 0.5
+        "freed": 1,
+        "cause": "part-fixed",
+        "detail": "p281 32072",
+        "seconds": 10.5
       },
       {
         "result": "partly",
@@ -474,7 +476,7 @@
         ],
         "cause": "not-driven",
         "detail": "p773 48168",
-        "seconds": 5
+        "seconds": 5.4
       },
       {
         "result": "partly",
@@ -577,7 +579,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p955 32271 against p946 32278",
-        "seconds": 5.4
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -602,7 +604,7 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "seconds": 3.8
       }
     ]
   }

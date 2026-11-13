@@ -101,9 +101,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 1,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 2,
     "counts": {
       "partly": 3,
       "no": 1,
@@ -278,7 +279,7 @@
         ],
         "cause": "not-driven",
         "detail": "p230 42105 - 18575",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -331,7 +332,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",

@@ -100,8 +100,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
     "seconds": 8,
     "counts": {
       "works": 4,
@@ -275,7 +276,7 @@
             ]
           ]
         ],
-        "seconds": 2.8
+        "seconds": 3
       },
       {
         "result": "works",
@@ -425,7 +426,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 2.9
       },
       {
         "result": "no",
@@ -445,7 +446,7 @@
           "p415 2819 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

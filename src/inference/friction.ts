@@ -7,8 +7,9 @@ import { Kinematics } from '../kinematics.ts';
 import { combine, nullSpace } from '../linalg.ts';
 import type { Mechanism } from '../mechanism.ts';
 
-// Whether controls with no motion get their friction pins freed (on with KINEBRICK_FREE_PINS=1).
-export const FREE_PINS = typeof process !== 'undefined' && process.env?.KINEBRICK_FREE_PINS === '1';
+// Whether the check frees the friction pins of controls with no motion (on; off with
+// KINEBRICK_FREE_PINS=0, for measuring).
+export const FREE_PINS = typeof process === 'undefined' || process.env?.KINEBRICK_FREE_PINS !== '0';
 
 // How much two bodies' speeds may differ in a motion (scaled so its largest speed is 1) and still
 // count as moving together.

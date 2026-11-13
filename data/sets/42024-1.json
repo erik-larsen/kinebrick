@@ -136,8 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
     "seconds": 24,
     "counts": {
       "works": 2,
@@ -480,7 +481,7 @@
           "p50 32039, worked first, went 0 of 0.5"
         ],
         "cause": "first-failed",
-        "seconds": 2.6
+        "seconds": 2.5
       },
       {
         "result": "partly",
@@ -540,7 +541,7 @@
           "p50 32039, worked first, went 0 of -0.5"
         ],
         "cause": "first-failed",
-        "seconds": 2.7
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -640,7 +641,7 @@
             ]
           ]
         ],
-        "seconds": 15
+        "seconds": 15.3
       },
       {
         "result": "not checked",

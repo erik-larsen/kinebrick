@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 36 partly, 5 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 37 works, 36 partly, 4 no, 1 skipped.
 
 ## By decade
 
@@ -206,7 +206,7 @@ Each detail by the set it first appears in.
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
 - The XL motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns the two rear half shafts, so the rear wheels can turn at different speeds in a bend. (partly)
-- With the XL motor still, turning one rear wheel turns the other the opposite way through the differential. (no)
+- With the XL motor still, turning one rear wheel turns the other the opposite way through the differential. (works)
 
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 

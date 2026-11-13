@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 22 works, 37 partly, 18 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 26 works, 42 partly, 9 no, 1 not checked.
 
 ## By decade
 
@@ -84,7 +84,7 @@ Each detail by the set it first appears in.
 
 **1989, [8835 Forklift](https://erik-larsen.github.io/kinebrick/?model=8835-Forklift)**
 
-- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (no)
+- *mast tilt:* The wedge-belt wheel on the cab's left side tilts the mast: it swings a short liftarm whose pin is in the black 1x6 link from the mast, so turning it pulls the mast back or pushes it forward about its bottom axle. (works)
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 
@@ -125,7 +125,7 @@ Each detail by the set it first appears in.
 
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
 
-- *bucket:* The other valve tips the bucket: it feeds the cylinder on top of the boom, which turns the bucket on the end of the boom through a lever and two links. (no)
+- *bucket:* The other valve tips the bucket: it feeds the cylinder on top of the boom, which turns the bucket on the end of the boom through a lever and two links. (partly)
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
 
@@ -143,11 +143,11 @@ Each detail by the set it first appears in.
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
 - *outriggers:* The knob on top of the sleeper box lowers and raises the two outriggers at the back: a worm on its shaft turns a 24-tooth gear, a long shaft runs back under the deck, and bevel gears turn a cross shaft whose links swing the two black legs down until their feet stand on the ground. (partly)
-- *boom:* The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom. (no)
+- *boom:* The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom. (works)
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
-- *outriggers:* The two gears on top of the cab's back wall lower and raise the two outriggers, one on each side behind the front wheels: each gear turns a shaft running down to a pair of knob gears, which turn the outrigger's crank axle, and the red-and-white striped leg swings down from along the side until its foot stands on the ground. (no)
+- *outriggers:* The two gears on top of the cab's back wall lower and raise the two outriggers, one on each side behind the front wheels: each gear turns a shaft running down to a pair of knob gears, which turn the outrigger's crank axle, and the red-and-white striped leg swings down from along the side until its foot stands on the ground. (partly)
 - *ladder:* The other pair of 12-tooth gears on the truck's sides raises and lowers the ladder: their cross shaft turns, through a pair of knob gears, a vertical shaft up through the middle of the turntable to a worm, which turns the 24-tooth gear at the foot of the ladder's first section. As the first section rises, links unfold the second section from it, and the rescue cage at the end stays level. (partly)
 
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
@@ -208,7 +208,7 @@ Each detail by the set it first appears in.
 
 **2016, [42050 Drag Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42050-1)**
 
-- *body lift:* Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis. (no)
+- *body lift:* Function A: the black lever just in front of the right rear wheel, swung back, tilts the whole bodywork up on its hinge at the back to show the engine and chassis. (partly)
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 
@@ -217,7 +217,7 @@ Each detail by the set it first appears in.
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
-- *cab:* The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (no)
+- *cab:* The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (works)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
@@ -229,9 +229,9 @@ Each detail by the set it first appears in.
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
-- *tipper:* Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it. (no)
+- *tipper:* Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it. (works)
 - *boom:* The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down. (partly)
-- *arm:* Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom. (no)
+- *arm:* Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom. (partly)
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
@@ -285,7 +285,7 @@ Each detail by the set it first appears in.
 
 **2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1)**
 
-- *legs:* The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end. (no)
+- *legs:* The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end. (partly)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 

@@ -93,12 +93,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
     "seconds": 2,
     "counts": {
       "partly": 3,
-      "no": 1,
+      "works": 1,
       "not checked": 1
     },
     "loose": [
@@ -160,29 +161,51 @@
         "seconds": 0.3
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
-        "still": [
-          "p15 59426",
-          "p27 3707",
-          "p969 56145"
-        ],
         "rates": [
-          {}
+          {
+            "p15 59426": [
+              1,
+              2.37e-14
+            ],
+            "p27 3707": [
+              1,
+              2.37e-14
+            ],
+            "p969 56145": [
+              1,
+              2.37e-14
+            ],
+            "p351 32498": [
+              0,
+              1.27e-14
+            ],
+            "p40 22172": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p971 56145 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.5
       },
       {
         "result": "partly",

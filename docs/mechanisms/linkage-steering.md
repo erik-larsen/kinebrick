@@ -4,7 +4,7 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 10 works, 11 partly, 8 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 11 works, 11 partly, 7 no.
 
 ## By decade
 
@@ -96,7 +96,7 @@ Each detail by the set it first appears in.
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links. (no)
+- The gear on top at the back of the cab roof steers the front wheels: a shaft runs down the back of the cab to an 8 tooth gear and a 24 tooth gear, whose arm works the steering links. (works)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 

@@ -166,9 +166,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 105,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 92,
     "counts": {
       "partly": 6,
       "works": 3,
@@ -563,7 +564,7 @@
         ],
         "cause": "not-driven",
         "detail": "p87 48989",
-        "seconds": 2.5
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -598,7 +599,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 2.9
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -702,7 +703,7 @@
           "p240 98138",
           "p239 98138"
         ],
-        "seconds": 24.2
+        "seconds": 20.1
       },
       {
         "result": "no",
@@ -757,7 +758,7 @@
           true
         ],
         "cause": "control-jammed",
-        "seconds": 3.7
+        "seconds": 4
       },
       {
         "result": "partly",
@@ -815,7 +816,7 @@
         ],
         "cause": "loose-part",
         "detail": "p508 32270",
-        "seconds": 3.1
+        "seconds": 2.9
       },
       {
         "result": "partly",
@@ -864,7 +865,7 @@
         ],
         "cause": "loose-part",
         "detail": "p507 32270",
-        "seconds": 3.2
+        "seconds": 2.9
       },
       {
         "result": "partly",
@@ -919,7 +920,7 @@
         ],
         "cause": "loose-part",
         "detail": "p530 6553",
-        "seconds": 24.2
+        "seconds": 21.7
       },
       {
         "result": "works",
@@ -949,7 +950,7 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 3
       },
       {
         "result": "partly",
@@ -997,7 +998,7 @@
         ],
         "cause": "loose-part",
         "detail": "p574 32073",
-        "seconds": 23.9
+        "seconds": 20.7
       },
       {
         "result": "works",
@@ -1067,7 +1068,7 @@
             ]
           ]
         ],
-        "seconds": 12.6
+        "seconds": 11.5
       }
     ]
   }

@@ -161,15 +161,16 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 61,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 62,
     "counts": {
       "skipped": 4,
-      "no": 2,
+      "works": 2,
       "partly": 2,
       "not back": 2,
-      "works": 1
+      "no": 1
     },
     "loose": [
       "p412 42053 - 26288-p2",
@@ -278,40 +279,34 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p2196 4716",
-          "p2201 3648b",
-          "p2222 42053 - 33299b",
-          "p2407 32073"
         ],
         "rates": [
           {
             "p2196 4716": [
-              0,
+              1,
               0
             ],
             "p2201 3648b": [
-              0,
+              0.0417,
               0
             ],
             "p2222 42053 - 33299b": [
-              0,
+              0.0417,
               0
             ],
             "p2407 32073": [
               0,
-              0
+              6.67
             ],
             "p285 42053 - 18938": [
               0,
-              0
+              1.32e-118
             ],
             "p756 2730": [
               0,
@@ -337,14 +332,8 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.4
+        "freed": 2,
+        "seconds": 4.9
       },
       {
         "result": "partly",
@@ -417,7 +406,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p96 59426",
-        "seconds": 30.4
+        "seconds": 26.5
       },
       {
         "result": "partly",
@@ -515,7 +504,7 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 10.1
+        "seconds": 10.3
       },
       {
         "result": "works",
@@ -589,7 +578,7 @@
           "p2017 32123a",
           "p2061 32123a"
         ],
-        "seconds": 15.9
+        "seconds": 16
       }
     ]
   }

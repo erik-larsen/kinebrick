@@ -4,7 +4,7 @@ A friction pin or a stiffly turning gear holds a part where it's left. (Holding.
 
 First appears in 1998, in [8208 Custom Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8208-1) and [8218 Trike Tourer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8218-1): The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin).
 
-Used in 6 of the 186 surveyed sets, by 6 functions. Kinebrick: 2 no, 4 skipped.
+Used in 6 of the 186 surveyed sets, by 6 functions. Kinebrick: 2 works, 4 skipped.
 
 ## By decade
 
@@ -25,11 +25,11 @@ Each detail by the set it first appears in.
 
 **1998, [8208 Custom Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8208-1)**
 
-- The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin). (no)
+- The handlebars steer the front wheel: the long front fork hangs from the head of the frame on a single black friction pin, steeply raked along the fork legs, so the whole fork, handlebars and front wheel swing round it together (stiffly, as the pin is a friction pin). (works)
 
 **1998, [8218 Trike Tourer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8218-1)**
 
-- The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right. (no)
+- The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right. (works)
 
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
 

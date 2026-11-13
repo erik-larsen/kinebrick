@@ -152,14 +152,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
     "seconds": 8,
     "counts": {
-      "partly": 3,
-      "not back": 1,
+      "partly": 4,
+      "not back": 2,
       "skipped": 1,
-      "no": 3,
+      "no": 2,
       "works": 1,
       "not checked": 1
     },
@@ -309,7 +310,7 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 1.7
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -371,36 +372,68 @@
         ],
         "cause": "part-fixed",
         "detail": "p284 76537",
-        "seconds": 2.6
+        "seconds": 2.8
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.1,
+            -0.17
           ]
         ],
-        "still": [
-          "p351 15462",
-          "p372 44294",
-          "p379 88516"
-        ],
         "rates": [
-          {}
+          {
+            "p351 15462": [
+              1,
+              44.7
+            ],
+            "p372 44294": [
+              1,
+              4.6e-13
+            ],
+            "p379 88516": [
+              1,
+              1
+            ],
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p129 33299a": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              23.64,
+              13.42
+            ],
+            [
+              14.09,
+              8
+            ]
+          ]
         ],
-        "why": [
-          "p340 15462 is part of the frame"
+        "strayed": [
+          "p555 3711"
         ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "freed": 2,
+        "cause": "stopped-early",
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -456,7 +489,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.2
       },
       {
         "result": "no",

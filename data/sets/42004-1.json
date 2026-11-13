@@ -134,14 +134,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 3,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 5,
     "counts": {
-      "works": 4,
+      "works": 7,
       "partly": 1,
-      "not back": 2,
-      "no": 3
+      "not back": 2
     },
     "loose": [],
     "functions": [
@@ -238,7 +238,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -294,33 +294,29 @@
         ],
         "cause": "stay-chosen",
         "detail": "p50 44294",
-        "seconds": 1.2
+        "seconds": 1.3
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p159 32525",
-          "p158 10928"
         ],
         "rates": [
           {
             "p159 32525": [
-              0,
-              0
+              0.131,
+              13.1
             ],
             "p158 10928": [
-              0,
+              0.125,
               0
             ],
             "p25 40490": [
               0,
-              0
+              3.63e-21
             ]
           }
         ],
@@ -332,35 +328,26 @@
             ],
             [
               0,
-              0
+              0.02
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p169 40490 against p159 32525"
         ],
         "rates": [
           {
             "p169 40490 against p159 32525": [
-              0,
-              0
+              1,
+              80
             ],
             "p159 32525": [
               0,
@@ -380,31 +367,22 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 2,
+        "seconds": 0.5
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p177 30394 against p169 40490"
         ],
         "rates": [
           {
             "p177 30394 against p169 40490": [
-              0,
-              0
+              1,
+              0.00283
             ]
           }
         ],
@@ -420,14 +398,8 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -501,7 +473,7 @@
           "p233 4274",
           "p232 4274"
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",

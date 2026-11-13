@@ -144,9 +144,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 34,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 35,
     "counts": {
       "works": 1,
       "partly": 3,
@@ -278,7 +279,7 @@
             ]
           ]
         ],
-        "seconds": 10.1
+        "seconds": 10.5
       },
       {
         "result": "partly",
@@ -338,7 +339,7 @@
         ],
         "cause": "not-driven",
         "detail": "p299 87761",
-        "seconds": 4.4
+        "seconds": 4.5
       },
       {
         "result": "no",
@@ -365,7 +366,7 @@
           "p177 64178 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -473,7 +474,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1216 11954",
-        "seconds": 8.7
+        "seconds": 8.8
       },
       {
         "result": "no",
@@ -517,7 +518,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p50 32524",
-        "seconds": 5.6
+        "seconds": 5.3
       },
       {
         "result": "not checked",

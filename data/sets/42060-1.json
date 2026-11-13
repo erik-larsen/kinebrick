@@ -131,14 +131,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 4,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 5,
     "counts": {
-      "no": 3,
-      "works": 4,
-      "partly": 1,
-      "not back": 1
+      "no": 1,
+      "works": 5,
+      "partly": 2,
+      "not back": 2
     },
     "loose": [
       "p192 3837",
@@ -326,34 +327,29 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.07
           ]
-        ],
-        "still": [
-          "p159 32525",
-          "p173 32525",
-          "p172 15458"
         ],
         "rates": [
           {
             "p159 32525": [
-              0,
-              0
+              0.374,
+              33.5
             ],
             "p173 32525": [
-              0,
-              0
+              0.374,
+              33.5
             ],
             "p172 15458": [
-              0,
-              0
+              0.374,
+              30.9
             ],
             "p156 32270": [
               0,
@@ -375,12 +371,12 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "dead point"
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -450,7 +446,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -527,57 +523,61 @@
         "seconds": 0.2
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            -1.51,
+            1.14
           ]
         ],
-        "still": [
-          "p288 42060 - 33299b",
-          "p295 32524 against p277 32316"
+        "moved": [
+          "p277 32316"
         ],
         "rates": [
           {
             "p288 42060 - 33299b": [
-              0,
-              0
+              0.344,
+              116
             ],
             "p295 32524 against p277 32316": [
-              0,
-              0
+              1,
+              20
             ],
             "p277 32316": [
-              0,
-              0
+              1.16,
+              46.8
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              27.88,
+              13.34
             ],
             [
-              0,
-              0
+              4.31,
+              3.31
             ]
           ]
         ],
+        "strayed": [
+          "p294 30394",
+          "p299 2780"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
+        "freed": 1,
         "cause": "loose-part",
         "detail": "p287 59443",
-        "seconds": 0
+        "seconds": 1
       },
       {
         "result": "works",

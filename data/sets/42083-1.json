@@ -171,14 +171,16 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 767,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 617,
     "counts": {
       "works": 4,
-      "partly": 2,
+      "partly": 3,
       "skipped": 2,
-      "no": 2,
+      "not back": 1,
+      "no": 1,
       "not checked": 1
     },
     "loose": [
@@ -347,7 +349,7 @@
             ]
           ]
         ],
-        "seconds": 99.9
+        "seconds": 78
       },
       {
         "result": "partly",
@@ -428,7 +430,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1345 24505",
-        "seconds": 57.8
+        "seconds": 45.9
       },
       {
         "result": "skipped"
@@ -507,7 +509,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p682 2851",
-        "seconds": 32.5
+        "seconds": 24.9
       },
       {
         "result": "works",
@@ -547,7 +549,7 @@
             ]
           ]
         ],
-        "seconds": 57.9
+        "seconds": 45.6
       },
       {
         "result": "works",
@@ -581,7 +583,7 @@
             ]
           ]
         ],
-        "seconds": 26.9
+        "seconds": 21.4
       },
       {
         "result": "works",
@@ -621,37 +623,73 @@
             ]
           ]
         ],
-        "seconds": 61
+        "seconds": 44.2
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.03,
+            -0.03
           ],
           [
-            0,
-            0
+            0.03,
+            -0.03
           ]
         ],
-        "still": [
-          "p1046 42083 - 23801"
-        ],
         "rates": [
-          {},
-          {}
+          {
+            "p1046 42083 - 23801": [
+              0.0467,
+              80
+            ]
+          },
+          {
+            "p1046 42083 - 23801": [
+              0.0467,
+              80
+            ]
+          }
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              3.71,
+              1.92
+            ],
+            [
+              3.71,
+              1.92
+            ]
+          ],
+          [
+            [
+              3.71,
+              1.92
+            ],
+            [
+              3.71,
+              1.92
+            ]
+          ]
         ],
-        "why": [
-          "p1051 15459 is part of the frame",
-          "p1044 15459 is part of the frame"
+        "strayed": [
+          "p3369 32015",
+          "p3366 32015"
         ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "stop": [
+          [
+            null,
+            "dead point"
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "freed": 4,
+        "cause": "stopped-early",
+        "seconds": 93.3
       },
       {
         "result": "no",
@@ -720,7 +758,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3525 42083 - 37383p01",
-        "seconds": 252.4
+        "seconds": 217.1
       },
       {
         "result": "skipped"

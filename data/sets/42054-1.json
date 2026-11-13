@@ -216,13 +216,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 183,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 347,
     "counts": {
-      "partly": 5,
-      "no": 3,
-      "works": 6
+      "partly": 6,
+      "no": 1,
+      "works": 7,
+      "not back": 1
     },
     "loose": [
       "p592 44294",
@@ -291,7 +293,7 @@
         ],
         "cause": "not-driven",
         "detail": "p513 3648b",
-        "seconds": 9.6
+        "seconds": 8.9
       },
       {
         "result": "no",
@@ -323,7 +325,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1
+        "seconds": 5.6
       },
       {
         "result": "partly",
@@ -371,7 +373,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 42054 - 18938",
-        "seconds": 9.8
+        "seconds": 8.9
       },
       {
         "result": "partly",
@@ -419,7 +421,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1820 92696 against p1818 92693c01",
-        "seconds": 23.8
+        "seconds": 11.1
       },
       {
         "result": "partly",
@@ -462,7 +464,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1659 42054 - 18938 against p1660 18939",
-        "seconds": 14.3
+        "seconds": 11
       },
       {
         "result": "works",
@@ -492,7 +494,7 @@
             ]
           ]
         ],
-        "seconds": 11.3
+        "seconds": 9
       },
       {
         "result": "works",
@@ -534,7 +536,7 @@
             ]
           ]
         ],
-        "seconds": 11
+        "seconds": 9.6
       },
       {
         "result": "works",
@@ -564,34 +566,31 @@
             ]
           ]
         ],
-        "seconds": 10.4
+        "seconds": 9.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p1660 18939"
         ],
         "rates": [
           {
             "p1660 18939": [
-              0,
-              0
+              2.81e-8,
+              0.678
             ]
           },
           {
             "p1660 18939": [
-              0,
-              0
+              2.81e-8,
+              0.678
             ]
           }
         ],
@@ -617,91 +616,83 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 2
+        "freed": 5,
+        "seconds": 47.6
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.51,
+            -1.52
           ],
           [
-            0,
-            0
+            1.51,
+            -1.52
           ]
         ],
         "still": [
-          "p1768 6558",
-          "p1779 6558"
+          "p1779 6558",
+          "p1768 6558"
         ],
         "rates": [
           {
             "p1768 6558": [
-              0,
-              0
+              0.449,
+              53.9
             ],
             "p1779 6558": [
               0,
-              0
+              8.49e-12
             ]
           },
           {
             "p1768 6558": [
               0,
-              0
+              9.53e-12
             ],
             "p1779 6558": [
-              0,
-              0
+              0.449,
+              53.9
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.54,
+              0.56
             ],
             [
-              0,
-              0
+              1.37,
+              0.84
             ]
           ],
           [
             [
-              0,
-              0
+              0.54,
+              0.56
             ],
             [
-              0,
-              0
+              1.37,
+              0.84
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
+        "strayed": [
+          "p1766 32556",
+          "p1770 18654",
+          "p1777 32556",
+          "p1771 18654"
         ],
-        "cause": "control-jammed",
-        "seconds": 2
+        "pushed": [
+          true,
+          true
+        ],
+        "freed": 1,
+        "cause": "part-fixed",
+        "detail": "p1779 6558",
+        "seconds": 154.9
       },
       {
         "result": "partly",
@@ -763,6 +754,31 @@
         ],
         "cause": "part-fixed",
         "detail": "p12 87083",
+        "seconds": 9.5
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "seconds": 9.2
       },
       {
@@ -771,31 +787,6 @@
           [
             1.5,
             -1.5
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "seconds": 8.7
-      },
-      {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
           ],
           [
             1.5,
@@ -858,7 +849,7 @@
             ]
           ]
         ],
-        "seconds": 54.4
+        "seconds": 39.8
       },
       {
         "result": "works",
@@ -883,7 +874,7 @@
             ]
           ]
         ],
-        "seconds": 10.8
+        "seconds": 8.9
       }
     ]
   }

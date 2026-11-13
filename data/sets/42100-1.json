@@ -176,12 +176,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 834,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 621,
     "counts": {
       "partly": 6,
-      "no": 3
+      "no": 2,
+      "works": 1
     },
     "loose": [
       "p128 42100 - 23816c02",
@@ -356,7 +358,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 25.2
+        "seconds": 20.9
       },
       {
         "result": "partly",
@@ -404,7 +406,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 25.3
+        "seconds": 20.8
       },
       {
         "result": "partly",
@@ -468,7 +470,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 49.9
+        "seconds": 41.8
       },
       {
         "result": "partly",
@@ -512,7 +514,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1927 42003 against p87 42003",
-        "seconds": 25.8
+        "seconds": 20.9
       },
       {
         "result": "partly",
@@ -561,7 +563,7 @@
         ],
         "cause": "too-little",
         "detail": "p2971 42003 against p1927 42003",
-        "seconds": 242.8
+        "seconds": 188.5
       },
       {
         "result": "partly",
@@ -642,7 +644,7 @@
         ],
         "cause": "too-little",
         "detail": "p3322 42003 against p2971 42003",
-        "seconds": 327.2
+        "seconds": 259.6
       },
       {
         "result": "no",
@@ -697,7 +699,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
-        "seconds": 1.6
+        "seconds": 1.5
       },
       {
         "result": "no",
@@ -737,30 +739,38 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1.6
+        "seconds": 1.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
-        "still": [
-          "p4686 40490"
-        ],
         "rates": [
-          {}
+          {
+            "p4686 40490": [
+              1,
+              325
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p4660 40490 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 26.7
       }
     ]
   }

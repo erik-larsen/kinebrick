@@ -110,8 +110,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
     "seconds": 5,
     "counts": {
       "partly": 3,
@@ -196,7 +197,7 @@
         ],
         "cause": "not-driven",
         "detail": "p270 3482 against p0 3034",
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -359,7 +360,7 @@
           "p301 3070b",
           "p278 3749"
         ],
-        "seconds": 1.7
+        "seconds": 1.8
       },
       {
         "result": "works",

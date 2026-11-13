@@ -164,14 +164,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 838,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 854,
     "counts": {
-      "works": 4,
+      "works": 5,
       "skipped": 2,
-      "partly": 3,
-      "no": 1
+      "partly": 3
     },
     "loose": [
       "p317 42069 - 30395",
@@ -424,7 +424,7 @@
             ]
           ]
         ],
-        "seconds": 149
+        "seconds": 135
       },
       {
         "result": "works",
@@ -470,7 +470,7 @@
             ]
           ]
         ],
-        "seconds": 42.5
+        "seconds": 40.4
       },
       {
         "result": "skipped"
@@ -541,7 +541,7 @@
         ],
         "cause": "not-driven",
         "detail": "p567 6589",
-        "seconds": 39
+        "seconds": 36.4
       },
       {
         "result": "works",
@@ -585,7 +585,7 @@
             ]
           ]
         ],
-        "seconds": 164.5
+        "seconds": 148.8
       },
       {
         "result": "works",
@@ -655,7 +655,7 @@
             ]
           ]
         ],
-        "seconds": 171.5
+        "seconds": 155.8
       },
       {
         "result": "partly",
@@ -729,7 +729,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1033 62531",
-        "seconds": 208
+        "seconds": 190.8
       },
       {
         "result": "partly",
@@ -765,18 +765,18 @@
         ],
         "cause": "loose-part",
         "detail": "p722 64782",
-        "seconds": 37.8
+        "seconds": 42.5
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -784,15 +784,29 @@
           {}
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p884 64782 is part of the frame",
-          "p896 64782 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 2,
+        "seconds": 91.5
       },
       {
         "result": "skipped"

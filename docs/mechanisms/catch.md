@@ -4,7 +4,7 @@ A latch, lock or detent holds a part in place until it's released. (Holding.)
 
 First appears in 1998, in [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1): Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.
 
-Used in 14 of the 186 surveyed sets, by 19 functions. Kinebrick: 5 works, 4 partly, 6 no, 4 skipped.
+Used in 14 of the 186 surveyed sets, by 19 functions. Kinebrick: 5 works, 5 partly, 5 no, 4 skipped.
 
 ## By decade
 
@@ -74,7 +74,7 @@ Each detail by the set it first appears in.
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
-- *legs:* The crane's two legs fold down from its base to stand on the ground, and lock there. (no)
+- *legs:* The crane's two legs fold down from its base to stand on the ground, and lock there. (partly)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 

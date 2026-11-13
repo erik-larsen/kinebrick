@@ -252,9 +252,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 2206,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 1924,
     "counts": {
       "no": 1,
       "works": 1,
@@ -727,7 +728,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 4.9
+        "seconds": 41.2
       },
       {
         "result": "works",
@@ -923,7 +924,7 @@
             ]
           ]
         ],
-        "seconds": 593.2
+        "seconds": 575.9
       },
       {
         "result": "partly",
@@ -962,7 +963,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 153.4
+        "seconds": 144.6
       },
       {
         "result": "partly",
@@ -1041,7 +1042,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 196.4
+        "seconds": 166.4
       },
       {
         "result": "partly",
@@ -1089,7 +1090,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 151.4
+        "seconds": 123.2
       },
       {
         "result": "partly",
@@ -1142,7 +1143,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 151.2
+        "seconds": 119.8
       },
       {
         "result": "partly",
@@ -1190,7 +1191,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 150.4
+        "seconds": 120.6
       },
       {
         "result": "partly",
@@ -1238,7 +1239,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 150.3
+        "seconds": 119.9
       },
       {
         "result": "partly",
@@ -1276,7 +1277,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 276.3
+        "seconds": 257.8
       },
       {
         "result": "not checked"

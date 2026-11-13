@@ -204,14 +204,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 1031,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 1488,
     "counts": {
-      "no": 6,
-      "partly": 3,
-      "not back": 6,
-      "works": 4
+      "works": 7,
+      "partly": 4,
+      "not back": 7,
+      "no": 2
     },
     "loose": [
       "p1258 3710",
@@ -1353,31 +1354,26 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p537 3648b",
-          "p502 56145",
-          "p512 56145"
         ],
         "rates": [
           {
             "p537 3648b": [
-              0,
+              0.333,
               0
             ],
             "p502 56145": [
-              0,
-              0
+              0.419,
+              14.1
             ],
             "p512 56145": [
-              0,
-              0
+              0.419,
+              14.1
             ],
             "p324 3708": [
               0,
@@ -1402,14 +1398,8 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 1.8
+        "freed": 1,
+        "seconds": 63.9
       },
       {
         "result": "partly",
@@ -1475,7 +1465,7 @@
         ],
         "cause": "not-driven",
         "detail": "p405 4519",
-        "seconds": 109.7
+        "seconds": 94.2
       },
       {
         "result": "works",
@@ -1519,7 +1509,7 @@
           "p2085 32123b",
           "p2086 32123b"
         ],
-        "seconds": 236.6
+        "seconds": 200
       },
       {
         "result": "partly",
@@ -1575,18 +1565,18 @@
         ],
         "cause": "stay-chosen",
         "detail": "p324 3708",
-        "seconds": 280.2
+        "seconds": 238.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -1594,15 +1584,29 @@
           {}
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p851 32524 is part of the frame",
-          "p889 32524 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 62
       },
       {
         "result": "no",
@@ -1634,7 +1638,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.9
+        "seconds": 11.1
       },
       {
         "result": "works",
@@ -1671,7 +1675,7 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 44.1
+        "seconds": 37.6
       },
       {
         "result": "works",
@@ -1708,18 +1712,17 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 45.7
+        "seconds": 37.7
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.07
           ]
         ],
         "still": [
-          "p1960 62274c01",
           "p2188 62274c01",
           "p2048 18940",
           "p2267 18940"
@@ -1727,24 +1730,24 @@
         "rates": [
           {
             "p1960 62274c01": [
-              0,
-              0
+              0.00658,
+              1.57
             ],
             "p2188 62274c01": [
               0,
-              0
+              5.57e-14
             ],
             "p2048 18940": [
               0,
-              0
+              2.84e-14
             ],
             "p2267 18940": [
               0,
-              0
+              9.47e-15
             ],
             "p2083 18575": [
               0,
-              0
+              7.11e-14
             ]
           }
         ],
@@ -1762,13 +1765,14 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "limit"
           ]
         ],
+        "freed": 2,
         "cause": "loose-part",
         "detail": "p2084 18575",
-        "seconds": 1.6
+        "seconds": 34.8
       },
       {
         "result": "partly",
@@ -1826,18 +1830,18 @@
         ],
         "cause": "loose-part",
         "detail": "p2083 18575",
-        "seconds": 16.8
+        "seconds": 14.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.37,
+            -0.86
           ],
           [
-            0,
-            0
+            1.04,
+            -0.5
           ]
         ],
         "rates": [
@@ -1847,42 +1851,46 @@
         "back": [
           [
             [
-              0,
-              0
+              14.87,
+              6.05
             ],
             [
-              0,
-              0
+              16.18,
+              5.55
             ]
           ],
           [
             [
-              0,
-              0
+              2.83,
+              0.31
             ],
             [
-              0,
-              0
+              6.44,
+              45.35
             ]
           ]
         ],
+        "strayed": [
+          "p2079 59443",
+          "p2085 32123b",
+          "p1637 87082"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "stuck",
+            "stuck"
           ],
           [
-            "no motion",
-            "no motion"
+            "stuck",
+            "stuck"
           ]
         ],
         "pushed": [
           true,
           true
         ],
-        "cause": "loose-part",
-        "detail": "p2051 18942",
-        "seconds": 108.5
+        "freed": 1,
+        "seconds": 521.2
       },
       {
         "result": "no",
@@ -1903,7 +1911,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2631 64782",
-        "seconds": 0
+        "seconds": 9
       },
       {
         "result": "works",
@@ -1977,7 +1985,7 @@
           "p2086 32123b",
           "p2085 32123b"
         ],
-        "seconds": 80.2
+        "seconds": 72.1
       }
     ]
   }

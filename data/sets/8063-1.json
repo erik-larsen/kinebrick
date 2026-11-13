@@ -211,9 +211,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 391,
+    "commit": "0d1b2a4",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 315,
     "counts": {
       "works": 8,
       "not back": 3,
@@ -301,7 +302,7 @@
             ]
           ]
         ],
-        "seconds": 4.6
+        "seconds": 3.6
       },
       {
         "result": "works",
@@ -331,7 +332,7 @@
             ]
           ]
         ],
-        "seconds": 5
+        "seconds": 4
       },
       {
         "result": "works",
@@ -441,7 +442,7 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 80.2
+        "seconds": 64.3
       },
       {
         "result": "works",
@@ -481,7 +482,7 @@
             ]
           ]
         ],
-        "seconds": 9
+        "seconds": 7.2
       },
       {
         "result": "works",
@@ -515,7 +516,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -585,7 +586,7 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 81.1
+        "seconds": 64.3
       },
       {
         "result": "partly",
@@ -652,7 +653,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 14.3
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -750,11 +751,10 @@
             ]
           ]
         ],
-        "seconds": 24.4
+        "seconds": 14.8
       },
       {
-        "result": "not checked",
-        "seconds": 0
+        "result": "not checked"
       },
       {
         "result": "works",
@@ -828,7 +828,7 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 149
+        "seconds": 129.6
       },
       {
         "result": "no",
@@ -883,11 +883,10 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 17.7
+        "seconds": 8
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       }
     ]
   }
