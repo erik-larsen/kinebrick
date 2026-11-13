@@ -22,13 +22,13 @@
         "control": "p67 3648a",
         "moves": [
           "p55 3706",
-          "p159 3743",
-          "p150 3706",
-          "p149 3706"
+          "p165 3743",
+          "p152 3706",
+          "p151 3706"
         ],
         "stays": [
-          "p239 3739 against p0 3710",
-          "p226 3702"
+          "p245 3739 against p0 3710",
+          "p232 3702"
         ]
       },
       {
@@ -38,19 +38,19 @@
         ],
         "source": "book: steps 2-5 (rear axles and the crown-gear take-off), step 33 sub-steps 4-7 and the inset under them",
         "control": [
-          "p239 3739",
-          "p240 3739"
+          "p245 3739",
+          "p246 3739"
         ],
         "moves": [
           "p22 3705 against p0 3710",
-          "p281 3649 against p254 3709b",
-          "p303 3649 against p254 3709b",
-          "p309 3649 against p254 3709b",
-          "p315 3649 against p254 3709b"
+          "p287 3649 against p260 3709b",
+          "p309 3649 against p260 3709b",
+          "p315 3649 against p260 3709b",
+          "p321 3649 against p260 3709b"
         ],
         "stays": [
           "p39 3702 against p0 3710",
-          "p226 3702 against p0 3710"
+          "p232 3702 against p0 3710"
         ]
       },
       {
@@ -60,8 +60,8 @@
         ],
         "source": "book: step 22 sub-steps 2-4 and step 32",
         "control": [
-          "p241 3482",
-          "p242 3482"
+          "p247 3482",
+          "p248 3482"
         ]
       },
       {
@@ -70,15 +70,15 @@
           "three-point-hitch"
         ],
         "source": "book: steps 18 and 29-31, step 33; inferred: no motion is drawn, and unsure that the lever is meant to lift the hitch rather than only hold it at one height",
-        "control": "p226 3702",
+        "control": "p232 3702",
         "moves": [
           "p39 3702",
           "p102 3702",
-          "p254 3709b"
+          "p260 3709b"
         ],
         "stays": [
-          "p239 3739 against p0 3710",
-          "p303 3649 against p254 3709b"
+          "p245 3739 against p0 3710",
+          "p309 3649 against p260 3709b"
         ]
       }
     ],
@@ -89,55 +89,50 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 1,
+    "commit": "a8ff767",
+    "uncommitted": true,
+    "date": "2026-11-13",
+    "seconds": 2,
     "counts": {
-      "no": 2,
-      "works": 2
+      "works": 3,
+      "no": 1
     },
     "loose": [
-      "p237 3024",
-      "p238 3023"
+      "p243 3024",
+      "p244 3023"
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p55 3706",
-          "p159 3743",
-          "p150 3706",
-          "p149 3706"
         ],
         "rates": [
           {
             "p55 3706": [
+              1,
+              0
+            ],
+            "p165 3743": [
+              0,
+              10.1
+            ],
+            "p152 3706": [
+              0.237,
+              1.68
+            ],
+            "p151 3706": [
+              0.237,
+              1.68
+            ],
+            "p245 3739 against p0 3710": [
               0,
               0
             ],
-            "p159 3743": [
-              0,
-              0
-            ],
-            "p150 3706": [
-              0,
-              0
-            ],
-            "p149 3706": [
-              0,
-              0
-            ],
-            "p239 3739 against p0 3710": [
-              0,
-              0
-            ],
-            "p226 3702": [
+            "p232 3702": [
               0,
               0
             ]
@@ -151,23 +146,16 @@
         "back": [
           [
             [
-              0,
-              0
+              0.01,
+              0.01
             ],
             [
-              0,
-              0
+              0.01,
+              0.01
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -185,61 +173,61 @@
           {
             "p22 3705 against p0 3710": [
               3,
-              1.97e-14
+              2.07e-14
             ],
-            "p281 3649 against p254 3709b": [
+            "p287 3649 against p260 3709b": [
               1.8,
-              1.4e-13
+              7.02e-14
             ],
-            "p303 3649 against p254 3709b": [
+            "p309 3649 against p260 3709b": [
               9,
               0.0022
             ],
-            "p309 3649 against p254 3709b": [
+            "p315 3649 against p260 3709b": [
               9,
               0.00812
             ],
-            "p315 3649 against p254 3709b": [
+            "p321 3649 against p260 3709b": [
               9,
               0.023
             ],
             "p39 3702 against p0 3710": [
-              2.81e-8,
-              2.21e-13
-            ],
-            "p226 3702 against p0 3710": [
               0,
-              4.86e-14
+              1.8e-13
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              2.61e-14
             ]
           },
           {
             "p22 3705 against p0 3710": [
               3,
-              1.89e-14
+              1.94e-14
             ],
-            "p281 3649 against p254 3709b": [
+            "p287 3649 against p260 3709b": [
               1.8,
-              8.03e-14
+              1.44e-13
             ],
-            "p303 3649 against p254 3709b": [
+            "p309 3649 against p260 3709b": [
               9,
               0.0022
             ],
-            "p309 3649 against p254 3709b": [
+            "p315 3649 against p260 3709b": [
               9,
               0.00812
             ],
-            "p315 3649 against p254 3709b": [
+            "p321 3649 against p260 3709b": [
               9,
               0.023
             ],
             "p39 3702 against p0 3710": [
-              8.43e-8,
-              3.03e-13
-            ],
-            "p226 3702 against p0 3710": [
               0,
-              4.82e-14
+              2.33e-13
+            ],
+            "p232 3702 against p0 3710": [
+              0,
+              1.66e-14
             ]
           }
         ],
@@ -271,7 +259,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -311,7 +299,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -324,7 +312,7 @@
         "still": [
           "p39 3702",
           "p102 3702",
-          "p254 3709b"
+          "p260 3709b"
         ],
         "rates": [
           {
@@ -336,15 +324,15 @@
               0,
               0
             ],
-            "p254 3709b": [
+            "p260 3709b": [
               0,
               0
             ],
-            "p239 3739 against p0 3710": [
+            "p245 3739 against p0 3710": [
               0,
               0
             ],
-            "p303 3649 against p254 3709b": [
+            "p309 3649 against p260 3709b": [
               0,
               0
             ]

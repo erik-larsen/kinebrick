@@ -3,7 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr, parseModel, PlacedPart } from '../src/ldr.ts';
-import { findMeshes, inferMechanism, Mechanism } from '../src/mechanism.ts';
+import { Vector3 } from 'three';
+import { findMeshes, type Gear, inferMechanism, Mechanism } from '../src/mechanism.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -153,5 +154,22 @@ describe('gears only real sets showed', () => {
     expect(mech.loose).toEqual([]);
     expect(mech.joints.map((j) => j.kind)).toEqual(['revolute']);
     expect(meshes(turntable + '\n1 16 0 20 -40 0.966 -0.259 0 0.259 0.966 0 0 0 1 32270.dat')).toEqual(['bevel']);
+  });
+});
+
+// The 42114 Volvo Articulated Hauler's steering motor drives three 12 tooth bevel gears whose cone
+// tips all meet at one point: a double bevel gear on the motor's upright axle (p2081), another on
+// an axle tipped 53 degrees from it (p2108), and a single bevel gear across both (p2110). Each of
+// the first two meshes with the third, at right angles. They don't mesh with each other: bevel
+// gears mesh only at right angles, and taken as meshing, the three locked the motor.
+describe("bevel gears whose cone tips meet, but on axes that aren't at right angles", () => {
+  const gear = (part: number, center: Vector3, axis: Vector3, bevel: string, apex: number, width: number): Gear => ({ part, body: part, center, axis, radius: 15, width, teeth: 12, spur: bevel === 'both', bevel, apex, crown: 0, worm: 0, face: null, length: 0 });
+  const upright = gear(0, new Vector3(0, -180, -960), new Vector3(0, -1, 0), 'both', 20, 20);
+  const tipped = gear(1, new Vector3(0, -212, -944), new Vector3(0, -0.6, 0.8), 'both', 20, 20);
+  const across = gear(2, new Vector3(17, -200, -960), new Vector3(-1, 0, 0), '+', 17, 7);
+
+  it('mesh only those at right angles', () => {
+    const pairs = findMeshes([upright, tipped, across]).map((m) => [m.gearA, m.gearB].sort().join('-') + ' ' + m.kind);
+    expect(pairs.sort()).toEqual(['0-2 bevel', '1-2 bevel']);
   });
 });
