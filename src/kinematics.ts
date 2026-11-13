@@ -109,6 +109,9 @@ const LOOP_TOLERANCE = 1e-11;
 // How far off its axle's axis a gear's or tyre's centre may be and still be taken on it (see
 // onAxis), in LDU: a part placed a hair off, not one on another axle.
 const ON_AXIS = 1;
+// How far apart (LDU) a universal joint's two shafts' axes may pass and still be taken to cross
+// (see Options.crossing): as built, they miss by up to 0.16 LDU (the 42050 Balloon Cart).
+const CROSSING_MISS = 0.2;
 // The solver's switches. Each Kinematics has its own (see Kinematics.options), which may be
 // changed at any time: two settings can be compared on one loaded model.
 export interface Options {
@@ -148,12 +151,24 @@ export interface Options {
   // the least-squares mix of the free motions left by holding all that can be held. On by
   // default; KINEBRICK_LEAST_PUSH=0 turns it off.
   leastPush: boolean;
+  // A universal joint's two ends are taken where its two shafts' axes cross (or, where they miss
+  // by a hair, at the middle of the shortest line between them), rather than each where the
+  // joint's middle, as the model places it, lies nearest its own shaft's axis: those two points
+  // may be a hair apart even where the axes cross exactly (see findCouplings). Off by default,
+  // for now; KINEBRICK_CROSSING=1 turns it on.
+  crossing: boolean;
+  // Taking up play (see playMotion), tyres keep the rule they have in freeMotionsApart: a motion
+  // that leaves the frame still may scrub them any amount, and lift them by LIFT of how far
+  // they move, as steering a parked car does; the rest keep them firm. Off by default, for
+  // now; KINEBRICK_PARKED_PLAY=1 turns it on.
+  parkedPlay: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1 and KINEBRICK_LEAST_PUSH=0.
+// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0, KINEBRICK_CROSSING=1 and
+// KINEBRICK_PARKED_PLAY=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -164,6 +179,8 @@ export const experiments: Options = {
   reach: setting('KINEBRICK_REACH') !== '0',
   centres: setting('KINEBRICK_CENTRES') === '1',
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
+  crossing: setting('KINEBRICK_CROSSING') === '1',
+  parkedPlay: setting('KINEBRICK_PARKED_PLAY') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -553,6 +570,12 @@ export class Kinematics {
         const away = along >= 0 ? 1 : -1;
         return { body, joint: best, mount: j.bodyA === body ? j.bodyB : j.bodyA, axis: d, away, near };
       });
+      // Crossing: both ends where the shafts' axes cross (see Options.crossing). Not where they
+      // are parallel, or miss by more than CROSSING_MISS: there's no one point for both.
+      if (this.options.crossing) {
+        const at = crossingOf(shafts[0].near, shafts[0].axis, shafts[1].near, shafts[1].axis);
+        if (at) for (const shaft of shafts) shaft.near = at.clone();
+      }
       this.couplings.push({ shafts, turningOnly: c.turningOnly === true });
     }
   }
@@ -2395,7 +2418,21 @@ export class Kinematics {
     // scrubbing more than allowed (a steered car that can't roll).
     const firm = [...rows.filter((_, i) => !play[i]), ...inBasis([...slip.sideways, ...slip.lift], basis)];
     const apply = (z: number[]) => loops.map((row) => dot(row, z));
-    const motions = orthonormalize(nullSpace(firm, basis[0].length));
+    let motions = orthonormalize(nullSpace(firm, basis[0].length));
+    // Parked play (see Options.parkedPlay): with the frame still, the tyres keep
+    // freeMotionsApart's rule, any scrub and lift by LIFT of how far they move, as steering a
+    // parked plane's nose wheel scrubs it round (the 42066 Air Race Jet).
+    if (this.options.parkedPlay && slip.sideways.length > 0) {
+      const frameStill = [0, 1, 2, 3, 4, 5].map((k) => {
+        const row = new Array(6 * this.bodyCount).fill(0);
+        row[k] = 1;
+        return row;
+      });
+      const parked = orthonormalize(nullSpace([...rows.filter((_, i) => !play[i]), ...inBasis(frameStill, basis)], basis[0].length));
+      const [sideways, travel, lift] = [slip.sideways, slip.travel, slip.lift].map((r) => inBasis(r, basis));
+      const kept = parked.length ? leastScrub(parked, { sideways: lift, travel: [...travel, ...sideways], lift: [], rise: [] }, LIFT) : [];
+      if (kept.length) motions = orthonormalize([...motions, ...kept]);
+    }
     if (motions.length === 0) return null;
     // The mix a of the motions with Σ a_k rate_k = 1 that makes aᵀ G a least, G holding how much
     // each pair of them opens the loops together, and turns the joints together times TIE_BREAK²:
@@ -2803,6 +2840,22 @@ function screwMotion(w: Vector3, v: Vector3): Matrix4 {
 // instead what's within `limit` (with the frame rising or sinking counted as travel, see
 // freeMotions, a car moving on its suspension needs none): if rolling needs more, the
 // directions within `usual` are kept all the same.
+// Where two lines (through points p and q, along unit directions d and e) cross: the middle of
+// the shortest line between them, if they pass within CROSSING_MISS of each other and aren't
+// parallel; else null.
+function crossingOf(p: Vector3, d: Vector3, q: Vector3, e: Vector3): Vector3 | null {
+  const r = new Vector3().subVectors(p, q);
+  const b = d.dot(e);
+  const den = 1 - b * b;
+  if (den < 1e-6) return null;
+  const s = (b * e.dot(r) - d.dot(r)) / den;
+  const t = (e.dot(r) - b * d.dot(r)) / den;
+  const onD = p.clone().addScaledVector(d, s);
+  const onE = q.clone().addScaledVector(e, t);
+  if (onD.distanceTo(onE) > CROSSING_MISS) return null;
+  return onD.add(onE).multiplyScalar(0.5);
+}
+
 function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit, needs = { least: 0 }, rolling?: number): number[][] {
   const k = motions.length;
   const dot = (a: number[], b: number[]) => a.reduce((sum, x, i) => sum + x * b[i], 0);
