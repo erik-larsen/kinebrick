@@ -62,7 +62,8 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
     "seconds": 1,
     "counts": {
@@ -140,7 +141,7 @@
         ],
         "cause": "too-little",
         "detail": "p56 4716 against p0 32523",
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -180,7 +181,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "skipped",

@@ -252,9 +252,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 2248,
+    "seconds": 2544,
     "counts": {
       "no": 1,
       "works": 1,
@@ -727,7 +728,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 5.3
+        "seconds": 48
       },
       {
         "result": "works",
@@ -923,7 +924,7 @@
             ]
           ]
         ],
-        "seconds": 613.2
+        "seconds": 798.5
       },
       {
         "result": "partly",
@@ -962,7 +963,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 141.4
+        "seconds": 197.2
       },
       {
         "result": "partly",
@@ -1041,7 +1042,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 190.6
+        "seconds": 217.4
       },
       {
         "result": "partly",
@@ -1089,7 +1090,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 148.9
+        "seconds": 146.8
       },
       {
         "result": "partly",
@@ -1142,7 +1143,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 153
+        "seconds": 146.1
       },
       {
         "result": "partly",
@@ -1190,7 +1191,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 164.4
+        "seconds": 158.4
       },
       {
         "result": "partly",
@@ -1238,7 +1239,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 164.9
+        "seconds": 159.9
       },
       {
         "result": "partly",
@@ -1276,7 +1277,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 262
+        "seconds": 352.8
       },
       {
         "result": "not checked"

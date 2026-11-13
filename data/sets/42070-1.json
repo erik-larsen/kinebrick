@@ -229,9 +229,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 228,
+    "seconds": 223,
     "counts": {
       "partly": 7,
       "works": 2,
@@ -354,7 +355,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 18.9
+        "seconds": 19.4
       },
       {
         "result": "partly",
@@ -399,7 +400,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 19.3
+        "seconds": 19.5
       },
       {
         "result": "partly",
@@ -514,7 +515,7 @@
             "dead point"
           ]
         ],
-        "seconds": 40.3
+        "seconds": 39.2
       },
       {
         "result": "works",
@@ -562,7 +563,7 @@
             "dead point"
           ]
         ],
-        "seconds": 41.2
+        "seconds": 39.5
       },
       {
         "result": "partly",
@@ -639,7 +640,7 @@
         ],
         "cause": "not-driven",
         "detail": "p124 18946",
-        "seconds": 19.7
+        "seconds": 18.8
       },
       {
         "result": "partly",
@@ -718,7 +719,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 19.1
+        "seconds": 18.7
       },
       {
         "result": "partly",
@@ -787,7 +788,7 @@
         ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 19.7
+        "seconds": 19
       },
       {
         "result": "partly",
@@ -866,7 +867,7 @@
         ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 20.1
+        "seconds": 18.9
       },
       {
         "result": "no",
@@ -917,7 +918,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 4.6
+        "seconds": 6.2
       },
       {
         "result": "skipped",

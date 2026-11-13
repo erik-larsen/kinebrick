@@ -121,9 +121,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 13,
+    "seconds": 10,
     "counts": {
       "works": 3,
       "not back": 2,
@@ -204,7 +205,7 @@
           "p621 32449",
           "p83 32054"
         ],
-        "seconds": 3.9
+        "seconds": 3.1
       },
       {
         "result": "no",
@@ -277,7 +278,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -403,7 +404,7 @@
         "pushed": [
           true
         ],
-        "seconds": 6.7
+        "seconds": 5.2
       },
       {
         "result": "works",
@@ -461,7 +462,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.3
       }
     ]
   }

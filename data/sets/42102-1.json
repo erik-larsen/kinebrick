@@ -96,13 +96,14 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
     "seconds": 1,
     "counts": {
-      "works": 2,
+      "works": 3,
       "partly": 1,
-      "no": 1
+      "not back": 1
     },
     "loose": [],
     "functions": [
@@ -232,34 +233,29 @@
         ],
         "cause": "not-driven",
         "detail": "p107 32498",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.56,
+            -1.54
           ]
-        ],
-        "still": [
-          "p103 32524",
-          "p107 32498",
-          "p108 32498"
         ],
         "rates": [
           {
             "p103 32524": [
-              0,
-              0
+              0.173,
+              17.3
             ],
             "p107 32498": [
-              0,
-              0
+              0.173,
+              17.6
             ],
             "p108 32498": [
-              0,
-              0
+              0.173,
+              17.6
             ],
             "p125 55982": [
               0,
@@ -278,23 +274,23 @@
         "back": [
           [
             [
-              0,
-              0
+              0.64,
+              0.69
             ],
             [
-              0,
-              0
+              0.55,
+              0.59
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
+        "strayed": [
+          "p116 42003"
         ],
-        "cause": "control-jammed",
-        "seconds": 0
+        "pushed": [
+          true
+        ],
+        "freed": 1,
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -364,7 +360,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       }
     ]
   }

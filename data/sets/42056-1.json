@@ -197,13 +197,14 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 445,
+    "seconds": 417,
     "counts": {
-      "works": 6,
-      "partly": 4,
-      "not back": 3,
+      "works": 7,
+      "partly": 3,
+      "not back": 4,
       "skipped": 1,
       "no": 1
     },
@@ -302,7 +303,7 @@
             ]
           ]
         ],
-        "seconds": 33.3
+        "seconds": 31.5
       },
       {
         "result": "partly",
@@ -382,7 +383,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 82.9
+        "seconds": 78.8
       },
       {
         "result": "partly",
@@ -472,7 +473,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 23.4
+        "seconds": 22.3
       },
       {
         "result": "partly",
@@ -512,7 +513,7 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 11.5
+        "seconds": 10.4
       },
       {
         "result": "works",
@@ -584,7 +585,7 @@
             "dead point"
           ]
         ],
-        "seconds": 31.8
+        "seconds": 29.5
       },
       {
         "result": "works",
@@ -656,17 +657,17 @@
             "dead point"
           ]
         ],
-        "seconds": 38.2
+        "seconds": 36.7
       },
       {
         "result": "skipped"
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.83,
+            -0.07
           ],
           [
             1.5,
@@ -683,7 +684,16 @@
           {}
         ],
         "back": [
-          [],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              21.5,
+              5.05
+            ]
+          ],
           [
             [
               0,
@@ -705,11 +715,25 @@
             ]
           ]
         ],
-        "why": [
-          "p2437 64394 is part of the frame"
+        "strayed": [
+          "p2486 41669"
         ],
-        "cause": "control-fixed",
-        "seconds": 23.8
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "freed": 2,
+        "seconds": 56.6
       },
       {
         "result": "works",
@@ -748,7 +772,7 @@
         "pushed": [
           true
         ],
-        "seconds": 48
+        "seconds": 47.6
       },
       {
         "result": "no",
@@ -804,7 +828,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2757 24119",
-        "seconds": 1.4
+        "seconds": 15.9
       },
       {
         "result": "works",
@@ -841,7 +865,7 @@
         "pushed": [
           true
         ],
-        "seconds": 37.4
+        "seconds": 35.9
       },
       {
         "result": "works",
@@ -881,7 +905,7 @@
             ]
           ]
         ],
-        "seconds": 24
+        "seconds": 20.9
       }
     ]
   }

@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 58 works, 13 partly, 5 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 59 works, 13 partly, 4 no.
 
 ## By decade
 
@@ -227,7 +227,7 @@ Each detail by the set it first appears in.
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- The black gear on top of the frame behind the cab steers (hand of god steering): its vertical shaft turns, through 12 tooth bevel gears and two universal joints, a 12 tooth gear on the front axle's rack, which turns both front track units. (no)
+- The black gear on top of the frame behind the cab steers (hand of god steering): its vertical shaft turns, through 12 tooth bevel gears and two universal joints, a 12 tooth gear on the front axle's rack, which turns both front track units. (works)
 
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 

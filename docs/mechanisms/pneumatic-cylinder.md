@@ -4,7 +4,7 @@ Air let in by a valve pushes a cylinder out or in. (Moving and lifting.)
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): Pump with the red hand pump and push the valve at the left of the cab's back to the side, and the yellow cylinder at the front of the cab raises or lowers the boom, carrying the stick and bucket with it.
 
-Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 2 works, 8 partly, 13 no, 6 skipped.
+Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 2 works, 10 partly, 11 no, 6 skipped.
 
 ## By decade
 
@@ -67,8 +67,8 @@ Each detail by the set it first appears in.
 
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
 
-- *boom:* One valve raises and lowers the boom: it feeds the two cylinders low down between the front wheels, which push the boom up about its pivot at the top of the black uprights; the bucket rises and falls with it. (no)
-- *bucket:* The other valve tips the bucket: it feeds the cylinder on top of the boom, which turns the bucket on the end of the boom through a lever and two links. (no)
+- *boom:* One valve raises and lowers the boom: it feeds the two cylinders low down between the front wheels, which push the boom up about its pivot at the top of the black uprights; the bucket rises and falls with it. (partly)
+- *bucket:* The other valve tips the bucket: it feeds the cylinder on top of the boom, which turns the bucket on the end of the boom through a lever and two links. (partly)
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 

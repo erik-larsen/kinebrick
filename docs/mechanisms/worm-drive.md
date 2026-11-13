@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 28 works, 48 partly, 6 no, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 33 works, 49 partly, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -81,18 +81,18 @@ Each detail by the set it first appears in.
 **2005, [8419 Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8419-1)**
 
 - The knob at the back on the right (a 20-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on a cross shaft at the back; cranks and a side link carry that to a cross shaft at the front, whose two arms push the boom up on two thin beams. (works)
-- The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip. (no)
+- The knob at the back on the left (a 20-tooth double bevel gear) swings the stick in and out: through a 20- and a 16-tooth gear it turns a shaft that runs forward to a pair of 20-tooth bevel gears in the middle of the turntable, then up through a universal joint on the boom's pivot to a worm inside the boom, which turns an 8-tooth gear whose crank and links swing the stick and bucket at the boom's tip. (works)
 
 **2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1)**
 
-- The left of the two knobs at the back (a 12-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on the boom's pivot axle. (no)
+- The left of the two knobs at the back (a 12-tooth double bevel gear) raises and lowers the boom: it turns a worm, which turns a 24-tooth gear on the boom's pivot axle. (partly)
 - The right of the two knobs at the back (a 12-tooth double bevel gear) extends and retracts the boom: it turns a second worm, which turns an 8-tooth gear at the boom's foot, and that slides the inner boom with the bucket out of the outer one. (works)
 - Turning the axle end at the boom's head tilts the bucket: a worm on that axle turns an 8-tooth gear on the bucket's pivot axle. (works)
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
 - The knob on top of the sleeper box lowers and raises the two outriggers at the back: a worm on its shaft turns a 24-tooth gear, a long shaft runs back under the deck, and bevel gears turn a cross shaft whose links swing the two black legs down until their feet stand on the ground. (partly)
-- The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom. (no)
+- The rear knob on the crane base's left side raises and lowers the boom: a worm turns a 24-tooth gear in a hinged bracket, and the gear's two arms push the long black strut up under the boom. (works)
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
@@ -110,7 +110,7 @@ Each detail by the set it first appears in.
 
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 
-- The 20-tooth gear on top at the front raises and lowers the header: its shaft runs down to a knob gear, which turns a worm, which turns a 24-tooth gear that lifts the feeder holding the header. (no)
+- The 20-tooth gear on top at the front raises and lowers the header: its shaft runs down to a knob gear, which turns a worm, which turns a 24-tooth gear that lifts the feeder holding the header. (works)
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
@@ -168,7 +168,7 @@ Each detail by the set it first appears in.
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
 - Turning the exhaust stack raises and lowers the loader arm: the stack is the top of a vertical shaft with a worm at its foot, which turns an 8-tooth gear on the loader arm's pivot axle. (works)
-- The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot. (no)
+- The knob on top of the backhoe's upright shaft raises and lowers the backhoe boom: a worm at the shaft's foot turns an 8-tooth gear on the boom's pivot. (works)
 
 **2014, [42029 Customized Pick up Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42029-1)**
 
@@ -208,7 +208,7 @@ Each detail by the set it first appears in.
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
-- The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (no)
+- The knob on top of the upper body, behind the cab, raises and lowers the cab: its upright shaft carries a worm that turns a 24 tooth gear, whose two arms lift the cab on a parallel linkage, so the cab rises well above the upper body and stays level. (works)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 

@@ -106,7 +106,8 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
     "seconds": 3,
     "counts": {
@@ -165,7 +166,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -213,7 +214,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",

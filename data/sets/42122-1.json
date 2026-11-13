@@ -137,13 +137,14 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 6,
+    "seconds": 9,
     "counts": {
-      "no": 5,
+      "no": 3,
       "skipped": 1,
-      "works": 3
+      "works": 5
     },
     "loose": [
       "p195 22977",
@@ -248,7 +249,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -339,39 +340,54 @@
         "seconds": 0.8
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
-        "still": [
-          "p448 42122 - 71709",
-          "p459 32524"
-        ],
         "rates": [
-          {}
+          {
+            "p448 42122 - 71709": [
+              1,
+              80
+            ],
+            "p459 32524": [
+              1,
+              120
+            ],
+            "p207 14720": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p457 32524 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 2,
+        "seconds": 1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -379,15 +395,29 @@
           {}
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p378 32524 is part of the frame",
-          "p421 32524 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 2,
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -420,7 +450,7 @@
         "pushed": [
           true
         ],
-        "seconds": 1.3
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -490,7 +520,7 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 3.4
       }
     ]
   }

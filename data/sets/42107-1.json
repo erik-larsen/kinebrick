@@ -152,13 +152,15 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 9,
+    "seconds": 8,
     "counts": {
-      "partly": 3,
+      "partly": 4,
       "skipped": 1,
-      "no": 3,
+      "not back": 1,
+      "no": 2,
       "works": 1,
       "not checked": 1
     },
@@ -230,7 +232,7 @@
         ],
         "cause": "loose-part",
         "detail": "p127 18947",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -308,7 +310,7 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 1.5
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -367,36 +369,68 @@
         ],
         "cause": "part-fixed",
         "detail": "p284 76537",
-        "seconds": 3.7
+        "seconds": 3.4
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.1,
+            -0.17
           ]
         ],
-        "still": [
-          "p351 15462",
-          "p372 44294",
-          "p379 88516"
-        ],
         "rates": [
-          {}
+          {
+            "p351 15462": [
+              1,
+              44.7
+            ],
+            "p372 44294": [
+              1,
+              4.6e-13
+            ],
+            "p379 88516": [
+              1,
+              1
+            ],
+            "p247 35189": [
+              0,
+              0
+            ],
+            "p129 33299a": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              23.64,
+              13.42
+            ],
+            [
+              14.09,
+              8
+            ]
+          ]
         ],
-        "why": [
-          "p340 15462 is part of the frame"
+        "strayed": [
+          "p555 3711"
         ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "freed": 2,
+        "cause": "stopped-early",
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -452,7 +486,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 2
       },
       {
         "result": "no",
@@ -500,7 +534,7 @@
           true
         ],
         "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "not checked",

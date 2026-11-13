@@ -133,9 +133,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
       "works": 6,
       "partly": 1
@@ -376,7 +377,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -449,7 +450,7 @@
         ],
         "cause": "not-driven",
         "detail": "p305 3649 against p256 3709b",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",

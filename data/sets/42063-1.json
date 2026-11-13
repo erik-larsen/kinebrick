@@ -111,7 +111,8 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
     "seconds": 3,
     "counts": {
@@ -154,7 +155,7 @@
           "p419 32016 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -207,7 +208,7 @@
         "strayed": [
           "p131 62520"
         ],
-        "seconds": 2.1
+        "seconds": 1.9
       },
       {
         "result": "works",

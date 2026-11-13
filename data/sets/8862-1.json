@@ -189,9 +189,10 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "25ca2b8",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 44,
+    "seconds": 34,
     "counts": {
       "works": 8,
       "partly": 3,
@@ -236,7 +237,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -291,7 +292,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 3.3
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -329,7 +330,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -367,7 +368,7 @@
             ]
           ]
         ],
-        "seconds": 3.4
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -407,7 +408,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -450,7 +451,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -480,7 +481,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -526,7 +527,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p264 3702",
-        "seconds": 14.7
+        "seconds": 11
       },
       {
         "result": "partly",
@@ -572,7 +573,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p292 3703",
-        "seconds": 2.5
+        "seconds": 1.8
       },
       {
         "result": "skipped",
@@ -601,7 +602,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -671,7 +672,7 @@
             ]
           ]
         ],
-        "seconds": 7.1
+        "seconds": 5.7
       }
     ]
   }

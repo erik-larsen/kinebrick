@@ -5,8 +5,9 @@ import type { Connection } from '../mechanism.ts';
 // A pin joins two parts through round holes, and both turn on it. Which of them the pin turns
 // with doesn't matter, so it's locked to one (the one it goes furthest into, or the first in
 // the model), saving a body that only spins to no purpose. A friction pin's other joints are
-// stiff, or, if `frictionRigid`, rigid too (marked `held`, so inferMechanism knows).
-export function fixPins(connections: Connection[], roles: string[], frictionRigid: boolean) {
+// stiff, or, if `frictionRigid`, rigid too (marked `held`, so inferMechanism knows), but for the
+// pins in `freed` (see pinsToFree).
+export function fixPins(connections: Connection[], roles: string[], frictionRigid: boolean, freed: Set<number>) {
   roles.forEach((role, pin) => {
     if (role !== 'pin' && role !== 'friction pin') return;
     const turning = connections.filter((c) => c.male === pin && c.kind === 'revolute');
@@ -16,7 +17,7 @@ export function fixPins(connections: Connection[], roles: string[], frictionRigi
     turning[0].kind = 'rigid';
     if (role !== 'friction pin') return;
     for (const c of turning.slice(1)) {
-      if (frictionRigid) {
+      if (frictionRigid && !freed.has(pin)) {
         c.kind = 'rigid';
         c.held = true;
       } else {
