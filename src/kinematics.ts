@@ -2098,15 +2098,23 @@ export class Kinematics {
         if (Math.abs(done - step) > 1e-12) return turned;
         continue;
       }
-      // Nor past the end of a train's track (see src/track.ts).
-      if ((allowed && !allowed()) || this.mech.track?.pastBuffer(this.mech.riders!.map((r, i) => [i, r.center.clone().applyMatrix4(this.poses[r.body])]), this.poses[0])) {
+      // Nor past the end of a train's track (see src/track.ts): a buffer is a dead point, so
+      // a motor turns back there.
+      const notAllowed = allowed !== undefined && !allowed();
+      if (notAllowed || this.pastBuffer()) {
         this.restore(before);
+        if (!notAllowed) this.deadPoint = { joint, way: Math.sign(angle), angles: this.jointAngles.slice() };
         break;
       }
       turned += step;
       this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
     }
     return turned;
+  }
+
+  // Whether a train has gone past the end of its track (see src/track.ts).
+  pastBuffer(): boolean {
+    return this.mech.track?.pastBuffer(this.mech.riders!.map((r, i) => [i, r.center.clone().applyMatrix4(this.poses[r.body])]), this.poses[0]) ?? false;
   }
 
   // Whether the last turn of `joint` stopped at a dead point (see turnJoint), and nothing has

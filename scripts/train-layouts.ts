@@ -90,6 +90,39 @@ const ERRATA: Record<string, [string, string, string][]> = {
     ],
     ['', '1 0 -160 -354 112 0.707107 0 0.707107 0 1 0 -0.707107 0 0.707107 6990 - Station 1 - Lamp.ldr', '1 0 -160 -354 112 -0.707107 0 -0.707107 0 1 0 0.707107 0 -0.707107 6990 - Station 1 - Lamp.ldr'],
   ],
+  '6991-1': [
+    [
+      "The radar's big wheel, at the foot of the lower axle that hangs from its universal joint, stands over the track, below the train's roof and the cabins it carries: a passing train pushes it aside (its rounded foot slides out along the support's channel) and turns it, which turns the antenna. Kinebrick can't push a part by touch, so the lower half is set swung 10 degrees out at the joint, as the train leaves it: the foot 37 LDU out along the channel, the wheel clear of the train. The joint is placed as its pieces, its lower end turned with the axle",
+      `1 7 0 0 0 1 0 0 0 1 0 0 0 1 2654a.dat
+1 1 0 -8 0 1 0 0 0 1 0 0 0 1 4032a.dat
+1 1 0 -16 0 1 0 0 0 1 0 0 0 1 4032a.dat
+0 STEP
+1 0 0 -96 0 0 0 -1 -1 0 0 0 1 0 3737.dat
+0 STEP
+1 7 0 -81 0 -1 0 0 0 0 1 0 1 0 6577.dat
+1 7 0 -26 0 -1 0 0 0 0 1 0 1 0 3713.dat
+1 7 0 -46 0 -1 0 0 0 0 1 0 1 0 3713.dat
+1 7 0 -66 0 -1 0 0 0 0 1 0 1 0 3713.dat
+0 STEP
+1 0 0 -96 0 -1 0 0 0 0 1 0 1 0 3482c02.dat
+0 STEP
+1 7 0 -216 0 -1 0 0 0 0 1 0 1 0 3712c03.dat
+`,
+      `1 7 -24.115 -3.282 28.728 0.994 -0.112 0.007 0.112 0.985 -0.133 0.007 0.133 0.991 2654a.dat
+1 1 -23.222 -11.16 27.664 0.994 -0.112 0.007 0.112 0.985 -0.133 0.007 0.133 0.991 4032a.dat
+1 1 -22.329 -19.038 26.6 0.994 -0.112 0.007 0.112 0.985 -0.133 0.007 0.133 0.991 4032a.dat
+1 0 -13.397 -97.823 15.96 0.112 0.007 -0.994 -0.985 -0.133 -0.112 -0.133 0.991 -0.007 3737.dat
+1 7 -15.072 -83.051 17.955 -0.994 0.007 -0.112 -0.112 -0.133 0.985 -0.007 0.991 0.133 6577.dat
+1 7 -21.212 -28.887 25.27 -0.994 0.007 -0.112 -0.112 -0.133 0.985 -0.007 0.991 0.133 3713.dat
+1 7 -18.98 -48.583 22.61 -0.994 0.007 -0.112 -0.112 -0.133 0.985 -0.007 0.991 0.133 3713.dat
+1 7 -16.747 -68.279 19.95 -0.994 0.007 -0.112 -0.112 -0.133 0.985 -0.007 0.991 0.133 3713.dat
+1 0 -13.397 -97.823 15.96 -0.994 0.007 -0.112 -0.112 -0.133 0.985 -0.007 0.991 0.133 3482c02.dat
+1 7 -3.349 -186.456 3.99 -0.994 0.007 -0.112 -0.112 -0.133 0.985 -0.007 0.991 0.133 3712.dat
+1 7 0 -246 0 0 -1 0 0 0 -1 1 0 0 3712.dat
+1 7 0 -216 0 -1 0 0 0 0 1 0 1 0 3326a.dat
+`,
+    ],
+  ],
   '7839-1': [
     [
       "The depot's loading platform reaches 5 LDU over the freight car's side, as for driving cars onto it: the train can't leave without it being lifted. Moved 8 LDU back from the track",

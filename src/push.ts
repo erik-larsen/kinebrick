@@ -22,7 +22,8 @@ export function pointDirections(kin: Kinematics, body: number, g: Vector3): numb
 // to the way the point went, so that steps one after another follow a curve (a steered car
 // rolling round, a door swinging on its hinge). Returns 'stuck', with nothing moved, if the point
 // has nowhere to go, or only well off `dir`; and 'blocked', with the step undone, if `allowed`
-// says no to where the step left the model (it ran into something, or past the end of a slide).
+// says no to where the step left the model (it ran into something, or past the end of a slide),
+// or a train went past the end of its track.
 export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
   const g = grab.clone().applyMatrix4(kin.poses[body]);
   const motions = kin.freeMotions();
@@ -37,7 +38,8 @@ export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vect
   motions.forEach((m, i) => m.forEach((x, k) => (combined[k] += x * amounts[i] * scale)));
   const before = kin.snapshot();
   kin.advance(combined, 1);
-  if (!allowed()) {
+  // (A train pushed past the end of its track is blocked there too, as by a buffer stop.)
+  if (!allowed() || kin.pastBuffer()) {
     kin.restore(before);
     return 'blocked';
   }
