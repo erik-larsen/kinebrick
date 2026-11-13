@@ -1468,16 +1468,17 @@ export class Kinematics {
   }
 
   // The worms that a drag of `grabbed` would drive from the gear side. The worm's side is
-  // everything geared to the worm without going through its worm mesh (a crank geared to the
-  // worm's axle, say); a drag from anywhere else can only reach the worm through its gear.
-  // A linear actuator's screw locks the same way: its piston can't drive its input, which is
-  // held still unless the drag turns it, through gears, universal joints or chains.
+  // everything that turns the worm without going through its worm mesh, through gears,
+  // universal joints or chains (a crank geared to the worm's axle, say, or a knob that turns it
+  // through two universal joints: the 42049 Mine Loader's claw); a drag from anywhere else can
+  // only reach the worm through its gear. A linear actuator's screw locks the same way: its
+  // piston can't drive its input, which is held still unless the drag turns it.
   private wormsAgainst(grabbed: number): number[] {
     const worms: number[] = [];
     for (const mesh of this.mech.meshes) {
       if (mesh.kind !== 'worm') continue;
       const wormBody = this.mech.gears[mesh.gearA].body;
-      if (!this.gearedTo(wormBody).has(grabbed)) worms.push(wormBody);
+      if (!this.gearedTo(wormBody, true).has(grabbed)) worms.push(wormBody);
     }
     for (const screw of this.mech.screws ?? []) if (!this.gearedTo(screw.input, true).has(grabbed)) worms.push(screw.input);
     return worms;
@@ -1486,7 +1487,7 @@ export class Kinematics {
   // What a drag of `grabbed` would drive from the wrong end, if anything (see wormsAgainst): a worm
   // gear from its gear, or failing that, a linear actuator from its piston.
   lockedBy(grabbed: number): 'worm' | 'actuator' | null {
-    if (this.mech.meshes.some((m) => m.kind === 'worm' && !this.gearedTo(this.mech.gears[m.gearA].body).has(grabbed))) return 'worm';
+    if (this.mech.meshes.some((m) => m.kind === 'worm' && !this.gearedTo(this.mech.gears[m.gearA].body, true).has(grabbed))) return 'worm';
     return (this.mech.screws ?? []).some((screw) => !this.gearedTo(screw.input, true).has(grabbed)) ? 'actuator' : null;
   }
 
