@@ -46,8 +46,8 @@ const CONNECTIONS: Connection[] = [holds, joints, couplings, spinners, links, ge
 // With KINEBRICK_TRACE set, what stops a drag is written to the error output, a line each, as
 // `trace` and a JSON object (see traceJam): for working out why controls jam. Unset, nothing is
 // written and nothing changes.
-const TRACE = typeof process !== 'undefined' && !!process.env?.KINEBRICK_TRACE;
-function trace(what: object) {
+export const TRACE = typeof process !== 'undefined' && !!process.env?.KINEBRICK_TRACE;
+export function trace(what: object) {
   console.error(`trace ${JSON.stringify(what)}`);
 }
 
@@ -143,7 +143,7 @@ export interface Options {
   // KINEBRICK_REACH=0 turns it off.
   reach: boolean;
   // A gear's or tyre's centre is taken on the axis of the joint its body turns on (see
-  // onAxis), not where the part itself is placed. Off by default, for now; KINEBRICK_CENTRES=1
+  // onAxis), not where the part itself is placed, for every kind of gear mesh. Off by default, for now; KINEBRICK_CENTRES=1
   // turns it on.
   centres: boolean;
 }
@@ -2282,6 +2282,27 @@ export class Kinematics {
     return Math.hypot(...apply(z)) <= PLAY_RATE * Math.abs(rate(z)) ? z : null;
   }
 
+  // With TRACE (see tracePushStuck): `f`, with the drag's holds let go for the while.
+  withoutHolds<T>(f: () => T): T {
+    const { held, heldToFrame, outOfReach } = this.drag;
+    // What working out the free motions sets, as it was (see steeringBodies).
+    const [scrubNeeded, leastScrub, slipRows] = [this.scrubNeeded, this.leastScrub, this.slipRows];
+    this.drag.held = new Set();
+    this.drag.heldToFrame = new Set();
+    this.drag.outOfReach = new Set();
+    try {
+      return f();
+    } finally {
+      Object.assign(this.drag, { held, heldToFrame, outOfReach });
+      [this.scrubNeeded, this.leastScrub, this.slipRows] = [scrubNeeded, leastScrub, slipRows];
+    }
+  }
+
+  // With TRACE: how many bodies the drag holds.
+  heldCount(): number {
+    return this.drag.held.size + this.drag.heldToFrame.size;
+  }
+
   // With TRACE: why no motion turns `joint` exactly (see playMotion). Of the rows but the loops',
   // with tyres neither scrubbing nor lifting, whether any motion turns it, and if one does, how far
   // the one that opens the loops least opens them, for each radian it turns the joint (`firm`);
@@ -2294,11 +2315,12 @@ export class Kinematics {
       const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
       const play: number[] = [];
       this.traceNames = [];
-      const rows = inBasis(this.buildEquations(null, slip, true, null, play), basis);
+      const raw = this.buildEquations(null, slip, true, null, play);
+      const rows = inBasis(raw, basis);
       const names = this.traceNames;
       this.traceNames = null;
       const loops = rows.flatMap((row, i) => (play[i] ? [row.map((x) => x * play[i])] : []));
-      return { rows, play, names, loops, slid: inBasis([...slip.sideways, ...slip.lift], basis) };
+      return { rows, play, names, loops, slid: inBasis([...slip.sideways, ...slip.lift], basis), raw, slips: [...slip.sideways, ...slip.lift] };
     };
     const judge = (firm: Row[], loops: Row[]) => {
       const motions = orthonormalize(nullSpace(firm, q));
@@ -2331,6 +2353,90 @@ export class Kinematics {
       }
     }
     trace({ event: 'jam', joint, loops: seen.loops.length, firm: judge(firmOf(seen, null), seen.loops), without });
+    if (process.env.KINEBRICK_TRACE === 'parts') this.traceParts(seen, judge);
+  }
+
+  // With KINEBRICK_TRACE=parts, after traceJam: the rows in groups, one joint, gear mesh, tyre or
+  // other rule each (the rows of one kind of connection on the same bodies), and which group, left
+  // out alone, lets the control turn opening the loops no more than 1 LDU a radian. A loop's joint
+  // left out is let come apart. Where no one group does, the pair that does with the least opening,
+  // from the 12 groups that each do best alone.
+  private traceParts(
+    seen: { rows: Row[]; play: number[]; names: string[]; slid: Row[]; raw: Row[]; slips: Row[] },
+    judge: (firm: Row[], loops: Row[]) => { turns: boolean; opening?: number },
+  ) {
+    const bodiesOf = (row: Row) => {
+      const out: number[] = [];
+      for (let b = 0; b < this.bodyCount; b++) {
+        for (let k = 0; k < 6; k++) {
+          if (row[6 * b + k] !== 0) {
+            out.push(b);
+            break;
+          }
+        }
+      }
+      return out;
+    };
+    const keys = seen.raw.map((row, i) => `${seen.play[i] ? 'loop joint' : seen.names[i]}:${bodiesOf(row).join(',')}`);
+    const slipKeys = seen.slips.map((row) => `slip:${bodiesOf(row).join(',')}`);
+    const loopRows = seen.rows.flatMap((row, i) => (seen.play[i] ? [{ key: keys[i], row: row.map((x) => x * seen.play[i]) }] : []));
+    const firmRows = [...seen.rows.flatMap((row, i) => (seen.play[i] ? [] : [{ key: keys[i], row }])), ...seen.slid.map((row, i) => ({ key: slipKeys[i], row }))];
+    const groups = [...new Set([...firmRows, ...loopRows].map((r) => r.key))];
+    const without = (out: Set<string>) =>
+      judge(
+        firmRows.filter((r) => !out.has(r.key)).map((r) => r.row),
+        loopRows.filter((r) => !out.has(r.key)).map((r) => r.row),
+      );
+    const base = without(new Set());
+    const score = (v: { turns: boolean; opening?: number }) => (v.turns ? (v.opening ?? 0) : Infinity);
+    const singles = groups.map((key) => ({ key, v: without(new Set([key])) }));
+    const frees = singles.filter((s) => score(s.v) <= 1);
+    let pair: { keys: string[]; opening: number } | null = null;
+    if (!frees.length) {
+      const best = singles.filter((s) => score(s.v) < score(base) * (1 - 1e-6)).sort((a, b) => score(a.v) - score(b.v)).slice(0, 12);
+      for (let i = 0; i < best.length; i++) {
+        for (let j = i + 1; j < best.length; j++) {
+          const v = without(new Set([best[i].key, best[j].key]));
+          if (score(v) <= 1 && (!pair || score(v) < pair.opening)) pair = { keys: [best[i].key, best[j].key], opening: score(v) };
+        }
+      }
+    }
+    const describe = (key: string) => {
+      const [kind, list] = key.split(':');
+      const bodies = list ? list.split(',').map(Number) : [];
+      return { key, kind, bodies, ...this.partsOf(kind, bodies) };
+    };
+    trace({
+      event: 'parts',
+      groups: groups.length,
+      base: score(base),
+      frees: frees.map((s) => ({ ...describe(s.key), opening: score(s.v) })),
+      pair: pair && { opening: pair.opening, groups: pair.keys.map(describe) },
+      best: pair || frees.length ? [] : singles.sort((a, b) => score(a.v) - score(b.v)).slice(0, 3).map((s) => ({ ...describe(s.key), opening: score(s.v) })),
+    });
+  }
+
+  // With TRACE: the parts behind a group of rows (see traceParts), and their roles: a joint's
+  // connections, a mesh's gears, a tyre, else the parts of each body that aren't structure.
+  private partsOf(kind: string, bodies: number[]): { parts: [number, string][]; mesh?: string } {
+    const m = this.mech;
+    const on = (a: number, b: number) => bodies.length === 2 && ((bodies[0] === a && bodies[1] === b) || (bodies[0] === b && bodies[1] === a));
+    const named = (parts: number[]) => ({ parts: [...new Set(parts.filter((p) => p !== undefined))].slice(0, 6).map((p) => [p, m.roles[p]] as [number, string]) });
+    if (kind === 'gears') {
+      const mesh = m.meshes.find((x) => on(m.gears[x.gearA].body, m.gears[x.gearB].body));
+      if (mesh) return { ...named([m.gears[mesh.gearA].part, m.gears[mesh.gearB].part]), mesh: mesh.kind };
+    }
+    if (kind === 'tyres' || kind === 'slip') {
+      const treads = m.treads.filter((t) => bodies.includes(t.body));
+      if (treads.length) return named(treads.map((t) => t.part));
+    }
+    if (kind === 'loops') {
+      const loop = m.loops.find((l) => l.wheels.some((w) => bodies.includes(w.body)));
+      if (loop) return named([loop.links[0], ...m.gears.filter((g) => loop.wheels.some((w) => w.body === g.body) && bodies.includes(g.body)).map((g) => g.part)]);
+    }
+    const connections = m.connections.filter((c) => c.kind !== 'rigid' && on(m.bodyOf[c.male], m.bodyOf[c.female]));
+    if (connections.length) return named(connections.flatMap((c) => [c.male, c.female]));
+    return named(bodies.flatMap((b) => (b === 0 ? [] : m.bodies[b].parts.filter((p) => m.roles[p] !== 'structure').slice(0, 2))));
   }
 
   // The motion jointMotion chooses from these (orthonormal, in the tree basis's coordinates), by

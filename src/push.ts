@@ -4,7 +4,8 @@
 // viewer would (scripts/check-functions.ts), so both use the steps here.
 
 import { Vector2, Vector3 } from 'three';
-import { Kinematics } from './kinematics.ts';
+import { Kinematics, trace, TRACE } from './kinematics.ts';
+import { combine, nullSpace, orthonormalize } from './linalg.ts';
 
 // In how many independent directions a point on a body can move.
 export function pointDirections(kin: Kinematics, body: number, g: Vector3): number {
@@ -31,13 +32,17 @@ export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vect
   const move = new Vector3();
   if (amounts) amounts.forEach((a, i) => move.addScaledVector(speeds[i], a));
   // Nowhere to go, or only well off the way it was going.
-  if (!amounts || move.length() < 1e-6 || move.clone().normalize().dot(dir) < 0.5) return 'stuck';
+  if (!amounts || move.length() < 1e-6 || move.clone().normalize().dot(dir) < 0.5) {
+    if (TRACE) tracePushStuck(kin, body, g, dir, motions);
+    return 'stuck';
+  }
   const scale = step / move.length();
   const combined = new Array(motions[0].length).fill(0);
   motions.forEach((m, i) => m.forEach((x, k) => (combined[k] += x * amounts[i] * scale)));
   const before = kin.snapshot();
   kin.advance(combined, 1);
   if (!allowed()) {
+    if (TRACE) trace({ event: 'push blocked', body, limit: kin.atLimit() });
     kin.restore(before);
     return 'blocked';
   }
@@ -73,4 +78,20 @@ export function leastSquares(columns: (Vector2 | Vector3)[], target: Vector2 | V
     }
   }
   return b.map((x, i) => x / a[i][i]);
+}
+
+// With KINEBRICK_TRACE: why a push step is stuck. How near `dir` the point `g` (where it is now)
+// can go, and how fast, by the free motions the push has (with its holds), by all of them with
+// the holds let go, and by those of them that leave the frame where it is.
+function tracePushStuck(kin: Kinematics, body: number, g: Vector3, dir: Vector3, motions: number[][]) {
+  const best = (ms: number[][]) => {
+    const speeds = ms.map((m) => kin.pointVelocity(m, body, g));
+    const amounts = ms.length ? leastSquares(speeds, dir) : null;
+    const move = new Vector3();
+    if (amounts) amounts.forEach((a, i) => move.addScaledVector(speeds[i], a));
+    return { motions: ms.length, along: move.length() > 1e-9 ? move.clone().normalize().dot(dir) : 0, speed: move.length() };
+  };
+  const free = kin.withoutHolds(() => kin.freeMotions());
+  const still = free.length ? orthonormalize(nullSpace([0, 1, 2, 3, 4, 5].map((k) => free.map((m) => m[k])), free.length).map((a) => combine(free, a))) : [];
+  trace({ event: 'push stuck', body, held: kin.heldCount(), withHolds: best(motions), free: best(free), frameStill: best(still) });
 }
