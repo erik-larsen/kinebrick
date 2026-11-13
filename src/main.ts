@@ -947,12 +947,27 @@ async function start() {
     kin.unfreezeAll();
     showFrozen();
   };
-  // Reverse and Stop show while a part is kept turning (Ctrl-click).
-  const reverseButton = gui.add({ reverse: () => interaction.reverseMotor() }, 'reverse').name('Reverse');
-  const stopButton = gui.add({ stop: () => interaction.stopMotor() }, 'stop').name('Stop');
+  // The title card's three buttons. Pause and Reverse are greyed until a part is kept turning
+  // (Ctrl-click). Pause makes it wait and becomes Play, which makes it go on: the part stays
+  // the one chosen. Reset always works.
+  const pauseButton = document.getElementById('pause') as HTMLButtonElement;
+  const reverseButton = document.getElementById('reverse') as HTMLButtonElement;
+  const resetButton = document.getElementById('reset') as HTMLButtonElement;
+  pauseButton.onclick = () => interaction.pauseMotor(!interaction.motorPaused());
+  reverseButton.onclick = () => interaction.reverseMotor();
+  resetButton.onclick = reset;
   showMotor = () => {
-    reverseButton.show(interaction.motorRunning());
-    stopButton.show(interaction.motorRunning());
+    const chosen = interaction.motorRunning();
+    const paused = interaction.motorPaused();
+    pauseButton.disabled = !chosen;
+    reverseButton.disabled = !chosen;
+    pauseButton.classList.toggle('paused', paused);
+    const pauseTitle = !chosen ? 'Pause (Ctrl-click a part to keep it moving)' : paused ? 'Play' : 'Pause';
+    pauseButton.title = pauseTitle;
+    pauseButton.setAttribute('aria-label', pauseTitle);
+    const reverseTitle = chosen ? 'Reverse' : 'Reverse (Ctrl-click a part to keep it moving)';
+    reverseButton.title = reverseTitle;
+    reverseButton.setAttribute('aria-label', reverseTitle);
     // Kept in the address, so it can be shared (see AUTOSPIN).
     if (interaction.motorRunning()) {
       const clockwise = interaction.motorClockwiseFrom(startCamera.position);
@@ -987,7 +1002,6 @@ async function start() {
   }
   if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
   unfreezeButton = gui.add({ unfreezeAll }, 'unfreezeAll').name('Unfreeze all');
-  gui.add({ reset }, 'reset').name('Reset');
   showFrozen();
 }
 
