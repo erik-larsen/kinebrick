@@ -1,8 +1,10 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { modelFiles } from '../src/ldr.ts';
+import { inferMechanism } from '../src/mechanism.ts';
 import { packModel, drawnDirectly } from '../src/pack.ts';
+import { loadModel } from '../scripts/load-model.ts';
 
 // A model opened from your own computer is packed in the browser, its parts fetched from an LDraw
 // library online, and connected by the table for the whole library. Opening one of Kinebrick's
@@ -66,5 +68,28 @@ describe('packModel', () => {
     expect(out.text).toContain('1 16 0 0 0 1 0 0 0 1 0 0 0 1 s\\tyre1.dat');
     expect(out.text).toContain('0 FILE parts/s/tyre1.dat');
     expect(out.titles['tyre.dat']).toBe('Tyre');
+  });
+});
+
+// The OMR's 42108 Mobile Crane embeds its linear actuator ("42108 - 40918-f1.dat"), a part the
+// library reads as its pieces. Opened in the viewer, which packs it as above, and read by the
+// scripts (scripts/load-model.ts), it must have the same mechanism: the actuator in pieces both
+// ways, its input turning and its screw driving the piston. Needs omr/ and the library in ldraw/.
+describe('a model whose file embeds a part read as its pieces', () => {
+  const file = 'omr/42108-1 Mobile Crane.mpd';
+  it.skipIf(!existsSync(file) || !existsSync('ldraw/parts'))('has the same mechanism opened in the viewer as the scripts read it', async () => {
+    const readFile = async (name: string) => {
+      for (const dir of ['ldraw/parts/', 'ldraw/p/', 'ldraw/']) if (existsSync(dir + name)) return readFileSync(dir + name, 'utf-8');
+      return null;
+    };
+    const opened = await packModel('42108', readFileSync(file, 'utf-8'), colours, readFile, (name) => drawnDirectly(name, primitives), roles);
+    const viewer = inferMechanism(opened.parts, library, roles, opened.paths);
+    const scripts = loadModel(file, true).mech;
+    expect(opened.parts.length).toBe(loadModel(file, true).parts.length);
+    expect(viewer.bodyOf).toEqual(scripts.bodyOf);
+    expect(viewer.joints.length).toBe(scripts.joints.length);
+    expect(viewer.meshes).toEqual(scripts.meshes);
+    expect(viewer.screws.length).toBe(scripts.screws.length);
+    expect(viewer.screws.length).toBeGreaterThan(0);
   });
 });
