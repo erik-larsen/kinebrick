@@ -25,6 +25,8 @@ export function pointDirections(kin: Kinematics, body: number, g: Vector3): numb
 // has nowhere to go, or only well off `dir`; and 'blocked', with the step undone, if `allowed`
 // says no to where the step left the model (it ran into something, or past the end of a slide).
 export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
+  // Least motion, for a part on a turning joint (see Options.leastPush).
+  if (kin.pushesByTiers(body)) return kin.pushStepByTiers(body, grab, dir, step, allowed);
   const g = grab.clone().applyMatrix4(kin.poses[body]);
   const motions = kin.freeMotions();
   const speeds = motions.map((m) => kin.pointVelocity(m, body, g));
