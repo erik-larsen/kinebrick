@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 27 works, 47 partly, 8 no, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 28 works, 48 partly, 6 no, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -72,7 +72,7 @@ Each detail by the set it first appears in.
 
 **2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1)**
 
-- The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time. (no)
+- The crank at the back raises and lowers the forks: through a 20- and a 12-tooth double bevel gear and a pair of 16-tooth gears it turns a long shaft forward under the cab, then bevel gears and two universal joints carry the drive up the mast to a worm, which turns a 24-tooth crown gear on a cross axle whose two 16-tooth gears climb the racks on the inner mast. The inner mast rises, and strings over the pulleys at its top lift the fork carriage up it at the same time. (partly)
 
 **2005, [8418 Mini Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8418-1)**
 
@@ -198,7 +198,7 @@ Each detail by the set it first appears in.
 
 **2016, [42049 Mine Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42049-1)**
 
-- *claw:* The 12-tooth gear knob at the back of the top, on the left, opens and closes the claw: it turns a 20-tooth gear on a shaft along the top, whose other 20-tooth gear turns a 16-tooth gear on a long shaft running forward through two universal joints (so it follows the arm and the articulation) to a worm gear in the gripper head; the worm turns a 24-tooth gear that swings the two claw jaws together or apart. (no)
+- *claw:* The 12-tooth gear knob at the back of the top, on the left, opens and closes the claw: it turns a 20-tooth gear on a shaft along the top, whose other 20-tooth gear turns a 16-tooth gear on a long shaft running forward through two universal joints (so it follows the arm and the articulation) to a worm gear in the gripper head; the worm turns a 24-tooth gear that swings the two claw jaws together or apart. (works)
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 

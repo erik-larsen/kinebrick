@@ -125,12 +125,12 @@
     ]
   },
   "generated": {
-    "commit": "a36889e",
+    "commit": "2875f33",
+    "uncommitted": true,
     "date": "2026-11-13",
-    "seconds": 8,
+    "seconds": 15,
     "counts": {
-      "no": 1,
-      "partly": 1,
+      "partly": 2,
       "works": 3,
       "not checked": 1
     },
@@ -231,73 +231,64 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p406 32269 against p308 32526",
-          "p324 4019 against p308 32526",
-          "p529 6589 against p308 32526",
-          "p86 32269 against p308 32526",
-          "p17 3326a against p49 32278",
-          "p26 4716 against p49 32278",
-          "p27 3650c against p49 32278",
-          "p214 32278 against p49 32278",
-          "p156 32278 against p214 32278",
-          "p178 32525 against p49 32278"
+          "p156 32278 against p214 32278"
         ],
         "rates": [
           {
             "p406 32269 against p308 32526": [
-              0,
+              1,
               0
             ],
             "p324 4019 against p308 32526": [
-              0,
-              0
+              1.67,
+              2.84e-14
             ],
             "p529 6589 against p308 32526": [
-              0,
-              0
+              1.67,
+              2.84e-14
             ],
             "p86 32269 against p308 32526": [
-              0,
-              0
+              1,
+              2.81e-8
             ],
             "p17 3326a against p49 32278": [
-              0,
-              0
+              1.67,
+              0.00000173
             ],
             "p26 4716 against p49 32278": [
-              0,
-              0
+              1.67,
+              0.00587
             ],
             "p27 3650c against p49 32278": [
-              0,
-              0
+              0.0694,
+              3.87e-10
             ],
             "p214 32278 against p49 32278": [
-              0,
-              0
+              1.12e-7,
+              1.39
             ],
             "p156 32278 against p214 32278": [
               0,
-              0
+              3.04e-13
             ],
             "p178 32525 against p49 32278": [
-              0,
-              0
+              1.12e-7,
+              1.39
             ],
             "p49 32278 against p308 32526": [
-              0,
-              0
+              2.81e-7,
+              0.0000628
             ],
             "p25 6632 against p308 32526": [
-              0,
+              0.0000303,
               0
             ]
           }
@@ -321,15 +312,9 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
         "cause": "loose-part",
         "detail": "p156 32278",
-        "seconds": 0.1
+        "seconds": 5
       },
       {
         "result": "partly",
@@ -396,7 +381,7 @@
         ],
         "cause": "loose-part",
         "detail": "p178 32525",
-        "seconds": 3
+        "seconds": 3.8
       },
       {
         "result": "works",
@@ -472,7 +457,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -542,7 +527,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 3.8
       },
       {
         "result": "works",
