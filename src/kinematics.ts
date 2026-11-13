@@ -103,10 +103,6 @@ const PLAY = 0.1;
 // How much the joints' turning counts against the loops' opening in choosing a motion that takes
 // up play: only enough to choose between motions that open them alike.
 const TIE_BREAK = 0.1;
-// With the play option (see jointMotion): motions whose loops open within this of each other, in
-// LDU for each radian they turn the joints, open them alike; and a motion that opens them by no
-// more than this, for each radian it turns the joint dragged, takes up no play.
-const PLAY_ALIKE = 1e-6;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
 const LOOP_TOLERANCE = 1e-11;
 // The solver's switches. Each Kinematics has its own (see Kinematics.options), which may be
@@ -142,17 +138,12 @@ export interface Options {
   // onAxis), not where the part itself is placed. Off by default, for now; KINEBRICK_CENTRES=1
   // turns it on.
   centres: boolean;
-  // Play, as weighted rows: a drag least motion chooses for may take up play in the joints that
-  // close loops, the loops' opening being the first thing it keeps small (see jointMotion). Off
-  // by default, for now; KINEBRICK_PLAY=1 turns it on. Off, play is only taken where nothing else
-  // turns the joint (see playMotion).
-  play: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1 and KINEBRICK_PLAY=1.
+// KINEBRICK_REACH=0 and KINEBRICK_CENTRES=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -162,7 +153,6 @@ export const experiments: Options = {
   stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
   reach: setting('KINEBRICK_REACH') !== '0',
   centres: setting('KINEBRICK_CENTRES') === '1',
-  play: setting('KINEBRICK_PLAY') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -1892,23 +1882,12 @@ export class Kinematics {
 
   // The free motions (see freeMotionsInBasis) in two lots: the car moving on its suspension,
   // and all the others, orthogonal to those.
-  // With `loops` (play, see jointMotion), the rows of the joints that close loops are left out,
-  // and put in `loops` instead, each as much as it counts in taking up play (see buildEquations).
-  private freeMotionsApart(loops: number[][] | null = null): [number[][], number[][]] {
+  private freeMotionsApart(): [number[][], number[][]] {
     const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
     const n = 6 * this.bodyCount;
     const basis = this.treeBasis();
     const q = basis[0].length;
-    const play: number[] | null = loops ? [] : null;
-    const equations = inBasis(this.buildEquations(null, slip, true, null, play), basis);
-    let rows = equations;
-    if (loops && play) {
-      rows = [];
-      equations.forEach((row, i) => {
-        if (play[i]) loops.push(row.map((x) => x * play[i]));
-        else rows.push(row);
-      });
-    }
+    const rows = inBasis(this.buildEquations(null, slip, true), basis);
     const motions = orthonormalize(nullSpace(rows, q));
     this.scrubNeeded = null;
     this.leastScrub = 0;
@@ -2048,10 +2027,6 @@ export class Kinematics {
       }
       if (!motion) break;
       const played = this.played;
-      // Play: a gap the loops had before the step, which closing them couldn't close (a model
-      // built a hair out), may stay, up to PLAY, if the step leaves it no wider.
-      const opened = this.options.play ? this.loopGap() : 0;
-      const limit = played ? PLAY : opened > DEAD_POINT_GAP ? Math.min(PLAY, opened + DEAD_POINT_GAP) : DEAD_POINT_GAP;
       const before = this.snapshot();
       const step = Math.abs(angle - turned) < Math.abs(full) ? angle - turned : full;
       // How far each joint should turn in the step, and how far it has. Not a resting body's
@@ -2078,7 +2053,7 @@ export class Kinematics {
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) return stop(turned);
       const gap = this.advance(motion, step, joint);
       const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-      if (gap > limit || strayed.length) {
+      if (gap > (played ? PLAY : DEAD_POINT_GAP) || strayed.length) {
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
         // held only to first order (the 42037 Formula Off-Roader's front tyre, neither rolling
@@ -2116,13 +2091,6 @@ export class Kinematics {
       this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
     }
     return turned;
-  }
-
-  // How far apart the joints the tree doesn't follow are now (the largest gap, see closeLoops).
-  private loopGap(): number {
-    const gaps: number[] = [];
-    this.buildEquations(gaps, null, true);
-    return gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
   }
 
   // Whether the last turn of `joint` stopped at a dead point (see turnJoint), and nothing has
@@ -2218,29 +2186,16 @@ export class Kinematics {
     // turning read off the basis's rows as they're needed, and only the motion chosen turned
     // back into a motion vector: a big model has many free motions, most of them left out.
     const basis = this.treeBasis();
-    // Play (see Options.play): for a drag least motion chooses for, the free motions are those
-    // of every row but the loops' (the joints the tree doesn't follow: a pin or axle in its hole,
-    // a ball in its socket, a slide across its axis), and the loops' opening is the first thing
-    // the tiers keep small, so a loop that fits exactly still moves exactly. Not while holds are
-    // chosen: play only lets a drag go, it doesn't choose what the drag holds. Rules about speeds
-    // (gears, universal joints, chains, strings, tyres, holds) take up none: a slip in them would
-    // never be undone.
-    const least = this.options.leastMotion && this.drag.turning?.joint === joint;
-    const loose = this.options.play && least && !this.drag.choosingHolds;
-    const loops: number[][] = [];
-    const [usual, suspension] = this.freeMotionsApart(loose ? loops : null);
+    const [usual, suspension] = this.freeMotionsApart();
     const { turning, rateOf, rate, size } = this.measures(joint, basis);
-    // How far a motion opens the loops, for each radian it turns the joint.
-    const opening = loose && loops.length ? (z: number[]) => Math.hypot(...loops.map((row) => dot(row, z))) / Math.abs(rate(z)) : undefined;
     // The car moves on its suspension only if nothing else turns the joint without turning the
     // joints SUSPENSION_GAIN times as fast or more (where the only way is a hair of rolling, scaled
     // up, as for the arm a wheel hangs on): rolling, it would mix in a little of its suspension
     // to turn the other joints a little less, a motion that, closing the loops, can jump far from
     // where it had them going (the 41999 Crawler's portal hubs, stopped as at a dead point).
-    const ordered = least ? this.leastTiers(joint, turning, rateOf, size) : undefined;
-    const tiers = ordered && opening ? [{ cost: (z: number[]) => loops.map((row) => dot(row, z)), alike: PLAY_ALIKE }, ...ordered] : ordered;
-    const plain = this.chooseMotion(joint, usual, rate, size, tiers, opening);
-    const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size, tiers, opening) : plain;
+    const tiers = this.options.leastMotion && this.drag.turning?.joint === joint ? this.leastTiers(joint, turning, rateOf, size) : undefined;
+    const plain = this.chooseMotion(joint, usual, rate, size, tiers);
+    const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), rate, size, tiers) : plain;
     const length = (z: number[]) => Math.hypot(...size(z));
     let z = this.drag.choosingHolds && this.drag.plainOnly ? plain : plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
     // Least motion: a drag keeps to the choice its first step made, while it can, rather than
@@ -2255,18 +2210,10 @@ export class Kinematics {
       else if (!this.drag.suspension && plain && any && length(plain) >= SUSPENSION_GAIN * SUSPENSION_GAIN * length(any)) this.drag.suspension = true;
       if (this.drag.suspension ? any : plain) z = this.drag.suspension ? any : plain;
     }
-    // Play: a motion that opens the loops more than PLAY_RATE for each radian it turns the joint
-    // isn't taken; one that opens them at all takes up play (see turnJoint).
-    this.played = false;
-    if (z && opening) {
-      const open = opening(z);
-      if (!(open <= PLAY_RATE)) z = null;
-      else this.played = open > PLAY_ALIKE;
-    }
     // One problem: a step chosen by the tiers has its loops closed by them too (see closeLoops).
     this.stepByTiers = tiers !== undefined && this.options.oneProblem && z !== null;
+    this.played = false;
     if (z) return fromBasis(z, basis);
-    if (loose) return null;
     // Play only lets a drag go where nothing else would, not choose what it holds: a hold that
     // left the drag only play would be kept, and the drag would turn a joint it needn't (the
     // 42112 Concrete Mixer Truck's wheels, which stopped partway round).
@@ -2316,14 +2263,9 @@ export class Kinematics {
   // how fast each turns the joint (`rate`) and all the joints (`size`).
   // With `tiers` (least motion, see leastTiers), the motion is chosen by them rather than by
   // `size` alone.
-  // With play, `opening` says how far a motion opens the loops (see jointMotion), and the frame is
-  // kept still, and the tyres from scrubbing, only by motions that open them no more than the
-  // least any motion does: a loop that fits exactly moves exactly, before anything else.
-  private chooseMotion(joint: number, all: number[][], rate: (z: number[]) => number, size: (z: number[]) => number[], tiers?: Tier[], opening?: (z: number[]) => number): number[] | null {
+  private chooseMotion(joint: number, all: number[][], rate: (z: number[]) => number, size: (z: number[]) => number[], tiers?: Tier[]): number[] | null {
     const basis = this.treeBasis();
     const smallest = (motions: number[][]) => (tiers ? leastTurning(motions, rate, tiers) : smallestTurning(motions, rate, size));
-    const least = opening ? smallest(all) : null;
-    const alike = (z: number[] | null) => !z || !opening || !least || opening(z) <= opening(least) + PLAY_ALIKE;
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
     const frameRows = [0, 1, 2, 3, 4, 5].map((k) => all.map((z) => z.reduce((sum, x, c) => sum + x * basis[k][c], 0)));
     const still = all.length ? orthonormalize(nullSpace(frameRows, all.length).map((a) => combine(all, a))) : [];
@@ -2337,11 +2279,9 @@ export class Kinematics {
       const slips = this.slipRows.map((row) => still.map((z) => z.reduce((sum, x, c) => sum + x * row[c], 0)));
       const grip = orthonormalize(nullSpace(slips, still.length).map((a) => combine(still, a)));
       if (grip.length) gripped = smallest(grip);
-      if (!alike(gripped)) gripped = null;
     }
     if (gripped) this.gripped = true;
-    let parked = gripped ?? smallest(still);
-    if (!alike(parked)) parked = null;
+    const parked = gripped ?? smallest(still);
     if (!parked) return smallest(all);
     const { bodyA, bodyB } = this.mech.joints[joint];
     if (!this.contactTreads.some((i) => [bodyA, bodyB].includes(this.mech.treads[i].body))) return parked;
