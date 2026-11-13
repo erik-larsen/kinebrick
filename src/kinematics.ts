@@ -113,6 +113,9 @@ const PLAY = 0.1;
 const TIE_BREAK = 0.1;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
 const LOOP_TOLERANCE = 1e-11;
+// How far off its axle's axis a gear's or tyre's centre may be and still be taken on it (see
+// onAxis), in LDU: a part placed a hair off, not one on another axle.
+const ON_AXIS = 1;
 // The solver's switches. Each Kinematics has its own (see Kinematics.options), which may be
 // changed at any time: two settings can be compared on one loaded model.
 export interface Options {
@@ -298,6 +301,7 @@ export class Kinematics {
   spinners: number[] = [];
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private played = false;
+  private turningJointsOf: number[][] | null = null; // each body's turning joints (see onAxis), found when first needed
   private traceNames: string[] | null = null; // with TRACE, each row's kind of connection (see traceJam)
   private traceName = ''; // whether jointMotion's last motion took up play (see playMotion)
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
@@ -1830,23 +1834,40 @@ export class Kinematics {
   }
 
   // With the centres option: a round part's centre (`c`, where it is now, a gear's or a tyre's
-  // turning about `axis`) taken on the axis of the joint its body turns on, if that's a turning
-  // joint along the same axis. A joint's axis comes from the axle and its hole, and the gear or
-  // tyre is a part of its own, which may be placed a hair off it (a model's positions are rounded
-  // off). Off it, the gear's teeth would be taken to go round a little faster on one side and
-  // slower on the other, so two gears no longer turn in the ratio of their teeth, and a gear train
-  // that closes on itself jams (the 858 Auto Engines' gears, every part nudged by up to 0.05 LDU).
-  // Without the option, or for any other body, `c` as it is.
+  // turning about `axis`) taken on the axis of the turning joint the part itself sits on: of its
+  // body's turning joints along that axis, the one whose axis runs nearest `c`, if that is within
+  // ON_AXIS LDU. A joint's axis comes from the axle and its hole, and the gear or tyre is a part of
+  // its own, which may be placed a hair off it (a model's positions are rounded off). Off it, the
+  // gear's teeth would be taken to go round a little faster on one side and slower on the other,
+  // so two gears no longer turn in the ratio of their teeth, and a gear train that closes on itself
+  // jams (the 858 Auto Engines' gears, every part nudged by up to 0.05 LDU). Not the joint the body
+  // turns on in the tree: a body may turn on one axle and carry a gear on another (the 42066's spur
+  // gear, 97 LDU from it). Without the option, or with no such joint, `c` as it is.
   onAxis(body: number, c: Vector3, axis: Vector3): Vector3 {
     if (!this.options.centres) return c;
-    const link = this.parentLink(body);
-    if (!link) return c;
-    const j = this.mech.joints[link.joint];
-    if (j.kind !== 'revolute') return c;
-    const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
-    if (Math.abs(d.dot(axis)) < 0.999) return c;
-    const from = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
-    return from.addScaledVector(d, new Vector3().subVectors(c, from).dot(d));
+    if (!this.turningJointsOf) {
+      this.turningJointsOf = Array.from({ length: this.bodyCount }, () => [] as number[]);
+      this.mech.joints.forEach((j, i) => {
+        if (j.kind !== 'revolute') return;
+        this.turningJointsOf![j.bodyA].push(i);
+        if (j.bodyB !== j.bodyA) this.turningJointsOf![j.bodyB].push(i);
+      });
+    }
+    let best: Vector3 | null = null;
+    let nearest = ON_AXIS;
+    for (const i of this.turningJointsOf[body]) {
+      const j = this.mech.joints[i];
+      const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+      if (Math.abs(d.dot(axis)) < 0.999) continue;
+      const from = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+      const on = from.addScaledVector(d, new Vector3().subVectors(c, from).dot(d));
+      const off = on.distanceTo(c);
+      if (off < nearest) {
+        nearest = off;
+        best = on;
+      }
+    }
+    return best ?? c;
   }
 
   // ---------------------------------------------------------------------------
