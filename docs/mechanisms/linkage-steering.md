@@ -4,7 +4,7 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 10 works, 11 partly, 8 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 11 works, 10 partly, 8 no.
 
 ## By decade
 
@@ -43,7 +43,7 @@ Each detail by the set it first appears in.
 
 **2012, [9390 Mini Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9390-1)**
 
-- The black gear on top behind the cab is a steering knob: it turns an upright axle whose arm pushes a beam across under the front axle and steers the front wheels. (partly)
+- The black gear on top behind the cab is a steering knob: it turns an upright axle whose arm pushes a beam across under the front axle and steers the front wheels. (works)
 
 **2012, [9392 Quad Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9392-1)**
 

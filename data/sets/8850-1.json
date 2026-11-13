@@ -127,8 +127,8 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "a36889e",
+    "date": "2026-11-13",
     "seconds": 3,
     "counts": {
       "works": 4,
@@ -232,7 +232,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -438,7 +438,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 2825 against p0 3702",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",

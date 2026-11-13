@@ -132,8 +132,8 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "a36889e",
+    "date": "2026-11-13",
     "seconds": 3,
     "counts": {
       "works": 4,
@@ -186,7 +186,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -261,7 +261,7 @@
         "strayed": [
           "p128 32062"
         ],
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "no",

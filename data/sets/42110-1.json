@@ -198,13 +198,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 1004,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 632,
     "counts": {
       "works": 7,
       "partly": 3,
-      "not back": 3,
+      "not back": 2,
       "skipped": 2,
       "no": 3
     },
@@ -284,7 +284,7 @@
             ]
           ]
         ],
-        "seconds": 150.1
+        "seconds": 126.9
       },
       {
         "result": "works",
@@ -314,7 +314,7 @@
             ]
           ]
         ],
-        "seconds": 150.6
+        "seconds": 126.5
       },
       {
         "result": "partly",
@@ -361,7 +361,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 127
+        "seconds": 105.5
       },
       {
         "result": "partly",
@@ -407,7 +407,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p242 3708",
-        "seconds": 129.3
+        "seconds": 108.2
       },
       {
         "result": "partly",
@@ -451,7 +451,7 @@
         ],
         "cause": "not-driven",
         "detail": "p715 32072",
-        "seconds": 15.6
+        "seconds": 12.7
       },
       {
         "result": "works",
@@ -481,7 +481,7 @@
             ]
           ]
         ],
-        "seconds": 15.7
+        "seconds": 12.9
       },
       {
         "result": "works",
@@ -511,7 +511,7 @@
             ]
           ]
         ],
-        "seconds": 15.1
+        "seconds": 12.7
       },
       {
         "result": "works",
@@ -541,7 +541,7 @@
             ]
           ]
         ],
-        "seconds": 14.7
+        "seconds": 12.3
       },
       {
         "result": "skipped"
@@ -595,7 +595,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 3.5
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -620,49 +620,40 @@
             ]
           ]
         ],
-        "seconds": 15.7
+        "seconds": 13.2
       },
       {
         "result": "works",
         "turned": [
           [
-            0.97,
-            -1.29
+            1.55,
+            -1.55
           ]
         ],
         "rates": [
           {
             "p1504 32065": [
-              1.57,
-              154
+              0.00894,
+              40
             ]
           }
         ],
         "back": [
           [
             [
-              26.68,
-              12.07
+              0.26,
+              0.34
             ],
             [
-              24.55,
-              11.12
+              0.28,
+              0.34
             ]
-          ]
-        ],
-        "strayed": [
-          "p1522 24201"
-        ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 267.7
+        "seconds": 6
       },
       {
         "result": "no",

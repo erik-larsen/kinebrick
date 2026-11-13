@@ -132,13 +132,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 86,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 147,
     "counts": {
       "partly": 2,
       "works": 3,
-      "not back": 3,
+      "not back": 2,
       "no": 1,
       "skipped": 1
     },
@@ -231,13 +231,13 @@
         ],
         "cause": "part-fixed",
         "detail": "p126 2851",
-        "seconds": 18.5
+        "seconds": 20.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.51,
+            1.5,
             -1.51
           ]
         ],
@@ -245,33 +245,30 @@
           {
             "p493 45982": [
               1,
-              81.6
+              0.00271
             ],
             "p225 62821": [
               1,
-              9.38e-12
+              6.68e-12
             ]
           }
         ],
         "back": [
           [
             [
-              182.91,
-              86.5
+              0.07,
+              0.05
             ],
             [
-              38.25,
-              20.8
+              0.08,
+              0.06
             ]
           ]
-        ],
-        "strayed": [
-          "p478 32009"
         ],
         "pushed": [
           true
         ],
-        "seconds": 35.9
+        "seconds": 92.9
       },
       {
         "result": "partly",
@@ -339,7 +336,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p489 45982",
-        "seconds": 12.5
+        "seconds": 13.7
       },
       {
         "result": "no",
@@ -435,7 +432,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p96 76537",
-        "seconds": 3.2
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -524,7 +521,7 @@
             "dead point"
           ]
         ],
-        "seconds": 11.7
+        "seconds": 15
       },
       {
         "result": "skipped",
@@ -553,7 +550,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 4.1
       }
     ]
   }

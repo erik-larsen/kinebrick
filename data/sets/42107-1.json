@@ -152,12 +152,11 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 8,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 9,
     "counts": {
       "partly": 3,
-      "not back": 1,
       "skipped": 1,
       "no": 3,
       "works": 1,
@@ -309,7 +308,7 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 1.7
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -328,37 +327,34 @@
         "rates": [
           {
             "p247 35189": [
-              156000,
-              0.00000491
+              711000,
+              0.00000579
             ],
             "p284 76537": [
-              1,
-              0.00000621
+              0.875,
+              0.00000363
             ],
             "p379 88516": [
-              157000,
-              0.00000592
+              712000,
+              0.00000678
             ],
             "p185 2854": [
-              0.962,
-              0.00000406
+              0.875,
+              0.0000036
             ]
           }
         ],
         "back": [
           [
             [
-              79.05,
-              31.73
+              0,
+              0
             ],
             [
-              78.93,
-              31.67
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p639 42107 - 67144p01c01"
         ],
         "stop": [
           [
@@ -371,7 +367,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p284 76537",
-        "seconds": 2.6
+        "seconds": 3.7
       },
       {
         "result": "skipped",
@@ -456,7 +452,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.5
       },
       {
         "result": "no",
@@ -504,7 +500,7 @@
           true
         ],
         "cause": "control-jammed",
-        "seconds": 0.3
+        "seconds": 0
       },
       {
         "result": "not checked",

@@ -189,9 +189,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 32,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 44,
     "counts": {
       "works": 8,
       "partly": 3,
@@ -236,7 +236,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.7
       },
       {
         "result": "partly",
@@ -291,7 +291,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 2.3
+        "seconds": 3.3
       },
       {
         "result": "works",
@@ -329,7 +329,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -367,7 +367,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -407,7 +407,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 3
       },
       {
         "result": "works",
@@ -450,7 +450,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -480,61 +480,60 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.5
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.22,
-            -0.23
+            1.51,
+            -1.5
           ]
+        ],
+        "moved": [
+          "p264 3702"
         ],
         "rates": [
           {
             "p281 2796c01 against p280 2793c03": [
-              0.174,
-              134
+              1,
+              60.2
             ],
             "p264 3702": [
-              0.00000709,
-              7.09e-11
+              0.142,
+              34.3
             ]
           }
         ],
         "back": [
           [
             [
-              15.05,
-              5.82
+              36.48,
+              11.54
             ],
             [
-              7.32,
-              2.82
+              1.06,
+              0.15
             ]
           ]
         ],
         "strayed": [
-          "p317 4265a"
-        ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
-          ]
+          "p282 3706",
+          "p301 3749"
         ],
         "pushed": [
           true
         ],
-        "cause": "stopped-early",
-        "seconds": 6.6
+        "cause": "stay-chosen",
+        "detail": "p264 3702",
+        "seconds": 14.7
       },
       {
         "result": "partly",
         "turned": [
           [
-            -0.13,
-            0.12
+            1.54,
+            1.5
           ]
         ],
         "moved": [
@@ -543,43 +542,37 @@
         "rates": [
           {
             "p319 2796c01 against p318 2793c03": [
-              0.0769,
-              132
+              1.19,
+              71.4
             ],
             "p292 3703": [
-              1.61,
-              130
+              2.74e-8,
+              6.66
             ]
           }
         ],
         "back": [
           [
             [
-              9.18,
-              2.65
+              0.7,
+              0.58
             ],
             [
-              19.93,
-              5.34
+              7.69,
+              7.09
             ]
           ]
         ],
         "strayed": [
-          "p312 4265a",
-          "p283 3713"
-        ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
-          ]
+          "p293 3703",
+          "p311 3705"
         ],
         "pushed": [
           true
         ],
         "cause": "stay-chosen",
         "detail": "p292 3703",
-        "seconds": 5.6
+        "seconds": 2.5
       },
       {
         "result": "skipped",
@@ -608,7 +601,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -678,7 +671,7 @@
             ]
           ]
         ],
-        "seconds": 5.5
+        "seconds": 7.1
       }
     ]
   }

@@ -252,9 +252,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 2206,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 2248,
     "counts": {
       "no": 1,
       "works": 1,
@@ -727,7 +727,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 4.9
+        "seconds": 5.3
       },
       {
         "result": "works",
@@ -923,7 +923,7 @@
             ]
           ]
         ],
-        "seconds": 593.2
+        "seconds": 613.2
       },
       {
         "result": "partly",
@@ -962,7 +962,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 153.4
+        "seconds": 141.4
       },
       {
         "result": "partly",
@@ -1041,7 +1041,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 196.4
+        "seconds": 190.6
       },
       {
         "result": "partly",
@@ -1089,7 +1089,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 151.4
+        "seconds": 148.9
       },
       {
         "result": "partly",
@@ -1142,7 +1142,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 151.2
+        "seconds": 153
       },
       {
         "result": "partly",
@@ -1190,7 +1190,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 150.4
+        "seconds": 164.4
       },
       {
         "result": "partly",
@@ -1238,7 +1238,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 150.3
+        "seconds": 164.9
       },
       {
         "result": "partly",
@@ -1276,7 +1276,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 276.3
+        "seconds": 262
       },
       {
         "result": "not checked"

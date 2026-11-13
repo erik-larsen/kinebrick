@@ -137,9 +137,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 3,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 4,
     "counts": {
       "works": 4,
       "no": 1,
@@ -273,7 +273,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -447,7 +447,7 @@
         ],
         "cause": "not-driven",
         "detail": "p191 3705",
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -494,7 +494,7 @@
         ],
         "cause": "not-driven",
         "detail": "p359 3034 against p383 3737",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",

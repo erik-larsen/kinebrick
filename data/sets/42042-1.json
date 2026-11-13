@@ -222,9 +222,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 156,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 137,
     "counts": {
       "works": 5,
       "partly": 3,
@@ -310,7 +310,7 @@
             ]
           ]
         ],
-        "seconds": 17.2
+        "seconds": 8.9
       },
       {
         "result": "works",
@@ -385,7 +385,7 @@
             ]
           ]
         ],
-        "seconds": 12.7
+        "seconds": 10.8
       },
       {
         "result": "partly",
@@ -463,7 +463,7 @@
         ],
         "cause": "not-driven",
         "detail": "p588 76019",
-        "seconds": 10.7
+        "seconds": 9.6
       },
       {
         "result": "partly",
@@ -546,7 +546,7 @@
         ],
         "cause": "not-driven",
         "detail": "p906 44294",
-        "seconds": 26
+        "seconds": 27.9
       },
       {
         "result": "works",
@@ -618,7 +618,7 @@
             ]
           ]
         ],
-        "seconds": 29
+        "seconds": 31.5
       },
       {
         "result": "partly",
@@ -700,7 +700,7 @@
         ],
         "cause": "not-driven",
         "detail": "p575 18947",
-        "seconds": 27
+        "seconds": 16.2
       },
       {
         "result": "works",
@@ -754,7 +754,7 @@
             ]
           ]
         ],
-        "seconds": 10.3
+        "seconds": 10
       },
       {
         "result": "no",
@@ -786,7 +786,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -826,7 +826,7 @@
             ]
           ]
         ],
-        "seconds": 20
+        "seconds": 19.5
       },
       {
         "result": "not checked",

@@ -204,14 +204,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 1031,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 738,
     "counts": {
       "no": 6,
-      "partly": 3,
+      "partly": 2,
       "not back": 6,
-      "works": 4
+      "works": 5
     },
     "loose": [
       "p1258 3710",
@@ -1475,7 +1475,7 @@
         ],
         "cause": "not-driven",
         "detail": "p405 4519",
-        "seconds": 109.7
+        "seconds": 114.3
       },
       {
         "result": "works",
@@ -1519,63 +1519,58 @@
           "p2085 32123b",
           "p2086 32123b"
         ],
-        "seconds": 236.6
+        "seconds": 236
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.51,
-            -0.41
+            0.54,
+            -1.5
           ]
-        ],
-        "moved": [
-          "p324 3708"
         ],
         "rates": [
           {
             "p1358 44294": [
-              0.457,
-              79.2
+              0.587,
+              51
             ],
             "p1423 40490": [
-              0.457,
-              88.3
+              4.21e-7,
+              54.5
             ],
             "p324 3708": [
-              0.0223,
-              3.5e-12
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              11.22,
-              8.1
+              0.91,
+              0.69
             ],
             [
-              66.4,
-              44.42
+              0.88,
+              0.61
             ]
           ]
         ],
         "strayed": [
-          "p1521 85984",
+          "p1520 85984",
           "p1488 15672"
         ],
         "stop": [
           [
-            null,
-            "stuck"
+            "stuck",
+            null
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "stay-chosen",
-        "detail": "p324 3708",
-        "seconds": 280.2
+        "seconds": 78.6
       },
       {
         "result": "no",
@@ -1634,7 +1629,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.9
+        "seconds": 2
       },
       {
         "result": "works",
@@ -1671,7 +1666,7 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 44.1
+        "seconds": 45.7
       },
       {
         "result": "works",
@@ -1708,7 +1703,7 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 45.7
+        "seconds": 45
       },
       {
         "result": "no",
@@ -1826,7 +1821,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2083 18575",
-        "seconds": 16.8
+        "seconds": 17.5
       },
       {
         "result": "no",
@@ -1882,7 +1877,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2051 18942",
-        "seconds": 108.5
+        "seconds": 2
       },
       {
         "result": "no",
@@ -1977,7 +1972,7 @@
           "p2086 32123b",
           "p2085 32123b"
         ],
-        "seconds": 80.2
+        "seconds": 86.3
       }
     ]
   }

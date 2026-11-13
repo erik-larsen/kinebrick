@@ -169,14 +169,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 6,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 9,
     "counts": {
       "works": 4,
       "partly": 4,
       "skipped": 2,
-      "not back": 1,
       "not checked": 1
     },
     "loose": [
@@ -310,7 +309,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -349,7 +348,7 @@
         ],
         "cause": "not-driven",
         "detail": "p533 3709b",
-        "seconds": 0.3
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -387,7 +386,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -427,7 +426,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -498,7 +497,7 @@
         ],
         "cause": "loose-part",
         "detail": "p951 70644",
-        "seconds": 0.7
+        "seconds": 1
       },
       {
         "result": "skipped",
@@ -546,14 +545,14 @@
         ],
         "cause": "loose-part",
         "detail": "p903 2428",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.69,
-            -0.76
+            0.8,
+            -0.8
           ]
         ],
         "still": [
@@ -574,26 +573,22 @@
               0
             ],
             "p903 2428 against p811 3709b": [
-              8.89e-7,
-              4.46e-12
+              9.52e-7,
+              4.92e-12
             ]
           }
         ],
         "back": [
           [
             [
-              26.14,
-              13.28
+              0,
+              0
             ],
             [
-              35.84,
-              18.8
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p912 4459",
-          "p904 3700"
         ],
         "stop": [
           [
@@ -606,7 +601,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 2793 against p533 3709b",
-        "seconds": 1.4
+        "seconds": 2.2
       },
       {
         "result": "skipped",
@@ -680,7 +675,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.9
       },
       {
         "result": "not checked",

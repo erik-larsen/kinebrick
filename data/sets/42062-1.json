@@ -166,14 +166,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 105,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 68,
     "counts": {
-      "partly": 6,
+      "partly": 5,
       "works": 3,
-      "not back": 3,
-      "no": 1
+      "not back": 2,
+      "no": 2
     },
     "loose": [
       "p298 64179",
@@ -563,7 +563,7 @@
         ],
         "cause": "not-driven",
         "detail": "p87 48989",
-        "seconds": 2.5
+        "seconds": 3
       },
       {
         "result": "partly",
@@ -598,7 +598,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 2.9
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -702,7 +702,7 @@
           "p240 98138",
           "p239 98138"
         ],
-        "seconds": 24.2
+        "seconds": 25.7
       },
       {
         "result": "no",
@@ -757,7 +757,7 @@
           true
         ],
         "cause": "control-jammed",
-        "seconds": 3.7
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -815,7 +815,7 @@
         ],
         "cause": "loose-part",
         "detail": "p508 32270",
-        "seconds": 3.1
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -864,14 +864,14 @@
         ],
         "cause": "loose-part",
         "detail": "p507 32270",
-        "seconds": 3.2
+        "seconds": 3.5
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.21,
-            -0.18
+            1.24,
+            -1.55
           ]
         ],
         "moved": [
@@ -880,38 +880,38 @@
         "rates": [
           {
             "p511 18942 against p510 18940": [
-              0.00000983,
-              11.5
+              1.36e-7,
+              70.3
             ],
             "p547 32524 against p510 18940": [
-              0.00000983,
-              11.5
+              0.184,
+              59.9
             ],
             "p510 18940": [
-              3,
-              860
+              0.184,
+              34
             ]
           }
         ],
         "back": [
           [
             [
-              74.69,
-              16.33
+              259.18,
+              59.7
             ],
             [
-              69.09,
-              15.07
+              10.7,
+              1.79
             ]
           ]
         ],
         "strayed": [
-          "p586 32073"
+          "p595 99021"
         ],
         "stop": [
           [
             "stuck",
-            "stuck"
+            null
           ]
         ],
         "pushed": [
@@ -919,7 +919,7 @@
         ],
         "cause": "loose-part",
         "detail": "p530 6553",
-        "seconds": 24.2
+        "seconds": 10.1
       },
       {
         "result": "works",
@@ -949,42 +949,43 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 4
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
             0,
             0
           ]
         ],
+        "still": [
+          "p581 6553",
+          "p568 32526"
+        ],
         "rates": [
           {
             "p581 6553": [
-              337,
-              182000
+              0,
+              0
             ],
             "p568 32526": [
-              336,
-              154000
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              47.24,
-              5.04
+              0,
+              0
             ],
             [
-              38.44,
-              4.2
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p507 32270"
         ],
         "stop": [
           [
@@ -997,7 +998,7 @@
         ],
         "cause": "loose-part",
         "detail": "p574 32073",
-        "seconds": 23.9
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -1067,7 +1068,7 @@
             ]
           ]
         ],
-        "seconds": 12.6
+        "seconds": 13.8
       }
     ]
   }

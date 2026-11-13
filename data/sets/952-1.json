@@ -133,9 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 2,
+    "commit": "a36889e",
+    "date": "2026-11-13",
+    "seconds": 3,
     "counts": {
       "works": 6,
       "partly": 1
@@ -266,7 +266,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -376,7 +376,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -449,7 +449,7 @@
         ],
         "cause": "not-driven",
         "detail": "p305 3649 against p256 3709b",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",

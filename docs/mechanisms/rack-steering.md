@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 57 works, 14 partly, 5 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 58 works, 13 partly, 5 no.
 
 ## By decade
 
@@ -243,7 +243,7 @@ Each detail by the set it first appears in.
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
-- The 20 tooth gear at the back of the chassis steers the front wheels: a long shaft down the middle of the chassis carries its turn to a 12 tooth gear at the front, which slides a rack that turns the front wheels. (partly)
+- The 20 tooth gear at the back of the chassis steers the front wheels: a long shaft down the middle of the chassis carries its turn to a 12 tooth gear at the front, which slides a rack that turns the front wheels. (works)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
