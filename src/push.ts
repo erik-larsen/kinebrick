@@ -4,7 +4,8 @@
 // viewer would (scripts/check-functions.ts), so both use the steps here.
 
 import { Vector2, Vector3 } from 'three';
-import { Kinematics, trace, TRACE } from './kinematics.ts';
+import { Kinematics } from './kinematics.ts';
+import { heldCount, trace, TRACE, withoutHolds } from './trace.ts';
 import { combine, nullSpace, orthonormalize } from './linalg.ts';
 
 // In how many independent directions a point on a body can move.
@@ -93,7 +94,7 @@ function tracePushStuck(kin: Kinematics, body: number, g: Vector3, dir: Vector3,
     if (amounts) amounts.forEach((a, i) => move.addScaledVector(speeds[i], a));
     return { motions: ms.length, along: move.length() > 1e-9 ? move.clone().normalize().dot(dir) : 0, speed: move.length() };
   };
-  const free = kin.withoutHolds(() => kin.freeMotions());
+  const free = withoutHolds(kin, () => kin.freeMotions());
   const still = free.length ? orthonormalize(nullSpace([0, 1, 2, 3, 4, 5].map((k) => free.map((m) => m[k])), free.length).map((a) => combine(free, a))) : [];
-  trace({ event: 'push stuck', body, held: kin.heldCount(), withHolds: best(motions), free: best(free), frameStill: best(still) });
+  trace({ event: 'push stuck', body, held: heldCount(kin), withHolds: best(motions), free: best(free), frameStill: best(still) });
 }
