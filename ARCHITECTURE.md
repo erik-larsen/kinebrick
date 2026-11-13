@@ -6,6 +6,110 @@ Everything here is kinematics: how a mechanism can move, worked out from its geo
 
 Forces (momentum, springs that spring, clutches that slip) are for version 2.0. It will hand the same bodies and joints to the [MuJoCo](https://mujoco.org) physics engine, rather than add physics of Kinebrick's own.
 
+## Overview in three drawings
+
+Kinebrick does two things: it reads a model into a mechanism that can move, and it moves that mechanism when the user drags a part. The first drawing is the reading, the second the motion, and the third lists Kinebrick's pieces as a tree. The sections after these explain each box.
+
+### Reading: from files to a movable set in memory
+
+```mermaid
+flowchart TD
+  parts["LDraw parts library<br/>part shapes"]
+  shadow["LDCad shadow library<br/>holes, axles, pins, studs"]
+  corr["Kinebrick's corrections<br/>teeth, tyres, sliding"]
+  table[("Connection table<br/>built ahead by a script")]
+  model["LDraw set model<br/>one file per set"]
+  roles[("Role list<br/>written by hand")]
+  rules["Assembly rules<br/>in the code"]
+  load["Load the model<br/>parts and their places"]
+  l1["Level 1: connection points<br/>where each hole and axle is"]
+  l2["Level 2: what each part is<br/>gear, pin, rack, motor"]
+  l3["Level 3: what assemblies do<br/>joints, gear meshes, what holds what"]
+  group["Group into bodies<br/>rigid parts move as one"]
+  mech(["Movable set in memory<br/>bodies, joints, gear meshes"])
+  parts --> table
+  shadow --> table
+  corr --> table
+  model --> load --> l1 --> l2 --> l3 --> group --> mech
+  table --> l1
+  roles --> l2
+  rules --> l3
+```
+
+The reading has three levels, and each has its own source:
+
+- **Level 1, connection points:** where each hole, axle, pin, stud and ball is on a part. It comes from [the connection table](#the-connection-table), which a script builds ahead of time from the LDraw parts library, the LDCad shadow library and a short file of Kinebrick's own corrections.
+- **Level 2, what each part is:** a gear and its tooth count, a friction pin, a rack, a differential, a motor. It comes from the [role list](#part-roles), written by hand.
+- **Level 3, what assemblies do:** which connection points line up into joints, which gears mesh, which parts are held rigid, what holds a part that only lies on another. These are rules in the code (`src/inference`), described under [Connect](#4-connect).
+
+In the eight steps of [How it works](#how-it-works), level 1 is step 3, level 2 is step 2, level 3 is steps 4 and 5, and grouping is step 6. The code looks up roles before connection points; neither look-up depends on the other.
+
+### Motion: from an input to parts moving on screen
+
+```mermaid
+flowchart TD
+  input["Input<br/>a drag, a motor, or the function check"]
+  mech(["Movable set<br/>bodies, joints, gear meshes"])
+  kind["Push or turn<br/>a knob turns, a door is pushed"]
+  free["Free motions<br/>all that joints and gears allow"]
+  least["Least motion<br/>choose one, tier by tier"]
+  holds["Holds<br/>the rest stays still"]
+  step["Small step<br/>place bodies, close loops"]
+  stop["Stop checks<br/>collisions, ends of travel, jams"]
+  show["Show it<br/>move each part on screen"]
+  reread["Read again<br/>levels 1 to 3 and grouping"]
+  input --> kind --> free --> least --> step --> stop --> show
+  mech --> free
+  holds --> least
+  show -. next step of the drag .-> free
+  step -. a gear shift .-> reread
+  reread -.-> mech
+```
+
+- **Input:** a drag in the viewer, the motor a Ctrl-click starts, or the [function check](#the-function-check) working a control.
+- **Push or turn:** a part that turns like a knob is turned on its joint; a door or an arm is pushed at a point. See [Drags](#drags).
+- **Free motions:** every joint and gear mesh is an equation, and the solver finds every motion the equations allow. See [The solver](#the-solver).
+- **Least motion and holds:** of those motions the solver takes the one that moves least, tier by tier, and holds still what the drag does not need. These rules stand in for friction and weight, which Kinebrick does not compute.
+- **Small step, stop checks, show:** the bodies are placed and the loops closed; a step that makes parts collide or passes an end of travel is undone. This repeats for each step of the drag.
+- **Read again:** a gear shift changes what is connected to what, so the reading runs again from where every part now is.
+
+### Kinebrick's pieces
+
+```mermaid
+flowchart LR
+  k(["Kinebrick"])
+  k --> data["Data"]
+  k --> reading["Reading"]
+  k --> motion["Motion"]
+  k --> viewer["Viewer"]
+  k --> check["Check"]
+  data --> d1["LDraw parts library"]
+  data --> d2["LDCad shadow library"]
+  data --> d3["Corrections"]
+  data --> d4["Role list"]
+  data --> d5["Set models and their function lists"]
+  reading --> r1["Load"]
+  reading --> r2["Level 1: connection points"]
+  reading --> r3["Level 2: roles"]
+  reading --> r4["Level 3: assembly rules"]
+  reading --> r5["Bodies"]
+  motion --> m1["Equations"]
+  motion --> m2["Free motions"]
+  motion --> m3["Least motion"]
+  motion --> m4["Pushes and holds"]
+  motion --> m5["Steps and closing loops"]
+  viewer --> v1["Drawing"]
+  viewer --> v2["Dragging"]
+  viewer --> v3["Motor"]
+  viewer --> v4["Gear shift"]
+  check --> c1["Function check of every set"]
+  check --> c2["Ratchet: results against an earlier commit"]
+  check --> c3["Fingerprints: which mechanisms a change alters"]
+  check --> c4["Tests"]
+```
+
+Where each piece is in the code is in the [code map](#code-map).
+
 ## How it works
 
 From a model file to a mechanism you can drag, in eight steps:
