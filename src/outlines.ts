@@ -2,6 +2,8 @@
 //   frozen     parts of bodies the user has frozen (cyan)
 //   loose      parts not attached to the rest of the model (red)
 //   blocked    two parts that would have run into each other, shown briefly (red)
+//   driven     the part kept turning (green)
+//   shown      parts the address points at with ?show= (magenta)
 // Each style is its own outline pass; a pass with nothing to outline is switched off.
 
 import { Camera, Color, HalfFloatType, NormalBlending, Object3D, Scene, Vector2, WebGLRenderer, WebGLRenderTarget } from 'three';
@@ -22,6 +24,7 @@ const STYLES = {
   loose: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
   blocked: { colour: 0xff0000, hiddenColour: 0xa00000, strength: 10, thickness: 3 },
   driven: { colour: 0x22b14c, hiddenColour: 0x146b2e, strength: 10, thickness: 2.5 },
+  shown: { colour: 0xff2bd6, hiddenColour: 0x9a1880, strength: 10, thickness: 3.5 },
 };
 
 export type OutlineKind = keyof typeof STYLES;
