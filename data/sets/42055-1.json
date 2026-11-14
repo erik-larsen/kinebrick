@@ -181,14 +181,15 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 1529,
+    "date": "2026-11-14",
+    "seconds": 1668,
     "counts": {
       "no": 1,
-      "partly": 5,
-      "works": 4
+      "partly": 4,
+      "works": 5,
+      "not back": 1
     },
     "loose": [
       "p0 32009",
@@ -737,7 +738,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 9
+        "seconds": 6.8
       },
       {
         "result": "partly",
@@ -764,15 +765,15 @@
             ],
             "p1869 57520": [
               0,
-              6.9e-15
+              5.03e-16
             ],
             "p418 64178": [
               0,
-              1.15e-138
+              4.51e-130
             ],
             "p1599 42055 - 18938": [
               0,
-              5.77e-138
+              2.25e-129
             ]
           }
         ],
@@ -790,7 +791,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 130.7
+        "seconds": 106.6
       },
       {
         "result": "partly",
@@ -807,7 +808,7 @@
           {
             "p418 64178 against p1175 18939": [
               0,
-              8.4e-139
+              0
             ]
           }
         ],
@@ -825,7 +826,7 @@
         ],
         "cause": "not-driven",
         "detail": "p418 64178 against p1175 18939",
-        "seconds": 153
+        "seconds": 115.5
       },
       {
         "result": "partly",
@@ -879,56 +880,53 @@
         ],
         "cause": "not-driven",
         "detail": "p911 57520",
-        "seconds": 151.4
+        "seconds": 148.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p1616 32270",
-          "p1599 42055 - 18938",
-          "p1869 57520"
-        ],
         "rates": [
           {
             "p1616 32270": [
-              0,
-              3.16e-128
+              0.0231,
+              1.46e-47
             ],
             "p1599 42055 - 18938": [
-              0,
-              3.16e-128
+              0.2,
+              1.46e-47
             ],
             "p1869 57520": [
-              0,
-              3.07e-50
+              0.24,
+              114
             ],
             "p418 64178": [
-              0,
-              6.31e-129
+              0.000229,
+              2.93e-48
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              1.12,
+              0.57
             ],
             [
-              0,
-              0
+              0.57,
+              0.56
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p1616 32270",
-        "seconds": 73.2
+        "strayed": [
+          "p397 3062b",
+          "p2822 57518"
+        ],
+        "seconds": 394.7
       },
       {
         "result": "works",
@@ -958,7 +956,7 @@
             ]
           ]
         ],
-        "seconds": 75.4
+        "seconds": 53.3
       },
       {
         "result": "partly",
@@ -992,8 +990,8 @@
               1.06
             ],
             "p418 64178": [
-              0.00000471,
-              6.12e-31
+              0.00000173,
+              7.41e-47
             ]
           }
         ],
@@ -1017,7 +1015,7 @@
         ],
         "cause": "too-little",
         "detail": "p1510 62274c01",
-        "seconds": 205.7
+        "seconds": 192.2
       },
       {
         "result": "works",
@@ -1071,7 +1069,7 @@
             ]
           ]
         ],
-        "seconds": 73.3
+        "seconds": 54.2
       },
       {
         "result": "works",
@@ -1115,7 +1113,7 @@
             "dead point"
           ]
         ],
-        "seconds": 212.6
+        "seconds": 205.6
       },
       {
         "result": "works",
@@ -1185,7 +1183,13 @@
             ]
           ]
         ],
-        "seconds": 236.2
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 217
       }
     ]
   }

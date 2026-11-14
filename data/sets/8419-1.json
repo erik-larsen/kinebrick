@@ -112,9 +112,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "seconds": 2,
     "counts": {
       "no": 1,
@@ -285,7 +285,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -394,6 +394,12 @@
               0
             ]
           ]
+        ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
         ],
         "cause": "loose-part",
         "detail": "p69 71372c01",

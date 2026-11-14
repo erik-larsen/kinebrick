@@ -89,9 +89,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "works": 3,
@@ -259,6 +259,22 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p22 3705 against p0 3710",
+            "p287 3649 against p260 3709b",
+            "p309 3649 against p260 3709b",
+            "p315 3649 against p260 3709b",
+            "p321 3649 against p260 3709b"
+          ],
+          [
+            "p22 3705 against p0 3710",
+            "p287 3649 against p260 3709b",
+            "p309 3649 against p260 3709b",
+            "p315 3649 against p260 3709b",
+            "p321 3649 against p260 3709b"
+          ]
+        ],
         "seconds": 0.3
       },
       {
@@ -298,6 +314,10 @@
               0
             ]
           ]
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "seconds": 0.3
       },

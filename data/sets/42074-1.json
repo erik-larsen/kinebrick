@@ -85,9 +85,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "seconds": 2,
     "counts": {
       "works": 2,
@@ -261,6 +261,10 @@
             "dead point"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "stopped-early",
         "seconds": 0.1
       },
@@ -331,6 +335,12 @@
               0
             ]
           ]
+        ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
         ],
         "seconds": 1.1
       },

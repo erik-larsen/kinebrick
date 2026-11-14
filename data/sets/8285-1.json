@@ -250,10 +250,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 80,
+    "date": "2026-11-14",
+    "seconds": 87,
     "counts": {
       "no": 5,
       "works": 5,
@@ -365,6 +365,10 @@
             null
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "loose-part",
         "detail": "p2332 32020",
         "seconds": 2.6
@@ -422,6 +426,11 @@
             null
           ]
         ],
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
         "cause": "loose-part",
         "detail": "p2336 32020",
         "seconds": 1.1
@@ -470,7 +479,7 @@
             ]
           ]
         ],
-        "seconds": 7.8
+        "seconds": 8.2
       },
       {
         "result": "works",
@@ -500,7 +509,7 @@
             ]
           ]
         ],
-        "seconds": 7.5
+        "seconds": 7.8
       },
       {
         "result": "works",
@@ -537,7 +546,7 @@
         "pushed": [
           true
         ],
-        "seconds": 19.1
+        "seconds": 20.9
       },
       {
         "result": "partly",
@@ -591,7 +600,7 @@
         ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 7.8
+        "seconds": 8.6
       },
       {
         "result": "partly",
@@ -638,7 +647,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 7.4
+        "seconds": 8.1
       },
       {
         "result": "skipped",
@@ -689,7 +698,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 16.4
+        "seconds": 18.1
       },
       {
         "result": "works",
@@ -727,7 +736,7 @@
             ]
           ]
         ],
-        "seconds": 7.7
+        "seconds": 8.5
       },
       {
         "result": "skipped",
@@ -824,7 +833,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -877,6 +886,10 @@
         "pushed": [
           true,
           true
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "stopped-early",
         "seconds": 0.5

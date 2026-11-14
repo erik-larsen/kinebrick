@@ -137,10 +137,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 121,
+    "date": "2026-11-14",
+    "seconds": 128,
     "counts": {
       "partly": 3,
       "works": 3,
@@ -303,9 +303,17 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p468 6573"
+          ],
+          [
+            "p468 6573"
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p1305 65414c01",
-        "seconds": 23.3
+        "seconds": 24.3
       },
       {
         "result": "works",
@@ -335,7 +343,7 @@
             ]
           ]
         ],
-        "seconds": 11.5
+        "seconds": 12
       },
       {
         "result": "no",
@@ -364,6 +372,10 @@
         "why": [
           "p2922 42129 - 69912 has no joint to work",
           "p2924 42129 - 69912 has no joint to work"
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "control-fixed",
         "seconds": 0.8
@@ -416,7 +428,7 @@
         ],
         "cause": "loose-part",
         "detail": "p513 18947",
-        "seconds": 11.5
+        "seconds": 11.9
       },
       {
         "result": "works",
@@ -454,7 +466,7 @@
             ]
           ]
         ],
-        "seconds": 11.5
+        "seconds": 12.3
       },
       {
         "result": "partly",
@@ -470,9 +482,7 @@
         ],
         "still": [
           "p1305 65414c01",
-          "p1030 65414c01",
-          "p1371 4254 against p1372 4255",
-          "p1211 4254 against p1212 4255"
+          "p1371 4254 against p1372 4255"
         ],
         "rates": [
           {
@@ -547,8 +557,15 @@
             null
           ]
         ],
+        "movedBy": [
+          [],
+          [
+            "p1030 65414c01",
+            "p1211 4254 against p1212 4255"
+          ]
+        ],
         "cause": "control-jammed",
-        "seconds": 50.7
+        "seconds": 54.5
       },
       {
         "result": "skipped",
@@ -582,7 +599,7 @@
             ]
           ]
         ],
-        "seconds": 10.6
+        "seconds": 11.5
       }
     ]
   }

@@ -9,6 +9,11 @@
 // for each of its controls; it partly works if something moves; otherwise it doesn't. Controls
 // marked `together` are worked as one instead, all turning at once, as pushing a vehicle along
 // turns its wheels: the first is worked, and the others turn with it (see turnTogether).
+// Several controls not worked together each drive their own share of the parts (the 42070's
+// four motors, each driving one wheel): such a function works if each control, worked by
+// itself, goes far enough, moves at least one part in `moves` and none in `stays`, and every
+// part in `moves` is moved by at least one of them. `movedBy` says which control moved which
+// parts.
 //
 // A control the viewer would push, not turn, is pushed (see isPushed and pushMeasuring; `pushed`
 // in its results says so): a part that hangs on a hinge but doesn't spin on it like a knob (a
@@ -156,6 +161,7 @@ interface Checked {
   why?: string[];
   stop?: (Halt | null)[][]; // for each control, each way: what stopped it short of its reach, if anything did
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
+  movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
@@ -445,6 +451,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     let freedPins = 0;
     // Controls worked together are worked as one, by the first, the others turning with it.
     const controls = [fn.control!].flat();
+    // Several controls not worked together: each drives its own share of the parts.
+    const shared = controls.length > 1 && !fn.together;
     const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref, wi) => {
       together = [];
       use(asLoaded);
@@ -493,7 +501,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // part (the control, or one it should move), or a control worked first that didn't go.
       const loosePart = [control, ...moves.map((m) => m.part)].find((p) => mech.loose.includes(p));
       const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
-      const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null });
+      const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (b === 0 || !link) {
         why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
         return nothing(early ?? { cause: 'control-fixed' });
@@ -571,7 +579,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         kin.restore(there);
         const back: [number, number] = [round(most.ldu), round(most.degrees)];
         const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
+        // For a function whose controls share out the parts, a way does its share if it moves
+        // at least one of them (if it lists any).
+        const share = Math.abs(turned) >= reach / 2 && !wrong.length && (!moves.length || still.length < moves.length);
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
       });
       kin.restore(start);
       together = [];
@@ -634,10 +645,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             return [round((most * 180) / Math.PI), round(turned), why] as [number, number, Stop];
           })
         : null;
-      return { works: best.works, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
+      const movedParts = moves.filter((m) => !best.still.includes(m.ref)).map((m) => m.ref);
+      // Why the parts no control moved didn't move, for a function whose controls share them out.
+      const explainStill = (left: string[]) => explain(left, best.moved, best.turned);
+      return { works: best.works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
     });
+    // Controls that share out the parts: the parts none of them moved are still.
+    const movedByAny = new Set(ways.flatMap((w) => w.movedParts));
+    const still = shared ? (fn.moves ?? []).filter((m) => !movedByAny.has(m)) : [...new Set(ways.flatMap((w) => w.still))];
     // The cause is that of the first control that doesn't work.
-    const first = ways.find((w) => w.explained)?.explained;
+    const first = ways.find((w) => w.explained)?.explained ?? (shared && still.length ? ways[0].explainStill(still) : undefined);
     const explained = first ? { cause: first.cause, ...(first.detail ? { detail: first.detail } : {}) } : {};
     if (causesOnly) {
       const kept: Checked = { ...prior! };
@@ -645,8 +662,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       delete kept.detail;
       return { ...kept, ...explained };
     }
-    const result: Result = ways.every((w) => w.works) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
-    const still = [...new Set(ways.flatMap((w) => w.still))];
+    const result: Result = ways.every((w) => w.works) && !(shared && still.length) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
     const wrong = [...new Set(ways.flatMap((w) => w.moved))];
     const off = [...new Set(ways.flatMap((w) => w.off))];
     const strayed = [...new Set(ways.flatMap((w) => w.strayed))];
@@ -666,6 +682,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       ...(ways.some((w) => w.stop.some((h) => h)) ? { stop: ways.map((w) => w.stop) } : {}),
       ...(ways.some((w) => w.pushed) ? { pushed: ways.map((w) => w.pushed) } : {}),
       ...(freedPins ? { freed: freedPins } : {}),
+      ...(shared ? { movedBy: ways.map((w) => w.movedParts) } : {}),
       ...(result === 'works' ? {} : explained),
     };
   };

@@ -4,7 +4,7 @@ Ball joints, click hinges or friction joints that hold a pose. (Simple motions.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.
 
-Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 5 works, 2 partly, 3 no, 1 skipped.
+Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 4 works, 2 partly, 4 no, 1 skipped.
 
 ## By decade
 
@@ -65,7 +65,7 @@ Each detail by the set it first appears in.
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
-- *bucket:* The excavator's bucket sits on a hinge arm at the end of the arm and can be set at an angle by hand. (works)
+- *bucket:* The excavator's bucket sits on a hinge arm at the end of the arm and can be set at an angle by hand. (no)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 

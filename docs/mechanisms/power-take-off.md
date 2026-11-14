@@ -4,7 +4,7 @@ The vehicle's drive turns an output for an implement: a tractor's power take-off
 
 First appears in 1977, in [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The two big rear wheels roll and drive the rotary harrow: the crown gear on the rear half-axle with wheel p239 turns an 8-tooth gear on a short lengthwise axle, whose crown gear at the back drives the harrow's flat 40-tooth gear; that turns an 8-tooth gear on the middle rotor, and the middle rotor's 40-tooth gear turns the two outer rotors, so all three sets of yellow tines spin as the tractor rolls.
 
-Used in 11 of the 186 surveyed sets, by 14 functions. Kinebrick: 8 works, 6 partly.
+Used in 11 of the 186 surveyed sets, by 14 functions. Kinebrick: 9 works, 5 partly.
 
 ## By decade
 
@@ -71,7 +71,7 @@ Each detail by the set it first appears in.
 
 **2020, [42102 Mini CLAAS XERION](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42102-1)**
 
-- *rake:* Pushing the tractor along spins the two rake wheels behind it: the tan 20 tooth bevel gear on the rear axle drives a 12 tooth bevel gear on a shaft running back to the rake, where a 12 tooth gear turns a vertical gear between the two big rake gears, so both turn the same way. (partly)
+- *rake:* Pushing the tractor along spins the two rake wheels behind it: the tan 20 tooth bevel gear on the rear axle drives a 12 tooth bevel gear on a shaft running back to the rake, where a 12 tooth gear turns a vertical gear between the two big rake gears, so both turn the same way. (works)
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 

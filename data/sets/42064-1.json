@@ -156,10 +156,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 35,
+    "date": "2026-11-14",
+    "seconds": 37,
     "counts": {
       "partly": 4,
       "works": 5
@@ -442,7 +442,7 @@
         ],
         "cause": "not-driven",
         "detail": "p214 4716",
-        "seconds": 2.5
+        "seconds": 2.7
       },
       {
         "result": "partly",
@@ -499,7 +499,7 @@
         ],
         "cause": "not-driven",
         "detail": "p224 99010",
-        "seconds": 2.5
+        "seconds": 2.7
       },
       {
         "result": "partly",
@@ -646,7 +646,14 @@
             ]
           ]
         ],
-        "seconds": 13.3
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 14.3
       },
       {
         "result": "partly",
@@ -693,7 +700,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1298 10928",
-        "seconds": 2.5
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -742,7 +749,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -795,32 +802,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
-      },
-      {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "seconds": 2.5
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -846,6 +828,31 @@
           ]
         ],
         "seconds": 2.7
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 2.8
       }
     ]
   }

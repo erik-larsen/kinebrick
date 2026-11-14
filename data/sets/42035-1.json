@@ -93,10 +93,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 5,
+    "date": "2026-11-14",
+    "seconds": 6,
     "counts": {
       "works": 4,
       "partly": 1
@@ -225,7 +225,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -260,7 +260,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p38 60485 against p0 32525",
-        "seconds": 1.4
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -300,7 +300,11 @@
             ]
           ]
         ],
-        "seconds": 2
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 2.2
       },
       {
         "result": "works",

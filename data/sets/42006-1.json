@@ -134,10 +134,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 47,
+    "date": "2026-11-14",
+    "seconds": 58,
     "counts": {
       "works": 2,
       "partly": 3,
@@ -261,7 +261,7 @@
             ]
           ]
         ],
-        "seconds": 4.1
+        "seconds": 4.5
       },
       {
         "result": "partly",
@@ -310,7 +310,7 @@
         ],
         "cause": "not-driven",
         "detail": "p206 60485",
-        "seconds": 4.7
+        "seconds": 4.8
       },
       {
         "result": "partly",
@@ -325,23 +325,26 @@
           "p458 62274c01 against p457 62271c01",
           "p486 32209 against p389 32278"
         ],
+        "moved": [
+          "p389 32278"
+        ],
         "rates": [
           {
             "p250 55013": [
-              0,
+              0.00716,
               0
             ],
             "p458 62274c01 against p457 62271c01": [
-              0,
-              0
+              2.81e-8,
+              4.29e-13
             ],
             "p486 32209 against p389 32278": [
-              0,
-              0
+              2.81e-8,
+              4.29e-13
             ],
             "p389 32278": [
-              0,
-              0
+              0.00745,
+              1.81
             ]
           }
         ],
@@ -359,7 +362,7 @@
         ],
         "cause": "not-driven",
         "detail": "p250 55013",
-        "seconds": 4.4
+        "seconds": 11.8
       },
       {
         "result": "partly",
@@ -432,7 +435,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p648 92695 against p647 92693c01",
-        "seconds": 4.5
+        "seconds": 4.9
       },
       {
         "result": "not checked",
@@ -506,7 +509,13 @@
             ]
           ]
         ],
-        "seconds": 29.2
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 31.7
       }
     ]
   }

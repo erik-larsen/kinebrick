@@ -209,10 +209,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 32,
+    "date": "2026-11-14",
+    "seconds": 34,
     "counts": {
       "works": 5,
       "no": 2,
@@ -294,7 +294,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.5
       },
       {
         "result": "no",
@@ -318,7 +318,7 @@
           "p556 41239 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -358,7 +358,7 @@
             null
           ]
         ],
-        "seconds": 3.4
+        "seconds": 3.5
       },
       {
         "result": "partly",
@@ -411,7 +411,7 @@
         ],
         "cause": "not-driven",
         "detail": "p212 48168",
-        "seconds": 1.5
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -466,7 +466,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p212 48168",
-        "seconds": 1.3
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -508,7 +508,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 2.8
       },
       {
         "result": "not checked",
@@ -558,7 +558,7 @@
             ]
           ]
         ],
-        "seconds": 4
+        "seconds": 4.4
       },
       {
         "result": "partly",
@@ -603,7 +603,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p370 40490",
-        "seconds": 6.7
+        "seconds": 7.3
       },
       {
         "result": "no",
@@ -652,7 +652,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -752,7 +752,15 @@
             ]
           ]
         ],
-        "seconds": 9.6
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 10.4
       },
       {
         "result": "skipped",

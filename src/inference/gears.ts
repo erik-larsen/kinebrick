@@ -1,7 +1,7 @@
 // Gears and which of them mesh: spur, worm, rack, crown and bevel meshes.
 
 import { Matrix4, Vector3 } from 'three';
-import type { Gear, Mechanism, Mesh } from '../mechanism.ts';
+import type { Gear, Mechanism, Mesh, Screw } from '../mechanism.ts';
 import { ANGLE_TOLERANCE, AXIS_TOLERANCE, MIN_OVERLAP, type WorldCylinder } from './shared.ts';
 
 // How far meshing gears' axles (or a gear and a rack's pitch line) may be from exactly their
@@ -129,6 +129,30 @@ function wormMesh(worm: Gear, gear: Gear): boolean {
   const alongWorm = new Vector3().subVectors(closest.onA, worm.center).dot(worm.axis);
   const alongGear = new Vector3().subVectors(closest.onB, gear.center).dot(gear.axis);
   return Math.abs(alongWorm) <= worm.width / 2 && Math.abs(alongGear) <= gear.width / 2;
+}
+
+// A worm lying along a rack (the 1L worm on the 1 x 14 rack with bottom beam, as a lead screw):
+// the rack goes one lead along the worm's axis for each turn of the worm, as a linear
+// actuator's piston does on its screw, so it's read as a screw between their bodies. They mesh
+// when the worm's axis runs along the rack, its pitch radius from the rack's pitch line on the
+// side the teeth face, within the rack's length, and their teeth are the same size.
+export function wormRacks(gears: Gear[]): Screw[] {
+  const screws: Screw[] = [];
+  for (const worm of gears) {
+    if (!worm.worm) continue;
+    for (const rack of gears) {
+      if (!rack.face || rack.body === worm.body) continue;
+      if (Math.abs(worm.worm - rack.length / rack.teeth) > 0.25) continue;
+      if (Math.abs(Math.abs(worm.axis.dot(rack.axis)) - 1) > 0.0001) continue;
+      const offset = new Vector3().subVectors(worm.center, rack.center);
+      const along = offset.dot(rack.axis);
+      if (Math.abs(along) > rack.length / 2) continue;
+      const across = offset.addScaledVector(rack.axis, -along);
+      if (Math.abs(across.dot(rack.face) - worm.radius) > MESH_TOLERANCE || across.addScaledVector(rack.face, -across.dot(rack.face)).length() > MESH_TOLERANCE) continue;
+      screws.push({ input: worm.body, piston: rack.body, center: worm.center.clone(), axis: worm.axis.clone(), lead: worm.worm });
+    }
+  }
+  return screws;
 }
 
 // A spur gear meshes with a rack of the same tooth size when its axis lies across the rack (at

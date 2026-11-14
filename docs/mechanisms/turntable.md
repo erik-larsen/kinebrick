@@ -4,7 +4,7 @@ A part slews round on a turntable or an upright pivot, geared or by hand. (Movin
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The cab slews round on its turntable, carrying the boom with it.
 
-Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 9 works, 25 partly, 5 no, 1 not checked.
+Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 14 works, 20 partly, 5 no, 1 not checked.
 
 ## By decade
 
@@ -74,7 +74,7 @@ Each detail by the set it first appears in.
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
-- *ladder:* The 12-tooth gears low on the truck's sides beside the turntable slew the ladder round, all the way round: a worm on their cross shaft turns an 8-tooth gear on a vertical shaft, whose 24-tooth gear on top drives the turntable's teeth. (partly)
+- *ladder:* The 12-tooth gears low on the truck's sides beside the turntable slew the ladder round, all the way round: a worm on their cross shaft turns an 8-tooth gear on a vertical shaft, whose 24-tooth gear on top drives the turntable's teeth. (works)
 
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
 
@@ -118,11 +118,11 @@ Each detail by the set it first appears in.
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
-- *superstructure:* Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth. (partly)
+- *superstructure:* Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth. (works)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *crane:* Function C: with the red lever on the left of the chassis pushed forward, to C, the motor slews the crane on its turntable, through 180 degrees: the left driving ring locks its front clutch gear, which turns through two idler clutch gears a 16-tooth gear on a shaft running forward, then bevel gears up to a 12-tooth gear on the turntable's 60 teeth. (partly)
+- *crane:* Function C: with the red lever on the left of the chassis pushed forward, to C, the motor slews the crane on its turntable, through 180 degrees: the left driving ring locks its front clutch gear, which turns through two idler clutch gears a 16-tooth gear on a shaft running forward, then bevel gears up to a 12-tooth gear on the turntable's 60 teeth. (works)
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
@@ -137,7 +137,7 @@ Each detail by the set it first appears in.
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
 - *upper works:* With the middle knob back, the right knob, pushed forward or back, slews the whole upper works round on the crawler base one way or the other, while the wheel and belts keep running: two worms turn on a big ring gear made of four quarters on the base. (partly)
-- *discharge belt:* With the red lever at the back of the upper works in the middle (N), the black gear behind it, used as a knob, swings the discharge belt round on its own turntable, so it can be aimed over the mine truck: its shaft runs forward through two universal joints and bevel gears to a 12 tooth gear on the turntable. (partly)
+- *discharge belt:* With the red lever at the back of the upper works in the middle (N), the black gear behind it, used as a knob, swings the discharge belt round on its own turntable, so it can be aimed over the mine truck: its shaft runs forward through two universal joints and bevel gears to a 12 tooth gear on the turntable. (works)
 
 **2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
 
@@ -166,7 +166,7 @@ Each detail by the set it first appears in.
 
 **2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1)**
 
-- *cab:* The front one of the two knobs on top turns the cab right round on its turntable: a 12 tooth gear at the foot of its shaft drives the turntable's teeth. (partly)
+- *cab:* The front one of the two knobs on top turns the cab right round on its turntable: a 12 tooth gear at the foot of its shaft drives the turntable's teeth. (works)
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
 

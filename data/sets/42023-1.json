@@ -84,10 +84,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 5,
+    "date": "2026-11-14",
+    "seconds": 6,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -238,8 +238,20 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p317 32198 against p0 32140",
+            "p247 6589 against p0 32140",
+            "p244 92695 against p245 92693c01"
+          ],
+          [
+            "p317 32198 against p0 32140",
+            "p247 6589 against p0 32140",
+            "p244 92695 against p245 92693c01"
+          ]
+        ],
         "cause": "control-jammed",
-        "seconds": 3.7
+        "seconds": 4
       },
       {
         "result": "works",
@@ -339,7 +351,13 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 1.2
       }
     ]
   }
