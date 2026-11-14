@@ -419,7 +419,6 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Proposed, not applied until signed off |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Proposed, not applied until signed off |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Proposed, not applied until signed off |
-| [42069-1](#42069-1-trunk-20-high) | trunk-20-high | moves `42069 - trunk.ldr` to 0 -250 280 | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | moves `2780.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | moves `2780.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | moves `32526.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
@@ -479,20 +478,6 @@ In `42064 - ship.ldr`, the line
 is read with its part at 0 -110 -380.
 
 In the real set the hatch is fixed on its two pins, not hinged; what that means for fn 9 is the audit's table for Erik.
-
-### 42069-1: trunk-20-high
-
-Proposed, not applied until signed off.
-
-Geometry only, to be checked in the booklet before it is signed (the steps that build trunk.ldr and fit it to the car). The trunk (trunk.ldr, 35 parts) is attached to nothing: its two pins 2780 (p744, p745) sit on the axes of the 64782's holes (p757), 0.00 off, ending at the holes' faces. Moved 20 LDU down and 20 back (y +20, z -20) it makes 50 joins with the rest, as placed 0; 67 with x moved 5 or 10 either way, along the pins, so x is left as built.
-
-In the main model, the line
-
-```
-1 0 0 -270 300 1 0 0 0 1 0 0 0 1 42069 - trunk.ldr
-```
-
-is read with its part at 0 -250 280.
 
 ### 42109-1: no-pin-p381
 
