@@ -8,7 +8,8 @@ import { AXIS_TOLERANCE } from './shared.ts';
 // Step 6: parts that are rigidly connected (an axle in an axle hole, a tyre on a rim) or
 // attached by studs move as one body. The frame is the body with the most structure parts
 // (bricks, plates, beams), and is numbered 0. Returns the body index of each part.
-export function groupIntoBodies(count: number, roles: string[], connections: Connection[]): number[] {
+// `notFrame`: parts that can't be in the frame, being another model's (see secondModels).
+export function groupIntoBodies(count: number, roles: string[], connections: Connection[], notFrame: Set<number> = new Set()): number[] {
   // Union-find: each part points towards a representative part of its group.
   const leader = Array.from({ length: count }, (_, i) => i);
   const find = (i: number): number => {
@@ -50,7 +51,7 @@ export function groupIntoBodies(count: number, roles: string[], connections: Con
   const structureCount = new Map<number, number>();
   const layout = roles.includes('rail');
   for (let i = 0; i < count; i++) {
-    if (roles[i] === (layout ? 'rail' : 'structure')) structureCount.set(find(i), (structureCount.get(find(i)) ?? 0) + 1);
+    if (roles[i] === (layout ? 'rail' : 'structure') && !notFrame.has(i)) structureCount.set(find(i), (structureCount.get(find(i)) ?? 0) + 1);
   }
   let frame = -1;
   for (const [group, n] of structureCount) if (frame < 0 || n > structureCount.get(frame)!) frame = group;
