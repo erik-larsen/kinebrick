@@ -137,10 +137,10 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
+    "commit": "7699035a",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 109,
+    "seconds": 108,
     "counts": {
       "works": 2,
       "partly": 3,
@@ -290,7 +290,7 @@
             ]
           ]
         ],
-        "seconds": 5.7
+        "seconds": 5.9
       },
       {
         "result": "partly",
@@ -307,11 +307,11 @@
           {
             "p158 3648b": [
               0.0417,
-              3.82e-13
+              4.79e-13
             ],
             "p244 3706": [
               0.0483,
-              5.67e-13
+              4.35e-13
             ],
             "p400 40490": [
               0.0151,
@@ -326,8 +326,8 @@
               0.112
             ],
             "p1117 4716": [
-              5.62e-8,
-              4.67e-13
+              1.4e-7,
+              4.75e-13
             ]
           }
         ],
@@ -339,22 +339,22 @@
         "back": [
           [
             [
-              591.14,
-              167.05
+              244.74,
+              107.38
             ],
             [
-              56.77,
-              107.2
+              120.83,
+              177.83
             ]
           ]
         ],
         "strayed": [
-          "p412 55982",
-          "p525 4519"
+          "p416 42066 - 24316",
+          "p412 55982"
         ],
         "cause": "too-little",
         "detail": "p499 11478",
-        "seconds": 68.3
+        "seconds": 67.5
       },
       {
         "result": "partly",
@@ -416,7 +416,7 @@
         ],
         "cause": "not-driven",
         "detail": "p669 60483",
-        "seconds": 6.7
+        "seconds": 6.3
       },
       {
         "result": "partly",
@@ -465,7 +465,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 6.2
+        "seconds": 6.1
       },
       {
         "result": "no",
@@ -519,7 +519,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.3
+        "seconds": 1.5
       },
       {
         "result": "works",

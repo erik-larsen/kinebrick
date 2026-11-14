@@ -11,7 +11,7 @@ import { actuatorScrews, linearActuators } from './inference/actuators.ts';
 import { slidingOnAxles } from './inference/axleSlides.ts';
 import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts';
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
-import { crankWebs, dropBallsInBearings, findCouplings, groovedBalls, reductions, universalJoints } from './inference/couplings.ts';
+import { crankWebs, lockedJoints, dropBallsInBearings, findCouplings, groovedBalls, reductions, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
 import { findGears, findMeshes, wormRacks } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
@@ -354,6 +354,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...bushGrips(roles, cyls));
   connections.push(...toothedBushes(roles, cyls));
   const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
+  lockedJoints(parts.length, connections, joined);
 
   // 2. Loose parts. Second chances first, for parts no rule above attached (looseFits leaves a
   // universal joint's cross the arms universalJoints left it).

@@ -26,6 +26,7 @@ export class Appearance {
   frozenBodies = new Set<number>();
   looseParts = new Set<number>();
   drivenPart = -1; // the part kept turning (Ctrl-click), or -1
+  shownParts = new Set<number>(); // the parts the address points at (?show=)
   focusBodies: Set<number> | null = null; // with drivetrain focus, the bodies drawn solid (null: all)
 
   private partObjects: Object3D[];
@@ -95,6 +96,7 @@ export class Appearance {
     this.outlines.set('loose', partsOf((p) => this.looseParts.has(p)));
     // Only the part that was Ctrl-clicked, not the rest of its body.
     this.outlines.set('driven', partsOf((p) => p === this.drivenPart));
+    this.outlines.set('shown', partsOf((p) => this.shownParts.has(p)));
 
     // Badges: one ⚠ per loose part, one 📌 per frozen body (on its biggest part).
     for (const badge of this.badges) badge.removeFromParent();

@@ -122,7 +122,7 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   axes         each joint's axis
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
-//   nosymbols    no symbols pinned to parts (📌 frozen, ⚠ loose), which show otherwise
+//   symbols      the symbols pinned to parts (📌 frozen, ⚠ loose), which are hidden otherwise
 //   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
 //                to drive from the browser's console
 const OPTIONS = params.getAll('option').join(',').split(',');
@@ -146,8 +146,12 @@ const SCRUB_MARGIN = 2;
 // A part kept turning from the start, by its place in the model file (counting from 0, as
 // the model's parts come, submodels flattened), counter-clockwise as seen from where the
 // camera starts, or with ",cw" clockwise: e.g. ?autospin=271 or ?autospin=271,cw. Ctrl-click
-// keeps it up to date, so the address shares the animation.
-const AUTOSPIN = /^(\d+)(,cw)?$/.exec(params.get('autospin') ?? '');
+// keeps it up to date, so the address shares the animation. With ",paused" last it is chosen
+// and outlined but waits, as after the pause button: ?autospin=271,paused.
+const AUTOSPIN = /^(\d+)(,cw)?(,paused)?$/.exec(params.get('autospin') ?? '');
+// Parts to point at, outlined in magenta whether they can move or not, by their places in the
+// model file: ?show=182,183. For a link that says "this part".
+const SHOW = (params.get('show') ?? '').split(',').filter((p) => /^\d+$/.test(p)).map(Number);
 // Parts turned from the start, each by its place in the model file and how many degrees,
 // counter-clockwise as seen from where the camera starts (negative: clockwise), in the order
 // given, as a drag would turn them, before Auto spin starts: e.g. ?turn=12,30&turn=271,-45.
@@ -502,8 +506,9 @@ async function start() {
   const contacts = new Group();
   contacts.visible = OPTIONS.includes('contacts');
   ldrawSpace.add(contacts);
-  badgeRenderer.domElement.hidden = OPTIONS.includes('nosymbols');
+  badgeRenderer.domElement.hidden = !OPTIONS.includes('symbols');
   const appearance = new Appearance(partObjects, mech, outlines);
+  appearance.shownParts = new Set(SHOW);
   appearance.showBodyColours = OPTIONS.includes('bodycolours');
   // Drivetrain focus (see OPTIONS): the bodies the motion going on (a drag, or a part kept
   // turning or moving) has moved against the frame, and where each was against the frame as it
@@ -857,7 +862,7 @@ async function start() {
   });
   gui.add(settings, 'symbols').name('Symbols').onChange((on: boolean) => {
     badgeRenderer.domElement.hidden = !on;
-    keepOption('nosymbols', !on);
+    keepOption('symbols', on);
   });
 
   // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" (in the options panel,
@@ -929,6 +934,17 @@ async function start() {
   const stuck = placed.filter((name) => name in notMovingYet && !inputs.has(name));
   showWarnings(startParts.map((p) => p.name), mech.loose, unconnected(startParts, table, roles), stuck, missingFiles);
   const grid = frameCamera(model, kin.groundY);
+  // A link that points at parts (see SHOW) starts close to them, seen from the usual side.
+  const pointedAt = SHOW.filter((part) => part < partObjects.length).map((part) => partObjects[part]);
+  if (pointedAt.length) {
+    const box = new Box3();
+    for (const object of pointedAt) box.expandByObject(object);
+    const centre = box.getCenter(new Vector3());
+    const reach = Math.max(box.getSize(new Vector3()).length() * 3, 300);
+    controls.target.copy(centre);
+    camera.position.copy(centre).add(new Vector3(0.9, 0.7, 1.1).normalize().multiplyScalar(reach));
+    controls.update();
+  }
   model.visible = true;
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
@@ -1039,7 +1055,7 @@ async function start() {
     // Kept in the address, so it can be shared (see AUTOSPIN).
     if (interaction.motorRunning()) {
       const clockwise = interaction.motorClockwiseFrom(startCamera.position);
-      params.set('autospin', `${interaction.motorPart()}${clockwise ? ',cw' : ''}`);
+      params.set('autospin', `${interaction.motorPart()}${clockwise ? ',cw' : ''}${paused ? ',paused' : ''}`);
     } else {
       params.delete('autospin');
     }
@@ -1068,7 +1084,10 @@ async function start() {
     if (Math.abs(turned) > 1e-9) keepTurn(part, turned);
     meshAfresh();
   }
-  if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
+  if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) {
+    interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
+    if (AUTOSPIN[3] && interaction.motorRunning()) interaction.pauseMotor(true);
+  }
   unfreezeButton = gui.add({ unfreezeAll }, 'unfreezeAll').name('Unfreeze all');
   showFrozen();
 }
@@ -1221,7 +1240,7 @@ const filePicker = document.getElementById('file') as HTMLInputElement;
 // Switching model keeps the options, except tyre scrub, turned parts, spinning and spin speed:
 // the next model has its own.
 function openModel(set: (params: URLSearchParams) => void) {
-  for (const name of ['model', 'file', 'scrub', 'turn', 'free', 'autospin', 'rpm']) params.delete(name);
+  for (const name of ['model', 'file', 'scrub', 'turn', 'free', 'autospin', 'show', 'rpm']) params.delete(name);
   set(params);
   window.location.search = address();
 }

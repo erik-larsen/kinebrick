@@ -180,10 +180,10 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
+    "commit": "7699035a",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 336,
+    "seconds": 351,
     "counts": {
       "works": 6,
       "not back": 2,
@@ -207,11 +207,11 @@
           {
             "p437 6589 against p674 2850a": [
               1,
-              4.77e-13
+              4.15e-13
             ],
             "p415 32270 against p674 2850a": [
               1,
-              2.62e-13
+              3.61e-13
             ],
             "p405 87761 against p674 2850a": [
               0,
@@ -227,7 +227,7 @@
             ],
             "p1143 45982 against p674 2850a": [
               0,
-              6.04e-12
+              6.12e-12
             ]
           }
         ],
@@ -243,7 +243,7 @@
             ]
           ]
         ],
-        "seconds": 39.8
+        "seconds": 42.3
       },
       {
         "result": "works",
@@ -273,7 +273,7 @@
             ]
           ]
         ],
-        "seconds": 18.3
+        "seconds": 19.2
       },
       {
         "result": "works",
@@ -287,35 +287,35 @@
           {
             "p457 62821 against p674 2850a": [
               1,
-              1.24e-8
+              1.19e-8
             ],
             "p356 94925 against p674 2850a": [
               1.4,
-              4.43e-13
+              3.85e-13
             ],
             "p367 6542b against p674 2850a": [
               1.4,
-              5.66e-13
+              4.02e-13
             ],
             "p828 94925 against p674 2850a": [
               1.4,
-              4.01e-13
+              5.5e-13
             ],
             "p690 2854 against p674 2850a": [
               1.4,
-              5.89e-13
+              4.35e-13
             ],
             "p698 2851 against p674 2850a": [
               1.12e-7,
               11.3
             ],
             "p702 2851 against p674 2850a": [
-              2.81e-8,
+              1.4e-7,
               8.35
             ],
             "p674 2850a against p337 32525": [
-              5.62e-8,
-              1.55e-13
+              1.12e-7,
+              2.96e-13
             ]
           }
         ],
@@ -341,7 +341,7 @@
           "p470 32556",
           "p973 2654"
         ],
-        "seconds": 91.7
+        "seconds": 94.6
       },
       {
         "result": "works",
@@ -357,12 +357,12 @@
         "back": [
           [
             [
-              30.43,
-              27.2
+              49.3,
+              27.14
             ],
             [
-              15.08,
-              20.71
+              14.59,
+              20.67
             ]
           ]
         ],
@@ -370,7 +370,7 @@
           "p1147 56908",
           "p437 6589"
         ],
-        "seconds": 115.6
+        "seconds": 98.6
       },
       {
         "result": "works",
@@ -408,7 +408,10 @@
             ]
           ]
         ],
-        "seconds": 17.7
+        "why": [
+          "p48 6539 against p47 3705 is held by friction pins the control doesn't reach"
+        ],
+        "seconds": 18.9
       },
       {
         "result": "partly",
@@ -476,7 +479,7 @@
         ],
         "cause": "not-driven",
         "detail": "p64 6542b against p0 32278",
-        "seconds": 17.2
+        "seconds": 19.4
       },
       {
         "result": "partly",
@@ -531,7 +534,7 @@
         ],
         "cause": "not-driven",
         "detail": "p597 92695 against p596 92693c01",
-        "seconds": 18.3
+        "seconds": 20.1
       },
       {
         "result": "works",
@@ -561,15 +564,13 @@
             ]
           ]
         ],
-        "seconds": 14.8
+        "seconds": 15.7
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       },
       {
-        "result": "not checked",
-        "seconds": 0
+        "result": "not checked"
       }
     ]
   }

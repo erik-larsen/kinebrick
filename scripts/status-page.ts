@@ -2,7 +2,8 @@
 // the share of its checked functions that work, and why the functions that don't work don't, by
 // cause (see docs/plan.md, "What Erik sees"). It reads each
 // set's results from data/sets/ (written by npm run functions) and its name, year and piece count
-// from models/technic-sets.csv, and puts them into the page in scripts/status-page.html.
+// from models/technic-sets.csv, and puts them into the page in scripts/status-page.html. The page's
+// graph of the sets in each colour over time comes from git (see status-history.ts).
 //
 //   npm run status                 writes dist/status.html
 //   npm run status -- some/file    writes it there instead
@@ -11,6 +12,7 @@ import { execSync } from 'node:child_process';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { CAUSES } from './causes.ts';
+import { history, setState } from './status-history.ts';
 
 const SETS_DIR = join('data', 'sets');
 const out = process.argv[2] ?? join('dist', 'status.html');
@@ -54,7 +56,16 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
 }
 
 const commit = execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
-const data = { commit, date: new Date().toISOString().slice(0, 10), causes: CAUSES, sets };
+// The sets in each colour after each commit that changed them, and last as the files are now, if a
+// check has changed them since the last commit: [seconds, commit, the six buckets' counts].
+const points = history().map((p) => [p.time, p.commit, ...p.buckets]);
+const now = [0, 0, 0, 0, 0, 0];
+for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
+  const state = setState(readFileSync(join(SETS_DIR, file), 'utf-8'));
+  if (state) now[state.bucket]++;
+}
+if (points[points.length - 1].slice(2).join() !== now.join()) points.push([Math.floor(Date.now() / 1000), 'not committed', ...now]);
+const data = { commit, date: new Date().toISOString().slice(0, 10), causes: CAUSES, sets, history: points };
 const page = readFileSync(join('scripts', 'status-page.html'), 'utf-8').replace('/*DATA*/null', () => JSON.stringify(data).replaceAll('</', '<\\/'));
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, page);
