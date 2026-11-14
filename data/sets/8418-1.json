@@ -67,12 +67,12 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "982f6976",
     "date": "2026-11-14",
     "seconds": 0,
     "counts": {
-      "works": 1,
-      "no": 2
+      "works": 2,
+      "no": 1
     },
     "loose": [
       "p58 30285",
@@ -150,24 +150,21 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p57 30394 against p47 3706"
         ],
         "rates": [
           {
             "p57 30394 against p47 3706": [
-              0,
-              0
+              1,
+              0.01
             ],
             "p47 3706 against p0 32009": [
               0,
@@ -187,14 +184,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "part-fixed",
-        "detail": "p57 30394 against p47 3706",
+        "freed": 1,
         "seconds": 0
       },
       {

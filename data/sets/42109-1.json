@@ -93,10 +93,10 @@
     ]
   },
   "generated": {
-    "commit": "871274a7",
+    "commit": "cbfa4bc8",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
       "partly": 3,
       "works": 1,
@@ -155,6 +155,11 @@
               0
             ]
           ]
+        ],
+        "why": [
+          "p16 42109 - 65414c01 is held by friction pins the control doesn't reach",
+          "p969 56145 is held by friction pins the control doesn't reach",
+          "p971 56145 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p16 42109 - 65414c01",
@@ -333,7 +338,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.6
       },
       {
         "result": "not checked",

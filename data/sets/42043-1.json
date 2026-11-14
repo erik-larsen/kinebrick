@@ -166,9 +166,12 @@
         "moves": [
           "p1536 4716",
           "p1530 10928",
-          "p1538 4519"
+          "p1538 4519",
+          "p1575 4716",
+          "p1569 10928",
+          "p1577 4519"
         ],
-        "note": "one entry for both outriggers: the left one is p1537 (worm p1536, foot p1538), the right one p1576 (worm p1575, gear p1569, foot p1577)"
+        "note": "one entry for both outriggers: the left one is p1537 (worm p1536, foot p1538), the right one p1576 (worm p1575, gear p1569, foot p1577); the right outrigger's worm, gear and foot are listed to move too, settled by this note's own words \"one entry for both outriggers\" and \"the right one p1576 (worm p1575, gear p1569, foot p1577)\", so each control moves its own side's parts"
       },
       {
         "does": "Functions E, F, G and H: the four pneumatic switches on the red crane base work the crane's four pneumatic cylinders, once the pump has filled the system with air: E slides the crane's last section in and out (a telescope), F raises and lowers the main boom, G folds the outer boom up and down, and H opens and closes the clamshell grab.",
@@ -334,12 +337,12 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "982f6976",
     "date": "2026-11-14",
-    "seconds": 2108,
+    "seconds": 2081,
     "counts": {
-      "works": 7,
-      "partly": 5,
+      "works": 8,
+      "partly": 4,
       "skipped": 2,
       "not back": 2,
       "no": 1
@@ -431,15 +434,19 @@
             ]
           ]
         ],
-        "seconds": 85.7
+        "seconds": 98.8
       },
       {
         "result": "partly",
         "turned": [
           [
-            3.6,
-            -3.7
+            1.5,
+            -1.5
           ]
+        ],
+        "still": [
+          "p1898 62274c01",
+          "p7053 64782"
         ],
         "moved": [
           "p2368 42043 - 18938"
@@ -448,47 +455,47 @@
           {
             "p1721 18947": [
               1,
-              2.24e-13
+              7.58e-14
             ],
             "p1710 18946": [
               1,
-              2.24e-13
+              7.58e-14
             ],
             "p1711 94925": [
               1,
-              1.87e-13
+              0
             ],
             "p1728 32269": [
               0.6,
-              6.78e-14
+              3.79e-14
             ],
             "p1738 32270": [
               0.6,
-              4.61e-14
+              3.79e-14
             ],
             "p2012 32269": [
               0.36,
-              2.28e-35
+              5.63e-35
             ],
             "p1873 6589": [
               0.36,
-              2.91e-35
+              7.18e-35
             ],
             "p1901 6589": [
               0.362,
-              0.0393
+              0.0394
             ],
             "p1898 62274c01": [
-              0.00142,
-              0.384
+              0.00144,
+              0.388
             ],
             "p7053 64782": [
-              0.00379,
-              0.273
+              0.00383,
+              0.276
             ],
             "p2368 42043 - 18938": [
               0.0272,
-              2.69e-36
+              6.63e-36
             ],
             "p1665 99799": [
               0,
@@ -519,9 +526,9 @@
             ]
           ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p2368 42043 - 18938",
-        "seconds": 374.3
+        "cause": "too-little",
+        "detail": "p1898 62274c01",
+        "seconds": 122.6
       },
       {
         "result": "works",
@@ -579,7 +586,7 @@
             ]
           ]
         ],
-        "seconds": 90.6
+        "seconds": 95.2
       },
       {
         "result": "works",
@@ -662,7 +669,7 @@
             ]
           ]
         ],
-        "seconds": 97.5
+        "seconds": 102.9
       },
       {
         "result": "partly",
@@ -739,10 +746,10 @@
         ],
         "cause": "stay-chosen",
         "detail": "p2368 42043 - 18938",
-        "seconds": 90.9
+        "seconds": 96.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -766,6 +773,18 @@
             "p1538 4519": [
               0,
               5
+            ],
+            "p1575 4716": [
+              0,
+              0
+            ],
+            "p1569 10928": [
+              0,
+              0
+            ],
+            "p1577 4519": [
+              0,
+              0
             ]
           },
           {
@@ -780,6 +799,18 @@
             "p1538 4519": [
               0,
               0
+            ],
+            "p1575 4716": [
+              1,
+              3.79e-14
+            ],
+            "p1569 10928": [
+              0.125,
+              0
+            ],
+            "p1577 4519": [
+              2.81e-8,
+              5
             ]
           }
         ],
@@ -811,11 +842,13 @@
             "p1530 10928",
             "p1538 4519"
           ],
-          []
+          [
+            "p1575 4716",
+            "p1569 10928",
+            "p1577 4519"
+          ]
         ],
-        "cause": "not-driven",
-        "detail": "p1536 4716",
-        "seconds": 137
+        "seconds": 147.4
       },
       {
         "result": "skipped"
@@ -1009,7 +1042,7 @@
             "p2213 86652"
           ]
         ],
-        "seconds": 457.4
+        "seconds": 514.8
       },
       {
         "result": "works",
@@ -1034,7 +1067,7 @@
             ]
           ]
         ],
-        "seconds": 41.2
+        "seconds": 37.4
       },
       {
         "result": "partly",
@@ -1136,7 +1169,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p66 2851",
-        "seconds": 162
+        "seconds": 207.8
       },
       {
         "result": "works",
@@ -1199,7 +1232,7 @@
             "p2036 62821"
           ]
         ],
-        "seconds": 322.2
+        "seconds": 388.8
       },
       {
         "result": "skipped"
@@ -1242,7 +1275,7 @@
         ],
         "cause": "not-driven",
         "detail": "p7226 32073",
-        "seconds": 56.6
+        "seconds": 54.1
       },
       {
         "result": "works",
@@ -1286,7 +1319,7 @@
           [],
           []
         ],
-        "seconds": 57.5
+        "seconds": 72.2
       },
       {
         "result": "no",
@@ -1343,7 +1376,7 @@
         ],
         "cause": "not-driven",
         "detail": "p6909 2741",
-        "seconds": 18.8
+        "seconds": 15.4
       }
     ]
   }

@@ -88,7 +88,7 @@
     ]
   },
   "generated": {
-    "commit": "871274a7",
+    "commit": "cbfa4bc8",
     "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 3,
@@ -151,7 +151,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -235,7 +235,7 @@
         ],
         "cause": "loose-part",
         "detail": "p60 42057 -32523p01",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -320,7 +320,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       }
     ]
   }

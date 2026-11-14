@@ -121,9 +121,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0aa5c793",
     "date": "2026-11-14",
-    "seconds": 106,
+    "seconds": 140,
     "counts": {
       "works": 5,
       "partly": 2
@@ -188,7 +188,7 @@
             ]
           ]
         ],
-        "seconds": 15.1
+        "seconds": 17.9
       },
       {
         "result": "partly",
@@ -252,7 +252,7 @@
         ],
         "cause": "not-driven",
         "detail": "p59 62821",
-        "seconds": 15.7
+        "seconds": 16.5
       },
       {
         "result": "works",
@@ -306,7 +306,7 @@
           [],
           []
         ],
-        "seconds": 10.6
+        "seconds": 12
       },
       {
         "result": "works",
@@ -382,7 +382,7 @@
           [],
           []
         ],
-        "seconds": 32
+        "seconds": 54
       },
       {
         "result": "partly",
@@ -415,9 +415,12 @@
             ]
           ]
         ],
+        "why": [
+          "p808 18944 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p808 18944",
-        "seconds": 4.9
+        "seconds": 6.1
       },
       {
         "result": "works",
@@ -462,7 +465,7 @@
           [],
           []
         ],
-        "seconds": 10.9
+        "seconds": 14.8
       },
       {
         "result": "works",
@@ -505,7 +508,7 @@
           ]
         ],
         "freed": 6,
-        "seconds": 15.8
+        "seconds": 17.8
       }
     ]
   }

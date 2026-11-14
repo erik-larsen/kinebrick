@@ -114,10 +114,10 @@
     ]
   },
   "generated": {
-    "commit": "871274a7",
+    "commit": "cbfa4bc8",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 6,
+    "seconds": 5,
     "counts": {
       "partly": 4,
       "not back": 1,
@@ -200,7 +200,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 8074 - 4185a",
-        "seconds": 3.4
+        "seconds": 2.7
       },
       {
         "result": "skipped",
@@ -275,9 +275,12 @@
             ]
           ]
         ],
+        "why": [
+          "p96 3738 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p96 3738",
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -429,7 +432,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p223 3705",
-        "seconds": 0.4
+        "seconds": 0.3
       }
     ]
   }

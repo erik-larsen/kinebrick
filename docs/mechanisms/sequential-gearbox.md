@@ -4,7 +4,7 @@ A rotary catch, turned a step at a time, slides the driving rings through the ge
 
 First appears in 2016, in [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1): The paddle shifters behind the steering wheel shift the sequential gearbox up and down: each paddle swings a lever that steps a knob gear round, and a shaft with constant velocity joints takes the turn back to the gearbox, where a selector moves the driving rings through the gears one by one.
 
-Used in 6 of the 186 surveyed sets, by 11 functions. Kinebrick: 11 partly.
+Used in 6 of the 186 surveyed sets, by 11 functions. Kinebrick: 1 works, 10 partly.
 
 ## By decade
 
@@ -39,7 +39,7 @@ Each detail by the set it first appears in.
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
 - All four wheels are driven: pushing the car along turns the wheels, which through the front and rear differentials, a centre differential, the gearbox and the range and D-N-R selectors turn the engine's crankshaft, so the six pistons of the straight-six engine pump up and down. (partly)
-- *4 speeds:* The four-speed sequential gearbox at the back: tipping the + / - lever between the front seats turns a rod running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down. (partly)
+- *4 speeds:* The four-speed sequential gearbox at the back: tipping the + / - lever between the front seats turns a rod running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down. (works)
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 

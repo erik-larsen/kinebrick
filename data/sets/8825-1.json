@@ -73,12 +73,13 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "cbfa4bc8",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 0,
+    "seconds": 1,
     "counts": {
-      "partly": 2,
-      "works": 1,
+      "works": 2,
+      "partly": 1,
       "not checked": 1
     },
     "loose": [
@@ -87,36 +88,38 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p57 3706 against p0 2825",
-          "p82 4477 against p0 2825",
-          "p83 4477 against p0 2825"
-        ],
         "rates": [
           {
             "p57 3706 against p0 2825": [
-              0,
-              0
+              3,
+              4.74e-15
             ],
             "p82 4477 against p0 2825": [
-              0,
-              0
+              3,
+              329
             ],
             "p83 4477 against p0 2825": [
-              0,
-              0
+              3,
+              329
             ],
             "p96 3895 against p0 2825": [
               0,
               0
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p57 3706 against p0 2825": 3,
+            "p82 4477 against p0 2825": 3,
+            "p83 4477 against p0 2825": 3
           }
         ],
         "back": [
@@ -131,8 +134,6 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p57 3706 against p0 2825",
         "seconds": 0.1
       },
       {
@@ -173,7 +174,7 @@
         ],
         "cause": "not-driven",
         "detail": "p45 3708 against p0 2825",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",

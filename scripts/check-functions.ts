@@ -482,10 +482,34 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null || noGrab()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
-          if (freed.size) {
-            use(loaded.read(asLoaded.parts, freed));
-            freedPins = Math.max(freedPins, freed.size);
+        }
+        // So too a part the function lists to move that friction pins hold fast to what it's
+        // measured against, but only where the control doesn't go (it jams, or a push has no
+        // point to push): there a user's drag of it asks the viewer for pins, and the viewer
+        // frees the same ones (the 8418's bucket, the 42032's levers). Where the control turns
+        // its reach and the part stays fast, the viewer shows nothing, so neither does the
+        // check: the part is noted as held by pins the control doesn't reach.
+        const held = (fn.moves ?? []).map(against).filter((m) => mech.bodyOf[m.part] === m.body);
+        if (held.length) {
+          // Whether the control goes a hair, holding what a drag of it holds.
+          const goes = () => {
+            if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null || noGrab()) return false;
+            const before = kin.snapshot();
+            kin.holdWhatTheDragDoesntNeed(worked(c), () => kin.jointMotion(l.joint) !== null, l.joint);
+            const went = kin.turnJoint(l.joint, 0.01, () => true);
+            kin.letGoAfterDrag();
+            kin.restore(before);
+            return Math.abs(went) > 1e-6;
+          };
+          if (goes()) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
+          else {
+            allFree ??= loaded.allFree(asLoaded.parts);
+            for (const m of held) for (const pin of pinsToFree(allFree, m.part)) freed.add(pin);
           }
+        }
+        if (freed.size) {
+          use(loaded.read(asLoaded.parts, freed));
+          freedPins = Math.max(freedPins, freed.size);
         }
       }
       const whyBefore = why.length;

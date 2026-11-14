@@ -145,7 +145,7 @@
     ]
   },
   "generated": {
-    "commit": "871274a7",
+    "commit": "cbfa4bc8",
     "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 1,
@@ -287,6 +287,9 @@
             ]
           ]
         ],
+        "why": [
+          "p57 30395 against p30 57779 is held by friction pins the control doesn't reach"
+        ],
         "cause": "loose-part",
         "detail": "p57 30395",
         "seconds": 0.1
@@ -333,6 +336,10 @@
               0
             ]
           ]
+        ],
+        "why": [
+          "p55 32278 against p30 57779 is held by friction pins the control doesn't reach",
+          "p50 6632 against p30 57779 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p55 32278 against p30 57779",
@@ -513,7 +520,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",
