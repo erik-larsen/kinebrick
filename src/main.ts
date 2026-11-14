@@ -434,7 +434,7 @@ async function start() {
   });
   const loadedShapeMatrices = shapeObjects.map((obj) => obj.matrix.clone());
   partObjects.forEach((obj, i) => {
-    if (normalizePartName(obj.name) !== startParts[i].name) {
+    if (!startParts[i].removed && normalizePartName(obj.name) !== startParts[i].name) {
       throw new Error(`Part ${i}: loader has ${obj.name}, model has ${startParts[i].name}`);
     }
     obj.userData.partIndex = i;

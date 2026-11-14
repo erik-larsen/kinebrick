@@ -1,0 +1,32 @@
+{
+  "set": "42109-1",
+  "entries": [
+    {
+      "id": "no-pin-p381",
+      "what": "remove",
+      "file": "42109 - car.ldr",
+      "line": "1 0 0 0 0 0 0 -1 0 1 0 1 0 0 2780.dat",
+      "part": "p381 2780",
+      "evidence": "Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.",
+      "signedOff": null
+    },
+    {
+      "id": "no-pin-p382",
+      "what": "remove",
+      "file": "42109 - car.ldr",
+      "line": "1 0 0 40 0 0 0 -1 0 1 0 1 0 0 2780.dat",
+      "part": "p382 2780",
+      "evidence": "Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.",
+      "signedOff": null
+    },
+    {
+      "id": "no-beam-p383",
+      "what": "remove",
+      "file": "42109 - car.ldr",
+      "line": "1 0 80 40 -10 0 0 -1 -1 0 0 0 1 0 32526.dat",
+      "part": "p383 32526",
+      "evidence": "Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.",
+      "signedOff": null
+    }
+  ]
+}

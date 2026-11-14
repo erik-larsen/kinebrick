@@ -416,8 +416,13 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | Set | Entry | What it does | Status |
 | --- | --- | --- | --- |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Proposed, not applied until signed off |
+| [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Proposed, not applied until signed off |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Proposed, not applied until signed off |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Proposed, not applied until signed off |
+| [42069-1](#42069-1-trunk-20-high) | trunk-20-high | moves `42069 - trunk.ldr` to 0 -250 280 | Proposed, not applied until signed off |
+| [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | moves `2780.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
+| [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | moves `2780.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
+| [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | moves `32526.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
 
 ### 8258-1: front-drive-gear-4-high
 
@@ -432,6 +437,18 @@ In `8258 - m-1k'k.ldr`, the line
 ```
 
 is read with its part at 20 -20 0.
+
+### 8838-1: axle-with-gears
+
+Proposed, not applied until signed off.
+
+The file defines the submodel Axle-with-Gears (a 6L axle with a 14 tooth bevel gear and an 8 tooth gear) but never places it; step 20 (scan 011) places it (docs/audits/for-erik.md, Model-file findings, high as a fact, medium for the line). The audit's line, `1 0 0 10 -60 -1 0 0 0 1 0 0 0 -1 8838 - Axle-with-Gears.ldr` in "8838 - Shock Cycle.ldr", put into the main model's coordinates (it places Shock Cycle turned): worked out, not yet seen in place.
+
+Added to the main model:
+
+```
+1 0 0 17.19 58.37 1 0 0 0 0.993 0.121 0 -0.121 0.993 8838 - Axle-with-Gears.ldr
+```
 
 ### 9396-1: left-inner-main-wheel
 
@@ -462,5 +479,37 @@ In `42064 - ship.ldr`, the line
 is read with its part at 0 -110 -380.
 
 In the real set the hatch is fixed on its two pins, not hinged; what that means for fn 9 is the audit's table for Erik.
+
+### 42069-1: trunk-20-high
+
+Proposed, not applied until signed off.
+
+Geometry only, to be checked in the booklet before it is signed (the steps that build trunk.ldr and fit it to the car). The trunk (trunk.ldr, 35 parts) is attached to nothing: its two pins 2780 (p744, p745) sit on the axes of the 64782's holes (p757), 0.00 off, ending at the holes' faces. Moved 20 LDU down and 20 back (y +20, z -20) it makes 50 joins with the rest, as placed 0; 67 with x moved 5 or 10 either way, along the pins, so x is left as built.
+
+In the main model, the line
+
+```
+1 0 0 -270 300 1 0 0 0 1 0 0 0 1 42069 - trunk.ldr
+```
+
+is read with its part at 0 -250 280.
+
+### 42109-1: no-pin-p381
+
+Proposed, not applied until signed off.
+
+Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
+
+### 42109-1: no-pin-p382
+
+Proposed, not applied until signed off.
+
+Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
+
+### 42109-1: no-beam-p383
+
+Proposed, not applied until signed off.
+
+Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
 
 <!-- errata: end -->

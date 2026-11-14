@@ -10,21 +10,22 @@
 // number no longer names that part, is refused, not applied, and the refusal is reported.
 //
 // No part number moves: a move changes a line in place; an added line goes after the model's last
-// part, the pieces of a split part included (see ADDED in ldr.ts). Removing a part, which would
-// keep its number with a stand-in, isn't built yet.
+// part, the pieces of a split part included (see ADDED in ldr.ts); a removed line is commented out
+// (see REMOVED in ldr.ts), the parts it placed keeping their numbers, marked removed: drawn as
+// nothing, with no connection points, never loose.
 //
 // An entry applies only once Erik has signed it off (`signedOff`); with `proposed` (the check's
 // --proposed, the viewer's option=proposed) entries not yet signed off apply too, so a set can be
 // seen before and after.
 
-import { ADDED } from './ldr.ts';
+import { ADDED, REMOVED } from './ldr.ts';
 
 export interface Erratum {
   id: string; // short and unique within the set, e.g. "hatch-20-high"
-  what: 'move' | 'add';
-  file?: string; // move: the file the line is in ("" for the main model)
-  line?: string; // move: the line, as the OMR file has it
-  part?: string; // move: the part number the line gives today, e.g. "p1059 15458"
+  what: 'move' | 'add' | 'remove';
+  file?: string; // move, remove: the file the line is in ("" for the main model)
+  line?: string; // move, remove: the line, as the OMR file has it
+  part?: string; // move, remove: the part number the line gives today, e.g. "p1059 15458"
   position?: [number, number, number]; // move: where the line places its part now
   orientation?: number[]; // move: its orientation's nine numbers, if that changes too
   lines?: string[]; // add: the lines added to the main model
@@ -72,8 +73,8 @@ export function applyErrata(text: string, errata: Errata | null | undefined, pro
       applied.push(e.id);
       continue;
     }
-    if (e.what !== 'move') {
-      refused.push(`${e.id}: "${e.what}" isn't built`);
+    if (e.what !== 'move' && e.what !== 'remove') {
+      refused.push(`${e.id}: "${e.what}" isn't an erratum Kinebrick knows`);
       continue;
     }
     const want = even(e.line ?? '');
@@ -90,6 +91,11 @@ export function applyErrata(text: string, errata: Errata | null | undefined, pro
         refused.push(`${e.id}: p${number[1]} is ${now ?? 'no part'}, not ${number[2]}`);
         continue;
       }
+    }
+    if (e.what === 'remove') {
+      lines[found[0]] = `${REMOVED} ${lines[found[0]].trim()}`;
+      applied.push(e.id);
+      continue;
     }
     const tokens = lines[found[0]].trim().split(/\s+/);
     if (e.position) [tokens[2], tokens[3], tokens[4]] = e.position.map(String);

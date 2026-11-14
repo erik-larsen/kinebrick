@@ -36,6 +36,14 @@ describe('errata', () => {
     expect(after.slice(before.length)).toEqual(['3010.dat']);
   });
 
+  it('remove a part, which keeps its number, marked removed, with no connection points', () => {
+    const { text, applied } = applyErrata(MODEL, errata([{ id: 'r', what: 'remove', file: 'sub.ldr', line: '1 1 0 0 0 1 0 0 0 1 0 0 0 1 3003.dat', part: 'p0 3003', evidence: '', signedOff: signed }]), false, (n) => parseModel(MODEL).parts[n]?.name);
+    expect(applied).toEqual(['r']);
+    const parts = parseModel(text).parts;
+    expect(parts.map((p) => p.name)).toEqual(names(MODEL));
+    expect(parts.map((p) => !!p.removed)).toEqual([true, false, false]);
+  });
+
   it('refuse an entry whose line is not found once, or whose number names another part', () => {
     const wrongLine = applyErrata(MODEL, errata([{ id: 'w', what: 'move', file: 'sub.ldr', line: '1 2 44 0 0 1 0 0 0 1 0 0 0 1 3004.dat', position: [0, 0, 0], evidence: '', signedOff: signed }]), false, null);
     expect(wrongLine.applied).toEqual([]);
@@ -52,7 +60,7 @@ describe('errata', () => {
   });
 
   it("apply each set's entries to its own OMR file: each line found once, each number naming its part", () => {
-    for (const [set, file] of [['42064-1', 'omr/42064-1 Ocean Explorer.mpd'], ['8258-1', 'omr/8258-1 Crane Truck.mpd'], ['9396-1', 'omr/9396-1 Helicopter.mpd']]) {
+    for (const [set, file] of [['42064-1', 'omr/42064-1 Ocean Explorer.mpd'], ['8258-1', 'omr/8258-1 Crane Truck.mpd'], ['9396-1', 'omr/9396-1 Helicopter.mpd'], ['42069-1', 'omr/42069-1 Extreme Adventure.mpd'], ['8838-1', 'omr/8838-1 Shock Cycle.mpd'], ['42109-1', 'omr/42109-1 App-Controlled Top Gear Rally Car.mpd']]) {
       const original = readFileSync(file, 'utf-8');
       const found = readErrata(file);
       expect(found?.set).toBe(set);

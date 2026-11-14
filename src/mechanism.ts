@@ -321,7 +321,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // A printed part (3626bp01, 973p19) has its plain part's role (3626b, 973).
   const plain = (name: string) => name.replace(/(?:p[0-9a-z]+|pb[0-9a-z]+)\.dat$/, '.dat');
   const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? roleList[plain(p.name)] ?? (table.stickers?.includes(p.name) ? 'decoration' : 'structure')));
-  const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path');
+  // A part an erratum removed isn't there: no connection points, and never loose.
+  const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path' && !parts[c.part].removed);
   // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle
   // in it turns, rather than being fixed to the motor and whatever the motor is built into.
   // Before findConnections, which reads it.
@@ -408,6 +409,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // What's hooked to a chain it can't slide along is loose after all (it rides along with nothing).
   loose.push(...chainHooks(parts, bodyOf, joints, loops, hooked));
   loose.sort((a, b) => a - b);
+  // A removed part rides along with what's nearest, as a loose part does, but isn't loose: it isn't there.
+  for (let k = loose.length - 1; k >= 0; k--) if (parts[loose[k]].removed) loose.splice(k, 1);
   treads.push(...trackTreads(loops));
   // After chainHooks, as a string reads which parts are loose.
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);

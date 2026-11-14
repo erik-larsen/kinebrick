@@ -1,0 +1,12 @@
+{
+  "set": "8838-1",
+  "entries": [
+    {
+      "id": "axle-with-gears",
+      "what": "add",
+      "lines": ["1 0 0 17.19 58.37 1 0 0 0 0.993 0.121 0 -0.121 0.993 8838 - Axle-with-Gears.ldr"],
+      "evidence": "The file defines the submodel Axle-with-Gears (a 6L axle with a 14 tooth bevel gear and an 8 tooth gear) but never places it; step 20 (scan 011) places it (docs/audits/for-erik.md, Model-file findings, high as a fact, medium for the line). The audit's line, `1 0 0 10 -60 -1 0 0 0 1 0 0 0 -1 8838 - Axle-with-Gears.ldr` in \"8838 - Shock Cycle.ldr\", put into the main model's coordinates (it places Shock Cycle turned): worked out, not yet seen in place.",
+      "signedOff": null
+    }
+  ]
+}
