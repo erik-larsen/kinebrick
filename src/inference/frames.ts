@@ -33,7 +33,8 @@ const ON_THE_GROUND = 48;
 //   6. a wheel of its own (a rim or a tyre): a vehicle.
 // - `accessories`: groups that meet 1 to 5 but have no tyre: a thing that stands apart, not a
 //   vehicle (the 42082's house, a building of panel walls). They ride along, loose, as today.
-// - `carried`: groups that meet 1 to 3 but touch the main model, or stand off the ground: a model
+// - `carried`: groups that meet 1 to 3, whose submodel the main file places itself (so a flat file
+//   has none), but touch the main model, or stand off the ground: a model
 //   carried on it (the 42060's excavator on its trailer, the 42076's truck on its deck), or hitched
 //   to it by a connection the reading misses (the 42078's semitrailer). Each stays welded to the
 //   main model where it rests, as loose parts are, but isn't loose: its own functions are judged on
@@ -80,18 +81,25 @@ export function secondModels(parts: PlacedPart[], roles: string[], connections: 
     const tyre = group.some((i) => tyres.has(i));
     const moves = tyre || connections.some((c) => (c.kind === 'revolute' || c.kind === 'slide' || c.kind === 'ball') && inGroup.has(c.male) && inGroup.has(c.female) && rigid[c.male] !== rigid[c.female]);
     if (!moves) continue;
+    // Whether its own submodel is one the main file places itself: a model of its own (the 42060's
+    // excavator.ldr), not a part of the main model's that is loose for some other reason (the
+    // 42079's fork carriage, inside the forklift's submodels).
+    let placedByMain = false;
     if (hasSubmodels) {
       const bySubmodel = new Map<string, number>();
       for (const i of group) bySubmodel.set(ownSubmodel(i), (bySubmodel.get(ownSubmodel(i)) ?? 0) + 1);
       const [own, n] = [...bySubmodel].reduce((a, b) => (b[1] > a[1] ? b : a));
       if (own === '' || n < UNDER_ONE * group.length) continue;
+      placedByMain = group.some((i) => parts[i].within?.[0] === own);
     }
     const touches = group.some((i) => {
       const p = at(i);
       return mainAt.some((q) => q.distanceTo(p) <= TOUCHING);
     });
     const onTheGround = Math.max(...group.map((i) => at(i).y)) >= mainLowest - ON_THE_GROUND;
-    if (touches || !onTheGround) carried.push(group);
+    if (touches || !onTheGround) {
+      if (placedByMain) carried.push(group);
+    }
     else if (tyre) models.push(group);
     else accessories.push(group);
   }
