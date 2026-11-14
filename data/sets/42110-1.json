@@ -198,10 +198,10 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "0eb34660",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 1017,
+    "seconds": 1150,
     "counts": {
       "works": 10,
       "partly": 3,
@@ -264,11 +264,11 @@
             ],
             "p509 42110 - 23801": [
               0,
-              2.15e-13
+              9.92e-14
             ],
             "p516 42110 - 23801": [
               0,
-              1.68e-13
+              1.9e-13
             ]
           }
         ],
@@ -284,7 +284,7 @@
             ]
           ]
         ],
-        "seconds": 132.1
+        "seconds": 150.3
       },
       {
         "result": "works",
@@ -314,7 +314,7 @@
             ]
           ]
         ],
-        "seconds": 130.8
+        "seconds": 149.1
       },
       {
         "result": "partly",
@@ -331,16 +331,16 @@
         "rates": [
           {
             "p242 3708": [
-              0.0184,
-              3.52e-13
+              0.0182,
+              4.97e-13
             ],
             "p211 4519": [
               0,
-              4.94e-24
+              6.03e-24
             ],
             "p223 4519": [
               0,
-              3.67e-24
+              4.75e-24
             ]
           }
         ],
@@ -361,7 +361,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 107.9
+        "seconds": 124.1
       },
       {
         "result": "partly",
@@ -378,15 +378,15 @@
           {
             "p2613 42110 - 49294": [
               1,
-              1.3e-7
+              1.29e-7
             ],
             "p38 62821": [
               1,
-              1.32e-12
+              7.96e-13
             ],
             "p242 3708": [
-              0.0184,
-              5.42e-13
+              0.0182,
+              6.48e-13
             ]
           }
         ],
@@ -407,7 +407,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p242 3708",
-        "seconds": 110.3
+        "seconds": 126.9
       },
       {
         "result": "partly",
@@ -451,7 +451,7 @@
         ],
         "cause": "not-driven",
         "detail": "p715 32072",
-        "seconds": 13.7
+        "seconds": 15.2
       },
       {
         "result": "works",
@@ -481,7 +481,7 @@
             ]
           ]
         ],
-        "seconds": 14.4
+        "seconds": 14.9
       },
       {
         "result": "works",
@@ -511,7 +511,7 @@
             ]
           ]
         ],
-        "seconds": 13.9
+        "seconds": 15
       },
       {
         "result": "works",
@@ -541,7 +541,7 @@
             ]
           ]
         ],
-        "seconds": 13.2
+        "seconds": 14.4
       },
       {
         "result": "skipped"
@@ -585,8 +585,8 @@
           ]
         ],
         "strayed": [
-          "p1872 32014",
-          "p1943 59443"
+          "p1856 4519",
+          "p1942 4519"
         ],
         "pushed": [
           true,
@@ -597,7 +597,7 @@
           [],
           []
         ],
-        "seconds": 360.6
+        "seconds": 408.7
       },
       {
         "result": "works",
@@ -622,7 +622,7 @@
             ]
           ]
         ],
-        "seconds": 14.1
+        "seconds": 15.6
       },
       {
         "result": "works",
@@ -655,7 +655,7 @@
         "pushed": [
           true
         ],
-        "seconds": 5.9
+        "seconds": 6
       },
       {
         "result": "works",
@@ -681,7 +681,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 32.5
+        "seconds": 35.6
       },
       {
         "result": "works",
@@ -707,7 +707,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 32.6
+        "seconds": 35.9
       },
       {
         "result": "skipped"

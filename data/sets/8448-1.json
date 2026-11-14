@@ -49,6 +49,12 @@
           "p481 32196"
         ],
         "together": true,
+        "first": [
+          {
+            "control": "p509 6539",
+            "by": -5
+          }
+        ],
         "moves": [
           "p236 6573",
           "p31 3706",
@@ -58,7 +64,7 @@
           "p594 2851",
           "p598 2851"
         ],
-        "note": "only in gear: the gearbox has a neutral, and the model file may be built in it; which gear the file is in isn't known"
+        "note": "only in gear: the file is built in neutral. The first step puts the gearbox in first gear, the lowest (ring p509 onto the extension p508 and the gear beyond it: the crankshaft turns 3.75 times for each turn of the wheels); any gear would do, and first gear is the check's choice, not something the book says"
       },
       {
         "does": "The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed.",
@@ -196,10 +202,10 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "0eb34660",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 16,
+    "seconds": 36,
     "counts": {
       "partly": 6,
       "works": 1,
@@ -242,7 +248,7 @@
             ],
             "p345 32185": [
               0,
-              2.41e-13
+              7.55e-14
             ],
             "p365 32186": [
               0,
@@ -284,7 +290,7 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 2.5
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -295,40 +301,37 @@
           ]
         ],
         "still": [
-          "p577 32073",
-          "p692 32125",
-          "p594 2851",
-          "p598 2851"
+          "p594 2851"
         ],
         "rates": [
           {
             "p236 6573": [
               1,
-              4.03e-13
+              3.61e-13
             ],
             "p31 3706": [
               1.5,
-              1.9e-13
+              3.84e-13
             ],
             "p100 3737": [
               1.5,
-              1.07e-14
+              8.29e-15
             ],
             "p577 32073": [
-              0,
-              5.88e-27
+              3.75,
+              1.28e-13
             ],
             "p692 32125": [
-              0,
-              5.88e-27
+              3.75,
+              6.63e-14
             ],
             "p594 2851": [
               0,
-              6.63e-14
+              25.7
             ],
             "p598 2851": [
               0,
-              6.63e-14
+              24.2
             ]
           }
         ],
@@ -337,8 +340,10 @@
             "p236 6573": 1,
             "p31 3706": 1.5,
             "p100 3737": 1.5,
-            "p594 2851": 0,
-            "p598 2851": 0
+            "p577 32073": 3.75,
+            "p692 32125": 3.75,
+            "p594 2851": 25.7,
+            "p598 2851": 24.2
           }
         ],
         "back": [
@@ -353,9 +358,9 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p577 32073",
-        "seconds": 2.3
+        "cause": "too-little",
+        "detail": "p594 2851",
+        "seconds": 14.4
       },
       {
         "result": "works",
@@ -397,7 +402,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 3.7
       },
       {
         "result": "partly",
@@ -415,7 +420,7 @@
           {
             "p481 32196": [
               1,
-              1.99e-13
+              2.05e-13
             ],
             "p237 6589": [
               1,
@@ -423,11 +428,11 @@
             ],
             "p31 3706": [
               1.5,
-              3.89e-13
+              2.62e-13
             ],
             "p100 3737": [
               1.5,
-              5.64e-14
+              2.02e-14
             ]
           }
         ],
@@ -445,7 +450,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p31 3706",
-        "seconds": 2.4
+        "seconds": 3.9
       },
       {
         "result": "partly",
@@ -547,7 +552,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 1
       },
       {
         "result": "no",
@@ -584,7 +589,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "skipped",
@@ -678,7 +683,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 2.2
+        "seconds": 3.5
       },
       {
         "result": "partly",
@@ -725,7 +730,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 2.2
+        "seconds": 3.3
       },
       {
         "result": "skipped",
