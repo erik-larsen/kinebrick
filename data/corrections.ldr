@@ -431,6 +431,18 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 27 15] [pos=0 10 0] [ori=-1 0 0 0 1 0 0 0 -1]
 0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=10] [bevel=-] [apex=35] [center=true] [pos=0 5 0]
 
+0 FILE 18938.dat
+0 // Technic Turntable 60 Tooth Top: turns on its bottom (18939). Its 60 teeth, round its rim, are a bevel gear's, at LEGO's tooth size (75 LDU pitch radius), as the 28 tooth turntable's are: a 12 tooth bevel gear 80 LDU out from its axis, on an axle crossing it at right angles 20 LDU below its origin, meshes with them, as a 12 tooth gear 90 LDU out on a parallel axle does side by side, or a 36 tooth gear 120 LDU out (as official models set them). So their cone's tip is 75 LDU along the axis from their middle, 5 LDU below the origin.
+0 !KINEBRICK GEAR [teeth=60] [radius=75] [width=10] [bevel=-] [apex=75] [center=true] [pos=0 5 0]
+
+0 FILE 2855.dat
+0 // Technic Turntable Type 1 Top: turns on its bottom (2856). Its 56 spur teeth, round its rim, are at LEGO's tooth size (70 LDU pitch radius): an 8 tooth gear 80 LDU out on a parallel axle meshes with them, 10 to 14 LDU below its origin (as official models set it).
+0 !KINEBRICK GEAR [teeth=56] [radius=70] [width=8] [center=true] [pos=0 12 0]
+
+0 FILE 48168.dat
+0 // Technic Turntable Type 2 Top: turns on its base (48452). Its 56 spur teeth, round its rim, are at LEGO's tooth size (70 LDU pitch radius): an 8 tooth gear 80 LDU out on a parallel axle meshes with them, 20 LDU above its origin (as official models set it).
+0 !KINEBRICK GEAR [teeth=56] [radius=70] [width=8] [center=true] [pos=0 -20 0]
+
 0 FILE 99009.dat
 0 // Technic Turntable 28 Tooth Bottom: the top (99010) turns on it; open-ended as the top's ring is.
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 27 15] [pos=0 10 0] [ori=-1 0 0 0 1 0 0 0 -1]
