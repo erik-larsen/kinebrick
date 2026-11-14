@@ -459,11 +459,15 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.reset();
       freed = new Set();
       // A control with no motion at the start, held by friction pins: those pins are freed, and
-      // the model worked out again, for this control only (see pinsToFree).
+      // the model worked out again, for this control only (see pinsToFree). So too a control
+      // the viewer would push whose joint turns only by swinging the rest of the model round it,
+      // so that no point of it moves and the push couldn't start (see grabOf): the 8865's seat
+      // back, on friction hinge plates.
       if (FREE_PINS) {
         const c = part(ref);
         const l = kin.parentLink(worked(c));
-        if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null) {
+        const noGrab = () => !fn.together && isPushed(worked(c)) && grabOf(worked(c), c) === null;
+        if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null || noGrab()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
           if (freed.size) {
