@@ -114,7 +114,8 @@
     ]
   },
   "generated": {
-    "commit": "5cb668ef",
+    "commit": "c1623c1a",
+    "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 6,
     "counts": {
@@ -279,7 +280,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p96 3738",
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "partly",

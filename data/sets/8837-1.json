@@ -133,7 +133,8 @@
     ]
   },
   "generated": {
-    "commit": "5cb668ef",
+    "commit": "c1623c1a",
+    "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 3,
     "counts": {
@@ -377,7 +378,7 @@
         ],
         "cause": "not-driven",
         "detail": "p54 3703 against p0 3738",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",

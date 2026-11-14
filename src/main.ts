@@ -957,7 +957,11 @@ async function start() {
   const pointedAt = SHOW.filter((part) => part < partObjects.length).map((part) => partObjects[part]);
   if (pointedAt.length) {
     const box = new Box3();
+    // The model may not have been drawn yet, so its parts' places in the scene are worked out here.
+    for (const object of pointedAt) object.updateWorldMatrix(true, true);
     for (const object of pointedAt) box.expandByObject(object);
+    // A part that an erratum removed has nothing drawn: the view goes to where it was.
+    for (const object of pointedAt) box.expandByPoint(object.getWorldPosition(new Vector3()));
     const centre = box.getCenter(new Vector3());
     const reach = Math.max(box.getSize(new Vector3()).length() * 3, 300);
     controls.target.copy(centre);

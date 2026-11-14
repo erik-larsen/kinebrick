@@ -134,9 +134,10 @@
     ]
   },
   "generated": {
-    "commit": "5cb668ef",
+    "commit": "c1623c1a",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "works": 5,
       "skipped": 2,
@@ -187,7 +188,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -221,7 +222,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -394,7 +395,7 @@
             "p71 32165 against p91 32177"
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "skipped",
