@@ -636,6 +636,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           was = now;
         });
         const went = measured.went;
+        // A guard: a held part doesn't turn against what its shaft turns in, as a frozen part is
+        // held (see holds in constraints/holds.ts). It should never be noted.
+        for (const r of heldNow) {
+          const held = mech.bodyOf[part(r)];
+          if (!kin.parentLink(held)) continue;
+          const h = kin.housing(held);
+          const against = (poses: Matrix4[]) => poses[h].clone().invert().multiply(poses[held]);
+          const note = `${r} is held, but turned against what its shaft turns in`;
+          if (angle(against(startPoses), against(kin.poses)) > 1e-3 && !why.includes(note)) why.push(note);
+        }
         // The joint's own turn, to work it back again.
         const joint = measured.turned;
         const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
