@@ -20,8 +20,9 @@ const TOUCHING = 30;
 // 42076's truck on the hovercraft's deck is 115 above).
 const ON_THE_GROUND = 48;
 // A near miss between two connection points, a male and a female: how far off each other's axis
-// (a few LDU) and how far apart along it (a stud) a joint the reading didn't make can lie.
-const MISS_OFF_AXIS = 4;
+// (2 LDU, as far as a loose part may be from its pin and still fit: the 42024's skip, whose rim's
+// pins lie 3.76 off two holes it only rests beside, isn't one) and how far apart along it (a stud) a joint the reading didn't make can lie.
+const MISS_OFF_AXIS = 2;
 const MISS_ALONG = 20;
 
 // What the groups of parts not attached to the largest group are:
