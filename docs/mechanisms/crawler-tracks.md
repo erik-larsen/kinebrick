@@ -4,7 +4,7 @@ Tracks run round sprockets and idlers. (Drivetrain.)
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.
 
-Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 partly.
+Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 20 works, 9 partly.
 
 ## By decade
 
@@ -75,7 +75,7 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 par
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
-- The excavator rides on two tracks of chain links, each over two 16 tooth gears, and rolls along on them. (works)
+- The excavator rides on two tracks of chain links, each over two 16 tooth gears, and rolls along on them. (partly)
 
 **2017, [42065 RC Tracked Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42065-1)**
 

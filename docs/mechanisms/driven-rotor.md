@@ -4,7 +4,7 @@ The drive spins a propeller, rotor or fan: rolling the model, a knob, a motor or
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.
 
-Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 15 works, 10 partly.
+Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 13 works, 12 partly.
 
 ## By decade
 
@@ -49,7 +49,7 @@ Each detail by the set it first appears in.
 
 **1991, [8856 Whirlwind Rescue](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8856-1)**
 
-- *main and tail rotors:* The big white handwheel on the right side spins the main rotor through a bevel gear at the foot of the rotor mast, and a crown gear on the mast drives the long shaft with universal joints down the tail boom, which spins the tail rotor through a bevel pair at the tail. (works)
+- *main and tail rotors:* The big white handwheel on the right side spins the main rotor through a bevel gear at the foot of the rotor mast, and a crown gear on the mast drives the long shaft with universal joints down the tail boom, which spins the tail rotor through a bevel pair at the tail. (partly)
 
 **1993, [8022 Starter Set](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8022-1)**
 
@@ -100,7 +100,7 @@ Each detail by the set it first appears in.
 **2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
 
 - *main and tail rotors:* The helicopter's black gear under the rotor mast turns the main rotor, and through a pair of 12 tooth gears and a bevel gear pair a shaft back to the tail turns the tail rotor. (partly)
-- *propellers:* The submarine's rear knob on top turns its two propellers: a bevel gear pair takes the knob's turn down to a 20 tooth gear, which turns a 12 tooth gear on each propeller shaft. (works)
+- *propellers:* The submarine's rear knob on top turns its two propellers: a bevel gear pair takes the knob's turn down to a 20 tooth gear, which turns a 12 tooth gear on each propeller shaft. (partly)
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 

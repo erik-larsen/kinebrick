@@ -105,9 +105,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 7,
+    "seconds": 4,
     "counts": {
       "partly": 2,
       "works": 2,
@@ -167,7 +167,7 @@
         ],
         "cause": "not-driven",
         "detail": "p651 57518",
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -210,7 +210,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p521 57519",
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -278,7 +278,7 @@
             "p524 57519"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -386,7 +386,7 @@
           [],
           []
         ],
-        "seconds": 3.8
+        "seconds": 2.3
       },
       {
         "result": "no",

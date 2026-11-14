@@ -22,6 +22,7 @@ import { findLoops } from './inference/loops.ts';
 import { looseFits, onAxleTips } from './inference/looseFits.ts';
 import { fixPins } from './inference/pins.ts';
 import { guidedPistons, shockAbsorbers } from './inference/pistons.ts';
+import { hungOnSliders } from './inference/guides.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
 import { restingParts } from './inference/rests.ts';
 import { decorations, figureSubmodels, rideAlong } from './inference/rideAlong.ts';
@@ -349,6 +350,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
   connections.push(...shockAbsorbers(cyls));
+  // After the slides above: a group hung by one hinge on a slider, kept in line by its guide.
+  connections.push(...hungOnSliders(parts.length, roles, cyls, connections));
   // linearActuators, universalJoints and groovedBalls replace connections already found.
   const actuators = linearActuators(parts, connections);
   connections.push(...bushGrips(roles, cyls));
