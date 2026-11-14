@@ -55,6 +55,13 @@ Their lists rest on the model files and earlier sessions' reading only; video le
 | 8845 | 1 | The steering column p95 crosses plate p94 at a hole, but about 3° out of line (plate ~37°, column ~34°); step 8 shows the column straight through the hole, so it may not seat. | 8845-1 scans, step 8 | Low-medium |
 | 852 | 3 | The skids are meant to be rigid; their swinging in Kinebrick is a solver fault, not the set's design. | 852-1 scans | Medium |
 
+## Model file check asked after batch 5: 42082 house and roller ring
+
+| Set | Fn | The question | The booklet shows | Page | Confidence |
+|---|---|---|---|---|---|
+| 42082 | — | The house (house.ldr with wall1 and wall2, 120 parts) is attached to nothing. | The house is not the crane's superstructure. It is a separate accessory: a building of grey panels (two walls joined at a corner, steps 1138-1159), built at the end of book 2 after the crane is finished. A third wall with lifting slings (wall3, steps 1160-1169) is the load: the last picture hangs it on the hook beside the building. In the file the house stands 1,431 LDU from the crane's centre (main.ldr line 1007), on the ground. Attached to nothing is right; it should be left as a loose object, not joined. | 42082-1-1.pdf (book 2) p.290-321 | High |
+| 42082 | — | The roller ring (rollerring.ldr, 88 parts) is attached to nothing; its 27940 holes lie one stud beside two 2780 pins. | Book 1 steps 486-495: two quarter gear-racks complete the big base ring (p.264), 4 red parts go on the base ring at four points (step 487, p.265), the 8 roller units are built and joined into a loose ring (steps 488-494, p.266-267), and the ring is laid into the base ring with no arrow into any hole (step 495, p.268). Steps 496-506 build the top ring, which is laid on the rollers (step 507, p.276) and then held down by 4 red parts and 4 blue pins at its edge (steps 508-509, p.277-278). So the roller ring is a bearing that rests and rolls between the base ring and the top ring, kept in place by the rings around it; it is not pinned. The two 2780 pins one stud beside its holes are no sign of a misplacement. This is a join a pin-and-hole reading cannot see: the ring should be treated as captured between the two rings (or tied to the slewing at half its speed), not as fixed. | 42082-1-2.pdf (book 1) p.264-278 | High (the build), medium (that steps 508-509 pin the top ring down, not the rollers) |
+
 ## Proposed changes for Erik
 
 

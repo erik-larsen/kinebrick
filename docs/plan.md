@@ -26,13 +26,13 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 
 | Result | Functions |
 |---|---|
-| Works | 617 |
-| Partly | 297 |
-| Doesn't work | 132 |
+| Works | 619 |
+| Partly | 296 |
+| Doesn't work | 131 |
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
-In 41 sets, every checked function works. In 22 of those, no function is skipped or unchecked either. 76 more sets are one or two checked functions short.
+In 42 sets, every checked function works. In 23 of those, no function is skipped or unchecked either. 75 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
