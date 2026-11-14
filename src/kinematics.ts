@@ -157,6 +157,13 @@ export interface Options {
   // motions joined, those in which tyres travel are kept only if they scrub no more than rolling
   // allows. Off by default, for now; KINEBRICK_SCRUB_JOINED=1 turns it on.
   scrubJoined: boolean;
+  // The model lifted off the ground, as held in the hand: no tyre touches the ground, and the
+  // frame (the first body) is kept still instead, as for a model with no tyres (see findGround).
+  // Its wheels then turn freely, and a differential worked with its drive held turns one wheel
+  // back as the other goes forward. Read when the solver is made, so changing it later does
+  // nothing. Off unless asked for: the viewer's "Lift off the ground" option (?lifted=1), or a
+  // function's `lifted` in the function check.
+  lifted: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
@@ -176,6 +183,7 @@ export const experiments: Options = {
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
   freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
   scrubJoined: setting('KINEBRICK_SCRUB_JOINED') === '1',
+  lifted: false,
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -584,8 +592,13 @@ export class Kinematics {
   }
 
   // The ground is level with the lowest tyre. Tyres within GROUND_TOLERANCE of it touch it.
-  // With no tyres, the frame (or the first body) is kept still instead.
+  // With no tyres, or the model lifted (see Options.lifted), the frame (or the first body) is
+  // kept still instead.
   private findGround() {
+    if (this.options.lifted) {
+      this.fixedBody = 0;
+      return;
+    }
     let lowest = -Infinity;
     for (const t of this.mech.treads) {
       const p = lowestPoint(t.center, t.axis, t.radius);
