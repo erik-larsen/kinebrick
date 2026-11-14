@@ -303,6 +303,7 @@ export class Kinematics {
   private columns = 0; // how many coordinates
   fixedBody = -1; // kept still when the model has no tyres on the ground
   frozen = new Set<number>(); // bodies the user has frozen (Alt-click)
+  springsHeld = false; // slides that springs hold at rest held still (see steeringBodies)
   drag = new Drag(); // the drag going on, or an empty one between drags (see Drag)
   private stepByTiers = false; // one problem: whether the last step's motion was chosen by least motion's tiers (see jointMotion)
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
@@ -635,12 +636,19 @@ export class Kinematics {
 
   // A spanning tree over the turning joints, starting from the frame (body 0). Joints that
   // close a loop aren't in the tree, nor are slide and ball joints: closeLoops keeps those
-  // together.
+  // together. A group the frame's tree doesn't reach is a tree of its own, and its root is
+  // chosen by what holds the group, not by the bodies' numbers: first a body that slides on a
+  // body already placed (an outrigger's beam in the chassis, so a drag of it slides it and
+  // what hangs from it goes along), then one that hangs by a ball on one, then, held by
+  // nothing, a body of what's left with no gear. Of several, the one with the most parts, the group's
+  // main piece; only bodies alike in that are taken by number. Rooted at the lowest-numbered
+  // body, the 8258 Crane Truck's outrigger had its 7L beam as the root and the bent beam that
+  // slides in the chassis hanging from it by a hinge, so a drag of the bent beam spun it on
+  // the hinge.
   private buildTree() {
     this.parentJoint = new Array(this.bodyCount).fill(-1);
     const visited = new Array(this.bodyCount).fill(false);
-    for (let start = 0; start < this.bodyCount; start++) {
-      if (visited[start]) continue;
+    const grow = (start: number) => {
       this.rootPoses.set(start, new Matrix4());
       visited[start] = true;
       const queue = [start];
@@ -657,6 +665,29 @@ export class Kinematics {
           }
         });
       }
+    };
+    // The bodies not yet placed that a joint of this kind joins to one already placed.
+    const heldBy = (kind: Joint['kind']) => {
+      const held = new Set<number>();
+      for (const j of this.mech.joints) {
+        if (j.kind !== kind || visited[j.bodyA] === visited[j.bodyB]) continue;
+        held.add(visited[j.bodyA] ? j.bodyB : j.bodyA);
+      }
+      return [...held];
+    };
+    const main = (bodies: number[]) => bodies.reduce((best, b) => (this.mech.bodies[b].parts.length > this.mech.bodies[best].parts.length || (this.mech.bodies[b].parts.length === this.mech.bodies[best].parts.length && b < best) ? b : best));
+    if (this.bodyCount > 0) grow(0);
+    for (;;) {
+      const left = visited.flatMap((v, b) => (v ? [] : [b]));
+      if (!left.length) break;
+      const slides = heldBy('slide');
+      const balls = heldBy('ball');
+      // Held by nothing (a grab hanging on a crane's string, a knob that only meshes): what
+      // the turning parts turn on, a body with no gear, rather than a gear (the 42050 Drag
+      // Racer's steering knob, a gear on a pin, turns on the pin).
+      const geared = new Set(this.mech.gears.map((g) => g.body));
+      const plain = left.filter((b) => !geared.has(b));
+      grow(main(slides.length ? slides : balls.length ? balls : plain.length ? plain : left));
     }
     for (const root of this.rootPoses.keys()) {
       this.rootColumn.set(root, this.columns);
@@ -1182,6 +1213,10 @@ export class Kinematics {
     this.contactTreads = [];
     this.drag.held = new Set(treads);
     this.drag.heldToFrame = new Set();
+    // And the car on its springs (see Joint.springHeld): free, each suspension arm's swing turns
+    // its tyre a little about the upright too, which the steering doesn't, so nothing counted as
+    // steering (the 8880 Super Car, on sliding shock absorbers), and its steering crept.
+    this.springsHeld = true;
     // The motions' bodies' turning only (see turningIn): that's all this needs of them.
     let motions: Float64Array[];
     try {
@@ -1190,6 +1225,7 @@ export class Kinematics {
     } finally {
       [this.contactTreads, this.drag.held, this.drag.heldToFrame] = [contact, held, toFrame];
       [this.scrubNeeded, this.leastScrub, this.slipRows] = [scrubNeeded, leastScrub, slipRows];
+      this.springsHeld = false;
     }
     const axes = this.jointAxes();
     // How fast each tyre turns about the upright against the frame, in each motion; those rows
@@ -1946,6 +1982,22 @@ export class Kinematics {
     return orthonormalize([...usual, ...suspension]);
   }
 
+  // Each slide that a spring holds at rest (see Joint.springHeld) as a row: how fast it slides,
+  // in LDU.
+  springRows(): number[][] {
+    return this.mech.joints.flatMap((j) => {
+      if (!j.springHeld || j.kind !== 'slide') return [];
+      const p = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+      const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+      const row = new Array(6 * this.bodyCount).fill(0);
+      for (let k = 0; k < 3; k++) {
+        addPointVelocity(row, j.bodyB, p, k, d.getComponent(k));
+        addPointVelocity(row, j.bodyA, p, k, -d.getComponent(k));
+      }
+      return [row];
+    });
+  }
+
   // The free motions (see freeMotionsInBasis) in two lots: the car moving on its suspension,
   // and all the others, orthogonal to those.
   private freeMotionsApart(): [number[][], number[][]] {
@@ -1966,13 +2018,19 @@ export class Kinematics {
       row[k] = 1;
       return row;
     });
-    const parked = orthonormalize(nullSpace([...rows, ...inBasis(frameStill, basis)], q));
+    // Parked and rolling, the car is on its springs (see Joint.springHeld): rolling is chosen as
+    // the motion that scrubs least, and with its suspension free it mixed in the car sinking and
+    // tipping to scrub a hair less (the 8880 Super Car, pushed along on sliding shock absorbers,
+    // didn't come back). Moving on its suspension is left to the suspension's own motions, below.
+    const springs = inBasis(this.springRows(), basis);
+    const onSprings = springs.length ? orthonormalize(nullSpace([...rows, ...springs], q)) : motions;
+    const parked = orthonormalize(nullSpace([...rows, ...springs, ...inBasis(frameStill, basis)], q));
     const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: lift, travel: [...travel, ...sideways], lift: [], rise: [] }, LIFT)) : [];
     // The rest of the motions, with the parked ones taken out, judged as rolling. Taking them
     // out first keeps the two sets apart: joined afterwards, a rolling motion that's nearly a
     // parked one would leave a sliver that, scaled up, is a bogus motion (lifting the car).
     const rest = orthonormalize(
-      motions.map((m) => without(m, keptParked)),
+      onSprings.map((m) => without(m, keptParked)),
       1e-6,
     );
     // Lift counts as scrub, LIFT of it as much as the usual allowance (however much more scrub
@@ -1987,7 +2045,9 @@ export class Kinematics {
     // rolling allows (so not at all, if they don't roll), and of those, the ones whose tyres
     // scrub sideways no further than the frame rises or sinks over them (or than rolling
     // allows, for how far they roll).
-    const left = orthonormalize(rest.map((m) => without(m, rolling)), 1e-6);
+    // (With springs held, `rest` left out the suspension; the rest of every motion, here.)
+    const unparked = springs.length ? orthonormalize(motions.map((m) => without(m, keptParked)), 1e-6) : rest;
+    const left = orthonormalize(unparked.map((m) => without(m, rolling)), 1e-6);
     const grounded = left.length ? leastScrub(left, { sideways: lift, travel, lift: [], rise: [] }, LIFT * Math.max(1, this.scrub / usual)) : [];
     const riseAsTravel = rise.map((row) => row.map((x) => x / usual));
     const suspension = grounded.length ? leastScrub(grounded, { ...scrubbing, travel: [...travel, ...riseAsTravel] }, this.scrub, usual, { least: 0 }, needs.least * needs.least) : [];
@@ -2541,7 +2601,10 @@ export class Kinematics {
     const steered = (z: number[]) => steering.map((j) => rateOf(z, j));
     // Friction pins, and motors' outputs, which their gearboxes hold (see chooseHolds).
     const stiff = this.mech.joints.flatMap((j, i) => ((j.stiff || j.motor) && j.kind === 'revolute' && i !== joint ? [i] : []));
-    const pins = (z: number[]) => stiff.map((j) => rateOf(z, j));
+    // And slides that springs hold at rest (see Joint.springHeld), by how fast they slide: given
+    // only where nothing else can move, as a friction pin gives.
+    const springs = inBasis(this.springRows(), basis);
+    const pins = (z: number[]) => [...stiff.map((j) => rateOf(z, j)), ...springs.map((row) => dot(row, z))];
     const pulleys = new Set((this.mech.strings ?? []).flatMap((s) => s.pulleys.map((w) => w.body)));
     const bodies = Array.from({ length: this.bodyCount }, (_, b) => b).filter((b) => b > 0 && b !== grabbed && !pulleys.has(b));
     // With SPARSE_FRICTION, each body counts by how many parts it has: heavier.

@@ -44,7 +44,7 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "0b971334",
     "date": "2026-11-14",
     "seconds": 1,
     "counts": {
@@ -143,7 +143,7 @@
             ]
           ]
         ],
-        "cause": "stay-forced",
+        "cause": "loose-part",
         "detail": "p30 4282",
         "seconds": 0.1
       },

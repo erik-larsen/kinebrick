@@ -22,6 +22,7 @@ import { findLoops } from './inference/loops.ts';
 import { looseFits, onAxleTips } from './inference/looseFits.ts';
 import { fixPins } from './inference/pins.ts';
 import { guidedPistons, shockAbsorbers, squareRodsInBores } from './inference/pistons.ts';
+import { hungOnSliders } from './inference/guides.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
 import { restingParts } from './inference/rests.ts';
 import { decorations, figureSubmodels, rideAlong } from './inference/rideAlong.ts';
@@ -60,6 +61,7 @@ export interface Connection {
   // them (see slideRange).
   extents?: { male: [number, number]; female: [number, number]; overlap: number };
   turns?: boolean; // a slide along which the parts may turn too (see slidingOnAxles)
+  springHeld?: boolean; // a slide that a spring holds at rest, as a shock absorber's (see Joint.springHeld)
 }
 
 export interface Body {
@@ -82,6 +84,11 @@ export interface Joint {
   range?: [number, number];
   sliding?: [number, number];
   turns?: boolean; // a slide joint along which bodyB may also turn about the axis, relative to bodyA
+  // A slide that a spring holds at rest, as a shock absorber's rod in its cylinder. Free to slide,
+  // but held where the question is the model at rest (see Kinematics.springRows): finding its
+  // steering, choosing how it parks and rolls, and in least motion's friction-pin tier. Until
+  // springs push (v2.0), nothing pushes it back.
+  springHeld?: boolean;
 }
 
 // A tyre's tread: the part of a tyre that can touch the ground.
@@ -350,6 +357,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...guidedPistons(parts, roles, cyls, connections));
   const shocks = shockAbsorbers(parts, table, (name) => libraryName(name, table));
   connections.push(...shocks, ...squareRodsInBores(cyls, shocks));
+  // After the slides above: a group hung by one hinge on a slider, kept in line by its guide.
+  connections.push(...hungOnSliders(parts.length, roles, cyls, connections));
   // linearActuators, universalJoints and groovedBalls replace connections already found.
   const actuators = linearActuators(parts, connections);
   connections.push(...bushGrips(roles, cyls));

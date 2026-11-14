@@ -3,7 +3,7 @@
 
 import type { Kinematics } from '../kinematics.ts';
 import type { Row } from '../linalg.ts';
-import { axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
+import { addPointVelocity, axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
 
 // Rows for bodies held still: `fixed` on their joints (or, for a root body, altogether), and
 // `toFrame` against the frame.
@@ -70,6 +70,9 @@ export function holds(solver: Kinematics, eq: Equations) {
   // rules can't all hold, what's held gives last. Else a layout's track gave a little as its
   // cars, far off the rails as built, were drawn onto it.
   for (const row of holdRows(solver, fixed, toFrame)) add(row, 0, DRIVE_WEIGHT);
+  // Slides that springs hold at rest, held still while the steering is found (see
+  // Kinematics.steeringBodies).
+  if (solver.springsHeld) for (const row of solver.springRows()) add(row, 0, DRIVE_WEIGHT);
   // What a drag can't reach is held where it is on the frame (see Kinematics.outOfReach): each
   // body whole, not just on its joint, as the rows on nothing but these bodies and the frame are
   // left out (see buildEquations). Held only on their joints, without their joints' own rows,

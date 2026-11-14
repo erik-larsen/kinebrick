@@ -72,7 +72,7 @@ export function findJoints(connections: Connection[], bodyOf: number[]): Joint[]
       existing.stiff = existing.stiff || c.stiff === true;
       if (c.motor) existing.motor = true;
     } else {
-      joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true, ...(c.motor ? { motor: true } : {}), ...(c.turns ? { turns: true } : {}) });
+      joints.push({ kind, bodyA: Math.min(a, b), bodyB: Math.max(a, b), from: c.from.clone(), to: c.to.clone(), stiff: c.stiff === true, ...(c.motor ? { motor: true } : {}), ...(c.turns ? { turns: true } : {}), ...(c.springHeld ? { springHeld: true } : {}) });
     }
   }
 

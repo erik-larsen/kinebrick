@@ -31,7 +31,7 @@ export function shockAbsorbers(parts: PlacedPart[], table: ConnectionTable, name
         // as far as `to`.
         const from = at(r);
         const [inward, outward] = [Math.max(0, along - shock.from), Math.max(0, shock.to - along)];
-        result.push({ male: r, female: c, kind: 'slide', turns: true, from, to: from.clone().sub(out), extents: { male: [0, 0], female: [-outward, inward], overlap: 0 } });
+        result.push({ male: r, female: c, kind: 'slide', turns: true, springHeld: true, from, to: from.clone().sub(out), extents: { male: [0, 0], female: [-outward, inward], overlap: 0 } });
       });
     }
   });

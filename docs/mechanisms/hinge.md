@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 77 works, 13 partly, 32 no, 2 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 72 works, 19 partly, 31 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -184,8 +184,8 @@ Each detail by the set it first appears in.
 
 **2002, [8012 Super Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8012-1)**
 
-- *right arm:* The black lever at the top of the back swings the right arm up and down: the lever carries a 20-tooth double bevel gear on its pivot axle, which turns the 16-tooth gear on the right arm's shoulder axle. (works)
-- *left arm:* The left arm swings at the shoulder on a long pin. (works)
+- *right arm:* The black lever at the top of the back swings the right arm up and down: the lever carries a 20-tooth double bevel gear on its pivot axle, which turns the 16-tooth gear on the right arm's shoulder axle. (partly)
+- *left arm:* The left arm swings at the shoulder on a long pin. (partly)
 
 **2006, [8281 Mini Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8281-1)**
 
@@ -227,7 +227,7 @@ Each detail by the set it first appears in.
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
 - *bonnet:* The bonnet tilts up on a hinge at the windscreen, showing the engine. (works)
-- *doors:* The two front doors open, each swinging out on a hinge at its front edge. (no)
+- *doors:* The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel. (works)
 - *tailgate:* The tailgate at the back swings up on a hinge at the roof. (no)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
@@ -278,7 +278,7 @@ Each detail by the set it first appears in.
 
 **2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1)**
 
-- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (works)
+- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (partly)
 - *rudder:* The rudder on the fin swings side to side. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
@@ -320,7 +320,7 @@ Each detail by the set it first appears in.
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
 - *semi-trailer coupling:* The semi-trailer turns on its coupling behind the cab as the truck steers. (partly)
-- *spreader:* The spreader turns on the boom's tip to line up with a container. (works)
+- *spreader:* The spreader turns on the boom's tip to line up with a container. (partly)
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 
@@ -328,7 +328,7 @@ Each detail by the set it first appears in.
 
 **2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
 
-- *hatch:* The hatch on the foredeck, in front of the bridge, lifts open. (works)
+- *hatch:* The hatch on the foredeck, in front of the bridge, lifts open. (partly)
 
 **2017, [42065 RC Tracked Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42065-1)**
 
@@ -360,7 +360,7 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
 - *doors:* The cab doors swing open. (works)
-- *king pin:* The trailer swings on its king pin behind the tractor. (works)
+- *king pin:* The trailer swings on its king pin behind the tractor. (partly)
 - *container doors:* The container's two end doors swing open. (no)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
