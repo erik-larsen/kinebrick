@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 43 works, 25 partly, 2 no, 1 skipped.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 41 works, 25 partly, 4 no, 1 skipped.
 
 ## By decade
 
@@ -112,7 +112,7 @@ Each detail by the set it first appears in.
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
-- *V8:* Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (works)
+- *V8:* Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (partly)
 
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
 
@@ -132,7 +132,7 @@ Each detail by the set it first appears in.
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
 
-- *4 cylinders:* The rear wheels drive through a differential, and the four pistons of the engine under the bonnet pump as the tractor rolls: a 12 tooth double bevel gear on the differential turns a shaft running forward, whose 16 tooth gear turns the crankshaft through a 16 tooth idler. (works)
+- *4 cylinders:* The rear wheels drive through a differential, and the four pistons of the engine under the bonnet pump as the tractor rolls: a 12 tooth double bevel gear on the differential turns a shaft running forward, whose 16 tooth gear turns the crankshaft through a 16 tooth idler. (no)
 
 **2009, [8256 Super Kart](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8256-1)**
 
@@ -165,7 +165,7 @@ Each detail by the set it first appears in.
 
 **2013, [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1)**
 
-- *V8:* Rolling the car turns the V8 engine: the rear wheels drive a differential through two half-shafts with CV joints, and the differential turns the crankshaft, so the eight pistons go up and down. (partly)
+- *V8:* Rolling the car turns the V8 engine: the rear wheels drive a differential through two half-shafts with CV joints, and the differential turns the crankshaft, so the eight pistons go up and down. (no)
 
 **2014, [42022 Hot Rod](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42022-1)**
 

@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 39 works, 36 partly, 2 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 29 partly, 12 no, 1 skipped.
 
 ## By decade
 
@@ -40,7 +40,7 @@ Each detail by the set it first appears in.
 **1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car)**
 
 - Pushing the car along turns the V4 engine: the rear wheels drive the differential, whose 14-tooth bevel pinion turns, through a row of three 8-tooth gears, the gearbox's layshaft, and through the gearbox the crankshaft, so the four pistons go up and down in the cylinder block and the flywheel at the back spins. (works)
-- The differential lets the rear wheels turn at different speeds in a bend: with the engine held, turning one rear wheel turns the other the opposite way. (partly)
+- The differential lets the rear wheels turn at different speeds in a bend: with the engine held, turning one rear wheel turns the other the opposite way. (works)
 
 **1990, [8850 Rally Support Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8850-1)**
 
@@ -57,21 +57,21 @@ Each detail by the set it first appears in.
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
-- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (works)
-- The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (partly)
+- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (partly)
+- The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (no)
 
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
 
 - Pushing the loader along turns all four wheels together and runs the V6 engine: each axle's differential turns a 16-tooth gear on a cross shaft, which drives a 24-tooth crown gear on the drive shaft; the drive shaft runs through a universal joint under the pivot to join the two axles, and an 8-tooth gear on the crankshaft runs off the rear crown gear, so the six pistons go up and down. (partly)
-- The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (partly)
-- The front differential does the same for the front wheels. (partly)
+- The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (no)
+- The front differential does the same for the front wheels. (no)
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
 
 - *centre:* Pushing the off-roader along turns all four wheels together and runs the V8 engine: the front and rear differentials drive shafts to a third, central differential, which drives the five-speed gearbox's output; through whichever gear is engaged, the gearbox turns the engine's input shaft, whose 24-tooth gear turns the crankshaft, so the eight pistons go up and down. (partly)
 - The front differential lets the front wheels turn at different speeds in a bend: with the drive shaft held, turning one front wheel turns the other the opposite way. (no)
 - The rear differential does the same for the rear wheels. (partly)
-- *centre:* The central differential lets the front and rear axles turn at different speeds: with the front wheels held, the rear wheels can still turn. (partly)
+- *centre:* The central differential lets the front and rear axles turn at different speeds: with the front wheels held, the rear wheels can still turn. (no)
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
@@ -84,7 +84,7 @@ Each detail by the set it first appears in.
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
 
-- The rear wheels drive through a differential, and the four pistons of the engine under the bonnet pump as the tractor rolls: a 12 tooth double bevel gear on the differential turns a shaft running forward, whose 16 tooth gear turns the crankshaft through a 16 tooth idler. (works)
+- The rear wheels drive through a differential, and the four pistons of the engine under the bonnet pump as the tractor rolls: a 12 tooth double bevel gear on the differential turns a shaft running forward, whose 16 tooth gear turns the crankshaft through a 16 tooth idler. (no)
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
@@ -93,7 +93,7 @@ Each detail by the set it first appears in.
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
 - Rolling the car turns the V4 engine: the rear wheels drive the differential, a shaft with a universal joint carries the drive forward under the seats, and its gear turns the crankshaft through an idler gear, so the four yellow pistons pump up and down. (works)
-- The rear differential lets the two rear wheels turn at different speeds round corners. (works)
+- The rear differential lets the two rear wheels turn at different speeds round corners. (no)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
@@ -114,7 +114,7 @@ Each detail by the set it first appears in.
 
 **2013, [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1)**
 
-- Rolling the car turns the V8 engine: the rear wheels drive a differential through two half-shafts with CV joints, and the differential turns the crankshaft, so the eight pistons go up and down. (partly)
+- Rolling the car turns the V8 engine: the rear wheels drive a differential through two half-shafts with CV joints, and the differential turns the crankshaft, so the eight pistons go up and down. (no)
 
 **2014, [42029 Customized Pick up Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42029-1)**
 
@@ -139,7 +139,7 @@ Each detail by the set it first appears in.
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
 - Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (partly)
-- The two rear axles each have a differential, so their wheels can turn at different speeds in a bend; the front two axles' wheels roll freely. (works)
+- The two rear axles each have a differential, so their wheels can turn at different speeds in a bend; the front two axles' wheels roll freely. (no)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
 
@@ -176,7 +176,7 @@ Each detail by the set it first appears in.
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
 - Pushing the crane along runs the V8 engine at the back of the chassis: the axles' differentials drive the crankshaft, so the eight pistons go up and down and the engine's fan spins. (works)
-- Each axle has a differential: with the engine held, turning one wheel turns the other wheel on that axle the opposite way. (partly)
+- Each axle has a differential: with the engine held, turning one wheel turns the other wheel on that axle the opposite way. (no)
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
@@ -201,7 +201,7 @@ Each detail by the set it first appears in.
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
 - *front, rear and centre:* All four wheels are driven: pushing the car along turns the wheels, which through the front and rear differentials, a centre differential, the gearbox and the range and D-N-R selectors turn the engine's crankshaft, so the six pistons of the straight-six engine pump up and down. (partly)
-- *front, rear and centre:* Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way. (partly)
+- *front, rear and centre:* Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way. (works)
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
@@ -234,7 +234,7 @@ Each detail by the set it first appears in.
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 
 - Rolling the car turns the V8 engine: the rear wheels drive the differential, which turns a shaft forward to a 20 tooth gear, which turns the crankshaft's 12 tooth gear, and the crankshaft pumps the eight pistons up and down in their two tilted banks. (works)
-- The rear differential lets the rear wheels turn at different speeds in a corner: holding the engine, one rear wheel turns the other the opposite way. (works)
+- The rear differential lets the rear wheels turn at different speeds in a corner: holding the engine, one rear wheel turns the other the opposite way. (no)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 

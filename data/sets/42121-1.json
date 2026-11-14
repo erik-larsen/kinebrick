@@ -89,9 +89,10 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "7699035a",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 23,
+    "seconds": 10,
     "counts": {
       "partly": 1,
       "no": 1,
@@ -149,7 +150,7 @@
         "turned": [
           [
             1.17,
-            -2.37
+            -1.5
           ]
         ],
         "still": [
@@ -168,7 +169,7 @@
             ],
             "p147 24120": [
               0,
-              4.83e-13
+              5.26e-13
             ],
             "p534 32270": [
               0,
@@ -176,7 +177,7 @@
             ],
             "p271 32063": [
               0,
-              1.01e-11
+              1.23e-11
             ]
           }
         ],
@@ -195,12 +196,12 @@
         "stop": [
           [
             "limit",
-            "dead point"
+            null
           ]
         ],
         "cause": "too-little",
         "detail": "p84 32271",
-        "seconds": 16.2
+        "seconds": 4.9
       },
       {
         "result": "no",
@@ -263,7 +264,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -339,7 +340,7 @@
           [],
           []
         ],
-        "seconds": 4.9
+        "seconds": 4.1
       },
       {
         "result": "not checked",

@@ -189,12 +189,14 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "7699035a",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 67,
+    "seconds": 52,
     "counts": {
-      "works": 10,
-      "partly": 1,
+      "works": 8,
+      "partly": 3,
+      "not back": 2,
       "skipped": 1
     },
     "loose": [],
@@ -235,7 +237,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.2
       },
       {
         "result": "partly",
@@ -290,7 +292,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 4.6
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -328,7 +330,7 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -366,7 +368,7 @@
             ]
           ]
         ],
-        "seconds": 4.8
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -410,7 +412,7 @@
           [],
           []
         ],
-        "seconds": 4.4
+        "seconds": 4.2
       },
       {
         "result": "works",
@@ -453,7 +455,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -483,15 +485,18 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 1.6
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
+            1.51,
             -1.5
           ]
+        ],
+        "moved": [
+          "p264 3702"
         ],
         "rates": [
           {
@@ -500,64 +505,79 @@
               60.2
             ],
             "p264 3702": [
-              0,
-              1.46e-11
+              0.142,
+              34.3
             ]
           }
         ],
         "back": [
           [
             [
-              0.28,
-              0.19
+              36.48,
+              11.54
             ],
             [
-              0.04,
-              0.03
+              1.06,
+              0.15
             ]
           ]
+        ],
+        "strayed": [
+          "p282 3706",
+          "p301 3749"
         ],
         "pushed": [
           true
         ],
-        "seconds": 27.3
+        "cause": "stay-chosen",
+        "detail": "p264 3702",
+        "seconds": 16.9
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.54,
+            1.5
           ]
+        ],
+        "moved": [
+          "p292 3703"
         ],
         "rates": [
           {
             "p319 2796c01 against p318 2793c03": [
-              0.826,
-              49.4
+              1.19,
+              71.4
             ],
             "p292 3703": [
-              0,
-              7.33e-12
+              2.74e-8,
+              6.66
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.7,
+              0.58
             ],
             [
-              0,
-              0
+              7.69,
+              7.09
             ]
           ]
+        ],
+        "strayed": [
+          "p293 3703",
+          "p311 3705"
         ],
         "pushed": [
           true
         ],
-        "seconds": 3.4
+        "cause": "stay-chosen",
+        "detail": "p292 3703",
+        "seconds": 2.9
       },
       {
         "result": "skipped",
@@ -586,7 +606,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -662,7 +682,7 @@
           [],
           []
         ],
-        "seconds": 8.8
+        "seconds": 8.3
       }
     ]
   }

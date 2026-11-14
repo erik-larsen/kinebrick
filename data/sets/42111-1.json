@@ -72,7 +72,10 @@
         "moves": [
           "p473 56908"
         ],
-        "note": "with the drive shaft held still, turning one rear wheel turns the other the opposite way"
+        "note": "with the drive shaft held still, turning one rear wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held still\"): the drive shaft p56, which function 2 names (\"a drive shaft running forward\"), is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p56 59426"
+        ]
       },
       {
         "does": "The front wheels have independent suspension: each rides on a pair of suspension arms, sprung by its own shock absorber, and rises and falls on its own.",
@@ -191,9 +194,9 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 214,
+    "seconds": 133,
     "counts": {
       "works": 7,
       "not back": 2,
@@ -273,7 +276,7 @@
             ]
           ]
         ],
-        "seconds": 24.3
+        "seconds": 17.4
       },
       {
         "result": "works",
@@ -425,7 +428,7 @@
             "p443 18946"
           ]
         ],
-        "seconds": 37.7
+        "seconds": 30
       },
       {
         "result": "works",
@@ -439,7 +442,7 @@
           {
             "p473 56908": [
               1,
-              2.02e-13
+              2.76e-13
             ]
           }
         ],
@@ -455,7 +458,7 @@
             ]
           ]
         ],
-        "seconds": 22.4
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -561,7 +564,7 @@
             "p319 15461"
           ]
         ],
-        "seconds": 59
+        "seconds": 35.1
       },
       {
         "result": "skipped",
@@ -590,7 +593,7 @@
           "p0 92910 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 0.8
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -628,7 +631,7 @@
             ]
           ]
         ],
-        "seconds": 6.7
+        "seconds": 5
       },
       {
         "result": "works",
@@ -654,7 +657,7 @@
             ],
             "p471 56908": [
               0,
-              6.6e-13
+              6.32e-13
             ]
           }
         ],
@@ -673,7 +676,7 @@
         "pushed": [
           true
         ],
-        "seconds": 26.9
+        "seconds": 11.8
       },
       {
         "result": "works",
@@ -730,7 +733,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 34.9
+        "seconds": 27.1
       }
     ]
   }

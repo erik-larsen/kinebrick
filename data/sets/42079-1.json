@@ -113,9 +113,10 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "7699035a",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 62,
+    "seconds": 46,
     "counts": {
       "works": 4,
       "not back": 1,
@@ -218,11 +219,11 @@
         "back": [
           [
             [
-              0.03,
+              0,
               0.01
             ],
             [
-              0.03,
+              0,
               0.01
             ]
           ]
@@ -233,48 +234,55 @@
             "limit"
           ]
         ],
-        "seconds": 14.4
+        "seconds": 12.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.17,
+            -0.73
           ]
         ],
         "rates": [
           {
             "p13 6629": [
-              0.169,
-              24.4
+              0.129,
+              18.6
             ],
             "p471 18942": [
-              0.169,
-              38
+              0.129,
+              29
             ],
             "p448 3941": [
               0,
-              4.1e-10
+              1.31e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0.09,
-              0.91
+              56.21,
+              66.85
             ],
             [
-              0.18,
-              2.2
+              47.25,
+              42.02
             ]
           ]
         ],
         "strayed": [
-          "p210 32054"
+          "p177 59426",
+          "p575 3713"
         ],
-        "seconds": 16.2
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "seconds": 5
       },
       {
         "result": "works",
@@ -312,7 +320,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -408,7 +416,7 @@
             "p251 2851"
           ]
         ],
-        "seconds": 12.1
+        "seconds": 12.3
       },
       {
         "result": "partly",
@@ -467,7 +475,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p245 2853",
-        "seconds": 15.8
+        "seconds": 12.1
       },
       {
         "result": "no",
@@ -522,7 +530,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 0.8
+        "seconds": 0.6
       }
     ]
   }

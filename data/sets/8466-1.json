@@ -97,7 +97,11 @@
         "stays": [
           "p802 6573",
           "p1049 22969"
-        ]
+        ],
+        "held": [
+          "p802 6573"
+        ],
+        "note": "the drive shaft is held, as the function says (\"with the drive shaft held\"): p802, which it lists to stay and function 3 names in the drive, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The rear differential does the same for the rear wheels.",
@@ -130,7 +134,12 @@
         "stays": [
           "p655 22969",
           "p634 6573"
-        ]
+        ],
+        "held": [
+          "p655 22969",
+          "p676 22969"
+        ],
+        "note": "the front wheels are held, as the function says (\"with the front wheels held\"): both front wheels, p655 and p676, are frozen while the rear is turned, as a user freezes them in the viewer"
       },
       {
         "does": "Each wheel has independent suspension: its hub rides on an upper and a lower suspension arm, with a shock absorber from the lower arm up to the frame, so each wheel moves up and down on its own; pressing the body down lowers it between the wheels, which tilt in.",
@@ -197,14 +206,14 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 248,
+    "seconds": 145,
     "counts": {
-      "partly": 5,
-      "not back": 3,
+      "partly": 4,
+      "not back": 2,
       "not checked": 1,
-      "no": 3,
+      "no": 4,
       "skipped": 2,
       "works": 1
     },
@@ -295,7 +304,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p657 32495",
-        "seconds": 7.3
+        "seconds": 5.6
       },
       {
         "result": "partly",
@@ -358,7 +367,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p657 32495",
-        "seconds": 6.9
+        "seconds": 5.3
       },
       {
         "result": "partly",
@@ -380,45 +389,45 @@
           {
             "p1067 22969": [
               1,
-              0.169
+              0.177
             ],
             "p655 22969": [
               1,
-              8.59e-9
+              6.39e-9
             ],
             "p676 22969": [
               1,
-              9.44e-8
+              6.8e-8
             ],
             "p1017 6573": [
-              5.62e-8,
-              6.19e-14
+              1.12e-7,
+              3.56e-13
             ],
             "p634 6573": [
-              5.62e-8,
-              1.61e-13
+              1.12e-7,
+              3.95e-13
             ],
             "p802 6573": [
-              5.62e-8,
-              1.53e-13
+              1.12e-7,
+              1.59e-13
             ],
             "p944 3737": [
-              5.62e-8,
-              1.47e-13
-            ],
-            "p421 2854": [
-              5.62e-8,
+              1.12e-7,
               1.9e-13
             ],
+            "p421 2854": [
+              1.12e-7,
+              4.27e-13
+            ],
             "p398 2851": [
-              5.62e-8,
-              8.33e-14
+              1.12e-7,
+              4.64e-13
             ]
           }
         ],
         "expected": [
           {
-            "p398 2851": 9.47e-15
+            "p398 2851": 4.74e-15
           }
         ],
         "back": [
@@ -438,7 +447,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 76
+        "seconds": 47.3
       },
       {
         "result": "not checked",
@@ -468,7 +477,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 0.8
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -489,23 +498,23 @@
           {
             "p1067 22969": [
               1,
-              0.169
+              0.177
             ],
             "p1019 6589": [
-              5.62e-8,
-              1.48e-13
+              1.12e-7,
+              3.57e-13
             ],
             "p1020 6589": [
-              5.62e-8,
-              1.48e-13
+              1.12e-7,
+              3.57e-13
             ],
             "p802 6573": [
-              5.62e-8,
-              1.53e-13
+              1.12e-7,
+              1.59e-13
             ],
             "p655 22969": [
               1,
-              8.59e-9
+              6.39e-9
             ]
           }
         ],
@@ -526,61 +535,61 @@
         ],
         "cause": "not-driven",
         "detail": "p1019 6589",
-        "seconds": 59.8
+        "seconds": 52.1
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
           "p1017 6573",
           "p804 6589"
         ],
-        "moved": [
-          "p655 22969"
-        ],
         "rates": [
           {
             "p1017 6573": [
-              5.62e-8,
-              6.19e-14
+              0,
+              0
             ],
             "p804 6589": [
-              5.62e-8,
-              1.51e-13
+              0,
+              0
             ],
             "p655 22969": [
-              1,
-              8.59e-9
+              0,
+              0
             ],
             "p634 6573": [
-              5.62e-8,
-              1.61e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              1.7,
-              0.08
+              0,
+              0
             ],
             [
-              1.76,
-              0.16
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p211 32123a"
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 63.6
+        "seconds": 0.6
       },
       {
         "result": "no",
@@ -675,7 +684,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 2.8
+        "seconds": 2.9
       },
       {
         "result": "skipped",
@@ -701,13 +710,13 @@
             ],
             "p274 32189": [
               0,
-              3.79e-14
+              0
             ]
           },
           {
             "p257 32188": [
               0,
-              2.14e-13
+              0
             ],
             "p274 32189": [
               1,
@@ -755,7 +764,7 @@
             "p274 32189"
           ]
         ],
-        "seconds": 27.4
+        "seconds": 28
       },
       {
         "result": "skipped",
@@ -814,7 +823,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 1.3
+        "seconds": 1.5
       }
     ]
   }

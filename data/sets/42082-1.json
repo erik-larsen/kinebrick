@@ -70,7 +70,11 @@
         ],
         "stays": [
           "p1223 2854"
-        ]
+        ],
+        "held": [
+          "p1223 2854"
+        ],
+        "note": "the engine is held, as the function says (\"with the engine held\"): p1223, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The motor lowers and raises the four outriggers: with the red lever on the superstructure set to the chassis functions, the lever on the chassis side away from the cab picks up or down, and the drive goes down through the turntable to the chassis gearbox, which turns a small linear actuator at each outrigger, swinging its leg out and down onto its foot pad, or back up.",
@@ -252,14 +256,13 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 3388,
+    "seconds": 1998,
     "counts": {
-      "no": 1,
+      "no": 2,
       "works": 1,
-      "partly": 7,
-      "not back": 1,
+      "partly": 6,
       "not checked": 1
     },
     "loose": [
@@ -727,7 +730,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 65.5
+        "seconds": 43.6
       },
       {
         "result": "works",
@@ -957,28 +960,28 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 1075.6
+        "seconds": 694.1
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
-        "moved": [
-          "p1223 2854"
+        "still": [
+          "p2284 92912"
         ],
         "rates": [
           {
             "p2284 92912": [
-              1,
-              8.11e-13
+              0,
+              0
             ],
             "p1223 2854": [
-              7,
-              7.41e-13
+              0,
+              0
             ]
           }
         ],
@@ -994,9 +997,14 @@
             ]
           ]
         ],
-        "cause": "stay-forced",
-        "detail": "p1223 2854",
-        "seconds": 266.1
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "cause": "stopped-early",
+        "seconds": 6.9
       },
       {
         "result": "partly",
@@ -1036,15 +1044,15 @@
               0
             ],
             "p824 92696 against p822 92693c01": [
-              8.43e-8,
+              2.81e-8,
               0.0648
             ],
             "p856 92696 against p854 92693c01": [
-              1.12e-7,
+              8.43e-8,
               0.065
             ],
             "p989 92696 against p987 92693c01": [
-              8.43e-8,
+              1.12e-7,
               0.0648
             ],
             "p1021 92696 against p1019 92693c01": [
@@ -1052,12 +1060,12 @@
               0.065
             ],
             "p3886 3958 against p0 64179": [
-              5.62e-8,
+              2.81e-8,
               0.0963
             ],
             "p2649 64179 against p0 64179": [
               0,
-              4.66e-15
+              4.12e-15
             ]
           }
         ],
@@ -1075,7 +1083,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 280.3
+        "seconds": 206.5
       },
       {
         "result": "partly",
@@ -1123,7 +1131,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 208.4
+        "seconds": 140.4
       },
       {
         "result": "partly",
@@ -1176,7 +1184,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 203.4
+        "seconds": 137.8
       },
       {
         "result": "partly",
@@ -1224,7 +1232,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 205
+        "seconds": 132.5
       },
       {
         "result": "partly",
@@ -1275,7 +1283,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 206.2
+        "seconds": 153.2
       },
       {
         "result": "partly",
@@ -1291,32 +1299,29 @@
         "rates": [
           {
             "p3789 32524 against p2649 64179": [
-              5.62e-8,
-              2.45e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              69.1,
-              7.08
+              0,
+              0.02
             ],
             [
-              68.83,
-              7.08
+              0,
+              0.02
             ]
           ]
-        ],
-        "strayed": [
-          "p4057 18651"
         ],
         "why": [
           "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 480.5
+        "seconds": 173.8
       },
       {
         "result": "not checked"

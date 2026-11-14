@@ -59,7 +59,15 @@
         "stays": [
           "p411 2851 against p0 32278"
         ],
-        "note": "through the differential: turning one rear wheel with the other held turns the engine at half speed; the pistons slide in fixed cylinders"
+        "note": "through the differential: turning one rear wheel with the other held turns the engine at half speed; the pistons slide in fixed cylinders; each rear wheel is turned with the other held, as the note says (\"turning one rear wheel with the other held turns the engine at half speed\"): each control's working freezes the other rear wheel's hub, as a user freezes it in the viewer",
+        "held": {
+          "p350 92909": [
+            "p358 92909"
+          ],
+          "p358 92909": [
+            "p350 92909"
+          ]
+        }
       },
       {
         "does": "The black knob on the side behind the cockpit, with the yellow selector lever above it, works two things: with the lever one way, the knob tilts the rear wing's upper flap (a small linear actuator behind the engine pushes it); with the lever the other way, it lifts the whole engine cover, raised by two small linear actuators beside the engine.",
@@ -135,12 +143,14 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "11f1b8c1",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 68,
+    "seconds": 45,
     "counts": {
       "works": 2,
-      "partly": 4,
+      "no": 1,
+      "partly": 3,
       "not back": 2,
       "skipped": 1
     },
@@ -218,14 +228,14 @@
             ]
           ]
         ],
-        "seconds": 22.4
+        "seconds": 16.3
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
@@ -238,23 +248,23 @@
           {
             "p274 62821": [
               0,
-              2.15e-26
+              0
             ],
             "p395 2853": [
               0,
-              3.51e-26
+              0
             ],
             "p396 2852": [
               0,
-              4.74e-15
+              0
             ],
             "p400 2852": [
               0,
-              1.18e-14
+              0
             ],
             "p411 2851 against p0 32278": [
               0,
-              4.22e-13
+              0
             ]
           }
         ],
@@ -270,9 +280,15 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p274 62821",
-        "seconds": 6.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -322,7 +338,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p105 92693c01",
-        "seconds": 5.6
+        "seconds": 3.9
       },
       {
         "result": "partly",
@@ -406,7 +422,7 @@
         ],
         "cause": "not-driven",
         "detail": "p559 32056",
-        "seconds": 2.3
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -489,7 +505,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 16.6
+        "seconds": 12
       },
       {
         "result": "skipped",
@@ -537,7 +553,7 @@
           [],
           []
         ],
-        "seconds": 13
+        "seconds": 9.1
       }
     ]
   }

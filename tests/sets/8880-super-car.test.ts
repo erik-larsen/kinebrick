@@ -16,7 +16,7 @@ describe('8880 Super Car', () => {
 
   it('is fully attached: hinge plates hold its bodywork at its angles, and its driveshafts turn its steered wheels through grooved balls', () => {
     expect(mech.loose).toEqual([]);
-    expect(mech.couplings).toHaveLength(6); // two universal joints in the steering, four grooved balls
+    expect(mech.couplings).toHaveLength(10); // two universal joints in the steering, one in each half shaft (complete, 3712c01), four grooved balls
     expect(mech.loops).toHaveLength(1); // the chain from the gearbox to the engine
     expect(knuckles).toHaveLength(4);
   });

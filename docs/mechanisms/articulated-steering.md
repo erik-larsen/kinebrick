@@ -4,7 +4,7 @@ The machine bends at an upright hinge between its front and rear halves. (Steeri
 
 First appears in 2001, in [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1): The steering wheel in the cab steers the loader by bending it in the middle: an 8-tooth pinion at the foot of its column runs on a 40-tooth gear lying flat on the joint between the two frames, so the front frame, with its wheels, boom and bucket, swings left and right against the rear about a vertical pivot.
 
-Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 3 works, 2 partly, 2 no.
+Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 3 works, 3 partly, 1 no.
 
 ## By decade
 
@@ -18,7 +18,7 @@ Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 3 works, 2 partly
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
 
 - The steering wheel in the cab steers the loader by bending it in the middle: an 8-tooth pinion at the foot of its column runs on a 40-tooth gear lying flat on the joint between the two frames, so the front frame, with its wheels, boom and bucket, swings left and right against the rear about a vertical pivot. (partly)
-- The round yellow knob on top of the tall shaft behind the cab steers too: the shaft's 8-tooth gear turns a 16-tooth gear on the 40-tooth gear at the joint, and the steering wheel turns along with it. (no)
+- The round yellow knob on top of the tall shaft behind the cab steers too: the shaft's 8-tooth gear turns a 16-tooth gear on the 40-tooth gear at the joint, and the steering wheel turns along with it. (partly)
 
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
