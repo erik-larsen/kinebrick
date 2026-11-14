@@ -142,7 +142,7 @@
           },
           {
             "control": "p516 6641",
-            "by": -0.4
+            "by": 0.4
           }
         ],
         "moves": [
@@ -154,7 +154,7 @@
         "stays": [
           "p2216 48168"
         ],
-        "note": "which way each catch moves for each setting is inferred; the hook's rise and fall isn't expressed by the fields"
+        "note": "which way each catch moves for each setting is inferred; the hook's rise and fall isn't expressed by the fields. Both levers stand straight up as built, so the model's pose doesn't say which way is up; of the four ways to set the two catches (each by +0.4 or -0.4), only the red lever's catch p512 by +0.4 with the yellow lever's catch p516 by +0.4 drives the winch (the drum turning 1/24 of the motor) and moves nothing listed to stay: with p516 by -0.4 the motor jams, and with p512 by -0.4 and p516 by +0.4 the winch isn't driven. So that is the first step, the check's finding rather than the book's"
       },
       {
         "does": "With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round.",
