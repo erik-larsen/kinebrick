@@ -8,6 +8,18 @@
 0 // set places; !KINEBRICK TRACK for track links, and how far they reach out beyond the line
 0 // through their pins; !KINEBRICK GROOVE for grooves a plate slides into edge first).
 
+0 FILE 32020.dat
+0 // Wheel Rim 18 x 37 with 6 Pegholes and Long Axle Bush: the axle hole through its long bush, along its axis from z -46 to 10 (its shape's axle hole primitives); the shadow library gives its six pegholes but not this hole, so a rim on an axle was read loose
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 56] [center=true] [pos=0 0 -18] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 30285.dat
+0 // Wheel Rim 14.8 x 16.8 with Centre Groove: the pin hole along its axis, from z 0 to 20 (its shape's peghole primitives), that a pin turns in; it has no shadow file, and had no data but its measured tyre seat
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=0 0 10] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 6580a.dat
+0 // Wheel Rim 23 x 22 Offroad with Axlehole (6580 is moved to it): its axle hole along its axis, from z 1 to 21 (its shape's axle hole primitive); it has no shadow file, and had no data but its measured tyre seat
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 20] [center=true] [pos=0 0 11] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 3482.dat
 0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 22 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -100,6 +112,10 @@
 0 // Wheel Rim 34 x 56 with 6 Spokes and 3 Pegholes: a seat between its flanges, which reach
 0 // from z = -45 to 39
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 65 84] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
+0 // and its three pegholes, from z -12 to 8 (its shape's peghole primitives), which the three pins of a portal hub (92909) go into; the data had only its centre axle hole, so a rim on a hub was read loose
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=0 20 -2] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=17.32 -10 -2] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=-17.32 -10 -2] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 15038.dat
 0 // Wheel Rim 34 x 56 with 6 Spokes and 6 Pegholes: the same seat as 44772
@@ -302,6 +318,10 @@
 0 FILE 46434.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Wheel Hub (a piece of 46490c01): a round bearing on its axis (z), turning in the bearing body
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2996.dat
+0 // Wheel Rim 30 x 30 with 40mm Diameter Rear Rim: tyre seat round its barrel, the 34 LDU radius cylinder between z -25 and 19 in its shape, where its tyre (2995, whose bore is 34) sits; measured, it took the 54 LDU flange of its 40 mm rear rim instead, and the tyre was read loose
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 34 44] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 6542a.dat
 0 // Technic Gear 16 Tooth with Clutch: its clutch face is the 5 LDU at its +z end

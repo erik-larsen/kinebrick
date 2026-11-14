@@ -112,9 +112,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "no": 1,
       "works": 2,
@@ -147,7 +147,8 @@
         "why": [
           "p212 32009 is part of the frame"
         ],
-        "cause": "control-fixed",
+        "cause": "loose-part",
+        "detail": "p69 71372c01",
         "seconds": 0
       },
       {
@@ -211,7 +212,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1
       },
       {
         "result": "works",
@@ -284,7 +285,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -402,7 +403,7 @@
         ],
         "cause": "loose-part",
         "detail": "p69 71372c01",
-        "seconds": 1
+        "seconds": 1.2
       },
       {
         "result": "not checked",
