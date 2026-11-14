@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 47 works, 35 partly, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 48 works, 34 partly, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -149,7 +149,7 @@ Each detail by the set it first appears in.
 **2012, [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1)**
 
 - Turning the round exhaust nozzle at the tail sweeps both wings back and forward together: the nozzle's 24-tooth gear turns a small gear on an axle with a worm, the worm turns a 24-tooth gear whose two gears drive a pair of racks along the fuselage, and the racks' cross axle pushes a link to each wing, which pivots near the wing root. (works)
-- The smooth grey axle joiner low on the fuselage's left side raises and lowers the landing gear: it turns a worm, which turns a small gear on a long axle along the belly, and knob gears at its ends swing the nose leg and, through a cross axle, the two main legs. (partly)
+- The smooth grey axle joiner low on the fuselage's left side raises and lowers the landing gear: it turns a worm, which turns a small gear on a long axle along the belly, and knob gears at its ends swing the nose leg and, through a cross axle, the two main legs. (works)
 - The black gear on the spine behind the cockpit opens the canopy: it turns a worm, which turns a small gear whose two arms push a long beam forward, tilting the canopy up on its hinge at the back of the cockpit. (partly)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**

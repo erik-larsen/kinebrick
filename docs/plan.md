@@ -26,13 +26,13 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 
 | Result | Functions |
 |---|---|
-| Works | 623 |
-| Partly | 286 |
+| Works | 627 |
+| Partly | 282 |
 | Doesn't work | 138 |
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
-In 40 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 76 more sets are one or two checked functions short.
+In 40 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 79 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
@@ -402,6 +402,7 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 18. **The check passes only what the viewer shows: 623 functions work.** The check now lets the friction pins turn that hold a listed part fast, but only where the control does not go (it jams, or a push has no grab point), which is where a user's drag of the control asks for pins; the viewer's own question for a drag gives the same pins in the three functions that pass this way (the 8418's function 2, the 42032's functions 2 and 3). Where the control turns its reach and its part stays fast, the function fails as before, with the note that the part is held by friction pins the control does not reach: the 42082's function 9, the 42050's function 4, the 42077's function 5 and the 42109's function 1. A control that turns freely while its part is held means the drive between them gives somewhere; the four are one family for a trace. Two function lists follow their own words: the 42043's function 6 and the 42111's function 4 now work.
 19. **The universal joint's split waits for two mends and a trace.** Numbering as decision 16, for parts split from now on only, since bringing the 16 parts already split to the rule would renumber 14 sets and a train. A joint is not rigid because it lies straight in the file; it is rigid where both its ends turn on one line in the same rigid group, and there it is read as a rigid connection (the 956's rear axle, which has no differential). A shaft that hung on two joints alone drifted 5 LDU, because a coupling's position rows were never closed after a step; they now get their gap as a loop's joint does, which changes how every model with a joint is solved, so its gate is every set with a coupling, with the solver owner's three points (the sign, ends built apart, new stops). The 956's front drive, two joints back to back, turns its engine a tenth of what it should: traced before anything is built round it.
 20. **The solver owner's mends of the check pass their full check, and its next work is ordered.** On a7f681d: 626 functions work against 614, 12 better and 0 worse by result, three further out of place (the 42037's function 2, the 8002's function 6, the 8259's function 1, noted for its own list); a piston whose rod passes square to its cylinder's line is now expected at the right place (the 856). Its branch is merged with preview and waits for one more full check, after the slow 8110 check. Then, in order: a motor's output is kept still before a friction pin that was let turn, so the pin gives first (the 42109's function 2); the 42124's steering, which stops at a dead point, is traced; twin tyres on one body and one axle line, closer than about a tyre's width, give one contact at their middle (the 42066's function 5). A general rule that lets a tyre slip along its travel is not built unless the trace calls for it, since it could let a driven wheel spin in place.
+21. **The gear meshes are in: 627 functions work, and a held part is to be held.** Decision 17's mends found 14 new meshes in 12 sets and lost none: 9 pairs of knob wheels side by side at 40 LDU, 4 pinions on crown gears and the 8850's spur pair at exactly the tolerance; the four turntable functions were not turntable faults and go back to the traces. Six functions go from partly to working (the 42110's function 5, the 8825's 1, the 8844's 2, the 8850's 4, the 8854's 2, the 9394's 2). Two go from working to partly, the 8464's functions 4 and 5, each a differential "with the drive held": the crown mesh that is now found is real, and with the drive meshed a turned wheel turns the drive. Held as the text says, the wheel cannot turn at all, so the way through the differential is not in the reading, and the two passed only because nothing was meshed. 19 functions' texts hold a part (a drive, the motors, a wheel) and the check holds none; 6 of them count as working. The check gets a field for it, the viewer's own freeze, written for all 19 from their own words, on a branch of its own; those that then fail are accepted as the honest result and sorted by cause. Further out of place and accepted: the 42076's function 2 (8.4 LDU), and four of the 8850's functions by 1.6 degrees, its 8 tooth on a mesh 2 LDU short.
 
 
 ## First steps

@@ -137,9 +137,10 @@
     ]
   },
   "generated": {
-    "commit": "982f6976",
+    "commit": "cbfa4bc8",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 395,
+    "seconds": 373,
     "counts": {
       "partly": 4,
       "works": 3,
@@ -302,7 +303,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 49.2
+        "seconds": 46.9
       },
       {
         "result": "works",
@@ -332,7 +333,7 @@
             ]
           ]
         ],
-        "seconds": 18.6
+        "seconds": 23.1
       },
       {
         "result": "partly",
@@ -385,7 +386,7 @@
           ]
         ],
         "cause": "control-fixed",
-        "seconds": 119.4
+        "seconds": 108.1
       },
       {
         "result": "partly",
@@ -433,9 +434,12 @@
             ]
           ]
         ],
+        "why": [
+          "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
+        ],
         "cause": "loose-part",
         "detail": "p513 18947",
-        "seconds": 24.8
+        "seconds": 23.9
       },
       {
         "result": "works",
@@ -473,7 +477,7 @@
             ]
           ]
         ],
-        "seconds": 19.4
+        "seconds": 24.7
       },
       {
         "result": "partly",
@@ -572,7 +576,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 121.3
+        "seconds": 109.1
       },
       {
         "result": "skipped"
@@ -605,7 +609,7 @@
             ]
           ]
         ],
-        "seconds": 30.3
+        "seconds": 22.8
       }
     ]
   }

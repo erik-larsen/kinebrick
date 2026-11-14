@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 40 works, 35 partly, 2 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 38 works, 37 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -63,8 +63,8 @@ Each detail by the set it first appears in.
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
 
 - Pushing the loader along turns all four wheels together and runs the V6 engine: each axle's differential turns a 16-tooth gear on a cross shaft, which drives a 24-tooth crown gear on the drive shaft; the drive shaft runs through a universal joint under the pivot to join the two axles, and an 8-tooth gear on the crankshaft runs off the rear crown gear, so the six pistons go up and down. (partly)
-- The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (works)
-- The front differential does the same for the front wheels. (works)
+- The rear differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (partly)
+- The front differential does the same for the front wheels. (partly)
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
 

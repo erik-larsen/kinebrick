@@ -177,10 +177,10 @@
     ]
   },
   "generated": {
-    "commit": "871274a7",
+    "commit": "cbfa4bc8",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 960,
+    "seconds": 704,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -332,7 +332,7 @@
         ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 51.9
+        "seconds": 39.7
       },
       {
         "result": "partly",
@@ -387,7 +387,7 @@
         ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 46
+        "seconds": 35.1
       },
       {
         "result": "works",
@@ -421,7 +421,7 @@
             ]
           ]
         ],
-        "seconds": 48.8
+        "seconds": 35.2
       },
       {
         "result": "works",
@@ -467,7 +467,7 @@
             ]
           ]
         ],
-        "seconds": 178.5
+        "seconds": 133.1
       },
       {
         "result": "works",
@@ -543,7 +543,7 @@
           [],
           []
         ],
-        "seconds": 208.9
+        "seconds": 144.5
       },
       {
         "result": "skipped"
@@ -584,9 +584,13 @@
             ]
           ]
         ],
+        "why": [
+          "p2673 11946 is held by friction pins the control doesn't reach",
+          "p2678 11947 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 49.4
+        "seconds": 35.6
       },
       {
         "result": "no",
@@ -663,7 +667,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 31.9
+        "seconds": 22.8
       },
       {
         "result": "works",
@@ -694,7 +698,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 191.7
+        "seconds": 142.7
       },
       {
         "result": "no",
@@ -738,7 +742,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 21
+        "seconds": 15.7
       },
       {
         "result": "no",
@@ -793,7 +797,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 52.3
+        "seconds": 40.7
       }
     ]
   }

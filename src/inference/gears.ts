@@ -24,6 +24,9 @@ const BEVEL_TOLERANCE = 3.5;
 // round its 30 LDU pitch radius), and a spur gear over any of it engages (an official crane's
 // boom drive has one 2 LDU out).
 const CROWN_BAND = 3.5;
+// How far a gear meshing with a crown gear may sit from its pitch radius above the crown's pitch
+// plane, in LDU, either way.
+const CROWN_DEPTH = 3.5;
 
 export function findGears(cyls: WorldCylinder[], bodyOf: number[]): Gear[] {
   const gears: Gear[] = [];
@@ -114,7 +117,8 @@ function spurMesh(ga: Gear, gb: Gear): boolean {
   const along = offset.dot(ga.axis);
   const across = offset.clone().addScaledVector(ga.axis, -along).length();
   if ((ga.width + gb.width) / 2 - Math.abs(along) < MIN_OVERLAP) return false; // teeth don't face each other
-  return Math.abs(across - (ga.radius + gb.radius)) < MESH_TOLERANCE;
+  // Inclusive, with a hair to spare: the 8850's 24 and 8 tooth gears sit exactly 2 LDU short.
+  return Math.abs(across - (ga.radius + gb.radius)) <= MESH_TOLERANCE + 0.01;
 }
 
 // A worm meshes with a spur gear of the same tooth size when their axes are at right angles,
@@ -201,11 +205,17 @@ function crownMesh(crown: Gear, gear: Gear): boolean {
   const offset = new Vector3().subVectors(gear.center, crown.center);
   const along = offset.dot(crown.axis);
   const out = offset.clone().addScaledVector(crown.axis, -along);
-  if (Math.abs(out.length() - crown.radius) > CROWN_BAND) return false;
+  // The gear's face, across its width, must lie over the band by MIN_OVERLAP: a gear may sit
+  // a little outside it with its face still over the teeth (the 8825's and 8844's, 35 and 34 LDU
+  // out on the 24 tooth crown gear).
+  const over = Math.min(out.length() + gear.width / 2, crown.radius + CROWN_BAND) - Math.max(out.length() - gear.width / 2, crown.radius - CROWN_BAND);
+  if (over < MIN_OVERLAP) return false;
   if (Math.abs(out.normalize().dot(gear.axis)) < 0.99) return false; // the gear's axle points at the crown gear's
   // A bevel gear's teeth slope back along its cone, engaging over its depth: the 8850 Rally Support
   // Truck's 14 tooth pinion sits 15 LDU from its crown wheel's pitch plane, its pitch radius 17.5.
-  return Math.abs(along - crown.crown * gear.radius) <= (gear.bevel ? BEVEL_TOLERANCE : MESH_TOLERANCE);
+  // A crown gear's teeth stand proud of its face, so a gear may sit a little into them (the
+  // 8854's 8 tooth, 7 LDU from the pitch plane for 10): the crown's own depth tolerance.
+  return Math.abs(along - crown.crown * gear.radius) <= CROWN_DEPTH;
 }
 
 // Bevel gears on axes crossing at right angles mesh when the tips of their bevel cones meet where

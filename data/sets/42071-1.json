@@ -67,9 +67,10 @@
     ]
   },
   "generated": {
-    "commit": "982f6976",
+    "commit": "cbfa4bc8",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 2,
+    "seconds": 1,
     "counts": {
       "works": 3
     },
@@ -125,7 +126,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -171,7 +172,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -247,7 +248,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.4
       }
     ]
   }
