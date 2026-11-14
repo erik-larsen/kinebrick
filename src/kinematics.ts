@@ -2881,6 +2881,32 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
   mvecs.forEach((y, e) => {
     if (mv[e] <= threshold) kept.push(combine(best, y));
   });
+  // With keepStill (the second pick, see freeMotionsApart), a direction that scrubs more than
+  // that is dropped only for the travel a mix of the kept ones gives with less scrub: what's left
+  // of it, once such a mix with the same travel is taken off, is kept if its tyres scrub no more
+  // than `limit` for the travel that only it gives. Front wheels steered about their kingpins
+  // travel a little, one forward and one back, which rolling can't give, and scrub a little for
+  // it (the 8081 Extreme Cruiser); a chassis sliding sideways as it goes fore and aft travels
+  // much as rolling does, and scrubs hundreds of times as far as the little travel only it gives
+  // (the 42081 wheel loader).
+  if (keepStill) {
+    const travelOf = (d: number[]) => travel.map((row) => dot(row, d));
+    const keptMoving = mvecs.filter((_, e) => mv[e] <= threshold).map((y) => combine(best, y));
+    const over = mvecs.map((y, e) => ({ y, e })).filter(({ e }) => mv[e] > threshold).sort((a, b) => mv[a.e] - mv[b.e]);
+    for (const { y } of over) {
+      const c = combine(best, y);
+      const tc = travelOf(c);
+      const tk = keptMoving.map(travelOf);
+      const a = tk.length ? solveSymmetric(tk.map((t) => tk.map((u) => dot(t, u))), tk.map((t) => dot(t, tc)), tiny) : [];
+      const rest = c.map((x, i) => x - keptMoving.reduce((sum, d, j) => sum + a[j] * d[i], 0));
+      const tr = travelOf(rest);
+      const sr = scrubOf(rest);
+      if (dot(tr, tr) > tiny && dot(sr, sr) <= limit * limit * dot(tr, tr)) {
+        keptMoving.push(rest);
+        kept.push(rest);
+      }
+    }
+  }
 
   return orthonormalize(kept.map((a) => combine(motions, a)));
 }
