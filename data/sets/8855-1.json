@@ -92,9 +92,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 29,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 28,
     "counts": {
       "no": 1,
       "partly": 2,
@@ -147,7 +148,7 @@
           "p428 8855-2742c01 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -361,7 +362,13 @@
         "strayed": [
           "p579 2706"
         ],
-        "seconds": 26.2
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 24.4
       }
     ]
   }

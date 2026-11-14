@@ -111,8 +111,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "works": 2,
@@ -1533,8 +1534,7 @@
           ]
         ],
         "still": [
-          "p3083 6538b against p3462 41681",
-          "p3851 32291 against p3869 41681"
+          "p3083 6538b against p3462 41681"
         ],
         "rates": [
           {
@@ -1580,8 +1580,14 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p3851 32291 against p3869 41681"
+          ],
+          []
+        ],
         "cause": "loose-part",
-        "detail": "p3833 3705",
+        "detail": "p3441 3705",
         "seconds": 0.2
       },
       {
@@ -1668,9 +1674,17 @@
           "p2012 41681 is part of the frame",
           "p2396 41681 is part of the frame"
         ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
         "cause": "loose-part",
         "detail": "p2378 41681",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "not checked",

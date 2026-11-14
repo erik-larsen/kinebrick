@@ -144,14 +144,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 6,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 12,
     "counts": {
       "partly": 2,
       "works": 5,
       "skipped": 3,
-      "not back": 2
+      "not back": 1
     },
     "loose": [
       "p0 3705",
@@ -368,7 +369,7 @@
         ],
         "cause": "loose-part",
         "detail": "p4 3749",
-        "seconds": 0.9
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -423,7 +424,12 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -489,7 +495,17 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "movedBy": [
+          [
+            "p181 32012 against p177 32009",
+            "p180 3648a against p177 32009"
+          ],
+          [
+            "p181 32012 against p177 32009",
+            "p180 3648a against p177 32009"
+          ]
+        ],
+        "seconds": 1.4
       },
       {
         "result": "skipped",
@@ -536,14 +552,18 @@
         "strayed": [
           "p156 32009"
         ],
-        "seconds": 0.9
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 1.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.28,
-            -1.29
+            1.3,
+            -1.3
           ]
         ],
         "rates": [
@@ -557,29 +577,26 @@
               40
             ],
             "p152 6629 against p177 32009": [
-              0.00000167,
-              1.68e-11
+              0,
+              0
             ],
             "p278 2994 against p177 32009": [
-              0.00000167,
-              8.68e-12
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              1.93,
-              0.6
+              0,
+              0
             ],
             [
-              2.22,
-              0.69
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p156 32009"
         ],
         "stop": [
           [
@@ -590,7 +607,7 @@
         "pushed": [
           true
         ],
-        "seconds": 1.4
+        "seconds": 3.2
       },
       {
         "result": "skipped",
@@ -633,8 +650,12 @@
         "why": [
           "p242 32009 is part of the frame"
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-fixed",
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -672,7 +693,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.7
       }
     ]
   }

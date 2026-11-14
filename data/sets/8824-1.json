@@ -71,8 +71,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "partly": 1,
@@ -245,7 +246,19 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "movedBy": [
+          [
+            "p48 3707",
+            "p117 3706",
+            "p183 3705"
+          ],
+          [
+            "p48 3707",
+            "p117 3706",
+            "p183 3705"
+          ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -285,7 +298,11 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 0.2
       }
     ]
   }

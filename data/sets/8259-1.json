@@ -62,8 +62,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "partly": 1,
@@ -77,74 +78,70 @@
         "result": "partly",
         "turned": [
           [
-            1.51,
-            -0.81
+            1.54,
+            1.54
           ]
         ],
-        "moved": [
-          "p75 4019 against p0 32523",
-          "p74 4019 against p0 32523"
+        "still": [
+          "p56 4716 against p0 32523",
+          "p39 3647 against p0 32523",
+          "p57 2825 against p0 32523",
+          "p58 2825 against p0 32523",
+          "p157 3832 against p0 32523"
         ],
         "rates": [
           {
             "p56 4716 against p0 32523": [
               1,
-              2.35e-12
+              6.86e-9
             ],
             "p39 3647 against p0 32523": [
               0.125,
-              3.28e-11
+              6.92e-9
             ],
             "p57 2825 against p0 32523": [
               0.125,
-              3.28e-11
+              6.92e-9
             ],
             "p58 2825 against p0 32523": [
               0.125,
-              3.28e-11
+              6.92e-9
             ],
             "p157 3832 against p0 32523": [
-              0.0687,
-              9.5
+              0.0682,
+              9.44
             ],
             "p75 4019 against p0 32523": [
-              0.462,
-              1.63e-13
+              0.205,
+              1.17e-13
             ],
             "p74 4019 against p0 32523": [
-              0.176,
-              3.31e-13
+              0.16,
+              3.82e-13
             ]
           }
         ],
         "back": [
           [
             [
-              1.56,
-              1.18
+              1.27,
+              3.62
             ],
             [
-              7.92,
-              37.63
+              0.86,
+              2.98
             ]
           ]
         ],
         "strayed": [
-          "p78 3873",
           "p14 32073"
-        ],
-        "stop": [
-          [
-            null,
-            "stuck"
-          ]
         ],
         "pushed": [
           true
         ],
-        "cause": "stay-chosen",
-        "detail": "p75 4019 against p0 32523",
-        "seconds": 0.3
+        "cause": "too-little",
+        "detail": "p56 4716 against p0 32523",
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -183,6 +180,10 @@
               0
             ]
           ]
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "seconds": 0.2
       },

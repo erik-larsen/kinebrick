@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 15 works, 66 partly, 3 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 20 works, 61 partly, 3 no, 5 not checked.
 
 ## By decade
 
@@ -85,7 +85,7 @@ Each detail by the set it first appears in.
 
 - *PF XL:* Driving (remote, one stick): two Power Functions XL motors, one on each axle, each turn their axle's pinion into its differential, and the differential drives both portal hubs, so all four wheels drive. (works)
 - *PF servo:* Steering (remote, other stick): the Power Functions servo turns a shaft running front and back under the chassis; through universal joints it turns a gear on each axle's steering rack, so the front and rear wheels steer together, the rear the opposite way (four-wheel steering, crab-free). (partly)
-- *PF M:* The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in. (partly)
+- *PF M:* The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in. (works)
 
 **2014, [42024 Container Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42024-1)**
 
@@ -109,15 +109,15 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *PF L:* One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (partly)
+- *PF L:* One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (works)
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 
-- *PF M:* One Power Functions M-motor, switched on and reversed at the battery box under the nose, drives everything through a gearbox behind the cockpit: its 12-tooth gear turns a 24-tooth gear on the gearbox's right shaft, and a row of 16-tooth gears carries the drive across to the left shaft, so both shafts with driving rings always turn while the motor runs. (partly)
+- *PF M:* One Power Functions M-motor, switched on and reversed at the battery box under the nose, drives everything through a gearbox behind the cockpit: its 12-tooth gear turns a 24-tooth gear on the gearbox's right shaft, and a row of 16-tooth gears carries the drive across to the left shaft, so both shafts with driving rings always turn while the motor runs. (works)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
-- *PF M:* The Power Functions M motor at the front, under the bonnet, runs all the time it is switched on and drives a long shaft under the tractor to the crane at the back, and a pair of 16 tooth gears turning opposite ways under the cab; the levers choose what it moves and which way. (partly)
+- *PF M:* The Power Functions M motor at the front, under the bonnet, runs all the time it is switched on and drives a long shaft under the tractor to the crane at the back, and a pair of 16 tooth gears turning opposite ways under the cab; the levers choose what it moves and which way. (works)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
@@ -131,7 +131,7 @@ Each detail by the set it first appears in.
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
-- *M:* The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one. (partly)
+- *M:* The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one. (works)
 - *M:* With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (partly)
 - *M:* With the left lever set, the motor opens and closes the canopy, lowers the air brake under the fuselage and swivels the exhaust at the tail, all together: a worm on the left output turns a 24 tooth gear whose arms push links and long rods to all three. (partly)
 

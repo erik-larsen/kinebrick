@@ -61,11 +61,11 @@ Each detail by the set it first appears in.
 
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
-- *bucket:* The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand. (no)
+- *bucket:* The backhoe bucket hangs on a click hinge at the end of the stick and is set by hand. (works)
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
-- *bucket:* The excavator's bucket sits on a hinge arm at the end of the arm and can be set at an angle by hand. (works)
+- *bucket:* The excavator's bucket sits on a hinge arm at the end of the arm and can be set at an angle by hand. (no)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 

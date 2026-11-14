@@ -209,9 +209,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 30,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 34,
     "counts": {
       "works": 5,
       "no": 2,
@@ -317,7 +318,7 @@
           "p556 41239 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -357,7 +358,7 @@
             null
           ]
         ],
-        "seconds": 3.3
+        "seconds": 3.5
       },
       {
         "result": "partly",
@@ -410,7 +411,7 @@
         ],
         "cause": "not-driven",
         "detail": "p212 48168",
-        "seconds": 1.5
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -465,7 +466,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p212 48168",
-        "seconds": 1.3
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -507,7 +508,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 2.8
       },
       {
         "result": "not checked",
@@ -557,7 +558,7 @@
             ]
           ]
         ],
-        "seconds": 4
+        "seconds": 4.4
       },
       {
         "result": "partly",
@@ -573,24 +574,24 @@
         "rates": [
           {
             "p357 32316": [
-              0.855,
-              58.4
+              0.888,
+              52
             ],
             "p370 40490": [
-              0.145,
-              12
+              0.19,
+              15.6
             ]
           }
         ],
         "back": [
           [
             [
-              4.59,
-              3.54
+              18.66,
+              12.33
             ],
             [
-              73.2,
-              40.61
+              0.99,
+              0.52
             ]
           ]
         ],
@@ -602,7 +603,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p370 40490",
-        "seconds": 6.1
+        "seconds": 7.3
       },
       {
         "result": "no",
@@ -751,7 +752,15 @@
             ]
           ]
         ],
-        "seconds": 9.2
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 10.4
       },
       {
         "result": "skipped",

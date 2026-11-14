@@ -50,40 +50,65 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 0,
     "counts": {
-      "no": 1,
-      "works": 1
+      "works": 2
     },
     "loose": [],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
-        "still": [
-          "p42 3706",
-          "p43 3706",
-          "p47 3705",
-          "p49 2994"
-        ],
         "rates": [
-          {}
+          {
+            "p42 3706": [
+              1,
+              36
+            ],
+            "p43 3706": [
+              1,
+              36
+            ],
+            "p47 3705": [
+              1,
+              20
+            ],
+            "p49 2994": [
+              1,
+              21
+            ],
+            "p26 2994": [
+              0,
+              0
+            ],
+            "p0 6575": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p36 32073 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -123,7 +148,11 @@
             ]
           ]
         ],
-        "seconds": 0
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 0.1
       }
     ]
   }

@@ -4,7 +4,8 @@
 // viewer would (scripts/check-functions.ts), so both use the steps here.
 
 import { Vector2, Vector3 } from 'three';
-import { Kinematics, trace, TRACE } from './kinematics.ts';
+import { Kinematics } from './kinematics.ts';
+import { heldCount, trace, TRACE, withoutHolds } from './trace.ts';
 import { combine, nullSpace, orthonormalize } from './linalg.ts';
 
 // In how many independent directions a point on a body can move.
@@ -26,6 +27,8 @@ export function pointDirections(kin: Kinematics, body: number, g: Vector3): numb
 // says no to where the step left the model (it ran into something, or past the end of a slide),
 // or a train went past the end of its track.
 export function pushStep(kin: Kinematics, body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
+  // Least motion, for a part on a turning joint (see Options.leastPush).
+  if (kin.pushesByTiers(body)) return kin.pushStepByTiers(body, grab, dir, step, allowed);
   const g = grab.clone().applyMatrix4(kin.poses[body]);
   const motions = kin.freeMotions();
   const speeds = motions.map((m) => kin.pointVelocity(m, body, g));
@@ -93,7 +96,7 @@ function tracePushStuck(kin: Kinematics, body: number, g: Vector3, dir: Vector3,
     if (amounts) amounts.forEach((a, i) => move.addScaledVector(speeds[i], a));
     return { motions: ms.length, along: move.length() > 1e-9 ? move.clone().normalize().dot(dir) : 0, speed: move.length() };
   };
-  const free = kin.withoutHolds(() => kin.freeMotions());
+  const free = withoutHolds(kin, () => kin.freeMotions());
   const still = free.length ? orthonormalize(nullSpace([0, 1, 2, 3, 4, 5].map((k) => free.map((m) => m[k])), free.length).map((a) => combine(free, a))) : [];
-  trace({ event: 'push stuck', body, held: kin.heldCount(), withHolds: best(motions), free: best(free), frameStill: best(still) });
+  trace({ event: 'push stuck', body, held: heldCount(kin), withHolds: best(motions), free: best(free), frameStill: best(still) });
 }

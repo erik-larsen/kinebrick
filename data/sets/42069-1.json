@@ -164,14 +164,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 838,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 1006,
     "counts": {
-      "works": 4,
+      "works": 6,
       "skipped": 2,
-      "partly": 3,
-      "no": 1
+      "partly": 2
     },
     "loose": [
       "p317 42069 - 30395",
@@ -424,7 +424,7 @@
             ]
           ]
         ],
-        "seconds": 149
+        "seconds": 157
       },
       {
         "result": "works",
@@ -470,7 +470,7 @@
             ]
           ]
         ],
-        "seconds": 42.5
+        "seconds": 45.3
       },
       {
         "result": "skipped"
@@ -541,7 +541,7 @@
         ],
         "cause": "not-driven",
         "detail": "p567 6589",
-        "seconds": 39
+        "seconds": 50.9
       },
       {
         "result": "works",
@@ -585,7 +585,7 @@
             ]
           ]
         ],
-        "seconds": 164.5
+        "seconds": 173.8
       },
       {
         "result": "works",
@@ -655,10 +655,16 @@
             ]
           ]
         ],
-        "seconds": 171.5
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 180.7
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -668,10 +674,6 @@
             1.5,
             -0.17
           ]
-        ],
-        "still": [
-          "p1033 62531",
-          "p1150 62531"
         ],
         "rates": [
           {
@@ -727,9 +729,15 @@
             "dead point"
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p1033 62531",
-        "seconds": 208
+        "movedBy": [
+          [
+            "p1150 62531"
+          ],
+          [
+            "p1033 62531"
+          ]
+        ],
+        "seconds": 228.9
       },
       {
         "result": "partly",
@@ -763,20 +771,24 @@
         "why": [
           "p722 64782 is part of the frame"
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "loose-part",
         "detail": "p722 64782",
-        "seconds": 37.8
+        "seconds": 47.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -784,15 +796,33 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "freed": 2,
+        "movedBy": [
           [],
           []
         ],
-        "why": [
-          "p884 64782 is part of the frame",
-          "p896 64782 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 105.6
       },
       {
         "result": "skipped"

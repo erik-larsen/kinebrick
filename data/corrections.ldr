@@ -177,6 +177,10 @@
 0 // Technic Gear 20 Tooth Double Bevel Reinforced: the same teeth as 32269
 0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=20] [bevel=both] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 32498.dat
+0 // Technic Gear 36 Tooth Double Bevel: 45 LDU pitch radius, a 36 tooth gear's at LEGO's tooth size (official models set a 12 tooth gear 60 LDU from it, side by side), its axis along z. Its bevel's cone tip is taken 5 LDU beyond its pitch radius along its axis, as the 12 and 20 tooth double bevels' are
+0 !KINEBRICK GEAR [teeth=36] [radius=45] [width=20] [bevel=both] [apex=50] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 87407.dat
 0 // Technic Gear 20 Tooth Bevel with Peghole: one side of 32269's teeth, facing -z, between
 0 // z = -10 and -2 (its peghole reaches on to z = -20), so its cone's tip is where 32269's -z
@@ -234,6 +238,10 @@
 0 // Technic Worm Gear 2L
 0 !KINEBRICK GEAR [teeth=1] [radius=10] [width=40] [spur=false] [worm=7.853982] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 27938.dat
+0 // Technic Worm Gear 1L: one stud long, on an axle along z; it meets a 20 tooth gear on an axle crossing its own 40 LDU away (as official models set it), so its pitch radius is 15 LDU, the same lead as the 2L worm's
+0 !KINEBRICK GEAR [teeth=1] [radius=15] [width=20] [spur=false] [worm=7.853982] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 // Gearboxes (the 3L driving ring system). A ridged 3L axle joiner (18948) joins two axles;
 0 // clutch gears spin freely on those axles either side of it. A 3L driving ring (18947) slides
 0 // on the joiner, locked to it for turning, and clicks into three places: centred (neutral) or
@@ -260,6 +268,15 @@
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 13 8] [pos=0 0 -20] [ori=1 0 0 0 0 1 0 -1 0]
 0 !KINEBRICK SLIDE [positions=-5 0 5] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 32187.dat
+0 // Technic Transmission Driving Ring Extension: a sleeve that spins on its axle and carries a 2L driving ring's reach on to a clutch gear further along. Its wide end takes a driving ring's clutch teeth (or another extension's narrow end), 5 LDU deep, as a clutch gear's face does; its narrow end has the ring's clutch teeth, and models seat it in the next clutch gear's face (or the next extension's wide end), so the gear turns with it. Measured from the LDraw shapes and the 8110's gearbox.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 13 5] [pos=0 0 9] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 13 8] [pos=0 0 -20] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 30663.dat
+0 // Car Steering Wheel 2L (and 16091, built on it): its centre is the round hole the shadow library gives, a stud or a half pin turning in it, as the wheel spins on its half pin in the 42101; the stud tube primitive (stud4od) under it is not an anti-stud that holds
+0 !LDCAD SNAP_CLEAR [id=aStud]
+
 0 FILE 6542a.dat
 0 // Technic Gear 16 Tooth with Clutch: its clutch face is the 5 LDU at its +z end
 0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -271,11 +288,30 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 -10] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 35185.dat
+0 // Technic Gear 20 Tooth Double Bevel with Clutch on Both Sides: a 20 tooth double bevel's teeth (as 32269's), and at each end a clutch face 8 LDU deep, as on the 16 and 24 tooth clutch gears, that a 3L driving ring reaches into
+0 !KINEBRICK GEAR [teeth=20] [radius=25] [width=20] [bevel=both] [apex=30] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 -10] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 2471.dat
 0 // Technic Gear 24 Tooth with Clutch on Both Sides
 0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 -10] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 6542b.dat
+0 // Technic Gear 16 Tooth with Clutch Smooth: the same teeth and clutch face as 6542a; it spins on its round hole unless a driving ring locks it
+0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 13 5] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
+
+0 FILE 76019.dat
+0 // Technic Gear 24 Tooth Clutch with Dark Grey Centre: its teeth are a 24 tooth gear's, in the middle of its width, on an axle hole through its centre. Its centre slips in the teeth under load (a slipping clutch); Kinebrick works no loads, so it turns as one
+0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 76244.dat
+0 // Technic Gear 24 Tooth Clutch with DkStone Centre: the same as 76019, another colour
+0 !KINEBRICK GEAR [teeth=24] [radius=30] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 // Engine parts.
 
@@ -311,6 +347,14 @@
 0 FILE 64781.dat
 0 // Technic Gear Rack 1 x 13 with Pegholes and Axleholes: 22 teeth, from x = -88 to 88
 0 !KINEBRICK RACK [teeth=22] [length=176] [width=20] [pos=-88 -5 0] [dir=1 0 0] [face=0 -1 0]
+
+0 FILE 18942.dat
+0 // Technic Gear Rack 1 x 14 with Bottom Beam: 32 teeth along the top of its beam, from x = -116 to 140 (the LDraw shape draws them 8 LDU apart from x = -112 to 136), their bases 22.5 LDU above its holes; the pitch line 3 LDU above the bases, as 3743's
+0 !KINEBRICK RACK [teeth=32] [length=256] [width=20] [pos=-116 -25.5 0] [dir=1 0 0] [face=0 -1 0]
+
+0 FILE 6574.dat
+0 // Technic Gear Rack 1 x 2.4 with Towballs: six teeth along its top, from x = -24 to 24, drawn as 3743's are; the pitch line 3 LDU above their bases
+0 !KINEBRICK RACK [teeth=6] [length=48] [width=20] [pos=-24 -4 0] [dir=1 0 0] [face=0 -1 0]
 
 0 FILE 2790a.dat
 0 // Technic Steering Rack, the 1980s sets' (8832 Roadster, 8024 Universal Set): a round bar along x whose teeth are rings round it, 8 LDU apart, their tips 10 LDU from its axis and their roots 4, from x = -30 to 30. Its bracket (2791a) holds an 8 tooth gear 18 LDU from the bar's axis, so its pitch radius is 8. Its teeth face every way, so a slanted steering column's gear meshes with it from either side.
@@ -401,6 +445,18 @@
 0 // Technic Turntable 28 Tooth Top: turns on its base (99009), the top's ring round the base's. The shadow library closes the ring at one end, so it would only fit as a stud does; it's open-ended here. Its 28 teeth, round its rim, are a double bevel gear's, at LEGO's tooth size (35 LDU pitch radius): a 12 tooth bevel gear 40 LDU out from its axis, on an axle crossing it at right angles 20 LDU below its top face, meshes with them, as a 20 or 12 tooth gear 60 or 50 LDU out on a parallel axle does side by side (as official models set them). So their cone's tip is 35 LDU along the axis from their middle, 5 LDU below the top face.
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 27 15] [pos=0 10 0] [ori=-1 0 0 0 1 0 0 0 -1]
 0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=10] [bevel=-] [apex=35] [center=true] [pos=0 5 0]
+
+0 FILE 18938.dat
+0 // Technic Turntable 60 Tooth Top: turns on its bottom (18939). Its 60 teeth, round its rim, are a bevel gear's, at LEGO's tooth size (75 LDU pitch radius), as the 28 tooth turntable's are: a 12 tooth bevel gear 80 LDU out from its axis, on an axle crossing it at right angles 20 LDU below its origin, meshes with them, as a 12 tooth gear 90 LDU out on a parallel axle does side by side, or a 36 tooth gear 120 LDU out (as official models set them). So their cone's tip is 75 LDU along the axis from their middle, 5 LDU below the origin.
+0 !KINEBRICK GEAR [teeth=60] [radius=75] [width=10] [bevel=-] [apex=75] [center=true] [pos=0 5 0]
+
+0 FILE 2855.dat
+0 // Technic Turntable Type 1 Top: turns on its bottom (2856). Its 56 spur teeth, round its rim, are at LEGO's tooth size (70 LDU pitch radius): an 8 tooth gear 80 LDU out on a parallel axle meshes with them, 10 to 14 LDU below its origin (as official models set it).
+0 !KINEBRICK GEAR [teeth=56] [radius=70] [width=8] [center=true] [pos=0 12 0]
+
+0 FILE 48168.dat
+0 // Technic Turntable Type 2 Top: turns on its base (48452). Its 56 spur teeth, round its rim, are at LEGO's tooth size (70 LDU pitch radius): an 8 tooth gear 80 LDU out on a parallel axle meshes with them, 20 LDU above its origin (as official models set it).
+0 !KINEBRICK GEAR [teeth=56] [radius=70] [width=8] [center=true] [pos=0 -20 0]
 
 0 FILE 99009.dat
 0 // Technic Turntable 28 Tooth Bottom: the top (99010) turns on it; open-ended as the top's ring is.

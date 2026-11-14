@@ -222,12 +222,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 58,
+    "commit": "0eb34660",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 114,
     "counts": {
-      "works": 6,
-      "no": 5,
+      "works": 7,
+      "no": 4,
       "skipped": 2
     },
     "loose": [],
@@ -384,7 +385,29 @@
             ]
           ]
         ],
-        "seconds": 7.7
+        "movedBy": [
+          [
+            "p14 6573",
+            "p302 6573",
+            "p320 6573"
+          ],
+          [
+            "p14 6573",
+            "p302 6573",
+            "p320 6573"
+          ],
+          [
+            "p14 6573",
+            "p302 6573",
+            "p320 6573"
+          ],
+          [
+            "p14 6573",
+            "p302 6573",
+            "p320 6573"
+          ]
+        ],
+        "seconds": 12.4
       },
       {
         "result": "works",
@@ -540,7 +563,33 @@
             ]
           ]
         ],
-        "seconds": 30.5
+        "movedBy": [
+          [
+            "p750 2853",
+            "p753 2852",
+            "p767 2851",
+            "p771 2851"
+          ],
+          [
+            "p750 2853",
+            "p753 2852",
+            "p767 2851",
+            "p771 2851"
+          ],
+          [
+            "p750 2853",
+            "p753 2852",
+            "p767 2851",
+            "p771 2851"
+          ],
+          [
+            "p750 2853",
+            "p753 2852",
+            "p767 2851",
+            "p771 2851"
+          ]
+        ],
+        "seconds": 47.8
       },
       {
         "result": "no",
@@ -563,7 +612,7 @@
           "p595 6549 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 8.2
       },
       {
         "result": "works",
@@ -617,7 +666,7 @@
             ]
           ]
         ],
-        "seconds": 5.1
+        "seconds": 9.2
       },
       {
         "result": "works",
@@ -664,7 +713,7 @@
             ]
           ]
         ],
-        "seconds": 5.2
+        "seconds": 9.1
       },
       {
         "result": "works",
@@ -715,7 +764,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.8
       },
       {
         "result": "no",
@@ -765,8 +814,12 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
         "result": "no",
@@ -816,8 +869,12 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -852,15 +909,15 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -868,15 +925,33 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "freed": 4,
+        "movedBy": [
           [],
           []
         ],
-        "why": [
-          "p1092 3031 is part of the frame",
-          "p1126 3031 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 11.8
       },
       {
         "result": "works",
@@ -924,7 +999,7 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 8.1
       }
     ]
   }

@@ -101,11 +101,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 1,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 3,
     "counts": {
-      "partly": 3,
+      "partly": 1,
+      "works": 2,
       "no": 1,
       "skipped": 1
     },
@@ -169,20 +171,15 @@
         ],
         "cause": "not-driven",
         "detail": "p60 40490",
-        "seconds": 0.4
+        "seconds": 1
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p155 42105 - 18575",
-          "p161 32278",
-          "p213 11946"
         ],
         "rates": [
           {
@@ -191,16 +188,16 @@
               0
             ],
             "p155 42105 - 18575": [
-              0,
+              0.05,
               0
             ],
             "p161 32278": [
               0,
-              0
+              0.75
             ],
             "p213 11946": [
               0,
-              0
+              0.75
             ],
             "p236 32278": [
               0,
@@ -210,6 +207,11 @@
               0,
               0
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p155 42105 - 18575": 0.05
           }
         ],
         "back": [
@@ -224,35 +226,29 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p155 42105 - 18575",
-        "seconds": 0.3
+        "seconds": 0.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p230 42105 - 18575",
-          "p236 32278"
-        ],
         "rates": [
           {
             "p259 27938": [
               1,
-              5.68e-14
+              0
             ],
             "p230 42105 - 18575": [
-              0,
+              0.05,
               0
             ],
             "p236 32278": [
               0,
-              0
+              0.75
             ],
             "p161 32278": [
               0,
@@ -262,6 +258,11 @@
               0,
               0
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p230 42105 - 18575": 0.05
           }
         ],
         "back": [
@@ -276,9 +277,7 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p230 42105 - 18575",
-        "seconds": 0.3
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -331,7 +330,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",

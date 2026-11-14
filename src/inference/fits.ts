@@ -40,7 +40,8 @@ function sectionFit(male: Section, female: Section): ConnectionKind | null {
 // Step 4: pairs of connection points that line up.
 // Open-ended cylinders (Technic holes, axles, pins, tyre seats) make rigid and revolute
 // connections; studs in anti-studs make stud connections.
-export function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, align = ALIGN_TOLERANCE, links = new Set<number>()): Connection[] {
+// `freed`: pins whose hinges turn stiffly even when `frictionRigid` (see pinsToFree).
+export function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, freed: Set<number>, align = ALIGN_TOLERANCE, links = new Set<number>()): Connection[] {
   const connections: Connection[] = [];
   const males = cyls.filter((c) => c.gender === 'M');
   const females = cyls.filter((c) => c.gender === 'F');
@@ -56,7 +57,7 @@ export function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, a
       else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f, align);
       else if (isSwivelPin(m) && (isSwivelHole(f) || isWheelHole(f))) c = studInHole(m, f, align);
       else if ((isRoundSocket(m) && isRoundSocket(f)) || (isSquareSocket(m) && isSquareSocket(f))) c = connect(m, f, align);
-      if (c && ((isSwivelPin(m) && !isWheelHole(f)) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid);
+      if (c && ((isSwivelPin(m) && !isWheelHole(f)) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid && !freed.has(c.male));
       if (c) connections.push(c);
     }
   }

@@ -20,15 +20,16 @@ function gearbox(position: number) {
 }
 
 // The gearbox's mechanism, as its parts now are, and how far its output shaft turns for a
-// quarter turn of the input.
+// quarter turn of the input, dragged by its joint as the viewer drags it. With the clutch gears
+// spinning free on the output shaft (freeClutch), the shaft stays still in neutral.
 function turnInput(parts: PlacedPart[]) {
   const mech = inferMechanism(parts, table, roles);
-  const kin = new Kinematics(mech);
+  const kin = new Kinematics(mech, { freeClutch: true });
   const bodyOf = (name: string) => mech.bodyOf[parts.findIndex((p) => p.name === name)];
   const input = kin.parentLink(bodyOf('3707.dat'))!.joint;
   // Turn the input a quarter turn, as a drag would, and see how far the output shaft turned in
   // the frame (from its pose: its joint angle may be measured against a freewheeling gear).
-  kin.holdWhatTheDragDoesntNeed(bodyOf('3707.dat'), () => kin.jointMotion(input) !== null);
+  kin.holdWhatTheDragDoesntNeed(bodyOf('3707.dat'), () => kin.jointMotion(input) !== null, input);
   kin.turnJoint(input, QUARTER);
   kin.letGoAfterDrag();
   const turned = new Quaternion().setFromRotationMatrix(kin.poses[bodyOf('18948.dat')]);

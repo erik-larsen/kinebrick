@@ -97,6 +97,8 @@ export interface InteractionSetup {
   shiftStick: (part: number, position: number) => void; // clicks a gear lever into one of its gate positions
   shift: (part: number, position: number) => void; // slides a part to one of its positions
   flipSwitch?: (part: number) => string | null; // flips a train track's switch, saying so, if the part is one (see trains.ts)
+  pinsToFree: (part: number) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found)
+  freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
 }
 
 // A part that slides into set positions, as it is now (LDraw coordinates, LDU).
@@ -876,6 +878,18 @@ export function setUpInteraction(s: InteractionSetup) {
     s.onDragEnded();
   }
 
+  // Frees the friction pins that hold a part still, if freeing them lets it move (see
+  // pinsToFree): the drag going on ends, and the mechanism is worked out afresh. If none would,
+  // shows `why`.
+  function freeIfHeld(part: number, x: number, y: number, why: string) {
+    s.pinsToFree(part).then((pins) => {
+      if (!pins.length) return showMessage(why, x, y);
+      endDrag();
+      s.freePins(pins);
+      showMessage(`${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it can now turn: drag it again`, x, y);
+    });
+  }
+
   // Runs before the camera controls see the press (capture phase), so a press on a part
   // can switch the camera off before it starts turning.
   canvas.addEventListener(
@@ -904,6 +918,15 @@ export function setUpInteraction(s: InteractionSetup) {
       if (flipped) {
         e.stopImmediatePropagation();
         showMessage(flipped, e.clientX, e.clientY);
+        return;
+      }
+      if (e.shiftKey && s.mech.bodyOf[hit.part] === 0) {
+        // Shift held: a part of the frame (which a drag would push, a car rolling) may be held to
+        // it only by friction pins (a door on its hinges): free them, so it can move. Keep the
+        // camera from moving.
+        e.stopImmediatePropagation();
+        showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
+        freeIfHeld(hit.part, e.clientX, e.clientY, 'This part is held by more than friction pins');
         return;
       }
       s.controls.enabled = false;
@@ -956,6 +979,15 @@ export function setUpInteraction(s: InteractionSetup) {
 
       if (!canMove && wormLocked) {
         showMessage(`This part can't move: ${lockedWhy(body)}`, e.clientX, e.clientY);
+      } else if (!canMove) {
+        // Held still, perhaps by friction pins (a door on its hinges): ask which pins to free so
+        // it can move. If none would, it can't move.
+        const why =
+          s.kin.freeMotions().length === 0
+            ? "Can't move: the mechanism is jammed"
+            : `This part can't move: ${s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck()}`;
+        showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
+        freeIfHeld(hit.part, e.clientX, e.clientY, why);
       } else if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {

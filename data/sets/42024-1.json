@@ -136,9 +136,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 24,
+    "commit": "0eb34660",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 36,
     "counts": {
       "works": 2,
       "no": 1,
@@ -342,7 +343,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 3.7
       },
       {
         "result": "no",
@@ -397,7 +398,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p561 6539 against p558 3706",
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -408,6 +409,7 @@
           ]
         ],
         "still": [
+          "p547 6542b against p0 4519",
           "p570 3648b against p0 4519",
           "p611 62274c01 against p610 62271c01",
           "p815 6629 against p0 4519",
@@ -428,8 +430,8 @@
               9.47e-15
             ],
             "p547 6542b against p0 4519": [
-              1.67,
-              9.47e-15
+              0,
+              4.87e-14
             ],
             "p570 3648b against p0 4519": [
               0,
@@ -480,7 +482,7 @@
           "p50 32039, worked first, went 0 of 0.5"
         ],
         "cause": "first-failed",
-        "seconds": 2.6
+        "seconds": 3.9
       },
       {
         "result": "partly",
@@ -491,6 +493,7 @@
           ]
         ],
         "still": [
+          "p546 6542b against p0 4519",
           "p584 94925 against p0 4519",
           "p656 92695 against p654 92693c01",
           "p669 6629 against p0 4519",
@@ -499,8 +502,8 @@
         "rates": [
           {
             "p546 6542b against p0 4519": [
-              1.67,
-              9.47e-15
+              0,
+              4.87e-14
             ],
             "p584 94925 against p0 4519": [
               0,
@@ -540,7 +543,7 @@
           "p50 32039, worked first, went 0 of -0.5"
         ],
         "cause": "first-failed",
-        "seconds": 2.7
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -640,7 +643,15 @@
             ]
           ]
         ],
-        "seconds": 15
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 23.3
       },
       {
         "result": "not checked",

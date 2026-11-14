@@ -57,9 +57,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 0,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 1,
     "counts": {
       "works": 2,
       "skipped": 1
@@ -133,6 +134,12 @@
               0
             ]
           ]
+        ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
         ],
         "seconds": 0.2
       },

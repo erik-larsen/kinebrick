@@ -204,14 +204,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 1031,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 1456,
     "counts": {
-      "no": 6,
+      "works": 8,
       "partly": 3,
-      "not back": 6,
-      "works": 4
+      "not back": 7,
+      "no": 2
     },
     "loose": [
       "p1258 3710",
@@ -1353,31 +1354,26 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p537 3648b",
-          "p502 56145",
-          "p512 56145"
         ],
         "rates": [
           {
             "p537 3648b": [
-              0,
+              0.333,
               0
             ],
             "p502 56145": [
-              0,
-              0
+              0.419,
+              14.1
             ],
             "p512 56145": [
-              0,
-              0
+              0.419,
+              14.1
             ],
             "p324 3708": [
               0,
@@ -1402,14 +1398,8 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 1.8
+        "freed": 1,
+        "seconds": 79.5
       },
       {
         "result": "partly",
@@ -1475,7 +1465,7 @@
         ],
         "cause": "not-driven",
         "detail": "p405 4519",
-        "seconds": 109.7
+        "seconds": 122.5
       },
       {
         "result": "works",
@@ -1519,74 +1509,73 @@
           "p2085 32123b",
           "p2086 32123b"
         ],
-        "seconds": 236.6
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 259.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.51,
-            -0.41
+            0.54,
+            -1.5
           ]
-        ],
-        "moved": [
-          "p324 3708"
         ],
         "rates": [
           {
             "p1358 44294": [
-              0.457,
-              79.2
+              0.587,
+              51
             ],
             "p1423 40490": [
-              0.457,
-              88.3
+              4.21e-7,
+              54.5
             ],
             "p324 3708": [
-              0.0223,
-              3.5e-12
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              11.22,
-              8.1
+              0.91,
+              0.69
             ],
             [
-              66.4,
-              44.42
+              0.88,
+              0.61
             ]
           ]
         ],
         "strayed": [
-          "p1521 85984",
+          "p1520 85984",
           "p1488 15672"
         ],
         "stop": [
           [
-            null,
-            "stuck"
+            "stuck",
+            null
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "stay-chosen",
-        "detail": "p324 3708",
-        "seconds": 280.2
+        "seconds": 81.5
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -1594,15 +1583,33 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "freed": 1,
+        "movedBy": [
           [],
           []
         ],
-        "why": [
-          "p851 32524 is part of the frame",
-          "p889 32524 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 74.5
       },
       {
         "result": "no",
@@ -1634,7 +1641,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.9
+        "seconds": 12.9
       },
       {
         "result": "works",
@@ -1671,7 +1678,7 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 44.1
+        "seconds": 48.1
       },
       {
         "result": "works",
@@ -1708,18 +1715,17 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 45.7
+        "seconds": 48.5
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.07
           ]
         ],
         "still": [
-          "p1960 62274c01",
           "p2188 62274c01",
           "p2048 18940",
           "p2267 18940"
@@ -1727,24 +1733,24 @@
         "rates": [
           {
             "p1960 62274c01": [
-              0,
-              0
+              0.00658,
+              1.57
             ],
             "p2188 62274c01": [
               0,
-              0
+              5.57e-14
             ],
             "p2048 18940": [
               0,
-              0
+              2.84e-14
             ],
             "p2267 18940": [
               0,
-              0
+              9.47e-15
             ],
             "p2083 18575": [
               0,
-              0
+              7.11e-14
             ]
           }
         ],
@@ -1762,13 +1768,14 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "limit"
           ]
         ],
+        "freed": 2,
         "cause": "loose-part",
         "detail": "p2084 18575",
-        "seconds": 1.6
+        "seconds": 41.7
       },
       {
         "result": "partly",
@@ -1826,18 +1833,18 @@
         ],
         "cause": "loose-part",
         "detail": "p2083 18575",
-        "seconds": 16.8
+        "seconds": 18.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.65,
+            -1.05
           ],
           [
-            0,
-            0
+            1.05,
+            -0.65
           ]
         ],
         "rates": [
@@ -1847,42 +1854,49 @@
         "back": [
           [
             [
-              0,
-              0
+              0.72,
+              0.26
             ],
             [
-              0,
-              0
+              1.05,
+              0.38
             ]
           ],
           [
             [
-              0,
-              0
+              1.05,
+              0.38
             ],
             [
-              0,
-              0
+              0.72,
+              0.26
             ]
           ]
         ],
+        "strayed": [
+          "p2069 4274",
+          "p2292 98138"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "stuck",
+            "stuck"
           ],
           [
-            "no motion",
-            "no motion"
+            "stuck",
+            "stuck"
           ]
         ],
         "pushed": [
           true,
           true
         ],
-        "cause": "loose-part",
-        "detail": "p2051 18942",
-        "seconds": 108.5
+        "freed": 1,
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 467.4
       },
       {
         "result": "no",
@@ -1903,7 +1917,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2631 64782",
-        "seconds": 0
+        "seconds": 10.1
       },
       {
         "result": "works",
@@ -1977,7 +1991,13 @@
           "p2086 32123b",
           "p2085 32123b"
         ],
-        "seconds": 80.2
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 91.1
       }
     ]
   }

@@ -132,15 +132,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 3,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 6,
     "counts": {
-      "works": 4,
+      "works": 5,
       "skipped": 2,
       "not back": 1,
-      "no": 1,
-      "partly": 1
+      "no": 1
     },
     "loose": [
       "p871 75535",
@@ -186,7 +186,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -220,7 +220,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -261,7 +261,7 @@
         "strayed": [
           "p128 32062"
         ],
-        "seconds": 1.2
+        "seconds": 2
       },
       {
         "result": "no",
@@ -289,7 +289,7 @@
         ],
         "cause": "loose-part",
         "detail": "p897 32269",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -327,10 +327,10 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -340,10 +340,6 @@
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p71 32165 against p91 32177",
-          "p42 32165 against p62 32177"
         ],
         "rates": [
           {
@@ -389,9 +385,15 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p71 32165 against p91 32177",
-        "seconds": 0.5
+        "movedBy": [
+          [
+            "p42 32165 against p62 32177"
+          ],
+          [
+            "p71 32165 against p91 32177"
+          ]
+        ],
+        "seconds": 0.9
       },
       {
         "result": "skipped",

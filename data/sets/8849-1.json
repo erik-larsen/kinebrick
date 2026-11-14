@@ -123,12 +123,12 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 2,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 3,
     "counts": {
       "works": 6,
-      "not back": 1,
       "not checked": 1
     },
     "loose": [],
@@ -186,7 +186,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -226,14 +226,14 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.52,
-            -1.52
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -248,33 +248,30 @@
             ],
             "p114 3743": [
               1,
-              7.95
+              7.87
             ],
             "p118 3707": [
               0,
-              3.84e-31
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.51,
-              0.84
+              0.01,
+              0.02
             ],
             [
-              0.51,
-              0.84
+              0.01,
+              0.02
             ]
           ]
-        ],
-        "strayed": [
-          "p52 3707"
         ],
         "pushed": [
           true
         ],
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -314,7 +311,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -381,7 +378,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "not checked",
@@ -455,7 +452,13 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 1.2
       }
     ]
   }

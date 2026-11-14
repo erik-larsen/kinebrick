@@ -14,7 +14,7 @@ import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts'
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
 import { crankWebs, dropBallsInBearings, findCouplings, groovedBalls, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
-import { findGears, findMeshes } from './inference/gears.ts';
+import { findGears, findMeshes, wormRacks } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
 import { chainHooks, hookedParts } from './inference/hooks.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
@@ -35,6 +35,7 @@ import { findTreads, trackTreads } from './inference/treads.ts';
 export { axesCrossing, closestPoints, findMeshes, meshesChanged } from './inference/gears.ts';
 export { withoutSlidesOnCouplers } from './inference/joints.ts';
 export { lineUpBalls } from './inference/lineUp.ts';
+export { pinsToFree } from './inference/friction.ts';
 export { movePaths } from './inference/loops.ts';
 export { restTouch } from './inference/rests.ts';
 
@@ -272,7 +273,9 @@ const FRICTION_RIGID = typeof process === 'undefined' || process.env?.KINEBRICK_
 
 // `paths`: every path in the model (see parseModel), including those drawn with shapes rather
 // than parts (a string), which the parts alone don't show.
-export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = []): Mechanism {
+// `freed`: friction pins left to turn, stiffly, though the others are held (see pinsToFree);
+// `allFree`, every friction pin left to turn, as KINEBRICK_FRICTION_RIGID=0 has them.
+export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], freed = new Set<number>(), allFree = false): Mechanism {
   parts = parts.map((p) => ({ ...p, name: libraryName(p.name, table) }));
   // Friction pins hold what they join in place, unless they're the only way the model can
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
@@ -281,11 +284,11 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
   const build = (guide: Set<number>) => {
     // KINEBRICK_FRICTION_RIGID=0 skips that first try: friction pins are always stiff joints.
     // For measuring what the rule does; unset, nothing changes.
-    if (FRICTION_RIGID) {
-      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths);
+    if (FRICTION_RIGID && !allFree) {
+      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths, freed);
       if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
     }
-    return buildMechanism(parts, table, roleList, false, guide, allPaths);
+    return buildMechanism(parts, table, roleList, false, guide, allPaths, freed);
   };
   const mech = build(new Set());
   const guide = racksToGuide(mech);
@@ -309,7 +312,7 @@ export function libraryName(name: string, table: ConnectionTable): string {
 //   3. Bodies        parts fixed to each other move as one
 //   4. Joints        how the bodies move against each other
 //   5. The rest      gears, couplings, loops, strings and screws between bodies
-function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[]): Mechanism {
+function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[], freed: Set<number>): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
   // A printed part (3626bp01, 973p19) has its plain part's role (3626b, 973).
@@ -322,7 +325,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   for (const c of cyls) if (roles[c.part] === 'motor' && c.secs.some((s) => s.shape === 'A')) c.turns = true;
 
   // 1. Connections. First the connection points that fit (fits.ts).
-  const connections = findConnections(cyls, frictionRigid);
+  const connections = findConnections(cyls, frictionRigid, freed);
   // A train wheel on a wheel pin (a handcar's) rolls freely: the pin's lip doesn't hold it.
   for (const c of connections) if (c.held && (roles[c.male] === 'train wheel' || roles[c.female] === 'train wheel')) [c.kind, c.held] = ['revolute', false];
   // A monorail car's pin on its wheel chassis lets it turn any way (as a ball joint does): round
@@ -345,8 +348,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...magnetCouplings(parts, roles, cyls, connections));
   const anchors = anchorsOf(roles);
   // Pins and hinges, among the connections found so far.
-  fixPins(connections, roles, frictionRigid);
-  stiffMagnetHinges(connections, roles, frictionRigid);
+  fixPins(connections, roles, frictionRigid, freed);
+  stiffMagnetHinges(connections, roles, frictionRigid, freed);
   // Parts held by more than their connection points say.
   connections.push(...platesOnEdge(cyls));
   connections.push(...onFourStuds(cyls));
@@ -368,7 +371,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // universal joint's cross the arms universalJoints left it).
   connections.push(...bushesOnFourStuds(roles, cyls, connections));
   connections.push(...onAxleTips(roles, cyls, connections));
-  connections.push(...looseFits(roles, cyls, connections, frictionRigid));
+  connections.push(...looseFits(roles, cyls, connections, frictionRigid, freed));
   // Loose parts hanging on a string, or hooked to a chain, are held by it; the rest ride along
   // with what's nearest.
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections, anchors), paths);
@@ -430,7 +433,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   treads.push(...trackTreads(loops));
   // After chainHooks, as a string reads which parts are loose.
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
-  const screws = actuatorScrews(actuators, bodyOf);
+  const screws = [...actuatorScrews(actuators, bodyOf), ...wormRacks(gears)];
   const centers = bodyCenters(bodies, parts);
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}), ...(track ? { track } : {}) };
 }

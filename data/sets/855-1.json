@@ -139,12 +139,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 9,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 11,
     "counts": {
-      "works": 5,
-      "no": 2,
+      "works": 6,
+      "no": 1,
       "not checked": 1,
       "skipped": 2
     },
@@ -182,7 +183,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -229,7 +230,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -263,7 +264,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -301,7 +302,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.5
       },
       {
         "result": "no",
@@ -341,8 +342,14 @@
           "p113 3008 has no joint to work",
           "p120 3008 has no joint to work"
         ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -412,26 +419,32 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 1.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -441,19 +454,55 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "freed": 1,
+        "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "why": [
-          "p157 3582 is part of the frame",
-          "p158 3582 is part of the frame",
-          "p159 3582 is part of the frame",
-          "p160 3582 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 2
       },
       {
         "result": "not checked",

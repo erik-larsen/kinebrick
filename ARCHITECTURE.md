@@ -6,6 +6,95 @@ Everything here is kinematics: how a mechanism can move, worked out from its geo
 
 Forces (momentum, springs that spring, clutches that slip) are for version 2.0. It will hand the same bodies and joints to the [MuJoCo](https://mujoco.org) physics engine, rather than add physics of Kinebrick's own.
 
+## Overview in three drawings
+
+Kinebrick does two things: it reads a model into a mechanism that can move, and it moves that mechanism when the user drags a part. The first drawing is the reading, the second the motion, and the third lists Kinebrick's pieces as a tree. The sections after these explain each box.
+
+### Reading: from files to a movable set in memory
+
+```mermaid
+%%{init: {'flowchart': {'wrappingWidth': 320}}}%%
+flowchart TD
+  parts["LDraw parts library<br/>part shapes"]
+  shadow["LDCad shadow library<br/>holes, axles, pins, studs"]
+  corr["Kinebrick's corrections<br/>teeth, tyres, sliding"]
+  table[("Connection table<br/>built ahead by a script")]
+  model["LDraw set model<br/>one file per set"]
+  roles[("Role list<br/>written by hand")]
+  rules["Assembly rules<br/>in the code"]
+  load["Load the model<br/>parts and their places"]
+  l1["Level 1: connection points<br/>where each hole and axle is"]
+  l2["Level 2: what each part is<br/>gear, pin, rack, motor"]
+  l3["Level 3: what assemblies do<br/>joints, gear meshes, what holds what"]
+  group["Group into bodies<br/>rigid parts move as one"]
+  mech(["Movable set in memory<br/>bodies, joints, gear meshes"])
+  parts --> table
+  shadow --> table
+  corr --> table
+  model --> load --> l1 --> l2 --> l3 --> group --> mech
+  table --> l1
+  roles --> l2
+  rules --> l3
+```
+
+The reading has three levels, and each has its own source:
+
+- **Level 1, connection points:** where each hole, axle, pin, stud and ball is on a part. It comes from [the connection table](#the-connection-table), which a script builds ahead of time from the LDraw parts library, the LDCad shadow library and a short file of Kinebrick's own corrections.
+- **Level 2, what each part is:** a gear and its tooth count, a friction pin, a rack, a differential, a motor. It comes from the [role list](#part-roles), written by hand.
+- **Level 3, what assemblies do:** which connection points line up into joints, which gears mesh, which parts are held rigid, what holds a part that only lies on another. These are rules in the code (`src/inference`), described under [Connect](#4-connect).
+
+In the eight steps of [How it works](#how-it-works), level 1 is step 3, level 2 is step 2, level 3 is steps 4 and 5, and grouping is step 6. The code looks up roles before connection points; neither look-up depends on the other.
+
+### Motion: from an input to parts moving on screen
+
+```mermaid
+%%{init: {'flowchart': {'wrappingWidth': 320}}}%%
+flowchart TD
+  input["Input<br/>a drag, a motor, or the function check"]
+  mech(["Movable set<br/>bodies, joints, gear meshes"])
+  kind["Push or turn<br/>a knob turns, a door is pushed"]
+  free["Free motions<br/>all that joints and gears allow"]
+  least["Least motion<br/>choose one, tier by tier"]
+  holds["Holds<br/>the rest stays still"]
+  step["Small step<br/>place bodies, close loops"]
+  stop["Stop checks<br/>collisions, ends of travel, jams"]
+  show["Show it<br/>move each part on screen"]
+  reread["Read again<br/>levels 1 to 3 and grouping"]
+  input --> kind --> free --> least --> step --> stop --> show
+  mech --> free
+  holds --> least
+  show -. next step of the drag .-> free
+  step -. a gear shift .-> reread
+  reread -.-> mech
+```
+
+- **Input:** a drag in the viewer, the motor a Ctrl-click starts, or the [function check](#the-function-check) working a control.
+- **Push or turn:** a part that turns like a knob is turned on its joint; a door or an arm is pushed at a point. See [Drags](#drags).
+- **Free motions:** every joint and gear mesh is an equation, and the solver finds every motion the equations allow. See [The solver](#the-solver).
+- **Least motion and holds:** of those motions the solver takes the one that moves least, tier by tier, and holds still what the drag does not need. These rules stand in for friction and weight, which Kinebrick does not compute.
+- **Small step, stop checks, show:** the bodies are placed and the loops closed; a step that makes parts collide or passes an end of travel is undone. This repeats for each step of the drag.
+- **Read again:** a gear shift changes what is connected to what, so the reading runs again from where every part now is.
+
+### Kinebrick's pieces
+
+```mermaid
+%%{init: {'flowchart': {'wrappingWidth': 320}}}%%
+flowchart TD
+  k(["Kinebrick"])
+  k --> data["Data"]
+  k --> reading["Reading"]
+  k --> motion["Motion"]
+  k --> viewer["Viewer"]
+  k --> check["Check"]
+  data --> d["LDraw parts library<br/>LDCad shadow library<br/>Corrections<br/>Role list<br/>Set models<br/>Function lists"]
+  reading --> r["Load<br/>Level 1: connection points<br/>Level 2: roles<br/>Level 3: assembly rules<br/>Bodies"]
+  motion --> m["Equations<br/>Free motions<br/>Least motion<br/>Pushes and holds<br/>Steps and closing loops"]
+  viewer --> v["Drawing<br/>Dragging<br/>Motor<br/>Gear shift"]
+  check --> c["Function check<br/>Ratchet<br/>Fingerprints<br/>Tests"]
+```
+
+Under Check, the function check tries every set's functions on its model, the ratchet compares the results with an earlier commit's, and the fingerprints show which models' mechanisms a change to the code alters. Where each piece is in the code is in the [code map](#code-map).
+
 ## How it works
 
 From a model file to a mechanism you can drag, in eight steps:
@@ -702,6 +791,7 @@ Pushed: anything else, such as a frame part, a piston, a connecting rod, the mid
 Only knob-like parts can be kept turning, and only they get a line in the readout.
 
 - **Push.** Each step works out, for every motion the mechanism allows, how far the grab point would move on screen. It picks the mix of motions that best closes the gap to the cursor (least squares), moving at most 1 LDU per step.
+  - **By least motion** (the `leastPush` option, on by default; `KINEBRICK_LEAST_PUSH=0` turns it off for the tests and scripts). A push of a part that hangs on a turning joint (a door, an arm of a linkage) is held as a drag that turns that joint is, and each step's motion is chosen by the tiers of [least motion](#least-motion), with how fast the grab point goes sideways of the way it's pushed as a tier of its own before them. Each step is taken as a turn's is: its loops closed by the tiers, and undone if that leaves a joint apart or turned well off where the step had it going. A step that turned a joint more than a turn's step does is tried again in pieces that don't. Without the option, a push holds everything it can and takes the least-squares mix, and never undoes a step.
 - **Turn.** The part turns like a knob, by the angle the cursor sweeps around its axle since the last pointer move (`src/turn.ts`).
   - Close to the axle the turn is damped, so a short drag never gives a big turn.
   - Seen side-on, where that doesn't work, it turns by how far the cursor moves along the way the grab point turns on screen.
@@ -715,7 +805,7 @@ A drag that turns a joint, and a motor, chooses how the rest of the model follow
 1. what slides or swivels on the car (a bumper on tiles, a gear lever on its ball);
 2. on a car on the ground, what steers it: the parts that turn when its wheels turn to steer (see [Holds](#holds)). Kept still, the car rolls on as it was steered rather than steering itself;
 3. joints on friction pins and motors' outputs, then what the grabbed part turns against, kept still against the frame as a hand holding the model by its frame would;
-4. every part's turning against the frame: a gear freewheeling on a shaft turns on it rather than turning the shaft, and an assembly hanging on a turning axle stays level. A balanced part, whose middle is on the axis it turns on (an axle, a gear, a propeller), counts its turning against what it turns on instead: nothing keeps it level, and friction carries it round;
+4. every part's turning against the frame: a gear freewheeling on a shaft turns on it rather than turning the shaft, and an assembly hanging on a turning axle stays level. A balanced part, whose middle is on the axis it turns on (an axle, a gear, a propeller), counts its turning against what it turns on instead: nothing keeps it level, and friction carries it round. A clutch gear on a gearbox's driving ring shaft (the body carrying the ring) counts nothing at all, with the `freeClutch` option (off by default; `KINEBRICK_FREE_CLUTCH=1` turns it on for the tests and scripts): it's made to spin free there. Counted, two clutch gears driven round at their own rates carried the free shaft round with them, two joints against one: the gearbox model's output turned 0.44 radian for each radian of its input in neutral;
 5. every joint's turning;
 6. every part's moving against the frame, for what no joint's turning settles.
 
@@ -725,7 +815,7 @@ Pushes still choose by holds, below, and so does a turn with `?holds` in the add
 
 **Only what the drag can reach** (the `reach` option, on by default; `KINEBRICK_REACH=0` turns it off for the tests and scripts). Each step is solved over every part of the model, wherever the control is: on the 42082 Rough Terrain Crane, rolling it along means choosing among about 320 free motions, most of them the crane's own. With `reach`, a drag holds where they are on the frame the parts it can't reach: those no chain of connections (joints, gears, universal joints, chains, strings, screws, resting parts) joins to the grabbed part, or to a tyre on the ground, but through the frame. On the 42082 that leaves one free motion, and a step takes a fifth of the time. Each held part is held whole on the frame, not just on its joint, so the rows on nothing but held parts (and the frame) have nothing left to say but their rounding, and are left out. (Held only on their joints, without those rows, the 8859 Tractor's cab and hitch came loose, and rolling it back on a front wheel stopped at a dead point.) Kept, a string's rows on the 855 Mobile Crane's held hook block, a hundred-thousandth out when the crane moves as one, held back the car rolling on its wheels, turning it a little until the rolling stopped. It's not the same to the last bit as the whole solve: the held parts stand exactly still, where the whole solve leaves them moving by rounding, and choosing among fewer motions rounds differently. In the function check no function does worse with it, and one leaves a part fewer not back (the 8274's function 6). It applies only to a drag that turns a joint: a push (a drag that moves a part along, not round its joint) still holds what it doesn't need as before.
 
-**Centres on axes** (the `centres` option, off for now; `KINEBRICK_CENTRES=1` turns it on for the tests and scripts). A gear's or tyre's centre is taken on the axis of the joint its body turns on, not where the part itself is placed, for every kind of gear mesh (spur, bevel, crown, worm and rack). A chain's rows need no centre: they say only how fast its wheels turn. A joint's axis comes from the axle and its hole, and the gear or tyre is a part of its own, which a model may place a hair off that axis. Off it, two meshing gears' teeth no longer move in the ratio of their teeth, tyres geared together no longer roll alike, and a gear train that closes on itself jams. With every part of the 858 Auto Engines nudged by up to 0.05 LDU, its gears jam this way, and with the option they turn. It is off until a full check shows no function worse with it.
+**Centres on axes** (the `centres` option, off for now; `KINEBRICK_CENTRES=1` turns it on for the tests and scripts). A gear's or tyre's centre is taken on the axis of the turning joint the part sits on, not where the part itself is placed, for every kind of gear mesh (spur, bevel, crown, worm and rack). That joint is the one of its body's turning joints, along the part's own axis, whose axis runs nearest the part's centre, and the centre is moved only if it is within 1 LDU of it (`ON_AXIS`). Not the joint the body turns on in the tree: a body may turn on one axle and carry a gear on another. A chain's rows need no centre: they say only how fast its wheels turn. A joint's axis comes from the axle and its hole, and the gear or tyre is a part of its own, which a model may place a hair off that axis. Off it, two meshing gears' teeth no longer move in the ratio of their teeth, tyres geared together no longer roll alike, and a gear train that closes on itself jams. With every part of the 858 Auto Engines nudged by up to 0.05 LDU, its gears jam this way, and with the option they turn. It is off until a full check shows no function worse with it.
 
 ### Holds
 
@@ -746,7 +836,7 @@ For the length of a push (or, with `?holds`, a turn), Kinebrick holds still ever
 - **Not parts in a closed loop**, since whether one is needed can't be told from the starting instant alone (a steering tie rod doesn't turn at straight ahead, but must as soon as the wheels do). What turns in a motor is held all the same: its axis stays put in the motor (the 42129 Mercedes-Benz Zetros's two motors, their axles through one beam, drive its centre differential's housing, which turns the rear axles against the front ones only with the motors held).
 - **Not wheels on the ground**, since rolling is their job, nor a string's pulleys, which turn as it runs round them.
 - **Not resting parts**, which move as what they rest on does, and whether one has to can't be told from the starting instant alone (a push rod stands still on a camshaft until a pin comes round under it).
-- **Worms lock:** a worm is held still during any drag that would drive it from its gear's side.
+- **Worms lock:** a worm is held still during any drag that would drive it from its gear's side. A drag that turns the worm through gears, universal joints or chains is on the worm's side (the 42049 Mine Loader's claw knob turns its worm through two universal joints).
 - **So do linear actuators:** an actuator's input is held still during any drag that doesn't turn it, through gears, universal joints or chains.
 
 **Keeping to the plain motion.** A drag that turns its joint without the car moving on its suspension keeps to that while its holds are chosen: a hold that would leave it only a lurch of the car on its suspension is let go. (An official Ferrari 488 GTE's driveshaft, which its front wheels drive through constant velocity joints: held, turning one front wheel turned the other back and pitched the car, and stopped a step on.)

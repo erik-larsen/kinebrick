@@ -67,8 +67,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 0,
     "counts": {
       "works": 1,
@@ -234,6 +235,12 @@
           "p61 30285 is part of the frame",
           "p63 30285 is part of the frame",
           "p65 30285 is part of the frame"
+        ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
         ],
         "cause": "loose-part",
         "detail": "p58 30285",

@@ -211,9 +211,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 391,
+    "commit": "0eb34660",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 515,
     "counts": {
       "works": 8,
       "not back": 3,
@@ -301,7 +302,7 @@
             ]
           ]
         ],
-        "seconds": 4.6
+        "seconds": 6.3
       },
       {
         "result": "works",
@@ -331,7 +332,7 @@
             ]
           ]
         ],
-        "seconds": 5
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -441,7 +442,25 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 80.2
+        "movedBy": [
+          [
+            "p199 6573",
+            "p29 32270",
+            "p37 4019",
+            "p257 2853",
+            "p269 2851",
+            "p259 2852"
+          ],
+          [
+            "p199 6573",
+            "p29 32270",
+            "p37 4019",
+            "p257 2853",
+            "p269 2851",
+            "p259 2852"
+          ]
+        ],
+        "seconds": 107.7
       },
       {
         "result": "works",
@@ -481,7 +500,11 @@
             ]
           ]
         ],
-        "seconds": 9
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 13.3
       },
       {
         "result": "works",
@@ -515,7 +538,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 7
       },
       {
         "result": "works",
@@ -585,7 +608,19 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 81.1
+        "movedBy": [
+          [
+            "p31 6542a",
+            "p61 4019",
+            "p65 3706"
+          ],
+          [
+            "p31 6542a",
+            "p61 4019",
+            "p65 3706"
+          ]
+        ],
+        "seconds": 113.7
       },
       {
         "result": "partly",
@@ -652,7 +687,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 14.3
+        "seconds": 17.2
       },
       {
         "result": "works",
@@ -750,11 +785,26 @@
             ]
           ]
         ],
-        "seconds": 24.4
+        "movedBy": [
+          [
+            "p768 32198",
+            "p767 6589",
+            "p764 62274c01",
+            "p959 40490",
+            "p1004 64782"
+          ],
+          [
+            "p768 32198",
+            "p767 6589",
+            "p764 62274c01",
+            "p959 40490",
+            "p1004 64782"
+          ]
+        ],
+        "seconds": 28.6
       },
       {
-        "result": "not checked",
-        "seconds": 0
+        "result": "not checked"
       },
       {
         "result": "works",
@@ -828,7 +878,13 @@
           "p1115 32526",
           "p1114 32526"
         ],
-        "seconds": 149
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 206.6
       },
       {
         "result": "no",
@@ -882,12 +938,15 @@
           true,
           true
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "stopped-early",
-        "seconds": 17.7
+        "seconds": 0.6
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       }
     ]
   }

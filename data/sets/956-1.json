@@ -128,9 +128,10 @@
     }
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 6,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 12,
     "counts": {
       "works": 6,
       "partly": 1
@@ -186,7 +187,7 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -316,7 +317,23 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "movedBy": [
+          [
+            "p571 3652",
+            "p577 3652",
+            "p583 3652",
+            "p589 3652",
+            "p600 3648a"
+          ],
+          [
+            "p571 3652",
+            "p577 3652",
+            "p583 3652",
+            "p589 3652",
+            "p600 3648a"
+          ]
+        ],
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -356,7 +373,11 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 4.4
       },
       {
         "result": "partly",
@@ -391,7 +412,7 @@
         ],
         "cause": "not-driven",
         "detail": "p555 3737",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -425,7 +446,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -459,7 +480,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -484,7 +505,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       }
     ]
   }

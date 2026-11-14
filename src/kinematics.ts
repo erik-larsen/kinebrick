@@ -25,7 +25,7 @@ import { Joint, Mechanism, StringLine } from './mechanism.ts';
 import { StringCircle, stringLayout } from './paths.ts';
 import { links, spinners } from './constraints/balls.ts';
 import { couplings } from './constraints/couplings.ts';
-import { acrossDirections, axisOf, type Connection, DOWN, DRIVE_WEIGHT, type Equations, STUD, UP } from './constraints/equations.ts';
+import { acrossDirections, addPointVelocity, axisOf, type Connection, DOWN, DRIVE_WEIGHT, type Equations, STUD, UP } from './constraints/equations.ts';
 import { gears, meshContact } from './constraints/gears.ts';
 import { holdRows, holds } from './constraints/holds.ts';
 import { joints } from './constraints/joints.ts';
@@ -35,6 +35,7 @@ import { rests } from './constraints/rests.ts';
 import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { railLift, tyres } from './constraints/tyres.ts';
+import { TRACE, trace, traceJam } from './trace.ts';
 import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
 // The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
@@ -42,14 +43,6 @@ export { acrossDirections, nullSpace };
 // Each kind of connection's equations (see src/constraints/), in the order they're written: the
 // order of the rows decides which the elimination takes first, and so the motions to the last bit.
 const CONNECTIONS: Connection[] = [holds, joints, couplings, spinners, links, gears, screws, rests, tyres, rails, loops, strings];
-
-// With KINEBRICK_TRACE set, what stops a drag is written to the error output, a line each, as
-// `trace` and a JSON object (see traceJam): for working out why controls jam. Unset, nothing is
-// written and nothing changes.
-export const TRACE = typeof process !== 'undefined' && !!process.env?.KINEBRICK_TRACE;
-export function trace(what: object) {
-  console.error(`trace ${JSON.stringify(what)}`);
-}
 
 // How close a tyre must be to the ground to count as touching it, in LDU. Models are often
 // built half an LDU out (an official tractor's front tyres sit half an LDU above its rear ones).
@@ -114,6 +107,9 @@ const PLAY = 0.1;
 const TIE_BREAK = 0.1;
 // How far apart a loop's joints may drift before closeLoops pulls them back, in LDU (or radians).
 const LOOP_TOLERANCE = 1e-11;
+// How far off its axle's axis a gear's or tyre's centre may be and still be taken on it (see
+// onAxis), in LDU: a part placed a hair off, not one on another axle.
+const ON_AXIS = 1;
 // The solver's switches. Each Kinematics has its own (see Kinematics.options), which may be
 // changed at any time: two settings can be compared on one loaded model.
 export interface Options {
@@ -143,16 +139,27 @@ export interface Options {
   // held where they are on the frame (see outOfReach). It's far quicker on a big model.
   // KINEBRICK_REACH=0 turns it off.
   reach: boolean;
-  // A gear's or tyre's centre is taken on the axis of the joint its body turns on (see
+  // A gear's or tyre's centre is taken on the axis of the turning joint the part sits on (see
   // onAxis), not where the part itself is placed, for every kind of gear mesh. Off by default, for now; KINEBRICK_CENTRES=1
   // turns it on.
   centres: boolean;
+  // Least motion for a push of a part that hangs on a turning joint (a door, an arm of a
+  // linkage): its holds as a drag that turns that joint has them, and each step's motion chosen
+  // by the tiers, the point pushed going the way it is pushed (see pushStepByTiers), rather than
+  // the least-squares mix of the free motions left by holding all that can be held. On by
+  // default; KINEBRICK_LEAST_PUSH=0 turns it off.
+  leastPush: boolean;
+  // Least motion: a gear that turns on a body carrying a driving ring (a clutch gear on a
+  // gearbox's output shaft, which the ring locks to the shaft only when it's shifted into it)
+  // costs nothing for turning against that body: it's made to spin free there (see leastTiers).
+  // Off by default, for now; KINEBRICK_FREE_CLUTCH=1 turns it on.
+  freeClutch: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0 and KINEBRICK_CENTRES=1.
+// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0 and KINEBRICK_FREE_CLUTCH=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -162,6 +169,8 @@ export const experiments: Options = {
   stillness: setting('KINEBRICK_STILLNESS') !== undefined ? Number(setting('KINEBRICK_STILLNESS')) : 0.2,
   reach: setting('KINEBRICK_REACH') !== '0',
   centres: setting('KINEBRICK_CENTRES') === '1',
+  leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
+  freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -285,6 +294,7 @@ export class Kinematics {
   private stepByTiers = false; // one problem: whether the last step's motion was chosen by least motion's tiers (see jointMotion)
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
+  private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
   private built = false; // the constructor done: reset() may then set a layout's cars on the rails (see setOnRails)
   private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
   private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
@@ -301,8 +311,9 @@ export class Kinematics {
   spinners: number[] = [];
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private played = false;
-  private traceNames: string[] | null = null; // with TRACE, each row's kind of connection (see traceJam)
-  private traceName = ''; // whether jointMotion's last motion took up play (see playMotion)
+  private turningJointsOf: number[][] | null = null; // each body's turning joints (see onAxis), found when first needed
+  traceNames: string[] | null = null; // with TRACE, each row's kind of connection, as buildEquations adds it (see traceJam in trace.ts)
+  private traceName = ''; // with TRACE, the kind of connection whose rows buildEquations is adding
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
   private gripped = false; // whether the motion last chosen was one of those
@@ -1064,6 +1075,12 @@ export class Kinematics {
   // otherwise keep holds it can scrub its way past (the Ackermann car's differential, its tyres
   // scrubbing round a bend rather than its rear wheels turning at different speeds).
   holdWhatTheDragDoesntNeed(grabbed: number, stillPossible: () => boolean, joint = -1): boolean {
+    // Least motion for a push (see Options.leastPush): a push of a part that hangs on a turning
+    // joint is held as a drag that turns that joint, and its steps are chosen by the tiers.
+    if (joint < 0 && this.options.leastPush && this.options.leastMotion) {
+      const link = this.parentLink(grabbed);
+      if (link && this.mech.joints[link.joint].kind === 'revolute') joint = link.joint;
+    }
     return this.nearOrigin(() => {
       const scrub = this.scrub;
       // A drag starts (or starts again, its holds chosen afresh): what it held and found before is
@@ -1498,16 +1515,17 @@ export class Kinematics {
   }
 
   // The worms that a drag of `grabbed` would drive from the gear side. The worm's side is
-  // everything geared to the worm without going through its worm mesh (a crank geared to the
-  // worm's axle, say); a drag from anywhere else can only reach the worm through its gear.
-  // A linear actuator's screw locks the same way: its piston can't drive its input, which is
-  // held still unless the drag turns it, through gears, universal joints or chains.
+  // everything that turns the worm without going through its worm mesh, through gears,
+  // universal joints or chains (a crank geared to the worm's axle, say, or a knob that turns it
+  // through two universal joints: the 42049 Mine Loader's claw); a drag from anywhere else can
+  // only reach the worm through its gear. A linear actuator's screw locks the same way: its
+  // piston can't drive its input, which is held still unless the drag turns it.
   private wormsAgainst(grabbed: number): number[] {
     const worms: number[] = [];
     for (const mesh of this.mech.meshes) {
       if (mesh.kind !== 'worm') continue;
       const wormBody = this.mech.gears[mesh.gearA].body;
-      if (!this.gearedTo(wormBody).has(grabbed)) worms.push(wormBody);
+      if (!this.gearedTo(wormBody, true).has(grabbed)) worms.push(wormBody);
     }
     for (const screw of this.mech.screws ?? []) if (!this.gearedTo(screw.input, true).has(grabbed)) worms.push(screw.input);
     return worms;
@@ -1516,7 +1534,7 @@ export class Kinematics {
   // What a drag of `grabbed` would drive from the wrong end, if anything (see wormsAgainst): a worm
   // gear from its gear, or failing that, a linear actuator from its piston.
   lockedBy(grabbed: number): 'worm' | 'actuator' | null {
-    if (this.mech.meshes.some((m) => m.kind === 'worm' && !this.gearedTo(this.mech.gears[m.gearA].body).has(grabbed))) return 'worm';
+    if (this.mech.meshes.some((m) => m.kind === 'worm' && !this.gearedTo(this.mech.gears[m.gearA].body, true).has(grabbed))) return 'worm';
     return (this.mech.screws ?? []).some((screw) => !this.gearedTo(screw.input, true).has(grabbed)) ? 'actuator' : null;
   }
 
@@ -1872,23 +1890,40 @@ export class Kinematics {
   }
 
   // With the centres option: a round part's centre (`c`, where it is now, a gear's or a tyre's
-  // turning about `axis`) taken on the axis of the joint its body turns on, if that's a turning
-  // joint along the same axis. A joint's axis comes from the axle and its hole, and the gear or
-  // tyre is a part of its own, which may be placed a hair off it (a model's positions are rounded
-  // off). Off it, the gear's teeth would be taken to go round a little faster on one side and
-  // slower on the other, so two gears no longer turn in the ratio of their teeth, and a gear train
-  // that closes on itself jams (the 858 Auto Engines' gears, every part nudged by up to 0.05 LDU).
-  // Without the option, or for any other body, `c` as it is.
+  // turning about `axis`) taken on the axis of the turning joint the part itself sits on: of its
+  // body's turning joints along that axis, the one whose axis runs nearest `c`, if that is within
+  // ON_AXIS LDU. A joint's axis comes from the axle and its hole, and the gear or tyre is a part of
+  // its own, which may be placed a hair off it (a model's positions are rounded off). Off it, the
+  // gear's teeth would be taken to go round a little faster on one side and slower on the other,
+  // so two gears no longer turn in the ratio of their teeth, and a gear train that closes on itself
+  // jams (the 858 Auto Engines' gears, every part nudged by up to 0.05 LDU). Not the joint the body
+  // turns on in the tree: a body may turn on one axle and carry a gear on another (the 42066's spur
+  // gear, 97 LDU from it). Without the option, or with no such joint, `c` as it is.
   onAxis(body: number, c: Vector3, axis: Vector3): Vector3 {
     if (!this.options.centres) return c;
-    const link = this.parentLink(body);
-    if (!link) return c;
-    const j = this.mech.joints[link.joint];
-    if (j.kind !== 'revolute') return c;
-    const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
-    if (Math.abs(d.dot(axis)) < 0.999) return c;
-    const from = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
-    return from.addScaledVector(d, new Vector3().subVectors(c, from).dot(d));
+    if (!this.turningJointsOf) {
+      this.turningJointsOf = Array.from({ length: this.bodyCount }, () => [] as number[]);
+      this.mech.joints.forEach((j, i) => {
+        if (j.kind !== 'revolute') return;
+        this.turningJointsOf![j.bodyA].push(i);
+        if (j.bodyB !== j.bodyA) this.turningJointsOf![j.bodyB].push(i);
+      });
+    }
+    let best: Vector3 | null = null;
+    let nearest = ON_AXIS;
+    for (const i of this.turningJointsOf[body]) {
+      const j = this.mech.joints[i];
+      const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+      if (Math.abs(d.dot(axis)) < 0.999) continue;
+      const from = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+      const on = from.addScaledVector(d, new Vector3().subVectors(c, from).dot(d));
+      const off = on.distanceTo(c);
+      if (off < nearest) {
+        nearest = off;
+        best = on;
+      }
+    }
+    return best ?? c;
   }
 
   // ---------------------------------------------------------------------------
@@ -2194,6 +2229,109 @@ export class Kinematics {
     this.updatePoses();
   }
 
+  // Whether a push of `body` goes by least motion (see Options.leastPush): its holds were
+  // chosen as a drag that turns the joint it hangs on (see holdWhatTheDragDoesntNeed).
+  pushesByTiers(body: number): boolean {
+    return this.options.leastPush && this.options.leastMotion && this.drag.turning?.grabbed === body && this.parentLink(body)?.joint === this.drag.turning.joint;
+  }
+
+  // One step of a push by least motion (see Options.leastPush, and pushStep in push.ts for the
+  // other way): moves the mechanism so that the point `grab` of `body` (given on the body as
+  // built) goes `step` LDU the way `dir` points, by the motion the tiers choose (see leastTiers),
+  // with how fast the point goes sideways of `dir` a tier of its own before them, so it goes the
+  // way it's pushed where it can. Then `dir` is turned to the way the point went, so steps one
+  // after another follow a curve. The step is taken as a drag's step is (see turnJoint): its loops
+  // closed by the tiers, and undone if that leaves the joints more than DEAD_POINT_GAP apart or
+  // turned well off where the step had them going. Returns 'stuck', with nothing moved, if the
+  // point has nowhere to go, or only well off `dir`, or the step was undone; and 'blocked', with
+  // the step undone, if `allowed` says no to where it left the model.
+  pushStepByTiers(body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
+    const joint = this.drag.turning!.joint;
+    const g = grab.clone().applyMatrix4(this.poses[body]);
+    const motion = this.nearOrigin((toModel) => {
+      const basis = this.treeBasis();
+      const [usual, suspension] = this.freeMotionsApart();
+      const { turning, rateOf, size } = this.measures(joint, basis);
+      // How fast the point goes: three rows, one for each way.
+      const here = grab.clone().applyMatrix4(this.poses[body]);
+      const n = 6 * this.bodyCount;
+      const speed = inBasis(
+        [0, 1, 2].map((k) => {
+          const row = new Array(n).fill(0);
+          addPointVelocity(row, body, here, k, 1);
+          return row;
+        }),
+        basis,
+      );
+      const velocity = (z: number[]) => new Vector3(dot(speed[0], z), dot(speed[1], z), dot(speed[2], z));
+      const along = (z: number[]) => velocity(z).dot(dir);
+      const across = new Vector3(1, 0, 0).cross(dir).lengthSq() > 0.1 ? new Vector3(1, 0, 0).cross(dir).normalize() : new Vector3(0, 1, 0).cross(dir).normalize();
+      const across2 = new Vector3().crossVectors(dir, across);
+      const sideways: Tier = { cost: (z: number[]) => [velocity(z).dot(across), velocity(z).dot(across2)] };
+      const tiers = [sideways, ...this.leastTiers(joint, turning, rateOf, size, basis)];
+      const plain = this.chooseMotion(joint, usual, along, size, tiers);
+      const any = suspension.length ? this.chooseMotion(joint, orthonormalize([...usual, ...suspension]), along, size, tiers) : plain;
+      const length = (z: number[]) => Math.hypot(...size(z));
+      let z = plain && (!any || length(plain) < SUSPENSION_GAIN * length(any)) ? plain : any;
+      // chooseMotion keeps the frame still, and the tyres from scrubbing, if any motion that does
+      // turns the joint, before the tiers choose: for a push, that may leave the point going well
+      // off the way it's pushed (the 8049 Tractor's steering knob, a quarter of the way). Then
+      // the tiers choose from every motion.
+      const off = (m: number[] | null) => !m || velocity(m).length() < 1e-9 || velocity(m).normalize().dot(dir) < 0.5;
+      if (off(z)) z = leastTurning(orthonormalize([...usual, ...suspension]), along, tiers) ?? z;
+      if (!z) {
+        if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'no motion' });
+        return null;
+      }
+      // Nowhere to go but well off the way it's pushed.
+      const v = velocity(z);
+      if (v.length() < 1e-9 || v.clone().normalize().dot(dir) < 0.5) {
+        if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'off the way', along: v.length() > 1e-9 ? v.clone().normalize().dot(dir) : 0, motions: usual.length + suspension.length });
+        return null;
+      }
+      return toModel(fromBasis(z, basis));
+    });
+    if (!motion) return 'stuck';
+    // One problem: the step's loops are closed by the tiers too (see closeLoops).
+    this.stepByTiers = this.options.oneProblem;
+    this.played = false;
+    const before = this.snapshot();
+    const resting = new Set((this.mech.rests ?? []).map((r) => r.body));
+    const pins = this.pins ??= this.findPins();
+    const couplings = this.couplingBodies ??= new Set(this.mech.roles.flatMap((r, i) => (r === 'coupling' ? [this.mech.bodyOf[i]] : [])));
+    const checked = (j: Joint) => j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) && !pins.has(j.bodyA) && !pins.has(j.bodyB) && !couplings.has(j.bodyA) && !couplings.has(j.bodyB);
+    const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) ? this.jointRate(motion, k) * step : 0));
+    const largest = Math.max(...predicted.map(Math.abs));
+    const gap = this.advance(motion, step, joint);
+    const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
+    if (gap > DEAD_POINT_GAP || strayed.length) {
+      if (TRACE) trace({ event: 'push refused', body, gap, strayed: strayed.length });
+      this.restore(before);
+      // A step that turned a joint more than a drag's step does (MAX_TURN_STEP: a short lever
+      // pushed a stud) may just be too big to follow: taken in pieces that don't, each chosen
+      // afresh, it may go. All undone if one can't be taken.
+      if (largest <= MAX_TURN_STEP + 1e-12) return 'stuck';
+      const pieces = Math.ceil(largest / MAX_TURN_STEP);
+      const way = dir.clone();
+      for (let i = 0; i < pieces; i++) {
+        const how = this.pushStepByTiers(body, grab, dir, step / pieces, allowed);
+        if (how !== 'moved') {
+          this.restore(before);
+          dir.copy(way);
+          return how;
+        }
+      }
+      return 'moved';
+    }
+    if (!allowed()) {
+      this.restore(before);
+      return 'blocked';
+    }
+    const now = grab.clone().applyMatrix4(this.poses[body]).sub(g);
+    if (now.length() > 1e-9) dir.copy(now.normalize());
+    return 'moved';
+  }
+
   // The motion vector that turns a joint at rate 1 (one radian per unit), with the rest of
   // the mechanism following. If the joint can turn with the frame standing still, it does
   // (turning a steering wheel turns the front axle without rolling the car); otherwise the
@@ -2297,7 +2435,7 @@ export class Kinematics {
     // left the drag only play would be kept, and the drag would turn a joint it needn't (the
     // 42112 Concrete Mixer Truck's wheels, which stopped partway round).
     if (this.drag.choosingHolds) return null;
-    if (TRACE) this.traceJam(joint, rate);
+    if (TRACE) traceJam(this, joint, rate);
     const played = this.playMotion(rate, size);
     if (TRACE) trace({ event: 'play', joint, found: played !== null });
     this.played = played !== null;
@@ -2338,163 +2476,6 @@ export class Kinematics {
     if (Math.abs(turns) < EPSILON) return null;
     const z = combine(motions, mix.map((a) => a / turns));
     return Math.hypot(...apply(z)) <= PLAY_RATE * Math.abs(rate(z)) ? z : null;
-  }
-
-  // With TRACE (see tracePushStuck): `f`, with the drag's holds let go for the while.
-  withoutHolds<T>(f: () => T): T {
-    const { held, heldToFrame, outOfReach } = this.drag;
-    // What working out the free motions sets, as it was (see steeringBodies).
-    const [scrubNeeded, leastScrub, slipRows] = [this.scrubNeeded, this.leastScrub, this.slipRows];
-    this.drag.held = new Set();
-    this.drag.heldToFrame = new Set();
-    this.drag.outOfReach = new Set();
-    try {
-      return f();
-    } finally {
-      Object.assign(this.drag, { held, heldToFrame, outOfReach });
-      [this.scrubNeeded, this.leastScrub, this.slipRows] = [scrubNeeded, leastScrub, slipRows];
-    }
-  }
-
-  // With TRACE: how many bodies the drag holds.
-  heldCount(): number {
-    return this.drag.held.size + this.drag.heldToFrame.size;
-  }
-
-  // With TRACE: why no motion turns `joint` exactly (see playMotion). Of the rows but the loops',
-  // with tyres neither scrubbing nor lifting, whether any motion turns it, and if one does, how far
-  // the one that opens the loops least opens them, for each radian it turns the joint (`firm`);
-  // then the same with each kind of connection's rows left out in turn, and each kind of gear
-  // mesh's (`without`), which says what blocks it.
-  private traceJam(joint: number, rate: (z: number[]) => number) {
-    const basis = this.treeBasis();
-    const q = basis[0].length;
-    const look = () => {
-      const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
-      const play: number[] = [];
-      this.traceNames = [];
-      const raw = this.buildEquations(null, slip, true, null, play);
-      const rows = inBasis(raw, basis);
-      const names = this.traceNames;
-      this.traceNames = null;
-      const loops = rows.flatMap((row, i) => (play[i] ? [row.map((x) => x * play[i])] : []));
-      return { rows, play, names, loops, slid: inBasis([...slip.sideways, ...slip.lift], basis), raw, slips: [...slip.sideways, ...slip.lift] };
-    };
-    const judge = (firm: Row[], loops: Row[]) => {
-      const motions = orthonormalize(nullSpace(firm, q));
-      const rates = motions.map(rate);
-      if (!(Math.max(0, ...rates.map(Math.abs)) > 1e-6)) return { turns: false };
-      if (loops.length === 0) return { turns: true, opening: 0 };
-      const cost = motions.map((m) => loops.map((row) => dot(row, m)));
-      const gram = gramOf(cost, cost);
-      const top = Math.max(1e-12, ...gram.map((row, i) => row[i]));
-      gram.forEach((row, i) => (row[i] += 1e-12 * top));
-      const mix = solveSymmetric(gram, rates, 1e-15 * top);
-      const turns = mix.reduce((sum, a, k) => sum + a * rates[k], 0);
-      if (!(Math.abs(turns) > EPSILON)) return { turns: false };
-      const z = combine(motions, mix.map((a) => a / turns));
-      return { turns: true, opening: Math.hypot(...loops.map((row) => dot(row, z))) / Math.abs(rate(z)) };
-    };
-    const firmOf = (seen: ReturnType<typeof look>, kind: string | null) => [...seen.rows.filter((_, i) => !seen.play[i] && seen.names[i] !== kind), ...(kind === 'tyres' ? [] : seen.slid)];
-    const seen = look();
-    const without: Record<string, object> = {};
-    for (const kind of new Set(seen.names.filter((_, i) => !seen.play[i]))) without[kind] = judge(firmOf(seen, kind), seen.loops);
-    // Each kind of gear mesh in turn: the model's meshes of that kind left out.
-    const meshes = this.mech.meshes;
-    for (const kind of new Set(meshes.map((m) => m.kind))) {
-      this.mech.meshes = meshes.filter((m) => m.kind !== kind);
-      try {
-        const other = look();
-        without[`gears:${kind}`] = judge(firmOf(other, null), other.loops);
-      } finally {
-        this.mech.meshes = meshes;
-      }
-    }
-    trace({ event: 'jam', joint, loops: seen.loops.length, firm: judge(firmOf(seen, null), seen.loops), without });
-    if (process.env.KINEBRICK_TRACE === 'parts') this.traceParts(seen, judge);
-  }
-
-  // With KINEBRICK_TRACE=parts, after traceJam: the rows in groups, one joint, gear mesh, tyre or
-  // other rule each (the rows of one kind of connection on the same bodies), and which group, left
-  // out alone, lets the control turn opening the loops no more than 1 LDU a radian. A loop's joint
-  // left out is let come apart. Where no one group does, the pair that does with the least opening,
-  // from the 12 groups that each do best alone.
-  private traceParts(
-    seen: { rows: Row[]; play: number[]; names: string[]; slid: Row[]; raw: Row[]; slips: Row[] },
-    judge: (firm: Row[], loops: Row[]) => { turns: boolean; opening?: number },
-  ) {
-    const bodiesOf = (row: Row) => {
-      const out: number[] = [];
-      for (let b = 0; b < this.bodyCount; b++) {
-        for (let k = 0; k < 6; k++) {
-          if (row[6 * b + k] !== 0) {
-            out.push(b);
-            break;
-          }
-        }
-      }
-      return out;
-    };
-    const keys = seen.raw.map((row, i) => `${seen.play[i] ? 'loop joint' : seen.names[i]}:${bodiesOf(row).join(',')}`);
-    const slipKeys = seen.slips.map((row) => `slip:${bodiesOf(row).join(',')}`);
-    const loopRows = seen.rows.flatMap((row, i) => (seen.play[i] ? [{ key: keys[i], row: row.map((x) => x * seen.play[i]) }] : []));
-    const firmRows = [...seen.rows.flatMap((row, i) => (seen.play[i] ? [] : [{ key: keys[i], row }])), ...seen.slid.map((row, i) => ({ key: slipKeys[i], row }))];
-    const groups = [...new Set([...firmRows, ...loopRows].map((r) => r.key))];
-    const without = (out: Set<string>) =>
-      judge(
-        firmRows.filter((r) => !out.has(r.key)).map((r) => r.row),
-        loopRows.filter((r) => !out.has(r.key)).map((r) => r.row),
-      );
-    const base = without(new Set());
-    const score = (v: { turns: boolean; opening?: number }) => (v.turns ? (v.opening ?? 0) : Infinity);
-    const singles = groups.map((key) => ({ key, v: without(new Set([key])) }));
-    const frees = singles.filter((s) => score(s.v) <= 1);
-    let pair: { keys: string[]; opening: number } | null = null;
-    if (!frees.length) {
-      const best = singles.filter((s) => score(s.v) < score(base) * (1 - 1e-6)).sort((a, b) => score(a.v) - score(b.v)).slice(0, 12);
-      for (let i = 0; i < best.length; i++) {
-        for (let j = i + 1; j < best.length; j++) {
-          const v = without(new Set([best[i].key, best[j].key]));
-          if (score(v) <= 1 && (!pair || score(v) < pair.opening)) pair = { keys: [best[i].key, best[j].key], opening: score(v) };
-        }
-      }
-    }
-    const describe = (key: string) => {
-      const [kind, list] = key.split(':');
-      const bodies = list ? list.split(',').map(Number) : [];
-      return { key, kind, bodies, ...this.partsOf(kind, bodies) };
-    };
-    trace({
-      event: 'parts',
-      groups: groups.length,
-      base: score(base),
-      frees: frees.map((s) => ({ ...describe(s.key), opening: score(s.v) })),
-      pair: pair && { opening: pair.opening, groups: pair.keys.map(describe) },
-      best: pair || frees.length ? [] : singles.sort((a, b) => score(a.v) - score(b.v)).slice(0, 3).map((s) => ({ ...describe(s.key), opening: score(s.v) })),
-    });
-  }
-
-  // With TRACE: the parts behind a group of rows (see traceParts), and their roles: a joint's
-  // connections, a mesh's gears, a tyre, else the parts of each body that aren't structure.
-  private partsOf(kind: string, bodies: number[]): { parts: [number, string][]; mesh?: string } {
-    const m = this.mech;
-    const on = (a: number, b: number) => bodies.length === 2 && ((bodies[0] === a && bodies[1] === b) || (bodies[0] === b && bodies[1] === a));
-    const named = (parts: number[]) => ({ parts: [...new Set(parts.filter((p) => p !== undefined))].slice(0, 6).map((p) => [p, m.roles[p]] as [number, string]) });
-    if (kind === 'gears') {
-      const mesh = m.meshes.find((x) => on(m.gears[x.gearA].body, m.gears[x.gearB].body));
-      if (mesh) return { ...named([m.gears[mesh.gearA].part, m.gears[mesh.gearB].part]), mesh: mesh.kind };
-    }
-    if (kind === 'tyres' || kind === 'slip') {
-      const treads = m.treads.filter((t) => bodies.includes(t.body));
-      if (treads.length) return named(treads.map((t) => t.part));
-    }
-    if (kind === 'loops') {
-      const loop = m.loops.find((l) => l.wheels.some((w) => bodies.includes(w.body)));
-      if (loop) return named([loop.links[0], ...m.gears.filter((g) => loop.wheels.some((w) => w.body === g.body) && bodies.includes(g.body)).map((g) => g.part)]);
-    }
-    const connections = m.connections.filter((c) => c.kind !== 'rigid' && on(m.bodyOf[c.male], m.bodyOf[c.female]));
-    if (connections.length) return named(connections.flatMap((c) => [c.male, c.female]));
-    return named(bodies.flatMap((b) => (b === 0 ? [] : m.bodies[b].parts.filter((p) => m.roles[p] !== 'structure').slice(0, 2))));
   }
 
   // The motion jointMotion chooses from these (orthonormal, in the tree basis's coordinates), by
@@ -2615,11 +2596,19 @@ export class Kinematics {
       const off = centers![b].clone().applyMatrix4(this.poses[b]).sub(from);
       return off.sub(d.multiplyScalar(off.dot(d))).length() < BALANCE ? link.parent : 0;
     });
+    // A clutch gear, turning on a body that carries a driving ring (see Options.freeClutch),
+    // costs nothing: it's made to spin free on its shaft, which is what a gearbox in neutral
+    // is. Counted, it and the other clutch gear on the shaft, each driven round at its own rate,
+    // carried the free shaft round with them, two joints against one: the gearbox model's output
+    // turned 0.44 radian for each radian of its input in neutral.
+    const rings = this.ringBodies ??= new Set(this.mech.roles.flatMap((r, i) => (r === 'driving ring' ? [this.mech.bodyOf[i]] : [])));
+    const free = bodies.map((b, i) => this.options.freeClutch && against[i] > 0 && rings.has(against[i]) && !rings.has(b) && this.mech.gears.some((g) => g.body === b));
     const turns = (z: number[]) => {
       const w = turning(z);
       return bodies.flatMap((b, i) => {
         const a = 3 * against[i];
-        return [mass[b] * (w[3 * b] - w[a]), mass[b] * (w[3 * b + 1] - w[a + 1]), mass[b] * (w[3 * b + 2] - w[a + 2])];
+        const m = free[i] ? 0 : mass[b];
+        return [m * (w[3 * b] - w[a]), m * (w[3 * b + 1] - w[a + 1]), m * (w[3 * b + 2] - w[a + 2])];
       });
     };
     const slipRows = this.slipRows;

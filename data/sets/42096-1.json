@@ -102,13 +102,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 227,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 192,
     "counts": {
       "partly": 1,
-      "works": 4,
-      "not back": 2
+      "works": 3,
+      "no": 1,
+      "not back": 1
     },
     "loose": [
       "p241 22977",
@@ -191,7 +193,7 @@
         ],
         "cause": "not-driven",
         "detail": "p6 62821",
-        "seconds": 56.9
+        "seconds": 45.9
       },
       {
         "result": "works",
@@ -247,7 +249,7 @@
             ]
           ]
         ],
-        "seconds": 23.5
+        "seconds": 19.6
       },
       {
         "result": "works",
@@ -297,18 +299,22 @@
             ]
           ]
         ],
-        "seconds": 14.7
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 12.2
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            -1.13,
-            -0.99
+            0,
+            0
           ],
           [
-            0.99,
-            1.13
+            0,
+            0
           ]
         ],
         "rates": [
@@ -318,46 +324,45 @@
         "back": [
           [
             [
-              128.43,
-              58.84
+              0,
+              0
             ],
             [
-              130.44,
-              59.37
+              0,
+              0
             ]
           ],
           [
             [
-              130.44,
-              59.37
+              0,
+              0
             ],
             [
-              128.43,
-              58.84
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p1129 18651",
-          "p1157 6141",
-          "p1146 6141",
-          "p1136 18651"
-        ],
         "stop": [
           [
-            "stuck",
-            "stuck"
+            "limit",
+            "limit"
           ],
           [
-            "stuck",
-            "stuck"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true,
           true
         ],
-        "seconds": 72.4
+        "movedBy": [
+          [],
+          []
+        ],
+        "cause": "stopped-early",
+        "seconds": 65.8
       },
       {
         "result": "works",
@@ -413,7 +418,11 @@
             "dead point"
           ]
         ],
-        "seconds": 58.4
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 47.1
       }
     ]
   }

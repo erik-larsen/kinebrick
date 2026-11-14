@@ -118,9 +118,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 2,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 3,
     "counts": {
       "no": 3,
       "skipped": 1,
@@ -170,7 +171,7 @@
           "p17 8851-4694c01-f1 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -272,7 +273,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p908 3649 against p852 3738",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -348,7 +349,13 @@
           "p1102 3001",
           "p1073 4265a"
         ],
-        "seconds": 1.1
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 2.1
       }
     ]
   }

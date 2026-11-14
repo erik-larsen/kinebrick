@@ -160,14 +160,15 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 188,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 98,
     "counts": {
-      "partly": 4,
-      "not back": 3,
+      "partly": 3,
+      "not back": 2,
       "works": 2,
-      "no": 1,
+      "no": 2,
       "not checked": 1,
       "skipped": 1
     },
@@ -357,7 +358,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1854 23798",
-        "seconds": 15.3
+        "seconds": 7.2
       },
       {
         "result": "partly",
@@ -424,7 +425,7 @@
           "p1666 77"
         ],
         "cause": "control-jammed",
-        "seconds": 35.9
+        "seconds": 29.2
       },
       {
         "result": "partly",
@@ -437,12 +438,6 @@
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p1854 23798",
-          "p1858 23798",
-          "p1856 23798",
-          "p1860 23798"
         ],
         "rates": [
           {
@@ -508,9 +503,18 @@
           "p1525 77",
           "p1666 77"
         ],
+        "movedBy": [
+          [],
+          [
+            "p1854 23798",
+            "p1858 23798",
+            "p1856 23798",
+            "p1860 23798"
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p1854 23798",
-        "seconds": 35.4
+        "seconds": 35.1
       },
       {
         "result": "works",
@@ -556,7 +560,7 @@
             ]
           ]
         ],
-        "seconds": 21.8
+        "seconds": 16.8
       },
       {
         "result": "no",
@@ -583,7 +587,7 @@
         "seconds": 0
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
             0,
@@ -591,52 +595,49 @@
           ]
         ],
         "still": [
+          "p1856 23798",
           "p43 62821"
         ],
         "rates": [
           {
             "p1856 23798": [
-              6170,
-              1540000
+              0,
+              0
             ],
             "p43 62821": [
-              6170,
-              494000
+              0,
+              0
             ],
             "p359 42099 - 18575": [
-              6170,
-              0.00000624
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              18.12,
-              11.27
+              0,
+              0
             ],
             [
-              29.93,
-              17.8
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p604 2739a",
-          "p590 2736"
-        ],
         "stop": [
           [
-            "stuck",
-            "stuck"
+            "no motion",
+            "no motion"
           ]
         ],
         "pushed": [
           true
         ],
         "cause": "not-driven",
-        "detail": "p43 62821",
-        "seconds": 69.4
+        "detail": "p1856 23798",
+        "seconds": 0.6
       },
       {
         "result": "not checked",
@@ -669,7 +670,7 @@
             ]
           ]
         ],
-        "seconds": 8.8
+        "seconds": 8.5
       }
     ]
   }

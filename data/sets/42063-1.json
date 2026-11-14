@@ -111,9 +111,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 3,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 5,
     "counts": {
       "no": 3,
       "works": 2,
@@ -153,8 +154,12 @@
           "p418 32016 has no joint to work",
           "p419 32016 has no joint to work"
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -207,7 +212,7 @@
         "strayed": [
           "p131 62520"
         ],
-        "seconds": 2
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -232,7 +237,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -285,7 +290,7 @@
         ],
         "cause": "not-driven",
         "detail": "p386 88517",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "no",
@@ -338,7 +343,7 @@
         ],
         "cause": "not-driven",
         "detail": "p334 88517",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",

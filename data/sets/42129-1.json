@@ -137,9 +137,10 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 153,
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 170,
     "counts": {
       "partly": 3,
       "works": 3,
@@ -302,9 +303,17 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p468 6573"
+          ],
+          [
+            "p468 6573"
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p1305 65414c01",
-        "seconds": 29.4
+        "seconds": 37.5
       },
       {
         "result": "works",
@@ -334,7 +343,7 @@
             ]
           ]
         ],
-        "seconds": 12.8
+        "seconds": 18.5
       },
       {
         "result": "no",
@@ -364,8 +373,12 @@
           "p2922 42129 - 69912 has no joint to work",
           "p2924 42129 - 69912 has no joint to work"
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -415,7 +428,7 @@
         ],
         "cause": "loose-part",
         "detail": "p513 18947",
-        "seconds": 12.2
+        "seconds": 18
       },
       {
         "result": "works",
@@ -453,7 +466,7 @@
             ]
           ]
         ],
-        "seconds": 11.9
+        "seconds": 18.7
       },
       {
         "result": "partly",
@@ -469,9 +482,7 @@
         ],
         "still": [
           "p1305 65414c01",
-          "p1030 65414c01",
-          "p1371 4254 against p1372 4255",
-          "p1211 4254 against p1212 4255"
+          "p1371 4254 against p1372 4255"
         ],
         "rates": [
           {
@@ -495,7 +506,7 @@
           {
             "p1305 65414c01": [
               0,
-              8.1e-13
+              8.53e-13
             ],
             "p1030 65414c01": [
               0.00834,
@@ -503,7 +514,7 @@
             ],
             "p1371 4254 against p1372 4255": [
               0,
-              7.89e-13
+              8.35e-13
             ],
             "p1211 4254 against p1212 4255": [
               0.00834,
@@ -546,8 +557,15 @@
             null
           ]
         ],
+        "movedBy": [
+          [],
+          [
+            "p1030 65414c01",
+            "p1211 4254 against p1212 4255"
+          ]
+        ],
         "cause": "control-jammed",
-        "seconds": 70.5
+        "seconds": 61.9
       },
       {
         "result": "skipped",
@@ -581,7 +599,7 @@
             ]
           ]
         ],
-        "seconds": 11.5
+        "seconds": 12.6
       }
     ]
   }

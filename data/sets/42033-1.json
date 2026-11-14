@@ -84,8 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "works": 3,
@@ -158,6 +159,16 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p118 56145 against p12 12799",
+            "p120 56145 against p12 12799"
+          ],
+          [
+            "p118 56145 against p12 12799",
+            "p120 56145 against p12 12799"
+          ]
+        ],
         "seconds": 0.1
       },
       {
@@ -214,6 +225,10 @@
               0
             ]
           ]
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "not-driven",
         "detail": "p111 3706",

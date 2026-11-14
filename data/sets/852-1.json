@@ -75,8 +75,9 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "works": 1,
@@ -268,6 +269,10 @@
         "pushed": [
           true,
           true
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "control-jammed",
         "seconds": 0.1

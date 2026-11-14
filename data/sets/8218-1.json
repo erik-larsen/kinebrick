@@ -83,13 +83,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 0,
+    "commit": "b1fc322",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 1,
     "counts": {
-      "works": 2,
-      "skipped": 1,
-      "no": 1
+      "works": 3,
+      "skipped": 1
     },
     "loose": [],
     "functions": [
@@ -167,38 +167,92 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
-        "still": [
-          "p49 4519 against p8 32009",
-          "p66 2994 against p8 32009"
-        ],
         "rates": [
-          {},
-          {}
+          {
+            "p49 4519 against p8 32009": [
+              1,
+              20
+            ],
+            "p66 2994 against p8 32009": [
+              1,
+              20
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          },
+          {
+            "p49 4519 against p8 32009": [
+              1,
+              20
+            ],
+            "p66 2994 against p8 32009": [
+              1,
+              20
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p60 32062 is part of the frame",
-          "p61 32062 is part of the frame"
+        "freed": 1,
+        "movedBy": [
+          [
+            "p49 4519 against p8 32009",
+            "p66 2994 against p8 32009"
+          ],
+          [
+            "p49 4519 against p8 32009",
+            "p66 2994 against p8 32009"
+          ]
         ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

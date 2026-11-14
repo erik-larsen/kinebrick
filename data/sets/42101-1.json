@@ -96,12 +96,13 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
+    "commit": "015cd559",
+    "uncommitted": true,
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
-      "no": 2,
-      "works": 2,
+      "no": 1,
+      "works": 3,
       "not back": 2,
       "skipped": 1
     },
@@ -207,7 +208,7 @@
               40
             ],
             "p79 60485": [
-              0.916,
+              0.394,
               80
             ],
             "p31 4254": [
@@ -215,16 +216,16 @@
               102
             ],
             "p57 32184": [
-              0,
-              6.22e-13
+              2.81e-8,
+              3.74e-13
             ],
             "p64 32184": [
-              0,
-              6.18e-13
+              2.81e-8,
+              3.69e-13
             ],
             "p94 32270": [
-              0,
-              7.11e-14
+              2.81e-8,
+              1.11e-13
             ]
           }
         ],
@@ -243,7 +244,7 @@
         "strayed": [
           "p79 60485"
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -320,14 +321,20 @@
         "strayed": [
           "p79 60485"
         ],
-        "seconds": 0.4
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 0.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -354,17 +361,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "cause": "stopped-early",
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

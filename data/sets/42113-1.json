@@ -134,13 +134,14 @@
     ]
   },
   "generated": {
-    "commit": "a6f719f",
-    "date": "2026-11-12",
-    "seconds": 112,
+    "commit": "0eb34660",
+    "uncommitted": true,
+    "date": "2026-11-14",
+    "seconds": 111,
     "counts": {
       "works": 2,
       "partly": 4,
-      "not back": 2,
+      "not back": 1,
       "no": 2
     },
     "loose": [
@@ -184,7 +185,7 @@
             ]
           ]
         ],
-        "seconds": 6.2
+        "seconds": 8.4
       },
       {
         "result": "partly",
@@ -224,7 +225,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1729 57585",
-        "seconds": 6.1
+        "seconds": 8.3
       },
       {
         "result": "partly",
@@ -274,7 +275,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1469 99010",
-        "seconds": 6
+        "seconds": 8
       },
       {
         "result": "partly",
@@ -324,7 +325,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p882 92693c01",
-        "seconds": 5.5
+        "seconds": 8
       },
       {
         "result": "partly",
@@ -347,7 +348,7 @@
             ],
             "p223 64782": [
               0,
-              5.01e-80
+              8.28e-80
             ],
             "p244 32524": [
               0,
@@ -369,7 +370,7 @@
         ],
         "cause": "not-driven",
         "detail": "p974 92693c01",
-        "seconds": 6.7
+        "seconds": 8.3
       },
       {
         "result": "works",
@@ -473,7 +474,15 @@
           "p131 42610",
           "p105 42610"
         ],
-        "seconds": 44.7
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 62.3
       },
       {
         "result": "no",
@@ -527,8 +536,12 @@
           true,
           true
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 18.1
+        "seconds": 4.1
       },
       {
         "result": "no",
@@ -544,18 +557,14 @@
         "back": [
           [
             [
-              2.54,
-              1.1
+              0,
+              0
             ],
             [
-              1.51,
-              1.09
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p1716 41239",
-          "p556 43093"
         ],
         "stop": [
           [
@@ -567,7 +576,7 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 17
+        "seconds": 1.4
       }
     ]
   }
