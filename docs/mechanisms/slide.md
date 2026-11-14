@@ -4,14 +4,14 @@ A part slides by hand, or under its own weight. (Simple motions.)
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The four outriggers slide out on tiles and stand on their feet.
 
-Used in 9 of the 186 surveyed sets, by 10 functions. Kinebrick: 2 works, 2 partly, 4 no, 1 skipped, 1 not checked.
+Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 2 works, 3 partly, 4 no, 1 skipped, 1 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 1 of 9 | 0 of 18 | 1 of 32 | 2 of 23 | 5 of 83 | 0 of 21 |
-| Functions | 1 | 0 | 1 | 2 | 6 | 0 |
+| Sets | 1 of 9 | 0 of 18 | 1 of 32 | 3 of 23 | 5 of 83 | 0 of 21 |
+| Functions | 1 | 0 | 1 | 3 | 6 | 0 |
 
 ## Details
 
@@ -19,7 +19,7 @@ Each detail by the set it first appears in.
 
 | Detail | First in | Sets |
 |---|---|---|
-| outriggers | 1978, [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) | 1 |
+| outriggers | 1978, [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) | 2 |
 | gravity chute | 1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1) | 1 |
 | hip rods | 2002, [8012 Super Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8012-1) | 1 |
 | inner boom | 2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1) | 1 |
@@ -47,6 +47,10 @@ Each detail by the set it first appears in.
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
 
 - *inner boom:* The black inner boom slides in and out of the yellow outer boom by hand, carrying the pulley at its tip. (partly)
+
+**2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
+
+- *outriggers:* The four outriggers are pulled out sideways and pushed back in by hand, each on its own, sliding in the chassis. (partly)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
 

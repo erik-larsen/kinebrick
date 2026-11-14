@@ -4,14 +4,14 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 26 works, 63 partly, 4 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 96 functions. Kinebrick: 26 works, 62 partly, 4 no, 4 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 0 of 18 | 1 of 32 | 1 of 23 | 19 of 83 | 4 of 21 |
-| Functions | 0 | 0 | 2 | 5 | 76 | 14 |
+| Functions | 0 | 0 | 2 | 4 | 76 | 14 |
 
 ## Details
 
@@ -38,7 +38,6 @@ Each detail by the set it first appears in.
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
 - *4 functions:* The Power Functions XL motor drives the crane's four functions one at a time: the battery box's switch turns it on, the red lever with a towball handle (on the polarity switch) sets its direction, and two yellow levers on the right of the gearbox choose which function it drives (each lever up or down, or both in the middle for none). (not checked)
-- The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the first yellow lever (the one with p164 and p167) is pushed down. (partly)
 - The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (partly)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
 - The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the second yellow lever is pushed down. (partly)
