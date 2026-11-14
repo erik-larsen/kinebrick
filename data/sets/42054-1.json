@@ -216,9 +216,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 541,
+    "seconds": 1156,
     "counts": {
       "works": 9,
       "no": 1,
@@ -288,7 +288,7 @@
             ]
           ]
         ],
-        "seconds": 21.8
+        "seconds": 25.8
       },
       {
         "result": "no",
@@ -320,7 +320,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 6.8
+        "seconds": 15
       },
       {
         "result": "partly",
@@ -346,7 +346,7 @@
             ],
             "p1176 64782": [
               0,
-              0
+              1.89e-14
             ],
             "p1659 42054 - 18938 against p1660 18939": [
               0,
@@ -368,7 +368,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 42054 - 18938",
-        "seconds": 20.6
+        "seconds": 26.1
       },
       {
         "result": "partly",
@@ -390,7 +390,7 @@
             ],
             "p1820 92696 against p1818 92693c01": [
               0,
-              2.55e-62
+              3.9e-61
             ],
             "p1841 40490 against p1659 42054 - 18938": [
               0,
@@ -416,7 +416,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1820 92696 against p1818 92693c01",
-        "seconds": 12.7
+        "seconds": 30.9
       },
       {
         "result": "partly",
@@ -459,7 +459,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1659 42054 - 18938 against p1660 18939",
-        "seconds": 12.5
+        "seconds": 31.3
       },
       {
         "result": "works",
@@ -489,7 +489,7 @@
             ]
           ]
         ],
-        "seconds": 16.1
+        "seconds": 25.6
       },
       {
         "result": "works",
@@ -503,19 +503,19 @@
           {
             "p1943 4716": [
               1,
-              1.89e-14
+              5.2e-13
             ],
             "p1924 3648b": [
               0.0417,
-              1.84e-14
+              1.93e-14
             ],
             "p1929 32348": [
               0.0417,
-              1.1e-13
+              3.79e-14
             ],
             "p1933 32348": [
               0.0417,
-              3.79e-14
+              1.23e-13
             ]
           }
         ],
@@ -531,7 +531,7 @@
             ]
           ]
         ],
-        "seconds": 10.8
+        "seconds": 27.2
       },
       {
         "result": "works",
@@ -561,7 +561,7 @@
             ]
           ]
         ],
-        "seconds": 10.8
+        "seconds": 25.8
       },
       {
         "result": "works",
@@ -578,14 +578,14 @@
         "rates": [
           {
             "p1660 18939": [
-              0,
-              0.678
+              5.62e-8,
+              0.684
             ]
           },
           {
             "p1660 18939": [
-              0,
-              0.678
+              5.62e-8,
+              0.684
             ]
           }
         ],
@@ -620,7 +620,7 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 61.6
+        "seconds": 144.4
       },
       {
         "result": "works",
@@ -670,7 +670,7 @@
           [
             [
               0.1,
-              1.53
+              1.52
             ],
             [
               1.85,
@@ -697,7 +697,7 @@
             "p1779 6558"
           ]
         ],
-        "seconds": 223.2
+        "seconds": 505.7
       },
       {
         "result": "partly",
@@ -759,7 +759,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p12 87083",
-        "seconds": 23.2
+        "seconds": 26.9
       },
       {
         "result": "works",
@@ -784,7 +784,7 @@
             ]
           ]
         ],
-        "seconds": 11.8
+        "seconds": 29.8
       },
       {
         "result": "works",
@@ -860,7 +860,7 @@
           [],
           []
         ],
-        "seconds": 44.1
+        "seconds": 108.1
       },
       {
         "result": "works",
@@ -885,7 +885,7 @@
             ]
           ]
         ],
-        "seconds": 12.5
+        "seconds": 30.2
       }
     ]
   }

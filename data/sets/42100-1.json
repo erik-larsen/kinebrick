@@ -176,9 +176,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 2332,
+    "seconds": 2921,
     "counts": {
       "partly": 4,
       "works": 3,
@@ -357,7 +357,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 30.2
+        "seconds": 34.1
       },
       {
         "result": "partly",
@@ -405,7 +405,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 29.7
+        "seconds": 39.3
       },
       {
         "result": "partly",
@@ -473,7 +473,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 46
+        "seconds": 72.5
       },
       {
         "result": "partly",
@@ -517,7 +517,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1927 42003 against p87 42003",
-        "seconds": 31.3
+        "seconds": 35.8
       },
       {
         "result": "works",
@@ -538,7 +538,7 @@
               0.348
             ],
             "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
-              8.29e-8,
+              9.67e-8,
               0.348
             ],
             "p3322 42003 against p2971 42003": [
@@ -559,7 +559,7 @@
             ]
           ]
         ],
-        "seconds": 1282.9
+        "seconds": 1617.2
       },
       {
         "result": "works",
@@ -589,7 +589,7 @@
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              1.13e-12
+              1.1e-12
             ]
           },
           {
@@ -607,7 +607,7 @@
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              4.19e-13
+              1.1e-12
             ]
           }
         ],
@@ -645,7 +645,7 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 821.1
+        "seconds": 1010
       },
       {
         "result": "no",
@@ -700,7 +700,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
-        "seconds": 2.2
+        "seconds": 2.3
       },
       {
         "result": "no",
@@ -771,7 +771,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 39.9
+        "seconds": 53.5
       }
     ]
   }

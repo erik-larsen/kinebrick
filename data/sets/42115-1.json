@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 790,
+    "seconds": 1158,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -291,23 +291,23 @@
           {
             "p38 62821": [
               0,
-              6.25e-14
+              1.66e-14
             ],
             "p797 62821": [
               0,
-              7.54e-27
+              4.74e-15
             ],
             "p681 2854": [
               0,
-              1.09e-26
+              7.17e-27
             ],
             "p702 2851": [
               0,
-              1.62e-13
+              1.24e-13
             ],
             "p708 2851": [
               0,
-              1.57e-13
+              1.19e-13
             ]
           }
         ],
@@ -331,7 +331,7 @@
         ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 38.7
+        "seconds": 60.3
       },
       {
         "result": "partly",
@@ -386,7 +386,7 @@
         ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 34.8
+        "seconds": 90.1
       },
       {
         "result": "works",
@@ -404,7 +404,7 @@
             ],
             "p549 18947": [
               0,
-              9.31e-80
+              4.29e-80
             ]
           }
         ],
@@ -420,7 +420,7 @@
             ]
           ]
         ],
-        "seconds": 34.8
+        "seconds": 95.1
       },
       {
         "result": "works",
@@ -446,11 +446,11 @@
             ],
             "p97 35189": [
               0,
-              2.38e-14
+              1.37e-13
             ],
             "p105 35189": [
               0,
-              1.19e-13
+              2.04e-13
             ]
           }
         ],
@@ -466,7 +466,7 @@
             ]
           ]
         ],
-        "seconds": 154.5
+        "seconds": 182.7
       },
       {
         "result": "works",
@@ -542,7 +542,7 @@
           [],
           []
         ],
-        "seconds": 180
+        "seconds": 214
       },
       {
         "result": "skipped"
@@ -589,7 +589,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 35.3
+        "seconds": 55.4
       },
       {
         "result": "no",
@@ -666,7 +666,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 23.3
+        "seconds": 76.6
       },
       {
         "result": "works",
@@ -697,7 +697,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 167
+        "seconds": 195.4
       },
       {
         "result": "no",
@@ -741,7 +741,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 16.1
+        "seconds": 28.1
       },
       {
         "result": "no",
@@ -796,7 +796,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 41.2
+        "seconds": 63.5
       }
     ]
   }

@@ -130,9 +130,9 @@
     ]
   },
   "generated": {
-    "commit": "5cf99f0b",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 230,
+    "seconds": 357,
     "counts": {
       "partly": 1,
       "works": 5,
@@ -268,7 +268,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 6.2
+        "seconds": 12.8
       },
       {
         "result": "works",
@@ -286,7 +286,7 @@
           {
             "p15 62821": [
               1,
-              9.49e-13
+              9.56e-13
             ],
             "p165 2853": [
               2.33,
@@ -294,38 +294,38 @@
             ],
             "p181 2851 against p150 2850b": [
               8.43e-8,
-              14.1
+              14.7
             ],
             "p441 87761": [
-              5.62e-8,
-              2.3e-9
+              0,
+              1.54e-9
             ]
           },
           {
             "p15 62821": [
               1,
-              6.34e-13
+              8.3e-13
             ],
             "p165 2853": [
               2.33,
               23.3
             ],
             "p181 2851 against p150 2850b": [
-              5.62e-8,
-              14.1
+              1.4e-7,
+              14.7
             ],
             "p441 87761": [
               1.12e-7,
-              2.07e-9
+              1.54e-9
             ]
           }
         ],
         "expected": [
           {
-            "p181 2851 against p150 2850b": 14.1
+            "p181 2851 against p150 2850b": 14.7
           },
           {
-            "p181 2851 against p150 2850b": 14.1
+            "p181 2851 against p150 2850b": 14.7
           }
         ],
         "back": [
@@ -362,7 +362,7 @@
             "p181 2851 against p150 2850b"
           ]
         ],
-        "seconds": 48.6
+        "seconds": 88
       },
       {
         "result": "works",
@@ -392,7 +392,7 @@
             ]
           ]
         ],
-        "seconds": 7.3
+        "seconds": 9.8
       },
       {
         "result": "no",
@@ -469,7 +469,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 1.1
       },
       {
         "result": "skipped",
@@ -517,7 +517,7 @@
           [],
           []
         ],
-        "seconds": 63.6
+        "seconds": 85.4
       },
       {
         "result": "works",
@@ -565,7 +565,7 @@
           [],
           []
         ],
-        "seconds": 48.9
+        "seconds": 70.7
       },
       {
         "result": "works",
@@ -609,7 +609,7 @@
           [],
           []
         ],
-        "seconds": 53.6
+        "seconds": 87.2
       }
     ]
   }

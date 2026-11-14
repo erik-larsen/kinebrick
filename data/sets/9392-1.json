@@ -122,9 +122,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 5,
+    "seconds": 9,
     "counts": {
       "no": 3,
       "partly": 2,
@@ -194,7 +194,7 @@
         ],
         "cause": "not-driven",
         "detail": "p107 6571",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -213,23 +213,23 @@
           {
             "p17 94925": [
               1,
-              2.2e-12
+              2.91e-12
             ],
             "p146 94925": [
-              1.12e-7,
-              7.61e-14
+              2.81e-8,
+              6.72e-14
             ],
             "p137 2853": [
-              1.12e-7,
-              1.3e-13
+              2.81e-8,
+              9.82e-14
             ],
             "p140 2851": [
               5.62e-8,
-              2.15e-13
+              2.43e-13
             ],
             "p134 2850a": [
-              1.12e-7,
-              2.68e-13
+              2.81e-8,
+              2.8e-13
             ]
           }
         ],
@@ -247,7 +247,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p140 2851",
-        "seconds": 2.1
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -269,7 +269,7 @@
             ],
             "p146 94925": [
               1,
-              5.33e-15
+              2.96e-15
             ],
             "p17 94925": [
               0,
@@ -280,8 +280,8 @@
               0
             ],
             "p134 2850a": [
-              0,
-              1.35e-13
+              2.81e-8,
+              2.68e-13
             ]
           }
         ],
@@ -299,7 +299,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 94925",
-        "seconds": 2.2
+        "seconds": 3.8
       },
       {
         "result": "no",
@@ -348,7 +348,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -443,7 +443,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "skipped",

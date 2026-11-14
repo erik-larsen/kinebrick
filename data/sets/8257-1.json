@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 73,
+    "seconds": 83,
     "counts": {
       "works": 3,
       "not back": 3,
@@ -603,7 +603,7 @@
           [],
           []
         ],
-        "seconds": 30.5
+        "seconds": 26.1
       },
       {
         "result": "works",
@@ -625,11 +625,11 @@
             ],
             "p594 6629 against p550 32018": [
               0,
-              1.17e-12
+              1.46e-12
             ],
             "p604 32065 against p550 32018": [
               0,
-              3.02e-12
+              3.16e-12
             ]
           }
         ],
@@ -657,7 +657,7 @@
         "pushed": [
           true
         ],
-        "seconds": 15.3
+        "seconds": 20
       },
       {
         "result": "partly",
@@ -704,7 +704,7 @@
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 6.6
+        "seconds": 8.6
       },
       {
         "result": "works",
@@ -722,7 +722,7 @@
             ],
             "p604 32065 against p550 32018": [
               0,
-              4.16e-12
+              6.29e-12
             ]
           }
         ],
@@ -738,7 +738,7 @@
             ]
           ]
         ],
-        "seconds": 7.4
+        "seconds": 9.2
       },
       {
         "result": "partly",
@@ -800,7 +800,7 @@
         ],
         "cause": "loose-part",
         "detail": "p25 6579",
-        "seconds": 5.8
+        "seconds": 8.2
       },
       {
         "result": "partly",
@@ -853,7 +853,7 @@
         ],
         "cause": "loose-part",
         "detail": "p54 6572",
-        "seconds": 5.1
+        "seconds": 6.5
       },
       {
         "result": "no",
@@ -903,7 +903,7 @@
         ],
         "cause": "loose-part",
         "detail": "p166 32065",
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -939,7 +939,7 @@
         ],
         "cause": "loose-part",
         "detail": "p156 6629",
-        "seconds": 1.6
+        "seconds": 2.7
       },
       {
         "result": "skipped",

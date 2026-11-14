@@ -55,9 +55,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "works": 1,
       "partly": 1
@@ -188,7 +188,7 @@
             "p38 2851"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -285,7 +285,7 @@
         ],
         "cause": "not-driven",
         "detail": "p40 3648b",
-        "seconds": 0.8
+        "seconds": 1.3
       }
     ]
   }

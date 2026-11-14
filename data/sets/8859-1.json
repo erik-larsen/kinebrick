@@ -133,9 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 66,
+    "seconds": 84,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -227,7 +227,7 @@
         ],
         "cause": "loose-part",
         "detail": "p467 3736",
-        "seconds": 1.5
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -283,7 +283,7 @@
             ]
           ]
         ],
-        "seconds": 12.2
+        "seconds": 16
       },
       {
         "result": "works",
@@ -327,7 +327,7 @@
           [],
           []
         ],
-        "seconds": 24.6
+        "seconds": 31.6
       },
       {
         "result": "partly",
@@ -412,7 +412,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.7
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -456,7 +456,7 @@
           [],
           []
         ],
-        "seconds": 24.8
+        "seconds": 31.2
       },
       {
         "result": "skipped",

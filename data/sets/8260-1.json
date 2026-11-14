@@ -90,8 +90,7 @@
     ]
   },
   "generated": {
-    "commit": "6db12321",
-    "uncommitted": true,
+    "commit": "e46377ce",
     "date": "2026-11-14",
     "seconds": 1,
     "counts": {
@@ -159,7 +158,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -194,7 +193,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -270,7 +269,7 @@
           [],
           []
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -308,7 +307,7 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

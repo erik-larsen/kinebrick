@@ -112,7 +112,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Trailing arms](trailing-arm.md) | 1 | 1981 |  | 1 |  |  |  |  | 1 works |
 | [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 7 works, 3 partly, 15 no, 1 skipped |
 | [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 1 works, 3 partly |
-| [Pendular axle](pendular-axle.md) | 8 | 1986 |  | 1 |  | 1 | 5 | 1 | 1 works, 2 partly, 4 no, 2 skipped |
+| [Pendular axle](pendular-axle.md) | 8 | 1986 |  | 1 |  | 1 | 5 | 1 | 1 works, 1 partly, 5 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
 | [Sprung live axle](sprung-axle.md) | 7 | 2011 |  |  |  |  | 5 | 2 | 1 partly, 4 no, 2 skipped |
 | [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 2 partly, 1 no |
@@ -124,7 +124,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 44 works, 31 partly, 2 no, 1 skipped |
+| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 45 works, 31 partly, 1 no, 1 skipped |
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 partly |
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 3 works, 2 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 1 works, 4 partly, 1 no |
@@ -202,7 +202,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 136 works, 14 partly, 2 skipped, 2 not checked |
 | [Hinge](hinge.md) | 76 | 1978 | 2 | 1 | 10 | 11 | 41 | 11 | 72 works, 19 partly, 31 no, 2 skipped, 5 not checked |
-| [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 1 works, 3 partly, 4 no, 1 skipped, 1 not checked |
+| [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 2 works, 3 partly, 3 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 7 works, 2 partly, 1 no, 1 skipped |
 | [Hangs free](hangs-free.md) | 18 | 1978 | 1 | 1 | 2 | 4 | 10 |  | 5 works, 1 partly, 6 skipped, 6 not checked |
 

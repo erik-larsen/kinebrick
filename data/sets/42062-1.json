@@ -166,9 +166,9 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 85,
+    "seconds": 120,
     "counts": {
       "partly": 7,
       "works": 1,
@@ -563,7 +563,7 @@
         ],
         "cause": "not-driven",
         "detail": "p87 48989",
-        "seconds": 2.8
+        "seconds": 5.1
       },
       {
         "result": "partly",
@@ -598,7 +598,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 3.3
+        "seconds": 5.7
       },
       {
         "result": "works",
@@ -710,7 +710,7 @@
           [],
           []
         ],
-        "seconds": 26.6
+        "seconds": 44
       },
       {
         "result": "no",
@@ -769,7 +769,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 0.7
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -827,7 +827,7 @@
         ],
         "cause": "loose-part",
         "detail": "p508 32270",
-        "seconds": 3.5
+        "seconds": 6.1
       },
       {
         "result": "partly",
@@ -871,7 +871,7 @@
         ],
         "cause": "loose-part",
         "detail": "p507 32270",
-        "seconds": 5.9
+        "seconds": 9.8
       },
       {
         "result": "partly",
@@ -914,7 +914,7 @@
         ],
         "cause": "loose-part",
         "detail": "p530 6553",
-        "seconds": 8.2
+        "seconds": 14.6
       },
       {
         "result": "partly",
@@ -946,7 +946,7 @@
         ],
         "cause": "loose-part",
         "detail": "p547 32524",
-        "seconds": 3.9
+        "seconds": 6.6
       },
       {
         "result": "no",
@@ -995,7 +995,7 @@
         ],
         "cause": "loose-part",
         "detail": "p574 32073",
-        "seconds": 0.6
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -1073,7 +1073,7 @@
         ],
         "cause": "loose-part",
         "detail": "p597 55981",
-        "seconds": 28.4
+        "seconds": 25
       }
     ]
   }

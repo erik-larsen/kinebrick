@@ -139,12 +139,11 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 15,
+    "seconds": 27,
     "counts": {
-      "works": 6,
-      "no": 1,
+      "works": 7,
       "not checked": 1,
       "skipped": 2
     },
@@ -166,7 +165,7 @@
             ],
             "p402 3703 against p315 3029": [
               8.43e-8,
-              1.7e-11
+              9.64e-12
             ]
           }
         ],
@@ -182,7 +181,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 5.3
       },
       {
         "result": "works",
@@ -199,11 +198,11 @@
               4.48
             ],
             "p245 3743 against p162 3404": [
-              5.62e-8,
+              2.81e-8,
               1.11
             ],
             "p402 3703 against p315 3029": [
-              1.4e-7,
+              1.69e-7,
               0.0128
             ],
             "p483 3736 against p162 3404": [
@@ -229,7 +228,7 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -247,7 +246,7 @@
             ],
             "p315 3029 against p162 3404": [
               0,
-              2.36e-12
+              2.88e-12
             ]
           }
         ],
@@ -263,7 +262,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -281,7 +280,7 @@
             ],
             "p315 3029 against p162 3404": [
               0,
-              2.02e-12
+              1.88e-12
             ],
             "p272 3736 against p162 3404": [
               0,
@@ -301,26 +300,26 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 5.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            20,
+            -20
           ],
           [
-            0,
-            0
+            20,
+            -20
           ],
           [
-            0,
-            0
+            20,
+            -20
           ],
           [
-            0,
-            0
+            20,
+            -20
           ]
         ],
         "rates": [
@@ -330,16 +329,46 @@
           {}
         ],
         "back": [
-          [],
-          [],
-          [],
-          []
-        ],
-        "why": [
-          "p99 3008 has no joint to work",
-          "p106 3008 has no joint to work",
-          "p113 3008 has no joint to work",
-          "p120 3008 has no joint to work"
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "movedBy": [
           [],
@@ -347,8 +376,7 @@
           [],
           []
         ],
-        "cause": "control-fixed",
-        "seconds": 0.3
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -424,7 +452,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -501,7 +529,7 @@
           [],
           []
         ],
-        "seconds": 2.8
+        "seconds": 4.6
       },
       {
         "result": "not checked",

@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 7,
+    "seconds": 10,
     "counts": {
       "works": 4,
       "partly": 1,
@@ -156,7 +156,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -194,7 +194,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -259,7 +259,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p51 4185a",
-        "seconds": 1.2
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -303,7 +303,7 @@
           [],
           []
         ],
-        "seconds": 2.2
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -328,7 +328,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.4
       }
     ]
   }

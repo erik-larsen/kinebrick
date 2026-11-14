@@ -100,9 +100,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
       "works": 3,
       "partly": 1,
@@ -173,7 +173,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -239,7 +239,7 @@
         ],
         "cause": "not-driven",
         "detail": "p187 3737",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -289,7 +289,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -369,7 +369,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 2.1
       }
     ]
   }

@@ -181,9 +181,9 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 2129,
+    "seconds": 2811,
     "counts": {
       "no": 1,
       "partly": 6,
@@ -736,7 +736,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 7.5
+        "seconds": 8.5
       },
       {
         "result": "partly",
@@ -789,7 +789,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 117.8
+        "seconds": 159.7
       },
       {
         "result": "partly",
@@ -824,7 +824,7 @@
         ],
         "cause": "not-driven",
         "detail": "p418 64178 against p1175 18939",
-        "seconds": 116.2
+        "seconds": 143
       },
       {
         "result": "partly",
@@ -878,7 +878,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 153.9
+        "seconds": 206.1
       },
       {
         "result": "works",
@@ -920,7 +920,7 @@
             ]
           ]
         ],
-        "seconds": 442.1
+        "seconds": 574.3
       },
       {
         "result": "works",
@@ -950,7 +950,7 @@
             ]
           ]
         ],
-        "seconds": 60.1
+        "seconds": 65.9
       },
       {
         "result": "works",
@@ -1002,7 +1002,7 @@
             "limit"
           ]
         ],
-        "seconds": 536.4
+        "seconds": 739.6
       },
       {
         "result": "partly",
@@ -1058,7 +1058,7 @@
         ],
         "cause": "loose-part",
         "detail": "p156 32270",
-        "seconds": 60.3
+        "seconds": 64.9
       },
       {
         "result": "partly",
@@ -1104,7 +1104,7 @@
         ],
         "cause": "loose-part",
         "detail": "p276 32270",
-        "seconds": 221.2
+        "seconds": 313.3
       },
       {
         "result": "partly",
@@ -1182,7 +1182,7 @@
         ],
         "cause": "loose-part",
         "detail": "p294 56145",
-        "seconds": 236.9
+        "seconds": 276.9
       }
     ]
   }

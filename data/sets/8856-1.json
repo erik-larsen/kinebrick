@@ -155,9 +155,9 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 9,
+    "seconds": 13,
     "counts": {
       "partly": 5,
       "works": 2,
@@ -258,7 +258,7 @@
         ],
         "cause": "loose-part",
         "detail": "p460 2906",
-        "seconds": 0.8
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -329,7 +329,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -380,7 +380,7 @@
         ],
         "cause": "loose-part",
         "detail": "p468 70278",
-        "seconds": 0.8
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -434,7 +434,7 @@
         ],
         "cause": "loose-part",
         "detail": "p468 70278",
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -454,7 +454,7 @@
           {
             "p38 2736": [
               0,
-              2.29e-14
+              1.62e-14
             ],
             "p375 2825": [
               0,
@@ -466,11 +466,11 @@
             ],
             "p462 2908": [
               0,
-              2.27e-96
+              1.22e-96
             ],
             "p11 3705": [
               0,
-              4.07e-16
+              5.55e-16
             ],
             "p469 2876": [
               0,
@@ -492,7 +492,7 @@
         ],
         "cause": "loose-part",
         "detail": "p462 2908",
-        "seconds": 0.9
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -511,19 +511,19 @@
           {
             "p11 3705": [
               0,
-              4.07e-16
+              5.55e-16
             ],
             "p27 2736": [
               0,
-              3.63e-15
+              2.96e-15
             ],
             "p462 2908": [
               0,
-              2.27e-96
+              1.22e-96
             ],
             "p38 2736 against p11 3705": [
               0,
-              9.47e-15
+              0
             ],
             "p469 2876": [
               0,
@@ -545,7 +545,7 @@
         ],
         "cause": "loose-part",
         "detail": "p462 2908",
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "skipped",
@@ -625,7 +625,7 @@
           [],
           []
         ],
-        "seconds": 3.6
+        "seconds": 5.2
       }
     ]
   }

@@ -156,9 +156,9 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 52,
+    "seconds": 78,
     "counts": {
       "partly": 7,
       "works": 2
@@ -414,7 +414,7 @@
             ],
             "p224 99010": [
               0.257,
-              0
+              9.47e-15
             ],
             "p1000 32270": [
               0,
@@ -441,7 +441,7 @@
         ],
         "cause": "not-driven",
         "detail": "p214 4716",
-        "seconds": 3.9
+        "seconds": 5.7
       },
       {
         "result": "partly",
@@ -498,7 +498,7 @@
         ],
         "cause": "not-driven",
         "detail": "p224 99010",
-        "seconds": 3.9
+        "seconds": 5.5
       },
       {
         "result": "partly",
@@ -560,7 +560,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 11946",
-        "seconds": 3.9
+        "seconds": 5.5
       },
       {
         "result": "works",
@@ -652,7 +652,7 @@
           [],
           []
         ],
-        "seconds": 20.6
+        "seconds": 30.1
       },
       {
         "result": "partly",
@@ -699,7 +699,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1298 10928",
-        "seconds": 4
+        "seconds": 5.9
       },
       {
         "result": "partly",
@@ -750,7 +750,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1171 32270",
-        "seconds": 3.6
+        "seconds": 5.9
       },
       {
         "result": "partly",
@@ -805,7 +805,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1186 32270",
-        "seconds": 3.5
+        "seconds": 5.9
       },
       {
         "result": "works",
@@ -830,7 +830,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 5.7
       },
       {
         "result": "partly",
@@ -857,7 +857,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1059 15458",
-        "seconds": 3.6
+        "seconds": 6
       }
     ]
   }

@@ -145,9 +145,9 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 3,
     "counts": {
       "no": 2,
       "partly": 3,
@@ -184,7 +184,7 @@
           "p0 2905 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -245,7 +245,7 @@
         ],
         "cause": "not-driven",
         "detail": "p30 57779 against p0 2905",
-        "seconds": 0.1
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -291,7 +291,7 @@
         ],
         "cause": "loose-part",
         "detail": "p57 30395",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -342,7 +342,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p55 32278 against p30 57779",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -519,7 +519,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 1.1
       },
       {
         "result": "skipped",

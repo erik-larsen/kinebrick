@@ -84,9 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -177,7 +177,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -236,7 +236,7 @@
         ],
         "cause": "loose-part",
         "detail": "p169 62531",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -312,7 +312,7 @@
           [],
           []
         ],
-        "seconds": 1.5
+        "seconds": 2.1
       },
       {
         "result": "not checked",

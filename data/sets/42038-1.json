@@ -206,13 +206,14 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "e46377ce",
     "date": "2026-11-14",
-    "seconds": 56,
+    "seconds": 40,
     "counts": {
       "works": 6,
-      "partly": 3,
+      "partly": 2,
       "not back": 1,
+      "no": 1,
       "skipped": 1,
       "not checked": 2
     },
@@ -274,7 +275,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 18
+        "seconds": 4
       },
       {
         "result": "partly",
@@ -333,11 +334,11 @@
           [
             [
               0,
-              1.04
+              5.72
             ],
             [
               0,
-              4.07
+              1.75
             ]
           ]
         ],
@@ -346,7 +347,7 @@
         ],
         "cause": "not-driven",
         "detail": "p113 92695",
-        "seconds": 2.1
+        "seconds": 3.3
       },
       {
         "result": "partly",
@@ -418,7 +419,7 @@
         ],
         "cause": "not-driven",
         "detail": "p866 92696",
-        "seconds": 2.1
+        "seconds": 3.3
       },
       {
         "result": "works",
@@ -448,7 +449,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 4
       },
       {
         "result": "works",
@@ -486,7 +487,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -520,14 +521,14 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 3.5
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ],
           [
             0,
@@ -535,13 +536,14 @@
           ]
         ],
         "still": [
+          "p284 92909",
           "p237 92909"
         ],
         "rates": [
           {
             "p284 92909": [
-              0.397,
-              14.3
+              0,
+              0
             ],
             "p237 92909": [
               0,
@@ -552,34 +554,11 @@
               0
             ]
           },
-          {
-            "p284 92909": [
-              0,
-              0
-            ],
-            "p237 92909": [
-              0,
-              0
-            ],
-            "p323 64782": [
-              0,
-              0
-            ]
-          }
+          {}
         ],
         "back": [
           [
             [
-              0.36,
-              0.14
-            ],
-            [
-              0.36,
-              0.14
-            ]
-          ],
-          [
-            [
               0,
               0
             ],
@@ -587,32 +566,34 @@
               0,
               0
             ]
-          ]
-        ],
-        "stop": [
-          [
-            null,
-            null
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          false,
-          true
-        ],
-        "freed": 2,
-        "movedBy": [
-          [
-            "p284 92909"
           ],
           []
         ],
+        "why": [
+          "p232 41239 has no joint to work"
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            null,
+            null
+          ]
+        ],
+        "pushed": [
+          true,
+          false
+        ],
+        "freed": 2,
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "not-driven",
-        "detail": "p284 92909",
-        "seconds": 14.4
+        "detail": "p237 92909",
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -692,7 +673,7 @@
           [],
           []
         ],
-        "seconds": 9.4
+        "seconds": 14
       },
       {
         "result": "not checked",
@@ -721,7 +702,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 3.2
       },
       {
         "result": "not checked",
