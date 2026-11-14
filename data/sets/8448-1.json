@@ -49,6 +49,12 @@
           "p481 32196"
         ],
         "together": true,
+        "first": [
+          {
+            "control": "p509 6539",
+            "by": -5
+          }
+        ],
         "moves": [
           "p236 6573",
           "p31 3706",
@@ -58,7 +64,7 @@
           "p594 2851",
           "p598 2851"
         ],
-        "note": "only in gear: the gearbox has a neutral, and the model file may be built in it; which gear the file is in isn't known"
+        "note": "only in gear: the file is built in neutral. The first step puts the gearbox in first gear, the lowest (ring p509 onto the extension p508 and the gear beyond it: the crankshaft turns 3.75 times for each turn of the wheels); any gear would do, and first gear is the check's choice, not something the book says"
       },
       {
         "does": "The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed.",

@@ -70,7 +70,7 @@ import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
-import { Mechanism } from '../src/mechanism.ts';
+import { Mechanism, meshesChanged } from '../src/mechanism.ts';
 import { pointDirections, pushStep } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
@@ -490,6 +490,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // A catch it turned shifts its ring.
         const shifts = catchShifts(placedNow(), table, catches);
         if (shifts.size) shiftTo(shifts);
+        // Otherwise, if it brought gears together or apart (the 952's harrow lowered onto its
+        // power take-off), the mechanism is worked out afresh from where everything now is.
+        else if (meshesChanged(mech, kin.poses)) use(loaded.read(placedNow(), freed));
       }
       // Measured on the model as it is now, after any shift.
       const moves = (fn.moves ?? []).map(against);

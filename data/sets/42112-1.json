@@ -108,6 +108,12 @@
           "p688 56145"
         ],
         "together": true,
+        "first": [
+          {
+            "control": "p354 18947",
+            "by": -10
+          }
+        ],
         "moves": [
           "p231 94925",
           "p356 42112 - 35185",
@@ -120,7 +126,7 @@
         "stays": [
           "p1039 42112 - 33299b"
         ],
-        "note": "needs the selector lever moved to the driving side first; how far isn't known, so there's no `first` yet"
+        "note": "needs the selector lever moved to the driving side first; the first step slides the driving ring p354 itself onto the 20 tooth clutch gear p356; which way the lever goes for that isn't known"
       },
       {
         "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
