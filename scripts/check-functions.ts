@@ -565,6 +565,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         kin.restore(start);
         // How far each piston should slide, piece by piece, as its crank turns.
         let was = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
+        // How far each went in the last piece: where it's heading is where it was and that again.
+        const last = pistons.map(() => 0);
         const should = pistons.map(() => 0);
         // The longer turn (see LONG_REACH) goes only as far as it needs: past the usual reach,
         // it ends once the parts to move have moved. For a function whose controls share out the
@@ -580,8 +582,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         };
         const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
-          const now = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
-          now.forEach((x, k) => (should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!)));
+          const now = pistons.map((p, k) => pistonAt(p.sc, crankAngle(p.sc.crank), was[k] === null ? undefined : was[k]! + last[k]));
+          now.forEach((x, k) => {
+            should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!);
+            last[k] = x === null || was[k] === null ? 0 : x - was[k]!;
+          });
           was = now;
         });
         const went = measured.went;

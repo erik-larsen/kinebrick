@@ -61,8 +61,11 @@ export function sliderCranks(mech: Mechanism, parentLink: (body: number) => { pa
 
 // How far the piston should have slid along the cylinder's line (LDU, signed along `slide`) with
 // the crank turned θ (radians, about `axis`) from where it was built; null where the rod can't
-// reach the cylinder's line.
-export function pistonAt(sc: SliderCrank, theta: number): number | null {
+// reach the cylinder's line. The rod reaches the line at two places: the one it was built at,
+// or with `near`, the one nearer that (where the piston is heading). A rod that comes square to
+// the line, where the two meet, carries the piston on to the other: the 856 Bulldozer's rack sled,
+// which its racks slide on while the arms its rods push hardly turn.
+export function pistonAt(sc: SliderCrank, theta: number, near?: number): number | null {
   // The crank pin, turned θ about the crank's axis (Rodrigues' formula).
   const v = sc.pin.clone().sub(sc.center);
   const k = sc.axis;
@@ -73,6 +76,10 @@ export function pistonAt(sc: SliderCrank, theta: number): number | null {
   const b = sc.slide.dot(d);
   const disc = b * b - d.lengthSq() + sc.rod * sc.rod;
   if (disc < 0) return null;
+  if (near !== undefined) {
+    const [one, other] = [-b + Math.sqrt(disc), -b - Math.sqrt(disc)];
+    return Math.abs(one - near) <= Math.abs(other - near) ? one : other;
+  }
   // The root that's 0 as built: the one on the side the wrist is of the pin, along the line.
   const way = sc.slide.dot(sc.wrist.clone().sub(sc.pin)) >= 0 ? 1 : -1;
   return -b + way * Math.sqrt(disc);
