@@ -17,6 +17,8 @@
     "bench": "tsx scripts/bench-solver.ts",
     "thumbs": "tsx scripts/thumbs.ts",
     "mechanisms": "tsx scripts/mechanisms.ts",
+    "what-moves": "tsx scripts/what-moves.ts",
+    "what-moves-audit": "tsx scripts/what-moves-audit.ts",
     "status": "tsx scripts/status-page.ts",
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",
