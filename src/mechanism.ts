@@ -409,7 +409,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   if (scenery.size) connections.push(...rideAlong(parts, cyls, connections, [...scenery], new Set(rails.map((r) => r.part))));
 
   // 3. Bodies, from every connection above.
-  const bodyOf = groupIntoBodies(parts.length, roles, connections, new Set(models.flat()));
+  const bodyOf = groupIntoBodies(parts.length, roles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]));
   // slidingOnAxles and restingParts read the bodies, and turn connections into slides, so they
   // come before the joints are found.
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));

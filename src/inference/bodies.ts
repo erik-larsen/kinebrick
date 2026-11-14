@@ -5,11 +5,19 @@ import { PlacedPart } from '../ldr.ts';
 import type { Body, Connection } from '../mechanism.ts';
 import { AXIS_TOLERANCE } from './shared.ts';
 
+// How far above a model's lowest part its frame's lowest part may be, in LDU: two bricks, as for a
+// second model standing on the ground beside the first (see secondModels).
+const ON_THE_GROUND = 48;
+
 // Step 6: parts that are rigidly connected (an axle in an axle hole, a tyre on a rim) or
 // attached by studs move as one body. The frame is the body with the most structure parts
 // (bricks, plates, beams), and is numbered 0. Returns the body index of each part.
-// `notFrame`: parts that can't be in the frame, being another model's (see secondModels).
-export function groupIntoBodies(count: number, roles: string[], connections: Connection[], notFrame: Set<number> = new Set()): number[] {
+// `notFrame`: parts that can't be in the frame, being another model's (see secondModels). Where
+// there are such parts, the frame is also one that stands on the ground (`heights`: each part's
+// height, as LDraw's y, which points down): a group whose lowest part is no more than two bricks
+// above the model's lowest part. Without the vehicle beside it, the 8245's robot's head, which
+// flips back on its axle, had more structure parts than the robot's body it turns on.
+export function groupIntoBodies(count: number, roles: string[], connections: Connection[], notFrame: Set<number> = new Set(), heights: number[] = []): number[] {
   // Union-find: each part points towards a representative part of its group.
   const leader = Array.from({ length: count }, (_, i) => i);
   const find = (i: number): number => {
@@ -52,6 +60,12 @@ export function groupIntoBodies(count: number, roles: string[], connections: Con
   const layout = roles.includes('rail');
   for (let i = 0; i < count; i++) {
     if (roles[i] === (layout ? 'rail' : 'structure') && !notFrame.has(i)) structureCount.set(find(i), (structureCount.get(find(i)) ?? 0) + 1);
+  }
+  if (notFrame.size && heights.length) {
+    const lowest = new Map<number, number>();
+    for (let i = 0; i < count; i++) if (!notFrame.has(i)) lowest.set(find(i), Math.max(lowest.get(find(i)) ?? -Infinity, heights[i]));
+    const ground = Math.max(...lowest.values());
+    for (const group of [...structureCount.keys()]) if (lowest.get(group)! < ground - ON_THE_GROUND) structureCount.delete(group);
   }
   let frame = -1;
   for (const [group, n] of structureCount) if (frame < 0 || n > structureCount.get(frame)!) frame = group;
