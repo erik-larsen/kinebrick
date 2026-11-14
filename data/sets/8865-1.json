@@ -192,15 +192,14 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "4bcfdf00",
     "date": "2026-11-14",
-    "seconds": 28,
+    "seconds": 32,
     "counts": {
-      "works": 2,
+      "works": 3,
       "not back": 2,
       "partly": 3,
-      "no": 5,
+      "no": 4,
       "skipped": 1
     },
     "loose": [],
@@ -261,7 +260,7 @@
             ]
           ]
         ],
-        "seconds": 6.1
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -322,7 +321,7 @@
         "strayed": [
           "p220 3326b"
         ],
-        "seconds": 6.7
+        "seconds": 5.9
       },
       {
         "result": "partly",
@@ -380,7 +379,7 @@
         ],
         "cause": "not-driven",
         "detail": "p400 3707",
-        "seconds": 2.2
+        "seconds": 2
       },
       {
         "result": "partly",
@@ -431,7 +430,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p176 4143",
-        "seconds": 7
+        "seconds": 5.9
       },
       {
         "result": "no",
@@ -490,7 +489,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 2.1
       },
       {
         "result": "no",
@@ -549,7 +548,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -606,7 +605,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 2
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -658,15 +657,15 @@
         "seconds": 0.2
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -695,26 +694,12 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true,
-          true
-        ],
+        "freed": 4,
         "movedBy": [
           [],
           []
         ],
-        "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 6.2
       },
       {
         "result": "partly",
@@ -769,7 +754,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 3708",
-        "seconds": 2.2
+        "seconds": 2.1
       }
     ]
   }

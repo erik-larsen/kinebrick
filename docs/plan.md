@@ -26,13 +26,13 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 
 | Result | Functions |
 |---|---|
-| Works | 612 |
+| Works | 614 |
 | Partly | 289 |
-| Doesn't work | 146 |
+| Doesn't work | 144 |
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
-In 40 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 75 more sets are one or two checked functions short.
+In 40 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 76 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
@@ -392,6 +392,8 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 8. **A steering wheel turns on its stud or half pin.** The steering wheel 30663 (and 16091, built on it) has a stud tube at its centre that was read as holding a stud fast, so the 42101's wheel was one body with its column and could not be turned. One correction clears that hold and leaves the round hole. 10 sets read differently, each with a steering wheel now a part of its own; no function steers with one. The 42101's function 5 and the 8281's function 4 now work, none is worse.
 9. **Three of the worker's pieces are in: 612 functions work where 607 did.** The part data of decision 2's steps (3 better: the 952's function 5, the 42108's functions 6 and 7), only friction pins let turn (0 better, 0 worse) and the steering wheel (2 better), each 0 worse. The 42094's function 3 works with its ring in the middle, so it is no question for Erik. Of the 8 pushed parts locked from the start: 4 are held at two places in the model file and are questions for Erik (the 42053's function 8, the 8081's function 5, the 8285's function 15, the 8063's function 11), 2 wait for springs (the 8865's functions 5 and 6), 1 was the steering wheel, and 1 (the 8865's function 10) waits for pins on demand to run for a pushed part with the frame held, which the worker builds. The 42066's nose wheel cannot steer because its twin tyres on one axle may not slip along their travel; that rule is the solver owner's and the question is with it.
 10. **A set file opens by address on the local server.** `?file=` with a path the browser does not keep is fetched beside the page, so a report can link any OMR set (`?file=omr/8081-1+Extreme+Cruiser.mpd`) and not only a packed one. It works only where the files are served, which is `npm run dev`.
+11. **The check lets friction pins turn for a pushed part that no grab can move: 614 functions work.** A hinged part held by friction (a seat back on hinge plates) has a joint that turns only by swinging the rest of the model round it, so no point of it moves, the push could not start, and pins on demand, which ran only for a control with no motion at all, was never tried. It now runs there too. It can act only where no grab point is found, so the gate was the 46 functions whose push stops before it starts, the two sets that changed and the quick check: the 8865's function 10 (the seat backs) and the 42077's function 7 (the rear body tilts up) now work, none is worse.
+12. **The 42099's front axle hangs on ball joints alone; the planetary hub's part data is next.** With the rack's slide kept, the 42099's functions 2 and 3 end 311 LDU out. The steering linkage is rightly rigid; each front upright with its hub 46490c01 is joined only by two towballs, and four parts beside the uprights read as loose, so the axle wanders as the car rolls. The worker looks at the hub's connection data first, on a branch of its own. The differential's gear data (batch 3) stays held: two of its three worse functions wait for the solver owner's answer on whether a motor gives last, and the 42109's function 3 has a friction pin in the same hole as an axle's end, which may be a fault of the file.
 
 
 ## First steps
