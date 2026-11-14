@@ -231,16 +231,7 @@
       "not checked": 1,
       "skipped": 2
     },
-    "loose": [
-      "p1126 32020",
-      "p1127 32019",
-      "p1128 32020",
-      "p1129 32019",
-      "p1130 32020",
-      "p1131 32019",
-      "p1132 32020",
-      "p1133 32019"
-    ],
+    "loose": [],
     "functions": [
       {
         "result": "works",
@@ -951,7 +942,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "skipped"
