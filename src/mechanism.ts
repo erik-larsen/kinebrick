@@ -61,6 +61,7 @@ export interface Connection {
   // them (see slideRange).
   extents?: { male: [number, number]; female: [number, number]; overlap: number };
   turns?: boolean; // a slide along which the parts may turn too (see slidingOnAxles)
+  springHeld?: boolean; // a slide that a spring holds at rest, as a shock absorber's (see Joint.springHeld)
 }
 
 export interface Body {
@@ -83,6 +84,11 @@ export interface Joint {
   range?: [number, number];
   sliding?: [number, number];
   turns?: boolean; // a slide joint along which bodyB may also turn about the axis, relative to bodyA
+  // A slide that a spring holds at rest, as a shock absorber's rod in its cylinder. Free to slide,
+  // but held where the question is the model at rest (see Kinematics.springRows): finding its
+  // steering, choosing how it parks and rolls, and in least motion's friction-pin tier. Until
+  // springs push (v2.0), nothing pushes it back.
+  springHeld?: boolean;
 }
 
 // A tyre's tread: the part of a tyre that can touch the ground.
