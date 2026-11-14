@@ -179,6 +179,10 @@ interface Fn {
   stays?: string[];
   first?: { control: string; by: number }[];
   together?: boolean; // the controls are worked as one, turning together (see turnTogether)
+  // The model lifted off the ground while the control is worked, as the viewer's "Lift off the
+  // ground" option has it (see Options.lifted in kinematics.ts): what the function's text says is
+  // done with the model in the hand (a differential worked with its drive held).
+  lifted?: boolean;
   skip?: string;
   model?: string; // its own model, for a set with several (the 858's four engines)
 }
@@ -239,8 +243,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   let sliders: Slider[] = [];
   let catches: Catch[] = [];
   let at: Vector3[] = [];
+  // Whether the function being checked has the model lifted off the ground (see Fn.lifted).
+  let lifted = false;
   const use = (now: { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics }) => {
     ({ parts, mech, kin } = now);
+    // The model lifted, or set down again: a solver made so, as the viewer's option makes one.
+    if (kin.options.lifted !== lifted) {
+      const scrub = kin.scrub;
+      kin = new Kinematics(mech, { lifted });
+      kin.scrub = scrub;
+    }
     sliders = findSliders(parts, mech, table, slides);
     catches = findCatches(parts, sliders);
     at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
@@ -457,6 +469,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   const checkOne = (fn: Fn, prior?: Checked): Checked => {
     const known = withoutChecking(fn);
     if (known) return known;
+    lifted = fn.lifted === true;
     // With --causes, only a function that didn't work is looked at, and nothing is dragged.
     if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
