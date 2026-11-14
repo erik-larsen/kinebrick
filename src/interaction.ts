@@ -536,7 +536,7 @@ export function setUpInteraction(s: InteractionSetup) {
 
   function toggleFreeze(body: number, clientX: number, clientY: number) {
     const name = s.mech.bodies[body].name;
-    if (body === 0 && s.kin.frameFixed()) {
+    if ((body === 0 && s.kin.frameFixed()) || s.kin.stillFrames.has(body)) {
       showMessage(`The ${name} already stays put: the model has no means of locomotion`, clientX, clientY);
       return;
     }
