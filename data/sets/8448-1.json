@@ -97,7 +97,11 @@
         "stays": [
           "p31 3706",
           "p100 3737"
-        ]
+        ],
+        "held": [
+          "p31 3706"
+        ],
+        "note": "the drive is held, as the function says (\"with the drive held\"): the propeller shaft p31, which it lists to stay and function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",

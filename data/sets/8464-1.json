@@ -78,7 +78,11 @@
         "stays": [
           "p31 3650a",
           "p427 2854"
-        ]
+        ],
+        "held": [
+          "p31 3650a"
+        ],
+        "note": "the drive is held, as the function says (\"with the drive held\"): the drive shaft's rear crown gear p31 (function 3's \"a 24-tooth crown gear on the drive shaft\") is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The front differential does the same for the front wheels.",
@@ -94,7 +98,11 @@
         "stays": [
           "p132 3650a",
           "p427 2854"
-        ]
+        ],
+        "held": [
+          "p132 3650a"
+        ],
+        "note": "the drive is held, as for the rear differential (\"does the same\", that is \"with the drive held\"): the drive shaft's front crown gear p132 is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "Pushing the pump's black knob in and out 30-35 times fills the blue air tank.",

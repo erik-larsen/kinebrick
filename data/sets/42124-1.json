@@ -53,7 +53,10 @@
         "moves": [
           "p974 56908 against p464 65414c01"
         ],
-        "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way."
+        "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way.; the motor's gear is held, as the function says (\"when the motor's gear is held\"): the 36 tooth gear p889 on the motor's shaft, which function 2's note names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p889 32498"
+        ]
       },
       {
         "does": "Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber.",

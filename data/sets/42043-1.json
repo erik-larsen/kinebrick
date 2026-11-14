@@ -281,7 +281,10 @@
         "moves": [
           "p2036 62821"
         ],
-        "note": "with the drive shaft held, turning one third-axle wheel turns the other the opposite way"
+        "note": "with the drive shaft held, turning one third-axle wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held\"): its universal joint p2029, which function 10 names on the drive shaft, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p2029 62520"
+        ]
       },
       {
         "does": "All four axles have suspension: each axle swings on its shock absorbers, hard springs on the two front axles and soft ones on the two rear axles, and the rear axle pair twists on a turntable between them.",

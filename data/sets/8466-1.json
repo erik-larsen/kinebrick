@@ -97,7 +97,11 @@
         "stays": [
           "p802 6573",
           "p1049 22969"
-        ]
+        ],
+        "held": [
+          "p802 6573"
+        ],
+        "note": "the drive shaft is held, as the function says (\"with the drive shaft held\"): p802, which it lists to stay and function 3 names in the drive, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The rear differential does the same for the rear wheels.",
@@ -130,7 +134,12 @@
         "stays": [
           "p655 22969",
           "p634 6573"
-        ]
+        ],
+        "held": [
+          "p655 22969",
+          "p676 22969"
+        ],
+        "note": "the front wheels are held, as the function says (\"with the front wheels held\"): both front wheels, p655 and p676, are frozen while the rear is turned, as a user freezes them in the viewer"
       },
       {
         "does": "Each wheel has independent suspension: its hub rides on an upper and a lower suspension arm, with a shock absorber from the lower arm up to the frame, so each wheel moves up and down on its own; pressing the body down lowers it between the wheels, which tilt in.",

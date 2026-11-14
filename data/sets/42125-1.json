@@ -58,7 +58,10 @@
         "moves": [
           "p3025 44771 against p15 62821"
         ],
-        "note": "With the crankshaft held, turning one rear wheel turns the other backwards."
+        "note": "With the crankshaft held, turning one rear wheel turns the other backwards.; the engine is held, as the function says (\"holding the engine\") and its note (\"With the crankshaft held\"): the crankshaft p165, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p165 2853"
+        ]
       },
       {
         "does": "Each front wheel rides on its own pair of wishbones (independent suspension), sprung by a shock absorber.",

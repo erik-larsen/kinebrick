@@ -59,7 +59,11 @@
         "stays": [
           "p411 2851 against p0 32278"
         ],
-        "note": "through the differential: turning one rear wheel with the other held turns the engine at half speed; the pistons slide in fixed cylinders"
+        "note": "through the differential: turning one rear wheel with the other held turns the engine at half speed; the pistons slide in fixed cylinders; each rear wheel is turned with the other held, as the note says (\"turning one rear wheel with the other held turns the engine at half speed\"): each control's working freezes the other rear wheel's hub, as a user freezes it in the viewer",
+        "held": {
+          "p350 92909": ["p358 92909"],
+          "p358 92909": ["p350 92909"]
+        }
       },
       {
         "does": "The black knob on the side behind the cockpit, with the yellow selector lever above it, works two things: with the lever one way, the knob tilts the rear wing's upper flap (a small linear actuator behind the engine pushes it); with the lever the other way, it lifts the whole engine cover, raised by two small linear actuators beside the engine.",
