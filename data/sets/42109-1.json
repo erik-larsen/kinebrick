@@ -89,16 +89,29 @@
         ],
         "source": "book: pages 114-115",
         "note": "not a mechanism"
+      },
+      {
+        "does": "The bonnet lifts by hand.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
+        "source": "book: page 115",
+        "control": "p894 64391",
+        "moves": [
+          "p893 64683",
+          "p890 32524"
+        ],
+        "note": "Signed by Erik, 2026-11-14 (the function, from the booklet). The parts are Kinebrick's choice from the model: the bonnet is bonnet.ldr, its panel p894 the control. In the reading it is part of the frame: the side panels' pins p749 and p761 (6558) sit in the bonnet's pins with holes p895 and p896 (15100) and are read as rigid, not as its hinge"
       }
     ]
   },
   "generated": {
-    "commit": "6ed4bb79",
+    "commit": "8aee9263",
     "date": "2026-11-14",
-    "seconds": 5,
+    "seconds": 3,
     "counts": {
       "partly": 3,
-      "works": 1,
+      "works": 2,
       "not checked": 1
     },
     "loose": [
@@ -162,7 +175,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -209,7 +222,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 1.4
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -282,7 +295,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.7
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -337,11 +350,46 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 1.5
+        "seconds": 0.8
       },
       {
         "result": "not checked",
         "seconds": 0
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p893 64683": [
+              1,
+              28.3
+            ],
+            "p890 32524": [
+              1,
+              82.4
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "freed": 2,
+        "seconds": 0.5
       }
     ]
   }

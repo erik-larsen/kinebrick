@@ -140,13 +140,14 @@
         "note": "the function pages show no winch; the submarine seems to be hung on the hook by hand"
       },
       {
-        "does": "The hatch on the foredeck, in front of the bridge, lifts open.",
+        "does": "The hatch on the foredeck, in front of the bridge, sits on two upright pins and lifts off; it has no hinge.",
         "mechanisms": [
-          "hinge: hatch"
+          "removable: hatch"
         ],
-        "source": "inferred: the hatch submodel sits on its own pins in the model; the book's function pages don't show it",
+        "source": "book: pages 186 to 187 (steps 241 and 242: the hatch fixed on two upright pins); not on the function pages 202 to 203",
         "control": "p1059 15458",
-        "note": "unsure whether the hatch is meant to open"
+        "skip": "not a function of the set: the hatch is fixed on two upright pins and only lifts off",
+        "note": "Signed by Erik, 2026-11-14: the hatch is fixed on two pins, not hinged"
       }
     ],
     "questions": [
@@ -156,13 +157,13 @@
     ]
   },
   "generated": {
-    "commit": "7b64cee7",
-    "uncommitted": true,
+    "commit": "8aee9263",
     "date": "2026-11-14",
-    "seconds": 89,
+    "seconds": 40,
     "counts": {
       "partly": 6,
-      "works": 3
+      "works": 2,
+      "skipped": 1
     },
     "loose": [
       "p1139 32073",
@@ -431,7 +432,7 @@
         ],
         "cause": "not-driven",
         "detail": "p214 4716",
-        "seconds": 5.6
+        "seconds": 3.3
       },
       {
         "result": "partly",
@@ -488,7 +489,7 @@
         ],
         "cause": "not-driven",
         "detail": "p224 99010",
-        "seconds": 5.6
+        "seconds": 3.4
       },
       {
         "result": "partly",
@@ -550,7 +551,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 11946",
-        "seconds": 5.4
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -642,7 +643,7 @@
           [],
           []
         ],
-        "seconds": 31.8
+        "seconds": 16.5
       },
       {
         "result": "partly",
@@ -689,7 +690,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1298 10928",
-        "seconds": 6.5
+        "seconds": 3.1
       },
       {
         "result": "partly",
@@ -740,7 +741,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1171 32270",
-        "seconds": 7.1
+        "seconds": 3.1
       },
       {
         "result": "partly",
@@ -795,7 +796,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1186 32270",
-        "seconds": 6.9
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -820,33 +821,11 @@
             ]
           ]
         ],
-        "seconds": 6.5
+        "seconds": 2.9
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "freed": 2,
-        "seconds": 11.9
+        "result": "skipped",
+        "seconds": 0
       }
     ]
   }

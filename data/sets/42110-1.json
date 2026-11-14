@@ -82,18 +82,18 @@
         "note": "the engine is held, as the function says (\"with the engine held\"): p242, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
-        "does": "The four-speed sequential gearbox at the back: tipping the + / - lever between the front seats turns a rod running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
+        "does": "The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
         "mechanisms": [
           "sequential-gearbox: 4 speeds"
         ],
-        "source": "book page 490 (+ / - picture and the 4-speed sequential gearbox labelled in the drawing); the linkage is inferred from the model",
+        "source": "book page 490 (the + / - knob and the 4-speed sequential gearbox labelled in the drawing); the linkage is inferred from the model",
         "control": "p385 3706",
         "moves": [
           "p723 32072",
           "p715 32072",
           "p578 42110 - 35188"
         ],
-        "note": "Unsure which part is the lever's handle; p385 is the rod it turns. The rod lies along the car, so the lever tips sideways."
+        "note": "Signed by Erik, 2026-11-14: the + / - control is a round knob rocked left and right on the rod p385, not a lever"
       },
       {
         "does": "The D-N-R lever in the console slides a driving ring in the gearbox in front of the console, choosing forward, neutral or reverse.",
@@ -187,12 +187,13 @@
         "control": "p2475 3710"
       },
       {
-        "does": "The roof, with its rack, lifts off.",
+        "does": "The roof rack, with its roof box, side case and ladder, lifts off; the white roof stays.",
         "mechanisms": [
-          "removable: roof"
+          "removable: roof rack"
         ],
-        "source": "book page 491 (right: arrow lifting it off)",
-        "skip": "taken off by hand, not a mechanism"
+        "source": "book page 491 (right: arrow lifting the rack off)",
+        "skip": "taken off by hand, not a mechanism",
+        "note": "Signed by Erik, 2026-11-14: only the roof rack lifts off, and the roof stays"
       }
     ],
     "questions": [
@@ -202,9 +203,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "8aee9263",
     "date": "2026-11-14",
-    "seconds": 1214,
+    "seconds": 1480,
     "counts": {
       "works": 12,
       "partly": 1,
@@ -287,7 +288,7 @@
             ]
           ]
         ],
-        "seconds": 130.1
+        "seconds": 154.3
       },
       {
         "result": "works",
@@ -317,7 +318,7 @@
             ]
           ]
         ],
-        "seconds": 151.1
+        "seconds": 164.1
       },
       {
         "result": "partly",
@@ -361,7 +362,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 54.2
+        "seconds": 54.6
       },
       {
         "result": "works",
@@ -399,7 +400,7 @@
             ]
           ]
         ],
-        "seconds": 134.3
+        "seconds": 151.6
       },
       {
         "result": "works",
@@ -443,7 +444,7 @@
             ]
           ]
         ],
-        "seconds": 18
+        "seconds": 16.9
       },
       {
         "result": "works",
@@ -473,7 +474,7 @@
             ]
           ]
         ],
-        "seconds": 19.6
+        "seconds": 17.8
       },
       {
         "result": "works",
@@ -503,7 +504,7 @@
             ]
           ]
         ],
-        "seconds": 18.2
+        "seconds": 17.4
       },
       {
         "result": "works",
@@ -533,7 +534,7 @@
             ]
           ]
         ],
-        "seconds": 18.3
+        "seconds": 17
       },
       {
         "result": "skipped"
@@ -589,7 +590,7 @@
           [],
           []
         ],
-        "seconds": 522.3
+        "seconds": 729
       },
       {
         "result": "works",
@@ -614,7 +615,7 @@
             ]
           ]
         ],
-        "seconds": 18.5
+        "seconds": 17.4
       },
       {
         "result": "works",
@@ -647,7 +648,7 @@
         "pushed": [
           true
         ],
-        "seconds": 13
+        "seconds": 11
       },
       {
         "result": "works",
@@ -673,7 +674,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 39.4
+        "seconds": 39.8
       },
       {
         "result": "works",
@@ -699,7 +700,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 36.7
+        "seconds": 45.1
       },
       {
         "result": "skipped"

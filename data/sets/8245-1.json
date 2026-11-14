@@ -17,8 +17,8 @@
         "mechanisms": [
           "scissor-linkage: punch"
         ],
-        "source": "book: scissor arm steps 1-5 (pages 9-10), buggy steps 15-18 (pages 10-11), page 28 panel 2 (a hand works the knob and the scissor shoots out); inferred: that the knob from step 18 sits on the lever's axle pin, p4",
-        "control": "p4 3749",
+        "source": "book: scissor arm steps 1-5 (pages 9-10), buggy steps 15-18 (pages 10-11; step 18 on page 11 adds the knob), page 28 panel 2 (a hand works the knob and the scissor shoots out)",
+        "control": "p76 3482",
         "moves": [
           "p69 32133",
           "p71 32134",
@@ -27,7 +27,7 @@
         "stays": [
           "p23 3707"
         ],
-        "note": "the knob itself (a small wheel, 3482 with 3483, added in step 18) isn't in the model file; p4 is the axle pin it would go on, turning with the lever (p45 32017)"
+        "note": "Signed by Erik, 2026-11-14: the knob (a small wheel, 3482 with its tyre 3483) is in the file as p76 with p77, on the lever's axle pin p4, and is the control"
       },
       {
         "does": "The buggy rolls on three wheels with yellow hubs: two on one axle at the back and one at the front, held in a fork; there's no steering.",
@@ -144,9 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "6ed4bb79",
+    "commit": "8aee9263",
     "date": "2026-11-14",
-    "seconds": 19,
+    "seconds": 23,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -367,8 +367,8 @@
           ]
         ],
         "cause": "loose-part",
-        "detail": "p4 3749",
-        "seconds": 2.3
+        "detail": "p76 3482",
+        "seconds": 2.8
       },
       {
         "result": "partly",
@@ -430,7 +430,7 @@
         ],
         "cause": "loose-part",
         "detail": "p28 2994",
-        "seconds": 3.6
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -506,7 +506,7 @@
             "p180 3648a against p177 32009"
           ]
         ],
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "skipped",
@@ -557,7 +557,7 @@
           [],
           []
         ],
-        "seconds": 2.3
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -608,7 +608,7 @@
         "pushed": [
           true
         ],
-        "seconds": 6.6
+        "seconds": 8.1
       },
       {
         "result": "skipped",
@@ -656,7 +656,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 0.9
+        "seconds": 1.3
       },
       {
         "result": "skipped",

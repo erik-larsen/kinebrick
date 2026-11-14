@@ -27,32 +27,32 @@
         "note": "the motor (p654 99499) is the control; the axle named is its output. Unsure which parts make up the pump"
       },
       {
-        "does": "The black gear on the right of the cab turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom.",
+        "does": "The black gear on the machine's left, by the cab, turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom.",
         "mechanisms": [
           "pneumatic-cylinder: boom"
         ],
-        "source": "book: page 203 (left pair: switch on the motor, turn the valve; the boom moves up and down); which side's valve works the boom is inferred",
+        "source": "book: page 203 (left pair: switch on the motor, turn the valve; the boom moves up and down)",
         "control": "p1893 42080 - 18575",
         "moves": [
           "p1946 19466c01",
           "p1949 19466c01",
           "p1317 3703"
         ],
-        "note": "needs air from the pump, so only works with the motor running"
+        "note": "needs air from the pump, so only works with the motor running. Signed by Erik, 2026-11-14: the boom's gear is on the machine's left (p1893, at x +108)"
       },
       {
-        "does": "The black gear on the left of the cab turns the second pneumatic valve, which works the small cylinder in the harvester head, opening and closing its two spiked gripper arms.",
+        "does": "The black gear on the machine's right, by the cab, turns the second pneumatic valve, which works the small cylinder in the harvester head, opening and closing its two spiked gripper arms.",
         "mechanisms": [
           "pneumatic-cylinder: gripper arms"
         ],
-        "source": "book: page 203 (right pair: the gripper arms open and close), page 201 (bottom right photo); which side's valve works the gripper is inferred",
+        "source": "book: page 203 (right pair: the gripper arms open and close), page 201 (bottom right photo)",
         "control": "p1892 42080 - 18575",
         "moves": [
           "p1421 2947b",
           "p1522 42080 - 27266",
           "p1529 42080 - 27266"
         ],
-        "note": "needs air from the pump, so only works with the motor running"
+        "note": "needs air from the pump, so only works with the motor running. Signed by Erik, 2026-11-14: the gripper's gear is on the machine's right (p1892, at x -108)"
       },
       {
         "does": "The cab and boom slew round on a turntable on the front unit, about 270 degrees.",
@@ -129,9 +129,9 @@
     ]
   },
   "generated": {
-    "commit": "6ed4bb79",
+    "commit": "8aee9263",
     "date": "2026-11-14",
-    "seconds": 231,
+    "seconds": 160,
     "counts": {
       "works": 5,
       "not back": 2,
@@ -407,7 +407,7 @@
         "pushed": [
           true
         ],
-        "seconds": 117.5
+        "seconds": 78.9
       },
       {
         "result": "no",
@@ -432,7 +432,7 @@
           "p1893 42080 - 18575 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -487,7 +487,7 @@
             ]
           ]
         ],
-        "seconds": 7.8
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -528,7 +528,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 21.5
+        "seconds": 13
       },
       {
         "result": "no",
@@ -576,7 +576,7 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 1.2
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -601,7 +601,7 @@
             ]
           ]
         ],
-        "seconds": 9.8
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -741,7 +741,7 @@
           [],
           []
         ],
-        "seconds": 72.2
+        "seconds": 55.6
       }
     ]
   }

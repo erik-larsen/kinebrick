@@ -129,12 +129,14 @@
         ]
       },
       {
-        "does": "The headlights (two Power Functions LEDs) light up when the battery box is switched on.",
+        "does": "The headlights (two Power Functions LEDs) light up when the battery box's orange slide switch, on its side under the cab, is switched on.",
         "mechanisms": [
           "lights"
         ],
-        "source": "book 4: function page 64 (lights inset); book 3: step 90",
-        "note": "electrical only"
+        "source": "book 4: function page 64 (lights inset, the switch); book 3: step 90",
+        "note": "Signed by Erik, 2026-11-14: the control is the battery box's slide switch",
+        "control": "p604 58119",
+        "skip": "electrical only: the switch, part of the battery box (58119), lights the LEDs, and nothing moves"
       }
     ],
     "questions": [
@@ -144,15 +146,14 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "8aee9263",
     "date": "2026-11-14",
-    "seconds": 43,
+    "seconds": 41,
     "counts": {
       "works": 3,
       "partly": 1,
       "no": 2,
-      "skipped": 1,
-      "not checked": 1
+      "skipped": 2
     },
     "loose": [
       "p308 32270",
@@ -288,7 +289,7 @@
             "p1545 44772"
           ]
         ],
-        "seconds": 15.6
+        "seconds": 12.5
       },
       {
         "result": "partly",
@@ -348,7 +349,7 @@
         ],
         "cause": "not-driven",
         "detail": "p299 87761",
-        "seconds": 5.9
+        "seconds": 5.4
       },
       {
         "result": "no",
@@ -379,7 +380,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -423,7 +424,7 @@
             ]
           ]
         ],
-        "seconds": 5.8
+        "seconds": 5.2
       },
       {
         "result": "works",
@@ -489,7 +490,7 @@
             "p1216 11954"
           ]
         ],
-        "seconds": 13.3
+        "seconds": 14.7
       },
       {
         "result": "no",
@@ -533,10 +534,10 @@
         ],
         "cause": "part-fixed",
         "detail": "p50 32524",
-        "seconds": 0.8
+        "seconds": 1.2
       },
       {
-        "result": "not checked",
+        "result": "skipped",
         "seconds": 0
       }
     ]
