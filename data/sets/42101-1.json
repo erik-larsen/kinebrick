@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "no": 1,
       "works": 3,
@@ -182,7 +182,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -243,7 +243,7 @@
         "strayed": [
           "p79 60485"
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -326,7 +326,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "works",

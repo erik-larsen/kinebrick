@@ -117,9 +117,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 4,
+    "seconds": 7,
     "counts": {
       "works": 2,
       "not back": 2,
@@ -178,7 +178,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.9
       },
       {
         "result": "partly",
@@ -235,7 +235,7 @@
         ],
         "cause": "not-driven",
         "detail": "p889 32498",
-        "seconds": 0.9
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -268,9 +268,12 @@
             ]
           ]
         ],
+        "why": [
+          "p974 56908 against p464 65414c01 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -347,7 +350,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -423,7 +426,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 1.4
       }
     ]
   }

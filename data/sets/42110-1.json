@@ -198,10 +198,9 @@
     ]
   },
   "generated": {
-    "commit": "cbfa4bc8",
-    "uncommitted": true,
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 1134,
+    "seconds": 1545,
     "counts": {
       "works": 11,
       "partly": 2,
@@ -284,7 +283,7 @@
             ]
           ]
         ],
-        "seconds": 147.1
+        "seconds": 189.9
       },
       {
         "result": "works",
@@ -314,7 +313,7 @@
             ]
           ]
         ],
-        "seconds": 146.4
+        "seconds": 189.6
       },
       {
         "result": "partly",
@@ -361,7 +360,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 123.8
+        "seconds": 159.2
       },
       {
         "result": "partly",
@@ -407,7 +406,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p242 3708",
-        "seconds": 126.2
+        "seconds": 164.3
       },
       {
         "result": "works",
@@ -451,7 +450,7 @@
             ]
           ]
         ],
-        "seconds": 15
+        "seconds": 19.7
       },
       {
         "result": "works",
@@ -481,7 +480,7 @@
             ]
           ]
         ],
-        "seconds": 15.3
+        "seconds": 20.1
       },
       {
         "result": "works",
@@ -511,7 +510,7 @@
             ]
           ]
         ],
-        "seconds": 15
+        "seconds": 20.2
       },
       {
         "result": "works",
@@ -541,7 +540,7 @@
             ]
           ]
         ],
-        "seconds": 14.8
+        "seconds": 19.7
       },
       {
         "result": "skipped"
@@ -569,14 +568,14 @@
               0.06
             ],
             [
-              0.75,
-              0.18
+              0.73,
+              0.17
             ]
           ],
           [
             [
-              0.75,
-              0.18
+              0.73,
+              0.17
             ],
             [
               0.23,
@@ -585,8 +584,8 @@
           ]
         ],
         "strayed": [
-          "p1869 32062",
-          "p1956 59443"
+          "p1857 59443",
+          "p1942 4519"
         ],
         "pushed": [
           true,
@@ -597,7 +596,7 @@
           [],
           []
         ],
-        "seconds": 401.5
+        "seconds": 586.5
       },
       {
         "result": "works",
@@ -622,40 +621,40 @@
             ]
           ]
         ],
-        "seconds": 15.3
+        "seconds": 20.1
       },
       {
         "result": "works",
         "turned": [
           [
-            1.55,
-            -1.55
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {
             "p1504 32065": [
-              0.00894,
-              40.1
+              0,
+              40
             ]
           }
         ],
         "back": [
           [
             [
-              0.26,
-              0.34
+              0,
+              0
             ],
             [
-              0.28,
-              0.34
+              0,
+              0
             ]
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 6.2
+        "seconds": 12.9
       },
       {
         "result": "works",
@@ -681,7 +680,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 35.6
+        "seconds": 46.6
       },
       {
         "result": "works",
@@ -707,7 +706,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 35.5
+        "seconds": 47.2
       },
       {
         "result": "skipped"

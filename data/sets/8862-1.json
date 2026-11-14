@@ -189,9 +189,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 45,
+    "seconds": 67,
     "counts": {
       "works": 10,
       "partly": 1,
@@ -235,7 +235,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -290,7 +290,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 3
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -328,7 +328,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 4.4
       },
       {
         "result": "works",
@@ -366,7 +366,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -410,7 +410,7 @@
           [],
           []
         ],
-        "seconds": 3
+        "seconds": 4.4
       },
       {
         "result": "works",
@@ -453,7 +453,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -483,7 +483,7 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 2
       },
       {
         "result": "works",
@@ -520,7 +520,7 @@
         "pushed": [
           true
         ],
-        "seconds": 16.8
+        "seconds": 27.3
       },
       {
         "result": "works",
@@ -557,7 +557,7 @@
         "pushed": [
           true
         ],
-        "seconds": 2.8
+        "seconds": 3.4
       },
       {
         "result": "skipped",
@@ -586,7 +586,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -662,7 +662,7 @@
           [],
           []
         ],
-        "seconds": 6.8
+        "seconds": 8.8
       }
     ]
   }

@@ -136,9 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 22,
+    "seconds": 46,
     "counts": {
       "works": 5,
       "not back": 3,
@@ -204,7 +204,7 @@
         "pushed": [
           true
         ],
-        "seconds": 10.8
+        "seconds": 22.3
       },
       {
         "result": "works",
@@ -238,7 +238,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -320,7 +320,7 @@
             "p856 6536 against p0 32009"
           ]
         ],
-        "seconds": 1.7
+        "seconds": 3.3
       },
       {
         "result": "partly",
@@ -396,7 +396,7 @@
         ],
         "cause": "not-driven",
         "detail": "p619 6536 against p238 6632",
-        "seconds": 1.2
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -430,7 +430,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -473,7 +473,7 @@
         "pushed": [
           true
         ],
-        "seconds": 6.7
+        "seconds": 14.7
       },
       {
         "result": "skipped",

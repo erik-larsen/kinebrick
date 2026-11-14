@@ -250,9 +250,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 132,
+    "seconds": 176,
     "counts": {
       "no": 5,
       "works": 5,
@@ -370,7 +370,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2332 32020",
-        "seconds": 3.6
+        "seconds": 3.3
       },
       {
         "result": "no",
@@ -432,7 +432,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2336 32020",
-        "seconds": 1.6
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -478,7 +478,7 @@
             ]
           ]
         ],
-        "seconds": 12.7
+        "seconds": 9.9
       },
       {
         "result": "works",
@@ -508,7 +508,7 @@
             ]
           ]
         ],
-        "seconds": 12.5
+        "seconds": 18.2
       },
       {
         "result": "works",
@@ -545,7 +545,7 @@
         "pushed": [
           true
         ],
-        "seconds": 44.5
+        "seconds": 53.1
       },
       {
         "result": "partly",
@@ -599,7 +599,7 @@
         ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 11.7
+        "seconds": 11.3
       },
       {
         "result": "partly",
@@ -646,7 +646,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 9.5
+        "seconds": 16
       },
       {
         "result": "skipped",
@@ -697,7 +697,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 21.1
+        "seconds": 42
       },
       {
         "result": "works",
@@ -735,7 +735,7 @@
             ]
           ]
         ],
-        "seconds": 10
+        "seconds": 15
       },
       {
         "result": "skipped",
@@ -788,7 +788,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.3
+        "seconds": 2
       },
       {
         "result": "no",
@@ -832,7 +832,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 0.5
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -891,7 +891,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 1.3
       }
     ]
   }

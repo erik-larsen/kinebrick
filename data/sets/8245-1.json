@@ -144,10 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "cbfa4bc8",
-    "uncommitted": true,
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 8,
+    "seconds": 27,
     "counts": {
       "partly": 2,
       "works": 5,
@@ -369,7 +368,7 @@
         ],
         "cause": "loose-part",
         "detail": "p4 3749",
-        "seconds": 1.1
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -429,7 +428,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -505,7 +504,7 @@
             "p180 3648a against p177 32009"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 2.7
       },
       {
         "result": "skipped",
@@ -556,7 +555,7 @@
           [],
           []
         ],
-        "seconds": 1
+        "seconds": 3.3
       },
       {
         "result": "works",
@@ -607,7 +606,7 @@
         "pushed": [
           true
         ],
-        "seconds": 2.1
+        "seconds": 9.6
       },
       {
         "result": "skipped",
@@ -655,7 +654,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 0.4
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -693,7 +692,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.8
       }
     ]
   }

@@ -70,9 +70,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "works": 2
@@ -136,7 +136,7 @@
         ],
         "cause": "not-driven",
         "detail": "p83 32068",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -242,7 +242,7 @@
             "p15 2851 against p10 2850a"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -318,7 +318,7 @@
           [],
           []
         ],
-        "seconds": 1.6
+        "seconds": 2.8
       }
     ]
   }

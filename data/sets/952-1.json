@@ -133,9 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
       "works": 7
     },
@@ -185,7 +185,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -273,7 +273,7 @@
             "p27 3650a"
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -335,7 +335,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -387,7 +387,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -465,7 +465,7 @@
             "p310 3649 against p256 3709b"
           ]
         ],
-        "seconds": 0.6
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -507,7 +507,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -551,7 +551,7 @@
           [],
           []
         ],
-        "seconds": 0.2
+        "seconds": 0.6
       }
     ]
   }

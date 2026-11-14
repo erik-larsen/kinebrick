@@ -136,9 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 29,
+    "seconds": 49,
     "counts": {
       "works": 2,
       "no": 1,
@@ -342,7 +342,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 4.6
       },
       {
         "result": "no",
@@ -397,7 +397,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p561 6539 against p558 3706",
-        "seconds": 0.7
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -481,7 +481,7 @@
           "p50 32039, worked first, went 0 of 0.5"
         ],
         "cause": "first-failed",
-        "seconds": 3
+        "seconds": 5.1
       },
       {
         "result": "partly",
@@ -539,10 +539,12 @@
           ]
         ],
         "why": [
+          "p669 6629 against p0 4519 is held by friction pins the control doesn't reach",
+          "p672 6629 against p0 4519 is held by friction pins the control doesn't reach",
           "p50 32039, worked first, went 0 of -0.5"
         ],
         "cause": "first-failed",
-        "seconds": 2.9
+        "seconds": 5
       },
       {
         "result": "works",
@@ -650,7 +652,7 @@
           [],
           []
         ],
-        "seconds": 19
+        "seconds": 31.1
       },
       {
         "result": "not checked",

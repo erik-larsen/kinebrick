@@ -90,12 +90,11 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 4,
+    "seconds": 8,
     "counts": {
       "works": 3,
-      "wrong amount": 1,
       "not back": 1,
       "not checked": 1
     },
@@ -148,11 +147,8 @@
         "expected": [
           {
             "p56 3706": 0.111,
-            "p60 3034": 1.24
+            "p60 3034": 1.11
           }
-        ],
-        "wrong": [
-          "p60 3034"
         ],
         "back": [
           [
@@ -166,7 +162,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 4.3
       },
       {
         "result": "works",
@@ -240,7 +236,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -316,7 +312,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 2.3
       },
       {
         "result": "not checked",

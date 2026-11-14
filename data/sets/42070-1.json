@@ -249,9 +249,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 277,
+    "seconds": 381,
     "counts": {
       "partly": 7,
       "works": 2,
@@ -374,7 +374,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 19.5
+        "seconds": 27.2
       },
       {
         "result": "partly",
@@ -419,7 +419,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 19.6
+        "seconds": 27.4
       },
       {
         "result": "partly",
@@ -487,7 +487,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 20
+        "seconds": 28
       },
       {
         "result": "works",
@@ -535,7 +535,7 @@
             "dead point"
           ]
         ],
-        "seconds": 40
+        "seconds": 58.6
       },
       {
         "result": "works",
@@ -583,7 +583,7 @@
             "dead point"
           ]
         ],
-        "seconds": 40.7
+        "seconds": 59.8
       },
       {
         "result": "partly",
@@ -657,7 +657,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 25.3
+        "seconds": 40.6
       },
       {
         "result": "partly",
@@ -736,7 +736,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 19.6
+        "seconds": 37.8
       },
       {
         "result": "partly",
@@ -805,7 +805,7 @@
         ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 19.9
+        "seconds": 34.9
       },
       {
         "result": "partly",
@@ -876,7 +876,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 26.3
+        "seconds": 49.4
       },
       {
         "result": "no",
@@ -931,10 +931,11 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 6.4
+        "seconds": 12.6
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
     ]
   }

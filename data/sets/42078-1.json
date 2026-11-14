@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 1526,
+    "seconds": 2055,
     "counts": {
       "works": 8,
       "partly": 3,
@@ -1398,7 +1398,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 73.5
+        "seconds": 94.1
       },
       {
         "result": "partly",
@@ -1464,7 +1464,7 @@
         ],
         "cause": "not-driven",
         "detail": "p405 4519",
-        "seconds": 119.8
+        "seconds": 150.9
       },
       {
         "result": "works",
@@ -1512,7 +1512,7 @@
           [],
           []
         ],
-        "seconds": 246.7
+        "seconds": 313.6
       },
       {
         "result": "works",
@@ -1559,7 +1559,7 @@
         "pushed": [
           true
         ],
-        "seconds": 144.5
+        "seconds": 188.1
       },
       {
         "result": "works",
@@ -1604,7 +1604,7 @@
           [],
           []
         ],
-        "seconds": 69
+        "seconds": 97.4
       },
       {
         "result": "no",
@@ -1636,7 +1636,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 11.9
+        "seconds": 16.5
       },
       {
         "result": "works",
@@ -1673,7 +1673,7 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 44.2
+        "seconds": 63.7
       },
       {
         "result": "works",
@@ -1710,7 +1710,7 @@
         "strayed": [
           "p1929 62520"
         ],
-        "seconds": 44.7
+        "seconds": 64.2
       },
       {
         "result": "partly",
@@ -1770,7 +1770,7 @@
         "freed": 2,
         "cause": "loose-part",
         "detail": "p2084 18575",
-        "seconds": 38.6
+        "seconds": 55.1
       },
       {
         "result": "partly",
@@ -1828,7 +1828,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2083 18575",
-        "seconds": 16.8
+        "seconds": 24.4
       },
       {
         "result": "works",
@@ -1891,7 +1891,7 @@
           [],
           []
         ],
-        "seconds": 523.9
+        "seconds": 735.9
       },
       {
         "result": "no",
@@ -1912,7 +1912,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2631 64782",
-        "seconds": 9.3
+        "seconds": 12.9
       },
       {
         "result": "works",
@@ -1992,7 +1992,7 @@
           [],
           []
         ],
-        "seconds": 85.9
+        "seconds": 109
       }
     ]
   }

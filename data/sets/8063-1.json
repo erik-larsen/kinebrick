@@ -211,9 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 332,
+    "seconds": 478,
     "counts": {
       "works": 8,
       "not back": 3,
@@ -301,7 +301,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 5.3
       },
       {
         "result": "works",
@@ -331,7 +331,7 @@
             ]
           ]
         ],
-        "seconds": 4.3
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -459,7 +459,7 @@
             "p259 2852"
           ]
         ],
-        "seconds": 68.2
+        "seconds": 97.8
       },
       {
         "result": "works",
@@ -503,7 +503,7 @@
           [],
           []
         ],
-        "seconds": 7.6
+        "seconds": 10.7
       },
       {
         "result": "works",
@@ -537,7 +537,7 @@
             ]
           ]
         ],
-        "seconds": 4.1
+        "seconds": 5.7
       },
       {
         "result": "works",
@@ -619,7 +619,7 @@
             "p65 3706"
           ]
         ],
-        "seconds": 70.3
+        "seconds": 98.7
       },
       {
         "result": "partly",
@@ -684,9 +684,13 @@
             ]
           ]
         ],
+        "why": [
+          "p13 32009 is held by friction pins the control doesn't reach",
+          "p184 32009 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 10.2
+        "seconds": 14.6
       },
       {
         "result": "works",
@@ -800,7 +804,7 @@
             "p1004 64782"
           ]
         ],
-        "seconds": 16.4
+        "seconds": 22.6
       },
       {
         "result": "not checked"
@@ -883,7 +887,7 @@
           [],
           []
         ],
-        "seconds": 140
+        "seconds": 204.8
       },
       {
         "result": "no",
@@ -942,7 +946,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 1.3
       },
       {
         "result": "skipped"

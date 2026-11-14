@@ -126,9 +126,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 251,
+    "seconds": 247,
     "counts": {
       "partly": 1,
       "works": 5,
@@ -264,7 +264,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 11.5
+        "seconds": 6.9
       },
       {
         "result": "works",
@@ -358,7 +358,7 @@
             "p181 2851 against p150 2850b"
           ]
         ],
-        "seconds": 55
+        "seconds": 52.3
       },
       {
         "result": "works",
@@ -388,7 +388,7 @@
             ]
           ]
         ],
-        "seconds": 25.6
+        "seconds": 26.8
       },
       {
         "result": "no",
@@ -465,7 +465,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -513,7 +513,7 @@
           [],
           []
         ],
-        "seconds": 47.9
+        "seconds": 54.5
       },
       {
         "result": "works",
@@ -561,7 +561,7 @@
           [],
           []
         ],
-        "seconds": 46.3
+        "seconds": 43.8
       },
       {
         "result": "works",
@@ -605,7 +605,7 @@
           [],
           []
         ],
-        "seconds": 61.9
+        "seconds": 60.9
       }
     ]
   }

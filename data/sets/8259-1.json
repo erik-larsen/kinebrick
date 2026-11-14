@@ -62,9 +62,9 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -149,7 +149,7 @@
         ],
         "cause": "too-little",
         "detail": "p56 4716 against p0 32523",
-        "seconds": 2.4
+        "seconds": 3.9
       },
       {
         "result": "works",

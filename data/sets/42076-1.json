@@ -157,10 +157,9 @@
     ]
   },
   "generated": {
-    "commit": "cbfa4bc8",
-    "uncommitted": true,
+    "commit": "0836d1dc",
     "date": "2026-11-14",
-    "seconds": 27,
+    "seconds": 53,
     "counts": {
       "works": 3,
       "partly": 3,
@@ -566,7 +565,7 @@
             "p647 15790"
           ]
         ],
-        "seconds": 4.1
+        "seconds": 8
       },
       {
         "result": "partly",
@@ -622,7 +621,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 2
       },
       {
         "result": "partly",
@@ -707,7 +706,7 @@
         ],
         "cause": "not-driven",
         "detail": "p544 64782",
-        "seconds": 4.1
+        "seconds": 7.9
       },
       {
         "result": "no",
@@ -757,7 +756,7 @@
         ],
         "cause": "loose-part",
         "detail": "p700 32270",
-        "seconds": 1.1
+        "seconds": 2.2
       },
       {
         "result": "no",
@@ -782,7 +781,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 14720",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -832,7 +831,7 @@
         ],
         "cause": "loose-part",
         "detail": "p935 32270",
-        "seconds": 0.5
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -891,7 +890,7 @@
         ],
         "cause": "loose-part",
         "detail": "p985 55982",
-        "seconds": 4.2
+        "seconds": 7.8
       },
       {
         "result": "works",
@@ -964,54 +963,54 @@
         "movedBy": [
           [],
           [],
+          [],
+          []
+        ],
+        "seconds": 14.9
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {},
+          {}
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "movedBy": [
           [],
           []
         ],
         "seconds": 7.7
-      },
-      {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ],
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {},
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "movedBy": [
-          [],
-          []
-        ],
-        "seconds": 3.6
       }
     ]
   }
