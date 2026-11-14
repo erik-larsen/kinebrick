@@ -87,7 +87,7 @@
     }
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5dac39a9",
     "date": "2026-11-14",
     "seconds": 4,
     "counts": {
@@ -245,7 +245,7 @@
             "p100 3652 against p0 3702"
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -289,7 +289,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.6
       },
       {
         "result": "not checked",

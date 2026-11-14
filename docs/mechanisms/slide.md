@@ -4,7 +4,7 @@ A part slides by hand, or under its own weight. (Simple motions.)
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The four outriggers slide out on tiles and stand on their feet.
 
-Used in 9 of the 186 surveyed sets, by 10 functions. Kinebrick: 1 works, 3 partly, 4 no, 1 skipped, 1 not checked.
+Used in 9 of the 186 surveyed sets, by 10 functions. Kinebrick: 2 works, 3 partly, 3 no, 1 skipped, 1 not checked.
 
 ## By decade
 
@@ -34,7 +34,7 @@ Each detail by the set it first appears in.
 
 **1978, [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane)**
 
-- *outriggers:* The four outriggers slide out on tiles and stand on their feet. (no)
+- *outriggers:* The four outriggers slide out on tiles and stand on their feet. (works)
 
 **1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1)**
 

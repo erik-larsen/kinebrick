@@ -100,7 +100,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 3 works, 3 partly, 1 no |
 | [Multi-axle steering](multi-axle-steering.md) | 12 | 1990 |  |  | 2 | 1 | 7 | 2 | 10 works, 2 partly, 2 no |
 | [Steering mode selector](steering-mode-selector.md) | 1 | 2016 |  |  |  |  | 1 |  | 1 works |
-| [Fork steering](fork-steering.md) | 8 | 1991 |  |  | 5 |  | 2 | 1 | 2 works, 4 partly, 2 no |
+| [Fork steering](fork-steering.md) | 8 | 1991 |  |  | 5 |  | 2 | 1 | 3 works, 4 partly, 1 no |
 | [Skid steering](skid-steering.md) | 5 | 2007 |  |  |  | 1 | 3 | 1 | 3 works, 1 partly, 1 not checked |
 | [Rudder](rudder.md) | 3 | 2017 |  |  |  |  | 2 | 1 | 1 works, 2 partly |
 
@@ -124,7 +124,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 44 works, 31 partly, 2 no, 1 skipped |
+| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 45 works, 31 partly, 1 no, 1 skipped |
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 partly |
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 3 works, 2 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 1 works, 4 partly, 1 no |
@@ -202,7 +202,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 136 works, 14 partly, 2 skipped, 2 not checked |
 | [Hinge](hinge.md) | 76 | 1978 | 2 | 1 | 10 | 11 | 41 | 11 | 73 works, 18 partly, 31 no, 2 skipped, 5 not checked |
-| [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 1 works, 3 partly, 4 no, 1 skipped, 1 not checked |
+| [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 2 works, 3 partly, 3 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 7 works, 2 partly, 1 no, 1 skipped |
 | [Hangs free](hangs-free.md) | 18 | 1978 | 1 | 1 | 2 | 4 | 10 |  | 5 works, 1 partly, 6 skipped, 6 not checked |
 
