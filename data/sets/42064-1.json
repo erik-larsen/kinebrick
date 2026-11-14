@@ -161,8 +161,8 @@
     "date": "2026-11-14",
     "seconds": 55,
     "counts": {
-      "partly": 4,
-      "works": 5
+      "partly": 7,
+      "works": 2
     },
     "loose": [
       "p1059 15458",
@@ -703,7 +703,7 @@
         "seconds": 4.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -749,10 +749,12 @@
             ]
           ]
         ],
-        "seconds": 4
+        "cause": "loose-part",
+        "detail": "p1171 32270",
+        "seconds": 4.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -802,7 +804,9 @@
             ]
           ]
         ],
-        "seconds": 4.1
+        "cause": "loose-part",
+        "detail": "p1186 32270",
+        "seconds": 3.8
       },
       {
         "result": "works",
@@ -830,7 +834,7 @@
         "seconds": 4.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -852,6 +856,8 @@
             ]
           ]
         ],
+        "cause": "loose-part",
+        "detail": "p1059 15458",
         "seconds": 4.1
       }
     ]

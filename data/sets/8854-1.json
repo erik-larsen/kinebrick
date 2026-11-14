@@ -611,9 +611,9 @@
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p692 2793 against p533 3709b",
-        "seconds": 2.6
+        "cause": "loose-part",
+        "detail": "p903 2428",
+        "seconds": 5
       },
       {
         "result": "skipped",

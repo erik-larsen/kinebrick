@@ -137,9 +137,8 @@
     "seconds": 4,
     "counts": {
       "no": 2,
-      "works": 5,
-      "partly": 1,
-      "not back": 1
+      "works": 3,
+      "partly": 3
     },
     "loose": [
       "p192 3837",
@@ -485,7 +484,7 @@
         "seconds": 0.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -520,7 +519,9 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "cause": "loose-part",
+        "detail": "p270 32270",
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -573,7 +574,7 @@
         "seconds": 0.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -630,7 +631,9 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "cause": "loose-part",
+        "detail": "p308 94925",
+        "seconds": 0.9
       },
       {
         "result": "no",

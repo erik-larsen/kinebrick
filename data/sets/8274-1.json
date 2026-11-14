@@ -152,9 +152,8 @@
     "date": "2026-11-14",
     "seconds": 21,
     "counts": {
-      "works": 3,
-      "not back": 4,
-      "partly": 3,
+      "works": 2,
+      "partly": 4,
       "not checked": 1
     },
     "loose": [
@@ -405,7 +404,7 @@
         "seconds": 2.5
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             0.53,
@@ -466,7 +465,9 @@
           ]
         ],
         "freed": 4,
-        "seconds": 5
+        "cause": "loose-part",
+        "detail": "p1045 3708",
+        "seconds": 6
       },
       {
         "result": "partly",

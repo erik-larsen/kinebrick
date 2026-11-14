@@ -145,9 +145,9 @@
     "date": "2026-11-14",
     "seconds": 52,
     "counts": {
-      "works": 7,
-      "not back": 1,
-      "skipped": 1
+      "works": 6,
+      "skipped": 1,
+      "partly": 1
     },
     "loose": [
       "p105 30395",
@@ -324,7 +324,7 @@
         "seconds": 9.6
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -367,7 +367,9 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "cause": "loose-part",
+        "detail": "p926 26603",
+        "seconds": 3.6
       },
       {
         "result": "works",

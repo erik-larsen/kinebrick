@@ -71,8 +71,9 @@
     "date": "2026-11-14",
     "seconds": 0,
     "counts": {
-      "works": 2,
-      "no": 1
+      "works": 1,
+      "no": 1,
+      "partly": 1
     },
     "loose": [
       "p58 30285",
@@ -86,7 +87,7 @@
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -150,7 +151,9 @@
             ]
           ]
         ],
-        "seconds": 0
+        "cause": "loose-part",
+        "detail": "p58 30285",
+        "seconds": 0.1
       },
       {
         "result": "works",

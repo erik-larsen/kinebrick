@@ -160,8 +160,8 @@
     "date": "2026-11-14",
     "seconds": 7,
     "counts": {
-      "works": 3,
-      "partly": 4,
+      "works": 2,
+      "partly": 5,
       "skipped": 1
     },
     "loose": [
@@ -207,7 +207,7 @@
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -257,7 +257,9 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "cause": "loose-part",
+        "detail": "p460 2906",
+        "seconds": 1.6
       },
       {
         "result": "works",

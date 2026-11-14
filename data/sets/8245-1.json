@@ -149,10 +149,9 @@
     "date": "2026-11-14",
     "seconds": 9,
     "counts": {
-      "partly": 2,
-      "works": 5,
-      "skipped": 3,
-      "not back": 1
+      "partly": 3,
+      "works": 4,
+      "skipped": 3
     },
     "loose": [
       "p0 3705",
@@ -372,7 +371,7 @@
         "seconds": 1.3
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -429,7 +428,9 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "cause": "loose-part",
+        "detail": "p28 2994",
+        "seconds": 2.8
       },
       {
         "result": "works",

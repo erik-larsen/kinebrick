@@ -223,10 +223,9 @@
     "date": "2026-11-14",
     "seconds": 321,
     "counts": {
-      "works": 7,
+      "works": 6,
       "no": 2,
-      "not back": 2,
-      "partly": 1,
+      "partly": 2,
       "not checked": 1,
       "skipped": 1
     },
@@ -812,7 +811,7 @@
         "result": "not checked"
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -889,7 +888,9 @@
           [],
           []
         ],
-        "seconds": 161.5
+        "cause": "loose-part",
+        "detail": "p1126 32020",
+        "seconds": 194.2
       },
       {
         "result": "no",

@@ -148,7 +148,8 @@
         "why": [
           "p212 32009 is part of the frame"
         ],
-        "cause": "control-fixed",
+        "cause": "loose-part",
+        "detail": "p69 71372c01",
         "seconds": 0
       },
       {

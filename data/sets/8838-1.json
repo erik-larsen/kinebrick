@@ -163,10 +163,8 @@
     "date": "2026-11-14",
     "seconds": 3,
     "counts": {
-      "partly": 4,
-      "not back": 1,
+      "partly": 5,
       "skipped": 2,
-      "works": 1,
       "no": 1
     },
     "loose": [
@@ -481,7 +479,7 @@
         "seconds": 0.3
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -503,7 +501,9 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "cause": "loose-part",
+        "detail": "p220 8838 - 2903",
+        "seconds": 1.1
       },
       {
         "result": "no",

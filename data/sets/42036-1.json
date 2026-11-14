@@ -125,9 +125,8 @@
     "date": "2026-11-14",
     "seconds": 3,
     "counts": {
-      "works": 4,
-      "not back": 1,
-      "partly": 1,
+      "works": 3,
+      "partly": 2,
       "skipped": 1,
       "no": 1
     },
@@ -380,7 +379,7 @@
         "seconds": 0.3
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -421,7 +420,9 @@
           [],
           []
         ],
-        "seconds": 1.5
+        "cause": "loose-part",
+        "detail": "p233 88517",
+        "seconds": 3.2
       }
     ]
   }

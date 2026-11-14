@@ -162,9 +162,8 @@
     "date": "2026-11-14",
     "seconds": 44,
     "counts": {
-      "works": 3,
-      "partly": 3,
-      "not back": 1,
+      "works": 2,
+      "partly": 4,
       "no": 3
     },
     "loose": [
@@ -894,7 +893,7 @@
         "seconds": 6.6
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -967,7 +966,9 @@
           [],
           []
         ],
-        "seconds": 12.9
+        "cause": "loose-part",
+        "detail": "p982 55982",
+        "seconds": 9.6
       },
       {
         "result": "works",

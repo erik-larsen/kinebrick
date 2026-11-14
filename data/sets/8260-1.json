@@ -95,15 +95,16 @@
     "date": "2026-11-14",
     "seconds": 1,
     "counts": {
-      "works": 3,
-      "no": 1
+      "works": 2,
+      "no": 1,
+      "partly": 1
     },
     "loose": [
       "p92 47508"
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -162,6 +163,8 @@
             ]
           ]
         ],
+        "cause": "loose-part",
+        "detail": "p92 47508",
         "seconds": 0.1
       },
       {

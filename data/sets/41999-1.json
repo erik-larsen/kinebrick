@@ -149,8 +149,8 @@
     "date": "2026-11-14",
     "seconds": 47,
     "counts": {
-      "works": 3,
-      "partly": 1,
+      "works": 2,
+      "partly": 2,
       "no": 2,
       "skipped": 1,
       "not checked": 1
@@ -192,7 +192,7 @@
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -297,7 +297,9 @@
             "p1545 44772"
           ]
         ],
-        "seconds": 16.7
+        "cause": "loose-part",
+        "detail": "p1539 44772",
+        "seconds": 19.9
       },
       {
         "result": "partly",

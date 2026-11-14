@@ -118,9 +118,8 @@
     "date": "2026-11-14",
     "seconds": 46,
     "counts": {
-      "works": 4,
-      "not back": 1,
-      "partly": 1,
+      "works": 3,
+      "partly": 2,
       "no": 1
     },
     "loose": [
@@ -189,7 +188,7 @@
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.33,
@@ -234,7 +233,9 @@
             "limit"
           ]
         ],
-        "seconds": 12.7
+        "cause": "loose-part",
+        "detail": "p524 32524",
+        "seconds": 11.5
       },
       {
         "result": "works",
