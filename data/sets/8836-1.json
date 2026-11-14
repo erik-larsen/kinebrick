@@ -60,6 +60,7 @@
         ],
         "source": "book: step 3 (shock absorber), step 14 (legs and cross axle), step 16 (wheels)",
         "control": "p148 4261",
+        "lifted": true,
         "moves": [
           "p151 4261",
           "p145 3706",
@@ -69,7 +70,8 @@
         ],
         "stays": [
           "p162 3482"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"the two legs swing together on their pivots\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring holds the main landing gear down and springs it back.",

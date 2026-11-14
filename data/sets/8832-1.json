@@ -39,6 +39,7 @@
         ],
         "source": "book: steps 11-13, the step 13 inset shows the shock absorber behind the seat",
         "control": "p58 3894",
+        "lifted": true,
         "moves": [
           "p59 3894",
           "p42 3707",
@@ -49,7 +50,7 @@
           "p9 2738",
           "p32 3707"
         ],
-        "note": "how far the arm can swing depends on the shock absorber's travel; inferred: whether the shock's top is held on the roll bar's top axle or on the seat isn't clear in the scan"
+        "note": "how far the arm can swing depends on the shock absorber's travel; inferred: whether the shock's top is held on the roll bar's top axle or on the seat isn't clear in the scan. lifted: the text has the wheel or arm moved (\"so the back wheels can rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",

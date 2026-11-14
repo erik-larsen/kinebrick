@@ -58,6 +58,7 @@
         ],
         "source": "book: steps 77-97 (swing arm, shock and linkage), page 120 bottom-left inset (arrow at the rear wheel)",
         "control": "p262 40490",
+        "lifted": true,
         "moves": [
           "p247 35189",
           "p284 76537"
@@ -66,7 +67,7 @@
           "p379 88516",
           "p185 2854"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel"
+        "note": "how far the arm can swing is set by the shock absorber's travel. lifted: the text has the wheel or arm moved (\"lets the rear wheel rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear shock absorber's spring pushes the rear wheel back down.",
@@ -105,6 +106,7 @@
           "p408 32039",
           "p419 32039"
         ],
+        "lifted": true,
         "moves": [
           "p372 44294",
           "p379 88516"
@@ -113,7 +115,7 @@
           "p340 15462",
           "p247 35189"
         ],
-        "note": "inferred: the fork's lower ends (p408, p419) as the sliding parts; the gold shocks are p371 and p376 65151-f1, a part the LDraw library doesn't have"
+        "note": "inferred: the fork's lower ends (p408, p419) as the sliding parts; the gold shocks are p371 and p376 65151-f1, a part the LDraw library doesn't have. lifted: the text has the wheel or arm moved (\"they shorten so the front wheel can rise\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The front wheel rolls freely on its axle between the fork legs.",

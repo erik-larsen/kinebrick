@@ -42,6 +42,7 @@
           "p0 3702",
           "p1 3702"
         ],
+        "lifted": true,
         "moves": [
           "p172 3482",
           "p170 3482",
@@ -51,7 +52,8 @@
         "stays": [
           "p168 3482",
           "p174 3482"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"pushed up, the arm swings up\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the rear arms down, so the buggy stands on its rear wheels and springs back when pushed down.",

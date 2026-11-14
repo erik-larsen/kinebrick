@@ -43,6 +43,7 @@
         ],
         "source": "book: steps 6 (the two shock absorbers hang from the frame), 7 (pivot axle), 8 (rear wheel and axle), 9-10 (the two 1x6 plates and bushes)",
         "control": "p32 4262",
+        "lifted": true,
         "moves": [
           "p33 4262",
           "p21 3706",
@@ -56,7 +57,7 @@
           "p25 3894",
           "p53 2695"
         ],
-        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top pins as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top pins as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheel can rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The two shock absorbers' springs push the rear wheel back down.",

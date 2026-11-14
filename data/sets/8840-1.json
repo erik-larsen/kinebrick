@@ -52,6 +52,7 @@
         ],
         "source": "book: step 8 (rear frame), step 9 (the pivot axle pushed in, red arrow), step 15 (the shock absorbers); the cover",
         "control": "p86 3701",
+        "lifted": true,
         "moves": [
           "p210 4266 against p0 3703",
           "p213 4266 against p0 3703",
@@ -61,7 +62,8 @@
         "stays": [
           "p206 4266 against p0 3703",
           "p208 4266 against p0 3703"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"the whole rear frame ... swings up and down on the cross axle under the seat\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the rear frame down and let it bounce back.",

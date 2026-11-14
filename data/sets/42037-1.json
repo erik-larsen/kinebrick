@@ -84,12 +84,14 @@
           "p58 57515",
           "p72 57515"
         ],
+        "lifted": true,
         "moves": [
           "p66 11949",
           "p76 11949",
           "p96 76537",
           "p97 76537"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
@@ -101,12 +103,14 @@
           "p229 32063",
           "p241 32063"
         ],
+        "lifted": true,
         "moves": [
           "p235 11950",
           "p236 11950",
           "p290 4254",
           "p292 4254"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"let it move up and down while driven\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",

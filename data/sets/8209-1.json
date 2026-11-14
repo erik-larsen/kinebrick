@@ -19,6 +19,7 @@
         ],
         "source": "book: steps 4 and 9 (the half pins at the front of the dark side beams), steps 5-8 (the L-frames and the shock absorber); inferred: the book draws no motion, and that the rear swings on the half pins is read from how it's built",
         "control": "p6 32056",
+        "lifted": true,
         "moves": [
           "p46 32193",
           "p45 32193",
@@ -29,7 +30,8 @@
           "p47 32193",
           "p48 32193",
           "p22 6589"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"swing together on the two half pins\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring holds the rear end up, so the car stands on its rear wheels and springs back when pushed down.",

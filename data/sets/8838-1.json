@@ -42,6 +42,7 @@
         ],
         "source": "book: step 22 (inset 1-2: the front wheel on a 6-long axle between the two shock absorbers, hung on the fork's 6-long axles)",
         "control": "p225 2910",
+        "lifted": true,
         "moves": [
           "p227 2910",
           "p219 3706",
@@ -52,7 +53,7 @@
           "p226 2909",
           "p77 2905"
         ],
-        "note": "a slide: the rods push into the cylinders, not a turn"
+        "note": "a slide: the rods push into the cylinders, not a turn. lifted: the text has the wheel or arm moved (\"so the front wheel can rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheel rides on a swinging arm: a 1x10 brick and a triangular liftarm on each side pivot on the 8-long axle that carries the chain's front gear, and two long shock absorbers run from the rear of the arm up to an axle under the seat, so the rear wheel can rise and fall while the chain stays taut.",
@@ -61,6 +62,7 @@
         ],
         "source": "book: steps 19 and 23 (each side's arm and shock absorber, insets), 20 (rear wheel), 21 (chain)",
         "control": "p167 2730",
+        "lifted": true,
         "moves": [
           "p241 2730",
           "p164 2905",
@@ -75,7 +77,7 @@
           "p141 3706",
           "p117 3623"
         ],
-        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top axle as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top axle as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheel can rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs, two front and two rear, hold the bike up and push the wheels back down.",

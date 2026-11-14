@@ -68,10 +68,12 @@
           "p325 42124 - 31794",
           "p326 42124 - 31794"
         ],
+        "lifted": true,
         "moves": [
           "p343 15460",
           "p345 15460"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"each front wheel moves up and down on its own pair of suspension arms\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The front shock absorbers' springs hold the front of the buggy up.",
@@ -88,10 +90,12 @@
         ],
         "source": "inferred: steps 99-104 pin the rear unit to the chassis at its front and add the two long shock absorbers above it; the book doesn't show it moving",
         "control": "p470 40490",
+        "lifted": true,
         "moves": [
           "p464 65414c01 against p270 14720",
           "p501 22169 against p270 14720"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"swings up and down on a pivot at its front\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear shock absorbers' springs hold the back of the buggy up.",

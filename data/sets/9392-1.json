@@ -81,13 +81,15 @@
         ],
         "source": "book: steps 1-13 (rear axle and swinging arm) and the side views on pages 26 and 41",
         "control": "p22 32140",
+        "lifted": true,
         "moves": [
           "p13 3737",
           "p182 56145"
         ],
         "stays": [
           "p134 2850a"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"pushing the rear axle up swings the arm about its pivot\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm with a shock absorber, and moves up and down, steering as it goes.",
@@ -99,12 +101,14 @@
           "p95 6572",
           "p99 6572"
         ],
+        "lifted": true,
         "moves": [
           "p106 6572",
           "p104 6572",
           "p107 6571",
           "p109 6571"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The three shock absorbers' springs hold the quad up and spring back.",

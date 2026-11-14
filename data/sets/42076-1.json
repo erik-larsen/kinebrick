@@ -120,10 +120,11 @@
           "p985 55982",
           "p987 55982"
         ],
+        "lifted": true,
         "moves": [
           "p883 73129"
         ],
-        "note": "the spring only matters under the truck's weight; the axle's travel is what's checked"
+        "note": "the spring only matters under the truck's weight; the axle's travel is what's checked. lifted: the text has the wheel or arm moved (\"the truck's rear axle swings up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The truck's four wheels roll; it can drive up the ramp onto the deck.",

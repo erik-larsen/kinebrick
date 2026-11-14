@@ -78,7 +78,8 @@
           "p1077 15038",
           "p1081 15038"
         ],
-        "note": "the springs only matter under the car's weight; each wheel's travel is what's checked"
+        "lifted": true,
+        "note": "the springs only matter under the car's weight; each wheel's travel is what's checked. lifted: the text has the wheel or arm moved (\"so each wheel can rise and fall on its own\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The bonnet lifts up at its back edge, hinged at the front.",

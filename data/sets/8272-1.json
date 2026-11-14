@@ -44,6 +44,7 @@
         ],
         "source": "book: 1 page 3 (blueprint and shock absorber, up-and-down arrows); steps 4-9 (wishbones and shock absorbers)",
         "control": "p12 32063",
+        "lifted": true,
         "moves": [
           "p43 32063",
           "p17 32063",
@@ -55,7 +56,8 @@
         "stays": [
           "p9 32063",
           "p626 32271"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"and moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The right ski has independent suspension, as the left.",

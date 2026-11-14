@@ -44,6 +44,7 @@
         ],
         "source": "book: steps 13 (shock absorber, page 11), 17-19 (swing arm and its pivot axle, pages 23-25)",
         "control": "p79 64290",
+        "lifted": true,
         "moves": [
           "p118 88517",
           "p455 4254"
@@ -51,7 +52,8 @@
         "stays": [
           "p454 4255",
           "p146 3705"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"so the rear wheel moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The front wheel rides between two long shock absorbers, a telescopic front fork, so it moves up and down.",
@@ -63,13 +65,15 @@
           "p228 2910",
           "p237 2910"
         ],
+        "lifted": true,
         "moves": [
           "p233 88517"
         ],
         "stays": [
           "p227 2909",
           "p236 2909"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"so it moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the bike up and spring back.",

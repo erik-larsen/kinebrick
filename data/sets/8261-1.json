@@ -60,6 +60,7 @@
         ],
         "source": "inferred: from the model file (the rear axle's sub-assembly hangs on bent beams pivoting on a 7-long axle, with a shock absorber behind); the book draws no arrow, and the step that fits the shock absorber isn't identified",
         "control": "p45 32271",
+        "lifted": true,
         "moves": [
           "p45 32271",
           "p51 32271",
@@ -72,7 +73,7 @@
           "p0 32526",
           "p55 44294"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel; its two ends swing a little on their pins as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorber's travel; its two ends swing a little on their pins as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",

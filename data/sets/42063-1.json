@@ -67,13 +67,15 @@
         ],
         "source": "book: page 107 (the arrow along the front fork)",
         "control": "p157 57515",
+        "lifted": true,
         "moves": [
           "p386 88517",
           "p164 4254"
         ],
         "stays": [
           "p142 32526"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"lets the wheel rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame.",

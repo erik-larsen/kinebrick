@@ -43,6 +43,7 @@
         ],
         "source": "book: step 5 (shock absorber between a 6-long axle and an 8-long axle; the inset's arrows show it squeezing), step 11 (the 10-long pivot axle pushed through the arms), steps 12-13 (rear wheels)",
         "control": "p102 3894",
+        "lifted": true,
         "moves": [
           "p105 3894",
           "p32 3707",
@@ -55,7 +56,7 @@
           "p47 2717",
           "p129 3482"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel; its cylinder swings a little on its top axle as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorber's travel; its cylinder swings a little on its top axle as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
