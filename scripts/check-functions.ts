@@ -66,7 +66,7 @@ import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Mechanism } from '../src/mechanism.ts';
-import { pointDirections, pushStep } from '../src/push.ts';
+import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
@@ -353,13 +353,21 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // part's middle may be on the axle it spins on, where no push turns it. The way: the way that
   // point goes as the joint turns, as someone opening a door pushes it round its hinge, not along
   // the car (which would roll it). Null if the joint can't turn, or moves none of the points.
+  // How fast each point goes against what the joint turns in: a motion that turns the joint by
+  // swinging that round the part (nothing being held yet) moves none of its points, and the
+  // push would be taken to have nothing to push; against what it turns in it has, and the push
+  // finds the joint jammed, if it is (the 8081 Extreme Cruiser's doors).
   const grabOf = (body: number, control: number) => {
-    const motion = kin.jointMotion(kin.parentLink(body)!.joint);
+    const link = kin.parentLink(body)!;
+    const motion = kin.jointMotion(link.joint);
     if (!motion) return null;
     const m = parts[control].matrix;
     const points = [at[control].clone()];
     for (const k of [0, 1, 2]) for (const way of [1, -1]) points.push(at[control].clone().addScaledVector(new Vector3().setFromMatrixColumn(m, k).normalize(), way * GRAB));
-    const speeds = points.map((point) => kin.pointVelocity(motion, body, point.clone().applyMatrix4(kin.poses[body])));
+    const speeds = points.map((point) => {
+      const p = point.clone().applyMatrix4(kin.poses[body]);
+      return kin.pointVelocity(motion, body, p).sub(kin.pointVelocity(motion, link.parent, p));
+    });
     const fastest = Math.max(...speeds.map((v) => v.length()));
     if (fastest < 1e-6) return null;
     const best = speeds.findIndex((v) => v.length() >= fastest - 1e-9);
@@ -399,6 +407,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         halt = 'no motion';
         break;
       }
+      // Each step is aimed along the way the grab point now goes on the control's joint (see
+      // wayOnJoint), as a hand follows a door round, and not along the line it first went.
+      const way = wayOnJoint(kin, body, grabNow());
+      if (way) dir.copy(way.dot(dir) >= 0 ? way : way.negate());
       const step = Math.min(PUSH_STEP, far - length);
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
@@ -546,12 +558,23 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const joint = measured.turned;
         const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
         const shifted = catchShifts(placedNow(), table, catches);
-        const still = moves.filter((m) => !moved(m, startPoses, shifted)).map((m) => m.ref);
-        const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const rates: Record<string, [number, number]> = {};
         listed.forEach((m, k) => (rates[m.ref] = Math.abs(turned) > 1e-6 ? [sig(went[k][0] / Math.abs(turned)), sig(went[k][1] / Math.abs(turned))] : [0, 0]));
         // A rate is the part's turning, or its sliding if it slides on its joint.
-        const rateOf = (m: (typeof listed)[number]) => rates[m.ref][kin.parentLink(mech.bodyOf[m.part]) && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide' ? 1 : 0];
+        const slidesOn = (m: (typeof listed)[number]) => kin.parentLink(mech.bodyOf[m.part]) !== null && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide';
+        const rateOf = (m: (typeof listed)[number]) => rates[m.ref][slidesOn(m) ? 1 : 0];
+        // A part geared so far down that, as far as the control turned, its gears move it less
+        // than MOVED, is judged by its rate instead: it moved if it went at the rate its gears give
+        // it (within RATE_OFF). Only a part whose gears give it a rate (`expected`); the rest are
+        // judged by how far they went.
+        const slowGeared = (m: (typeof listed)[number]) => {
+          const rate = expected[m.ref];
+          if (!(rate > 0) || Math.abs(turned) < 0.01) return false;
+          const least = slidesOn(m) ? MOVED : (MOVED * Math.PI) / 180;
+          return rate * Math.abs(turned) < least && Math.abs(rateOf(m) - rate) <= RATE_OFF * rate;
+        };
+        const still = moves.filter((m) => !moved(m, startPoses, shifted) && !slowGeared(m)).map((m) => m.ref);
+        const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
         // Each piston's slide in its cylinder, against what its crank's turn says, both for
         // each radian the control turned.

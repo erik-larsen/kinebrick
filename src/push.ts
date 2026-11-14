@@ -19,6 +19,22 @@ export function pointDirections(kin: Kinematics, body: number, g: Vector3): numb
   return basis.length;
 }
 
+// The way the point `g` (where it is now) on a body goes as the body's own joint turns, against
+// the frame, or null if the joint can't turn or the point doesn't move that way. A hand pushing a
+// door follows it round its hinge: the function check aims each step of a push this way, rather
+// than along the line the point first went, which the push's tiers would keep it to by moving
+// other parts (the 42021 Snowmobile's handlebars, which swung its skis round with them).
+// Against the frame, so that a motion that turns the joint by swinging the rest of the model
+// round the part still shows the way the part goes on its joint.
+export function wayOnJoint(kin: Kinematics, body: number, g: Vector3): Vector3 | null {
+  const link = kin.parentLink(body);
+  if (!link) return null;
+  const motion = kin.jointMotion(link.joint);
+  if (!motion) return null;
+  const v = kin.pointVelocity(motion, body, g).sub(kin.pointVelocity(motion, 0, g));
+  return v.length() < 1e-6 ? null : v.normalize();
+}
+
 // One step of a push: moves the mechanism so that the point `grab` of a body (given on the body
 // as built) goes `step` LDU, by the mix of the ways it can go nearest `dir`, and then turns `dir`
 // to the way the point went, so that steps one after another follow a curve (a steered car
