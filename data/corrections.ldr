@@ -229,6 +229,22 @@
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 10] [pos=0 -20 0] [ori=1 0 0 0 -1 0 0 0 -1]
 0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=8] [spur=false] [bevel=-] [apex=34] [center=true] [pos=0 0 24] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 65414.dat
+0 // Technic Differential Casing for 5 Internal Gears (65414c01 is read as its pieces: this casing, the 28 tooth double bevel gear 65413 fixed to its open end, and five 12 tooth bevel gears 6589). The two on its axis are the output axles' gears; the three round it turn on posts in the casing, 17 LDU out from the axis, 20 LDU along it from the casing's origin, as the 65414c01 places them. The shadow library joins the casing and its gear by a ball, which would let the gear swing on it; here they're fixed together (an N fit).
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 8 2   R 6 18] [pos=0 0 -10] [ori=0 0 -1 1 0 0 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 25 2] [center=true] [pos=0 0 37] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 8] [center=true] [pos=0 -17 20]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 8] [center=true] [pos=14.7224 8.5 20] [ori=0.5 0.86603 0 -0.86603 0.5 0 0 0 1]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 4 8] [center=true] [pos=-14.7224 8.5 20] [ori=0.5 -0.86603 0 0.86603 0.5 0 0 0 1]
+
+0 FILE 65413.dat
+0 // Technic Gear 28 Tooth Double Bevel with Peghole (the 65414c01 differential's): 28 teeth at LEGO's tooth size (35 LDU pitch radius), bevelled both ways like the other double bevel gears, each cone's tip 5 LDU past its pitch radius along the axis (40 LDU from its middle). Fixed to the casing (65414) by the N fit the casing has.
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 12 2   R 8 3   R 6 6   R 8 2] [pos=0 0 -3] [ori=0 0 1 -1 0 0 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 25 2] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
+0 !KINEBRICK GEAR [teeth=28] [radius=35] [width=10] [bevel=both] [apex=40] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 // Worm gears. A worm's thread is a single right-handed helix; each turn moves a meshing gear
 0 // on by one tooth, so its lead (how far the thread advances per turn) is one gear tooth:
 0 // 2 x pi x 1.25 = 7.853982 LDU. Measured from the LDraw shape. It meshes like an 8 tooth gear

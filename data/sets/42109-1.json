@@ -20,15 +20,15 @@
           "differential"
         ],
         "source": "book: steps 6-7 (the differential and rear axle), steps 14-20 (the XL motor and its gear), pages 114-115 (driving from the app)",
-        "control": "p40 22172",
+        "control": "p46 22172",
         "moves": [
-          "p351 32498",
-          "p16 42109 - 65414c01",
-          "p969 56145",
-          "p971 56145"
+          "p357 32498",
+          "p16 65414",
+          "p975 56145",
+          "p977 56145"
         ],
         "stays": [
-          "p686 87761"
+          "p692 87761"
         ],
         "note": "the motor is driven from the hub (p336 22127) by the app; work it as a crank on its output"
       },
@@ -38,15 +38,15 @@
           "differential"
         ],
         "source": "book: step 7 (the differential's gears)",
-        "control": "p971 56145",
+        "control": "p977 56145",
         "moves": [
           "p15 59426",
-          "p27 3707",
-          "p969 56145"
+          "p33 3707",
+          "p975 56145"
         ],
         "stays": [
-          "p351 32498",
-          "p40 22172"
+          "p357 32498",
+          "p46 22172"
         ]
       },
       {
@@ -56,18 +56,18 @@
           "rack-steering"
         ],
         "source": "book: steps 46-47 (the gear and rack; the step 47 inset), pages 114-115 (steering from the app)",
-        "control": "p390 22169",
+        "control": "p396 22169",
         "moves": [
-          "p692 32270",
-          "p686 87761",
-          "p670 48989",
-          "p674 48989",
-          "p965 56145",
-          "p967 56145"
+          "p698 32270",
+          "p692 87761",
+          "p676 48989",
+          "p680 48989",
+          "p971 56145",
+          "p973 56145"
         ],
         "stays": [
-          "p969 56145",
-          "p40 22172"
+          "p975 56145",
+          "p46 22172"
         ],
         "note": "the motor is driven from the hub by the app; work it as a crank on its output"
       },
@@ -78,8 +78,8 @@
         ],
         "source": "book: steps 46-64 and 118",
         "control": [
-          "p965 56145",
-          "p967 56145"
+          "p971 56145",
+          "p973 56145"
         ]
       },
       {

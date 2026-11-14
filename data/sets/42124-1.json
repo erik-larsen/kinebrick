@@ -34,12 +34,12 @@
           "differential"
         ],
         "source": "book: steps 60-72 (the rear frame and differential), 77-99 (the drive motor and its 36 tooth gear, with the inset on page 55 showing the differential)",
-        "control": "p501 22169",
+        "control": "p507 22169",
         "moves": [
-          "p889 32498",
-          "p464 65414c01",
-          "p972 56908",
-          "p974 56908"
+          "p895 32498",
+          "p464 65414",
+          "p978 56908",
+          "p980 56908"
         ],
         "note": "The motor is one part; the 36 tooth gear on its output shaft (p889 32498) is what it turns."
       },
@@ -49,9 +49,9 @@
           "differential"
         ],
         "source": "book: steps 67-69 and page 55's inset (the differential between the rear half-axles)",
-        "control": "p972 56908",
+        "control": "p978 56908",
         "moves": [
-          "p974 56908 against p464 65414c01"
+          "p980 56908 against p464 65414"
         ],
         "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way."
       },
@@ -84,10 +84,10 @@
           "swing-arm: rear unit"
         ],
         "source": "inferred: steps 99-104 pin the rear unit to the chassis at its front and add the two long shock absorbers above it; the book doesn't show it moving",
-        "control": "p470 40490",
+        "control": "p476 40490",
         "moves": [
-          "p464 65414c01 against p270 14720",
-          "p501 22169 against p270 14720"
+          "p464 65414 against p270 14720",
+          "p507 22169 against p270 14720"
         ]
       },
       {
@@ -105,8 +105,8 @@
         ],
         "source": "book: step 127 (the wheels)",
         "control": [
-          "p971 42124 - 69909",
-          "p977 42124 - 69909"
+          "p977 42124 - 69909",
+          "p983 42124 - 69909"
         ]
       }
     ],
@@ -195,7 +195,7 @@
         "rates": [
           {
             "p889 32498": [
-              8.43e-8,
+              8.43e-08,
               3.38e-13
             ],
             "p464 65414c01": [
@@ -252,7 +252,7 @@
         "rates": [
           {
             "p974 56908 against p464 65414c01": [
-              2.81e-8,
+              2.81e-08,
               1.2e-13
             ]
           }
