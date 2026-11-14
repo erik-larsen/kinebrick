@@ -13,7 +13,7 @@ import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts'
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
 import { crankWebs, dropBallsInBearings, findCouplings, groovedBalls, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
-import { findGears, findMeshes } from './inference/gears.ts';
+import { findGears, findMeshes, wormRacks } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
 import { chainHooks, hookedParts } from './inference/hooks.ts';
 import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
@@ -402,7 +402,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   treads.push(...trackTreads(loops));
   // After chainHooks, as a string reads which parts are loose.
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
-  const screws = actuatorScrews(actuators, bodyOf);
+  const screws = [...actuatorScrews(actuators, bodyOf), ...wormRacks(gears)];
   const centers = bodyCenters(bodies, parts);
   return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
 }
