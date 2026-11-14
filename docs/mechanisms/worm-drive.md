@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 46 works, 36 partly, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 47 works, 35 partly, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -194,7 +194,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *outrigger feet:* Function L: each outrigger's foot is lowered or raised by hand: turning the black 12-tooth gear knob on top of the outrigger's end turns a worm gear, which turns an 8-tooth gear that swings the foot down to the ground. (partly)
+- *outrigger feet:* Function L: each outrigger's foot is lowered or raised by hand: turning the black 12-tooth gear knob on top of the outrigger's end turns a worm gear, which turns an 8-tooth gear that swings the foot down to the ground. (works)
 
 **2016, [42049 Mine Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42049-1)**
 

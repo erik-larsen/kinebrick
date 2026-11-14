@@ -252,14 +252,13 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
+    "commit": "982f6976",
     "date": "2026-11-14",
-    "seconds": 2817,
+    "seconds": 2778,
     "counts": {
       "no": 1,
-      "works": 1,
-      "partly": 7,
+      "works": 2,
+      "partly": 6,
       "not back": 1,
       "not checked": 1
     },
@@ -728,7 +727,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 52.9
+        "seconds": 42.8
       },
       {
         "result": "works",
@@ -958,7 +957,7 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 874.4
+        "seconds": 795.9
       },
       {
         "result": "partly",
@@ -997,7 +996,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 216.5
+        "seconds": 250
       },
       {
         "result": "partly",
@@ -1076,7 +1075,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 230.3
+        "seconds": 266.2
       },
       {
         "result": "partly",
@@ -1124,7 +1123,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 186.8
+        "seconds": 145.5
       },
       {
         "result": "partly",
@@ -1177,7 +1176,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 196.5
+        "seconds": 133.5
       },
       {
         "result": "partly",
@@ -1225,7 +1224,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 158.8
+        "seconds": 133.5
       },
       {
         "result": "partly",
@@ -1273,45 +1272,44 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 190.3
+        "seconds": 177.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.51,
+            -1.52
           ]
-        ],
-        "still": [
-          "p3789 32524 against p2649 64179"
         ],
         "rates": [
           {
             "p3789 32524 against p2649 64179": [
-              5.62e-8,
-              2.45e-13
+              2.22e-7,
+              44.7
             ]
           }
         ],
         "back": [
           [
             [
-              69.1,
-              7.08
+              8.39,
+              1.67
             ],
             [
-              68.83,
-              7.08
+              369.26,
+              162.34
             ]
           ]
         ],
         "strayed": [
-          "p4057 18651"
+          "p4116 42082 - 60169k02"
         ],
-        "cause": "part-fixed",
-        "detail": "p3789 32524 against p2649 64179",
-        "seconds": 377.8
+        "pushed": [
+          true
+        ],
+        "freed": 2,
+        "seconds": 500.9
       },
       {
         "result": "not checked"

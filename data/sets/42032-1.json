@@ -84,14 +84,13 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "982f6976",
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 3,
     "counts": {
-      "works": 2,
-      "no": 2,
-      "not back": 1
+      "works": 3,
+      "partly": 1,
+      "not back": 2
     },
     "loose": [
       "p113 40620",
@@ -151,25 +150,27 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.95,
+            -1.52
           ]
         ],
         "still": [
-          "p129 87083 against p120 32278",
           "p114 42032 - 33299b against p120 32278"
+        ],
+        "moved": [
+          "p139 59443 against p120 32278"
         ],
         "rates": [
           {
             "p129 87083 against p120 32278": [
-              0,
-              0
+              1,
+              52
             ],
             "p114 42032 - 33299b against p120 32278": [
               0,
@@ -177,11 +178,11 @@
             ],
             "p120 32278 against p0 32009": [
               0,
-              0
+              6.54e-13
             ],
             "p139 59443 against p120 32278": [
-              0,
-              0
+              0.44,
+              14.1
             ]
           }
         ],
@@ -189,49 +190,52 @@
           [
             [
               0,
-              0
+              0.48
             ],
             [
               0,
-              0
+              0.72
             ]
           ]
         ],
+        "strayed": [
+          "p150 3713"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "stuck",
+            null
           ]
         ],
+        "pushed": [
+          true
+        ],
+        "freed": 2,
         "cause": "part-fixed",
-        "detail": "p129 87083 against p120 32278",
-        "seconds": 0
+        "detail": "p114 42032 - 33299b against p120 32278",
+        "seconds": 1.2
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.52,
+            -1.16
           ]
-        ],
-        "still": [
-          "p107 87083 against p97 32278",
-          "p139 59443 against p97 32278"
         ],
         "rates": [
           {
             "p107 87083 against p97 32278": [
-              0,
-              0
+              1,
+              52
             ],
             "p139 59443 against p97 32278": [
-              0,
-              0
+              0.486,
+              29.2
             ],
             "p97 32278 against p0 32009": [
               0,
-              0
+              4.65e-13
             ],
             "p114 42032 - 33299b against p97 32278": [
               0,
@@ -253,13 +257,15 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "stuck"
           ]
         ],
-        "cause": "part-fixed",
-        "detail": "p107 87083 against p97 32278",
-        "seconds": 0
+        "pushed": [
+          true
+        ],
+        "freed": 1,
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -306,7 +312,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       }
     ]
   }

@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 32 partly, 9 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 37 works, 33 partly, 7 no, 1 not checked.
 
 ## By decade
 
@@ -187,8 +187,8 @@ Each detail by the set it first appears in.
 **2015, [42032 Compact Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42032-1)**
 
 - *loader arms:* The gear-wheel knob at the back turns a worm, which turns a 24-tooth gear behind the cab; cranks on the gear's axle push links that raise and lower the two loader arms, carrying the bucket and the fork with them. The worm holds the arms wherever they're left. (works)
-- *bucket:* The upright lever on the left loader arm tilts the bucket: rocking it pushes a long white link along the arm to the bucket's back. (no)
-- *fork:* The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm. (no)
+- *bucket:* The upright lever on the left loader arm tilts the bucket: rocking it pushes a long white link along the arm to the bucket's back. (partly)
+- *fork:* The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm. (works)
 
 **2015, [42035 Mining Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42035-1)**
 
