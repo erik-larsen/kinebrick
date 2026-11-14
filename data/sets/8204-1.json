@@ -55,7 +55,8 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 0,
     "counts": {
@@ -122,7 +123,7 @@
         ],
         "cause": "loose-part",
         "detail": "p16 3139",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",

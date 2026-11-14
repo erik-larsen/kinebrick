@@ -128,9 +128,10 @@
     }
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 8,
+    "seconds": 9,
     "counts": {
       "works": 6,
       "partly": 1
@@ -186,7 +187,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -332,7 +333,7 @@
             "p600 3648a"
           ]
         ],
-        "seconds": 2
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -376,7 +377,7 @@
           [],
           []
         ],
-        "seconds": 3.1
+        "seconds": 3.3
       },
       {
         "result": "partly",
@@ -445,7 +446,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -479,7 +480,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -504,7 +505,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       }
     ]
   }

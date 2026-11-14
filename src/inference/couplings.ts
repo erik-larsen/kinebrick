@@ -1,7 +1,8 @@
 // Couplings: joins that pass turning from one shaft to another, not hinges. Universal joints,
-// grooved and nudged balls in wheel hubs, and crank webs.
+// grooved and nudged balls in wheel hubs, crank webs, and a planetary wheel hub's reduction.
 
 import { Vector3 } from 'three';
+import type { ConnectionTable } from '../connections.ts';
 import { PlacedPart } from '../ldr.ts';
 import type { Connection, Coupling, Joint } from '../mechanism.ts';
 import { BALL_LINE, type WorldCylinder } from './shared.ts';
@@ -67,6 +68,12 @@ export function universalJoints(parts: PlacedPart[], roles: string[], cyls: Worl
 // fitting slots in the socket; but its shaft often hangs on nothing else (a half shaft, a
 // universal joint at its other end), so its ball joint is kept as well, where it's needed
 // (see dropBallsInBearings).
+//
+// A socket with no hole of its own through the ball's middle has no axis to turn on, and so
+// nothing to couple: the ball turns in it freely, a plain ball joint. The 8mm constant velocity
+// joint's ball (52731) is coupled in its own female (52730), whose axle runs through the
+// ball's middle, but is plain in the planetary wheel hub's socket (46490c01), which turns with
+// its steering upright: a coupling there would tie the half shaft to the upright.
 export function groovedBalls(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]) {
   const joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[] = [];
   const axisOf = (part: number, shape: string) => cyls.find((c) => c.part === part && c.secs.some((s) => s.shape === shape))?.dir.clone() ?? new Vector3(0, 0, 1);
@@ -80,12 +87,14 @@ export function groovedBalls(parts: PlacedPart[], roles: string[], cyls: WorldCy
       const off = rel.addScaledVector(c.dir, -rel.dot(c.dir)).length();
       if (off < BALL_LINE && (!best || off < best.off)) best = { dir: c.dir, off };
     }
-    return best ? best.dir.clone() : axisOf(part, 'O');
+    return best ? best.dir.clone() : null;
   };
   for (const c of connections) {
     if (c.kind !== 'ball' || (roles[c.male] !== 'grooved ball' && roles[c.male] !== 'nudged ball')) continue;
+    const axisB = through(c.female, c.from);
+    if (!axisB) continue;
     if (roles[c.male] === 'grooved ball') c.kind = 'coupling';
-    joined.push({ partA: c.male, partB: c.female, center: c.from.clone(), axisA: axisOf(c.male, 'A'), axisB: through(c.female, c.from) });
+    joined.push({ partA: c.male, partB: c.female, center: c.from.clone(), axisA: axisOf(c.male, 'A'), axisB });
   }
   return joined;
 }
@@ -143,4 +152,34 @@ export function findCouplings(joined: { partA: number; partB: number; center: Ve
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
   const ballAt = (partA: number, partB: number, center: Vector3) => joints.find((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(bodyOf[partA]) && [j.bodyA, j.bodyB].includes(bodyOf[partB]) && j.from.distanceTo(center) < BALL_LINE)?.from.clone() ?? center;
   return joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball' }));
+}
+
+// A reduction inside a part read as its pieces (see ConnectionTable.reductions): the planetary
+// wheel hub 46490c01's driving shaft (u9477) turns its hub (46434) through gears the LDraw part
+// doesn't draw, the hub turning `ratio` times slower and the same way round, both against the
+// bearing body (46490c02) they turn in. Each driving shaft is matched with the hub and body of
+// its own part: the body at the shaft's place, the hub on the body's axis nearest it. Only their
+// turning is tied, each turning in the body on its own axis.
+export function reductions(parts: PlacedPart[], table: ConnectionTable, bodyOf: number[], nameOf: (name: string) => string): Coupling[] {
+  const found: Coupling[] = [];
+  const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
+  for (const r of Object.values(table.reductions ?? {})) {
+    const named = (name: string) => parts.flatMap((p, i) => (nameOf(p.name) === name ? [i] : []));
+    const bodies = named(r.against);
+    const hubs = named(r.to);
+    for (const from of named(r.from)) {
+      const against = bodies.find((b) => at(b).distanceTo(at(from)) < 1);
+      if (against === undefined) continue;
+      const axis = new Vector3().setFromMatrixColumn(parts[against].matrix, 2).normalize();
+      const offAxis = (p: number) => {
+        const off = at(p).sub(at(against));
+        return off.addScaledVector(axis, -off.dot(axis)).length();
+      };
+      const to = hubs.filter((h) => offAxis(h) < 1).sort((a, b) => at(a).distanceTo(at(from)) - at(b).distanceTo(at(from)))[0];
+      if (to === undefined || at(to).distanceTo(at(from)) > 60) continue;
+      const center = at(from).add(at(to)).multiplyScalar(0.5);
+      found.push({ bodyA: bodyOf[from], bodyB: bodyOf[to], center, axisA: axis.clone(), axisB: axis.clone(), atA: at(from), atB: at(to), turningOnly: true, ratio: r.ratio });
+    }
+  }
+  return found;
 }

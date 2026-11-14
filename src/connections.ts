@@ -75,6 +75,10 @@ export interface ConnectionTable {
   // coordinates. A plate whose anti-studs lie in one, its thickness across the groove, is held
   // there (see inGrooves in inference/grooves.ts).
   grooves?: Record<string, Groove[]>;
+  // Reductions inside a part read as its pieces (a planetary wheel hub, 46490c01): by the whole
+  // part, the piece that drives (`from`), the piece driven (`to`), the piece both turn in
+  // (`against`), and how many turns of `from` make one of `to`, the same way round.
+  reductions?: Record<string, { from: string; to: string; against: string; ratio: number }>;
   // Stickers (parts the LDraw library describes as one), and flexible sections (a ribbed hose's
   // or a cable's segments): decoration, moving with what they're stuck on or lie next to (see
   // decorations in inference/rideAlong.ts).

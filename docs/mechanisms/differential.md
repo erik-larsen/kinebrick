@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 40 works, 32 partly, 5 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 40 works, 35 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -57,7 +57,7 @@ Each detail by the set it first appears in.
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
-- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (works)
+- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (partly)
 - The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (partly)
 
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
@@ -193,10 +193,10 @@ Each detail by the set it first appears in.
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
-- The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (partly)
+- The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
 - The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (partly)
-- *front:* The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way. (no)
-- *rear:* The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way. (no)
+- *front:* The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way. (partly)
+- *rear:* The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way. (partly)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
@@ -240,7 +240,7 @@ Each detail by the set it first appears in.
 
 - *centre:* The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
 - *centre:* The centre differential lets the front and rear axles turn at different speeds while it's unlocked: holding the motors, turning the front drive shaft turns the rear one the opposite way. (works)
-- The front and rear axle differentials let each axle's wheels turn at different speeds in a corner. (no)
+- The front and rear axle differentials let each axle's wheels turn at different speeds in a corner. (partly)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 

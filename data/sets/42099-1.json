@@ -21,20 +21,20 @@
           "planetary-hub"
         ],
         "source": "book: front motor steps 72-86 (marked 4), front axle steps 1-37 and 87, hubs steps 39-53; app pages 218-219; the gear train is inferred from the model",
-        "control": "p870 42099 - 18575",
+        "control": "p878 42099 - 18575",
         "moves": [
-          "p861 32270",
-          "p510 42099 - 18575",
-          "p465 32270",
-          "p486 62821",
-          "p1854 23798",
-          "p1858 23798"
+          "p869 32270",
+          "p514 42099 - 18575",
+          "p469 32270",
+          "p490 62821",
+          "p1862 23798",
+          "p1866 23798"
         ],
         "stays": [
-          "p1856 23798",
-          "p1860 23798"
+          "p1864 23798",
+          "p1868 23798"
         ],
-        "note": "The motor (p621 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft. Driven from the Control+ app through the hub (p1199 42099 - 22127)."
+        "note": "The motor (p629 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft. Driven from the Control+ app through the hub (p1207 42099 - 22127)."
       },
       {
         "does": "The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs.",
@@ -44,20 +44,20 @@
           "planetary-hub"
         ],
         "source": "book: rear axle steps 127-172, rear motor steps 173-180 (marked 2); app pages 218-219; the gear train is inferred from the model",
-        "control": "p359 42099 - 18575",
+        "control": "p363 42099 - 18575",
         "moves": [
           "p83 32270",
           "p59 42099 - 18575",
           "p20 32270",
           "p43 62821",
-          "p1856 23798",
-          "p1860 23798"
+          "p1864 23798",
+          "p1868 23798"
         ],
         "stays": [
-          "p1854 23798",
-          "p1858 23798"
+          "p1862 23798",
+          "p1866 23798"
         ],
-        "note": "The motor (p134 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
+        "note": "The motor (p138 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
       },
       {
         "does": "With both XL motors driven together the off-roader has four-wheel drive, forwards or back.",
@@ -67,14 +67,14 @@
         ],
         "source": "book: app pages 218-219 (drive controls)",
         "control": [
-          "p870 42099 - 18575",
-          "p359 42099 - 18575"
+          "p878 42099 - 18575",
+          "p363 42099 - 18575"
         ],
         "moves": [
-          "p1854 23798",
-          "p1858 23798",
-          "p1856 23798",
-          "p1860 23798"
+          "p1862 23798",
+          "p1866 23798",
+          "p1864 23798",
+          "p1868 23798"
         ],
         "note": "The app drives both XL motors at once from one control."
       },
@@ -85,17 +85,17 @@
           "rack-steering"
         ],
         "source": "book: steering motor steps 88-106 (marked 3), steering parts steps 54-71 and 107-126; app pages 218-219 (steering control); the gear and rack are inferred from the model",
-        "control": "p1088 32270",
+        "control": "p1096 32270",
         "moves": [
-          "p587 87761",
-          "p559 42099 - 46490c01",
-          "p569 42099 - 46490c01"
+          "p595 87761",
+          "p565 46490c02",
+          "p577 46490c02"
         ],
         "stays": [
-          "p100 42099 - 46490c01",
-          "p117 42099 - 46490c01"
+          "p102 46490c02",
+          "p121 46490c02"
         ],
-        "note": "The motor (p883 42099 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its shaft."
+        "note": "The motor (p891 42099 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its shaft."
       },
       {
         "does": "The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way.",
@@ -103,13 +103,13 @@
           "differential: front"
         ],
         "source": "book: front axle steps 8-37 (the differential in its housing)",
-        "control": "p1858 23798",
+        "control": "p1866 23798",
         "moves": [
-          "p1854 23798",
-          "p486 62821"
+          "p1862 23798",
+          "p490 62821"
         ],
         "stays": [
-          "p870 42099 - 18575"
+          "p878 42099 - 18575"
         ]
       },
       {
@@ -118,13 +118,13 @@
           "differential: rear"
         ],
         "source": "book: rear axle steps 127-140",
-        "control": "p1860 23798",
+        "control": "p1868 23798",
         "moves": [
-          "p1856 23798",
+          "p1864 23798",
           "p43 62821"
         ],
         "stays": [
-          "p359 42099 - 18575"
+          "p363 42099 - 18575"
         ]
       },
       {
@@ -150,7 +150,7 @@
           "for-show: steering wheel"
         ],
         "source": "inferred: book body step 302 fits it on a short axle in the dashboard, with nothing behind it",
-        "control": "p1444 2819"
+        "control": "p1452 2819"
       }
     ],
     "questions": [
@@ -160,65 +160,45 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 133,
+    "seconds": 369,
     "counts": {
+      "works": 4,
+      "not back": 5,
       "partly": 3,
-      "not back": 2,
-      "works": 2,
-      "no": 2,
       "not checked": 1,
       "skipped": 1
     },
     "loose": [
-      "p40 42099 - 52731",
-      "p41 42099 - 52731",
       "p45 6589",
       "p46 6589",
-      "p101 32062",
-      "p102 42099 - 52731",
-      "p118 32062",
-      "p119 42099 - 52731",
-      "p135 42099 - 23816c02",
-      "p347 42099 - 49283",
-      "p379 2739a",
-      "p380 6536",
-      "p381 6628",
+      "p139 42099 - 23816c02",
+      "p351 42099 - 49283",
       "p383 2739a",
       "p384 6536",
       "p385 6628",
-      "p483 42099 - 52731",
-      "p484 42099 - 52731",
-      "p563 42099 - 52731",
-      "p564 32062",
-      "p573 42099 - 52731",
-      "p574 32062",
-      "p622 42099 - 23816c02",
-      "p790 u9218",
-      "p791 u9218",
-      "p792 u9218",
-      "p793 u9218",
-      "p876 42099 - 49283",
-      "p884 42099 - 23816c02",
-      "p1124 42099 - 49283",
-      "p1200 4519",
-      "p1465 48729b",
-      "p1511 32014",
-      "p1512 32062",
-      "p1513 25214",
-      "p1514 43093",
-      "p1515 32192",
-      "p1516 32062",
-      "p1517 32013",
-      "p1547 77",
-      "p1548 77",
-      "p1549 77",
-      "p1550 77",
-      "p1551 77",
-      "p1552 77",
-      "p1553 77",
-      "p1554 77",
+      "p387 2739a",
+      "p388 6536",
+      "p389 6628",
+      "p630 42099 - 23816c02",
+      "p798 u9218",
+      "p799 u9218",
+      "p800 u9218",
+      "p801 u9218",
+      "p884 42099 - 49283",
+      "p892 42099 - 23816c02",
+      "p1132 42099 - 49283",
+      "p1208 4519",
+      "p1473 48729b",
+      "p1519 32014",
+      "p1520 32062",
+      "p1521 25214",
+      "p1522 43093",
+      "p1523 32192",
+      "p1524 32062",
+      "p1525 32013",
       "p1555 77",
       "p1556 77",
       "p1557 77",
@@ -249,14 +229,14 @@
       "p1582 77",
       "p1583 77",
       "p1584 77",
-      "p1666 77",
-      "p1667 77",
-      "p1668 77",
-      "p1669 77",
-      "p1670 77",
-      "p1671 77",
-      "p1672 77",
-      "p1673 77",
+      "p1585 77",
+      "p1586 77",
+      "p1587 77",
+      "p1588 77",
+      "p1589 77",
+      "p1590 77",
+      "p1591 77",
+      "p1592 77",
       "p1674 77",
       "p1675 77",
       "p1676 77",
@@ -284,52 +264,56 @@
       "p1698 77",
       "p1699 77",
       "p1700 77",
-      "p1701 77"
+      "p1701 77",
+      "p1702 77",
+      "p1703 77",
+      "p1704 77",
+      "p1705 77",
+      "p1706 77",
+      "p1707 77",
+      "p1708 77",
+      "p1709 77"
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p1854 23798",
-          "p1858 23798"
-        ],
         "rates": [
           {
-            "p861 32270": [
+            "p869 32270": [
               1.67,
-              7.04e-13
+              7.06e-13
             ],
-            "p510 42099 - 18575": [
+            "p514 42099 - 18575": [
               1.67,
-              9.54e-13
+              9.53e-13
             ],
-            "p465 32270": [
+            "p469 32270": [
               2.78,
               2.29e-12
             ],
-            "p486 62821": [
+            "p490 62821": [
               1.98,
-              7.71e-13
+              6.42e-13
             ],
-            "p1854 23798": [
+            "p1862 23798": [
+              0.234,
+              30.6
+            ],
+            "p1866 23798": [
+              0.234,
+              30.6
+            ],
+            "p1864 23798": [
               0,
               0
             ],
-            "p1858 23798": [
-              0,
-              0
-            ],
-            "p1856 23798": [
-              0,
-              0
-            ],
-            "p1860 23798": [
+            "p1868 23798": [
               0,
               0
             ]
@@ -337,27 +321,28 @@
         ],
         "expected": [
           {
-            "p861 32270": 1.67,
-            "p510 42099 - 18575": 1.67,
-            "p465 32270": 2.78,
-            "p486 62821": 1.98
+            "p869 32270": 1.67,
+            "p514 42099 - 18575": 1.67,
+            "p469 32270": 2.78,
+            "p490 62821": 1.98
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              1.3,
+              0.75
             ],
             [
-              0,
-              0
+              0.24,
+              0.14
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p1854 23798",
-        "seconds": 7.1
+        "strayed": [
+          "p603 2739a"
+        ],
+        "seconds": 45.2
       },
       {
         "result": "partly",
@@ -368,8 +353,8 @@
           ]
         ],
         "moved": [
-          "p1854 23798",
-          "p1858 23798"
+          "p1862 23798",
+          "p1866 23798"
         ],
         "rates": [
           {
@@ -389,45 +374,45 @@
               1,
               80
             ],
-            "p1856 23798": [
+            "p1864 23798": [
               1,
               250
             ],
-            "p1860 23798": [
+            "p1868 23798": [
               1,
               250
             ],
-            "p1854 23798": [
-              1.82,
-              215
+            "p1862 23798": [
+              0.971,
+              147
             ],
-            "p1858 23798": [
-              0.97,
-              145
+            "p1866 23798": [
+              1.85,
+              216
             ]
           }
         ],
         "back": [
           [
             [
-              310.93,
-              14.2
+              282.98,
+              170.72
             ],
             [
-              310.92,
-              14.2
+              297.56,
+              165.46
             ]
           ]
         ],
         "strayed": [
-          "p565 41677",
-          "p555 41677"
+          "p41 42099 - 52731",
+          "p123 42099 - 52731"
         ],
         "cause": "control-jammed",
-        "seconds": 38.4
+        "seconds": 70.6
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -440,37 +425,37 @@
         ],
         "rates": [
           {
-            "p1854 23798": [
+            "p1862 23798": [
+              0.234,
+              30.6
+            ],
+            "p1866 23798": [
+              0.234,
+              30.6
+            ],
+            "p1864 23798": [
               0,
               0
             ],
-            "p1858 23798": [
-              0,
-              0
-            ],
-            "p1856 23798": [
-              0,
-              0
-            ],
-            "p1860 23798": [
+            "p1868 23798": [
               0,
               0
             ]
           },
           {
-            "p1854 23798": [
-              1.82,
-              215
+            "p1862 23798": [
+              0.971,
+              147
             ],
-            "p1858 23798": [
-              0.97,
-              145
+            "p1866 23798": [
+              1.85,
+              216
             ],
-            "p1856 23798": [
+            "p1864 23798": [
               1,
               250
             ],
-            "p1860 23798": [
+            "p1868 23798": [
               1,
               250
             ]
@@ -479,41 +464,43 @@
         "back": [
           [
             [
-              0,
-              0
+              1.3,
+              0.75
             ],
             [
-              0,
-              0
+              0.24,
+              0.14
             ]
           ],
           [
             [
-              310.93,
-              14.2
+              282.98,
+              170.72
             ],
             [
-              310.92,
-              14.2
+              297.56,
+              165.46
             ]
           ]
         ],
         "strayed": [
-          "p565 41677",
-          "p555 41677"
+          "p603 2739a",
+          "p41 42099 - 52731",
+          "p123 42099 - 52731"
         ],
         "movedBy": [
-          [],
           [
-            "p1854 23798",
-            "p1858 23798",
-            "p1856 23798",
-            "p1860 23798"
+            "p1862 23798",
+            "p1866 23798"
+          ],
+          [
+            "p1862 23798",
+            "p1866 23798",
+            "p1864 23798",
+            "p1868 23798"
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p1854 23798",
-        "seconds": 50
+        "seconds": 108.3
       },
       {
         "result": "works",
@@ -525,25 +512,25 @@
         ],
         "rates": [
           {
-            "p587 87761": [
-              0,
+            "p595 87761": [
+              2.81e-8,
               15
             ],
-            "p559 42099 - 46490c01": [
-              0.118,
-              15.6
-            ],
-            "p569 42099 - 46490c01": [
+            "p565 46490c02": [
               0.0977,
               13.3
             ],
-            "p100 42099 - 46490c01": [
-              0,
-              0
+            "p577 46490c02": [
+              0.118,
+              15.6
             ],
-            "p117 42099 - 46490c01": [
+            "p102 46490c02": [
               0,
-              0
+              1.26e-11
+            ],
+            "p121 46490c02": [
+              0,
+              1.26e-11
             ]
           }
         ],
@@ -559,84 +546,113 @@
             ]
           ]
         ],
-        "seconds": 24.2
+        "seconds": 46.6
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.73,
+            -0.73
           ]
         ],
         "still": [
-          "p1854 23798",
-          "p486 62821"
+          "p490 62821"
         ],
         "rates": [
-          {}
+          {
+            "p1862 23798": [
+              0.992,
+              80.1
+            ],
+            "p490 62821": [
+              0,
+              1.48e-12
+            ],
+            "p878 42099 - 18575": [
+              1.15e-7,
+              4.36e-13
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              54.46,
+              12.15
+            ],
+            [
+              57.85,
+              14.53
+            ]
+          ]
         ],
-        "why": [
-          "p1858 23798 has no joint to work"
+        "strayed": [
+          "p40 42099 - 52731",
+          "p41 42099 - 52731"
         ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "cause": "not-driven",
+        "detail": "p490 62821",
+        "seconds": 49.5
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.77
           ]
         ],
         "still": [
-          "p1856 23798",
           "p43 62821"
         ],
         "rates": [
           {
-            "p1856 23798": [
-              0,
-              0
+            "p1864 23798": [
+              0.68,
+              0.037
             ],
             "p43 62821": [
-              0,
-              0
+              1.12e-7,
+              3.6e-10
             ],
-            "p359 42099 - 18575": [
-              0,
-              0
+            "p363 42099 - 18575": [
+              8.43e-8,
+              4.17e-13
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              304.61,
+              95.97
             ],
             [
-              0,
-              0
+              499.94,
+              141.68
             ]
           ]
         ],
+        "strayed": [
+          "p104 42099 - 52731",
+          "p41 42099 - 52731"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "dead point"
           ]
         ],
-        "pushed": [
-          true
-        ],
         "cause": "not-driven",
-        "detail": "p1856 23798",
-        "seconds": 0.8
+        "detail": "p43 62821",
+        "seconds": 32.2
       },
       {
         "result": "not checked",
@@ -669,7 +685,7 @@
             ]
           ]
         ],
-        "seconds": 12.3
+        "seconds": 16
       }
     ]
   }

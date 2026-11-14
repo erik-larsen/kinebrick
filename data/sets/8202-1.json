@@ -78,9 +78,10 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 0,
+    "seconds": 1,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -237,7 +238,7 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

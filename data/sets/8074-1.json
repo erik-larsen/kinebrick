@@ -114,9 +114,10 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 5,
+    "seconds": 6,
     "counts": {
       "partly": 4,
       "not back": 1,
@@ -199,7 +200,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 8074 - 4185a",
-        "seconds": 3.2
+        "seconds": 3.4
       },
       {
         "result": "skipped",
@@ -276,7 +277,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p96 3738",
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "partly",

@@ -589,6 +589,23 @@ function tracksFromCorrections(): Record<string, { depth: number }> {
   return tracks;
 }
 
+// REDUCTION lines in data/corrections.ldr: a reduction between two pieces of a part read as its
+// pieces, e.g. "0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat] [against=46490c02.dat]
+// [ratio=5.4]" (see ConnectionTable.reductions).
+function reductionsFromCorrections(): Record<string, { from: string; to: string; against: string; ratio: number }> {
+  const reductions: Record<string, { from: string; to: string; against: string; ratio: number }> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (meta && meta.kind === 'REDUCTION') {
+        const piece = (key: string) => normalizePartName(meta.params.get(key) ?? '');
+        reductions[name] = { from: piece('from'), to: piece('to'), against: piece('against'), ratio: Number(meta.params.get('ratio')) };
+      }
+    }
+  }
+  return reductions;
+}
+
 // GROOVE lines in data/corrections.ldr: grooves a plate slides into edge first, as boxes, e.g.
 // "0 !KINEBRICK GROOVE [pos=-43.4 36.6 0] [ori=...] [size=80 8 12]": the box's middle, its
 // axes (the ori matrix's columns: along the groove, across it, into it) and its size along
@@ -656,7 +673,7 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections());
+const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + ',\n  "reductions": ' + JSON.stringify(reductionsFromCorrections());
 out += '\n  }' + extras() + ',\n  "stickers": ' + JSON.stringify(stickers) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);

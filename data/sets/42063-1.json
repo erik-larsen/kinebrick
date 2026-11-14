@@ -111,9 +111,10 @@
     ]
   },
   "generated": {
-    "commit": "33c2dc24",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "no": 3,
       "works": 2,
@@ -211,7 +212,7 @@
         "strayed": [
           "p131 62520"
         ],
-        "seconds": 2.1
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -236,7 +237,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "no",

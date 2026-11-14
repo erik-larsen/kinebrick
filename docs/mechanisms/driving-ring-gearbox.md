@@ -4,7 +4,7 @@ Speeds, ranges, or forward and reverse are chosen by sliding driving rings onto 
 
 First appears in 1994, in [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car): The gear lever moves in an H gate with four slots: tilted into each, its foot slides one of the gearbox's two driving rings to one side or the other, giving four speeds; in the middle, neutral.
 
-Used in 8 of the 186 surveyed sets, by 13 functions. Kinebrick: 9 works, 2 partly, 1 no, 1 not checked.
+Used in 8 of the 186 surveyed sets, by 13 functions. Kinebrick: 8 works, 3 partly, 1 no, 1 not checked.
 
 ## By decade
 
@@ -37,7 +37,7 @@ Each detail by the set it first appears in.
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
-- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (works)
+- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (partly)
 - The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed. (works)
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
