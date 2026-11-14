@@ -58,7 +58,10 @@
         "moves": [
           "p3025 44771 against p15 62821"
         ],
-        "note": "With the crankshaft held, turning one rear wheel turns the other backwards."
+        "note": "With the crankshaft held, turning one rear wheel turns the other backwards.; the engine is held, as the function says (\"holding the engine\") and its note (\"With the crankshaft held\"): the crankshaft p165, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p165 2853"
+        ]
       },
       {
         "does": "Each front wheel rides on its own pair of wishbones (independent suspension), sprung by a shock absorber.",
@@ -126,13 +129,13 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 247,
+    "seconds": 163,
     "counts": {
       "partly": 1,
-      "works": 5,
-      "no": 1,
+      "works": 4,
+      "no": 2,
       "skipped": 1
     },
     "loose": [
@@ -264,7 +267,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 6.9
+        "seconds": 5.5
       },
       {
         "result": "works",
@@ -358,37 +361,47 @@
             "p181 2851 against p150 2850b"
           ]
         ],
-        "seconds": 52.3
+        "seconds": 40.4
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p3025 44771 against p15 62821"
         ],
         "rates": [
           {
             "p3025 44771 against p15 62821": [
-              0.000448,
-              35.7
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.16,
-              0.06
+              0,
+              0
             ],
             [
-              0.13,
-              0.04
+              0,
+              0
             ]
           ]
         ],
-        "seconds": 26.8
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "cause": "stopped-early",
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -465,7 +478,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -513,7 +526,7 @@
           [],
           []
         ],
-        "seconds": 54.5
+        "seconds": 45.8
       },
       {
         "result": "works",
@@ -561,7 +574,7 @@
           [],
           []
         ],
-        "seconds": 43.8
+        "seconds": 21.9
       },
       {
         "result": "works",
@@ -605,7 +618,7 @@
           [],
           []
         ],
-        "seconds": 60.9
+        "seconds": 46.7
       }
     ]
   }

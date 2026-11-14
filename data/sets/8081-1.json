@@ -77,7 +77,10 @@
         "moves": [
           "p95 6589"
         ],
-        "note": "with the engine held still, turning one rear wheel turns the other the opposite way"
+        "note": "with the engine held still, turning one rear wheel turns the other the opposite way; the engine is held, as the note says (\"with the engine held still\"): the crankshaft p154, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p154 2853"
+        ]
       },
       {
         "does": "The bonnet tilts up on a hinge at the windscreen, showing the engine.",
@@ -165,13 +168,14 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "11f1b8c1",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 31,
+    "seconds": 19,
     "counts": {
-      "works": 5,
-      "not back": 2,
-      "no": 3,
+      "works": 4,
+      "not back": 1,
+      "no": 4,
       "skipped": 1
     },
     "loose": [],
@@ -246,7 +250,7 @@
             ]
           ]
         ],
-        "seconds": 11.9
+        "seconds": 8.5
       },
       {
         "result": "works",
@@ -398,41 +402,47 @@
             "p164 2851"
           ]
         ],
-        "seconds": 9.9
+        "seconds": 7.6
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p95 6589"
         ],
         "rates": [
           {
             "p95 6589": [
-              1.1,
-              8.54e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              1.06,
-              0.51
+              0,
+              0
             ],
             [
-              0.86,
-              0.35
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p428 6558",
-          "p545 87080"
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
         ],
-        "seconds": 5
+        "cause": "stopped-early",
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -467,7 +477,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 2.1
+        "seconds": 1.2
       },
       {
         "result": "no",
@@ -536,7 +546,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -561,7 +571,7 @@
           "p415 32278 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "no",
@@ -672,7 +682,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 0.9
       }
     ]
   }

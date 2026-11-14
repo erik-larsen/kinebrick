@@ -179,6 +179,11 @@ interface Fn {
   stays?: string[];
   first?: { control: string; by: number }[];
   together?: boolean; // the controls are worked as one, turning together (see turnTogether)
+  // Parts whose bodies are frozen while the control is worked, as the viewer's Alt-click freezes
+  // them: what the function's text says is held (the 8464's drive, for its differentials). Or,
+  // by control, the parts each one's working holds (the 42000's "turning one rear wheel with the
+  // other held": each rear wheel holds the other).
+  held?: string[] | Record<string, string[]>;
   skip?: string;
   model?: string; // its own model, for a set with several (the 858's four engines)
 }
@@ -555,6 +560,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       let reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
       const half = reach / 2;
       if (fn.together) together = controls.map((r) => worked(part(r)));
+      // What the function's text says is held is frozen, as a user would freeze it in the viewer
+      // (Alt-click) before working the control.
+      const heldNow = Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []);
+      kin.frozen = new Set(heldNow.map((r) => mech.bodyOf[part(r)]));
       const start = kin.snapshot();
       const startPoses = kin.poses.map((m) => m.clone());
       // Worked by a push, as the viewer would (see isPushed), or by a turn on its joint.
@@ -675,6 +684,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         best = bestOf(each);
         explained = best.works ? null : explain(best.still, best.moved, best.turned);
       }
+      kin.frozen = new Set();
       together = [];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.

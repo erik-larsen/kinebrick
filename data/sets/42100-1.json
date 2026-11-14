@@ -176,13 +176,14 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "7699035a",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 2867,
+    "seconds": 939,
     "counts": {
-      "partly": 4,
-      "works": 3,
-      "no": 2
+      "partly": 6,
+      "no": 2,
+      "works": 1
     },
     "loose": [
       "p128 42100 - 23816c02",
@@ -357,7 +358,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 36.3
+        "seconds": 28.9
       },
       {
         "result": "partly",
@@ -405,7 +406,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 35.9
+        "seconds": 28.7
       },
       {
         "result": "partly",
@@ -473,7 +474,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 72.4
+        "seconds": 61.1
       },
       {
         "result": "partly",
@@ -517,33 +518,38 @@
         ],
         "cause": "not-driven",
         "detail": "p1927 42003 against p87 42003",
-        "seconds": 37
+        "seconds": 29.8
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            6,
-            -6.1
+            1.5,
+            -1.5
           ]
+        ],
+        "still": [
+          "p2971 42003 against p1927 42003",
+          "p1481 42100 - 62274c02 against p1480 42100 - u9487c01",
+          "p1502 42100 - 62274c02 against p1501 42100 - u9487c01"
         ],
         "rates": [
           {
             "p2971 42003 against p1927 42003": [
               0.00186,
-              0.166
+              0.167
             ],
             "p1481 42100 - 62274c02 against p1480 42100 - u9487c01": [
-              0.000134,
+              0.000139,
               0.348
             ],
             "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
-              8.29e-8,
+              1.4e-7,
               0.348
             ],
             "p3322 42003 against p2971 42003": [
-              6.91e-8,
-              1.74e-8
+              5.62e-8,
+              2.73e-7
             ]
           }
         ],
@@ -559,19 +565,26 @@
             ]
           ]
         ],
-        "seconds": 1579.9
+        "cause": "too-little",
+        "detail": "p2971 42003 against p1927 42003",
+        "seconds": 285.4
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.9,
-            -1.9
+            1.5,
+            -1.5
           ],
           [
-            1.9,
-            -1.9
+            1.5,
+            -1.5
           ]
+        ],
+        "still": [
+          "p3322 42003 against p2971 42003",
+          "p3845 42100 - 62274c02 against p3844 42100 - u9487c01",
+          "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
         ],
         "rates": [
           {
@@ -580,16 +593,16 @@
               0.547
             ],
             "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
-              6.65e-8,
+              5.62e-8,
               0.582
             ],
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
-              6.65e-8,
+              5.62e-8,
               0.582
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              1.15e-12
+              8.35e-13
             ]
           },
           {
@@ -598,16 +611,16 @@
               0.547
             ],
             "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
-              6.65e-8,
+              5.62e-8,
               0.582
             ],
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
-              6.65e-8,
+              5.62e-8,
               0.582
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              4.46e-13
+              4.51e-13
             ]
           }
         ],
@@ -634,18 +647,12 @@
           ]
         ],
         "movedBy": [
-          [
-            "p3322 42003 against p2971 42003",
-            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01",
-            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
-          ],
-          [
-            "p3322 42003 against p2971 42003",
-            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01",
-            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
-          ]
+          [],
+          []
         ],
-        "seconds": 993.6
+        "cause": "too-little",
+        "detail": "p3322 42003 against p2971 42003",
+        "seconds": 410.8
       },
       {
         "result": "no",
@@ -700,7 +707,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
-        "seconds": 2.6
+        "seconds": 2
       },
       {
         "result": "no",
@@ -740,7 +747,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 2.7
+        "seconds": 2
       },
       {
         "result": "works",
@@ -771,7 +778,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 48.3
+        "seconds": 40.3
       }
     ]
   }

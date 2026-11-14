@@ -2,16 +2,16 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
-/* Layout: a short summary, then one treemap of every set (area = pieces, colour = share working), then the picked set's functions, then failing functions by cause. */
+/* Layout: a short summary, then one treemap of every set (area = pieces, colour = share working), then the picked set's functions, then a line graph of the sets in each colour over time, then failing functions by cause. */
 :root {
   --bg: #f6f5f0; --panel: #ffffff; --fg: #17202e; --muted: #5a6474; --line: #d9d6cc;
   --all: #2f9e5b; --most: #f2c230; --half: #f08a24; --few: #d43d2f; --none: #101114; --unchecked: #a9aeb8;
-  --on-dark: #ffffff; --on-light: #17202e; --bar: #3d6fb4;
+  --on-dark: #ffffff; --on-light: #17202e; --bar: #3d6fb4; --edge: #ffffff; --none-edge: #ffffff;
   --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   --text: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; color-scheme: dark } }
-:root[data-theme="dark"] { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; color-scheme: dark }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; --edge: #1e222b; --none-edge: #a3acba; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; --edge: #1e222b; --none-edge: #a3acba; color-scheme: dark }
 body { background: var(--bg); color: var(--fg); font-family: var(--text); font-size: 15px; line-height: 1.45; padding-block: 28px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .page { max-width: 1280px; margin-inline: auto; display: flex; flex-direction: column; gap: 20px; }
 h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1.15; text-wrap: balance; }
@@ -42,6 +42,30 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
 .cause .track { grid-column: 2; height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
 .cause .fill { display: block; height: 100%; background: var(--bar); border-radius: 4px; }
 .cause .who { color: var(--muted); font-size: 13px; }
+#trend { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+#trend h2 { font-family: var(--display); font-size: 21px; font-weight: 700; }
+#chart { position: relative; }
+#chart svg { display: block; width: 100%; overflow: visible; }
+#chart text { font: 12px var(--text); fill: var(--muted); font-variant-numeric: tabular-nums; }
+#chart .end { fill: var(--fg); font-weight: 600; }
+#chart .grid { stroke: var(--line); stroke-width: 1; }
+#chart .cross { stroke: var(--muted); stroke-width: 1; }
+#chart .ln { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+#chart .casing { fill: none; stroke: var(--edge); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+#chart .casing.k0 { stroke: var(--none-edge); stroke-width: 4; }
+#chart circle { stroke: var(--edge); stroke-width: 1.5; }
+#chart circle.k0 { stroke: var(--none-edge); }
+#tip { position: absolute; top: 0; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 13px; box-shadow: 0 4px 14px rgb(0 0 0 / 0.18); display: grid; gap: 3px; white-space: nowrap; }
+#tip[hidden] { display: none; }
+#tip span { display: flex; align-items: center; gap: 7px; font-variant-numeric: tabular-nums; }
+#tip i { width: 11px; height: 11px; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--line); }
+#tip b { margin-left: auto; padding-left: 14px; }
+#trend summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+#trend .scroll { overflow-x: auto; }
+#trend table { border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; margin-top: 8px; }
+#trend th, #trend td { padding: 3px 12px 3px 0; text-align: right; white-space: nowrap; }
+#trend th { color: var(--muted); font-weight: 600; }
+#trend th:first-child, #trend td:first-child, #trend th:nth-child(2), #trend td:nth-child(2) { text-align: left; }
 @media (max-width: 640px) { #map { height: 150vw; } h1 { font-size: 24px; } }
 </style>
 <div class="page">
@@ -53,6 +77,13 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
   <div class="legend" id="legend"></div>
   <div id="map" aria-label="One box for each set. A box's area is the set's number of pieces. Its colour is the share of its checked functions that work."></div>
   <section id="detail" aria-live="polite"><p class="sub">Pick a box to see that set's functions. A box's area is the set's number of pieces.</p></section>
+  <section id="trend" hidden>
+    <h2>Sets in each colour, over time</h2>
+    <p class="sub" id="trend-sub"></p>
+    <div class="legend" id="trend-legend"></div>
+    <div id="chart"></div>
+    <details><summary>The numbers behind the graph</summary><div class="scroll"><table id="trend-table"></table></div></details>
+  </section>
   <section id="causes" hidden></section>
 </div>
 <script>
@@ -62,6 +93,7 @@ const BUCKETS = [
   { id: 4, label: 'All work' }, { id: 3, label: '75% to 99%' }, { id: 2, label: '50% to 74%' },
   { id: 1, label: '1% to 49%' }, { id: 0, label: 'None work' }, { id: 5, label: 'Nothing checked' },
 ];
+const VARS = { 4: '--all', 3: '--most', 2: '--half', 1: '--few', 0: '--none', 5: '--unchecked' };
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
 const count = (s, r) => s.functions.filter((f) => f[1] === r).length;
 
@@ -153,6 +185,70 @@ function draw() {
   }
 }
 
+// The graph: for each colour, how many sets had it after each commit that changed the count.
+const NS = 'http://www.w3.org/2000/svg';
+const svg = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text !== undefined) e.textContent = text; return e; };
+const stamp = (seconds) => new Date(seconds * 1000).toLocaleString('en', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false });
+function trend() {
+  const pts = (DATA && DATA.history) || [];
+  if (pts.length < 2) return;
+  document.getElementById('trend').hidden = false;
+  const shown = BUCKETS.filter((k) => pts.some((p) => p[2 + k.id] > 0));
+  const last = pts[pts.length - 1];
+  document.getElementById('trend-sub').textContent = `From the first status page, ${stamp(pts[0][0])}, to ${stamp(last[0])}. A point is a commit that changed how many sets have a colour.`;
+  const legend = document.getElementById('trend-legend');
+  legend.replaceChildren();
+  for (const k of shown) { const span = el('span'); span.append(el('i', 'b' + k.id), `${k.label}: ${last[2 + k.id]}`); legend.append(span); }
+  const chart = document.getElementById('chart');
+  chart.replaceChildren();
+  const W = Math.max(280, chart.clientWidth), H = 300, m = { l: 30, r: 34, t: 10, b: 26 };
+  const t0 = pts[0][0], t1 = last[0];
+  const top = Math.ceil(Math.max(...pts.flatMap((p) => p.slice(2))) / 20) * 20;
+  const x = (t) => m.l + ((t - t0) / (t1 - t0)) * (W - m.l - m.r);
+  const y = (n) => m.t + (1 - n / top) * (H - m.t - m.b);
+  const g = svg('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Line graph: the number of sets in each colour over time. The numbers are in the table below.' });
+  for (let n = 0; n <= top; n += 20) {
+    g.append(svg('line', { class: 'grid', x1: m.l, x2: W - m.r, y1: y(n), y2: y(n) }), svg('text', { x: m.l - 8, y: y(n) + 4, 'text-anchor': 'end' }, n));
+  }
+  // A tick at the start of each day.
+  const day = new Date(t0 * 1000); day.setHours(24, 0, 0, 0);
+  for (; day.getTime() / 1000 < t1; day.setDate(day.getDate() + 1)) {
+    const at = x(day.getTime() / 1000);
+    g.append(svg('line', { class: 'grid', x1: at, x2: at, y1: H - m.b, y2: H - m.b + 5 }), svg('text', { x: at, y: H - 6, 'text-anchor': 'middle' }, day.toLocaleDateString('en', { day: 'numeric', month: 'short' })));
+  }
+  const cross = svg('line', { class: 'cross', y1: m.t, y2: H - m.b, visibility: 'hidden' });
+  g.append(cross);
+  for (const k of [...shown].reverse()) {
+    const path = pts.map((p) => `${x(p[0]).toFixed(1)},${y(p[2 + k.id]).toFixed(1)}`).join(' ');
+    g.append(svg('polyline', { class: 'casing k' + k.id, points: path }), svg('polyline', { class: 'ln', points: path, stroke: `var(${VARS[k.id]})` }));
+    for (const p of pts) g.append(svg('circle', { class: 'k' + k.id, cx: x(p[0]), cy: y(p[2 + k.id]), r: 3, fill: `var(${VARS[k.id]})` }));
+  }
+  // Each line's last count at its end, moved apart where two would touch.
+  const ends = shown.map((k) => ({ n: last[2 + k.id], at: y(last[2 + k.id]) })).sort((a, b) => a.at - b.at);
+  for (let i = 1; i < ends.length; i++) ends[i].at = Math.max(ends[i].at, ends[i - 1].at + 14);
+  for (const e of ends) g.append(svg('text', { class: 'end', x: W - m.r + 8, y: e.at + 4 }, e.n));
+  chart.append(g);
+  // The pointer picks the nearest point; a box says what it was.
+  const tip = el('div'); tip.id = 'tip'; tip.hidden = true; chart.append(tip);
+  const pick = (e) => {
+    const px = ((e.clientX - g.getBoundingClientRect().left) / g.getBoundingClientRect().width) * W;
+    const p = pts.reduce((a, b) => (Math.abs(x(b[0]) - px) < Math.abs(x(a[0]) - px) ? b : a));
+    cross.setAttribute('x1', x(p[0])); cross.setAttribute('x2', x(p[0])); cross.setAttribute('visibility', 'visible');
+    tip.replaceChildren(el('span', 'sub', `${stamp(p[0])} · ${p[1]}`));
+    for (const k of shown) { const row = el('span'); row.append(el('i', 'b' + k.id), k.label, el('b', '', p[2 + k.id])); tip.append(row); }
+    tip.hidden = false;
+    const left = (x(p[0]) / W) * chart.clientWidth;
+    tip.style.left = (left + tip.offsetWidth + 16 > chart.clientWidth ? left - tip.offsetWidth - 12 : left + 12) + 'px';
+  };
+  g.addEventListener('pointermove', pick);
+  g.addEventListener('pointerdown', pick);
+  g.addEventListener('pointerleave', () => { tip.hidden = true; cross.setAttribute('visibility', 'hidden'); });
+  const table = document.getElementById('trend-table');
+  table.replaceChildren();
+  const head = el('tr'); head.append(el('th', '', 'When'), el('th', '', 'Commit'), ...shown.map((k) => el('th', '', k.label))); table.append(head);
+  for (const p of [...pts].reverse()) { const row = el('tr'); row.append(el('td', '', stamp(p[0])), el('td', '', p[1]), ...shown.map((k) => el('td', '', p[2 + k.id]))); table.append(row); }
+}
+
 if (DATA) {
   const sum = (k) => sets.reduce((t, s) => t + s[k], 0);
   const checked = sum('checked');
@@ -195,8 +291,9 @@ if (DATA) {
     }
   }
   draw();
+  trend();
   let timer = 0;
-  window.addEventListener('resize', () => { clearTimeout(timer); timer = setTimeout(draw, 120); });
+  window.addEventListener('resize', () => { clearTimeout(timer); timer = setTimeout(() => { draw(); trend(); }, 120); });
 } else {
   document.getElementById('when').textContent = 'No data: make this page with npm run status.';
 }

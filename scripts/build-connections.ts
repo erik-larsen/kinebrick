@@ -556,7 +556,7 @@ function partsInModels(): string[] {
   const parts = new Set<string>();
   const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
   // A part read as its pieces (role "split") brings those instead.
-  const piecesOf = (name: string) => (roles[name] === 'split' ? (readLdrawFile(name) ?? '').split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
+  const piecesOf = (name: string) => (roles[name] === 'split' || roles[name] === 'pieces' ? (readLdrawFile(name) ?? '').split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
   for (const text of modelTexts()) for (const p of parseLdr(text, isPrimitive, piecesOf)) parts.add(p.name);
   return [...parts].sort();
 }
