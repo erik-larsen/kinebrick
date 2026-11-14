@@ -72,6 +72,7 @@
           "p273 2850a"
         ],
         "note": "With one rear wheel held, the other turns the opposite way through the differential. Each rear wheel is turned with the other held, as the note says (\"With one rear wheel held, the other turns the opposite way through the differential\"): each control's working freezes the other rear wheel, as a user freezes it in the viewer",
+        "lifted": true,
         "held": {
           "p701 44772": [
             "p706 44772"
@@ -201,7 +202,8 @@
           "p708 32525",
           "p842 32525"
         ],
-        "note": "Unsure: the beams may be fixed."
+        "note": "Unsure: the beams may be fixed.",
+        "skip": "not a function of the set: the trailer's wheel beams are fixed, as Erik settled from a video of the set: \"trailer wheel beams are fixed\""
       },
       {
         "does": "A short chain hangs from the trailer's drawbar.",
@@ -219,27 +221,17 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 321,
+    "seconds": 366,
     "counts": {
-      "works": 7,
-      "no": 2,
+      "works": 8,
       "not back": 2,
       "partly": 1,
       "not checked": 1,
-      "skipped": 1
+      "skipped": 2
     },
-    "loose": [
-      "p1126 32020",
-      "p1127 32019",
-      "p1128 32020",
-      "p1129 32019",
-      "p1130 32020",
-      "p1131 32019",
-      "p1132 32020",
-      "p1133 32019"
-    ],
+    "loose": [],
     "functions": [
       {
         "result": "works",
@@ -309,7 +301,7 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -339,53 +331,45 @@
             ]
           ]
         ],
-        "seconds": 9.9
+        "seconds": 5.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p199 6573",
-          "p29 32270",
-          "p37 4019",
-          "p257 2853",
-          "p269 2851",
-          "p259 2852"
         ],
         "rates": [
           {
             "p199 6573": [
-              0,
-              0
+              0.5,
+              7.11e-15
             ],
             "p29 32270": [
-              0,
-              0
+              1,
+              1.07e-14
             ],
             "p37 4019": [
-              0,
+              1,
               0
             ],
             "p257 2853": [
-              0,
-              0
+              1,
+              1.89e-14
             ],
             "p269 2851": [
               0,
-              0
+              5.35
             ],
             "p259 2852": [
-              0,
-              0
+              0.168,
+              10
             ],
             "p273 2850a": [
               0,
@@ -394,33 +378,41 @@
           },
           {
             "p199 6573": [
-              0,
-              0
+              0.5,
+              1.5e-13
             ],
             "p29 32270": [
-              0,
-              0
+              1,
+              2.84e-14
             ],
             "p37 4019": [
-              0,
-              0
+              1,
+              9.47e-15
             ],
             "p257 2853": [
-              0,
-              0
+              1,
+              3.79e-14
             ],
             "p269 2851": [
               0,
-              0
+              5.35
             ],
             "p259 2852": [
-              0,
-              0
+              0.168,
+              10
             ],
             "p273 2850a": [
               0,
               0
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p269 2851": 5.35
+          },
+          {
+            "p269 2851": 5.35
           }
         ],
         "back": [
@@ -445,23 +437,25 @@
             ]
           ]
         ],
-        "stop": [
+        "movedBy": [
           [
-            "no motion",
-            "no motion"
+            "p199 6573",
+            "p29 32270",
+            "p37 4019",
+            "p257 2853",
+            "p269 2851",
+            "p259 2852"
           ],
           [
-            "no motion",
-            "no motion"
+            "p199 6573",
+            "p29 32270",
+            "p37 4019",
+            "p257 2853",
+            "p269 2851",
+            "p259 2852"
           ]
         ],
-        "movedBy": [
-          [],
-          []
-        ],
-        "cause": "part-fixed",
-        "detail": "p269 2851",
-        "seconds": 0.8
+        "seconds": 26.3
       },
       {
         "result": "works",
@@ -505,7 +499,7 @@
           [],
           []
         ],
-        "seconds": 18.2
+        "seconds": 9.2
       },
       {
         "result": "works",
@@ -539,7 +533,7 @@
             ]
           ]
         ],
-        "seconds": 4.8
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -621,7 +615,7 @@
             "p65 3706"
           ]
         ],
-        "seconds": 84.8
+        "seconds": 86.2
       },
       {
         "result": "partly",
@@ -692,7 +686,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 9.9
+        "seconds": 11.6
       },
       {
         "result": "works",
@@ -806,7 +800,7 @@
             "p1004 64782"
           ]
         ],
-        "seconds": 19.5
+        "seconds": 20.5
       },
       {
         "result": "not checked"
@@ -889,66 +883,10 @@
           [],
           []
         ],
-        "seconds": 161.5
+        "seconds": 191.7
       },
       {
-        "result": "no",
-        "turned": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ],
-        "rates": [
-          {},
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true,
-          true
-        ],
-        "movedBy": [
-          [],
-          []
-        ],
-        "cause": "stopped-early",
-        "seconds": 1
+        "result": "skipped"
       },
       {
         "result": "skipped"

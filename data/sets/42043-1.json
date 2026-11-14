@@ -282,6 +282,7 @@
           "p2036 62821"
         ],
         "note": "with the drive shaft held, turning one third-axle wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held\"): its universal joint p2029, which function 10 names on the drive shaft, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
         "held": [
           "p2029 62520"
         ]
@@ -340,14 +341,14 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 2883,
+    "seconds": 1571,
     "counts": {
       "works": 7,
-      "partly": 4,
+      "partly": 5,
       "skipped": 2,
-      "no": 2
+      "no": 1
     },
     "loose": [
       "p1664 42043 - 2943-v2",
@@ -436,7 +437,7 @@
             ]
           ]
         ],
-        "seconds": 175
+        "seconds": 86.8
       },
       {
         "result": "partly",
@@ -528,9 +529,9 @@
             ]
           ]
         ],
-        "cause": "too-little",
-        "detail": "p1898 62274c01",
-        "seconds": 226.1
+        "cause": "loose-part",
+        "detail": "p1665 99799",
+        "seconds": 118
       },
       {
         "result": "works",
@@ -588,7 +589,7 @@
             ]
           ]
         ],
-        "seconds": 173.4
+        "seconds": 97.1
       },
       {
         "result": "works",
@@ -671,7 +672,7 @@
             ]
           ]
         ],
-        "seconds": 177.5
+        "seconds": 95.1
       },
       {
         "result": "partly",
@@ -748,7 +749,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p2368 42043 - 18938",
-        "seconds": 175.4
+        "seconds": 100.8
       },
       {
         "result": "works",
@@ -850,7 +851,7 @@
             "p1577 4519"
           ]
         ],
-        "seconds": 267.4
+        "seconds": 139.7
       },
       {
         "result": "skipped"
@@ -1044,7 +1045,7 @@
             "p2213 86652"
           ]
         ],
-        "seconds": 807.1
+        "seconds": 458.5
       },
       {
         "result": "works",
@@ -1069,7 +1070,7 @@
             ]
           ]
         ],
-        "seconds": 56.4
+        "seconds": 30.9
       },
       {
         "result": "partly",
@@ -1168,18 +1169,18 @@
         ],
         "cause": "part-fixed",
         "detail": "p66 2851",
-        "seconds": 319.7
+        "seconds": 164.9
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -1189,13 +1190,13 @@
           {
             "p2036 62821": [
               0,
-              0
+              8.1e-13
             ]
           },
           {
             "p2036 62821": [
               0,
-              0
+              6.73e-13
             ]
           }
         ],
@@ -1221,22 +1222,13 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
         "movedBy": [
           [],
           []
         ],
-        "cause": "stopped-early",
-        "seconds": 14.6
+        "cause": "part-fixed",
+        "detail": "p2036 62821",
+        "seconds": 45.7
       },
       {
         "result": "skipped"
@@ -1279,7 +1271,7 @@
         ],
         "cause": "not-driven",
         "detail": "p7226 32073",
-        "seconds": 94.9
+        "seconds": 44.3
       },
       {
         "result": "works",
@@ -1323,7 +1315,7 @@
           [],
           []
         ],
-        "seconds": 125.7
+        "seconds": 60.1
       },
       {
         "result": "no",
@@ -1380,7 +1372,7 @@
         ],
         "cause": "not-driven",
         "detail": "p6909 2741",
-        "seconds": 25
+        "seconds": 15.4
       }
     ]
   }

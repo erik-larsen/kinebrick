@@ -77,10 +77,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 6,
+    "seconds": 7,
     "counts": {
       "works": 3,
       "partly": 1
@@ -132,7 +131,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -189,7 +188,7 @@
         ],
         "cause": "not-driven",
         "detail": "p253 32123b against p251 32524",
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -234,7 +233,7 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -294,7 +293,7 @@
           [],
           []
         ],
-        "seconds": 2.3
+        "seconds": 2.6
       }
     ]
   }

@@ -115,12 +115,12 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 626 | 51% |
-| Partly | 274 | 22% |
-| Doesn't work | 147 | 12% |
+| Works | 619 | 51% |
+| Partly | 296 | 24% |
+| Doesn't work | 131 | 11% |
 | Skipped or not checked | 177 | 14% |
 
-Of the functions checked, 60% work in full. Only 21 of the 186 sets have every function working.
+Of the functions checked, 59% work in full. Only 23 of the 186 sets have every function working.
 
 **Major things left:**
 
@@ -180,7 +180,7 @@ Everything happens in the 3D view: drag parts with the mouse or a finger. A part
 | Ctrl-click any other part (a frame, a rack, a piston) | It keeps moving the way a drag would push it, starting away from you, at a tenth of the model's size that way each second, and turns back where it can go no further, so a rack runs to and fro and a car keeps rolling. Ctrl-click it again to reverse, a third time to stop, as for a part that spins. |
 | Drag a part that can't move at all (a door on friction hinges) | If friction pins hold it, Kinebrick lets the fewest of them turn that the part needs to move, and says how many; then drag it again. Those pins can turn until **Reset**. Kinebrick reads a model with every friction pin holding its parts rigid, as glue would, since most of them are there to hold the model together; it reads them all as able to turn only if nothing could move otherwise. |
 | Hold Shift and drag a part fixed to a frame that can roll (a car's door) | A plain drag pushes the car; with Shift held, Kinebrick lets the friction pins turn that hold the part to the frame, as above. If more than friction pins hold it, it says so. A touch screen has no Shift, so there such parts stay held. |
-| Alt-click (Option-click on a Mac) a part | Its body is frozen until you Alt-click it again, or click **Unfreeze all** in the Options panel. Useful where a mechanism can move more than one way: freeze a differential's input, and turning one output turns the other the opposite way. |
+| Alt-click (Option-click on a Mac) a part | Its body is frozen until you Alt-click it again, or click **Unfreeze all** in the Options panel. Useful where a mechanism can move more than one way: freeze a differential's input, and turning one output turns the other the opposite way. A frozen part that turns on an axle doesn't turn against what that axle turns in: a gear on an axle that turns in another part, frozen, stops the axle too, and a frozen wheel on a steered knuckle stops rolling but still steers. |
 | Click **Reset**, the last button on the title card | The model goes back as it was loaded, any motor stops, every friction pin holds again, and the camera goes back to where it started. |
 
 Parts a drag doesn't need stay put: pushing a car leaves its steering alone, and turning its steering wheel leaves the car where it is. Motion stops where two parts would run into each other, or at the end of a slide's travel or a rack's teeth, and those two parts flash red; it stops too where a part would go below the ground (a crane's hook let down too far), and that part flashes red. A part that can't move at all says why: the mechanism is jammed, a worm can't be driven from its gear, the model has no wheels to roll on, or its tyres would scrub sideways more than **Tyre scrub** allows. Scrub is forgiven first: a motion that needs more than **Tyre scrub** allows raises it to what it needs and 2 points over, up to 30%, and says so; only past that does the model stay put, saying by how much. A part kept turning that comes to such a stop says so too. Gears a drag brings together (a tractor's thresher lowered onto its power take-off) mesh from then on, and gears it draws apart stop meshing: when a drag ends, Kinebrick works out afresh how the model moves if its gears' meshes have changed. Let go, and the model stays where it is; momentum waits for forces in 2.0.
@@ -204,6 +204,7 @@ These are off, or at their usual values, unless you set them, in the Options pan
 - **Shown parts** (`show=182,183`): parts outlined in magenta from the moment the page opens, whether they can move or not, each by its place in the model file (as for Auto spin). The camera starts close to them. For a link that points at a part: "this beam is pinned at both ends".
 - **Turning friction pins** (`free=1086,1087`): friction pins that can turn from the moment the page opens, each by its place in the model file (as for Auto spin), as if a drag of a part they held had let them turn. Such a drag keeps it up to date, so a link plays back the turns of a part only they held; Reset clears it. Switching model drops it.
 - **Tyre scrub** (`scrub=10`): how far tyres may slide sideways, as a percentage of how far they roll. It's 10% unless the model says otherwise (see below), and switching model goes back to the new model's own. More lets a car whose steering is far from every wheel turning round one centre roll at bigger steering angles; too much would let a car with no steering at all turn. A motion that needs more raises it, to what it needs and 2 points over, up to 30%.
+- **Lift off the ground** (`lifted=1`): the model held up in the hand. No tyre touches the ground and the frame stays where it is, so the wheels turn freely: dragging a car's wheel turns that wheel and what it drives, and never rolls the car. Freeze a differential's input (Alt-click), and turning one wheel turns the other the opposite way, which on the ground would need the car to pivot on the spot. Parts frozen stay frozen when it's ticked or unticked.
 
 A model file can carry Kinebrick's own settings as LDraw meta-commands, which other LDraw programs skip. `0 !KINEBRICK SCRUB [percent=16]` in its main file sets its tyre scrub (the 854 Go-Kart has it: its front wheels turn alike, and at full lock its tyres scrub more than 10%). `0 !KINEBRICK SLIDE [part=3737.dat] [at=0 -147.6 -108.5] [dir=0 0 -1] [positions=0,20]` lets a part slide, with whatever turns on it, between those click positions, in LDU that way from where it's built (the 956 Auto Chassis's input shaft, which its gear lever slides from one gear to the other). A real LEGO set's lines are kept in its file in [data/sets/](data/sets/README.md), by its name in `models/`, rather than edited into its model file: `npm run data` puts them there, so a fresh copy from the OMR gets them too.
 

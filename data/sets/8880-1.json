@@ -222,10 +222,9 @@
     ]
   },
   "generated": {
-    "commit": "7699035a",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 168,
+    "seconds": 156,
     "counts": {
       "works": 7,
       "no": 4,
@@ -407,7 +406,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 44.7
+        "seconds": 42.9
       },
       {
         "result": "works",
@@ -589,7 +588,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 55.5
+        "seconds": 53.1
       },
       {
         "result": "no",
@@ -612,7 +611,7 @@
           "p595 6549 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 10
+        "seconds": 9.1
       },
       {
         "result": "works",
@@ -666,7 +665,7 @@
             ]
           ]
         ],
-        "seconds": 12.3
+        "seconds": 10.7
       },
       {
         "result": "works",
@@ -713,7 +712,7 @@
             ]
           ]
         ],
-        "seconds": 11.3
+        "seconds": 10.1
       },
       {
         "result": "works",
@@ -764,7 +763,7 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "seconds": 3
       },
       {
         "result": "no",
@@ -874,7 +873,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 1.2
+        "seconds": 1
       },
       {
         "result": "skipped",
@@ -951,7 +950,7 @@
           [],
           []
         ],
-        "seconds": 14.5
+        "seconds": 12.8
       },
       {
         "result": "works",
@@ -999,7 +998,7 @@
             ]
           ]
         ],
-        "seconds": 10
+        "seconds": 8.9
       }
     ]
   }

@@ -209,16 +209,14 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 34,
+    "seconds": 41,
     "counts": {
-      "works": 5,
+      "works": 6,
       "no": 2,
-      "partly": 3,
+      "partly": 2,
       "not checked": 1,
-      "not back": 1,
       "skipped": 1
     },
     "loose": [
@@ -294,7 +292,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 2
       },
       {
         "result": "no",
@@ -358,7 +356,7 @@
             null
           ]
         ],
-        "seconds": 3.5
+        "seconds": 4.8
       },
       {
         "result": "partly",
@@ -411,7 +409,7 @@
         ],
         "cause": "not-driven",
         "detail": "p212 48168",
-        "seconds": 1.8
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -466,7 +464,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p212 48168",
-        "seconds": 1.5
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -508,7 +506,7 @@
             ]
           ]
         ],
-        "seconds": 2.8
+        "seconds": 3.8
       },
       {
         "result": "not checked",
@@ -558,52 +556,44 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 5.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.51,
+            1.5,
             -1.5
           ]
-        ],
-        "moved": [
-          "p370 40490"
         ],
         "rates": [
           {
             "p357 32316": [
-              0.888,
-              52
+              1,
+              40
             ],
             "p370 40490": [
-              0.19,
-              15.6
+              0,
+              4.58e-13
             ]
           }
         ],
         "back": [
           [
             [
-              18.66,
-              12.33
+              0,
+              0
             ],
             [
-              0.99,
-              0.52
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p337 32526"
         ],
         "pushed": [
           true
         ],
-        "cause": "stay-chosen",
-        "detail": "p370 40490",
-        "seconds": 7.3
+        "seconds": 5.4
       },
       {
         "result": "no",
@@ -652,7 +642,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -760,7 +750,7 @@
           [],
           []
         ],
-        "seconds": 10.4
+        "seconds": 13.8
       },
       {
         "result": "skipped",

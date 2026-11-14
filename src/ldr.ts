@@ -456,6 +456,10 @@ export interface PlacedShape {
 // see parseModel): the first piece takes the part's own place in the order, the rest come after
 // the model's last part, so no part number another part, a function list or a test holds moves.
 export const PIECES_AFTER = '0 !KINEBRICK PIECES AFTER';
+// The line after which the main model's lines are parts an erratum adds (see errata.ts): placed
+// after every other part, the pieces numbered after the model's other parts included, so no part
+// number another part holds moves.
+export const ADDED = '0 !KINEBRICK ADDED';
 
 export function parseModel(
   text: string,
@@ -506,8 +510,11 @@ export function parseModel(
     const own = submodel && !pieces ? shapeLines.get(submodel)! : [];
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1, ...(path ? { path } : {}) });
   };
-  place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
+  const main = [...files.values()][0] ?? [];
+  const addedAt = main.findIndex((line) => line.trim() === ADDED);
+  place(addedAt < 0 ? main : main.slice(0, addedAt), new Matrix4(), INHERIT, undefined, 0);
   for (let i = 0; i < after.length; i++) place(after[i].lines, after[i].matrix, after[i].color, after[i].submodel, after[i].depth, true, null, after[i].within);
+  if (addedAt >= 0) place(main.slice(addedAt + 1), new Matrix4(), INHERIT, undefined, 0);
   // A shape whose submodel places no part (a sticker sheet's stickers, drawn in a file of their
   // own) moves with the part nearest where it's drawn.
   for (const shape of shapes) {

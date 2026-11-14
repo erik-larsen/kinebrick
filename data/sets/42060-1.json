@@ -131,15 +131,13 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 4,
+    "seconds": 8,
     "counts": {
       "no": 2,
-      "works": 5,
-      "partly": 1,
-      "not back": 1
+      "works": 3,
+      "partly": 3
     },
     "loose": [
       "p192 3837",
@@ -376,7 +374,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -452,7 +450,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -482,10 +480,10 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -520,49 +518,45 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "cause": "loose-part",
+        "detail": "p270 32270",
+        "seconds": 0.8
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.61,
-            -1.7
+            1.5,
+            -1.5
           ]
-        ],
-        "moved": [
-          "p277 32316"
         ],
         "rates": [
           {
             "p288 42060 - 33299b": [
-              1.02,
-              3.98
+              1,
+              2.29e-13
             ],
             "p295 32524 against p277 32316": [
               1,
               20
             ],
             "p277 32316": [
-              0.0226,
-              2.93
+              0,
+              7.58e-14
             ]
           }
         ],
         "back": [
           [
             [
-              237.58,
-              125.33
+              0,
+              0
             ],
             [
-              20.69,
-              10.61
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p294 30394"
         ],
         "pushed": [
           true
@@ -570,10 +564,10 @@
         "freed": 1,
         "cause": "loose-part",
         "detail": "p287 59443",
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -630,7 +624,9 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "cause": "loose-part",
+        "detail": "p308 94925",
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -666,7 +662,7 @@
         ],
         "cause": "loose-part",
         "detail": "p294 30394",
-        "seconds": 0.9
+        "seconds": 2.7
       }
     ]
   }

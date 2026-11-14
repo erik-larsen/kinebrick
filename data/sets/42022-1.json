@@ -88,10 +88,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 4,
+    "seconds": 6,
     "counts": {
       "works": 3,
       "partly": 1
@@ -158,7 +157,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -220,7 +219,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p314 2851 against p0 99008",
-        "seconds": 1.1
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -280,7 +279,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -328,7 +327,7 @@
             null
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       }
     ]
   }

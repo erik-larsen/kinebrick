@@ -78,6 +78,7 @@
           "p95 6589"
         ],
         "note": "with the engine held still, turning one rear wheel turns the other the opposite way; the engine is held, as the note says (\"with the engine held still\"): the crankshaft p154, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
         "held": [
           "p154 2853"
         ]
@@ -97,19 +98,21 @@
         ]
       },
       {
-        "does": "The two front doors open, each swinging out on a hinge at its front edge.",
+        "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
         "mechanisms": [
           "hinge: doors"
         ],
-        "source": "book: book 3 steps 9-12 (doors fitted on their hinge pins); inferred: that they're meant to open",
+        "source": "book 3 (8081-1-3.pdf): page 8 step 8.4 puts the 32054 down through the rear hole of the black 13L sill and the blue 6558 in its front hole, and page 9 pins both into the body; steps 9 and 12 to 13 (pages 10 to 11 and 16 to 19) lay the door, a red 13L beam with its panel, on the sill, hung on the upper end of the 6558. Erik, from a review video of the set: \"the door is hinged in the lower corner of the door closest to the front wheel\"; asked whether a pin is pulled first: \"No, it just swings\"",
         "control": [
-          "p472 41239",
-          "p504 41239"
+          "p475 41239",
+          "p507 41239"
         ],
         "stays": [
+          "p472 41239",
+          "p504 41239",
           "p415 32278"
         ],
-        "note": "each door opens on its own; the left one's panel is p478 64392, the right one's p510 64682"
+        "note": "each door opens on its own: the left door is the red beam p475 with its panel p478 64392, the right one p507 with p510 64682. The black sills p472 and p504, which this function named as its controls before, are pinned to the body at both ends (the 6558 p473 and p505 at the front, the 32054 p474 and p506 at the rear) and stay. Each door hangs on the upper end of its 6558, its hinge at the lower front corner; at the rear it only rests over the 32054's bush. In the file each door is drawn about 4.6 degrees open, its rear hole 18 LDU off the bush, so nothing joins them there"
       },
       {
         "does": "The tailgate at the back swings up on a hinge at the roof.",
@@ -168,14 +171,13 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
-    "uncommitted": true,
+    "commit": "6ed4bb79",
     "date": "2026-11-14",
-    "seconds": 19,
+    "seconds": 34,
     "counts": {
-      "works": 4,
+      "works": 6,
       "not back": 1,
-      "no": 4,
+      "no": 2,
       "skipped": 1
     },
     "loose": [],
@@ -250,7 +252,7 @@
             ]
           ]
         ],
-        "seconds": 8.5
+        "seconds": 13.2
       },
       {
         "result": "works",
@@ -402,24 +404,21 @@
             "p164 2851"
           ]
         ],
-        "seconds": 7.6
+        "seconds": 11.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p95 6589"
         ],
         "rates": [
           {
             "p95 6589": [
-              0,
-              0
+              1,
+              2.37e-14
             ]
           }
         ],
@@ -435,14 +434,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -477,28 +469,44 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1.2
+        "seconds": 2.3
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {
+            "p472 41239": [
+              0,
+              1.89e-14
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
             "p415 32278": [
               0,
               0
             ]
           },
           {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              5.68e-14
+            ],
             "p415 32278": [
               0,
               0
@@ -527,26 +535,12 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true,
-          true
-        ],
+        "freed": 1,
         "movedBy": [
           [],
           []
         ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 3.7
       },
       {
         "result": "no",
@@ -571,7 +565,7 @@
           "p415 32278 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -682,7 +676,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.4
       }
     ]
   }

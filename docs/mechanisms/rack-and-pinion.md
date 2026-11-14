@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 18 works, 7 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 17 works, 8 partly, 5 no.
 
 ## By decade
 
@@ -56,7 +56,7 @@ Each detail by the set it first appears in.
 
 **1979, [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer)**
 
-- *loader arms:* The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise. (partly)
+- *loader arms:* The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise. (works)
 - *bucket:* The handwheel at the back on the right tips the bucket: its 8-tooth gear turns a crown gear, which turns the 24-tooth gear on the axle across the top of the cab; that axle's two 8-tooth gears slide two racks along the cab sides, which work a pair of levers on the arms' pivot axle, and rods from there through levers on the arms tip the bucket at the arm tips. (works)
 
 **1979, [950 Fork Lift](https://erik-larsen.github.io/kinebrick/?model=950-Fork%20Lift)**
@@ -98,7 +98,7 @@ Each detail by the set it first appears in.
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
-- *outriggers:* The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the first yellow lever (the one with p164 and p167) is pushed down. (partly)
+- *outriggers:* The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (partly)
 
 **2012, [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1)**
 
@@ -118,7 +118,7 @@ Each detail by the set it first appears in.
 
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
-- *boom extension:* The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure). (works)
+- *boom extension:* The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure). (partly)
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
@@ -126,7 +126,7 @@ Each detail by the set it first appears in.
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
-- *mast:* Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further. (works)
+- *mast:* Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further. (partly)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 

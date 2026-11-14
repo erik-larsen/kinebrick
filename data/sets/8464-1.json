@@ -79,6 +79,7 @@
           "p31 3650a",
           "p427 2854"
         ],
+        "lifted": true,
         "held": [
           "p31 3650a"
         ],
@@ -99,6 +100,7 @@
           "p132 3650a",
           "p427 2854"
         ],
+        "lifted": true,
         "held": [
           "p132 3650a"
         ],
@@ -157,23 +159,19 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 5,
+    "seconds": 8,
     "counts": {
       "partly": 5,
-      "no": 2,
+      "works": 2,
       "skipped": 1
     },
     "loose": [
       "p171 6141",
       "p172 6141",
       "p173 6141",
-      "p174 6141",
-      "p565 2995",
-      "p567 2995",
-      "p569 2995",
-      "p571 2995"
+      "p174 6141"
     ],
     "functions": [
       {
@@ -221,9 +219,9 @@
             ]
           ]
         ],
-        "cause": "loose-part",
-        "detail": "p569 2995",
-        "seconds": 0.8
+        "cause": "part-fixed",
+        "detail": "p268 3647",
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -274,9 +272,9 @@
           ]
         ],
         "freed": 1,
-        "cause": "loose-part",
-        "detail": "p569 2995",
-        "seconds": 1
+        "cause": "not-driven",
+        "detail": "p291 2819",
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -349,30 +347,26 @@
             ]
           ]
         ],
-        "cause": "loose-part",
-        "detail": "p565 2995",
-        "seconds": 0.8
+        "cause": "not-driven",
+        "detail": "p427 2854",
+        "seconds": 1.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p567 2995",
-          "p17 6589"
         ],
         "rates": [
           {
             "p567 2995": [
-              0,
+              0.143,
               0
             ],
             "p17 6589": [
-              0,
+              0.143,
               0
             ],
             "p31 3650a": [
@@ -397,36 +391,24 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "loose-part",
-        "detail": "p565 2995",
-        "seconds": 0.1
+        "seconds": 0.9
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p571 2995",
-          "p99 6589"
         ],
         "rates": [
           {
             "p571 2995": [
-              0,
+              1,
               0
             ],
             "p99 6589": [
-              0,
+              1,
               0
             ],
             "p132 3650a": [
@@ -451,15 +433,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "loose-part",
-        "detail": "p569 2995",
-        "seconds": 0.1
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -527,7 +501,7 @@
         "freed": 1,
         "cause": "part-fixed",
         "detail": "p234 3702",
-        "seconds": 0.9
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -576,7 +550,7 @@
         "freed": 1,
         "cause": "not-driven",
         "detail": "p558 32030 against p234 3702",
-        "seconds": 0.9
+        "seconds": 1.2
       }
     ]
   }

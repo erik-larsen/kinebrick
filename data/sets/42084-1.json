@@ -84,13 +84,13 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
-    "uncommitted": true,
+    "commit": "6ed4bb79",
     "date": "2026-11-14",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "no": 1,
-      "works": 2,
+      "partly": 1,
+      "works": 1,
       "not checked": 1
     },
     "loose": [
@@ -180,7 +180,7 @@
         "seconds": 0.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -234,7 +234,9 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "cause": "loose-part",
+        "detail": "p169 62531",
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -310,7 +312,7 @@
           [],
           []
         ],
-        "seconds": 2.5
+        "seconds": 2
       },
       {
         "result": "not checked",

@@ -136,14 +136,13 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 178,
+    "seconds": 30,
     "counts": {
-      "works": 4,
+      "works": 5,
       "not back": 3,
-      "partly": 2,
+      "partly": 1,
       "skipped": 3
     },
     "loose": [
@@ -205,7 +204,7 @@
         "pushed": [
           true
         ],
-        "seconds": 11
+        "seconds": 14.8
       },
       {
         "result": "works",
@@ -239,78 +238,75 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.51,
-            -1.51
+            1.5,
+            -1.5
           ],
           [
-            1.62,
-            -1.62
+            1.5,
+            -1.5
           ]
-        ],
-        "moved": [
-          "p0 32009"
         ],
         "rates": [
           {
             "p619 6536 against p0 32009": [
               0.924,
-              136
+              135
             ],
             "p856 6536 against p0 32009": [
-              0.0294,
-              0.521
+              0,
+              8.64e-13
             ],
             "p0 32009": [
-              0.0308,
-              8.17
+              0,
+              2.81e-12
             ]
           },
           {
             "p619 6536 against p0 32009": [
-              0.0353,
-              0.487
+              0,
+              1.47e-12
             ],
             "p856 6536 against p0 32009": [
               0.924,
-              136
+              135
             ],
             "p0 32009": [
-              0.0372,
-              9.59
+              0,
+              2.21e-12
             ]
           }
         ],
         "back": [
           [
             [
-              9.23,
-              1.92
+              0.83,
+              1.24
             ],
             [
-              9.06,
-              1.78
+              0.29,
+              0.44
             ]
           ],
           [
             [
-              6.98,
-              1.69
+              0.83,
+              1.24
             ],
             [
-              7.16,
-              1.57
+              0.29,
+              0.44
             ]
           ]
         ],
         "strayed": [
-          "p614 6538b",
-          "p851 6538b"
+          "p603 3749",
+          "p840 3749"
         ],
         "pushed": [
           true,
@@ -318,17 +314,13 @@
         ],
         "movedBy": [
           [
-            "p619 6536 against p0 32009",
-            "p856 6536 against p0 32009"
+            "p619 6536 against p0 32009"
           ],
           [
-            "p619 6536 against p0 32009",
             "p856 6536 against p0 32009"
           ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p0 32009",
-        "seconds": 1.5
+        "seconds": 2.1
       },
       {
         "result": "partly",
@@ -404,7 +396,7 @@
         ],
         "cause": "not-driven",
         "detail": "p619 6536 against p238 6632",
-        "seconds": 1.4
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -438,13 +430,13 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.8
       },
       {
         "result": "works",
         "turned": [
           [
-            0.12,
+            -1.15,
             -1.01
           ]
         ],
@@ -459,11 +451,11 @@
         "back": [
           [
             [
-              49.49,
-              100.56
+              71.36,
+              149.91
             ],
             [
-              190.23,
+              190.22,
               61.29
             ]
           ]
@@ -481,7 +473,7 @@
         "pushed": [
           true
         ],
-        "seconds": 162.7
+        "seconds": 9.4
       },
       {
         "result": "skipped",

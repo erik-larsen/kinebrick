@@ -181,14 +181,13 @@
     ]
   },
   "generated": {
-    "commit": "7699035a",
-    "uncommitted": true,
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 2301,
+    "seconds": 2129,
     "counts": {
       "no": 1,
-      "partly": 4,
-      "works": 5
+      "partly": 6,
+      "works": 3
     },
     "loose": [
       "p0 32009",
@@ -737,7 +736,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 10.1
+        "seconds": 7.5
       },
       {
         "result": "partly",
@@ -790,7 +789,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 139.9
+        "seconds": 117.8
       },
       {
         "result": "partly",
@@ -825,7 +824,7 @@
         ],
         "cause": "not-driven",
         "detail": "p418 64178 against p1175 18939",
-        "seconds": 138.2
+        "seconds": 116.2
       },
       {
         "result": "partly",
@@ -877,9 +876,9 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p911 57520",
-        "seconds": 186.7
+        "cause": "loose-part",
+        "detail": "p2426 42055 - 24120",
+        "seconds": 153.9
       },
       {
         "result": "works",
@@ -921,7 +920,7 @@
             ]
           ]
         ],
-        "seconds": 568.9
+        "seconds": 442.1
       },
       {
         "result": "works",
@@ -951,30 +950,25 @@
             ]
           ]
         ],
-        "seconds": 77.7
+        "seconds": 60.1
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
+            2.6,
             0
           ]
-        ],
-        "still": [
-          "p1510 62274c01",
-          "p1513 62274c01",
-          "p2535 42055 - 55615"
         ],
         "rates": [
           {
             "p1510 62274c01": [
-              0.000932,
-              0.665
+              0.000931,
+              0.664
             ],
             "p1513 62274c01": [
-              0.000932,
-              0.665
+              0.000931,
+              0.664
             ],
             "p2535 42055 - 55615": [
               0.0018,
@@ -985,15 +979,15 @@
               1.06
             ],
             "p418 64178": [
-              0.00000127,
-              5.66e-47
+              0.00000161,
+              1.4e-46
             ]
           }
         ],
         "back": [
           [
             [
-              0.01,
+              0.02,
               0.01
             ],
             [
@@ -1008,12 +1002,10 @@
             "limit"
           ]
         ],
-        "cause": "too-little",
-        "detail": "p1510 62274c01",
-        "seconds": 269.3
+        "seconds": 536.4
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -1064,10 +1056,12 @@
             ]
           ]
         ],
-        "seconds": 79.4
+        "cause": "loose-part",
+        "detail": "p156 32270",
+        "seconds": 60.3
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             0.57,
@@ -1108,10 +1102,12 @@
             "dead point"
           ]
         ],
-        "seconds": 284.3
+        "cause": "loose-part",
+        "detail": "p276 32270",
+        "seconds": 221.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -1184,7 +1180,9 @@
           [],
           []
         ],
-        "seconds": 310.7
+        "cause": "loose-part",
+        "detail": "p294 56145",
+        "seconds": 236.9
       }
     ]
   }
