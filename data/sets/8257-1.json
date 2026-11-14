@@ -160,15 +160,14 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "4f9b793",
     "date": "2026-11-14",
-    "seconds": 36,
+    "seconds": 59,
     "counts": {
-      "works": 4,
+      "works": 5,
       "partly": 2,
       "not back": 3,
-      "no": 2,
+      "no": 1,
       "skipped": 2
     },
     "loose": [
@@ -604,47 +603,50 @@
           [],
           []
         ],
-        "seconds": 11.6
+        "seconds": 19.9
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
+            1.59,
             -0.02
           ]
         ],
         "rates": [
           {
             "p323 32133 against p550 32018": [
-              0.81,
-              715
+              0.126,
+              2570
             ],
             "p567 32065 against p550 32018": [
-              1.41,
-              84.3
+              4.66,
+              279
             ],
             "p594 6629 against p550 32018": [
               0,
-              1.31e-9
+              0.00000405
             ],
             "p604 32065 against p550 32018": [
-              0,
-              3.46e-10
+              0.0151,
+              0.301
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              76.61,
+              8.12
             ],
             [
-              0,
-              0
+              0.22,
+              0.02
             ]
           ]
+        ],
+        "strayed": [
+          "p69 32134"
         ],
         "stop": [
           [
@@ -655,7 +657,8 @@
         "pushed": [
           true
         ],
-        "seconds": 7.9
+        "cause": "stopped-early",
+        "seconds": 11.2
       },
       {
         "result": "partly",
@@ -671,58 +674,56 @@
         "rates": [
           {
             "p457 32009 against p550 32018": [
-              0.000708,
-              79.9
+              0.00227,
+              80.1
             ],
             "p620 2698 against p550 32018": [
               1,
               36.2
             ],
             "p457 32009 against p604 32065": [
-              1,
-              79.9
+              0.998,
+              79.8
             ]
           }
         ],
         "back": [
           [
             [
-              1.71,
-              0.52
+              1.28,
+              0.54
             ],
             [
-              1.84,
-              0.29
+              1.25,
+              0.17
             ]
           ]
         ],
         "strayed": [
-          "p617 2706"
+          "p617 2706",
+          "p186 2707p03"
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 4.2
+        "seconds": 7.2
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p602 2723 against p550 32018"
         ],
         "rates": [
           {
             "p602 2723 against p550 32018": [
-              0,
-              0
+              1,
+              117
             ],
             "p604 32065 against p550 32018": [
               0,
-              0
+              4.16e-12
             ]
           }
         ],
@@ -738,29 +739,22 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.3
+        "seconds": 6.9
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -771,16 +765,6 @@
         "back": [
           [
             [
-              2.96,
-              0.31
-            ],
-            [
-              1121.01,
-              85.96
-            ]
-          ],
-          [
-            [
               0,
               0
             ],
@@ -798,24 +782,16 @@
               0,
               0
             ]
-          ]
-        ],
-        "strayed": [
-          "p69 32134",
-          "p291 80"
-        ],
-        "stop": [
-          [
-            null,
-            null
           ],
           [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ],
         "movedBy": [
@@ -823,9 +799,7 @@
           [],
           []
         ],
-        "cause": "loose-part",
-        "detail": "p43 6579",
-        "seconds": 5.9
+        "seconds": 5.6
       },
       {
         "result": "works",
@@ -876,7 +850,7 @@
             "dead point"
           ]
         ],
-        "seconds": 4.3
+        "seconds": 5.5
       },
       {
         "result": "no",
@@ -926,7 +900,7 @@
         ],
         "cause": "loose-part",
         "detail": "p166 32065",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -960,7 +934,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.9
       },
       {
         "result": "skipped",
