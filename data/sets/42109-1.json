@@ -93,7 +93,8 @@
     ]
   },
   "generated": {
-    "commit": "1a4daf6f",
+    "commit": "1f4f7585",
+    "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 3,
     "counts": {
@@ -162,7 +163,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -337,7 +338,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "not checked",

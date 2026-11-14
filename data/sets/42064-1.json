@@ -156,9 +156,10 @@
     ]
   },
   "generated": {
-    "commit": "1a4daf6f",
+    "commit": "1f4f7585",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 39,
+    "seconds": 40,
     "counts": {
       "partly": 4,
       "works": 5
@@ -232,7 +233,7 @@
         ],
         "cause": "not-driven",
         "detail": "p214 4716",
-        "seconds": 2.9
+        "seconds": 2.7
       },
       {
         "result": "partly",
@@ -289,7 +290,7 @@
         ],
         "cause": "not-driven",
         "detail": "p224 99010",
-        "seconds": 2.9
+        "seconds": 2.7
       },
       {
         "result": "partly",
@@ -351,7 +352,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 11946",
-        "seconds": 2.8
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -443,7 +444,7 @@
           [],
           []
         ],
-        "seconds": 14.1
+        "seconds": 14.7
       },
       {
         "result": "partly",
@@ -490,7 +491,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1253 6536",
-        "seconds": 2.7
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -539,7 +540,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -592,6 +593,31 @@
             ]
           ]
         ],
+        "seconds": 2.9
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {}
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "seconds": 2.7
       },
       {
@@ -617,33 +643,8 @@
             ]
           ]
         ],
-        "seconds": 2.5
-      },
-      {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
         "freed": 2,
-        "seconds": 4.7
+        "seconds": 5
       }
     ]
   }

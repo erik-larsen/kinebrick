@@ -160,9 +160,10 @@
     ]
   },
   "generated": {
-    "commit": "1a4daf6f",
+    "commit": "1f4f7585",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 41,
+    "seconds": 43,
     "counts": {
       "works": 3,
       "not back": 4,
@@ -334,7 +335,7 @@
           [],
           []
         ],
-        "seconds": 11.1
+        "seconds": 11.4
       },
       {
         "result": "works",
@@ -385,7 +386,7 @@
             "dead point"
           ]
         ],
-        "seconds": 4.6
+        "seconds": 4.5
       },
       {
         "result": "partly",
@@ -431,7 +432,7 @@
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 5.5
+        "seconds": 6.1
       },
       {
         "result": "works",
@@ -465,7 +466,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.9
       },
       {
         "result": "partly",
@@ -521,10 +522,9 @@
           ]
         ],
         "strayed": [
-          "p44 6580",
+          "p452 3713",
           "p453 3713",
-          "p42 6580",
-          "p452 3713"
+          "p42 6580"
         ],
         "movedBy": [
           [],
@@ -533,7 +533,7 @@
         ],
         "cause": "second-model",
         "detail": "p25 6579",
-        "seconds": 10.5
+        "seconds": 11.5
       },
       {
         "result": "partly",
@@ -555,11 +555,11 @@
             ],
             "p156 6629 against p112 32018": [
               0,
-              3.79e-14
+              6.17e-14
             ],
             "p166 32065 against p112 32018": [
               0,
-              2.45e-13
+              2.13e-13
             ]
           }
         ],
@@ -586,7 +586,7 @@
         ],
         "cause": "second-model",
         "detail": "p54 6572",
-        "seconds": 5.3
+        "seconds": 4.9
       },
       {
         "result": "no",
@@ -672,7 +672,7 @@
         ],
         "cause": "second-model",
         "detail": "p156 6629",
-        "seconds": 1.7
+        "seconds": 1.8
       },
       {
         "result": "skipped",

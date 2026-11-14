@@ -100,9 +100,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5dac39a9",
     "date": "2026-11-14",
-    "seconds": 11,
+    "seconds": 12,
     "counts": {
       "works": 4,
       "no": 1
@@ -307,7 +307,7 @@
             "p112 2851"
           ]
         ],
-        "seconds": 4
+        "seconds": 4.4
       },
       {
         "result": "works",
@@ -341,7 +341,7 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 2
       },
       {
         "result": "works",
@@ -461,7 +461,7 @@
           [],
           []
         ],
-        "seconds": 3.9
+        "seconds": 3.7
       },
       {
         "result": "no",

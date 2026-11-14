@@ -90,9 +90,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5dac39a9",
     "date": "2026-11-14",
-    "seconds": 6,
+    "seconds": 4,
     "counts": {
       "works": 3,
       "not back": 1,
@@ -162,7 +162,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -312,7 +312,7 @@
           [],
           []
         ],
-        "seconds": 1.6
+        "seconds": 1.2
       },
       {
         "result": "not checked",

@@ -84,9 +84,10 @@
     ]
   },
   "generated": {
-    "commit": "1a4daf6f",
+    "commit": "1f4f7585",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "no": 1,
       "works": 2,
@@ -284,7 +285,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "not checked",
