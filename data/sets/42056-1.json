@@ -197,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "1a4daf6f",
     "date": "2026-11-14",
-    "seconds": 602,
+    "seconds": 553,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -216,29 +216,7 @@
       "p2669 3960",
       "p2710 59443",
       "p2723 59443",
-      "p2724 59443",
-      "p2737 44294",
-      "p2738 42003",
-      "p2739 87082",
-      "p2740 41677",
-      "p2741 4519",
-      "p2742 32123a",
-      "p2743 32123a",
-      "p2744 32123a",
-      "p2745 32123a",
-      "p2746 41677",
-      "p2747 87082",
-      "p2748 42003",
-      "p2749 6558",
-      "p2750 6558",
-      "p2751 60483",
-      "p2752 60483",
-      "p2753 60483",
-      "p2754 60483",
-      "p2755 4519",
-      "p2756 4519",
-      "p2757 24119",
-      "p2758 24119"
+      "p2724 59443"
     ],
     "functions": [
       {
@@ -302,7 +280,7 @@
             ]
           ]
         ],
-        "seconds": 42.6
+        "seconds": 48.3
       },
       {
         "result": "partly",
@@ -382,7 +360,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 106.4
+        "seconds": 95.7
       },
       {
         "result": "partly",
@@ -476,7 +454,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 24.3
+        "seconds": 24.4
       },
       {
         "result": "partly",
@@ -516,7 +494,7 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 11.9
+        "seconds": 11.8
       },
       {
         "result": "works",
@@ -598,7 +576,7 @@
             "p2734 23800"
           ]
         ],
-        "seconds": 39.9
+        "seconds": 45.9
       },
       {
         "result": "works",
@@ -680,7 +658,7 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 52.5
+        "seconds": 37.4
       },
       {
         "result": "skipped"
@@ -761,7 +739,7 @@
           [],
           []
         ],
-        "seconds": 79
+        "seconds": 73
       },
       {
         "result": "works",
@@ -800,7 +778,7 @@
         "pushed": [
           true
         ],
-        "seconds": 112.3
+        "seconds": 100
       },
       {
         "result": "no",
@@ -858,9 +836,8 @@
           [],
           []
         ],
-        "cause": "loose-part",
-        "detail": "p2757 24119",
-        "seconds": 16.8
+        "cause": "control-jammed",
+        "seconds": 16.5
       },
       {
         "result": "works",
@@ -896,7 +873,7 @@
         "pushed": [
           true
         ],
-        "seconds": 53
+        "seconds": 39.2
       },
       {
         "result": "works",
@@ -940,7 +917,7 @@
           [],
           []
         ],
-        "seconds": 25
+        "seconds": 24
       }
     ]
   }

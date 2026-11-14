@@ -171,9 +171,9 @@
     ]
   },
   "generated": {
-    "commit": "6ed4bb79",
+    "commit": "1a4daf6f",
     "date": "2026-11-14",
-    "seconds": 34,
+    "seconds": 20,
     "counts": {
       "works": 6,
       "not back": 1,
@@ -252,7 +252,7 @@
             ]
           ]
         ],
-        "seconds": 13.2
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -404,7 +404,7 @@
             "p164 2851"
           ]
         ],
-        "seconds": 11.4
+        "seconds": 6.7
       },
       {
         "result": "works",
@@ -434,7 +434,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -469,7 +469,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 2.3
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -540,7 +540,7 @@
           [],
           []
         ],
-        "seconds": 3.7
+        "seconds": 2
       },
       {
         "result": "no",
@@ -565,7 +565,7 @@
           "p415 32278 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "no",
@@ -676,7 +676,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 0.8
       }
     ]
   }

@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 73 works, 18 partly, 31 no, 2 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 76 works, 14 partly, 32 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -149,8 +149,8 @@ Each detail by the set it first appears in.
 
 **1998, [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1)**
 
-- *head:* The robot's head (the eyes, the black hoses and the purple target disc on top) is set folded forward and flips up and back on its axle at the back of the body when the buggy's punch hits it. (works)
-- *arms:* The two purple arms with yellow claws swing round on upright pins at the front corners of the body; in the book they swing forward, round to the front, and snap at the buggy when the robot is hit. (partly)
+- *head:* The robot's head (the eyes, the black hoses and the purple target disc on top) is set folded forward and flips up and back on its axle at the back of the body when the buggy's punch hits it. (no)
+- *arms:* The two purple arms with yellow claws swing round on upright pins at the front corners of the body; in the book they swing forward, round to the front, and snap at the buggy when the robot is hit. (works)
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
@@ -184,8 +184,8 @@ Each detail by the set it first appears in.
 
 **2002, [8012 Super Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8012-1)**
 
-- *right arm:* The black lever at the top of the back swings the right arm up and down: the lever carries a 20-tooth double bevel gear on its pivot axle, which turns the 16-tooth gear on the right arm's shoulder axle. (partly)
-- *left arm:* The left arm swings at the shoulder on a long pin. (partly)
+- *right arm:* The black lever at the top of the back swings the right arm up and down: the lever carries a 20-tooth double bevel gear on its pivot axle, which turns the 16-tooth gear on the right arm's shoulder axle. (works)
+- *left arm:* The left arm swings at the shoulder on a long pin. (works)
 
 **2006, [8281 Mini Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8281-1)**
 
@@ -360,7 +360,7 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
 - *doors:* The cab doors swing open. (works)
-- *king pin:* The trailer swings on its king pin behind the tractor. (partly)
+- *king pin:* The trailer swings on its king pin behind the tractor. (works)
 - *container doors:* The container's two end doors swing open. (no)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**

@@ -4,7 +4,7 @@ Ball joints, click hinges or friction joints that hold a pose. (Simple motions.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): Each seat's backrest reclines on its hinge plates, and the headrest tilts on its own hinge.
 
-Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 7 works, 2 partly, 1 no, 1 skipped.
+Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 9 works, 1 no, 1 skipped.
 
 ## By decade
 
@@ -48,8 +48,8 @@ Each detail by the set it first appears in.
 
 **2002, [8012 Super Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8012-1)**
 
-- *elbows:* Each arm bends at the elbow on a click hinge, which holds where it's set. (partly)
-- *legs:* Each leg poses at the hip, knee and ankle on click hinges, each holding where it's set. (partly)
+- *elbows:* Each arm bends at the elbow on a click hinge, which holds where it's set. (works)
+- *legs:* Each leg poses at the hip, knee and ankle on click hinges, each holding where it's set. (works)
 
 **2005, [8418 Mini Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8418-1)**
 
