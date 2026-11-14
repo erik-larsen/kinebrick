@@ -5,7 +5,7 @@ import { Vector3 } from 'three';
 import type { ConnectionTable } from '../connections.ts';
 import { PlacedPart } from '../ldr.ts';
 import type { Connection, Coupling, Joint } from '../mechanism.ts';
-import { BALL_LINE, type WorldCylinder } from './shared.ts';
+import { BALL_LINE, rigidGroups, type WorldCylinder } from './shared.ts';
 
 // A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
 // or the part it sits in, has nothing else to hold it (a half shaft, a universal joint at its
@@ -182,4 +182,41 @@ export function reductions(parts: PlacedPart[], table: ConnectionTable, bodyOf: 
     }
   }
   return found;
+}
+
+// A universal joint or a constant velocity joint whose two shafts each turn, on one and the same
+// line, in one and the same part group can never bend: a 1 to 1 coupling between two shafts that
+// turn on one axis in one body leaves them no motion against each other. So its two ends are one
+// rigid body, as a plain axle would be (the 956's rear axle, whose two halves meet in a complete
+// universal joint and both turn in the chassis: no differential, the wheels locked together).
+// It tests the turning connections round the joint, not the joint's pose: a half shaft's joint,
+// straight at rest, still bends, since its shafts turn in different bodies. Returns the joints it
+// makes rigid; their couplings are made rigid connections, and they leave `joined`.
+export function lockedJoints(count: number, connections: Connection[], joined: { partA: number; partB: number }[]): { partA: number; partB: number }[] {
+  const LINE = 1; // LDU
+  const group = rigidGroups(count, connections);
+  const dirOf = (c: Connection) => new Vector3().subVectors(c.to, c.from).normalize();
+  // Each turning connection of a group: the other group, and the line it turns on.
+  const turnsIn = (g: number) => connections.flatMap((c) => {
+    if (c.kind !== 'revolute' || c.from.distanceTo(c.to) < 1e-6) return [];
+    const [a, b] = [group[c.male], group[c.female]];
+    if (a === b || (a !== g && b !== g)) return [];
+    return [{ other: a === g ? b : a, from: c.from, dir: dirOf(c) }];
+  });
+  const sameLine = (p: { from: Vector3; dir: Vector3 }, q: { from: Vector3; dir: Vector3 }) => {
+    if (new Vector3().crossVectors(p.dir, q.dir).length() > 1e-3) return false;
+    const off = new Vector3().subVectors(q.from, p.from);
+    return off.addScaledVector(p.dir, -off.dot(p.dir)).length() < LINE;
+  };
+  const locked: { partA: number; partB: number }[] = [];
+  for (const j of [...joined]) {
+    const [ga, gb] = [group[j.partA], group[j.partB]];
+    if (ga === gb) continue;
+    const onA = turnsIn(ga), onB = turnsIn(gb);
+    if (!onA.some((p) => p.other !== gb && onB.some((q) => q.other === p.other && sameLine(p, q)))) continue;
+    for (const c of connections) if (c.kind === 'coupling' && ((c.male === j.partA && c.female === j.partB) || (c.male === j.partB && c.female === j.partA))) c.kind = 'rigid';
+    joined.splice(joined.indexOf(j), 1);
+    locked.push(j);
+  }
+  return locked;
 }

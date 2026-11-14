@@ -7,7 +7,7 @@
 // own computer the same way, fetching the files from an LDraw library online (src/library.ts).
 
 import { normalizePartName } from './connections.ts';
-import { embeddedParts, modelFiles, parseModel, partLine, PlacedPart, PlacedPath, PlacedShape } from './ldr.ts';
+import { embeddedParts, modelFiles, parseModel, partLine, PIECES_AFTER, PlacedPart, PlacedPath, PlacedShape } from './ldr.ts';
 
 export interface Packed {
   text: string; // the packed file
@@ -85,11 +85,14 @@ export async function packModel(
   const pieces: Record<string, string[]> = {};
   // A part the model file embeds ("42108 - 40918-f1.dat", as the OMR names them) is read as its
   // pieces if the library's part of that name is (as scripts/load-model.ts reads it).
-  const isSplit = (file: string) => roles[file] === 'split' || (embedded.has(file) && roles[file.replace(/^.* - /, '')] === 'split');
+  // Role "pieces" is read as its pieces too, numbered after the model's other parts (see
+  // PIECES_AFTER in ldr.ts).
+  const roleOf = (file: string) => roles[file] ?? (embedded.has(file) ? roles[file.replace(/^.* - /, '')] : undefined);
+  const isSplit = (file: string) => roleOf(file) === 'split' || roleOf(file) === 'pieces';
   const split = placed.filter(isSplit);
   for (const file of split) {
     if (pieces[file]) continue;
-    pieces[file] = (await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line));
+    pieces[file] = [...(roleOf(file) === 'pieces' ? [PIECES_AFTER] : []), ...(await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line))];
     split.push(...pieces[file].flatMap((line) => references(line)).filter(isSplit));
   }
   const { parts, shapes, paths } = parseModel(source, isPrimitive, (file) => pieces[file] ?? null);
