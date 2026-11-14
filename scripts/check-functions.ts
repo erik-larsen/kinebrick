@@ -470,10 +470,18 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null || noGrab()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
-          if (freed.size) {
-            use(loaded.read(asLoaded.parts, freed));
-            freedPins = Math.max(freedPins, freed.size);
-          }
+        }
+        // So too a part the function lists to move that friction pins hold fast to what it's
+        // measured against: the pins that hold it are freed too (the 42077's bonnet, on a
+        // friction pin at its hinge, which the control's own pins don't reach).
+        const held = (fn.moves ?? []).map(against).filter((m) => mech.bodyOf[m.part] === m.body);
+        if (held.length) {
+          allFree ??= loaded.allFree(asLoaded.parts);
+          for (const m of held) for (const pin of pinsToFree(allFree, m.part)) freed.add(pin);
+        }
+        if (freed.size) {
+          use(loaded.read(asLoaded.parts, freed));
+          freedPins = Math.max(freedPins, freed.size);
         }
       }
       const whyBefore = why.length;

@@ -166,9 +166,12 @@
         "moves": [
           "p1536 4716",
           "p1530 10928",
-          "p1538 4519"
+          "p1538 4519",
+          "p1575 4716",
+          "p1569 10928",
+          "p1577 4519"
         ],
-        "note": "one entry for both outriggers: the left one is p1537 (worm p1536, foot p1538), the right one p1576 (worm p1575, gear p1569, foot p1577)"
+        "note": "one entry for both outriggers: the left one is p1537 (worm p1536, foot p1538), the right one p1576 (worm p1575, gear p1569, foot p1577); the right outrigger's worm, gear and foot are listed to move too, settled by this note's own words \"one entry for both outriggers\" and \"the right one p1576 (worm p1575, gear p1569, foot p1577)\", so each control moves its own side's parts"
       },
       {
         "does": "Functions E, F, G and H: the four pneumatic switches on the red crane base work the crane's four pneumatic cylinders, once the pump has filled the system with air: E slides the crane's last section in and out (a telescope), F raises and lowers the main boom, G folds the outer boom up and down, and H opens and closes the clamshell grab.",
