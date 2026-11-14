@@ -17,6 +17,7 @@
     "bench": "tsx scripts/bench-solver.ts",
     "thumbs": "tsx scripts/thumbs.ts",
     "mechanisms": "tsx scripts/mechanisms.ts",
+    "errata": "tsx scripts/errata.ts",
     "status": "tsx scripts/status-page.ts",
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",
