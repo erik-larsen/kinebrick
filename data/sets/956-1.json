@@ -128,10 +128,9 @@
     }
   },
   "generated": {
-    "commit": "1f4f7585",
-    "uncommitted": true,
+    "commit": "5cb668ef",
     "date": "2026-11-14",
-    "seconds": 8,
+    "seconds": 9,
     "counts": {
       "works": 6,
       "partly": 1
@@ -187,7 +186,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -333,7 +332,7 @@
             "p600 3648a"
           ]
         ],
-        "seconds": 2
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -377,7 +376,7 @@
           [],
           []
         ],
-        "seconds": 2.8
+        "seconds": 3.1
       },
       {
         "result": "partly",
