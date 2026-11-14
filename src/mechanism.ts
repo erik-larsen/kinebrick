@@ -202,6 +202,8 @@ export interface Mechanism {
   // secondModels): its parts, and the parts it is welded to where it rests (as loose parts ride
   // along), so that a user might lift it off one day. Its parts aren't loose.
   frames?: number[]; // always set by inferMechanism; left out of hand-built mechanisms (tests): just the frame
+  // The parts of each further frame's model (each second model's group), in the order of frames.
+  frameParts?: number[][];
   carried?: { parts: number[]; weldedTo: number[] }[];
   // Things that stand apart and aren't vehicles (a building): loose, riding along (see secondModels).
   accessories?: number[][];
@@ -441,5 +443,5 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
     return [...count].reduce((a, b) => (b[1] > a[1] ? b : a))[0];
   };
   const frames = [0, ...models.map(biggest)];
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, frames, carried, accessories, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, frames, frameParts: models, carried, accessories, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
 }

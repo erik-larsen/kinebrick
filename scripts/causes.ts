@@ -18,6 +18,9 @@ import { Kinematics } from '../src/kinematics.ts';
 export const CAUSES = {
   'bad-reference': { owner: 'function lists', says: "The function names a part that isn't in the model" },
   'loose-part': { owner: 'inference', says: 'The control, or a part it should move, is loose' },
+  // Until the solver gives a second model a frame of its own, it is welded to the main model as
+  // loose parts are, so its functions can't count as working either (see Mechanism.frames).
+  'second-model': { owner: 'solver', says: 'The control, or a part it should move, is on a second model that is not yet a frame of its own' },
   'control-fixed': { owner: 'inference', says: 'The control is part of the frame, or has no joint to work' },
   'first-failed': { owner: 'check', says: "A control that has to be worked first didn't go" },
   'control-jammed': { owner: 'inference', says: "The control has a joint, but nothing lets it move" },

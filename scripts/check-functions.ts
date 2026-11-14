@@ -568,7 +568,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // function that names one can't work, whatever the drag does: at most partly (the 8285's
       // wheels "rolling freely" on rims that sit on nothing).
       const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
-      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
+      // A part of a second model, welded to the main one until the solver gives it a frame of its
+      // own, counts as loose does (to be taken out with the solver's frames).
+      const onSecondModel = new Set((mech.frameParts ?? []).flat());
+      const secondPart = loosePart === undefined ? [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => onSecondModel.has(p)) : undefined;
+      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : secondPart !== undefined ? { cause: 'second-model', detail: name(secondPart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
       const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (b === 0 || !link) {
         why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
@@ -718,7 +722,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       together = [];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
       // A function that names a loose part can't work, whatever the drag did (see loosePart).
-      const works = best.works && loosePart === undefined;
+      const works = best.works && loosePart === undefined && secondPart === undefined;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
