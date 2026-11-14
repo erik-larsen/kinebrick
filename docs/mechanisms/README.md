@@ -211,7 +211,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Rigid](rigid.md) | 20 | 1977 | 3 | 4 | 8 | 1 | 2 | 2 | 1 skipped, 19 not checked |
-| [For show](for-show.md) | 33 | 1977 | 2 |  | 2 | 9 | 17 | 3 | 24 works, 4 no, 1 skipped, 4 not checked |
+| [For show](for-show.md) | 33 | 1977 | 2 |  | 2 | 9 | 17 | 3 | 26 works, 2 no, 1 skipped, 4 not checked |
 | [Driven detail](driven-detail.md) | 4 | 1986 |  | 1 |  |  | 2 | 1 | 4 works |
 | [Accessory](accessory.md) | 12 | 2000 |  |  |  | 2 | 8 | 2 | 1 works, 2 no, 1 skipped, 8 not checked |
 | [Removable part](removable.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 skipped, 1 not checked |

@@ -93,10 +93,10 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "015cd559",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 2,
+    "seconds": 4,
     "counts": {
       "partly": 3,
       "works": 1,
@@ -158,7 +158,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -205,7 +205,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.6
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -278,7 +278,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -333,7 +333,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 1.2
       },
       {
         "result": "not checked",

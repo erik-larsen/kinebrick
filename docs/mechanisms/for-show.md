@@ -4,7 +4,7 @@ A control or part that looks as if it works something but isn't linked to anythi
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.
 
-Used in 33 of the 186 surveyed sets, by 33 functions. Kinebrick: 24 works, 4 no, 1 skipped, 4 not checked.
+Used in 33 of the 186 surveyed sets, by 33 functions. Kinebrick: 26 works, 2 no, 1 skipped, 4 not checked.
 
 ## By decade
 
@@ -55,7 +55,7 @@ Each detail by the set it first appears in.
 
 **2006, [8281 Mini Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8281-1)**
 
-- *steering wheel:* The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels. (no)
+- *steering wheel:* The steering wheel in the cab is for show: it sits on a half pin and turns, but isn't linked to the front wheels. (works)
 
 **2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1)**
 
@@ -151,7 +151,7 @@ Each detail by the set it first appears in.
 
 **2020, [42101 Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42101-1)**
 
-- *steering wheel:* The steering wheel in front of the seat spins on its half pin; it isn't joined to the steering. (no)
+- *steering wheel:* The steering wheel in front of the seat spins on its half pin; it isn't joined to the steering. (works)
 
 **2021, [42121 Heavy Duty Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42121-1)**
 

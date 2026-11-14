@@ -83,14 +83,13 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "015cd559",
     "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "partly": 2,
-      "works": 1,
-      "no": 1
+      "works": 2
     },
     "loose": [],
     "functions": [
@@ -140,7 +139,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p25 32063 against p5 32271",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -162,23 +161,23 @@
           {
             "p27 3707 against p5 32271": [
               0,
-              1.26e-28
+              3.46e-29
             ],
             "p20 6589 against p25 32063": [
               0,
-              9.51e-15
+              1.57e-14
             ],
             "p95 4019 against p96 32524": [
               0,
-              1.24e-16
+              1.59e-16
             ],
             "p120 3650c against p96 32524": [
               0,
-              3.63e-29
+              5.59e-29
             ],
             "p118 3650c against p96 32524": [
               0,
-              4.74e-15
+              0
             ],
             "p119 3650c against p96 32524": [
               0,
@@ -186,7 +185,7 @@
             ],
             "p96 32524 against p5 32271": [
               0,
-              1.75e-14
+              1.94e-14
             ]
           }
         ],
@@ -248,27 +247,32 @@
           [],
           []
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {}
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p61 30663 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }
