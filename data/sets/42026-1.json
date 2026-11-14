@@ -74,7 +74,7 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "72e665da",
     "date": "2026-11-14",
     "seconds": 1,
     "counts": {
@@ -157,7 +157,7 @@
             "p121 56145 against p6 12799"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -219,7 +219,7 @@
             "p102 3708"
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",

@@ -144,10 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 9,
+    "seconds": 11,
     "counts": {
       "partly": 2,
       "works": 5,
@@ -429,7 +428,7 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -505,7 +504,7 @@
             "p180 3648a against p177 32009"
           ]
         ],
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "skipped",
@@ -556,7 +555,7 @@
           [],
           []
         ],
-        "seconds": 1.3
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -607,7 +606,7 @@
         "pushed": [
           true
         ],
-        "seconds": 2.4
+        "seconds": 4
       },
       {
         "result": "skipped",
@@ -655,7 +654,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "skipped",

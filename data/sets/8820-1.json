@@ -86,7 +86,7 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "72e665da",
     "date": "2026-11-14",
     "seconds": 2,
     "counts": {
@@ -177,7 +177,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p125 3482",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -253,7 +253,7 @@
         ],
         "cause": "not-driven",
         "detail": "p105 3894",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",
@@ -361,7 +361,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p102 3894",
-        "seconds": 1.1
+        "seconds": 0.9
       }
     ]
   }

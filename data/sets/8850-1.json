@@ -127,8 +127,7 @@
     ]
   },
   "generated": {
-    "commit": "7699035a",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
     "seconds": 4,
     "counts": {
@@ -184,7 +183,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -245,7 +244,7 @@
             "p76 73071 against p0 3702"
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -301,7 +300,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
