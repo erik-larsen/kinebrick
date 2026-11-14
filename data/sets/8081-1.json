@@ -94,19 +94,21 @@
         ]
       },
       {
-        "does": "The two front doors open, each swinging out on a hinge at its front edge.",
+        "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
         "mechanisms": [
           "hinge: doors"
         ],
-        "source": "book: book 3 steps 9-12 (doors fitted on their hinge pins); inferred: that they're meant to open",
+        "source": "book 3 (8081-1-3.pdf): page 8 step 8.4 puts the 32054 down through the rear hole of the black 13L sill and the blue 6558 in its front hole, and page 9 pins both into the body; steps 9 and 12 to 13 (pages 10 to 11 and 16 to 19) lay the door, a red 13L beam with its panel, on the sill, hung on the upper end of the 6558. Erik, from a review video of the set: \"the door is hinged in the lower corner of the door closest to the front wheel\"; asked whether a pin is pulled first: \"No, it just swings\"",
         "control": [
-          "p472 41239",
-          "p504 41239"
+          "p475 41239",
+          "p507 41239"
         ],
         "stays": [
+          "p472 41239",
+          "p504 41239",
           "p415 32278"
         ],
-        "note": "each door opens on its own; the left one's panel is p478 64392, the right one's p510 64682. Erik, from a review video of the set: \"the door is hinged in the lower corner of the door closest to the front wheel\": each door swings up about that corner. In the file each door is pinned at two places along its lower edge, 220 LDU apart: the hinge is the friction pin 6558 (p473, p505) into the cross beam p228, at the front end by the front wheels; the pin 32054 (p474, p506) into p231, at the rear end, holds the door shut in the file"
+        "note": "each door opens on its own: the left door is the red beam p475 with its panel p478 64392, the right one p507 with p510 64682. The black sills p472 and p504, which this function named as its controls before, are pinned to the body at both ends (the 6558 p473 and p505 at the front, the 32054 p474 and p506 at the rear) and stay. Each door hangs on the upper end of its 6558, its hinge at the lower front corner; at the rear it only rests over the 32054's bush. In the file each door is drawn about 4.6 degrees open, its rear hole 18 LDU off the bush, so nothing joins them there"
       },
       {
         "does": "The tailgate at the back swings up on a hinge at the roof.",
