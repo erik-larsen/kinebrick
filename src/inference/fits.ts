@@ -61,7 +61,25 @@ export function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, f
       if (c) connections.push(c);
     }
   }
-  return connections;
+  // A pin or a stud that turns in a part's round hole isn't also a stud in it: a hole the data
+  // gives twice, open (a hole a pin turns in) and closed at one end (read as an anti-stud), holds
+  // what's in it only as the hole does. A plate with a hole (3176) on a pin through it (the 8466's
+  // strut cylinder, on a long pin through two such plates), and a round part on a single stud
+  // (a 1 x 1 round brick, 3062b, turns on the stud under it, as it does in the real set). A stud
+  // joint with no turn between the same two parts on the same axis (a half pin's end in the
+  // underside of a plate, a brick on its studs) still holds.
+  return connections.filter((s) => s.kind !== 'stud' || !connections.some((r) => r.kind === 'revolute' && r.male === s.male && r.female === s.female && onOneAxis(r, s, align)));
+}
+
+// Whether two connections lie on one axis: parallel, and each one's line through the other's.
+function onOneAxis(a: Connection, b: Connection, align: number): boolean {
+  const dir = new Vector3().subVectors(a.to, a.from);
+  if (dir.length() === 0) return false;
+  dir.normalize();
+  const other = new Vector3().subVectors(b.to, b.from);
+  if (other.length() > 0 && other.normalize().cross(dir).length() > ANGLE_TOLERANCE) return false;
+  const offset = new Vector3().subVectors(b.from, a.from);
+  return offset.addScaledVector(dir, -offset.dot(dir)).length() <= align;
 }
 
 // Which female connection points are near enough a male one to connect to it, in the order

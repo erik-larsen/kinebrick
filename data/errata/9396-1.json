@@ -1,0 +1,16 @@
+{
+  "set": "9396-1",
+  "entries": [
+    {
+      "id": "left-inner-main-wheel",
+      "what": "add",
+      "lines": [
+        "1 19 -160 18.2505 398.793 -1 0 0 0 0.896649 0.44326 0 0.44326 -0.896649 32556.dat",
+        "1 71 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 42610.dat",
+        "1 256 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 51011.dat"
+      ],
+      "evidence": "The file has the left main wheel's outer rim and tyre (p1200 42610, p1201 51011, at x -180) on nothing, but not its inner wheel or the tan long pin 32556 that carries both, which the right side has (p1197 at x 160, wheels p1198 and p1224 at x 180 and 140). The parts list on book 3 page 59 has 6 tyres, the file 5 (docs/audits/function-lists-batch-2.md, \"Model file checks the orchestrator asked for\"). Confidence medium-high (the audit). Added as the right side's mirror: the pin at x -160, as the right pin is placed; the inner rim and tyre at x -140, turned as the left outer ones are.",
+      "signedOff": { "by": "Erik", "date": "2026-11-14", "words": "Sign all three" }
+    }
+  ]
+}

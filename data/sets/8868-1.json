@@ -171,9 +171,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "6ed4bb79",
     "date": "2026-11-14",
-    "seconds": 76,
+    "seconds": 107,
     "counts": {
       "no": 5,
       "works": 3,
@@ -245,7 +245,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -291,7 +291,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -335,7 +335,7 @@
           [],
           []
         ],
-        "seconds": 23.9
+        "seconds": 32.9
       },
       {
         "result": "works",
@@ -513,7 +513,7 @@
             "p2910 2851"
           ]
         ],
-        "seconds": 45.8
+        "seconds": 66
       },
       {
         "result": "no",
@@ -539,7 +539,7 @@
           "p1952 4694c01-f1 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 1.5
+        "seconds": 2
       },
       {
         "result": "no",

@@ -204,6 +204,8 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
   const modelOf = (fn: Fn) => fn.model ?? model;
   const checked: Checked[] = [];
   const loose: string[] = [];
+  // The errata applied to its models, and those refused (see src/errata.ts).
+  const errata = { applied: [] as string[], refused: [] as string[] };
   const wanted = (i: number) => only === null || i === only;
   for (const m of new Set(functions.map(modelOf))) {
     const mine = functions.flatMap((fn, i) => (modelOf(fn) === m && wanted(i) ? [i] : []));
@@ -211,8 +213,10 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
     const found = checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
     mine.forEach((i, at) => (checked[i] = found.checked[at]));
     loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
+    errata.applied.push(...found.errata.applied);
+    errata.refused.push(...found.errata.refused);
   }
-  return { counts: countsOf(checked), loose, functions: checked };
+  return { counts: countsOf(checked), loose, ...(errata.applied.length || errata.refused.length ? { errata } : {}), functions: checked };
 }
 
 // How many functions came out each way, and how many moved a part by the wrong amount or left
@@ -951,7 +955,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
     return { ...found, seconds };
   });
-  return { checked, loose: mech.loose.map(name) };
+  return { checked, loose: mech.loose.map(name), errata: loaded.errata };
 }
 
 // How each result ranks, best first, for telling better from worse.
@@ -1007,6 +1011,11 @@ async function main() {
   if (args.includes('--lock')) process.env.KINEBRICK_CHECK_LOCK = '1';
   const causes = args.includes('--causes');
   if (causes) process.env.KINEBRICK_CAUSES = '1';
+  // With the errata not yet signed off applied too (see src/errata.ts), to show a set before and
+  // after: what each function now does against its stored result is printed, and nothing is
+  // written, since a result checked so is never the set's own.
+  const proposed = args.includes('--proposed');
+  if (proposed) process.env.KINEBRICK_PROPOSED = '1';
   const commit = execSync('git rev-parse --short HEAD').toString().trim();
   // No shell, so the pathspec isn't left quoted by Windows' cmd.
   const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets']).toString().trim() !== '';
@@ -1076,10 +1085,11 @@ async function main() {
       // Only the causes change: the results stay those of the commit they were checked at.
       if ('functions' in found && data.generated) data.generated = { ...data.generated, causes: commit, functions: found.functions };
     } else {
-      if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${line}`);
+      if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${proposed ? 'with proposed errata: ' : ''}${line}`);
+      if ('errata' in found && found.errata) console.log(`${data.set}: errata applied: ${found.errata.applied.join(', ') || 'none'}${found.errata.refused.length ? `; refused: ${found.errata.refused.join('; ')}` : ''}`);
       data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
     }
-    writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
+    if (!proposed) writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
     if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
     const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
     console.log(`${data.set}: ${summary} (${seconds} s)`);
@@ -1117,6 +1127,7 @@ async function main() {
     let total = 0;
     let failed: Found | null = null;
     const loose = new Map<string, string[]>(); // each model's loose parts
+    const errata = new Map<string, { applied: string[]; refused: string[] }>(); // each model's errata
     for (const i of todo) {
       queue.push(async () => {
         if (!checking.has(s.data.set)) checking.set(s.data.set, Date.now());
@@ -1125,8 +1136,12 @@ async function main() {
         if ('functions' in found) {
           checked[i] = found.functions[i];
           loose.set(modelOf(functions[i]), found.loose);
+          if (found.errata) errata.set(modelOf(functions[i]), found.errata);
         } else failed ??= found;
-        if (--left === 0) finish(s, failed ?? { counts: countsOf(checked), loose: models.flatMap((m) => loose.get(m) ?? []), functions: checked }, total);
+        const applied = [...errata.values()].flatMap((e) => e.applied);
+        const refused = [...errata.values()].flatMap((e) => e.refused);
+        const ofErrata = applied.length || refused.length ? { errata: { applied: [...new Set(applied)], refused: [...new Set(refused)] } } : {};
+        if (--left === 0) finish(s, failed ?? { counts: countsOf(checked), loose: models.flatMap((m) => loose.get(m) ?? []), ...ofErrata, functions: checked }, total);
       });
     }
   }
@@ -1154,5 +1169,5 @@ async function main() {
   const byCount = (Object.entries(caused) as [Cause, number][]).sort((a, b) => b[1] - a[1]);
   if (byCount.length) console.log('Causes:\n' + byCount.map(([c, n]) => `  ${String(n).padStart(4)}  ${c} (${CAUSES[c].owner}): ${CAUSES[c].says}`).join('\n'));
   // The mechanism catalog quotes each function's result: written afresh with them.
-  if (!causes) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
+  if (!causes && !proposed) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
 }

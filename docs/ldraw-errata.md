@@ -406,3 +406,61 @@ The tap in the second car (a 3496 base with a 3278 spout) is placed with its bas
 ```
 
 Kinebrick's copy has both at y = -142, the base on the studs.
+
+<!-- errata: from data/errata/*.json by npm run errata, not by hand -->
+
+## Corrections Kinebrick applies to the OMR files
+
+The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's file with these corrections (data/errata/<set>.json), in the viewer, the function check and every script alike. A file you open yourself is never corrected. An entry is applied once Erik has signed it off; a proposed one only when asked for (the check's `--proposed`, the viewer's `option=proposed`), to see the set before and after. No part number moves: a moved part keeps its number, and an added part is numbered after the model's last part.
+
+| Set | Entry | What it does | Status |
+| --- | --- | --- | --- |
+| [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
+| [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
+| [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
+
+### 8258-1: front-drive-gear-4-high
+
+Signed off by Erik, 2026-11-14.
+
+The front outriggers' drive gear p586 4019, on its axle pin p587 3749 (submodel m-1k'ka), is drawn 4 LDU off its hole's axis in the beam p583, so it is loose and nothing drives the front outriggers' pinion. Book 2 page 42 step 78.21 shows the gear meshing the next one (8258-1-5.pdf; docs/audits/function-lists-batch-2.md, "Model file checks the orchestrator asked for"). Confidence high (the audit). Moved 4 LDU, y -24 to -20.
+
+In `8258 - m-1k'k.ldr`, the line
+
+```
+1 71 20 -24 0 1 0 0 0 1 0 0 0 1 8258 - m-1k'ka.ldr
+```
+
+is read with its part at 20 -20 0.
+
+### 9396-1: left-inner-main-wheel
+
+Signed off by Erik, 2026-11-14.
+
+The file has the left main wheel's outer rim and tyre (p1200 42610, p1201 51011, at x -180) on nothing, but not its inner wheel or the tan long pin 32556 that carries both, which the right side has (p1197 at x 160, wheels p1198 and p1224 at x 180 and 140). The parts list on book 3 page 59 has 6 tyres, the file 5 (docs/audits/function-lists-batch-2.md, "Model file checks the orchestrator asked for"). Confidence medium-high (the audit). Added as the right side's mirror: the pin at x -160, as the right pin is placed; the inner rim and tyre at x -140, turned as the left outer ones are.
+
+Added to the main model:
+
+```
+1 19 -160 18.2505 398.793 -1 0 0 0 0.896649 0.44326 0 0.44326 -0.896649 32556.dat
+1 71 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 42610.dat
+1 256 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 51011.dat
+```
+
+### 42064-1: hatch-20-high
+
+Signed off by Erik, 2026-11-14.
+
+The foredeck hatch (hatch.ldr, 17 parts) is drawn 20 LDU above where it belongs: its panel's holes lie on the axes of its two pins 15100 (p457, p458), 20 LDU past their ends, so it is loose. The booklet presses it down onto those two pins (42064-1 book, pages 185 to 187; docs/audits/function-lists-batch-3.md). Confidence high (the audit). Moved 20 LDU down.
+
+In `42064 - ship.ldr`, the line
+
+```
+1 0 0 -130 -380 -1 0 0 0 1 0 0 0 -1 42064 - hatch.ldr
+```
+
+is read with its part at 0 -110 -380.
+
+In the real set the hatch is fixed on its two pins, not hinged; what that means for fn 9 is the audit's table for Erik.
+
+<!-- errata: end -->

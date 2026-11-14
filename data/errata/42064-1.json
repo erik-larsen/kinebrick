@@ -1,0 +1,15 @@
+{
+  "set": "42064-1",
+  "entries": [
+    {
+      "id": "hatch-20-high",
+      "what": "move",
+      "file": "42064 - ship.ldr",
+      "line": "1 0 0 -130 -380 -1 0 0 0 1 0 0 0 -1 42064 - hatch.ldr",
+      "position": [0, -110, -380],
+      "evidence": "The foredeck hatch (hatch.ldr, 17 parts) is drawn 20 LDU above where it belongs: its panel's holes lie on the axes of its two pins 15100 (p457, p458), 20 LDU past their ends, so it is loose. The booklet presses it down onto those two pins (42064-1 book, pages 185 to 187; docs/audits/function-lists-batch-3.md). Confidence high (the audit). Moved 20 LDU down.",
+      "signedOff": { "by": "Erik", "date": "2026-11-14", "words": "Sign all three" },
+      "note": "In the real set the hatch is fixed on its two pins, not hinged; what that means for fn 9 is the audit's table for Erik."
+    }
+  ]
+}
