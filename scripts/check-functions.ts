@@ -91,6 +91,8 @@ const LONG_REACH = 6 * Math.PI;
 const PUSH = 20;
 // A part counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
+// A part counts as moving at all if it went at least this far (LDU) or turned this much (degrees).
+const STIRRED = 0.01;
 const LIMIT_MINUTES = 60;
 // A drag is measured in pieces of this many radians (or LDU, for a slide), adding up how far each
 // part went in each: a part geared up turns further than half a turn, which its pose alone can't
@@ -276,14 +278,14 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   };
   // Whether a part moved against its body, from the poses at `start` to now, or is a driving
   // ring a catch has shifted (`shifted`).
-  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[], shifted: Map<number, number>) => {
+  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[], shifted: Map<number, number>, least = MOVED) => {
     if (shifted.has(part)) return true;
     const rel = (poses: Matrix4[]) => poses[body].clone().invert().multiply(poses[mech.bodyOf[part]]);
     const was = rel(start);
     const is = rel(kin.poses);
     const went = at[part].clone().applyMatrix4(is).distanceTo(at[part].clone().applyMatrix4(was));
     const q = new Quaternion().setFromRotationMatrix(was.clone().invert().multiply(is));
-    return went >= MOVED || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= MOVED;
+    return went >= least || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= least;
   };
   // The body a control works: its own, or for a motor named as the control, what turns in it
   // (its output's axle), as the motor would turn it.
@@ -314,8 +316,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return 2 * Math.acos(Math.min(1, Math.abs(q.w)));
   };
   // turn, in pieces (see PIECE), adding up how far each of `parts` turns (radians) and slides
-  // (LDU) against its body on the way, and calling `each` after each piece.
-  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}) => {
+  // (LDU) against its body on the way, and calling `each` after each piece. With `enough`, the
+  // turn also ends, short of `amount`, after the first piece that leaves it true.
+  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}, enough = (_turned: number) => false) => {
     const joint = kin.parentLink(body)!.joint;
     if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
@@ -345,6 +348,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
         break;
       }
+      if (enough(turned)) break;
     }
     kin.letGoAfterDrag();
     return { turned, went, halt };
@@ -555,7 +559,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // How far each piston should slide, piece by piece, as its crank turns.
         let was = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
         const should = pistons.map(() => 0);
-        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : { ...turnMeasuring(b, amount, parts, after), pushed: null });
+        // The longer turn (see LONG_REACH) goes only as far as it needs: past the usual reach,
+        // it ends once the parts to move have moved. For a function whose controls share out the
+        // parts, the parts this control moves at all (by more than STIRRED) must have moved, and
+        // at least one must. Turned the whole three turns each way, the 42100 Liebherr R 9800's
+        // function 6 took over an hour.
+        const enough = (turned: number) => {
+          if (reach !== LONG_REACH || Math.abs(turned) < REACH) return false;
+          const done = moves.filter((m) => moved(m, startPoses, new Map())).length;
+          if (!shared) return done === moves.length;
+          const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
+          return done > 0 && done === stirred;
+        };
+        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
           const now = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
           now.forEach((x, k) => (should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!)));
