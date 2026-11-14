@@ -451,6 +451,11 @@ export interface PlacedShape {
 // programs draw a string or a hose. Only the LDraw library knows for sure, so the caller says.
 // `piecesOf` gives the lines of a part that's read as the parts it's made of (a 4x4 turntable,
 // one LDraw file, is a base and a top that turns on it), or null for any other part.
+// The line that marks a part's pieces as numbered after the model's other parts (role "pieces",
+// see parseModel): the first piece takes the part's own place in the order, the rest come after
+// the model's last part, so no part number another part, a function list or a test holds moves.
+export const PIECES_AFTER = '0 !KINEBRICK PIECES AFTER';
+
 export function parseModel(
   text: string,
   isPrimitive: (name: string) => boolean = () => false,
@@ -462,6 +467,8 @@ export function parseModel(
   const drawn = (line: string) => /^\s*[2-5]\s/.test(line) || (/^\s*1\s/.test(line) && isPrimitive(referenced(line)));
   const shapeLines = new Map([...submodels].map(([name, lines]) => [name, lines.filter(drawn)]));
   const parts: PlacedPart[] = [];
+  // The pieces numbered after the model's other parts (see PIECES_AFTER), placed at the end.
+  const after: { lines: string[]; matrix: Matrix4; color: number; submodel: string | undefined; depth: number }[] = [];
   const shapes: PlacedShape[] = [];
   // A path's caps (a cable's plugs, or the receiver it comes out of) are parts in their own
   // right, not links of it: by path, the parts its submodel names as caps.
@@ -488,13 +495,18 @@ export function parseModel(
       const subPath = sub ? pathOf(sub, matrix) : null;
       if (subPath) capsOf.set(subPath, new Set(sub!.filter((line) => /^\s*0\s+!LDCAD\s+PATH_CAP\b/.test(line)).map((line) => normalizePartName(/\[part=([^\]]*)\]/.exec(line)?.[1] ?? ''))));
       if (sub) place(sub, matrix, partColor, name, depth + 1, false, subPath ?? path);
-      else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true);
+      else if (ownPieces && ownPieces.some((piece) => piece.trim() === PIECES_AFTER)) {
+        const pieceLines = ownPieces.filter((piece) => /^\s*1\s/.test(piece));
+        place(pieceLines.slice(0, 1), matrix, partColor, submodel, depth + 1, true);
+        after.push({ lines: pieceLines.slice(1), matrix, color: partColor, submodel, depth: depth + 1 });
+      } else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true);
       else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(path && !caps.has(name) ? { path } : {}) });
     }
     const own = submodel && !pieces ? shapeLines.get(submodel)! : [];
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1, ...(path ? { path } : {}) });
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
+  for (let i = 0; i < after.length; i++) place(after[i].lines, after[i].matrix, after[i].color, after[i].submodel, after[i].depth, true);
   // A shape whose submodel places no part (a sticker sheet's stickers, drawn in a file of their
   // own) moves with the part nearest where it's drawn.
   for (const shape of shapes) {

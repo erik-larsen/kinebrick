@@ -252,14 +252,14 @@
     ]
   },
   "generated": {
-    "commit": "0aa5c793",
+    "commit": "7699035a",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 2768,
+    "seconds": 3152,
     "counts": {
       "no": 1,
       "works": 1,
       "partly": 7,
-      "not back": 1,
       "not checked": 1
     },
     "loose": [
@@ -727,7 +727,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 66.7
+        "seconds": 70.1
       },
       {
         "result": "works",
@@ -957,7 +957,7 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 871.9
+        "seconds": 1073.7
       },
       {
         "result": "partly",
@@ -996,7 +996,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 211.1
+        "seconds": 266.9
       },
       {
         "result": "partly",
@@ -1036,15 +1036,15 @@
               0
             ],
             "p824 92696 against p822 92693c01": [
-              8.43e-8,
+              2.81e-8,
               0.0648
             ],
             "p856 92696 against p854 92693c01": [
-              1.12e-7,
+              8.43e-8,
               0.065
             ],
             "p989 92696 against p987 92693c01": [
-              8.43e-8,
+              1.12e-7,
               0.0648
             ],
             "p1021 92696 against p1019 92693c01": [
@@ -1052,12 +1052,12 @@
               0.065
             ],
             "p3886 3958 against p0 64179": [
-              5.62e-8,
+              2.81e-8,
               0.0963
             ],
             "p2649 64179 against p0 64179": [
               0,
-              4.66e-15
+              4.12e-15
             ]
           }
         ],
@@ -1075,7 +1075,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 223.1
+        "seconds": 282.1
       },
       {
         "result": "partly",
@@ -1123,7 +1123,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 156.9
+        "seconds": 204.5
       },
       {
         "result": "partly",
@@ -1176,7 +1176,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 197.8
+        "seconds": 203.8
       },
       {
         "result": "partly",
@@ -1224,7 +1224,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 199.8
+        "seconds": 199.4
       },
       {
         "result": "partly",
@@ -1275,7 +1275,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 158.1
+        "seconds": 207.2
       },
       {
         "result": "partly",
@@ -1291,32 +1291,29 @@
         "rates": [
           {
             "p3789 32524 against p2649 64179": [
-              5.62e-8,
-              2.45e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              69.1,
-              7.08
+              0,
+              0.02
             ],
             [
-              68.83,
-              7.08
+              0,
+              0.02
             ]
           ]
-        ],
-        "strayed": [
-          "p4057 18651"
         ],
         "why": [
           "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 383.4
+        "seconds": 248.6
       },
       {
         "result": "not checked"

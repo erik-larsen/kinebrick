@@ -14,7 +14,7 @@ describe('956 Auto Chassis', () => {
 
   it('is fully attached: its steering column bends through a double universal joint, and its steering rack is guided', () => {
     expect(mech.loose).toEqual([]);
-    expect(mech.couplings).toHaveLength(2);
+    expect(mech.couplings).toHaveLength(4); // the steering column's two, and the two complete ones (3712c01) in the drive from the front wheels; the rear axle's is locked, its halves turning on one line in the chassis
     expect(mech.joints.filter((j) => j.kind === 'slide')).toHaveLength(7); // two seats, the steering rack, four pistons
   });
 
@@ -220,7 +220,7 @@ describe('956 Auto Chassis', () => {
     });
     const shifted = inferMechanism(placed, table, roles, mech.loops.map((l) => l.path));
     expect(shifted.loose).toEqual([]);
-    expect(shifted.couplings).toHaveLength(2); // the steering column's universal joints
+    expect(shifted.couplings).toHaveLength(4); // the steering column's universal joints, and the two in the drive from the front wheels
     const again = findSliders(placed, shifted, table, slides).find((s) => s.origin)!;
     expect(again.riders).toContain(559); // the lever still rides the shaft, to shift back
     expect(sliderPosition(placed, table, again)).toBeCloseTo(20, 2);

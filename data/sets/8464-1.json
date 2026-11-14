@@ -56,7 +56,7 @@
           "p569 2995",
           "p8 4019",
           "p31 3650a",
-          "p69 9244",
+          "p69 3712",
           "p132 3650a",
           "p126 4019",
           "p427 2854",
@@ -149,13 +149,12 @@
     ]
   },
   "generated": {
-    "commit": "cbfa4bc8",
+    "commit": "7699035a",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 6,
+    "seconds": 9,
     "counts": {
-      "partly": 6,
-      "no": 1,
+      "partly": 7,
       "skipped": 1
     },
     "loose": [
@@ -216,38 +215,36 @@
         ],
         "cause": "loose-part",
         "detail": "p569 2995",
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p303 4019",
-          "p291 2819",
-          "p569 2995 against p565 2995"
+          "p291 2819"
         ],
         "rates": [
           {
             "p303 4019": [
-              0,
-              0
+              0.5,
+              7.58e-14
             ],
             "p291 2819": [
               0,
               0
             ],
             "p569 2995 against p565 2995": [
-              0,
-              0
+              0.365,
+              44.4
             ],
             "p427 2854 against p565 2995": [
               0,
-              0
+              9.47e-15
             ]
           }
         ],
@@ -268,15 +265,10 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
+        "freed": 1,
         "cause": "loose-part",
         "detail": "p569 2995",
-        "seconds": 0.3
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -305,7 +297,7 @@
               0.667,
               9.47e-14
             ],
-            "p69 9244": [
+            "p69 3712": [
               0.667,
               3.79e-14
             ],
@@ -351,7 +343,7 @@
         ],
         "cause": "loose-part",
         "detail": "p565 2995",
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -398,7 +390,7 @@
         ],
         "cause": "loose-part",
         "detail": "p565 2995",
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -445,7 +437,7 @@
         ],
         "cause": "loose-part",
         "detail": "p569 2995",
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "skipped",
@@ -562,7 +554,7 @@
         "freed": 1,
         "cause": "not-driven",
         "detail": "p558 32030 against p234 3702",
-        "seconds": 1
+        "seconds": 1.3
       }
     ]
   }

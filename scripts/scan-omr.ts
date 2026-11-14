@@ -35,7 +35,7 @@ const readPart = (name: string) => {
   return existsSync(path) ? readFileSync(path, 'utf-8') : null;
 };
 const title = (name: string) => (readPart(name)?.split(/\r?\n/)[0] ?? '').replace(/^0\s+/, '').trim();
-const piecesOf = (name: string) => (roles[name] === 'split' ? (readPart(name) ?? '').split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
+const piecesOf = (name: string) => (roles[name] === 'split' || roles[name] === 'pieces' ? (readPart(name) ?? '').split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
 
 // What a part looks like it does, from its title, if it looks like it moves.
 const MOVERS = /\b(gear|worm|rack|differential|turntable|tyre|tire|wheel|rim|steering|universal joint|ball joint|shock absorber|spring|pneumatic|engine cylinder|pump|actuator|motor|piston|crankshaft|driving ring|clutch|chain|tread|link)\b/i;

@@ -176,10 +176,10 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "7699035a",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 770,
+    "seconds": 939,
     "counts": {
       "partly": 6,
       "no": 2,
@@ -358,7 +358,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 25.4
+        "seconds": 28.9
       },
       {
         "result": "partly",
@@ -406,7 +406,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 25.7
+        "seconds": 28.7
       },
       {
         "result": "partly",
@@ -474,7 +474,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 48.5
+        "seconds": 61.1
       },
       {
         "result": "partly",
@@ -518,7 +518,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1927 42003 against p87 42003",
-        "seconds": 26.1
+        "seconds": 29.8
       },
       {
         "result": "partly",
@@ -567,7 +567,7 @@
         ],
         "cause": "too-little",
         "detail": "p2971 42003 against p1927 42003",
-        "seconds": 239.4
+        "seconds": 285.4
       },
       {
         "result": "partly",
@@ -602,7 +602,7 @@
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              1.32e-12
+              8.35e-13
             ]
           },
           {
@@ -620,7 +620,7 @@
             ],
             "p2971 42003 against p1927 42003": [
               0,
-              4.82e-13
+              4.51e-13
             ]
           }
         ],
@@ -652,7 +652,7 @@
         ],
         "cause": "too-little",
         "detail": "p3322 42003 against p2971 42003",
-        "seconds": 328.1
+        "seconds": 410.8
       },
       {
         "result": "no",
@@ -707,7 +707,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "no",
@@ -747,7 +747,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "works",
@@ -778,7 +778,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 31.3
+        "seconds": 40.3
       }
     ]
   }
