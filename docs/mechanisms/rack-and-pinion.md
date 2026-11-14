@@ -4,14 +4,14 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 24 of the 186 surveyed sets, by 29 functions. Kinebrick: 18 works, 6 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 18 works, 7 partly, 5 no.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 5 of 9 | 4 of 18 | 1 of 32 | 3 of 23 | 9 of 83 | 2 of 21 |
-| Functions | 8 | 5 | 1 | 3 | 9 | 3 |
+| Sets | 5 of 9 | 4 of 18 | 1 of 32 | 4 of 23 | 9 of 83 | 2 of 21 |
+| Functions | 8 | 5 | 1 | 4 | 9 | 3 |
 
 ## Details
 
@@ -30,8 +30,8 @@ Each detail by the set it first appears in.
 | slewing | 1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1) | 1 |
 | mast | 2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1) | 2 |
 | inner boom | 2006, [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1) | 1 |
+| outriggers | 2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1) | 2 |
 | wings | 2012, [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1) | 1 |
-| outriggers | 2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1) | 1 |
 | jib | 2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1) | 1 |
 | boom extension | 2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1) | 4 |
 | bridge | 2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1) | 1 |
@@ -95,6 +95,10 @@ Each detail by the set it first appears in.
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
 - *boom:* The knob on the crane base's right side extends and retracts the boom's inner section: bevel gears turn the boom's pivot axle, a shaft up the boom carries the drive to the tip, and an 8-tooth pinion there runs on the racks under the inner section. (works)
+
+**2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
+
+- *outriggers:* The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (partly)
 
 **2012, [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1)**
 

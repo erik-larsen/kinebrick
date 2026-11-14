@@ -4,14 +4,14 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 88 functions. Kinebrick: 24 works, 55 partly, 4 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 24 works, 56 partly, 4 no, 5 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 1 of 18 | 2 of 32 | 2 of 23 | 20 of 83 | 6 of 21 |
-| Functions | 0 | 1 | 4 | 8 | 52 | 23 |
+| Functions | 0 | 1 | 4 | 9 | 52 | 23 |
 
 ## Details
 
@@ -60,9 +60,10 @@ Each detail by the set it first appears in.
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
 - *PF XL:* The Power Functions XL motor drives the crane's four functions one at a time: the battery box's switch turns it on, the red lever with a towball handle (on the polarity switch) sets its direction, and two yellow levers on the right of the gearbox choose which function it drives (each lever up or down, or both in the middle for none). (not checked)
+- The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (partly)
 - The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (partly)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
-- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the second yellow lever is pushed down. (partly)
+- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 

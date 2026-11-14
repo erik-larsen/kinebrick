@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 75 works, 15 partly, 31 no, 3 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 76 works, 15 partly, 31 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -227,7 +227,7 @@ Each detail by the set it first appears in.
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
 - *bonnet:* The bonnet tilts up on a hinge at the windscreen, showing the engine. (works)
-- *doors:* The two front doors open, each swinging out on a hinge at its front edge. (skipped)
+- *doors:* The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel. (works)
 - *tailgate:* The tailgate at the back swings up on a hinge at the roof. (no)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
