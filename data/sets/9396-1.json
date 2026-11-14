@@ -139,19 +139,23 @@
     ]
   },
   "generated": {
-    "commit": "6ed4bb79",
+    "commit": "7b64cee7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 1819,
+    "seconds": 2665,
     "counts": {
       "partly": 3,
       "not back": 4,
       "works": 2,
       "no": 1
     },
-    "loose": [
-      "p1200 42610",
-      "p1201 51011"
-    ],
+    "loose": [],
+    "errata": {
+      "applied": [
+        "left-inner-main-wheel"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "partly",
@@ -170,15 +174,15 @@
           {
             "p1510 99013p01": [
               0,
-              8.75e-13
+              7.21e-13
             ],
             "p1088 32270": [
               0,
-              1.97e-31
+              2.31e-31
             ],
             "p1337 55013": [
               0,
-              0
+              4.74e-15
             ]
           }
         ],
@@ -200,7 +204,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1088 32270",
-        "seconds": 190
+        "seconds": 268.1
       },
       {
         "result": "partly",
@@ -217,19 +221,19 @@
           {
             "p449 92695 against p448 92693c01": [
               1.67,
-              2.21e-13
+              2.35e-13
             ],
             "p437 92695 against p436 92693c01": [
               0,
               0
             ],
             "p1198 42610": [
-              0.0316,
-              2.53
+              0.0342,
+              2.74
             ],
             "p36 42610": [
-              0.0316,
-              2.53
+              0.0321,
+              2.57
             ]
           }
         ],
@@ -251,7 +255,7 @@
         ],
         "cause": "not-driven",
         "detail": "p437 92695 against p436 92693c01",
-        "seconds": 423.8
+        "seconds": 734.9
       },
       {
         "result": "works",
@@ -265,7 +269,7 @@
           {
             "p570 32073": [
               1.11,
-              2.84e-14
+              3.79e-14
             ],
             "p575 30395": [
               0,
@@ -289,7 +293,7 @@
           "p1040 6542b",
           "p1042 3749"
         ],
-        "seconds": 163
+        "seconds": 262.1
       },
       {
         "result": "partly",
@@ -322,8 +326,8 @@
               3.18
             ],
             [
-              0.23,
-              0.89
+              0.31,
+              0.8
             ]
           ]
         ],
@@ -333,7 +337,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1278 41239",
-        "seconds": 206.2
+        "seconds": 262.7
       },
       {
         "result": "no",
@@ -434,7 +438,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 19.2
+        "seconds": 30.2
       },
       {
         "result": "works",
@@ -510,7 +514,7 @@
           [],
           []
         ],
-        "seconds": 807.4
+        "seconds": 1096.5
       }
     ]
   }
