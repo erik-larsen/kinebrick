@@ -101,7 +101,7 @@ Built for Kinebrick, each to try one kind of mechanism.
 
 Pick **Open a model file…** at the top of the model menu, or drop an LDraw file (`.ldr`, or `.mpd` with submodels) or a BrickLink Studio file (`.io`) anywhere on the page. Kinebrick fetches the parts it uses from [its copy of the LDraw parts library](https://github.com/erik-larsen/ldraw) and works out the mechanism as it does for its own models.
 
-Your file stays in your browser; nothing is uploaded. The browser keeps it so the page can reload with it (the address names it, as `file=`), so a link to it only works in that browser.
+Your file stays in your browser; nothing is uploaded. The browser keeps it so the page can reload with it (the address names it, as `file=`), so a link to it only works in that browser. On your own computer, with `npm run dev` running, `file=` can also name a file in the checkout that the browser doesn't keep, such as `?file=omr/8081-1+Extreme+Cruiser.mpd`.
 
 Kinebrick knows the moving parts of its own models and the most common ones in the OMR's Technic sets, but not every part yet. The panel lists any part it has no connection data for (marked ⚠, as loose parts are); any moving part it can't move yet, such as shock absorbers, pneumatics and some gears and tyres, with what it doesn't do ("doesn't mesh", "doesn't roll"); and any file the parts library hasn't got, which isn't drawn: usually a part LDraw hasn't made official yet, which the model file didn't bring along.
 
@@ -115,12 +115,12 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 607 | 50% |
-| Partly | 292 | 24% |
-| Doesn't work | 148 | 12% |
+| Works | 612 | 50% |
+| Partly | 289 | 24% |
+| Doesn't work | 146 | 12% |
 | Skipped or not checked | 177 | 14% |
 
-Of the functions checked, 58% work in full. Only 20 of the 186 sets have every function working.
+Of the functions checked, 58% work in full. Only 21 of the 186 sets have every function working.
 
 **Major things left:**
 
