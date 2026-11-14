@@ -121,10 +121,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 18,
+    "seconds": 20,
     "counts": {
       "no": 2,
       "works": 3
@@ -294,7 +293,7 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "seconds": 2.5
       },
       {
         "result": "no",
@@ -500,7 +499,7 @@
             "p143 41530"
           ]
         ],
-        "seconds": 5
+        "seconds": 5.7
       },
       {
         "result": "works",
@@ -576,7 +575,7 @@
           [],
           []
         ],
-        "seconds": 10
+        "seconds": 11.3
       }
     ]
   }

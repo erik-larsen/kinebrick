@@ -232,10 +232,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 515,
+    "seconds": 537,
     "counts": {
       "partly": 9,
       "works": 1,
@@ -379,7 +378,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3606 42529",
-        "seconds": 33.1
+        "seconds": 30.9
       },
       {
         "result": "partly",
@@ -423,7 +422,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3609 42529",
-        "seconds": 32
+        "seconds": 33.8
       },
       {
         "result": "partly",
@@ -491,7 +490,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3606 42529",
-        "seconds": 64.4
+        "seconds": 61.5
       },
       {
         "result": "partly",
@@ -587,7 +586,7 @@
         ],
         "cause": "not-driven",
         "detail": "p5 62821",
-        "seconds": 65.7
+        "seconds": 61.5
       },
       {
         "result": "partly",
@@ -627,7 +626,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3293 18947",
-        "seconds": 30.4
+        "seconds": 35.6
       },
       {
         "result": "partly",
@@ -680,7 +679,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3395 62274c01 against p3394 42131 - u9559c01",
-        "seconds": 30.2
+        "seconds": 36.1
       },
       {
         "result": "partly",
@@ -734,7 +733,7 @@
         ],
         "cause": "not-driven",
         "detail": "p4118 62274c01 against p4117 42131 - u9559c01",
-        "seconds": 30.9
+        "seconds": 36.4
       },
       {
         "result": "partly",
@@ -787,7 +786,7 @@
         ],
         "cause": "loose-part",
         "detail": "p6074 62274c01",
-        "seconds": 30.1
+        "seconds": 36.4
       },
       {
         "result": "partly",
@@ -835,7 +834,7 @@
         ],
         "cause": "not-driven",
         "detail": "p5713 42131 - 71710",
-        "seconds": 30.2
+        "seconds": 35.9
       },
       {
         "result": "works",
@@ -865,7 +864,7 @@
             ]
           ]
         ],
-        "seconds": 32.5
+        "seconds": 32.7
       },
       {
         "result": "not checked"

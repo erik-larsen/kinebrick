@@ -110,8 +110,7 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
     "seconds": 5,
     "counts": {
@@ -301,7 +300,7 @@
         ],
         "cause": "not-driven",
         "detail": "p134 3650b against p65 3673",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -365,7 +364,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -409,7 +408,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "not checked",

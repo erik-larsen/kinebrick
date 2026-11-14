@@ -111,9 +111,9 @@
     ]
   },
   "generated": {
-    "commit": "4bcfdf00",
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 5,
+    "seconds": 3,
     "counts": {
       "no": 3,
       "works": 2,
@@ -211,7 +211,7 @@
         "strayed": [
           "p131 62520"
         ],
-        "seconds": 3.4
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -236,7 +236,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -342,7 +342,7 @@
         ],
         "cause": "not-driven",
         "detail": "p334 88517",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",

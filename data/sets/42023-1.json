@@ -84,10 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 6,
+    "seconds": 5,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -251,7 +250,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 4
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -357,7 +356,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1
       }
     ]
   }

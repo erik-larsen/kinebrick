@@ -137,14 +137,13 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 109,
+    "seconds": 232,
     "counts": {
-      "works": 2,
-      "partly": 3,
+      "works": 3,
       "not back": 1,
+      "partly": 2,
       "no": 1
     },
     "loose": [
@@ -290,44 +289,41 @@
             ]
           ]
         ],
-        "seconds": 5.7
+        "seconds": 6.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            2.13,
+            -3.1
           ]
-        ],
-        "still": [
-          "p499 11478"
         ],
         "rates": [
           {
             "p158 3648b": [
               0.0417,
-              3.82e-13
+              5.95e-13
             ],
             "p244 3706": [
-              0.0483,
-              5.67e-13
+              0.0485,
+              5.27e-13
             ],
             "p400 40490": [
-              0.0151,
-              1.21
+              0.0197,
+              1.57
             ],
             "p411 40490": [
-              0.0151,
-              1.21
+              0.0197,
+              1.57
             ],
             "p499 11478": [
-              0.0028,
-              0.112
+              0.0073,
+              0.293
             ],
             "p1117 4716": [
-              5.62e-8,
-              4.67e-13
+              5.44e-8,
+              5.4e-13
             ]
           }
         ],
@@ -339,22 +335,20 @@
         "back": [
           [
             [
-              591.14,
-              167.05
+              299.09,
+              167.43
             ],
             [
-              56.77,
-              107.2
+              424.89,
+              90.52
             ]
           ]
         ],
         "strayed": [
-          "p412 55982",
-          "p525 4519"
+          "p255 3749",
+          "p417 32123a"
         ],
-        "cause": "too-little",
-        "detail": "p499 11478",
-        "seconds": 68.3
+        "seconds": 197.4
       },
       {
         "result": "partly",
@@ -416,7 +410,7 @@
         ],
         "cause": "not-driven",
         "detail": "p669 60483",
-        "seconds": 6.7
+        "seconds": 5.4
       },
       {
         "result": "partly",
@@ -465,7 +459,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 6.2
+        "seconds": 4.9
       },
       {
         "result": "no",
@@ -519,7 +513,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.3
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -579,7 +573,7 @@
           [],
           []
         ],
-        "seconds": 19.5
+        "seconds": 15.8
       }
     ]
   }

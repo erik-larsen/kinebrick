@@ -85,9 +85,9 @@
     ]
   },
   "generated": {
-    "commit": "4bcfdf00",
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
       "works": 2,
       "no": 1,
@@ -150,7 +150,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -265,7 +265,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -341,7 +341,7 @@
           [],
           []
         ],
-        "seconds": 2.1
+        "seconds": 1.1
       },
       {
         "result": "skipped",

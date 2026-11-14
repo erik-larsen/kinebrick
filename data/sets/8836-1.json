@@ -100,8 +100,7 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
     "seconds": 2,
     "counts": {
@@ -240,7 +239,7 @@
         ],
         "cause": "not-driven",
         "detail": "p187 3737",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -370,7 +369,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 0.8
       }
     ]
   }

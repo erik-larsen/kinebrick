@@ -153,9 +153,9 @@
     ]
   },
   "generated": {
-    "commit": "4bcfdf00",
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 20,
+    "seconds": 18,
     "counts": {
       "partly": 4,
       "not back": 2,
@@ -192,8 +192,8 @@
         "result": "partly",
         "turned": [
           [
-            1.23,
-            -0.53
+            0.02,
+            0
           ]
         ],
         "moved": [
@@ -203,50 +203,49 @@
         "rates": [
           {
             "p62 32072": [
-              3.35,
-              150
+              136,
+              8570
             ],
             "p52 32270": [
-              3.11,
-              743
+              136,
+              42400
             ],
             "p34 87761": [
-              2.38,
-              745
+              136,
+              42200
             ],
             "p205 56145": [
-              7.53,
-              913
+              252,
+              49900
             ],
             "p208 56145": [
-              2.99,
-              848
+              250,
+              49800
             ],
             "p201 41896 against p0 32316": [
-              3.15,
-              1.26e-11
+              175,
+              6.88e-10
             ],
             "p203 41896 against p0 32316": [
-              3.14,
-              1.25e-11
+              175,
+              7.06e-10
             ]
           }
         ],
         "back": [
           [
             [
-              102.01,
-              64.19
+              48.41,
+              13.43
             ],
             [
-              641.9,
-              178.66
+              81.41,
+              22.17
             ]
           ]
         ],
         "strayed": [
-          "p115 32009",
-          "p136 32009"
+          "p115 32009"
         ],
         "stop": [
           [
@@ -259,7 +258,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p201 41896 against p0 32316",
-        "seconds": 6.2
+        "seconds": 8
       },
       {
         "result": "no",
@@ -369,7 +368,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p404 48452",
-        "seconds": 1.4
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -413,7 +412,7 @@
         ],
         "cause": "not-driven",
         "detail": "p424 32278 against p417 32009",
-        "seconds": 1.3
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -457,7 +456,7 @@
         ],
         "cause": "not-driven",
         "detail": "p455 32278 against p424 32278",
-        "seconds": 1.3
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -511,7 +510,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "skipped",
@@ -695,7 +694,7 @@
           [],
           []
         ],
-        "seconds": 8
+        "seconds": 5.8
       }
     ]
   }

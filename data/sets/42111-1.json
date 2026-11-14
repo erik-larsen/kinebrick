@@ -190,10 +190,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 117,
+    "seconds": 195,
     "counts": {
       "works": 6,
       "partly": 1,
@@ -274,7 +273,7 @@
             ]
           ]
         ],
-        "seconds": 14.5
+        "seconds": 22.1
       },
       {
         "result": "works",
@@ -426,7 +425,7 @@
             "p443 18946"
           ]
         ],
-        "seconds": 23.9
+        "seconds": 37.8
       },
       {
         "result": "works",
@@ -456,7 +455,7 @@
             ]
           ]
         ],
-        "seconds": 11.8
+        "seconds": 19.6
       },
       {
         "result": "partly",
@@ -556,7 +555,7 @@
         ],
         "cause": "not-driven",
         "detail": "p297 15460",
-        "seconds": 29.8
+        "seconds": 48.2
       },
       {
         "result": "skipped",
@@ -585,7 +584,7 @@
           "p0 92910 has no joint to work"
         ],
         "cause": "control-fixed",
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -623,7 +622,7 @@
             ]
           ]
         ],
-        "seconds": 4.1
+        "seconds": 6.5
       },
       {
         "result": "works",
@@ -649,7 +648,7 @@
             ],
             "p471 56908": [
               0,
-              6.32e-13
+              6.6e-13
             ]
           }
         ],
@@ -668,7 +667,7 @@
         "pushed": [
           true
         ],
-        "seconds": 9.4
+        "seconds": 25
       },
       {
         "result": "works",
@@ -725,7 +724,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 22.5
+        "seconds": 34.5
       }
     ]
   }

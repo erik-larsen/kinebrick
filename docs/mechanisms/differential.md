@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 39 works, 33 partly, 5 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 40 works, 32 partly, 5 no, 1 skipped.
 
 ## By decade
 
@@ -57,7 +57,7 @@ Each detail by the set it first appears in.
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
-- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (partly)
+- Pushing the car along runs the V8: the rear wheels drive the differential, whose output, by a bevel pair and a propeller shaft forward, drives the gearbox, and the gearbox turns the crankshaft, so the eight pistons go up and down and the three-bladed fan at the front of the engine spins. (works)
 - The differential lets the rear wheels turn at different speeds in a bend: with the drive held, turning one rear wheel turns the other the opposite way. (partly)
 
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**

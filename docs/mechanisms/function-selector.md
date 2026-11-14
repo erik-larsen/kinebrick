@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 26 works, 64 partly, 3 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 27 works, 63 partly, 3 no, 4 not checked.
 
 ## By decade
 
@@ -150,7 +150,7 @@ Each detail by the set it first appears in.
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
 - *2 functions, forwards or backwards:* The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one. (works)
-- With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (partly)
+- With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (works)
 - With the left lever set, the motor opens and closes the canopy, lowers the air brake under the fuselage and swivels the exhaust at the tail, all together: a worm on the left output turns a 24 tooth gear whose arms push links and long rods to all three. (partly)
 
 **2017, [42068 Airport Rescue Vehicle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42068-1)**

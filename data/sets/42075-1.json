@@ -135,8 +135,7 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
     "seconds": 9,
     "counts": {
@@ -188,7 +187,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -248,7 +247,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p352 2851",
-        "seconds": 2.8
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -386,7 +385,7 @@
         ],
         "cause": "not-driven",
         "detail": "p506 56145",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -416,7 +415,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
         "result": "no",

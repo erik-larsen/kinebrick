@@ -181,14 +181,13 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 1624,
+    "seconds": 2051,
     "counts": {
       "no": 1,
-      "partly": 4,
-      "works": 5,
+      "partly": 3,
+      "works": 6,
       "not back": 1
     },
     "loose": [
@@ -738,7 +737,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 6.8
+        "seconds": 7.4
       },
       {
         "result": "partly",
@@ -791,7 +790,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 105.1
+        "seconds": 111.5
       },
       {
         "result": "partly",
@@ -826,7 +825,7 @@
         ],
         "cause": "not-driven",
         "detail": "p418 64178 against p1175 18939",
-        "seconds": 105.8
+        "seconds": 111.2
       },
       {
         "result": "partly",
@@ -880,7 +879,7 @@
         ],
         "cause": "not-driven",
         "detail": "p911 57520",
-        "seconds": 138.6
+        "seconds": 141.6
       },
       {
         "result": "works",
@@ -926,7 +925,7 @@
           "p397 3062b",
           "p2822 57518"
         ],
-        "seconds": 405.7
+        "seconds": 429.8
       },
       {
         "result": "works",
@@ -956,30 +955,25 @@
             ]
           ]
         ],
-        "seconds": 52.2
+        "seconds": 56.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
+            2.6,
             0
           ]
-        ],
-        "still": [
-          "p1510 62274c01",
-          "p1513 62274c01",
-          "p2535 42055 - 55615"
         ],
         "rates": [
           {
             "p1510 62274c01": [
-              0.000932,
-              0.665
+              0.000931,
+              0.664
             ],
             "p1513 62274c01": [
-              0.000932,
-              0.665
+              0.000931,
+              0.664
             ],
             "p2535 42055 - 55615": [
               0.0018,
@@ -990,15 +984,15 @@
               1.06
             ],
             "p418 64178": [
-              0.00000173,
-              7.41e-47
+              0.00000305,
+              1.49e-46
             ]
           }
         ],
         "back": [
           [
             [
-              0.01,
+              0.02,
               0.01
             ],
             [
@@ -1013,9 +1007,7 @@
             "limit"
           ]
         ],
-        "cause": "too-little",
-        "detail": "p1510 62274c01",
-        "seconds": 179.1
+        "seconds": 524.4
       },
       {
         "result": "works",
@@ -1069,7 +1061,7 @@
             ]
           ]
         ],
-        "seconds": 52.6
+        "seconds": 56.6
       },
       {
         "result": "works",
@@ -1113,7 +1105,7 @@
             "dead point"
           ]
         ],
-        "seconds": 197.5
+        "seconds": 209.3
       },
       {
         "result": "works",
@@ -1189,7 +1181,7 @@
           [],
           []
         ],
-        "seconds": 215.6
+        "seconds": 226.5
       }
     ]
   }

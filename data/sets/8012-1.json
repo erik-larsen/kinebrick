@@ -111,8 +111,7 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
     "seconds": 1,
     "counts": {
@@ -1684,7 +1683,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2378 41681",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "not checked",

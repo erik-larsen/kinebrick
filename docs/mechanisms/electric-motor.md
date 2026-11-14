@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 20 works, 61 partly, 3 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 23 works, 58 partly, 3 no, 5 not checked.
 
 ## By decade
 
@@ -132,7 +132,7 @@ Each detail by the set it first appears in.
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
 - *M:* The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one. (works)
-- *M:* With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (partly)
+- *M:* With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (works)
 - *M:* With the left lever set, the motor opens and closes the canopy, lowers the air brake under the fuselage and swivels the exhaust at the tail, all together: a worm on the left output turns a 24 tooth gear whose arms push links and long rods to all three. (partly)
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
@@ -173,8 +173,8 @@ Each detail by the set it first appears in.
 - *Control+ XL:* The XL motor on the right drives the right track: a 20 tooth gear by the motor drives, through 12 and 20 tooth gears, a slipping clutch, a 12 tooth gear, a 36 tooth gear, a 28 tooth gear and the 36 tooth gear on the rear sprocket, which turns the track round the front sprocket and the rollers. (partly)
 - *Control+ XL:* The XL motor on the left drives the left track the same way. (partly)
 - *Control+ L:* The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth. (partly)
-- *Control+ XL:* The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot. (partly)
-- *Control+ L:* Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step. (partly)
+- *Control+ XL:* The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot. (works)
+- *Control+ L:* Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step. (works)
 - *Control+ L:* An L motor on top of the boom tilts the bucket: a 12 tooth gear on its axle drives a 20 tooth gear and a 16 tooth gear, a row of five 16 tooth gears across the boom, and 12 tooth bevel gears into the two big linear actuators that run from the boom's tip down to the bucket's mount at the end of the stick. (no)
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**

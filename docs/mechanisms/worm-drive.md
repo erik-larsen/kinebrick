@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 46 works, 36 partly, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 47 works, 35 partly, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -238,7 +238,7 @@ Each detail by the set it first appears in.
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
-- With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (partly)
+- With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (works)
 - With the left lever set, the motor opens and closes the canopy, lowers the air brake under the fuselage and swivels the exhaust at the tail, all together: a worm on the left output turns a 24 tooth gear whose arms push links and long rods to all three. (partly)
 
 **2017, [42068 Airport Rescue Vehicle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42068-1)**

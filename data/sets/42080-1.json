@@ -129,10 +129,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 159,
+    "seconds": 241,
     "counts": {
       "works": 5,
       "not back": 3,
@@ -368,48 +367,48 @@
         "result": "works",
         "turned": [
           [
-            0.38,
-            -1.5
+            -1.17,
+            0.37
           ]
         ],
         "rates": [
           {
             "p821 6632": [
-              0.442,
-              85.8
+              1,
+              183
             ],
             "p653 42080 - 26674-f1": [
-              0.442,
-              76.7
+              1,
+              161
             ]
           }
         ],
         "back": [
           [
             [
-              80.44,
-              16.56
+              3.52,
+              1.5
             ],
             [
-              121.69,
-              28.05
+              20.15,
+              4.84
             ]
           ]
         ],
         "strayed": [
-          "p2041 32063",
-          "p2048 42080 - 10197"
+          "p2048 42080 - 10197",
+          "p2040 32063"
         ],
         "stop": [
           [
             "stuck",
-            null
+            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 46
+        "seconds": 84.5
       },
       {
         "result": "no",
@@ -434,7 +433,7 @@
           "p1893 42080 - 18575 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -489,7 +488,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -530,7 +529,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 10.9
+        "seconds": 12.8
       },
       {
         "result": "no",
@@ -603,7 +602,7 @@
             ]
           ]
         ],
-        "seconds": 5.2
+        "seconds": 5.6
       },
       {
         "result": "works",
@@ -749,7 +748,7 @@
           [],
           []
         ],
-        "seconds": 92.2
+        "seconds": 132.2
       }
     ]
   }

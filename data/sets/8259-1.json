@@ -62,10 +62,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -78,8 +77,8 @@
         "result": "partly",
         "turned": [
           [
-            1.54,
-            1.54
+            5.44,
+            5.44
           ]
         ],
         "still": [
@@ -89,59 +88,68 @@
           "p58 2825 against p0 32523",
           "p157 3832 against p0 32523"
         ],
+        "moved": [
+          "p75 4019 against p0 32523"
+        ],
         "rates": [
           {
             "p56 4716 against p0 32523": [
               1,
-              6.86e-9
+              3.5e-9
             ],
             "p39 3647 against p0 32523": [
               0.125,
-              6.92e-9
+              3.2e-9
             ],
             "p57 2825 against p0 32523": [
               0.125,
-              6.92e-9
+              3.2e-9
             ],
             "p58 2825 against p0 32523": [
               0.125,
-              6.92e-9
+              3.2e-9
             ],
             "p157 3832 against p0 32523": [
               0.0682,
               9.44
             ],
             "p75 4019 against p0 32523": [
-              0.205,
-              1.17e-13
+              0.212,
+              1.3e-13
             ],
             "p74 4019 against p0 32523": [
-              0.16,
-              3.82e-13
+              0.164,
+              5.25e-13
             ]
           }
         ],
         "back": [
           [
             [
-              1.27,
-              3.62
+              2.43,
+              2.49
             ],
             [
-              0.86,
-              2.98
+              2.43,
+              2.49
             ]
           ]
         ],
         "strayed": [
-          "p14 32073"
+          "p2 3749"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
+          ]
         ],
         "pushed": [
           true
         ],
         "cause": "too-little",
         "detail": "p56 4716 against p0 32523",
-        "seconds": 0.5
+        "seconds": 2.4
       },
       {
         "result": "works",

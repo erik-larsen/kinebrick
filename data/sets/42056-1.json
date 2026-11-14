@@ -197,10 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "33c2dc24",
     "date": "2026-11-14",
-    "seconds": 423,
+    "seconds": 518,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -303,7 +302,7 @@
             ]
           ]
         ],
-        "seconds": 32.2
+        "seconds": 44
       },
       {
         "result": "partly",
@@ -383,7 +382,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 80.2
+        "seconds": 92
       },
       {
         "result": "partly",
@@ -477,7 +476,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 22.8
+        "seconds": 23.9
       },
       {
         "result": "partly",
@@ -517,7 +516,7 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 10.9
+        "seconds": 10.7
       },
       {
         "result": "works",
@@ -599,7 +598,7 @@
             "p2734 23800"
           ]
         ],
-        "seconds": 31.1
+        "seconds": 33.2
       },
       {
         "result": "works",
@@ -681,7 +680,7 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 37
+        "seconds": 36.9
       },
       {
         "result": "skipped"
@@ -762,7 +761,7 @@
           [],
           []
         ],
-        "seconds": 57.4
+        "seconds": 66.9
       },
       {
         "result": "works",
@@ -801,7 +800,7 @@
         "pushed": [
           true
         ],
-        "seconds": 47.1
+        "seconds": 91.7
       },
       {
         "result": "no",
@@ -861,7 +860,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2757 24119",
-        "seconds": 15.7
+        "seconds": 15.4
       },
       {
         "result": "works",
@@ -874,7 +873,7 @@
         "rates": [
           {
             "p2553 32523": [
-              0.426,
+              0.427,
               26
             ]
           }
@@ -883,11 +882,11 @@
           [
             [
               2.44,
-              4.44
+              4.43
             ],
             [
-              36.7,
-              83.56
+              0.43,
+              0.78
             ]
           ]
         ],
@@ -897,7 +896,7 @@
         "pushed": [
           true
         ],
-        "seconds": 36.4
+        "seconds": 49.1
       },
       {
         "result": "works",
@@ -941,7 +940,7 @@
           [],
           []
         ],
-        "seconds": 21.3
+        "seconds": 21.6
       }
     ]
   }
