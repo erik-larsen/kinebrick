@@ -559,8 +559,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const b = worked(control);
       const link = kin.parentLink(b);
       // Why it doesn't work, if it doesn't (see causes.ts). Told before anything else: a loose
-      // part (the control, or one it should move), or a control worked first that didn't go.
-      const loosePart = [control, ...moves.map((m) => m.part)].find((p) => mech.loose.includes(p));
+      // part (the control, or one it should move or keep still), or a control worked first that
+      // didn't go. A loose part rides along with its nearest neighbour, attached to nothing, so a
+      // function that names one can't work, whatever the drag does: at most partly (the 8285's
+      // wheels "rolling freely" on rims that sit on nothing).
+      const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
       const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
       const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (b === 0 || !link) {
@@ -710,6 +713,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.frozen = new Set();
       together = [];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
+      // A function that names a loose part can't work, whatever the drag did (see loosePart).
+      const works = best.works && loosePart === undefined;
+      if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
       const heading = (j: number, poses: Matrix4[]) => {
@@ -768,7 +774,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const movedParts = moves.filter((m) => !best.still.includes(m.ref)).map((m) => m.ref);
       // Why the parts no control moved didn't move, for a function whose controls share them out.
       const explainStill = (left: string[]) => explain(left, best.moved, best.turned);
-      return { works: best.works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
+      return { works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
     });
     // Controls that share out the parts: the parts none of them moved are still.
     const movedByAny = new Set(ways.flatMap((w) => w.movedParts));
