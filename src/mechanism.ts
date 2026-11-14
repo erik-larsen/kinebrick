@@ -207,6 +207,10 @@ export interface Mechanism {
   carried?: { parts: number[]; weldedTo: number[] }[];
   // Things that stand apart and aren't vehicles (a building): loose, riding along (see secondModels).
   accessories?: number[][];
+  // Groups that would be carried but meet the main model where a joint should be and the reading
+  // made none: each group's parts, and the near-miss pair (a male and a female connection point).
+  // They stay loose (see secondModels).
+  missedJoints?: { parts: number[]; pair: [number, number] }[];
   // Universal joints: the shafts on either side turn together (see universalJoints).
   couplings: Coupling[];
   loops: Loop[]; // chains, tracks and rubber bands looped round wheels
@@ -380,7 +384,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // with what's nearest.
   // A second model in the file stands on its own, never loose (see secondModels).
   const figures = figureSubmodels(parts, roles);
-  const { models, carried: carriedGroups, accessories } = secondModels(parts, roles, connections, findLooseParts(parts.length, connections, anchors), figures, new Set(cyls.filter((c) => c.secs.some((s) => s.shape === 'T')).map((c) => c.part)));
+  const { models, carried: carriedGroups, accessories, missedJoints } = secondModels(parts, roles, connections, findLooseParts(parts.length, connections, anchors), figures, new Set(cyls.filter((c) => c.secs.some((s) => s.shape === 'T')).map((c) => c.part)), cyls);
   for (const model of models) for (const i of model) anchors.add(i);
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections, anchors), paths);
   const hooked = hookedParts(cyls, connections, findLooseParts(parts.length, connections, anchors), paths);
@@ -443,5 +447,5 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
     return [...count].reduce((a, b) => (b[1] > a[1] ? b : a))[0];
   };
   const frames = [0, ...models.map(biggest)];
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, frames, frameParts: models, carried, accessories, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, frames, frameParts: models, carried, accessories, missedJoints, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}) };
 }

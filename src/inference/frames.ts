@@ -5,7 +5,7 @@
 import { Vector3 } from 'three';
 import { PlacedPart } from '../ldr.ts';
 import type { Connection } from '../mechanism.ts';
-import { rigidGroups } from './shared.ts';
+import { rigidGroups, type WorldCylinder } from './shared.ts';
 
 // How many parts a second model has at least, and how much of it lies under one submodel of its
 // own, in a file that has submodels.
@@ -19,6 +19,10 @@ const TOUCHING = 30;
 // part (the 42055's mine truck's lowest origin, a wheel's axle, is 27 above the excavator's; the
 // 42076's truck on the hovercraft's deck is 115 above).
 const ON_THE_GROUND = 48;
+// A near miss between two connection points, a male and a female: how far off each other's axis
+// (a few LDU) and how far apart along it (a stud) a joint the reading didn't make can lie.
+const MISS_OFF_AXIS = 4;
+const MISS_ALONG = 20;
 
 // What the groups of parts not attached to the largest group are:
 // - `models`: second models, each standing on its own. A group is one if it has
@@ -43,7 +47,7 @@ const ON_THE_GROUND = 48;
 // of bricks) is a load, loose, riding along.
 // A group with a figure's parts in it is a figure's, never a model or a load (see figureSubmodels).
 // `tyres`: the parts of a wheel, by their data: a rim's or a tyre's half of a tyre's seat.
-export function secondModels(parts: PlacedPart[], roles: string[], connections: Connection[], loose: number[], figures: Set<string>, tyres: Set<number>): { models: number[][]; carried: number[][]; accessories: number[][] } {
+export function secondModels(parts: PlacedPart[], roles: string[], connections: Connection[], loose: number[], figures: Set<string>, tyres: Set<number>, cyls: WorldCylinder[] = []): { models: number[][]; carried: number[][]; accessories: number[][]; missedJoints: { parts: number[]; pair: [number, number] }[] } {
   const isLoose = new Set(loose);
   const leader = Array.from({ length: parts.length }, (_, i) => i);
   const find = (i: number): number => (leader[i] === i ? i : (leader[i] = find(leader[i])));
@@ -69,10 +73,13 @@ export function secondModels(parts: PlacedPart[], roles: string[], connections: 
   const ownSubmodel = (i: number) => (parts[i].within ?? []).find((s) => !mainSubmodels.has(s)) ?? '';
   const at = (i: number) => new Vector3().setFromMatrixPosition(parts[i].matrix);
   const mainAt = main.map(at);
+  const isMain = new Set(main);
+  const known = new Set(cyls.map((c) => c.part));
   // LDraw's y points down: the lowest part has the greatest y.
   const mainLowest = Math.max(...mainAt.map((p) => p.y));
   const models: number[][] = [];
   const carried: number[][] = [];
+  const missedJoints: { parts: number[]; pair: [number, number] }[] = [];
   const accessories: number[][] = [];
   for (const group of groups.values()) {
     if (group.length < MODEL_PARTS) continue;
@@ -98,10 +105,45 @@ export function secondModels(parts: PlacedPart[], roles: string[], connections: 
     });
     const onTheGround = Math.max(...group.map((i) => at(i).y)) >= mainLowest - ON_THE_GROUND;
     if (touches || !onTheGround) {
-      if (placedByMain) carried.push(group);
+      if (!placedByMain) continue;
+      // Carried only if it rests on the main model: no joint the reading missed between them (a
+      // limb that lost its joint is not a carried model), and no part touching the main model that
+      // the data knows nothing of (where a missed joint couldn't be seen).
+      const missed = nearMiss(group, isMain, cyls);
+      if (missed) {
+        missedJoints.push({ parts: group, pair: missed });
+        continue;
+      }
+      // (A path's links, a track's or a hose's, are read with their path, not by connection points.)
+      if (group.some((i) => !known.has(i) && !parts[i].path && mainAt.some((q) => q.distanceTo(at(i)) <= TOUCHING))) continue;
+      carried.push(group);
     }
     else if (tyre) models.push(group);
     else accessories.push(group);
   }
-  return { models, carried, accessories };
+  return { models, carried, accessories, missedJoints };
+}
+
+// A male and a female connection point, one of the group's and one of the main model's, that lie
+// as a joint would and aren't joined: parallel, the one's line within MISS_OFF_AXIS of the other's
+// start, and their extents along it no more than MISS_ALONG apart. The first found, or null.
+function nearMiss(group: number[], isMain: Set<number>, cyls: WorldCylinder[]): [number, number] | null {
+  const mine = new Set(group);
+  const ours = cyls.filter((c) => mine.has(c.part));
+  const theirs = cyls.filter((c) => isMain.has(c.part));
+  const length = (c: WorldCylinder) => c.secs.reduce((sum, s) => sum + s.length, 0);
+  for (const a of ours) {
+    for (const b of theirs) {
+      if (a.gender === b.gender || a.dir.clone().cross(b.dir).length() > 0.05) continue;
+      const offset = new Vector3().subVectors(b.start, a.start);
+      const along = offset.dot(a.dir);
+      if (offset.addScaledVector(a.dir, -along).length() > MISS_OFF_AXIS) continue;
+      const [a0, a1] = [0, length(a)];
+      const sign = Math.sign(b.dir.dot(a.dir));
+      const [b0, b1] = [along, along + sign * length(b)].sort((x, y) => x - y);
+      const gap = Math.max(b0 - a1, a0 - b1, 0);
+      if (gap <= MISS_ALONG) return [a.part, b.part];
+    }
+  }
+  return null;
 }
