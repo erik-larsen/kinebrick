@@ -331,7 +331,9 @@ async function start() {
   let load: (onProgress: (event: ProgressEvent) => void) => Promise<Group>;
   let missingFiles: string[] = [];
   if (FILE) {
-    const kept = await keptFile(FILE);
+    // A file this browser doesn't keep is looked for beside the page, where npm run dev serves
+    // the sets' own files, e.g. ?file=omr/8081-1+Extreme+Cruiser.mpd.
+    const kept = (await keptFile(FILE)) ?? (await fetch(FILE).then((r) => (r.ok ? r.text() : null), () => null));
     if (kept === null) throw new Error(`${FILE} isn't kept in this browser: open it again with "Open a model file…" above`);
     modelText = kept;
     const [colours, primitiveList, library] = await Promise.all([

@@ -70,7 +70,7 @@ import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
-import { Mechanism } from '../src/mechanism.ts';
+import { Mechanism, meshesChanged } from '../src/mechanism.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
@@ -471,11 +471,15 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.reset();
       freed = new Set();
       // A control with no motion at the start, held by friction pins: those pins are freed, and
-      // the model worked out again, for this control only (see pinsToFree).
+      // the model worked out again, for this control only (see pinsToFree). So too a control
+      // the viewer would push whose joint turns only by swinging the rest of the model round it,
+      // so that no point of it moves and the push couldn't start (see grabOf): the 8865's seat
+      // back, on friction hinge plates.
       if (FREE_PINS) {
         const c = part(ref);
         const l = kin.parentLink(worked(c));
-        if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null) {
+        const noGrab = () => !fn.together && isPushed(worked(c)) && grabOf(worked(c), c) === null;
+        if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null || noGrab()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
           if (freed.size) {
@@ -502,6 +506,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // A catch it turned shifts its ring.
         const shifts = catchShifts(placedNow(), table, catches);
         if (shifts.size) shiftTo(shifts);
+        // Otherwise, if it brought gears together or apart (the 952's harrow lowered onto its
+        // power take-off), the mechanism is worked out afresh from where everything now is.
+        else if (meshesChanged(mech, kin.poses)) use(loaded.read(placedNow(), freed));
       }
       // Measured on the model as it is now, after any shift.
       const moves = (fn.moves ?? []).map(against);

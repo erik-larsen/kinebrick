@@ -101,10 +101,10 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "015cd559",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "works": 2,
@@ -171,7 +171,7 @@
         ],
         "cause": "not-driven",
         "detail": "p60 40490",
-        "seconds": 0.4
+        "seconds": 1
       },
       {
         "result": "works",
@@ -226,7 +226,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -277,7 +277,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.7
       },
       {
         "result": "no",

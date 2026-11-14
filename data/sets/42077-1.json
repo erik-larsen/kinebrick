@@ -121,14 +121,12 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "4bcfdf00",
     "date": "2026-11-14",
-    "seconds": 66,
+    "seconds": 82,
     "counts": {
-      "works": 4,
-      "partly": 2,
-      "no": 1
+      "works": 5,
+      "partly": 2
     },
     "loose": [
       "p212 4519",
@@ -190,7 +188,7 @@
             ]
           ]
         ],
-        "seconds": 9.5
+        "seconds": 10.4
       },
       {
         "result": "partly",
@@ -254,7 +252,7 @@
         ],
         "cause": "not-driven",
         "detail": "p59 62821",
-        "seconds": 9.2
+        "seconds": 10.3
       },
       {
         "result": "works",
@@ -308,7 +306,7 @@
           [],
           []
         ],
-        "seconds": 7.3
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -464,37 +462,33 @@
           [],
           []
         ],
-        "seconds": 9.3
+        "seconds": 9.2
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p922 62531",
-          "p969 15458"
         ],
         "rates": [
           {
             "p922 62531": [
-              0,
-              0
+              1,
+              120
             ],
             "p969 15458": [
-              0,
-              0
+              1,
+              278
             ],
             "p139 2853": [
               0,
-              0
+              1.05e-13
             ],
             "p59 62821": [
               0,
-              0
+              6.63e-14
             ]
           }
         ],
@@ -502,26 +496,16 @@
           [
             [
               0,
-              0
+              0.32
             ],
             [
               0,
-              0
+              0.31
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "cause": "part-fixed",
-        "detail": "p922 62531",
-        "seconds": 0.2
+        "freed": 6,
+        "seconds": 13.9
       }
     ]
   }

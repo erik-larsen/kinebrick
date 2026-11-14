@@ -181,10 +181,10 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "0eb34660",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 1668,
+    "seconds": 1624,
     "counts": {
       "no": 1,
       "partly": 4,
@@ -791,7 +791,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 106.6
+        "seconds": 105.1
       },
       {
         "result": "partly",
@@ -826,7 +826,7 @@
         ],
         "cause": "not-driven",
         "detail": "p418 64178 against p1175 18939",
-        "seconds": 115.5
+        "seconds": 105.8
       },
       {
         "result": "partly",
@@ -880,7 +880,7 @@
         ],
         "cause": "not-driven",
         "detail": "p911 57520",
-        "seconds": 148.8
+        "seconds": 138.6
       },
       {
         "result": "works",
@@ -926,7 +926,7 @@
           "p397 3062b",
           "p2822 57518"
         ],
-        "seconds": 394.7
+        "seconds": 405.7
       },
       {
         "result": "works",
@@ -956,7 +956,7 @@
             ]
           ]
         ],
-        "seconds": 53.3
+        "seconds": 52.2
       },
       {
         "result": "partly",
@@ -1015,7 +1015,7 @@
         ],
         "cause": "too-little",
         "detail": "p1510 62274c01",
-        "seconds": 192.2
+        "seconds": 179.1
       },
       {
         "result": "works",
@@ -1069,7 +1069,7 @@
             ]
           ]
         ],
-        "seconds": 54.2
+        "seconds": 52.6
       },
       {
         "result": "works",
@@ -1113,7 +1113,7 @@
             "dead point"
           ]
         ],
-        "seconds": 205.6
+        "seconds": 197.5
       },
       {
         "result": "works",
@@ -1189,7 +1189,7 @@
           [],
           []
         ],
-        "seconds": 217
+        "seconds": 215.6
       }
     ]
   }

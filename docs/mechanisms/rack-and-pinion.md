@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 17 works, 8 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 18 works, 7 partly, 5 no.
 
 ## By decade
 
@@ -143,7 +143,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *boom extension:* The black knob on the superstructure's right side extends the boom: it turns a red 16 tooth gear and a blue 20 tooth gear at the boom's pivot, which drive a shaft along the boom to a gear at the outer section's tip, and that gear runs the rack on top of the inner section. (partly)
+- *boom extension:* The black knob on the superstructure's right side extends the boom: it turns a red 16 tooth gear and a blue 20 tooth gear at the boom's pivot, which drive a shaft along the boom to a gear at the outer section's tip, and that gear runs the rack on top of the inner section. (works)
 
 ---
 

@@ -78,10 +78,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "4bcfdf00",
     "date": "2026-11-14",
-    "seconds": 0,
+    "seconds": 1,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -192,7 +191,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p45 32013",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "skipped",

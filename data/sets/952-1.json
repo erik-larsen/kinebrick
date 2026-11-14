@@ -133,13 +133,12 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "0eb34660",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
-      "works": 6,
-      "partly": 1
+      "works": 7
     },
     "loose": [],
     "functions": [
@@ -187,7 +186,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -275,7 +274,7 @@
             "p27 3650a"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -337,7 +336,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -389,10 +388,10 @@
             "dead point"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -403,38 +402,33 @@
             -1.5
           ]
         ],
-        "still": [
-          "p305 3649 against p256 3709b",
-          "p300 3649 against p256 3709b",
-          "p310 3649 against p256 3709b"
-        ],
         "rates": [
           {
             "p305 3649 against p256 3709b": [
-              1.12e-7,
-              5.28e-13
+              9,
+              9.76e-13
             ],
             "p300 3649 against p256 3709b": [
-              1.12e-7,
-              5.8e-13
+              9,
+              1.17e-12
             ],
             "p310 3649 against p256 3709b": [
-              1.12e-7,
-              5.77e-13
+              9,
+              8.95e-13
             ]
           },
           {
             "p305 3649 against p256 3709b": [
-              1.12e-7,
-              3.37e-13
+              9,
+              8.8e-13
             ],
             "p300 3649 against p256 3709b": [
-              1.12e-7,
-              4.02e-13
+              9,
+              1.23e-12
             ],
             "p310 3649 against p256 3709b": [
-              1.12e-7,
-              3.95e-13
+              9,
+              1.13e-12
             ]
           }
         ],
@@ -461,12 +455,18 @@
           ]
         ],
         "movedBy": [
-          [],
-          []
+          [
+            "p305 3649 against p256 3709b",
+            "p300 3649 against p256 3709b",
+            "p310 3649 against p256 3709b"
+          ],
+          [
+            "p305 3649 against p256 3709b",
+            "p300 3649 against p256 3709b",
+            "p310 3649 against p256 3709b"
+          ]
         ],
-        "cause": "not-driven",
-        "detail": "p305 3649 against p256 3709b",
-        "seconds": 0.6
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -508,7 +508,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -552,7 +552,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.5
       }
     ]
   }

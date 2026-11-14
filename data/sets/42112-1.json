@@ -108,6 +108,12 @@
           "p688 56145"
         ],
         "together": true,
+        "first": [
+          {
+            "control": "p354 18947",
+            "by": -10
+          }
+        ],
         "moves": [
           "p231 94925",
           "p356 42112 - 35185",
@@ -120,7 +126,7 @@
         "stays": [
           "p1039 42112 - 33299b"
         ],
-        "note": "needs the selector lever moved to the driving side first; how far isn't known, so there's no `first` yet"
+        "note": "needs the selector lever moved to the driving side first; the first step slides the driving ring p354 itself onto the 20 tooth clutch gear p356; which way the lever goes for that isn't known"
       },
       {
         "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
@@ -187,10 +193,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "4bcfdf00",
     "date": "2026-11-14",
-    "seconds": 34,
+    "seconds": 53,
     "counts": {
       "works": 4,
       "partly": 3,
@@ -367,11 +372,11 @@
             ],
             "p688 56145": [
               0,
-              3.29e-30
+              6.61e-31
             ],
             "p696 56145": [
               0,
-              2.47e-31
+              0
             ],
             "p1118 42112 - 65421p01": [
               0,
@@ -391,7 +396,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 4
       },
       {
         "result": "works",
@@ -531,7 +536,7 @@
           [],
           []
         ],
-        "seconds": 18.6
+        "seconds": 28.3
       },
       {
         "result": "partly",
@@ -551,19 +556,19 @@
           {
             "p249 62821": [
               1,
-              4.22e-13
+              5.39e-13
             ],
             "p245 18575": [
               1.4,
-              4.74e-15
+              1.99e-14
             ],
             "p17 60485": [
               0,
-              7.53e-28
+              1.64e-27
             ],
             "p160 94925": [
               0,
-              7.53e-28
+              1.64e-27
             ],
             "p139 94925": [
               0,
@@ -599,7 +604,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 60485",
-        "seconds": 2.4
+        "seconds": 3.7
       },
       {
         "result": "no",
@@ -643,7 +648,7 @@
         ],
         "cause": "not-driven",
         "detail": "p354 18947",
-        "seconds": 0.1
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -666,15 +671,15 @@
           {
             "p231 94925": [
               0,
-              7.53e-28
+              2.73e-27
             ],
             "p356 42112 - 35185": [
               0,
-              8.55e-28
+              1.48e-27
             ],
             "p361 32270": [
               0,
-              8.15e-28
+              1.48e-27
             ],
             "p390 3648b": [
               0,
@@ -712,7 +717,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 94925",
-        "seconds": 2.4
+        "seconds": 3.8
       },
       {
         "result": "partly",
@@ -724,6 +729,9 @@
         ],
         "still": [
           "p1118 42112 - 65421p01"
+        ],
+        "moved": [
+          "p17 60485"
         ],
         "rates": [
           {
@@ -753,10 +761,10 @@
             ],
             "p696 56145": [
               0,
-              8.61e-64
+              4.05e-64
             ],
             "p17 60485": [
-              0,
+              0.22,
               0
             ]
           }
@@ -783,7 +791,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1118 42112 - 65421p01",
-        "seconds": 2.3
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -817,7 +825,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -839,7 +847,7 @@
             ],
             "p696 56145": [
               0,
-              0
+              3.96e-67
             ]
           }
         ],
@@ -855,7 +863,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 3.5
       }
     ]
   }

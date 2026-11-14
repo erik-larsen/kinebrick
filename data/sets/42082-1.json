@@ -252,10 +252,10 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
+    "commit": "0eb34660",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 2106,
+    "seconds": 2817,
     "counts": {
       "no": 1,
       "works": 1,
@@ -728,7 +728,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 44.6
+        "seconds": 52.9
       },
       {
         "result": "works",
@@ -958,7 +958,7 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 647.8
+        "seconds": 874.4
       },
       {
         "result": "partly",
@@ -997,7 +997,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 164.6
+        "seconds": 216.5
       },
       {
         "result": "partly",
@@ -1076,7 +1076,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 181.3
+        "seconds": 230.3
       },
       {
         "result": "partly",
@@ -1124,7 +1124,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 128.2
+        "seconds": 186.8
       },
       {
         "result": "partly",
@@ -1177,7 +1177,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 129.8
+        "seconds": 196.5
       },
       {
         "result": "partly",
@@ -1225,7 +1225,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 130.3
+        "seconds": 158.8
       },
       {
         "result": "partly",
@@ -1273,7 +1273,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 128.6
+        "seconds": 190.3
       },
       {
         "result": "partly",
@@ -1311,7 +1311,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 289
+        "seconds": 377.8
       },
       {
         "result": "not checked"
