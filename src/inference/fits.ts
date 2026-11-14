@@ -61,11 +61,13 @@ export function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, f
       if (c) connections.push(c);
     }
   }
-  // A pin that turns in a part's round hole isn't also a stud in it: a hole the data gives twice,
-  // open (a hole a pin turns in) and closed at one end (read as an anti-stud), as a plate with a
-  // hole's (3176) is, holds a pin through it only as the hole does (the 8466's strut cylinder, on a
-  // long pin through two such plates). A stud joint between a pin and a part with no turn between
-  // the two on the same axis (a half pin's end in the underside of a plate) still holds.
+  // A pin or a stud that turns in a part's round hole isn't also a stud in it: a hole the data
+  // gives twice, open (a hole a pin turns in) and closed at one end (read as an anti-stud), holds
+  // what's in it only as the hole does. A plate with a hole (3176) on a pin through it (the 8466's
+  // strut cylinder, on a long pin through two such plates), and a round part on a single stud
+  // (a 1 x 1 round brick, 3062b, turns on the stud under it, as it does in the real set). A stud
+  // joint with no turn between the same two parts on the same axis (a half pin's end in the
+  // underside of a plate, a brick on its studs) still holds.
   return connections.filter((s) => s.kind !== 'stud' || !connections.some((r) => r.kind === 'revolute' && r.male === s.male && r.female === s.female && onOneAxis(r, s, align)));
 }
 
