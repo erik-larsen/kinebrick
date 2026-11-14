@@ -153,12 +153,17 @@ export interface Options {
   // costs nothing for turning against that body: it's made to spin free there (see leastTiers).
   // Off by default, for now; KINEBRICK_FREE_CLUTCH=1 turns it on.
   freeClutch: boolean;
+  // Rolling judged once more with the parked motions in (see freeMotionsApart): of the free
+  // motions joined, those in which tyres travel are kept only if they scrub no more than rolling
+  // allows. Off by default, for now; KINEBRICK_SCRUB_JOINED=1 turns it on.
+  scrubJoined: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0 and KINEBRICK_FREE_CLUTCH=1.
+// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0, KINEBRICK_FREE_CLUTCH=1 and
+// KINEBRICK_SCRUB_JOINED=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -170,6 +175,7 @@ export const experiments: Options = {
   centres: setting('KINEBRICK_CENTRES') === '1',
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
   freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
+  scrubJoined: setting('KINEBRICK_SCRUB_JOINED') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -1974,7 +1980,18 @@ export class Kinematics {
     const suspension = grounded.length ? leastScrub(grounded, { ...scrubbing, travel: [...travel, ...riseAsTravel] }, this.scrub, usual, { least: 0 }, needs.least * needs.least) : [];
     this.leastScrub = needs.least;
     if (needs.least > this.scrub) this.scrubNeeded = needs.least;
-    return [orthonormalize([...keptParked, ...rolling]), suspension];
+    // Joined again, the rolling motions are judged once more with the parked ones in. A parked
+    // motion may scrub (a car steered where it stands), so a rolling one, judged with the parked
+    // ones taken out, could leave its scrub in them, and the two joined could scrub far more than
+    // rolling allows: the 42081 Volvo wheel loader's chassis may slide sideways under its rear
+    // body (the frame), and its lead screw ties that slide to the chassis going fore and aft, so
+    // rolling a wheel slid the whole loader sideways, its tyres scrubbing 290 times as far as they
+    // rolled. So of the joined motions, every one in which no tyre travels is kept, as before; of
+    // those in which tyres travel, only those whose scrub, with the best of the others mixed in,
+    // is within what rolling allows. Behind a switch, for now (see Options.scrubJoined).
+    const joined = orthonormalize([...keptParked, ...rolling]);
+    if (!this.options.scrubJoined) return [joined, suspension];
+    return [leastScrub(joined, scrubbing, this.scrub, usual, { least: 0 }, needs.least * needs.least, true), suspension];
   }
 
   // How fast each body turns (3 numbers per body) under a motion in the tree basis's coordinates
@@ -2817,8 +2834,10 @@ function screwMotion(w: Vector3, v: Vector3): Matrix4 {
 // Given `rolling`, the least scrub (squared) rolling needs, worked out already, that decides
 // instead what's within `limit` (with the frame rising or sinking counted as travel, see
 // freeMotions, a car moving on its suspension needs none): if rolling needs more, the
-// directions within `usual` are kept all the same.
-function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit, needs = { least: 0 }, rolling?: number): number[][] {
+// directions within `usual` are kept all the same. With `keepStill`, the mixes in which no tyre
+// travels are all kept, whether they scrub or not (a car steered where it stands, see
+// freeMotionsApart).
+function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limit, needs = { least: 0 }, rolling?: number, keepStill = false): number[][] {
   const k = motions.length;
   const dot = (a: number[], b: number[]) => a.reduce((sum, x, i) => sum + x * b[i], 0);
   // Each row applied to each motion: rows × k.
@@ -2842,7 +2861,7 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
   const stillGram = still.map((_, i) => still.map((_, j) => dot(stillScrub[i], stillScrub[j])));
   const { values: sv, vectors: svecs } = symmetricEigen(stillGram);
   svecs.forEach((y, e) => {
-    if (sv[e] <= tiny) kept.push(combine(still, y));
+    if (keepStill || sv[e] <= tiny) kept.push(combine(still, y));
   });
 
   // Moving directions, each with the still mix that cancels most of its scrub: z = -(YᵀY)⁻¹ Yᵀ x.
