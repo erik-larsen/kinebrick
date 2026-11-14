@@ -184,6 +184,10 @@ interface Fn {
   // by control, the parts each one's working holds (the 42000's "turning one rear wheel with the
   // other held": each rear wheel holds the other).
   held?: string[] | Record<string, string[]>;
+  // The model lifted off the ground while the control is worked, as the viewer's "Lift off the
+  // ground" option has it (see Options.lifted in kinematics.ts): what the function's text says is
+  // done with the model in the hand (a differential worked with its drive held).
+  lifted?: boolean;
   skip?: string;
   model?: string; // its own model, for a set with several (the 858's four engines)
 }
@@ -244,8 +248,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   let sliders: Slider[] = [];
   let catches: Catch[] = [];
   let at: Vector3[] = [];
+  // Whether the function being checked has the model lifted off the ground (see Fn.lifted).
+  let lifted = false;
   const use = (now: { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics }) => {
     ({ parts, mech, kin } = now);
+    // The model lifted, or set down again: a solver made so, as the viewer's option makes one.
+    if (kin.options.lifted !== lifted) {
+      const scrub = kin.scrub;
+      kin = new Kinematics(mech, { lifted });
+      kin.scrub = scrub;
+    }
     sliders = findSliders(parts, mech, table, slides);
     catches = findCatches(parts, sliders);
     at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
@@ -462,6 +474,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   const checkOne = (fn: Fn, prior?: Checked): Checked => {
     const known = withoutChecking(fn);
     if (known) return known;
+    lifted = fn.lifted === true;
     // With --causes, only a function that didn't work is looked at, and nothing is dragged.
     if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
@@ -623,6 +636,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           was = now;
         });
         const went = measured.went;
+        // A guard: a held part doesn't turn against what its shaft turns in, as a frozen part is
+        // held (see holds in constraints/holds.ts). It should never be noted.
+        for (const r of heldNow) {
+          const held = mech.bodyOf[part(r)];
+          if (!kin.parentLink(held)) continue;
+          const h = kin.housing(held);
+          const against = (poses: Matrix4[]) => poses[h].clone().invert().multiply(poses[held]);
+          const note = `${r} is held, but turned against what its shaft turns in`;
+          if (angle(against(startPoses), against(kin.poses)) > 1e-3 && !why.includes(note)) why.push(note);
+        }
         // The joint's own turn, to work it back again.
         const joint = measured.turned;
         const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];

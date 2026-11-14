@@ -26,13 +26,13 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 
 | Result | Functions |
 |---|---|
-| Works | 638 |
-| Partly | 262 |
-| Doesn't work | 147 |
+| Works | 645 |
+| Partly | 264 |
+| Doesn't work | 138 |
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
-In 41 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 78 more sets are one or two checked functions short.
+In 41 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 80 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
@@ -417,6 +417,8 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 33. **Shock absorbers slide, and a file may hold more than one model.** About 95 two-part shock absorbers in 27 sets were not joined at all, their rod or bore missing or cut short in the part data. They are mended once: the rod slides in its cylinder with end stops from the parts' shapes and no spring until the physics, where the rule so far made a joined pair a rigid strut; the solver owner confirmed that free sliding suspension is sound in the solver. A second vehicle in a set's file (five or six sets, 17 functions) is read as a further frame of one mechanism, not as a loose group welded to the nearest part and not as a mechanism of its own, so what joins or touches the two is kept; the solver owner builds its side after the tree's roots, about a day and a full check, and every set with one model must come out the same. The sliding CV ball of decision 28 is parked: on 12 sets it made nothing better and three functions worse, a half shaft that can slide at both ends drifting along its own line.
 34. **Findings go upstream once, near the end.** The errata in LDraw models and the connection data for parts the LDCad shadow library lacks are worth reporting to the OMR and to the library, but Erik wants one report when close to all sets work, not repeated updates. Until then they are recorded here as they are found and signed off.
 35. **The solver owner's mends of the check are in: 638 functions work where 626 did.** Its branch, merged with preview 4350f07 and checked in full (102 minutes): 13 better and 0 worse by result. Twelve go from partly to working (the 42055's function 7, the 42060's 6, the 42066's 2, the 42100's 5 and 6, the 42108's 5, the 8002's 3, the 8273's 9, the 8448's 2, the 856's 1, the 8862's 8 and 9), by the longer turn for a function geared far down, the push aimed afresh at each step, the rate rule and the piston rule; the 42078's function 4 now comes back. Four end further out of place and stay on the solver owner's list: the 42037's function 2 (136 LDU) and the 8002's function 6 (150 degrees) from the push's new aim, the 8259's function 1 (2.4 LDU), and the 42066's function 2 (391 LDU for 245), which now works only because it is turned much further. Preview was held from 4350f07 until this merge so that the branch was checked against the preview it joined; the worker's branches built meanwhile go in after it, the loose-part rule first.
+36. **The lifted model and the freeze mend are in: 645 functions work.** Of the nine functions with a held part that stopped dead on their tyres, seven now work lifted with the part frozen (the 42082's function 3, the 42125's 3, the 8063's 3, the 8081's 3, the 8448's 4, the 8464's 4 and 5) and two are partly (the 42043's function 11, a gear in the differential fixed; the 8466's 7, its centre differential not driven and a tyre loose); none is worse and the guard on held parts never fired. The viewer has "Lift off the ground" in its options and `lifted=1` in the address, off by default.
+37. **The sliding shock absorbers wait for the tree's roots, and an end stop ends a function's turn rightly.** Their first gate on 34 sets had 7 better and 24 worse, of three kinds. Eight stop where the shock absorber ends its travel, 0.17 to 0.4 radian, which is the real part's motion: the check's measure was wrong, so a turn or push that ends at an end stop from part data has gone as far as it can, and the function is judged by whether its listed parts moved. Six have no motion because a group reached only through slides gets its root by part number: decision 31's mend, which therefore goes before the shock absorbers and before the frames. Two creep on a long drag and fail a test of the 8880; that is with the solver owner. The test for a second model was too eager, taking a suitcase, a tool tray and three containers: a group is a further frame only if it does not touch the main model and stands on the ground, a group that touches rides along as a load, and the 42078's trailer, which touches because it is hitched, is to be read as one model with a joint at its hitch.
 
 
 ## First steps

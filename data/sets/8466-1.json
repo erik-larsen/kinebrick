@@ -135,6 +135,7 @@
           "p655 22969",
           "p634 6573"
         ],
+        "lifted": true,
         "held": [
           "p655 22969",
           "p676 22969"
@@ -206,14 +207,14 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5cf99f0b",
     "date": "2026-11-14",
-    "seconds": 169,
+    "seconds": 195,
     "counts": {
-      "partly": 4,
+      "partly": 5,
       "not back": 2,
       "not checked": 1,
-      "no": 4,
+      "no": 3,
       "skipped": 2,
       "works": 1
     },
@@ -304,7 +305,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p657 32495",
-        "seconds": 6.9
+        "seconds": 5.9
       },
       {
         "result": "partly",
@@ -367,7 +368,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p657 32495",
-        "seconds": 6.4
+        "seconds": 5.6
       },
       {
         "result": "partly",
@@ -447,7 +448,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 58.7
+        "seconds": 61.8
       },
       {
         "result": "not checked",
@@ -477,7 +478,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -535,14 +536,14 @@
         ],
         "cause": "not-driven",
         "detail": "p1019 6589",
-        "seconds": 60.1
+        "seconds": 72.4
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -581,14 +582,9 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.7
+        "cause": "not-driven",
+        "detail": "p1017 6573",
+        "seconds": 6.7
       },
       {
         "result": "no",
@@ -683,7 +679,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 3.1
+        "seconds": 3.7
       },
       {
         "result": "skipped",
@@ -763,7 +759,7 @@
             "p274 32189"
           ]
         ],
-        "seconds": 29.4
+        "seconds": 34.9
       },
       {
         "result": "skipped",
@@ -822,7 +818,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 1.6
+        "seconds": 1.8
       }
     ]
   }

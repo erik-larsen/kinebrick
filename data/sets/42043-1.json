@@ -282,6 +282,7 @@
           "p2036 62821"
         ],
         "note": "with the drive shaft held, turning one third-axle wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held\"): its universal joint p2029, which function 10 names on the drive shaft, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
         "held": [
           "p2029 62520"
         ]
@@ -340,14 +341,14 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5cf99f0b",
     "date": "2026-11-14",
-    "seconds": 3771,
+    "seconds": 3831,
     "counts": {
       "works": 7,
-      "partly": 4,
+      "partly": 5,
       "skipped": 2,
-      "no": 2
+      "no": 1
     },
     "loose": [
       "p1664 42043 - 2943-v2",
@@ -436,7 +437,7 @@
             ]
           ]
         ],
-        "seconds": 170.3
+        "seconds": 184.3
       },
       {
         "result": "partly",
@@ -526,7 +527,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p2368 42043 - 18938",
-        "seconds": 739.3
+        "seconds": 749.2
       },
       {
         "result": "works",
@@ -584,7 +585,7 @@
             ]
           ]
         ],
-        "seconds": 192.7
+        "seconds": 193.1
       },
       {
         "result": "works",
@@ -667,7 +668,7 @@
             ]
           ]
         ],
-        "seconds": 203.7
+        "seconds": 197.1
       },
       {
         "result": "partly",
@@ -744,7 +745,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p2368 42043 - 18938",
-        "seconds": 211.4
+        "seconds": 221
       },
       {
         "result": "works",
@@ -846,7 +847,7 @@
             "p1577 4519"
           ]
         ],
-        "seconds": 306.4
+        "seconds": 295.1
       },
       {
         "result": "skipped"
@@ -1040,7 +1041,7 @@
             "p2213 86652"
           ]
         ],
-        "seconds": 1003.3
+        "seconds": 1005.5
       },
       {
         "result": "works",
@@ -1065,7 +1066,7 @@
             ]
           ]
         ],
-        "seconds": 68.5
+        "seconds": 62.6
       },
       {
         "result": "partly",
@@ -1164,18 +1165,18 @@
         ],
         "cause": "part-fixed",
         "detail": "p66 2851",
-        "seconds": 379.5
+        "seconds": 360.5
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -1185,13 +1186,13 @@
           {
             "p2036 62821": [
               0,
-              0
+              8.1e-13
             ]
           },
           {
             "p2036 62821": [
               0,
-              0
+              6.73e-13
             ]
           }
         ],
@@ -1217,22 +1218,13 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
         "movedBy": [
           [],
           []
         ],
-        "cause": "control-jammed",
-        "seconds": 13.5
+        "cause": "part-fixed",
+        "detail": "p2036 62821",
+        "seconds": 95.6
       },
       {
         "result": "skipped"
@@ -1275,7 +1267,7 @@
         ],
         "cause": "not-driven",
         "detail": "p7226 32073",
-        "seconds": 94.5
+        "seconds": 89.2
       },
       {
         "result": "works",
@@ -1319,7 +1311,7 @@
           [],
           []
         ],
-        "seconds": 125.9
+        "seconds": 121.2
       },
       {
         "result": "no",
@@ -1376,7 +1368,7 @@
         ],
         "cause": "not-driven",
         "detail": "p6909 2741",
-        "seconds": 33.7
+        "seconds": 29
       }
     ]
   }
