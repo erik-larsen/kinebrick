@@ -113,6 +113,16 @@
         ],
         "source": "book: page 397 (top left inset: the boom slewing, the left remote lever); the gears are read from the model",
         "control": "p402 32073",
+        "first": [
+          {
+            "control": "p404 18947",
+            "by": -10
+          },
+          {
+            "control": "p136 18947",
+            "by": 10
+          }
+        ],
         "moves": [
           "p174 18946",
           "p378 94925",
@@ -186,6 +196,16 @@
         ],
         "source": "book: page 397 (bottom right inset: the boom rising, the right remote lever); the gears and actuator are read from the model",
         "control": "p372 94925",
+        "first": [
+          {
+            "control": "p403 18947",
+            "by": -10
+          },
+          {
+            "control": "p135 18947",
+            "by": -10
+          }
+        ],
         "moves": [
           "p161 18946",
           "p138 18946",

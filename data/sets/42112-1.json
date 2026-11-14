@@ -130,6 +130,12 @@
         ],
         "source": "book: book 2 page 89 bottom inset (arrow on the crank, the drum turning, concrete pouring)",
         "control": "p1039 42112 - 33299b",
+        "first": [
+          {
+            "control": "p354 18947",
+            "by": 10
+          }
+        ],
         "moves": [
           "p347 32270",
           "p344 6589",
