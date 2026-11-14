@@ -148,12 +148,17 @@ export interface Options {
   // the least-squares mix of the free motions left by holding all that can be held. On by
   // default; KINEBRICK_LEAST_PUSH=0 turns it off.
   leastPush: boolean;
+  // Least motion: a gear that turns on a body carrying a driving ring (a clutch gear on a
+  // gearbox's output shaft, which the ring locks to the shaft only when it's shifted into it)
+  // costs nothing for turning against that body: it's made to spin free there (see leastTiers).
+  // Off by default, for now; KINEBRICK_FREE_CLUTCH=1 turns it on.
+  freeClutch: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1 and KINEBRICK_LEAST_PUSH=0.
+// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0 and KINEBRICK_FREE_CLUTCH=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -164,6 +169,7 @@ export const experiments: Options = {
   reach: setting('KINEBRICK_REACH') !== '0',
   centres: setting('KINEBRICK_CENTRES') === '1',
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
+  freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -287,6 +293,7 @@ export class Kinematics {
   private stepByTiers = false; // one problem: whether the last step's motion was chosen by least motion's tiers (see jointMotion)
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
+  private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
   private built = false; // the constructor done: reset() may then set a layout's cars on the rails (see setOnRails)
   private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
   private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
@@ -2531,11 +2538,19 @@ export class Kinematics {
       const off = centers![b].clone().applyMatrix4(this.poses[b]).sub(from);
       return off.sub(d.multiplyScalar(off.dot(d))).length() < BALANCE ? link.parent : 0;
     });
+    // A clutch gear, turning on a body that carries a driving ring (see Options.freeClutch),
+    // costs nothing: it's made to spin free on its shaft, which is what a gearbox in neutral
+    // is. Counted, it and the other clutch gear on the shaft, each driven round at its own rate,
+    // carried the free shaft round with them, two joints against one: the gearbox model's output
+    // turned 0.44 radian for each radian of its input in neutral.
+    const rings = this.ringBodies ??= new Set(this.mech.roles.flatMap((r, i) => (r === 'driving ring' ? [this.mech.bodyOf[i]] : [])));
+    const free = bodies.map((b, i) => this.options.freeClutch && against[i] > 0 && rings.has(against[i]) && !rings.has(b) && this.mech.gears.some((g) => g.body === b));
     const turns = (z: number[]) => {
       const w = turning(z);
       return bodies.flatMap((b, i) => {
         const a = 3 * against[i];
-        return [mass[b] * (w[3 * b] - w[a]), mass[b] * (w[3 * b + 1] - w[a + 1]), mass[b] * (w[3 * b + 2] - w[a + 2])];
+        const m = free[i] ? 0 : mass[b];
+        return [m * (w[3 * b] - w[a]), m * (w[3 * b + 1] - w[a + 1]), m * (w[3 * b + 2] - w[a + 2])];
       });
     };
     const slipRows = this.slipRows;
