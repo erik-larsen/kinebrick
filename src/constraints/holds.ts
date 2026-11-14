@@ -57,12 +57,19 @@ export function holdRows(solver: Kinematics, fixed: Set<number>, toFrame: Set<nu
 
 export function holds(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
-  const fixed = new Set([...solver.frozen, ...solver.drag.held]);
+  // A frozen body that turns on a shaft is held against what that shaft turns in (see
+  // housing), as a body held against the frame for a drag is, not on its own joint: which body
+  // its joint joins it to is how the tree of joints happened to grow, which no user sees. Held
+  // on its joint, the Ackermann car's differential housing, whose joint is on a rear half
+  // shaft, was held to that half shaft, locking the differential.
+  const onShaft = (body: number) => body !== solver.fixedBody && solver.parentJoint[body] >= 0 && solver.mech.joints[solver.parentJoint[body]].kind === 'revolute';
+  const fixed = new Set([...[...solver.frozen].filter((b) => !onShaft(b)), ...solver.drag.held]);
+  const toFrame = new Set([...[...solver.frozen].filter(onShaft), ...solver.drag.heldToFrame]);
   if (solver.fixedBody >= 0) fixed.add(solver.fixedBody);
   // Held bodies stay held while the loops close too (the weights are closing's): where the
   // rules can't all hold, what's held gives last. Else a layout's track gave a little as its
   // cars, far off the rails as built, were drawn onto it.
-  for (const row of holdRows(solver, fixed, solver.drag.heldToFrame)) add(row, 0, DRIVE_WEIGHT);
+  for (const row of holdRows(solver, fixed, toFrame)) add(row, 0, DRIVE_WEIGHT);
   // What a drag can't reach is held where it is on the frame (see Kinematics.outOfReach): each
   // body whole, not just on its joint, as the rows on nothing but these bodies and the frame are
   // left out (see buildEquations). Held only on their joints, without their joints' own rows,
