@@ -444,6 +444,81 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     kin.letGoAfterDrag();
     return { turned: along() - start, went, halt, pushed: null };
   };
+  // The ball a control with no turning joint of its own and no slide turns on: a body that is the
+  // root of a tree of its own, held to the rest by a ball (see buildTree), as a pendular axle
+  // swings on its ball pivot under a chassis (the 42038 Arctic Truck). -1 if it has none.
+  const ballOf = (body: number) => (body === 0 || kin.parentLink(body) || slideOf(body) >= 0 ? -1 : mech.joints.findIndex((j) => j.kind === 'ball' && (j.bodyA === body || j.bodyB === body)));
+  // The line a control on a ball (see ballOf) turns about, through the ball's middle, on the body
+  // it turns against: the way the free motions turn it most against that body, as a pendular
+  // axle turns on its ball only about the drive shaft through it. Kept for the way back. Null if
+  // the free motions don't turn it.
+  let ballAxis: Vector3 | null = null;
+  // A control on a ball (see ballOf) turned about the ball's middle by `amount` radians, by
+  // pushes of the point it is grabbed by (its part's middle), each step the way that point now
+  // goes about the line (see ballAxis): how far it turned about the line (signed), how far each
+  // of `parts` went, and what stopped it, if anything did. `again` turns it about the line found
+  // the last time (for the way back).
+  const ballMeasuring = (body: number, control: number, amount: number, parts: { part: number; body: number }[], each = () => {}, again = false) => {
+    const j = mech.joints[ballOf(body)];
+    const other = j.bodyA === body ? j.bodyB : j.bodyA;
+    const grab = at[control].clone();
+    const grabNow = () => grab.clone().applyMatrix4(kin.poses[body]);
+    const middle = () => j.from.clone().applyMatrix4(kin.poses[other]);
+    const against = () => kin.poses[other].clone().invert().multiply(kin.poses[body]);
+    if (!again) {
+      // How each free motion turns it against the other body, from how points one LDU from the
+      // ball's middle go; the main way, from all the free motions together (the same whichever
+      // way they are written down).
+      const c = middle();
+      const at1 = (x: number, y: number, z: number) => new Vector3(x, y, z).add(c);
+      const turns = kin.freeMotions().map((m) => {
+        const go = (p: Vector3) => kin.pointVelocity(m, body, p).sub(kin.pointVelocity(m, other, p));
+        const y = go(at1(0, 1, 0));
+        const z = go(at1(0, 0, 1));
+        return new Vector3(y.z, z.x, -y.x);
+      });
+      let main = turns.reduce((best, w) => (w.length() > best.length() ? w : best), new Vector3());
+      for (let k = 0; k < 50 && main.length() > 1e-6; k++) main = turns.reduce((sum, w) => sum.addScaledVector(w, w.dot(main)), new Vector3()).normalize();
+      ballAxis = main.length() > 1e-6 ? main.clone().transformDirection(kin.poses[other].clone().invert()) : null;
+    }
+    const went = parts.map(() => [0, 0]);
+    if (!ballAxis) return { turned: 0, went, halt: 'no motion' as Halt, pushed: null };
+    const axis = ballAxis.clone();
+    const from = against();
+    // How far it has turned about the line, against the other body, since it started.
+    const turnedNow = () => {
+      const q = new Quaternion().setFromRotationMatrix(from.clone().invert().multiply(against()));
+      return 2 * Math.atan2(new Vector3(q.x, q.y, q.z).dot(axis), q.w);
+    };
+    const directions = pointDirections(kin, body, grabNow());
+    if (directions > 0) kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(kin, body, grabNow()) === directions);
+    let was = parts.map((p) => relative(p.part, p.body, kin.poses));
+    let halt: Halt | null = null;
+    let length = 0;
+    while (Math.abs(turnedNow()) < Math.abs(amount) - 1e-9 && length < PUSH_FAR - 1e-9) {
+      const dir = axis.clone().transformDirection(kin.poses[other]).cross(grabNow().sub(middle()));
+      if (dir.length() < 1e-6) {
+        halt = 'no motion';
+        break;
+      }
+      dir.normalize().multiplyScalar(Math.sign(amount));
+      const how = pushStep(kin, body, grab, dir, PUSH_STEP, () => kin.atLimit() === null);
+      if (how !== 'moved') {
+        halt = how === 'blocked' ? 'limit' : 'stuck';
+        break;
+      }
+      length += PUSH_STEP;
+      each();
+      const is = parts.map((p) => relative(p.part, p.body, kin.poses));
+      parts.forEach((p, k) => {
+        went[k][0] += angle(was[k], is[k]);
+        went[k][1] += at[p.part].clone().applyMatrix4(is[k]).distanceTo(at[p.part].clone().applyMatrix4(was[k]));
+      });
+      was = is;
+    }
+    kin.letGoAfterDrag();
+    return { turned: turnedNow(), went, halt, pushed: null };
+  };
   const pushMeasuring = (body: number, control: number, to: { reach: number } | { back: Pushed }, parts: { part: number; body: number }[], each = () => {}) => {
     const joint = kin.parentLink(body)!.joint;
     const start = 'back' in to ? null : grabOf(body, control);
@@ -597,8 +672,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const stays = (fn.stays ?? []).map(against);
       const control = part(ref);
       const b = worked(control);
-      // Its joint: the one it turns on, or else the slide it slides on (see slideOf).
-      const link = kin.parentLink(b) ?? (slideOf(b) >= 0 ? { parent: -1, joint: slideOf(b) } : null);
+      // Its joint: the one it turns on, or else the slide it slides on (see slideOf), or else the
+      // ball it turns on (see ballOf).
+      const link = kin.parentLink(b) ?? (slideOf(b) >= 0 ? { parent: -1, joint: slideOf(b) } : ballOf(b) >= 0 ? { parent: -1, joint: ballOf(b) } : null);
       // Why it doesn't work, if it doesn't (see causes.ts). Told before anything else: a loose
       // part (the control, or one it should move or keep still), or a control worked first that
       // didn't go. A loose part rides along with its nearest neighbour, attached to nothing, so a
@@ -641,8 +717,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // just its joint's angle, which a shaft spinning back under it makes up without the
       // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
       const slides = mech.joints[link.joint].kind === 'slide';
-      // (A control that slides, against what it slides on: see slideOf.)
-      const slidOn = slideOf(b) >= 0 ? mech.joints[slideOf(b)] : null;
+      // (A control that slides, against what it slides on: see slideOf; one on a ball, against
+      // what it turns on: see ballOf.)
+      const slidOn = slideOf(b) >= 0 ? mech.joints[slideOf(b)] : ballOf(b) >= 0 ? mech.joints[ballOf(b)] : null;
       const itself = { part: mech.bodies[b].parts[0], body: slidOn ? (slidOn.bodyA === b ? slidOn.bodyB : slidOn.bodyA) : kin.housing(b) };
       // The pistons in `moves`, each with its slider-crank (see sliderCranks): how far it should
       // slide in its cylinder is set by how far its crank turns, whatever turned the crank.
@@ -672,7 +749,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
           return done > 0 && done === stirred;
         };
-        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
+        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : ballOf(b) >= 0 ? ballMeasuring(b, control, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
           const now = pistons.map((p, k) => pistonAt(p.sc, crankAngle(p.sc.crank), was[k] === null ? undefined : was[k]! + last[k]));
           now.forEach((x, k) => {
@@ -729,6 +806,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           if (measured.pushed.length > 0) pushMeasuring(b, control, { back: measured.pushed }, []);
         } else if (slideOf(b) >= 0) {
           if (Math.abs(joint) >= 0.01) slideMeasuring(b, -joint, []);
+        } else if (ballOf(b) >= 0) {
+          if (Math.abs(joint) >= 0.01) ballMeasuring(b, control, -joint, [], () => {}, true);
         } else if (Math.abs(joint) >= 0.01) turn(b, -joint);
         const most = furthest(startPoses);
         kin.restore(there);
