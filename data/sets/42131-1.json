@@ -27,11 +27,11 @@
         "source": "book 1 page 15 (the track drawing); steps 1-21 (the two drive motors); the gearing is inferred from the model",
         "control": "p2686 32062",
         "moves": [
-          "p3606 42529",
-          "p6159 42131 - 69910"
+          "p3610 42529",
+          "p6163 42131 - 69910"
         ],
         "stays": [
-          "p3609 42529"
+          "p3613 42529"
         ],
         "note": "The motor (p13 42131 - 69730, plugged into the hub's red-marked port by book 1 page 169) turns the control, the axle in its outer side. Worked from the Control+ app."
       },
@@ -45,11 +45,11 @@
         "source": "book 1 page 15 and steps 1-21; the gearing is inferred from the model",
         "control": "p2688 32062",
         "moves": [
-          "p3609 42529",
-          "p6101 42131 - 69910"
+          "p3613 42529",
+          "p6105 42131 - 69910"
         ],
         "stays": [
-          "p3606 42529"
+          "p3610 42529"
         ],
         "note": "The motor (p1319 42131 - 69730, the yellow-marked port by book 1 page 169) turns the control."
       },
@@ -64,8 +64,8 @@
           "p2688 32062"
         ],
         "moves": [
-          "p3606 42529",
-          "p3609 42529"
+          "p3610 42529",
+          "p3613 42529"
         ]
       },
       {
@@ -74,16 +74,16 @@
           "piston-engine: V12",
           "differential"
         ],
-        "source": "book 1 steps 241-262 (the engine); that it is driven by the differential between the drive motors is inferred from the model (p5 62821, p2647 42131 - 18575, p2685 32270, p3429 94925, p3409 18946, p3742 94925)",
+        "source": "book 1 steps 241-262 (the engine); that it is driven by the differential between the drive motors is inferred from the model (p5 62821, p2647 42131 - 18575, p2685 32270, p3433 94925, p3413 18946, p3746 94925)",
         "control": [
           "p2686 32062",
           "p2688 32062"
         ],
         "moves": [
           "p5 62821",
-          "p3657 2853",
-          "p3665 2851",
-          "p3666 2851"
+          "p3661 2853",
+          "p3669 2851",
+          "p3670 2851"
         ],
         "note": "Through the differential the engine runs at the average of the two tracks' speeds, so it runs when driving straight and stops when spinning on the spot. Unsure: the book doesn't say what drives the engine."
       },
@@ -94,12 +94,12 @@
           "function-selector: 4 functions"
         ],
         "source": "book 1 steps 62-125 (the gearbox; the insets at steps 104, 110 and 120 show the orange shift parts) and step 198 (the app's gearbox test); that one motor shifts and the other powers comes from reviews of the set (Brickset, The Brothers Brick); which motor is which is inferred from the model",
-        "control": "p3163 3706",
+        "control": "p3167 3706",
         "moves": [
-          "p3293 18947",
-          "p3322 18947"
+          "p3297 18947",
+          "p3326 18947"
         ],
-        "note": "The control is the axle in the L motor p2867 22169 (left of the pair, green-marked in the book). Unsure which motor shifts: the model's gears make the other one (p3014 22169) the drive into both shift shafts, but the orange rotary catch (p3291 35188) sits on that other motor's shaft line. Unsure how the selector moves the driving rings."
+        "note": "The control is the axle in the L motor p2871 22169 (left of the pair, green-marked in the book). Unsure which motor shifts: the model's gears make the other one (p3018 22169) the drive into both shift shafts, but the orange rotary catch (p3295 35188) sits on that other motor's shaft line. Unsure how the selector moves the driving rings."
       },
       {
         "does": "With the gearbox set to the ripper, the function L motor raises and lowers the ripper at the back: its drive runs across the gearbox in a row of 16 tooth gears to 20 tooth gears at both sides, back to two linear actuators that push the ripper's arms.",
@@ -109,17 +109,17 @@
           "linear-actuator: ripper"
         ],
         "source": "book 1 page 15 (arrow at the ripper); steps 208-232 (the ripper fitted); the gear train is inferred from the model",
-        "control": "p3164 32073",
+        "control": "p3168 32073",
         "moves": [
-          "p3395 62274c01 against p3394 42131 - u9559c01",
-          "p3404 62274c01 against p3403 42131 - u9559c01",
-          "p5913 32524"
+          "p3399 62274c01 against p3398 42131 - u9559c01",
+          "p3408 62274c01 against p3407 42131 - u9559c01",
+          "p5917 32524"
         ],
         "stays": [
-          "p6006 62274c01 against p6005 42131 - u9559c01",
-          "p4118 62274c01 against p4117 42131 - u9559c01"
+          "p6010 62274c01 against p6009 42131 - u9559c01",
+          "p4122 62274c01 against p4121 42131 - u9559c01"
         ],
-        "note": "The control is the axle in the function L motor p3014 22169 (blue-marked in the book); the selector must first be set to the ripper, which the app does. Unsure which gearbox position is which function."
+        "note": "The control is the axle in the function L motor p3018 22169 (blue-marked in the book); the selector must first be set to the ripper, which the app does. Unsure which gearbox position is which function."
       },
       {
         "does": "With the gearbox set to blade lift, the function L motor raises and lowers the blade: a shaft runs forward from the gearbox through universal joints and up to a cross shaft at the front, which drives the two linear actuators standing on turntables either side of the radiator; they lift the blade on its push arms.",
@@ -128,18 +128,18 @@
           "function-selector",
           "linear-actuator: blade lift"
         ],
-        "source": "book 1 page 15 (arrow at the blade); steps 268-288 and 376-433 (the lift cylinders on their turntables); the gear train is inferred from the model (p3338 94925, p2809 3708, p3940 4519)",
-        "control": "p3164 32073",
+        "source": "book 1 page 15 (arrow at the blade); steps 268-288 and 376-433 (the lift cylinders on their turntables); the gear train is inferred from the model (p3342 94925, p2813 3708, p3944 4519)",
+        "control": "p3168 32073",
         "moves": [
-          "p4118 62274c01 against p4117 42131 - u9559c01",
-          "p4193 62274c01 against p4192 42131 - u9559c01",
-          "p6204 32525",
-          "p5943 42131 - 32523"
+          "p4122 62274c01 against p4121 42131 - u9559c01",
+          "p4197 62274c01 against p4196 42131 - u9559c01",
+          "p6208 32525",
+          "p5947 42131 - 32523"
         ],
         "stays": [
-          "p3395 62274c01 against p3394 42131 - u9559c01"
+          "p3399 62274c01 against p3398 42131 - u9559c01"
         ],
-        "note": "The cylinders swing on their turntables (p3934 99010, p3932 99010) as the blade rises; the selector must first be set to blade lift."
+        "note": "The cylinders swing on their turntables (p3938 99010, p3936 99010) as the blade rises; the selector must first be set to blade lift."
       },
       {
         "does": "With the gearbox set to blade tilt, the function L motor tilts the blade forward and back: its drive runs out to both sides, through CV joints at the push arms' pivots on the track frames and along each push arm, to a linear actuator on each arm that pushes the top of the blade.",
@@ -149,15 +149,15 @@
           "linear-actuator: blade tilt"
         ],
         "source": "book 2 steps 946-976 (the push arms with their actuators); reviews of the set (both blade pairs work independently); the drive is inferred from the model",
-        "control": "p3164 32073",
+        "control": "p3168 32073",
         "moves": [
-          "p6006 62274c01 against p6005 42131 - u9559c01",
-          "p6074 62274c01 against p6073 42131 - u9559c01",
-          "p6204 32525 against p5943 42131 - 32523"
+          "p6010 62274c01 against p6009 42131 - u9559c01",
+          "p6078 62274c01 against p6077 42131 - u9559c01",
+          "p6208 32525 against p5947 42131 - 32523"
         ],
         "stays": [
-          "p4118 62274c01 against p4117 42131 - u9559c01",
-          "p3395 62274c01 against p3394 42131 - u9559c01"
+          "p4122 62274c01 against p4121 42131 - u9559c01",
+          "p3399 62274c01 against p3398 42131 - u9559c01"
         ],
         "note": "The selector must first be set to blade tilt. Unsure whether the blade tilts (one side up) or pitches (forward and back); the model's two actuators work together, so it pitches."
       },
@@ -169,15 +169,15 @@
           "worm-drive",
           "crank-and-link: ladder"
         ],
-        "source": "book 1 page 15 (arrow at the ladder); book 2 steps 878-887 (the ladder fitted); the drive is inferred from the model (p3416 27938, p4863 42131 - 18575, p5034 94925)",
-        "control": "p3164 32073",
+        "source": "book 1 page 15 (arrow at the ladder); book 2 steps 878-887 (the ladder fitted); the drive is inferred from the model (p3420 27938, p4867 42131 - 18575, p5038 94925)",
+        "control": "p3168 32073",
         "moves": [
-          "p5713 42131 - 71710",
-          "p5742 6536"
+          "p5717 42131 - 71710",
+          "p5746 6536"
         ],
         "stays": [
-          "p6204 32525",
-          "p4118 62274c01 against p4117 42131 - u9559c01"
+          "p6208 32525",
+          "p4122 62274c01 against p4121 42131 - u9559c01"
         ],
         "note": "The selector must first be set to the ladder. The worm holds the ladder where it stops."
       },
@@ -187,9 +187,9 @@
           "crank-and-link: hub switch"
         ],
         "source": "book 1 steps 168-174 (the switch built and fitted, with the inset); what it does from the Brickset review",
-        "control": "p3445 32056",
+        "control": "p3449 32056",
         "moves": [
-          "p3437 4274"
+          "p3441 4274"
         ]
       },
       {
@@ -206,10 +206,10 @@
           "worm-drive",
           "track-tensioner"
         ],
-        "source": "inferred: the worms in the track frames (p4301 27938, p4586 27938) and the Brickset review (track tension set with gear wheels on the side)",
+        "source": "inferred: the worms in the track frames (p4305 27938, p4590 27938) and the Brickset review (track tension set with gear wheels on the side)",
         "control": [
-          "p4301 27938",
-          "p4586 27938"
+          "p4305 27938",
+          "p4590 27938"
         ],
         "skip": "only matters under track tension"
       },

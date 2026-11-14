@@ -25,15 +25,20 @@ export function couplings(solver: Kinematics, eq: Equations) {
       add(row);
     }
   }
-  for (const { shafts } of solver.couplings) {
+  // A reduction (a planetary wheel hub's, see Coupling.ratio) turns its second shaft `ratio`
+  // times slower: that shaft's turning counts `ratio` times. The solver's couplings are the
+  // mechanism's, one each, in order.
+  solver.couplings.forEach(({ shafts }, i) => {
+    const ratio = solver.mech.couplings[i]?.ratio ?? 1;
     const row = new Array(n).fill(0);
-    for (const shaft of shafts) {
+    shafts.forEach((shaft, side) => {
       const d = solver.shaftAxis(shaft);
+      const weight = side === 1 ? ratio : 1;
       for (let k = 0; k < 3; k++) {
-        row[6 * shaft.body + k] += shaft.away * d.getComponent(k);
-        row[6 * shaft.mount + k] -= shaft.away * d.getComponent(k);
+        row[6 * shaft.body + k] += weight * shaft.away * d.getComponent(k);
+        row[6 * shaft.mount + k] -= weight * shaft.away * d.getComponent(k);
       }
-    }
+    });
     add(row, 0, DRIVE_WEIGHT);
-  }
+  });
 }

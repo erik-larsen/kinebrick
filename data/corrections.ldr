@@ -277,6 +277,32 @@
 0 // Car Steering Wheel 2L (and 16091, built on it): its centre is the round hole the shadow library gives, a stud or a half pin turning in it, as the wheel spins on its half pin in the 42101; the stud tube primitive (stud4od) under it is not an anti-stud that holds
 0 !LDCAD SNAP_CLEAR [id=aStud]
 
+0 FILE 52731.dat
+0 // Technic Steering Constant Velocity 8mm Joint Male: its ball, at its origin, which turns in a 52730's socket or in the planetary wheel hub's (46490c01's driving shaft, u9477), and drives through it as a grooved ball does (see groovedBalls)
+0 !LDCAD SNAP_GEN [gender=M] [bounding=sph 8]
+
+0 FILE 52730.dat
+0 // Technic Steering Constant Velocity 8mm Joint Female with 3L Axle: the socket at its origin that a 52731's ball turns in, its axle running on from it
+0 !LDCAD SNAP_GEN [gender=F] [bounding=sph 8]
+
+0 FILE 46490c01.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction, read as its pieces (role "split"): the bearing body 46490c02, which steers with the upright; the driving shaft u9477, turning in it, which a constant velocity joint's ball drives; and the wheel hub 46434, turning in it too, driven by the shaft through planetary gears the LDraw part doesn't draw. The hub turns once for every `ratio` turns of the shaft, the same way round (the ring fixed in the body, the planet carrier the hub): ratio = 1 + ring teeth / sun teeth = 1 + 44/10 = 5.4: sun 10, ring 44, ring fixed, carrier out, counted from X-ray pictures (Eurobricks, "Planetary hub internals") and given as 5.4:1 by Rebrickable; the LDraw shapes carry no teeth
+0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat] [against=46490c02.dat] [ratio=5.4]
+
+0 FILE u9477.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Driving Shaft (a piece of 46490c01): the constant velocity socket at its origin that a 52731's ball turns in and drives it through, and a round bearing on the hub's axis (z) there, turning in the bearing body
+0 !LDCAD SNAP_GEN [gender=F] [bounding=sph 8]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 11 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 46490c02.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Body (a piece of 46490c01): round bearings on the hub's axis (z) for the driving shaft, at the middle, and for the wheel hub, 30 LDU out
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 11 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 30 6] [center=true] [pos=0 0 -30] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 46434.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Wheel Hub (a piece of 46490c01): a round bearing on its axis (z), turning in the bearing body
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 6542a.dat
 0 // Technic Gear 16 Tooth with Clutch: its clutch face is the 5 LDU at its +z end
 0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]

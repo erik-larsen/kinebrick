@@ -11,7 +11,7 @@ import { actuatorScrews, linearActuators } from './inference/actuators.ts';
 import { slidingOnAxles } from './inference/axleSlides.ts';
 import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts';
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
-import { crankWebs, dropBallsInBearings, findCouplings, groovedBalls, universalJoints } from './inference/couplings.ts';
+import { crankWebs, dropBallsInBearings, findCouplings, groovedBalls, reductions, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
 import { findGears, findMeshes, wormRacks } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
@@ -264,6 +264,10 @@ export interface Coupling {
   // socket, the shaft and the hub each held in place by their own joints. (A wheel whose
   // steering pivot misses the ball's middle a little, as LDraw's shapes have it, still steers.)
   turningOnly?: boolean;
+  // How many times bodyA turns for each turn of bodyB, each against what it turns in: a
+  // planetary wheel hub's driving shaft and its hub (see reductions). 1 if not given, as for
+  // every universal joint and grooved ball.
+  ratio?: number;
 }
 
 // Whether inferMechanism first tries friction pins as rigid (on unless KINEBRICK_FRICTION_RIGID=0).
@@ -395,6 +399,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   dropBallsInBearings(joints, joined, roles, bodyOf);
   const couplings = findCouplings(joined, joints, parts, roles, bodyOf);
   couplings.push(...crankWebs(joints));
+  couplings.push(...reductions(parts, table, bodyOf, (name) => libraryName(name, table)));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   // What's hooked to a chain it can't slide along is loose after all (it rides along with nothing).
   loose.push(...chainHooks(parts, bodyOf, joints, loops, hooked));

@@ -21,20 +21,20 @@
           "planetary-hub"
         ],
         "source": "book: front motor steps 72-86 (marked 4), front axle steps 1-37 and 87, hubs steps 39-53; app pages 218-219; the gear train is inferred from the model",
-        "control": "p870 42099 - 18575",
+        "control": "p878 42099 - 18575",
         "moves": [
-          "p861 32270",
-          "p510 42099 - 18575",
-          "p465 32270",
-          "p486 62821",
-          "p1854 23798",
-          "p1858 23798"
+          "p869 32270",
+          "p514 42099 - 18575",
+          "p469 32270",
+          "p490 62821",
+          "p1862 23798",
+          "p1866 23798"
         ],
         "stays": [
-          "p1856 23798",
-          "p1860 23798"
+          "p1864 23798",
+          "p1868 23798"
         ],
-        "note": "The motor (p621 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft. Driven from the Control+ app through the hub (p1199 42099 - 22127)."
+        "note": "The motor (p629 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft. Driven from the Control+ app through the hub (p1207 42099 - 22127)."
       },
       {
         "does": "The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs.",
@@ -44,20 +44,20 @@
           "planetary-hub"
         ],
         "source": "book: rear axle steps 127-172, rear motor steps 173-180 (marked 2); app pages 218-219; the gear train is inferred from the model",
-        "control": "p359 42099 - 18575",
+        "control": "p363 42099 - 18575",
         "moves": [
           "p83 32270",
           "p59 42099 - 18575",
           "p20 32270",
           "p43 62821",
-          "p1856 23798",
-          "p1860 23798"
+          "p1864 23798",
+          "p1868 23798"
         ],
         "stays": [
-          "p1854 23798",
-          "p1858 23798"
+          "p1862 23798",
+          "p1866 23798"
         ],
-        "note": "The motor (p134 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
+        "note": "The motor (p138 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
       },
       {
         "does": "With both XL motors driven together the off-roader has four-wheel drive, forwards or back.",
@@ -67,14 +67,14 @@
         ],
         "source": "book: app pages 218-219 (drive controls)",
         "control": [
-          "p870 42099 - 18575",
-          "p359 42099 - 18575"
+          "p878 42099 - 18575",
+          "p363 42099 - 18575"
         ],
         "moves": [
-          "p1854 23798",
-          "p1858 23798",
-          "p1856 23798",
-          "p1860 23798"
+          "p1862 23798",
+          "p1866 23798",
+          "p1864 23798",
+          "p1868 23798"
         ],
         "note": "The app drives both XL motors at once from one control."
       },
@@ -85,17 +85,17 @@
           "rack-steering"
         ],
         "source": "book: steering motor steps 88-106 (marked 3), steering parts steps 54-71 and 107-126; app pages 218-219 (steering control); the gear and rack are inferred from the model",
-        "control": "p1088 32270",
+        "control": "p1096 32270",
         "moves": [
-          "p587 87761",
-          "p559 42099 - 46490c01",
-          "p569 42099 - 46490c01"
+          "p595 87761",
+          "p565 46490c02",
+          "p577 46490c02"
         ],
         "stays": [
-          "p100 42099 - 46490c01",
-          "p117 42099 - 46490c01"
+          "p102 46490c02",
+          "p121 46490c02"
         ],
-        "note": "The motor (p883 42099 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its shaft."
+        "note": "The motor (p891 42099 - 22169, a Control+ L motor) turns the control, the 12 tooth gear on its shaft."
       },
       {
         "does": "The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way.",
@@ -103,13 +103,13 @@
           "differential: front"
         ],
         "source": "book: front axle steps 8-37 (the differential in its housing)",
-        "control": "p1858 23798",
+        "control": "p1866 23798",
         "moves": [
-          "p1854 23798",
-          "p486 62821"
+          "p1862 23798",
+          "p490 62821"
         ],
         "stays": [
-          "p870 42099 - 18575"
+          "p878 42099 - 18575"
         ]
       },
       {
@@ -118,13 +118,13 @@
           "differential: rear"
         ],
         "source": "book: rear axle steps 127-140",
-        "control": "p1860 23798",
+        "control": "p1868 23798",
         "moves": [
-          "p1856 23798",
+          "p1864 23798",
           "p43 62821"
         ],
         "stays": [
-          "p359 42099 - 18575"
+          "p363 42099 - 18575"
         ]
       },
       {
@@ -150,7 +150,7 @@
           "for-show: steering wheel"
         ],
         "source": "inferred: book body step 302 fits it on a short axle in the dashboard, with nothing behind it",
-        "control": "p1444 2819"
+        "control": "p1452 2819"
       }
     ],
     "questions": [
