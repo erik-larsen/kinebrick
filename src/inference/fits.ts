@@ -57,7 +57,8 @@ export function findConnections(cyls: WorldCylinder[], frictionRigid: boolean, f
       else if (isStud(m) && isTechnicHole(f)) c = studInHole(m, f, align);
       else if (isSwivelPin(m) && isSwivelHole(f)) c = studInHole(m, f, align);
       else if ((isRoundSocket(m) && isRoundSocket(f)) || (isSquareSocket(m) && isSquareSocket(f))) c = connect(m, f, align);
-      if (c && (isSwivelPin(m) || m.secs[0].shape === 'H')) turnsStiffly(c, frictionRigid && !freed.has(c.male));
+      else if (isClickRing(m) && isClickRing(f)) c = connect(m, f, align);
+      if (c && (isSwivelPin(m) || m.secs[0].shape === 'H' || isClickRing(m))) turnsStiffly(c, frictionRigid && !freed.has(c.male));
       if (c) connections.push(c);
     }
   }
@@ -199,6 +200,13 @@ function isSwivelHole(c: WorldCylinder): boolean {
 function turnsStiffly(c: Connection, frictionRigid: boolean) {
   if (frictionRigid) [c.kind, c.held] = ['rigid', true];
   else c.stiff = true;
+}
+
+// A click rotation hinge's ring: the male half (a liftarm's, 41679), a round section 9.5 LDU across,
+// closed at one end, in the female half (a pin's, 41680), the same open. They turn in steps and hold
+// where they're set, so the joint turns stiffly, as a friction pin does: the 8012's hips.
+function isClickRing(c: WorldCylinder): boolean {
+  return c.secs.length === 1 && c.secs[0].shape === 'R' && Math.abs(c.secs[0].radius - 9.5) < AXIS_TOLERANCE && (c.gender === 'M' ? closedAtOneEnd(c) : c.caps === 'none');
 }
 
 // A round peg or socket closed at one end and wider than a stud, the peg turning in a socket
