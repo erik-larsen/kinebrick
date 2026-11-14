@@ -177,10 +177,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 827,
+    "date": "2026-11-14",
+    "seconds": 723,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -333,7 +333,7 @@
         ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 46.7
+        "seconds": 39.8
       },
       {
         "result": "partly",
@@ -388,7 +388,7 @@
         ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 41.4
+        "seconds": 34.9
       },
       {
         "result": "works",
@@ -422,7 +422,7 @@
             ]
           ]
         ],
-        "seconds": 41.7
+        "seconds": 34.8
       },
       {
         "result": "works",
@@ -468,7 +468,7 @@
             ]
           ]
         ],
-        "seconds": 154.8
+        "seconds": 136.1
       },
       {
         "result": "works",
@@ -538,7 +538,13 @@
             ]
           ]
         ],
-        "seconds": 180.4
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 158.5
       },
       {
         "result": "skipped"
@@ -581,7 +587,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 41.7
+        "seconds": 34.8
       },
       {
         "result": "no",
@@ -653,8 +659,12 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 29.6
+        "seconds": 25.3
       },
       {
         "result": "works",
@@ -685,7 +695,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 164
+        "seconds": 147.9
       },
       {
         "result": "no",
@@ -729,7 +739,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 3.1
+        "seconds": 2.8
       },
       {
         "result": "no",
@@ -779,8 +789,12 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 50.6
+        "seconds": 44.5
       }
     ]
   }

@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 66 works, 23 partly, 33 no, 2 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 74 works, 15 partly, 33 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -167,7 +167,7 @@ Each detail by the set it first appears in.
 - *legs:* The droid folds up for transport: the legs swing up against the body at the hips, turning round the axle of the 24-tooth gear in the hips, and a catch clicks into the gear to hold them folded. (works)
 - *head:* The head folds down onto the back for transport and swings back up, pivoting on an axle at the top of the torso. (works)
 - *right arm:* Turning the grey gear on the backpack raises the right arm, which holds the blaster, to aim: the gear's axle carries a 24-tooth gear driving an 8-tooth gear in the torso, whose 12-tooth bevel gear turns a 20-tooth bevel gear on the right shoulder's axle. (no)
-- *knees:* Each leg bends at the knee, and a rubber band across the knee pulls it straight again. (partly)
+- *knees:* Each leg bends at the knee, and a rubber band across the knee pulls it straight again. (works)
 
 **2000, [8002 Destroyer Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8002-1)**
 
@@ -180,7 +180,7 @@ Each detail by the set it first appears in.
 
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
 
-- *gull-wing doors:* The two doors swing up and out like gull wings: each is a black frame running from the roof edge down to the front fender, with green panels, hinged at the roof. (partly)
+- *gull-wing doors:* The two doors swing up and out like gull wings: each is a black frame running from the roof edge down to the front fender, with green panels, hinged at the roof. (works)
 
 **2002, [8012 Super Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8012-1)**
 
@@ -237,7 +237,7 @@ Each detail by the set it first appears in.
 
 **2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1)**
 
-- *tedder arms:* The tedder's two arms fold up over it for transport, each swinging its rotor up on a pivot beside the gearbox. (partly)
+- *tedder arms:* The tedder's two arms fold up over it for transport, each swinging its rotor up on a pivot beside the gearbox. (works)
 
 **2012, [9396 Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9396-1)**
 
@@ -249,7 +249,7 @@ Each detail by the set it first appears in.
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
-- *doors:* The two front doors open. (partly)
+- *doors:* The two front doors open. (works)
 - *body:* The whole body shell tilts up on a hinge at the back, for getting at the battery box and switches, and folds back down. (no)
 
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
@@ -304,7 +304,7 @@ Each detail by the set it first appears in.
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
-- *legs:* The crane's two legs fold down from its base to stand on the ground, and lock there. (partly)
+- *legs:* The crane's two legs fold down from its base to stand on the ground, and lock there. (works)
 - *bonnet:* The bonnet tips up, giving access to the battery box. (works)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
@@ -340,7 +340,7 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- *doors:* Each front door swings open, and a steering link from the door lowers the side step under it. (partly)
+- *doors:* Each front door swings open, and a steering link from the door lowers the side step under it. (works)
 - *rear door:* The rear door, with the spare wheel on it, swings open, and the white tray inside slides out. (partly)
 - *side panels:* The side panel at the back on each side flips up, showing the first aid kit and fire extinguisher stowed behind it. (works)
 
@@ -387,7 +387,7 @@ Each detail by the set it first appears in.
 **2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1)**
 
 - *grab:* The grab on the end of the arm closes on the log: the black gear on its side turns the upper clamp down onto the lower tines. (works)
-- *armrest consoles:* The armrest consoles beside the seat, carrying the control levers, tip up on hinges at the back of the cab. (partly)
+- *armrest consoles:* The armrest consoles beside the seat, carrying the control levers, tip up on hinges at the back of the cab. (works)
 
 **2019, [42095 Remote-Controlled Stunt Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42095-1)**
 
@@ -420,7 +420,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *outriggers:* Each of the four outriggers swings out and down onto its foot: turning its black 12 tooth gear (at the back) or its liftarm handle (at the front) swings the leg out from the chassis side and down. (partly)
+- *outriggers:* Each of the four outriggers swings out and down onto its foot: turning its black 12 tooth gear (at the back) or its liftarm handle (at the front) swings the leg out from the chassis side and down. (works)
 
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 

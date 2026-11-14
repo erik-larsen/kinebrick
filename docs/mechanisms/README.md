@@ -94,14 +94,14 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 59 works, 13 partly, 4 no |
-| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 12 works, 10 partly, 7 no |
+| [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 60 works, 12 partly, 4 no |
+| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 13 works, 9 partly, 7 no |
 | [Swivelling axle steering](swivel-axle-steering.md) | 4 | 1993 |  |  | 1 |  | 3 |  | 3 partly, 1 no |
-| [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 2 works, 4 partly, 1 no |
+| [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 3 works, 2 partly, 2 no |
 | [Multi-axle steering](multi-axle-steering.md) | 12 | 1990 |  |  | 2 | 1 | 7 | 2 | 10 works, 2 partly, 2 no |
 | [Steering mode selector](steering-mode-selector.md) | 1 | 2016 |  |  |  |  | 1 |  | 1 works |
 | [Fork steering](fork-steering.md) | 8 | 1991 |  |  | 5 |  | 2 | 1 | 2 works, 4 partly, 2 no |
-| [Skid steering](skid-steering.md) | 5 | 2007 |  |  |  | 1 | 3 | 1 | 1 works, 3 partly, 1 not checked |
+| [Skid steering](skid-steering.md) | 5 | 2007 |  |  |  | 1 | 3 | 1 | 2 works, 2 partly, 1 not checked |
 | [Rudder](rudder.md) | 3 | 2017 |  |  |  |  | 2 | 1 | 1 works, 2 partly |
 
 ### Suspension
@@ -109,7 +109,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Swing arm](swing-arm.md) | 16 | 1988 |  | 1 | 6 | 1 | 5 | 3 | 4 works, 3 partly, 9 no |
-| [Trailing arms](trailing-arm.md) | 1 | 1981 |  | 1 |  |  |  |  | 1 partly |
+| [Trailing arms](trailing-arm.md) | 1 | 1981 |  | 1 |  |  |  |  | 1 works |
 | [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 6 works, 4 partly, 15 no, 1 skipped |
 | [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 1 works, 3 partly |
 | [Pendular axle](pendular-axle.md) | 8 | 1986 |  | 1 |  | 1 | 5 | 1 | 1 works, 2 partly, 4 no, 2 skipped |
@@ -124,18 +124,18 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 37 works, 35 partly, 5 no, 1 skipped |
+| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 39 works, 33 partly, 5 no, 1 skipped |
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 partly |
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 5 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 1 works, 4 partly, 1 no |
-| [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 5 works, 6 partly |
+| [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 6 works, 5 partly |
 | [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 6 works, 4 partly, 2 no |
 | [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 19 works, 10 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
-| [Worm drive](worm-drive.md) | 54 | 1986 |  | 4 | 4 | 13 | 30 | 3 | 33 works, 49 partly, 2 skipped, 1 not checked |
-| [Slip clutch](slip-clutch.md) | 11 | 1989 |  | 1 |  | 1 | 8 | 1 | 11 partly, 4 skipped |
+| [Worm drive](worm-drive.md) | 54 | 1986 |  | 4 | 4 | 13 | 30 | 3 | 46 works, 36 partly, 2 skipped, 1 not checked |
+| [Slip clutch](slip-clutch.md) | 11 | 1989 |  | 1 |  | 1 | 8 | 1 | 3 works, 8 partly, 4 skipped |
 | [Swinging idler clutch](swinging-idler-clutch.md) | 1 | 1998 |  |  | 1 |  |  |  | 1 skipped |
-| [Power take-off](power-take-off.md) | 11 | 1977 | 2 | 2 | 1 | 3 | 1 | 2 | 8 works, 6 partly |
+| [Power take-off](power-take-off.md) | 11 | 1977 | 2 | 2 | 1 | 3 | 1 | 2 | 9 works, 5 partly |
 
 ### Gearboxes
 
@@ -144,22 +144,22 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Sliding-gear gearbox](sliding-gear-gearbox.md) | 2 | 1978 | 1 | 1 |  |  |  |  | 2 works, 2 partly |
 | [Driving-ring gearbox](driving-ring-gearbox.md) | 8 | 1994 |  |  | 2 | 1 | 4 | 1 | 8 works, 3 partly, 1 no, 1 not checked |
 | [Sequential gearbox](sequential-gearbox.md) | 6 | 2016 |  |  |  |  | 3 | 3 | 11 partly |
-| [Function selector](function-selector.md) | 25 | 1992 |  |  | 1 | 1 | 19 | 4 | 17 works, 73 partly, 3 no, 4 not checked |
+| [Function selector](function-selector.md) | 25 | 1992 |  |  | 1 | 1 | 19 | 4 | 26 works, 64 partly, 3 no, 4 not checked |
 
 ### Moving and lifting
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 11 works, 14 partly, 5 no |
+| [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 17 works, 8 partly, 5 no |
 | [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 6 works, 41 partly, 3 no |
 | [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 2 works, 10 partly, 11 no, 6 skipped |
-| [Crank and link](crank-and-link.md) | 56 | 1979 | 1 | 6 | 6 | 9 | 27 | 7 | 29 works, 39 partly, 9 no, 1 not checked |
+| [Crank and link](crank-and-link.md) | 56 | 1979 | 1 | 6 | 6 | 9 | 27 | 7 | 36 works, 32 partly, 9 no, 1 not checked |
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
-| [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 14 works, 15 partly |
-| [Turntable](turntable.md) | 36 | 1978 | 1 | 3 | 4 | 5 | 20 | 3 | 9 works, 25 partly, 5 no, 1 not checked |
+| [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 18 works, 11 partly |
+| [Turntable](turntable.md) | 36 | 1978 | 1 | 3 | 4 | 5 | 20 | 3 | 14 works, 20 partly, 5 no, 1 not checked |
 | [Three-point hitch](three-point-hitch.md) | 7 | 1977 | 2 | 2 |  | 1 | 2 |  | 4 works, 2 partly, 1 no, 1 not checked |
-| [Telescopic mast](telescopic-mast.md) | 2 | 2005 |  |  |  | 1 | 1 |  | 2 partly |
+| [Telescopic mast](telescopic-mast.md) | 2 | 2005 |  |  |  | 1 | 1 |  | 1 works, 1 partly |
 | [Hook lift](hook-lift.md) | 1 | 2018 |  |  |  |  | 1 |  | 1 works |
 | [Rotary tool](rotary-tool.md) | 2 | 2016 |  |  |  |  | 1 | 1 | 3 partly |
 | [Conveyor](conveyor.md) | 1 | 2016 |  |  |  |  | 1 |  | 1 partly |
@@ -169,7 +169,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 39 works, 29 partly, 2 no, 1 skipped |
+| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 42 works, 26 partly, 2 no, 1 skipped |
 | [Valve train](valve-train.md) | 1 | 1980 |  | 1 |  |  |  |  | 3 works |
 | [Driven rotor](driven-rotor.md) | 20 | 1977 | 1 | 1 | 6 |  | 10 | 2 | 13 works, 12 partly |
 | [Rotor blade pitch](rotor-pitch.md) | 2 | 1977 | 1 |  | 1 |  |  |  | 2 partly, 1 no |
@@ -181,7 +181,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 15 works, 66 partly, 3 no, 5 not checked |
+| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 20 works, 61 partly, 3 no, 5 not checked |
 | [Remote control](remote-control.md) | 11 | 2007 |  |  |  | 1 | 6 | 4 | 4 works, 15 partly, 2 not checked |
 | [Pneumatic pump](pneumatic-pump.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 2 works, 3 partly, 1 no, 7 skipped |
 | [Pull-back motor](pull-back-motor.md) | 11 | 1998 |  |  | 1 |  | 9 | 1 | 11 works, 11 skipped |
@@ -193,17 +193,17 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Ratchet](ratchet.md) | 6 | 1978 | 1 | 1 | 2 | 1 | 1 |  | 6 skipped |
 | [Friction brake](friction-brake.md) | 6 | 1998 |  |  | 2 | 2 | 2 |  | 2 works, 4 skipped |
-| [Catch](catch.md) | 14 | 1998 |  |  | 2 | 2 | 8 | 2 | 5 works, 5 partly, 5 no, 4 skipped |
-| [Spring](spring.md) | 54 | 1978 | 1 | 4 | 11 | 7 | 23 | 8 | 3 works, 2 partly, 2 no, 56 skipped |
+| [Catch](catch.md) | 14 | 1998 |  |  | 2 | 2 | 8 | 2 | 6 works, 4 partly, 5 no, 4 skipped |
+| [Spring](spring.md) | 54 | 1978 | 1 | 4 | 11 | 7 | 23 | 8 | 4 works, 1 partly, 2 no, 56 skipped |
 
 ### Simple motions
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 141 works, 7 partly, 2 no, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 76 | 1978 | 2 | 1 | 10 | 11 | 41 | 11 | 66 works, 23 partly, 33 no, 2 skipped, 5 not checked |
+| [Hinge](hinge.md) | 76 | 1978 | 2 | 1 | 10 | 11 | 41 | 11 | 74 works, 15 partly, 33 no, 2 skipped, 5 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 2 works, 2 partly, 4 no, 1 skipped, 1 not checked |
-| [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 5 works, 2 partly, 3 no, 1 skipped |
+| [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 4 works, 2 partly, 4 no, 1 skipped |
 | [Hangs free](hangs-free.md) | 18 | 1978 | 1 | 1 | 2 | 4 | 10 |  | 5 works, 1 partly, 6 skipped, 6 not checked |
 
 ### Not mechanisms

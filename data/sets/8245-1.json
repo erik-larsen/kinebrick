@@ -144,9 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "seconds": 7,
     "counts": {
       "partly": 2,
@@ -424,7 +424,12 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -490,7 +495,17 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "movedBy": [
+          [
+            "p181 32012 against p177 32009",
+            "p180 3648a against p177 32009"
+          ],
+          [
+            "p181 32012 against p177 32009",
+            "p180 3648a against p177 32009"
+          ]
+        ],
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -537,7 +552,11 @@
         "strayed": [
           "p156 32009"
         ],
-        "seconds": 0.9
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 1
       },
       {
         "result": "works",
@@ -588,7 +607,7 @@
         "pushed": [
           true
         ],
-        "seconds": 1.8
+        "seconds": 1.9
       },
       {
         "result": "skipped",
@@ -630,6 +649,10 @@
         ],
         "why": [
           "p242 32009 is part of the frame"
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "control-fixed",
         "seconds": 0.4

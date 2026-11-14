@@ -126,10 +126,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 142,
+    "date": "2026-11-14",
+    "seconds": 151,
     "counts": {
       "partly": 1,
       "works": 5,
@@ -265,7 +265,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 4.7
+        "seconds": 5
       },
       {
         "result": "works",
@@ -347,7 +347,19 @@
             ]
           ]
         ],
-        "seconds": 33.2
+        "movedBy": [
+          [
+            "p15 62821",
+            "p165 2853",
+            "p181 2851 against p150 2850b"
+          ],
+          [
+            "p15 62821",
+            "p165 2853",
+            "p181 2851 against p150 2850b"
+          ]
+        ],
+        "seconds": 35.9
       },
       {
         "result": "works",
@@ -377,7 +389,7 @@
             ]
           ]
         ],
-        "seconds": 16.7
+        "seconds": 18
       },
       {
         "result": "no",
@@ -449,8 +461,12 @@
             "dead point"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "stopped-early",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -494,7 +510,11 @@
             ]
           ]
         ],
-        "seconds": 33.5
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 35.8
       },
       {
         "result": "works",
@@ -538,7 +558,11 @@
           true,
           true
         ],
-        "seconds": 17.6
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 18.2
       },
       {
         "result": "works",
@@ -578,7 +602,11 @@
             ]
           ]
         ],
-        "seconds": 35
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 36.5
       }
     ]
   }

@@ -196,10 +196,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 14,
+    "date": "2026-11-14",
+    "seconds": 16,
     "counts": {
       "partly": 6,
       "works": 1,
@@ -284,7 +284,7 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 2
+        "seconds": 2.5
       },
       {
         "result": "partly",
@@ -355,7 +355,7 @@
         ],
         "cause": "not-driven",
         "detail": "p577 32073",
-        "seconds": 2.1
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -397,7 +397,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.1
       },
       {
         "result": "partly",
@@ -445,7 +445,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p31 3706",
-        "seconds": 2.1
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -532,8 +532,22 @@
             "dead point"
           ]
         ],
+        "movedBy": [
+          [
+            "p370 32184",
+            "p384 32184",
+            "p475 32196",
+            "p484 32196"
+          ],
+          [
+            "p370 32184",
+            "p384 32184",
+            "p475 32196",
+            "p484 32196"
+          ]
+        ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "no",
@@ -565,6 +579,10 @@
           "p231 6629 is part of the frame",
           "p224 6629 is part of the frame"
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-fixed",
         "seconds": 0.7
       },
@@ -583,11 +601,6 @@
             0,
             0
           ]
-        ],
-        "still": [
-          "p1016 32015",
-          "p1017 32015",
-          "p1078 32000"
         ],
         "rates": [
           {
@@ -655,9 +668,17 @@
           false,
           true
         ],
+        "movedBy": [
+          [
+            "p1016 32015",
+            "p1017 32015",
+            "p1078 32000"
+          ],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 1.9
+        "seconds": 2.2
       },
       {
         "result": "partly",
@@ -704,7 +725,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 1.9
+        "seconds": 2.2
       },
       {
         "result": "skipped",
@@ -733,6 +754,10 @@
         "why": [
           "p757 6536 is part of the frame",
           "p725 6536 is part of the frame"
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "control-fixed",
         "seconds": 0

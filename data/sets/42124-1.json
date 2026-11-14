@@ -117,10 +117,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 3,
+    "date": "2026-11-14",
+    "seconds": 4,
     "counts": {
       "works": 2,
       "not back": 2,
@@ -343,6 +343,10 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
         "seconds": 0.1
       },
@@ -415,6 +419,10 @@
               0
             ]
           ]
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "seconds": 0.8
       }

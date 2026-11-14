@@ -164,14 +164,14 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 1136,
+    "date": "2026-11-14",
+    "seconds": 1006,
     "counts": {
-      "works": 5,
+      "works": 6,
       "skipped": 2,
-      "partly": 3
+      "partly": 2
     },
     "loose": [
       "p317 42069 - 30395",
@@ -424,7 +424,7 @@
             ]
           ]
         ],
-        "seconds": 181.2
+        "seconds": 157
       },
       {
         "result": "works",
@@ -470,7 +470,7 @@
             ]
           ]
         ],
-        "seconds": 56.1
+        "seconds": 45.3
       },
       {
         "result": "skipped"
@@ -541,7 +541,7 @@
         ],
         "cause": "not-driven",
         "detail": "p567 6589",
-        "seconds": 52
+        "seconds": 50.9
       },
       {
         "result": "works",
@@ -585,7 +585,7 @@
             ]
           ]
         ],
-        "seconds": 196.5
+        "seconds": 173.8
       },
       {
         "result": "works",
@@ -655,10 +655,16 @@
             ]
           ]
         ],
-        "seconds": 201.5
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 180.7
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -668,10 +674,6 @@
             1.5,
             -0.17
           ]
-        ],
-        "still": [
-          "p1033 62531",
-          "p1150 62531"
         ],
         "rates": [
           {
@@ -727,9 +729,15 @@
             "dead point"
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p1033 62531",
-        "seconds": 248.3
+        "movedBy": [
+          [
+            "p1150 62531"
+          ],
+          [
+            "p1033 62531"
+          ]
+        ],
+        "seconds": 228.9
       },
       {
         "result": "partly",
@@ -763,9 +771,13 @@
         "why": [
           "p722 64782 is part of the frame"
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "loose-part",
         "detail": "p722 64782",
-        "seconds": 58.2
+        "seconds": 47.7
       },
       {
         "result": "works",
@@ -806,7 +818,11 @@
           ]
         ],
         "freed": 2,
-        "seconds": 124.7
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 105.6
       },
       {
         "result": "skipped"

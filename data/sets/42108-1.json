@@ -172,14 +172,14 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 85,
+    "date": "2026-11-14",
+    "seconds": 89,
     "counts": {
-      "works": 2,
-      "partly": 4,
+      "works": 3,
       "no": 1,
+      "partly": 3,
       "skipped": 1
     },
     "loose": [
@@ -365,7 +365,31 @@
             ]
           ]
         ],
-        "seconds": 6.1
+        "movedBy": [
+          [
+            "p3 44294",
+            "p105 48989",
+            "p111 48989",
+            "p108 48989",
+            "p114 48989",
+            "p119 48989",
+            "p125 48989",
+            "p122 48989",
+            "p128 48989"
+          ],
+          [
+            "p3 44294",
+            "p105 48989",
+            "p111 48989",
+            "p108 48989",
+            "p114 48989",
+            "p119 48989",
+            "p125 48989",
+            "p122 48989",
+            "p128 48989"
+          ]
+        ],
+        "seconds": 6.2
       },
       {
         "result": "works",
@@ -495,10 +519,20 @@
             ]
           ]
         ],
-        "seconds": 26.1
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 27.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -516,12 +550,6 @@
             1.5,
             -0.27
           ]
-        ],
-        "still": [
-          "p355 32062",
-          "p248 32062",
-          "p256 32062",
-          "p342 32062"
         ],
         "rates": [
           {
@@ -689,9 +717,21 @@
             "dead point"
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p355 32062",
-        "seconds": 28.1
+        "movedBy": [
+          [
+            "p342 32062"
+          ],
+          [
+            "p355 32062"
+          ],
+          [
+            "p248 32062"
+          ],
+          [
+            "p256 32062"
+          ]
+        ],
+        "seconds": 29.4
       },
       {
         "result": "no",
@@ -809,7 +849,7 @@
         ],
         "cause": "too-little",
         "detail": "p528 61904",
-        "seconds": 6.6
+        "seconds": 6.8
       },
       {
         "result": "partly",
@@ -860,7 +900,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p959 2730",
-        "seconds": 13
+        "seconds": 13.2
       },
       {
         "result": "partly",
@@ -922,7 +962,7 @@
         ],
         "cause": "not-driven",
         "detail": "p837 42108 - 35185",
-        "seconds": 4.7
+        "seconds": 4.8
       },
       {
         "result": "skipped",

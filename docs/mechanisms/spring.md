@@ -4,7 +4,7 @@ A spring or rubber band holds a part up, pulls it back, or springs it back once 
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The rubber band pulls the ratchet's lever down onto the gears.
 
-Used in 54 of the 186 surveyed sets, by 63 functions. Kinebrick: 3 works, 2 partly, 2 no, 56 skipped.
+Used in 54 of the 186 surveyed sets, by 63 functions. Kinebrick: 4 works, 1 partly, 2 no, 56 skipped.
 
 ## By decade
 
@@ -109,7 +109,7 @@ Each detail by the set it first appears in.
 **2000, [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1)**
 
 - *unfolding:* Once the catch is lifted, rubber bands round the two pulleys in the hips spring the droid open and stand it up. (skipped)
-- *knees:* Each leg bends at the knee, and a rubber band across the knee pulls it straight again. (partly)
+- *knees:* Each leg bends at the knee, and a rubber band across the knee pulls it straight again. (works)
 
 **2000, [8002 Destroyer Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8002-1)**
 

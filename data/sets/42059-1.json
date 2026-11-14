@@ -57,9 +57,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "seconds": 1,
     "counts": {
       "works": 2,
@@ -128,6 +128,14 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p30 3708"
+          ],
+          [
+            "p30 3708"
+          ]
+        ],
         "seconds": 0.2
       },
       {
@@ -172,7 +180,11 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 0.2
       },
       {
         "result": "not checked",

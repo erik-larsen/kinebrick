@@ -171,10 +171,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 439,
+    "date": "2026-11-14",
+    "seconds": 441,
     "counts": {
       "works": 4,
       "partly": 3,
@@ -349,7 +349,7 @@
             ]
           ]
         ],
-        "seconds": 84.8
+        "seconds": 85.7
       },
       {
         "result": "partly",
@@ -428,9 +428,13 @@
             ]
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p1345 24505",
-        "seconds": 50.4
+        "seconds": 49.9
       },
       {
         "result": "skipped"
@@ -509,7 +513,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p682 2851",
-        "seconds": 27
+        "seconds": 27.8
       },
       {
         "result": "works",
@@ -549,7 +553,11 @@
             ]
           ]
         ],
-        "seconds": 49.8
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 50.4
       },
       {
         "result": "works",
@@ -583,7 +591,7 @@
             ]
           ]
         ],
-        "seconds": 24.3
+        "seconds": 23.7
       },
       {
         "result": "works",
@@ -623,7 +631,11 @@
             ]
           ]
         ],
-        "seconds": 48.2
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 48.5
       },
       {
         "result": "partly",
@@ -688,8 +700,16 @@
           ]
         ],
         "freed": 4,
+        "movedBy": [
+          [
+            "p1046 42083 - 23801"
+          ],
+          [
+            "p1046 42083 - 23801"
+          ]
+        ],
         "cause": "stopped-early",
-        "seconds": 102.9
+        "seconds": 103.3
       },
       {
         "result": "no",
@@ -756,9 +776,13 @@
           true,
           true
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p3525 42083 - 37383p01",
-        "seconds": 4
+        "seconds": 4.2
       },
       {
         "result": "skipped"

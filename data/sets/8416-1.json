@@ -125,10 +125,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 9,
+    "date": "2026-11-14",
+    "seconds": 10,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -314,7 +314,7 @@
         ],
         "cause": "loose-part",
         "detail": "p156 32278",
-        "seconds": 3.1
+        "seconds": 3.2
       },
       {
         "result": "partly",
@@ -381,7 +381,7 @@
         ],
         "cause": "loose-part",
         "detail": "p178 32525",
-        "seconds": 2.4
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -527,7 +527,13 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 2.5
       },
       {
         "result": "works",

@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 33 works, 49 partly, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 46 works, 36 partly, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -96,7 +96,7 @@ Each detail by the set it first appears in.
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
-- The 12-tooth gears low on the truck's sides beside the turntable slew the ladder round, all the way round: a worm on their cross shaft turns an 8-tooth gear on a vertical shaft, whose 24-tooth gear on top drives the turntable's teeth. (partly)
+- The 12-tooth gears low on the truck's sides beside the turntable slew the ladder round, all the way round: a worm on their cross shaft turns an 8-tooth gear on a vertical shaft, whose 24-tooth gear on top drives the turntable's teeth. (works)
 - The other pair of 12-tooth gears on the truck's sides raises and lowers the ladder: their cross shaft turns, through a pair of knob gears, a vertical shaft up through the middle of the turntable to a worm, which turns the 24-tooth gear at the foot of the ladder's first section. As the first section rises, links unfold the second section from it, and the rescue cage at the end stays level. (partly)
 
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
@@ -163,7 +163,7 @@ Each detail by the set it first appears in.
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
-- The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in. (partly)
+- The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in. (works)
 
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
@@ -184,7 +184,7 @@ Each detail by the set it first appears in.
 
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 
-- With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (partly)
+- With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (works)
 - *engine cover:* With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover. (works)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
@@ -204,7 +204,7 @@ Each detail by the set it first appears in.
 
 - Function B: with the right lever pushed to B, the motor lowers or raises the rear loading ramp: the right shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft running back through a universal joint to a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms swing the ramp on its links. (partly)
 - Function C: with the lever on the left side pushed to C, the motor swings the two orange side panels (the cargo bay doors) out and in: the left shaft's driving ring locks its rear clutch gear, which turns a 16-tooth gear on a shaft with a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms and links swing both doors on their hinges. (partly)
-- Function D: with the left lever pushed to D, the motor winds the winch, raising or lowering the hook on its string under the fuselage: the left shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft whose 20-tooth gear turns a 12-tooth gear on a worm shaft; the worm turns an 8-tooth gear on the winch reel. (partly)
+- Function D: with the left lever pushed to D, the motor winds the winch, raising or lowering the hook on its string under the fuselage: the left shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft whose 20-tooth gear turns a 12-tooth gear on a worm shaft; the worm turns an 8-tooth gear on the winch reel. (works)
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
@@ -220,16 +220,16 @@ Each detail by the set it first appears in.
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
-- The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down. (partly)
+- The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down. (works)
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
-- Turning the axle end at the back of the boom extends and retracts the boom's inner section: a shaft runs along the outer section to a worm at its front, which drives the rack under the inner section like a lead screw. (partly)
-- The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot. (partly)
+- Turning the axle end at the back of the boom extends and retracts the boom's inner section: a shaft runs along the outer section to a worm at its front, which drives the rack under the inner section like a lead screw. (works)
+- The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot. (works)
 
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
-- The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot. (partly)
+- The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot. (works)
 
 **2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
 
@@ -252,11 +252,11 @@ Each detail by the set it first appears in.
 
 **2018, [42071 Dozer Compactor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42071-1)**
 
-- The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises. (partly)
+- The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises. (works)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 
-- The knob at the very back slides the whole rear body (the battery pack with the drone pad on top) fore and aft as a counterweight: it turns a worm gear in the body, which walks along a toothed rack on the chassis. (partly)
+- The knob at the very back slides the whole rear body (the battery pack with the drone pad on top) fore and aft as a counterweight: it turns a worm gear in the body, which walks along a toothed rack on the chassis. (works)
 
 **2019, [42088 Cherry Picker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42088-1)**
 
@@ -264,12 +264,12 @@ Each detail by the set it first appears in.
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 
-- The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull. (partly)
-- The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack. (partly)
+- The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull. (works)
+- The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack. (works)
 
 **2021, [42116 Skid Steer Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42116-1)**
 
-- The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link. (partly)
+- The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link. (works)
 - The worm holds the arm where it's left, so the arm doesn't drop under the bucket's weight. (skipped)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

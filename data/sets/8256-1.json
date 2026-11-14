@@ -70,9 +70,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "seconds": 3,
     "counts": {
       "partly": 1,
@@ -229,6 +229,20 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p16 4019",
+            "p12 2853",
+            "p14 2852",
+            "p15 2851 against p10 2850a"
+          ],
+          [
+            "p16 4019",
+            "p12 2853",
+            "p14 2852",
+            "p15 2851 against p10 2850a"
+          ]
+        ],
         "seconds": 0.8
       },
       {
@@ -299,7 +313,13 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 1.6
       }
     ]
   }

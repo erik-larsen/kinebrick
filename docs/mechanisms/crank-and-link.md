@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 29 works, 39 partly, 9 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 32 partly, 9 no, 1 not checked.
 
 ## By decade
 
@@ -196,7 +196,7 @@ Each detail by the set it first appears in.
 
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 
-- *doors:* With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (partly)
+- *doors:* With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (works)
 
 **2016, [42044 Display Team Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42044-1)**
 
@@ -230,16 +230,16 @@ Each detail by the set it first appears in.
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
 - *tipper:* Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it. (works)
-- *boom:* The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down. (partly)
+- *boom:* The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down. (works)
 - *arm:* Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom. (partly)
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
-- *bucket:* The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot. (partly)
+- *bucket:* The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot. (works)
 
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
-- *boom:* The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot. (partly)
+- *boom:* The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot. (works)
 - *claws:* Turning the axle at the spreader's end swings its claws in to grip a container's top or out to let it go. (no)
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
@@ -249,11 +249,11 @@ Each detail by the set it first appears in.
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (partly)
+- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (works)
 
 **2018, [42071 Dozer Compactor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42071-1)**
 
-- *blade:* The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises. (partly)
+- *blade:* The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises. (works)
 
 **2018, [42072 WHACK!](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42072-1)**
 
@@ -301,7 +301,7 @@ Each detail by the set it first appears in.
 
 **2021, [42116 Skid Steer Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42116-1)**
 
-- *loader arm:* The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link. (partly)
+- *loader arm:* The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link. (works)
 - *bucket:* The black 12 tooth gear on the right side at the back tilts the bucket: its shaft carries a crank at the arm's pivot, which slides the arm's upper white beam along the lower one, and the upper beam tips the bucket at the front. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

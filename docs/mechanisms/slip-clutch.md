@@ -4,7 +4,7 @@ A clutch gear or band slips when the part it drives can go no further, at the en
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The rubber bands slip when the wheels are held, so the motor can't stall.
 
-Used in 11 of the 186 surveyed sets, by 15 functions. Kinebrick: 11 partly, 4 skipped.
+Used in 11 of the 186 surveyed sets, by 15 functions. Kinebrick: 3 works, 8 partly, 4 skipped.
 
 ## By decade
 
@@ -39,15 +39,15 @@ Each detail by the set it first appears in.
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
-- The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in. (partly)
+- The front winch: a Power Functions M motor, switched by hand with the pole-reverser switch behind the cab, turns a worm that drives a 24-tooth clutch gear on the winch reel, winding the hook's rope in or out; the clutch gear slips when the hook is all the way in. (works)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (partly)
+- One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (works)
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
-- The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one. (partly)
+- The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one. (works)
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 

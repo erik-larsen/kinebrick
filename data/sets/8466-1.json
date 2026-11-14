@@ -197,16 +197,17 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 131,
+    "date": "2026-11-14",
+    "seconds": 145,
     "counts": {
-      "partly": 6,
+      "partly": 5,
       "not back": 3,
       "not checked": 1,
       "no": 3,
-      "skipped": 2
+      "skipped": 2,
+      "works": 1
     },
     "loose": [
       "p321 32054",
@@ -295,7 +296,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p657 32495",
-        "seconds": 4.2
+        "seconds": 4.5
       },
       {
         "result": "partly",
@@ -358,7 +359,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p657 32495",
-        "seconds": 4
+        "seconds": 4.2
       },
       {
         "result": "partly",
@@ -438,7 +439,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 33.4
+        "seconds": 36.9
       },
       {
         "result": "not checked",
@@ -526,7 +527,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1019 6589",
-        "seconds": 33.2
+        "seconds": 37
       },
       {
         "result": "partly",
@@ -580,7 +581,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 33.6
+        "seconds": 37.5
       },
       {
         "result": "no",
@@ -668,15 +669,21 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 2
+        "seconds": 2.2
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             0.63,
@@ -686,10 +693,6 @@
             1.5,
             -0.63
           ]
-        ],
-        "still": [
-          "p274 32189",
-          "p257 32188"
         ],
         "rates": [
           {
@@ -745,9 +748,15 @@
             "dead point"
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p274 32189",
-        "seconds": 18.5
+        "movedBy": [
+          [
+            "p257 32188"
+          ],
+          [
+            "p274 32189"
+          ]
+        ],
+        "seconds": 20.3
       },
       {
         "result": "skipped",
@@ -801,8 +810,12 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 1
+        "seconds": 1.1
       }
     ]
   }

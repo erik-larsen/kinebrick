@@ -161,10 +161,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 26,
+    "date": "2026-11-14",
+    "seconds": 27,
     "counts": {
       "skipped": 4,
       "works": 3,
@@ -333,7 +333,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 4.5
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -394,7 +394,7 @@
         "pushed": [
           true
         ],
-        "seconds": 1.3
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -491,8 +491,12 @@
           true,
           true
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "stopped-early",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -566,7 +570,13 @@
           "p2017 32123a",
           "p2061 32123a"
         ],
-        "seconds": 16
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 16.8
       }
     ]
   }

@@ -176,10 +176,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 834,
+    "date": "2026-11-14",
+    "seconds": 770,
     "counts": {
       "partly": 6,
       "no": 2,
@@ -358,7 +358,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 30.2
+        "seconds": 25.4
       },
       {
         "result": "partly",
@@ -406,7 +406,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 29.2
+        "seconds": 25.7
       },
       {
         "result": "partly",
@@ -468,9 +468,13 @@
             ]
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 58.9
+        "seconds": 48.5
       },
       {
         "result": "partly",
@@ -514,7 +518,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1927 42003 against p87 42003",
-        "seconds": 29.1
+        "seconds": 26.1
       },
       {
         "result": "partly",
@@ -563,7 +567,7 @@
         ],
         "cause": "too-little",
         "detail": "p2971 42003 against p1927 42003",
-        "seconds": 259.1
+        "seconds": 239.4
       },
       {
         "result": "partly",
@@ -642,9 +646,13 @@
             ]
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "too-little",
         "detail": "p3322 42003 against p2971 42003",
-        "seconds": 339.1
+        "seconds": 328.1
       },
       {
         "result": "no",
@@ -699,7 +707,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
-        "seconds": 1.9
+        "seconds": 1.8
       },
       {
         "result": "no",
@@ -739,7 +747,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1.9
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -770,7 +778,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 35.7
+        "seconds": 31.3
       }
     ]
   }

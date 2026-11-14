@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 11 works, 14 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 17 works, 8 partly, 5 no.
 
 ## By decade
 
@@ -114,11 +114,11 @@ Each detail by the set it first appears in.
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
-- *boom extension:* Turning the axle end at the back of the boom extends and retracts the boom's inner section: a shaft runs along the outer section to a worm at its front, which drives the rack under the inner section like a lead screw. (partly)
+- *boom extension:* Turning the axle end at the back of the boom extends and retracts the boom's inner section: a shaft runs along the outer section to a worm at its front, which drives the rack under the inner section like a lead screw. (works)
 
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
-- *boom extension:* The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure). (partly)
+- *boom extension:* The knob beside the boom's base extends and retracts the boom: axles linked by angle connectors run up the boom to the rack under its inner section (how they drive it is read from the model and unsure). (works)
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
@@ -126,11 +126,11 @@ Each detail by the set it first appears in.
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
-- *mast:* Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further. (partly)
+- *mast:* Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further. (works)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 
-- *counterweight:* The knob at the very back slides the whole rear body (the battery pack with the drone pad on top) fore and aft as a counterweight: it turns a worm gear in the body, which walks along a toothed rack on the chassis. (partly)
+- *counterweight:* The knob at the very back slides the whole rear body (the battery pack with the drone pad on top) fore and aft as a counterweight: it turns a worm gear in the body, which walks along a toothed rack on the chassis. (works)
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
@@ -138,8 +138,8 @@ Each detail by the set it first appears in.
 
 **2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1)**
 
-- *daggerboard:* The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull. (partly)
-- *daggerboard:* The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack. (partly)
+- *daggerboard:* The handle on top of the right hull's tower raises and lowers its daggerboard: the handle turns a worm, which drives a 20 tooth gear and a 12 tooth gear on one axle, and that gear runs the rack on the upright 15-long beam that carries the lime board below the hull. (works)
+- *daggerboard:* The handle on top of the left hull's tower raises and lowers its daggerboard the same way, through its own worm, gears and rack. (works)
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 

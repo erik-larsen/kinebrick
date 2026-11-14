@@ -206,10 +206,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 38,
+    "date": "2026-11-14",
+    "seconds": 41,
     "counts": {
       "works": 6,
       "partly": 3,
@@ -275,7 +275,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 12.2
+        "seconds": 12.8
       },
       {
         "result": "partly",
@@ -347,7 +347,7 @@
         ],
         "cause": "not-driven",
         "detail": "p113 92695",
-        "seconds": 1.5
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -419,7 +419,7 @@
         ],
         "cause": "not-driven",
         "detail": "p866 92696",
-        "seconds": 1.4
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -449,7 +449,7 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 2
       },
       {
         "result": "works",
@@ -487,7 +487,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -521,7 +521,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.9
       },
       {
         "result": "partly",
@@ -536,8 +536,7 @@
           ]
         ],
         "still": [
-          "p237 92909",
-          "p284 92909"
+          "p237 92909"
         ],
         "rates": [
           {
@@ -606,9 +605,15 @@
           true
         ],
         "freed": 2,
+        "movedBy": [
+          [
+            "p284 92909"
+          ],
+          []
+        ],
         "cause": "not-driven",
-        "detail": "p237 92909",
-        "seconds": 9.9
+        "detail": "p284 92909",
+        "seconds": 10.6
       },
       {
         "result": "skipped",
@@ -682,7 +687,13 @@
             ]
           ]
         ],
-        "seconds": 6.2
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 6.8
       },
       {
         "result": "not checked",
@@ -711,7 +722,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.5
       },
       {
         "result": "not checked",

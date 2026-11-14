@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 37 works, 35 partly, 5 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 39 works, 33 partly, 5 no, 1 skipped.
 
 ## By decade
 
@@ -118,12 +118,12 @@ Each detail by the set it first appears in.
 
 **2014, [42029 Customized Pick up Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42029-1)**
 
-- As the truck rolls, the rear wheels drive the V6 engine: the rear differential's ring gear turns a long shaft forward, whose 16-tooth gears (one an idler riding loose on the steering shaft) pass the drive up to a shaft that turns the crankshaft, pumping the six pistons up and down. (partly)
+- As the truck rolls, the rear wheels drive the V6 engine: the rear differential's ring gear turns a long shaft forward, whose 16-tooth gears (one an idler riding loose on the steering shaft) pass the drive up to a shaft that turns the crankshaft, pumping the six pistons up and down. (works)
 - The rear differential lets the two rear wheels turn at different speeds on corners. (works)
 
 **2015, [42037 Formula Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42037-1)**
 
-- Pushed along, the rear wheels run the inline four-cylinder engine in front of the seat: the rear differential's 28 tooth crown drives a 20 tooth bevel gear on a shaft running forward under the seat, and a 16 tooth gear on it drives the crankshaft's 16 tooth gear through a 16 tooth idler, so the four pistons pump up and down, about 1.4 times per turn of the wheels. (partly)
+- Pushed along, the rear wheels run the inline four-cylinder engine in front of the seat: the rear differential's 28 tooth crown drives a 20 tooth bevel gear on a shaft running forward under the seat, and a 16 tooth gear on it drives the crankshaft's 16 tooth gear through a 16 tooth idler, so the four pistons pump up and down, about 1.4 times per turn of the wheels. (works)
 - The rear differential lets the two rear wheels turn at different speeds; with the car lifted, turning one rear wheel turns the other the opposite way. (works)
 
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**

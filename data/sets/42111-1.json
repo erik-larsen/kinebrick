@@ -190,10 +190,10 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
+    "commit": "b1fc322",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 109,
+    "date": "2026-11-14",
+    "seconds": 117,
     "counts": {
       "works": 6,
       "partly": 1,
@@ -274,7 +274,7 @@
             ]
           ]
         ],
-        "seconds": 13.7
+        "seconds": 14.5
       },
       {
         "result": "works",
@@ -404,7 +404,29 @@
             ]
           ]
         ],
-        "seconds": 22.2
+        "movedBy": [
+          [
+            "p8 62821",
+            "p56 59426",
+            "p210 94925",
+            "p217 18946",
+            "p386 94925",
+            "p390 2854",
+            "p402 2851",
+            "p443 18946"
+          ],
+          [
+            "p8 62821",
+            "p56 59426",
+            "p210 94925",
+            "p217 18946",
+            "p386 94925",
+            "p390 2854",
+            "p402 2851",
+            "p443 18946"
+          ]
+        ],
+        "seconds": 23.9
       },
       {
         "result": "works",
@@ -434,7 +456,7 @@
             ]
           ]
         ],
-        "seconds": 11.1
+        "seconds": 11.8
       },
       {
         "result": "partly",
@@ -447,10 +469,6 @@
             1.33,
             -1.33
           ]
-        ],
-        "still": [
-          "p297 15460",
-          "p318 15461"
         ],
         "moved": [
           "p298 15460"
@@ -529,9 +547,16 @@
             "dead point"
           ]
         ],
+        "movedBy": [
+          [
+            "p297 15460",
+            "p318 15461"
+          ],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p297 15460",
-        "seconds": 27.8
+        "seconds": 29.8
       },
       {
         "result": "skipped",
@@ -598,7 +623,7 @@
             ]
           ]
         ],
-        "seconds": 3.7
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -643,7 +668,7 @@
         "pushed": [
           true
         ],
-        "seconds": 8.8
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -700,7 +725,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 21.1
+        "seconds": 22.5
       }
     ]
   }
