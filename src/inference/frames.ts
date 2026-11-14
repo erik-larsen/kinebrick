@@ -135,6 +135,9 @@ function nearMiss(group: number[], isMain: Set<number>, cyls: WorldCylinder[]): 
   for (const a of ours) {
     for (const b of theirs) {
       if (a.gender === b.gender || a.dir.clone().cross(b.dir).length() > 0.05) continue;
+      // That could fit: a section of the one of the other's radius (a pin's and its hole's), not a
+      // beam's square body by a pin's end.
+      if (!a.secs.some((s) => b.secs.some((r) => s.shape !== 'S' && r.shape !== 'S' && Math.abs(s.radius - r.radius) < 0.5))) continue;
       const offset = new Vector3().subVectors(b.start, a.start);
       const along = offset.dot(a.dir);
       if (offset.addScaledVector(a.dir, -along).length() > MISS_OFF_AXIS) continue;
