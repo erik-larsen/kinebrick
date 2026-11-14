@@ -353,21 +353,13 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // part's middle may be on the axle it spins on, where no push turns it. The way: the way that
   // point goes as the joint turns, as someone opening a door pushes it round its hinge, not along
   // the car (which would roll it). Null if the joint can't turn, or moves none of the points.
-  // How fast each point goes against what the joint turns in: a motion that turns the joint by
-  // swinging that round the part (nothing being held yet) moves none of its points, and the
-  // push would be taken to have nothing to push; against what it turns in it has, and the push
-  // finds the joint jammed, if it is (the 8081 Extreme Cruiser's doors).
   const grabOf = (body: number, control: number) => {
-    const link = kin.parentLink(body)!;
-    const motion = kin.jointMotion(link.joint);
+    const motion = kin.jointMotion(kin.parentLink(body)!.joint);
     if (!motion) return null;
     const m = parts[control].matrix;
     const points = [at[control].clone()];
     for (const k of [0, 1, 2]) for (const way of [1, -1]) points.push(at[control].clone().addScaledVector(new Vector3().setFromMatrixColumn(m, k).normalize(), way * GRAB));
-    const speeds = points.map((point) => {
-      const p = point.clone().applyMatrix4(kin.poses[body]);
-      return kin.pointVelocity(motion, body, p).sub(kin.pointVelocity(motion, link.parent, p));
-    });
+    const speeds = points.map((point) => kin.pointVelocity(motion, body, point.clone().applyMatrix4(kin.poses[body])));
     const fastest = Math.max(...speeds.map((v) => v.length()));
     if (fastest < 1e-6) return null;
     const best = speeds.findIndex((v) => v.length() >= fastest - 1e-9);
