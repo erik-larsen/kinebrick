@@ -15,5 +15,7 @@ describe('trains on track', () => {
     expect(run.travelled).toBeGreaterThan(8200);
     expect(run.offTrack).toBeLessThan(1);
     expect(run.rolled).toBeCloseTo(22, 0);
-  });
+    // Its own time limit, with room: the lap takes 134 to 152 s on a busy machine (a full check
+    // running beside it), over the 120 s every other test has.
+  }, 300_000);
 });
