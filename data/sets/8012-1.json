@@ -111,7 +111,7 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "72e665da",
     "date": "2026-11-14",
     "seconds": 2,
     "counts": {
@@ -1476,7 +1476,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -1518,7 +1518,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -1686,7 +1686,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2378 41681",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "not checked",

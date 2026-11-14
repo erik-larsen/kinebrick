@@ -202,9 +202,9 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 906,
+    "seconds": 1214,
     "counts": {
       "works": 12,
       "partly": 1,
@@ -287,7 +287,7 @@
             ]
           ]
         ],
-        "seconds": 126.8
+        "seconds": 130.1
       },
       {
         "result": "works",
@@ -317,7 +317,7 @@
             ]
           ]
         ],
-        "seconds": 102.4
+        "seconds": 151.1
       },
       {
         "result": "partly",
@@ -361,7 +361,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 36.4
+        "seconds": 54.2
       },
       {
         "result": "works",
@@ -399,7 +399,7 @@
             ]
           ]
         ],
-        "seconds": 122.8
+        "seconds": 134.3
       },
       {
         "result": "works",
@@ -443,7 +443,7 @@
             ]
           ]
         ],
-        "seconds": 12.2
+        "seconds": 18
       },
       {
         "result": "works",
@@ -473,7 +473,7 @@
             ]
           ]
         ],
-        "seconds": 12.1
+        "seconds": 19.6
       },
       {
         "result": "works",
@@ -503,7 +503,7 @@
             ]
           ]
         ],
-        "seconds": 12.6
+        "seconds": 18.2
       },
       {
         "result": "works",
@@ -533,7 +533,7 @@
             ]
           ]
         ],
-        "seconds": 12.2
+        "seconds": 18.3
       },
       {
         "result": "skipped"
@@ -561,14 +561,14 @@
               0.06
             ],
             [
-              0.75,
-              0.18
+              0.73,
+              0.17
             ]
           ],
           [
             [
-              0.75,
-              0.18
+              0.73,
+              0.17
             ],
             [
               0.23,
@@ -578,7 +578,7 @@
         ],
         "strayed": [
           "p1856 4519",
-          "p1942 4519"
+          "p1943 59443"
         ],
         "pushed": [
           true,
@@ -589,7 +589,7 @@
           [],
           []
         ],
-        "seconds": 355
+        "seconds": 522.3
       },
       {
         "result": "works",
@@ -614,40 +614,40 @@
             ]
           ]
         ],
-        "seconds": 12.6
+        "seconds": 18.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.55,
-            -1.55
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {
             "p1504 32065": [
-              0.00894,
-              40.1
+              0,
+              40
             ]
           }
         ],
         "back": [
           [
             [
-              0.26,
-              0.34
+              0,
+              0
             ],
             [
-              0.28,
-              0.34
+              0,
+              0
             ]
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 5.4
+        "seconds": 13
       },
       {
         "result": "works",
@@ -673,7 +673,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 31
+        "seconds": 39.4
       },
       {
         "result": "works",
@@ -699,7 +699,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 32
+        "seconds": 36.7
       },
       {
         "result": "skipped"

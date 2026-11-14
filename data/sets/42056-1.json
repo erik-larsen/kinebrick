@@ -197,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "0836d1dc",
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 686,
+    "seconds": 602,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -302,7 +302,7 @@
             ]
           ]
         ],
-        "seconds": 50
+        "seconds": 42.6
       },
       {
         "result": "partly",
@@ -382,7 +382,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 117
+        "seconds": 106.4
       },
       {
         "result": "partly",
@@ -476,7 +476,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 33.2
+        "seconds": 24.3
       },
       {
         "result": "partly",
@@ -516,7 +516,7 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 16.9
+        "seconds": 11.9
       },
       {
         "result": "works",
@@ -598,7 +598,7 @@
             "p2734 23800"
           ]
         ],
-        "seconds": 49.2
+        "seconds": 39.9
       },
       {
         "result": "works",
@@ -680,7 +680,7 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 55.8
+        "seconds": 52.5
       },
       {
         "result": "skipped"
@@ -761,7 +761,7 @@
           [],
           []
         ],
-        "seconds": 83.3
+        "seconds": 79
       },
       {
         "result": "works",
@@ -800,7 +800,7 @@
         "pushed": [
           true
         ],
-        "seconds": 122.2
+        "seconds": 112.3
       },
       {
         "result": "no",
@@ -860,7 +860,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2757 24119",
-        "seconds": 23.8
+        "seconds": 16.8
       },
       {
         "result": "works",
@@ -896,7 +896,7 @@
         "pushed": [
           true
         ],
-        "seconds": 57.4
+        "seconds": 53
       },
       {
         "result": "works",
@@ -940,7 +940,7 @@
           [],
           []
         ],
-        "seconds": 33.8
+        "seconds": 25
       }
     ]
   }
