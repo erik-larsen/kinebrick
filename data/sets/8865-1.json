@@ -89,7 +89,10 @@
           "p176 4143",
           "p514 3708"
         ],
-        "note": "Kinebrick today: partly, as checked, since the check holds nothing: the car stands on its rear wheels alone (the front ones are 9 LDU above the ground), and the drag rolls it along, turning the engine, rather than turning the other wheel the opposite way. With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts)."
+        "note": "Kinebrick today: partly, as checked, since the check holds nothing: the car stands on its rear wheels alone (the front ones are 9 LDU above the ground), and the drag rolls it along, turning the engine, rather than turning the other wheel the opposite way. With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts).; the engine is held, as the function says (\"with the engine held\"): the crankshaft p514, which it lists to stay and function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p514 3708"
+        ]
       },
       {
         "does": "The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.",
@@ -192,13 +195,12 @@
     ]
   },
   "generated": {
-    "commit": "7699035a",
-    "uncommitted": true,
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 50,
+    "seconds": 38,
     "counts": {
-      "works": 3,
-      "partly": 3,
+      "works": 4,
+      "partly": 2,
       "no": 4,
       "skipped": 1
     },
@@ -260,7 +262,7 @@
             ]
           ]
         ],
-        "seconds": 9.3
+        "seconds": 8
       },
       {
         "result": "works",
@@ -318,7 +320,7 @@
             ]
           ]
         ],
-        "seconds": 10.4
+        "seconds": 7.5
       },
       {
         "result": "partly",
@@ -376,37 +378,33 @@
         ],
         "cause": "not-driven",
         "detail": "p400 3707",
-        "seconds": 3.2
+        "seconds": 2.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p176 4143",
-          "p514 3708"
-        ],
         "rates": [
           {
             "p904 3739": [
               1,
-              5.68e-13
+              2.54e-12
             ],
             "p150 4143": [
               1,
-              17
+              1.78e-12
             ],
             "p176 4143": [
-              2,
-              1.24e-14
+              1.12e-7,
+              9.05e-13
             ],
             "p514 3708": [
-              1.33,
-              5.68e-14
+              1.12e-7,
+              7.46e-13
             ]
           }
         ],
@@ -422,9 +420,7 @@
             ]
           ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p176 4143",
-        "seconds": 9.7
+        "seconds": 7.7
       },
       {
         "result": "no",
@@ -483,7 +479,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 2.9
+        "seconds": 2.4
       },
       {
         "result": "no",
@@ -542,7 +538,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -599,7 +595,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -648,7 +644,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -693,7 +689,7 @@
           [],
           []
         ],
-        "seconds": 9.4
+        "seconds": 6.3
       },
       {
         "result": "partly",
@@ -748,7 +744,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 3708",
-        "seconds": 3
+        "seconds": 2
       }
     ]
   }

@@ -43,7 +43,12 @@
         "control": "p466 99008",
         "moves": [
           "p471 4519 against p468 6573"
-        ]
+        ],
+        "held": [
+          "p483 3648b",
+          "p484 3648b"
+        ],
+        "note": "the motors are held, as the function says (\"holding the motors\"): their 24 tooth gears p483 and p484, which function 1's note names as what they turn, are frozen while the shaft is turned, as a user freezes them in the viewer"
       },
       {
         "does": "The front and rear axle differentials let each axle's wheels turn at different speeds in a corner.",
@@ -59,7 +64,11 @@
           "p2936 42129 - 69912 against p1309 65414c01",
           "p2934 42129 - 69912 against p1032 65414c01"
         ],
-        "note": "With the drive held, turning one wheel turns the other on the same axle backwards (until the rear lock is engaged)."
+        "note": "With the drive held, turning one wheel turns the other on the same axle backwards (until the rear lock is engaged).; the drive is held, as the note says (\"With the drive held\"): the drive's input, the motors' 24 tooth gears p483 and p484 that function 1 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p483 3648b",
+          "p484 3648b"
+        ]
       },
       {
         "does": "The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.",
@@ -137,10 +146,10 @@
     ]
   },
   "generated": {
-    "commit": "7699035a",
+    "commit": "11f1b8c1",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 539,
+    "seconds": 218,
     "counts": {
       "partly": 4,
       "works": 3,
@@ -303,7 +312,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 66.9
+        "seconds": 41.9
       },
       {
         "result": "works",
@@ -317,7 +326,7 @@
           {
             "p471 4519 against p468 6573": [
               1,
-              2.2e-13
+              2.58e-13
             ]
           }
         ],
@@ -333,7 +342,7 @@
             ]
           ]
         ],
-        "seconds": 34.6
+        "seconds": 19.9
       },
       {
         "result": "partly",
@@ -355,11 +364,11 @@
           {
             "p2936 42129 - 69912 against p1309 65414c01": [
               5.62e-8,
-              1.84e-8
+              2.94e-8
             ],
             "p2934 42129 - 69912 against p1032 65414c01": [
               4.4,
-              1.66e-12
+              1.4e-12
             ]
           }
         ],
@@ -386,7 +395,7 @@
           ]
         ],
         "cause": "control-fixed",
-        "seconds": 164.1
+        "seconds": 67.1
       },
       {
         "result": "partly",
@@ -439,7 +448,7 @@
         ],
         "cause": "loose-part",
         "detail": "p513 18947",
-        "seconds": 35.4
+        "seconds": 11.9
       },
       {
         "result": "works",
@@ -477,7 +486,7 @@
             ]
           ]
         ],
-        "seconds": 36.3
+        "seconds": 12.5
       },
       {
         "result": "partly",
@@ -576,10 +585,11 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 149.2
+        "seconds": 51
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -609,7 +619,7 @@
             ]
           ]
         ],
-        "seconds": 31.1
+        "seconds": 11.7
       }
     ]
   }

@@ -53,7 +53,10 @@
         "moves": [
           "p974 56908 against p464 65414c01"
         ],
-        "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way."
+        "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way.; the motor's gear is held, as the function says (\"when the motor's gear is held\"): the 36 tooth gear p889 on the motor's shaft, which function 2's note names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p889 32498"
+        ]
       },
       {
         "does": "Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber.",
@@ -117,8 +120,7 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
     "seconds": 4,
     "counts": {
@@ -179,7 +181,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -236,7 +238,7 @@
         ],
         "cause": "not-driven",
         "detail": "p889 32498",
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -252,8 +254,8 @@
         "rates": [
           {
             "p974 56908 against p464 65414c01": [
-              2.81e-8,
-              1.2e-13
+              0,
+              8.47e-14
             ]
           }
         ],
@@ -269,9 +271,12 @@
             ]
           ]
         ],
+        "why": [
+          "p974 56908 against p464 65414c01 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "no",
@@ -424,7 +429,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 1
       }
     ]
   }

@@ -173,6 +173,11 @@ interface Fn {
   stays?: string[];
   first?: { control: string; by: number }[];
   together?: boolean; // the controls are worked as one, turning together (see turnTogether)
+  // Parts whose bodies are frozen while the control is worked, as the viewer's Alt-click freezes
+  // them: what the function's text says is held (the 8464's drive, for its differentials). Or,
+  // by control, the parts each one's working holds (the 42000's "turning one rear wheel with the
+  // other held": each rear wheel holds the other).
+  held?: string[] | Record<string, string[]>;
   skip?: string;
   model?: string; // its own model, for a set with several (the 858's four engines)
 }
@@ -539,6 +544,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       }
       const reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
       if (fn.together) together = controls.map((r) => worked(part(r)));
+      // What the function's text says is held is frozen, as a user would freeze it in the viewer
+      // (Alt-click) before working the control.
+      const heldNow = Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []);
+      kin.frozen = new Set(heldNow.map((r) => mech.bodyOf[part(r)]));
       const start = kin.snapshot();
       const startPoses = kin.poses.map((m) => m.clone());
       // Worked by a push, as the viewer would (see isPushed), or by a turn on its joint.
@@ -616,6 +625,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
       });
       kin.restore(start);
+      kin.frozen = new Set();
       together = [];
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];

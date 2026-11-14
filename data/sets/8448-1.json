@@ -97,7 +97,11 @@
         "stays": [
           "p31 3706",
           "p100 3737"
-        ]
+        ],
+        "held": [
+          "p31 3706"
+        ],
+        "note": "the drive is held, as the function says (\"with the drive held\"): the propeller shaft p31, which it lists to stay and function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",
@@ -202,15 +206,15 @@
     ]
   },
   "generated": {
-    "commit": "7699035a",
+    "commit": "11f1b8c1",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 56,
+    "seconds": 30,
     "counts": {
-      "partly": 6,
+      "partly": 5,
       "works": 1,
+      "no": 3,
       "not back": 1,
-      "no": 2,
       "skipped": 2
     },
     "loose": [
@@ -290,7 +294,7 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 4.9
+        "seconds": 3.4
       },
       {
         "result": "partly",
@@ -360,7 +364,7 @@
         ],
         "cause": "too-little",
         "detail": "p594 2851",
-        "seconds": 17
+        "seconds": 11.8
       },
       {
         "result": "works",
@@ -402,37 +406,37 @@
             ]
           ]
         ],
-        "seconds": 4.6
+        "seconds": 2.9
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
-        "moved": [
-          "p31 3706",
-          "p100 3737"
+        "still": [
+          "p481 32196",
+          "p237 6589"
         ],
         "rates": [
           {
             "p481 32196": [
-              1,
-              2.29e-13
+              0,
+              0
             ],
             "p237 6589": [
-              1,
-              17
+              0,
+              0
             ],
             "p31 3706": [
-              1.5,
-              2.28e-13
+              0,
+              0
             ],
             "p100 3737": [
-              1.5,
-              1.69e-14
+              0,
+              0
             ]
           }
         ],
@@ -448,9 +452,14 @@
             ]
           ]
         ],
-        "cause": "stay-forced",
-        "detail": "p31 3706",
-        "seconds": 12.4
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "cause": "stopped-early",
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -552,7 +561,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1.3
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -590,7 +599,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 5
+        "seconds": 3.1
       },
       {
         "result": "skipped",
@@ -684,7 +693,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 4.9
+        "seconds": 3.4
       },
       {
         "result": "partly",
@@ -731,7 +740,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 4.5
+        "seconds": 2.8
       },
       {
         "result": "skipped",

@@ -99,7 +99,11 @@
         ],
         "stays": [
           "p123 3648b"
-        ]
+        ],
+        "held": [
+          "p123 3648b"
+        ],
+        "note": "the reel's drive is held, as the function says (\"with the reel's drive held\"): p123, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The white unloading auger swings out from the grain tank to the side and back in along the body.",
@@ -144,13 +148,12 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 20,
+    "seconds": 21,
     "counts": {
       "works": 3,
-      "not back": 5,
+      "not back": 4,
       "partly": 3,
       "not checked": 1
     },
@@ -399,7 +402,7 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -463,7 +466,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 4.1
+        "seconds": 5
       },
       {
         "result": "partly",
@@ -537,7 +540,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 2
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -547,21 +550,21 @@
             -1.5
           ]
         ],
-        "moved": [
-          "p123 3648b"
+        "still": [
+          "p18 6573"
         ],
         "rates": [
           {
             "p968 41896": [
-              0.111,
+              1,
               0
             ],
             "p18 6573": [
-              0.444,
-              2.27e-13
+              0,
+              1.89e-13
             ],
             "p123 3648b": [
-              0.444,
+              0,
               0
             ]
           }
@@ -573,17 +576,14 @@
               0
             ],
             [
-              0.97,
-              0.22
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p1081 6536"
-        ],
-        "cause": "stay-chosen",
-        "detail": "p123 3648b",
-        "seconds": 1.9
+        "cause": "not-driven",
+        "detail": "p18 6573",
+        "seconds": 2.1
       },
       {
         "result": "partly",
@@ -627,7 +627,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -706,7 +706,7 @@
           [],
           []
         ],
-        "seconds": 8.2
+        "seconds": 7.9
       },
       {
         "result": "not checked",
