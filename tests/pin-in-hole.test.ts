@@ -20,6 +20,13 @@ describe('a pin in a plate', () => {
     expect(kinds).not.toContain('stud');
   });
 
+  it("lets a round part on a single stud turn on it: a 1 x 1 round brick (3062b) on a brick's stud, its bore given as an anti-stud and as a hole", () => {
+    // The round brick's bottom on the top of a brick 2 x 4 (3001), over its stud at 10 0 10.
+    const kinds = between([placed('3001.dat', 0, 0, 0), placed('3062b.dat', 10, -24, 10)]).map((c) => c.kind);
+    expect(kinds).toContain('revolute');
+    expect(kinds).not.toContain('stud');
+  });
+
   it("holds by its end in a plate's anti-stud, where it doesn't turn in a hole (a half pin under a plate)", () => {
     // A half pin (4274, along its x), its short end (x 0 to 4) up in the 3176's anti-stud at
     // -10 8 -10: its x turned to the plate's -y.
