@@ -26,13 +26,13 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 
 | Result | Functions |
 |---|---|
-| Works | 626 |
-| Partly | 274 |
+| Works | 638 |
+| Partly | 262 |
 | Doesn't work | 147 |
 | Skipped (needs force) | 119 |
 | Not checked (nothing worked by hand) | 58 |
 
-In 40 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 77 more sets are one or two checked functions short.
+In 41 sets, every checked function works. In 21 of those, no function is skipped or unchecked either. 78 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
@@ -416,6 +416,7 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 32. **Erik took back two answers, and a set's function is settled from the booklet and a video together.** His first answers for the 8258 (outriggers pulled out by hand) and the 8081 (doors fixed) were wrong: the 8258's Power Functions leaflet shows the outriggers motor-driven through a lever and the red handle, and a review video shows the 8081's doors swinging up about their lower front corner with no pin pulled. Review videos, found through Google's summary, are a named source beside the booklet: the summary points and the video proves. An answer about a set, from anyone, is checked against the functions page. The audit of the first 28 sets is docs/audits/function-lists-batch-1.md; its table waits for Erik's sign-off, and the other 158 sets for his word. In the 8258, one setting of the four drives the outriggers (the second lever's catch p171 by -0.4), which also shows the list had its two levers the wrong way round; the 8081's rear door pin, which holds the door shut in the file, is most likely an erratum.
 33. **Shock absorbers slide, and a file may hold more than one model.** About 95 two-part shock absorbers in 27 sets were not joined at all, their rod or bore missing or cut short in the part data. They are mended once: the rod slides in its cylinder with end stops from the parts' shapes and no spring until the physics, where the rule so far made a joined pair a rigid strut; the solver owner confirmed that free sliding suspension is sound in the solver. A second vehicle in a set's file (five or six sets, 17 functions) is read as a further frame of one mechanism, not as a loose group welded to the nearest part and not as a mechanism of its own, so what joins or touches the two is kept; the solver owner builds its side after the tree's roots, about a day and a full check, and every set with one model must come out the same. The sliding CV ball of decision 28 is parked: on 12 sets it made nothing better and three functions worse, a half shaft that can slide at both ends drifting along its own line.
 34. **Findings go upstream once, near the end.** The errata in LDraw models and the connection data for parts the LDCad shadow library lacks are worth reporting to the OMR and to the library, but Erik wants one report when close to all sets work, not repeated updates. Until then they are recorded here as they are found and signed off.
+35. **The solver owner's mends of the check are in: 638 functions work where 626 did.** Its branch, merged with preview 4350f07 and checked in full (102 minutes): 13 better and 0 worse by result. Twelve go from partly to working (the 42055's function 7, the 42060's 6, the 42066's 2, the 42100's 5 and 6, the 42108's 5, the 8002's 3, the 8273's 9, the 8448's 2, the 856's 1, the 8862's 8 and 9), by the longer turn for a function geared far down, the push aimed afresh at each step, the rate rule and the piston rule; the 42078's function 4 now comes back. Four end further out of place and stay on the solver owner's list: the 42037's function 2 (136 LDU) and the 8002's function 6 (150 degrees) from the push's new aim, the 8259's function 1 (2.4 LDU), and the 42066's function 2 (391 LDU for 245), which now works only because it is turned much further. Preview was held from 4350f07 until this merge so that the branch was checked against the preview it joined; the worker's branches built meanwhile go in after it, the loose-part rule first.
 
 
 ## First steps

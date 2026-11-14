@@ -87,10 +87,9 @@
     }
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "works": 3,
       "not checked": 1
@@ -246,7 +245,7 @@
             "p100 3652 against p0 3702"
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -290,7 +289,7 @@
           [],
           []
         ],
-        "seconds": 1.4
+        "seconds": 2
       },
       {
         "result": "not checked",

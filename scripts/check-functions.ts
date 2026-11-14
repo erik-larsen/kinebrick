@@ -71,7 +71,7 @@ import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Mechanism, meshesChanged } from '../src/mechanism.ts';
-import { pointDirections, pushStep } from '../src/push.ts';
+import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
@@ -84,9 +84,15 @@ import { pistonAt, sliderCranks } from './slider-cranks.ts';
 const SETS_DIR = join('data', 'sets');
 // How far a control is turned each way (radians), or pushed (LDU) if it slides.
 const REACH = 1.5;
+// How far a control is turned each way, at most, when its parts would move too little at REACH:
+// three turns, enough for a part beyond a worm or a linear actuator (the 42100 Liebherr R 9800's
+// boom, through its actuators, goes 0.25 LDU at REACH and 3 at this).
+const LONG_REACH = 6 * Math.PI;
 const PUSH = 20;
 // A part counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
+// A part counts as moving at all if it went at least this far (LDU) or turned this much (degrees).
+const STIRRED = 0.01;
 const LIMIT_MINUTES = 60;
 // A drag is measured in pieces of this many radians (or LDU, for a slide), adding up how far each
 // part went in each: a part geared up turns further than half a turn, which its pose alone can't
@@ -277,14 +283,14 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   };
   // Whether a part moved against its body, from the poses at `start` to now, or is a driving
   // ring a catch has shifted (`shifted`).
-  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[], shifted: Map<number, number>) => {
+  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[], shifted: Map<number, number>, least = MOVED) => {
     if (shifted.has(part)) return true;
     const rel = (poses: Matrix4[]) => poses[body].clone().invert().multiply(poses[mech.bodyOf[part]]);
     const was = rel(start);
     const is = rel(kin.poses);
     const went = at[part].clone().applyMatrix4(is).distanceTo(at[part].clone().applyMatrix4(was));
     const q = new Quaternion().setFromRotationMatrix(was.clone().invert().multiply(is));
-    return went >= MOVED || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= MOVED;
+    return went >= least || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= least;
   };
   // The body a control works: its own, or for a motor named as the control, what turns in it
   // (its output's axle), as the motor would turn it.
@@ -315,8 +321,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return 2 * Math.acos(Math.min(1, Math.abs(q.w)));
   };
   // turn, in pieces (see PIECE), adding up how far each of `parts` turns (radians) and slides
-  // (LDU) against its body on the way, and calling `each` after each piece.
-  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}) => {
+  // (LDU) against its body on the way, and calling `each` after each piece. With `enough`, the
+  // turn also ends, short of `amount`, after the first piece that leaves it true.
+  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}, enough = (_turned: number) => false) => {
     const joint = kin.parentLink(body)!.joint;
     if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
@@ -346,6 +353,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
         break;
       }
+      if (enough(turned)) break;
     }
     kin.letGoAfterDrag();
     return { turned, went, halt };
@@ -410,6 +418,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         halt = 'no motion';
         break;
       }
+      // Each step is aimed along the way the grab point now goes on the control's joint (see
+      // wayOnJoint), as a hand follows a door round, and not along the line it first went.
+      const way = wayOnJoint(kin, body, grabNow());
+      if (way) dir.copy(way.dot(dir) >= 0 ? way : way.negate());
       const step = Math.min(PUSH_STEP, far - length);
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
@@ -542,7 +554,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
         return nothing(early ?? { cause: 'control-fixed' });
       }
-      const reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
+      // How far the control is worked each way. A function whose parts would move too little
+      // (the cause too-little) is worked again, further (see LONG_REACH), and judged then; it
+      // still counts as having gone far enough at half its usual reach.
+      let reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
+      const half = reach / 2;
       if (fn.together) together = controls.map((r) => worked(part(r)));
       // What the function's text says is held is frozen, as a user would freeze it in the viewer
       // (Alt-click) before working the control.
@@ -562,7 +578,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // have, those that moved and shouldn't have, and how far the control went.
       const listedAs = (m: { ref: string; part: number; body: number }): Listed => ({ ref: m.ref, body: mech.bodyOf[m.part], against: m.body });
       const explain = (still: string[], wrong: string[], turned: number): Explained =>
-        early ?? causeOf(kin, { body: b, parent: link.parent }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= reach / 2);
+        early ?? causeOf(kin, { body: b, parent: link.parent }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= half);
       if (causesOnly) return nothing(explain(prior!.still ?? [], prior!.moved ?? [], Math.max(0, ...(prior!.turned?.[wi] ?? []).map(Math.abs))));
       // How far the control really turns: against what its shaft turns in (see housing), not
       // just its joint's angle, which a shaft spinning back under it makes up without the
@@ -578,15 +594,32 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const l = line(mech, (x) => kin.parentLink(x), c)!.joints;
         return l.reduce((sum, j) => sum + kin.jointAngles[j.joint] * Math.sign(j.axis.dot(l[0].axis)), 0);
       };
-      const each = [1, -1].map((way) => {
+      const bothWays = () => [1, -1].map((way) => {
         kin.restore(start);
         // How far each piston should slide, piece by piece, as its crank turns.
         let was = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
+        // How far each went in the last piece: where it's heading is where it was and that again.
+        const last = pistons.map(() => 0);
         const should = pistons.map(() => 0);
-        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : { ...turnMeasuring(b, amount, parts, after), pushed: null });
+        // The longer turn (see LONG_REACH) goes only as far as it needs: past the usual reach,
+        // it ends once the parts to move have moved. For a function whose controls share out the
+        // parts, the parts this control moves at all (by more than STIRRED) must have moved, and
+        // at least one must. Turned the whole three turns each way, the 42100 Liebherr R 9800's
+        // function 6 took over an hour.
+        const enough = (turned: number) => {
+          if (reach !== LONG_REACH || Math.abs(turned) < REACH) return false;
+          const done = moves.filter((m) => moved(m, startPoses, new Map())).length;
+          if (!shared) return done === moves.length;
+          const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
+          return done > 0 && done === stirred;
+        };
+        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
-          const now = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
-          now.forEach((x, k) => (should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!)));
+          const now = pistons.map((p, k) => pistonAt(p.sc, crankAngle(p.sc.crank), was[k] === null ? undefined : was[k]! + last[k]));
+          now.forEach((x, k) => {
+            should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!);
+            last[k] = x === null || was[k] === null ? 0 : x - was[k]!;
+          });
           was = now;
         });
         const went = measured.went;
@@ -594,12 +627,23 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const joint = measured.turned;
         const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
         const shifted = catchShifts(placedNow(), table, catches);
-        const still = moves.filter((m) => !moved(m, startPoses, shifted)).map((m) => m.ref);
-        const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const rates: Record<string, [number, number]> = {};
         listed.forEach((m, k) => (rates[m.ref] = Math.abs(turned) > 1e-6 ? [sig(went[k][0] / Math.abs(turned)), sig(went[k][1] / Math.abs(turned))] : [0, 0]));
         // A rate is the part's turning, or its sliding if it slides on its joint.
-        const rateOf = (m: (typeof listed)[number]) => rates[m.ref][kin.parentLink(mech.bodyOf[m.part]) && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide' ? 1 : 0];
+        const slidesOn = (m: (typeof listed)[number]) => kin.parentLink(mech.bodyOf[m.part]) !== null && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide';
+        const rateOf = (m: (typeof listed)[number]) => rates[m.ref][slidesOn(m) ? 1 : 0];
+        // A part geared so far down that, as far as the control turned, its gears move it less
+        // than MOVED, is judged by its rate instead: it moved if it went at the rate its gears give
+        // it (within RATE_OFF). Only a part whose gears give it a rate (`expected`); the rest are
+        // judged by how far they went.
+        const slowGeared = (m: (typeof listed)[number]) => {
+          const rate = expected[m.ref];
+          if (!(rate > 0) || Math.abs(turned) < 0.01) return false;
+          const least = slidesOn(m) ? MOVED : (MOVED * Math.PI) / 180;
+          return rate * Math.abs(turned) < least && Math.abs(rateOf(m) - rate) <= RATE_OFF * rate;
+        };
+        const still = moves.filter((m) => !moved(m, startPoses, shifted) && !slowGeared(m)).map((m) => m.ref);
+        const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
         // Each piston's slide in its cylinder, against what its crank's turn says, both for
         // each radian the control turned.
@@ -621,16 +665,28 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
         // For a function whose controls share out the parts, a way does its share if it moves
         // at least one of them (if it lists any).
-        const share = Math.abs(turned) >= reach / 2 && !wrong.length && (!moves.length || still.length < moves.length);
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
+        const share = Math.abs(turned) >= half && !wrong.length && (!moves.length || still.length < moves.length);
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : Math.abs(turned) >= half && !still.length && !wrong.length };
       });
+      // The better way: one that works, or else the one with fewer wrong parts that went further.
+      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
+      let each = bothWays();
       kin.restore(start);
+      let best = bestOf(each);
+      let explained = best.works ? null : explain(best.still, best.moved, best.turned);
+      // Parts geared so far down that the usual reach moves them too little: worked again, up
+      // to LONG_REACH each way, a limit met on the way ending the turn as usual. Not a slide's
+      // control, whose reach is in LDU.
+      if (explained?.cause === 'too-little' && !slides) {
+        reach = LONG_REACH;
+        each = bothWays();
+        kin.restore(start);
+        best = bestOf(each);
+        explained = best.works ? null : explain(best.still, best.moved, best.turned);
+      }
       kin.frozen = new Set();
       together = [];
-      // The better way: one that works, or else the one with fewer wrong parts that went further.
-      const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
-      const explained = best.works ? null : explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
       const heading = (j: number, poses: Matrix4[]) => {
