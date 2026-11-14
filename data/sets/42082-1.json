@@ -252,13 +252,13 @@
     ]
   },
   "generated": {
-    "commit": "982f6976",
+    "commit": "0aa5c793",
     "date": "2026-11-14",
-    "seconds": 2778,
+    "seconds": 2768,
     "counts": {
       "no": 1,
-      "works": 2,
-      "partly": 6,
+      "works": 1,
+      "partly": 7,
       "not back": 1,
       "not checked": 1
     },
@@ -727,7 +727,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 42.8
+        "seconds": 66.7
       },
       {
         "result": "works",
@@ -957,7 +957,7 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 795.9
+        "seconds": 871.9
       },
       {
         "result": "partly",
@@ -996,7 +996,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1223 2854",
-        "seconds": 250
+        "seconds": 211.1
       },
       {
         "result": "partly",
@@ -1075,7 +1075,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 266.2
+        "seconds": 223.1
       },
       {
         "result": "partly",
@@ -1123,7 +1123,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 145.5
+        "seconds": 156.9
       },
       {
         "result": "partly",
@@ -1176,7 +1176,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 133.5
+        "seconds": 197.8
       },
       {
         "result": "partly",
@@ -1224,7 +1224,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 133.5
+        "seconds": 199.8
       },
       {
         "result": "partly",
@@ -1270,46 +1270,53 @@
             ]
           ]
         ],
+        "why": [
+          "p3371 2736 against p3076 3703 is held by friction pins the control doesn't reach"
+        ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 177.5
+        "seconds": 158.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.51,
-            -1.52
+            1.5,
+            -1.5
           ]
+        ],
+        "still": [
+          "p3789 32524 against p2649 64179"
         ],
         "rates": [
           {
             "p3789 32524 against p2649 64179": [
-              2.22e-7,
-              44.7
+              5.62e-8,
+              2.45e-13
             ]
           }
         ],
         "back": [
           [
             [
-              8.39,
-              1.67
+              69.1,
+              7.08
             ],
             [
-              369.26,
-              162.34
+              68.83,
+              7.08
             ]
           ]
         ],
         "strayed": [
-          "p4116 42082 - 60169k02"
+          "p4057 18651"
         ],
-        "pushed": [
-          true
+        "why": [
+          "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
         ],
-        "freed": 2,
-        "seconds": 500.9
+        "cause": "part-fixed",
+        "detail": "p3789 32524 against p2649 64179",
+        "seconds": 383.4
       },
       {
         "result": "not checked"
