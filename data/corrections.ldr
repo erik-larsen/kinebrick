@@ -303,6 +303,10 @@
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Wheel Hub (a piece of 46490c01): a round bearing on its axis (z), turning in the bearing body
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 2996.dat
+0 // Wheel Rim 30 x 30 with 40mm Diameter Rear Rim: tyre seat round its barrel, the 34 LDU radius cylinder between z -25 and 19 in its shape, where its tyre (2995, whose bore is 34) sits; measured, it took the 54 LDU flange of its 40 mm rear rim instead, and the tyre was read loose
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 34 44] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 6542a.dat
 0 // Technic Gear 16 Tooth with Clutch: its clutch face is the 5 LDU at its +z end
 0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
