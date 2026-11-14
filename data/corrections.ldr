@@ -670,3 +670,14 @@
 0 FILE 3278.dat
 0 // Tap 1 x 2 Spout: its pin as the shadow library has it, axle-shaped too, fixing it in its base (3496)
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 4 10] [pos=0 -15.575 -13.588] [ori=1 0 0 0 0.492 0.87 0 -0.87 0.492]
+
+0 FILE 41681.dat
+0 // Technic Beam 3.8 x 1 Liftarm with Click Rotation Ring Socket: the shadow library closes its click rotation socket at one end (caps=one) with a pin's bore and the groove its tip clicks into, but no pin hole's collar, so no rule takes a pin in it (the 8012's arms, on 41680). Open here, so the pin of a 41680 turns in it; the 41680 is a friction pin (data/roles.json), so it turns stiffly and holds where it's set, as the click rotation does. Its other lines as the shadow library has them, and the axle hole its LDraw shape gives it.
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 20] [center=true]
+0 !LDCAD SNAP_INCL [ref=connhole.dat] [pos=0 0 -20]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 16   R 6.25 4] [pos=0 0 -58] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 47508.dat
+0 // Excavator Bucket 8 x 4 with Click Hinge 2-Finger: its fingers are the click hinge primitive clh11, which the shadow library gives nothing. The slot between its two fingers, along x through its origin, takes a 1-finger click hinge (47973's, an H section of radius 4 and length 8), so it is given here as that finger's female, 8 long.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=H 4 8] [center=true] [ori=0 -1 0 1 0 0 0 0 1]
