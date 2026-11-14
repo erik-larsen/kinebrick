@@ -72,6 +72,7 @@
           "p273 2850a"
         ],
         "note": "With one rear wheel held, the other turns the opposite way through the differential. Each rear wheel is turned with the other held, as the note says (\"With one rear wheel held, the other turns the opposite way through the differential\"): each control's working freezes the other rear wheel, as a user freezes it in the viewer",
+        "lifted": true,
         "held": {
           "p701 44772": [
             "p706 44772"
@@ -219,15 +220,15 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
+    "commit": "5cf99f0b",
     "date": "2026-11-14",
-    "seconds": 321,
+    "seconds": 368,
     "counts": {
-      "works": 7,
-      "no": 2,
+      "works": 8,
       "not back": 2,
       "partly": 1,
       "not checked": 1,
+      "no": 1,
       "skipped": 1
     },
     "loose": [
@@ -309,7 +310,7 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -339,53 +340,45 @@
             ]
           ]
         ],
-        "seconds": 9.9
+        "seconds": 5.9
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p199 6573",
-          "p29 32270",
-          "p37 4019",
-          "p257 2853",
-          "p269 2851",
-          "p259 2852"
         ],
         "rates": [
           {
             "p199 6573": [
-              0,
-              0
+              0.5,
+              7.11e-15
             ],
             "p29 32270": [
-              0,
-              0
+              1,
+              1.07e-14
             ],
             "p37 4019": [
-              0,
+              1,
               0
             ],
             "p257 2853": [
-              0,
-              0
+              1,
+              1.89e-14
             ],
             "p269 2851": [
               0,
-              0
+              5.35
             ],
             "p259 2852": [
-              0,
-              0
+              0.168,
+              10
             ],
             "p273 2850a": [
               0,
@@ -394,33 +387,41 @@
           },
           {
             "p199 6573": [
-              0,
-              0
+              0.5,
+              1.5e-13
             ],
             "p29 32270": [
-              0,
-              0
+              1,
+              2.84e-14
             ],
             "p37 4019": [
-              0,
-              0
+              1,
+              9.47e-15
             ],
             "p257 2853": [
-              0,
-              0
+              1,
+              3.79e-14
             ],
             "p269 2851": [
               0,
-              0
+              5.35
             ],
             "p259 2852": [
-              0,
-              0
+              0.168,
+              10
             ],
             "p273 2850a": [
               0,
               0
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p269 2851": 5.35
+          },
+          {
+            "p269 2851": 5.35
           }
         ],
         "back": [
@@ -445,23 +446,25 @@
             ]
           ]
         ],
-        "stop": [
+        "movedBy": [
           [
-            "no motion",
-            "no motion"
+            "p199 6573",
+            "p29 32270",
+            "p37 4019",
+            "p257 2853",
+            "p269 2851",
+            "p259 2852"
           ],
           [
-            "no motion",
-            "no motion"
+            "p199 6573",
+            "p29 32270",
+            "p37 4019",
+            "p257 2853",
+            "p269 2851",
+            "p259 2852"
           ]
         ],
-        "movedBy": [
-          [],
-          []
-        ],
-        "cause": "part-fixed",
-        "detail": "p269 2851",
-        "seconds": 0.8
+        "seconds": 25.1
       },
       {
         "result": "works",
@@ -505,7 +508,7 @@
           [],
           []
         ],
-        "seconds": 18.2
+        "seconds": 10
       },
       {
         "result": "works",
@@ -539,7 +542,7 @@
             ]
           ]
         ],
-        "seconds": 4.8
+        "seconds": 5.1
       },
       {
         "result": "works",
@@ -621,7 +624,7 @@
             "p65 3706"
           ]
         ],
-        "seconds": 84.8
+        "seconds": 90.2
       },
       {
         "result": "partly",
@@ -692,7 +695,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 9.9
+        "seconds": 12.7
       },
       {
         "result": "works",
@@ -806,7 +809,7 @@
             "p1004 64782"
           ]
         ],
-        "seconds": 19.5
+        "seconds": 20.9
       },
       {
         "result": "not checked"
@@ -889,7 +892,7 @@
           [],
           []
         ],
-        "seconds": 161.5
+        "seconds": 181.6
       },
       {
         "result": "no",

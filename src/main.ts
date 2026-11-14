@@ -139,6 +139,9 @@ const MAX_RPM = 300;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
 // not the model's own (see modelSettings in ldr.ts).
 const SCRUB_PARAM = percent(params.get('scrub'));
+// ?lifted=1: the model lifted off the ground, as held in the hand (see Options.lifted in
+// kinematics.ts). Set with the "Lift off the ground" option too.
+const LIFTED = params.get('lifted') === '1';
 // The most the Tyre scrub option allows, in percent; and how far over what a motion needs it's
 // raised when a motion needs more than it allows (see allowScrub below).
 const MAX_SCRUB = 30;
@@ -494,7 +497,9 @@ async function start() {
   // says otherwise.
   const modelScrub = modelSettings(modelText).scrub ?? DEFAULT_SCRUB * 100;
   let scrub = SCRUB_PARAM ?? modelScrub;
-  let kin = new Kinematics(mech);
+  // Whether the model is lifted off the ground (see LIFTED).
+  let lifted = LIFTED;
+  let kin = new Kinematics(mech, { lifted });
   kin.scrub = scrub / 100;
   let sliders: Slider[] = [];
   let sticks: Stick[] = [];
@@ -549,7 +554,7 @@ async function start() {
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
     mech = known ?? inferMechanism(parts, table, roles, paths, freed);
-    kin = new Kinematics(mech);
+    kin = new Kinematics(mech, { lifted });
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
@@ -832,6 +837,7 @@ async function start() {
     focus: focusOn,
     symbols: !badgeRenderer.domElement.hidden,
     scrub,
+    lifted,
   };
   const keepOption = (name: string, on: boolean) => {
     const options = new Set(OPTIONS.filter((o) => o));
@@ -982,6 +988,23 @@ async function start() {
     else params.set('scrub', String(scrub));
     history.replaceState(null, '', address());
   };
+  // The model lifted off the ground, or set down on it again (see LIFTED): the solver is made
+  // afresh with it so, posed as the model now is, with the same parts frozen. Kept in the address.
+  gui.add(settings, 'lifted').name('Lift off the ground').onChange((on: boolean) => {
+    lifted = on;
+    const was = kin;
+    kin = new Kinematics(mech, { lifted });
+    kin.scrub = scrub / 100;
+    kin.poseAs(was.poses, was.jointAngles);
+    for (const body of was.frozenBodies()) kin.toggleFreeze(body);
+    setup.kin = kin;
+    interaction.motionsChanged();
+    showPoses();
+    showFrozen();
+    if (on) params.set('lifted', '1');
+    else params.delete('lifted');
+    history.replaceState(null, '', address());
+  });
   // While a part is kept turning, the camera follows the model: it moves by however far the
   // frame's middle moved, so the model stays in view while you still orbit and zoom around it.
   const frameMiddle = ldrawSpace.worldToLocal(new Box3().setFromObject(model).getCenter(new Vector3())); // LDraw coordinates

@@ -84,10 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 6,
+    "seconds": 8,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -238,6 +237,9 @@
             ]
           ]
         ],
+        "why": [
+          "p213 64782 against p300 32278 is held by friction pins the control doesn't reach"
+        ],
         "movedBy": [
           [
             "p317 32198 against p0 32140",
@@ -251,7 +253,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 4
+        "seconds": 5.5
       },
       {
         "result": "works",
@@ -281,7 +283,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -357,7 +359,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.6
       }
     ]
   }

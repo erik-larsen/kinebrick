@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 18 works, 7 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 19 works, 6 partly, 5 no.
 
 ## By decade
 
@@ -56,7 +56,7 @@ Each detail by the set it first appears in.
 
 **1979, [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer)**
 
-- *loader arms:* The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise. (partly)
+- *loader arms:* The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise. (works)
 - *bucket:* The handwheel at the back on the right tips the bucket: its 8-tooth gear turns a crown gear, which turns the 24-tooth gear on the axle across the top of the cab; that axle's two 8-tooth gears slide two racks along the cab sides, which work a pair of levers on the arms' pivot axle, and rods from there through levers on the arms tip the bucket at the arm tips. (works)
 
 **1979, [950 Fork Lift](https://erik-larsen.github.io/kinebrick/?model=950-Fork%20Lift)**

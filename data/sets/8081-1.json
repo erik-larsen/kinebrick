@@ -78,6 +78,7 @@
           "p95 6589"
         ],
         "note": "with the engine held still, turning one rear wheel turns the other the opposite way; the engine is held, as the note says (\"with the engine held still\"): the crankshaft p154, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
         "held": [
           "p154 2853"
         ]
@@ -168,14 +169,13 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
-    "uncommitted": true,
+    "commit": "5cf99f0b",
     "date": "2026-11-14",
-    "seconds": 19,
+    "seconds": 24,
     "counts": {
-      "works": 4,
+      "works": 5,
       "not back": 1,
-      "no": 4,
+      "no": 3,
       "skipped": 1
     },
     "loose": [],
@@ -250,7 +250,7 @@
             ]
           ]
         ],
-        "seconds": 8.5
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -402,24 +402,21 @@
             "p164 2851"
           ]
         ],
-        "seconds": 7.6
+        "seconds": 8.8
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p95 6589"
         ],
         "rates": [
           {
             "p95 6589": [
-              0,
-              0
+              1,
+              2.37e-14
             ]
           }
         ],
@@ -435,14 +432,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 1
       },
       {
         "result": "works",
@@ -477,7 +467,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1.2
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -546,7 +536,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -571,7 +561,7 @@
           "p415 32278 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -682,7 +672,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.1
       }
     ]
   }

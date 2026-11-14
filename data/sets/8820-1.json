@@ -86,10 +86,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "partly": 2,
       "not back": 2,
@@ -178,7 +177,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p125 3482",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -362,7 +361,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p102 3894",
-        "seconds": 0.7
+        "seconds": 0.9
       }
     ]
   }

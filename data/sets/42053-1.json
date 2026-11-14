@@ -161,10 +161,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
+    "commit": "72e665da",
     "date": "2026-11-14",
-    "seconds": 27,
+    "seconds": 38,
     "counts": {
       "skipped": 4,
       "works": 3,
@@ -333,7 +332,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 4.8
+        "seconds": 6.3
       },
       {
         "result": "works",
@@ -347,7 +346,7 @@
           {
             "p78 32270": [
               1,
-              2.84e-14
+              2.37e-15
             ],
             "p66 87761": [
               2.81e-8,
@@ -363,38 +362,37 @@
             ],
             "p96 59426": [
               0,
-              2.84e-14
+              1.42e-14
             ],
             "p97 59426": [
               0,
-              9.46e-15
+              4.74e-15
             ],
             "p284 18939": [
               0,
-              0
+              4.11e-31
             ]
           }
         ],
         "back": [
           [
             [
-              0.52,
-              0.49
+              0.51,
+              0.48
             ],
             [
-              0.52,
-              0.49
+              0.51,
+              0.48
             ]
           ]
         ],
         "strayed": [
-          "p2703 15535",
-          "p2709 15535"
+          "p2703 15535"
         ],
         "pushed": [
           true
         ],
-        "seconds": 1.4
+        "seconds": 3.1
       },
       {
         "result": "partly",
@@ -437,7 +435,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p55 59426 against p0 92907",
-        "seconds": 3.5
+        "seconds": 4.5
       },
       {
         "result": "no",
@@ -496,7 +494,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.4
+        "seconds": 1
       },
       {
         "result": "works",
@@ -576,7 +574,7 @@
           [],
           []
         ],
-        "seconds": 16.8
+        "seconds": 22.5
       }
     ]
   }
