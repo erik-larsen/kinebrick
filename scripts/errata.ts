@@ -17,6 +17,7 @@ const status = (e: Erratum) => (e.signedOff ? `Signed off by ${e.signedOff.by}, 
 function what(e: Erratum): string {
   if (e.what === 'add') return `adds ${e.lines?.length ?? 0} line${e.lines?.length === 1 ? '' : 's'} to the main model`;
   const placed = (e.line ?? '').trim().split(/\s+/).slice(14).join(' ');
+  if (e.what === 'remove') return `removes \`${placed}\`${e.file ? ` (in \`${e.file}\`)` : ''}`;
   return `moves \`${placed}\`${e.file ? ` (in \`${e.file}\`)` : ''} to ${e.position?.join(' ') ?? 'where it was'}${e.orientation ? ', turned' : ''}`;
 }
 
@@ -26,13 +27,14 @@ export function errataSection(): string {
     .filter((f) => f.endsWith('.json'))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
     .map((f) => JSON.parse(readFileSync(`data/errata/${f}`, 'utf-8')));
-  const out = [START, '', '## Corrections Kinebrick applies to the OMR files', '', "The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's file with these corrections (data/errata/<set>.json), in the viewer, the function check and every script alike. A file you open yourself is never corrected. An entry is applied once Erik has signed it off; a proposed one only when asked for (the check's `--proposed`, the viewer's `option=proposed`), to see the set before and after. No part number moves: a moved part keeps its number, and an added part is numbered after the model's last part.", ''];
+  const out = [START, '', '## Corrections Kinebrick applies to the OMR files', '', "The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's file with these corrections (data/errata/<set>.json), in the viewer, the function check and every script alike. A file you open yourself is never corrected. An entry is applied once Erik has signed it off; a proposed one only when asked for (the check's `--proposed`, the viewer's `option=proposed`), to see the set before and after. No part number moves: a moved part keeps its number, a removed part keeps its number too, and an added part is numbered after the model's last part.", ''];
   out.push('| Set | Entry | What it does | Status |', '| --- | --- | --- | --- |');
   for (const set of all) for (const e of set.entries) out.push(`| [${set.set}](#${set.set}-${e.id}) | ${e.id} | ${what(e)} | ${status(e)} |`);
   for (const set of all) {
     for (const e of set.entries) {
       out.push('', `### ${set.set}: ${e.id}`, '', `${status(e)}.`, '', e.evidence);
       if (e.what === 'move') out.push('', `In ${e.file ? `\`${e.file}\`` : 'the main model'}${e.part ? ` (${e.part})` : ''}, the line`, '', '```', e.line ?? '', '```', '', `is read with its part at ${e.position?.join(' ')}${e.orientation ? `, turned to ${e.orientation.join(' ')}` : ''}.`);
+      if (e.what === 'remove') out.push('', `In ${e.file ? `\`${e.file}\`` : 'the main model'}${e.part ? ` (${e.part})` : ''}, the line`, '', '```', e.line ?? '', '```', '', 'is read as not there. The part keeps its number.');
       if (e.what === 'add') out.push('', 'Added to the main model:', '', '```', ...(e.lines ?? []), '```');
       if (e.note) out.push('', e.note);
     }
