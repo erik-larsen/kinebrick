@@ -130,13 +130,13 @@
     ]
   },
   "generated": {
-    "commit": "11f1b8c1",
+    "commit": "5cf99f0b",
     "date": "2026-11-14",
-    "seconds": 163,
+    "seconds": 230,
     "counts": {
       "partly": 1,
-      "works": 4,
-      "no": 2,
+      "works": 5,
+      "no": 1,
       "skipped": 1
     },
     "loose": [
@@ -268,7 +268,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 5.5
+        "seconds": 6.2
       },
       {
         "result": "works",
@@ -362,24 +362,21 @@
             "p181 2851 against p150 2850b"
           ]
         ],
-        "seconds": 40.4
+        "seconds": 48.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p3025 44771 against p15 62821"
         ],
         "rates": [
           {
             "p3025 44771 against p15 62821": [
-              0,
-              0
+              1,
+              1.09e-12
             ]
           }
         ],
@@ -395,14 +392,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 7.3
       },
       {
         "result": "no",
@@ -479,7 +469,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -527,7 +517,7 @@
           [],
           []
         ],
-        "seconds": 45.8
+        "seconds": 63.6
       },
       {
         "result": "works",
@@ -575,7 +565,7 @@
           [],
           []
         ],
-        "seconds": 21.9
+        "seconds": 48.9
       },
       {
         "result": "works",
@@ -619,7 +609,7 @@
           [],
           []
         ],
-        "seconds": 46.7
+        "seconds": 53.6
       }
     ]
   }
