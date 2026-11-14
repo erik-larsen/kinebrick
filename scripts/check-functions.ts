@@ -404,6 +404,46 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // follows the way the point goes, round a curve. Also returns how the push went, to push it
   // back.
   type Pushed = { grab: Vector3; dir: Vector3; length: number };
+  // The slide a control with no turning joint of its own slides on: a body that is the root of a
+  // tree of its own, held to the rest by a slide (see buildTree), as an outrigger's beam slides in
+  // a chassis. -1 if it has none.
+  const slideOf = (body: number) => (body === 0 || kin.parentLink(body) ? -1 : mech.joints.findIndex((j) => j.kind === 'slide' && (j.bodyA === body || j.bodyB === body)));
+  // A control that slides (see slideOf) pushed along its slide by `amount` LDU, as a drag of it in
+  // the viewer pushes it, each step the way the slide now points: how far it slid along it
+  // (signed), how far each of `parts` went, and what stopped it, if anything did.
+  const slideMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}) => {
+    const j = mech.joints[slideOf(body)];
+    const other = j.bodyA === body ? j.bodyB : j.bodyA;
+    const axis = j.to.clone().sub(j.from).normalize(); // as built, on the body it slides on
+    const grab = at[mech.bodies[body].parts[0]].clone();
+    // How far the grab point is along the slide, on the body it slides on.
+    const along = () => grab.clone().applyMatrix4(kin.poses[other].clone().invert().multiply(kin.poses[body])).dot(axis);
+    const start = along();
+    const grabNow = () => grab.clone().applyMatrix4(kin.poses[body]);
+    const directions = pointDirections(kin, body, grabNow());
+    if (directions > 0) kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(kin, body, grabNow()) === directions);
+    const went = parts.map(() => [0, 0]);
+    let was = parts.map((p) => relative(p.part, p.body, kin.poses));
+    let halt: Halt | null = null;
+    while (Math.abs(along() - start) < Math.abs(amount) - 1e-9) {
+      const dir = axis.clone().transformDirection(kin.poses[other]).multiplyScalar(Math.sign(amount));
+      const step = Math.min(PUSH_STEP, Math.abs(amount) - Math.abs(along() - start));
+      const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
+      if (how !== 'moved') {
+        halt = how === 'blocked' ? 'limit' : 'stuck';
+        break;
+      }
+      each();
+      const is = parts.map((p) => relative(p.part, p.body, kin.poses));
+      parts.forEach((p, k) => {
+        went[k][0] += angle(was[k], is[k]);
+        went[k][1] += at[p.part].clone().applyMatrix4(is[k]).distanceTo(at[p.part].clone().applyMatrix4(was[k]));
+      });
+      was = is;
+    }
+    kin.letGoAfterDrag();
+    return { turned: along() - start, went, halt, pushed: null };
+  };
   const pushMeasuring = (body: number, control: number, to: { reach: number } | { back: Pushed }, parts: { part: number; body: number }[], each = () => {}) => {
     const joint = kin.parentLink(body)!.joint;
     const start = 'back' in to ? null : grabOf(body, control);
@@ -557,7 +597,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const stays = (fn.stays ?? []).map(against);
       const control = part(ref);
       const b = worked(control);
-      const link = kin.parentLink(b);
+      // Its joint: the one it turns on, or else the slide it slides on (see slideOf).
+      const link = kin.parentLink(b) ?? (slideOf(b) >= 0 ? { parent: -1, joint: slideOf(b) } : null);
       // Why it doesn't work, if it doesn't (see causes.ts). Told before anything else: a loose
       // part (the control, or one it should move), or a control worked first that didn't go.
       const loosePart = [control, ...moves.map((m) => m.part)].find((p) => mech.loose.includes(p));
@@ -597,7 +638,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // just its joint's angle, which a shaft spinning back under it makes up without the
       // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
       const slides = mech.joints[link.joint].kind === 'slide';
-      const itself = { part: mech.bodies[b].parts[0], body: kin.housing(b) };
+      // (A control that slides, against what it slides on: see slideOf.)
+      const slidOn = slideOf(b) >= 0 ? mech.joints[slideOf(b)] : null;
+      const itself = { part: mech.bodies[b].parts[0], body: slidOn ? (slidOn.bodyA === b ? slidOn.bodyB : slidOn.bodyA) : kin.housing(b) };
       // The pistons in `moves`, each with its slider-crank (see sliderCranks): how far it should
       // slide in its cylinder is set by how far its crank turns, whatever turned the crank.
       const cranks = sliderCranks(mech, (x) => kin.parentLink(x));
@@ -626,7 +669,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
           return done > 0 && done === stirred;
         };
-        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
+        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
           const now = pistons.map((p, k) => pistonAt(p.sc, crankAngle(p.sc.crank), was[k] === null ? undefined : was[k]! + last[k]));
           now.forEach((x, k) => {
@@ -681,6 +724,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const there = kin.snapshot();
         if (measured.pushed) {
           if (measured.pushed.length > 0) pushMeasuring(b, control, { back: measured.pushed }, []);
+        } else if (slideOf(b) >= 0) {
+          if (Math.abs(joint) >= 0.01) slideMeasuring(b, -joint, []);
         } else if (Math.abs(joint) >= 0.01) turn(b, -joint);
         const most = furthest(startPoses);
         kin.restore(there);

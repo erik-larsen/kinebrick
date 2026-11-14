@@ -635,12 +635,19 @@ export class Kinematics {
 
   // A spanning tree over the turning joints, starting from the frame (body 0). Joints that
   // close a loop aren't in the tree, nor are slide and ball joints: closeLoops keeps those
-  // together.
+  // together. A group the frame's tree doesn't reach is a tree of its own, and its root is
+  // chosen by what holds the group, not by the bodies' numbers: first a body that slides on a
+  // body already placed (an outrigger's beam in the chassis, so a drag of it slides it and
+  // what hangs from it goes along), then one that hangs by a ball on one, then, held by
+  // nothing, any body of what's left. Of several, the one with the most parts, the group's
+  // main piece; only bodies alike in that are taken by number. Rooted at the lowest-numbered
+  // body, the 8258 Crane Truck's outrigger had its 7L beam as the root and the bent beam that
+  // slides in the chassis hanging from it by a hinge, so a drag of the bent beam spun it on
+  // the hinge.
   private buildTree() {
     this.parentJoint = new Array(this.bodyCount).fill(-1);
     const visited = new Array(this.bodyCount).fill(false);
-    for (let start = 0; start < this.bodyCount; start++) {
-      if (visited[start]) continue;
+    const grow = (start: number) => {
       this.rootPoses.set(start, new Matrix4());
       visited[start] = true;
       const queue = [start];
@@ -657,6 +664,24 @@ export class Kinematics {
           }
         });
       }
+    };
+    // The bodies not yet placed that a joint of this kind joins to one already placed.
+    const heldBy = (kind: Joint['kind']) => {
+      const held = new Set<number>();
+      for (const j of this.mech.joints) {
+        if (j.kind !== kind || visited[j.bodyA] === visited[j.bodyB]) continue;
+        held.add(visited[j.bodyA] ? j.bodyB : j.bodyA);
+      }
+      return [...held];
+    };
+    const main = (bodies: number[]) => bodies.reduce((best, b) => (this.mech.bodies[b].parts.length > this.mech.bodies[best].parts.length || (this.mech.bodies[b].parts.length === this.mech.bodies[best].parts.length && b < best) ? b : best));
+    if (this.bodyCount > 0) grow(0);
+    for (;;) {
+      const left = visited.flatMap((v, b) => (v ? [] : [b]));
+      if (!left.length) break;
+      const slides = heldBy('slide');
+      const balls = heldBy('ball');
+      grow(main(slides.length ? slides : balls.length ? balls : left));
     }
     for (const root of this.rootPoses.keys()) {
       this.rootColumn.set(root, this.columns);
