@@ -53,6 +53,23 @@ describe('a rack pinned to both steering arms', () => {
   });
 });
 
+describe('a coupler whose arms turn on a body other than the frame', () => {
+  // As the 42081's front chassis: two arms (1 and 2) turning on a body (5) that itself turns on
+  // the frame, a coupler (3) pinned to both, and a rack on the coupler sliding in a housing.
+  const onBody = (x: number, z: number) => [new Vector3(x, -90, z), new Vector3(x, -80, z)] as const;
+  const arms = [revolute(0, 5, onBody(0, -300)), revolute(5, 1, onBody(-110, -190)), revolute(5, 2, onBody(110, -190)), revolute(1, 3, onBody(-110, -150)), revolute(2, 3, onBody(110, -150))];
+  const slideOn = (body: number): Joint => ({ kind: 'slide', bodyA: body, bodyB: 3, from: new Vector3(-60, -72, -150), to: new Vector3(60, -72, -150), stiff: false });
+
+  it('keeps its slide in a housing in the frame: the arms turn on body 5, not on the frame', () => {
+    const housing = slideOn(0);
+    expect(withoutSlidesOnCouplers([...arms, housing])).toContain(housing);
+  });
+
+  it("drops its slide on body 5, which its arms turn on: they set its path there", () => {
+    expect(withoutSlidesOnCouplers([...arms, slideOn(5)]).some((j) => j.kind === 'slide')).toBe(false);
+  });
+});
+
 describe('a rack on tie rods', () => {
   it('keeps its slide: the tie rods, on balls, leave it free to wander but for that', () => {
     // Bodies: 1 and 2 the arms, 3 the rack, 4 and 5 the tie rods.

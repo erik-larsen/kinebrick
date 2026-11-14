@@ -6,10 +6,13 @@ import { ANGLE_TOLERANCE, AXIS_TOLERANCE } from './shared.ts';
 
 // A part pinned to two arms that turn on one body, all on parallel axes (a steering rack
 // pinned to both steering arms), is the coupler of a four-bar linkage: that sets its path, a
-// curve as the arms swing. So it doesn't also slide straight on that body, or on the frame, as
-// a plate on tiles under it, or a guide for a rack, would have it: the two together would only
-// fit as the model was built, and it would jam a step further on (the 8841 Dune Buggy's and the
-// 8063 Tractor's steering). Such slides are left out.
+// curve as the arms swing. So it doesn't also slide straight on that body, as a plate on tiles
+// under it, or a guide for a rack, would have it: the two together would only fit as the model
+// was built, and it would jam a step further on (the 8841 Dune Buggy's and the 8063 Tractor's
+// steering, whose arms turn on the frame). Such slides are left out. A slide on any other body
+// is kept, the frame too, when the arms don't turn on it: the 42081's front chassis is the
+// coupler of arms that turn on its rear body, and its rack slides in a housing in the frame,
+// which holds it sideways.
 export function withoutSlidesOnCouplers(joints: Joint[]): Joint[] {
   const axis = (j: Joint) => new Vector3().subVectors(j.to, j.from).normalize();
   const parallel = (a: Joint, b: Joint) => new Vector3().crossVectors(axis(a), axis(b)).length() < ANGLE_TOLERANCE;
@@ -36,7 +39,7 @@ export function withoutSlidesOnCouplers(joints: Joint[]): Joint[] {
     if (j.kind !== 'slide' || j.turns) return true;
     const onA = bases(j.bodyA);
     const onB = bases(j.bodyB);
-    return !(onA.length && (j.bodyB === 0 || onA.includes(j.bodyB))) && !(onB.length && (j.bodyA === 0 || onB.includes(j.bodyA)));
+    return !onA.includes(j.bodyB) && !onB.includes(j.bodyA);
   });
 }
 
