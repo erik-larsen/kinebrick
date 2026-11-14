@@ -19,6 +19,7 @@
     "mechanisms": "tsx scripts/mechanisms.ts",
     "what-moves": "tsx scripts/what-moves.ts",
     "what-moves-audit": "tsx scripts/what-moves-audit.ts",
+    "errata": "tsx scripts/errata.ts",
     "status": "tsx scripts/status-page.ts",
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",

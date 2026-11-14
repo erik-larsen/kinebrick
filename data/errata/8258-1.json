@@ -1,0 +1,14 @@
+{
+  "set": "8258-1",
+  "entries": [
+    {
+      "id": "front-drive-gear-4-high",
+      "what": "move",
+      "file": "8258 - m-1k'k.ldr",
+      "line": "1 71 20 -24 0 1 0 0 0 1 0 0 0 1 8258 - m-1k'ka.ldr",
+      "position": [20, -20, 0],
+      "evidence": "The front outriggers' drive gear p586 4019, on its axle pin p587 3749 (submodel m-1k'ka), is drawn 4 LDU off its hole's axis in the beam p583, so it is loose and nothing drives the front outriggers' pinion. Book 2 page 42 step 78.21 shows the gear meshing the next one (8258-1-5.pdf; docs/audits/function-lists-batch-2.md, \"Model file checks the orchestrator asked for\"). Confidence high (the audit). Moved 4 LDU, y -24 to -20.",
+      "signedOff": null
+    }
+  ]
+}
