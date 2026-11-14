@@ -419,6 +419,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Proposed, not applied until signed off |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Proposed, not applied until signed off |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Proposed, not applied until signed off |
+| [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | moves `2780.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | moves `2780.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | moves `32526.dat` (in `42109 - car.ldr`) to where it was | Proposed, not applied until signed off |
@@ -478,6 +479,20 @@ In `42064 - ship.ldr`, the line
 is read with its part at 0 -110 -380.
 
 In the real set the hatch is fixed on its two pins, not hinged; what that means for fn 9 is the audit's table for Erik.
+
+### 42083-1: speed-key-in-its-hole
+
+Proposed, not applied until signed off.
+
+The speed key (startkey.ldr, its 11L axle p3540 23948) lies on the ground in the file. Book 2 page 310 (42083-1-2.pdf) shows it in place: the axle goes 3 to 4 studs into a hole above and behind the left rear hub, likely the 59443 p2099, into the shaft under the wing (docs/audits, the build-step answers; medium, measured on a perspective picture). Placed with the axle along that hole's line (x, at y -143, z 440), 3.5 studs (70 LDU) in from its outer face at x 210, its tip at x 140; the key's turn about the axle is as built.
+
+In the main model, the line
+
+```
+1 272 426 -10 365 0.866 0 -0.5 0 1 0 0.5 0 0.866 42083 - startkey.ldr
+```
+
+is read with its part at 250 -123 420, turned to 0 0 -1 0 1 0 1 0 0.
 
 ### 42109-1: no-pin-p381
 

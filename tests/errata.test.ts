@@ -60,7 +60,7 @@ describe('errata', () => {
   });
 
   it("apply each set's entries to its own OMR file: each line found once, each number naming its part", () => {
-    for (const [set, file] of [['42064-1', 'omr/42064-1 Ocean Explorer.mpd'], ['8258-1', 'omr/8258-1 Crane Truck.mpd'], ['9396-1', 'omr/9396-1 Helicopter.mpd'], ['8838-1', 'omr/8838-1 Shock Cycle.mpd'], ['42109-1', 'omr/42109-1 App-Controlled Top Gear Rally Car.mpd']]) {
+    for (const [set, file] of [['42064-1', 'omr/42064-1 Ocean Explorer.mpd'], ['8258-1', 'omr/8258-1 Crane Truck.mpd'], ['9396-1', 'omr/9396-1 Helicopter.mpd'], ['8838-1', 'omr/8838-1 Shock Cycle.mpd'], ['42083-1', 'omr/42083-1 Bugatti Chiron.mpd'], ['42109-1', 'omr/42109-1 App-Controlled Top Gear Rally Car.mpd']]) {
       const original = readFileSync(file, 'utf-8');
       const found = readErrata(file);
       expect(found?.set).toBe(set);

@@ -1,0 +1,15 @@
+{
+  "set": "42083-1",
+  "entries": [
+    {
+      "id": "speed-key-in-its-hole",
+      "what": "move",
+      "file": "",
+      "line": "1 272 426 -10 365 0.866 0 -0.5 0 1 0 0.5 0 0.866 42083 - startkey.ldr",
+      "position": [250, -123, 420],
+      "orientation": [0, 0, -1, 0, 1, 0, 1, 0, 0],
+      "evidence": "The speed key (startkey.ldr, its 11L axle p3540 23948) lies on the ground in the file. Book 2 page 310 (42083-1-2.pdf) shows it in place: the axle goes 3 to 4 studs into a hole above and behind the left rear hub, likely the 59443 p2099, into the shaft under the wing (docs/audits, the build-step answers; medium, measured on a perspective picture). Placed with the axle along that hole's line (x, at y -143, z 440), 3.5 studs (70 LDU) in from its outer face at x 210, its tip at x 140; the key's turn about the axle is as built.",
+      "signedOff": null
+    }
+  ]
+}
