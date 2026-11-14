@@ -157,18 +157,12 @@ export interface Options {
   // may be a hair apart even where the axes cross exactly (see findCouplings). Off by default,
   // for now; KINEBRICK_CROSSING=1 turns it on.
   crossing: boolean;
-  // Taking up play (see playMotion), tyres keep the rule they have in freeMotionsApart: a motion
-  // that leaves the frame still may scrub them any amount, and lift them by LIFT of how far
-  // they move, as steering a parked car does; the rest keep them firm. Off by default, for
-  // now; KINEBRICK_PARKED_PLAY=1 turns it on.
-  parkedPlay: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0, KINEBRICK_CROSSING=1 and
-// KINEBRICK_PARKED_PLAY=1.
+// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0 and KINEBRICK_CROSSING=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
   leastMotion: setting('KINEBRICK_LEAST') !== '0',
@@ -180,7 +174,6 @@ export const experiments: Options = {
   centres: setting('KINEBRICK_CENTRES') === '1',
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
   crossing: setting('KINEBRICK_CROSSING') === '1',
-  parkedPlay: setting('KINEBRICK_PARKED_PLAY') === '1',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -2418,21 +2411,7 @@ export class Kinematics {
     // scrubbing more than allowed (a steered car that can't roll).
     const firm = [...rows.filter((_, i) => !play[i]), ...inBasis([...slip.sideways, ...slip.lift], basis)];
     const apply = (z: number[]) => loops.map((row) => dot(row, z));
-    let motions = orthonormalize(nullSpace(firm, basis[0].length));
-    // Parked play (see Options.parkedPlay): with the frame still, the tyres keep
-    // freeMotionsApart's rule, any scrub and lift by LIFT of how far they move, as steering a
-    // parked plane's nose wheel scrubs it round (the 42066 Air Race Jet).
-    if (this.options.parkedPlay && slip.sideways.length > 0) {
-      const frameStill = [0, 1, 2, 3, 4, 5].map((k) => {
-        const row = new Array(6 * this.bodyCount).fill(0);
-        row[k] = 1;
-        return row;
-      });
-      const parked = orthonormalize(nullSpace([...rows.filter((_, i) => !play[i]), ...inBasis(frameStill, basis)], basis[0].length));
-      const [sideways, travel, lift] = [slip.sideways, slip.travel, slip.lift].map((r) => inBasis(r, basis));
-      const kept = parked.length ? leastScrub(parked, { sideways: lift, travel: [...travel, ...sideways], lift: [], rise: [] }, LIFT) : [];
-      if (kept.length) motions = orthonormalize([...motions, ...kept]);
-    }
+    const motions = orthonormalize(nullSpace(firm, basis[0].length));
     if (motions.length === 0) return null;
     // The mix a of the motions with Σ a_k rate_k = 1 that makes aᵀ G a least, G holding how much
     // each pair of them opens the loops together, and turns the joints together times TIE_BREAK²:

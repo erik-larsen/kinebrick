@@ -538,7 +538,6 @@ Gears keep that rate steady, and linkages change it gently, except near a dead p
 - **How far apart:** at most 1 LDU for each radian the joint turns. A beam on two pins half a stud apart would open 10 times that, so it stays put. Steps taken on it may leave the loops up to 0.1 LDU apart, rather than a thousandth.
 - **What it gives:** the race car's suspension then turns half a radian, and an official hovercraft's rudder, tied to its other rudder twice over, a quarter. A loop opening faster than that, or a dead point, still stops a turn where it did.
 - **Not while choosing holds:** play counts only when a drag turns, not when its holds are chosen. Counting it there kept holds a drag needed to let go of: an official concrete mixer truck's drivetrain, so that turning a wheel steered the truck instead of rolling it, and stopped partway round.
-- **A parked car** (the `parkedPlay` option, off by default; `KINEBRICK_PARKED_PLAY=1` turns it on for the tests and scripts). Of the motions that leave the frame still, play may also take those that scrub the tyres sideways, with lift as little as steering a parked car allows, as [step 5](#5-tyres-scrub-a-little) does. Without the option, play keeps every tyre from scrubbing, so steering a parked car can't take up a loop's play.
 
 ### 8. Place the bodies
 
