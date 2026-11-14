@@ -4,7 +4,7 @@ The tracks or wheels on each side are driven separately, so the machine turns by
 
 First appears in 2007, in [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1): With both tracks driven the same way the bulldozer drives straight forwards or back; with one track driven it turns; with the tracks driven opposite ways it spins on the spot.
 
-Used in 5 of the 186 surveyed sets, by 5 functions. Kinebrick: 2 works, 2 partly, 1 not checked.
+Used in 5 of the 186 surveyed sets, by 5 functions. Kinebrick: 3 works, 1 partly, 1 not checked.
 
 ## By decade
 
@@ -33,7 +33,7 @@ Used in 5 of the 186 surveyed sets, by 5 functions. Kinebrick: 2 works, 2 partly
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 
-- With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot. (partly)
+- With both tracks driven the same way the bulldozer drives straight; driven at different speeds it turns, and driven opposite ways it spins on the spot. (works)
 
 ---
 

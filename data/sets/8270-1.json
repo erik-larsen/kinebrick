@@ -145,9 +145,10 @@
     ]
   },
   "generated": {
-    "commit": "4bcfdf00",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 2,
+    "seconds": 1,
     "counts": {
       "no": 2,
       "partly": 3,
@@ -245,7 +246,7 @@
         ],
         "cause": "not-driven",
         "detail": "p30 57779 against p0 2905",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -288,7 +289,7 @@
         ],
         "cause": "loose-part",
         "detail": "p57 30395",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -512,7 +513,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "skipped",

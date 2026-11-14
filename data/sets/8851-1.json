@@ -118,9 +118,10 @@
     ]
   },
   "generated": {
-    "commit": "4bcfdf00",
+    "commit": "871274a7",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
       "no": 3,
       "skipped": 1,
@@ -272,7 +273,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p908 3649 against p852 3738",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -354,7 +355,7 @@
           [],
           []
         ],
-        "seconds": 2.1
+        "seconds": 1.6
       }
     ]
   }
