@@ -21,7 +21,7 @@ import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
 import { findLoops } from './inference/loops.ts';
 import { looseFits, onAxleTips } from './inference/looseFits.ts';
 import { fixPins } from './inference/pins.ts';
-import { guidedPistons, shockAbsorbers } from './inference/pistons.ts';
+import { guidedPistons, shockAbsorbers, squareRodsInBores } from './inference/pistons.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
 import { restingParts } from './inference/rests.ts';
 import { decorations, figureSubmodels, rideAlong } from './inference/rideAlong.ts';
@@ -348,7 +348,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...guidedRacks(parts.length, cyls, connections, guide));
   connections.push(...decorations(parts, roles, cyls));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
-  connections.push(...shockAbsorbers(cyls));
+  const shocks = shockAbsorbers(parts, table, (name) => libraryName(name, table));
+  connections.push(...shocks, ...squareRodsInBores(cyls, shocks));
   // linearActuators, universalJoints and groovedBalls replace connections already found.
   const actuators = linearActuators(parts, connections);
   connections.push(...bushGrips(roles, cyls));

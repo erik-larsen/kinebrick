@@ -670,3 +670,37 @@
 0 FILE 3278.dat
 0 // Tap 1 x 2 Spout: its pin as the shadow library has it, axle-shaped too, fixing it in its base (3496)
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 4 10] [pos=0 -15.575 -13.588] [ori=1 0 0 0 0.492 0.87 0 -0.87 0.492]
+
+0 // Shock absorbers in two parts: the rod slides in its cylinder along their shared axis, the cylinder's y, and may turn in it (a strut that is also a kingpin). "0 !KINEBRICK SHOCK [rod=...] [dir=0 1 0] [from=...] [to=...]" on the cylinder says which rod fits it and how far the rod's origin (its end hole) lies from the cylinder's origin along that axis, the rod placed the same way round: `from` with the rod fully in, `to` fully out. These are the slide's end stops. Where the LDraw library has the whole shock extended (-f1) and compressed (-f2), they are the distances those shapes place the two parts at; the shadow library's own rod and bore sections are left as they are.
+
+0 FILE 2909.dat
+0 // Technic Shock Absorber 9L Cylinder, with its rod 2910: 75348-f1 and 74741-f1 (extended) place the rod 120 from the cylinder, -f2 (compressed) 80. The 42036's and 8838's front forks are built fully out (120), the 8257's fully in (80).
+0 !KINEBRICK SHOCK [rod=2910] [dir=0 1 0] [from=80] [to=120]
+
+0 FILE 4255.dat
+0 // Technic Shock Absorber 6.5L Cylinder, with its rod 4254. Every complete 6.5L shock (73129, 41838, 76138, 76537, 89953, 89954) places the rod 110 from the cylinder, extended; the library has no compressed shape. Fully in is from the drawings: the rod reaches 80 below its origin and the cylinder's floor is 10 above its own, so the rod's end meets the floor with the rod at 90 (its flange, 15 below its origin, would meet the cylinder's top, at 58, only at 73). The sets build it from 96 to 110.
+0 !KINEBRICK SHOCK [rod=4254] [dir=0 1 0] [from=90] [to=110]
+
+0 FILE 32181c05.dat
+0 // Technic Shock Absorber 10L Damped with Black Cap Body Assembly, with its rod 32183c02: 63144-f1 and 76320-f1 (extended) place the rod 180 from the body, -f2 (compressed) 120. (The obsolete cylinders 32181c01 to c04 place the cylinder elsewhere and aren't given; no set has them.)
+0 !KINEBRICK SHOCK [rod=32183c02] [dir=0 1 0] [from=120] [to=180]
+
+0 FILE 65143c01.dat
+0 // Technic Shock Absorber 11L Body Assembly, with its piston 65141c01: 65151c01-f1 and 65151c02-f1 (extended) place the piston 95 from the body, -f2 (compressed) 55.
+0 !KINEBRICK SHOCK [rod=65141c01] [dir=0 1 0] [from=55] [to=95]
+
+0 FILE 65143.dat
+0 // Technic Shock Absorber 11L Body, placed as in its assembly 65143c01: the same.
+0 !KINEBRICK SHOCK [rod=65141c01] [dir=0 1 0] [from=55] [to=95]
+
+0 FILE 69633c01.dat
+0 // Technic Shock Absorber 18L Body Assembly, with its piston 69635: 67498-f1 (extended) places the piston 330 from the body, -f2 (compressed) 270.
+0 !KINEBRICK SHOCK [rod=69635] [dir=0 1 0] [from=270] [to=330]
+
+0 FILE 69633.dat
+0 // Technic Shock Absorber 18L Body, placed as in its assembly 69633c01: the same.
+0 !KINEBRICK SHOCK [rod=69635] [dir=0 1 0] [from=270] [to=330]
+
+0 FILE 80022.dat
+0 // Technic Shock Absorber 9L Thick Cylinder, with its piston 80021: 79717p01-f1 and the other 79717 and 80028-based shocks (extended) place the piston 160 from the cylinder, -f2 (compressed) 140.
+0 !KINEBRICK SHOCK [rod=80021] [dir=0 1 0] [from=140] [to=160]
