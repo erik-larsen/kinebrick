@@ -47,12 +47,14 @@ describe("a constant velocity joint's nudged ball in a portal axle's steering hu
 
   it('drives the hub: their turning is tied, about the hub\'s own axis', () => {
     const coupling = mech.couplings.find((c) => [c.bodyA, c.bodyB].includes(hub) && [c.bodyA, c.bodyB].includes(ball));
-    expect(coupling?.turningOnly).toBe(true);
     const hubAxis = coupling!.bodyA === hub ? coupling!.axisA : coupling!.axisB;
     expect(Math.abs(hubAxis.z)).toBeCloseTo(1, 6);
   });
 
-  it('still holds the ball in its socket, as nothing else may hold a half shaft\'s end', () => {
-    expect(mech.joints.some((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(hub) && [j.bodyA, j.bodyB].includes(ball))).toBe(true);
+  it('holds the ball across the hub\'s bore, not at a point, so it slides along the bore as a suspension moves', () => {
+    const coupling = mech.couplings.find((c) => [c.bodyA, c.bodyB].includes(hub) && [c.bodyA, c.bodyB].includes(ball));
+    expect(coupling?.turningOnly).toBe(false);
+    expect(Math.abs(coupling!.slidesAlong!.z)).toBeCloseTo(1, 6);
+    expect(mech.joints.some((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(hub) && [j.bodyA, j.bodyB].includes(ball))).toBe(false);
   });
 });

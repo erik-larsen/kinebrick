@@ -148,10 +148,15 @@ export function crankWebs(joints: Joint[]): Coupling[] {
 
 // The couplings of the universal joints and balls `joined` found, as Couplings between bodies.
 // A nudged ball's coupling is at its ball joint's middle, where lineUpBalls has put it.
-export function findCouplings(joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[], joints: Joint[], parts: PlacedPart[], roles: string[], bodyOf: number[]): Coupling[] {
+// `slideAxisOf`: for a socket part whose ball slides along a bore, the bore's direction (see
+// Coupling.slidesAlong); such a coupling holds its ends only across it, so it isn't turning only.
+export function findCouplings(joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[], joints: Joint[], parts: PlacedPart[], roles: string[], bodyOf: number[], slideAxisOf: (part: number) => Vector3 | null = () => null): Coupling[] {
   const at = (part: number) => new Vector3().setFromMatrixPosition(parts[part].matrix);
   const ballAt = (partA: number, partB: number, center: Vector3) => joints.find((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(bodyOf[partA]) && [j.bodyA, j.bodyB].includes(bodyOf[partB]) && j.from.distanceTo(center) < BALL_LINE)?.from.clone() ?? center;
-  return joined.map(({ partA, partB, center, axisA, axisB }) => ({ bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball' }));
+  return joined.map(({ partA, partB, center, axisA, axisB }) => {
+    const slides = roles[partA] === 'nudged ball' ? slideAxisOf(partB) : null;
+    return { bodyA: bodyOf[partA], bodyB: bodyOf[partB], center: roles[partA] === 'nudged ball' ? ballAt(partA, partB, center) : center, axisA, axisB, atA: at(partA), atB: at(partB), turningOnly: !slides && (roles[partA] === 'grooved ball' || roles[partA] === 'nudged ball'), ...(slides ? { slidesAlong: slides } : {}) };
+  });
 }
 
 // A reduction inside a part read as its pieces (see ConnectionTable.reductions): the planetary

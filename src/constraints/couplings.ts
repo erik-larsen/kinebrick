@@ -15,9 +15,9 @@ export function couplings(solver: Kinematics, eq: Equations) {
   // already: as rows, their ends would come out, from parts placed only so precisely in an
   // LDraw file, as a hair's breadth short of that, and stop some other motion altogether (a
   // car turning a corner).
-  for (const { shafts, turningOnly } of solver.couplings) {
-    if (turningOnly) continue;
-    if (shafts.every((sh) => sh.joint >= 0 && sh.mount === shafts[0].mount)) continue;
+  solver.couplings.forEach(({ shafts, turningOnly }, i) => {
+    if (turningOnly) return;
+    if (shafts.every((sh) => sh.joint >= 0 && sh.mount === shafts[0].mount)) return;
     const [a, b] = shafts.map((sh) => ({ body: sh.body, at: sh.near.clone().applyMatrix4(solver.poses[sh.body]) }));
     // How far the two ends have come apart, closed as a loop's joint is (see closeLoops): a
     // shaft that hangs on nothing but the joints at its ends (between two universal joints)
@@ -29,13 +29,19 @@ export function couplings(solver: Kinematics, eq: Equations) {
     const floats = shafts.some((sh) => sh.joint < 0);
     const built = shafts[1].near.clone().sub(shafts[0].near);
     const gap = eq.gaps && floats ? b.at.clone().sub(a.at).sub(built) : new Vector3();
-    for (let k = 0; k < 3; k++) {
+    // A ball sliding along a bore (see Coupling.slidesAlong) is held only across the bore's axis,
+    // as the socket's body now carries it; every other coupling, in all three directions.
+    const along = solver.mech.couplings[i]?.slidesAlong;
+    const held = along ? across(along.clone().transformDirection(solver.poses[shafts[1].body])) : [new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1)];
+    for (const u of held) {
       const row = new Array(n).fill(0);
-      addPointVelocity(row, a.body, a.at, k, 1);
-      addPointVelocity(row, b.body, b.at, k, -1);
-      add(row, gap.getComponent(k));
+      for (let k = 0; k < 3; k++) {
+        addPointVelocity(row, a.body, a.at, k, u.getComponent(k));
+        addPointVelocity(row, b.body, b.at, k, -u.getComponent(k));
+      }
+      add(row, gap.dot(u));
     }
-  }
+  });
   // A reduction (a planetary wheel hub's, see Coupling.ratio) turns its second shaft `ratio`
   // times slower: that shaft's turning counts `ratio` times. The solver's couplings are the
   // mechanism's, one each, in order.
@@ -52,4 +58,12 @@ export function couplings(solver: Kinematics, eq: Equations) {
     });
     add(row, 0, DRIVE_WEIGHT);
   });
+}
+
+// Two directions across `axis`, at right angles to it and to each other.
+function across(axis: Vector3): [Vector3, Vector3] {
+  const d = axis.clone().normalize();
+  const other = Math.abs(d.x) < 0.9 ? new Vector3(1, 0, 0) : new Vector3(0, 1, 0);
+  const u = new Vector3().crossVectors(d, other).normalize();
+  return [u, new Vector3().crossVectors(d, u).normalize()];
 }

@@ -79,6 +79,9 @@ export interface ConnectionTable {
   // part, the piece that drives (`from`), the piece driven (`to`), the piece both turn in
   // (`against`), and how many turns of `from` make one of `to`, the same way round.
   reductions?: Record<string, { from: string; to: string; against: string; ratio: number }>;
+  // Sockets whose ball slides along a bore (see Coupling.slidesAlong): by part, the bore's
+  // direction and its extent along it, in the part's own coordinates.
+  slidingSockets?: Record<string, { dir: [number, number, number]; from: number; to: number }>;
   // Stickers (parts the LDraw library describes as one), and flexible sections (a ribbed hose's
   // or a cable's segments): decoration, moving with what they're stuck on or lie next to (see
   // decorations in inference/rideAlong.ts).

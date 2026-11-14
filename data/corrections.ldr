@@ -303,6 +303,10 @@
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Wheel Hub (a piece of 46490c01): a round bearing on its axis (z), turning in the bearing body
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 92909.dat
+0 // Technic Steering Wheel Hub for Portal Axle: the constant velocity driver's ball (32494) runs in slots along the bore through its middle, its z axis from -10 to 36 (the shadow library's bore), so as the suspension moves the half shaft's end slides along it; its socket, at 30, holds the ball across that axis and not along it (see Coupling.slidesAlong)
+0 !KINEBRICK SLIDING_SOCKET [dir=0 0 1] [from=-10] [to=36]
+
 0 FILE 6542a.dat
 0 // Technic Gear 16 Tooth with Clutch: its clutch face is the 5 LDU at its +z end
 0 !KINEBRICK GEAR [teeth=16] [radius=20] [width=9.5] [center=true] [ori=1 0 0 0 0 1 0 -1 0]

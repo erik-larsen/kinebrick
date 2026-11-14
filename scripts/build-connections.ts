@@ -606,6 +606,19 @@ function reductionsFromCorrections(): Record<string, { from: string; to: string;
   return reductions;
 }
 
+// SLIDING_SOCKET lines in data/corrections.ldr: a socket whose ball slides along a bore, e.g.
+// "0 !KINEBRICK SLIDING_SOCKET [dir=0 0 1] [from=-10] [to=36]" (see ConnectionTable.slidingSockets).
+function slidingSocketsFromCorrections(): Record<string, { dir: [number, number, number]; from: number; to: number }> {
+  const sockets: Record<string, { dir: [number, number, number]; from: number; to: number }> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (meta && meta.kind === 'SLIDING_SOCKET') sockets[name] = { dir: numbers(meta.params.get('dir'), [0, 0, 1]) as [number, number, number], from: Number(meta.params.get('from')), to: Number(meta.params.get('to')) };
+    }
+  }
+  return sockets;
+}
+
 // GROOVE lines in data/corrections.ldr: grooves a plate slides into edge first, as boxes, e.g.
 // "0 !KINEBRICK GROOVE [pos=-43.4 36.6 0] [ori=...] [size=80 8 12]": the box's middle, its
 // axes (the ori matrix's columns: along the groove, across it, into it) and its size along
@@ -673,7 +686,7 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + ',\n  "reductions": ' + JSON.stringify(reductionsFromCorrections());
+const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + ',\n  "reductions": ' + JSON.stringify(reductionsFromCorrections()) + ',\n  "slidingSockets": ' + JSON.stringify(slidingSocketsFromCorrections());
 out += '\n  }' + extras() + ',\n  "stickers": ' + JSON.stringify(stickers) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);

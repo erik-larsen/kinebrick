@@ -268,6 +268,11 @@ export interface Coupling {
   // planetary wheel hub's driving shaft and its hub (see reductions). 1 if not given, as for
   // every universal joint and grooved ball.
   ratio?: number;
+  // A ball in a socket whose ball runs along a bore (a portal hub's, 92909, its nubs in slots along
+  // the bore): the ends are held together only across the bore's axis, not along it, so the ball
+  // slides along the bore as a suspension moves. The bore's direction as built, on bodyB (the
+  // socket's body); undefined for every other coupling.
+  slidesAlong?: Vector3;
 }
 
 // Whether inferMechanism first tries friction pins as rigid (on unless KINEBRICK_FRICTION_RIGID=0).
@@ -398,7 +403,18 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // After lineUpBalls: dropBallsInBearings and findCouplings find a nudged ball's joint where
   // lineUpBalls has put it.
   dropBallsInBearings(joints, joined, roles, bodyOf);
-  const couplings = findCouplings(joined, joints, parts, roles, bodyOf);
+  // A ball whose socket's data marks a bore it slides along (a portal hub's) is held across the
+  // bore by its coupling (see Coupling.slidesAlong), not at a point: its ball joint goes.
+  const slideAxisOf = (part: number) => {
+    const s = table.slidingSockets?.[libraryName(parts[part].name, table)];
+    return s ? new Vector3(...s.dir).transformDirection(parts[part].matrix).normalize() : null;
+  };
+  const couplings = findCouplings(joined, joints, parts, roles, bodyOf, slideAxisOf);
+  for (const c of couplings) {
+    if (!c.slidesAlong) continue;
+    const k = joints.findIndex((j) => j.kind === 'ball' && [j.bodyA, j.bodyB].includes(c.bodyA) && [j.bodyA, j.bodyB].includes(c.bodyB));
+    if (k >= 0) joints.splice(k, 1);
+  }
   couplings.push(...crankWebs(joints));
   couplings.push(...reductions(parts, table, bodyOf, (name) => libraryName(name, table)));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
