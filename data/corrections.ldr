@@ -200,8 +200,8 @@
 0 !KINEBRICK GEAR [teeth=12] [radius=15] [width=7] [spur=false] [bevel=+] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 32072.dat
-0 // Technic Gear 4 Knob (the knob wheel): its four knobs engage another knob wheel's on an axle crossing its own at right angles, each wheel's middle 20 LDU from where the axles cross (as all 43 such pairs in the OMR's Technic sets sit). So it's declared a 4 tooth double bevel gear whose cones' tips are 20 LDU out along its axle, turning the other 1:1. Its knobs aren't teeth of LEGO's size, so it meshes with nothing else, nor side by side.
-0 !KINEBRICK GEAR [teeth=4] [radius=20] [width=20] [spur=false] [bevel=both] [apex=20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 // Technic Gear 4 Knob (the knob wheel): its four knobs engage another knob wheel's on an axle crossing its own at right angles, each wheel's middle 20 LDU from where the axles cross (as all 43 such pairs in the OMR's Technic sets sit). So it's declared a 4 tooth double bevel gear whose cones' tips are 20 LDU out along its axle, turning the other 1:1. Two knob wheels side by side on parallel axles 40 LDU apart engage too (the 42076's and the 42110's), turning each other 1:1 and opposite ways, so it's a spur gear as well; a pair is read as one or the other, by whether their axles are parallel. Its knobs aren't teeth of LEGO's size, so it meshes with nothing else.
+0 !KINEBRICK GEAR [teeth=4] [radius=20] [width=20] [bevel=both] [apex=20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 4143.dat
 0 // Technic Gear 14 Tooth Bevel (the old differential's gears): teeth face -z, cone tip 17 LDU out. Its pitch radius is 17.5 LDU, a 14 tooth gear's at LEGO's tooth size, so it meshes with the old differential's 28 tooth crown wheel (4142) as its pinion

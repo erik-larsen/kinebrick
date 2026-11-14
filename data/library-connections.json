@@ -16728,7 +16728,7 @@
     {"gender":"F","caps":"none","start":[22,0,-7],"dir":[0,0,1],"secs":[{"shape":"R","radius":4,"length":14}]},
     {"gender":"F","caps":"none","start":[0,-22,-7],"dir":[0,0,1],"secs":[{"shape":"R","radius":4,"length":14}]},
     {"gender":"F","caps":"none","start":[0,22,-7],"dir":[0,0,1],"secs":[{"shape":"R","radius":4,"length":14}]},
-    {"gender":"M","caps":"none","start":[0,0,-10],"dir":[0,0,1],"secs":[{"shape":"G","radius":20,"length":20,"teeth":4,"spur":false,"bevel":"both","apex":20}]},
+    {"gender":"M","caps":"none","start":[0,0,-10],"dir":[0,0,1],"secs":[{"shape":"G","radius":20,"length":20,"teeth":4,"bevel":"both","apex":20}]},
     {"gender":"F","caps":"none","start":[20,0,40],"dir":[-1,0,0],"secs":[{"shape":"A","radius":6,"length":10}]},
     {"gender":"F","caps":"none","start":[20,0,-40],"dir":[-1,0,0],"secs":[{"shape":"A","radius":6,"length":10}]},
     {"gender":"F","caps":"none","start":[20,0,0],"dir":[-1,0,0],"secs":[{"shape":"A","radius":6,"length":10}]},
