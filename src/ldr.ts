@@ -14,6 +14,7 @@ export interface PlacedPart {
   color: number; // LDraw colour code
   matrix: Matrix4; // part coordinates -> model coordinates, in LDU
   submodel?: string; // the submodel it's in (the innermost one), if not the main model
+  within?: string[]; // the submodels it's in, outermost (the one the main model places) first, if not the main model itself
   path?: PlacedPath; // the path it's a link (or segment) of, if a path's submodel placed it
 }
 
@@ -468,14 +469,14 @@ export function parseModel(
   const shapeLines = new Map([...submodels].map(([name, lines]) => [name, lines.filter(drawn)]));
   const parts: PlacedPart[] = [];
   // The pieces numbered after the model's other parts (see PIECES_AFTER), placed at the end.
-  const after: { lines: string[]; matrix: Matrix4; color: number; submodel: string | undefined; depth: number }[] = [];
+  const after: { lines: string[]; matrix: Matrix4; color: number; submodel: string | undefined; depth: number; within: string[] }[] = [];
   const shapes: PlacedShape[] = [];
   // A path's caps (a cable's plugs, or the receiver it comes out of) are parts in their own
   // right, not links of it: by path, the parts its submodel names as caps.
   const capsOf = new Map<PlacedPath, Set<string>>();
   // `pieces`: the lines are a part's pieces, which go in the submodel the part is in. `path`:
-  // the lines are a path's (see PlacedPath).
-  const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number, pieces = false, path: PlacedPath | null = null) => {
+  // the lines are a path's (see PlacedPath). `within`: the submodels they're in, outermost first.
+  const place = (lines: string[], placement: Matrix4, color: number, submodel: string | undefined, depth: number, pieces = false, path: PlacedPath | null = null, within: string[] = []) => {
     if (depth > 64) throw new Error(`Submodels nested too deep (does one place itself?): ${submodel}`);
     const first = parts.length;
     const caps = (path && capsOf.get(path)) ?? new Set<string>();
@@ -494,19 +495,19 @@ export function parseModel(
       // of their own in a subpart (the 42131 Cat D11's tracks).
       const subPath = sub ? pathOf(sub, matrix) : null;
       if (subPath) capsOf.set(subPath, new Set(sub!.filter((line) => /^\s*0\s+!LDCAD\s+PATH_CAP\b/.test(line)).map((line) => normalizePartName(/\[part=([^\]]*)\]/.exec(line)?.[1] ?? ''))));
-      if (sub) place(sub, matrix, partColor, name, depth + 1, false, subPath ?? path);
+      if (sub) place(sub, matrix, partColor, name, depth + 1, false, subPath ?? path, [...within, name]);
       else if (ownPieces && ownPieces.some((piece) => piece.trim() === PIECES_AFTER)) {
         const pieceLines = ownPieces.filter((piece) => /^\s*1\s/.test(piece));
-        place(pieceLines.slice(0, 1), matrix, partColor, submodel, depth + 1, true);
-        after.push({ lines: pieceLines.slice(1), matrix, color: partColor, submodel, depth: depth + 1 });
-      } else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true);
-      else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(path && !caps.has(name) ? { path } : {}) });
+        place(pieceLines.slice(0, 1), matrix, partColor, submodel, depth + 1, true, null, within);
+        after.push({ lines: pieceLines.slice(1), matrix, color: partColor, submodel, depth: depth + 1, within });
+      } else if (ownPieces) place(ownPieces, matrix, partColor, submodel, depth + 1, true, null, within);
+      else parts.push({ name, color: partColor, matrix, ...(submodel ? { submodel } : {}), ...(within.length ? { within } : {}), ...(path && !caps.has(name) ? { path } : {}) });
     }
     const own = submodel && !pieces ? shapeLines.get(submodel)! : [];
     if (own.length) shapes.push({ submodel: submodel!, lines: own, color, matrix: placement, nearPart: parts.length > first ? first : -1, ...(path ? { path } : {}) });
   };
   place([...files.values()][0] ?? [], new Matrix4(), INHERIT, undefined, 0);
-  for (let i = 0; i < after.length; i++) place(after[i].lines, after[i].matrix, after[i].color, after[i].submodel, after[i].depth, true);
+  for (let i = 0; i < after.length; i++) place(after[i].lines, after[i].matrix, after[i].color, after[i].submodel, after[i].depth, true, null, after[i].within);
   // A shape whose submodel places no part (a sticker sheet's stickers, drawn in a file of their
   // own) moves with the part nearest where it's drawn.
   for (const shape of shapes) {
