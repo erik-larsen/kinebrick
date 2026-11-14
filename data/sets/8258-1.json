@@ -38,14 +38,17 @@
         "note": "the controls are the red lever p254 2736 (its handle) and the yellow levers p164 6536 and p167 6536 (first lever, with changeover catch p166 6641) and p169 6536 and p172 6536 (second lever, with catch p171 6641). The functions below are each driven by the motor (p767 58121) once the yellow levers select them; switching the motor on and off is electrical, so turning the motor's output stands in for it"
       },
       {
-        "does": "The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the first yellow lever (the one with p164 and p167) is pushed down.",
+        "does": "The four outriggers are pulled out sideways and pushed back in by hand, each on its own, sliding in the chassis.",
         "mechanisms": [
-          "electric-motor",
-          "function-selector",
-          "rack-and-pinion: outriggers"
+          "slide: outriggers"
         ],
-        "source": "book: 3 page 4 (arrows: the outriggers out and in; one yellow lever down)",
-        "control": "p767 58121",
+        "source": "Erik: \"outriggers are pulled out and pushed in directly\", from the functions page at the end of the building instructions (page 53 of LEGO's PDF 4565562, an arrow on each outrigger beam)",
+        "control": [
+          "p531 64781",
+          "p557 64781",
+          "p1203 64781",
+          "p1234 64781"
+        ],
         "moves": [
           "p531 64781",
           "p557 64781",
@@ -60,7 +63,7 @@
           "p0 64179",
           "p2123 32526"
         ],
-        "note": "which of the two yellow levers, and which way, is read from the book's picture and should be checked"
+        "note": "each outrigger beam (the bent beam 64781, with the 7 long beam 32524 hanging from it) is pushed along its slide, as the viewer pushes it; no lever and no motor drive it, as Erik settled (\"outriggers are pulled out and pushed in directly\"); the motor and lever this function named before are not part of it"
       },
       {
         "does": "The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up.",
@@ -184,10 +187,9 @@
     ]
   },
   "generated": {
-    "commit": "7699035a",
-    "uncommitted": true,
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 111,
+    "seconds": 119,
     "counts": {
       "not checked": 3,
       "partly": 4,
@@ -278,23 +280,31 @@
           [
             1.5,
             -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
           ]
         ],
         "still": [
           "p531 64781",
           "p557 64781",
           "p1203 64781",
-          "p1234 64781",
-          "p524 32524",
-          "p550 32524",
-          "p1196 32524",
-          "p1227 32524"
+          "p1234 64781"
         ],
         "rates": [
           {
             "p531 64781": [
-              0,
-              0
+              2.81e-8,
+              4.82e-13
             ],
             "p557 64781": [
               0,
@@ -309,8 +319,8 @@
               0
             ],
             "p524 32524": [
-              0,
-              0
+              1,
+              100
             ],
             "p550 32524": [
               0,
@@ -332,6 +342,132 @@
               0,
               0
             ]
+          },
+          {
+            "p531 64781": [
+              0,
+              9.47e-15
+            ],
+            "p557 64781": [
+              2.81e-8,
+              6.72e-13
+            ],
+            "p1203 64781": [
+              0,
+              0
+            ],
+            "p1234 64781": [
+              0,
+              0
+            ],
+            "p524 32524": [
+              0,
+              0
+            ],
+            "p550 32524": [
+              1,
+              100
+            ],
+            "p1196 32524": [
+              0,
+              0
+            ],
+            "p1227 32524": [
+              0,
+              0
+            ],
+            "p0 64179": [
+              0,
+              0
+            ],
+            "p2123 32526": [
+              0,
+              0
+            ]
+          },
+          {
+            "p531 64781": [
+              0,
+              0
+            ],
+            "p557 64781": [
+              0,
+              0
+            ],
+            "p1203 64781": [
+              0,
+              7.69e-13
+            ],
+            "p1234 64781": [
+              0,
+              0
+            ],
+            "p524 32524": [
+              0,
+              0
+            ],
+            "p550 32524": [
+              0,
+              0
+            ],
+            "p1196 32524": [
+              1,
+              100
+            ],
+            "p1227 32524": [
+              0,
+              0
+            ],
+            "p0 64179": [
+              0,
+              0
+            ],
+            "p2123 32526": [
+              0,
+              0
+            ]
+          },
+          {
+            "p531 64781": [
+              0,
+              0
+            ],
+            "p557 64781": [
+              0,
+              0
+            ],
+            "p1203 64781": [
+              0,
+              0
+            ],
+            "p1234 64781": [
+              0,
+              6.5e-13
+            ],
+            "p524 32524": [
+              0,
+              0
+            ],
+            "p550 32524": [
+              0,
+              0
+            ],
+            "p1196 32524": [
+              0,
+              0
+            ],
+            "p1227 32524": [
+              1,
+              100
+            ],
+            "p0 64179": [
+              0,
+              0
+            ],
+            "p2123 32526": [
+              0,
+              0
+            ]
           }
         ],
         "back": [
@@ -344,11 +480,55 @@
               0,
               0
             ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "movedBy": [
+          [
+            "p524 32524"
+          ],
+          [
+            "p550 32524"
+          ],
+          [
+            "p1196 32524"
+          ],
+          [
+            "p1227 32524"
           ]
         ],
         "cause": "not-driven",
         "detail": "p531 64781",
-        "seconds": 13.9
+        "seconds": 39.9
       },
       {
         "result": "partly",
@@ -401,7 +581,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2097 62274c01",
-        "seconds": 13.2
+        "seconds": 8.7
       },
       {
         "result": "partly",
@@ -458,7 +638,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2027 48168",
-        "seconds": 12.7
+        "seconds": 10.1
       },
       {
         "result": "partly",
@@ -502,7 +682,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2167 62274c01 against p2166 62271c01",
-        "seconds": 12
+        "seconds": 10.4
       },
       {
         "result": "works",
@@ -569,7 +749,7 @@
             ]
           ]
         ],
-        "seconds": 11.4
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -629,7 +809,7 @@
             ]
           ]
         ],
-        "seconds": 39.6
+        "seconds": 32.9
       },
       {
         "result": "not checked",

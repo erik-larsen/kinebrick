@@ -193,7 +193,8 @@
           "p708 32525",
           "p842 32525"
         ],
-        "note": "Unsure: the beams may be fixed."
+        "note": "Unsure: the beams may be fixed.",
+        "skip": "not a function of the set: the trailer's wheel beams are fixed, as Erik settled from a video of the set: \"trailer wheel beams are fixed\""
       },
       {
         "does": "A short chain hangs from the trailer's drawbar.",
@@ -211,17 +212,15 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
+    "commit": "11f1b8c1",
     "date": "2026-11-14",
-    "seconds": 515,
+    "seconds": 394,
     "counts": {
       "works": 8,
       "not back": 3,
       "partly": 1,
       "not checked": 1,
-      "no": 1,
-      "skipped": 1
+      "skipped": 2
     },
     "loose": [
       "p1126 32020",
@@ -302,7 +301,7 @@
             ]
           ]
         ],
-        "seconds": 6.3
+        "seconds": 5.2
       },
       {
         "result": "works",
@@ -332,7 +331,7 @@
             ]
           ]
         ],
-        "seconds": 7.4
+        "seconds": 5.3
       },
       {
         "result": "works",
@@ -460,7 +459,7 @@
             "p259 2852"
           ]
         ],
-        "seconds": 107.7
+        "seconds": 85.1
       },
       {
         "result": "works",
@@ -504,7 +503,7 @@
           [],
           []
         ],
-        "seconds": 13.3
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -538,7 +537,7 @@
             ]
           ]
         ],
-        "seconds": 7
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -620,7 +619,7 @@
             "p65 3706"
           ]
         ],
-        "seconds": 113.7
+        "seconds": 73.2
       },
       {
         "result": "partly",
@@ -685,9 +684,13 @@
             ]
           ]
         ],
+        "why": [
+          "p13 32009 is held by friction pins the control doesn't reach",
+          "p184 32009 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 17.2
+        "seconds": 12.8
       },
       {
         "result": "works",
@@ -801,7 +804,7 @@
             "p1004 64782"
           ]
         ],
-        "seconds": 28.6
+        "seconds": 20.3
       },
       {
         "result": "not checked"
@@ -884,66 +887,10 @@
           [],
           []
         ],
-        "seconds": 206.6
+        "seconds": 168.8
       },
       {
-        "result": "no",
-        "turned": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ],
-        "rates": [
-          {},
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true,
-          true
-        ],
-        "movedBy": [
-          [],
-          []
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.6
+        "result": "skipped"
       },
       {
         "result": "skipped"
