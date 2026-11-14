@@ -221,9 +221,9 @@
     ]
   },
   "generated": {
-    "commit": "5cf99f0b",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 368,
+    "seconds": 366,
     "counts": {
       "works": 8,
       "not back": 2,
@@ -301,7 +301,7 @@
             ]
           ]
         ],
-        "seconds": 4.8
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -331,7 +331,7 @@
             ]
           ]
         ],
-        "seconds": 5.9
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -455,7 +455,7 @@
             "p259 2852"
           ]
         ],
-        "seconds": 25.1
+        "seconds": 26.3
       },
       {
         "result": "works",
@@ -499,7 +499,7 @@
           [],
           []
         ],
-        "seconds": 10
+        "seconds": 9.2
       },
       {
         "result": "works",
@@ -533,7 +533,7 @@
             ]
           ]
         ],
-        "seconds": 5.1
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -615,7 +615,7 @@
             "p65 3706"
           ]
         ],
-        "seconds": 90.2
+        "seconds": 86.2
       },
       {
         "result": "partly",
@@ -686,7 +686,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 12.7
+        "seconds": 11.6
       },
       {
         "result": "works",
@@ -800,7 +800,7 @@
             "p1004 64782"
           ]
         ],
-        "seconds": 20.9
+        "seconds": 20.5
       },
       {
         "result": "not checked"
@@ -883,66 +883,10 @@
           [],
           []
         ],
-        "seconds": 181.6
+        "seconds": 191.7
       },
       {
-        "result": "no",
-        "turned": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ],
-        "rates": [
-          {},
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true,
-          true
-        ],
-        "movedBy": [
-          [],
-          []
-        ],
-        "cause": "stopped-early",
-        "seconds": 1.1
+        "result": "skipped"
       },
       {
         "result": "skipped"

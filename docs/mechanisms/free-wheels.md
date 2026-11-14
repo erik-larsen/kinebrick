@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 141 works, 7 partly, 2 no, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 136 works, 14 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -157,7 +157,7 @@ Each detail by the set it first appears in.
 
 **1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1)**
 
-- The front wheel rolls freely on its 6-long axle. (works)
+- The front wheel rolls freely on its 6-long axle. (partly)
 
 **1991, [8856 Whirlwind Rescue](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8856-1)**
 
@@ -223,7 +223,7 @@ Each detail by the set it first appears in.
 
 **1998, [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1)**
 
-- The buggy rolls on three wheels with yellow hubs: two on one axle at the back and one at the front, held in a fork; there's no steering. (works)
+- The buggy rolls on three wheels with yellow hubs: two on one axle at the back and one at the front, held in a fork; there's no steering. (partly)
 - The two small black wheels at the end of the purple tail roll freely. (works)
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
@@ -240,7 +240,7 @@ Each detail by the set it first appears in.
 
 **2005, [8418 Mini Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8418-1)**
 
-- The four wheels roll freely on pins; there's no steering (a skid loader). (no)
+- The four wheels roll freely on pins; there's no steering (a skid loader). (works)
 
 **2006, [8281 Mini Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8281-1)**
 
@@ -252,7 +252,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- The second pair of rear wheels and the front wheels roll freely. (no)
+- The second pair of rear wheels and the front wheels roll freely. (works)
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
@@ -368,7 +368,7 @@ Each detail by the set it first appears in.
 
 **2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1)**
 
-- Both wheels roll freely. (works)
+- Both wheels roll freely. (partly)
 
 **2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1)**
 
@@ -416,7 +416,7 @@ Each detail by the set it first appears in.
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
-- The mine truck's four wheels roll freely. (works)
+- The mine truck's four wheels roll freely. (partly)
 
 **2017, [42057 Ultralight Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42057-1)**
 
@@ -442,7 +442,7 @@ Each detail by the set it first appears in.
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
 - The truck's and the trailer's wheels roll freely. (works)
-- The reach stacker's four wheels roll freely. (works)
+- The reach stacker's four wheels roll freely. (partly)
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 
@@ -482,7 +482,7 @@ Each detail by the set it first appears in.
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
-- The truck's four wheels roll; it can drive up the ramp onto the deck. (works)
+- The truck's four wheels roll; it can drive up the ramp onto the deck. (partly)
 - *fans:* The rotors in the two red fans on deck spin freely. (works)
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
@@ -492,7 +492,7 @@ Each detail by the set it first appears in.
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
 - The front wheels roll freely; they aren't driven. (works)
-- The trailer's four wheels roll freely. (works)
+- The trailer's four wheels roll freely. (partly)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 

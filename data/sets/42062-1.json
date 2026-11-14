@@ -166,12 +166,12 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 74,
+    "seconds": 85,
     "counts": {
-      "partly": 3,
-      "works": 5,
+      "partly": 7,
+      "works": 1,
       "not back": 1,
       "no": 2
     },
@@ -563,7 +563,7 @@
         ],
         "cause": "not-driven",
         "detail": "p87 48989",
-        "seconds": 3.4
+        "seconds": 2.8
       },
       {
         "result": "partly",
@@ -598,7 +598,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 3.5
+        "seconds": 3.3
       },
       {
         "result": "works",
@@ -710,7 +710,7 @@
           [],
           []
         ],
-        "seconds": 26.8
+        "seconds": 26.6
       },
       {
         "result": "no",
@@ -827,10 +827,10 @@
         ],
         "cause": "loose-part",
         "detail": "p508 32270",
-        "seconds": 3.8
+        "seconds": 3.5
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -869,10 +869,12 @@
             ]
           ]
         ],
-        "seconds": 6.1
+        "cause": "loose-part",
+        "detail": "p507 32270",
+        "seconds": 5.9
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -910,10 +912,12 @@
         "pushed": [
           true
         ],
-        "seconds": 9.2
+        "cause": "loose-part",
+        "detail": "p530 6553",
+        "seconds": 8.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -940,7 +944,9 @@
             ]
           ]
         ],
-        "seconds": 4.1
+        "cause": "loose-part",
+        "detail": "p547 32524",
+        "seconds": 3.9
       },
       {
         "result": "no",
@@ -989,10 +995,10 @@
         ],
         "cause": "loose-part",
         "detail": "p574 32073",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -1065,7 +1071,9 @@
           [],
           []
         ],
-        "seconds": 15.1
+        "cause": "loose-part",
+        "detail": "p597 55981",
+        "seconds": 28.4
       }
     ]
   }

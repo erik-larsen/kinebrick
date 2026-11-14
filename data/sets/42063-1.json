@@ -111,9 +111,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
       "no": 3,
       "works": 2,
@@ -207,7 +207,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -232,7 +232,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "no",

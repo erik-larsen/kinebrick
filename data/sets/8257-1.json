@@ -160,13 +160,13 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 51,
+    "seconds": 73,
     "counts": {
-      "works": 5,
-      "partly": 2,
+      "works": 3,
       "not back": 3,
+      "partly": 4,
       "no": 1,
       "skipped": 2
     },
@@ -603,21 +603,21 @@
           [],
           []
         ],
-        "seconds": 15.9
+        "seconds": 30.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.59,
+            1.5,
             -0.02
           ]
         ],
         "rates": [
           {
             "p323 32133 against p550 32018": [
-              0.126,
-              2570
+              0.81,
+              715
             ],
             "p567 32065 against p550 32018": [
               1.4,
@@ -625,23 +625,23 @@
             ],
             "p594 6629 against p550 32018": [
               0,
-              0.00000405
+              1.17e-12
             ],
             "p604 32065 against p550 32018": [
               0,
-              3.45e-10
+              3.02e-12
             ]
           }
         ],
         "back": [
           [
             [
-              76.61,
-              8.12
+              0,
+              0
             ],
             [
-              0.22,
-              0.02
+              0.98,
+              0.1
             ]
           ]
         ],
@@ -657,7 +657,7 @@
         "pushed": [
           true
         ],
-        "seconds": 12.7
+        "seconds": 15.3
       },
       {
         "result": "partly",
@@ -704,7 +704,7 @@
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 5.6
+        "seconds": 6.6
       },
       {
         "result": "works",
@@ -738,17 +738,10 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 7.4
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -806,11 +799,11 @@
           []
         ],
         "cause": "loose-part",
-        "detail": "p43 6579",
-        "seconds": 7.7
+        "detail": "p25 6579",
+        "seconds": 5.8
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -858,7 +851,9 @@
             "dead point"
           ]
         ],
-        "seconds": 5.6
+        "cause": "loose-part",
+        "detail": "p54 6572",
+        "seconds": 5.1
       },
       {
         "result": "no",
@@ -908,10 +903,10 @@
         ],
         "cause": "loose-part",
         "detail": "p166 32065",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -942,7 +937,9 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "cause": "loose-part",
+        "detail": "p156 6629",
+        "seconds": 1.6
       },
       {
         "result": "skipped",

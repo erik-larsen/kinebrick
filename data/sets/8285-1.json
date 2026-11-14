@@ -250,9 +250,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "0b971334",
     "date": "2026-11-14",
-    "seconds": 147,
+    "seconds": 369,
     "counts": {
       "partly": 3,
       "not back": 2,
@@ -371,9 +371,23 @@
           "p413 6141",
           "p414 6141"
         ],
-        "cause": "loose-part",
-        "detail": "p2332 32020",
-        "seconds": 3.9
+        "movedBy": [
+          [
+            "p60 6573",
+            "p385 50450",
+            "p720 3705",
+            "p732 2851"
+          ],
+          [
+            "p60 6573",
+            "p385 50450",
+            "p720 3705",
+            "p732 2851"
+          ]
+        ],
+        "cause": "stay-chosen",
+        "detail": "p490 3743",
+        "seconds": 106.1
       },
       {
         "result": "works",
@@ -437,9 +451,7 @@
           [],
           []
         ],
-        "cause": "loose-part",
-        "detail": "p2336 32020",
-        "seconds": 1.5
+        "seconds": 153.5
       },
       {
         "result": "works",
@@ -485,7 +497,7 @@
             ]
           ]
         ],
-        "seconds": 12.2
+        "seconds": 9
       },
       {
         "result": "works",
@@ -515,7 +527,7 @@
             ]
           ]
         ],
-        "seconds": 11.9
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -528,7 +540,7 @@
         "rates": [
           {
             "p1074 3707": [
-              8.37e-8,
+              0,
               28.3
             ],
             "p720 3705": [
@@ -552,7 +564,7 @@
         "pushed": [
           true
         ],
-        "seconds": 52.3
+        "seconds": 41.9
       },
       {
         "result": "partly",
@@ -606,7 +618,7 @@
         ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 12
+        "seconds": 10.4
       },
       {
         "result": "partly",
@@ -653,7 +665,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 11.4
+        "seconds": 8.2
       },
       {
         "result": "skipped",
@@ -704,7 +716,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 25
+        "seconds": 18.7
       },
       {
         "result": "works",
@@ -742,7 +754,7 @@
             ]
           ]
         ],
-        "seconds": 12
+        "seconds": 7.6
       },
       {
         "result": "skipped",
@@ -795,7 +807,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.4
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -839,7 +851,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 0.6
+        "seconds": 0.8
       },
       {
         "result": "no",
@@ -898,7 +910,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 1.6
       }
     ]
   }
