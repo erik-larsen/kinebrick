@@ -736,8 +736,12 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
         // For a function whose controls share out the parts, a way does its share if it moves
         // at least one of them (if it lists any).
-        const share = Math.abs(turned) >= half && !wrong.length && (!moves.length || still.length < moves.length);
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : Math.abs(turned) >= half && !still.length && !wrong.length };
+        // Far enough: half the reach, or as far as it can go, to an end stop from part data (a
+        // slide's travel, such as a shock absorber's, or the end of a rack's teeth), however short
+        // that is: an arm built at one end of its shock's travel moves one way only, and that counts.
+        const farEnough = Math.abs(turned) >= half || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
+        const share = farEnough && !wrong.length && (!moves.length || still.length < moves.length);
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
