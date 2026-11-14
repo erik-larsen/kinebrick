@@ -15,6 +15,7 @@ This page lists the errors Kinebrick has found that way in the LDraw models it u
 | [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in Kinebrick |
 | [42093-1](#42093-1-chevrolet-corvette-zr1) | Chevrolet Corvette ZR1 (2019) | Philippe Hurbain | LDraw OMR | 1 | Not corrected |
 | [10001-1](#10001-1-metroliner) | Metroliner (2001) | Zoltán Kéri | LDraw OMR | 3 | Corrected in Kinebrick |
+| [950-1](#950-1-fork-lift) | Fork Lift (1979) | Merlijn Wissink | LDraw OMR | 1 | Corrected in Kinebrick |
 
 ## 852-1 Helicopter
 
@@ -407,6 +408,37 @@ The tap in the second car (a 3496 base with a 3278 spout) is placed with its bas
 
 Kinebrick's copy has both at y = -142, the base on the studs.
 
+## 950-1 Fork Lift
+
+| | |
+| --- | --- |
+| Set | 950 Fork Lift, 1979 |
+| Model | Fork-Lift Truck, `950-1.mpd` |
+| Author | Merlijn Wissink [legolijntje] |
+| Licence | CCAL 2.0 (CC BY 2.0) |
+| Original | [LDraw Official Model Repository, set 92](https://library.ldraw.org/omr/sets/92) |
+| In Kinebrick | Corrected, the change with a comment saying how: [`models/950-Fork Lift.mpd`](../models/950-Fork%20Lift.mpd) |
+
+### The lower axle and its gear are missing (corrected in Kinebrick)
+
+Step 13 of the instructions adds a second Technic Axle 10 (3737) through the mast's upright beams, two holes below the axle at the top of the mast, with an 8 tooth gear (3647) that meshes the 24 tooth gear on the top axle, and puts the handwheel on its other end. The file leaves out the lower axle and its gear, and has the handwheel (3736) and its pin (3673) on the top axle, so its 24 tooth gear meshes with nothing:
+
+```
+1 7 -90 -238 -100 0 0 1 0 -1 0 1 0 0 3736.dat
+1 7 -100 -238 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
+```
+
+Kinebrick's copy moves the handwheel and its pin down 40 LDU onto the lower axle, and adds the axle and its gear at the end of the main model:
+
+```
+1 7 -90 -198 -100 0 0 1 0 -1 0 1 0 0 3736.dat
+1 7 -100 -198 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
+1 0 0 -198 -100 -1 0 0 0 1 0 0 0 -1 3737.dat
+1 7 90 -198 -100 0 0 1 0 1 0 -1 0 0 3647.dat
+```
+
+The handwheel then turns the top axle a third as fast, through the 8 and 24 tooth gears. The 850 Fork Lift's model has the same lines and the same omission.
+
 <!-- errata: from data/errata/*.json by npm run errata, not by hand -->
 
 ## Corrections Kinebrick applies to the OMR files
@@ -415,9 +447,53 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 
 | Set | Entry | What it does | Status |
 | --- | --- | --- | --- |
+| [850-1](#850-1-handwheel-down) | handwheel-down | moves `3736.dat` to -90 -198 -100 | Proposed, not applied until signed off |
+| [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Proposed, not applied until signed off |
+| [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Proposed, not applied until signed off |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Proposed, not applied until signed off |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Proposed, not applied until signed off |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Proposed, not applied until signed off |
+
+### 850-1: handwheel-down
+
+Proposed, not applied until signed off.
+
+The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
+
+In the main model (p188 3736), the line
+
+```
+1 7 -90 -238 -100 0 0 1 0 -1 0 1 0 0 3736.dat
+```
+
+is read with its part at -90 -198 -100.
+
+### 850-1: handwheel-pin-down
+
+Proposed, not applied until signed off.
+
+The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
+
+In the main model (p189 3673), the line
+
+```
+1 7 -100 -238 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
+```
+
+is read with its part at -100 -198 -130.
+
+### 850-1: lower-axle-and-gear
+
+Proposed, not applied until signed off.
+
+The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
+
+Added to the main model:
+
+```
+1 0 0 -198 -100 -1 0 0 0 1 0 0 0 -1 3737.dat
+1 7 90 -198 -100 0 0 1 0 1 0 -1 0 0 3647.dat
+```
 
 ### 8258-1: front-drive-gear-4-high
 

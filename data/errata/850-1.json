@@ -1,0 +1,43 @@
+{
+  "set": "850-1",
+  "entries": [
+    {
+      "id": "handwheel-down",
+      "what": "move",
+      "file": "",
+      "line": "1 7 -90 -238 -100 0 0 1 0 -1 0 1 0 0 3736.dat",
+      "part": "p188 3736",
+      "position": [
+        -90,
+        -198,
+        -100
+      ],
+      "evidence": "The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).",
+      "signedOff": null
+    },
+    {
+      "id": "handwheel-pin-down",
+      "what": "move",
+      "file": "",
+      "line": "1 7 -100 -238 -130 -1 0 0 0 1 0 0 0 -1 3673.dat",
+      "part": "p189 3673",
+      "position": [
+        -100,
+        -198,
+        -130
+      ],
+      "evidence": "The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).",
+      "signedOff": null
+    },
+    {
+      "id": "lower-axle-and-gear",
+      "what": "add",
+      "lines": [
+        "1 0 0 -198 -100 -1 0 0 0 1 0 0 0 -1 3737.dat",
+        "1 7 90 -198 -100 0 0 1 0 1 0 -1 0 0 3647.dat"
+      ],
+      "evidence": "The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).",
+      "signedOff": null
+    }
+  ]
+}

@@ -29,7 +29,7 @@
           "p178 3736",
           "p44 3679"
         ],
-        "note": "The book's step 13 adds a second axle 10 below the mast-top axle, with an 8-tooth gear meshing the 24-tooth gear; the model file leaves out that axle and gear, so its 24-tooth gear meshes with nothing. What the lower axle is for is unsure (inferred: perhaps a slower crank, or a brake)."
+        "note": "The handwheel turns the lower axle 10 that the book adds in step 13, two holes below the mast-top axle; its 8-tooth gear drives the 24-tooth gear on the top axle, so the forks rise 3.33 LDU for each radian of the handwheel, a third of the top axle's 10. The OMR's file leaves out that axle and gear, with the handwheel on the top axle; Kinebrick's copy adds them (see docs/ldraw-errata.md)."
       },
       {
         "does": "The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.",
@@ -84,9 +84,10 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "95063e61",
+    "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 1,
+    "seconds": 3,
     "counts": {
       "works": 4
     },
@@ -104,15 +105,15 @@
           {
             "p199 3710": [
               0,
-              10
+              3.33
             ],
             "p191 3460": [
               0,
-              10
+              3.33
             ],
             "p192 3460": [
               0,
-              10
+              3.33
             ],
             "p178 3736": [
               0,
@@ -136,7 +137,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -162,7 +163,7 @@
             ],
             "p199 3710": [
               0,
-              7.77e-16
+              3.27e-16
             ],
             "p109 3482 against p0 3030": [
               0,
@@ -182,7 +183,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -258,7 +259,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -320,7 +321,7 @@
           [],
           []
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       }
     ]
   }
