@@ -123,7 +123,7 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5dac39a9",
     "date": "2026-11-14",
     "seconds": 2,
     "counts": {
@@ -205,7 +205,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p83 32069 against p65 32524",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -278,7 +278,7 @@
         "freed": 2,
         "cause": "not-driven",
         "detail": "p223 41239 against p65 32524",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -446,7 +446,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "works",

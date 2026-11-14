@@ -13,6 +13,8 @@
 //
 // Needs the LDraw parts library in ldraw/. Run with: npm run scan
 
+import { applyErrata } from '../src/errata.ts';
+import { readErrata } from './load-model.ts';
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { libraryConnections } from '../src/connections.ts';
@@ -60,7 +62,12 @@ for (const file of files) {
   const model = file.replace(/\.(ldr|mpd)$/i, '');
   const started = Date.now();
   try {
-    const { parts: read, paths } = parseModel(readFileSync(join(OMR_DIR, file), 'utf-8'), (name) => primitives.has(name), piecesOf);
+    // Read with its set's errata, as the check reads it (see src/errata.ts).
+    const original = readFileSync(join(OMR_DIR, file), 'utf-8');
+    const asIs = () => parseModel(original, (name) => primitives.has(name), piecesOf).parts;
+    let asIsParts: ReturnType<typeof asIs> | null = null;
+    const { text } = applyErrata(original, readErrata(join(OMR_DIR, file)), false, (n) => (asIsParts ??= asIs())[n]?.name);
+    const { parts: read, paths } = parseModel(text, (name) => primitives.has(name), piecesOf);
     // Parts the file brings with it under its own names, read as the library's (see libraryName).
     const parts = read.map((p) => ({ ...p, name: libraryName(p.name, table) }));
     const mech = inferMechanism(parts, table, roles, paths);

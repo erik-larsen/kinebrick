@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 44 works, 31 partly, 2 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 45 works, 31 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -69,7 +69,7 @@ Each detail by the set it first appears in.
 **2001, [8466 4 X 4 Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8466-1)**
 
 - *centre:* Pushing the off-roader along turns all four wheels together and runs the V8 engine: the front and rear differentials drive shafts to a third, central differential, which drives the five-speed gearbox's output; through whichever gear is engaged, the gearbox turns the engine's input shaft, whose 24-tooth gear turns the crankshaft, so the eight pistons go up and down. (partly)
-- The front differential lets the front wheels turn at different speeds in a bend: with the drive shaft held, turning one front wheel turns the other the opposite way. (no)
+- The front differential lets the front wheels turn at different speeds in a bend: with the drive shaft held, turning one front wheel turns the other the opposite way. (partly)
 - The rear differential does the same for the rear wheels. (partly)
 - *centre:* The central differential lets the front and rear axles turn at different speeds: with the front wheels held, the rear wheels can still turn. (partly)
 
@@ -240,7 +240,7 @@ Each detail by the set it first appears in.
 
 - *centre:* The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
 - *centre:* The centre differential lets the front and rear axles turn at different speeds while it's unlocked: holding the motors, turning the front drive shaft turns the rear one the opposite way. (works)
-- The front and rear axle differentials let each axle's wheels turn at different speeds in a corner. (partly)
+- The front and rear axle differentials let each axle's wheels turn at different speeds in a corner. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 

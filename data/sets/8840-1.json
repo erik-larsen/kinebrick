@@ -108,7 +108,7 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5dac39a9",
     "date": "2026-11-14",
     "seconds": 2,
     "counts": {
@@ -171,7 +171,7 @@
         ],
         "cause": "not-driven",
         "detail": "p51 4261 against p0 3703",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -277,7 +277,7 @@
           "p118 2852",
           "p120 2851"
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -357,7 +357,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "not checked",

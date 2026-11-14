@@ -40,6 +40,7 @@ import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
+import { applyErrata, type Errata, setOfFile } from './errata.ts';
 import { drawnDirectly, packModel, shapeName } from './pack.ts';
 import { studioModel, studioParts } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
@@ -52,6 +53,8 @@ import titlesUrl from '../packed/titles.json?url';
 import packedModels from '../packed/models.json';
 import notMovingYet from '../data/not-moving-yet.json';
 import wipModels from '../data/wip-models.json';
+// Each set's errata (src/errata.ts), by file name.
+const errataFiles = import.meta.glob('../data/errata/*.json', { eager: true, import: 'default' }) as Record<string, Errata>;
 
 // The test models in models/, and their names in the picker. Any other model in models/ (the
 // real LEGO sets) comes after them, under its file name.
@@ -340,9 +343,19 @@ async function start() {
   if (FILE) {
     // A file this browser doesn't keep is looked for beside the page, where npm run dev serves
     // the sets' own files, e.g. ?file=omr/8081-1+Extreme+Cruiser.mpd.
-    const kept = (await keptFile(FILE)) ?? (await fetch(FILE).then((r) => (r.ok ? r.text() : null), () => null));
+    // A set's own file, fetched, is read with its errata (src/errata.ts), as the check reads it;
+    // with option=proposed, those not yet signed off too. A file you opened yourself is never
+    // corrected. (The part-number check is the check's: here the pieces of split parts that the
+    // numbers count aren't known before the model is packed.)
+    const own = await keptFile(FILE);
+    const fetched = own === null ? await fetch(FILE).then((r) => (r.ok ? r.text() : null), () => null) : null;
+    const kept = own ?? fetched;
     if (kept === null) throw new Error(`${FILE} isn't kept in this browser: open it again with "Open a model file…" above`);
-    modelText = kept;
+    const set = fetched !== null ? setOfFile(FILE) : null;
+    const corrected = applyErrata(kept, set ? errataFiles[`../data/errata/${set}.json`] : null, OPTIONS.includes('proposed'), null);
+    if (corrected.applied.length) console.info(`Errata applied to ${set}: ${corrected.applied.join(', ')}`);
+    if (corrected.refused.length) console.warn(`Errata refused for ${set}: ${corrected.refused.join('; ')}`);
+    modelText = corrected.text;
     const [colours, primitiveList, library] = await Promise.all([
       fetch(coloursUrl).then((r) => r.text()),
       fetch(primitivesUrl).then((r) => r.json()),
@@ -421,7 +434,7 @@ async function start() {
   });
   const loadedShapeMatrices = shapeObjects.map((obj) => obj.matrix.clone());
   partObjects.forEach((obj, i) => {
-    if (normalizePartName(obj.name) !== startParts[i].name) {
+    if (!startParts[i].removed && normalizePartName(obj.name) !== startParts[i].name) {
       throw new Error(`Part ${i}: loader has ${obj.name}, model has ${startParts[i].name}`);
     }
     obj.userData.partIndex = i;
@@ -944,7 +957,11 @@ async function start() {
   const pointedAt = SHOW.filter((part) => part < partObjects.length).map((part) => partObjects[part]);
   if (pointedAt.length) {
     const box = new Box3();
+    // The model may not have been drawn yet, so its parts' places in the scene are worked out here.
+    for (const object of pointedAt) object.updateWorldMatrix(true, true);
     for (const object of pointedAt) box.expandByObject(object);
+    // A part that an erratum removed has nothing drawn: the view goes to where it was.
+    for (const object of pointedAt) box.expandByPoint(object.getWorldPosition(new Vector3()));
     const centre = box.getCenter(new Vector3());
     const reach = Math.max(box.getSize(new Vector3()).length() * 3, 300);
     controls.target.copy(centre);

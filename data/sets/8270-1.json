@@ -145,7 +145,8 @@
     ]
   },
   "generated": {
-    "commit": "0b971334",
+    "commit": "c1623c1a",
+    "uncommitted": true,
     "date": "2026-11-14",
     "seconds": 1,
     "counts": {
@@ -519,7 +520,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "skipped",

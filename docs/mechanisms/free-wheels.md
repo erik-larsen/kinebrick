@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 136 works, 14 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 138 works, 12 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -482,7 +482,7 @@ Each detail by the set it first appears in.
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 
-- The truck's four wheels roll; it can drive up the ramp onto the deck. (partly)
+- The truck's four wheels roll; it can drive up the ramp onto the deck. (works)
 - *fans:* The rotors in the two red fans on deck spin freely. (works)
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
@@ -492,7 +492,7 @@ Each detail by the set it first appears in.
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
 - The front wheels roll freely; they aren't driven. (works)
-- The trailer's four wheels roll freely. (partly)
+- The trailer's four wheels roll freely. (works)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 

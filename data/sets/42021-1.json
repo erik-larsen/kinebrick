@@ -106,7 +106,7 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5dac39a9",
     "date": "2026-11-14",
     "seconds": 3,
     "counts": {
@@ -221,7 +221,7 @@
         ],
         "cause": "not-driven",
         "detail": "p13 15460",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -319,7 +319,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p13 15460",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -367,7 +367,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -443,7 +443,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "not checked",

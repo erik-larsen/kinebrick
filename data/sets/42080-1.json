@@ -27,32 +27,32 @@
         "note": "the motor (p654 99499) is the control; the axle named is its output. Unsure which parts make up the pump"
       },
       {
-        "does": "The black gear on the right of the cab turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom.",
+        "does": "The black gear on the machine's left, by the cab, turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom.",
         "mechanisms": [
           "pneumatic-cylinder: boom"
         ],
-        "source": "book: page 203 (left pair: switch on the motor, turn the valve; the boom moves up and down); which side's valve works the boom is inferred",
+        "source": "book: page 203 (left pair: switch on the motor, turn the valve; the boom moves up and down)",
         "control": "p1893 42080 - 18575",
         "moves": [
           "p1946 19466c01",
           "p1949 19466c01",
           "p1317 3703"
         ],
-        "note": "needs air from the pump, so only works with the motor running"
+        "note": "needs air from the pump, so only works with the motor running. Signed by Erik, 2026-11-14: the boom's gear is on the machine's left (p1893, at x +108)"
       },
       {
-        "does": "The black gear on the left of the cab turns the second pneumatic valve, which works the small cylinder in the harvester head, opening and closing its two spiked gripper arms.",
+        "does": "The black gear on the machine's right, by the cab, turns the second pneumatic valve, which works the small cylinder in the harvester head, opening and closing its two spiked gripper arms.",
         "mechanisms": [
           "pneumatic-cylinder: gripper arms"
         ],
-        "source": "book: page 203 (right pair: the gripper arms open and close), page 201 (bottom right photo); which side's valve works the gripper is inferred",
+        "source": "book: page 203 (right pair: the gripper arms open and close), page 201 (bottom right photo)",
         "control": "p1892 42080 - 18575",
         "moves": [
           "p1421 2947b",
           "p1522 42080 - 27266",
           "p1529 42080 - 27266"
         ],
-        "note": "needs air from the pump, so only works with the motor running"
+        "note": "needs air from the pump, so only works with the motor running. Signed by Erik, 2026-11-14: the gripper's gear is on the machine's right (p1892, at x -108)"
       },
       {
         "does": "The cab and boom slew round on a turntable on the front unit, about 270 degrees.",
@@ -129,12 +129,12 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
+    "commit": "5cb668ef",
     "date": "2026-11-14",
-    "seconds": 200,
+    "seconds": 135,
     "counts": {
       "works": 5,
-      "not back": 3,
+      "not back": 2,
       "no": 3
     },
     "loose": [
@@ -368,7 +368,7 @@
         "turned": [
           [
             -1.17,
-            0.37
+            0.38
           ]
         ],
         "rates": [
@@ -390,14 +390,13 @@
               1.5
             ],
             [
-              20.15,
-              4.84
+              559.63,
+              121.43
             ]
           ]
         ],
         "strayed": [
-          "p2048 42080 - 10197",
-          "p2040 32063"
+          "p2048 42080 - 10197"
         ],
         "stop": [
           [
@@ -408,7 +407,7 @@
         "pushed": [
           true
         ],
-        "seconds": 54.8
+        "seconds": 68.1
       },
       {
         "result": "no",
@@ -488,7 +487,7 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 4.9
       },
       {
         "result": "works",
@@ -529,7 +528,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 12.6
+        "seconds": 19.2
       },
       {
         "result": "no",
@@ -577,7 +576,7 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -602,7 +601,7 @@
             ]
           ]
         ],
-        "seconds": 6.4
+        "seconds": 5.1
       },
       {
         "result": "works",
@@ -653,22 +652,12 @@
         "back": [
           [
             [
-              13.24,
-              3.98
+              0,
+              0
             ],
             [
               0,
               0
-            ]
-          ],
-          [
-            [
-              19.91,
-              5.97
-            ],
-            [
-              6.8,
-              2.07
             ]
           ],
           [
@@ -693,8 +682,8 @@
           ],
           [
             [
-              6.46,
-              1.99
+              0,
+              0
             ],
             [
               0,
@@ -703,12 +692,22 @@
           ],
           [
             [
-              46.52,
-              14.03
+              0,
+              0
             ],
             [
-              6.64,
-              2.07
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
             ]
           ],
           [
@@ -731,12 +730,6 @@
               0
             ]
           ]
-        ],
-        "strayed": [
-          "p2036 92947",
-          "p1041 26603",
-          "p931 6141",
-          "p2048 42080 - 10197"
         ],
         "movedBy": [
           [],
@@ -748,7 +741,7 @@
           [],
           []
         ],
-        "seconds": 120.9
+        "seconds": 35.9
       }
     ]
   }

@@ -2,7 +2,7 @@
 
 A loose item that comes with the model. (Not mechanisms.)
 
-First appears in 2000, in [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1): The blaster is held in the right hand by a magnet, so it can be taken out and put back.
+First appears in 2000, in [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1): The blaster is stored on the backpack; the magnet on the right wrist picks it up when the arm swings back (function 5).
 
 Used in 12 of the 186 surveyed sets, by 12 functions. Kinebrick: 1 works, 2 no, 1 skipped, 8 not checked.
 
@@ -36,7 +36,7 @@ Each detail by the set it first appears in.
 
 **2000, [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1)**
 
-- *blaster:* The blaster is held in the right hand by a magnet, so it can be taken out and put back. (skipped)
+- *blaster:* The blaster is stored on the backpack; the magnet on the right wrist picks it up when the arm swings back (function 5). (skipped)
 
 **2005, [8416 Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8416-1)**
 
