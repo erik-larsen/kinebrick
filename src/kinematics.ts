@@ -639,7 +639,7 @@ export class Kinematics {
   // chosen by what holds the group, not by the bodies' numbers: first a body that slides on a
   // body already placed (an outrigger's beam in the chassis, so a drag of it slides it and
   // what hangs from it goes along), then one that hangs by a ball on one, then, held by
-  // nothing, any body of what's left. Of several, the one with the most parts, the group's
+  // nothing, a body of what's left with no gear. Of several, the one with the most parts, the group's
   // main piece; only bodies alike in that are taken by number. Rooted at the lowest-numbered
   // body, the 8258 Crane Truck's outrigger had its 7L beam as the root and the bent beam that
   // slides in the chassis hanging from it by a hinge, so a drag of the bent beam spun it on
@@ -681,7 +681,12 @@ export class Kinematics {
       if (!left.length) break;
       const slides = heldBy('slide');
       const balls = heldBy('ball');
-      grow(main(slides.length ? slides : balls.length ? balls : left));
+      // Held by nothing (a grab hanging on a crane's string, a knob that only meshes): what
+      // the turning parts turn on, a body with no gear, rather than a gear (the 42050 Drag
+      // Racer's steering knob, a gear on a pin, turns on the pin).
+      const geared = new Set(this.mech.gears.map((g) => g.body));
+      const plain = left.filter((b) => !geared.has(b));
+      grow(main(slides.length ? slides : balls.length ? balls : plain.length ? plain : left));
     }
     for (const root of this.rootPoses.keys()) {
       this.rootColumn.set(root, this.columns);

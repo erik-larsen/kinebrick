@@ -53,6 +53,14 @@ describe('the root of a group the frame reaches only by a slide or a ball', () =
     expect(kin.parentLink(1)!.parent).toBe(2);
   });
 
+  it('held by nothing, is its body with no gear: a knob gear turns on its pin', () => {
+    const mech = model([5, 1, 3], [hinge(1, 2)]);
+    mech.gears = [{ body: 2 } as Mechanism['gears'][number]];
+    const kin = new Kinematics(mech);
+    expect(kin.parentLink(1)).toBeNull();
+    expect(kin.parentLink(2)!.parent).toBe(1);
+  });
+
   it('held by nothing, is its body with the most parts', () => {
     const kin = new Kinematics(model([5, 1, 3], [hinge(1, 2)]));
     expect(kin.parentLink(2)).toBeNull();
