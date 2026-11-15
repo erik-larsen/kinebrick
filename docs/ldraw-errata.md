@@ -453,8 +453,11 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
+| [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Proposed, not applied until signed off |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
+| [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Proposed, not applied until signed off |
+| [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
@@ -540,6 +543,20 @@ Added to the main model:
 1 256 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 51011.dat
 ```
 
+### 42040-1: seats-on-their-pins
+
+Proposed, not applied until signed off.
+
+The hatch behind the engine and its lever group (seats.ldr: the 42003s p249 and p259, the 32140s, the 32054s and the 32316) are loose in the file: each 42003's pin hole lies 2.00 LDU off its pin, the 6558s p165 and p164 of motor.ldr, both off by the same amount (0, -0.10, -2.00), along the holes' line. The booklet has the lever group and the hatch move together on those pins (42040-1-1.pdf pages 48 to 52, 89 and 115; docs/audits/for-erik.md, Model-file findings, medium). Moved by that amount, with its turn as built, both 42003s sit on their pins.
+
+In the main model, the line
+
+```
+1 1 -160 -211.5552 -68.6371 0 0 -1 0.0523 0.9986 0 0.9986 -0.0523 0 42040 - seats.ldr
+```
+
+is read with its part at -160 -211.6552 -70.6371.
+
 ### 42064-1: hatch-20-high
 
 Signed off by Erik, 2026-11-14.
@@ -569,6 +586,32 @@ In the main model, the line
 ```
 
 is read with its part at 250 -123 420, turned to 0 0 -1 0 1 0 1 0 0.
+
+### 42093-1: no-12-tooth-on-the-engine-shaft
+
+Proposed, not applied until signed off.
+
+The shaft that drives the engine has a 12 tooth double bevel gear (32270) where the set has an 8 tooth gear (10928): step 2 (42093-1-1.pdf page 4) puts an 8 tooth gear on that shaft, and the parts list has two 8 tooth gears (element 6012451) and three 12 tooth double bevel gears (element 4177431) where the file has one and four. A 12 tooth and an 8 tooth gear need 25 LDU between their axes; at 20 the 12 tooth gear overlaps the crankshaft's 8 tooth gear rather than meshing. Line 3115 of 42093 - corvette.ldr (docs/ldraw-errata.md, the 42093's section, written before the errata were applied; docs/audits/for-erik.md, Model-file findings, high).
+
+In `42093 - corvette.ldr` (p7 32270), the line
+
+```
+1 0 0 0 -80 0 1 0 1 0 0 0 0 -1 32270.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42093-1: 8-tooth-on-the-engine-shaft
+
+Proposed, not applied until signed off.
+
+The 8 tooth gear the set has in place of the removed 12 tooth gear: the same place and turn, in the main model's coordinates (corvette.ldr is placed unturned at 0 -55 160), in dark bluish grey like the crankshaft's gear.
+
+Added to the main model:
+
+```
+1 72 0 -55 80 0 1 0 1 0 0 0 0 -1 10928.dat
+```
 
 ### 42109-1: no-pin-p381
 
