@@ -4,7 +4,7 @@ Wishbones with a pushrod to a rocker that works a shock absorber inboard. (Suspe
 
 First appears in 2013, in [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1): Each front wheel rides on double wishbones with a pushrod to a rocker inside the nose, which works a shock absorber lying across the car (pushrod suspension).
 
-Used in 3 of the 186 surveyed sets, by 4 functions. Kinebrick: 1 works, 3 partly.
+Used in 3 of the 186 surveyed sets, by 4 functions. Kinebrick: 1 works, 2 partly, 1 no.
 
 ## By decade
 
@@ -26,7 +26,7 @@ Each detail by the set it first appears in.
 **2013, [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1)**
 
 - Each front wheel rides on double wishbones with a pushrod to a rocker inside the nose, which works a shock absorber lying across the car (pushrod suspension). (partly)
-- Each rear wheel rides on double wishbones with a pushrod to a rocker above the gearbox, which works a shock absorber (pushrod suspension). (partly)
+- Each rear wheel rides on double wishbones with a pushrod to a rocker above the gearbox, which works a shock absorber (pushrod suspension). (no)
 
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 

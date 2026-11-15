@@ -124,7 +124,7 @@
     ]
   },
   "generated": {
-    "commit": "5dac39a9",
+    "commit": "8eb0944c",
     "date": "2026-11-14",
     "seconds": 4,
     "counts": {
@@ -280,7 +280,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -433,7 +433,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       }
     ]
   }

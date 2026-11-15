@@ -154,15 +154,14 @@
     ]
   },
   "generated": {
-    "commit": "c1623c1a",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 18,
+    "seconds": 6,
     "counts": {
-      "partly": 4,
+      "partly": 3,
+      "no": 3,
       "skipped": 1,
       "not back": 1,
-      "no": 2,
       "works": 1,
       "not checked": 1
     },
@@ -312,10 +311,10 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 2
+        "seconds": 1.9
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
             0,
@@ -323,28 +322,26 @@
           ]
         ],
         "still": [
+          "p247 35189",
           "p284 76537"
-        ],
-        "moved": [
-          "p379 88516"
         ],
         "rates": [
           {
             "p247 35189": [
-              711000,
-              0.00000579
+              0,
+              0
             ],
             "p284 76537": [
-              0.875,
-              0.00000363
+              0,
+              0
             ],
             "p379 88516": [
-              712000,
-              0.00000678
+              0,
+              0
             ],
             "p185 2854": [
-              0.875,
-              0.0000036
+              0,
+              0
             ]
           }
         ],
@@ -362,8 +359,8 @@
         ],
         "stop": [
           [
-            "stuck",
-            "stuck"
+            "no motion",
+            "no motion"
           ]
         ],
         "pushed": [
@@ -371,7 +368,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p284 76537",
-        "seconds": 10.8
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -432,7 +429,7 @@
         ],
         "freed": 2,
         "cause": "stopped-early",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -492,7 +489,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 2.7
       },
       {
         "result": "no",

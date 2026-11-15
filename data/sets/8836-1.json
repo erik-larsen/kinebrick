@@ -102,9 +102,9 @@
     ]
   },
   "generated": {
-    "commit": "5dac39a9",
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "works": 3,
       "partly": 1,
@@ -175,7 +175,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -241,14 +241,14 @@
         ],
         "cause": "not-driven",
         "detail": "p187 3737",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.5,
+            -0.17
           ]
         ],
         "rates": [
@@ -262,8 +262,8 @@
               40.8
             ],
             "p22 4254": [
-              1,
-              40.7
+              0.268,
+              40.8
             ],
             "p164 3482": [
               1,
@@ -291,7 +291,13 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -371,7 +377,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 1.1
       }
     ]
   }

@@ -114,10 +114,9 @@
     ]
   },
   "generated": {
-    "commit": "c1623c1a",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 6,
+    "seconds": 5,
     "counts": {
       "partly": 4,
       "not back": 1,
@@ -200,7 +199,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 8074 - 4185a",
-        "seconds": 3.3
+        "seconds": 2.9
       },
       {
         "result": "skipped",

@@ -204,10 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "1f4f7585",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 1984,
+    "seconds": 2022,
     "counts": {
       "works": 8,
       "partly": 3,
@@ -291,7 +290,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 74.1
+        "seconds": 78.6
       },
       {
         "result": "partly",
@@ -358,7 +357,7 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 113.8
+        "seconds": 121.3
       },
       {
         "result": "works",
@@ -406,7 +405,7 @@
           [],
           []
         ],
-        "seconds": 255.5
+        "seconds": 253.1
       },
       {
         "result": "works",
@@ -453,7 +452,7 @@
         "pushed": [
           true
         ],
-        "seconds": 144.4
+        "seconds": 145.4
       },
       {
         "result": "works",
@@ -498,7 +497,7 @@
           [],
           []
         ],
-        "seconds": 72.3
+        "seconds": 73.5
       },
       {
         "result": "no",
@@ -530,7 +529,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 12.3
+        "seconds": 13.4
       },
       {
         "result": "works",
@@ -564,7 +563,7 @@
             ]
           ]
         ],
-        "seconds": 53.7
+        "seconds": 57.8
       },
       {
         "result": "works",
@@ -598,7 +597,7 @@
             ]
           ]
         ],
-        "seconds": 53.9
+        "seconds": 58
       },
       {
         "result": "partly",
@@ -658,7 +657,7 @@
         "freed": 2,
         "cause": "not-driven",
         "detail": "p2188 62274c01",
-        "seconds": 39.7
+        "seconds": 42.3
       },
       {
         "result": "partly",
@@ -716,7 +715,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 16.8
+        "seconds": 18.5
       },
       {
         "result": "works",
@@ -779,7 +778,7 @@
           [],
           []
         ],
-        "seconds": 525.8
+        "seconds": 525.7
       },
       {
         "result": "no",
@@ -799,7 +798,7 @@
           "p2631 64782 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 10.1
+        "seconds": 10.7
       },
       {
         "result": "works",
@@ -879,7 +878,7 @@
           [],
           []
         ],
-        "seconds": 508.6
+        "seconds": 519.3
       }
     ]
   }
