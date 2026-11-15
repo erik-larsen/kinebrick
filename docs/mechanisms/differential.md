@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 45 works, 31 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 45 works, 28 partly, 2 no, 1 skipped, 2 not checked.
 
 ## By decade
 
@@ -138,8 +138,8 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (partly)
-- The two rear axles each have a differential, so their wheels can turn at different speeds in a bend; the front two axles' wheels roll freely. (partly)
+- Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (not checked)
+- The two rear axles each have a differential, so their wheels can turn at different speeds in a bend; the front two axles' wheels roll freely. (not checked)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
 
@@ -194,7 +194,7 @@ Each detail by the set it first appears in.
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
 - The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
-- The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (partly)
+- The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (no)
 - *front:* The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way. (partly)
 - *rear:* The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way. (partly)
 

@@ -4,7 +4,7 @@ A screw drives a piston out and in. (Moving and lifting.)
 
 First appears in 2009, in [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) and [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1): Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.
 
-Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 10 works, 37 partly, 3 no.
+Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 10 works, 36 partly, 3 no, 1 not checked.
 
 ## By decade
 
@@ -104,7 +104,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *dump body:* Function A: with the red lever on the right of the chassis pushed forward, to A, the motor tips the dump body backwards: the right driving ring locks its front clutch gear, which turns through a 16-tooth gear and bevel gears a shaft running back to the large linear actuator under the body, which pushes the body up on its hinge at the back. (partly)
+- *dump body:* Function A: with the red lever on the right of the chassis pushed forward, to A, the motor tips the dump body backwards: the right driving ring locks its front clutch gear, which turns through a 16-tooth gear and bevel gears a shaft running back to the large linear actuator under the body, which pushes the body up on its hinge at the back. (not checked)
 
 **2016, [42050 Drag Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42050-1)**
 

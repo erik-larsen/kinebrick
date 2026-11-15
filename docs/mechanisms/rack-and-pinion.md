@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 19 works, 6 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 19 works, 5 partly, 5 no, 1 not checked.
 
 ## By decade
 
@@ -106,7 +106,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *outriggers:* Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (partly)
+- *outriggers:* Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (not checked)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 

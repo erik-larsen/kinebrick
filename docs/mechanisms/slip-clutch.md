@@ -4,7 +4,7 @@ A clutch gear or band slips when the part it drives can go no further, at the en
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The rubber bands slip when the wheels are held, so the motor can't stall.
 
-Used in 11 of the 186 surveyed sets, by 15 functions. Kinebrick: 3 works, 8 partly, 4 skipped.
+Used in 11 of the 186 surveyed sets, by 15 functions. Kinebrick: 2 works, 8 partly, 4 skipped, 1 not checked.
 
 ## By decade
 
@@ -43,7 +43,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (works)
+- One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (not checked)
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 

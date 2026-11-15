@@ -101,9 +101,9 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "33a618a5",
     "date": "2026-11-15",
-    "seconds": 2,
+    "seconds": 1,
     "counts": {
       "partly": 1,
       "works": 2,
@@ -170,7 +170,7 @@
         ],
         "cause": "not-driven",
         "detail": "p60 40490",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -225,7 +225,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",

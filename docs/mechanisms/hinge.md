@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 78 works, 15 partly, 31 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 77 works, 15 partly, 30 no, 2 skipped, 7 not checked.
 
 ## By decade
 
@@ -289,8 +289,8 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *doors:* Function J: the two cab doors open. (works)
-- *cab:* Function M: the whole cab tilts forward. (no)
+- *doors:* Function J: the two cab doors open. (not checked)
+- *cab:* Function M: the whole cab tilts forward. (not checked)
 
 **2016, [42044 Display Team Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42044-1)**
 

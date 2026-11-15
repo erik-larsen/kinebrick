@@ -4,7 +4,7 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 13 works, 9 partly, 7 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 11 works, 9 partly, 8 no, 1 not checked.
 
 ## By decade
 
@@ -63,7 +63,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- Function K: the orange beacons on the two back corners of the cab's roof are knobs that steer the two front axles (the first by up to 28 degrees, the second by 19): each beacon's upright shaft has a 12-tooth gear on the same 20-tooth gear, on a third upright shaft behind the cab, whose 12-tooth bevel gear at the bottom turns a 20-tooth bevel gear on a cross shaft; the cross shaft's towballs push links to both front axles' steering arms. (works)
+- Function K: the orange beacons on the two back corners of the cab's roof are knobs that steer the two front axles (the first by up to 28 degrees, the second by 19): each beacon's upright shaft has a 12-tooth gear on the same 20-tooth gear, on a third upright shaft behind the cab, whose 12-tooth bevel gear at the bottom turns a 20-tooth bevel gear on a cross shaft; the cross shaft's towballs push links to both front axles' steering arms. (not checked)
 
 **2016, [42048 Race Kart](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42048-1)**
 
@@ -79,7 +79,7 @@ Each detail by the set it first appears in.
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
-- The gear on the cab roof steers all four wheels: its upright shaft runs down through the cab, and arms on it push links to the front and rear axles' steering knuckles, so the front wheels turn one way and the rear wheels the other. (works)
+- The gear on the cab roof steers all four wheels: its upright shaft runs down through the cab, and arms on it push links to the front and rear axles' steering knuckles, so the front wheels turn one way and the rear wheels the other. (no)
 
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 

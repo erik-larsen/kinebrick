@@ -4,7 +4,7 @@ More than one axle steers: the rear wheels steer too, or two front axles steer t
 
 First appears in 1990, in [8830 Rally 6-Wheeler (Moon Buggy)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8830-1): The handwheel on the roof steers the front and rear wheels together, the middle pair staying straight: its shaft's 24 tooth gear drives a crown gear on a shaft along the chassis, whose two 8 tooth gears slide the front and rear steering racks the same way; as the front tie rods sit behind their pivots and the rear ones in front of theirs, the front and rear wheels turn opposite ways for a tight turn.
 
-Used in 12 of the 186 surveyed sets, by 14 functions. Kinebrick: 10 works, 2 partly, 2 no.
+Used in 12 of the 186 surveyed sets, by 14 functions. Kinebrick: 8 works, 2 partly, 3 no, 1 not checked.
 
 ## By decade
 
@@ -45,7 +45,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- Function K: the orange beacons on the two back corners of the cab's roof are knobs that steer the two front axles (the first by up to 28 degrees, the second by 19): each beacon's upright shaft has a 12-tooth gear on the same 20-tooth gear, on a third upright shaft behind the cab, whose 12-tooth bevel gear at the bottom turns a 20-tooth bevel gear on a cross shaft; the cross shaft's towballs push links to both front axles' steering arms. (works)
+- Function K: the orange beacons on the two back corners of the cab's roof are knobs that steer the two front axles (the first by up to 28 degrees, the second by 19): each beacon's upright shaft has a 12-tooth gear on the same 20-tooth gear, on a third upright shaft behind the cab, whose 12-tooth bevel gear at the bottom turns a 20-tooth bevel gear on a cross shaft; the cross shaft's towballs push links to both front axles' steering arms. (not checked)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
-- The gear on the cab roof steers all four wheels: its upright shaft runs down through the cab, and arms on it push links to the front and rear axles' steering knuckles, so the front wheels turn one way and the rear wheels the other. (works)
+- The gear on the cab roof steers all four wheels: its upright shaft runs down through the cab, and arms on it push links to the front and rear axles' steering knuckles, so the front wheels turn one way and the rear wheels the other. (no)
 
 **2017, [42068 Airport Rescue Vehicle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42068-1)**
 

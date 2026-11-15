@@ -4,7 +4,7 @@ A part swings free under gravity: a hook, claw or bucket hangs straight, a tailg
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The hook hangs straight down beneath the boom tip as the cab slews and the boom luffs.
 
-Used in 18 of the 186 surveyed sets, by 18 functions. Kinebrick: 5 works, 1 partly, 6 skipped, 6 not checked.
+Used in 18 of the 186 surveyed sets, by 18 functions. Kinebrick: 5 works, 6 skipped, 7 not checked.
 
 ## By decade
 
@@ -91,7 +91,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *tailgate:* Function i: the tipper's tailgate is locked by a lever at the back on the right; with it unlocked, the tailgate swings open from its top hinge as the body tips. (partly)
+- *tailgate:* Function i: the tipper's tailgate is locked by a lever at the back on the right; with it unlocked, the tailgate swings open from its top hinge as the body tips. (not checked)
 
 **2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
 
