@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 77 works, 15 partly, 32 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 77 works, 16 partly, 31 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -156,7 +156,7 @@ Each detail by the set it first appears in.
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
 - *seat:* The purple striker's seat sits on a lever pivoted at the top of its handle: a black cage with purple hoses that holds the driver. The seat flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (partly)
-- *seat:* The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (no)
+- *seat:* The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (partly)
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 

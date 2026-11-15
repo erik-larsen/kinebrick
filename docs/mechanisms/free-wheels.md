@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 138 works, 12 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 142 works, 8 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -153,11 +153,11 @@ Each detail by the set it first appears in.
 
 **1991, [8820 Mountain Rambler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8820-1)**
 
-- The four wheels roll freely, each on its own axle pin; there's no drive. (partly)
+- The four wheels roll freely, each on its own axle pin; there's no drive. (works)
 
 **1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1)**
 
-- The front wheel rolls freely on its 6-long axle. (partly)
+- The front wheel rolls freely on its 6-long axle. (works)
 
 **1991, [8856 Whirlwind Rescue](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8856-1)**
 
@@ -368,7 +368,7 @@ Each detail by the set it first appears in.
 
 **2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1)**
 
-- Both wheels roll freely. (partly)
+- Both wheels roll freely. (works)
 
 **2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1)**
 
@@ -550,7 +550,7 @@ Each detail by the set it first appears in.
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
-- The front wheels roll freely, each on its own axle in its steering knuckle. (partly)
+- The front wheels roll freely, each on its own axle in its steering knuckle. (works)
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 

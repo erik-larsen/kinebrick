@@ -84,12 +84,14 @@
           "p58 57515",
           "p72 57515"
         ],
+        "lifted": true,
         "moves": [
           "p66 11949",
           "p76 11949",
           "p96 76537",
           "p97 76537"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
@@ -101,12 +103,14 @@
           "p229 32063",
           "p241 32063"
         ],
+        "lifted": true,
         "moves": [
           "p235 11950",
           "p236 11950",
           "p290 4254",
           "p292 4254"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"let it move up and down while driven\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -132,12 +136,12 @@
     ]
   },
   "generated": {
-    "commit": "5dac39a9",
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 80,
+    "seconds": 60,
     "counts": {
       "works": 4,
-      "not back": 3,
+      "not back": 2,
       "partly": 1,
       "no": 1,
       "skipped": 1
@@ -158,7 +162,7 @@
           {
             "p225 62821": [
               1,
-              5.63e-13
+              5.84e-13
             ],
             "p214 32269": [
               1.4,
@@ -181,20 +185,20 @@
               14
             ],
             "p126 2851": [
-              5.62e-8,
+              8.43e-8,
               10.7
             ],
             "p127 2851": [
-              5.62e-8,
+              8.43e-8,
               10.7
             ],
             "p128 2851": [
-              5.62e-8,
-              9.41
+              1.12e-7,
+              9.4
             ],
             "p129 2851": [
-              5.62e-8,
-              9.41
+              1.12e-7,
+              9.4
             ]
           }
         ],
@@ -206,23 +210,23 @@
             "p154 6542b": 1.4,
             "p126 2851": 10.7,
             "p127 2851": 10.7,
-            "p128 2851": 9.41,
-            "p129 2851": 9.41
+            "p128 2851": 9.4,
+            "p129 2851": 9.4
           }
         ],
         "back": [
           [
             [
-              0.01,
-              0.02
+              0,
+              0
             ],
             [
-              0.11,
-              0.03
+              0.01,
+              0
             ]
           ]
         ],
-        "seconds": 20.6
+        "seconds": 18.8
       },
       {
         "result": "works",
@@ -240,7 +244,7 @@
             ],
             "p225 62821": [
               1,
-              5.86e-12
+              5.92e-12
             ]
           }
         ],
@@ -269,75 +273,82 @@
         "pushed": [
           true
         ],
-        "seconds": 32.7
+        "seconds": 28.3
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ],
-        "moved": [
-          "p489 45982",
-          "p493 45982"
+        "still": [
+          "p54 87761",
+          "p66 11949",
+          "p76 11949",
+          "p491 45982",
+          "p495 45982"
         ],
         "rates": [
           {
             "p34 3737": [
               0.999,
-              4.51e-13
+              1.91e-12
             ],
             "p54 87761": [
-              1.69e-7,
+              0,
               15
             ],
             "p66 11949": [
-              0.397,
-              0.198
+              0.37,
+              0.185
             ],
             "p76 11949": [
-              0.402,
-              0.201
+              0.38,
+              0.19
             ],
             "p491 45982": [
-              0.471,
-              19.9
+              0.407,
+              18.5
             ],
             "p495 45982": [
-              0.432,
-              20.1
+              0.418,
+              19
             ],
             "p489 45982": [
-              0.0653,
-              2.12
+              0.011,
+              1.72
             ],
             "p493 45982": [
-              0.0526,
-              1.46
+              0.0115,
+              1.71
             ]
           }
         ],
         "back": [
           [
             [
-              61.91,
-              44.56
+              0.6,
+              1.9
             ],
             [
-              39.9,
-              29.56
+              0.6,
+              1.9
             ]
           ]
         ],
         "strayed": [
-          "p490 56908",
-          "p494 56908"
+          "p293 3705"
         ],
-        "cause": "stay-chosen",
-        "detail": "p489 45982",
-        "seconds": 13.2
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "cause": "stopped-early",
+        "seconds": 0.5
       },
       {
         "result": "no",
@@ -437,54 +448,54 @@
         ],
         "cause": "part-fixed",
         "detail": "p96 76537",
-        "seconds": 0.5
+        "seconds": 0.3
       },
       {
         "result": "works",
         "turned": [
           [
-            1.23,
-            -0.37
+            0.4,
+            -0.23
           ],
           [
-            1.23,
-            -0.37
+            0.4,
+            -0.23
           ]
         ],
         "rates": [
           {
             "p235 11950": [
-              1.71e-7,
+              0,
               100
             ],
             "p236 11950": [
-              1.71e-7,
-              101
+              0,
+              0
             ],
             "p290 4254": [
-              1,
+              0.244,
               40
             ],
             "p292 4254": [
-              1.01,
-              40.3
+              0,
+              0
             ]
           },
           {
             "p235 11950": [
-              1.37e-7,
-              99.2
+              0,
+              0
             ],
             "p236 11950": [
-              6.83e-8,
+              0,
               100
             ],
             "p290 4254": [
-              0.993,
-              39.7
+              0,
+              0
             ],
             "p292 4254": [
-              1,
+              0.244,
               40
             ]
           }
@@ -492,56 +503,46 @@
         "back": [
           [
             [
-              187.47,
-              88.08
+              0,
+              0
             ],
             [
-              73.91,
-              55.37
+              0,
+              0
             ]
           ],
           [
             [
-              151.48,
-              74.58
+              0,
+              0
             ],
             [
-              102.05,
-              60.64
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p478 32009",
-          "p490 56908",
-          "p481 32009",
-          "p480 43093"
-        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ],
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
         "movedBy": [
           [
             "p235 11950",
-            "p236 11950",
-            "p290 4254",
-            "p292 4254"
+            "p290 4254"
           ],
           [
-            "p235 11950",
             "p236 11950",
-            "p290 4254",
             "p292 4254"
           ]
         ],
-        "seconds": 9
+        "seconds": 8.1
       },
       {
         "result": "skipped",
@@ -570,7 +571,7 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 3.3
       }
     ]
   }

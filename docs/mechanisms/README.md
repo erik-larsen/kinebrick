@@ -108,14 +108,14 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Swing arm](swing-arm.md) | 16 | 1988 |  | 1 | 6 | 1 | 5 | 3 | 4 works, 3 partly, 9 no |
+| [Swing arm](swing-arm.md) | 16 | 1988 |  | 1 | 6 | 1 | 5 | 3 | 4 works, 5 partly, 7 no |
 | [Trailing arms](trailing-arm.md) | 1 | 1981 |  | 1 |  |  |  |  | 1 works |
-| [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 7 works, 3 partly, 15 no, 1 skipped |
-| [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 1 works, 3 partly |
-| [Pendular axle](pendular-axle.md) | 8 | 1986 |  | 1 |  | 1 | 5 | 1 | 1 works, 2 partly, 4 no, 2 skipped |
+| [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 11 works, 4 partly, 10 no, 1 skipped |
+| [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 1 works, 2 partly, 1 no |
+| [Pendular axle](pendular-axle.md) | 8 | 1986 |  | 1 |  | 1 | 5 | 1 | 1 works, 1 partly, 5 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
-| [Sprung live axle](sprung-axle.md) | 7 | 2011 |  |  |  |  | 5 | 2 | 1 partly, 4 no, 2 skipped |
-| [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 2 partly, 1 no |
+| [Sprung live axle](sprung-axle.md) | 7 | 2011 |  |  |  |  | 5 | 2 | 1 works, 4 no, 2 skipped |
+| [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 1 works, 1 partly, 1 no |
 | [Telelever](telelever.md) | 1 | 2017 |  |  |  |  | 1 |  | 1 no |
 | [Bogie](bogie.md) | 5 | 2007 |  |  |  | 2 | 1 | 2 | 2 works, 1 no, 2 skipped |
 | [Track suspension](track-suspension.md) | 1 | 2019 |  |  |  |  | 1 |  | 1 skipped |
@@ -193,15 +193,15 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Ratchet](ratchet.md) | 6 | 1978 | 1 | 1 | 2 | 1 | 1 |  | 6 skipped |
 | [Friction brake](friction-brake.md) | 6 | 1998 |  |  | 2 | 2 | 2 |  | 2 works, 4 skipped |
-| [Catch](catch.md) | 14 | 1998 |  |  | 2 | 2 | 8 | 2 | 6 works, 5 partly, 4 no, 4 skipped |
+| [Catch](catch.md) | 14 | 1998 |  |  | 2 | 2 | 8 | 2 | 6 works, 6 partly, 3 no, 4 skipped |
 | [Spring](spring.md) | 54 | 1978 | 1 | 4 | 11 | 7 | 23 | 8 | 4 works, 1 partly, 2 no, 56 skipped |
 
 ### Simple motions
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 138 works, 12 partly, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 77 works, 15 partly, 32 no, 2 skipped, 5 not checked |
+| [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 142 works, 8 partly, 2 skipped, 2 not checked |
+| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 77 works, 16 partly, 31 no, 2 skipped, 5 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 3 works, 2 partly, 3 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 9 works, 1 no, 1 skipped |
 | [Hangs free](hangs-free.md) | 18 | 1978 | 1 | 1 | 2 | 4 | 10 |  | 5 works, 1 partly, 6 skipped, 6 not checked |

@@ -42,6 +42,7 @@
         ],
         "source": "book: step 22 (inset 1-2: the front wheel on a 6-long axle between the two shock absorbers, hung on the fork's 6-long axles)",
         "control": "p225 2910",
+        "lifted": true,
         "moves": [
           "p227 2910",
           "p219 3706",
@@ -52,7 +53,7 @@
           "p226 2909",
           "p77 2905"
         ],
-        "note": "a slide: the rods push into the cylinders, not a turn"
+        "note": "a slide: the rods push into the cylinders, not a turn. lifted: the text has the wheel or arm moved (\"so the front wheel can rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheel rides on a swinging arm: a 1x10 brick and a triangular liftarm on each side pivot on the 8-long axle that carries the chain's front gear, and two long shock absorbers run from the rear of the arm up to an axle under the seat, so the rear wheel can rise and fall while the chain stays taut.",
@@ -61,6 +62,7 @@
         ],
         "source": "book: steps 19 and 23 (each side's arm and shock absorber, insets), 20 (rear wheel), 21 (chain)",
         "control": "p167 2730",
+        "lifted": true,
         "moves": [
           "p241 2730",
           "p164 2905",
@@ -75,7 +77,7 @@
           "p141 3706",
           "p117 3623"
         ],
-        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top axle as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top axle as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheel can rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs, two front and two rear, hold the bike up and push the wheels back down.",
@@ -158,26 +160,17 @@
     ]
   },
   "generated": {
-    "commit": "c1623c1a",
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 4,
+    "seconds": 2,
     "counts": {
-      "partly": 5,
-      "not back": 1,
+      "partly": 3,
+      "works": 2,
       "skipped": 2,
       "no": 1
     },
     "loose": [
-      "p177 4265a",
-      "p219 3706",
-      "p220 8838 - 2903",
-      "p221 8838 - 2902",
-      "p222 3713",
-      "p223 3713",
-      "p225 2910",
-      "p227 2910",
-      "p228 4265a",
-      "p229 4265a"
+      "p177 4265a"
     ],
     "functions": [
       {
@@ -202,19 +195,19 @@
           {
             "p73 3705": [
               0,
-              1.08e-30
+              7.36e-30
             ],
             "p77 2905": [
               0,
-              1.31e-18
+              1.34e-18
             ],
             "p84 2905": [
               0,
-              1.31e-18
+              1.34e-18
             ],
             "p87 3068bp87": [
               0,
-              4.68e-15
+              4.55e-15
             ],
             "p224 2909": [
               0,
@@ -226,11 +219,11 @@
             ],
             "p219 3706": [
               0,
-              1.31e-18
+              1.34e-18
             ],
             "p220 8838 - 2903": [
               0,
-              1.31e-18
+              1.34e-18
             ],
             "p66 2904": [
               0,
@@ -254,48 +247,43 @@
             ]
           ]
         ],
-        "cause": "loose-part",
-        "detail": "p219 3706",
+        "cause": "not-driven",
+        "detail": "p73 3705",
         "seconds": 0.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            20,
+            0
           ]
-        ],
-        "moved": [
-          "p224 2909",
-          "p226 2909",
-          "p77 2905"
         ],
         "rates": [
           {
             "p227 2910": [
-              1,
-              56.6
+              6.32e-9,
+              1
             ],
             "p219 3706": [
-              1,
-              40
+              0.00357,
+              1
             ],
             "p220 8838 - 2903": [
-              1,
-              40
+              0.00357,
+              1
             ],
             "p224 2909": [
-              1,
-              56.5
+              2.11e-9,
+              4.44e-7
             ],
             "p226 2909": [
-              1,
-              56.5
+              2.11e-9,
+              4.44e-7
             ],
             "p77 2905": [
-              1,
-              40
+              2.11e-9,
+              3.14e-7
             ]
           }
         ],
@@ -303,7 +291,7 @@
           [
             [
               0,
-              0
+              0.03
             ],
             [
               0,
@@ -311,87 +299,94 @@
             ]
           ]
         ],
-        "cause": "loose-part",
-        "detail": "p225 2910",
-        "seconds": 0.4
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "partly",
         "turned": [
           [
-            -1.71,
-            -1.51
+            0,
+            -0.35
           ]
         ],
         "moved": [
-          "p61 3707"
+          "p61 3707",
+          "p141 3706"
         ],
         "rates": [
           {
             "p241 2730": [
               1,
-              79.3
+              80.6
             ],
             "p164 2905": [
               1,
-              138
+              140
             ],
             "p238 2905": [
               1,
-              138
+              140
             ],
             "p170 3707": [
-              0.656,
-              157
+              0.692,
+              160
             ],
             "p171 8838 - 2903": [
-              0.656,
-              157
+              0.692,
+              160
             ],
             "p162 2910": [
-              1,
-              143
+              0.563,
+              146
             ],
             "p236 2910": [
-              9.83e-8,
-              143
+              0.563,
+              146
             ],
             "p61 3707": [
-              2.48,
-              6.15e-14
+              0.462,
+              4.17e-47
             ],
             "p141 3706": [
-              0,
-              2.49e-14
+              0.563,
+              2.51e-13
             ],
             "p117 3623": [
               0,
-              4.97e-14
+              5.82e-48
             ]
           }
         ],
         "back": [
           [
             [
-              79.96,
-              100.38
+              0,
+              0
             ],
             [
-              3.2,
-              0.57
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p61 3707",
-          "p208 3711"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
         "pushed": [
           true
         ],
         "cause": "stay-chosen",
         "detail": "p61 3707",
-        "seconds": 1.7
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -415,31 +410,31 @@
           {
             "p176 3648a": [
               1,
-              6.35e-13
+              3.61e-13
             ],
             "p62 4019": [
               1.5,
-              2.37e-14
+              7.14e-14
             ],
             "p63 3648a": [
               1.5,
-              3.32e-14
+              7.18e-14
             ],
             "p25 4143": [
               0,
-              2.16e-28
+              9.79e-29
             ],
             "p1 2853": [
               0,
-              9.81e-16
+              5.34e-16
             ],
             "p5 2851": [
               0,
-              9.73e-14
+              3.83e-14
             ],
             "p6 2851": [
               0,
-              8.32e-14
+              3.6e-14
             ],
             "p19 2850a": [
               0,
@@ -474,7 +469,7 @@
         "seconds": 0.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -496,8 +491,6 @@
             ]
           ]
         ],
-        "cause": "loose-part",
-        "detail": "p220 8838 - 2903",
         "seconds": 0.4
       },
       {
@@ -571,7 +564,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",

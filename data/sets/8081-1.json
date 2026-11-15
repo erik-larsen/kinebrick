@@ -143,11 +143,12 @@
           "p199 6572",
           "p202 6572"
         ],
+        "lifted": true,
         "moves": [
           "p210 6571",
           "p213 6571"
         ],
-        "note": "unsure how the front shock absorber p209 76537 and the rear axle are hung; to be checked against the book"
+        "note": "unsure how the front shock absorber p209 76537 and the rear axle are hung; to be checked against the book. lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -171,14 +172,13 @@
     ]
   },
   "generated": {
-    "commit": "c1623c1a",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 18,
+    "seconds": 19,
     "counts": {
-      "works": 6,
-      "not back": 1,
-      "no": 2,
+      "works": 7,
+      "not back": 2,
+      "no": 1,
       "skipped": 1
     },
     "loose": [],
@@ -253,7 +253,7 @@
             ]
           ]
         ],
-        "seconds": 6.6
+        "seconds": 6.2
       },
       {
         "result": "works",
@@ -405,7 +405,7 @@
             "p164 2851"
           ]
         ],
-        "seconds": 5.7
+        "seconds": 5.1
       },
       {
         "result": "works",
@@ -435,7 +435,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -470,7 +470,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1.2
+        "seconds": 1
       },
       {
         "result": "works",
@@ -541,7 +541,7 @@
           [],
           []
         ],
-        "seconds": 2.1
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -569,81 +569,86 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.87
           ],
           [
-            0,
-            0
+            0.87,
+            -1.5
           ]
-        ],
-        "still": [
-          "p210 6571",
-          "p213 6571"
         ],
         "rates": [
           {
             "p210 6571": [
-              0,
-              0
+              1.84,
+              80
             ],
             "p213 6571": [
-              0,
-              0
+              0.0932,
+              46.7
             ]
           },
           {
             "p210 6571": [
-              0,
-              0
+              0.0932,
+              46.7
             ],
             "p213 6571": [
-              0,
-              0
+              1.84,
+              80
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.39,
+              1.35
             ],
             [
-              0,
-              0
+              2.27,
+              7.7
             ]
           ],
           [
             [
-              0,
-              0
+              2.27,
+              7.7
             ],
             [
-              0,
-              0
+              0.39,
+              1.35
             ]
           ]
+        ],
+        "strayed": [
+          "p47 4519",
+          "p51 6587"
         ],
         "stop": [
           [
-            "dead point",
+            null,
             "dead point"
           ],
           [
             "dead point",
-            "dead point"
+            null
           ]
         ],
         "movedBy": [
-          [],
-          []
+          [
+            "p210 6571",
+            "p213 6571"
+          ],
+          [
+            "p210 6571",
+            "p213 6571"
+          ]
         ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 3.4
       },
       {
         "result": "skipped",
@@ -677,7 +682,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.6
       }
     ]
   }

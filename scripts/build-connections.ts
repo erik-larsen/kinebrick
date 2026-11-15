@@ -606,6 +606,22 @@ function reductionsFromCorrections(): Record<string, { from: string; to: string;
   return reductions;
 }
 
+// SHOCK lines in data/corrections.ldr: a shock absorber's cylinder and the rod that slides in
+// it, e.g. "0 !KINEBRICK SHOCK [rod=2910] [dir=0 1 0] [from=80] [to=120]" on the cylinder (see
+// ConnectionTable.shocks).
+function shocksFromCorrections(): Record<string, { rod: string; dir: [number, number, number]; from: number; to: number }[]> {
+  const shocks: Record<string, { rod: string; dir: [number, number, number]; from: number; to: number }[]> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (!meta || meta.kind !== 'SHOCK') continue;
+      const rod = meta.params.get('rod')!;
+      (shocks[name] ??= []).push({ rod: rod.endsWith('.dat') ? rod : rod + '.dat', dir: numbers(meta.params.get('dir'), [0, 1, 0]) as [number, number, number], from: Number(meta.params.get('from')), to: Number(meta.params.get('to')) });
+    }
+  }
+  return shocks;
+}
+
 // GROOVE lines in data/corrections.ldr: grooves a plate slides into edge first, as boxes, e.g.
 // "0 !KINEBRICK GROOVE [pos=-43.4 36.6 0] [ori=...] [size=80 8 12]": the box's middle, its
 // axes (the ori matrix's columns: along the groove, across it, into it) and its size along
@@ -673,7 +689,7 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + ',\n  "reductions": ' + JSON.stringify(reductionsFromCorrections());
+const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + ',\n  "reductions": ' + JSON.stringify(reductionsFromCorrections()) + ',\n  "shocks": ' + JSON.stringify(shocksFromCorrections());
 out += '\n  }' + extras() + ',\n  "stickers": ' + JSON.stringify(stickers) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);
