@@ -38,6 +38,21 @@
       "reply": "Sign 42093"
     },
     {
+      "id": "42099-diff",
+      "kind": "Sign-off",
+      "title": "42099 4x4 X-treme Off-Roader: the rear differential's side gears onto their line",
+      "since": "2026-11-15",
+      "what": "A correction to the published file. In the rear differential, the two side gears are drawn 3 LDU off the casing's line, so neither sits on its half shaft and Kinebrick reads the differential as locked. The correction moves both 3 LDU onto the line, where the front differential has them.",
+      "effect": "The rear differential turns. The scores do not change (4 functions work, 3 partly): the halves of the rear CV joints come apart instead, a fault that is with the solver owner.",
+      "confidence": "High. Claude looked at the booklet page: its 1:1 picture of the differential has the side gears facing each other on the casing's line.",
+      "links": [
+        { "label": "Booklet p. 86", "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86" },
+        { "label": "Viewer, before", "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&show=43,44,45,46" },
+        { "label": "Viewer, after", "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&option=proposed&show=43,44,45,46" }
+      ],
+      "reply": "Sign 42099"
+    },
+    {
       "id": "audit-agree",
       "kind": "Sign-off",
       "title": "Five audit rows where the booklet and the model agree by trial",
