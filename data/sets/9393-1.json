@@ -127,9 +127,9 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 7,
+    "seconds": 6,
     "counts": {
       "works": 5,
       "pivoted": 1,
@@ -210,7 +210,7 @@
           "rise": 0.31,
           "tyre": "p287 55976"
         },
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -282,7 +282,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 3
       },
       {
         "result": "works",
@@ -506,7 +506,7 @@
             "p311 6587"
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "works",

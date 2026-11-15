@@ -97,7 +97,7 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -203,7 +203,7 @@
           "rise": 2.05,
           "tyre": "p69 42101 - 92402"
         },
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",
@@ -401,7 +401,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",

@@ -82,14 +82,14 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 2,
+    "seconds": 1,
     "counts": {
       "works": 2,
       "partly": 1,
       "not back": 1,
-      "torn": 1,
+      "free-turned": 1,
       "skipped": 1
     },
     "loose": [
@@ -239,6 +239,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p31 4254"
         ],
@@ -250,7 +251,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p9 2738",
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -372,7 +373,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       }
     ]
   }
