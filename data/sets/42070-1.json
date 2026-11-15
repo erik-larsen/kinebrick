@@ -249,9 +249,9 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "1ef58455",
     "date": "2026-11-15",
-    "seconds": 433,
+    "seconds": 352,
     "counts": {
       "partly": 7,
       "works": 2,
@@ -374,7 +374,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 31.3
+        "seconds": 24.4
       },
       {
         "result": "partly",
@@ -419,7 +419,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 30.8
+        "seconds": 24.5
       },
       {
         "result": "partly",
@@ -487,7 +487,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 32.1
+        "seconds": 25.3
       },
       {
         "result": "works",
@@ -535,7 +535,7 @@
             "dead point"
           ]
         ],
-        "seconds": 64.1
+        "seconds": 53.3
       },
       {
         "result": "works",
@@ -583,7 +583,7 @@
             "dead point"
           ]
         ],
-        "seconds": 64.4
+        "seconds": 54.1
       },
       {
         "result": "partly",
@@ -657,7 +657,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 40.2
+        "seconds": 33.4
       },
       {
         "result": "partly",
@@ -736,7 +736,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 30.4
+        "seconds": 24.8
       },
       {
         "result": "partly",
@@ -805,7 +805,7 @@
         ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 31.1
+        "seconds": 24.7
       },
       {
         "result": "partly",
@@ -876,7 +876,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 40.2
+        "seconds": 32.3
       },
       {
         "result": "no",
@@ -931,7 +931,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 9.6
+        "seconds": 7.9
       },
       {
         "result": "skipped"

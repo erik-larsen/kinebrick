@@ -211,9 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "6fbe31fe",
+    "commit": "1ef58455",
     "date": "2026-11-15",
-    "seconds": 53,
+    "seconds": 44,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -256,7 +256,7 @@
             ],
             "p345 32185": [
               0,
-              1.76e-13
+              2.14e-13
             ],
             "p365 32186": [
               0,
@@ -298,7 +298,7 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 4
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -312,23 +312,23 @@
           {
             "p236 6573": [
               1,
-              5.55e-13
+              6.43e-13
             ],
             "p31 3706": [
               1.5,
-              3.35e-13
+              2.84e-13
             ],
             "p100 3737": [
               1.5,
-              2.72e-14
+              5.51e-14
             ],
             "p577 32073": [
               3.75,
-              1.23e-13
+              1.59e-13
             ],
             "p692 32125": [
               3.75,
-              1.23e-13
+              1.19e-13
             ],
             "p594 2851": [
               0,
@@ -363,7 +363,7 @@
             ]
           ]
         ],
-        "seconds": 30.5
+        "seconds": 24
       },
       {
         "result": "works",
@@ -405,7 +405,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -447,7 +447,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 2
       },
       {
         "result": "works",
@@ -545,7 +545,7 @@
             "p484 32196"
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.6
       },
       {
         "result": "no",
@@ -583,7 +583,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 3.3
+        "seconds": 3.2
       },
       {
         "result": "skipped",
@@ -677,7 +677,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 3.6
+        "seconds": 3.2
       },
       {
         "result": "partly",
@@ -724,7 +724,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 2.9
+        "seconds": 2.8
       },
       {
         "result": "skipped",

@@ -107,7 +107,7 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "1ef58455",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -166,11 +166,11 @@
             ],
             "p32 4262": [
               0,
-              4.77e-13
+              6.39e-13
             ],
             "p26 2695": [
               0.0139,
-              0
+              2.2e-13
             ]
           }
         ],
@@ -197,7 +197,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.3
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -316,7 +316,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -363,7 +363,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 0.2
+        "seconds": 0.1
       }
     ]
   }
