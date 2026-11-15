@@ -172,6 +172,8 @@ interface Checked {
   stop?: (Halt | null)[][]; // for each control, each way: what stopped it short of its reach, if anything did
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
   movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
+  wrongBy?: string[][]; // for a function with several controls not worked together, if any moved a part in `stays`: for each control, those it moved
+  judged?: number[]; // for a function that doesn't work: for each control, which way (0 or 1, as in `turned`) its cause was judged from, so that --causes judges it so too
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
   pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
@@ -725,7 +727,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // wheels "rolling freely" on rims that sit on nothing).
       const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
       const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
-      const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
+      const nothing = (explained: Explained) => ({ works: false, pushed: false, judged: 0, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (kin.frames.includes(b) || !link) {
         why.push(`${ref} ${kin.frames.includes(b) ? 'is part of the frame' : 'has no joint to work'}`);
         return nothing(early ?? { cause: 'control-fixed' });
@@ -760,9 +762,28 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (j.kind !== 'revolute' || slideOf(body) >= 0 || ballOf(body) >= 0 || (j.bodyA !== body && j.bodyB !== body)) return undefined;
         return { against: kin.housing(body), axis: j.to.clone().sub(j.from).normalize().transformDirection(kin.poses[j.bodyA]) };
       };
+      // A control on a slide or a ball, which has no parent in the tree, against what it slides
+      // or turns on: against none, its motion read as nothing, and every such control as jammed.
+      const otherEnd = (joint: number, body: number) => (mech.joints[joint].bodyA === body ? mech.joints[joint].bodyB : mech.joints[joint].bodyA);
       const explain = (still: string[], wrong: string[], turned: number): Explained =>
-        early ?? causeOf(kin, { body: b, parent: link.parent, drag: dragOf(b) }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= half, !pushed);
-      if (causesOnly) return nothing(explain(prior!.still ?? [], prior!.moved ?? [], Math.max(0, ...(prior!.turned?.[wi] ?? []).map(Math.abs))));
+        early ?? causeOf(kin, { body: b, parent: link.parent >= 0 ? link.parent : otherEnd(link.joint, b), drag: dragOf(b) }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= half, !pushed);
+      if (causesOnly) {
+        // As the check would have it: from the way its cause was judged from (see judged), and
+        // of controls that share out the parts, only those whose way didn't work, each from the
+        // parts it left still and moved (see movedBy, wrongBy): else the first control's cause
+        // would stand for the function, whether it worked or not.
+        const turnedBoth = prior!.turned?.[wi] ?? [];
+        const judgedHere = prior!.judged?.[wi];
+        const turnedHere = judgedHere === undefined ? Math.max(0, ...turnedBoth.map(Math.abs)) : Math.abs(turnedBoth[judgedHere] ?? 0);
+        const wrongHere = prior!.wrongBy?.[wi] ?? prior!.moved ?? [];
+        if (shared && prior!.movedBy) {
+          const movedHere = prior!.movedBy[wi] ?? [];
+          const farHere = turnedHere >= half || ((prior!.stop?.[wi] ?? [])[judgedHere ?? 0] === 'limit' && turnedHere > 1e-3);
+          if (farHere && !wrongHere.length && (!(fn.moves ?? []).length || movedHere.length)) return { ...nothing(early ?? { cause: 'unknown' }), explained: null, explainStill: (left: string[]) => explain(left, [], turnedHere) };
+          return nothing(explain((fn.moves ?? []).filter((m) => !movedHere.includes(m)), wrongHere, turnedHere));
+        }
+        return nothing(explain(prior!.still ?? [], wrongHere, turnedHere));
+      }
       // How far the control really turns: against what its shaft turns in (see housing), not
       // just its joint's angle, which a shaft spinning back under it makes up without the
       // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
@@ -954,7 +975,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const movedParts = moves.filter((m) => !best.still.includes(m.ref)).map((m) => m.ref);
       // Why the parts no control moved didn't move, for a function whose controls share them out.
       const explainStill = (left: string[]) => explain(left, best.moved, best.turned);
-      return { works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), torn: each.map((w) => w.torn), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
+      return { works, movedParts, explainStill, pushed, judged: each.indexOf(best), turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), torn: each.map((w) => w.torn), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
     });
     // Controls that share out the parts: the parts none of them moved are still.
     const movedByAny = new Set(ways.flatMap((w) => w.movedParts));
@@ -990,6 +1011,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       ...(ways.some((w) => w.pushed) ? { pushed: ways.map((w) => w.pushed) } : {}),
       ...(freedPins ? { freed: freedPins } : {}),
       ...(shared ? { movedBy: ways.map((w) => w.movedParts) } : {}),
+      ...(shared && wrong.length ? { wrongBy: ways.map((w) => w.moved) } : {}),
+      ...(result === 'works' ? {} : { judged: ways.map((w) => w.judged) }),
       ...(result === 'works' ? {} : explained),
     };
   };
