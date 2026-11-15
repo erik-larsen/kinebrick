@@ -106,9 +106,9 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "works": 6,
       "pivoted": 1
@@ -170,7 +170,7 @@
           "rise": 0,
           "tyre": "p254 15413"
         },
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -196,7 +196,7 @@
             ],
             "p252 32270": [
               0,
-              8.46e-12
+              0
             ]
           }
         ],
@@ -218,7 +218,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -370,7 +370,7 @@
           [],
           []
         ],
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "works",

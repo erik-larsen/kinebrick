@@ -207,9 +207,9 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
-    "seconds": 85,
+    "seconds": 92,
     "counts": {
       "partly": 7,
       "not checked": 1,
@@ -305,7 +305,7 @@
         ],
         "cause": "not-driven",
         "detail": "p718 3647",
-        "seconds": 5.9
+        "seconds": 6.4
       },
       {
         "result": "partly",
@@ -368,7 +368,7 @@
         ],
         "cause": "not-driven",
         "detail": "p705 6592",
-        "seconds": 5.7
+        "seconds": 6.2
       },
       {
         "result": "partly",
@@ -445,7 +445,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 5.9
+        "seconds": 6.1
       },
       {
         "result": "not checked",
@@ -504,7 +504,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 5.8
+        "seconds": 6.1
       },
       {
         "result": "partly",
@@ -559,7 +559,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1019 6589",
-        "seconds": 5.8
+        "seconds": 6.3
       },
       {
         "result": "partly",
@@ -607,7 +607,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 4
+        "seconds": 4.3
       },
       {
         "result": "partly",
@@ -618,7 +618,7 @@
           ],
           [
             0.4,
-            -0.6
+            -0.63
           ],
           [
             0.03,
@@ -652,8 +652,8 @@
               155.17
             ],
             [
-              1.43,
-              1.19
+              1.71,
+              1.46
             ]
           ],
           [
@@ -681,7 +681,6 @@
           "p1161 32016",
           "p789 2739a",
           "p696 32449",
-          "p698 32449",
           "p346 3749",
           "p324 3749"
         ],
@@ -710,7 +709,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 19.5
+        "seconds": 21.8
       },
       {
         "result": "skipped",
@@ -790,7 +789,7 @@
             "p274 32189"
           ]
         ],
-        "seconds": 29.7
+        "seconds": 32
       },
       {
         "result": "skipped",

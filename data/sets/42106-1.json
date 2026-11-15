@@ -157,7 +157,7 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
     "seconds": 13,
     "counts": {
@@ -338,7 +338,7 @@
             ],
             "p95 87761": [
               0,
-              1.83e-15
+              5.98e-16
             ]
           }
         ],
@@ -354,7 +354,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -530,7 +530,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "not checked",
@@ -588,7 +588,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 1.6
       }
     ]
   }

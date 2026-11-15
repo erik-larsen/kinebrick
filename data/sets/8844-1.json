@@ -110,7 +110,7 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
     "seconds": 6,
     "counts": {
@@ -196,7 +196,7 @@
         ],
         "cause": "not-driven",
         "detail": "p270 3482 against p0 3034",
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -245,7 +245,7 @@
         "strayed": [
           "p123 3737"
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -293,7 +293,7 @@
         ],
         "cause": "not-driven",
         "detail": "p134 3650b against p65 3673",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",

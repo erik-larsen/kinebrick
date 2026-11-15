@@ -28,9 +28,12 @@ export function shockAbsorbers(parts: PlacedPart[], table: ConnectionTable, name
         if (offset.addScaledVector(out, -along).length() > ALIGN_TOLERANCE) return;
         if (along < shock.from - ALIGN_TOLERANCE || along > shock.to + ALIGN_TOLERANCE) return;
         // Measured into the cylinder from the rod's origin: it may go in as far as `from`, out
-        // as far as `to`.
+        // as far as `to`, and ALIGN_TOLERANCE beyond either, the tolerance the rod is found in its
+        // cylinder with: a rod built at an end stop, as a complete shock absorber places it (the
+        // 76537 at 110 LDU, fully out), would otherwise stop the first motion that stretches it
+        // by a hair (the 42077's steering).
         const from = at(r);
-        const [inward, outward] = [Math.max(0, along - shock.from), Math.max(0, shock.to - along)];
+        const [inward, outward] = [Math.max(0, along - shock.from) + ALIGN_TOLERANCE, Math.max(0, shock.to - along) + ALIGN_TOLERANCE];
         result.push({ male: r, female: c, kind: 'slide', turns: true, springHeld: true, from, to: from.clone().sub(out), extents: { male: [0, 0], female: [-outward, inward], overlap: 0 } });
       });
     }

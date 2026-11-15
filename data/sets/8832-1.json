@@ -58,7 +58,7 @@
           "spring: suspension"
         ],
         "source": "book: step 13 inset",
-        "control": "p31 73129",
+        "control": "p31 4254",
         "skip": "a spring only matters under gravity or force"
       },
       {
@@ -82,12 +82,13 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
       "works": 2,
       "partly": 1,
+      "not back": 1,
       "skipped": 1
     },
     "loose": [
@@ -180,7 +181,7 @@
               41.2
             ],
             "p42 3707": [
-              1,
+              1.01,
               79.6
             ],
             "p61 3749": [
@@ -193,10 +194,10 @@
             ],
             "p9 2738": [
               1.49,
-              74.6
+              74.9
             ],
             "p32 3707": [
-              2.79e-8,
+              0.512,
               120
             ]
           }
@@ -204,21 +205,24 @@
         "back": [
           [
             [
-              0,
-              0
+              3.09,
+              2.19
             ],
             [
-              0,
-              0
+              2.51,
+              1.78
             ]
           ]
+        ],
+        "strayed": [
+          "p31 4254"
         ],
         "pushed": [
           true
         ],
         "cause": "stay-chosen",
         "detail": "p9 2738",
-        "seconds": 0.8
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -298,7 +302,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       }
     ]
   }
