@@ -96,26 +96,34 @@
     {
       "id": "42099-casing",
       "kind": "Sign-off",
-      "title": "42099 4x4 X-treme Off-Roader: the differential casings stand still in functions 5 and 6",
+      "title": "42099 and 42041: the differential casing stands still when one wheel is turned by hand",
       "since": "2026-11-15",
-      "what": "A change to the function list. Functions 5 and 6 turn one wheel by hand with that axle’s motor still, and the other wheel of the axle turns the opposite way. Each list names its differential casing among the parts that move. The casing’s ring gear meshes the pinion that comes from the motor, so with the motor still the casing is held: only the two side gears and the half shafts turn. The change moves the front casing (function 5) and the rear casing (function 6) from the parts that move to the parts that stay.",
-      "effect": "None on the scores yet. Both functions are partly now, and checked lifted they come back exactly but the other wheel is not driven; that fault is with the solver owner. With the change the list asks for what a differential does.",
-      "confidence": "High. Function 2’s own words say the rear motor’s gears end in the gear that turns the rear differential, and the booklet’s step 140 shows the casing’s ring on that pinion. The same change was made to the 42039’s function 2.",
+      "what": "A change to three function lists. The 42099’s functions 5 and 6 and the 42041’s function 2 turn one wheel by hand with the model lifted, and the other wheel of the axle turns the opposite way. Each list names its differential casing among the parts that move. On the 42099 the casing’s ring gear meshes the pinion from the motor, which stands still, so the casing is held. On the 42041 the casing drives the V8, and with the truck lifted the free wheel is the easy way, so the casing stands; the function’s own words say the other wheel turns the opposite way. The change moves each casing from the parts that move to the parts that stay.",
+      "effect": "42099: none on the scores yet; both functions are partly, and with the change they ask for what a differential does. 42041: function 2 keeps working. Without the change it would go from works to partly once it is checked lifted, so its lifted mark is held back until you sign.",
+      "confidence": "High. The 42099’s booklet step 140 shows the casing’s ring on the motor’s pinion; the 42041’s function words say the wheels turn opposite ways, which only happens with the casing still. The same change was made to the 42039’s function 2.",
       "links": [
         {
-          "label": "Booklet p. 86 (rear casing, step 140)",
+          "label": "42099 booklet p. 86 (rear casing, step 140)",
           "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86"
         },
         {
-          "label": "Viewer, function 5 (front)",
+          "label": "42099 viewer, function 5 (front)",
           "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&show=1866,1862,490,878"
         },
         {
-          "label": "Viewer, function 6 (rear)",
+          "label": "42099 viewer, function 6 (rear)",
           "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&option=proposed&show=1868,1864,43,363"
+        },
+        {
+          "label": "42041 booklet 1 p. 22 (the casing, steps 1 and 2)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6121342.pdf#page=22"
+        },
+        {
+          "label": "42041 viewer, function 2",
+          "url": "http://localhost:5174/?file=omr%2F42041-1+Race+Truck+%7BReissue%7D.mpd&show=647,649,153"
         }
       ],
-      "reply": "Sign 42099 casings"
+      "reply": "Sign casings"
     },
     {
       "id": "audit-agree",

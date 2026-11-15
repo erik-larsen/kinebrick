@@ -104,6 +104,8 @@
         ],
         "source": "book: front axle steps 8-37 (the differential in its housing)",
         "control": "p1866 23798",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p1862 23798",
           "p490 62821"
@@ -119,6 +121,8 @@
         ],
         "source": "book: rear axle steps 127-140",
         "control": "p1868 23798",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p1864 23798",
           "p43 62821"
@@ -160,13 +164,13 @@
     ]
   },
   "generated": {
-    "commit": "10433fa3",
+    "commit": "8ff7ad42",
     "date": "2026-11-15",
-    "seconds": 395,
+    "seconds": 301,
     "counts": {
       "works": 4,
-      "not back": 5,
-      "torn": 5,
+      "not back": 3,
+      "torn": 3,
       "partly": 3,
       "not checked": 1,
       "skipped": 1
@@ -358,7 +362,7 @@
         "strayed": [
           "p603 2739a"
         ],
-        "seconds": 37.4
+        "seconds": 37.9
       },
       {
         "result": "partly",
@@ -440,7 +444,7 @@
           1
         ],
         "cause": "control-jammed",
-        "seconds": 66.6
+        "seconds": 68.5
       },
       {
         "result": "works",
@@ -553,7 +557,7 @@
             "p1868 23798"
           ]
         ],
-        "seconds": 105.1
+        "seconds": 107.1
       },
       {
         "result": "works",
@@ -611,14 +615,14 @@
             ]
           ]
         ],
-        "seconds": 46.1
+        "seconds": 47.3
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.73,
-            -0.73
+            1.5,
+            -1.5
           ]
         ],
         "still": [
@@ -627,127 +631,108 @@
         "rates": [
           {
             "p1862 23798": [
-              0.992,
-              80.1
+              1,
+              0.0733
             ],
             "p490 62821": [
-              1.72e-7,
-              9.85e-13
+              2.81e-8,
+              6.23e-13
             ],
             "p878 42099 - 18575": [
-              1.15e-7,
-              4.36e-13
+              0,
+              1.24e-28
             ]
           }
         ],
         "back": [
           [
             [
-              54.46,
-              12.15
+              0,
+              0
             ],
             [
-              57.85,
-              14.53
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              53.14,
-              11.42
+              0,
+              0
             ],
             [
-              62.73,
-              13.29
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p40 42099 - 52731",
-          "p41 42099 - 52731"
-        ],
-        "stop": [
-          [
-            "dead point",
-            "dead point"
-          ]
-        ],
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p490 62821",
-        "seconds": 52.4
+        "seconds": 5.9
       },
       {
         "result": "partly",
         "turned": [
           [
             1.5,
-            -0.77
+            -1.5
           ]
         ],
         "still": [
+          "p1864 23798",
           "p43 62821"
         ],
         "rates": [
           {
             "p1864 23798": [
-              0.68,
-              0.0371
+              0,
+              0
             ],
             "p43 62821": [
-              1.12e-7,
-              3.78e-10
+              2.81e-8,
+              7.58e-13
             ],
             "p363 42099 - 18575": [
-              8.43e-8,
-              6.27e-13
+              0,
+              5.39e-28
             ]
           }
         ],
         "back": [
           [
             [
-              358.85,
-              95.62
+              0,
+              0
             ],
             [
-              499.94,
-              141.68
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              350.71,
-              95.83
+              0,
+              0
             ],
             [
-              500.44,
-              122.87
+              0,
+              0
             ]
-          ]
-        ],
-        "strayed": [
-          "p104 42099 - 52731",
-          "p41 42099 - 52731"
-        ],
-        "stop": [
-          [
-            null,
-            "dead point"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "not-driven",
-        "detail": "p43 62821",
-        "seconds": 60.7
+        "detail": "p1864 23798",
+        "seconds": 6.6
       },
       {
         "result": "not checked"
@@ -790,7 +775,7 @@
             ]
           ]
         ],
-        "seconds": 19.6
+        "seconds": 20.2
       }
     ]
   }
