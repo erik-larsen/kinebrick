@@ -93,6 +93,13 @@ const DEAD_POINT_SAMPLE = (10 * Math.PI) / 180;
 const DEAD_POINT_GAP = 1e-3;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
+// How many times as fast as the joint being turned another joint may turn, if gears don't tie it
+// to that joint, before the motion counts as a dead point (see turnJoint). Linkages turn their
+// joints a few times as fast at most; past this, the mechanism is near singular as read (the
+// 42125's front uprights, turning 41 times as fast as its wishbone and the gears they mesh with
+// 312 times), and its steps tear it apart, however small. Gears may turn things far faster, so
+// joints geared to the one turned don't count.
+const WILD_RATE = 50;
 // How much faster the joints may turn in a drag's motion without the car moving on its
 // suspension than with it, for the motion without to be taken all the same (see jointMotion).
 const SUSPENSION_GAIN = 2;
@@ -2261,6 +2268,9 @@ export class Kinematics {
       return turned;
     };
     let turned = 0;
+    // The bodies gears tie to the joint being turned (see WILD_RATE).
+    const turnedBody = this.parentJoint[this.mech.joints[joint].bodyB] === joint ? this.mech.joints[joint].bodyB : this.mech.joints[joint].bodyA;
+    const geared = this.gearedTo(turnedBody, true);
     const steps = Math.ceil(Math.abs(angle) / maxStep);
     const full = angle / steps;
     while (Math.abs(angle - turned) > 1e-12) {
@@ -2300,6 +2310,12 @@ export class Kinematics {
       // Not a train coupling's swivel either (see magnetCouplings): its rate changes as the
       // cars' headings do, from step to step as a bogie crosses from a straight to a curve.
       const ratio = Math.max(1, ...[...loops].filter((k) => !couplings.has(this.mech.joints[k].bodyA) && !couplings.has(this.mech.joints[k].bodyB)).map((k) => Math.abs(predicted[k] / step)));
+      // A joint that gears don't tie to this one, turning more than WILD_RATE times as fast: a dead
+      // point (the mechanism is near singular as read).
+      if (this.mech.joints.some((j, k) => k !== joint && checked(j) && !geared.has(j.bodyA) && !geared.has(j.bodyB) && Math.abs(predicted[k] / step) > WILD_RATE)) {
+        if (TRACE) trace({ event: 'stopped', joint, turned, why: 'wild' });
+        return stop(turned);
+      }
       const last = this.lastStep;
       if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) {
         if (TRACE) trace({ event: 'stopped', joint, turned, why: 'rate' });
