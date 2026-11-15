@@ -4,7 +4,7 @@ Air let in by a valve pushes a cylinder out or in. (Moving and lifting.)
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): Pump with the red hand pump and push the valve at the left of the cab's back to the side, and the yellow cylinder at the front of the cab raises or lowers the boom, carrying the stick and bucket with it.
 
-Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 4 works, 8 partly, 11 no, 5 skipped, 1 not checked.
+Used in 12 of the 186 surveyed sets, by 29 functions. Kinebrick: 4 works, 8 partly, 11 no, 6 skipped.
 
 ## By decade
 
@@ -88,7 +88,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *crane booms, telescope and grab:* Functions E, F, G and H: the four pneumatic switches on the red crane base work the crane's four pneumatic cylinders, once the pump has filled the system with air: E slides the crane's last section in and out (a telescope), F raises and lowers the main boom, G folds the outer boom up and down, and H opens and closes the clamshell grab. (not checked)
+- *crane booms, telescope and grab:* Functions E, F, G and H: the four pneumatic switches on the red crane base work the crane's four pneumatic cylinders, once the pump has filled the system with air: E slides the crane's last section in and out (a telescope), F raises and lowers the main boom, G folds the outer boom up and down, and H opens and closes the clamshell grab. (skipped)
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 

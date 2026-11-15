@@ -4,7 +4,7 @@ A rigid axle hung on shock absorbers and links, free to tilt and rise. (Suspensi
 
 First appears in 2011, in [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1): The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm, and moves up and down, steering as it goes; the rear axle sits on two shock absorbers.
 
-Used in 7 of the 186 surveyed sets, by 7 functions. Kinebrick: 1 works, 4 no, 1 skipped, 1 not checked.
+Used in 7 of the 186 surveyed sets, by 7 functions. Kinebrick: 1 works, 4 no, 2 skipped.
 
 ## By decade
 
@@ -41,7 +41,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- All four axles have suspension: each axle swings on its shock absorbers, hard springs on the two front axles and soft ones on the two rear axles, and the rear axle pair twists on a turntable between them. (not checked)
+- All four axles have suspension: each axle swings on its shock absorbers, hard springs on the two front axles and soft ones on the two rear axles, and the rear axle pair twists on a turntable between them. (skipped)
 
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 

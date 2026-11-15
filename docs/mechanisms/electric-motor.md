@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 27 works, 53 partly, 3 no, 6 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 28 works, 53 partly, 3 no, 5 not checked.
 
 ## By decade
 
@@ -109,7 +109,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *PF L:* One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (not checked)
+- *PF L:* One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (works)
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 

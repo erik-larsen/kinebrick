@@ -251,9 +251,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "c98bc557",
     "date": "2026-11-15",
-    "seconds": 360,
+    "seconds": 527,
     "counts": {
       "partly": 7,
       "works": 3,
@@ -375,7 +375,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 20.8
+        "seconds": 23.9
       },
       {
         "result": "partly",
@@ -420,7 +420,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 21
+        "seconds": 23.8
       },
       {
         "result": "partly",
@@ -488,7 +488,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 21
+        "seconds": 24.1
       },
       {
         "result": "works",
@@ -536,7 +536,7 @@
             "dead point"
           ]
         ],
-        "seconds": 42.8
+        "seconds": 49.8
       },
       {
         "result": "works",
@@ -584,7 +584,7 @@
             "dead point"
           ]
         ],
-        "seconds": 43.1
+        "seconds": 50.4
       },
       {
         "result": "partly",
@@ -658,7 +658,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 26.8
+        "seconds": 45.2
       },
       {
         "result": "partly",
@@ -683,7 +683,7 @@
           {
             "p139 18946": [
               2.81e-8,
-              3.48e-13
+              3.36e-13
             ],
             "p1005 18575": [
               0,
@@ -737,7 +737,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 20.6
+        "seconds": 24
       },
       {
         "result": "partly",
@@ -772,11 +772,11 @@
             ],
             "p1304 6573": [
               0,
-              1.92e-47
+              5.25e-48
             ],
             "p2113 94925": [
               0,
-              7.59e-32
+              8.76e-32
             ],
             "p2134 32270": [
               0,
@@ -784,7 +784,7 @@
             ],
             "p2152 32012": [
               0,
-              1.14e-31
+              1.31e-31
             ],
             "p2086 40490": [
               0,
@@ -806,7 +806,7 @@
         ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 21.1
+        "seconds": 24.5
       },
       {
         "result": "partly",
@@ -877,7 +877,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 27.8
+        "seconds": 45.9
       },
       {
         "result": "works",
@@ -898,11 +898,11 @@
         "back": [
           [
             [
-              0,
+              0.01,
               0
             ],
             [
-              0,
+              0.01,
               0
             ]
           ],
@@ -921,7 +921,7 @@
           [],
           []
         ],
-        "seconds": 73.5
+        "seconds": 101.2
       },
       {
         "result": "skipped"

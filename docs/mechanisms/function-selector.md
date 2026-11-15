@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 25 works, 60 partly, 3 no, 9 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 28 works, 62 partly, 3 no, 4 not checked.
 
 ## By decade
 
@@ -120,11 +120,11 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *4 functions:* One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (not checked)
-- Function A: with the red lever on the right of the chassis pushed forward, to A, the motor tips the dump body backwards: the right driving ring locks its front clutch gear, which turns through a 16-tooth gear and bevel gears a shaft running back to the large linear actuator under the body, which pushes the body up on its hinge at the back. (not checked)
-- Function D: with the same right lever pulled back, to PUMP, the motor works the pneumatic pump: the right driving ring locks its rear clutch gear, which turns a 20-tooth gear on a short crank that pumps the pump's piston, filling the crane's pneumatic system with air. (not checked)
-- Function C: with the red lever on the left of the chassis pushed forward, to C, the motor slews the crane on its turntable, through 180 degrees: the left driving ring locks its front clutch gear, which turns through two idler clutch gears a 16-tooth gear on a shaft running forward, then bevel gears up to a 12-tooth gear on the turntable's 60 teeth. (not checked)
-- Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (not checked)
+- *4 functions:* One Power Functions L-motor in the chassis behind the cab, switched on and reversed at the battery box behind the cab, drives four functions through a gearbox with two driving rings: its shaft's 16-tooth gear turns, through two idler clutch gears, the right ring's shaft, and its 8-tooth gear turns, through a 24-tooth clutch gear and a pair of bevel gears, the left ring's shaft, so both ring shafts always turn while the motor runs. (works)
+- Function A: with the red lever on the right of the chassis pushed forward, to A, the motor tips the dump body backwards: the right driving ring locks its front clutch gear, which turns through a 16-tooth gear and bevel gears a shaft running back to the large linear actuator under the body, which pushes the body up on its hinge at the back. (partly)
+- Function D: with the same right lever pulled back, to PUMP, the motor works the pneumatic pump: the right driving ring locks its rear clutch gear, which turns a 20-tooth gear on a short crank that pumps the pump's piston, filling the crane's pneumatic system with air. (works)
+- Function C: with the red lever on the left of the chassis pushed forward, to C, the motor slews the crane on its turntable, through 180 degrees: the left driving ring locks its front clutch gear, which turns through two idler clutch gears a 16-tooth gear on a shaft running forward, then bevel gears up to a 12-tooth gear on the turntable's 60 teeth. (works)
+- Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (partly)
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 

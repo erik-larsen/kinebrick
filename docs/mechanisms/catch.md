@@ -4,7 +4,7 @@ A latch, lock or detent holds a part in place until it's released. (Holding.)
 
 First appears in 1998, in [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1): Hitting the purple striker's target swings the target lever back on its pivot under the seat. The target is a disc on the end of that purple lever, low at the front. The lever's top end is the catch that holds the seat down, so the seat is let go and flips forward. The other striker's arrow aims at this target.
 
-Used in 14 of the 186 surveyed sets, by 19 functions. Kinebrick: 7 works, 4 partly, 3 no, 4 skipped, 1 not checked.
+Used in 14 of the 186 surveyed sets, by 19 functions. Kinebrick: 7 works, 5 partly, 3 no, 4 skipped.
 
 ## By decade
 
@@ -66,7 +66,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *tailgate:* Function i: the tipper's tailgate is locked by a lever at the back on the right; with it unlocked, the tailgate swings open from its top hinge as the body tips. (not checked)
+- *tailgate:* Function i: the tipper's tailgate is locked by a lever at the back on the right; with it unlocked, the tailgate swings open from its top hinge as the body tips. (partly)
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**
 
