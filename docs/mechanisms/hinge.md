@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 77 works, 16 partly, 31 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 78 works, 15 partly, 31 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -322,7 +322,7 @@ Each detail by the set it first appears in.
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
 - *semi-trailer coupling:* The semi-trailer turns on its coupling behind the cab as the truck steers. (partly)
-- *spreader:* The spreader turns on the boom's tip to line up with a container. (partly)
+- *spreader:* The spreader turns on the boom's tip to line up with a container. (works)
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 

@@ -59,7 +59,7 @@ export function tyres(solver: Kinematics, eq: Equations) {
       slip.lift.push(along(p, DOWN));
       const rise = new Array(n).fill(0);
       for (let k = 0; k < 3; k++) {
-        addPointVelocity(rise, 0, hub, k, DOWN.getComponent(k));
+        addPointVelocity(rise, solver.frameOf[tread.body], hub, k, DOWN.getComponent(k));
         addPointVelocity(rise, tread.body, hub, k, -DOWN.getComponent(k));
       }
       slip.rise.push(rise);

@@ -106,9 +106,9 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 2,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "partly": 2,
       "not back": 1,
@@ -221,7 +221,7 @@
         ],
         "cause": "not-driven",
         "detail": "p12 15460",
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -361,7 +361,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -437,7 +437,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 1
       },
       {
         "result": "not checked",

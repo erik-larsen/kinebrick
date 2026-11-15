@@ -123,8 +123,8 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
+    "commit": "50428c4b",
+    "date": "2026-11-15",
     "seconds": 2,
     "counts": {
       "partly": 2,
@@ -278,7 +278,7 @@
         "freed": 2,
         "cause": "not-driven",
         "detail": "p223 41239 against p65 32524",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -446,7 +446,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "works",

@@ -160,13 +160,13 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 48,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 62,
     "counts": {
-      "works": 3,
-      "not back": 4,
-      "partly": 5,
+      "works": 6,
+      "not back": 3,
+      "partly": 2,
       "skipped": 2
     },
     "loose": [
@@ -333,7 +333,7 @@
           [],
           []
         ],
-        "seconds": 13.2
+        "seconds": 16.6
       },
       {
         "result": "works",
@@ -384,7 +384,7 @@
             "dead point"
           ]
         ],
-        "seconds": 4.6
+        "seconds": 7.7
       },
       {
         "result": "partly",
@@ -433,7 +433,7 @@
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 3.6
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -467,10 +467,10 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 3.9
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -493,52 +493,44 @@
         "back": [
           [
             [
-              13.63,
+              0,
               0
             ],
             [
-              13.63,
+              0,
               0
             ]
           ],
           [
             [
-              14.34,
+              0,
               0
             ],
             [
-              14.34,
+              0,
               0
             ]
           ],
           [
             [
-              14.34,
+              0,
               0
             ],
             [
-              14.34,
+              0,
               0
             ]
           ]
-        ],
-        "strayed": [
-          "p452 3713",
-          "p42 6580",
-          "p453 3713",
-          "p44 6580"
         ],
         "movedBy": [
           [],
           [],
           []
         ],
-        "cause": "second-model",
-        "detail": "p25 6579",
-        "seconds": 12.5
+        "seconds": 10.6
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -557,11 +549,11 @@
             ],
             "p156 6629 against p112 32018": [
               0,
-              2.37e-14
+              2.13e-14
             ],
             "p166 32065 against p112 32018": [
               0,
-              4.56e-11
+              0
             ]
           }
         ],
@@ -586,9 +578,7 @@
             "dead point"
           ]
         ],
-        "cause": "second-model",
-        "detail": "p54 6572",
-        "seconds": 5
+        "seconds": 7.6
       },
       {
         "result": "partly",
@@ -624,8 +614,8 @@
               0
             ],
             [
-              4.42,
-              0.74
+              5.02,
+              0.82
             ]
           ]
         ],
@@ -640,10 +630,10 @@
         ],
         "cause": "loose-part",
         "detail": "p184 2698",
-        "seconds": 4.9
+        "seconds": 7.7
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -674,9 +664,7 @@
             ]
           ]
         ],
-        "cause": "second-model",
-        "detail": "p156 6629",
-        "seconds": 2.1
+        "seconds": 3
       },
       {
         "result": "skipped",
