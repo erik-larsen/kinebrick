@@ -4,7 +4,7 @@ import { Matrix4, Vector3 } from 'three';
 import { acrossDirections } from '../kinematics.ts';
 import { PlacedPart } from '../ldr.ts';
 import type { Connection, Rest, RestContact } from '../mechanism.ts';
-import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, AXIS_TOLERANCE, LOOSE_ALIGN_TOLERANCE, type WorldCylinder } from './shared.ts';
+import { ALIGN_TOLERANCE, ANGLE_TOLERANCE, AXIS_TOLERANCE, axleStops, LOOSE_ALIGN_TOLERANCE, type WorldCylinder } from './shared.ts';
 
 // Where a resting face touches what it rests on, each placed by its pose (model -> where it is
 // now): the point, the way the face would have to move to reach it, and how far (negative if
@@ -121,7 +121,13 @@ export function restingParts(parts: PlacedPart[], roles: string[], cyls: WorldCy
     const height = (p: Vector3) => p.dot(up);
     const point = (h: number) => axle.start.clone().addScaledVector(up, h - height(axle.start));
     const span = (c: Connection): [number, number] => [Math.min(height(c.from), height(c.to)), Math.max(height(c.from), height(c.to))];
-    const bushes = connections.filter((c) => c.kind === 'rigid' && c.male === axle.part && roles[c.female] === 'bush').map(span);
+    // Its bushes, and its own stops, which stand on a hole and stop it as a bush does (an axle with
+    // a stop's flange).
+    const heightAt = (t: number) => height(axle.start.clone().addScaledVector(axle.dir, t));
+    const bushes = [
+      ...connections.filter((c) => c.kind === 'rigid' && c.male === axle.part && roles[c.female] === 'bush').map(span),
+      ...axleStops(axle).map(([a, b]): [number, number] => [Math.min(heightAt(a), heightAt(b)), Math.max(heightAt(a), heightAt(b))]),
+    ];
     if (!bushes.length) continue;
     const [across, along] = acrossDirections(up);
     const foot = (h: number) => ({ point: point(h), normal: up.clone().negate(), across, along, half: [BUSH_RADIUS, BUSH_RADIUS] as [number, number] });

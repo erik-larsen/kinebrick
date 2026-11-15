@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Connection } from '../mechanism.ts';
-import { axialOverlap, AXIS_TOLERANCE, type WorldCylinder } from './shared.ts';
+import { axialOverlap, AXIS_TOLERANCE, axleStops, type WorldCylinder } from './shared.ts';
 
 // A part turning on an axle may slide along it too, as far as the parts either side of it on
 // the axle let it, if a linkage works it that way: its body turns on another body about an
@@ -61,8 +61,45 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
         const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
         const other = a === bodyOf[part] ? b : b === bodyOf[part] ? a : -1;
         const across = new Vector3().subVectors(c.to, c.from).normalize().cross(axle.dir).length() > 0.5;
-        return other >= 0 && other !== bodyOf[part] && other !== shaft && across && joinsShaft(other, bodyOf[part]);
+        return other >= 0 && other !== bodyOf[part] && other !== shaft && across && joinsShaft(other, bodyOf[part]) && canSwing(c, other);
       });
+    // Whether the part's body can really swing about the hinge c on `other`, as it rides the
+    // axle. If `other` turns on the shaft itself (by a joint straight between their bodies),
+    // `other` can only turn about that joint's axis against the shaft; the swing on top of
+    // that must leave the part turning about the axle and sliding along it, and nothing else.
+    // Where it can't (a beam hinged on the frame that the shaft turns in, with the shaft
+    // through it), the shaft holds the part where it is: the part only turns on the axle.
+    // Where `other` is joined to the shaft only through other bodies, it may move as the
+    // linkage lets it, and the part is taken to swing.
+    const canSwing = (hinge: Connection, other: number) => {
+      const bearings = connections.filter((k) => (k.kind === 'revolute' || k.kind === 'rigid') && [bodyOf[k.male], bodyOf[k.female]].sort().join() === [shaft, other].sort().join());
+      if (!bearings.length) return true;
+      // Each joint as a turn about a line, written as how a body turning about it at 1 radian
+      // per second moves: its turn, and the speed of the point at the axle's start.
+      const twist = (k: Connection) => {
+        const dir = new Vector3().subVectors(k.to, k.from).normalize();
+        return [...dir.toArray(), ...new Vector3().subVectors(k.from, axle.start).cross(dir).toArray()];
+      };
+      // How the part may move on the axle (turning about it, sliding along it), and how
+      // `other` may move on the shaft: one bearing's turn, if all its bearings turn about the
+      // one line, and none if not (or if one is rigid).
+      const allowed = [[...axle.dir.toArray(), 0, 0, 0], [0, 0, 0, ...axle.dir.toArray()]];
+      const turn = twist(bearings[0]);
+      const same = (t: number[], sign: number) => t.every((x, i) => Math.abs(x - sign * turn[i]) < (i < 3 ? 0.01 : 1));
+      const oneLine = bearings.every((k) => k.kind === 'revolute' && (same(twist(k), 1) || same(twist(k), -1)));
+      if (oneLine) allowed.push(turn);
+      // The swing can happen if it's made of those: take each away from it in turn (as
+      // they're made at right angles to each other), and see that nothing is left.
+      const swing = twist(hinge);
+      const basis: number[][] = [];
+      for (const v of allowed) {
+        const w = basis.reduce((acc, b) => { const dot = acc.reduce((sum, x, i) => sum + x * b[i], 0); return acc.map((x, i) => x - dot * b[i]); }, v.slice());
+        const size = Math.hypot(...w);
+        if (size > 1e-6) basis.push(w.map((x) => x / size));
+      }
+      const left = basis.reduce((acc, b) => { const dot = acc.reduce((sum, x, i) => sum + x * b[i], 0); return acc.map((x, i) => x - dot * b[i]); }, swing);
+      return Math.hypot(...left) < 1e-3 * Math.hypot(...swing);
+    };
     const done = new Set<number>();
     for (const [part] of spans) {
       if (done.has(part) || !turning(part) || !linked(part)) continue;
@@ -90,6 +127,12 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
         if (b <= lo + TOUCH) below = Math.min(below, Math.max(0, lo - b));
         else if (a >= hi - TOUCH) above = Math.min(above, Math.max(0, a - hi));
         else [below, above] = [0, 0]; // something else round the axle in the stack's way
+      }
+      // Nor past a stop on the axle itself (an axle with a stop's flange).
+      for (const [a, b] of axleStops(axle)) {
+        if (b <= lo + TOUCH) below = Math.min(below, Math.max(0, lo - b));
+        else if (a >= hi - TOUCH) above = Math.min(above, Math.max(0, a - hi));
+        else [below, above] = [0, 0];
       }
       if (below + above < TOUCH) continue;
       for (const c of connections) {

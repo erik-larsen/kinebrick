@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "10433fa3",
     "date": "2026-11-15",
-    "seconds": 4055,
+    "seconds": 4202,
     "counts": {
       "works": 4,
       "partly": 4,
@@ -247,7 +247,7 @@
             ]
           ]
         ],
-        "seconds": 78.6
+        "seconds": 86.7
       },
       {
         "result": "partly",
@@ -264,7 +264,7 @@
           {
             "p464 92695 against p463 92693c01": [
               0,
-              2.13e-30
+              3.74e-31
             ]
           }
         ],
@@ -293,11 +293,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "part-fixed",
         "detail": "p464 92695 against p463 92693c01",
-        "seconds": 383.4
+        "seconds": 365.3
       },
       {
         "result": "partly",
@@ -348,11 +348,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "part-fixed",
         "detail": "p528 32140",
-        "seconds": 384.1
+        "seconds": 354.1
       },
       {
         "result": "partly",
@@ -369,7 +369,7 @@
           {
             "p624 62274c01 against p623 62271c01": [
               0,
-              1.56e-13
+              7.58e-14
             ]
           }
         ],
@@ -398,11 +398,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p624 62274c01 against p623 62271c01",
-        "seconds": 380
+        "seconds": 353.8
       },
       {
         "result": "works",
@@ -439,7 +439,7 @@
             ]
           ]
         ],
-        "seconds": 379.7
+        "seconds": 345.6
       },
       {
         "result": "not checked"
@@ -500,7 +500,7 @@
             ]
           ]
         ],
-        "seconds": 77.8
+        "seconds": 66.7
       },
       {
         "result": "partly",
@@ -520,30 +520,30 @@
         "rates": [
           {
             "p22 62821": [
-              1.02,
-              4.75e-10
+              0.978,
+              1.23e-10
             ],
             "p778 2853": [
-              1.43,
-              2.86e-13
+              1.37,
+              2.41e-13
             ],
             "p779 2852": [
-              0.196,
-              14.3
+              0.188,
+              13.7
             ],
             "p790 2851 against p472 32278": [
               5.62e-8,
-              10.9
+              10.4
             ]
           },
           {
             "p22 62821": [
               0.978,
-              2.78e-10
+              4.63e-11
             ],
             "p778 2853": [
               1.37,
-              2.51e-13
+              2.67e-13
             ],
             "p779 2852": [
               0.188,
@@ -624,12 +624,12 @@
           ]
         ],
         "judged": [
-          1,
+          0,
           0
         ],
         "cause": "stay-chosen",
         "detail": "p790 2851 against p472 32278",
-        "seconds": 720.7
+        "seconds": 870.7
       },
       {
         "result": "works",
@@ -803,7 +803,7 @@
           [],
           []
         ],
-        "seconds": 1634.7
+        "seconds": 1731
       }
     ]
   }

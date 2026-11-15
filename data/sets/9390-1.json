@@ -89,7 +89,7 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "10433fa3",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -132,7 +132,7 @@
         "rates": [
           {
             "p491 32316": [
-              0,
+              2.81e-8,
               20
             ],
             "p505 55982": [
@@ -177,10 +177,7 @@
             ]
           ]
         ],
-        "pushed": [
-          true
-        ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
