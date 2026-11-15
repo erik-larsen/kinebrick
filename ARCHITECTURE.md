@@ -1191,6 +1191,7 @@ Every function that comes out `partly` or `no` gets one cause from a fixed list 
 | `not-driven` | A part that should move can move, but the control can move without it, and no gears tie the two | The inference |
 | `other-motion` | Gears tie a part to the control, but the control can also move without it, and did (a differential's other side) | The solver |
 | `stopped-early` | The part must move with the control, but the drag stopped before half way | The solver |
+| `one-link-too-many` | The drag stopped before half way, and from where the control starts, its loops close only to first order: a step leaves them apart by more than the solver allows, a quarter as far for a step half as long. The design has one link too many for rigid parts; the real set moves by the give of its pins and a bending shaft (the 42060 Roadwork Crew's steering). Only for a turned control | The dynamics (version 2.0), or the reading where a part is misread so |
 | `too-little` | The control went far enough, but a part it must move hardly moved | The solver |
 | `stay-forced` | A part that should stay has to move whenever the control does | The function lists |
 | `stay-chosen` | A part that should stay moved, though the control can move without it | The solver |

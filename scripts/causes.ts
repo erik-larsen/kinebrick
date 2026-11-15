@@ -27,6 +27,9 @@ export const CAUSES = {
   'not-driven': { owner: 'inference', says: 'A part that should move can move, but nothing ties it to the control' },
   'other-motion': { owner: 'solver', says: 'Gears tie a part to the control, but the control can also move without it, and did' },
   'stopped-early': { owner: 'solver', says: 'The mechanism is right there, but the drag stopped before half way' },
+  // A design whose loop has one link too many for rigid parts (decision 66): the real set moves by
+  // the give of its pins and a bending shaft, which is for the dynamics, not this reading.
+  'one-link-too-many': { owner: 'solver', says: 'A loop moves only to first order where it was built: rigid parts bind at once, where the real set gives a little at its pins' },
   'too-little': { owner: 'solver', says: 'The control went far enough, but a part it must move hardly moved' },
   'stay-forced': { owner: 'function lists', says: 'A part that should stay has to move whenever the control does' },
   'stay-chosen': { owner: 'solver', says: 'A part that should stay moved, though the control can move without it' },
@@ -73,8 +76,11 @@ export interface Listed {
 
 // The cause, for a control that has a joint: `control` is its body and what that turns in, `still`
 // the parts that should have moved and didn't, `moved` those that should have stayed and didn't,
-// `geared` the bodies gears tie to the control, and `far` whether the control went half way.
-export function causeOf(kin: Kinematics, control: { body: number; parent: number }, still: Listed[], moved: Listed[], geared: Set<number>, far: boolean): Explained {
+// `geared` the bodies gears tie to the control, `far` whether the control went half way, and
+// `turned` whether it was turned, not pushed (only a turned control is tried for one link too
+// many: a push that sticks is another matter).
+export function causeOf(kin: Kinematics, control: { body: number; parent: number }, still: Listed[], moved: Listed[], geared: Set<number>, far: boolean, turned = true): Explained {
+  const early = (): Explained => (turned ? stoppedWhy(kin, control) : { cause: 'stopped-early' });
   const motions = kin.freeMotions();
   const own = relative(motions, control.parent, control.body);
   if (rank(own) === 0) return { cause: 'control-jammed' };
@@ -90,10 +96,34 @@ export function causeOf(kin: Kinematics, control: { body: number; parent: number
     if (cause && (!worst || order.indexOf(cause) < order.indexOf(worst.cause))) worst = { cause, detail: part.ref };
   }
   if (worst) return worst;
-  if (still.length) return far ? { cause: 'too-little', detail: still[0].ref } : { cause: 'stopped-early' };
+  if (still.length) return far ? { cause: 'too-little', detail: still[0].ref } : early();
   for (const part of moved) {
     const its = relative(motions, part.against, part.body);
     return { cause: rank([...its, ...own]) > rank(its) ? 'stay-chosen' : 'stay-forced', detail: part.ref };
   }
-  return far ? { cause: 'unknown' } : { cause: 'stopped-early' };
+  return far ? { cause: 'unknown' } : early();
+}
+
+// How far apart a loop may be left and still count as closed (the solver's DEAD_POINT_GAP), and
+// the two trial steps of the control (radians).
+const CLOSED = 1e-3;
+const TRIAL = [0.02, 0.01];
+
+// Why a drag that has a way to go stopped before half way: where the control is, it moves, but
+// its loops, closed after a step, are left apart by more than CLOSED, a quarter as far for a step
+// half as long. They fit only to first order where they were built, as a design with one link
+// too many does on rigid parts (the 42060 Roadwork Crew's steering, whose crank turns the track
+// rod's middle on a circle the knuckles' arms don't). Else the drag just stopped early.
+function stoppedWhy(kin: Kinematics, control: { body: number; parent: number }): Explained {
+  const link = kin.parentLink(control.body);
+  const motion = link && kin.jointMotion(link.joint);
+  if (!link || !motion) return { cause: 'stopped-early' };
+  const start = kin.snapshot();
+  const gaps = TRIAL.map((step) => {
+    const gap = kin.advance(motion, step, link.joint);
+    kin.restore(start);
+    return gap;
+  });
+  const ratio = gaps[0] / Math.max(gaps[1], 1e-12);
+  return gaps[0] > CLOSED && ratio > 3 && ratio < 5 ? { cause: 'one-link-too-many' } : { cause: 'stopped-early' };
 }
