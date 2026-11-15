@@ -94,6 +94,54 @@
       "reply": "Sign 42099"
     },
     {
+      "id": "42111-shock",
+      "kind": "Sign-off",
+      "title": "42111 Dom’s Dodge Charger: the rear shock absorbers’ cylinders onto their rods",
+      "since": "2026-11-15",
+      "what": "A correction to the published file. In the rear shock absorber sub-assembly (drawn once, placed twice), the cylinder is drawn 1.3 LDU to one side along its own pin, so the rod is 1.3 LDU off the cylinder’s axis, and Kinebrick reads the two halves as unjoined. The correction moves the cylinder 1.3 LDU along its pin, onto the rod’s axis; it stays on its pin.",
+      "effect": "The two rear shock absorbers are read whole and slide (11 LDU each way). The scores do not change (7 functions work, 1 does not): the rear axle’s function 6 binds for another reason, its two links 40 LDU ahead of the axle’s ball, recorded as a loop that does not fit.",
+      "confidence": "High. The worker looked at the booklet page: step 34 fits the two shock absorbers whole, rod in cylinder.",
+      "links": [
+        {
+          "label": "Booklet p. 22",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=22"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42111-1+Dom%27s+Dodge+Charger.mpd&show=101,102,105,106"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42111-1+Dom%27s+Dodge+Charger.mpd&option=proposed&show=101,102,105,106"
+        }
+      ],
+      "reply": "Sign 42111"
+    },
+    {
+      "id": "41999-shocks",
+      "kind": "Sign-off",
+      "title": "41999 4 x 4 Crawler: the four shock absorbers the file lacks",
+      "since": "2026-11-15",
+      "what": "A correction to the published file. Its four shock absorbers are LDCad springs: notes that LDCad alone draws, with no parts in them, so to every other reader the model has no shock absorbers, nor the pins at their ends. The correction adds the parts the notes name for each (cylinder 2909, rod 2910, pins 43093 and 2780), where the notes place them.",
+      "effect": "The four shock absorbers are read and slide, between the axles and the frame. The scores do not change (3 functions work, 1 partly, 2 do not): the axles’ function 3 stays jammed for another reason, which is with the solver owner (the axle’s own joint has no motion of its own).",
+      "confidence": "High. The worker looked at the booklet page: step 70 shows the two shock absorbers fitted to the sub-assembly. The parts and places are the ones the file’s own notes give.",
+      "links": [
+        {
+          "label": "Booklet book 2 p. 25",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064367.pdf#page=25"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F41999-1+4+x+4+Crawler+Exclusive+Edition.mpd&show=79,177"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F41999-1+4+x+4+Crawler+Exclusive+Edition.mpd&option=proposed&show=79,177,1547,1549"
+        }
+      ],
+      "reply": "Sign 41999"
+    },
+    {
       "id": "42099-casing",
       "kind": "Sign-off",
       "title": "42099, 42041 and 8274: the differential casing stands still when one wheel is turned by hand",

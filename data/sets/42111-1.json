@@ -128,7 +128,7 @@
         "stays": [
           "p136 18575"
         ],
-        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36); a loop that does not fit as built (decision 78, as the 42129’s function 6 under decision 56): the axle swings on the large ball (p0 92910 in p66 92911) and its two links p71 and p72 2739a run from the frame 40 LDU ahead of the ball’s centre to the axle, so any finite pitch or roll asks the links to change length (0.12 LDU at 0.1 radian); the real model moves on the play in the links’ ball cups (booklet step 26, page 15, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=15)"
       },
       {
         "does": "The rear shock absorbers' springs push the rear axle back down.",
