@@ -249,18 +249,35 @@ window.addEventListener('resize', () => {
 let onFrame = (_seconds: number) => {};
 let lastFrame = performance.now();
 // The frames drawn each second, shown on the FPS card (made with the Options card, below) and
-// counted afresh every half second.
-let showFps = (_fps: number) => {};
-let fpsFrames = 0;
-let fpsSince = performance.now();
+// counted afresh every half second. The card, opened, also shows the lowest and the highest of
+// those half-second readings over the last 10 seconds, and the average over that time.
+let showFps = (_fps: number, _min: number, _max: number, _avg: number) => {};
+const FPS_SAMPLES = 20; // half seconds kept: 10 seconds
+const fpsSamples: { frames: number; ms: number }[] = [];
+let fpsNow = { frames: 0, ms: 0 };
+let fpsFrame = performance.now();
 
 renderer.setAnimationLoop(() => {
   const now = performance.now();
-  fpsFrames++;
-  if (now - fpsSince >= 500) {
-    showFps(Math.round((fpsFrames * 1000) / (now - fpsSince)));
-    fpsFrames = 0;
-    fpsSince = now;
+  const frame = now - fpsFrame;
+  fpsFrame = now;
+  if (frame < 1000) {
+    // A frame of a second or more is a hidden tab coming back, not a slow frame: left out.
+    fpsNow.frames++;
+    fpsNow.ms += frame;
+  }
+  if (fpsNow.ms >= 500) {
+    fpsSamples.push(fpsNow);
+    if (fpsSamples.length > FPS_SAMPLES) fpsSamples.shift();
+    const readings = fpsSamples.map((s) => (s.frames * 1000) / s.ms);
+    let frames = 0;
+    let ms = 0;
+    for (const s of fpsSamples) {
+      frames += s.frames;
+      ms += s.ms;
+    }
+    showFps(Math.round(readings[readings.length - 1]), Math.round(Math.min(...readings)), Math.round(Math.max(...readings)), Math.round((frames * 1000) / ms));
+    fpsNow = { frames: 0, ms: 0 };
   }
   onFrame(Math.min((now - lastFrame) / 1000, 0.1)); // a hidden tab pauses frames; don't jump
   lastFrame = now;
@@ -913,13 +930,21 @@ async function start() {
   // The options panel, upper right. Each option is kept in the address, so switching model
   // keeps it.
   const cards = document.getElementById('cards')!;
-  // Above it, the FPS card: a closed card like Options that only shows the frames drawn each
-  // second and does not open (see index.html).
+  // Above it, the FPS card: the frames drawn each second in its title, open or closed, and
+  // inside it the lowest, the highest and the average over the last 10 seconds (see index.html).
   const fpsCard = new GUI({ title: 'FPS', container: cards });
   fpsCard.domElement.classList.add('fps');
+  fpsCard.$children.append(document.getElementById('fps')!);
   fpsCard.close();
-  fpsCard.$title.tabIndex = -1;
-  showFps = (fps) => fpsCard.title(`FPS ${fps}`);
+  const fpsMin = document.getElementById('fps-min')!;
+  const fpsMax = document.getElementById('fps-max')!;
+  const fpsAvg = document.getElementById('fps-avg')!;
+  showFps = (fps, min, max, avg) => {
+    fpsCard.title(`FPS ${fps}`);
+    fpsMin.textContent = String(min);
+    fpsMax.textContent = String(max);
+    fpsAvg.textContent = String(avg);
+  };
   const gui = new GUI({ title: 'Options', container: cards });
   gui.close();
   // Under it, the Stats card: the model's counts and the readout (see index.html). Both cards
