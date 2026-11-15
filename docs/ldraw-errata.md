@@ -458,6 +458,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Proposed, not applied until signed off |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Proposed, not applied until signed off |
+| [42099-1](#42099-1-rear-side-gear-p45-in-line) | rear-side-gear-p45-in-line | moves `6589.dat` (in `42099 - rearaxle.ldr`) to 17 -40 0 | Proposed, not applied until signed off |
+| [42099-1](#42099-1-rear-side-gear-p46-in-line) | rear-side-gear-p46-in-line | moves `6589.dat` (in `42099 - rearaxle.ldr`) to -17 -40 0 | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
@@ -612,6 +614,34 @@ Added to the main model:
 ```
 1 72 0 -55 80 0 1 0 1 0 0 0 0 -1 10928.dat
 ```
+
+### 42099-1: rear-side-gear-p45-in-line
+
+Proposed, not applied until signed off.
+
+The rear differential's two side gears (p45 and p46, 6589, lines 1132 and 1133 of the OMR file, in 42099 - rearaxle.ldr, its sixth step) lie 3 LDU off the line of the casing (p43 62821, line 1130): at z -3, where the casing's line, and its half shafts', is at z 0. So neither turns on its half shaft, and the differential is read as locked. The booklet builds this differential at step 140 (42099-1-1.pdf page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86): its 1:1 inset has the two side gears facing each other on the casing's line. The front differential, laid out the same way (lines 95 to 98), has them at z 0. Of the differentials in all the models Kinebrick checks, this is the only one with a side gear off its casing's line. Moved 3 LDU onto the line.
+
+In `42099 - rearaxle.ldr` (p45 6589), the line
+
+```
+1 19 17 -40 -3 0 0 -1 1 0 0 0 -1 0 6589.dat
+```
+
+is read with its part at 17 -40 0.
+
+### 42099-1: rear-side-gear-p46-in-line
+
+Proposed, not applied until signed off.
+
+As p45: the rear differential's other side gear, 3 LDU off the casing's line (line 1133; booklet step 140, page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86). Moved 3 LDU onto the line.
+
+In `42099 - rearaxle.ldr` (p46 6589), the line
+
+```
+1 19 -17 -40 -3 0 0 1 -1 0 0 0 -1 0 6589.dat
+```
+
+is read with its part at -17 -40 0.
 
 ### 42109-1: no-pin-p381
 

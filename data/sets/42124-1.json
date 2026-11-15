@@ -124,12 +124,13 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 5,
+    "seconds": 7,
     "counts": {
       "works": 4,
       "not back": 1,
+      "torn": 1,
       "partly": 2,
       "skipped": 2
     },
@@ -178,6 +179,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              41.27,
+              87.1
+            ],
+            [
+              42.71,
+              90.93
+            ]
+          ]
+        ],
         "strayed": [
           "p344 87083",
           "p346 87083"
@@ -188,7 +201,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.6
+        "seconds": 2.1
       },
       {
         "result": "partly",
@@ -235,9 +248,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p464 65414c01",
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -270,12 +295,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "why": [
           "p974 56908 against p464 65414c01 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.6
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -333,6 +370,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0.07,
+              0.11
+            ],
+            [
+              0,
+              0.01
+            ]
+          ],
+          [
+            [
+              0,
+              0.01
+            ],
+            [
+              0.07,
+              0.11
+            ]
+          ]
+        ],
         "stop": [
           [
             "limit",
@@ -351,7 +410,7 @@
             "p343 15460"
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "skipped",
@@ -378,6 +437,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -439,11 +510,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.7
       }
     ]
   }

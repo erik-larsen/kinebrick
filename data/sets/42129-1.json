@@ -148,9 +148,9 @@
     ]
   },
   "generated": {
-    "commit": "ce4c28b2",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 342,
+    "seconds": 314,
     "counts": {
       "partly": 2,
       "works": 4,
@@ -303,6 +303,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [
             "p468 6573"
@@ -313,7 +335,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 60.4
+        "seconds": 57.1
       },
       {
         "result": "works",
@@ -343,7 +365,19 @@
             ]
           ]
         ],
-        "seconds": 24.5
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 27.5
       },
       {
         "result": "works",
@@ -401,6 +435,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [
             "p2936 42129 - 69912 against p1309 65414c01"
@@ -409,7 +465,7 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 137.9
+        "seconds": 139.2
       },
       {
         "result": "partly",
@@ -457,12 +513,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "why": [
           "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
         ],
         "cause": "loose-part",
         "detail": "p513 18947",
-        "seconds": 26.1
+        "seconds": 27.3
       },
       {
         "result": "works",
@@ -500,7 +568,19 @@
             ]
           ]
         ],
-        "seconds": 27.5
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 28.9
       },
       {
         "result": "no",
@@ -580,6 +660,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -595,10 +697,11 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 7.6
+        "seconds": 6
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -628,7 +731,19 @@
             ]
           ]
         ],
-        "seconds": 25
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 25.2
       }
     ]
   }

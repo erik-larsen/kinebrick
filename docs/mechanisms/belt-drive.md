@@ -4,7 +4,7 @@ A rubber band or belt runs round pulleys. (Drivetrain.)
 
 First appears in 1980, in [858 Auto Engines](https://erik-larsen.github.io/kinebrick/?model=858-Auto%20Engines-2-Cycle%20Engine): Inline engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the distributor's axle.
 
-Used in 7 of the 186 surveyed sets, by 12 functions. Kinebrick: 8 works, 4 partly.
+Used in 7 of the 186 surveyed sets, by 12 functions. Kinebrick: 7 works, 4 partly, 1 no.
 
 ## By decade
 
@@ -56,7 +56,7 @@ Each detail by the set it first appears in.
 
 **2018, [42074 Racing Yacht](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42074-1)**
 
-- *boom:* Either of the two winch cranks on the deck swings the boom and mainsail from side to side: a rubber band loop runs from each crank's reel to a reel in the middle, whose 8 tooth gear turns the 24 tooth gear at the foot of the boom. (works)
+- *boom:* Either of the two winch cranks on the deck swings the boom and mainsail from side to side: a rubber band loop runs from each crank's reel to a reel in the middle, whose 8 tooth gear turns the 24 tooth gear at the foot of the boom. (no)
 
 ---
 

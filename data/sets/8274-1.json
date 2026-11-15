@@ -148,13 +148,14 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 22,
+    "seconds": 24,
     "counts": {
       "works": 2,
       "partly": 4,
       "not back": 4,
+      "torn": 4,
       "not checked": 1
     },
     "loose": [
@@ -402,7 +403,19 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "torn": [
+          [
+            [
+              0.05,
+              0.05
+            ],
+            [
+              0.05,
+              0.05
+            ]
+          ]
+        ],
+        "seconds": 2.8
       },
       {
         "result": "partly",
@@ -456,6 +469,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              4.25,
+              30.56
+            ],
+            [
+              9.21,
+              64.94
+            ]
+          ]
+        ],
         "strayed": [
           "p673 3023"
         ],
@@ -468,7 +493,7 @@
         "freed": 4,
         "cause": "loose-part",
         "detail": "p1045 3708",
-        "seconds": 4.5
+        "seconds": 5
       },
       {
         "result": "partly",
@@ -537,12 +562,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0.97,
+              0.22
+            ]
+          ]
+        ],
         "strayed": [
           "p1081 6536"
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 2.2
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -583,9 +620,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p18 6573",
-        "seconds": 2.2
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -619,6 +668,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              53.99,
+              5.73
+            ],
+            [
+              18,
+              1.91
+            ]
+          ]
+        ],
         "strayed": [
           "p926 3673"
         ],
@@ -629,7 +690,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -699,6 +760,48 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0.97,
+              0.22
+            ]
+          ]
+        ],
         "strayed": [
           "p1081 6536"
         ],
@@ -708,7 +811,7 @@
           [],
           []
         ],
-        "seconds": 9.1
+        "seconds": 9.9
       },
       {
         "result": "not checked",

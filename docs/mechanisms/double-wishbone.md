@@ -4,7 +4,7 @@ Each wheel's hub rides between an upper and a lower arm. (Suspension.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.
 
-Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 14 works, 4 partly, 7 no, 1 skipped.
+Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 13 works, 4 partly, 8 no, 1 skipped.
 
 ## By decade
 
@@ -62,7 +62,7 @@ Each detail by the set it first appears in.
 
 **2015, [42037 Formula Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42037-1)**
 
-- *front:* The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes. (works)
+- *front:* The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes. (no)
 - *rear:* The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven. (works)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**

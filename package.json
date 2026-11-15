@@ -22,6 +22,7 @@
     "what-moves-audit": "tsx scripts/what-moves-audit.ts",
     "errata": "tsx scripts/errata.ts",
     "status": "tsx scripts/status-page.ts",
+    "decisions": "tsx scripts/decisions-page.ts",
     "probe": "tsx scripts/probe-drag.ts",
     "ratchet": "tsx scripts/ratchet.ts",
     "invariance": "tsx scripts/invariance.ts",

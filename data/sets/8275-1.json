@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 85,
+    "seconds": 99,
     "counts": {
       "partly": 4,
       "works": 2,
@@ -338,9 +338,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p2625 57518",
-        "seconds": 19.9
+        "seconds": 21.2
       },
       {
         "result": "partly",
@@ -396,9 +408,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p2669 57518",
-        "seconds": 6.6
+        "seconds": 8.2
       },
       {
         "result": "works",
@@ -464,6 +488,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [
             "p2611 57519"
@@ -472,7 +518,7 @@
             "p2613 57519"
           ]
         ],
-        "seconds": 26.3
+        "seconds": 31.3
       },
       {
         "result": "works",
@@ -525,7 +571,19 @@
             ]
           ]
         ],
-        "seconds": 19.6
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 23.6
       },
       {
         "result": "partly",
@@ -600,6 +658,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -607,7 +677,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 5.2
+        "seconds": 6.5
       },
       {
         "result": "partly",
@@ -672,6 +742,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -679,7 +761,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 6.2
+        "seconds": 7.4
       },
       {
         "result": "skipped",
