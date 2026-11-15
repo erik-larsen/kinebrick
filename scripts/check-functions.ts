@@ -32,8 +32,8 @@
 // it slid more than RATE_OFF and STROKE_OFF off it (its `rates` are against the frame, as for any
 // other part). And each
 // way is worked back again, as a new drag: everything should come back to where it started
-// (`back`: the furthest any part is left from it, LDU and degrees; `strayed`: parts left more
-// than BACK away). Beside it, `torn`: the furthest any part is left against its frame. A model
+// (`back`: the furthest any part is left from it, LDU and degrees, but for a turn about a line
+// it is free on, see furthest; `strayed`: parts left more than BACK away). Beside it, `torn`: the furthest any part is left against its frame. A model
 // that comes back whole but stands somewhere else (rolled away, or tipped over) is far out by
 // `back`, but not by `torn`.
 //
@@ -72,12 +72,13 @@ import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
-import { Mechanism, meshesChanged } from '../src/mechanism.ts';
+import { Joint, Mechanism, meshesChanged } from '../src/mechanism.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
+import { turnOffAxis } from './back.ts';
 import { loadModel } from './load-model.ts';
 import { FREE_PINS, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
@@ -600,14 +601,28 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The furthest any part is from where it was in `poses` (LDU, degrees), and the part that's
   // furthest (by LDU, or degrees for a part that only turns). With `onFrame`, where each part
   // is against its frame (see Kinematics.frameOf), not in the world.
+  // A part back within BACK LDU, but left turned about the axis of a joint it is free on (a pin
+  // in its holes, a free wheel on its axle), is back, as a user sees it: only its turn off that
+  // axis counts. Not a gear's: whatever it meshes with would be left turned too (decision of
+  // 2026-11-15).
   const furthest = (poses: Matrix4[], onFrame = false) => {
     let most = { ldu: 0, degrees: 0, part: -1, by: 0 };
+    // From the mechanism as it is now: freeing friction pins reads it afresh.
+    const geared = new Set(mech.gears.map((g) => g.body));
+    const freeOn = new Map<number, Joint[]>();
+    for (const j of mech.joints) if (j.kind === 'revolute' || (j.kind === 'slide' && j.turns)) for (const b of [j.bodyA, j.bodyB]) freeOn.set(b, [...(freeOn.get(b) ?? []), j]);
     const placed = (all: Matrix4[], b: number) => (onFrame ? all[kin.frameOf[b]].clone().invert().multiply(all[b]) : all[b]);
     parts.forEach((_, i) => {
       const b = mech.bodyOf[i];
       const [now, then] = [placed(kin.poses, b), placed(poses, b)];
       const ldu = at[i].clone().applyMatrix4(now).distanceTo(at[i].clone().applyMatrix4(then));
-      const degrees = (angle(then, now) * 180) / Math.PI;
+      let turned = angle(then, now);
+      if (ldu <= BACK && turned > 0 && !geared.has(b)) {
+        for (const j of freeOn.get(b) ?? []) {
+          turned = Math.min(turned, turnOffAxis(then, now, j.to.clone().sub(j.from).normalize().transformDirection(placed(poses, j.bodyA))));
+        }
+      }
+      const degrees = (turned * 180) / Math.PI;
       const by = Math.max(ldu, degrees);
       most = { ldu: Math.max(most.ldu, ldu), degrees: Math.max(most.degrees, degrees), part: by > most.by ? i : most.part, by: Math.max(by, most.by) };
     });
