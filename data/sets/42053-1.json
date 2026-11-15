@@ -161,9 +161,9 @@
     ]
   },
   "generated": {
-    "commit": "28315418",
+    "commit": "01139e16",
     "date": "2026-11-15",
-    "seconds": 26,
+    "seconds": 20,
     "counts": {
       "skipped": 4,
       "works": 3,
@@ -345,7 +345,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 4.3
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -411,7 +411,7 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -469,7 +469,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p55 59426 against p0 92907",
-        "seconds": 3
+        "seconds": 2.3
       },
       {
         "result": "no",
@@ -554,7 +554,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -676,7 +676,7 @@
           [],
           []
         ],
-        "seconds": 14.7
+        "seconds": 11.1
       }
     ]
   }
