@@ -157,11 +157,16 @@ export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: n
 }
 
 // The key a kept result of the first pass is filed under (see nearPairsOf, data/collisions/):
-// what the result depends on, and nothing of the reading. The model's text as read (after its
-// errata), the parts library's release (LDConfig.ldr's update line, which a release changes; a
-// part changed between releases isn't caught), INSET and NEAR. A SHA-256 in hex.
-export async function collisionKey(modelText: string, libraryRelease: string): Promise<string> {
-  const bytes = new TextEncoder().encode(JSON.stringify([modelText, libraryRelease, INSET, NEAR]));
+// what the result depends on, and nothing of the reading. The model's parts as the viewer has
+// them, in their order (each part's name, its placement to a hundredth of an LDU, and whether an
+// erratum removed it): so a change in the model's file, its errata, or how a part is cut into
+// pieces (roles.json's "pieces" and "split") changes the key, and the kept file goes stale. And
+// the parts library's release (LDConfig.ldr's update line, which a release changes; a part
+// changed between releases isn't caught), INSET and NEAR. A SHA-256 in hex.
+export async function collisionKey(parts: { name: string; matrix: Matrix4; removed?: boolean }[], libraryRelease: string): Promise<string> {
+  const placement = (m: Matrix4) => [0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14].map((k) => Math.round(m.elements[k] * 100) / 100 || 0).join(' ');
+  const lines = parts.map((p) => `${p.name} ${placement(p.matrix)}${p.removed ? ' removed' : ''}`);
+  const bytes = new TextEncoder().encode(JSON.stringify([lines, libraryRelease, INSET, NEAR]));
   const digest = await crypto.subtle.digest('SHA-256', bytes);
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }

@@ -653,7 +653,7 @@ async function start() {
       // A kept result first (see keptPairs.ts): the model's own file, else this browser's store;
       // the pairs neither covers are tested, and what's found is stored for next time.
       (async () => {
-        const key = await keyFor(modelText);
+        const key = await keyFor(startParts);
         const name = FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL;
         const known = (await keptPairs(name, key)) ?? (await storedPairs(key));
         const nearKnown = new Set((known?.near ?? []).map(([a, b]) => pairNumber(a, b, n)));
