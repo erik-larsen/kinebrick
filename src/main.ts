@@ -1185,8 +1185,9 @@ async function start() {
     const paused = interaction.motorPaused();
     pauseButton.disabled = !chosen;
     reverseButton.disabled = !chosen;
-    pauseButton.classList.toggle('paused', paused);
-    const pauseTitle = !chosen ? 'Pause (Ctrl-click a part to keep it moving)' : paused ? 'Play' : 'Pause';
+    // With no part chosen the button is greyed out and shows its play mark: nothing is moving.
+    pauseButton.classList.toggle('paused', paused || !chosen);
+    const pauseTitle = !chosen ? 'Play (Ctrl-click a part to keep it moving)' : paused ? 'Play' : 'Pause';
     pauseButton.title = pauseTitle;
     pauseButton.setAttribute('aria-label', pauseTitle);
     const reverseTitle = chosen ? 'Reverse' : 'Reverse (Ctrl-click a part to keep it moving)';
