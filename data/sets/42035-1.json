@@ -59,9 +59,11 @@
         ],
         "source": "inferred: it isn't geared to the drive shaft (book step 33, page 60)",
         "control": "p351 56145",
+        "lifted": true,
         "stays": [
           "p38 60485 against p0 32525"
-        ]
+        ],
+        "note": "lifted: a wheel shown rolling freely, not driven, whose list names a part that must stay still: on the floor, turning the wheel rolls the model and the other wheels turn that part, so it is checked with the model off the floor (decision 80, narrowed)"
       },
       {
         "does": "The two front wheels roll freely on their steering hubs.",

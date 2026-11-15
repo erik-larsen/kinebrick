@@ -65,9 +65,11 @@
           "p504 56145",
           "p508 56145"
         ],
+        "lifted": true,
         "stays": [
           "p349 2853"
-        ]
+        ],
+        "note": "lifted: a wheel shown rolling freely, not driven, whose list names a part that must stay still: on the floor, turning the wheel rolls the model and the other wheels turn that part, so it is checked with the model off the floor (decision 80, narrowed)"
       },
       {
         "does": "The gear on the front bumper winds the winch, reeling the hook's string in or out.",

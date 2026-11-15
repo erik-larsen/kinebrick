@@ -94,9 +94,11 @@
           "p454 86652",
           "p456 86652"
         ],
+        "lifted": true,
         "stays": [
           "p245 2853"
-        ]
+        ],
+        "note": "lifted: a wheel shown rolling freely, not driven, whose list names a part that must stay still: on the floor, turning the wheel rolls the model and the other wheels turn that part, so it is checked with the model off the floor (decision 80, narrowed)"
       },
       {
         "does": "The two front wheel arches, with the mirrors, swing out.",

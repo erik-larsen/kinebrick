@@ -85,9 +85,11 @@
         ],
         "source": "book: step 48; inferred from the separate left hub",
         "control": "p282 56908",
+        "lifted": true,
         "stays": [
           "p301 6587 against p299 48989"
-        ]
+        ],
+        "note": "lifted: a wheel shown rolling freely, not driven, whose list names a part that must stay still: on the floor, turning the wheel rolls the model and the other wheels turn that part, so it is checked with the model off the floor (decision 80, narrowed)"
       },
       {
         "does": "The tedder's two arms fold up over it for transport, each swinging its rotor up on a pivot beside the gearbox.",
