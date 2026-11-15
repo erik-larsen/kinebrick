@@ -157,7 +157,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
 | [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 20 works, 9 partly |
-| [Turntable](turntable.md) | 36 | 1978 | 1 | 3 | 4 | 5 | 20 | 3 | 14 works, 20 partly, 5 no, 1 not checked |
+| [Turntable](turntable.md) | 36 | 1978 | 1 | 3 | 4 | 5 | 20 | 3 | 15 works, 19 partly, 5 no, 1 not checked |
 | [Three-point hitch](three-point-hitch.md) | 7 | 1977 | 2 | 2 |  | 1 | 2 |  | 4 works, 2 partly, 1 no, 1 not checked |
 | [Telescopic mast](telescopic-mast.md) | 2 | 2005 |  |  |  | 1 | 1 |  | 2 partly |
 | [Hook lift](hook-lift.md) | 1 | 2018 |  |  |  |  | 1 |  | 1 works |
