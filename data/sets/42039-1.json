@@ -44,10 +44,14 @@
         ],
         "source": "book: the rear axle steps",
         "control": "p1298 15038",
+        "lifted": true,
         "moves": [
-          "p1295 15038",
+          "p1295 15038"
+        ],
+        "stays": [
           "p6 62821"
-        ]
+        ],
+        "note": "lifted: the function's own words say so (\"with the car lifted\"), so it is worked with the car off the floor (decision 36). With the car off the floor and one rear wheel turned, the other turns the opposite way and the differential's carrier p6 stands still: that is what a differential does and what the words say, so p6 is among the parts that stay, not those that move"
       },
       {
         "does": "The black gear on top of the roof steers the front wheels (hand of god steering): its vertical shaft drives, through bevel gears, a long shaft running forward to a 12 tooth gear on the steering rack, whose links turn both front hubs.",
@@ -208,9 +212,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "05a05767",
     "date": "2026-11-15",
-    "seconds": 91,
+    "seconds": 117,
     "counts": {
       "works": 7,
       "partly": 1,
@@ -404,7 +408,7 @@
             "p195 2851"
           ]
         ],
-        "seconds": 28.1
+        "seconds": 41.5
       },
       {
         "result": "works",
@@ -418,11 +422,11 @@
           {
             "p1295 15038": [
               1,
-              7.92e-13
+              6.63e-14
             ],
             "p6 62821": [
-              1,
-              1.58e-12
+              0,
+              1.27e-12
             ]
           }
         ],
@@ -438,7 +442,7 @@
             ]
           ]
         ],
-        "seconds": 13.9
+        "seconds": 5.1
       },
       {
         "result": "works",
@@ -506,7 +510,7 @@
             ]
           ]
         ],
-        "seconds": 12.2
+        "seconds": 18.1
       },
       {
         "result": "works",
@@ -531,7 +535,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 6.8
       },
       {
         "result": "partly",
@@ -631,7 +635,7 @@
         ],
         "cause": "not-driven",
         "detail": "p515 11949",
-        "seconds": 2.6
+        "seconds": 3.5
       },
       {
         "result": "no",
@@ -708,7 +712,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 1.1
+        "seconds": 1.6
       },
       {
         "result": "skipped",
@@ -781,7 +785,7 @@
             ]
           ]
         ],
-        "seconds": 12.4
+        "seconds": 18
       },
       {
         "result": "works",
@@ -853,7 +857,7 @@
             ]
           ]
         ],
-        "seconds": 9.2
+        "seconds": 13.5
       },
       {
         "result": "works",
@@ -883,7 +887,7 @@
             ]
           ]
         ],
-        "seconds": 4.8
+        "seconds": 6.9
       },
       {
         "result": "not checked",
