@@ -62,7 +62,7 @@ export interface Connection {
   // them (see slideRange).
   extents?: { male: [number, number]; female: [number, number]; overlap: number };
   turns?: boolean; // a slide along which the parts may turn too (see slidingOnAxles)
-  springHeld?: boolean; // a slide that a spring holds at rest, as a shock absorber's (see Joint.springHeld)
+  springHeld?: boolean; // a slide that a spring holds at rest, as a shock absorber's, or friction holds, as a part's on an axle it turns on (see Joint.springHeld)
 }
 
 export interface Body {
@@ -85,7 +85,8 @@ export interface Joint {
   range?: [number, number];
   sliding?: [number, number];
   turns?: boolean; // a slide joint along which bodyB may also turn about the axis, relative to bodyA
-  // A slide that a spring holds at rest, as a shock absorber's rod in its cylinder. Free to slide,
+  // A slide that a spring holds at rest, as a shock absorber's rod in its cylinder, or that friction
+  // holds, as a part's that turns on an axle (see slidingOnAxles). Free to slide,
   // but held where the question is the model at rest (see Kinematics.springRows): finding its
   // steering, choosing how it parks and rolls, and in least motion's friction-pin tier. Until
   // springs push (v2.0), nothing pushes it back.
