@@ -128,7 +128,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 partly |
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 3 works, 2 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 1 works, 4 partly, 1 no |
-| [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 6 works, 5 partly |
+| [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 7 works, 4 partly |
 | [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 6 works, 4 partly, 2 no |
 | [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 21 works, 8 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
@@ -169,7 +169,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 43 works, 25 partly, 2 no, 1 skipped |
+| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 44 works, 24 partly, 2 no, 1 skipped |
 | [Valve train](valve-train.md) | 1 | 1980 |  | 1 |  |  |  |  | 3 works |
 | [Driven rotor](driven-rotor.md) | 20 | 1977 | 1 | 1 | 6 |  | 10 | 2 | 14 works, 11 partly |
 | [Rotor blade pitch](rotor-pitch.md) | 2 | 1977 | 1 |  | 1 |  |  |  | 2 partly, 1 no |
