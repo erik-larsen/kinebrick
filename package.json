@@ -8,7 +8,7 @@
     "test": "vitest run",
     "connections": "tsx scripts/build-connections.ts",
     "pack": "tsx scripts/pack-models.ts",
-    "collisions": "tsx scripts/collision-pairs.ts",
+    "collisions": "node --max-old-space-size=12288 --import tsx scripts/collision-pairs.ts",
     "import": "tsx scripts/import-sets.ts",
     "omr": "tsx scripts/download-omr.ts",
     "instructions": "tsx scripts/download-instructions.ts",

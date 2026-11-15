@@ -8,6 +8,9 @@
 //                                      whose key no longer matches (the model or library changed)
 //   npm run collisions -- 42114 8012   only models whose file name has one of these in it
 //   npm run collisions -- --force      worked out again even where the key matches
+//
+// The largest models (the 42082, 42083, 42100, 42115 and 42131) take about 8 GB to work out,
+// more than node's usual heap, so the script in package.json gives it 12 GB.
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { collisionKey, keptFileName, libraryRelease, nearPairsOf } from '../src/collisions.ts';
