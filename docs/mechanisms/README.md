@@ -110,7 +110,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Swing arm](swing-arm.md) | 16 | 1988 |  | 1 | 6 | 1 | 5 | 3 | 8 works, 5 partly, 3 no |
 | [Trailing arms](trailing-arm.md) | 1 | 1981 |  | 1 |  |  |  |  | 1 works |
-| [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 13 works, 4 partly, 8 no, 1 skipped |
+| [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 14 works, 4 partly, 7 no, 1 skipped |
 | [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 2 works, 2 partly |
 | [Pendular axle](pendular-axle.md) | 8 | 1986 |  | 1 |  | 1 | 5 | 1 | 2 works, 2 partly, 3 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
@@ -129,7 +129,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 3 works, 2 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 1 works, 4 partly, 1 no |
 | [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 7 works, 4 partly |
-| [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 7 works, 4 partly, 1 no |
+| [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 8 works, 4 partly |
 | [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 21 works, 8 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
 | [Worm drive](worm-drive.md) | 54 | 1986 |  | 4 | 4 | 13 | 30 | 3 | 48 works, 34 partly, 2 skipped, 1 not checked |
