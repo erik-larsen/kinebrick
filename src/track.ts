@@ -450,14 +450,42 @@ export class Track {
   // (LDraw y) at the nearest point of the nearest line (the line at its own level, where one
   // runs above another), and how the height changes along it there (`rise`, for each LDU level
   // along `t`).
+  // (Quick on a big layout: a line whose ball, see bounds, lies farther off than the line
+  // nearest the point's ball can't be nearest, so it isn't measured. The answer is the same.)
   under(point: Vector3, frame: Matrix4): { y: number; rise: number; t: Vector3 } | null {
+    const reach = this.lines.map((_, line) => {
+      const ball = this.bounds(line);
+      return ball.center.clone().applyMatrix4(frame).distanceTo(point) - ball.radius;
+    });
+    const nearest = reach.indexOf(Math.min(...reach));
+    const within = nearest < 0 ? Infinity : this.project(nearest, point, frame, false).q.distanceTo(point);
     let best: { y: number; rise: number; t: Vector3; distance: number } | null = null;
     for (let line = 0; line < this.lines.length; line++) {
+      if (reach[line] > within) continue;
       const found = this.project(line, point, frame, false);
       const distance = found.q.distanceTo(point);
       if (!best || distance < best.distance) best = { y: found.q.y, rise: found.rise, t: found.t, distance };
     }
     return best;
+  }
+
+  // A ball round all of a line, in model coordinates (an arc's whole circle, seen from above).
+  private balls = new Map<TrackLine, { center: Vector3; radius: number }>();
+  private bounds(line: number): { center: Vector3; radius: number } {
+    const l = this.lines[line];
+    let ball = this.balls.get(l);
+    if (!ball) {
+      const points = l.rails.flatMap((r) => [r.from, r.to, ...(r.center ? [-1, 1].flatMap((k) => [new Vector3(r.center!.x + k * r.radius!, r.from.y, r.center!.z), new Vector3(r.center!.x, r.from.y, r.center!.z + k * r.radius!)]) : [])]);
+      const lo = new Vector3(Infinity, Infinity, Infinity);
+      const hi = new Vector3(-Infinity, -Infinity, -Infinity);
+      for (const q of points) {
+        lo.min(q);
+        hi.max(q);
+      }
+      ball = { center: lo.clone().lerp(hi, 0.5), radius: lo.distanceTo(hi) / 2 };
+      this.balls.set(l, ball);
+    }
+    return ball;
   }
 
   placeOf(key: number): { line: number; s: number } | undefined {
