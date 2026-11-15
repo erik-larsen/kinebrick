@@ -92,15 +92,15 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 32,
+    "seconds": 23,
     "counts": {
       "no": 1,
       "partly": 2,
       "works": 1,
       "not back": 1,
-      "torn": 1
+      "free-turned": 1
     },
     "loose": [
       "p572 2698p01",
@@ -150,8 +150,11 @@
         "why": [
           "p428 8855-2742c01 is part of the frame"
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-fixed",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -224,9 +227,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p347 3707",
-        "seconds": 1.5
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -314,9 +320,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p154 3706",
-        "seconds": 1.4
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -428,6 +437,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p579 2706"
         ],
@@ -437,7 +447,7 @@
           [],
           []
         ],
-        "seconds": 28.2
+        "seconds": 19.8
       }
     ]
   }

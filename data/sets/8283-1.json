@@ -123,9 +123,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 2,
+    "seconds": 1,
     "counts": {
       "partly": 2,
       "pivoted": 1,
@@ -216,6 +216,9 @@
             "dead point"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p83 32069 against p65 32524",
         "pivoted": {
@@ -223,7 +226,7 @@
           "rise": 0,
           "tyre": "p318 32180"
         },
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -306,9 +309,12 @@
           ]
         ],
         "freed": 2,
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p223 41239 against p65 32524",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -542,7 +548,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "works",

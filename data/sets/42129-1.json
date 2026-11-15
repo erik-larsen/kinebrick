@@ -60,11 +60,12 @@
           "p2930 42129 - 69912",
           "p2932 42129 - 69912"
         ],
+        "lifted": true,
         "moves": [
           "p2936 42129 - 69912 against p1309 65414c01",
           "p2934 42129 - 69912 against p1032 65414c01"
         ],
-        "note": "With the drive held, turning one wheel turns the other on the same axle backwards (until the rear lock is engaged).; the drive is held, as the note says (\"With the drive held\"): the drive's input, the motors' 24 tooth gears p483 and p484 that function 1 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); With the drive held, turning one wheel turns the other on the same axle backwards (until the rear lock is engaged).; the drive is held, as the note says (\"With the drive held\"): the drive's input, the motors' 24 tooth gears p483 and p484 that function 1 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
         "held": [
           "p483 3648b",
           "p484 3648b"
@@ -148,9 +149,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 314,
+    "seconds": 128,
     "counts": {
       "partly": 2,
       "works": 4,
@@ -231,11 +232,11 @@
           {
             "p468 6573": [
               1,
-              2.37e-13
+              8.53e-14
             ],
             "p1309 65414c01": [
               0,
-              1.57e-42
+              6.58e-46
             ],
             "p1032 65414c01": [
               0,
@@ -253,11 +254,11 @@
           {
             "p468 6573": [
               1,
-              2.37e-13
+              8.53e-14
             ],
             "p1309 65414c01": [
               0,
-              1.57e-42
+              6.58e-46
             ],
             "p1032 65414c01": [
               0,
@@ -333,9 +334,13 @@
             "p468 6573"
           ]
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 57.1
+        "seconds": 30.4
       },
       {
         "result": "works",
@@ -377,7 +382,7 @@
             ]
           ]
         ],
-        "seconds": 27.5
+        "seconds": 15.2
       },
       {
         "result": "works",
@@ -404,12 +409,12 @@
           },
           {
             "p2936 42129 - 69912 against p1309 65414c01": [
-              5.62e-8,
-              2.76e-8
+              0,
+              0
             ],
             "p2934 42129 - 69912 against p1032 65414c01": [
               4.4,
-              1.28e-12
+              8.49e-13
             ]
           }
         ],
@@ -465,7 +470,7 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 139.2
+        "seconds": 24
       },
       {
         "result": "partly",
@@ -492,8 +497,8 @@
               0
             ],
             "p513 18947 against p468 6573": [
-              8.43e-8,
-              2.98e-13
+              0,
+              2.78e-13
             ],
             "p1030 18947 against p1032 65414c01": [
               0,
@@ -528,9 +533,12 @@
         "why": [
           "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p513 18947",
-        "seconds": 27.3
+        "seconds": 15.8
       },
       {
         "result": "works",
@@ -580,7 +588,7 @@
             ]
           ]
         ],
-        "seconds": 28.9
+        "seconds": 16.1
       },
       {
         "result": "no",
@@ -696,8 +704,12 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "control-jammed",
-        "seconds": 6
+        "seconds": 6.4
       },
       {
         "result": "skipped",
@@ -715,7 +727,7 @@
           {
             "p1402 87761": [
               0,
-              2.58e-80
+              9.69e-84
             ]
           }
         ],
@@ -743,7 +755,7 @@
             ]
           ]
         ],
-        "seconds": 25.2
+        "seconds": 16.3
       }
     ]
   }

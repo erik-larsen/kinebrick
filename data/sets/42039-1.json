@@ -212,14 +212,12 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 93,
+    "seconds": 69,
     "counts": {
       "works": 7,
       "partly": 1,
-      "not back": 1,
-      "moved whole": 1,
       "no": 1,
       "skipped": 1,
       "not checked": 1
@@ -431,7 +429,7 @@
             "p195 2851"
           ]
         ],
-        "seconds": 30.5
+        "seconds": 24.5
       },
       {
         "result": "works",
@@ -477,7 +475,7 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -557,7 +555,7 @@
             ]
           ]
         ],
-        "seconds": 12.5
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -594,7 +592,7 @@
             ]
           ]
         ],
-        "seconds": 4.6
+        "seconds": 3.9
       },
       {
         "result": "partly",
@@ -650,21 +648,21 @@
           [
             [
               0.13,
-              2.94
+              0.02
             ],
             [
               0.13,
-              3.05
+              0.02
             ]
           ],
           [
             [
               0.13,
-              3.04
+              0.02
             ],
             [
               0.13,
-              2.93
+              0.02
             ]
           ]
         ],
@@ -672,27 +670,23 @@
           [
             [
               0.01,
-              2.94
+              0.02
             ],
             [
               0.01,
-              3.05
+              0.02
             ]
           ],
           [
             [
               0.01,
-              3.04
+              0.02
             ],
             [
               0.01,
-              2.93
+              0.02
             ]
           ]
-        ],
-        "strayed": [
-          "p510 32123b",
-          "p502 4519"
         ],
         "stop": [
           [
@@ -714,9 +708,13 @@
             "p506 4254"
           ]
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p515 11949",
-        "seconds": 2.5
+        "seconds": 2.2
       },
       {
         "result": "no",
@@ -814,8 +812,13 @@
           [],
           []
         ],
-        "cause": "control-jammed",
-        "seconds": 1.2
+        "judged": [
+          0,
+          0
+        ],
+        "cause": "part-fixed",
+        "detail": "p80 4254",
+        "seconds": 1
       },
       {
         "result": "skipped",
@@ -900,7 +903,7 @@
             ]
           ]
         ],
-        "seconds": 12.8
+        "seconds": 10.1
       },
       {
         "result": "works",
@@ -984,7 +987,7 @@
             ]
           ]
         ],
-        "seconds": 13.2
+        "seconds": 8
       },
       {
         "result": "works",
@@ -1026,7 +1029,7 @@
             ]
           ]
         ],
-        "seconds": 10.7
+        "seconds": 4.3
       },
       {
         "result": "not checked",

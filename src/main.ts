@@ -248,9 +248,20 @@ window.addEventListener('resize', () => {
 // Called every frame with the seconds since the last one, once the model has loaded.
 let onFrame = (_seconds: number) => {};
 let lastFrame = performance.now();
+// The frames drawn each second, shown on the FPS card (made with the Options card, below) and
+// counted afresh every half second.
+let showFps = (_fps: number) => {};
+let fpsFrames = 0;
+let fpsSince = performance.now();
 
 renderer.setAnimationLoop(() => {
   const now = performance.now();
+  fpsFrames++;
+  if (now - fpsSince >= 500) {
+    showFps(Math.round((fpsFrames * 1000) / (now - fpsSince)));
+    fpsFrames = 0;
+    fpsSince = now;
+  }
   onFrame(Math.min((now - lastFrame) / 1000, 0.1)); // a hidden tab pauses frames; don't jump
   lastFrame = now;
   controls.update();
@@ -902,6 +913,13 @@ async function start() {
   // The options panel, upper right. Each option is kept in the address, so switching model
   // keeps it.
   const cards = document.getElementById('cards')!;
+  // Above it, the FPS card: a closed card like Options that only shows the frames drawn each
+  // second and does not open (see index.html).
+  const fpsCard = new GUI({ title: 'FPS', container: cards });
+  fpsCard.domElement.classList.add('fps');
+  fpsCard.close();
+  fpsCard.$title.tabIndex = -1;
+  showFps = (fps) => fpsCard.title(`FPS ${fps}`);
   const gui = new GUI({ title: 'Options', container: cards });
   gui.close();
   // Under it, the Stats card: the model's counts and the readout (see index.html). Both cards

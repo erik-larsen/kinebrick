@@ -453,14 +453,18 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
+| [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Proposed, not applied until signed off |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Proposed, not applied until signed off |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Proposed, not applied until signed off |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Proposed, not applied until signed off |
+| [42099-1](#42099-1-rear-side-gear-p45-in-line) | rear-side-gear-p45-in-line | moves `6589.dat` (in `42099 - rearaxle.ldr`) to 17 -40 0 | Proposed, not applied until signed off |
+| [42099-1](#42099-1-rear-side-gear-p46-in-line) | rear-side-gear-p46-in-line | moves `6589.dat` (in `42099 - rearaxle.ldr`) to -17 -40 0 | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Proposed, not applied until signed off |
 
 ### 850-1: handwheel-down
 
@@ -543,6 +547,33 @@ Added to the main model:
 1 256 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 51011.dat
 ```
 
+### 41999-1: shock-absorbers-the-file-lacks
+
+Proposed, not applied until signed off.
+
+The four shock absorbers are LDCad springs in the OMR file (41999 - step70-9-shock.ldr and 41999 - step70-9-shock2.ldr, each placed twice, in 41999 - step70.ldr and 41999 - step72.ldr) with no part lines: only !LDCAD SPRING_CAP metas, which name the cylinder 2909 at y 50, the rod 2910 at y 170, and the pins 43093 and 2780 at their ends. LDCad draws those parts; no other reader sees them, so the model has no shock absorbers, and each axle hangs on its links alone. The booklet fits them at step 70 (book 2, page 25, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064367.pdf#page=25), whose inset shows the two shock absorbers on the sub-assembly. Added: the four caps of each spring, placed as the metas say, in the main model's coordinates (colour 16 takes the spring's 14). Decision 30.
+
+Added to the main model:
+
+```
+1 14 -60 -120.155 -260.322 1 0 0 0 1 0.008 0 -0.008 1 2909.dat
+1 1 -80 -160.075 -250.002 0 0 1 -0.008 1 0 -1 -0.008 0 43093.dat
+1 0 -60 -0.155 -261.282 1 0 0 0 1 0.008 0 -0.008 1 2910.dat
+1 0 -60 -0.235 -271.282 0 0 -1 0.008 1 0 1 -0.008 0 2780.dat
+1 14 60 -120.155 -260.322 -1 0 0 0 1 -0.008 0 -0.008 -1 2909.dat
+1 1 80 -160.075 -250.002 0 0 1 -0.008 1 0 -1 -0.008 0 43093.dat
+1 0 60 -0.155 -261.282 -1 0 0 0 1 -0.008 0 -0.008 -1 2910.dat
+1 0 60 -0.235 -271.282 0 0 -1 0.008 1 0 1 -0.008 0 2780.dat
+1 14 60 -120.155 260.322 -1 0 0 0 1 0.008 0 0.008 -1 2909.dat
+1 1 80 -160.075 250.002 0 0 -1 -0.008 1 0 1 0.008 0 43093.dat
+1 0 60 -0.155 261.282 -1 0 0 0 1 0.008 0 0.008 -1 2910.dat
+1 0 60 -0.235 271.282 0 0 1 0.008 1 0 -1 0.008 0 2780.dat
+1 14 -60 -120.155 260.322 1 0 0 0 1 -0.008 0 0.008 1 2909.dat
+1 1 -80 -160.075 250.002 0 0 -1 -0.008 1 0 1 0.008 0 43093.dat
+1 0 -60 -0.155 261.282 1 0 0 0 1 -0.008 0 0.008 1 2910.dat
+1 0 -60 -0.235 271.282 0 0 1 0.008 1 0 -1 0.008 0 2780.dat
+```
+
 ### 42040-1: seats-on-their-pins
 
 Proposed, not applied until signed off.
@@ -613,6 +644,34 @@ Added to the main model:
 1 72 0 -55 80 0 1 0 1 0 0 0 0 -1 10928.dat
 ```
 
+### 42099-1: rear-side-gear-p45-in-line
+
+Proposed, not applied until signed off.
+
+The rear differential's two side gears (p45 and p46, 6589, lines 1132 and 1133 of the OMR file, in 42099 - rearaxle.ldr, its sixth step) lie 3 LDU off the line of the casing (p43 62821, line 1130): at z -3, where the casing's line, and its half shafts', is at z 0. So neither turns on its half shaft, and the differential is read as locked. The booklet builds this differential at step 140 (42099-1-1.pdf page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86): its 1:1 inset has the two side gears facing each other on the casing's line. The front differential, laid out the same way (lines 95 to 98), has them at z 0. Of the differentials in all the models Kinebrick checks, this is the only one with a side gear off its casing's line. Moved 3 LDU onto the line.
+
+In `42099 - rearaxle.ldr` (p45 6589), the line
+
+```
+1 19 17 -40 -3 0 0 -1 1 0 0 0 -1 0 6589.dat
+```
+
+is read with its part at 17 -40 0.
+
+### 42099-1: rear-side-gear-p46-in-line
+
+Proposed, not applied until signed off.
+
+As p45: the rear differential's other side gear, 3 LDU off the casing's line (line 1133; booklet step 140, page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86). Moved 3 LDU onto the line.
+
+In `42099 - rearaxle.ldr` (p46 6589), the line
+
+```
+1 19 -17 -40 -3 0 0 1 -1 0 0 0 -1 0 6589.dat
+```
+
+is read with its part at -17 -40 0.
+
 ### 42109-1: no-pin-p381
 
 Signed off by Erik, 2026-11-14.
@@ -654,5 +713,19 @@ In `42109 - car.ldr` (p383 32526), the line
 ```
 
 is read as not there. The part keeps its number.
+
+### 42111-1: rear-shock-cylinder-on-the-rods-axis
+
+Proposed, not applied until signed off.
+
+In the rear shock absorber sub-assembly (42111 - rear-shock-assy.ldr, placed twice), the cylinder 4255 is drawn at z -1.309 and the rod 4254 at z 0, so the rod lies 1.31 LDU off the cylinder's axis, beyond the 1 LDU a rod is found in its cylinder with, and the two halves are read as unjoined. The offset is along the cylinder's own pin hole (its local z), so moving it to z 0 keeps it on its pin and puts it on the rod's axis. The booklet fits the two shock absorbers whole, rod in cylinder, between the frame and the rear axle at step 34 (page 22, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=22). Moved 1.309 LDU along its pin.
+
+In `42111 - rear-shock-assy.ldr` (p101 4255 and p105 4255), the line
+
+```
+1 16 0 9.819 -1.309 1 0 0 0 1 0 0 0 1 4255.dat
+```
+
+is read with its part at 0 9.819 0.
 
 <!-- errata: end -->

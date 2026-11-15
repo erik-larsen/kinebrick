@@ -353,7 +353,9 @@ export class Kinematics {
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
   // on that axis nearest the middle (model coordinates, at the start).
-  couplings: { shafts: Shaft[]; turningOnly: boolean }[] = [];
+  // `hangs`, for a grooved ball on a shaft that hangs on nothing else (see hangingBalls): held at
+  // its place in its socket ('point'), or on its socket's axis ('axis').
+  couplings: { shafts: Shaft[]; turningOnly: boolean; hangs?: 'point' | 'axis' }[] = [];
   // For each string (see Mechanism.strings): its free length at the start, and where its hook
   // hung then, relative to the middle of the two pulleys it hangs from (model coordinates).
   strings: { length: number; hookOffset: Vector3 | null }[] = [];
@@ -623,6 +625,35 @@ export class Kinematics {
         return { body, joint: best, mount: j.bodyA === body ? j.bodyB : j.bodyA, axis: d, away, near };
       });
       this.couplings.push({ shafts, turningOnly: c.turningOnly === true });
+    }
+    this.hangingBalls();
+  }
+
+  // A shaft that hangs on nothing but grooved balls in sockets (a constant velocity joint's ball,
+  // 52731, at each end of a drive shaft, in its differential's and its hub's sockets: the 42099
+  // 4x4 X-treme Off-Roader's): no joint of its own, its balls tied by their turning only (see
+  // Coupling.turningOnly), so nothing would say where it is, and it would turn about wherever
+  // least motion has it. Its ball in the socket nearest the frame (the fewest joints from it,
+  // then the socket whose body has the lowest part number) is held at its place in that socket;
+  // each other ball on its socket's axis, free along it, so suspension can change how far apart
+  // the sockets are (the 42000 Grand Prix Racer's). One end held, the shaft can't drift along its
+  // own line. A shaft with a joint of its own keeps only the coupling of its turning.
+  private hangingBalls() {
+    const depth = (body: number): number => {
+      const link = this.parentLink(body);
+      return link ? 1 + depth(link.parent) : 0;
+    };
+    const couplings = this.mech.couplings ?? [];
+    for (let body = 1; body < this.bodyCount; body++) {
+      if (this.parentLink(body) || this.mech.joints.some((j) => j.bodyA === body || j.bodyB === body)) continue;
+      const balls = couplings.flatMap((c, i) => (c.bodyA === body || c.bodyB === body ? [i] : []));
+      if (!balls.length || balls.some((i) => couplings[i].bodyA !== body || !couplings[i].turningOnly || couplings[i].ratio !== undefined)) continue;
+      const lowest = (b: number) => Math.min(...this.mech.bodies[b].parts);
+      const held = balls.reduce((best, i) => {
+        const [d, e] = [depth(couplings[i].bodyB), depth(couplings[best].bodyB)];
+        return d < e || (d === e && lowest(couplings[i].bodyB) < lowest(couplings[best].bodyB)) ? i : best;
+      });
+      for (const i of balls) this.couplings[i].hangs = i === held ? 'point' : 'axis';
     }
   }
 

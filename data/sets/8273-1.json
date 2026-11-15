@@ -211,9 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 37,
+    "seconds": 30,
     "counts": {
       "works": 7,
       "no": 1,
@@ -286,11 +286,11 @@
           [
             [
               0.04,
-              0.05
+              0.04
             ],
             [
               0.04,
-              0.05
+              0.04
             ]
           ]
         ],
@@ -298,15 +298,15 @@
           [
             [
               0.04,
-              0.05
+              0.04
             ],
             [
               0.04,
-              0.05
+              0.04
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 1.5
       },
       {
         "result": "no",
@@ -332,8 +332,11 @@
         "why": [
           "p556 41239 is part of the frame"
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-fixed",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -385,7 +388,7 @@
             null
           ]
         ],
-        "seconds": 4.4
+        "seconds": 3.3
       },
       {
         "result": "partly",
@@ -448,9 +451,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p212 48168",
-        "seconds": 2
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -515,9 +521,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "stay-forced",
         "detail": "p212 48168",
-        "seconds": 1.7
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -571,7 +580,7 @@
             ]
           ]
         ],
-        "seconds": 3.4
+        "seconds": 2.6
       },
       {
         "result": "not checked",
@@ -633,7 +642,7 @@
             ]
           ]
         ],
-        "seconds": 5.2
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -682,7 +691,7 @@
         "pushed": [
           true
         ],
-        "seconds": 4.5
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -732,7 +741,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -902,7 +911,7 @@
           [],
           []
         ],
-        "seconds": 11.7
+        "seconds": 9.5
       },
       {
         "result": "skipped",

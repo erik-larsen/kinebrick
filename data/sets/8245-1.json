@@ -144,15 +144,15 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 15,
+    "seconds": 12,
     "counts": {
       "partly": 1,
       "works": 6,
       "skipped": 3,
       "not back": 1,
-      "torn": 1
+      "free-turned": 1
     },
     "loose": [
       "p70 32080",
@@ -253,9 +253,12 @@
             null
           ]
         ],
+        "judged": [
+          1
+        ],
         "cause": "loose-part",
         "detail": "p71 32134",
-        "seconds": 1.7
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -282,7 +285,7 @@
           [
             [
               0.02,
-              0.03
+              0
             ],
             [
               0.05,
@@ -292,7 +295,7 @@
           [
             [
               0.02,
-              0.03
+              0
             ],
             [
               0.05,
@@ -306,7 +309,7 @@
             ],
             [
               0,
-              0.03
+              0
             ]
           ]
         ],
@@ -314,7 +317,7 @@
           [
             [
               0.02,
-              0.03
+              0
             ],
             [
               0.08,
@@ -324,7 +327,7 @@
           [
             [
               0.02,
-              0.03
+              0
             ],
             [
               0.08,
@@ -338,7 +341,7 @@
             ],
             [
               0,
-              0.03
+              0
             ]
           ]
         ],
@@ -347,7 +350,7 @@
           [],
           []
         ],
-        "seconds": 5.7
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -455,7 +458,7 @@
             "p180 3648a against p177 32009"
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1
       },
       {
         "result": "skipped",
@@ -521,6 +524,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p131 2699"
         ],
@@ -528,7 +532,7 @@
           [],
           []
         ],
-        "seconds": 2.9
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -582,7 +586,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -662,7 +666,7 @@
           [],
           []
         ],
-        "seconds": 1.3
+        "seconds": 1
       },
       {
         "result": "skipped",
@@ -712,7 +716,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       }
     ]
   }

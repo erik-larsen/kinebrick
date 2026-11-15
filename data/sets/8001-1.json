@@ -134,14 +134,14 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "works": 5,
       "skipped": 2,
       "not back": 1,
-      "torn": 1,
+      "free-turned": 1,
       "no": 1
     },
     "loose": [
@@ -200,7 +200,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -246,7 +246,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -276,7 +276,7 @@
           [
             [
               0.08,
-              0.12
+              0
             ],
             [
               0.76,
@@ -288,7 +288,7 @@
           [
             [
               0.08,
-              0.12
+              0
             ],
             [
               0.76,
@@ -296,10 +296,11 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p128 32062"
         ],
-        "seconds": 1.5
+        "seconds": 1.1
       },
       {
         "result": "no",
@@ -327,6 +328,9 @@
         ],
         "why": [
           "p897 32269 is part of the frame"
+        ],
+        "judged": [
+          0
         ],
         "cause": "loose-part",
         "detail": "p897 32269",
@@ -380,7 +384,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -468,7 +472,7 @@
             "p71 32165 against p91 32177"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",

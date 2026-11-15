@@ -93,9 +93,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 7,
+    "seconds": 5,
     "counts": {
       "works": 4,
       "partly": 1
@@ -162,11 +162,11 @@
           [
             [
               0.12,
-              0.18
+              0.14
             ],
             [
               0.12,
-              0.18
+              0.14
             ]
           ]
         ],
@@ -174,15 +174,15 @@
           [
             [
               0.12,
-              0.18
+              0.14
             ],
             [
               0.12,
-              0.18
+              0.14
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -248,7 +248,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -293,9 +293,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "stay-forced",
         "detail": "p38 60485 against p0 32525",
-        "seconds": 1.8
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -361,7 +364,7 @@
           [],
           []
         ],
-        "seconds": 2.7
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -421,7 +424,7 @@
             "dead point"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.5
       }
     ]
   }

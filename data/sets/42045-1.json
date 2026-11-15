@@ -55,7 +55,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -210,7 +210,7 @@
             "p38 2851"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -327,9 +327,13 @@
             "p27 2854"
           ]
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p40 3648b",
-        "seconds": 0.8
+        "seconds": 0.6
       }
     ]
   }

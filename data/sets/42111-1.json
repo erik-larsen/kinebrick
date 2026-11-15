@@ -69,10 +69,11 @@
         ],
         "source": "book: steps 58-73",
         "control": "p471 56908",
+        "lifted": true,
         "moves": [
           "p473 56908"
         ],
-        "note": "with the drive shaft held still, turning one rear wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held still\"): the drive shaft p56, which function 2 names (\"a drive shaft running forward\"), is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); with the drive shaft held still, turning one rear wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held still\"): the drive shaft p56, which function 2 names (\"a drive shaft running forward\"), is frozen while the wheel is turned, as a user freezes it in the viewer",
         "held": [
           "p56 59426"
         ]
@@ -127,7 +128,7 @@
         "stays": [
           "p136 18575"
         ],
-        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36); a loop that does not fit as built (decision 78, as the 42129’s function 6 under decision 56): the axle swings on the large ball (p0 92910 in p66 92911) and its two links p71 and p72 2739a run from the frame 40 LDU ahead of the ball’s centre to the axle, so any finite pitch or roll asks the links to change length (0.12 LDU at 0.1 radian); the real model moves on the play in the links’ ball cups (booklet step 26, page 15, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=15)"
       },
       {
         "does": "The rear shock absorbers' springs push the rear axle back down.",
@@ -197,15 +198,13 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 112,
+    "seconds": 77,
     "counts": {
       "works": 7,
       "skipped": 2,
-      "no": 1,
-      "not back": 1,
-      "moved whole": 1
+      "no": 1
     },
     "loose": [
       "p54 90370",
@@ -292,7 +291,7 @@
             ]
           ]
         ],
-        "seconds": 17
+        "seconds": 12.4
       },
       {
         "result": "works",
@@ -466,7 +465,7 @@
             "p443 18946"
           ]
         ],
-        "seconds": 26.9
+        "seconds": 20.5
       },
       {
         "result": "works",
@@ -480,7 +479,7 @@
           {
             "p473 56908": [
               1,
-              2.44e-13
+              0
             ]
           }
         ],
@@ -508,7 +507,7 @@
             ]
           ]
         ],
-        "seconds": 6.6
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -632,7 +631,7 @@
             "p319 15461"
           ]
         ],
-        "seconds": 6.8
+        "seconds": 4.2
       },
       {
         "result": "skipped",
@@ -701,8 +700,11 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 0.7
+        "judged": [
+          0
+        ],
+        "cause": "stopped-early",
+        "seconds": 0.9
       },
       {
         "result": "skipped",
@@ -752,7 +754,7 @@
             ]
           ]
         ],
-        "seconds": 5.3
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -809,7 +811,7 @@
         "pushed": [
           true
         ],
-        "seconds": 20.5
+        "seconds": 14.1
       },
       {
         "result": "works",
@@ -847,11 +849,11 @@
           [
             [
               0,
-              1.78
+              0
             ],
             [
               0,
-              3.25
+              0
             ]
           ]
         ],
@@ -859,17 +861,13 @@
           [
             [
               0,
-              1.78
+              0
             ],
             [
               0,
-              3.25
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p174 32054",
-          "p175 32054"
         ],
         "stop": [
           [
@@ -878,7 +876,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 26.9
+        "seconds": 18.4
       }
     ]
   }

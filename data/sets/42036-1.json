@@ -123,9 +123,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "works": 4,
       "partly": 1,
@@ -218,7 +218,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1
       },
       {
         "result": "works",
@@ -322,7 +322,7 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
@@ -344,7 +344,7 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
@@ -382,6 +382,10 @@
           ],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "stopped-early",
         "seconds": 0.1
       },
@@ -413,6 +417,9 @@
         ],
         "why": [
           "p268 32016 is part of the frame"
+        ],
+        "judged": [
+          0
         ],
         "cause": "control-fixed",
         "seconds": 0
@@ -458,7 +465,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -524,7 +531,7 @@
           [],
           []
         ],
-        "seconds": 2.2
+        "seconds": 1.6
       }
     ]
   }

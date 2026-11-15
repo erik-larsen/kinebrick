@@ -115,9 +115,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 9,
+    "seconds": 7,
     "counts": {
       "works": 4,
       "not back": 1,
@@ -217,7 +217,8 @@
           ]
         ],
         "strayed": [
-          "p357 44294"
+          "p357 44294",
+          "p358 3713"
         ],
         "movedBy": [
           [
@@ -229,7 +230,7 @@
             "p345 32278"
           ]
         ],
-        "seconds": 5.5
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -291,7 +292,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -328,7 +329,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -391,6 +392,9 @@
         "pushed": [
           true
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p164 4254",
         "seconds": 0
@@ -452,7 +456,7 @@
         "pushed": [
           true
         ],
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "skipped",

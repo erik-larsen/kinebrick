@@ -93,7 +93,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -130,6 +130,9 @@
         ],
         "why": [
           "p100 4185 has no joint to work"
+        ],
+        "judged": [
+          0
         ],
         "cause": "control-fixed",
         "seconds": 0
@@ -268,7 +271,7 @@
             "p103 4255 against p104 4254"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -390,7 +393,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "not checked",

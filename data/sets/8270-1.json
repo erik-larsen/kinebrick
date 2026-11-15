@@ -145,7 +145,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -186,6 +186,9 @@
         ],
         "why": [
           "p0 2905 is part of the frame"
+        ],
+        "judged": [
+          0
         ],
         "cause": "control-fixed",
         "seconds": 0
@@ -259,9 +262,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p30 57779 against p0 2905",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -316,6 +322,9 @@
         ],
         "why": [
           "p57 30395 against p30 57779 is held by friction pins the control doesn't reach"
+        ],
+        "judged": [
+          0
         ],
         "cause": "loose-part",
         "detail": "p57 30395",
@@ -379,6 +388,9 @@
         "why": [
           "p55 32278 against p30 57779 is held by friction pins the control doesn't reach",
           "p50 6632 against p30 57779 is held by friction pins the control doesn't reach"
+        ],
+        "judged": [
+          0
         ],
         "cause": "part-fixed",
         "detail": "p55 32278 against p30 57779",
@@ -499,6 +511,10 @@
         "movedBy": [
           [],
           []
+        ],
+        "judged": [
+          0,
+          0
         ],
         "cause": "control-jammed",
         "seconds": 0
@@ -623,7 +639,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",

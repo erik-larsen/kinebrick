@@ -84,7 +84,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -190,7 +190,7 @@
             "p120 56145 against p12 12799"
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -273,6 +273,10 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p111 3706",
         "seconds": 0.1
@@ -321,7 +325,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",
@@ -363,7 +367,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0
       }
     ]
   }

@@ -69,6 +69,7 @@
         ],
         "source": "book page 490 (three differentials drawn); inferred: the test, from the model",
         "control": "p2606 42110 - 49294",
+        "lifted": true,
         "moves": [
           "p2613 42110 - 49294",
           "p38 62821"
@@ -79,7 +80,7 @@
         "held": [
           "p242 3708"
         ],
-        "note": "the engine is held, as the function says (\"with the engine held\"): p242, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the engine is held, as the function says (\"with the engine held\"): p242, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
@@ -203,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 1261,
+    "seconds": 879,
     "counts": {
       "works": 12,
       "partly": 1,
@@ -277,11 +278,11 @@
             ],
             "p509 42110 - 23801": [
               0,
-              2.5e-13
+              3.45e-13
             ],
             "p516 42110 - 23801": [
               0,
-              1.52e-13
+              2.39e-13
             ]
           }
         ],
@@ -309,7 +310,7 @@
             ]
           ]
         ],
-        "seconds": 149
+        "seconds": 98.9
       },
       {
         "result": "works",
@@ -351,7 +352,7 @@
             ]
           ]
         ],
-        "seconds": 148.7
+        "seconds": 99.2
       },
       {
         "result": "partly",
@@ -369,15 +370,15 @@
           {
             "p242 3708": [
               0.0182,
-              3.53e-13
+              3.54e-13
             ],
             "p211 4519": [
               0,
-              7.99e-26
+              9e-26
             ],
             "p223 4519": [
               0,
-              8.45e-26
+              7.11e-26
             ]
           }
         ],
@@ -405,9 +406,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 60.2
+        "seconds": 36.7
       },
       {
         "result": "works",
@@ -420,28 +424,28 @@
         "rates": [
           {
             "p2613 42110 - 49294": [
-              1,
-              1.19e-9
+              0.0211,
+              1.89e-14
             ],
             "p38 62821": [
-              1,
-              7.28e-13
+              0.489,
+              5.42e-13
             ],
             "p242 3708": [
-              2.81e-8,
-              7.58e-14
+              0,
+              8.76e-46
             ]
           }
         ],
         "back": [
           [
             [
-              0.04,
-              0.02
+              0,
+              0
             ],
             [
-              0.02,
-              0.01
+              0,
+              0
             ]
           ]
         ],
@@ -449,15 +453,15 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
-        "seconds": 134.1
+        "seconds": 9.5
       },
       {
         "result": "works",
@@ -513,7 +517,7 @@
             ]
           ]
         ],
-        "seconds": 17.5
+        "seconds": 13.8
       },
       {
         "result": "works",
@@ -555,7 +559,7 @@
             ]
           ]
         ],
-        "seconds": 17.8
+        "seconds": 13.9
       },
       {
         "result": "works",
@@ -597,7 +601,7 @@
             ]
           ]
         ],
-        "seconds": 17.8
+        "seconds": 13.9
       },
       {
         "result": "works",
@@ -611,7 +615,7 @@
           {
             "p958 32012": [
               1,
-              1.61e-13
+              8.53e-14
             ]
           }
         ],
@@ -639,7 +643,7 @@
             ]
           ]
         ],
-        "seconds": 17.8
+        "seconds": 13.4
       },
       {
         "result": "skipped"
@@ -705,8 +709,8 @@
           ]
         ],
         "strayed": [
-          "p1856 4519",
-          "p1958 32014"
+          "p1869 32062",
+          "p1942 4519"
         ],
         "pushed": [
           true,
@@ -717,7 +721,7 @@
           [],
           []
         ],
-        "seconds": 528.1
+        "seconds": 405.3
       },
       {
         "result": "works",
@@ -754,7 +758,7 @@
             ]
           ]
         ],
-        "seconds": 18.3
+        "seconds": 14.1
       },
       {
         "result": "works",
@@ -767,7 +771,7 @@
         "rates": [
           {
             "p1504 32065": [
-              5.62e-8,
+              2.81e-8,
               40
             ]
           }
@@ -799,7 +803,7 @@
         "pushed": [
           true
         ],
-        "seconds": 11.9
+        "seconds": 9.5
       },
       {
         "result": "works",
@@ -837,7 +841,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 45.7
+        "seconds": 54.6
       },
       {
         "result": "works",
@@ -875,7 +879,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 47.4
+        "seconds": 54.4
       },
       {
         "result": "skipped"

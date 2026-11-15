@@ -50,10 +50,11 @@
         ],
         "source": "book: steps 67-69 and page 55's inset (the differential between the rear half-axles)",
         "control": "p972 56908",
+        "lifted": true,
         "moves": [
           "p974 56908 against p464 65414c01"
         ],
-        "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way.; the motor's gear is held, as the function says (\"when the motor's gear is held\"): the 36 tooth gear p889 on the motor's shaft, which function 2's note names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); With the motor's gear held, turning one rear wheel turns the other the opposite way.; the motor's gear is held, as the function says (\"when the motor's gear is held\"): the 36 tooth gear p889 on the motor's shaft, which function 2's note names, is frozen while the wheel is turned, as a user freezes it in the viewer",
         "held": [
           "p889 32498"
         ]
@@ -124,13 +125,13 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 7,
+    "seconds": 4,
     "counts": {
       "works": 4,
       "not back": 1,
-      "torn": 1,
+      "free-turned": 1,
       "partly": 2,
       "skipped": 2
     },
@@ -191,6 +192,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p344 87083",
           "p346 87083"
@@ -201,7 +203,7 @@
             "dead point"
           ]
         ],
-        "seconds": 2.1
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -260,9 +262,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p464 65414c01",
-        "seconds": 0.8
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -278,8 +283,8 @@
         "rates": [
           {
             "p974 56908 against p464 65414c01": [
-              8.43e-8,
-              3.64e-13
+              0,
+              5.68e-14
             ]
           }
         ],
@@ -310,9 +315,12 @@
         "why": [
           "p974 56908 against p464 65414c01 is held by friction pins the control doesn't reach"
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.8
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -352,7 +360,7 @@
           [
             [
               0.07,
-              0.11
+              0.06
             ],
             [
               0,
@@ -366,7 +374,7 @@
             ],
             [
               0.07,
-              0.11
+              0.06
             ]
           ]
         ],
@@ -374,7 +382,7 @@
           [
             [
               0.07,
-              0.11
+              0.06
             ],
             [
               0,
@@ -388,7 +396,7 @@
             ],
             [
               0.07,
-              0.11
+              0.06
             ]
           ]
         ],
@@ -410,7 +418,7 @@
             "p343 15460"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -536,7 +544,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 1
       }
     ]
   }

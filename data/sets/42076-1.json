@@ -158,9 +158,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 36,
+    "seconds": 28,
     "counts": {
       "works": 3,
       "partly": 3,
@@ -419,7 +419,7 @@
             "p647 15790"
           ]
         ],
-        "seconds": 5.7
+        "seconds": 4.3
       },
       {
         "result": "partly",
@@ -487,8 +487,11 @@
             "dead point"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "stopped-early",
-        "seconds": 1.5
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -593,9 +596,13 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p544 64782",
-        "seconds": 5.4
+        "seconds": 4
       },
       {
         "result": "no",
@@ -655,9 +662,12 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p700 32270",
-        "seconds": 1.7
+        "seconds": 1.3
       },
       {
         "result": "no",
@@ -682,6 +692,9 @@
         ],
         "why": [
           "p676 14720 is part of the frame"
+        ],
+        "judged": [
+          0
         ],
         "cause": "loose-part",
         "detail": "p676 14720",
@@ -748,8 +761,11 @@
         "pushed": [
           true
         ],
+        "judged": [
+          0
+        ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -828,9 +844,13 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p883 4254",
-        "seconds": 3.7
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -948,7 +968,7 @@
           [],
           []
         ],
-        "seconds": 10.5
+        "seconds": 8.4
       },
       {
         "result": "works",
@@ -1014,7 +1034,7 @@
           [],
           []
         ],
-        "seconds": 5.2
+        "seconds": 4.2
       }
     ]
   }

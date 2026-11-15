@@ -339,12 +339,22 @@ export function libraryName(name: string, table: ConnectionTable): string {
 //   3. Bodies        parts fixed to each other move as one
 //   4. Joints        how the bodies move against each other
 //   5. The rest      gears, couplings, loops, strings and screws between bodies
+// The axles given the role "axle" on 2026-11-15, which the frame is still chosen as if they
+// were structure (see frameRoles in buildMechanism).
+const AXLES_COUNTED_AS_STRUCTURE = new Set(['3737.dat', '23948.dat', '50450.dat', '50451.dat', '60485.dat', '44294.dat', '24316.dat', '87083.dat', '15462.dat', '55013.dat', '59426.dat', '6587.dat']);
+
 function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[], freed: Set<number>): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
   // A printed part (3626bp01, 973p19) has its plain part's role (3626b, 973).
   const plain = (name: string) => name.replace(/(?:p[0-9a-z]+|pb[0-9a-z]+)\.dat$/, '.dat');
   const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? roleList[plain(p.name)] ?? (table.stickers?.includes(p.name) ? 'decoration' : 'structure')));
+  // The roles the frame is chosen by (see groupIntoBodies): these axles count there as the
+  // structure they were read as before they were given the role "axle", and the axles that
+  // had it already don't. It is not principled: it is there only so that naming an axle does
+  // not move a model's frame (the 42099's is a near tie, 132 structure parts against 127),
+  // and it goes when the frame rule is mended.
+  const frameRoles = roles.map((r, i) => (r === 'axle' && AXLES_COUNTED_AS_STRUCTURE.has(plain(parts[i].name).replace(/^.* - /, '')) ? 'structure' : r));
   // A part an erratum removed isn't there: no connection points, and never loose.
   const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path' && !parts[c.part].removed);
   // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle
@@ -393,7 +403,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const shocks = shockAbsorbers(parts, table, (name) => libraryName(name, table));
   connections.push(...shocks, ...squareRodsInBores(cyls, shocks));
   // After the slides above: a group hung by one hinge on a slider, kept in line by its guide.
-  connections.push(...hungOnSliders(parts.length, roles, cyls, connections));
+  connections.push(...hungOnSliders(parts.length, frameRoles, cyls, connections));
   // linearActuators, universalJoints and groovedBalls replace connections already found.
   const actuators = linearActuators(parts, connections);
   connections.push(...bushGrips(roles, cyls));
@@ -449,7 +459,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   if (scenery.size) connections.push(...rideAlong(parts, cyls, uncoupled, [...scenery], new Set(rails.map((r) => r.part))));
 
   // 3. Bodies, from every connection above.
-  const bodyOf = groupIntoBodies(parts.length, roles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]));
+  const bodyOf = groupIntoBodies(parts.length, frameRoles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]));
   // slidingOnAxles and restingParts read the bodies, and turn connections into slides, so they
   // come before the joints are found.
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
