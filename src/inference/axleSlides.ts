@@ -144,6 +144,11 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
         const room: [number, number] = a === shaft ? [-above, below] : [-below, above];
         c.kind = 'slide';
         c.turns = true;
+        // Held where it is built, as a shock absorber's spring holds its slide (see
+        // Joint.springHeld): a part turning on an axle stays put along it by friction, and slides
+        // only when a drag can't go otherwise (the 8002's tail on its 10L axle, which a drag of
+        // the shell slid 33 LDU and left there).
+        c.springHeld = true;
         c.extents = { male: [0, 0], female: way > 0 ? room : [-room[1], -room[0]], overlap: 0 };
       }
       // The stack's parts, each turning against the next.
