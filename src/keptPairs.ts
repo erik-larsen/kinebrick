@@ -16,8 +16,8 @@ export interface KnownPairs {
   near: [number, number][];
 }
 
-// The key for a model's text as the viewer reads it.
-export const keyFor = (modelText: string) => collisionKey(modelText, release['../data/collisions/library.json']?.release ?? '');
+// The key for a model's parts as the viewer reads them (see collisionKey).
+export const keyFor = (parts: Parameters<typeof collisionKey>[0]) => collisionKey(parts, release['../data/collisions/library.json']?.release ?? '');
 
 // The kept file's result for the model named `name` (its file's name, without .mpd or .ldr), if
 // its key is `key`.

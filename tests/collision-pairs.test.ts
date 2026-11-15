@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { Box3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { collisionKey, Collisions, connectedPairs, libraryRelease, NEAR, shapesNear } from '../src/collisions.ts';
-import { DIR, keptModels, keptName, modelText, RELEASE_FILE } from '../scripts/collision-pairs.ts';
+import { DIR, keptModels, keptName, modelParts, modelText, RELEASE_FILE } from '../scripts/collision-pairs.ts';
 import { loadModel } from '../scripts/load-model.ts';
 import { partShapes } from '../scripts/part-shapes.ts';
 
@@ -24,9 +24,13 @@ describe('the kept collision pass', () => {
   const byName = new Map(keptModels().map((m) => [keptName(m), m]));
   for (const file of readdirSync(DIR).filter((f) => f.endsWith('.json') && f !== 'library.json')) {
     const model = byName.get(file.replace(/\.json$/, ''));
-    it.skipIf(!model || !existsSync(model))(`has a key that matches its model: ${file}`, async () => {
+    it.skipIf(!model || !existsSync(model))(`has a key that matches its model, and names only its parts: ${file}`, async () => {
       const kept = JSON.parse(readFileSync(`${DIR}/${file}`, 'utf-8'));
-      expect(kept.key).toBe(await collisionKey(modelText(model!), release));
+      const parts = modelParts(model!);
+      expect(kept.key).toBe(await collisionKey(parts, release));
+      // A second guard: a pair naming a part beyond the model's parts is for some other cut of
+      // the model into parts (a part since read as its pieces).
+      expect((kept.near as [number, number][]).filter(([a, b]) => Math.max(a, b) >= parts.length)).toEqual([]);
     });
   }
 });

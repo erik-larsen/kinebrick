@@ -5,7 +5,7 @@
 // tests/collision-pairs.test.ts fails when a kept file's key no longer matches its model.
 //
 //   npm run collisions                 every model the sets use whose kept file is missing, or
-//                                      whose key no longer matches (the model or library changed)
+//                                      whose key no longer matches (the model, how its parts are cut into pieces, or the library changed)
 //   npm run collisions -- 42114 8012   only models whose file name has one of these in it
 //   npm run collisions -- --force      worked out again even where the key matches
 //
@@ -36,6 +36,9 @@ export const keptName = keptFileName;
 // The model's text as the viewer reads it: a set's file from the OMR with its signed errata.
 export const modelText = (model: string) => readParts(model, model.startsWith('omr/')).text;
 
+// The model's parts as the viewer reads them, in its order: what a kept file's key is made from.
+export const modelParts = (model: string) => readParts(model, model.startsWith('omr/')).parts;
+
 if (process.argv[1]?.endsWith('collision-pairs.ts')) {
   const only = process.argv.slice(2).filter((a) => !a.startsWith('--'));
   const force = process.argv.includes('--force');
@@ -44,11 +47,10 @@ if (process.argv[1]?.endsWith('collision-pairs.ts')) {
   writeFileSync(RELEASE_FILE, JSON.stringify({ release }, null, 2) + '\n');
   for (const model of keptModels().filter((m) => !only.length || only.some((o) => m.includes(o)))) {
     const start = Date.now();
-    const text = modelText(model);
-    const key = await collisionKey(text, release);
+    const { parts, text } = readParts(model, model.startsWith('omr/'));
+    const key = await collisionKey(parts, release);
     const file = `${DIR}/${keptName(model)}.json`;
     if (!force && existsSync(file) && JSON.parse(readFileSync(file, 'utf-8')).key === key) continue;
-    const { parts } = readParts(model, model.startsWith('omr/'));
     // The viewer's shapes: its parts' meshes, the first of the packed model's objects; a path's
     // parts (a chain's links) have none.
     const shapes = (await partShapes(model, text)).slice(0, parts.length).map((s, i) => (parts[i].path ? [] : s.shape));
