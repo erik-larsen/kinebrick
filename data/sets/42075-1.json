@@ -88,12 +88,13 @@
         ],
         "source": "book 2: steps 33-49 (the axle frame and its pivot), page 113 (top right photo, the arrows on the rear wheels)",
         "control": "p107 64179",
+        "lifted": true,
         "moves": [
           "p506 56145",
           "p510 56145",
           "p163 4254"
         ],
-        "note": "the shock's spring only matters under the truck's weight; the axle's travel is what's checked"
+        "note": "the shock's spring only matters under the truck's weight; the axle's travel is what's checked. lifted: the text has the wheel or arm moved (\"a single shock absorber above the differential lets it rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The light mast, lying along the roof, swings up at the back of the truck to stand upright with its lamp on top.",
@@ -135,9 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "5dac39a9",
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 17,
+    "seconds": 9,
     "counts": {
       "works": 5,
       "partly": 1,
@@ -171,7 +172,7 @@
             ],
             "p174 18575": [
               0,
-              7.85e-98
+              2.39e-42
             ]
           }
         ],
@@ -187,7 +188,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -204,11 +205,11 @@
           {
             "p116 62821": [
               1,
-              4.93e-11
+              4.21e-13
             ],
             "p349 2853": [
               3.89,
-              6.4e-13
+              5.65e-13
             ],
             "p352 2851": [
               0,
@@ -220,11 +221,11 @@
             ],
             "p50 32270": [
               0,
-              2.13e-23
+              2.29e-24
             ],
             "p95 87761": [
               0,
-              1.38e-13
+              1.73e-13
             ]
           }
         ],
@@ -247,7 +248,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p352 2851",
-        "seconds": 7.1
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -265,13 +266,13 @@
           {
             "p349 2853": [
               0,
-              5.49e-83
+              2.68e-87
             ]
           },
           {
             "p349 2853": [
               0,
-              2.81e-81
+              5.19e-61
             ]
           }
         ],
@@ -301,7 +302,7 @@
           [],
           []
         ],
-        "seconds": 2.6
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -331,7 +332,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.8
       },
       {
         "result": "no",
@@ -383,9 +384,9 @@
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p506 56145",
-        "seconds": 0.2
+        "cause": "part-fixed",
+        "detail": "p163 4254",
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -415,7 +416,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -511,7 +512,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.6
       }
     ]
   }

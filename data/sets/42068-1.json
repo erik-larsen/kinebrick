@@ -129,8 +129,7 @@
     ]
   },
   "generated": {
-    "commit": "1f4f7585",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
     "seconds": 117,
     "counts": {
@@ -197,7 +196,7 @@
             null
           ]
         ],
-        "seconds": 19.5
+        "seconds": 19
       },
       {
         "result": "works",
@@ -379,7 +378,7 @@
             ]
           ]
         ],
-        "seconds": 3.5
+        "seconds": 3.8
       },
       {
         "result": "skipped",
@@ -407,7 +406,7 @@
           "p1083 64782 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "works",
@@ -515,7 +514,7 @@
           [],
           []
         ],
-        "seconds": 66.2
+        "seconds": 67.1
       }
     ]
   }

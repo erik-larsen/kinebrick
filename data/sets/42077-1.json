@@ -78,7 +78,8 @@
           "p1077 15038",
           "p1081 15038"
         ],
-        "note": "the springs only matter under the car's weight; each wheel's travel is what's checked"
+        "lifted": true,
+        "note": "the springs only matter under the car's weight; each wheel's travel is what's checked. lifted: the text has the wheel or arm moved (\"so each wheel can rise and fall on its own\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The bonnet lifts up at its back edge, hinged at the front.",
@@ -121,9 +122,9 @@
     ]
   },
   "generated": {
-    "commit": "5dac39a9",
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 85,
+    "seconds": 62,
     "counts": {
       "works": 5,
       "partly": 2
@@ -188,7 +189,7 @@
             ]
           ]
         ],
-        "seconds": 11.3
+        "seconds": 9.3
       },
       {
         "result": "partly",
@@ -252,7 +253,7 @@
         ],
         "cause": "not-driven",
         "detail": "p59 62821",
-        "seconds": 10.4
+        "seconds": 9.3
       },
       {
         "result": "works",
@@ -306,7 +307,7 @@
           [],
           []
         ],
-        "seconds": 8.2
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -347,8 +348,8 @@
           ],
           [
             [
-              0.07,
-              0.03
+              0,
+              0
             ],
             [
               0,
@@ -382,7 +383,7 @@
           [],
           []
         ],
-        "seconds": 26.6
+        "seconds": 8.6
       },
       {
         "result": "partly",
@@ -420,7 +421,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p808 18944",
-        "seconds": 4.1
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -465,7 +466,7 @@
           [],
           []
         ],
-        "seconds": 10.2
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -508,7 +509,7 @@
           ]
         ],
         "freed": 6,
-        "seconds": 13.8
+        "seconds": 12.9
       }
     ]
   }

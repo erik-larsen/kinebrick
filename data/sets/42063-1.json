@@ -67,13 +67,15 @@
         ],
         "source": "book: page 107 (the arrow along the front fork)",
         "control": "p157 57515",
+        "lifted": true,
         "moves": [
           "p386 88517",
           "p164 4254"
         ],
         "stays": [
           "p142 32526"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"lets the wheel rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame.",
@@ -111,10 +113,9 @@
     ]
   },
   "generated": {
-    "commit": "c1623c1a",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 8,
+    "seconds": 7,
     "counts": {
       "works": 3,
       "not back": 1,
@@ -130,18 +131,18 @@
         "result": "works",
         "turned": [
           [
-            1.51,
-            -1.09
+            1.5,
+            -1.5
           ],
           [
-            1.2,
+            1.5,
             -1.51
           ]
         ],
         "rates": [
           {
             "p386 88517": [
-              1.01,
+              1.13,
               0.000916
             ],
             "p345 32278": [
@@ -149,8 +150,8 @@
               44.7
             ],
             "p142 32526": [
-              7e-7,
-              2.77e-11
+              0.00000112,
+              2.16e-10
             ]
           },
           {
@@ -163,37 +164,34 @@
               44.7
             ],
             "p142 32526": [
-              5.31e-7,
-              1.33e-10
+              6.15e-7,
+              6.9e-10
             ]
           }
         ],
         "back": [
           [
             [
-              1.44,
-              1.39
+              1.39,
+              4.51
             ],
             [
-              5.36,
-              2.72
+              1.76,
+              3.39
             ]
           ],
           [
             [
-              7.82,
-              4.22
+              1.35,
+              3.93
             ],
             [
-              1.07,
-              4.72
+              1.24,
+              5.23
             ]
           ]
         ],
         "strayed": [
-          "p403 3713",
-          "p422 32054",
-          "p423 32054",
           "p357 44294"
         ],
         "movedBy": [
@@ -206,7 +204,7 @@
             "p345 32278"
           ]
         ],
-        "seconds": 5.3
+        "seconds": 4.4
       },
       {
         "result": "works",
@@ -220,15 +218,15 @@
           {
             "p83 6589": [
               1.67,
-              3.52e-12
+              5.14e-11
             ],
             "p23 32269": [
               1.67,
-              2.65e-12
+              2.26e-12
             ],
             "p64 2853": [
               2.78,
-              2.71e-12
+              2.45e-12
             ],
             "p67 2851": [
               0,
@@ -240,7 +238,7 @@
             ],
             "p386 88517": [
               0,
-              6.18e-12
+              4.74e-12
             ]
           }
         ],
@@ -256,7 +254,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -332,8 +330,8 @@
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p386 88517",
+        "cause": "part-fixed",
+        "detail": "p164 4254",
         "seconds": 0
       },
       {
@@ -385,8 +383,8 @@
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p334 88517",
+        "cause": "part-fixed",
+        "detail": "p198 4254",
         "seconds": 0
       },
       {
