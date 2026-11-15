@@ -76,6 +76,9 @@ const LIFT = 0.05;
 // fraction of the step's largest joint turn, before the step counts as past a dead point (see
 // turnJoint). Steps short of one need a few percent at most.
 const DEAD_POINT = 0.25;
+// How much of a step a pose is nudged off a linkage drawn exactly in line, as built, before the
+// step is taken again from there (see turnJoint).
+const NUDGE = 0.1;
 // How many times faster than in the step before the fastest joint may turn (for each turn of
 // the joint being turned) before a dead point counts as just ahead (see turnJoint). Gears
 // keep it steady, and linkages change it gently, except close to a dead point.
@@ -2259,6 +2262,18 @@ export class Kinematics {
           if (bodies.length && this.jointMotion(joint)) continue;
           for (const b of bodies) this.drag.held.delete(b);
         }
+        // A linkage drawn exactly in line, as built, may have a freedom there that any motion
+        // loses (the 42122 Jeep Wrangler's front steering, its link turning on a line below its
+        // axle's swing and parallel to it): the step's first-order motion uses it, closing the
+        // loops takes it out, and the step strays, every time. From the pose as built only (every
+        // joint where it was built), with the loops closing, the step is taken again from a pose
+        // nudged a hair off it (NUDGE of the step, its loops closed, its straying allowed), where
+        // that freedom is gone; the rest of the step, chosen afresh there, must not stray. If it
+        // does, both are undone, and it's a dead point as before.
+        if (!played && gap <= DEAD_POINT_GAP && turned === 0 && this.jointAngles.every((a) => Math.abs(a) < 1e-12) && this.nudgedStep(joint, motion, step, checked, allowed)) {
+          turned += step;
+          continue;
+        }
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
         // usual steps, it may go. Only those can tell a dead point.
         if (Math.abs(step) <= MAX_TURN_STEP + 1e-12) return stop(turned);
@@ -2277,6 +2292,30 @@ export class Kinematics {
       this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
     }
     return turned;
+  }
+
+  // A step of `joint` from a pose nudged off where it is (see turnJoint): NUDGE of `step` along
+  // `motion`, the loops closed, then the rest chosen afresh, which must close the loops, turn the
+  // `checked` joints as predicted and be `allowed`. True if it went; else everything is as it
+  // was.
+  private nudgedStep(joint: number, motion: number[], step: number, checked: (j: Joint) => boolean, allowed?: () => boolean): boolean {
+    const before = this.snapshot();
+    if (TRACE) trace({ event: 'nudge', joint, step });
+    if (this.advance(motion, step * NUDGE, joint) <= DEAD_POINT_GAP) {
+      const rest = step * (1 - NUDGE);
+      const next = this.jointMotion(joint);
+      if (next && !this.played) {
+        const at = this.jointAngles.slice();
+        const predicted = this.mech.joints.map((j, k) => (checked(j) ? this.jointRate(next, k) * rest : 0));
+        const largest = Math.max(...predicted.map(Math.abs));
+        const gap = this.advance(next, rest, joint);
+        const strayed = this.mech.joints.some((j, k) => checked(j) && Math.abs(this.jointAngles[k] - at[k] - predicted[k]) > DEAD_POINT * largest);
+        if (gap <= DEAD_POINT_GAP && !strayed && (!allowed || allowed())) return true;
+      }
+    }
+    if (TRACE) trace({ event: 'nudge refused', joint });
+    this.restore(before);
+    return false;
   }
 
   // Whether the last turn of `joint` stopped at a dead point (see turnJoint), and nothing has
