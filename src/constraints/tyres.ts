@@ -22,6 +22,9 @@ export function tyres(solver: Kinematics, eq: Equations) {
   const rolling = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each body, its tyres' rows
   const tracks = new Map<number, { axis: Vector3; rows: Row[] }>(); // for each track, its sideways rows
   const riderBodies = new Set((solver.mech.riders ?? []).map((r) => r.body));
+  // Whether a steered tyre pivots on the ground (see below): only for a drag that works the
+  // steering (see dragSteers).
+  const pivots = solver.contactTreads.length > 0 && solver.dragSteers();
   for (const i of solver.contactTreads) {
     const p = solver.contactPoint(i);
     if (!p) continue;
@@ -38,10 +41,10 @@ export function tyres(solver: Kinematics, eq: Equations) {
       return row;
     };
     // A steered tyre pivots on the ground about the upright axis its wheel steers on, as a parked
-    // car's does: its contact, carried round that axis as part of the wheel, isn't counted as
+    // car's does, for a drag that works the steering: its contact, carried round that axis as part of the wheel, isn't counted as
     // scrubbing sideways or lifting (see steeringPivot). What the steering joint's turning moves
     // the contact by is taken out of those rows.
-    const pivot = solver.steeringPivot(i, p, forward);
+    const pivot = pivots ? solver.steeringPivot(i, p, forward) : null;
     const pivoting = (row: Row, dir: Vector3) => {
       if (!pivot) return row;
       const j = solver.mech.joints[pivot.joint];

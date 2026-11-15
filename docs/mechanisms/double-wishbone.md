@@ -4,7 +4,7 @@ Each wheel's hub rides between an upper and a lower arm. (Suspension.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.
 
-Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 11 works, 4 partly, 10 no, 1 skipped.
+Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 13 works, 4 partly, 8 no, 1 skipped.
 
 ## By decade
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 **2012, [9392 Quad Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9392-1)**
 
-- The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm with a shock absorber, and moves up and down, steering as it goes. (no)
+- The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm with a shock absorber, and moves up and down, steering as it goes. (works)
 
 **2014, [42021 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42021-1)**
 
@@ -94,7 +94,7 @@ Each detail by the set it first appears in.
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber. (no)
+- Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber. (works)
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 
