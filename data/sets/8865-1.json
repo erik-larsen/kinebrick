@@ -197,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 61,
+    "seconds": 41,
     "counts": {
       "works": 4,
       "partly": 2,
@@ -276,7 +276,7 @@
             ]
           ]
         ],
-        "seconds": 7.7
+        "seconds": 7.5
       },
       {
         "result": "works",
@@ -346,7 +346,7 @@
             ]
           ]
         ],
-        "seconds": 10.6
+        "seconds": 7.4
       },
       {
         "result": "partly",
@@ -414,9 +414,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p400 3707",
-        "seconds": 6.5
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -470,7 +473,7 @@
             ]
           ]
         ],
-        "seconds": 18.4
+        "seconds": 7
       },
       {
         "result": "no",
@@ -550,8 +553,12 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "stopped-early",
-        "seconds": 2.8
+        "seconds": 2.7
       },
       {
         "result": "no",
@@ -631,8 +638,12 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "stopped-early",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -700,8 +711,11 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -761,8 +775,11 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -829,7 +846,7 @@
           [],
           []
         ],
-        "seconds": 9.5
+        "seconds": 8.5
       },
       {
         "result": "partly",
@@ -894,9 +911,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p114 3708",
-        "seconds": 3.3
+        "seconds": 2.8
       }
     ]
   }

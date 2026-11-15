@@ -176,9 +176,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 2226,
+    "seconds": 2084,
     "counts": {
       "partly": 4,
       "works": 3,
@@ -367,9 +367,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 27.4
+        "seconds": 25
       },
       {
         "result": "partly",
@@ -427,9 +430,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 26.9
+        "seconds": 25.2
       },
       {
         "result": "partly",
@@ -517,9 +523,13 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 54.5
+        "seconds": 49.9
       },
       {
         "result": "partly",
@@ -573,9 +583,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1927 42003 against p87 42003",
-        "seconds": 28.3
+        "seconds": 25.8
       },
       {
         "result": "works",
@@ -629,7 +642,7 @@
             ]
           ]
         ],
-        "seconds": 1246.9
+        "seconds": 1166.7
       },
       {
         "result": "works",
@@ -737,7 +750,7 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 752.8
+        "seconds": 706.2
       },
       {
         "result": "no",
@@ -802,6 +815,9 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
         "seconds": 1.9
@@ -855,8 +871,11 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "stopped-early",
-        "seconds": 2.8
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -899,7 +918,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 36.7
+        "seconds": 34.7
       }
     ]
   }

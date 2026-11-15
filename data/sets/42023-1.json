@@ -84,7 +84,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 7,
     "counts": {
@@ -163,6 +163,9 @@
           ]
         ],
         "freed": 1,
+        "judged": [
+          0
+        ],
         "cause": "one-link-too-many",
         "seconds": 0.2
       },
@@ -286,8 +289,12 @@
             "p244 92695 against p245 92693c01"
           ]
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "control-jammed",
-        "seconds": 4.7
+        "seconds": 4.9
       },
       {
         "result": "works",
@@ -329,7 +336,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -447,7 +454,7 @@
           [],
           []
         ],
-        "seconds": 1.4
+        "seconds": 1.5
       }
     ]
   }

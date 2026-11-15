@@ -62,7 +62,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 3,
     "counts": {
@@ -160,9 +160,12 @@
         "pushed": [
           true
         ],
+        "judged": [
+          1
+        ],
         "cause": "too-little",
         "detail": "p56 4716 against p0 32523",
-        "seconds": 2.7
+        "seconds": 2.5
       },
       {
         "result": "works",

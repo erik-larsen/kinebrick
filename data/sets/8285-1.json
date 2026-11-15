@@ -250,9 +250,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 414,
+    "seconds": 374,
     "counts": {
       "partly": 3,
       "not back": 2,
@@ -376,7 +376,7 @@
             ],
             [
               0.09,
-              0.2
+              0.14
             ]
           ],
           [
@@ -386,7 +386,7 @@
             ],
             [
               0.09,
-              0.22
+              0.14
             ]
           ]
         ],
@@ -408,9 +408,21 @@
             "p732 2851"
           ]
         ],
+        "wrongBy": [
+          [
+            "p490 3743"
+          ],
+          [
+            "p490 3743"
+          ]
+        ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "stay-chosen",
         "detail": "p490 3743",
-        "seconds": 100.2
+        "seconds": 89.3
       },
       {
         "result": "works",
@@ -473,7 +485,7 @@
             ],
             [
               0.09,
-              0.2
+              0.14
             ]
           ],
           [
@@ -483,7 +495,7 @@
             ],
             [
               0.02,
-              0.15
+              0.08
             ]
           ],
           [
@@ -493,7 +505,7 @@
             ],
             [
               0.05,
-              0.16
+              0.1
             ]
           ]
         ],
@@ -506,7 +518,7 @@
           [],
           []
         ],
-        "seconds": 148.6
+        "seconds": 133
       },
       {
         "result": "works",
@@ -564,7 +576,7 @@
             ]
           ]
         ],
-        "seconds": 10.7
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -606,7 +618,7 @@
             ]
           ]
         ],
-        "seconds": 10.7
+        "seconds": 9.7
       },
       {
         "result": "works",
@@ -655,7 +667,7 @@
         "pushed": [
           true
         ],
-        "seconds": 46.9
+        "seconds": 42.3
       },
       {
         "result": "partly",
@@ -719,9 +731,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 11.1
+        "seconds": 9.8
       },
       {
         "result": "partly",
@@ -778,9 +793,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 10.9
+        "seconds": 9.8
       },
       {
         "result": "skipped"
@@ -842,7 +860,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 26.6
+        "seconds": 24.2
       },
       {
         "result": "works",
@@ -892,7 +910,7 @@
             ]
           ]
         ],
-        "seconds": 10.4
+        "seconds": 10
       },
       {
         "result": "skipped"
@@ -954,8 +972,11 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-jammed",
-        "seconds": 4
+        "seconds": 3.7
       },
       {
         "result": "no",
@@ -1009,9 +1030,12 @@
         "pushed": [
           true
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 3.8
+        "seconds": 3.7
       },
       {
         "result": "no",
@@ -1091,8 +1115,12 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "stopped-early",
-        "seconds": 5.1
+        "seconds": 4.7
       }
     ]
   }

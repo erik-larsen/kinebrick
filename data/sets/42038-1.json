@@ -208,9 +208,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 22,
+    "seconds": 21,
     "counts": {
       "works": 6,
       "partly": 2,
@@ -290,7 +290,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 2.4
+        "seconds": 2.2
       },
       {
         "result": "partly",
@@ -372,9 +372,12 @@
         "strayed": [
           "p32 55013"
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p113 92695",
-        "seconds": 1.9
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -456,9 +459,12 @@
             ]
           ]
         ],
+        "judged": [
+          1
+        ],
         "cause": "not-driven",
         "detail": "p866 92696",
-        "seconds": 1.9
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -500,7 +506,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 2
       },
       {
         "result": "works",
@@ -550,7 +556,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -596,7 +602,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -705,6 +711,10 @@
         "movedBy": [
           [],
           []
+        ],
+        "judged": [
+          0,
+          0
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
@@ -830,7 +840,7 @@
           [],
           []
         ],
-        "seconds": 7.3
+        "seconds": 6.8
       },
       {
         "result": "not checked",
@@ -871,7 +881,7 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 1.8
       },
       {
         "result": "not checked",

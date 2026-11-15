@@ -134,7 +134,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 4,
     "counts": {
@@ -276,7 +276,7 @@
           [
             [
               0.08,
-              0.12
+              0
             ],
             [
               0.76,
@@ -288,7 +288,7 @@
           [
             [
               0.08,
-              0.12
+              0
             ],
             [
               0.76,
@@ -299,7 +299,7 @@
         "strayed": [
           "p128 32062"
         ],
-        "seconds": 1.5
+        "seconds": 1.4
       },
       {
         "result": "no",
@@ -327,6 +327,9 @@
         ],
         "why": [
           "p897 32269 is part of the frame"
+        ],
+        "judged": [
+          0
         ],
         "cause": "loose-part",
         "detail": "p897 32269",
@@ -468,7 +471,7 @@
             "p71 32165 against p91 32177"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "skipped",

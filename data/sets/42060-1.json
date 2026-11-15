@@ -131,7 +131,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 4,
     "counts": {
@@ -215,6 +215,9 @@
             "dead point",
             "dead point"
           ]
+        ],
+        "judged": [
+          0
         ],
         "cause": "one-link-too-many",
         "seconds": 0.1
@@ -396,7 +399,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "works",
@@ -488,7 +491,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -634,7 +637,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -679,6 +682,9 @@
         ],
         "pushed": [
           true
+        ],
+        "judged": [
+          0
         ],
         "cause": "stopped-early",
         "seconds": 0

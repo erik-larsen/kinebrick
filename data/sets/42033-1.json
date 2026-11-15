@@ -84,7 +84,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -272,6 +272,10 @@
         "movedBy": [
           [],
           []
+        ],
+        "judged": [
+          0,
+          0
         ],
         "cause": "not-driven",
         "detail": "p111 3706",
