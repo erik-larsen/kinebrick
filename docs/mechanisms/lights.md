@@ -2,9 +2,9 @@
 
 Lights, fibre optics or switches that only work electrically. (Not mechanisms.)
 
-First appears in 2013, in [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1): The headlights (two Power Functions LEDs) light up when the battery box is switched on.
+First appears in 2013, in [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1): The headlights (two Power Functions LEDs) light up when the battery box's orange slide switch, on its side under the cab, is switched on.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 1 skipped, 1 not checked.
+Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 2 skipped.
 
 ## By decade
 
@@ -25,7 +25,7 @@ Each detail by the set it first appears in.
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 
-- The headlights (two Power Functions LEDs) light up when the battery box is switched on. (not checked)
+- The headlights (two Power Functions LEDs) light up when the battery box's orange slide switch, on its side under the cab, is switched on. (skipped)
 
 **2017, [42065 RC Tracked Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42065-1)**
 

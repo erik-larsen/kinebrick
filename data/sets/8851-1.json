@@ -118,16 +118,16 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 3,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 2,
     "counts": {
       "no": 3,
       "skipped": 1,
       "partly": 1,
       "works": 1,
-      "not back": 1
+      "not back": 1,
+      "moved whole": 1
     },
     "loose": [
       "p262 128",
@@ -167,6 +167,9 @@
         "back": [
           []
         ],
+        "torn": [
+          []
+        ],
         "why": [
           "p17 8851-4694c01-f1 is part of the frame"
         ],
@@ -192,6 +195,9 @@
         "back": [
           []
         ],
+        "torn": [
+          []
+        ],
         "why": [
           "p256 8851-4694c01-f1 is part of the frame"
         ],
@@ -215,6 +221,9 @@
           {}
         ],
         "back": [
+          []
+        ],
+        "torn": [
           []
         ],
         "why": [
@@ -271,9 +280,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "stay-chosen",
         "detail": "p908 3649 against p852 3738",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -343,6 +364,48 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "strayed": [
           "p1095 3001",
           "p1089 3021",
@@ -355,7 +418,7 @@
           [],
           []
         ],
-        "seconds": 2.1
+        "seconds": 1.7
       }
     ]
   }

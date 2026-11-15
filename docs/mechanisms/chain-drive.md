@@ -4,7 +4,7 @@ A chain runs round sprockets. (Drivetrain.)
 
 First appears in 1981, in [8844 Helicopter](https://erik-larsen.github.io/kinebrick/?model=8844-Helicopter): The crank low on the left side beside the seats retracts and lowers the landing gear: its 24 tooth gear turns the 8 tooth gear on the end of the front axle, which swings the two front legs fixed on its ends, and a chain from a 16 tooth gear on that axle turns the rear leg's 24 tooth gear, so all three legs swing up or down together.
 
-Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 6 works, 5 partly.
+Used in 10 of the 186 surveyed sets, by 11 functions. Kinebrick: 7 works, 4 partly.
 
 ## By decade
 
@@ -34,7 +34,7 @@ Each detail by the set it first appears in.
 
 **1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1)**
 
-- Turning the rear wheel works the two-cylinder engine: a 24-tooth gear on the rear wheel drives the chain to a 16-tooth gear on the swinging arm's pivot axle; a 24-tooth gear on that axle turns an 8-tooth gear on a 6-long axle, whose 14-tooth bevel gear turns the bevel gear on the crankshaft, so the two pistons go in and out of their cylinders on either side. (partly)
+- Turning the rear wheel works the two-cylinder engine: a 24-tooth gear on the rear wheel drives the chain to a 16-tooth gear on the swinging arm's pivot axle; a 24-tooth gear on that axle turns an 8-tooth gear on a 6-long axle, whose 14-tooth bevel gear turns the bevel gear on the crankshaft, so the two pistons go in and out of their cylinders on either side. (works)
 
 **1994, [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car)**
 

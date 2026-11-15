@@ -58,15 +58,16 @@
         ],
         "source": "book: steps 77-97 (swing arm, shock and linkage), page 120 bottom-left inset (arrow at the rear wheel)",
         "control": "p262 40490",
+        "lifted": true,
         "moves": [
           "p247 35189",
-          "p284 76537"
+          "p284 4254"
         ],
         "stays": [
           "p379 88516",
           "p185 2854"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel"
+        "note": "how far the arm can swing is set by the shock absorber's travel. lifted: the text has the wheel or arm moved (\"lets the rear wheel rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear shock absorber's spring pushes the rear wheel back down.",
@@ -74,7 +75,7 @@
           "spring: suspension"
         ],
         "source": "book: page 120 bottom-left inset",
-        "control": "p284 76537",
+        "control": "p284 4254",
         "skip": "a spring only matters under gravity or force"
       },
       {
@@ -105,6 +106,7 @@
           "p408 32039",
           "p419 32039"
         ],
+        "lifted": true,
         "moves": [
           "p372 44294",
           "p379 88516"
@@ -113,7 +115,7 @@
           "p340 15462",
           "p247 35189"
         ],
-        "note": "inferred: the fork's lower ends (p408, p419) as the sliding parts; the gold shocks are p371 and p376 65151-f1, a part the LDraw library doesn't have"
+        "note": "inferred: the fork's lower ends (p408, p419) as the sliding parts; the gold shocks are p371 and p376 65151-f1, a part the LDraw library doesn't have. lifted: the text has the wheel or arm moved (\"they shorten so the front wheel can rise\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The front wheel rolls freely on its axle between the fork legs.",
@@ -152,16 +154,16 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 14,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 9,
     "counts": {
-      "partly": 4,
+      "partly": 3,
+      "works": 2,
       "skipped": 1,
       "not back": 1,
+      "torn": 1,
       "no": 2,
-      "works": 1,
       "not checked": 1
     },
     "loose": [
@@ -184,7 +186,8 @@
       "p557 3711",
       "p558 3711",
       "p559 3711",
-      "p639 42107 - 67144p01c01"
+      "p639 42107 - 67144p01c01",
+      "p641 22977"
     ],
     "functions": [
       {
@@ -206,7 +209,7 @@
             ],
             "p127 18947": [
               0,
-              5.68e-14
+              1.14e-13
             ],
             "p185 2854": [
               0,
@@ -219,6 +222,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -256,35 +271,35 @@
           {
             "p288 23948": [
               1.52,
-              4.24e-13
+              6.04e-13
             ],
             "p289 94925": [
               1.52,
-              4.36e-13
+              6.16e-13
             ],
             "p185 2854": [
-              2.81e-8,
-              3.69e-13
+              8.43e-8,
+              5.07e-13
             ],
             "p190 2851": [
-              2.81e-8,
-              9.97e-12
+              8.43e-8,
+              1.02e-11
             ],
             "p191 2851": [
-              2.81e-8,
-              5.48e-12
+              8.43e-8,
+              6.6e-12
             ],
             "p192 2851": [
-              2.81e-8,
-              1.11e-12
+              8.43e-8,
+              1.78e-11
             ],
             "p193 2851": [
-              2.81e-8,
-              2.56e-12
+              8.43e-8,
+              3.73e-12
             ],
             "p379 88516": [
               1,
-              8.06e-13
+              7.83e-13
             ]
           }
         ],
@@ -308,41 +323,47 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p185 2854",
-        "seconds": 2.6
-      },
-      {
-        "result": "partly",
-        "turned": [
+        "torn": [
           [
-            0,
-            0
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ],
-        "still": [
-          "p284 76537"
-        ],
-        "moved": [
-          "p379 88516"
+        "cause": "not-driven",
+        "detail": "p185 2854",
+        "seconds": 3
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.3,
+            -0.01
+          ]
         ],
         "rates": [
           {
             "p247 35189": [
-              711000,
-              0.00000579
+              1,
+              201
             ],
-            "p284 76537": [
-              0.875,
-              0.00000363
+            "p284 4254": [
+              0.235,
+              72.1
             ],
             "p379 88516": [
-              712000,
-              0.00000678
+              0,
+              0
             ],
             "p185 2854": [
-              0.875,
-              0.0000036
+              0,
+              0
             ]
           }
         ],
@@ -358,18 +379,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
-            "stuck",
-            "stuck"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "part-fixed",
-        "detail": "p284 76537",
-        "seconds": 6
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -419,6 +450,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              7.2,
+              13.41
+            ],
+            [
+              4.3,
+              7.99
+            ]
+          ]
+        ],
         "strayed": [
           "p555 3711"
         ],
@@ -430,7 +473,7 @@
         ],
         "freed": 2,
         "cause": "stopped-early",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -453,6 +496,10 @@
           {}
         ],
         "back": [
+          [],
+          []
+        ],
+        "torn": [
           [],
           []
         ],
@@ -490,7 +537,19 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 2.7
       },
       {
         "result": "no",
@@ -517,6 +576,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,

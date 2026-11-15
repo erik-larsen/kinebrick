@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 141 works, 7 partly, 2 no, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 146 works, 4 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -153,7 +153,7 @@ Each detail by the set it first appears in.
 
 **1991, [8820 Mountain Rambler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8820-1)**
 
-- The four wheels roll freely, each on its own axle pin; there's no drive. (partly)
+- The four wheels roll freely, each on its own axle pin; there's no drive. (works)
 
 **1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1)**
 
@@ -228,7 +228,7 @@ Each detail by the set it first appears in.
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
-- The teal striker runs on three wheels that roll freely: one at the front, under the target, and two on an axle under the handle. Nothing drives them: it's pushed along the floor by its handle. (partly)
+- The teal striker runs on three wheels that roll freely: one at the front, under the target, and two on an axle under the handle. Nothing drives them: it's pushed along the floor by its handle. (works)
 
 **2000, [8002 Destroyer Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8002-1)**
 
@@ -240,7 +240,7 @@ Each detail by the set it first appears in.
 
 **2005, [8418 Mini Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8418-1)**
 
-- The four wheels roll freely on pins; there's no steering (a skid loader). (no)
+- The four wheels roll freely on pins; there's no steering (a skid loader). (works)
 
 **2006, [8281 Mini Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8281-1)**
 
@@ -252,7 +252,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- The second pair of rear wheels and the front wheels roll freely. (no)
+- The second pair of rear wheels and the front wheels roll freely. (works)
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
@@ -550,7 +550,7 @@ Each detail by the set it first appears in.
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
-- The front wheels roll freely, each on its own axle in its steering knuckle. (partly)
+- The front wheels roll freely, each on its own axle in its steering knuckle. (works)
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 

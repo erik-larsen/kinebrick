@@ -60,6 +60,7 @@
         ],
         "source": "book: step 3 (shock absorber), step 14 (legs and cross axle), step 16 (wheels)",
         "control": "p148 4261",
+        "lifted": true,
         "moves": [
           "p151 4261",
           "p145 3706",
@@ -69,7 +70,8 @@
         ],
         "stays": [
           "p162 3482"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"the two legs swing together on their pivots\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring holds the main landing gear down and springs it back.",
@@ -100,10 +102,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 2,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "works": 3,
       "partly": 1,
@@ -174,7 +175,19 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -238,6 +251,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p187 3737",
         "seconds": 0.3
@@ -246,8 +271,8 @@
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.53,
+            -0.2
           ]
         ],
         "rates": [
@@ -261,8 +286,8 @@
               40.8
             ],
             "p22 4254": [
-              1,
-              40.7
+              0.265,
+              40.8
             ],
             "p164 3482": [
               1,
@@ -288,6 +313,24 @@
               0,
               0
             ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
           ]
         ],
         "seconds": 0.2
@@ -364,13 +407,55 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 1.3
       }
     ]
   }

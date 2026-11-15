@@ -53,7 +53,10 @@
         "moves": [
           "p974 56908 against p464 65414c01"
         ],
-        "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way."
+        "note": "With the motor's gear held, turning one rear wheel turns the other the opposite way.; the motor's gear is held, as the function says (\"when the motor's gear is held\"): the 36 tooth gear p889 on the motor's shaft, which function 2's note names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p889 32498"
+        ]
       },
       {
         "does": "Each front wheel moves up and down on its own pair of suspension arms (independent suspension), sprung by an extra-stiff shock absorber.",
@@ -65,10 +68,12 @@
           "p325 42124 - 31794",
           "p326 42124 - 31794"
         ],
+        "lifted": true,
         "moves": [
           "p343 15460",
           "p345 15460"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"each front wheel moves up and down on its own pair of suspension arms\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The front shock absorbers' springs hold the front of the buggy up.",
@@ -85,10 +90,12 @@
         ],
         "source": "inferred: steps 99-104 pin the rear unit to the chassis at its front and add the two long shock absorbers above it; the book doesn't show it moving",
         "control": "p470 40490",
+        "lifted": true,
         "moves": [
           "p464 65414c01 against p270 14720",
           "p501 22169 against p270 14720"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"swings up and down on a pivot at its front\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear shock absorbers' springs hold the back of the buggy up.",
@@ -117,20 +124,23 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 4,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 7,
     "counts": {
-      "works": 2,
-      "not back": 2,
+      "works": 4,
+      "not back": 1,
+      "torn": 1,
       "partly": 2,
-      "no": 2,
       "skipped": 2
     },
     "loose": [
       "p1 23816c01",
-      "p502 23816c02"
+      "p502 23816c02",
+      "p984 22977",
+      "p986 22977",
+      "p988 41837",
+      "p990 41837"
     ],
     "functions": [
       {
@@ -149,23 +159,35 @@
             ],
             "p343 15460": [
               1.22,
-              1.26e-11
+              5.03e-12
             ],
             "p345 15460": [
               0.404,
-              2.26e-11
+              1.85e-12
             ]
           }
         ],
         "back": [
           [
             [
-              54.91,
-              85.34
+              54.92,
+              85.38
             ],
             [
               55.63,
               89
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              41.27,
+              87.1
+            ],
+            [
+              42.71,
+              90.93
             ]
           ]
         ],
@@ -179,64 +201,68 @@
             "dead point"
           ]
         ],
-        "seconds": 1
+        "seconds": 2.1
       },
       {
         "result": "partly",
         "turned": [
           [
-            1,
-            -1
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p889 32498"
+          "p464 65414c01",
+          "p972 56908",
+          "p974 56908"
         ],
         "rates": [
           {
             "p889 32498": [
-              8.43e-8,
-              3.38e-13
+              1,
+              1.14e-13
             ],
             "p464 65414c01": [
-              0.48,
-              3.78e-13
+              0,
+              0
             ],
             "p972 56908": [
-              0.48,
-              4.45e-13
+              0,
+              0
             ],
             "p974 56908": [
-              0.48,
-              4.45e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              54.91,
-              85.34
+              0,
+              0
             ],
             [
-              55.63,
-              89
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p344 87083",
-          "p346 87083"
-        ],
-        "stop": [
+        "torn": [
           [
-            "dead point",
-            "dead point"
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ],
         "cause": "not-driven",
-        "detail": "p889 32498",
-        "seconds": 0.9
+        "detail": "p464 65414c01",
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -252,8 +278,8 @@
         "rates": [
           {
             "p974 56908 against p464 65414c01": [
-              2.81e-8,
-              1.2e-13
+              8.43e-8,
+              3.64e-13
             ]
           }
         ],
@@ -269,45 +295,144 @@
             ]
           ]
         ],
-        "cause": "part-fixed",
-        "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.4
-      },
-      {
-        "result": "no",
-        "turned": [
+        "torn": [
           [
-            0,
-            0
-          ],
-          [
-            0,
-            0
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ],
-        "still": [
-          "p343 15460",
-          "p345 15460"
+        "why": [
+          "p974 56908 against p464 65414c01 is held by friction pins the control doesn't reach"
+        ],
+        "cause": "part-fixed",
+        "detail": "p974 56908 against p464 65414c01",
+        "seconds": 0.8
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0.67,
+            -0.03
+          ],
+          [
+            0.03,
+            -0.67
+          ]
         ],
         "rates": [
           {
             "p343 15460": [
-              0,
-              0
+              0.00884,
+              2.37e-12
             ],
             "p345 15460": [
-              0,
-              0
+              0.123,
+              80
             ]
           },
           {
             "p343 15460": [
-              0,
-              0
+              0.123,
+              80
             ],
             "p345 15460": [
+              0.00884,
+              2.08e-12
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0.07,
+              0.11
+            ],
+            [
               0,
-              0
+              0.01
+            ]
+          ],
+          [
+            [
+              0,
+              0.01
+            ],
+            [
+              0.07,
+              0.11
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.07,
+              0.11
+            ],
+            [
+              0,
+              0.01
+            ]
+          ],
+          [
+            [
+              0,
+              0.01
+            ],
+            [
+              0.07,
+              0.11
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "movedBy": [
+          [
+            "p345 15460"
+          ],
+          [
+            "p343 15460"
+          ]
+        ],
+        "seconds": 0.9
+      },
+      {
+        "result": "skipped",
+        "seconds": 0
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            0,
+            -0.23
+          ]
+        ],
+        "rates": [
+          {
+            "p464 65414c01 against p270 14720": [
+              1,
+              90
+            ],
+            "p501 22169 against p270 14720": [
+              1,
+              120
             ]
           }
         ],
@@ -321,7 +446,9 @@
               0,
               0
             ]
-          ],
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -335,48 +462,11 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
-        "movedBy": [
-          [],
-          []
-        ],
-        "cause": "control-jammed",
         "seconds": 0.1
-      },
-      {
-        "result": "skipped",
-        "seconds": 0
-      },
-      {
-        "result": "no",
-        "turned": [
-          [
-            0,
-            0
-          ]
-        ],
-        "still": [
-          "p464 65414c01 against p270 14720",
-          "p501 22169 against p270 14720"
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          []
-        ],
-        "why": [
-          "p470 40490 is part of the frame"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0
       },
       {
         "result": "skipped",
@@ -420,11 +510,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 1.7
       }
     ]
   }

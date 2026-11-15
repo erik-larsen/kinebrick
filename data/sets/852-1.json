@@ -75,9 +75,8 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
+    "commit": "716b8262",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "works": 1,
@@ -143,7 +142,19 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -256,6 +267,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -275,7 +308,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "not checked",

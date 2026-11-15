@@ -99,7 +99,11 @@
         ],
         "stays": [
           "p123 3648b"
-        ]
+        ],
+        "held": [
+          "p123 3648b"
+        ],
+        "note": "the reel's drive is held, as the function says (\"with the reel's drive held\"): p123, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The white unloading auger swings out from the grain tank to the side and back in along the body.",
@@ -144,14 +148,14 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 20,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 24,
     "counts": {
-      "works": 3,
-      "not back": 5,
-      "partly": 3,
+      "works": 2,
+      "partly": 4,
+      "not back": 4,
+      "torn": 4,
       "not checked": 1
     },
     "loose": [
@@ -399,10 +403,22 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "torn": [
+          [
+            [
+              0.05,
+              0.05
+            ],
+            [
+              0.05,
+              0.05
+            ]
+          ]
+        ],
+        "seconds": 2.8
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             0.53,
@@ -453,6 +469,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              4.25,
+              30.56
+            ],
+            [
+              9.21,
+              64.94
+            ]
+          ]
+        ],
         "strayed": [
           "p673 3023"
         ],
@@ -463,7 +491,9 @@
           ]
         ],
         "freed": 4,
-        "seconds": 4.1
+        "cause": "loose-part",
+        "detail": "p1045 3708",
+        "seconds": 5
       },
       {
         "result": "partly",
@@ -532,41 +562,7 @@
             ]
           ]
         ],
-        "strayed": [
-          "p1081 6536"
-        ],
-        "cause": "loose-part",
-        "detail": "p1002 32072",
-        "seconds": 2
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "moved": [
-          "p123 3648b"
-        ],
-        "rates": [
-          {
-            "p968 41896": [
-              0.111,
-              0
-            ],
-            "p18 6573": [
-              0.444,
-              2.27e-13
-            ],
-            "p123 3648b": [
-              0.444,
-              0
-            ]
-          }
-        ],
-        "back": [
+        "torn": [
           [
             [
               0,
@@ -581,9 +577,64 @@
         "strayed": [
           "p1081 6536"
         ],
-        "cause": "stay-chosen",
-        "detail": "p123 3648b",
-        "seconds": 1.9
+        "cause": "loose-part",
+        "detail": "p1002 32072",
+        "seconds": 2.3
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p18 6573"
+        ],
+        "rates": [
+          {
+            "p968 41896": [
+              1,
+              0
+            ],
+            "p18 6573": [
+              0,
+              1.89e-13
+            ],
+            "p123 3648b": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "cause": "part-fixed",
+        "detail": "p18 6573",
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -617,6 +668,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              53.99,
+              5.73
+            ],
+            [
+              18,
+              1.91
+            ]
+          ]
+        ],
         "strayed": [
           "p926 3673"
         ],
@@ -627,7 +690,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -697,6 +760,48 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0.97,
+              0.22
+            ]
+          ]
+        ],
         "strayed": [
           "p1081 6536"
         ],
@@ -706,7 +811,7 @@
           [],
           []
         ],
-        "seconds": 8.2
+        "seconds": 9.9
       },
       {
         "result": "not checked",

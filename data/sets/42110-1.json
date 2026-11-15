@@ -75,21 +75,25 @@
         ],
         "stays": [
           "p242 3708"
-        ]
+        ],
+        "held": [
+          "p242 3708"
+        ],
+        "note": "the engine is held, as the function says (\"with the engine held\"): p242, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
-        "does": "The four-speed sequential gearbox at the back: tipping the + / - lever between the front seats turns a rod running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
+        "does": "The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
         "mechanisms": [
           "sequential-gearbox: 4 speeds"
         ],
-        "source": "book page 490 (+ / - picture and the 4-speed sequential gearbox labelled in the drawing); the linkage is inferred from the model",
+        "source": "book page 490 (the + / - knob and the 4-speed sequential gearbox labelled in the drawing); the linkage is inferred from the model",
         "control": "p385 3706",
         "moves": [
           "p723 32072",
           "p715 32072",
           "p578 42110 - 35188"
         ],
-        "note": "Unsure which part is the lever's handle; p385 is the rod it turns. The rod lies along the car, so the lever tips sideways."
+        "note": "Signed by Erik, 2026-11-14: the + / - control is a round knob rocked left and right on the rod p385, not a lever"
       },
       {
         "does": "The D-N-R lever in the console slides a driving ring in the gearbox in front of the console, choosing forward, neutral or reverse.",
@@ -183,12 +187,13 @@
         "control": "p2475 3710"
       },
       {
-        "does": "The roof, with its rack, lifts off.",
+        "does": "The roof rack, with its roof box, side case and ladder, lifts off; the white roof stays.",
         "mechanisms": [
-          "removable: roof"
+          "removable: roof rack"
         ],
-        "source": "book page 491 (right: arrow lifting it off)",
-        "skip": "taken off by hand, not a mechanism"
+        "source": "book page 491 (right: arrow lifting the rack off)",
+        "skip": "taken off by hand, not a mechanism",
+        "note": "Signed by Erik, 2026-11-14: only the roof rack lifts off, and the roof stays"
       }
     ],
     "questions": [
@@ -198,15 +203,15 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 1150,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 1261,
     "counts": {
-      "works": 10,
-      "partly": 3,
-      "not back": 3,
-      "skipped": 2
+      "works": 12,
+      "partly": 1,
+      "skipped": 2,
+      "not back": 1,
+      "torn": 1
     },
     "loose": [
       "p593 18947",
@@ -237,7 +242,15 @@
       "p2238 15068",
       "p2239 15068",
       "p2240 15068",
-      "p2241 15068"
+      "p2241 15068",
+      "p2618 22977",
+      "p2620 41837",
+      "p2622 22977",
+      "p2624 41837",
+      "p2626 22977",
+      "p2628 22977",
+      "p2630 22977",
+      "p2632 22977"
     ],
     "functions": [
       {
@@ -256,19 +269,19 @@
             ],
             "p81 42110 - 23801": [
               0.22,
-              3.07e-10
+              4.89e-7
             ],
             "p86 42110 - 23801": [
               0.22,
-              1.81e-10
+              4.85e-7
             ],
             "p509 42110 - 23801": [
               0,
-              9.92e-14
+              2.5e-13
             ],
             "p516 42110 - 23801": [
               0,
-              1.9e-13
+              1.52e-13
             ]
           }
         ],
@@ -284,7 +297,19 @@
             ]
           ]
         ],
-        "seconds": 150.3
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 149
       },
       {
         "result": "works",
@@ -314,7 +339,19 @@
             ]
           ]
         ],
-        "seconds": 149.1
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 148.7
       },
       {
         "result": "partly",
@@ -332,109 +369,124 @@
           {
             "p242 3708": [
               0.0182,
-              4.97e-13
+              3.53e-13
             ],
             "p211 4519": [
               0,
-              6.03e-24
+              7.99e-26
             ],
             "p223 4519": [
               0,
-              4.75e-24
+              8.45e-26
             ]
           }
         ],
         "back": [
           [
             [
-              5.22,
-              2.98
+              0,
+              0
             ],
             [
-              5.22,
-              2.98
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p43 62520"
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 124.1
+        "seconds": 60.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "moved": [
-          "p242 3708"
         ],
         "rates": [
           {
             "p2613 42110 - 49294": [
               1,
-              1.29e-7
+              1.19e-9
             ],
             "p38 62821": [
               1,
-              7.96e-13
+              7.28e-13
             ],
             "p242 3708": [
-              0.0182,
-              6.48e-13
+              2.81e-8,
+              7.58e-14
             ]
           }
         ],
         "back": [
           [
             [
-              5.23,
-              2.98
+              0.04,
+              0.02
             ],
             [
-              5.22,
-              2.98
+              0.02,
+              0.01
             ]
           ]
         ],
-        "strayed": [
-          "p43 62520"
+        "torn": [
+          [
+            [
+              0,
+              0.01
+            ],
+            [
+              0,
+              0.01
+            ]
+          ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p242 3708",
-        "seconds": 126.9
+        "seconds": 134.1
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p715 32072",
-          "p578 42110 - 35188"
-        ],
         "rates": [
           {
             "p723 32072": [
               1,
-              4.5e-13
+              3.91e-13
             ],
             "p715 32072": [
-              0,
-              0
+              1,
+              3.89e-13
             ],
             "p578 42110 - 35188": [
-              0,
-              0
+              1,
+              2.1e-13
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p715 32072": 1,
+            "p578 42110 - 35188": 1
           }
         ],
         "back": [
@@ -449,9 +501,19 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p715 32072",
-        "seconds": 15.2
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 17.5
       },
       {
         "result": "works",
@@ -481,7 +543,19 @@
             ]
           ]
         ],
-        "seconds": 14.9
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 17.8
       },
       {
         "result": "works",
@@ -511,7 +585,19 @@
             ]
           ]
         ],
-        "seconds": 15
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 17.8
       },
       {
         "result": "works",
@@ -525,7 +611,7 @@
           {
             "p958 32012": [
               1,
-              8.53e-14
+              1.61e-13
             ]
           }
         ],
@@ -541,7 +627,19 @@
             ]
           ]
         ],
-        "seconds": 14.4
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 17.8
       },
       {
         "result": "skipped"
@@ -569,14 +667,36 @@
               0.06
             ],
             [
-              0.75,
-              0.18
+              0.73,
+              0.17
             ]
           ],
           [
             [
-              0.75,
-              0.18
+              0.73,
+              0.17
+            ],
+            [
+              0.23,
+              0.06
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.23,
+              0.06
+            ],
+            [
+              0.73,
+              0.17
+            ]
+          ],
+          [
+            [
+              0.73,
+              0.17
             ],
             [
               0.23,
@@ -586,7 +706,7 @@
         ],
         "strayed": [
           "p1856 4519",
-          "p1942 4519"
+          "p1958 32014"
         ],
         "pushed": [
           true,
@@ -597,7 +717,7 @@
           [],
           []
         ],
-        "seconds": 408.7
+        "seconds": 528.1
       },
       {
         "result": "works",
@@ -622,20 +742,32 @@
             ]
           ]
         ],
-        "seconds": 15.6
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 18.3
       },
       {
         "result": "works",
         "turned": [
           [
-            1.55,
-            -1.55
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {
             "p1504 32065": [
-              0.00894,
+              5.62e-8,
               40
             ]
           }
@@ -643,19 +775,31 @@
         "back": [
           [
             [
-              0.26,
-              0.34
+              0,
+              0
             ],
             [
-              0.28,
-              0.34
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
             ]
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 6
+        "seconds": 11.9
       },
       {
         "result": "works",
@@ -669,6 +813,18 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -681,7 +837,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 35.6
+        "seconds": 45.7
       },
       {
         "result": "works",
@@ -706,8 +862,20 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "freed": 2,
-        "seconds": 35.9
+        "seconds": 47.4
       },
       {
         "result": "skipped"

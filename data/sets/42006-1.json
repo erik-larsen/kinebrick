@@ -134,10 +134,9 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 82,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 72,
     "counts": {
       "works": 2,
       "partly": 3,
@@ -261,7 +260,19 @@
             ]
           ]
         ],
-        "seconds": 6.9
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 5.8
       },
       {
         "result": "partly",
@@ -308,9 +319,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p206 60485",
-        "seconds": 7
+        "seconds": 6.2
       },
       {
         "result": "partly",
@@ -360,9 +383,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p250 55013",
-        "seconds": 16.7
+        "seconds": 15.3
       },
       {
         "result": "partly",
@@ -433,9 +468,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p648 92695 against p647 92693c01",
-        "seconds": 6.9
+        "seconds": 6.3
       },
       {
         "result": "not checked",
@@ -509,13 +556,55 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 43.8
+        "seconds": 37.6
       }
     ]
   }

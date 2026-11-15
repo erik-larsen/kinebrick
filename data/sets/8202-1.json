@@ -78,13 +78,13 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
+    "commit": "716b8262",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "partly": 1,
       "not back": 1,
+      "torn": 1,
       "skipped": 2,
       "works": 1
     },
@@ -173,6 +173,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0.56,
+              0.47
+            ],
+            [
+              0.12,
+              0.38
+            ]
+          ],
+          [
+            [
+              0.56,
+              0.47
+            ],
+            [
+              0.12,
+              0.38
+            ]
+          ]
+        ],
         "strayed": [
           "p49 32013"
         ],
@@ -192,7 +214,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p45 32013",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -227,6 +249,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,

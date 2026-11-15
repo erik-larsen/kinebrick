@@ -169,13 +169,12 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 7,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 10,
     "counts": {
-      "works": 4,
-      "partly": 4,
+      "works": 5,
+      "partly": 3,
       "skipped": 2,
       "not checked": 1
     },
@@ -310,29 +309,43 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "torn": [
+          [
+            [
+              0.03,
+              0.04
+            ],
+            [
+              0.03,
+              0.04
+            ]
+          ]
+        ],
+        "seconds": 0.6
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p533 3709b"
-        ],
         "rates": [
           {
             "p533 3709b": [
-              0,
+              0.037,
               0
             ],
             "p811 3709b against p533 3709b": [
-              0,
-              0
+              8.43e-8,
+              1.14e-13
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p533 3709b": 0.037
           }
         ],
         "back": [
@@ -347,9 +360,19 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p533 3709b",
-        "seconds": 0.4
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -387,7 +410,19 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -427,11 +462,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -456,7 +513,7 @@
             ],
             "p811 3709b against p533 3709b": [
               0,
-              9.11e-66
+              3.32e-67
             ],
             "p903 2428 against p811 3709b": [
               0,
@@ -470,7 +527,7 @@
             ],
             "p811 3709b against p533 3709b": [
               0,
-              9.11e-66
+              3.32e-67
             ],
             "p903 2428 against p811 3709b": [
               0,
@@ -479,6 +536,28 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -506,7 +585,7 @@
         ],
         "cause": "loose-part",
         "detail": "p951 70644",
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "skipped",
@@ -532,11 +611,11 @@
             ],
             "p897 3482 against p811 3709b": [
               0,
-              2.47e-47
+              3.27e-49
             ],
             "p811 3709b against p533 3709b": [
               0,
-              2.3e-47
+              3.05e-49
             ]
           }
         ],
@@ -552,9 +631,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "why": [
+          "p903 2428 against p811 3709b is held by friction pins the control doesn't reach"
+        ],
         "cause": "loose-part",
         "detail": "p903 2428",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -582,12 +676,24 @@
               0
             ],
             "p903 2428 against p811 3709b": [
-              9.52e-7,
-              4.92e-12
+              0.00000106,
+              5.14e-12
             ]
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -608,9 +714,9 @@
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p692 2793 against p533 3709b",
-        "seconds": 1.6
+        "cause": "loose-part",
+        "detail": "p903 2428",
+        "seconds": 3.1
       },
       {
         "result": "skipped",
@@ -684,13 +790,55 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 1.6
+        "seconds": 2.2
       },
       {
         "result": "not checked",

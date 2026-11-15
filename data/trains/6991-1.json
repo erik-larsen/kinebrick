@@ -33,12 +33,13 @@
     ]
   },
   "generated": {
-    "commit": "9ec3c9a",
+    "commit": "470e358a",
     "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 494,
+    "date": "2026-11-15",
+    "seconds": 106,
     "counts": {
-      "works": 4
+      "works": 3,
+      "partly": 1
     },
     "loose": [
       "p9 4740",
@@ -64,8 +65,12 @@
         "result": "works"
       },
       {
-        "result": "works",
-        "travelled": 6069,
+        "result": "partly",
+        "why": [
+          "went 121 of a 6079 LDU lap",
+          "stopped: p544 2688 ran into p550 2685"
+        ],
+        "travelled": 121,
         "length": 6079,
         "offTrack": 0.2,
         "apart": 0,

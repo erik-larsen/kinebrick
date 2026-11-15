@@ -35,13 +35,14 @@
         ],
         "source": "book: page 118 (bottom inset, the axle articulating over rough ground), steps 27-35 and 47-53",
         "control": "p122 32524",
+        "lifted": true,
         "moves": [
           "p122 32524"
         ],
         "stays": [
           "p157 32524"
         ],
-        "note": "The steering shaft runs through the turntable's centre, so the axle swings round it without steering the wheels much."
+        "note": "The steering shaft runs through the turntable's centre, so the axle swings round it without steering the wheels much.. lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36); and here the axle swings about its own drive shaft, so the differential’s ring gear goes round the pinion and the wheels must turn against each other, which the floor’s hold on the tyres would stop"
       },
       {
         "does": "The rear axle swings side to side on its own turntable under the back of the chassis (pendular suspension), between two shock absorbers that telescope as it swings.",
@@ -50,6 +51,7 @@
         ],
         "source": "book: page 118 (bottom inset), steps 6 (the turntable) and the rear axle and shock steps; the shocks telescoping is inferred from the parts",
         "control": "p157 32524",
+        "lifted": true,
         "moves": [
           "p157 32524",
           "p193 4254 against p194 4255",
@@ -57,7 +59,8 @@
         ],
         "stays": [
           "p122 32524"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36); and here the axle swings about its own drive shaft, so the differential’s ring gear goes round the pinion and the wheels must turn against each other, which the floor’s hold on the tyres would stop"
       },
       {
         "does": "The two shock absorbers' springs push the rear axle back level.",
@@ -137,12 +140,14 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 9,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 15,
     "counts": {
-      "no": 3,
+      "no": 2,
+      "partly": 1,
+      "not back": 1,
+      "torn": 1,
       "skipped": 1,
       "works": 5
     },
@@ -198,6 +203,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -205,7 +222,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -242,68 +259,95 @@
             ]
           ]
         ],
-        "stop": [
+        "torn": [
           [
-            "no motion",
-            "no motion"
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 0.1
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "cause": "stopped-early",
+        "seconds": 0.2
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.4,
+            -0.4
           ]
         ],
         "still": [
-          "p157 32524",
-          "p193 4254 against p194 4255",
           "p200 4254 against p198 4255"
         ],
         "rates": [
           {
             "p157 32524": [
-              0,
-              0
+              1,
+              20
             ],
             "p193 4254 against p194 4255": [
-              0,
-              0
+              2.11e-7,
+              44.6
             ],
             "p200 4254 against p198 4255": [
-              0,
-              0
+              1.05e-7,
+              2.36
             ],
             "p122 32524": [
               0,
-              0
+              4.7e-36
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              56.19,
+              76.5
             ],
             [
-              0,
-              0
+              56.19,
+              76.5
             ]
           ]
         ],
-        "stop": [
+        "torn": [
           [
-            "no motion",
-            "no motion"
+            [
+              56.19,
+              76.5
+            ],
+            [
+              56.19,
+              76.5
+            ]
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 0.1
+        "strayed": [
+          "p185 3749",
+          "p189 3749"
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "cause": "not-driven",
+        "detail": "p200 4254 against p198 4255",
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -337,7 +381,19 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -375,8 +431,20 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "freed": 2,
-        "seconds": 0.8
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -416,12 +484,34 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "freed": 2,
         "movedBy": [
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -451,10 +541,22 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "pushed": [
           true
         ],
-        "seconds": 1.3
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -524,13 +626,55 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 3.2
+        "seconds": 5.3
       }
     ]
   }

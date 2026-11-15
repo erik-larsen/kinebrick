@@ -50,9 +50,8 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
+    "commit": "716b8262",
+    "date": "2026-11-15",
     "seconds": 0,
     "counts": {
       "works": 2
@@ -107,8 +106,20 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "freed": 1,
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",
@@ -148,11 +159,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 0.1
+        "seconds": 0
       }
     ]
   }

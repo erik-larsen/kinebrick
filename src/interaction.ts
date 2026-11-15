@@ -38,7 +38,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
 import { Mechanism } from './mechanism.ts';
-import { leastSquares, pointDirections as directionsOf, pushStep } from './push.ts';
+import { leastSquares, pointDirections as directionsOf, pushStep, wayOnJoint } from './push.ts';
 import { knobTurn } from './turn.ts';
 
 const HANDLE_COLOUR = 0x1d6fe0;
@@ -564,7 +564,7 @@ export function setUpInteraction(s: InteractionSetup) {
 
   function toggleFreeze(body: number, clientX: number, clientY: number) {
     const name = s.mech.bodies[body].name;
-    if (body === 0 && s.kin.frameFixed()) {
+    if ((body === 0 && s.kin.frameFixed()) || s.kin.stillFrames.has(body)) {
       showMessage(`The ${name} already stays put: the model has no means of locomotion`, clientX, clientY);
       return;
     }
@@ -838,6 +838,11 @@ export function setUpInteraction(s: InteractionSetup) {
       }
       stuck = false;
       while (moved < distance - 1e-9) {
+        // A part on a joint of its own (a door, a lid) is kept moving the way its joint now
+        // carries the point, round its hinge, rather than along the line it first went, which
+        // the push would keep it to by moving other parts (see wayOnJoint).
+        const way = wayOnJoint(s.kin, body, push.grabStart.clone().applyMatrix4(s.kin.poses[body]));
+        if (way) push.dir.copy(way.dot(push.dir) >= 0 ? way : way.negate());
         const step = Math.min(MAX_STEP, distance - moved);
         const went = pushStep(s.kin, body, push.grabStart, push.dir, step, () => {
           const pair = s.blockedBy();

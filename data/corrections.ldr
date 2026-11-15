@@ -8,6 +8,18 @@
 0 // set places; !KINEBRICK TRACK for track links, and how far they reach out beyond the line
 0 // through their pins; !KINEBRICK GROOVE for grooves a plate slides into edge first).
 
+0 FILE 32020.dat
+0 // Wheel Rim 18 x 37 with 6 Pegholes and Long Axle Bush: the axle hole through its long bush, along its axis from z -46 to 10 (its shape's axle hole primitives); the shadow library gives its six pegholes but not this hole, so a rim on an axle was read loose
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 56] [center=true] [pos=0 0 -18] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 30285.dat
+0 // Wheel Rim 14.8 x 16.8 with Centre Groove: the pin hole along its axis, from z 0 to 20 (its shape's peghole primitives), that a pin turns in; it has no shadow file, and had no data but its measured tyre seat
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=0 0 10] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 6580a.dat
+0 // Wheel Rim 23 x 22 Offroad with Axlehole (6580 is moved to it): its axle hole along its axis, from z 1 to 21 (its shape's axle hole primitive); it has no shadow file, and had no data but its measured tyre seat
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 20] [center=true] [pos=0 0 11] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 3482.dat
 0 // Wheel Rim 8 x 17.5 with Axlehole: tyre seat around its outside, 20 LDU wide
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 22 20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
@@ -100,6 +112,10 @@
 0 // Wheel Rim 34 x 56 with 6 Spokes and 3 Pegholes: a seat between its flanges, which reach
 0 // from z = -45 to 39
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 65 84] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
+0 // and its three pegholes, from z -12 to 8 (its shape's peghole primitives), which the three pins of a portal hub (92909) go into; the data had only its centre axle hole, so a rim on a hub was read loose
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=0 20 -2] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=17.32 -10 -2] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 20] [center=true] [pos=-17.32 -10 -2] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 15038.dat
 0 // Wheel Rim 34 x 56 with 6 Spokes and 6 Pegholes: the same seat as 44772
@@ -200,8 +216,8 @@
 0 !KINEBRICK GEAR [teeth=12] [radius=15] [width=7] [spur=false] [bevel=+] [apex=17] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 32072.dat
-0 // Technic Gear 4 Knob (the knob wheel): its four knobs engage another knob wheel's on an axle crossing its own at right angles, each wheel's middle 20 LDU from where the axles cross (as all 43 such pairs in the OMR's Technic sets sit). So it's declared a 4 tooth double bevel gear whose cones' tips are 20 LDU out along its axle, turning the other 1:1. Its knobs aren't teeth of LEGO's size, so it meshes with nothing else, nor side by side.
-0 !KINEBRICK GEAR [teeth=4] [radius=20] [width=20] [spur=false] [bevel=both] [apex=20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 // Technic Gear 4 Knob (the knob wheel): its four knobs engage another knob wheel's on an axle crossing its own at right angles, each wheel's middle 20 LDU from where the axles cross (as all 43 such pairs in the OMR's Technic sets sit). So it's declared a 4 tooth double bevel gear whose cones' tips are 20 LDU out along its axle, turning the other 1:1. Two knob wheels side by side on parallel axles 40 LDU apart engage too (the 42076's and the 42110's), turning each other 1:1 and opposite ways, so it's a spur gear as well; a pair is read as one or the other, by whether their axles are parallel. Its knobs aren't teeth of LEGO's size, so it meshes with nothing else.
+0 !KINEBRICK GEAR [teeth=4] [radius=20] [width=20] [bevel=both] [apex=20] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 4143.dat
 0 // Technic Gear 14 Tooth Bevel (the old differential's gears): teeth face -z, cone tip 17 LDU out. Its pitch radius is 17.5 LDU, a 14 tooth gear's at LEGO's tooth size, so it meshes with the old differential's 28 tooth crown wheel (4142) as its pinion
@@ -276,6 +292,36 @@
 0 FILE 30663.dat
 0 // Car Steering Wheel 2L (and 16091, built on it): its centre is the round hole the shadow library gives, a stud or a half pin turning in it, as the wheel spins on its half pin in the 42101; the stud tube primitive (stud4od) under it is not an anti-stud that holds
 0 !LDCAD SNAP_CLEAR [id=aStud]
+
+0 FILE 52731.dat
+0 // Technic Steering Constant Velocity 8mm Joint Male: its ball, at its origin, which turns in a 52730's socket or in the planetary wheel hub's (46490c01's driving shaft, u9477), and drives through it as a grooved ball does (see groovedBalls)
+0 !LDCAD SNAP_GEN [gender=M] [bounding=sph 8]
+
+0 FILE 52730.dat
+0 // Technic Steering Constant Velocity 8mm Joint Female with 3L Axle: the socket at its origin that a 52731's ball turns in, its axle running on from it
+0 !LDCAD SNAP_GEN [gender=F] [bounding=sph 8]
+
+0 FILE 46490c01.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction, read as its pieces (role "split"): the bearing body 46490c02, which steers with the upright; the driving shaft u9477, turning in it, which a constant velocity joint's ball drives; and the wheel hub 46434, turning in it too, driven by the shaft through planetary gears the LDraw part doesn't draw. The hub turns once for every `ratio` turns of the shaft, the same way round (the ring fixed in the body, the planet carrier the hub): ratio = 1 + ring teeth / sun teeth = 1 + 44/10 = 5.4: sun 10, ring 44, ring fixed, carrier out, counted from X-ray pictures (Eurobricks, "Planetary hub internals") and given as 5.4:1 by Rebrickable; the LDraw shapes carry no teeth
+0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat] [against=46490c02.dat] [ratio=5.4]
+
+0 FILE u9477.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Driving Shaft (a piece of 46490c01): the constant velocity socket at its origin that a 52731's ball turns in and drives it through, and a round bearing on the hub's axis (z) there, turning in the bearing body
+0 !LDCAD SNAP_GEN [gender=F] [bounding=sph 8]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 11 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 46490c02.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Body (a piece of 46490c01): round bearings on the hub's axis (z) for the driving shaft, at the middle, and for the wheel hub, 30 LDU out
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 11 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 30 6] [center=true] [pos=0 0 -30] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 46434.dat
+0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Wheel Hub (a piece of 46490c01): a round bearing on its axis (z), turning in the bearing body
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 2996.dat
+0 // Wheel Rim 30 x 30 with 40mm Diameter Rear Rim: tyre seat round its barrel, the 34 LDU radius cylinder between z -25 and 19 in its shape, where its tyre (2995, whose bore is 34) sits; measured, it took the 54 LDU flange of its 40 mm rear rim instead, and the tyre was read loose
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=T 34 44] [center=true] [pos=0 0 -3] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 6542a.dat
 0 // Technic Gear 16 Tooth with Clutch: its clutch face is the 5 LDU at its +z end
@@ -809,3 +855,52 @@
 0 FILE 4282.dat
 0 // Plate 2 x 16: a stud fits in each of the 15 tubes along its underside's middle, 20 LDU apart (10277's cab roof stands on two jumpers' studs in them), which the shadow library leaves out
 0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=R 6 4] [pos=0 8 0] [grid=C 15 C 1 20 20]
+
+0 // Shock absorbers in two parts: the rod slides in its cylinder along their shared axis, the cylinder's y, and may turn in it (a strut that is also a kingpin). "0 !KINEBRICK SHOCK [rod=...] [dir=0 1 0] [from=...] [to=...]" on the cylinder says which rod fits it and how far the rod's origin (its end hole) lies from the cylinder's origin along that axis, the rod placed the same way round: `from` with the rod fully in, `to` fully out. These are the slide's end stops. Where the LDraw library has the whole shock extended (-f1) and compressed (-f2), they are the distances those shapes place the two parts at; the shadow library's own rod and bore sections are left as they are.
+
+0 FILE 2909.dat
+0 // Technic Shock Absorber 9L Cylinder, with its rod 2910: 75348-f1 and 74741-f1 (extended) place the rod 120 from the cylinder, -f2 (compressed) 80. The 42036's and 8838's front forks are built fully out (120), the 8257's fully in (80).
+0 !KINEBRICK SHOCK [rod=2910] [dir=0 1 0] [from=80] [to=120]
+
+0 FILE 4255.dat
+0 // Technic Shock Absorber 6.5L Cylinder, with its rod 4254. Every complete 6.5L shock (73129, 41838, 76138, 76537, 89953, 89954) places the rod 110 from the cylinder, extended; the library has no compressed shape. Fully in is from the drawings: the rod reaches 80 below its origin and the cylinder's floor is 10 above its own, so the rod's end meets the floor with the rod at 90 (its flange, 15 below its origin, would meet the cylinder's top, at 58, only at 73). The sets build it from 96 to 110.
+0 !KINEBRICK SHOCK [rod=4254] [dir=0 1 0] [from=90] [to=110]
+
+0 FILE 2943ac01.dat
+0 // Technic Pneumatic Pump 1 x 1 x 5.5 Body, with its piston 2944c02, which a spring pushes out again: the small pump, as its shortcuts 74982-f1 (retracted) and 74982-f2 (extended) place it, read as its pieces. 74982-f1 places the piston 90 above the body, 74982-f2 130 above it, so it slides from 90 (fully in) to 130 (fully out).
+0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=90] [to=130]
+
+0 FILE 32181c05.dat
+0 // Technic Shock Absorber 10L Damped with Black Cap Body Assembly, with its rod 32183c02: 63144-f1 and 76320-f1 (extended) place the rod 180 from the body, -f2 (compressed) 120. (The obsolete cylinders 32181c01 to c04 place the cylinder elsewhere and aren't given; no set has them.)
+0 !KINEBRICK SHOCK [rod=32183c02] [dir=0 1 0] [from=120] [to=180]
+
+0 FILE 65143c01.dat
+0 // Technic Shock Absorber 11L Body Assembly, with its piston 65141c01: 65151c01-f1 and 65151c02-f1 (extended) place the piston 95 from the body, -f2 (compressed) 55.
+0 !KINEBRICK SHOCK [rod=65141c01] [dir=0 1 0] [from=55] [to=95]
+
+0 FILE 65143.dat
+0 // Technic Shock Absorber 11L Body, placed as in its assembly 65143c01: the same.
+0 !KINEBRICK SHOCK [rod=65141c01] [dir=0 1 0] [from=55] [to=95]
+
+0 FILE 69633c01.dat
+0 // Technic Shock Absorber 18L Body Assembly, with its piston 69635: 67498-f1 (extended) places the piston 330 from the body, -f2 (compressed) 270.
+0 !KINEBRICK SHOCK [rod=69635] [dir=0 1 0] [from=270] [to=330]
+
+0 FILE 69633.dat
+0 // Technic Shock Absorber 18L Body, placed as in its assembly 69633c01: the same.
+0 !KINEBRICK SHOCK [rod=69635] [dir=0 1 0] [from=270] [to=330]
+
+0 FILE 80022.dat
+0 // Technic Shock Absorber 9L Thick Cylinder, with its piston 80021: 79717p01-f1 and the other 79717 and 80028-based shocks (extended) place the piston 160 from the cylinder, -f2 (compressed) 140.
+0 !KINEBRICK SHOCK [rod=80021] [dir=0 1 0] [from=140] [to=160]
+
+0 FILE 41681.dat
+0 // Technic Beam 3.8 x 1 Liftarm with Click Rotation Ring Socket: the shadow library closes its click rotation socket at one end (caps=one) with a pin's bore and the groove its tip clicks into, but no pin hole's collar, so no rule takes a pin in it (the 8012's arms, on 41680). Open here, so the pin of a 41680 turns in it. It turns freely: the click rotation holds in steps in the real part, but read as a friction pin the 8012's legs were held in the frame even with every friction pin freed, so they couldn't be worked. Its other lines as the shadow library has them, and the axle hole its LDraw shape gives it.
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 20] [center=true]
+0 !LDCAD SNAP_INCL [ref=connhole.dat] [pos=0 0 -20]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 16   R 6.25 4] [pos=0 0 -58] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 47508.dat
+0 // Excavator Bucket 8 x 4 with Click Hinge 2-Finger: its fingers are the click hinge primitive clh11, which the shadow library gives nothing. The slot between its two fingers, along x through its origin, takes a 1-finger click hinge (47973's, an H section of radius 4 and length 8), so it is given here as that finger's female, 8 long.
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=H 4 8] [center=true] [ori=0 -1 0 1 0 0 0 0 1]

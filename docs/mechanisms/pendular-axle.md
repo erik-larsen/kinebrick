@@ -4,7 +4,7 @@ A rigid axle swings side to side on a central pivot or turntable. (Suspension.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.
 
-Used in 8 of the 186 surveyed sets, by 9 functions. Kinebrick: 1 works, 2 partly, 4 no, 2 skipped.
+Used in 8 of the 186 surveyed sets, by 9 functions. Kinebrick: 2 works, 2 partly, 3 no, 2 skipped.
 
 ## By decade
 
@@ -40,7 +40,7 @@ Each detail by the set it first appears in.
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- The front and rear axles each swing side to side on a central pivot, with a shock absorber either side, so the tracks follow the ground. (partly)
+- The front and rear axles each swing side to side on a central pivot, with a shock absorber either side, so the tracks follow the ground. (no)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
@@ -48,7 +48,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- *rear axles:* The two rear axles each rock side to side on a turntable, so all six wheels stay on rough ground. (no)
+- *rear axles:* The two rear axles each rock side to side on a turntable, so all six wheels stay on rough ground. (works)
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
@@ -57,7 +57,7 @@ Each detail by the set it first appears in.
 **2021, [42122 Jeep Wrangler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42122-1)**
 
 - *front:* The front axle swings side to side on a turntable under the chassis, so the front wheels follow rough ground (pendular suspension). (no)
-- *rear:* The rear axle swings side to side on its own turntable under the back of the chassis (pendular suspension), between two shock absorbers that telescope as it swings. (no)
+- *rear:* The rear axle swings side to side on its own turntable under the back of the chassis (pendular suspension), between two shock absorbers that telescope as it swings. (partly)
 
 ---
 

@@ -160,10 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 80,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 99,
     "counts": {
       "partly": 4,
       "works": 2,
@@ -339,9 +338,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p2625 57518",
-        "seconds": 18.3
+        "seconds": 21.2
       },
       {
         "result": "partly",
@@ -397,9 +408,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p2669 57518",
-        "seconds": 6.3
+        "seconds": 8.2
       },
       {
         "result": "works",
@@ -465,6 +488,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [
             "p2611 57519"
@@ -473,7 +518,7 @@
             "p2613 57519"
           ]
         ],
-        "seconds": 24.5
+        "seconds": 31.3
       },
       {
         "result": "works",
@@ -526,7 +571,19 @@
             ]
           ]
         ],
-        "seconds": 18.3
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 23.6
       },
       {
         "result": "partly",
@@ -537,9 +594,6 @@
           ]
         ],
         "still": [
-          "p1465 3648b",
-          "p2780 32140",
-          "p2805 32140",
           "p2901 6178",
           "p2715 3703",
           "p2731 3703"
@@ -604,6 +658,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -611,7 +677,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 5.1
+        "seconds": 6.5
       },
       {
         "result": "partly",
@@ -676,6 +742,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -683,7 +761,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 6.2
+        "seconds": 7.4
       },
       {
         "result": "skipped",

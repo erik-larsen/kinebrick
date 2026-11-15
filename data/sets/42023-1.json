@@ -84,10 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 6,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 7,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -145,6 +144,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -152,8 +163,8 @@
           ]
         ],
         "freed": 1,
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "cause": "one-link-too-many",
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -238,6 +249,31 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "why": [
+          "p213 64782 against p300 32278 is held by friction pins the control doesn't reach"
+        ],
         "movedBy": [
           [
             "p317 32198 against p0 32140",
@@ -251,7 +287,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 4
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -270,6 +306,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -351,13 +399,55 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.4
       }
     ]
   }

@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 26 works, 64 partly, 3 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 28 works, 62 partly, 3 no, 4 not checked.
 
 ## By decade
 
@@ -38,15 +38,15 @@ Each detail by the set it first appears in.
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
 - *4 functions:* The Power Functions XL motor drives the crane's four functions one at a time: the battery box's switch turns it on, the red lever with a towball handle (on the polarity switch) sets its direction, and two yellow levers on the right of the gearbox choose which function it drives (each lever up or down, or both in the middle for none). (not checked)
-- The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the first yellow lever (the one with p164 and p167) is pushed down. (partly)
+- The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (works)
 - The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (partly)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
-- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the second yellow lever is pushed down. (partly)
+- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
 - *4 functions:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of four outputs: the front winch, the crane's slewing, the compressor, or a fourth output. (works)
-- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (partly)
+- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
 - With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (partly)
 - With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
 - With the yellow lever down and the red knob pushed in, the motor works a fourth output. (works)

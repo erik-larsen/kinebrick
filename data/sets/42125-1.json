@@ -58,7 +58,11 @@
         "moves": [
           "p3025 44771 against p15 62821"
         ],
-        "note": "With the crankshaft held, turning one rear wheel turns the other backwards."
+        "note": "With the crankshaft held, turning one rear wheel turns the other backwards.; the engine is held, as the function says (\"holding the engine\") and its note (\"With the crankshaft held\"): the crankshaft p165, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
+        "held": [
+          "p165 2853"
+        ]
       },
       {
         "does": "Each front wheel rides on its own pair of wishbones (independent suspension), sprung by a shock absorber.",
@@ -126,10 +130,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 151,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 214,
     "counts": {
       "partly": 1,
       "works": 5,
@@ -215,7 +218,9 @@
       "p1469 77",
       "p1470 77",
       "p3048 41770",
-      "p3049 41769"
+      "p3049 41769",
+      "p3051 22977",
+      "p3053 22977"
     ],
     "functions": [
       {
@@ -263,9 +268,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 5
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -283,14 +300,14 @@
           {
             "p15 62821": [
               1,
-              9.49e-13
+              9.25e-13
             ],
             "p165 2853": [
               2.33,
               23.3
             ],
             "p181 2851 against p150 2850b": [
-              8.43e-8,
+              5.62e-8,
               14.1
             ],
             "p441 87761": [
@@ -301,18 +318,18 @@
           {
             "p15 62821": [
               1,
-              6.34e-13
+              8.19e-13
             ],
             "p165 2853": [
               2.33,
               23.3
             ],
             "p181 2851 against p150 2850b": [
-              5.62e-8,
+              8.43e-8,
               14.1
             ],
             "p441 87761": [
-              1.12e-7,
+              8.43e-8,
               2.07e-9
             ]
           }
@@ -347,6 +364,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0.02,
+              0.06
+            ],
+            [
+              0.02,
+              0.04
+            ]
+          ],
+          [
+            [
+              0.02,
+              0.08
+            ],
+            [
+              0.02,
+              0.05
+            ]
+          ]
+        ],
         "movedBy": [
           [
             "p15 62821",
@@ -359,7 +398,7 @@
             "p181 2851 against p150 2850b"
           ]
         ],
-        "seconds": 35.9
+        "seconds": 51.6
       },
       {
         "result": "works",
@@ -372,24 +411,36 @@
         "rates": [
           {
             "p3025 44771 against p15 62821": [
-              0.000448,
-              35.7
+              1,
+              1.09e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0.16,
-              0.06
+              0,
+              0
             ],
             [
-              0.13,
-              0.04
+              0,
+              0
             ]
           ]
         ],
-        "seconds": 18
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 5.7
       },
       {
         "result": "no",
@@ -451,6 +502,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -466,7 +539,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.5
+        "seconds": 1.2
       },
       {
         "result": "skipped",
@@ -510,11 +583,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0.02,
+              0.06
+            ],
+            [
+              0.02,
+              0.04
+            ]
+          ],
+          [
+            [
+              0.02,
+              0.08
+            ],
+            [
+              0.02,
+              0.05
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 35.8
+        "seconds": 51.4
       },
       {
         "result": "works",
@@ -533,6 +628,28 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -562,7 +679,7 @@
           [],
           []
         ],
-        "seconds": 18.2
+        "seconds": 45.4
       },
       {
         "result": "works",
@@ -587,8 +704,8 @@
               0.06
             ],
             [
-              0.14,
-              0.06
+              0.16,
+              0.07
             ]
           ],
           [
@@ -597,7 +714,29 @@
               0.09
             ],
             [
-              0.14,
+              0.13,
+              0.05
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.09,
+              0.06
+            ],
+            [
+              0.12,
+              0.07
+            ]
+          ],
+          [
+            [
+              0.12,
+              0.08
+            ],
+            [
+              0.09,
               0.05
             ]
           ]
@@ -606,7 +745,7 @@
           [],
           []
         ],
-        "seconds": 36.5
+        "seconds": 49.4
       }
     ]
   }

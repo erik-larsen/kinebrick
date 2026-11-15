@@ -205,7 +205,7 @@ function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], part
   }
   const poses = (kin as unknown as { poses: Matrix4[] }).poses;
   const now = () => parts.map((p, i) => poses[mech.bodyOf[i]].clone().multiply(p.matrix));
-  const collisions = new Collisions(shapeOf, mech.bodyOf, connectedPairs(mech), now(), LAYOUT_INSET);
+  const collisions = new Collisions(shapeOf, mech.bodyOf, connectedPairs(mech), now(), false, LAYOUT_INSET);
   const starts = parts.map((p) => p.matrix);
   const name = (i: number) => `p${i} ${parts[i].name.replace(/\.dat$/, '')}`;
   return (): string | null => {

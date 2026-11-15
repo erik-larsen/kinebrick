@@ -4,7 +4,7 @@ One arm carries the rear wheel, both rear wheels or the whole rear unit, pivotin
 
 First appears in 1988, in [8832 Roadster](https://erik-larsen.github.io/kinebrick/?model=8832-Roadster): The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.
 
-Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 4 works, 3 partly, 9 no.
+Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 8 works, 5 partly, 3 no.
 
 ## By decade
 
@@ -28,7 +28,7 @@ Each detail by the set it first appears in.
 
 **1988, [8832 Roadster](https://erik-larsen.github.io/kinebrick/?model=8832-Roadster)**
 
-- The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together. (no)
+- The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together. (partly)
 
 **1990, [8840 Rally Shock n' Roll Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8840-1)**
 
@@ -36,11 +36,11 @@ Each detail by the set it first appears in.
 
 **1991, [8810 Cafe Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8810-1)**
 
-- The rear wheel rides on a swinging arm: two 1x6 technic plates pivot on the axle under the frame and carry the rear wheel's axle, and two shock absorbers run from pins high on the frame down to the rear axle, so the rear wheel can rise and fall. (no)
+- The rear wheel rides on a swinging arm: two 1x6 technic plates pivot on the axle under the frame and carry the rear wheel's axle, and two shock absorbers run from pins high on the frame down to the rear axle, so the rear wheel can rise and fall. (works)
 
 **1991, [8820 Mountain Rambler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8820-1)**
 
-- The rear wheels ride on a swinging arm: two 1x6 bricks, one each side, pivot on a 10-long axle under the seat and carry the rear wheels on axle pins, joined at the back by an 8-long axle that the shock absorber pushes down, so the rear wheels rise and fall together. (no)
+- The rear wheels ride on a swinging arm: two 1x6 bricks, one each side, pivot on a 10-long axle under the seat and carry the rear wheels on axle pins, joined at the back by an 8-long axle that the shock absorber pushes down, so the rear wheels rise and fall together. (partly)
 
 **1991, [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1)**
 
@@ -56,7 +56,7 @@ Each detail by the set it first appears in.
 
 **2009, [8261 Rally Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8261-1)**
 
-- The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing. (no)
+- The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing. (partly)
 
 **2012, [9392 Quad Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9392-1)**
 
@@ -68,7 +68,7 @@ Each detail by the set it first appears in.
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 
-- The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame. (no)
+- The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame. (works)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
@@ -84,11 +84,11 @@ Each detail by the set it first appears in.
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
-- The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall. (partly)
+- The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall. (works)
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- *rear unit:* The rear unit (motor, gears, differential and rear wheels) swings up and down on a pivot at its front, sprung by two soft shock absorbers from the roll cage. (no)
+- *rear unit:* The rear unit (motor, gears, differential and rear wheels) swings up and down on a pivot at its front, sprung by two soft shock absorbers from the roll cage. (works)
 
 ---
 

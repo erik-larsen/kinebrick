@@ -41,6 +41,7 @@
         ],
         "source": "inferred: the front axle hangs from a 180 degree angle connector on the steering shaft (book step 20); not shown in the book",
         "control": "p63 32524",
+        "lifted": true,
         "moves": [
           "p63 32524",
           "p66 48989",
@@ -51,7 +52,8 @@
         "stays": [
           "p0 32526",
           "p18 32269"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
@@ -60,6 +62,7 @@
         ],
         "source": "inferred: from the model file (the rear axle's sub-assembly hangs on bent beams pivoting on a 7-long axle, with a shock absorber behind); the book draws no arrow, and the step that fits the shock absorber isn't identified",
         "control": "p45 32271",
+        "lifted": true,
         "moves": [
           "p45 32271",
           "p51 32271",
@@ -72,7 +75,7 @@
           "p0 32526",
           "p55 44294"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel; its two ends swing a little on their pins as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorber's travel; its two ends swing a little on their pins as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
@@ -80,7 +83,7 @@
           "spring: suspension"
         ],
         "source": "inferred: from the model file",
-        "control": "p3 41838",
+        "control": "p3 4254",
         "skip": "a spring only matters under gravity or force"
       },
       {
@@ -104,16 +107,18 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
+    "commit": "716b8262",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "works": 2,
-      "no": 2,
+      "no": 1,
+      "partly": 1,
       "skipped": 1
     },
-    "loose": [],
+    "loose": [
+      "p199 41837"
+    ],
     "functions": [
       {
         "result": "works",
@@ -174,6 +179,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -246,6 +263,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -259,31 +288,84 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
+            0.27,
             0
           ]
         ],
-        "still": [
-          "p45 32271",
-          "p51 32271",
-          "p43 59426",
-          "p52 59426",
-          "p194 56145",
-          "p196 56145"
+        "moved": [
+          "p55 44294"
         ],
         "rates": [
-          {}
+          {
+            "p45 32271": [
+              1,
+              0
+            ],
+            "p51 32271": [
+              1,
+              0
+            ],
+            "p43 59426": [
+              1,
+              133
+            ],
+            "p52 59426": [
+              1,
+              133
+            ],
+            "p194 56145": [
+              1,
+              133
+            ],
+            "p196 56145": [
+              1,
+              133
+            ],
+            "p0 32526": [
+              0,
+              0
+            ],
+            "p55 44294": [
+              1,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p45 32271 is part of the frame"
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "cause": "control-fixed",
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "cause": "stay-forced",
+        "detail": "p55 44294",
         "seconds": 0
       },
       {
@@ -358,13 +440,55 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       }
     ]
   }

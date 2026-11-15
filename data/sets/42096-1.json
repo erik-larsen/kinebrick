@@ -79,7 +79,8 @@
           "p159 57515",
           "p156 57515"
         ],
-        "note": "the shock absorbers' springs only matter under force; worked by hand the wheel should rise and fall with its arms"
+        "lifted": true,
+        "note": "the shock absorbers' springs only matter under force; worked by hand the wheel should rise and fall with its arms. lifted: the text has the wheel or arm moved (\"a shock absorber lets the wheel rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheels have independent suspension too, on pairs of arms with a shock absorber each.",
@@ -102,15 +103,12 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 192,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 100,
     "counts": {
       "partly": 1,
-      "works": 3,
-      "no": 1,
-      "not back": 1
+      "works": 4
     },
     "loose": [
       "p241 22977",
@@ -146,54 +144,66 @@
         "rates": [
           {
             "p6 62821": [
-              1.69e-7,
-              2.05e-13
+              0,
+              2.86e-14
             ],
             "p47 32494": [
-              1.69e-7,
-              4.15e-12
+              0,
+              1.14e-11
             ],
             "p404 32270": [
-              1.69e-7,
-              2.21e-13
+              0,
+              1.9e-14
             ],
             "p387 2852": [
-              1.69e-7,
-              2.82e-13
+              0,
+              1.92e-14
             ],
             "p391 2852": [
-              1.69e-7,
-              2.87e-13
+              0,
+              1.92e-14
             ],
             "p395 2852": [
-              1.69e-7,
-              2.39e-13
+              0,
+              1.92e-14
             ],
             "p484 2741": [
-              0.00001,
-              6.77e-13
+              0,
+              2.12e-14
             ],
             "p182 87761": [
-              8.43e-8,
-              0.00009
+              0,
+              1.39e-11
             ]
           }
         ],
         "back": [
           [
             [
-              0.04,
-              0.01
+              0,
+              0
             ],
             [
-              0.03,
-              0.01
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
             ]
           ]
         ],
         "cause": "not-driven",
         "detail": "p6 62821",
-        "seconds": 45.9
+        "seconds": 7.7
       },
       {
         "result": "works",
@@ -207,7 +217,7 @@
           {
             "p264 18575": [
               0.6,
-              6.61e-13
+              5.55e-13
             ],
             "p192 32270": [
               0.6,
@@ -223,11 +233,11 @@
             ],
             "p204 92909": [
               0.27,
-              6.92
+              6.9
             ],
             "p404 32270": [
               0,
-              2.41e-32
+              1.23e-28
             ]
           }
         ],
@@ -249,7 +259,19 @@
             ]
           ]
         ],
-        "seconds": 19.6
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 61.5
       },
       {
         "result": "works",
@@ -299,21 +321,43 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 12.2
+        "seconds": 15.5
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
             0,
-            0
+            -0.2
           ],
           [
-            0,
+            0.2,
             0
           ]
         ],
@@ -329,13 +373,35 @@
             ],
             [
               0,
-              0
+              0.03
             ]
           ],
           [
             [
               0,
+              0.03
+            ],
+            [
+              0,
               0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0.03
+            ]
+          ],
+          [
+            [
+              0,
+              0.03
             ],
             [
               0,
@@ -361,19 +427,18 @@
           [],
           []
         ],
-        "cause": "stopped-early",
-        "seconds": 65.8
+        "seconds": 2.4
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.03
+            0.13,
+            -0.07
           ],
           [
-            1.47,
-            -0.8
+            0.13,
+            -0.07
           ]
         ],
         "rates": [
@@ -383,46 +448,62 @@
         "back": [
           [
             [
-              29.31,
-              17.16
+              0.24,
+              0.04
             ],
             [
-              28.04,
-              12.07
+              0.12,
+              0.02
             ]
           ],
           [
             [
-              169.15,
-              48.32
+              0.24,
+              0.04
             ],
             [
-              103.9,
-              47.79
+              0.12,
+              0.02
             ]
           ]
         ],
-        "strayed": [
-          "p1652 87079",
-          "p1073 6558",
-          "p995 48729b",
-          "p1653 87079"
+        "torn": [
+          [
+            [
+              0.08,
+              0.04
+            ],
+            [
+              0.04,
+              0.02
+            ]
+          ],
+          [
+            [
+              0.08,
+              0.04
+            ],
+            [
+              0.04,
+              0.02
+            ]
+          ]
         ],
         "stop": [
           [
-            null,
-            "dead point"
+            "limit",
+            "limit"
           ],
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 47.1
+        "seconds": 11.4
       }
     ]
   }

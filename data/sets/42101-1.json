@@ -40,6 +40,7 @@
         ],
         "source": "book: step 10 (the swinging arm), step 12 (the shock absorber, arrow), steps 14 and 23-24 (rear axle and wheels)",
         "control": "p22 32140",
+        "lifted": true,
         "moves": [
           "p34 32140",
           "p25 32316",
@@ -52,7 +53,7 @@
           "p64 32184",
           "p94 32270"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel; the shock's cylinder swings a little on its top pin as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorber's travel; the shock's cylinder swings a little on its top pin as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
@@ -96,14 +97,13 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
+    "commit": "716b8262",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "no": 1,
+      "pivoted": 1,
       "works": 3,
-      "not back": 2,
       "skipped": 1
     },
     "loose": [],
@@ -176,21 +176,38 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
             "dead point"
           ]
         ],
-        "cause": "stopped-early",
-        "seconds": 0
+        "cause": "one-link-too-many",
+        "pivoted": {
+          "slide": 7.4,
+          "rise": 2.05,
+          "tyre": "p69 42101 - 92402"
+        },
+        "seconds": 0.1
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.33,
+            0
           ]
         ],
         "rates": [
@@ -208,43 +225,58 @@
               40
             ],
             "p79 60485": [
-              0.394,
+              1,
               80
             ],
             "p31 4254": [
-              1,
+              0.84,
               102
             ],
             "p57 32184": [
-              2.81e-8,
-              3.74e-13
+              0,
+              0
             ],
             "p64 32184": [
-              2.81e-8,
-              3.69e-13
+              0,
+              0
             ],
             "p94 32270": [
-              2.81e-8,
-              1.11e-13
+              0,
+              4.89e-54
             ]
           }
         ],
         "back": [
           [
             [
-              0.9,
-              2.66
+              0,
+              0
             ],
             [
-              1.16,
-              1.51
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p79 60485"
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "seconds": 0.2
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -279,22 +311,22 @@
         "back": [
           [
             [
-              0.1,
-              0.73
+              0,
+              0
             ],
             [
-              0.43,
-              0.18
+              0,
+              0
             ]
           ],
           [
             [
-              0.43,
-              0.18
+              0,
+              0
             ],
             [
-              0.1,
-              0.73
+              0,
+              0
             ]
           ],
           [
@@ -318,8 +350,47 @@
             ]
           ]
         ],
-        "strayed": [
-          "p79 60485"
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "movedBy": [
           [],
@@ -327,7 +398,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -361,7 +432,19 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 0.2
       }
     ]
   }

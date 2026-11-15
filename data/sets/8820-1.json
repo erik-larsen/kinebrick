@@ -43,6 +43,7 @@
         ],
         "source": "book: step 5 (shock absorber between a 6-long axle and an 8-long axle; the inset's arrows show it squeezing), step 11 (the 10-long pivot axle pushed through the arms), steps 12-13 (rear wheels)",
         "control": "p102 3894",
+        "lifted": true,
         "moves": [
           "p105 3894",
           "p32 3707",
@@ -55,7 +56,7 @@
           "p47 2717",
           "p129 3482"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel; its cylinder swings a little on its top axle as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorber's travel; its cylinder swings a little on its top axle as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
@@ -86,14 +87,13 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
+    "commit": "716b8262",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
-      "partly": 2,
-      "not back": 2,
-      "no": 1,
+      "works": 2,
+      "pivoted": 1,
+      "partly": 1,
       "skipped": 1
     },
     "loose": [
@@ -101,129 +101,132 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p125 3482",
-          "p127 3482"
-        ],
         "rates": [
           {
             "p55 3706": [
               1,
-              2.66e-13
+              2.09e-13
             ],
             "p58 3647": [
               1,
               0.00411
             ],
             "p25 2790a": [
-              5.62e-8,
+              0,
               10.2
             ],
             "p10 4261": [
               0.256,
-              2.83e-13
+              1.89e-13
             ],
             "p11 4261": [
               0.256,
-              2.81e-13
+              1.97e-13
             ],
             "p129 3482": [
-              0.298,
+              0.313,
               5.12
             ],
             "p131 3482": [
-              0.35,
+              0.313,
               5.12
             ],
             "p46 3709b": [
-              5.62e-8,
-              1.36e-13
+              0,
+              2.32e-33
             ],
             "p17 2791a": [
-              5.62e-8,
-              5.33e-14
+              0,
+              7.81e-34
             ],
             "p125 3482": [
-              0.0205,
-              4.36
+              0,
+              0
             ],
             "p127 3482": [
-              0.0172,
-              4.36
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              218.31,
-              138.2
+              0.03,
+              0.05
             ],
             [
-              218.31,
-              138.2
+              0.03,
+              0.05
             ]
           ]
         ],
-        "strayed": [
-          "p131 3482",
-          "p129 3482"
+        "torn": [
+          [
+            [
+              0.03,
+              0.05
+            ],
+            [
+              0.03,
+              0.05
+            ]
+          ]
         ],
-        "cause": "stay-chosen",
-        "detail": "p125 3482",
+        "pivoted": {
+          "slide": 1.46,
+          "rise": 0.92,
+          "tyre": "p130 2346"
+        },
         "seconds": 0.2
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
             0,
-            0
+            -0.35
           ]
         ],
-        "still": [
-          "p105 3894",
-          "p32 3707",
-          "p30 4254",
-          "p125 3482",
-          "p127 3482"
+        "moved": [
+          "p31 3706"
         ],
         "rates": [
           {
             "p105 3894": [
-              0,
-              0
+              1,
+              41.2
             ],
             "p32 3707": [
-              0,
-              0
+              0.78,
+              80
             ],
             "p30 4254": [
-              0,
-              0
+              0.56,
+              80
             ],
             "p125 3482": [
-              0,
-              0
+              1,
+              60
             ],
             "p127 3482": [
-              0,
-              0
+              1,
+              60
             ],
             "p31 3706": [
-              0,
-              0
+              0.28,
+              5.98e-50
             ],
             "p47 2717": [
               0,
-              0
+              1.32e-57
             ],
             "p129 3482": [
               0,
@@ -232,6 +235,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -245,23 +260,23 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p105 3894",
-        "seconds": 0
+        "cause": "stay-chosen",
+        "detail": "p31 3706",
+        "seconds": 0.1
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -280,54 +295,51 @@
             -1.5
           ]
         ],
-        "moved": [
-          "p102 3894"
-        ],
         "rates": [
           {
             "p102 3894": [
-              0.471,
-              19.4
-            ]
-          },
-          {
-            "p102 3894": [
-              0.471,
-              19.4
+              0,
+              2.24e-14
             ]
           },
           {
             "p102 3894": [
               0,
-              8.88e-15
+              2.16e-14
             ]
           },
           {
             "p102 3894": [
               0,
-              3.18e-14
+              1.07e-14
+            ]
+          },
+          {
+            "p102 3894": [
+              0,
+              3.34e-14
             ]
           }
         ],
         "back": [
           [
             [
-              0.16,
-              0.68
+              0,
+              0
             ],
             [
-              0.05,
-              0.59
+              0,
+              0
             ]
           ],
           [
             [
-              0.05,
-              0.59
+              0,
+              0
             ],
             [
-              0.16,
-              0.68
+              0,
+              0
             ]
           ],
           [
@@ -351,8 +363,47 @@
             ]
           ]
         ],
-        "strayed": [
-          "p103 3749"
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "movedBy": [
           [],
@@ -360,8 +411,6 @@
           [],
           []
         ],
-        "cause": "stay-chosen",
-        "detail": "p102 3894",
         "seconds": 0.7
       }
     ]

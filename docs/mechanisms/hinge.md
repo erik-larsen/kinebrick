@@ -4,14 +4,14 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 129 functions. Kinebrick: 74 works, 15 partly, 33 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 78 works, 14 partly, 32 no, 2 skipped, 5 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 41 of 83 | 11 of 21 |
-| Functions | 2 | 1 | 15 | 25 | 66 | 20 |
+| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 41 of 83 | 12 of 21 |
+| Functions | 2 | 1 | 15 | 25 | 67 | 21 |
 
 ## Details
 
@@ -21,7 +21,7 @@ Each detail by the set it first appears in.
 |---|---|---|
 | window shutters | 1978, [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) | 1 |
 | armrest | 1978, [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis) | 1 |
-| bonnet | 1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe) | 11 |
+| bonnet | 1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe) | 12 |
 | front bar | 1990, [8850 Rally Support Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8850-1) | 1 |
 | parking stand | 1991, [8810 Cafe Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8810-1) | 1 |
 | number board | 1991, [8815 Speedway Bandit](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8815-1) | 1 |
@@ -62,10 +62,11 @@ Each detail by the set it first appears in.
 | grab claws | 2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1) | 1 |
 | body | 2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1) | 2 |
 | stick | 2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1) | 1 |
-| canopy | 2015, [42033 Record Breaker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42033-1) | 2 |
+| backhoe swing | 2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1) | 1 |
+| canopy | 2015, [42033 Record Breaker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42033-1) | 3 |
 | kickstand | 2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1) | 1 |
 | cab top | 2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1) | 1 |
-| hatch | 2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1) | 3 |
+| hatch | 2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1) | 2 |
 | rudder | 2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1) | 1 |
 | door | 2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1) | 1 |
 | bodywork | 2016, [42050 Drag Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42050-1) | 1 |
@@ -150,12 +151,12 @@ Each detail by the set it first appears in.
 **1998, [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1)**
 
 - *head:* The robot's head (the eyes, the black hoses and the purple target disc on top) is set folded forward and flips up and back on its axle at the back of the body when the buggy's punch hits it. (works)
-- *arms:* The two purple arms with yellow claws swing round on upright pins at the front corners of the body; in the book they swing forward, round to the front, and snap at the buggy when the robot is hit. (partly)
+- *arms:* The two purple arms with yellow claws swing round on upright pins at the front corners of the body; in the book they swing forward, round to the front, and snap at the buggy when the robot is hit. (works)
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
 - *seat:* The purple striker's seat sits on a lever pivoted at the top of its handle: a black cage with purple hoses that holds the driver. The seat flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (partly)
-- *seat:* The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (no)
+- *seat:* The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (partly)
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
@@ -166,14 +167,14 @@ Each detail by the set it first appears in.
 
 - *legs:* The droid folds up for transport: the legs swing up against the body at the hips, turning round the axle of the 24-tooth gear in the hips, and a catch clicks into the gear to hold them folded. (works)
 - *head:* The head folds down onto the back for transport and swings back up, pivoting on an axle at the top of the torso. (works)
-- *right arm:* Turning the grey gear on the backpack raises the right arm, which holds the blaster, to aim: the gear's axle carries a 24-tooth gear driving an 8-tooth gear in the torso, whose 12-tooth bevel gear turns a 20-tooth bevel gear on the right shoulder's axle. (no)
+- *right arm:* Turning the grey gear on the backpack swings the right arm back over the shoulder to the blaster on the backpack, then forward to aim with it: the gear's axle carries a 24-tooth gear driving an 8-tooth gear in the torso, whose 12-tooth bevel gear turns a 20-tooth bevel gear on the right shoulder's axle. (no)
 - *knees:* Each leg bends at the knee, and a rubber band across the knee pulls it straight again. (works)
 
 **2000, [8002 Destroyer Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8002-1)**
 
 - *shell:* The droid changes from its standing attack shape into a wheel: the curved brown shell, hinged to the top of the back, swings forward and down round the body, while the arms, head and legs fold in, until it is a ball that can be rolled along the floor. (works)
 - *head:* The head on the front end of the shell, with its red-tipped sensors, folds down against the body. (works)
-- *arms:* Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim. (partly)
+- *arms:* Each arm swings in at the shoulder, folding its twin blasters against the body for rolling, and out again to aim. (works)
 - *elbows:* Each twin blaster bends at the elbow of its arm. (partly)
 - *front legs:* The two front legs fold back under the body for rolling and swing down to stand on. (works)
 - *back leg:* The single back leg swings up over the back to close the wheel, and down again to stand on. (works)
@@ -209,7 +210,7 @@ Each detail by the set it first appears in.
 **2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1)**
 
 - *cab:* The cab tilts forward on its pivot at the front of the chassis, taking the roof gear's shaft out of mesh with the steering. (no)
-- *tailgate:* The tailgate at the back of the bed swings open. (partly)
+- *tailgate:* The tailgate at the back of the bed swings open. (works)
 
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 
@@ -227,7 +228,7 @@ Each detail by the set it first appears in.
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 
 - *bonnet:* The bonnet tilts up on a hinge at the windscreen, showing the engine. (works)
-- *doors:* The two front doors open, each swinging out on a hinge at its front edge. (no)
+- *doors:* The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel. (works)
 - *tailgate:* The tailgate at the back swings up on a hinge at the roof. (no)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
@@ -255,6 +256,7 @@ Each detail by the set it first appears in.
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
 - *stick:* The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle. (works)
+- *backhoe swing:* The backhoe swings from side to side by hand on its upright axle p147. (no)
 
 **2014, [42021 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42021-1)**
 
@@ -278,7 +280,7 @@ Each detail by the set it first appears in.
 
 **2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1)**
 
-- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (works)
+- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (partly)
 - *rudder:* The rudder on the fin swings side to side. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
@@ -326,13 +328,13 @@ Each detail by the set it first appears in.
 
 - *side stand:* The side stand holds the bike upright when parked. (skipped)
 
-**2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
-
-- *hatch:* The hatch on the foredeck, in front of the bridge, lifts open. (works)
-
 **2017, [42065 RC Tracked Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42065-1)**
 
 - *body:* The whole green body tilts up on pins at its front, so the battery box can be reached, and folds back down over the chassis. (no)
+
+**2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
+
+- *canopy:* The canopy lifts by hand. (no)
 
 **2017, [42068 Airport Rescue Vehicle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42068-1)**
 
@@ -354,7 +356,7 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet lifts up at its back edge, hinged at the front. (partly)
 - *doors:* The two doors swing open. (works)
-- *rear body:* The rear of the body, with the rear roof, rear wings and spoiler, tilts up from the back to show the engine and rear suspension; the engine and rear axle stay on the chassis. (no)
+- *rear body:* The rear of the body, with the rear roof, rear wings and spoiler, tilts up from the back to show the engine and rear suspension; the engine and rear axle stay on the chassis. (works)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
@@ -421,6 +423,10 @@ Each detail by the set it first appears in.
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
 - *outriggers:* Each of the four outriggers swings out and down onto its foot: turning its black 12 tooth gear (at the back) or its liftarm handle (at the front) swings the leg out from the chassis side and down. (works)
+
+**2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
+
+- *bonnet:* The bonnet lifts by hand. (works)
 
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 

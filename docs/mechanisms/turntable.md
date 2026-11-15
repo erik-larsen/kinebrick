@@ -46,7 +46,7 @@ Each detail by the set it first appears in.
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 
-- *superstructure:* The handwheel low on the chassis's left side slews the superstructure round on its turntable: an 8-tooth gear turns a crown gear, then an 8-tooth and 24-tooth pair, and an 8-tooth gear under the turntable turns the crown gear on the superstructure's post. (partly)
+- *superstructure:* The handwheel low on the chassis's left side slews the superstructure round on its turntable: an 8-tooth gear turns a crown gear, then an 8-tooth and 24-tooth pair, and an 8-tooth gear under the turntable turns the crown gear on the superstructure's post. (works)
 
 **1989, [8862 Backhoe](https://erik-larsen.github.io/kinebrick/?model=8862-Backhoe)**
 
@@ -166,7 +166,7 @@ Each detail by the set it first appears in.
 
 **2019, [42094 Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42094-1)**
 
-- *cab:* The front one of the two knobs on top turns the cab right round on its turntable: a 12 tooth gear at the foot of its shaft drives the turntable's teeth. (works)
+- *cab:* The front one of the two knobs on top turns the cab right round on its turntable: a 12 tooth gear at the foot of its shaft drives the turntable's teeth. (partly)
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
 

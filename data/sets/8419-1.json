@@ -112,10 +112,9 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 2,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "no": 1,
       "works": 2,
@@ -145,10 +144,14 @@
         "back": [
           []
         ],
+        "torn": [
+          []
+        ],
         "why": [
           "p212 32009 is part of the frame"
         ],
-        "cause": "control-fixed",
+        "cause": "loose-part",
+        "detail": "p69 71372c01",
         "seconds": 0
       },
       {
@@ -212,7 +215,19 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 1
       },
       {
         "result": "works",
@@ -284,8 +299,20 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "freed": 1,
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -395,6 +422,48 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
@@ -403,7 +472,7 @@
         ],
         "cause": "loose-part",
         "detail": "p69 71372c01",
-        "seconds": 0.7
+        "seconds": 1.1
       },
       {
         "result": "not checked",

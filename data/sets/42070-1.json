@@ -231,7 +231,9 @@
         "control": [
           "p742 64179",
           "p829 64179"
-        ]
+        ],
+        "lifted": true,
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36); and here the axle swings about its own drive shaft, so the differential’s ring gear goes round the pinion and the wheels must turn against each other, which the floor’s hold on the tyres would stop"
       },
       {
         "does": "The 24 tooth clutch gears in the steering and crane drives slip at the end of travel, so the motors can keep running.",
@@ -249,14 +251,12 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 356,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 420,
     "counts": {
       "partly": 7,
-      "works": 2,
-      "no": 1,
+      "works": 3,
       "skipped": 1
     },
     "loose": [
@@ -373,9 +373,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 27.8
+        "seconds": 24.6
       },
       {
         "result": "partly",
@@ -418,9 +430,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 25.4
+        "seconds": 24.2
       },
       {
         "result": "partly",
@@ -486,9 +510,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 26.7
+        "seconds": 25.4
       },
       {
         "result": "works",
@@ -530,13 +566,25 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             null,
             "dead point"
           ]
         ],
-        "seconds": 57.4
+        "seconds": 49.8
       },
       {
         "result": "works",
@@ -578,13 +626,25 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             null,
             "dead point"
           ]
         ],
-        "seconds": 72.6
+        "seconds": 50.9
       },
       {
         "result": "partly",
@@ -656,9 +716,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 43.5
+        "seconds": 30.8
       },
       {
         "result": "partly",
@@ -735,9 +807,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 27.1
+        "seconds": 24.7
       },
       {
         "result": "partly",
@@ -804,9 +888,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 26.6
+        "seconds": 23.9
       },
       {
         "result": "partly",
@@ -875,20 +971,32 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 34.2
+        "seconds": 31.8
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -917,26 +1025,36 @@
             ]
           ]
         ],
-        "stop": [
+        "torn": [
           [
-            "no motion",
-            "no motion"
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ],
           [
-            "no motion",
-            "no motion"
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ],
         "movedBy": [
           [],
           []
         ],
-        "cause": "control-jammed",
-        "seconds": 8.2
+        "seconds": 87.5
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       }
     ]
   }

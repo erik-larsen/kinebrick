@@ -128,6 +128,19 @@
           "p412 55982",
           "p526 42066 - 18976"
         ]
+      },
+      {
+        "does": "The canopy lifts by hand.",
+        "mechanisms": [
+          "hinge: canopy"
+        ],
+        "source": "book: page 246",
+        "control": "p994 32192",
+        "moves": [
+          "p997 32015",
+          "p998 32015"
+        ],
+        "note": "Signed by Erik, 2026-11-14 (the function, from the booklet). The parts are Kinebrick's choice from the model: the canopy is windscreen.ldr, its frame p994 the control; it hangs on the cabin's pins p583 and p587 (15100) at the ends of two short beams (p585, p589 32523)"
       }
     ],
     "questions": [
@@ -137,15 +150,15 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 109,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 85,
     "counts": {
       "works": 2,
       "partly": 3,
       "not back": 1,
-      "no": 1
+      "torn": 1,
+      "no": 2
     },
     "loose": [
       "p22 58120",
@@ -290,14 +303,26 @@
             ]
           ]
         ],
-        "seconds": 5.7
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 5
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.23,
+            -1.83
           ]
         ],
         "still": [
@@ -307,27 +332,27 @@
           {
             "p158 3648b": [
               0.0417,
-              3.82e-13
+              5.02e-13
             ],
             "p244 3706": [
-              0.0483,
-              5.67e-13
+              0.0484,
+              4.51e-13
             ],
             "p400 40490": [
-              0.0151,
-              1.21
+              0.0161,
+              1.28
             ],
             "p411 40490": [
-              0.0151,
-              1.21
+              0.0161,
+              1.28
             ],
             "p499 11478": [
-              0.0028,
-              0.112
+              0.00345,
+              0.138
             ],
             "p1117 4716": [
-              5.62e-8,
-              4.67e-13
+              1.15e-7,
+              5.56e-13
             ]
           }
         ],
@@ -339,22 +364,40 @@
         "back": [
           [
             [
-              591.14,
-              167.05
+              65.13,
+              122.74
             ],
             [
-              56.77,
-              107.2
+              180.39,
+              140.38
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              2.57,
+              122.65
+            ],
+            [
+              8.13,
+              140.06
             ]
           ]
         ],
         "strayed": [
-          "p412 55982",
-          "p525 4519"
+          "p525 4519",
+          "p507 6628"
+        ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
         ],
         "cause": "too-little",
         "detail": "p499 11478",
-        "seconds": 68.3
+        "seconds": 48.7
       },
       {
         "result": "partly",
@@ -414,9 +457,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p669 60483",
-        "seconds": 6.7
+        "seconds": 6.1
       },
       {
         "result": "partly",
@@ -458,6 +513,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0.11
+            ],
+            [
+              0,
+              0.11
+            ]
+          ]
+        ],
         "stop": [
           [
             "dead point",
@@ -465,7 +532,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 6.2
+        "seconds": 5.6
       },
       {
         "result": "no",
@@ -512,6 +579,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -519,7 +598,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 1.3
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -574,12 +653,104 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0.07
+            ],
+            [
+              0,
+              0.09
+            ]
+          ],
+          [
+            [
+              0,
+              0.11
+            ],
+            [
+              0,
+              0.09
+            ]
+          ],
+          [
+            [
+              0,
+              0.06
+            ],
+            [
+              0,
+              0.06
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           []
         ],
-        "seconds": 19.5
+        "seconds": 17.5
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p997 32015",
+          "p998 32015"
+        ],
+        "rates": [
+          {
+            "p997 32015": [
+              0,
+              0
+            ],
+            "p998 32015": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "control-jammed",
+        "seconds": 0.5
       }
     ]
   }

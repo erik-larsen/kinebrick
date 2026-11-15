@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 20 works, 61 partly, 3 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 29 works, 53 partly, 2 no, 5 not checked.
 
 ## By decade
 
@@ -48,7 +48,7 @@ Each detail by the set it first appears in.
 
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
-- *9V:* The 9V motor, switched at the battery box on the cab roof, runs the compressor: a rubber band from the motor turns a pulley on a crank, and the crank works a small pump on its pivot, feeding air to the four valves. (no)
+- *9V:* The 9V motor, switched at the battery box on the cab roof, runs the compressor: a rubber band from the motor turns a pulley on a crank, and the crank works a small pump on its pivot, feeding air to the four valves. (works)
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
@@ -60,15 +60,15 @@ Each detail by the set it first appears in.
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
 - *PF XL:* The Power Functions XL motor drives the crane's four functions one at a time: the battery box's switch turns it on, the red lever with a towball handle (on the polarity switch) sets its direction, and two yellow levers on the right of the gearbox choose which function it drives (each lever up or down, or both in the middle for none). (not checked)
-- The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the first yellow lever (the one with p164 and p167) is pushed down. (partly)
+- The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (works)
 - The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (partly)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
-- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the second yellow lever is pushed down. (partly)
+- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
 - *PF:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of four outputs: the front winch, the crane's slewing, the compressor, or a fourth output. (works)
-- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (partly)
+- With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
 - With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (partly)
 - With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
 - With the yellow lever down and the red knob pushed in, the motor works a fourth output. (works)
@@ -163,9 +163,9 @@ Each detail by the set it first appears in.
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
-- *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (partly)
+- *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
 - *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (partly)
-- *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (partly)
+- *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (works)
 - *Control+ L:* The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs. (works)
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
@@ -173,8 +173,8 @@ Each detail by the set it first appears in.
 - *Control+ XL:* The XL motor on the right drives the right track: a 20 tooth gear by the motor drives, through 12 and 20 tooth gears, a slipping clutch, a 12 tooth gear, a 36 tooth gear, a 28 tooth gear and the 36 tooth gear on the rear sprocket, which turns the track round the front sprocket and the rollers. (partly)
 - *Control+ XL:* The XL motor on the left drives the left track the same way. (partly)
 - *Control+ L:* The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth. (partly)
-- *Control+ XL:* The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot. (partly)
-- *Control+ L:* Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step. (partly)
+- *Control+ XL:* The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot. (works)
+- *Control+ L:* Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step. (works)
 - *Control+ L:* An L motor on top of the boom tilts the bucket: a 12 tooth gear on its axle drives a 20 tooth gear and a 16 tooth gear, a row of five 16 tooth gears across the boom, and 12 tooth bevel gears into the two big linear actuators that run from the boom's tip down to the bucket's mount at the end of the stick. (no)
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
@@ -210,8 +210,8 @@ Each detail by the set it first appears in.
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 
-- *angular:* The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track. (partly)
-- *angular:* The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket. (partly)
+- *angular:* The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track. (works)
+- *angular:* The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket. (works)
 - *L:* One of the two L motors in the gearbox only shifts it: it turns the selector, with its orange rotary catch and orange levers, which slides two driving rings so that the other L motor drives one of four functions: blade lift, blade tilt, ripper or ladder. The app shifts it by itself when a function is picked. (partly)
 - *L:* With the gearbox set to the ripper, the function L motor raises and lowers the ripper at the back: its drive runs across the gearbox in a row of 16 tooth gears to 20 tooth gears at both sides, back to two linear actuators that push the ripper's arms. (partly)
 - *L:* With the gearbox set to blade lift, the function L motor raises and lowers the blade: a shaft runs forward from the gearbox through universal joints and up to a cross shaft at the front, which drives the two linear actuators standing on turntables either side of the radiator; they lift the blade on its push arms. (partly)

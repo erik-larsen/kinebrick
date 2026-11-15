@@ -78,7 +78,8 @@
           "p1077 15038",
           "p1081 15038"
         ],
-        "note": "the springs only matter under the car's weight; each wheel's travel is what's checked"
+        "lifted": true,
+        "note": "the springs only matter under the car's weight; each wheel's travel is what's checked. lifted: the text has the wheel or arm moved (\"so each wheel can rise and fall on its own\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The bonnet lifts up at its back edge, hinged at the front.",
@@ -121,14 +122,12 @@
     ]
   },
   "generated": {
-    "commit": "b1fc322",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 66,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 92,
     "counts": {
-      "works": 4,
-      "partly": 2,
-      "no": 1
+      "works": 5,
+      "partly": 2
     },
     "loose": [
       "p212 4519",
@@ -147,7 +146,11 @@
       "p968 98138",
       "p1023 2817",
       "p1025 3069b",
-      "p1026 98138"
+      "p1026 98138",
+      "p1085 22977",
+      "p1087 22977",
+      "p1089 22977",
+      "p1091 22977"
     ],
     "functions": [
       {
@@ -174,7 +177,7 @@
             ],
             "p59 62821": [
               0,
-              1.25e-12
+              2.14e-12
             ]
           }
         ],
@@ -190,7 +193,19 @@
             ]
           ]
         ],
-        "seconds": 9.5
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 13.9
       },
       {
         "result": "partly",
@@ -209,35 +224,35 @@
         "rates": [
           {
             "p59 62821": [
-              8.43e-8,
-              8.3e-12
+              0,
+              7.77e-12
             ],
             "p139 2853": [
               0,
-              5.44e-12
+              4.94e-12
             ],
             "p142 2851": [
               0,
-              5.7e-12
+              5.38e-12
             ],
             "p143 2851": [
               0,
-              6.03e-12
+              5.46e-12
             ],
             "p838 18575": [
               0,
-              9.2e-12
+              8.44e-12
             ],
             "p561 87761": [
               0,
-              1.18e-11
+              1.09e-11
             ]
           }
         ],
         "expected": [
           {
-            "p142 2851": 0,
-            "p143 2851": 0
+            "p142 2851": 3.79e-14,
+            "p143 2851": 4.74e-14
           }
         ],
         "back": [
@@ -252,9 +267,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p59 62821",
-        "seconds": 9.2
+        "seconds": 13.6
       },
       {
         "result": "works",
@@ -304,11 +331,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 7.3
+        "seconds": 11.3
       },
       {
         "result": "works",
@@ -349,8 +398,8 @@
           ],
           [
             [
-              0.07,
-              0.03
+              0,
+              0
             ],
             [
               0,
@@ -378,13 +427,61 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "pushed": [
+          true,
+          false,
+          false,
+          false
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 26
+        "seconds": 13
       },
       {
         "result": "partly",
@@ -417,9 +514,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "why": [
+          "p808 18944 is held by friction pins the control doesn't reach"
+        ],
         "cause": "part-fixed",
         "detail": "p808 18944",
-        "seconds": 3.7
+        "seconds": 6.1
       },
       {
         "result": "works",
@@ -459,42 +571,60 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "freed": 1,
         "movedBy": [
           [],
           []
         ],
-        "seconds": 9.3
+        "seconds": 14.3
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p922 62531",
-          "p969 15458"
         ],
         "rates": [
           {
             "p922 62531": [
-              0,
-              0
+              1,
+              120
             ],
             "p969 15458": [
-              0,
-              0
+              1,
+              278
             ],
             "p139 2853": [
               0,
-              0
+              3.91e-14
             ],
             "p59 62821": [
               0,
-              0
+              1.04e-13
             ]
           }
         ],
@@ -502,26 +632,28 @@
           [
             [
               0,
-              0
+              0.32
             ],
             [
               0,
-              0
+              0.31
             ]
           ]
         ],
-        "stop": [
+        "torn": [
           [
-            "no motion",
-            "no motion"
+            [
+              0,
+              0.32
+            ],
+            [
+              0,
+              0.31
+            ]
           ]
         ],
-        "pushed": [
-          true
-        ],
-        "cause": "part-fixed",
-        "detail": "p922 62531",
-        "seconds": 0.2
+        "freed": 6,
+        "seconds": 19.1
       }
     ]
   }

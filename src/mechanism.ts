@@ -12,7 +12,7 @@ import { actuatorScrews, linearActuators } from './inference/actuators.ts';
 import { slidingOnAxles } from './inference/axleSlides.ts';
 import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts';
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
-import { crankWebs, dropBallsInBearings, findCouplings, groovedBalls, universalJoints } from './inference/couplings.ts';
+import { crankWebs, lockedJoints, dropBallsInBearings, findCouplings, groovedBalls, reductions, universalJoints } from './inference/couplings.ts';
 import { findConnections } from './inference/fits.ts';
 import { findGears, findMeshes, wormRacks } from './inference/gears.ts';
 import { inGrooves } from './inference/grooves.ts';
@@ -22,7 +22,8 @@ import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
 import { findLoops } from './inference/loops.ts';
 import { looseFits, onAxleTips } from './inference/looseFits.ts';
 import { fixPins } from './inference/pins.ts';
-import { guidedPistons, shockAbsorbers } from './inference/pistons.ts';
+import { guidedPistons, shockAbsorbers, squareRodsInBores } from './inference/pistons.ts';
+import { hungOnSliders } from './inference/guides.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
 import { restingParts } from './inference/rests.ts';
 import { decorations, figureSubmodels, rideAlong } from './inference/rideAlong.ts';
@@ -30,6 +31,7 @@ import { findLooseParts, worldCylinders } from './inference/shared.ts';
 import { findStrings, hangingParts } from './inference/strings.ts';
 import { bushesOnFourStuds, onFourStuds, platesOnEdge } from './inference/studs.ts';
 import { onTiles } from './inference/tiles.ts';
+import { secondModels } from './inference/frames.ts';
 import { ABOVE_RAILS, anchorsOf, findRails, findRiders, loads, magnetCouplings, railJoins, smallGroups, stiffMagnetHinges } from './inference/trains.ts';
 import { findTreads, trackTreads } from './inference/treads.ts';
 export { axesCrossing, closestPoints, findMeshes, meshesChanged } from './inference/gears.ts';
@@ -61,6 +63,7 @@ export interface Connection {
   // them (see slideRange).
   extents?: { male: [number, number]; female: [number, number]; overlap: number };
   turns?: boolean; // a slide along which the parts may turn too (see slidingOnAxles)
+  springHeld?: boolean; // a slide that a spring holds at rest, as a shock absorber's (see Joint.springHeld)
 }
 
 export interface Body {
@@ -83,6 +86,11 @@ export interface Joint {
   range?: [number, number];
   sliding?: [number, number];
   turns?: boolean; // a slide joint along which bodyB may also turn about the axis, relative to bodyA
+  // A slide that a spring holds at rest, as a shock absorber's rod in its cylinder. Free to slide,
+  // but held where the question is the model at rest (see Kinematics.springRows): finding its
+  // steering, choosing how it parks and rolls, and in least motion's friction-pin tier. Until
+  // springs push (v2.0), nothing pushes it back.
+  springHeld?: boolean;
 }
 
 // A tyre's tread: the part of a tyre that can touch the ground.
@@ -195,6 +203,21 @@ export interface Mechanism {
   // everything outside the largest group of parts attached to each other. Usually a sign
   // that a part is in the wrong place.
   loose: number[];
+  // Each model's frame, the main model's (body 0) first, then each further model the file
+  // holds standing on its own (a set's second vehicle: see secondModels): the body with the most
+  // parts in it. `carried`: each model carried on the main model or hitched to it (see
+  // secondModels): its parts, and the parts it is welded to where it rests (as loose parts ride
+  // along), so that a user might lift it off one day. Its parts aren't loose.
+  frames?: number[]; // always set by inferMechanism; left out of hand-built mechanisms (tests): just the frame
+  // The parts of each further frame's model (each second model's group), in the order of frames.
+  frameParts?: number[][];
+  carried?: { parts: number[]; weldedTo: number[] }[];
+  // Things that stand apart and aren't vehicles (a building): loose, riding along (see secondModels).
+  accessories?: number[][];
+  // Groups that would be carried but meet the main model where a joint should be and the reading
+  // made none: each group's parts, and the near-miss pair (a male and a female connection point).
+  // They stay loose (see secondModels).
+  missedJoints?: { parts: number[]; pair: [number, number] }[];
   // Universal joints: the shafts on either side turn together (see universalJoints).
   couplings: Coupling[];
   loops: Loop[]; // chains, tracks and rubber bands looped round wheels
@@ -266,6 +289,10 @@ export interface Coupling {
   // socket, the shaft and the hub each held in place by their own joints. (A wheel whose
   // steering pivot misses the ball's middle a little, as LDraw's shapes have it, still steers.)
   turningOnly?: boolean;
+  // How many times bodyA turns for each turn of bodyB, each against what it turns in: a
+  // planetary wheel hub's driving shaft and its hub (see reductions). 1 if not given, as for
+  // every universal joint and grooved ball.
+  ratio?: number;
 }
 
 // Whether inferMechanism first tries friction pins as rigid (on unless KINEBRICK_FRICTION_RIGID=0).
@@ -318,7 +345,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // A printed part (3626bp01, 973p19) has its plain part's role (3626b, 973).
   const plain = (name: string) => name.replace(/(?:p[0-9a-z]+|pb[0-9a-z]+)\.dat$/, '.dat');
   const roles = parts.map((p) => (p.path ? 'path' : roleList[p.name] ?? roleList[plain(p.name)] ?? (table.stickers?.includes(p.name) ? 'decoration' : 'structure')));
-  const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path');
+  // A part an erratum removed isn't there: no connection points, and never loose.
+  const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path' && !parts[c.part].removed);
   // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle
   // in it turns, rather than being fixed to the motor and whatever the motor is built into.
   // Before findConnections, which reads it.
@@ -348,7 +376,9 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...magnetCouplings(parts, roles, cyls, connections));
   const anchors = anchorsOf(roles);
   // Pins and hinges, among the connections found so far.
-  fixPins(connections, roles, frictionRigid, freed);
+  // A shock absorber's cylinder or rod (see shockAbsorbers): it swings on its pins.
+  const shockNames = new Set(Object.entries(table.shocks ?? {}).flatMap(([cylinder, list]) => [cylinder, ...list.map((s) => s.rod)]));
+  fixPins(connections, roles, frictionRigid, freed, new Set(parts.flatMap((p, i) => (shockNames.has(p.name) ? [i] : []))));
   stiffMagnetHinges(connections, roles, frictionRigid, freed);
   // Parts held by more than their connection points say.
   connections.push(...platesOnEdge(cyls));
@@ -360,12 +390,16 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...guidedRacks(parts.length, cyls, connections, guide));
   connections.push(...decorations(parts, roles, cyls, connections));
   connections.push(...guidedPistons(parts, roles, cyls, connections));
-  connections.push(...shockAbsorbers(cyls));
+  const shocks = shockAbsorbers(parts, table, (name) => libraryName(name, table));
+  connections.push(...shocks, ...squareRodsInBores(cyls, shocks));
+  // After the slides above: a group hung by one hinge on a slider, kept in line by its guide.
+  connections.push(...hungOnSliders(parts.length, roles, cyls, connections));
   // linearActuators, universalJoints and groovedBalls replace connections already found.
   const actuators = linearActuators(parts, connections);
   connections.push(...bushGrips(roles, cyls));
   connections.push(...toothedBushes(roles, cyls));
   const joined = [...universalJoints(parts, roles, cyls, connections), ...groovedBalls(parts, roles, cyls, connections)];
+  lockedJoints(parts.length, connections, joined);
 
   // 2. Loose parts. Second chances first, for parts no rule above attached (looseFits leaves a
   // universal joint's cross the arms universalJoints left it).
@@ -374,6 +408,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...looseFits(roles, cyls, connections, frictionRigid, freed));
   // Loose parts hanging on a string, or hooked to a chain, are held by it; the rest ride along
   // with what's nearest.
+  // A second model in the file stands on its own, never loose (see secondModels).
+  const figures = figureSubmodels(parts, roles);
+  const { models, carried: carriedGroups, accessories, missedJoints } = secondModels(parts, roles, connections, findLooseParts(parts.length, connections, anchors), figures, new Set(cyls.filter((c) => c.secs.some((s) => s.shape === 'T')).map((c) => c.part)), cyls);
+  for (const model of models) for (const i of model) anchors.add(i);
   const hanging = hangingParts(parts, connections, findLooseParts(parts.length, connections, anchors), paths);
   const hooked = hookedParts(cyls, connections, findLooseParts(parts.length, connections, anchors), paths);
   // (On a layout, a part joined to a car only by its magnet's coupling to the next car, a buffer
@@ -385,7 +423,6 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // to stand beside it. A few parts on their own are loose as ever, and ride along with what's
   // nearest, as elsewhere.
   // Nor is what a figure holds or stands with (see figureSubmodels).
-  const figures = figureSubmodels(parts, roles);
   // (Two cars' loose bits, coupled by their magnets, aren't one group either: each is its own car's.)
   const trainSubmodels = new Set(parts.flatMap((p, i) => (p.submodel && ['train wheel', 'train motor'].includes(roles[i]) ? [p.submodel] : [])));
   let loose = (rails.length ? smallGroups(parts.length, uncoupled, riding, track ? track.head() - ABOVE_RAILS : undefined, parts, trainSubmodels) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
@@ -399,11 +436,20 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
     for (const i of before) if (!loadable.has(i)) scenery.delete(i);
     loose = loose.filter((i) => !before.has(i) || loadable.has(i));
   }
-  connections.push(...rideAlong(parts, cyls, uncoupled, loose));
+  const welds = rideAlong(parts, cyls, uncoupled, loose);
+  connections.push(...welds);
+  // A carried model rides along as loose parts do, but isn't loose: where it is welded.
+  const carried = carriedGroups.map((group) => {
+    const own = new Set(group);
+    const weldedTo = [...new Set(welds.flatMap((c) => (own.has(c.male) && !own.has(c.female) ? [c.female] : own.has(c.female) && !own.has(c.male) ? [c.male] : [])))].sort((a, b) => a - b);
+    return { parts: group, weldedTo };
+  });
+  const carriedParts = new Set(carriedGroups.flat());
+  for (let i = loose.length - 1; i >= 0; i--) if (carriedParts.has(loose[i])) loose.splice(i, 1);
   if (scenery.size) connections.push(...rideAlong(parts, cyls, uncoupled, [...scenery], new Set(rails.map((r) => r.part))));
 
   // 3. Bodies, from every connection above.
-  const bodyOf = groupIntoBodies(parts.length, roles, connections);
+  const bodyOf = groupIntoBodies(parts.length, roles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]));
   // slidingOnAxles and restingParts read the bodies, and turn connections into slides, so they
   // come before the joints are found.
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));
@@ -426,14 +472,23 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   dropBallsInBearings(joints, joined, roles, bodyOf);
   const couplings = findCouplings(joined, joints, parts, roles, bodyOf);
   couplings.push(...crankWebs(joints));
+  couplings.push(...reductions(parts, table, bodyOf, (name) => libraryName(name, table)));
   const loops = findLoops(parts, roles, bodyOf, joints, table, paths);
   // What's hooked to a chain it can't slide along is loose after all (it rides along with nothing).
   loose.push(...chainHooks(parts, bodyOf, joints, loops, hooked));
   loose.sort((a, b) => a - b);
+  // A removed part rides along with what's nearest, as a loose part does, but isn't loose: it isn't there.
+  for (let k = loose.length - 1; k >= 0; k--) if (parts[loose[k]].removed) loose.splice(k, 1);
   treads.push(...trackTreads(loops));
   // After chainHooks, as a string reads which parts are loose.
   const strings = findStrings(parts, roles, bodyOf, joints, paths, hanging, loose);
   const screws = [...actuatorScrews(actuators, bodyOf), ...wormRacks(gears)];
   const centers = bodyCenters(bodies, parts);
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}), ...(track ? { track } : {}) };
+  const biggest = (model: number[]) => {
+    const count = new Map<number, number>();
+    for (const i of model) count.set(bodyOf[i], (count.get(bodyOf[i]) ?? 0) + 1);
+    return [...count].reduce((a, b) => (b[1] > a[1] ? b : a))[0];
+  };
+  const frames = [0, ...models.map(biggest)];
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, frames, frameParts: models, carried, accessories, missedJoints, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}), ...(track ? { track } : {}) };
 }

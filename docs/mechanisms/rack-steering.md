@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 60 works, 12 partly, 4 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 62 works, 10 partly, 4 no.
 
 ## By decade
 
@@ -117,7 +117,7 @@ Each detail by the set it first appears in.
 
 **1991, [8820 Mountain Rambler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8820-1)**
 
-- The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms. (partly)
+- The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms. (works)
 
 **1992, [8828 Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8828-1)**
 
@@ -179,7 +179,7 @@ Each detail by the set it first appears in.
 
 **2010, [8049 Tractor with Log Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8049-1)**
 
-- The round yellow knob on the cab roof steers the front wheels: its upright axle comes down through the cab to a knob gear, which turns a long axle forward to a gear that slides the steering rack across the front axle. (partly)
+- The round yellow knob on the cab roof steers the front wheels: its upright axle comes down through the cab to a knob gear, which turns a long axle forward to a gear that slides the steering rack across the front axle. (works)
 
 **2011, [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1)**
 

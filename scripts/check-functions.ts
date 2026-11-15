@@ -33,7 +33,9 @@
 // other part). And each
 // way is worked back again, as a new drag: everything should come back to where it started
 // (`back`: the furthest any part is left from it, LDU and degrees; `strayed`: parts left more
-// than BACK away).
+// than BACK away). Beside it, `torn`: the furthest any part is left against its frame. A model
+// that comes back whole but stands somewhere else (rolled away, or tipped over) is far out by
+// `back`, but not by `torn`.
 //
 //   npm run functions                 every set with functions, but for the slowest (SLOW_OVER)
 //   npm run functions -- --slow       only the slowest sets, left out of the plain run: hours,
@@ -72,7 +74,7 @@ import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Mechanism, meshesChanged } from '../src/mechanism.ts';
-import { pointDirections, pushStep } from '../src/push.ts';
+import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
@@ -86,9 +88,15 @@ import { pistonAt, sliderCranks } from './slider-cranks.ts';
 const SETS_DIR = process.argv.includes('--trains') ? join('data', 'trains') : join('data', 'sets');
 // How far a control is turned each way (radians), or pushed (LDU) if it slides.
 const REACH = 1.5;
+// How far a control is turned each way, at most, when its parts would move too little at REACH:
+// three turns, enough for a part beyond a worm or a linear actuator (the 42100 Liebherr R 9800's
+// boom, through its actuators, goes 0.25 LDU at REACH and 3 at this).
+const LONG_REACH = 6 * Math.PI;
 const PUSH = 20;
 // A part counts as moved if it went at least this far (LDU) or turned at least this much (degrees).
 const MOVED = 1;
+// A part counts as moving at all if it went at least this far (LDU) or turned this much (degrees).
+const STIRRED = 0.01;
 const LIMIT_MINUTES = 60;
 // A drag is measured in pieces of this many radians (or LDU, for a slide), adding up how far each
 // part went in each: a part geared up turns further than half a turn, which its pose alone can't
@@ -158,6 +166,7 @@ interface Checked {
   expected?: Record<string, number>[]; // for each control, what its gears say for the parts that have a say
   wrong?: string[];
   back?: [number, number][][]; // for each control, each way: the furthest a part is left after there and back (LDU, degrees)
+  torn?: [number, number][][]; // the same, against the part's frame: how far the model came back torn, wherever it stands
   lock?: [number, number, Stop][][]; // for each steering control, each way: its steered parts' most turn (degrees), its own turn (radians), and what stopped it (see LOCK)
   strayed?: string[];
   why?: string[];
@@ -165,6 +174,7 @@ interface Checked {
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
   movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
+  pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
 }
@@ -175,6 +185,15 @@ interface Fn {
   stays?: string[];
   first?: { control: string; by: number }[];
   together?: boolean; // the controls are worked as one, turning together (see turnTogether)
+  // Parts whose bodies are frozen while the control is worked, as the viewer's Alt-click freezes
+  // them: what the function's text says is held (the 8464's drive, for its differentials). Or,
+  // by control, the parts each one's working holds (the 42000's "turning one rear wheel with the
+  // other held": each rear wheel holds the other).
+  held?: string[] | Record<string, string[]>;
+  // The model lifted off the ground while the control is worked, as the viewer's "Lift off the
+  // ground" option has it (see Options.lifted in kinematics.ts): what the function's text says is
+  // done with the model in the hand (a differential worked with its drive held).
+  lifted?: boolean;
   skip?: string;
   model?: string; // its own model, for a set with several (the 858's four engines)
 }
@@ -191,6 +210,8 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
   const modelOf = (fn: Fn) => fn.model ?? model;
   const checked: Checked[] = [];
   const loose: string[] = [];
+  // The errata applied to its models, and those refused (see src/errata.ts).
+  const errata = { applied: [] as string[], refused: [] as string[] };
   const wanted = (i: number) => only === null || i === only;
   for (const m of new Set(functions.map(modelOf))) {
     const mine = functions.flatMap((fn, i) => (modelOf(fn) === m && wanted(i) ? [i] : []));
@@ -198,20 +219,34 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
     const found = checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
     mine.forEach((i, at) => (checked[i] = found.checked[at]));
     loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
+    errata.applied.push(...found.errata.applied);
+    errata.refused.push(...found.errata.refused);
   }
-  return { counts: countsOf(checked), loose, functions: checked };
+  return { counts: countsOf(checked), loose, ...(errata.applied.length || errata.refused.length ? { errata } : {}), functions: checked };
+}
+
+// Whether a function that left a part not back came back torn (a part left more than BACK LDU
+// away against its frame), or whole but somewhere else (rolled away, or tipped over). By LDU
+// only: a free wheel, its car rolled away, is left turned on its axle, which isn't torn. Null if
+// every part came back, or for a result stored before `torn` was.
+function notBackAs(c: Checked): 'torn' | 'moved whole' | null {
+  if (!c.strayed || !c.torn) return null;
+  return c.torn.flat().some(([ldu]) => ldu > BACK) ? 'torn' : 'moved whole';
 }
 
 // How many functions came out each way, and how many moved a part by the wrong amount or left
-// one not back.
+// one not back, and of those, how many came back torn or whole but somewhere else.
 function countsOf(checked: Checked[]) {
-  const counts: Partial<Record<Result | 'wrong amount' | 'not back', number>> = {};
+  const counts: Partial<Record<Result | 'wrong amount' | 'not back' | 'torn' | 'moved whole' | 'pivoted', number>> = {};
   const count = (what: keyof typeof counts) => (counts[what] = (counts[what] ?? 0) + 1);
   for (const c of checked) {
     if (!c) continue; // left out (see check's `only`)
     count(c.result);
     if (c.wrong) count('wrong amount');
     if (c.strayed) count('not back');
+    const as = notBackAs(c);
+    if (as) count(as);
+    if (c.pivoted) count('pivoted');
   }
   return counts;
 }
@@ -235,8 +270,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   let sliders: Slider[] = [];
   let catches: Catch[] = [];
   let at: Vector3[] = [];
+  // Whether the function being checked has the model lifted off the ground (see Fn.lifted).
+  let lifted = false;
   const use = (now: { parts: PlacedPart[]; mech: Mechanism; kin: Kinematics }) => {
     ({ parts, mech, kin } = now);
+    // The model lifted, or set down again: a solver made so, as the viewer's option makes one.
+    if (kin.options.lifted !== lifted) {
+      const scrub = kin.scrub;
+      kin = new Kinematics(mech, { lifted });
+      kin.scrub = scrub;
+    }
     sliders = findSliders(parts, mech, table, slides);
     catches = findCatches(parts, sliders);
     at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
@@ -267,21 +310,22 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return n;
   };
   const name = (p: number) => `p${p} ${parts[p].name.replace(/\.dat$/, '')}`;
-  // "p402 3703 against p315 3029": the part, and the body it's measured against (the frame if none).
+  // "p402 3703 against p315 3029": the part, and the body it's measured against (if none, the
+  // frame of the model it is in: a set's second vehicle's own, see Kinematics.frames).
   const against = (ref: string) => {
     const [a, b] = ref.split(' against ');
-    return { ref, part: part(a), body: b ? mech.bodyOf[part(b)] : 0 };
+    return { ref, part: part(a), body: b ? mech.bodyOf[part(b)] : kin.frameOf[mech.bodyOf[part(a)]] };
   };
   // Whether a part moved against its body, from the poses at `start` to now, or is a driving
   // ring a catch has shifted (`shifted`).
-  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[], shifted: Map<number, number>) => {
+  const moved = ({ part, body }: { part: number; body: number }, start: Matrix4[], shifted: Map<number, number>, least = MOVED) => {
     if (shifted.has(part)) return true;
     const rel = (poses: Matrix4[]) => poses[body].clone().invert().multiply(poses[mech.bodyOf[part]]);
     const was = rel(start);
     const is = rel(kin.poses);
     const went = at[part].clone().applyMatrix4(is).distanceTo(at[part].clone().applyMatrix4(was));
     const q = new Quaternion().setFromRotationMatrix(was.clone().invert().multiply(is));
-    return went >= MOVED || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= MOVED;
+    return went >= least || (2 * Math.acos(Math.min(1, Math.abs(q.w))) * 180) / Math.PI >= least;
   };
   // The body a control works: its own, or for a motor named as the control, what turns in it
   // (its output's axle), as the motor would turn it.
@@ -312,8 +356,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return 2 * Math.acos(Math.min(1, Math.abs(q.w)));
   };
   // turn, in pieces (see PIECE), adding up how far each of `parts` turns (radians) and slides
-  // (LDU) against its body on the way, and calling `each` after each piece.
-  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}) => {
+  // (LDU) against its body on the way, and calling `each` after each piece. With `enough`, the
+  // turn also ends, short of `amount`, after the first piece that leaves it true.
+  const turnMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}, enough = (_turned: number) => false) => {
     const joint = kin.parentLink(body)!.joint;
     if (together.length) kin.turnTogether(body, together);
     kin.holdWhatTheDragDoesntNeed(body, () => kin.jointMotion(joint) !== null, joint);
@@ -343,6 +388,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
         break;
       }
+      if (enough(turned)) break;
     }
     kin.letGoAfterDrag();
     return { turned, went, halt };
@@ -381,6 +427,121 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // follows the way the point goes, round a curve. Also returns how the push went, to push it
   // back.
   type Pushed = { grab: Vector3; dir: Vector3; length: number };
+  // The slide a control with no turning joint of its own slides on: a body that is the root of a
+  // tree of its own, held to the rest by a slide (see buildTree), as an outrigger's beam slides in
+  // a chassis. -1 if it has none.
+  const slideOf = (body: number) => (kin.frames.includes(body) || kin.parentLink(body) ? -1 : mech.joints.findIndex((j) => j.kind === 'slide' && (j.bodyA === body || j.bodyB === body)));
+  // A control that slides (see slideOf) pushed along its slide by `amount` LDU, as a drag of it in
+  // the viewer pushes it, each step the way the slide now points: how far it slid along it
+  // (signed), how far each of `parts` went, and what stopped it, if anything did.
+  const slideMeasuring = (body: number, amount: number, parts: { part: number; body: number }[], each = () => {}) => {
+    const j = mech.joints[slideOf(body)];
+    const other = j.bodyA === body ? j.bodyB : j.bodyA;
+    const axis = j.to.clone().sub(j.from).normalize(); // as built, on the body it slides on
+    const grab = at[mech.bodies[body].parts[0]].clone();
+    // How far the grab point is along the slide, on the body it slides on.
+    const along = () => grab.clone().applyMatrix4(kin.poses[other].clone().invert().multiply(kin.poses[body])).dot(axis);
+    const start = along();
+    const grabNow = () => grab.clone().applyMatrix4(kin.poses[body]);
+    const directions = pointDirections(kin, body, grabNow());
+    if (directions > 0) kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(kin, body, grabNow()) === directions);
+    const went = parts.map(() => [0, 0]);
+    let was = parts.map((p) => relative(p.part, p.body, kin.poses));
+    let halt: Halt | null = null;
+    while (Math.abs(along() - start) < Math.abs(amount) - 1e-9) {
+      const dir = axis.clone().transformDirection(kin.poses[other]).multiplyScalar(Math.sign(amount));
+      const step = Math.min(PUSH_STEP, Math.abs(amount) - Math.abs(along() - start));
+      const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
+      if (how !== 'moved') {
+        halt = how === 'blocked' ? 'limit' : 'stuck';
+        break;
+      }
+      each();
+      const is = parts.map((p) => relative(p.part, p.body, kin.poses));
+      parts.forEach((p, k) => {
+        went[k][0] += angle(was[k], is[k]);
+        went[k][1] += at[p.part].clone().applyMatrix4(is[k]).distanceTo(at[p.part].clone().applyMatrix4(was[k]));
+      });
+      was = is;
+    }
+    kin.letGoAfterDrag();
+    return { turned: along() - start, went, halt, pushed: null };
+  };
+  // The ball a control with no turning joint of its own and no slide turns on: a body that is the
+  // root of a tree of its own, held to the rest by a ball (see buildTree), as a pendular axle
+  // swings on its ball pivot under a chassis (the 42038 Arctic Truck). -1 if it has none.
+  const ballOf = (body: number) => (kin.frames.includes(body) || kin.parentLink(body) || slideOf(body) >= 0 ? -1 : mech.joints.findIndex((j) => j.kind === 'ball' && (j.bodyA === body || j.bodyB === body)));
+  // The line a control on a ball (see ballOf) turns about, through the ball's middle, on the body
+  // it turns against: the way the free motions turn it most against that body, as a pendular
+  // axle turns on its ball only about the drive shaft through it. Kept for the way back. Null if
+  // the free motions don't turn it.
+  let ballAxis: Vector3 | null = null;
+  // A control on a ball (see ballOf) turned about the ball's middle by `amount` radians, by
+  // pushes of the point it is grabbed by (its part's middle), each step the way that point now
+  // goes about the line (see ballAxis): how far it turned about the line (signed), how far each
+  // of `parts` went, and what stopped it, if anything did. `again` turns it about the line found
+  // the last time (for the way back).
+  const ballMeasuring = (body: number, control: number, amount: number, parts: { part: number; body: number }[], each = () => {}, again = false) => {
+    const j = mech.joints[ballOf(body)];
+    const other = j.bodyA === body ? j.bodyB : j.bodyA;
+    const grab = at[control].clone();
+    const grabNow = () => grab.clone().applyMatrix4(kin.poses[body]);
+    const middle = () => j.from.clone().applyMatrix4(kin.poses[other]);
+    const against = () => kin.poses[other].clone().invert().multiply(kin.poses[body]);
+    if (!again) {
+      // How each free motion turns it against the other body, from how points one LDU from the
+      // ball's middle go; the main way, from all the free motions together (the same whichever
+      // way they are written down).
+      const c = middle();
+      const at1 = (x: number, y: number, z: number) => new Vector3(x, y, z).add(c);
+      const turns = kin.freeMotions().map((m) => {
+        const go = (p: Vector3) => kin.pointVelocity(m, body, p).sub(kin.pointVelocity(m, other, p));
+        const y = go(at1(0, 1, 0));
+        const z = go(at1(0, 0, 1));
+        return new Vector3(y.z, z.x, -y.x);
+      });
+      let main = turns.reduce((best, w) => (w.length() > best.length() ? w : best), new Vector3());
+      for (let k = 0; k < 50 && main.length() > 1e-6; k++) main = turns.reduce((sum, w) => sum.addScaledVector(w, w.dot(main)), new Vector3()).normalize();
+      ballAxis = main.length() > 1e-6 ? main.clone().transformDirection(kin.poses[other].clone().invert()) : null;
+    }
+    const went = parts.map(() => [0, 0]);
+    if (!ballAxis) return { turned: 0, went, halt: 'no motion' as Halt, pushed: null };
+    const axis = ballAxis.clone();
+    const from = against();
+    // How far it has turned about the line, against the other body, since it started.
+    const turnedNow = () => {
+      const q = new Quaternion().setFromRotationMatrix(from.clone().invert().multiply(against()));
+      return 2 * Math.atan2(new Vector3(q.x, q.y, q.z).dot(axis), q.w);
+    };
+    const directions = pointDirections(kin, body, grabNow());
+    if (directions > 0) kin.holdWhatTheDragDoesntNeed(body, () => pointDirections(kin, body, grabNow()) === directions);
+    let was = parts.map((p) => relative(p.part, p.body, kin.poses));
+    let halt: Halt | null = null;
+    let length = 0;
+    while (Math.abs(turnedNow()) < Math.abs(amount) - 1e-9 && length < PUSH_FAR - 1e-9) {
+      const dir = axis.clone().transformDirection(kin.poses[other]).cross(grabNow().sub(middle()));
+      if (dir.length() < 1e-6) {
+        halt = 'no motion';
+        break;
+      }
+      dir.normalize().multiplyScalar(Math.sign(amount));
+      const how = pushStep(kin, body, grab, dir, PUSH_STEP, () => kin.atLimit() === null);
+      if (how !== 'moved') {
+        halt = how === 'blocked' ? 'limit' : 'stuck';
+        break;
+      }
+      length += PUSH_STEP;
+      each();
+      const is = parts.map((p) => relative(p.part, p.body, kin.poses));
+      parts.forEach((p, k) => {
+        went[k][0] += angle(was[k], is[k]);
+        went[k][1] += at[p.part].clone().applyMatrix4(is[k]).distanceTo(at[p.part].clone().applyMatrix4(was[k]));
+      });
+      was = is;
+    }
+    kin.letGoAfterDrag();
+    return { turned: turnedNow(), went, halt, pushed: null };
+  };
   const pushMeasuring = (body: number, control: number, to: { reach: number } | { back: Pushed }, parts: { part: number; body: number }[], each = () => {}) => {
     const joint = kin.parentLink(body)!.joint;
     const start = 'back' in to ? null : grabOf(body, control);
@@ -402,11 +563,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     let halt: Halt | null = null;
     let length = 0;
     const far = 'back' in to ? to.back.length : PUSH_FAR;
-    while (length < far - 1e-9 && ('back' in to || ownTurned < Math.abs(to.reach) - 1e-9)) {
+    // A control whose joint can't turn, with what the push holds held, could only be carried by
+    // what it turns in (the whole 42055 Bucket Wheel Excavator rolling, pushed by its battery
+    // switch), step after step until it ran into something: it goes nowhere.
+    if (!('back' in to) && kin.jointMotion(joint) === null) halt = 'no motion';
+    while (!halt && length < far - 1e-9 && ('back' in to || ownTurned < Math.abs(to.reach) - 1e-9)) {
       if (dir.length() < 0.5) {
         halt = 'no motion';
         break;
       }
+      // Each step is aimed along the way the grab point now goes on the control's joint (see
+      // wayOnJoint), as a hand follows a door round, and not along the line it first went.
+      const way = wayOnJoint(kin, body, grabNow());
+      if (way) dir.copy(way.dot(dir) >= 0 ? way : way.negate());
       const step = Math.min(PUSH_STEP, far - length);
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
@@ -431,13 +600,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return { turned: kin.jointAngles[joint] - from, went, halt, pushed: { grab, dir: dir.clone(), length } };
   };
   // The furthest any part is from where it was in `poses` (LDU, degrees), and the part that's
-  // furthest (by LDU, or degrees for a part that only turns).
-  const furthest = (poses: Matrix4[]) => {
+  // furthest (by LDU, or degrees for a part that only turns). With `onFrame`, where each part
+  // is against its frame (see Kinematics.frameOf), not in the world.
+  const furthest = (poses: Matrix4[], onFrame = false) => {
     let most = { ldu: 0, degrees: 0, part: -1, by: 0 };
+    const placed = (all: Matrix4[], b: number) => (onFrame ? all[kin.frameOf[b]].clone().invert().multiply(all[b]) : all[b]);
     parts.forEach((_, i) => {
       const b = mech.bodyOf[i];
-      const ldu = at[i].clone().applyMatrix4(kin.poses[b]).distanceTo(at[i].clone().applyMatrix4(poses[b]));
-      const degrees = (angle(poses[b], kin.poses[b]) * 180) / Math.PI;
+      const [now, then] = [placed(kin.poses, b), placed(poses, b)];
+      const ldu = at[i].clone().applyMatrix4(now).distanceTo(at[i].clone().applyMatrix4(then));
+      const degrees = (angle(then, now) * 180) / Math.PI;
       const by = Math.max(ldu, degrees);
       most = { ldu: Math.max(most.ldu, ldu), degrees: Math.max(most.degrees, degrees), part: by > most.by ? i : most.part, by: Math.max(by, most.by) };
     });
@@ -447,6 +619,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   const checkOne = (fn: Fn, prior?: Checked): Checked => {
     const known = withoutChecking(fn);
     if (known) return known;
+    lifted = fn.lifted === true;
     // With --causes, only a function that didn't work is looked at, and nothing is dragged.
     if (causesOnly && !(prior && (prior.result === 'partly' || prior.result === 'no'))) return prior ?? { result: 'not checked' };
     const why: string[] = [];
@@ -461,17 +634,45 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.reset();
       freed = new Set();
       // A control with no motion at the start, held by friction pins: those pins are freed, and
-      // the model worked out again, for this control only (see pinsToFree).
+      // the model worked out again, for this control only (see pinsToFree). So too a control
+      // the viewer would push whose joint turns only by swinging the rest of the model round it,
+      // so that no point of it moves and the push couldn't start (see grabOf): the 8865's seat
+      // back, on friction hinge plates.
       if (FREE_PINS) {
         const c = part(ref);
         const l = kin.parentLink(worked(c));
-        if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null) {
+        const noGrab = () => !fn.together && isPushed(worked(c)) && grabOf(worked(c), c) === null;
+        if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
-          if (freed.size) {
-            use(loaded.read(asLoaded.parts, freed));
-            freedPins = Math.max(freedPins, freed.size);
+        }
+        // So too a part the function lists to move that friction pins hold fast to what it's
+        // measured against, but only where the control doesn't go (it jams, or a push has no
+        // point to push): there a user's drag of it asks the viewer for pins, and the viewer
+        // frees the same ones (the 8418's bucket, the 42032's levers). Where the control turns
+        // its reach and the part stays fast, the viewer shows nothing, so neither does the
+        // check: the part is noted as held by pins the control doesn't reach.
+        const held = (fn.moves ?? []).map(against).filter((m) => mech.bodyOf[m.part] === m.body);
+        if (held.length) {
+          // Whether the control goes a hair, holding what a drag of it holds.
+          const goes = () => {
+            if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) return false;
+            const before = kin.snapshot();
+            kin.holdWhatTheDragDoesntNeed(worked(c), () => kin.jointMotion(l.joint) !== null, l.joint);
+            const went = kin.turnJoint(l.joint, 0.01, () => true);
+            kin.letGoAfterDrag();
+            kin.restore(before);
+            return Math.abs(went) > 1e-6;
+          };
+          if (goes()) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
+          else {
+            allFree ??= loaded.allFree(asLoaded.parts);
+            for (const m of held) for (const pin of pinsToFree(allFree, m.part)) freed.add(pin);
           }
+        }
+        if (freed.size) {
+          use(loaded.read(asLoaded.parts, freed));
+          freedPins = Math.max(freedPins, freed.size);
         }
       }
       const whyBefore = why.length;
@@ -501,18 +702,31 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const stays = (fn.stays ?? []).map(against);
       const control = part(ref);
       const b = worked(control);
-      const link = kin.parentLink(b);
+      // Its joint: the one it turns on, or else the slide it slides on (see slideOf), or else the
+      // ball it turns on (see ballOf).
+      const link = kin.parentLink(b) ?? (slideOf(b) >= 0 ? { parent: -1, joint: slideOf(b) } : ballOf(b) >= 0 ? { parent: -1, joint: ballOf(b) } : null);
       // Why it doesn't work, if it doesn't (see causes.ts). Told before anything else: a loose
-      // part (the control, or one it should move), or a control worked first that didn't go.
-      const loosePart = [control, ...moves.map((m) => m.part)].find((p) => mech.loose.includes(p));
+      // part (the control, or one it should move or keep still), or a control worked first that
+      // didn't go. A loose part rides along with its nearest neighbour, attached to nothing, so a
+      // function that names one can't work, whatever the drag does: at most partly (the 8285's
+      // wheels "rolling freely" on rims that sit on nothing).
+      const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
       const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
-      const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
-      if (b === 0 || !link) {
-        why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
+      const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
+      if (kin.frames.includes(b) || !link) {
+        why.push(`${ref} ${kin.frames.includes(b) ? 'is part of the frame' : 'has no joint to work'}`);
         return nothing(early ?? { cause: 'control-fixed' });
       }
-      const reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
+      // How far the control is worked each way. A function whose parts would move too little
+      // (the cause too-little) is worked again, further (see LONG_REACH), and judged then; it
+      // still counts as having gone far enough at half its usual reach.
+      let reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
+      const half = reach / 2;
       if (fn.together) together = controls.map((r) => worked(part(r)));
+      // What the function's text says is held is frozen, as a user would freeze it in the viewer
+      // (Alt-click) before working the control.
+      const heldNow = Array.isArray(fn.held) ? fn.held : (fn.held?.[ref] ?? []);
+      kin.frozen = new Set(heldNow.map((r) => mech.bodyOf[part(r)]));
       const start = kin.snapshot();
       const startPoses = kin.poses.map((m) => m.clone());
       // Worked by a push, as the viewer would (see isPushed), or by a turn on its joint.
@@ -522,18 +736,21 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // control's own body, which turn with it whatever the gears do).
       const geared = gearRates(mech, (x) => kin.parentLink(x), b, together);
       const expected: Record<string, number> = {};
-      for (const m of listed) if (m.body === 0 && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
+      for (const m of listed) if (m.body === kin.frameOf[mech.bodyOf[m.part]] && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
       // The cause, from where the control starts: given the parts that didn't move and should
       // have, those that moved and shouldn't have, and how far the control went.
       const listedAs = (m: { ref: string; part: number; body: number }): Listed => ({ ref: m.ref, body: mech.bodyOf[m.part], against: m.body });
       const explain = (still: string[], wrong: string[], turned: number): Explained =>
-        early ?? causeOf(kin, { body: b, parent: link.parent }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= reach / 2);
+        early ?? causeOf(kin, { body: b, parent: link.parent }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= half, !pushed);
       if (causesOnly) return nothing(explain(prior!.still ?? [], prior!.moved ?? [], Math.max(0, ...(prior!.turned?.[wi] ?? []).map(Math.abs))));
       // How far the control really turns: against what its shaft turns in (see housing), not
       // just its joint's angle, which a shaft spinning back under it makes up without the
       // control turning at all (the 8865 Test Car's seats, on axles free in their holes).
       const slides = mech.joints[link.joint].kind === 'slide';
-      const itself = { part: mech.bodies[b].parts[0], body: kin.housing(b) };
+      // (A control that slides, against what it slides on: see slideOf; one on a ball, against
+      // what it turns on: see ballOf.)
+      const slidOn = slideOf(b) >= 0 ? mech.joints[slideOf(b)] : ballOf(b) >= 0 ? mech.joints[ballOf(b)] : null;
+      const itself = { part: mech.bodies[b].parts[0], body: slidOn ? (slidOn.bodyA === b ? slidOn.bodyB : slidOn.bodyA) : kin.housing(b) };
       // The pistons in `moves`, each with its slider-crank (see sliderCranks): how far it should
       // slide in its cylinder is set by how far its crank turns, whatever turned the crank.
       const cranks = sliderCranks(mech, (x) => kin.parentLink(x));
@@ -543,28 +760,66 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const l = line(mech, (x) => kin.parentLink(x), c)!.joints;
         return l.reduce((sum, j) => sum + kin.jointAngles[j.joint] * Math.sign(j.axis.dot(l[0].axis)), 0);
       };
-      const each = [1, -1].map((way) => {
+      const bothWays = () => [1, -1].map((way) => {
         kin.restore(start);
         // How far each piston should slide, piece by piece, as its crank turns.
         let was = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
+        // How far each went in the last piece: where it's heading is where it was and that again.
+        const last = pistons.map(() => 0);
         const should = pistons.map(() => 0);
-        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : { ...turnMeasuring(b, amount, parts, after), pushed: null });
+        // The longer turn (see LONG_REACH) goes only as far as it needs: past the usual reach,
+        // it ends once the parts to move have moved. For a function whose controls share out the
+        // parts, the parts this control moves at all (by more than STIRRED) must have moved, and
+        // at least one must. Turned the whole three turns each way, the 42100 Liebherr R 9800's
+        // function 6 took over an hour.
+        const enough = (turned: number) => {
+          if (reach !== LONG_REACH || Math.abs(turned) < REACH) return false;
+          const done = moves.filter((m) => moved(m, startPoses, new Map())).length;
+          if (!shared) return done === moves.length;
+          const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
+          return done > 0 && done === stirred;
+        };
+        const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : ballOf(b) >= 0 ? ballMeasuring(b, control, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
-          const now = pistons.map((p) => pistonAt(p.sc, crankAngle(p.sc.crank)));
-          now.forEach((x, k) => (should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!)));
+          const now = pistons.map((p, k) => pistonAt(p.sc, crankAngle(p.sc.crank), was[k] === null ? undefined : was[k]! + last[k]));
+          now.forEach((x, k) => {
+            should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!);
+            last[k] = x === null || was[k] === null ? 0 : x - was[k]!;
+          });
           was = now;
         });
         const went = measured.went;
+        // A guard: a held part doesn't turn against what its shaft turns in, as a frozen part is
+        // held (see holds in constraints/holds.ts). It should never be noted.
+        for (const r of heldNow) {
+          const held = mech.bodyOf[part(r)];
+          if (!kin.parentLink(held)) continue;
+          const h = kin.housing(held);
+          const against = (poses: Matrix4[]) => poses[h].clone().invert().multiply(poses[held]);
+          const note = `${r} is held, but turned against what its shaft turns in`;
+          if (angle(against(startPoses), against(kin.poses)) > 1e-3 && !why.includes(note)) why.push(note);
+        }
         // The joint's own turn, to work it back again.
         const joint = measured.turned;
         const turned = slides ? joint : Math.sign(joint) * went[listed.length][0];
         const shifted = catchShifts(placedNow(), table, catches);
-        const still = moves.filter((m) => !moved(m, startPoses, shifted)).map((m) => m.ref);
-        const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const rates: Record<string, [number, number]> = {};
         listed.forEach((m, k) => (rates[m.ref] = Math.abs(turned) > 1e-6 ? [sig(went[k][0] / Math.abs(turned)), sig(went[k][1] / Math.abs(turned))] : [0, 0]));
         // A rate is the part's turning, or its sliding if it slides on its joint.
-        const rateOf = (m: (typeof listed)[number]) => rates[m.ref][kin.parentLink(mech.bodyOf[m.part]) && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide' ? 1 : 0];
+        const slidesOn = (m: (typeof listed)[number]) => kin.parentLink(mech.bodyOf[m.part]) !== null && mech.joints[kin.parentLink(mech.bodyOf[m.part])!.joint].kind === 'slide';
+        const rateOf = (m: (typeof listed)[number]) => rates[m.ref][slidesOn(m) ? 1 : 0];
+        // A part geared so far down that, as far as the control turned, its gears move it less
+        // than MOVED, is judged by its rate instead: it moved if it went at the rate its gears give
+        // it (within RATE_OFF). Only a part whose gears give it a rate (`expected`); the rest are
+        // judged by how far they went.
+        const slowGeared = (m: (typeof listed)[number]) => {
+          const rate = expected[m.ref];
+          if (!(rate > 0) || Math.abs(turned) < 0.01) return false;
+          const least = slidesOn(m) ? MOVED : (MOVED * Math.PI) / 180;
+          return rate * Math.abs(turned) < least && Math.abs(rateOf(m) - rate) <= RATE_OFF * rate;
+        };
+        const still = moves.filter((m) => !moved(m, startPoses, shifted) && !slowGeared(m)).map((m) => m.ref);
+        const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
         // Each piston's slide in its cylinder, against what its crank's turn says, both for
         // each radian the control turned.
@@ -579,22 +834,48 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const there = kin.snapshot();
         if (measured.pushed) {
           if (measured.pushed.length > 0) pushMeasuring(b, control, { back: measured.pushed }, []);
+        } else if (slideOf(b) >= 0) {
+          if (Math.abs(joint) >= 0.01) slideMeasuring(b, -joint, []);
+        } else if (ballOf(b) >= 0) {
+          if (Math.abs(joint) >= 0.01) ballMeasuring(b, control, -joint, [], () => {}, true);
         } else if (Math.abs(joint) >= 0.01) turn(b, -joint);
         const most = furthest(startPoses);
+        const apart = furthest(startPoses, true);
         kin.restore(there);
         const back: [number, number] = [round(most.ldu), round(most.degrees)];
+        const torn: [number, number] = [round(apart.ldu), round(apart.degrees)];
         const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
         // For a function whose controls share out the parts, a way does its share if it moves
         // at least one of them (if it lists any).
-        const share = Math.abs(turned) >= reach / 2 && !wrong.length && (!moves.length || still.length < moves.length);
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : Math.abs(turned) >= reach / 2 && !still.length && !wrong.length };
+        // Far enough: half the reach, or as far as it can go, to an end stop from part data (a
+        // slide's travel, such as a shock absorber's, or the end of a rack's teeth), however short
+        // that is: an arm built at one end of its shock's travel moves one way only, and that counts.
+        const farEnough = Math.abs(turned) >= half || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
+        const share = farEnough && !wrong.length && (!moves.length || still.length < moves.length);
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, strayed, halt: measured.halt, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
-      kin.restore(start);
-      together = [];
       // The better way: one that works, or else the one with fewer wrong parts that went further.
-      const best = [...each].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
+      const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
+      let each = bothWays();
+      kin.restore(start);
+      let best = bestOf(each);
+      let explained = best.works ? null : explain(best.still, best.moved, best.turned);
+      // Parts geared so far down that the usual reach moves them too little: worked again, up
+      // to LONG_REACH each way, a limit met on the way ending the turn as usual. Not a slide's
+      // control, whose reach is in LDU.
+      if (explained?.cause === 'too-little' && !slides) {
+        reach = LONG_REACH;
+        each = bothWays();
+        kin.restore(start);
+        best = bestOf(each);
+        explained = best.works ? null : explain(best.still, best.moved, best.turned);
+      }
+      kin.frozen = new Set();
+      together = [];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
-      const explained = best.works ? null : explain(best.still, best.moved, best.turned);
+      // A function that names a loose part can't work, whatever the drag did (see loosePart).
+      const works = best.works && loosePart === undefined;
+      if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
       const heading = (j: number, poses: Matrix4[]) => {
@@ -653,7 +934,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const movedParts = moves.filter((m) => !best.still.includes(m.ref)).map((m) => m.ref);
       // Why the parts no control moved didn't move, for a function whose controls share them out.
       const explainStill = (left: string[]) => explain(left, best.moved, best.turned);
-      return { works: best.works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
+      return { works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), torn: each.map((w) => w.torn), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
     });
     // Controls that share out the parts: the parts none of them moved are still.
     const movedByAny = new Set(ways.flatMap((w) => w.movedParts));
@@ -681,6 +962,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       ...expected,
       ...(off.length ? { wrong: off } : {}),
       back: ways.map((w) => w.back),
+      torn: ways.map((w) => w.torn),
       ...(strayed.length ? { strayed } : {}),
       ...(ways.some((w) => w.lock) ? { lock: ways.map((w) => w.lock ?? []) } : {}),
       ...(why.length ? { why: [...new Set(why)] } : {}),
@@ -697,8 +979,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   const checked = functions.map((fn, i): Checked => {
     const started = Date.now();
     let found: Checked;
+    kin.pivoted = null;
     try {
       found = checkOne(fn, priors[i]);
+      const p = kin.pivoted as { slide: number; rise: number; tread: number } | null;
+      if (p && found.result !== 'skipped' && found.result !== 'not checked') found = { ...found, pivoted: { slide: round(p.slide), rise: round(p.rise), tyre: name(mech.treads[p.tread].part) } };
     } catch (err) {
       found = { result: 'error', cause: 'bad-reference', why: [(err as Error).message] };
     }
@@ -706,7 +991,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
     return { ...found, seconds };
   });
-  return { checked, loose: mech.loose.map(name) };
+  return { checked, loose: mech.loose.map(name), errata: loaded.errata };
 }
 
 // How each result ranks, best first, for telling better from worse.
@@ -762,6 +1047,11 @@ async function main() {
   if (args.includes('--lock')) process.env.KINEBRICK_CHECK_LOCK = '1';
   const causes = args.includes('--causes');
   if (causes) process.env.KINEBRICK_CAUSES = '1';
+  // With the errata not yet signed off applied too (see src/errata.ts), to show a set before and
+  // after: what each function now does against its stored result is printed, and nothing is
+  // written, since a result checked so is never the set's own.
+  const proposed = args.includes('--proposed');
+  if (proposed) process.env.KINEBRICK_PROPOSED = '1';
   const commit = execSync('git rev-parse --short HEAD').toString().trim();
   // No shell, so the pathspec isn't left quoted by Windows' cmd.
   const uncommitted = execFileSync('git', ['status', '--porcelain', '--', 'src', 'data', ':!data/sets', ':!data/trains']).toString().trim() !== '';
@@ -793,6 +1083,7 @@ async function main() {
   const results: Partial<Record<Result, number>> = {};
   // How many functions have each cause, of the sets checked.
   const caused: Partial<Record<Cause, number>> = {};
+  const notBack = { torn: 0, 'moved whole': 0 };
   type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
   // Checks a set in a process of its own, or with `only`, one of its functions: what it found,
   // and how long it took.
@@ -831,11 +1122,13 @@ async function main() {
       // Only the causes change: the results stay those of the commit they were checked at.
       if ('functions' in found && data.generated) data.generated = { ...data.generated, causes: commit, functions: found.functions };
     } else {
-      if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${line}`);
+      if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${proposed ? 'with proposed errata: ' : ''}${line}`);
+      if ('errata' in found && found.errata) console.log(`${data.set}: errata applied: ${found.errata.applied.join(', ') || 'none'}${found.errata.refused.length ? `; refused: ${found.errata.refused.join('; ')}` : ''}`);
       data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
     }
-    writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
+    if (!proposed) writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
     if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
+    if ('functions' in found) for (const c of found.functions) if (c && notBackAs(c)) notBack[notBackAs(c)!]++;
     const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
     console.log(`${data.set}: ${summary} (${seconds} s)`);
     checking.delete(s.data.set);
@@ -873,6 +1166,7 @@ async function main() {
     let total = 0;
     let failed: Found | null = null;
     const loose = new Map<string, string[]>(); // each model's loose parts
+    const errata = new Map<string, { applied: string[]; refused: string[] }>(); // each model's errata
     for (const i of todo) {
       queue.push(async () => {
         if (!checking.has(s.data.set)) checking.set(s.data.set, Date.now());
@@ -881,8 +1175,12 @@ async function main() {
         if ('functions' in found) {
           checked[i] = found.functions[i];
           loose.set(modelOf(functions[i]), found.loose);
+          if (found.errata) errata.set(modelOf(functions[i]), found.errata);
         } else failed ??= found;
-        if (--left === 0) finish(s, failed ?? { counts: countsOf(checked), loose: models.flatMap((m) => loose.get(m) ?? []), functions: checked }, total);
+        const applied = [...errata.values()].flatMap((e) => e.applied);
+        const refused = [...errata.values()].flatMap((e) => e.refused);
+        const ofErrata = applied.length || refused.length ? { errata: { applied: [...new Set(applied)], refused: [...new Set(refused)] } } : {};
+        if (--left === 0) finish(s, failed ?? { counts: countsOf(checked), loose: models.flatMap((m) => loose.get(m) ?? []), ...ofErrata, functions: checked }, total);
       });
     }
   }
@@ -908,7 +1206,10 @@ async function main() {
   clearInterval(progress);
   // Why the functions that don't work don't, most common first, with who looks into each.
   const byCount = (Object.entries(caused) as [Cause, number][]).sort((a, b) => b[1] - a[1]);
+  // Of the functions that left a part not back, those that came back torn, and those that came
+  // back whole but somewhere else (see notBackAs).
+  if (notBack.torn + notBack['moved whole']) console.log(`Not back: ${notBack.torn} came back torn, ${notBack['moved whole']} came back whole but somewhere else`);
   if (byCount.length) console.log('Causes:\n' + byCount.map(([c, n]) => `  ${String(n).padStart(4)}  ${c} (${CAUSES[c].owner}): ${CAUSES[c].says}`).join('\n'));
   // The mechanism catalog quotes each function's result: written afresh with them.
-  if (!causes && !args.includes('--trains')) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
+  if (!causes && !proposed && !args.includes('--trains')) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
 }

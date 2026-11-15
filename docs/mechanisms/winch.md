@@ -4,7 +4,7 @@ A drum winds a string or cable, over pulleys, to a hook, a grab or a boom. (Movi
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.
 
-Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 19 works, 10 partly.
+Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 20 works, 9 partly.
 
 ## By decade
 
@@ -58,7 +58,7 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *hook:* With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (partly)
+- *hook:* With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
 
 **2012, [9390 Mini Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9390-1)**
 
@@ -129,7 +129,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *hook:* The black knob at the back of the superstructure's left side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys. (works)
+- *hook:* The black knob at the back of the superstructure's right side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys: turned anticlockwise (seen from its own side) it lowers the hook, playing the string out. (works)
 
 **2021, [42122 Jeep Wrangler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42122-1)**
 

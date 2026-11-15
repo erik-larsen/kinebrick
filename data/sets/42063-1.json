@@ -67,13 +67,15 @@
         ],
         "source": "book: page 107 (the arrow along the front fork)",
         "control": "p157 57515",
+        "lifted": true,
         "moves": [
           "p386 88517",
           "p164 4254"
         ],
         "stays": [
           "p142 32526"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"lets the wheel rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheel has suspension: it rides on a swing arm pivoted under the seat, with a shock absorber between the swing arm and the frame.",
@@ -82,13 +84,15 @@
         ],
         "source": "book: page 107 (the arrow at the rear shock absorber)",
         "control": "p72 14720",
+        "lifted": true,
         "moves": [
           "p334 88517",
           "p198 4254"
         ],
         "stays": [
           "p142 32526"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The shock absorbers' springs hold the bike up and spring back.",
@@ -111,14 +115,14 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 5,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 9,
     "counts": {
-      "no": 3,
-      "works": 2,
+      "works": 4,
       "not back": 1,
+      "torn": 1,
+      "no": 1,
       "skipped": 2
     },
     "loose": [
@@ -127,39 +131,105 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.51,
+            -1.51
           ]
         ],
-        "still": [
-          "p386 88517",
-          "p345 32278"
-        ],
         "rates": [
-          {},
-          {}
+          {
+            "p386 88517": [
+              1.13,
+              0.000916
+            ],
+            "p345 32278": [
+              1,
+              44.7
+            ],
+            "p142 32526": [
+              0.00000126,
+              1.39e-10
+            ]
+          },
+          {
+            "p386 88517": [
+              1.16,
+              0.000916
+            ],
+            "p345 32278": [
+              1,
+              44.7
+            ],
+            "p142 32526": [
+              5.59e-7,
+              5.41e-10
+            ]
+          }
         ],
         "back": [
-          [],
-          []
+          [
+            [
+              1.28,
+              4.52
+            ],
+            [
+              1.46,
+              3.51
+            ]
+          ],
+          [
+            [
+              2.38,
+              4.33
+            ],
+            [
+              1.15,
+              5.23
+            ]
+          ]
         ],
-        "why": [
-          "p418 32016 has no joint to work",
-          "p419 32016 has no joint to work"
+        "torn": [
+          [
+            [
+              1.28,
+              4.51
+            ],
+            [
+              1.36,
+              3.54
+            ]
+          ],
+          [
+            [
+              0.9,
+              4.35
+            ],
+            [
+              1.22,
+              5.23
+            ]
+          ]
+        ],
+        "strayed": [
+          "p357 44294"
         ],
         "movedBy": [
-          [],
-          []
+          [
+            "p386 88517",
+            "p345 32278"
+          ],
+          [
+            "p386 88517",
+            "p345 32278"
+          ]
         ],
-        "cause": "control-fixed",
-        "seconds": 0.1
+        "seconds": 5.5
       },
       {
         "result": "works",
@@ -173,46 +243,55 @@
           {
             "p83 6589": [
               1.67,
-              2.68e-12
+              1.56e-12
             ],
             "p23 32269": [
               1.67,
-              2.17e-12
+              1.76e-12
             ],
             "p64 2853": [
               2.78,
-              2.22e-12
+              1.86e-12
             ],
             "p67 2851": [
-              5.62e-8,
+              0,
               15.9
             ],
             "p68 2851": [
-              5.62e-8,
+              0,
               17.1
             ],
             "p386 88517": [
-              5.62e-8,
-              4.46e-12
+              0,
+              3.6e-12
             ]
           }
         ],
         "back": [
           [
             [
-              4.26,
+              0.16,
               0
             ],
             [
-              4.61,
+              0.16,
               0
             ]
           ]
         ],
-        "strayed": [
-          "p131 62520"
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "seconds": 3.5
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -237,7 +316,19 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 0.6
       },
       {
         "result": "no",
@@ -279,6 +370,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -288,35 +391,31 @@
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p386 88517",
+        "cause": "part-fixed",
+        "detail": "p164 4254",
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.3,
+            -0.01
           ]
-        ],
-        "still": [
-          "p334 88517",
-          "p198 4254"
         ],
         "rates": [
           {
             "p334 88517": [
-              0,
-              0
+              1,
+              200
             ],
             "p198 4254": [
-              0,
-              0
+              0.128,
+              72.1
             ],
             "p142 32526": [
               0,
-              0
+              1.96e-14
             ]
           }
         ],
@@ -332,18 +431,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p334 88517",
-        "seconds": 0
+        "seconds": 0.6
       },
       {
         "result": "skipped",

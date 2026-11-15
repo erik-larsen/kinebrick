@@ -77,7 +77,11 @@
         "moves": [
           "p95 6589"
         ],
-        "note": "with the engine held still, turning one rear wheel turns the other the opposite way"
+        "note": "with the engine held still, turning one rear wheel turns the other the opposite way; the engine is held, as the note says (\"with the engine held still\"): the crankshaft p154, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
+        "held": [
+          "p154 2853"
+        ]
       },
       {
         "does": "The bonnet tilts up on a hinge at the windscreen, showing the engine.",
@@ -94,19 +98,21 @@
         ]
       },
       {
-        "does": "The two front doors open, each swinging out on a hinge at its front edge.",
+        "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
         "mechanisms": [
           "hinge: doors"
         ],
-        "source": "book: book 3 steps 9-12 (doors fitted on their hinge pins); inferred: that they're meant to open",
+        "source": "book 3 (8081-1-3.pdf): page 8 step 8.4 puts the 32054 down through the rear hole of the black 13L sill and the blue 6558 in its front hole, and page 9 pins both into the body; steps 9 and 12 to 13 (pages 10 to 11 and 16 to 19) lay the door, a red 13L beam with its panel, on the sill, hung on the upper end of the 6558. Erik, from a review video of the set: \"the door is hinged in the lower corner of the door closest to the front wheel\"; asked whether a pin is pulled first: \"No, it just swings\"",
         "control": [
-          "p472 41239",
-          "p504 41239"
+          "p475 41239",
+          "p507 41239"
         ],
         "stays": [
+          "p472 41239",
+          "p504 41239",
           "p415 32278"
         ],
-        "note": "each door opens on its own; the left one's panel is p478 64392, the right one's p510 64682"
+        "note": "each door opens on its own: the left door is the red beam p475 with its panel p478 64392, the right one p507 with p510 64682. The black sills p472 and p504, which this function named as its controls before, are pinned to the body at both ends (the 6558 p473 and p505 at the front, the 32054 p474 and p506 at the rear) and stay. Each door hangs on the upper end of its 6558, its hinge at the lower front corner; at the rear it only rests over the 32054's bush. In the file each door is drawn about 4.6 degrees open, its rear hole 18 LDU off the bush, so nothing joins them there"
       },
       {
         "does": "The tailgate at the back swings up on a hinge at the roof.",
@@ -137,11 +143,12 @@
           "p199 6572",
           "p202 6572"
         ],
+        "lifted": true,
         "moves": [
           "p210 6571",
           "p213 6571"
         ],
-        "note": "unsure how the front shock absorber p209 76537 and the rear axle are hung; to be checked against the book"
+        "note": "unsure how the front shock absorber p209 4254 and the rear axle are hung; to be checked against the book. lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -165,17 +172,22 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
+    "commit": "716b8262",
+    "date": "2026-11-15",
     "seconds": 27,
     "counts": {
-      "works": 5,
+      "works": 7,
       "not back": 2,
-      "no": 3,
+      "moved whole": 1,
+      "no": 1,
+      "torn": 1,
       "skipped": 1
     },
-    "loose": [],
+    "loose": [
+      "p591 22977",
+      "p593 22977",
+      "p595 22977"
+    ],
     "functions": [
       {
         "result": "works",
@@ -189,15 +201,15 @@
           {
             "p48 32072": [
               1,
-              2.65e-13
+              3.04e-13
             ],
             "p52 32072": [
               1,
-              4.02e-13
+              3.24e-13
             ],
             "p219 3647": [
               1,
-              1.6e-13
+              1.67e-13
             ],
             "p216 6574": [
               0,
@@ -247,7 +259,19 @@
             ]
           ]
         ],
-        "seconds": 10.4
+        "torn": [
+          [
+            [
+              0.01,
+              0.01
+            ],
+            [
+              0.01,
+              0.01
+            ]
+          ]
+        ],
+        "seconds": 8.7
       },
       {
         "result": "works",
@@ -265,77 +289,77 @@
           {
             "p94 62821": [
               1.05,
-              1.07e-12
+              1.03e-12
             ],
             "p81 32269": [
               1.47,
-              5.14e-13
+              5.63e-13
             ],
             "p8 94925": [
               1.47,
-              1.64e-13
+              2.2e-13
             ],
             "p60 6542a": [
               1.47,
-              2.42e-13
+              2.75e-13
             ],
             "p183 94925": [
               1.47,
-              2.91e-13
+              3.02e-13
             ],
             "p154 2853": [
               1.47,
-              3.24e-13
+              2.48e-13
             ],
             "p161 2851": [
-              8.43e-8,
+              1.4e-7,
               11.5
             ],
             "p164 2851": [
-              1.4e-7,
+              8.43e-8,
               9.05
             ],
             "p0 64179": [
-              5.62e-8,
-              3.96e-14
+              1.4e-7,
+              6.06e-14
             ]
           },
           {
             "p94 62821": [
-              0.958,
-              6.61e-13
+              1.05,
+              8.99e-13
             ],
             "p81 32269": [
-              1.34,
-              5.01e-13
+              1.47,
+              5.67e-13
             ],
             "p8 94925": [
-              1.34,
-              1.46e-13
+              1.47,
+              1.5e-13
             ],
             "p60 6542a": [
-              1.34,
-              2.44e-13
+              1.47,
+              2.63e-13
             ],
             "p183 94925": [
-              1.34,
-              3.57e-13
+              1.47,
+              2.86e-13
             ],
             "p154 2853": [
-              1.34,
-              3.9e-13
+              1.47,
+              2.76e-13
             ],
             "p161 2851": [
-              1.4e-7,
-              11.1
+              1.12e-7,
+              9.05
             ],
             "p164 2851": [
-              5.62e-8,
-              7.76
+              1.12e-7,
+              11.5
             ],
             "p0 64179": [
-              5.62e-8,
-              8.16e-14
+              1.12e-7,
+              5.82e-14
             ]
           }
         ],
@@ -345,8 +369,8 @@
             "p164 2851": 9.05
           },
           {
-            "p161 2851": 11.1,
-            "p164 2851": 7.76
+            "p161 2851": 9.05,
+            "p164 2851": 11.5
           }
         ],
         "back": [
@@ -367,6 +391,28 @@
             ],
             [
               1.06,
+              0.45
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0.06,
+              0.49
+            ],
+            [
+              0.05,
+              0.34
+            ]
+          ],
+          [
+            [
+              0.05,
+              0.34
+            ],
+            [
+              0.06,
               0.45
             ]
           ]
@@ -399,7 +445,7 @@
             "p164 2851"
           ]
         ],
-        "seconds": 8.6
+        "seconds": 7.3
       },
       {
         "result": "works",
@@ -412,28 +458,36 @@
         "rates": [
           {
             "p95 6589": [
-              1.1,
-              8.54e-13
+              1,
+              2.37e-14
             ]
           }
         ],
         "back": [
           [
             [
-              1.06,
-              0.51
+              0,
+              0
             ],
             [
-              0.86,
-              0.35
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p428 6558",
-          "p545 87080"
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "seconds": 4.2
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -451,11 +505,23 @@
             ],
             "p415 32278": [
               0,
-              0
+              2.07e-114
             ]
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -471,28 +537,44 @@
         "seconds": 1.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {
-            "p415 32278": [
+            "p472 41239": [
+              0,
+              1.89e-14
+            ],
+            "p504 41239": [
               0,
               0
+            ],
+            "p415 32278": [
+              0,
+              7.16e-117
             ]
           },
           {
-            "p415 32278": [
+            "p472 41239": [
               0,
               0
+            ],
+            "p504 41239": [
+              0,
+              5.68e-14
+            ],
+            "p415 32278": [
+              0,
+              8.87e-116
             ]
           }
         ],
@@ -518,26 +600,34 @@
             ]
           ]
         ],
-        "stop": [
+        "torn": [
           [
-            "no motion",
-            "no motion"
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ],
           [
-            "no motion",
-            "no motion"
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
           ]
         ],
-        "pushed": [
-          true,
-          true
-        ],
+        "freed": 1,
         "movedBy": [
           [],
           []
         ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 2.7
       },
       {
         "result": "no",
@@ -558,88 +648,118 @@
         "back": [
           []
         ],
+        "torn": [
+          []
+        ],
         "why": [
           "p415 32278 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.9
           ],
           [
-            0,
-            0
+            0.9,
+            -1.5
           ]
-        ],
-        "still": [
-          "p210 6571",
-          "p213 6571"
         ],
         "rates": [
           {
             "p210 6571": [
-              0,
-              0
+              1.84,
+              80
             ],
             "p213 6571": [
-              0,
-              0
+              0.0971,
+              47.5
             ]
           },
           {
             "p210 6571": [
-              0,
-              0
+              0.0971,
+              47.5
             ],
             "p213 6571": [
-              0,
-              0
+              1.84,
+              80
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              2.5,
+              1.79
             ],
             [
-              0,
-              0
+              5.87,
+              4.08
             ]
           ],
           [
             [
-              0,
-              0
+              5.87,
+              4.08
             ],
             [
-              0,
-              0
+              2.5,
+              1.79
             ]
           ]
+        ],
+        "torn": [
+          [
+            [
+              2.5,
+              1.79
+            ],
+            [
+              5.87,
+              4.08
+            ]
+          ],
+          [
+            [
+              5.87,
+              4.08
+            ],
+            [
+              2.5,
+              1.79
+            ]
+          ]
+        ],
+        "strayed": [
+          "p588 56908",
+          "p582 56908"
         ],
         "stop": [
           [
-            "dead point",
+            null,
             "dead point"
           ],
           [
             "dead point",
-            "dead point"
+            null
           ]
         ],
         "movedBy": [
-          [],
-          []
+          [
+            "p210 6571",
+            "p213 6571"
+          ],
+          [
+            "p210 6571",
+            "p213 6571"
+          ]
         ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 4.3
       },
       {
         "result": "skipped",
@@ -657,7 +777,7 @@
           {
             "p216 6574": [
               0,
-              0
+              4.2e-86
             ]
           }
         ],
@@ -673,7 +793,19 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 1.1
       }
     ]
   }

@@ -133,15 +133,15 @@
     ]
   },
   "generated": {
-    "commit": "015cd559",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 4,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "partly": 3,
       "not checked": 1,
       "works": 2,
       "not back": 1,
+      "moved whole": 1,
       "skipped": 1
     },
     "loose": [
@@ -212,9 +212,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p174 3895",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -270,6 +282,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p212 2950 against p183 3895",
         "seconds": 0.3
@@ -289,7 +313,7 @@
         "rates": [
           {
             "p19 2790a against p0 3738": [
-              5.62e-8,
+              0,
               22.5
             ],
             "p16 4261 against p0 3738": [
@@ -326,7 +350,19 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "torn": [
+          [
+            [
+              0.28,
+              0.45
+            ],
+            [
+              0.28,
+              0.45
+            ]
+          ]
+        ],
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -356,10 +392,10 @@
             ],
             "p51 3647 against p54 3703": [
               0,
-              1.27e-31
+              1.54e-31
             ],
             "p19 2790a against p0 3738": [
-              5.62e-8,
+              0,
               22.5
             ]
           }
@@ -376,9 +412,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0.28,
+              0.45
+            ],
+            [
+              0.28,
+              0.45
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p54 3703 against p0 3738",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -448,6 +496,48 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              26.38
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              23.98
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              27.98
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              29.98
+            ]
+          ]
+        ],
         "strayed": [
           "p146 3701",
           "p191 6577",
@@ -460,7 +550,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.4
       },
       {
         "result": "skipped",

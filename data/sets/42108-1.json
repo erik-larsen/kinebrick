@@ -98,11 +98,12 @@
         "note": "inferred: it's turned by hand; the book shows no knob for it"
       },
       {
-        "does": "The black knob nearer the cab on the superstructure's left side raises and lowers the boom: its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up.",
+        "does": "The black knob nearer the cab on the superstructure's right side raises and lowers the boom: turned anticlockwise (seen from its own side) it raises it. Its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up.",
         "mechanisms": [
           "linear-actuator: boom"
         ],
-        "source": "book: page 267 middle panel (the boom-raising icon on the knob, arrow raising the boom)",
+        "source": "book: page 267 middle panel (the boom-raising icon on the knob, an anticlockwise arrow raising the boom; the panel shows the machine's right side, its cab to the right)",
+        "note": "Signed by Erik, 2026-11-14, from page 267 (Erik's words: \"ccw knob 1: lower the winch / play out the cable; ccw knob 2: raise the boom up; ccw knob 3: telescope the boom out\"): anticlockwise raises the boom, and the knob is on the right side",
         "control": "p1192 2654",
         "moves": [
           "p1187 32270",
@@ -116,11 +117,12 @@
         ]
       },
       {
-        "does": "The black knob at the back of the superstructure's left side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys.",
+        "does": "The black knob at the back of the superstructure's right side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys: turned anticlockwise (seen from its own side) it lowers the hook, playing the string out.",
         "mechanisms": [
           "winch: hook"
         ],
-        "source": "book: page 267 left panel (the hook icon on the knob, arrow lowering the hook), steps 344-350 (stringing the hook)",
+        "source": "book: page 267 left panel (the hook icon on the knob, an anticlockwise arrow lowering the hook; the panel shows the machine's right side, its cab to the right), steps 344-350 (stringing the hook)",
+        "note": "Signed by Erik, 2026-11-14, from page 267 (Erik's words: \"ccw knob 1: lower the winch / play out the cable; ccw knob 2: raise the boom up; ccw knob 3: telescope the boom out\"): anticlockwise lowers the hook, and the knob is on the right side",
         "control": "p1195 2654",
         "moves": [
           "p1182 3648b",
@@ -133,11 +135,12 @@
         ]
       },
       {
-        "does": "The black knob on the superstructure's right side extends the boom: it turns a red 16 tooth gear and a blue 20 tooth gear at the boom's pivot, which drive a shaft along the boom to a gear at the outer section's tip, and that gear runs the rack on top of the inner section.",
+        "does": "The black knob on the superstructure's left side extends the boom, turned anticlockwise (seen from its own side): it turns a red 16 tooth gear and a blue 20 tooth gear at the boom's pivot, which drive a shaft along the boom to a gear at the outer section's tip, and that gear runs the rack on top of the inner section.",
         "mechanisms": [
           "rack-and-pinion: boom extension"
         ],
-        "source": "book: steps 335-341 (the rack on the inner section, the blue and red gears), page 267 right panel (the knob and arrow along the boom)",
+        "source": "book: steps 335-341 (the rack on the inner section, the blue and red gears), page 267 right panel (the knob with an anticlockwise arrow, and the arrow along the boom)",
+        "note": "Signed by Erik, 2026-11-14, from page 267 (Erik's words: \"ccw knob 1: lower the winch / play out the cable; ccw knob 2: raise the boom up; ccw knob 3: telescope the boom out\"): anticlockwise extends the boom, and the knob is on the left side",
         "control": "p1155 2654",
         "moves": [
           "p1026 18946",
@@ -172,14 +175,12 @@
     ]
   },
   "generated": {
-    "commit": "0eb34660",
-    "uncommitted": true,
-    "date": "2026-11-14",
-    "seconds": 135,
+    "commit": "716b8262",
+    "date": "2026-11-15",
+    "seconds": 125,
     "counts": {
-      "works": 5,
+      "works": 6,
       "no": 1,
-      "partly": 1,
       "skipped": 1
     },
     "loose": [
@@ -365,6 +366,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0.03,
+              0.03
+            ],
+            [
+              0.03,
+              0.03
+            ]
+          ],
+          [
+            [
+              0.03,
+              0.03
+            ],
+            [
+              0.03,
+              0.03
+            ]
+          ]
+        ],
         "movedBy": [
           [
             "p3 44294",
@@ -389,7 +412,7 @@
             "p128 48989"
           ]
         ],
-        "seconds": 9.9
+        "seconds": 7.2
       },
       {
         "result": "works",
@@ -519,6 +542,88 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
@@ -529,7 +634,7 @@
           [],
           []
         ],
-        "seconds": 41.3
+        "seconds": 29.9
       },
       {
         "result": "works",
@@ -699,6 +804,48 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             null,
@@ -731,7 +878,7 @@
             "p256 32062"
           ]
         ],
-        "seconds": 43.6
+        "seconds": 49.7
       },
       {
         "result": "no",
@@ -777,6 +924,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -788,48 +947,57 @@
         ],
         "cause": "not-driven",
         "detail": "p810 11954",
-        "seconds": 0.2
+        "seconds": 1.1
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             0,
-            -1.5
+            -1.8
           ]
-        ],
-        "still": [
-          "p528 61904"
         ],
         "rates": [
           {
             "p1187 32270": [
               1,
-              0
+              8.08e-14
             ],
             "p538 42108 - 18575": [
               0.6,
-              3.79e-14
+              7.62e-14
             ],
             "p528 61904": [
               0.01,
-              0.502
+              0.501
             ],
             "p810 11954": [
-              0.00732,
+              0.0073,
               1.17
             ],
             "p431 18939": [
               0,
-              5.64e-15
+              1.26e-14
             ],
             "p1195 2654": [
               0,
-              5.68e-14
+              1.65e-13
             ]
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0.01,
+              0.01
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,
@@ -847,9 +1015,7 @@
             null
           ]
         ],
-        "cause": "too-little",
-        "detail": "p528 61904",
-        "seconds": 6.9
+        "seconds": 12.7
       },
       {
         "result": "works",
@@ -895,7 +1061,19 @@
             ]
           ]
         ],
-        "seconds": 17.2
+        "torn": [
+          [
+            [
+              0,
+              0.04
+            ],
+            [
+              0,
+              0.04
+            ]
+          ]
+        ],
+        "seconds": 13.2
       },
       {
         "result": "works",
@@ -949,7 +1127,19 @@
             ]
           ]
         ],
-        "seconds": 14.5
+        "torn": [
+          [
+            [
+              0,
+              0.06
+            ],
+            [
+              0,
+              0.1
+            ]
+          ]
+        ],
+        "seconds": 10.8
       },
       {
         "result": "skipped",
