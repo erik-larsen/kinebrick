@@ -4,7 +4,7 @@ The whole axle or wheel unit turns on an upright pivot. (Steering.)
 
 First appears in 1993, in [8824 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8824-1): The black wheel on top of the cabin steers: an 8 tooth gear at the foot of its shaft turns a 24 tooth gear on the upright steering column at the stern, which swivels the rear wheels below and, through two toothed toggle joints, the propeller above.
 
-Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 4 partly.
+Used in 4 of the 186 surveyed sets, by 4 functions. Kinebrick: 3 partly, 1 no.
 
 ## By decade
 
@@ -36,7 +36,7 @@ Each detail by the set it first appears in.
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
-- *nose wheel:* The black knob on top of the fuselage behind the cockpit steers the nose wheel, through an upright shaft with a universal joint down the nose leg. (partly)
+- *nose wheel:* The black knob on top of the fuselage behind the cockpit steers the nose wheel, through an upright shaft with a universal joint down the nose leg. (no)
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
 

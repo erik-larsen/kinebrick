@@ -145,7 +145,7 @@
     ]
   },
   "generated": {
-    "commit": "c98bc557",
+    "commit": "ce4c28b2",
     "date": "2026-11-15",
     "seconds": 10,
     "counts": {
@@ -294,7 +294,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 2.8
       },
       {
         "result": "partly",
@@ -488,7 +488,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p371 2739a",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -604,7 +604,7 @@
           [],
           []
         ],
-        "seconds": 3.7
+        "seconds": 3.9
       }
     ]
   }

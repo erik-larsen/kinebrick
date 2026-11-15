@@ -129,9 +129,9 @@
     ]
   },
   "generated": {
-    "commit": "c98bc557",
+    "commit": "ce4c28b2",
     "date": "2026-11-15",
-    "seconds": 149,
+    "seconds": 91,
     "counts": {
       "works": 4,
       "partly": 1,
@@ -196,7 +196,7 @@
             null
           ]
         ],
-        "seconds": 24.8
+        "seconds": 16
       },
       {
         "result": "works",
@@ -292,7 +292,7 @@
             "p496 2851"
           ]
         ],
-        "seconds": 28
+        "seconds": 16.9
       },
       {
         "result": "partly",
@@ -310,7 +310,7 @@
           {
             "p471 3648b": [
               0,
-              2.91e-21
+              1.1e-18
             ],
             "p425 99010": [
               0,
@@ -332,7 +332,7 @@
         ],
         "cause": "not-driven",
         "detail": "p471 3648b",
-        "seconds": 4.6
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -354,11 +354,11 @@
             ],
             "p1002 10928": [
               0.125,
-              1.8e-15
+              1.65e-15
             ],
             "p471 3648b": [
               0,
-              1.84e-16
+              1.69e-16
             ],
             "p425 99010": [
               0,
@@ -378,7 +378,7 @@
             ]
           ]
         ],
-        "seconds": 4.5
+        "seconds": 2.8
       },
       {
         "result": "skipped",
@@ -406,7 +406,7 @@
           "p1083 64782 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 1.8
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -514,7 +514,7 @@
           [],
           []
         ],
-        "seconds": 84
+        "seconds": 50.7
       }
     ]
   }

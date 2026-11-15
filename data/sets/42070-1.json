@@ -251,9 +251,9 @@
     ]
   },
   "generated": {
-    "commit": "c98bc557",
+    "commit": "ce4c28b2",
     "date": "2026-11-15",
-    "seconds": 527,
+    "seconds": 358,
     "counts": {
       "partly": 7,
       "works": 3,
@@ -375,7 +375,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 23.9
+        "seconds": 15.8
       },
       {
         "result": "partly",
@@ -420,7 +420,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 23.8
+        "seconds": 15.9
       },
       {
         "result": "partly",
@@ -488,7 +488,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 24.1
+        "seconds": 15.7
       },
       {
         "result": "works",
@@ -536,7 +536,7 @@
             "dead point"
           ]
         ],
-        "seconds": 49.8
+        "seconds": 32.3
       },
       {
         "result": "works",
@@ -584,7 +584,7 @@
             "dead point"
           ]
         ],
-        "seconds": 50.4
+        "seconds": 31.3
       },
       {
         "result": "partly",
@@ -658,7 +658,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 45.2
+        "seconds": 31.2
       },
       {
         "result": "partly",
@@ -737,7 +737,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 24
+        "seconds": 15.7
       },
       {
         "result": "partly",
@@ -806,7 +806,7 @@
         ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 24.5
+        "seconds": 15.5
       },
       {
         "result": "partly",
@@ -877,7 +877,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 45.9
+        "seconds": 32.7
       },
       {
         "result": "works",
@@ -921,7 +921,7 @@
           [],
           []
         ],
-        "seconds": 101.2
+        "seconds": 64.2
       },
       {
         "result": "skipped"
