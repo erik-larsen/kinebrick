@@ -143,7 +143,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *boom extension:* The black knob on the superstructure's right side extends the boom: it turns a red 16 tooth gear and a blue 20 tooth gear at the boom's pivot, which drive a shaft along the boom to a gear at the outer section's tip, and that gear runs the rack on top of the inner section. (works)
+- *boom extension:* The black knob on the superstructure's left side extends the boom, turned anticlockwise (seen from its own side): it turns a red 16 tooth gear and a blue 20 tooth gear at the boom's pivot, which drive a shaft along the boom to a gear at the outer section's tip, and that gear runs the rack on top of the inner section. (works)
 
 ---
 

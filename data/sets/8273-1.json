@@ -169,13 +169,15 @@
         ],
         "source": "inferred: book 1 step 34 (inset: the bogie hangs on one axle at the frame's middle); not shown moving",
         "control": "p219 2905",
+        "lifted": true,
         "moves": [
           "p4004 56145",
           "p4008 56145"
         ],
         "stays": [
           "p4000 56145"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36); and here the axle swings about its own drive shaft, so the differential’s ring gear goes round the pinion and the wheels must turn against each other, which the floor’s hold on the tyres would stop"
       },
       {
         "does": "The six wheels roll freely; nothing drives them.",
@@ -209,12 +211,13 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "f8064d1e",
+    "uncommitted": true,
     "date": "2026-11-15",
-    "seconds": 44,
+    "seconds": 27,
     "counts": {
-      "works": 6,
-      "no": 2,
+      "works": 7,
+      "no": 1,
       "partly": 2,
       "not checked": 1,
       "skipped": 1
@@ -292,7 +295,7 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "seconds": 1.4
       },
       {
         "result": "no",
@@ -316,7 +319,7 @@
           "p556 41239 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -356,7 +359,7 @@
             null
           ]
         ],
-        "seconds": 5.1
+        "seconds": 3.1
       },
       {
         "result": "partly",
@@ -409,7 +412,7 @@
         ],
         "cause": "not-driven",
         "detail": "p212 48168",
-        "seconds": 2.4
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -464,7 +467,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p212 48168",
-        "seconds": 2.1
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -506,7 +509,7 @@
             ]
           ]
         ],
-        "seconds": 4
+        "seconds": 2.3
       },
       {
         "result": "not checked",
@@ -556,7 +559,7 @@
             ]
           ]
         ],
-        "seconds": 6.1
+        "seconds": 3.8
       },
       {
         "result": "works",
@@ -593,29 +596,25 @@
         "pushed": [
           true
         ],
-        "seconds": 5.9
+        "seconds": 3.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p4004 56145",
-          "p4008 56145"
         ],
         "rates": [
           {
             "p4004 56145": [
-              0,
-              0
+              1,
+              89.4
             ],
             "p4008 56145": [
-              0,
-              0
+              1,
+              89.4
             ],
             "p4000 56145": [
               0,
@@ -635,14 +634,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.2
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -750,7 +742,7 @@
           [],
           []
         ],
-        "seconds": 14.7
+        "seconds": 8.7
       },
       {
         "result": "skipped",

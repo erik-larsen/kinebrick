@@ -124,9 +124,9 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "1ef58455",
     "date": "2026-11-15",
-    "seconds": 5,
+    "seconds": 4,
     "counts": {
       "works": 2,
       "not back": 2,
@@ -185,7 +185,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -242,7 +242,7 @@
         ],
         "cause": "not-driven",
         "detail": "p889 32498",
-        "seconds": 1.4
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -280,7 +280,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -433,7 +433,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 0.8
       }
     ]
   }

@@ -105,10 +105,12 @@
           "p52 32494",
           "p53 32494"
         ],
+        "lifted": true,
         "moves": [
           "p80 4254",
           "p82 4254"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -206,9 +208,10 @@
     ]
   },
   "generated": {
-    "commit": "6fbe31fe",
+    "commit": "f8064d1e",
+    "uncommitted": true,
     "date": "2026-11-15",
-    "seconds": 105,
+    "seconds": 74,
     "counts": {
       "works": 7,
       "partly": 1,
@@ -240,15 +243,15 @@
           {
             "p6 62821": [
               1,
-              1.81e-12
+              1.58e-12
             ],
             "p5 32269": [
               1.4,
-              2.81e-13
+              2.34e-13
             ],
             "p178 2854": [
               2.33,
-              2.89e-13
+              1.87e-13
             ],
             "p176 2851": [
               2.81e-8,
@@ -286,15 +289,15 @@
           {
             "p6 62821": [
               1,
-              1.28e-12
+              1.62e-12
             ],
             "p5 32269": [
               1.4,
-              2.22e-13
+              2.85e-13
             ],
             "p178 2854": [
               2.33,
-              3.41e-13
+              3.77e-13
             ],
             "p176 2851": [
               2.81e-8,
@@ -402,7 +405,7 @@
             "p195 2851"
           ]
         ],
-        "seconds": 38.9
+        "seconds": 23.6
       },
       {
         "result": "works",
@@ -416,11 +419,11 @@
           {
             "p1295 15038": [
               1,
-              7.83e-13
+              7.92e-13
             ],
             "p6 62821": [
               1,
-              1.81e-12
+              1.58e-12
             ]
           }
         ],
@@ -436,7 +439,7 @@
             ]
           ]
         ],
-        "seconds": 16
+        "seconds": 11.3
       },
       {
         "result": "works",
@@ -462,11 +465,11 @@
             ],
             "p515 11949": [
               0.23,
-              3.12e-13
+              2.63e-13
             ],
             "p520 11949": [
               0.229,
-              3.05e-13
+              3.37e-13
             ],
             "p1296 15038": [
               0.23,
@@ -504,7 +507,7 @@
             ]
           ]
         ],
-        "seconds": 11.9
+        "seconds": 9.6
       },
       {
         "result": "works",
@@ -529,7 +532,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 3.9
       },
       {
         "result": "partly",
@@ -629,7 +632,7 @@
         ],
         "cause": "not-driven",
         "detail": "p515 11949",
-        "seconds": 2.2
+        "seconds": 2
       },
       {
         "result": "no",
@@ -706,7 +709,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 6.4
+        "seconds": 1
       },
       {
         "result": "skipped",
@@ -779,7 +782,7 @@
             ]
           ]
         ],
-        "seconds": 11.2
+        "seconds": 9.8
       },
       {
         "result": "works",
@@ -851,7 +854,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 7.8
       },
       {
         "result": "works",
@@ -881,7 +884,7 @@
             ]
           ]
         ],
-        "seconds": 4.2
+        "seconds": 4.1
       },
       {
         "result": "not checked",

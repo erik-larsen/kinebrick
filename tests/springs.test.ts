@@ -102,6 +102,23 @@ describe('a car on shock absorbers that springs hold at rest', () => {
     expect(Math.abs(slid(kin, mech.joints[shocks[0]]))).toBeGreaterThan(1);
   });
 
+  it('holds its shocks for a drag that can go without them, and frees them for one that needs them', () => {
+    const { mech, wheels, arms, shocks } = car(true);
+    // Each shock built at the top of its travel, as the 42124's front ones are.
+    for (const j of shocks) Object.assign(mech.joints[j], { range: [-20, 0], sliding: [mech.joints[j].bodyA, mech.joints[j].bodyB] });
+    const kin = new Kinematics(mech);
+    const wheel = mech.joints[wheels[0]].bodyB;
+    kin.holdWhatTheDragDoesntNeed(wheel, () => kin.jointMotion(wheels[0]) !== null, wheels[0]);
+    expect(kin.drag.springs).toBe(true);
+    expect(kin.turnJoint(wheels[0], 2, () => kin.atLimit() === null)).toBeCloseTo(2, 6);
+    kin.letGoAfterDrag();
+    for (const j of shocks) expect(slid(kin, mech.joints[j])).toBeCloseTo(0, 6);
+    const arm = mech.joints[arms[0]].bodyB;
+    kin.holdWhatTheDragDoesntNeed(arm, () => kin.jointMotion(arms[0]) !== null, arms[0]);
+    expect(kin.drag.springs).toBe(false);
+    kin.letGoAfterDrag();
+  });
+
   it("has one way to roll, and its suspension's three apart (rise, pitch, roll); with its shocks only free, a fifth: rolling mixed with tipping", () => {
     const sprung = new Kinematics(car(true).mech);
     const plain = new Kinematics(car(false).mech);
