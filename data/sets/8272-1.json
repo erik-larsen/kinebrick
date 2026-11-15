@@ -86,8 +86,8 @@
         ],
         "source": "book: 1 page 3, step 8",
         "control": [
-          "p33 76537",
-          "p34 76537"
+          "p33 4254",
+          "p34 4254"
         ],
         "skip": "springs only matter under gravity or force"
       },
@@ -123,9 +123,10 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 9,
+    "commit": "b32d688c",
+    "uncommitted": true,
+    "date": "2026-11-15",
+    "seconds": 15,
     "counts": {
       "works": 3,
       "not back": 2,
@@ -139,7 +140,9 @@
       "p511 8272 - ls40",
       "p559 8272 - ls40",
       "p561 8272 - ls40",
-      "p609 8272 - ls40"
+      "p609 8272 - ls40",
+      "p649 22977",
+      "p651 22977"
     ],
     "functions": [
       {
@@ -186,7 +189,7 @@
             ],
             "p152 57520": [
               0,
-              1.09e-44
+              1.03e-44
             ]
           }
         ],
@@ -206,7 +209,7 @@
           "p621 32449",
           "p83 32054"
         ],
-        "seconds": 3.4
+        "seconds": 6.2
       },
       {
         "result": "no",
@@ -279,7 +282,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -389,8 +392,8 @@
         "back": [
           [
             [
-              13.26,
-              17.89
+              11.28,
+              23.19
             ],
             [
               11.13,
@@ -399,13 +402,12 @@
           ]
         ],
         "strayed": [
-          "p166 57518",
           "p182 57518"
         ],
         "pushed": [
           true
         ],
-        "seconds": 3.4
+        "seconds": 5.6
       },
       {
         "result": "works",
@@ -467,7 +469,7 @@
           [],
           []
         ],
-        "seconds": 1.4
+        "seconds": 2
       }
     ]
   }

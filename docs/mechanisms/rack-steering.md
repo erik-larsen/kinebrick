@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 59 works, 13 partly, 4 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 58 works, 13 partly, 5 no.
 
 ## By decade
 
@@ -267,7 +267,7 @@ Each detail by the set it first appears in.
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
-- The black gear on the roof steers the front wheels: its upright shaft and a pair of bevel gears turn a long shaft forward under the cabin to the pinion on the front steering rack. (works)
+- The black gear on the roof steers the front wheels: its upright shaft and a pair of bevel gears turn a long shaft forward under the cabin to the pinion on the front steering rack. (no)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 

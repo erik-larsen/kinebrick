@@ -148,7 +148,7 @@
           "p210 6571",
           "p213 6571"
         ],
-        "note": "unsure how the front shock absorber p209 76537 and the rear axle are hung; to be checked against the book. lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
+        "note": "unsure how the front shock absorber p209 4254 and the rear axle are hung; to be checked against the book. lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -172,16 +172,21 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 19,
+    "commit": "b32d688c",
+    "uncommitted": true,
+    "date": "2026-11-15",
+    "seconds": 30,
     "counts": {
       "works": 7,
       "not back": 2,
       "no": 1,
       "skipped": 1
     },
-    "loose": [],
+    "loose": [
+      "p591 22977",
+      "p593 22977",
+      "p595 22977"
+    ],
     "functions": [
       {
         "result": "works",
@@ -195,15 +200,15 @@
           {
             "p48 32072": [
               1,
-              3.41e-13
+              2.99e-13
             ],
             "p52 32072": [
               1,
-              3.96e-13
+              2.97e-13
             ],
             "p219 3647": [
               1,
-              1.56e-13
+              1.68e-13
             ],
             "p216 6574": [
               0,
@@ -227,11 +232,11 @@
             ],
             "p584 56908": [
               0,
-              0
+              4.74e-15
             ],
             "p586 56908": [
               0,
-              0
+              4.74e-15
             ]
           }
         ],
@@ -253,7 +258,7 @@
             ]
           ]
         ],
-        "seconds": 6.2
+        "seconds": 4
       },
       {
         "result": "works",
@@ -270,89 +275,89 @@
         "rates": [
           {
             "p94 62821": [
-              1.05,
-              1.04e-12
+              0.958,
+              1.05e-12
             ],
             "p81 32269": [
-              1.47,
-              3.93e-13
+              1.34,
+              4.28e-13
             ],
             "p8 94925": [
-              1.47,
-              1.67e-13
+              1.34,
+              1.58e-13
             ],
             "p60 6542a": [
-              1.47,
-              2.63e-13
+              1.34,
+              2.49e-13
             ],
             "p183 94925": [
-              1.47,
-              2.56e-13
+              1.34,
+              2.76e-13
             ],
             "p154 2853": [
-              1.47,
-              2.55e-13
+              1.34,
+              3.02e-13
             ],
             "p161 2851": [
               5.62e-8,
-              11.5
+              7.76
             ],
             "p164 2851": [
-              1.12e-7,
-              9.05
+              2.81e-8,
+              11.1
             ],
             "p0 64179": [
-              8.43e-8,
-              6.39e-14
+              5.62e-8,
+              4.34e-14
             ]
           },
           {
             "p94 62821": [
-              0.958,
-              1.27e-12
+              1.05,
+              8.78e-13
             ],
             "p81 32269": [
-              1.34,
-              5.2e-13
+              1.47,
+              6.09e-13
             ],
             "p8 94925": [
-              1.34,
-              1.82e-13
+              1.47,
+              3.24e-13
             ],
             "p60 6542a": [
-              1.34,
-              2.71e-13
+              1.47,
+              2.7e-13
             ],
             "p183 94925": [
-              1.34,
-              2.9e-13
+              1.47,
+              2.97e-13
             ],
             "p154 2853": [
-              1.34,
-              2.69e-13
+              1.47,
+              2.83e-13
             ],
             "p161 2851": [
               8.43e-8,
-              11.1
+              9.05
             ],
             "p164 2851": [
-              1.12e-7,
-              7.76
+              2.81e-8,
+              11.5
             ],
             "p0 64179": [
               5.62e-8,
-              4.45e-14
+              6.88e-14
             ]
           }
         ],
         "expected": [
           {
-            "p161 2851": 11.5,
-            "p164 2851": 9.05
+            "p161 2851": 7.76,
+            "p164 2851": 11.1
           },
           {
-            "p161 2851": 11.1,
-            "p164 2851": 7.76
+            "p161 2851": 9.05,
+            "p164 2851": 11.5
           }
         ],
         "back": [
@@ -405,7 +410,7 @@
             "p164 2851"
           ]
         ],
-        "seconds": 5.1
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -419,7 +424,7 @@
           {
             "p95 6589": [
               1,
-              2.37e-14
+              4.74e-15
             ]
           }
         ],
@@ -435,7 +440,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 1
       },
       {
         "result": "works",
@@ -453,7 +458,7 @@
             ],
             "p415 32278": [
               0,
-              0
+              1.94e-111
             ]
           }
         ],
@@ -470,7 +475,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -496,7 +501,7 @@
             ],
             "p415 32278": [
               0,
-              0
+              1.51e-113
             ]
           },
           {
@@ -506,11 +511,11 @@
             ],
             "p504 41239": [
               0,
-              5.68e-14
+              1.89e-14
             ],
             "p415 32278": [
               0,
-              0
+              1.92e-114
             ]
           }
         ],
@@ -541,7 +546,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 4
       },
       {
         "result": "no",
@@ -566,17 +571,17 @@
           "p415 32278 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -0.87
+            -0.9
           ],
           [
-            0.87,
+            0.9,
             -1.5
           ]
         ],
@@ -587,14 +592,14 @@
               80
             ],
             "p213 6571": [
-              0.0932,
-              46.7
+              0.0971,
+              47.5
             ]
           },
           {
             "p210 6571": [
-              0.0932,
-              46.7
+              0.0971,
+              47.5
             ],
             "p213 6571": [
               1.84,
@@ -605,28 +610,28 @@
         "back": [
           [
             [
-              0.39,
-              1.35
+              2.5,
+              1.79
             ],
             [
-              2.27,
-              7.7
+              5.87,
+              4.08
             ]
           ],
           [
             [
-              2.27,
-              7.7
+              5.87,
+              4.08
             ],
             [
-              0.39,
-              1.35
+              2.5,
+              1.79
             ]
           ]
         ],
         "strayed": [
-          "p47 4519",
-          "p51 6587"
+          "p588 56908",
+          "p582 56908"
         ],
         "stop": [
           [
@@ -648,7 +653,7 @@
             "p213 6571"
           ]
         ],
-        "seconds": 3.4
+        "seconds": 6.5
       },
       {
         "result": "skipped",
@@ -682,7 +687,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 1.5
       }
     ]
   }
