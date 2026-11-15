@@ -16,6 +16,15 @@
   },
   "waiting": [
     {
+      "id": "worker-waits",
+      "kind": "Answer in a session",
+      "title": "The worker session waits for your answer",
+      "since": "2026-11-15",
+      "what": "The session \"Inference worker: split src/mechanism.ts\" has stopped on a request that only you can answer, in its own window (most likely a permission for a command). Claude here cannot see or answer it. Its work stands still until you do: bringing the axle role up to preview, and the 42099's correction.",
+      "effect": "Open that session in the sidebar and answer its request.",
+      "reply": "I answered the worker"
+    },
+    {
       "id": "42040-seats",
       "kind": "Sign-off",
       "title": "42040 Fire Plane: the hatch group onto its pins",
