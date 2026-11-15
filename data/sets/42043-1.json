@@ -341,9 +341,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 1704,
+    "seconds": 1624,
     "counts": {
       "works": 7,
       "partly": 5,
@@ -450,7 +450,7 @@
             ]
           ]
         ],
-        "seconds": 110
+        "seconds": 105
       },
       {
         "result": "partly",
@@ -554,9 +554,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p1665 99799",
-        "seconds": 158.9
+        "seconds": 156.3
       },
       {
         "result": "works",
@@ -626,7 +629,7 @@
             ]
           ]
         ],
-        "seconds": 118
+        "seconds": 113.5
       },
       {
         "result": "works",
@@ -721,7 +724,7 @@
             ]
           ]
         ],
-        "seconds": 119.6
+        "seconds": 115.2
       },
       {
         "result": "partly",
@@ -808,9 +811,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "stay-chosen",
         "detail": "p2368 42043 - 18938",
-        "seconds": 122.3
+        "seconds": 118.1
       },
       {
         "result": "works",
@@ -934,7 +940,7 @@
             "p1577 4519"
           ]
         ],
-        "seconds": 182
+        "seconds": 174.9
       },
       {
         "result": "skipped"
@@ -1155,7 +1161,7 @@
           "rise": 0,
           "tyre": "p2214 32019"
         },
-        "seconds": 279.3
+        "seconds": 265
       },
       {
         "result": "works",
@@ -1192,7 +1198,7 @@
             ]
           ]
         ],
-        "seconds": 43.2
+        "seconds": 40
       },
       {
         "result": "partly",
@@ -1301,9 +1307,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p66 2851",
-        "seconds": 225.3
+        "seconds": 208
       },
       {
         "result": "partly",
@@ -1382,9 +1391,13 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p2036 62821",
-        "seconds": 44
+        "seconds": 37.3
       },
       {
         "result": "skipped"
@@ -1437,9 +1450,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p7226 32073",
-        "seconds": 58.9
+        "seconds": 56.2
       },
       {
         "result": "works",
@@ -1505,7 +1521,7 @@
           [],
           []
         ],
-        "seconds": 81.3
+        "seconds": 76.4
       },
       {
         "result": "no",
@@ -1572,9 +1588,12 @@
         "pushed": [
           true
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p6909 2741",
-        "seconds": 19.3
+        "seconds": 17.9
       }
     ]
   }

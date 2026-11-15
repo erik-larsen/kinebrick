@@ -82,7 +82,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -245,9 +245,12 @@
         "pushed": [
           true
         ],
+        "judged": [
+          0
+        ],
         "cause": "stay-chosen",
         "detail": "p9 2738",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -369,7 +372,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       }
     ]
   }

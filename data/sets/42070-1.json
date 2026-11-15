@@ -251,9 +251,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 420,
+    "seconds": 388,
     "counts": {
       "partly": 7,
       "works": 3,
@@ -385,9 +385,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 24.6
+        "seconds": 22.2
       },
       {
         "result": "partly",
@@ -442,9 +445,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 24.2
+        "seconds": 22.3
       },
       {
         "result": "partly",
@@ -522,9 +528,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 25.4
+        "seconds": 22.2
       },
       {
         "result": "works",
@@ -584,7 +593,7 @@
             "dead point"
           ]
         ],
-        "seconds": 49.8
+        "seconds": 45.2
       },
       {
         "result": "works",
@@ -644,7 +653,7 @@
             "dead point"
           ]
         ],
-        "seconds": 50.9
+        "seconds": 47.2
       },
       {
         "result": "partly",
@@ -728,9 +737,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 30.8
+        "seconds": 28.3
       },
       {
         "result": "partly",
@@ -819,9 +831,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 24.7
+        "seconds": 21.9
       },
       {
         "result": "partly",
@@ -900,9 +915,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 23.9
+        "seconds": 22.5
       },
       {
         "result": "partly",
@@ -983,9 +1001,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 31.8
+        "seconds": 29.9
       },
       {
         "result": "works",
@@ -1051,7 +1072,7 @@
           [],
           []
         ],
-        "seconds": 87.5
+        "seconds": 79.2
       },
       {
         "result": "skipped"

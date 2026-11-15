@@ -79,7 +79,9 @@ export interface Listed {
 // `geared` the bodies gears tie to the control, `far` whether the control went half way, and
 // `turned` whether it was turned, not pushed (only a turned control is tried for one link too
 // many: a push that sticks is another matter).
-export function causeOf(kin: Kinematics, control: { body: number; parent: number }, still: Listed[], moved: Listed[], geared: Set<number>, far: boolean, turned = true): Explained {
+// `drag`, if given: what the drag turns the control against (its housing) and about which axis,
+// for telling whether a part that should stay could have (see below).
+export function causeOf(kin: Kinematics, control: { body: number; parent: number; drag?: { against: number; axis: { x: number; y: number; z: number } } }, still: Listed[], moved: Listed[], geared: Set<number>, far: boolean, turned = true): Explained {
   const early = (): Explained => (turned ? stoppedWhy(kin, control) : { cause: 'stopped-early' });
   const motions = kin.freeMotions();
   const own = relative(motions, control.parent, control.body);
@@ -97,9 +99,15 @@ export function causeOf(kin: Kinematics, control: { body: number; parent: number
   }
   if (worst) return worst;
   if (still.length) return far ? { cause: 'too-little', detail: still[0].ref } : early();
+  // Whether the control can turn without the part moving is judged as the drag turns it: against
+  // its housing, about its axis, not carried round by what it turns on (the 8838 Shock Cycle's,
+  // on a swinging arm: carried round, the control could leave the axle still, but turning, it
+  // can't).
+  const { drag } = control;
+  const turning = drag ? [motions.map((m) => [0, 1, 2].reduce((sum, c) => sum + (m[6 * control.body + c] - m[6 * drag.against + c]) * [drag.axis.x, drag.axis.y, drag.axis.z][c], 0) * TURN)] : own;
   for (const part of moved) {
     const its = relative(motions, part.against, part.body);
-    return { cause: rank([...its, ...own]) > rank(its) ? 'stay-chosen' : 'stay-forced', detail: part.ref };
+    return { cause: rank([...its, ...turning]) > rank(its) ? 'stay-chosen' : 'stay-forced', detail: part.ref };
   }
   return far ? { cause: 'unknown' } : early();
 }

@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 2366,
+    "seconds": 2186,
     "counts": {
       "works": 8,
       "partly": 3,
@@ -304,7 +304,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 87.4
+        "seconds": 81.7
       },
       {
         "result": "partly",
@@ -381,9 +381,12 @@
           "p1933 62520",
           "p2085 32123b"
         ],
+        "judged": [
+          1
+        ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 140.6
+        "seconds": 127.9
       },
       {
         "result": "works",
@@ -427,21 +430,21 @@
           [
             [
               0.12,
-              0.35
+              0.33
             ],
             [
               0.1,
-              0.3
+              0.29
             ]
           ],
           [
             [
               0.11,
-              0.33
+              0.32
             ],
             [
               0.13,
-              0.39
+              0.37
             ]
           ]
         ],
@@ -453,7 +456,7 @@
           [],
           []
         ],
-        "seconds": 311.4
+        "seconds": 284.9
       },
       {
         "result": "works",
@@ -512,7 +515,7 @@
         "pushed": [
           true
         ],
-        "seconds": 167.8
+        "seconds": 156.6
       },
       {
         "result": "works",
@@ -579,7 +582,7 @@
           [],
           []
         ],
-        "seconds": 79.9
+        "seconds": 76.5
       },
       {
         "result": "no",
@@ -622,8 +625,11 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-jammed",
-        "seconds": 13.5
+        "seconds": 13.4
       },
       {
         "result": "works",
@@ -669,7 +675,7 @@
             ]
           ]
         ],
-        "seconds": 65.3
+        "seconds": 60.1
       },
       {
         "result": "works",
@@ -715,7 +721,7 @@
             ]
           ]
         ],
-        "seconds": 65.1
+        "seconds": 60.6
       },
       {
         "result": "partly",
@@ -785,9 +791,12 @@
           ]
         ],
         "freed": 2,
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p2188 62274c01",
-        "seconds": 45.3
+        "seconds": 43
       },
       {
         "result": "partly",
@@ -855,9 +864,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 20
+        "seconds": 18.5
       },
       {
         "result": "works",
@@ -942,7 +954,7 @@
           [],
           []
         ],
-        "seconds": 622.1
+        "seconds": 576.2
       },
       {
         "result": "no",
@@ -964,8 +976,11 @@
         "why": [
           "p2631 64782 is part of the frame"
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-fixed",
-        "seconds": 10.7
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -1039,41 +1054,41 @@
           [
             [
               0.14,
-              0.41
+              0.39
             ],
             [
               0.12,
-              0.34
+              0.33
             ]
           ],
           [
             [
               0.14,
-              0.41
+              0.39
             ],
             [
               0.12,
-              0.34
+              0.33
             ]
           ],
           [
             [
               0.1,
-              0.31
+              0.3
             ],
             [
               0.12,
-              0.36
+              0.35
             ]
           ],
           [
             [
               0.1,
-              0.31
+              0.3
             ],
             [
               0.12,
-              0.36
+              0.35
             ]
           ]
         ],
@@ -1087,7 +1102,7 @@
           [],
           []
         ],
-        "seconds": 626.3
+        "seconds": 566.7
       }
     ]
   }

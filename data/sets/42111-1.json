@@ -197,15 +197,13 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 112,
+    "seconds": 108,
     "counts": {
       "works": 7,
       "skipped": 2,
-      "no": 1,
-      "not back": 1,
-      "moved whole": 1
+      "no": 1
     },
     "loose": [
       "p54 90370",
@@ -292,7 +290,7 @@
             ]
           ]
         ],
-        "seconds": 17
+        "seconds": 17.2
       },
       {
         "result": "works",
@@ -466,7 +464,7 @@
             "p443 18946"
           ]
         ],
-        "seconds": 26.9
+        "seconds": 28.3
       },
       {
         "result": "works",
@@ -508,7 +506,7 @@
             ]
           ]
         ],
-        "seconds": 6.6
+        "seconds": 6.1
       },
       {
         "result": "works",
@@ -632,7 +630,7 @@
             "p319 15461"
           ]
         ],
-        "seconds": 6.8
+        "seconds": 5.9
       },
       {
         "result": "skipped",
@@ -701,8 +699,11 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 0.7
+        "judged": [
+          0
+        ],
+        "cause": "stopped-early",
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -752,7 +753,7 @@
             ]
           ]
         ],
-        "seconds": 5.3
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -809,7 +810,7 @@
         "pushed": [
           true
         ],
-        "seconds": 20.5
+        "seconds": 19.1
       },
       {
         "result": "works",
@@ -847,11 +848,11 @@
           [
             [
               0,
-              1.78
+              0
             ],
             [
               0,
-              3.25
+              0
             ]
           ]
         ],
@@ -859,17 +860,13 @@
           [
             [
               0,
-              1.78
+              0
             ],
             [
               0,
-              3.25
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p174 32054",
-          "p175 32054"
         ],
         "stop": [
           [
@@ -878,7 +875,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 26.9
+        "seconds": 25.3
       }
     ]
   }

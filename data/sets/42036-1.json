@@ -123,7 +123,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 4,
     "counts": {
@@ -322,7 +322,7 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
@@ -344,7 +344,7 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
@@ -382,6 +382,10 @@
           ],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "stopped-early",
         "seconds": 0.1
       },
@@ -413,6 +417,9 @@
         ],
         "why": [
           "p268 32016 is part of the frame"
+        ],
+        "judged": [
+          0
         ],
         "cause": "control-fixed",
         "seconds": 0
@@ -524,7 +531,7 @@
           [],
           []
         ],
-        "seconds": 2.2
+        "seconds": 2
       }
     ]
   }

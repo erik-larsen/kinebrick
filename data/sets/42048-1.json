@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 7,
+    "seconds": 6,
     "counts": {
       "partly": 1,
       "works": 3
@@ -168,6 +168,9 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p132 40490",
         "seconds": 0.5
@@ -234,7 +237,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -368,7 +371,7 @@
             "p233 2851"
           ]
         ],
-        "seconds": 2.8
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -486,7 +489,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.8
       }
     ]
   }

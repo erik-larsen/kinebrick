@@ -169,9 +169,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 10,
+    "seconds": 9,
     "counts": {
       "works": 5,
       "partly": 3,
@@ -321,7 +321,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -422,7 +422,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1
       },
       {
         "result": "works",
@@ -488,7 +488,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -583,9 +583,13 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "loose-part",
         "detail": "p951 70644",
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -646,9 +650,12 @@
         "why": [
           "p903 2428 against p811 3709b is held by friction pins the control doesn't reach"
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p903 2428",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -714,9 +721,12 @@
         "pushed": [
           true
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p903 2428",
-        "seconds": 3.1
+        "seconds": 2.9
       },
       {
         "result": "skipped",
@@ -838,7 +848,7 @@
           [],
           []
         ],
-        "seconds": 2.2
+        "seconds": 1.8
       },
       {
         "result": "not checked",

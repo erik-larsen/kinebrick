@@ -155,7 +155,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 7,
     "counts": {
@@ -268,9 +268,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p460 2906",
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -414,6 +417,9 @@
         "why": [
           "p468 70278 against p408 2738 is held by friction pins the control doesn't reach"
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p468 70278",
         "seconds": 0.5
@@ -480,9 +486,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p468 70278",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -550,9 +559,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p462 2908",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -615,6 +627,9 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "loose-part",
         "detail": "p462 2908",
         "seconds": 0.6
@@ -673,21 +688,21 @@
           [
             [
               0.08,
-              0.28
+              0
             ],
             [
               0.08,
-              0.01
+              0
             ]
           ],
           [
             [
               0.08,
-              0.01
+              0
             ],
             [
               0.08,
-              0.28
+              0
             ]
           ]
         ],
@@ -715,21 +730,21 @@
           [
             [
               0.02,
-              0.29
+              0
             ],
             [
               0.01,
-              0.01
+              0
             ]
           ],
           [
             [
               0.01,
-              0.01
+              0
             ],
             [
               0.02,
-              0.29
+              0
             ]
           ]
         ],
@@ -739,7 +754,7 @@
           [],
           []
         ],
-        "seconds": 2.7
+        "seconds": 2.6
       }
     ]
   }

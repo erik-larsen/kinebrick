@@ -118,7 +118,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -173,6 +173,9 @@
         "why": [
           "p17 8851-4694c01-f1 is part of the frame"
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-fixed",
         "seconds": 0.1
       },
@@ -201,6 +204,9 @@
         "why": [
           "p256 8851-4694c01-f1 is part of the frame"
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-fixed",
         "seconds": 0
       },
@@ -228,6 +234,9 @@
         ],
         "why": [
           "p542 8851-4694c01-f1 is part of the frame"
+        ],
+        "judged": [
+          0
         ],
         "cause": "control-fixed",
         "seconds": 0
@@ -292,9 +301,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "stay-chosen",
         "detail": "p908 3649 against p852 3738",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -418,7 +430,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 1.4
       }
     ]
   }
