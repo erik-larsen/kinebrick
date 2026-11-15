@@ -1395,6 +1395,17 @@ export class Kinematics {
       }
       if (Math.hypot(...left) < 1e-6 * size) steering.add(body);
     }
+    // Not a gear that only idles on the steering: riding on a steering body and carrying none of
+    // its own, it turns against its shaft just as the steering does, with the tyres held, but
+    // it doesn't steer. Counted, its spin was kept as small as the steering's, so a drive
+    // running through it turned the steering shaft along (the 8285 Tow Truck's 16 tooth gear
+    // idling on its steering shaft, in the drive to its engine: rolling the truck steered it;
+    // decision 90 of 2026-11-15).
+    for (const body of [...steering]) {
+      const link = this.parentLink(body);
+      const carries = [...steering].some((c) => this.parentLink(c)?.parent === body);
+      if (link && steering.has(link.parent) && !carries && this.mech.gears.some((g) => g.body === body)) steering.delete(body);
+    }
     return steering;
   }
 
