@@ -6,11 +6,16 @@
 //   npm run decisions              writes dist/decisions.html
 //   npm run decisions -- some/file writes it there instead
 
+import { execSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 const out = process.argv[2] ?? join('dist', 'decisions.html');
 const data = JSON.parse(readFileSync(join('data', 'decisions.json'), 'utf-8'));
+// Where preview and main stand comes from git, so the page cannot name an old commit.
+const short = (ref: string) => execSync(`git rev-parse --short=8 ${ref}`, { encoding: 'utf-8' }).trim();
+data.state.preview.commit = short('HEAD');
+data.state.main.commit = short('origin/main');
 // The page says when it was written, in this Mac's time.
 const now = new Date();
 const two = (n: number) => String(n).padStart(2, '0');

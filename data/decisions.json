@@ -1,12 +1,10 @@
 {
   "state": {
     "main": {
-      "commit": "d69e86dd",
       "works": 673,
       "moved": "2026-11-15"
     },
     "preview": {
-      "commit": "077c09ea",
       "works": 672,
       "partly": 262,
       "no": 114,
@@ -70,6 +68,30 @@
         }
       ],
       "reply": "Sign 42093"
+    },
+    {
+      "id": "42099-diff",
+      "kind": "Sign-off",
+      "title": "42099 4x4 X-treme Off-Roader: the rear differential's side gears onto their line",
+      "since": "2026-11-15",
+      "what": "A correction to the published file. In the rear differential, the two side gears are drawn 3 LDU off the casing's line, so neither sits on its half shaft and Kinebrick reads the differential as locked. The correction moves both 3 LDU onto the line, where the front differential has them.",
+      "effect": "The rear differential turns. The scores do not change (4 functions work, 3 partly): the halves of the rear CV joints come apart instead, a fault that is with the solver owner.",
+      "confidence": "High. The worker looked at the booklet page: its 1:1 picture of the differential has the side gears facing each other on the casing's line. Every other differential in the 190 models has its side gears on the line.",
+      "links": [
+        {
+          "label": "Booklet p. 86",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&show=43,44,45,46"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&option=proposed&show=43,44,45,46"
+        }
+      ],
+      "reply": "Sign 42099"
     },
     {
       "id": "audit-agree",
@@ -229,14 +251,6 @@
     }
   ],
   "coming": [
-    {
-      "title": "42099 4x4 X-treme Off-Roader: the rear differential's side gears",
-      "what": "A fault in the published file: both side gears are drawn 3 LDU off the casing's line, which locks the differential. The worker is writing the correction with its booklet page. It is the only differential in the 190 models that is off."
-    },
-    {
-      "title": "42109 Top Gear Rally Car: a fourth wrong part at the right half shaft?",
-      "what": "A friction pin lies in the same hole as the half shaft's axle. The worker is checking it against the parts list and the building step."
-    },
     {
       "title": "The next offer of main",
       "what": "Preview is one commit group ahead of main (the bound against wild motions; 672 functions work, since one function that only seemed to work now stops honestly). The next offer comes after the next larger branch is in and the slow 8110 check has passed again."
