@@ -164,15 +164,14 @@
     ]
   },
   "generated": {
-    "commit": "26b98c38",
-    "uncommitted": true,
+    "commit": "c38e9303",
     "date": "2026-11-15",
-    "seconds": 286,
+    "seconds": 216,
     "counts": {
-      "works": 4,
+      "works": 6,
       "not back": 3,
       "free-turned": 1,
-      "partly": 3,
+      "partly": 1,
       "torn": 2,
       "not checked": 1,
       "skipped": 1
@@ -370,7 +369,7 @@
         "strayed": [
           "p603 2739a"
         ],
-        "seconds": 31.4
+        "seconds": 24.1
       },
       {
         "result": "partly",
@@ -453,7 +452,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p1862 23798",
-        "seconds": 67
+        "seconds": 52.7
       },
       {
         "result": "works",
@@ -566,7 +565,7 @@
             "p1868 23798"
           ]
         ],
-        "seconds": 106.6
+        "seconds": 77.4
       },
       {
         "result": "works",
@@ -624,18 +623,15 @@
             ]
           ]
         ],
-        "seconds": 27.3
+        "seconds": 22.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p490 62821"
         ],
         "rates": [
           {
@@ -643,13 +639,13 @@
               1,
               0.0733
             ],
-            "p490 62821": [
-              2.81e-8,
-              6.79e-13
-            ],
             "p878 42099 - 18575": [
               0,
               1.21e-28
+            ],
+            "p490 62821": [
+              2.81e-8,
+              6.79e-13
             ]
           }
         ],
@@ -677,23 +673,15 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p490 62821",
-        "seconds": 15.6
+        "seconds": 11.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p43 62821"
         ],
         "rates": [
           {
@@ -701,13 +689,13 @@
               1,
               0.0545
             ],
-            "p43 62821": [
-              2.81e-8,
-              6.6e-13
-            ],
             "p363 42099 - 18575": [
               0,
               2.52e-29
+            ],
+            "p43 62821": [
+              2.81e-8,
+              6.6e-13
             ]
           }
         ],
@@ -735,12 +723,7 @@
             ]
           ]
         ],
-        "judged": [
-          1
-        ],
-        "cause": "not-driven",
-        "detail": "p43 62821",
-        "seconds": 21.1
+        "seconds": 15.9
       },
       {
         "result": "not checked",
@@ -785,7 +768,7 @@
             ]
           ]
         ],
-        "seconds": 15.4
+        "seconds": 10.9
       }
     ]
   }

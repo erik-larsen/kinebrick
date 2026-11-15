@@ -212,13 +212,12 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "c38e9303",
     "date": "2026-11-15",
-    "seconds": 69,
+    "seconds": 90,
     "counts": {
-      "works": 7,
+      "works": 8,
       "partly": 1,
-      "no": 1,
       "skipped": 1,
       "not checked": 1
     },
@@ -429,7 +428,7 @@
             "p195 2851"
           ]
         ],
-        "seconds": 24.5
+        "seconds": 26.2
       },
       {
         "result": "works",
@@ -475,7 +474,7 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -555,7 +554,7 @@
             ]
           ]
         ],
-        "seconds": 10.6
+        "seconds": 11.4
       },
       {
         "result": "works",
@@ -592,7 +591,7 @@
             ]
           ]
         ],
-        "seconds": 3.9
+        "seconds": 4.5
       },
       {
         "result": "partly",
@@ -714,29 +713,25 @@
         ],
         "cause": "not-driven",
         "detail": "p515 11949",
-        "seconds": 2.2
+        "seconds": 2.5
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
             0,
-            0
+            -0.27
           ],
           [
-            0,
+            0.27,
             0
           ]
-        ],
-        "still": [
-          "p80 4254",
-          "p82 4254"
         ],
         "rates": [
           {
             "p80 4254": [
-              0,
-              0
+              0.46,
+              84.8
             ],
             "p82 4254": [
               0,
@@ -749,8 +744,8 @@
               0
             ],
             "p82 4254": [
-              0,
-              0
+              0.46,
+              84.8
             ]
           }
         ],
@@ -800,25 +795,24 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ],
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
+        "freed": 3,
         "movedBy": [
-          [],
-          []
+          [
+            "p80 4254"
+          ],
+          [
+            "p82 4254"
+          ]
         ],
-        "judged": [
-          0,
-          0
-        ],
-        "cause": "part-fixed",
-        "detail": "p80 4254",
-        "seconds": 1
+        "seconds": 10.2
       },
       {
         "result": "skipped",
@@ -903,7 +897,7 @@
             ]
           ]
         ],
-        "seconds": 10.1
+        "seconds": 13.1
       },
       {
         "result": "works",
@@ -987,7 +981,7 @@
             ]
           ]
         ],
-        "seconds": 8
+        "seconds": 10.5
       },
       {
         "result": "works",
@@ -1029,7 +1023,7 @@
             ]
           ]
         ],
-        "seconds": 4.3
+        "seconds": 5.3
       },
       {
         "result": "not checked",
