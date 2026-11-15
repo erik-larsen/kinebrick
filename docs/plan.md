@@ -17,8 +17,8 @@ The goal has two milestones, because some functions need forces.
 
 | Milestone | Functions | What it needs |
 |---|---|---|
-| A. Kinematic 100% | 1,105 of 1,227: the 1,048 checked today, and the 57 not checked | Kinematics only. No forces. |
-| B. Full 100% | All 1,227: the 122 skipped today too | Gravity, springs, air pressure, ratchets, brakes. |
+| A. Kinematic 100% | 1,104 of 1,226: the 1,047 checked today, and the 57 not checked | Kinematics only. No forces. |
+| B. Full 100% | All 1,226: the 122 skipped today too | Gravity, springs, air pressure, ratchets, brakes. |
 
 ## Where we stand
 
