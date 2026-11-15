@@ -42,6 +42,7 @@
           "p0 3702",
           "p1 3702"
         ],
+        "lifted": true,
         "moves": [
           "p172 3482",
           "p170 3482",
@@ -51,7 +52,8 @@
         "stays": [
           "p168 3482",
           "p174 3482"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"pushed up, the arm swings up\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the rear arms down, so the buggy stands on its rear wheels and springs back when pushed down.",
@@ -91,8 +93,7 @@
     ]
   },
   "generated": {
-    "commit": "c1623c1a",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
     "seconds": 2,
     "counts": {
@@ -134,12 +135,12 @@
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.16,
+            -0.47
           ],
           [
-            1.5,
-            -1.5
+            0.16,
+            -0.47
           ]
         ],
         "rates": [
@@ -150,15 +151,15 @@
             ],
             "p170 3482": [
               0,
-              3.55e-15
+              0
             ],
             "p105 4255 against p106 4254": [
-              1,
-              40
+              4.52e-7,
+              29.6
             ],
             "p103 4255 against p104 4254": [
               0,
-              1.18e-15
+              0
             ],
             "p168 3482": [
               0,
@@ -172,7 +173,7 @@
           {
             "p172 3482": [
               0,
-              1.18e-15
+              0
             ],
             "p170 3482": [
               1,
@@ -183,8 +184,8 @@
               0
             ],
             "p103 4255 against p104 4254": [
-              1,
-              40
+              4.52e-7,
+              29.6
             ],
             "p168 3482": [
               0,
@@ -218,6 +219,20 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "pushed": [
+          true,
+          true
+        ],
         "movedBy": [
           [
             "p172 3482",
@@ -228,7 +243,7 @@
             "p103 4255 against p104 4254"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -308,7 +323,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "not checked",

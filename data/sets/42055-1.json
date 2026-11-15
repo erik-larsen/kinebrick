@@ -181,10 +181,9 @@
     ]
   },
   "generated": {
-    "commit": "1f4f7585",
-    "uncommitted": true,
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 3325,
+    "seconds": 3229,
     "counts": {
       "no": 1,
       "partly": 6,
@@ -435,7 +434,7 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 1199.8
+        "seconds": 1175.6
       },
       {
         "result": "partly",
@@ -488,7 +487,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 105.3
+        "seconds": 104.3
       },
       {
         "result": "partly",
@@ -523,7 +522,7 @@
         ],
         "cause": "not-driven",
         "detail": "p418 64178 against p1175 18939",
-        "seconds": 104
+        "seconds": 103.9
       },
       {
         "result": "partly",
@@ -577,7 +576,7 @@
         ],
         "cause": "loose-part",
         "detail": "p2426 42055 - 24120",
-        "seconds": 142
+        "seconds": 129.6
       },
       {
         "result": "works",
@@ -622,7 +621,7 @@
         "strayed": [
           "p2780 57518"
         ],
-        "seconds": 446.6
+        "seconds": 440.2
       },
       {
         "result": "works",
@@ -652,7 +651,7 @@
             ]
           ]
         ],
-        "seconds": 103.1
+        "seconds": 101.4
       },
       {
         "result": "works",
@@ -704,7 +703,7 @@
             "limit"
           ]
         ],
-        "seconds": 662.3
+        "seconds": 647.7
       },
       {
         "result": "partly",
@@ -760,7 +759,7 @@
         ],
         "cause": "second-model",
         "detail": "p156 32270",
-        "seconds": 49.9
+        "seconds": 48.3
       },
       {
         "result": "partly",
@@ -815,7 +814,7 @@
         ],
         "cause": "second-model",
         "detail": "p276 32270",
-        "seconds": 132.2
+        "seconds": 116.9
       },
       {
         "result": "partly",
@@ -902,7 +901,7 @@
         ],
         "cause": "second-model",
         "detail": "p294 56145",
-        "seconds": 267.1
+        "seconds": 249.4
       }
     ]
   }

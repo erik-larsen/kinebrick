@@ -104,7 +104,8 @@
           "p37 2738",
           "p38 2738"
         ],
-        "note": "Kinebrick today: doesn't. Swinging a lower arm turns only its pivot axle; the steering arm and wheel don't follow, and the shock absorbers spin on their pins rather than shortening."
+        "lifted": true,
+        "note": "Kinebrick today: doesn't. Swinging a lower arm turns only its pivot axle; the steering arm and wheel don't follow, and the shock absorbers spin on their pins rather than shortening.. lifted: the text has the wheel or arm moved (\"and moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheels have independent suspension: each rides on an upright held between two wishbones of 1x6 bricks, with a shock absorber, and moves up and down, the half shafts' universal joints letting it.",
@@ -116,7 +117,8 @@
           "p21 3894",
           "p22 3894"
         ],
-        "note": "Kinebrick today: doesn't. Swinging a wishbone turns only its pivot axle; the upright and wheel don't follow (the upright p361 flops on the lower wishbone's outer axle)."
+        "lifted": true,
+        "note": "Kinebrick today: doesn't. Swinging a wishbone turns only its pivot axle; the upright and wheel don't follow (the upright p361 flops on the lower wishbone's outer axle).. lifted: the text has the wheel or arm moved (\"and moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -195,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "5dac39a9",
+    "commit": "8eb0944c",
     "date": "2026-11-14",
-    "seconds": 36,
+    "seconds": 30,
     "counts": {
       "works": 4,
       "partly": 2,
@@ -262,7 +264,7 @@
             ]
           ]
         ],
-        "seconds": 6.7
+        "seconds": 5.5
       },
       {
         "result": "works",
@@ -320,7 +322,7 @@
             ]
           ]
         ],
-        "seconds": 6.9
+        "seconds": 5.4
       },
       {
         "result": "partly",
@@ -378,7 +380,7 @@
         ],
         "cause": "not-driven",
         "detail": "p400 3707",
-        "seconds": 2.3
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -420,7 +422,7 @@
             ]
           ]
         ],
-        "seconds": 6.5
+        "seconds": 5.2
       },
       {
         "result": "no",
@@ -479,7 +481,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 2.5
+        "seconds": 2.1
       },
       {
         "result": "no",
@@ -538,7 +540,7 @@
           []
         ],
         "cause": "stopped-early",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -595,7 +597,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -689,7 +691,7 @@
           [],
           []
         ],
-        "seconds": 6.5
+        "seconds": 6
       },
       {
         "result": "partly",
@@ -744,7 +746,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 3708",
-        "seconds": 2.2
+        "seconds": 1.9
       }
     ]
   }
