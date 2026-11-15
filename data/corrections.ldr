@@ -701,6 +701,10 @@
 0 // Technic Shock Absorber 6.5L Cylinder, with its rod 4254. Every complete 6.5L shock (73129, 41838, 76138, 76537, 89953, 89954) places the rod 110 from the cylinder, extended; the library has no compressed shape. Fully in is from the drawings: the rod reaches 80 below its origin and the cylinder's floor is 10 above its own, so the rod's end meets the floor with the rod at 90 (its flange, 15 below its origin, would meet the cylinder's top, at 58, only at 73). The sets build it from 96 to 110.
 0 !KINEBRICK SHOCK [rod=4254] [dir=0 1 0] [from=90] [to=110]
 
+0 FILE 2943ac01.dat
+0 // Technic Pneumatic Pump 1 x 1 x 5.5 Body, with its piston 2944c02, which a spring pushes out again: the small pump, as its shortcuts 74982-f1 (retracted) and 74982-f2 (extended) place it, read as its pieces. 74982-f1 places the piston 90 above the body, 74982-f2 130 above it, so it slides from 90 (fully in) to 130 (fully out).
+0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=90] [to=130]
+
 0 FILE 32181c05.dat
 0 // Technic Shock Absorber 10L Damped with Black Cap Body Assembly, with its rod 32183c02: 63144-f1 and 76320-f1 (extended) place the rod 180 from the body, -f2 (compressed) 120. (The obsolete cylinders 32181c01 to c04 place the cylinder elsewhere and aren't given; no set has them.)
 0 !KINEBRICK SHOCK [rod=32183c02] [dir=0 1 0] [from=120] [to=180]
