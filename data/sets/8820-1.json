@@ -87,9 +87,9 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 1,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 2,
     "counts": {
       "partly": 2,
       "not back": 1,
@@ -178,7 +178,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p125 3482",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -350,7 +350,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       }
     ]
   }
