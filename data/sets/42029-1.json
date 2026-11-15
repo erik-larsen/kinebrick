@@ -180,12 +180,13 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 253,
+    "seconds": 302,
     "counts": {
       "works": 6,
       "not back": 1,
+      "moved whole": 1,
       "partly": 2,
       "skipped": 1,
       "not checked": 1
@@ -242,7 +243,19 @@
             ]
           ]
         ],
-        "seconds": 62.8
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 76.4
       },
       {
         "result": "works",
@@ -272,7 +285,19 @@
             ]
           ]
         ],
-        "seconds": 11
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 13.4
       },
       {
         "result": "works",
@@ -336,7 +361,19 @@
             ]
           ]
         ],
-        "seconds": 64.7
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 77.1
       },
       {
         "result": "works",
@@ -361,11 +398,23 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0.1,
+              0.67
+            ],
+            [
+              0.3,
+              2.25
+            ]
+          ]
+        ],
         "strayed": [
           "p947 43093",
           "p1135 6141"
         ],
-        "seconds": 65.8
+        "seconds": 79
       },
       {
         "result": "works",
@@ -403,10 +452,22 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "why": [
           "p48 6539 against p47 3705 is held by friction pins the control doesn't reach"
         ],
-        "seconds": 11.7
+        "seconds": 13.9
       },
       {
         "result": "partly",
@@ -472,9 +533,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p64 6542b against p0 32278",
-        "seconds": 12
+        "seconds": 15.1
       },
       {
         "result": "partly",
@@ -527,9 +600,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p597 92695 against p596 92693c01",
-        "seconds": 12.3
+        "seconds": 13.3
       },
       {
         "result": "works",
@@ -559,7 +644,19 @@
             ]
           ]
         ],
-        "seconds": 10.6
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 11.3
       },
       {
         "result": "skipped",

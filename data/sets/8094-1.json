@@ -98,7 +98,7 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -156,9 +156,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p161 2855 against p102 3709b",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -190,6 +202,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0.01,
+              0
+            ],
+            [
+              0.01,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0.01,
@@ -237,7 +261,19 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "torn": [
+          [
+            [
+              0.01,
+              0
+            ],
+            [
+              0.01,
+              0
+            ]
+          ]
+        ],
+        "seconds": 0.7
       },
       {
         "result": "not checked",

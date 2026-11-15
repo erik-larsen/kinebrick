@@ -251,9 +251,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 360,
+    "seconds": 420,
     "counts": {
       "partly": 7,
       "works": 3,
@@ -373,9 +373,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 20.8
+        "seconds": 24.6
       },
       {
         "result": "partly",
@@ -418,9 +430,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 21
+        "seconds": 24.2
       },
       {
         "result": "partly",
@@ -486,9 +510,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 21
+        "seconds": 25.4
       },
       {
         "result": "works",
@@ -530,13 +566,25 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             null,
             "dead point"
           ]
         ],
-        "seconds": 42.8
+        "seconds": 49.8
       },
       {
         "result": "works",
@@ -578,13 +626,25 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             null,
             "dead point"
           ]
         ],
-        "seconds": 43.1
+        "seconds": 50.9
       },
       {
         "result": "partly",
@@ -656,9 +716,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 26.8
+        "seconds": 30.8
       },
       {
         "result": "partly",
@@ -735,9 +807,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 20.6
+        "seconds": 24.7
       },
       {
         "result": "partly",
@@ -804,9 +888,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 21.1
+        "seconds": 23.9
       },
       {
         "result": "partly",
@@ -875,9 +971,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 27.8
+        "seconds": 31.8
       },
       {
         "result": "works",
@@ -917,11 +1025,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 73.5
+        "seconds": 87.5
       },
       {
         "result": "skipped"

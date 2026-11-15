@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 983,
+    "seconds": 1073,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -301,9 +301,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 43.6
+        "seconds": 48.2
       },
       {
         "result": "partly",
@@ -356,9 +368,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 41.9
+        "seconds": 45.6
       },
       {
         "result": "works",
@@ -392,7 +416,19 @@
             ]
           ]
         ],
-        "seconds": 41.4
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 46.1
       },
       {
         "result": "works",
@@ -438,7 +474,19 @@
             ]
           ]
         ],
-        "seconds": 233.9
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 263.1
       },
       {
         "result": "works",
@@ -508,13 +556,55 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 178.2
+        "seconds": 191.8
       },
       {
         "result": "skipped"
@@ -555,13 +645,25 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "why": [
           "p2673 11946 is held by friction pins the control doesn't reach",
           "p2678 11947 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 43.9
+        "seconds": 48.3
       },
       {
         "result": "no",
@@ -623,6 +725,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -638,7 +762,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 36.9
+        "seconds": 39.7
       },
       {
         "result": "works",
@@ -668,8 +792,20 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "freed": 2,
-        "seconds": 163.7
+        "seconds": 177.1
       },
       {
         "result": "no",
@@ -702,6 +838,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -713,7 +861,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 27
+        "seconds": 30.8
       },
       {
         "result": "no",
@@ -753,6 +901,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -768,7 +938,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 52.8
+        "seconds": 55
       }
     ]
   }

@@ -197,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 107,
+    "seconds": 126,
     "counts": {
       "not checked": 3,
       "works": 3,
@@ -352,7 +352,19 @@
             ]
           ]
         ],
-        "seconds": 24
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 24.6
       },
       {
         "result": "partly",
@@ -403,9 +415,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p2097 62274c01",
-        "seconds": 8.5
+        "seconds": 8.4
       },
       {
         "result": "partly",
@@ -460,9 +484,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p2027 48168",
-        "seconds": 8.6
+        "seconds": 8.1
       },
       {
         "result": "partly",
@@ -504,9 +540,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p2167 62274c01 against p2166 62271c01",
-        "seconds": 25.7
+        "seconds": 35.4
       },
       {
         "result": "works",
@@ -573,7 +621,19 @@
             ]
           ]
         ],
-        "seconds": 7.6
+        "torn": [
+          [
+            [
+              0.1,
+              0.14
+            ],
+            [
+              0.1,
+              0.14
+            ]
+          ]
+        ],
+        "seconds": 13.5
       },
       {
         "result": "works",
@@ -633,7 +693,19 @@
             ]
           ]
         ],
-        "seconds": 26.5
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 29.5
       },
       {
         "result": "not checked",

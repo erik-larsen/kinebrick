@@ -154,14 +154,15 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 6,
+    "seconds": 9,
     "counts": {
       "partly": 3,
       "works": 2,
       "skipped": 1,
       "not back": 1,
+      "torn": 1,
       "no": 2,
       "not checked": 1
     },
@@ -232,9 +233,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p127 18947",
-        "seconds": 0.9
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -310,9 +323,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 2.2
+        "seconds": 3
       },
       {
         "result": "works",
@@ -354,6 +379,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "limit",
@@ -363,7 +400,7 @@
         "pushed": [
           true
         ],
-        "seconds": 0.6
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -413,6 +450,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              7.2,
+              13.41
+            ],
+            [
+              4.3,
+              7.99
+            ]
+          ]
+        ],
         "strayed": [
           "p555 3711"
         ],
@@ -450,6 +499,10 @@
           [],
           []
         ],
+        "torn": [
+          [],
+          []
+        ],
         "why": [
           "p408 32039 is part of the frame",
           "p419 32039 is part of the frame"
@@ -484,7 +537,19 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 2.7
       },
       {
         "result": "no",
@@ -511,6 +576,18 @@
           }
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
           [
             [
               0,

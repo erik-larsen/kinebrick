@@ -86,9 +86,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "skipped": 1,
       "partly": 1,
@@ -170,9 +170,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p194 22961",
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -212,11 +224,33 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 1.5
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -241,7 +275,19 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 0.8
       }
     ]
   }
