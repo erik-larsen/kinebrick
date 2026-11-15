@@ -8,7 +8,7 @@ import { ConnectionTable } from './connections.ts';
 import { Kinematics } from './kinematics.ts';
 import { PlacedPart, PlacedPath } from './ldr.ts';
 import { actuatorScrews, linearActuators } from './inference/actuators.ts';
-import { slidingOnAxles } from './inference/axleSlides.ts';
+import { slidingOnAxles, slidingOnParallelAxles } from './inference/axleSlides.ts';
 import { bodyCenters, groupIntoBodies, nameBodies } from './inference/bodies.ts';
 import { bushGrips, toothedBushes } from './inference/bushes.ts';
 import { crankWebs, lockedJoints, dropBallsInBearings, findCouplings, groovedBalls, reductions, universalJoints } from './inference/couplings.ts';
@@ -428,7 +428,9 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   for (let i = loose.length - 1; i >= 0; i--) if (carriedParts.has(loose[i])) loose.splice(i, 1);
   if (scenery.size) connections.push(...rideAlong(parts, cyls, connections, [...scenery], new Set(rails.map((r) => r.part))));
 
-  // 3. Bodies, from every connection above.
+  // 3. Bodies, from every connection above: first, a part riding on parallel axles that a
+  // linkage slides along them, which two hinges would otherwise hold fast.
+  slidingOnParallelAxles(roles, frameRoles, cyls, connections, parts.length);
   const bodyOf = groupIntoBodies(parts.length, frameRoles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]));
   // slidingOnAxles and restingParts read the bodies, and turn connections into slides, so they
   // come before the joints are found.
