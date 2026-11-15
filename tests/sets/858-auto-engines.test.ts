@@ -125,11 +125,13 @@ describe('858 Auto Engines: the inline engine', () => {
     }
     kin.letGoAfterDrag();
     expect(turned).toBeCloseTo((73 / 72) * 2 * Math.PI, 6);
-    // The middle rod is built lifted 11 LDU, on a pin (0.75 LDU above it, which it drops onto).
+    // The middle rod is built lifted, resting on its pin's collar: 10.25 LDU above its low point.
+    // Until 2026-11-15 the file drew it 0.75 LDU higher, above the pin, and its rocker 1 LDU above
+    // it, so the engine's loops didn't close as built; both now rest as the outer two do.
     const range = (xs: number[]) => Math.max(...xs) - Math.min(...xs);
     for (const xs of lifts) expect(range(xs)).toBeCloseTo(14.3, 0);
     expect(Math.min(...lifts[0])).toBeCloseTo(0, 3);
-    expect(Math.min(...lifts[1])).toBeCloseTo(-11, 3);
+    expect(Math.min(...lifts[1])).toBeCloseTo(-10.25, 3);
     // The outer rods' pins come round under them twice a turn, half a turn apart.
     const rises = lifts[0].slice(0, 72).filter((h, i) => h > 5 && lifts[0][(i + 71) % 72] <= 5).length;
     expect(rises).toBe(2);
