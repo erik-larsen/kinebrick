@@ -4,14 +4,14 @@ A rigid axle hung on shock absorbers and links, free to tilt and rise. (Suspensi
 
 First appears in 2011, in [8081 Extreme Cruiser](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8081-1): The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm, and moves up and down, steering as it goes; the rear axle sits on two shock absorbers.
 
-Used in 7 of the 186 surveyed sets, by 7 functions. Kinebrick: 1 works, 4 no, 2 skipped.
+Used in 6 of the 186 surveyed sets, by 6 functions. Kinebrick: 1 works, 3 no, 2 skipped.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 0 of 18 | 0 of 32 | 0 of 23 | 5 of 83 | 2 of 21 |
-| Functions | 0 | 0 | 0 | 0 | 5 | 2 |
+| Sets | 0 of 9 | 0 of 18 | 0 of 32 | 0 of 23 | 4 of 83 | 2 of 21 |
+| Functions | 0 | 0 | 0 | 0 | 4 | 2 |
 
 ## Details
 
@@ -19,7 +19,7 @@ Each detail by the set it first appears in.
 
 | Detail | First in | Sets |
 |---|---|---|
-| rear | 2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1) | 2 |
+| rear | 2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1) | 1 |
 
 ## Sets
 
@@ -34,10 +34,6 @@ Each detail by the set it first appears in.
 **2014, [42029 Customized Pick up Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42029-1)**
 
 - The front and rear axles are each sprung on two shock absorbers, so they can tilt and rise under the body. (skipped)
-
-**2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
-
-- *rear:* The rear axle is sprung on two shock absorbers. (no)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 

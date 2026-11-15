@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 62 works, 10 partly, 4 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 62 works, 9 partly, 5 no.
 
 ## By decade
 
@@ -259,7 +259,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (partly)
+- The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (no)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 

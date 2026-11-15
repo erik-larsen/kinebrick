@@ -23,6 +23,12 @@
         ],
         "source": "book: page 394 (top left inset: driving forwards and back with the left lever; middle inset: the lever on the cab's side set to drive); the gears are read from the model",
         "control": "p402 32073",
+        "first": [
+          {
+            "control": "p1770 41669",
+            "by": -0.5
+          }
+        ],
         "moves": [
           "p405 18946",
           "p448 94925",
@@ -34,7 +40,7 @@
           "p2369 15038",
           "p2371 15038"
         ],
-        "note": "The XL motor (p593 58121) turns the control, the axle in its shaft; the driving ring p404 18947, moved by the drive/crane lever (p1770 41669), joins it to the 16 tooth clutch gear p405 for driving. Unsure which way the lever goes for driving."
+        "note": "The XL motor (p593 58121) turns the control, the axle in its shaft; the drive/crane lever p1770 tipped down (by -0.5) sets drive: its driving ring p404 18947 joins the axle to the 16 tooth clutch gear p405 (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "As the truck drives, the V8 engine under the bonnet pumps its pistons, turned from the drive's 16 tooth gear.",
@@ -59,6 +65,12 @@
         ],
         "source": "book: page 394 (bottom left inset: steering with the right lever); the gears are read from the model",
         "control": "p372 94925",
+        "first": [
+          {
+            "control": "p1770 41669",
+            "by": -0.5
+          }
+        ],
         "moves": [
           "p160 18575",
           "p406 18946",
@@ -71,7 +83,7 @@
         "stays": [
           "p2369 15038"
         ],
-        "note": "The M motor (p185 58120) turns the control, the 16 tooth gear on its shaft; the driving ring p403 18947, moved by the same drive/crane lever, joins its 20 tooth gear's shaft to the clutch gear p406 for steering."
+        "note": "The M motor (p185 58120) turns the control, the 16 tooth gear on its shaft; the drive/crane lever p1770 tipped down (by -0.5) sets drive: its driving ring p403 18947 joins the 20 tooth gear's shaft to the clutch gear p406 for steering (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "The drive/crane lever on the side of the cab switches both motors at once, from driving and steering to working the crane.",
@@ -86,7 +98,7 @@
           "p403 18947",
           "p404 18947"
         ],
-        "note": "The lever's cross axle (p999 87083 and the parts on it) tips two changeover catches, each sliding a driving ring (p403 for the M motor, p404 for the XL motor)."
+        "note": "The lever's cross axle (p999 87083 and the parts on it) tips two changeover catches, each sliding a driving ring (p403 for the M motor, p404 for the XL motor): tipped down (by -0.5) is drive, up (by +0.5) is crane (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "The crane-function lever behind the cab chooses which two crane functions the motors work: in one position the left remote lever slews the crane and the right one works the winch; in the other the left lever works the outriggers and the right one raises and lowers the boom.",
@@ -94,14 +106,14 @@
           "function-selector: crane functions"
         ],
         "source": "book: page 396 (the lever up and down, with its pictures), page 397 (the four crane functions, two above and two below); which pair goes with which lever position is inferred from the page's layout and the model's gears",
-        "control": "p994 42070 - 33299a",
+        "control": "p1785 41669",
         "moves": [
           "p1067 6641",
           "p1068 6641",
           "p135 18947",
           "p136 18947"
         ],
-        "note": "The lever's cross axle (p991 87083 and the parts on it, out to p1460 59443) tips two changeover catches, each sliding a driving ring: p136 on the XL motor's crane shaft, p135 on the M motor's. Unsure which part is the handle a person holds."
+        "note": "The handle is the white 41669 p1785; its cross axle (p991 87083 and the parts on it, out to p1460 59443) tips two changeover catches, each sliding a driving ring: p136 on the XL motor's crane shaft, p135 on the M motor's. Tipped up (by -0.5) is slewing and winch, down (by +0.5) is outriggers and boom (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable.",
@@ -115,12 +127,12 @@
         "control": "p402 32073",
         "first": [
           {
-            "control": "p404 18947",
-            "by": -10
+            "control": "p1770 41669",
+            "by": 0.5
           },
           {
-            "control": "p136 18947",
-            "by": 10
+            "control": "p1785 41669",
+            "by": -0.5
           }
         ],
         "moves": [
@@ -137,7 +149,7 @@
         "stays": [
           "p2369 15038"
         ],
-        "note": "Needs the drive/crane lever set to crane (ring p404 on p174) and the crane-function lever set for slewing (ring p136 on p124); unsure which way each lever goes."
+        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped up (by -0.5) sets slewing and winch (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks.",
@@ -148,6 +160,16 @@
         ],
         "source": "book: page 397 (bottom left inset: all four legs going down, the left remote lever); the gears and actuators are read from the model",
         "control": "p402 32073",
+        "first": [
+          {
+            "control": "p1770 41669",
+            "by": 0.5
+          },
+          {
+            "control": "p1785 41669",
+            "by": 0.5
+          }
+        ],
         "moves": [
           "p139 18946",
           "p1005 18575",
@@ -162,7 +184,7 @@
         "stays": [
           "p1320 18938"
         ],
-        "note": "Needs the drive/crane lever set to crane (ring p404 on p174) and the crane-function lever set for the outriggers (ring p136 on p139); unsure which way each lever goes."
+        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped down (by +0.5) sets outriggers and boom (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook.",
@@ -173,6 +195,16 @@
         ],
         "source": "book: page 397 (top right inset: the hook going up and down, the right remote lever); the gears are read from the model",
         "control": "p372 94925",
+        "first": [
+          {
+            "control": "p1770 41669",
+            "by": 0.5
+          },
+          {
+            "control": "p1785 41669",
+            "by": -0.5
+          }
+        ],
         "moves": [
           "p161 18946",
           "p107 18946",
@@ -185,7 +217,7 @@
         "stays": [
           "p2086 40490"
         ],
-        "note": "Needs the drive/crane lever set to crane (ring p403 on p161) and the crane-function lever set for the winch (ring p135 on p107); unsure which way each lever goes. The mesh of p2134 with the reel's clutch gear p2149 76244 is read from the parts' places."
+        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped up (by -0.5) sets slewing and winch. The mesh of p2134 with the reel's clutch gear p2149 76244 is read from the parts' places (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "In crane mode, the M motor raises and lowers the boom: its crane shaft drives an upright shaft through the turntable's centre to bevel gears that turn the large linear actuator under the boom.",
@@ -198,12 +230,12 @@
         "control": "p372 94925",
         "first": [
           {
-            "control": "p403 18947",
-            "by": -10
+            "control": "p1770 41669",
+            "by": 0.5
           },
           {
-            "control": "p135 18947",
-            "by": -10
+            "control": "p1785 41669",
+            "by": 0.5
           }
         ],
         "moves": [
@@ -220,7 +252,7 @@
         "stays": [
           "p1320 18938"
         ],
-        "note": "Needs the drive/crane lever set to crane (ring p403 on p161) and the crane-function lever set for the boom (ring p135 on p138); unsure which way each lever goes."
+        "note": "The drive/crane lever p1770 tipped up (by +0.5) sets crane; the crane lever p1785 tipped down (by +0.5) sets outriggers and boom (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
       },
       {
         "does": "The two rear axles each rock side to side on a turntable, so all six wheels stay on rough ground.",
@@ -251,11 +283,12 @@
     ]
   },
   "generated": {
-    "commit": "28315418",
+    "commit": "c38e9303",
     "date": "2026-11-15",
-    "seconds": 395,
+    "seconds": 570,
     "counts": {
-      "partly": 7,
+      "no": 3,
+      "partly": 4,
       "works": 3,
       "skipped": 1
     },
@@ -303,11 +336,11 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
@@ -324,8 +357,8 @@
         "rates": [
           {
             "p405 18946": [
-              2.81e-8,
-              1.1e-13
+              0,
+              0
             ],
             "p448 94925": [
               0,
@@ -361,6 +394,12 @@
             ]
           }
         ],
+        "expected": [
+          {
+            "p448 94925": 1,
+            "p381 6573": 1
+          }
+        ],
         "back": [
           [
             [
@@ -385,12 +424,17 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "judged": [
           0
         ],
-        "cause": "part-fixed",
-        "detail": "p405 18946",
-        "seconds": 17.1
+        "cause": "control-jammed",
+        "seconds": 20.9
       },
       {
         "result": "partly",
@@ -450,17 +494,18 @@
         ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 17.2
+        "seconds": 21.8
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p160 18575",
           "p406 18946",
           "p390 76244",
           "p430 18575",
@@ -471,12 +516,12 @@
         "rates": [
           {
             "p160 18575": [
-              0.8,
-              6.63e-14
+              0,
+              0
             ],
             "p406 18946": [
-              2.81e-8,
-              1.85e-13
+              0,
+              0
             ],
             "p390 76244": [
               0,
@@ -528,12 +573,17 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "judged": [
           0
         ],
-        "cause": "part-fixed",
-        "detail": "p406 18946",
-        "seconds": 17.1
+        "cause": "control-jammed",
+        "seconds": 19.3
       },
       {
         "result": "works",
@@ -593,7 +643,7 @@
             "dead point"
           ]
         ],
-        "seconds": 34.9
+        "seconds": 46.8
       },
       {
         "result": "works",
@@ -653,7 +703,7 @@
             "dead point"
           ]
         ],
-        "seconds": 35.2
+        "seconds": 46.6
       },
       {
         "result": "partly",
@@ -673,23 +723,23 @@
           {
             "p174 18946": [
               1,
-              0
+              1.48e-33
             ],
             "p378 94925": [
               1,
-              7.58e-14
+              2.84e-14
             ],
             "p124 18946": [
               1,
-              7.58e-14
+              2.84e-14
             ],
             "p1108 18575": [
               0.667,
-              3.9e-14
+              1.42e-14
             ],
             "p1088 4716": [
               0.667,
-              3.79e-14
+              9.47e-15
             ],
             "p1096 3648b": [
               0,
@@ -701,7 +751,7 @@
             ],
             "p1320 18938": [
               0,
-              0
+              4.11e-33
             ],
             "p2086 40490": [
               0,
@@ -742,14 +792,14 @@
         ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 34.8
+        "seconds": 56.9
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
@@ -766,8 +816,8 @@
         "rates": [
           {
             "p139 18946": [
-              2.81e-8,
-              3.36e-13
+              0,
+              0
             ],
             "p1005 18575": [
               0,
@@ -831,12 +881,17 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "judged": [
           0
         ],
-        "cause": "part-fixed",
-        "detail": "p139 18946",
-        "seconds": 17
+        "cause": "control-jammed",
+        "seconds": 36
       },
       {
         "result": "partly",
@@ -846,48 +901,42 @@
             -1.5
           ]
         ],
-        "still": [
-          "p161 18946",
-          "p107 18946",
-          "p1003 10928",
-          "p1304 6573",
-          "p2113 94925",
-          "p2134 32270",
-          "p2152 32012"
+        "moved": [
+          "p2086 40490"
         ],
         "rates": [
           {
             "p161 18946": [
-              2.81e-8,
-              1.98e-13
+              0.8,
+              0
             ],
             "p107 18946": [
-              0,
+              0.384,
               0
             ],
             "p1003 10928": [
-              0,
+              0.384,
               0
             ],
             "p1304 6573": [
-              0,
-              5.25e-48
+              0.128,
+              3.6e-14
             ],
             "p2113 94925": [
-              0,
-              8.76e-32
+              0.0827,
+              0.906
             ],
             "p2134 32270": [
-              0,
-              0
+              0.108,
+              2.03
             ],
             "p2152 32012": [
-              0,
-              1.31e-31
+              0.0573,
+              1.36
             ],
             "p2086 40490": [
-              0,
-              0
+              0.0226,
+              2.03
             ]
           }
         ],
@@ -916,11 +965,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
-        "cause": "not-driven",
-        "detail": "p161 18946",
-        "seconds": 17.1
+        "cause": "stay-chosen",
+        "detail": "p2086 40490",
+        "seconds": 57
       },
       {
         "result": "partly",
@@ -937,11 +986,11 @@
           {
             "p161 18946": [
               0.8,
-              6.63e-14
+              0
             ],
             "p138 18946": [
               0.384,
-              1.89e-14
+              0
             ],
             "p130 94925": [
               0.384,
@@ -949,11 +998,11 @@
             ],
             "p100 42070 - 32198": [
               0.23,
-              0
+              3.08e-33
             ],
             "p2131 6589": [
               0.23,
-              0
+              4.11e-33
             ],
             "p2139 87407": [
               0.23,
@@ -973,7 +1022,7 @@
             ],
             "p1320 18938": [
               0.23,
-              0
+              3.6e-33
             ]
           }
         ],
@@ -1002,11 +1051,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 34.6
+        "seconds": 55.7
       },
       {
         "result": "works",
@@ -1072,7 +1121,7 @@
           [],
           []
         ],
-        "seconds": 72.7
+        "seconds": 89.2
       },
       {
         "result": "skipped"

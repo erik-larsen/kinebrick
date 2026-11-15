@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 40 works, 30 partly, 7 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 41 works, 29 partly, 7 no, 1 not checked.
 
 ## By decade
 
@@ -212,7 +212,7 @@ Each detail by the set it first appears in.
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 
-- *ramp:* Function B: with the right lever pushed to B, the motor lowers or raises the rear loading ramp: the right shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft running back through a universal joint to a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms swing the ramp on its links. (partly)
+- *ramp:* Function B: with the right lever pushed to B, the motor lowers or raises the rear loading ramp: the right shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft running back through a universal joint to a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms swing the ramp on its links. (works)
 - *doors:* Function C: with the lever on the left side pushed to C, the motor swings the two orange side panels (the cargo bay doors) out and in: the left shaft's driving ring locks its rear clutch gear, which turns a 16-tooth gear on a shaft with a worm gear; the worm turns an 8-tooth gear whose cross shaft's liftarms and links swing both doors on their hinges. (partly)
 
 **2016, [42053 Volvo EW160E](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42053-1)**

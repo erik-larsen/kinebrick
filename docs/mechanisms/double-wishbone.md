@@ -4,14 +4,14 @@ Each wheel's hub rides between an upper and a lower arm. (Suspension.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.
 
-Used in 17 of the 186 surveyed sets, by 26 functions. Kinebrick: 14 works, 4 partly, 7 no, 1 skipped.
+Used in 18 of the 186 surveyed sets, by 27 functions. Kinebrick: 15 works, 4 partly, 7 no, 1 skipped.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 1 of 18 | 2 of 32 | 2 of 23 | 9 of 83 | 3 of 21 |
-| Functions | 0 | 2 | 4 | 3 | 13 | 4 |
+| Sets | 0 of 9 | 1 of 18 | 2 of 32 | 2 of 23 | 10 of 83 | 3 of 21 |
+| Functions | 0 | 2 | 4 | 3 | 14 | 4 |
 
 ## Details
 
@@ -20,7 +20,7 @@ Each detail by the set it first appears in.
 | Detail | First in | Sets |
 |---|---|---|
 | front | 1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car) | 5 |
-| rear | 1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car) | 7 |
+| rear | 1988, [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car) | 8 |
 
 ## Sets
 
@@ -64,6 +64,10 @@ Each detail by the set it first appears in.
 
 - *front:* The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes. (works)
 - *rear:* The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven. (works)
+
+**2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
+
+- *rear:* The rear wheels each have independent suspension, as the front ones do: each hub rides between an upper and a lower pair of arms that pivot on the frame, the drive shafts reach the hubs through constant velocity joints, and two shock absorbers lying across the car, between an L-beam on each lower arm and the middle of the frame, spring them. (works)
 
 **2016, [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1)**
 
