@@ -33,7 +33,9 @@
 // other part). And each
 // way is worked back again, as a new drag: everything should come back to where it started
 // (`back`: the furthest any part is left from it, LDU and degrees; `strayed`: parts left more
-// than BACK away).
+// than BACK away). Beside it, `torn`: the furthest any part is left against its frame. A model
+// that comes back whole but stands somewhere else (rolled away, or tipped over) is far out by
+// `back`, but not by `torn`.
 //
 //   npm run functions                 every set with functions, but for the slowest (SLOW_OVER)
 //   npm run functions -- --slow       only the slowest sets, left out of the plain run: hours,
@@ -162,6 +164,7 @@ interface Checked {
   expected?: Record<string, number>[]; // for each control, what its gears say for the parts that have a say
   wrong?: string[];
   back?: [number, number][][]; // for each control, each way: the furthest a part is left after there and back (LDU, degrees)
+  torn?: [number, number][][]; // the same, against the part's frame: how far the model came back torn, wherever it stands
   lock?: [number, number, Stop][][]; // for each steering control, each way: its steered parts' most turn (degrees), its own turn (radians), and what stopped it (see LOCK)
   strayed?: string[];
   why?: string[];
@@ -220,16 +223,27 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
   return { counts: countsOf(checked), loose, ...(errata.applied.length || errata.refused.length ? { errata } : {}), functions: checked };
 }
 
+// Whether a function that left a part not back came back torn (a part left more than BACK LDU
+// away against its frame), or whole but somewhere else (rolled away, or tipped over). By LDU
+// only: a free wheel, its car rolled away, is left turned on its axle, which isn't torn. Null if
+// every part came back, or for a result stored before `torn` was.
+function notBackAs(c: Checked): 'torn' | 'moved whole' | null {
+  if (!c.strayed || !c.torn) return null;
+  return c.torn.flat().some(([ldu]) => ldu > BACK) ? 'torn' : 'moved whole';
+}
+
 // How many functions came out each way, and how many moved a part by the wrong amount or left
-// one not back.
+// one not back, and of those, how many came back torn or whole but somewhere else.
 function countsOf(checked: Checked[]) {
-  const counts: Partial<Record<Result | 'wrong amount' | 'not back' | 'pivoted', number>> = {};
+  const counts: Partial<Record<Result | 'wrong amount' | 'not back' | 'torn' | 'moved whole' | 'pivoted', number>> = {};
   const count = (what: keyof typeof counts) => (counts[what] = (counts[what] ?? 0) + 1);
   for (const c of checked) {
     if (!c) continue; // left out (see check's `only`)
     count(c.result);
     if (c.wrong) count('wrong amount');
     if (c.strayed) count('not back');
+    const as = notBackAs(c);
+    if (as) count(as);
     if (c.pivoted) count('pivoted');
   }
   return counts;
@@ -584,13 +598,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return { turned: kin.jointAngles[joint] - from, went, halt, pushed: { grab, dir: dir.clone(), length } };
   };
   // The furthest any part is from where it was in `poses` (LDU, degrees), and the part that's
-  // furthest (by LDU, or degrees for a part that only turns).
-  const furthest = (poses: Matrix4[]) => {
+  // furthest (by LDU, or degrees for a part that only turns). With `onFrame`, where each part
+  // is against its frame (see Kinematics.frameOf), not in the world.
+  const furthest = (poses: Matrix4[], onFrame = false) => {
     let most = { ldu: 0, degrees: 0, part: -1, by: 0 };
+    const placed = (all: Matrix4[], b: number) => (onFrame ? all[kin.frameOf[b]].clone().invert().multiply(all[b]) : all[b]);
     parts.forEach((_, i) => {
       const b = mech.bodyOf[i];
-      const ldu = at[i].clone().applyMatrix4(kin.poses[b]).distanceTo(at[i].clone().applyMatrix4(poses[b]));
-      const degrees = (angle(poses[b], kin.poses[b]) * 180) / Math.PI;
+      const [now, then] = [placed(kin.poses, b), placed(poses, b)];
+      const ldu = at[i].clone().applyMatrix4(now).distanceTo(at[i].clone().applyMatrix4(then));
+      const degrees = (angle(then, now) * 180) / Math.PI;
       const by = Math.max(ldu, degrees);
       most = { ldu: Math.max(most.ldu, ldu), degrees: Math.max(most.degrees, degrees), part: by > most.by ? i : most.part, by: Math.max(by, most.by) };
     });
@@ -693,7 +710,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // wheels "rolling freely" on rims that sit on nothing).
       const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
       const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
-      const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
+      const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (kin.frames.includes(b) || !link) {
         why.push(`${ref} ${kin.frames.includes(b) ? 'is part of the frame' : 'has no joint to work'}`);
         return nothing(early ?? { cause: 'control-fixed' });
@@ -821,8 +838,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           if (Math.abs(joint) >= 0.01) ballMeasuring(b, control, -joint, [], () => {}, true);
         } else if (Math.abs(joint) >= 0.01) turn(b, -joint);
         const most = furthest(startPoses);
+        const apart = furthest(startPoses, true);
         kin.restore(there);
         const back: [number, number] = [round(most.ldu), round(most.degrees)];
+        const torn: [number, number] = [round(apart.ldu), round(apart.degrees)];
         const strayed = most.ldu > BACK || most.degrees > BACK ? [name(most.part)] : [];
         // For a function whose controls share out the parts, a way does its share if it moves
         // at least one of them (if it lists any).
@@ -831,7 +850,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // that is: an arm built at one end of its shock's travel moves one way only, and that counts.
         const farEnough = Math.abs(turned) >= half || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
         const share = farEnough && !wrong.length && (!moves.length || still.length < moves.length);
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, strayed, halt: measured.halt, works: shared ? share : farEnough && !still.length && !wrong.length };
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, strayed, halt: measured.halt, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
@@ -913,7 +932,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const movedParts = moves.filter((m) => !best.still.includes(m.ref)).map((m) => m.ref);
       // Why the parts no control moved didn't move, for a function whose controls share them out.
       const explainStill = (left: string[]) => explain(left, best.moved, best.turned);
-      return { works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
+      return { works, movedParts, explainStill, pushed, turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), torn: each.map((w) => w.torn), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
     });
     // Controls that share out the parts: the parts none of them moved are still.
     const movedByAny = new Set(ways.flatMap((w) => w.movedParts));
@@ -941,6 +960,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       ...expected,
       ...(off.length ? { wrong: off } : {}),
       back: ways.map((w) => w.back),
+      torn: ways.map((w) => w.torn),
       ...(strayed.length ? { strayed } : {}),
       ...(ways.some((w) => w.lock) ? { lock: ways.map((w) => w.lock ?? []) } : {}),
       ...(why.length ? { why: [...new Set(why)] } : {}),
@@ -1061,6 +1081,7 @@ async function main() {
   const results: Partial<Record<Result, number>> = {};
   // How many functions have each cause, of the sets checked.
   const caused: Partial<Record<Cause, number>> = {};
+  const notBack = { torn: 0, 'moved whole': 0 };
   type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
   // Checks a set in a process of its own, or with `only`, one of its functions: what it found,
   // and how long it took.
@@ -1105,6 +1126,7 @@ async function main() {
     }
     if (!proposed) writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
     if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
+    if ('functions' in found) for (const c of found.functions) if (c && notBackAs(c)) notBack[notBackAs(c)!]++;
     const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
     console.log(`${data.set}: ${summary} (${seconds} s)`);
     checking.delete(s.data.set);
@@ -1181,6 +1203,9 @@ async function main() {
   clearInterval(progress);
   // Why the functions that don't work don't, most common first, with who looks into each.
   const byCount = (Object.entries(caused) as [Cause, number][]).sort((a, b) => b[1] - a[1]);
+  // Of the functions that left a part not back, those that came back torn, and those that came
+  // back whole but somewhere else (see notBackAs).
+  if (notBack.torn + notBack['moved whole']) console.log(`Not back: ${notBack.torn} came back torn, ${notBack['moved whole']} came back whole but somewhere else`);
   if (byCount.length) console.log('Causes:\n' + byCount.map(([c, n]) => `  ${String(n).padStart(4)}  ${c} (${CAUSES[c].owner}): ${CAUSES[c].says}`).join('\n'));
   // The mechanism catalog quotes each function's result: written afresh with them.
   if (!causes && !proposed) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });

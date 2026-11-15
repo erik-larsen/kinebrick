@@ -1166,6 +1166,8 @@ Two more counts, beside the result rather than changing it, so results stay comp
 |---|---|
 | `wrong amount` | A listed part turned or slid more than 3% off what its gears say |
 | `not back` | After there and back, a part is more than 0.5 LDU or 0.5° from where it started |
+| `torn` | Not back, and a part is more than 0.5 LDU from where it started against its frame: the model came back torn |
+| `moved whole` | Not back, but no part is more than 0.5 LDU from where it started against its frame: the model came back whole, somewhere else (rolled away, or tipped over) |
 
 **What it writes.**
 
@@ -1173,7 +1175,7 @@ Two more counts, beside the result rather than changing it, so results stay comp
 - The date, how many functions came out each way, and the model's loose parts.
 - One entry per function, in the same order as `curated.functions`: its result, how far each control went each way (`turned`), the parts in `moves` that didn't move (`still`), those in `stays` that did (`moved`), and `why`, where it couldn't work a control.
 - For each control, each listed part's turning (radians) and sliding (LDU) for each radian the control turned, the way it was worked that came out best (`rates`); what the gears say, where they do (`expected`), and the parts off it (`wrong`).
-- For each control and way, the furthest any part was left after there and back, in LDU and degrees (`back`), and the part furthest out (`strayed`), if it's beyond 0.5. The ratchet (`npm run ratchet`) counts the ways beyond 0.5 in `back`, not the parts named: where two parts are left equally far, rounding picks which is named.
+- For each control and way, the furthest any part was left after there and back, in LDU and degrees (`back`), and the part furthest out (`strayed`), if it's beyond 0.5. The ratchet (`npm run ratchet`) counts the ways beyond 0.5 in `back`, not the parts named: where two parts are left equally far, rounding picks which is named. Beside it, `torn`: the same, against each part's frame. A whole model rolled away or tipped over is far out by `back` but not by `torn`. Torn is judged by LDU only: a free wheel left turned on its axle, its car rolled away, isn't torn. The ratchet judges by `back`; the run's summary counts the functions not back as torn or moved whole.
 - For each control and way, what stopped it short of its reach, if anything did (`stop`): `limit` (the end of a slide's or a rack's travel), `dead point`, `no motion` (nothing left that turns it) or `stuck` (a step that couldn't be taken).
 - For a function that doesn't work, why (`cause`, and `detail`, the part it's about): see [Causes](#causes).
 
