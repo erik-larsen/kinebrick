@@ -112,14 +112,64 @@ interface Group {
   lastClear: Matrix4 | null;
 }
 
+// A pair of parts as one number, the lower first (see Collisions).
+export const pairNumber = (a: number, b: number, count: number) => (a < b ? a * count + b : b * count + a);
+
+// Whether two parts' shapes (their shrunken meshes and trees of boxes) are within NEAR of each
+// other, b placed relative to a as `bToA` says. Used on the page and beside it (collisionWorker.ts).
+export function shapesNear(a: { meshes: { geometry: BufferGeometry; bvh: MeshBVH; matrix: Matrix4 }[] }, b: { meshes: { geometry: BufferGeometry; matrix: Matrix4 }[] }, bToA: Matrix4): boolean {
+  for (const ma of a.meshes) {
+    const aMeshInverse = ma.matrix.clone().invert();
+    for (const mb of b.meshes) {
+      const toA = aMeshInverse.clone().multiply(bToA).multiply(mb.matrix);
+      if (ma.bvh.intersectsGeometry(mb.geometry, toA)) return true;
+      const hit = () => ({ point: new Vector3(), distance: 0, faceIndex: 0 });
+      if (ma.bvh.closestPointToGeometry(mb.geometry, toA, hit(), hit(), 0, NEAR)) return true;
+    }
+  }
+  return false;
+}
+
+// The pairs of parts whose boxes, placed as `partMatrices` says, come within NEAR of each other,
+// found by sorting the boxes along x rather than by trying every pair (8.9 million on the 42114,
+// of which 1,842 meet). `keep` says which of them are wanted.
+export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: number, b: number) => boolean): [number, number][] {
+  const placed = boxes.map((box, i) => (box.isEmpty() ? null : box.clone().applyMatrix4(partMatrices[i])));
+  const order = placed.map((_, i) => i).filter((i) => placed[i]).sort((i, j) => placed[i]!.min.x - placed[j]!.min.x);
+  const pairs: [number, number][] = [];
+  for (let k = 0; k < order.length; k++) {
+    const a = order[k];
+    const boxA = placed[a]!.clone().expandByScalar(NEAR);
+    for (let l = k + 1; l < order.length; l++) {
+      const b = order[l];
+      if (placed[b]!.min.x > boxA.max.x) break;
+      if (!boxA.intersectsBox(placed[b]!)) continue;
+      const pair: [number, number] = a < b ? [a, b] : [b, a];
+      if (keep(pair[0], pair[1])) pairs.push(pair);
+    }
+  }
+  return pairs;
+}
+
 export class Collisions {
   private shapes: Shape[];
   private groups: Group[] = [];
+  // For each pair tested for nearness, whether it was near, and how the second part sat relative
+  // to the first when tested: a pair that hasn't moved against itself needn't be tested again
+  // (after a shift, only the parts the shift moved are).
+  private known = new Map<number, { near: boolean; relative: Matrix4 }>();
+  // Whether the page is waiting for the pairs near at the start, found beside it (see the
+  // constructor's `later` and collisionWorker.ts): meanwhile nothing is watched, and `check` finds
+  // nothing. `last` is the mechanism to watch for once they come.
+  waiting = false;
+  private last: { bodyOf: number[]; connected: Set<string>; partMatrices: Matrix4[] } | null = null;
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
-  // placement (part -> model coordinates).
-  constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]) {
+  // placement (part -> model coordinates). With `later`, the pairs near at the start aren't
+  // found here: `nearPairs` then says which they are (see setNear), and the page goes on
+  // meanwhile.
+  constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false) {
     this.shapes = meshes.map((list) => {
       shrink(list);
       const box = new Box3();
@@ -132,20 +182,76 @@ export class Collisions {
       });
       return { meshes: built, box };
     });
+    this.waiting = later;
     this.watch(bodyOf, connected, partMatrices);
   }
 
+  // The pairs to test for nearness: on different bodies, not connected, their boxes meeting.
+  candidates(bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]): [number, number][] {
+    return meetingPairs(
+      this.shapes.map((s) => s.box),
+      partMatrices,
+      (a, b) => bodyOf[a] !== bodyOf[b] && !connected.has(`${a},${b}`),
+    );
+  }
+
+  // The answer to `candidates`, found elsewhere: which of `tested` (placed as `partMatrices`
+  // said) are near. Then the pairs to watch are worked out, for the mechanism last given.
+  setNear(tested: [number, number][], near: Set<number>, partMatrices: Matrix4[]) {
+    const n = this.shapes.length;
+    for (const [a, b] of tested) this.known.set(pairNumber(a, b, n), { near: near.has(pairNumber(a, b, n)), relative: partMatrices[a].clone().invert().multiply(partMatrices[b]) });
+    this.waiting = false;
+    if (this.last) this.watch(this.last.bodyOf, this.last.connected, this.last.partMatrices);
+  }
+
+  // The shapes, as plain arrays, for finding the near pairs beside the page (collisionWorker.ts).
+  // Only the parts in `only` get their meshes; the rest come empty, keeping their numbers.
+  shapeArrays(only: Set<number>): { meshes: { position: Float32Array; index: Uint32Array | Uint16Array | null; matrix: number[] }[] }[] {
+    return this.shapes.map((s, i) => ({
+      meshes: !only.has(i) ? [] : s.meshes.map((m) => ({
+        position: new Float32Array(m.geometry.getAttribute('position').array as ArrayLike<number>),
+        index: m.geometry.index ? (m.geometry.index.array.slice() as Uint32Array | Uint16Array) : null,
+        matrix: m.matrix.toArray(),
+      })),
+    }));
+  }
+
+  // Whether a and b are near, placed as `partMatrices` says, tested here (where the page can't
+  // use a helper beside it).
+  nearNow(a: number, b: number, partMatrices: Matrix4[]): boolean {
+    return shapesNear(this.shapes[a], this.shapes[b], partMatrices[a].clone().invert().multiply(partMatrices[b]));
+  }
+
+  // Whether a and b are near, placed as `partMatrices` says: as found before if they haven't moved
+  // against each other since, else tested now.
+  private isNear(a: number, b: number, partMatrices: Matrix4[]): boolean {
+    const key = pairNumber(a, b, this.shapes.length);
+    const relative = partMatrices[a].clone().invert().multiply(partMatrices[b]);
+    const known = this.known.get(key);
+    if (known && sameMatrix(known.relative, relative)) return known.near;
+    const near = shapesNear(this.shapes[a], this.shapes[b], relative);
+    this.known.set(key, { near, relative });
+    return near;
+  }
+
   // Works out which pairs of parts to watch, for a mechanism worked out afresh (after a shift).
-  // Same arguments as the constructor.
+  // Same arguments as the constructor. Until the near pairs are known (see setNear), it only
+  // remembers them.
   watch(bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]) {
-    const groups = new Map<string, Group>();
-    for (let a = 0; a < this.shapes.length; a++) {
-      for (let b = a + 1; b < this.shapes.length; b++) {
-        if (bodyOf[a] === bodyOf[b] || connected.has(`${a},${b}`)) continue;
-        if (this.near(a, b, partMatrices)) continue; // already touching, or nearly, at the start
-        const key = `${bodyOf[a]},${bodyOf[b]}`;
-        if (!groups.has(key)) groups.set(key, { pairs: [], onA: [], onB: [], a, b, lastClear: null });
-        groups.get(key)!.pairs.push([a, b]);
+    this.last = { bodyOf, connected, partMatrices };
+    if (this.waiting) return;
+    const n = this.shapes.length;
+    const joined = new Set([...connected].map((key) => key.split(',').map(Number)).map(([a, b]) => pairNumber(a, b, n)));
+    const near = new Set(this.candidates(bodyOf, connected, partMatrices).filter(([a, b]) => this.isNear(a, b, partMatrices)).map(([a, b]) => pairNumber(a, b, n)));
+    const groups = new Map<number, Group>();
+    const bodies = Math.max(0, ...bodyOf) + 1;
+    for (let a = 0; a < n; a++) {
+      for (let b = a + 1; b < n; b++) {
+        if (bodyOf[a] === bodyOf[b] || near.has(a * n + b) || joined.has(a * n + b)) continue;
+        const key = bodyOf[a] * bodies + bodyOf[b];
+        let group = groups.get(key);
+        if (!group) groups.set(key, (group = { pairs: [], onA: [], onB: [], a, b, lastClear: null }));
+        group.pairs.push([a, b]);
       }
     }
     this.groups = [...groups.values()];
@@ -211,24 +317,6 @@ export class Collisions {
       group.lastClear = relative;
     }
     return null;
-  }
-
-  // Whether two parts' meshes are within NEAR of each other, placed as `partMatrices` says.
-  private near(a: number, b: number, partMatrices: Matrix4[]): boolean {
-    const boxA = this.shapes[a].box.clone().applyMatrix4(partMatrices[a]).expandByScalar(NEAR);
-    const boxB = this.shapes[b].box.clone().applyMatrix4(partMatrices[b]);
-    if (!boxA.intersectsBox(boxB)) return false;
-    const bToA = partMatrices[a].clone().invert().multiply(partMatrices[b]);
-    for (const ma of this.shapes[a].meshes) {
-      const aMeshInverse = ma.matrix.clone().invert();
-      for (const mb of this.shapes[b].meshes) {
-        const toA = aMeshInverse.clone().multiply(bToA).multiply(mb.matrix);
-        if (ma.bvh.intersectsGeometry(mb.geometry, toA)) return true;
-        const hit = () => ({ point: new Vector3(), distance: 0, faceIndex: 0 });
-        if (ma.bvh.closestPointToGeometry(mb.geometry, toA, hit(), hit(), 0, NEAR)) return true;
-      }
-    }
-    return false;
   }
 
   // Whether two parts' meshes overlap, placed as `partMatrices` says.

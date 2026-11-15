@@ -29,7 +29,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { collisionGeometry, Collisions, connectedPairs, PartMesh } from './collisions.ts';
+import { collisionGeometry, Collisions, connectedPairs, pairNumber, PartMesh } from './collisions.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -325,6 +325,7 @@ if (PREVIEW) {
 
 async function start() {
   const summary = document.getElementById('summary')!;
+  const collisionNote = document.getElementById('collision-note')!;
 
   const roles: Record<string, string> = await (await fetch(rolesUrl)).json();
   const loader = new LDrawLoader();
@@ -604,7 +605,39 @@ async function start() {
 
     const connected = connectedPairs(mech);
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
-    else collisions = new Collisions(shapes, mech.bodyOf, connected, partMatrices());
+    else {
+      // The pairs of parts that already touch as built are found beside the page (see
+      // collisionWorker.ts), so the model can be turned at once; a drag goes without the collision
+      // stop until they're known.
+      const placedAt = partMatrices();
+      collisions = new Collisions(shapes, mech.bodyOf, connected, placedAt, true);
+      const tested = collisions.candidates(mech.bodyOf, connected, placedAt);
+      const done = (near: [number, number][]) => {
+        const n = shapes.length;
+        collisions!.setNear(tested, new Set(near.map(([a, b]) => pairNumber(a, b, n))), placedAt);
+        collisionNote.textContent = '';
+      };
+      collisionNote.textContent = 'Finding the parts that touch as built: until then, a drag or a motor isn\u2019t stopped where parts meet.';
+      try {
+        const worker = new Worker(new URL('./collisionWorker.ts', import.meta.url), { type: 'module' });
+        worker.onmessage = (e: MessageEvent) => {
+          if (OPTIONS.includes('debug')) console.log('collision pass beside the page', e.data.took, `${tested.length} pairs tested, ${e.data.near.length} near`);
+          done(e.data.near);
+          worker.terminate();
+        };
+        worker.onerror = () => {
+          worker.terminate();
+          done(tested.filter(([a, b]) => collisions!.nearNow(a, b, placedAt)));
+        };
+        // Only the parts some pair names are sent, their arrays handed over rather than copied.
+        const named = new Set(tested.flat());
+        const arrays = collisions.shapeArrays(named);
+        const transfer = arrays.flatMap((s) => s.meshes.flatMap((m) => [m.position.buffer, ...(m.index ? [m.index.buffer] : [])]));
+        worker.postMessage({ shapes: arrays, pairs: tested, matrices: placedAt.map((m) => m.toArray()) }, transfer);
+      } catch {
+        done(tested.filter(([a, b]) => collisions!.nearNow(a, b, placedAt)));
+      }
+    }
 
     // The counts go in the Stats card; the summary line is only for what's going on while loading.
     summary.textContent = '';
@@ -938,7 +971,7 @@ async function start() {
     pinsToFree,
     freePins,
   };
-  summary.textContent = 'Checking for collisions…';
+  summary.textContent = 'Setting up…';
   await shown();
   read(startParts, mech);
   const placed = [...new Set(startParts.map((p) => libraryName(p.name, table)))];

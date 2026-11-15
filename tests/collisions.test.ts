@@ -1,6 +1,7 @@
 import { BoxGeometry, BufferGeometry, Matrix4 } from 'three';
 import { describe, expect, it } from 'vitest';
-import { Collisions, PartMesh } from '../src/collisions.ts';
+import { Box3, Vector3 } from 'three';
+import { Collisions, meetingPairs, pairNumber, PartMesh } from '../src/collisions.ts';
 
 // A 20 LDU cube, as a part with one mesh.
 function cube(): PartMesh[] {
@@ -30,4 +31,26 @@ describe('collisions', () => {
       expect(c.check([at(0), at(5)])).toBeNull();
     }
   });
+
+  it('waits, when asked to, for the pairs near at the start, found elsewhere, and then watches as it would have', () => {
+    const placed = [at(0), at(15), at(50)];
+    const now = new Collisions([cube(), cube(), cube()], [0, 1, 2], new Set(), placed);
+    const later = new Collisions([cube(), cube(), cube()], [0, 1, 2], new Set(), placed, true);
+    expect(later.watchedPairs).toBe(0);
+    expect(later.check([at(0), at(15), at(5)])).toBeNull(); // no collision stop while it waits
+    const tested = later.candidates([0, 1, 2], new Set(), placed);
+    later.setNear(tested, new Set(tested.filter(([a, b]) => later.nearNow(a, b, placed)).map(([a, b]) => pairNumber(a, b, 3))), placed);
+    expect(later.watchedPairs).toBe(now.watchedPairs);
+    expect(later.check([at(0), at(15), at(30)])).toEqual(now.check([at(0), at(15), at(30)]));
+  });
+
+  it('finds the pairs whose boxes meet by sorting them, the same as trying every pair', () => {
+    const boxes = Array.from({ length: 40 }, (_, i) => new Box3(new Vector3(0, 0, 0), new Vector3(10 + (i % 7), 10, 10)));
+    const placed = boxes.map((_, i) => at(((i * 37) % 23) * 6));
+    const every: string[] = [];
+    for (let a = 0; a < boxes.length; a++) for (let b = a + 1; b < boxes.length; b++) if (boxes[a].clone().applyMatrix4(placed[a]).expandByScalar(1).intersectsBox(boxes[b].clone().applyMatrix4(placed[b]))) every.push(`${a},${b}`);
+    const sorted = meetingPairs(boxes, placed, () => true).map(([a, b]) => `${a},${b}`);
+    expect(sorted.sort()).toEqual(every.sort());
+  });
 });
+

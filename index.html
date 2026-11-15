@@ -21,7 +21,8 @@
       #repo { display: flex; color: #5a6475; }
       #repo:hover { color: #1d2430; }
       #repo svg { width: 18px; height: 18px; fill: currentColor; }
-      #summary, #inputs { color: #5a6475; }
+      #summary, #inputs, #collision-note { color: #5a6475; }
+      #collision-note:empty { display: none; }
       #inputs { margin-bottom: 6px; font-size: 12px; }
       #inputs b { color: #1d2430; font-weight: 600; }
       /* Which branch a preview build is of, beside the heading (see src/main.ts); the release has none. */
@@ -150,6 +151,7 @@
       </div>
       <input id="file" type="file" accept=".ldr,.mpd,.io" hidden />
       <div id="summary">Loading…</div>
+      <div id="collision-note"></div>
     </div>
     <!-- The cards at the upper right, each closed until it's clicked: Options, and under it Stats
          (see src/main.ts, which makes them and puts #stats in the second). -->
