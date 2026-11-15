@@ -912,6 +912,19 @@ export class Kinematics {
     return null;
   }
 
+  // Whether the drag works the car's steering: the part grabbed is one of its steering bodies
+  // (see steeringBodies), or turns one through gears. Only then does a steered tyre pivot on the
+  // ground (see steeringPivot and tyres.ts): a drag of anything else (a trailer swinging on its
+  // hitch, a wheel rolling the car) keeps its tyres' grip as it was, else it may steer the wheels
+  // to go where it couldn't (the 8049 Tractor with Log Loader, swung on its hitch, slewed round
+  // on its steered front wheels and came back turned half round).
+  dragSteers(): boolean {
+    const grabbed = this.drag.turning?.grabbed;
+    if (grabbed === undefined || this.contactTreads.length === 0) return false;
+    const steering = (this.drag.steering ??= this.steeringBodies());
+    return steering.has(grabbed) || [...this.gearedTo(grabbed, true)].some((b) => steering.has(b));
+  }
+
   // A drag's steps that pivot a steered tyre on the ground about its steering axis (see
   // steeringPivot and tyres.ts): the most its contact was carried sideways and up or down, in LDU
   // for each radian of the dragged joint, and the tyre. The function check stores it with the
@@ -920,7 +933,7 @@ export class Kinematics {
 
   private notePivots(motion: number[]) {
     const joint = this.drag.turning?.joint;
-    if (joint === undefined) return;
+    if (joint === undefined || !this.dragSteers()) return;
     const rate = Math.abs(this.jointRate(motion, joint));
     if (rate < EPSILON) return;
     for (const i of this.contactTreads) {
