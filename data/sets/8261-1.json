@@ -41,6 +41,7 @@
         ],
         "source": "inferred: the front axle hangs from a 180 degree angle connector on the steering shaft (book step 20); not shown in the book",
         "control": "p63 32524",
+        "lifted": true,
         "moves": [
           "p63 32524",
           "p66 48989",
@@ -51,7 +52,8 @@
         "stays": [
           "p0 32526",
           "p18 32269"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
@@ -105,7 +107,7 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "30803f45",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -185,7 +187,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -364,7 +366,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       }
     ]
   }

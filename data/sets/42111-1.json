@@ -118,6 +118,7 @@
         ],
         "source": "inferred: the model has two shock absorbers (p101/p102 and p105/p106) between the frame and the rear axle's frame; the book draws no arrow for it",
         "control": "p0 92910",
+        "lifted": true,
         "moves": [
           "p471 56908",
           "p473 56908",
@@ -125,7 +126,8 @@
         ],
         "stays": [
           "p136 18575"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The rear shock absorbers' springs push the rear axle back down.",
@@ -195,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "30803f45",
     "date": "2026-11-15",
-    "seconds": 168,
+    "seconds": 129,
     "counts": {
       "works": 7,
       "skipped": 2,
@@ -277,7 +279,7 @@
             ]
           ]
         ],
-        "seconds": 39.9
+        "seconds": 20.4
       },
       {
         "result": "works",
@@ -429,7 +431,7 @@
             "p443 18946"
           ]
         ],
-        "seconds": 43.4
+        "seconds": 37.6
       },
       {
         "result": "works",
@@ -459,7 +461,7 @@
             ]
           ]
         ],
-        "seconds": 7.3
+        "seconds": 6.4
       },
       {
         "result": "works",
@@ -561,7 +563,7 @@
             "p319 15461"
           ]
         ],
-        "seconds": 6.6
+        "seconds": 6.3
       },
       {
         "result": "skipped",
@@ -619,7 +621,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 7.2
+        "seconds": 0.8
       },
       {
         "result": "skipped",
@@ -657,7 +659,7 @@
             ]
           ]
         ],
-        "seconds": 6.4
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -702,7 +704,7 @@
         "pushed": [
           true
         ],
-        "seconds": 27
+        "seconds": 23.9
       },
       {
         "result": "works",
@@ -758,7 +760,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 28.5
+        "seconds": 26.7
       }
     ]
   }

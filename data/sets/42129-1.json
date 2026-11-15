@@ -112,12 +112,14 @@
           "p958 42129 - 31794",
           "p1198 42129 - 31794"
         ],
+        "lifted": true,
         "moves": [
           "p1309 65414c01",
           "p1032 65414c01",
           "p1379 4254 against p1380 4255",
           "p1215 4254 against p1216 4255"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The four shock absorbers' springs hold the truck up on its axles.",
@@ -146,9 +148,9 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "30803f45",
     "date": "2026-11-15",
-    "seconds": 396,
+    "seconds": 344,
     "counts": {
       "partly": 2,
       "works": 4,
@@ -311,7 +313,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 69.6
+        "seconds": 55.4
       },
       {
         "result": "works",
@@ -341,7 +343,7 @@
             ]
           ]
         ],
-        "seconds": 34.7
+        "seconds": 28.4
       },
       {
         "result": "works",
@@ -407,7 +409,7 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 173
+        "seconds": 146.6
       },
       {
         "result": "partly",
@@ -460,7 +462,7 @@
         ],
         "cause": "loose-part",
         "detail": "p513 18947",
-        "seconds": 32.6
+        "seconds": 29.1
       },
       {
         "result": "works",
@@ -498,7 +500,7 @@
             ]
           ]
         ],
-        "seconds": 34.3
+        "seconds": 29.9
       },
       {
         "result": "no",
@@ -593,11 +595,10 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 13.6
+        "seconds": 6.6
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       },
       {
         "result": "works",
@@ -627,7 +628,7 @@
             ]
           ]
         ],
-        "seconds": 34.4
+        "seconds": 26.1
       }
     ]
   }
