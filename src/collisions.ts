@@ -32,6 +32,14 @@ export const LAYOUT_INSET = 2;
 // Parts this close when the model loads, in LDU (after INSET), aren't checked against each
 // other: real models are built tight, and parts that rub on the real thing don't stop it.
 export const NEAR = 1;
+// On a train layout, wider: a train's own cars and bogies are built a few LDU apart, and swing
+// against each other on a curve where the real parts have room that the drawn shapes and the
+// pivots as read don't give. The widest it needs is a monorail car's base (2687) and the wheel
+// chassis (2686) that swivels under it: 5.68 LDU apart as built on the 6399, 5.82 on the 6990;
+// the 7722's buffer and the next car's base, and the 6991's motor clip and motor box, need less.
+// What it costs: scenery and a train within 6.5 LDU of each other as built aren't watched either
+// (a platform's plate and a car's tile on the 6990), which a stricter rule would watch.
+export const LAYOUT_NEAR = 6.5;
 
 // A copy of a mesh's geometry for collision checks: its positions and its index.
 export function collisionGeometry(source: BufferGeometry): BufferGeometry {
@@ -146,36 +154,36 @@ interface Group {
 // A pair of parts as one number, the lower first (see Collisions).
 export const pairNumber = (a: number, b: number, count: number) => (a < b ? a * count + b : b * count + a);
 
-// Whether two parts' shapes (their shrunken meshes and trees of boxes) are within NEAR of each
+// Whether two parts' shapes (their shrunken meshes and trees of boxes) are within `near` of each
 // other, b placed relative to a as `bToA` says. Used on the page and beside it (collisionWorker.ts).
-export function shapesNear(a: { meshes: { geometry: BufferGeometry; bvh: MeshBVH; matrix: Matrix4 }[] }, b: { meshes: { geometry: BufferGeometry; matrix: Matrix4 }[] }, bToA: Matrix4): boolean {
+export function shapesNear(a: { meshes: { geometry: BufferGeometry; bvh: MeshBVH; matrix: Matrix4 }[] }, b: { meshes: { geometry: BufferGeometry; matrix: Matrix4 }[] }, bToA: Matrix4, near = NEAR): boolean {
   for (const ma of a.meshes) {
     const aMeshInverse = ma.matrix.clone().invert();
     for (const mb of b.meshes) {
       const toA = aMeshInverse.clone().multiply(bToA).multiply(mb.matrix);
       if (ma.bvh.intersectsGeometry(mb.geometry, toA)) return true;
       const hit = () => ({ point: new Vector3(), distance: 0, faceIndex: 0 });
-      // The closest points found, if any: the search skips boxes further than NEAR, but within a
+      // The closest points found, if any: the search skips boxes further than `near`, but within a
       // box it keeps the closest triangles it meets, however far (on the 8838, two parts 5.3 LDU
       // apart, or not, by which boxes it happened to enter, so the answer hung on what was tested
       // before). So the distance is what says.
-      const closest = ma.bvh.closestPointToGeometry(mb.geometry, toA, hit(), hit(), 0, NEAR);
-      if (closest && closest.distance <= NEAR) return true;
+      const closest = ma.bvh.closestPointToGeometry(mb.geometry, toA, hit(), hit(), 0, near);
+      if (closest && closest.distance <= near) return true;
     }
   }
   return false;
 }
 
-// The pairs of parts whose boxes, placed as `partMatrices` says, come within NEAR of each other,
+// The pairs of parts whose boxes, placed as `partMatrices` says, come within `near` of each other,
 // found by sorting the boxes along x rather than by trying every pair (8.9 million on the 42114,
 // of which 1,842 meet). `keep` says which of them are wanted.
-export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: number, b: number) => boolean): [number, number][] {
+export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: number, b: number) => boolean, near = NEAR): [number, number][] {
   const placed = boxes.map((box, i) => (box.isEmpty() ? null : box.clone().applyMatrix4(partMatrices[i])));
   const order = placed.map((_, i) => i).filter((i) => placed[i]).sort((i, j) => placed[i]!.min.x - placed[j]!.min.x);
   const pairs: [number, number][] = [];
   for (let k = 0; k < order.length; k++) {
     const a = order[k];
-    const boxA = placed[a]!.clone().expandByScalar(NEAR);
+    const boxA = placed[a]!.clone().expandByScalar(near);
     for (let l = k + 1; l < order.length; l++) {
       const b = order[l];
       if (placed[b]!.min.x > boxA.max.x) break;
@@ -193,12 +201,12 @@ export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: n
 // erratum removed it): so a change in the model's file, its errata, or how a part is cut into
 // pieces (roles.json's "pieces" and "split") changes the key, and the kept file goes stale. And
 // the parts library's release (LDConfig.ldr's update line, which a release changes; a part
-// changed between releases isn't caught), the inset (INSET, or LAYOUT_INSET on a train layout) and
-// NEAR. A SHA-256 in hex.
-export async function collisionKey(parts: { name: string; matrix: Matrix4; removed?: boolean }[], libraryRelease: string, inset = INSET): Promise<string> {
+// changed between releases isn't caught), the inset and the near distance (INSET and NEAR, or
+// LAYOUT_INSET and LAYOUT_NEAR on a train layout). A SHA-256 in hex.
+export async function collisionKey(parts: { name: string; matrix: Matrix4; removed?: boolean }[], libraryRelease: string, inset = INSET, near = NEAR): Promise<string> {
   const placement = (m: Matrix4) => [0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14].map((k) => Math.round(m.elements[k] * 100) / 100 || 0).join(' ');
   const lines = parts.map((p) => `${p.name} ${placement(p.matrix)}${p.removed ? ' removed' : ''}`);
-  const bytes = new TextEncoder().encode(JSON.stringify([lines, libraryRelease, inset, NEAR]));
+  const bytes = new TextEncoder().encode(JSON.stringify([lines, libraryRelease, inset, near]));
   const digest = await crypto.subtle.digest('SHA-256', bytes);
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
@@ -239,13 +247,17 @@ export class Collisions {
   // nothing. `last` is the mechanism to watch for once they come.
   waiting = false;
   private last: { bodyOf: number[]; connected: Set<string>; partMatrices: Matrix4[] } | null = null;
+  // How close two parts may be as built and not be watched (NEAR, or LAYOUT_NEAR on a layout).
+  readonly near: number;
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
   // placement (part -> model coordinates). With `later`, the pairs near at the start aren't
   // found here: `nearPairs` then says which they are (see setNear), and the page goes on
-  // meanwhile. `inset`, how far each part's shape is pulled in.
-  constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false, inset = INSET) {
+  // meanwhile. `inset`, how far each part's shape is pulled in; `near`, how close two parts may
+  // be as built and not be watched.
+  constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false, inset = INSET, near = NEAR) {
+    this.near = near;
     this.shapes = meshes.map((list) => {
       shrink(list, inset);
       const box = new Box3();
@@ -273,6 +285,7 @@ export class Collisions {
       this.shapes.map((s) => s.box),
       partMatrices,
       (a, b) => bodyOf[a] !== bodyOf[b] && !connected.has(`${a},${b}`),
+      this.near,
     );
   }
 
@@ -304,7 +317,7 @@ export class Collisions {
   // Whether a and b are near, placed as `partMatrices` says, tested here (where the page can't
   // use a helper beside it).
   nearNow(a: number, b: number, partMatrices: Matrix4[]): boolean {
-    return shapesNear(this.shapes[a], this.shapes[b], partMatrices[a].clone().invert().multiply(partMatrices[b]));
+    return shapesNear(this.shapes[a], this.shapes[b], partMatrices[a].clone().invert().multiply(partMatrices[b]), this.near);
   }
 
   // Whether a and b are near, placed as `partMatrices` says: as found before if they haven't moved
@@ -314,7 +327,7 @@ export class Collisions {
     const relative = partMatrices[a].clone().invert().multiply(partMatrices[b]);
     const known = this.known.get(key);
     if (known && sameMatrix(known.relative, relative)) return known.near;
-    const near = shapesNear(this.shapes[a], this.shapes[b], relative);
+    const near = shapesNear(this.shapes[a], this.shapes[b], relative, this.near);
     this.known.set(key, { near, relative });
     return near;
   }

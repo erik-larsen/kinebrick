@@ -29,7 +29,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { collisionGeometry, Collisions, connectedPairs, INSET, LAYOUT_INSET, pairNumber, PartMesh } from './collisions.ts';
+import { collisionGeometry, Collisions, connectedPairs, INSET, LAYOUT_INSET, LAYOUT_NEAR, NEAR, pairNumber, PartMesh } from './collisions.ts';
 import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
@@ -620,9 +620,11 @@ async function start() {
       // collisionWorker.ts), so the model can be turned at once; a drag goes without the collision
       // stop until they're known.
       const placedAt = partMatrices();
-      // (A train layout's parts are pulled in further: see LAYOUT_INSET.)
+      // (A train layout's parts are pulled in further, and may be built further apart: see
+      // LAYOUT_INSET and LAYOUT_NEAR.)
       const inset = mech.track ? LAYOUT_INSET : INSET;
-      collisions = new Collisions(shapes, mech.bodyOf, connected, placedAt, true, inset);
+      const near = mech.track ? LAYOUT_NEAR : NEAR;
+      collisions = new Collisions(shapes, mech.bodyOf, connected, placedAt, true, inset, near);
       const tested = collisions.candidates(mech.bodyOf, connected, placedAt);
       const n = shapes.length;
       const done = (near: [number, number][]) => {
@@ -650,7 +652,7 @@ async function start() {
             // Only the parts some pair names are sent, their arrays handed over rather than copied.
             const arrays = collisions!.shapeArrays(new Set(pairs.flat()));
             const transfer = arrays.flatMap((s) => s.meshes.flatMap((m) => [m.position.buffer, ...(m.index ? [m.index.buffer] : [])]));
-            worker.postMessage({ shapes: arrays, pairs, matrices: placedAt.map((m) => m.toArray()) }, transfer);
+            worker.postMessage({ shapes: arrays, pairs, matrices: placedAt.map((m) => m.toArray()), near }, transfer);
           } catch {
             onPage();
           }
@@ -658,7 +660,7 @@ async function start() {
       // A kept result first (see keptPairs.ts): the model's own file, else this browser's store;
       // the pairs neither covers are tested, and what's found is stored for next time.
       (async () => {
-        const key = await keyFor(startParts, inset);
+        const key = await keyFor(startParts, inset, near);
         const name = FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL;
         const known = (await keptPairs(name, key)) ?? (await storedPairs(key));
         const nearKnown = new Set((known?.near ?? []).map(([a, b]) => pairNumber(a, b, n)));

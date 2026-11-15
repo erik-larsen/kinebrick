@@ -17,7 +17,7 @@
 // all the way, or leaves the track or its coupling on the way.
 
 import type { Matrix4 } from 'three';
-import { Collisions, connectedPairs, LAYOUT_INSET, PartMesh } from '../src/collisions.ts';
+import { Collisions, connectedPairs, LAYOUT_INSET, LAYOUT_NEAR, PartMesh } from '../src/collisions.ts';
 import { railLift } from '../src/constraints/tyres.ts';
 import type { Mechanism } from '../src/mechanism.ts';
 import type { Track } from '../src/track.ts';
@@ -205,7 +205,7 @@ function blocker(mech: Mechanism, kin: ReturnType<typeof loadModel>['kin'], part
   }
   const poses = (kin as unknown as { poses: Matrix4[] }).poses;
   const now = () => parts.map((p, i) => poses[mech.bodyOf[i]].clone().multiply(p.matrix));
-  const collisions = new Collisions(shapeOf, mech.bodyOf, connectedPairs(mech), now(), false, LAYOUT_INSET);
+  const collisions = new Collisions(shapeOf, mech.bodyOf, connectedPairs(mech), now(), false, LAYOUT_INSET, LAYOUT_NEAR);
   const starts = parts.map((p) => p.matrix);
   const name = (i: number) => `p${i} ${parts[i].name.replace(/\.dat$/, '')}`;
   return (): string | null => {

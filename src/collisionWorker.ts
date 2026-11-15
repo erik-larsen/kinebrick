@@ -4,9 +4,9 @@
 // to draw the model or turn the view; a drag or a motor goes without the collision stop until
 // the answer comes.
 //
-// The page sends one message: { shapes, pairs, matrices }: each part's shrunken meshes (as
-// Collisions.shapeArrays gives them), the pairs to test as [a, b], and each part's placement as
-// a matrix's 16 numbers. The answer is { near }: the pairs that are near, as [a, b].
+// The page sends one message: { shapes, pairs, matrices, near }: each part's shrunken meshes (as
+// Collisions.shapeArrays gives them), the pairs to test as [a, b], each part's placement as a
+// matrix's 16 numbers, and how close counts as near (Collisions.near). The answer is { near }: the pairs that are near, as [a, b].
 
 import { BufferAttribute, BufferGeometry, Matrix4 } from 'three';
 import { MeshBVH } from 'three-mesh-bvh';
@@ -15,7 +15,7 @@ import { shapesNear } from './collisions.ts';
 type Arrays = { meshes: { position: Float32Array; index: Uint32Array | Uint16Array | null; matrix: number[] }[] };
 
 self.onmessage = (event: MessageEvent) => {
-  const { shapes, pairs, matrices } = event.data as { shapes: Arrays[]; pairs: [number, number][]; matrices: number[][] };
+  const { shapes, pairs, matrices, near: within } = event.data as { shapes: Arrays[]; pairs: [number, number][]; matrices: number[][]; near?: number };
   // Each part's shape with its trees of boxes, built only for the parts some pair names.
   const built = new Map<number, { meshes: { geometry: BufferGeometry; bvh: MeshBVH; matrix: Matrix4 }[] }>();
   const shapeOf = (i: number) => {
@@ -41,7 +41,7 @@ self.onmessage = (event: MessageEvent) => {
   const start = performance.now();
   for (const [a, b] of pairs) shapeOf(a), shapeOf(b);
   const builtIn = performance.now() - start;
-  const near = pairs.filter(([a, b]) => shapesNear(shapeOf(a), shapeOf(b), placed[a].clone().invert().multiply(placed[b])));
+  const near = pairs.filter(([a, b]) => shapesNear(shapeOf(a), shapeOf(b), placed[a].clone().invert().multiply(placed[b]), within));
   // How long its two stages took, in ms, for whoever wants to know (the page shows it with `debug`).
   self.postMessage({ near, took: { trees: Math.round(builtIn), tests: Math.round(performance.now() - start - builtIn) } });
 };

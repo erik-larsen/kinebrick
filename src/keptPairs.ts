@@ -17,7 +17,7 @@ export interface KnownPairs {
 }
 
 // The key for a model's parts as the viewer reads them (see collisionKey).
-export const keyFor = (parts: Parameters<typeof collisionKey>[0], inset?: number) => collisionKey(parts, release['../data/collisions/library.json']?.release ?? '', inset);
+export const keyFor = (parts: Parameters<typeof collisionKey>[0], inset?: number, near?: number) => collisionKey(parts, release['../data/collisions/library.json']?.release ?? '', inset, near);
 
 // The kept file's result for the model named `name` (its file's name, without .mpd or .ldr), if
 // its key is `key`.
