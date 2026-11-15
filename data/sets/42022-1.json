@@ -88,7 +88,7 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "914fd20f",
     "date": "2026-11-15",
     "seconds": 4,
     "counts": {
@@ -169,7 +169,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -246,7 +246,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p314 2851 against p0 99008",
-        "seconds": 1
+        "seconds": 1.2
       },
       {
         "result": "works",

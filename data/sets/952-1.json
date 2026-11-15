@@ -133,7 +133,7 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "914fd20f",
     "date": "2026-11-15",
     "seconds": 3,
     "counts": {
@@ -313,7 +313,7 @@
             "p27 3650a"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -561,7 +561,7 @@
             "p310 3649 against p256 3709b"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -681,7 +681,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       }
     ]
   }

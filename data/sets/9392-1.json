@@ -126,9 +126,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "914fd20f",
     "date": "2026-11-15",
-    "seconds": 6,
+    "seconds": 7,
     "counts": {
       "no": 2,
       "partly": 2,
@@ -286,7 +286,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p140 2851",
-        "seconds": 2.1
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -353,7 +353,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 94925",
-        "seconds": 1.8
+        "seconds": 2
       },
       {
         "result": "no",

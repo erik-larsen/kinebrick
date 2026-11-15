@@ -100,7 +100,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 3 works, 3 partly, 1 no |
 | [Multi-axle steering](multi-axle-steering.md) | 12 | 1990 |  |  | 2 | 1 | 7 | 2 | 10 works, 2 partly, 2 no |
 | [Steering mode selector](steering-mode-selector.md) | 1 | 2016 |  |  |  |  | 1 |  | 1 works |
-| [Fork steering](fork-steering.md) | 8 | 1991 |  |  | 5 |  | 2 | 1 | 3 works, 4 partly, 1 no |
+| [Fork steering](fork-steering.md) | 8 | 1991 |  |  | 5 |  | 2 | 1 | 3 works, 3 partly, 2 no |
 | [Skid steering](skid-steering.md) | 5 | 2007 |  |  |  | 1 | 3 | 1 | 3 works, 1 partly, 1 not checked |
 | [Rudder](rudder.md) | 3 | 2017 |  |  |  |  | 2 | 1 | 1 works, 2 partly |
 
@@ -115,7 +115,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Pendular axle](pendular-axle.md) | 7 | 1986 |  | 1 |  |  | 5 | 1 | 2 works, 2 partly, 2 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
 | [Sprung live axle](sprung-axle.md) | 6 | 2011 |  |  |  |  | 4 | 2 | 1 works, 3 no, 2 skipped |
-| [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 1 works, 1 partly, 1 no |
+| [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 3 no |
 | [Telelever](telelever.md) | 1 | 2017 |  |  |  |  | 1 |  | 1 works |
 | [Bogie](bogie.md) | 5 | 2007 |  |  |  | 2 | 1 | 2 | 3 works, 2 skipped |
 | [Track suspension](track-suspension.md) | 1 | 2019 |  |  |  |  | 1 |  | 1 skipped |

@@ -139,9 +139,9 @@
     ]
   },
   "generated": {
-    "commit": "28315418",
+    "commit": "914fd20f",
     "date": "2026-11-15",
-    "seconds": 1009,
+    "seconds": 1127,
     "counts": {
       "partly": 3,
       "not back": 4,
@@ -220,7 +220,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1088 32270",
-        "seconds": 109.6
+        "seconds": 122.7
       },
       {
         "result": "partly",
@@ -287,7 +287,7 @@
         ],
         "cause": "not-driven",
         "detail": "p437 92695 against p436 92693c01",
-        "seconds": 241.3
+        "seconds": 265.7
       },
       {
         "result": "works",
@@ -338,7 +338,7 @@
           "p1040 6542b",
           "p1042 3749"
         ],
-        "seconds": 101.5
+        "seconds": 113.2
       },
       {
         "result": "partly",
@@ -398,7 +398,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1278 41239",
-        "seconds": 109
+        "seconds": 121.7
       },
       {
         "result": "no",
@@ -547,7 +547,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 18.1
+        "seconds": 18.4
       },
       {
         "result": "works",
@@ -665,7 +665,7 @@
           [],
           []
         ],
-        "seconds": 425.2
+        "seconds": 478.6
       }
     ]
   }

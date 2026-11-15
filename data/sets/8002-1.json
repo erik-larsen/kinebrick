@@ -136,15 +136,14 @@
     ]
   },
   "generated": {
-    "commit": "28315418",
+    "commit": "914fd20f",
     "date": "2026-11-15",
-    "seconds": 23,
+    "seconds": 25,
     "counts": {
       "works": 5,
       "not back": 3,
-      "free-turned": 2,
+      "free-turned": 3,
       "partly": 1,
-      "torn": 1,
       "skipped": 3
     },
     "loose": [
@@ -185,8 +184,8 @@
         "back": [
           [
             [
-              0.47,
-              0.12
+              0.11,
+              0.04
             ],
             [
               89.69,
@@ -197,8 +196,8 @@
         "torn": [
           [
             [
-              0.47,
-              0.12
+              0.11,
+              0.04
             ],
             [
               89.69,
@@ -219,7 +218,7 @@
         "pushed": [
           true
         ],
-        "seconds": 9.7
+        "seconds": 11
       },
       {
         "result": "works",
@@ -265,7 +264,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -370,7 +369,7 @@
             "p856 6536 against p0 32009"
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -472,7 +471,7 @@
         ],
         "cause": "not-driven",
         "detail": "p619 6536 against p238 6632",
-        "seconds": 1.2
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -518,7 +517,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -539,8 +538,8 @@
         "back": [
           [
             [
-              79.48,
-              17.25
+              86.81,
+              17.16
             ],
             [
               88.52,
@@ -551,8 +550,8 @@
         "torn": [
           [
             [
-              79.48,
-              17.25
+              86.81,
+              17.16
             ],
             [
               88.52,
@@ -560,6 +559,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p851 6538b"
         ],
@@ -572,7 +572,7 @@
         "pushed": [
           true
         ],
-        "seconds": 9.1
+        "seconds": 9.2
       },
       {
         "result": "skipped",

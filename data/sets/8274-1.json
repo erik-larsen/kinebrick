@@ -149,14 +149,14 @@
     ]
   },
   "generated": {
-    "commit": "c38e9303",
+    "commit": "914fd20f",
     "date": "2026-11-15",
-    "seconds": 20,
+    "seconds": 21,
     "counts": {
       "works": 3,
       "partly": 3,
-      "not back": 4,
-      "torn": 2,
+      "not back": 3,
+      "torn": 1,
       "free-turned": 2,
       "not checked": 1
     },
@@ -417,7 +417,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 2.2
       },
       {
         "result": "partly",
@@ -588,7 +588,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 1.9
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -638,14 +638,14 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.8
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.1,
-            -0.03
+            0.07,
+            0
           ]
         ],
         "rates": [
@@ -655,42 +655,39 @@
               528
             ],
             "p964 56145": [
-              0.0469,
-              0.00278
+              0.0484,
+              0.00454
             ]
           }
         ],
         "back": [
           [
             [
-              54.46,
-              5.74
+              0.09,
+              0.01
             ],
             [
-              18.2,
-              1.92
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              53.99,
-              5.73
+              0.01,
+              0
             ],
             [
-              18,
-              1.91
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p926 3673"
-        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "judged": [
@@ -819,7 +816,7 @@
           [],
           []
         ],
-        "seconds": 7.9
+        "seconds": 8.9
       },
       {
         "result": "not checked",

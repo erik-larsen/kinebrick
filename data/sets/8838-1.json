@@ -160,14 +160,14 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "914fd20f",
     "date": "2026-11-15",
     "seconds": 3,
     "counts": {
       "partly": 2,
-      "works": 3,
+      "no": 2,
       "skipped": 2,
-      "no": 1
+      "works": 2
     },
     "loose": [
       "p177 4265a"
@@ -273,72 +273,35 @@
         "seconds": 0.4
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            20,
-            -1
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p227 2910",
+          "p219 3706",
+          "p220 8838 - 2903"
         ],
         "rates": [
-          {
-            "p227 2910": [
-              6.32e-9,
-              1
-            ],
-            "p219 3706": [
-              0.00357,
-              1
-            ],
-            "p220 8838 - 2903": [
-              0.00357,
-              1
-            ],
-            "p224 2909": [
-              2.11e-9,
-              4.44e-7
-            ],
-            "p226 2909": [
-              2.11e-9,
-              4.44e-7
-            ],
-            "p77 2905": [
-              2.11e-9,
-              3.14e-7
-            ]
-          }
+          {}
         ],
         "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
+          []
         ],
         "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
+          []
         ],
-        "stop": [
-          [
-            null,
-            "limit"
-          ]
+        "why": [
+          "p225 2910 has no joint to work"
         ],
-        "seconds": 0.2
+        "judged": [
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -517,7 +480,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -554,7 +517,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "no",

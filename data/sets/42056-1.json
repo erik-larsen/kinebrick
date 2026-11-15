@@ -199,15 +199,15 @@
     ]
   },
   "generated": {
-    "commit": "28315418",
+    "commit": "914fd20f",
     "date": "2026-11-15",
-    "seconds": 438,
+    "seconds": 484,
     "counts": {
       "works": 7,
       "partly": 3,
       "skipped": 1,
-      "not back": 2,
-      "torn": 2,
+      "not back": 1,
+      "torn": 1,
       "no": 1
     },
     "loose": [
@@ -295,7 +295,7 @@
             ]
           ]
         ],
-        "seconds": 34.4
+        "seconds": 38
       },
       {
         "result": "partly",
@@ -390,7 +390,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 24.2
+        "seconds": 27.2
       },
       {
         "result": "partly",
@@ -510,7 +510,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 19.7
+        "seconds": 23.6
       },
       {
         "result": "partly",
@@ -565,7 +565,7 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 10
+        "seconds": 12.1
       },
       {
         "result": "works",
@@ -663,7 +663,7 @@
             "p2734 23800"
           ]
         ],
-        "seconds": 10
+        "seconds": 12
       },
       {
         "result": "works",
@@ -763,7 +763,7 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 12.9
+        "seconds": 13.9
       },
       {
         "result": "skipped"
@@ -876,7 +876,7 @@
           [],
           []
         ],
-        "seconds": 77.8
+        "seconds": 86.5
       },
       {
         "result": "works",
@@ -927,7 +927,7 @@
         "pushed": [
           true
         ],
-        "seconds": 78.5
+        "seconds": 82.8
       },
       {
         "result": "no",
@@ -1012,7 +1012,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 37.3
+        "seconds": 40.7
       },
       {
         "result": "works",
@@ -1033,11 +1033,11 @@
         "back": [
           [
             [
-              2.44,
-              4.43
+              0.01,
+              0
             ],
             [
-              0.43,
+              0,
               0
             ]
           ]
@@ -1045,22 +1045,19 @@
         "torn": [
           [
             [
-              2.44,
-              4.43
+              0.01,
+              0
             ],
             [
-              0.43,
+              0,
               0
             ]
           ]
         ],
-        "strayed": [
-          "p2532 60483"
-        ],
         "pushed": [
           true
         ],
-        "seconds": 35.1
+        "seconds": 37
       },
       {
         "result": "works",
@@ -1126,7 +1123,7 @@
           [],
           []
         ],
-        "seconds": 19.9
+        "seconds": 24.1
       }
     ]
   }
