@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 78 works, 14 partly, 32 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 79 works, 13 partly, 32 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -280,7 +280,7 @@ Each detail by the set it first appears in.
 
 **2015, [42040 Fire Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42040-1)**
 
-- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (partly)
+- *hatch:* The hatch on top of the fuselage, behind the engine, flips forward to fill the tank with water (the eight clear blue bricks). (works)
 - *rudder:* The rudder on the fin swings side to side. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**

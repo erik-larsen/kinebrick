@@ -5,393 +5,14 @@
       "moved": "2026-11-15"
     },
     "preview": {
-      "works": 674,
-      "partly": 262,
+      "works": 675,
+      "partly": 261,
       "no": 112,
       "functions": 1227
     },
     "viewer": "The viewer links open the preview viewer on this Mac (http://localhost:5174). If one does not open, tell Claude and it starts the server again."
   },
   "waiting": [
-    {
-      "id": "42040-seats",
-      "kind": "Sign-off",
-      "title": "42040 Fire Plane: the hatch group onto its pins",
-      "since": "2026-11-14",
-      "what": "A correction to the published file. The hatch behind the engine, with its lever group, is drawn 2 LDU off its two pins, so the whole group hangs on nothing. The correction moves it 2 LDU onto the pins.",
-      "effect": "Function 3 (the hatch flips forward to fill the tank) goes from partly to working.",
-      "confidence": "The worker rates it medium. Claude has not looked at the booklet pages.",
-      "links": [
-        {
-          "label": "Booklet p. 48",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=48"
-        },
-        {
-          "label": "p. 89",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=89"
-        },
-        {
-          "label": "p. 115",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42040-1+Fire+Plane.mpd&show=249,259,251"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42040-1+Fire+Plane.mpd&option=proposed&show=249,259,251"
-        }
-      ],
-      "reply": "Sign 42040"
-    },
-    {
-      "id": "42093-gear",
-      "kind": "Sign-off",
-      "title": "42093 Chevrolet Corvette ZR1: an 8-tooth gear on the engine shaft",
-      "since": "2026-11-14",
-      "what": "A correction to the published file. The shaft that drives the engine has a 12-tooth gear where step 2 of the instructions puts an 8-tooth gear. The parts list has two 8-tooth and three 12-tooth gears; the file has one and four. The correction removes the 12-tooth gear and adds the 8-tooth gear in its place.",
-      "effect": "The new gear meshes the crankshaft's gear, so pushing the car turns the crankshaft. The pistons still do not move, so function 1 stays skipped.",
-      "confidence": "The worker rates it high. Claude checked the mesh in the viewer, not the booklet page.",
-      "links": [
-        {
-          "label": "Booklet p. 4",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6270469.pdf#page=4"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42093-1+Chevrolet+Corvette+ZR1.mpd&show=7"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42093-1+Chevrolet+Corvette+ZR1.mpd&option=proposed&show=575"
-        }
-      ],
-      "reply": "Sign 42093"
-    },
-    {
-      "id": "42099-diff",
-      "kind": "Sign-off",
-      "title": "42099 4x4 X-treme Off-Roader: the rear differential's side gears onto their line",
-      "since": "2026-11-15",
-      "what": "A correction to the published file. In the rear differential, the two side gears are drawn 3 LDU off the casing's line, so neither sits on its half shaft and Kinebrick reads the differential as locked. The correction moves both 3 LDU onto the line, where the front differential has them.",
-      "effect": "The rear differential turns. The scores do not change (4 functions work, 3 partly): the halves of the rear CV joints come apart instead, a fault that is with the solver owner.",
-      "confidence": "High. The worker looked at the booklet page: its 1:1 picture of the differential has the side gears facing each other on the casing's line. Every other differential in the 190 models has its side gears on the line.",
-      "links": [
-        {
-          "label": "Booklet p. 86",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&show=43,44,45,46"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&option=proposed&show=43,44,45,46"
-        }
-      ],
-      "reply": "Sign 42099"
-    },
-    {
-      "id": "42111-shock",
-      "kind": "Sign-off",
-      "title": "42111 Dom’s Dodge Charger: the rear shock absorbers’ cylinders onto their rods",
-      "since": "2026-11-15",
-      "what": "A correction to the published file. In the rear shock absorber sub-assembly (drawn once, placed twice), the cylinder is drawn 1.3 LDU to one side along its own pin, so the rod is 1.3 LDU off the cylinder’s axis, and Kinebrick reads the two halves as unjoined. The correction moves the cylinder 1.3 LDU along its pin, onto the rod’s axis; it stays on its pin.",
-      "effect": "The two rear shock absorbers are read whole and slide (11 LDU each way). The scores do not change (7 functions work, 1 does not): the rear axle’s function 6 binds for another reason, its two links 40 LDU ahead of the axle’s ball, recorded as a loop that does not fit.",
-      "confidence": "High. The worker looked at the booklet page: step 34 fits the two shock absorbers whole, rod in cylinder.",
-      "links": [
-        {
-          "label": "Booklet p. 22",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=22"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42111-1+Dom%27s+Dodge+Charger.mpd&show=101,102,105,106"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42111-1+Dom%27s+Dodge+Charger.mpd&option=proposed&show=101,102,105,106"
-        }
-      ],
-      "reply": "Sign 42111"
-    },
-    {
-      "id": "41999-shocks",
-      "kind": "Sign-off",
-      "title": "41999 4 x 4 Crawler: the four shock absorbers the file lacks",
-      "since": "2026-11-15",
-      "what": "A correction to the published file. Its four shock absorbers are LDCad springs: notes that LDCad alone draws, with no parts in them, so to every other reader the model has no shock absorbers, nor the pins at their ends. The correction adds the parts the notes name for each (cylinder 2909, rod 2910, pins 43093 and 2780), where the notes place them.",
-      "effect": "The four shock absorbers are read and slide, between the axles and the frame. The scores do not change (3 functions work, 1 partly, 2 do not): the axles’ function 3 stays jammed for another reason, which is with the solver owner (the axle’s own joint has no motion of its own).",
-      "confidence": "High. The worker looked at the booklet page: step 70 shows the two shock absorbers fitted to the sub-assembly. The parts and places are the ones the file’s own notes give.",
-      "links": [
-        {
-          "label": "Booklet book 2 p. 25",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064367.pdf#page=25"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F41999-1+4+x+4+Crawler+Exclusive+Edition.mpd&show=79,177"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F41999-1+4+x+4+Crawler+Exclusive+Edition.mpd&option=proposed&show=79,177,1547,1549"
-        }
-      ],
-      "reply": "Sign 41999"
-    },
-    {
-      "id": "42099-casing",
-      "kind": "Sign-off",
-      "title": "42099, 42041 and 8274: the differential casing stands still when one wheel is turned by hand",
-      "since": "2026-11-15",
-      "what": "A change to four function lists. The 42099’s functions 5 and 6 and the 42041’s function 2 turn one wheel by hand with the model lifted, and the other wheel of the axle turns the opposite way. Each list names its differential casing among the parts that move. On the 42099 the casing’s ring gear meshes the pinion from the motor, which stands still, so the casing is held. On the 42041 the casing drives the V8, and with the truck lifted the free wheel is the easy way, so the casing stands; the function’s own words say the other wheel turns the opposite way. On the 8274 (function 4) the casing’s own 24 teeth mesh the reel drive’s gear, which the function holds, so the casing is held too. The change moves each casing from the parts that move to the parts that stay.",
-      "effect": "42099: none on the scores yet; both functions are partly, and with the change they ask for what a differential does. 42041: function 2 keeps working. Without the change it would go from works to partly once it is checked lifted, so its lifted mark is held back until you sign. 8274: function 4 is partly now, with the casing rightly still; with the change it should work, checked when you sign.",
-      "confidence": "High. The 42099’s booklet step 140 shows the casing’s ring on the motor’s pinion; the 42041’s function words say the wheels turn opposite ways, which only happens with the casing still. The same change was made to the 42039’s function 2.",
-      "links": [
-        {
-          "label": "42099 booklet p. 86 (rear casing, step 140)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86"
-        },
-        {
-          "label": "42099 viewer, function 5 (front)",
-          "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&show=1866,1862,490,878"
-        },
-        {
-          "label": "42099 viewer, function 6 (rear)",
-          "url": "http://localhost:5174/?file=omr%2F42099-1+4x4+X-treme+Off-Roader.mpd&option=proposed&show=1868,1864,43,363"
-        },
-        {
-          "label": "42041 booklet 1 p. 22 (the casing, steps 1 and 2)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6121342.pdf#page=22"
-        },
-        {
-          "label": "42041 viewer, function 2",
-          "url": "http://localhost:5174/?file=omr%2F42041-1+Race+Truck+%7BReissue%7D.mpd&show=647,649,153"
-        },
-        {
-          "label": "8274 booklet pp. 6–7 (the differential, step 4)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4518937.pdf#page=6"
-        },
-        {
-          "label": "8274 viewer, function 4",
-          "url": "http://localhost:5174/?file=omr%2F8274-1+Combine+Harvester.mpd&show=970,968,18,123"
-        }
-      ],
-      "reply": "Sign casings"
-    },
-    {
-      "id": "suspension-lists",
-      "kind": "Sign-off",
-      "title": "Two suspension functions: the list names the wrong part",
-      "since": "2026-11-15",
-      "what": "Two changes to function lists, found by the worker while tracing suspension functions that do not work. In each, the model moves as the booklet shows, but the list asks for something else.",
-      "effect": "The 42039’s function 6 goes from doesn’t work to works (tried by the worker). The 8261’s function 3 should go from partly to works; it is checked when you sign.",
-      "confidence": "High for both: each follows from how the parts are joined in the booklet step linked.",
-      "rows": [
-        {
-          "set": "42039 24 Hours Race Car",
-          "fn": "6 (rear suspension)",
-          "says": "The control is two parts on the rear drive shafts, which can always spin, so pushing them never moves the suspension. The change makes the two lower arms the control (p61 and p63). Pushed there, each arm swings and the shock absorbers’ rods move.",
-          "links": [
-            {
-              "label": "Booklet p. 8 (hubs on the arms, step 12)",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=8"
-            },
-            {
-              "label": "Booklet p. 11 (shock absorbers, step 17)",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=11"
-            },
-            {
-              "label": "Viewer",
-              "url": "http://localhost:5174/?file=omr%2F42039-1+24+Hours+Race+Car.mpd&show=61,63,80,82"
-            }
-          ]
-        },
-        {
-          "set": "8261 Rally Truck",
-          "fn": "3 (rear suspension)",
-          "says": "The list says the pivot axle p55 stays still. The axle goes through the axle holes of both bent beams of the arm and through round holes in the frame, so it turns with the arm. The change moves p55 from the parts that stay to the parts that move.",
-          "links": [
-            {
-              "label": "Booklet p. 9 (step 13)",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=9"
-            },
-            {
-              "label": "Viewer",
-              "url": "http://localhost:5174/?file=omr%2F8261-1+Rally+Truck.mpd&show=45,51,55"
-            }
-          ]
-        }
-      ],
-      "reply": "Sign suspension lists"
-    },
-    {
-      "id": "8261-fn2",
-      "kind": "Sign-off",
-      "title": "8261 Rally Truck: drop function 2 (the front axle that swings)",
-      "since": "2026-11-15",
-      "what": "A change to the function list. Function 2 says the front axle swings side to side about the steering shaft. The function was inferred, it is not in the book. The worker compared the front axle part by part with booklet steps 20 and 21: the axle beam goes up into the chassis on two pins at its ends and on the vertical steering axle, so it is held fast, and the truck steers at its hubs. Nothing pivots the beam. The published model also differs from the booklet here (a 180° connector with two blue pins where the booklet has pins up from the beam’s ends), which is what lets the model’s beam turn. The change drops function 2.",
-      "effect": "The 8261 has one function fewer, and one fewer that doesn’t work (function 2 is control-jammed now). The difference between the model and the booklet may become a correction to the file later; it changes no other function.",
-      "confidence": "Medium to high. The booklet’s last sub-step of step 20 shows three arrows pushing the sub-build up into the chassis. Worth a look at the page before you sign.",
-      "links": [
-        {
-          "label": "Booklet p. 14 (step 20)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=14"
-        },
-        {
-          "label": "Booklet p. 15 (step 20, into the chassis)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=15"
-        },
-        {
-          "label": "Booklet p. 16 (step 21)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=16"
-        },
-        {
-          "label": "Viewer, the connector and its pins",
-          "url": "http://localhost:5174/?file=omr%2F8261-1+Rally+Truck.mpd&show=84,85,86"
-        }
-      ],
-      "reply": "Drop 8261 function 2"
-    },
-    {
-      "id": "audit-agree",
-      "kind": "Sign-off",
-      "title": "Five audit rows where the booklet and the model agree by trial",
-      "since": "2026-11-14",
-      "what": "Changes to our function lists. The worker set each control the way the booklet says and ran it in the model. A sign-off fixes the directions in the list; on the 42052 and the 42070 it does not make the functions that fail for other reasons work.",
-      "rows": [
-        {
-          "set": "42048 Race Kart",
-          "fn": "2, 3",
-          "says": "Gear 1 is the 1:1 path, gear 2 the 8-to-24 path.",
-          "links": [
-            {
-              "label": "p. 81",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6150251.pdf#page=81"
-            },
-            {
-              "label": "viewer",
-              "url": "http://localhost:5174/?file=omr/42048-1+Race+Kart.mpd&show=73,64&autospin=368,paused"
-            }
-          ]
-        },
-        {
-          "set": "42048 Race Kart",
-          "fn": "2",
-          "says": "Handle forward and down = gear 1, level = neutral, up and back = gear 2.",
-          "links": [
-            {
-              "label": "p. 81",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6150251.pdf#page=81"
-            },
-            {
-              "label": "viewer",
-              "url": "http://localhost:5174/?file=omr/42048-1+Race+Kart.mpd&show=368,278,215,67&autospin=368,paused"
-            }
-          ]
-        },
-        {
-          "set": "42052 Heavy Lift Helicopter",
-          "fn": "2 to 5",
-          "says": "Knob toward the tail = rotors (A) and doors (C); toward the nose = ramp (B) and winch (D). Our list has A and B the other way round.",
-          "links": [
-            {
-              "label": "p. 190",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182578.pdf#page=190"
-            },
-            {
-              "label": "viewer",
-              "url": "http://localhost:5174/?file=omr/42052-1+Heavy+Lift+Helicopter.mpd&show=407,272,276,278&autospin=407,paused"
-            }
-          ]
-        },
-        {
-          "set": "42070 6x6 All Terrain Tow Truck",
-          "fn": "1, 3 to 9",
-          "says": "Left lever: tip down = drive, up = crane. Right lever: tip up = slewing and winch, down = outriggers and boom.",
-          "links": [
-            {
-              "label": "p. 394",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=394"
-            },
-            {
-              "label": "p. 396",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=396"
-            },
-            {
-              "label": "p. 397",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=397"
-            },
-            {
-              "label": "viewer",
-              "url": "http://localhost:5174/?file=omr/42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=402,372,405,448,381&autospin=402,paused"
-            }
-          ]
-        },
-        {
-          "set": "42039 24 Hours Race Car",
-          "fn": "8, 9",
-          "says": "Lever position 1 = doors, position 2 = engine cover. (Claude looked at these two pages: the inset is numbered 1 and 2.)",
-          "links": [
-            {
-              "label": "p. 238",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=238"
-            },
-            {
-              "label": "p. 239",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=239"
-            },
-            {
-              "label": "viewer",
-              "url": "http://localhost:5174/?file=omr/42039-1+24+Hours+Race+Car.mpd&show=813,636,670,653&autospin=813,paused"
-            }
-          ]
-        }
-      ],
-      "reply": "Sign the five audit rows"
-    },
-    {
-      "id": "audit-kind",
-      "kind": "Sign-off",
-      "title": "Two audit rows where booklet and file agree on what the function is",
-      "since": "2026-11-14",
-      "what": "Changes to our function lists. The trial could not move these, because our reading still holds the parts rigid. The file's parts match the booklet's description.",
-      "rows": [
-        {
-          "set": "42039 24 Hours Race Car",
-          "fn": "6",
-          "says": "Our list: the rear axle is sprung on two shock absorbers. The booklet: independent rear suspension, arms and hubs each side, with rockers and two crosswise shock absorbers, like the front.",
-          "links": [
-            {
-              "label": "p. 6 to 13",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=6"
-            },
-            {
-              "label": "viewer",
-              "url": "http://localhost:5174/?file=omr/42039-1+24+Hours+Race+Car.mpd&show=52,53&autospin=52,paused"
-            }
-          ]
-        },
-        {
-          "set": "42042 Crawler Crane",
-          "fn": "6",
-          "says": "Our list: four levers, in two pairs. The booklet: two levers, each in an H gate; left lever A or B, right lever C or D.",
-          "links": [
-            {
-              "label": "p. 234",
-              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6151636.pdf#page=234"
-            },
-            {
-              "label": "viewer",
-              "url": "http://localhost:5174/?file=omr/42042-1+Crawler+Crane.mpd&show=829,840,575,576,577&autospin=829,paused"
-            }
-          ]
-        }
-      ],
-      "reply": "Sign the two audit rows"
-    },
     {
       "id": "monorail-look",
       "kind": "Look, if you like",
@@ -423,6 +44,46 @@
     }
   ],
   "done": [
+    {
+      "date": "2026-11-15",
+      "what": "You signed the two audit rows where booklet and file agree on what the function is (\"Sign the two audit rows\"): the 42039’s function 6 is independent rear suspension, and the 42042’s function 6 has two levers, each in an H gate. The worker writes them; they are not on preview yet."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the five audit rows where the booklet and the model agree (\"Sign the five audit rows\"): 42048 functions 2 and 3, 42052 functions 2 to 5, 42070 functions 1 and 3 to 9, 42039 functions 8 and 9. The worker writes them; they are not on preview yet."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed dropping the 8261’s function 2, the front axle that swings (\"Drop 8261 function 2\"). The worker writes it; it is not on preview yet."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the two suspension list changes (\"Sign suspension lists\"): the 42039’s function 6 is controlled at its lower arms, and the 8261’s pivot axle moves with its arm in function 3. The worker writes them; they are not on preview yet."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the casings change (\"Sign casings\"): the differential casing stands still in the 42099’s functions 5 and 6, the 42041’s function 2 and the 8274’s function 4. The worker writes it; it is not on preview yet."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the correction \"42040 Fire Plane: the hatch group onto its pins\" (\"Sign 42040\"). It is applied on preview: function 3, the hatch, now works."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the correction \"42093 Chevrolet Corvette ZR1: an 8-tooth gear on the engine shaft\" (\"Sign 42093\"). It is applied on preview."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the correction \"42099 4x4 X-treme Off-Roader: the rear differential's side gears onto their line\" (\"Sign 42099\"). It is applied on preview."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the correction \"42111 Dom’s Dodge Charger: the rear shock absorbers’ cylinders onto their rods\" (\"Sign 42111\"). It is applied on preview."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the correction \"41999 4 x 4 Crawler: the four shock absorbers the file lacks\" (\"Sign 41999\"). It is applied on preview."
+    },
     {
       "date": "2026-11-15",
       "what": "You answered the worker session's request in its own window, so it works again."

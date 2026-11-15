@@ -249,12 +249,14 @@ window.addEventListener('resize', () => {
 let onFrame = (_seconds: number) => {};
 let lastFrame = performance.now();
 // The frames drawn each second, shown on the FPS card (made with the Options card, below) and
-// counted afresh every half second. The card, opened, also shows the lowest and the highest of
-// those half-second readings over the last 10 seconds, and the average over that time.
-let showFps = (_fps: number, _min: number, _max: number, _avg: number) => {};
-const FPS_SAMPLES = 20; // half seconds kept: 10 seconds
-const fpsSamples: { frames: number; ms: number }[] = [];
-let fpsNow = { frames: 0, ms: 0 };
+// counted afresh every half second. The card, opened, also shows two numbers over the last 10
+// seconds: the average, and the "1% low", the rate of the slowest hundredth of the frames, which
+// shows stutter that an average hides.
+let showFps = (_fps: number, _average: number, _low: number) => {};
+const FPS_SECONDS = 10;
+const fpsFrames: number[] = []; // how long each frame of the last 10 seconds took, in ms
+let fpsFramesMs = 0; // their sum
+let fpsNow = { frames: 0, ms: 0 }; // the half second being counted
 let fpsFrame = performance.now();
 
 renderer.setAnimationLoop(() => {
@@ -265,18 +267,15 @@ renderer.setAnimationLoop(() => {
     // A frame of a second or more is a hidden tab coming back, not a slow frame: left out.
     fpsNow.frames++;
     fpsNow.ms += frame;
+    fpsFrames.push(frame);
+    fpsFramesMs += frame;
+    while (fpsFramesMs > FPS_SECONDS * 1000) fpsFramesMs -= fpsFrames.shift()!;
   }
   if (fpsNow.ms >= 500) {
-    fpsSamples.push(fpsNow);
-    if (fpsSamples.length > FPS_SAMPLES) fpsSamples.shift();
-    const readings = fpsSamples.map((s) => (s.frames * 1000) / s.ms);
-    let frames = 0;
-    let ms = 0;
-    for (const s of fpsSamples) {
-      frames += s.frames;
-      ms += s.ms;
-    }
-    showFps(Math.round(readings[readings.length - 1]), Math.round(Math.min(...readings)), Math.round(Math.max(...readings)), Math.round((frames * 1000) / ms));
+    // The slowest hundredth of the frames (one frame at least), and the rate they run at.
+    const slowest = [...fpsFrames].sort((x, y) => y - x).slice(0, Math.max(1, Math.round(fpsFrames.length / 100)));
+    const slowestMs = slowest.reduce((sum, ms) => sum + ms, 0);
+    showFps(Math.round((fpsNow.frames * 1000) / fpsNow.ms), Math.round((fpsFrames.length * 1000) / fpsFramesMs), Math.round((slowest.length * 1000) / slowestMs));
     fpsNow = { frames: 0, ms: 0 };
   }
   onFrame(Math.min((now - lastFrame) / 1000, 0.1)); // a hidden tab pauses frames; don't jump
@@ -931,19 +930,17 @@ async function start() {
   // keeps it.
   const cards = document.getElementById('cards')!;
   // Above it, the FPS card: the frames drawn each second in its title, open or closed, and
-  // inside it the lowest, the highest and the average over the last 10 seconds (see index.html).
-  const fpsCard = new GUI({ title: 'FPS', container: cards });
+  // inside it the average and the 1% low over the last 10 seconds (see index.html).
+  const fpsCard = new GUI({ title: 'FPS:', container: cards });
   fpsCard.domElement.classList.add('fps');
   fpsCard.$children.append(document.getElementById('fps')!);
   fpsCard.close();
-  const fpsMin = document.getElementById('fps-min')!;
-  const fpsMax = document.getElementById('fps-max')!;
-  const fpsAvg = document.getElementById('fps-avg')!;
-  showFps = (fps, min, max, avg) => {
-    fpsCard.title(`FPS ${fps}`);
-    fpsMin.textContent = String(min);
-    fpsMax.textContent = String(max);
-    fpsAvg.textContent = String(avg);
+  const fpsAverage = document.getElementById('fps-average')!;
+  const fpsLow = document.getElementById('fps-low')!;
+  showFps = (fps, average, low) => {
+    fpsCard.title(`FPS: ${fps}`);
+    fpsAverage.textContent = String(average);
+    fpsLow.textContent = String(low);
   };
   const gui = new GUI({ title: 'Options', container: cards });
   gui.close();
@@ -1201,8 +1198,9 @@ async function start() {
     const paused = interaction.motorPaused();
     pauseButton.disabled = !chosen;
     reverseButton.disabled = !chosen;
-    pauseButton.classList.toggle('paused', paused);
-    const pauseTitle = !chosen ? 'Pause (Ctrl-click a part to keep it moving)' : paused ? 'Play' : 'Pause';
+    // With no part chosen the button is greyed out and shows its play mark: nothing is moving.
+    pauseButton.classList.toggle('paused', paused || !chosen);
+    const pauseTitle = !chosen ? 'Play (Ctrl-click a part to keep it moving)' : paused ? 'Play' : 'Pause';
     pauseButton.title = pauseTitle;
     pauseButton.setAttribute('aria-label', pauseTitle);
     const reverseTitle = chosen ? 'Reverse' : 'Reverse (Ctrl-click a part to keep it moving)';
