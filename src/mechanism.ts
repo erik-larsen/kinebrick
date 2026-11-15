@@ -360,7 +360,9 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   connections.push(...magnetCouplings(parts, roles, cyls, connections));
   const anchors = anchorsOf(roles);
   // Pins and hinges, among the connections found so far.
-  fixPins(connections, roles, frictionRigid, freed);
+  // A shock absorber's cylinder or rod (see shockAbsorbers): it swings on its pins.
+  const shockNames = new Set(Object.entries(table.shocks ?? {}).flatMap(([cylinder, list]) => [cylinder, ...list.map((s) => s.rod)]));
+  fixPins(connections, roles, frictionRigid, freed, new Set(parts.flatMap((p, i) => (shockNames.has(p.name) ? [i] : []))));
   stiffMagnetHinges(connections, roles, frictionRigid, freed);
   // Parts held by more than their connection points say.
   connections.push(...platesOnEdge(cyls));
