@@ -2,16 +2,16 @@
 
 A part of the model lifts off or unclips by hand, to show or reach what's underneath. (Not mechanisms.)
 
-First appears in 2019, in [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1): The roof, with its rack, lifts off.
+First appears in 2017, in [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1): The hatch on the foredeck, in front of the bridge, sits on two upright pins and lifts off; it has no hinge.
 
-Used in 2 of the 186 surveyed sets, by 2 functions. Kinebrick: 1 skipped, 1 not checked.
+Used in 3 of the 186 surveyed sets, by 3 functions. Kinebrick: 2 skipped, 1 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 0 of 18 | 0 of 32 | 0 of 23 | 1 of 83 | 1 of 21 |
-| Functions | 0 | 0 | 0 | 0 | 1 | 1 |
+| Sets | 0 of 9 | 0 of 18 | 0 of 32 | 0 of 23 | 2 of 83 | 1 of 21 |
+| Functions | 0 | 0 | 0 | 0 | 2 | 1 |
 
 ## Details
 
@@ -19,14 +19,19 @@ Each detail by the set it first appears in.
 
 | Detail | First in | Sets |
 |---|---|---|
-| roof | 2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1) | 1 |
+| hatch | 2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1) | 1 |
+| roof rack | 2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1) | 1 |
 | fairings | 2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1) | 1 |
 
 ## Sets
 
+**2017, [42064 Ocean Explorer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42064-1)**
+
+- *hatch:* The hatch on the foredeck, in front of the bridge, sits on two upright pins and lifts off; it has no hinge. (skipped)
+
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
-- *roof:* The roof, with its rack, lifts off. (skipped)
+- *roof rack:* The roof rack, with its roof box, side case and ladder, lifts off; the white roof stays. (skipped)
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 

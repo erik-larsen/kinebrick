@@ -156,9 +156,12 @@
 1 7 90 -238 -100 0 0 1 0 1 0 -1 0 0 3648a.dat
 1 7 30 -238 -100 0 0 1 0 1 0 -1 0 0 3647.dat
 1 7 -30 -238 -100 0 0 1 0 1 0 -1 0 0 3647.dat
-1 7 -90 -238 -100 0 0 1 0 -1 0 1 0 0 3736.dat
-1 7 -100 -238 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
+1 7 -90 -198 -100 0 0 1 0 -1 0 1 0 0 3736.dat
+1 7 -100 -198 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
 1 7 0 -62 -88 1 0 0 0 1 0 0 0 1 950-Forks.ldr
+0 // The lower axle 10 and its 8 tooth gear, which the book adds in step 13: the handwheel turns it, its gear the 24 tooth gear on the axle above (Kinebrick, after the booklet; at the end of the main model so no part number moves)
+1 0 0 -198 -100 -1 0 0 0 1 0 0 0 -1 3737.dat
+1 7 90 -198 -100 0 0 1 0 1 0 -1 0 0 3647.dat
 
 0 FILE 950-Forks.ldr
 0 Forks

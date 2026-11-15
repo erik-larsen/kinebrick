@@ -140,13 +140,14 @@
         "note": "the function pages show no winch; the submarine seems to be hung on the hook by hand"
       },
       {
-        "does": "The hatch on the foredeck, in front of the bridge, lifts open.",
+        "does": "The hatch on the foredeck, in front of the bridge, sits on two upright pins and lifts off; it has no hinge.",
         "mechanisms": [
-          "hinge: hatch"
+          "removable: hatch"
         ],
-        "source": "inferred: the hatch submodel sits on its own pins in the model; the book's function pages don't show it",
+        "source": "book: pages 186 to 187 (steps 241 and 242: the hatch fixed on two upright pins); not on the function pages 202 to 203",
         "control": "p1059 15458",
-        "note": "unsure whether the hatch is meant to open"
+        "skip": "not a function of the set: the hatch is fixed on two upright pins and only lifts off",
+        "note": "Signed by Erik, 2026-11-14: the hatch is fixed on two pins, not hinged"
       }
     ],
     "questions": [
@@ -156,13 +157,13 @@
     ]
   },
   "generated": {
-    "commit": "1f4f7585",
-    "uncommitted": true,
+    "commit": "5cb668ef",
     "date": "2026-11-14",
-    "seconds": 40,
+    "seconds": 35,
     "counts": {
       "partly": 4,
-      "works": 5
+      "works": 4,
+      "skipped": 1
     },
     "loose": [],
     "errata": {
@@ -352,7 +353,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 11946",
-        "seconds": 2.7
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -444,7 +445,7 @@
           [],
           []
         ],
-        "seconds": 14.7
+        "seconds": 15.2
       },
       {
         "result": "partly",
@@ -540,7 +541,7 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -593,7 +594,7 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -618,33 +619,11 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 2.6
       },
       {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "freed": 2,
-        "seconds": 5
+        "result": "skipped",
+        "seconds": 0
       }
     ]
   }

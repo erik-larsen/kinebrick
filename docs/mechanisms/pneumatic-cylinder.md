@@ -98,8 +98,8 @@ Each detail by the set it first appears in.
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
-- *boom:* The black gear on the right of the cab turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom. (no)
-- *gripper arms:* The black gear on the left of the cab turns the second pneumatic valve, which works the small cylinder in the harvester head, opening and closing its two spiked gripper arms. (no)
+- *boom:* The black gear on the machine's left, by the cab, turns a pneumatic valve that sends air to the two big yellow cylinders, raising and lowering the boom. (no)
+- *gripper arms:* The black gear on the machine's right, by the cab, turns the second pneumatic valve, which works the small cylinder in the harvester head, opening and closing its two spiked gripper arms. (no)
 
 ---
 

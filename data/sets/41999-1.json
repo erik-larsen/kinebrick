@@ -129,12 +129,14 @@
         ]
       },
       {
-        "does": "The headlights (two Power Functions LEDs) light up when the battery box is switched on.",
+        "does": "The headlights (two Power Functions LEDs) light up when the battery box's orange slide switch, on its side under the cab, is switched on.",
         "mechanisms": [
           "lights"
         ],
-        "source": "book 4: function page 64 (lights inset); book 3: step 90",
-        "note": "electrical only"
+        "source": "book 4: function page 64 (lights inset, the switch); book 3: step 90",
+        "note": "Signed by Erik, 2026-11-14: the control is the battery box's slide switch",
+        "control": "p604 58119",
+        "skip": "electrical only: the switch, part of the battery box (58119), lights the LEDs, and nothing moves"
       }
     ],
     "questions": [
@@ -144,15 +146,14 @@
     ]
   },
   "generated": {
-    "commit": "5dac39a9",
+    "commit": "5cb668ef",
     "date": "2026-11-14",
-    "seconds": 49,
+    "seconds": 44,
     "counts": {
       "works": 3,
       "partly": 1,
       "no": 2,
-      "skipped": 1,
-      "not checked": 1
+      "skipped": 2
     },
     "loose": [
       "p308 32270",
@@ -288,7 +289,7 @@
             "p1545 44772"
           ]
         ],
-        "seconds": 17.5
+        "seconds": 15.1
       },
       {
         "result": "partly",
@@ -348,7 +349,7 @@
         ],
         "cause": "not-driven",
         "detail": "p299 87761",
-        "seconds": 7.2
+        "seconds": 6.5
       },
       {
         "result": "no",
@@ -447,7 +448,7 @@
             ]
           ]
         ],
-        "seconds": 7.1
+        "seconds": 6.8
       },
       {
         "result": "works",
@@ -513,7 +514,7 @@
             "p1216 11954"
           ]
         ],
-        "seconds": 13.5
+        "seconds": 11.6
       },
       {
         "result": "no",
@@ -557,10 +558,10 @@
         ],
         "cause": "part-fixed",
         "detail": "p50 32524",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
-        "result": "not checked",
+        "result": "skipped",
         "seconds": 0
       }
     ]

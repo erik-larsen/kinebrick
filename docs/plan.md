@@ -17,8 +17,8 @@ The goal has two milestones, because some functions need forces.
 
 | Milestone | Functions | What it needs |
 |---|---|---|
-| A. Kinematic 100% | 1,105 of 1,224: the 1,047 checked today, and the 58 not checked | Kinematics only. No forces. |
-| B. Full 100% | All 1,224: the 119 skipped today too | Gravity, springs, air pressure, ratchets, brakes. |
+| A. Kinematic 100% | 1,105 of 1,227: the 1,048 checked today, and the 57 not checked | Kinematics only. No forces. |
+| B. Full 100% | All 1,227: the 122 skipped today too | Gravity, springs, air pressure, ratchets, brakes. |
 
 ## Where we stand
 
@@ -27,12 +27,12 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 | Result | Functions |
 |---|---|
 | Works | 640 |
-| Partly | 278 |
-| Doesn't work | 128 |
-| Skipped (needs force) | 119 |
-| Not checked (nothing worked by hand) | 58 |
+| Partly | 279 |
+| Doesn't work | 129 |
+| Skipped (needs force) | 122 |
+| Not checked (nothing worked by hand) | 57 |
 
-In 44 sets, every checked function works. In 23 of those, no function is skipped or unchecked either. 77 more sets are one or two checked functions short.
+In 43 sets, every checked function works. In 22 of those, no function is skipped or unchecked either. 78 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
@@ -428,6 +428,8 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 44. **The roots are checked and wait in the springs' branch.** Their full check: 621 against 619, six better (the 855's four racks, pushed along their slides; the 42129's function 3), the 42038's function 7 worse, its pendular axles each on a ball, for which a root held by a ball is now turned about the ball's centre in the check. They reach preview with the springs, after one full check of both.
 45. **The roots, the springs and the ball-root mend are in: 640 functions work.** The solver owner's springs branch, checked in full against preview 8aee926 (624 against 621, six better, none worse by result) and merged into preview with the 47 sets rechecked that both sides had changed: six better (the 42063's handlebars on their ball, the 42129's function 3, the 855's racks pushed along their slides, the 8466's function 5), three further out of place and accepted (the 42038's function 7, the 42063's function 1, the 42055's function 9 on its second model). No joint is marked as spring-held yet, so the springs change nothing until the sliding shock absorbers mark theirs. The 42038's front axle, read as two bodies, is right in kind: a carrier that swings on its ball and a rack beam that slides sideways in it; the reading lacks that slide, and its function 1 works for the wrong reason until it has it.
 46. **The general frame rule waits; a second tool was tried against our file faults.** Two forms of "the frame stands on the ground" were surveyed on the 190 models: keeping today's frame unless it stands clear changes 9 (4 right, 5 unclear, 4 plain cases missed), and the body nearest over the joints to all that touches the ground changes 40 (about 11 right, 20 wrong, landing on a roller or a pivot between the wheels). Neither is used; the narrow rule for files with a further model stays, and the eight models whose frame is plainly the upper body are noted in the worker's frame-forms.md for when a function fails for it. Kinebrick Studio 0.2.0-beta.1, another author's native app, was run on nine of our models (the 854's rear axle drives its engine at 3 to 1 there, its steering column reads as loose): of six faults we found in published files it found two, the 8258's gear and the 9396's rim, both as loose parts; its placement check looks only at 0.5 to 3 LDU. Its named Problems list and its headless report are ideas worth taking. The trials of the audit's first part in the model: seven rows agree with the booklet, two agree in kind, one disagrees (the 42108's boom knob), six cannot be told until a mend; with Erik.
+47. **Erik's twelve signed changes to the function lists are in: 1,227 functions.** The five rows of the audit's first part that change words, name a part or are already borne out, and seven more he read against the booklet. Three functions are added, each at the end of its list: the 42004's backhoe swinging on its upright axle (partly, the drag stops early), the 42066's canopy lifted by hand (doesn't work, the control is jammed) and the 42109's bonnet lifted by hand (works). The 42064's hatch on the foredeck is no longer a function (it worked; now skipped), so the count of working functions stays at 640. The 42004 leaves the sets where every checked function works, 43 now.
+48. **Errata can remove a part; the fork lifts have their lower axle; a model's own list of what moves exists.** Three of the worker's branches, merged into preview with no function better or worse (640 work) and one reading changed, the 950's. A removed part keeps its number and is drawn nowhere. The 950's lower axle and 8 tooth gear, which the model leaves out, are added in Kinebrick's copy (models/ is ours to edit). `npm run what-moves` lists what a model can do from the model alone, and `npm run what-moves-audit` puts it beside the audit's rows; it is a tool for a mend and for a model that has no list, not a replacement for the lists (decision 29). Proposed entries that wait for Erik: the 42109's three parts the set doesn't have, the 42083's speed key in its hole, the 850's lower axle. The 8838's axle with gears is not ready: placed by its line it turns in two beams, but neither gear meshes with anything, so its place along the axle or its line is to be read again. A link that marks parts (`show=`) now starts at the right place whether or not the model has been drawn, and at where a removed part was.
 
 
 ## First steps

@@ -105,10 +105,10 @@
     ]
   },
   "generated": {
-    "commit": "1f4f7585",
+    "commit": "c1623c1a",
     "uncommitted": true,
     "date": "2026-11-14",
-    "seconds": 5,
+    "seconds": 6,
     "counts": {
       "partly": 2,
       "works": 2,
@@ -211,7 +211,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p521 57519",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -279,7 +279,7 @@
             "p524 57519"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1
       },
       {
         "result": "works",
@@ -387,7 +387,7 @@
           [],
           []
         ],
-        "seconds": 2.5
+        "seconds": 3
       },
       {
         "result": "no",
