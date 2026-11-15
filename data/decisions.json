@@ -30,6 +30,30 @@
       "reply": "git fetch origin && git merge --ff-only c217b4ea && git push origin main"
     },
     {
+      "id": "42052-pin",
+      "kind": "Sign-off",
+      "title": "42052 Heavy Lift Helicopter: no third grey pin on the door links",
+      "since": "2026-11-15",
+      "what": "A correction to the published file. Step 155 builds the two door links with two light grey pins, one at each link’s outer end, where the doors hang. The file has three: the third pins the left links to the side panel of the fuselage, which the booklet doesn’t do, so the slider the links hang from can’t slide. The correction removes the third pin.",
+      "effect": "No score changes (5 work, 1 partly): with the pin removed, the slider still can’t move, because the links stay fixed to it by their friction pins and the doors hold them, drawn closed with the links lying level, at a dead point that the real model passes on the play in its pins (recorded in the function’s note). The correction makes the file match the booklet.",
+      "confidence": "High. The worker looked at the booklet page: its parts box for step 155 has two light grey pins, and the right-hand link has no pin where the left has the third.",
+      "links": [
+        {
+          "label": "Booklet p. 84",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182578.pdf#page=84"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42052-1+Heavy+Lift+Helicopter.mpd&show=586,590,591,40"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42052-1+Heavy+Lift+Helicopter.mpd&option=proposed&show=590,591,40"
+        }
+      ],
+      "reply": "Sign 42052"
+    },
+    {
       "id": "monorail-look",
       "kind": "Look, if you like",
       "title": "The monorail at 60 and 120 rpm, on screen",

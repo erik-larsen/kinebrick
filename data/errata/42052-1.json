@@ -1,0 +1,13 @@
+{
+  "set": "42052-1",
+  "entries": [
+    {
+      "id": "no-third-link-pin-p586",
+      "what": "remove",
+      "file": "",
+      "line": "1 71 -100 -370 -130 0 1 0 0 0 -1 -1 0 0 3673.dat",
+      "part": "p586 3673",
+      "evidence": "Step 155 (page 84, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182578.pdf#page=84) builds the two door links: four 6L thin liftarms, two black friction pins at the slider ends and two light grey pins (3673) at the outer ends, where the doors hang at step 156 (page 86). The file places that step as its main model's step 19 with three light grey pins: p587 and p592 at the links' outer ends (x 140 and -140), and p586 at x -100, in the left links' fourth hole, where it pins them to the fuselage panel p40. The right side has no such pin. As read, p586 holds the left links to the frame, so the slider they hang from cannot slide. Removed: the booklet has two grey pins, not three."
+    }
+  ]
+}
