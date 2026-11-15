@@ -447,21 +447,21 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 
 | Set | Entry | What it does | Status |
 | --- | --- | --- | --- |
-| [850-1](#850-1-handwheel-down) | handwheel-down | moves `3736.dat` to -90 -198 -100 | Proposed, not applied until signed off |
-| [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Proposed, not applied until signed off |
-| [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Proposed, not applied until signed off |
+| [850-1](#850-1-handwheel-down) | handwheel-down | moves `3736.dat` to -90 -198 -100 | Signed off by Erik, 2026-11-14 |
+| [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Signed off by Erik, 2026-11-14 |
+| [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
-| [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Proposed, not applied until signed off |
+| [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
-| [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Proposed, not applied until signed off |
-| [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Proposed, not applied until signed off |
-| [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Proposed, not applied until signed off |
+| [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 
 ### 850-1: handwheel-down
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-14.
 
 The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
 
@@ -475,7 +475,7 @@ is read with its part at -90 -198 -100.
 
 ### 850-1: handwheel-pin-down
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-14.
 
 The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
 
@@ -489,7 +489,7 @@ is read with its part at -100 -198 -130.
 
 ### 850-1: lower-axle-and-gear
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-14.
 
 The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
 
@@ -516,7 +516,7 @@ is read with its part at 20 -20 0.
 
 ### 8838-1: axle-with-gears
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-14.
 
 The file defines the submodel Axle-with-Gears (a 6L axle with a 14 tooth bevel gear and an 8 tooth gear) but never places it; step 20 (scan 011) places it (docs/audits/for-erik.md, Model-file findings, high as a fact, medium for the line). The audit's line, `1 0 0 10 -60 -1 0 0 0 1 0 0 0 -1 8838 - Axle-with-Gears.ldr` in "8838 - Shock Cycle.ldr", put into the main model's coordinates (it places Shock Cycle turned): worked out, not yet seen in place.
 
@@ -572,7 +572,7 @@ is read with its part at 250 -123 420, turned to 0 0 -1 0 1 0 1 0 0.
 
 ### 42109-1: no-pin-p381
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-14.
 
 Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
 
@@ -586,7 +586,7 @@ is read as not there. The part keeps its number.
 
 ### 42109-1: no-pin-p382
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-14.
 
 Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
 
@@ -600,7 +600,7 @@ is read as not there. The part keeps its number.
 
 ### 42109-1: no-beam-p383
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-14.
 
 Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
 
