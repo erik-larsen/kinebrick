@@ -12,6 +12,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", ".claude/worktrees/preview", "run", "dev", "--", "--port", "5174", "--strictPort"],
       "port": 5174
+    },
+    {
+      "name": "kinebrick-train",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", ".claude/worktrees/train-track-9a2b86", "run", "dev", "--", "--port", "5183", "--strictPort"],
+      "port": 5183
     }
   ]
 }
