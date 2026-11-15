@@ -738,8 +738,15 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // The cause, from where the control starts: given the parts that didn't move and should
       // have, those that moved and shouldn't have, and how far the control went.
       const listedAs = (m: { ref: string; part: number; body: number }): Listed => ({ ref: m.ref, body: mech.bodyOf[m.part], against: m.body });
+      // How the drag turns the control, for telling whether a part that should stay could have
+      // (see causeOf): against what its shaft turns in (see housing), about its joint's axis.
+      const dragOf = (body: number) => {
+        const j = mech.joints[link.joint];
+        if (j.kind !== 'revolute' || slideOf(body) >= 0 || ballOf(body) >= 0 || (j.bodyA !== body && j.bodyB !== body)) return undefined;
+        return { against: kin.housing(body), axis: j.to.clone().sub(j.from).normalize().transformDirection(kin.poses[j.bodyA]) };
+      };
       const explain = (still: string[], wrong: string[], turned: number): Explained =>
-        early ?? causeOf(kin, { body: b, parent: link.parent }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= half, !pushed);
+        early ?? causeOf(kin, { body: b, parent: link.parent, drag: dragOf(b) }, moves.filter((m) => still.includes(m.ref)).map(listedAs), stays.filter((x) => wrong.includes(x.ref)).map(listedAs), new Set(geared.keys()), Math.abs(turned) >= half, !pushed);
       if (causesOnly) return nothing(explain(prior!.still ?? [], prior!.moved ?? [], Math.max(0, ...(prior!.turned?.[wi] ?? []).map(Math.abs))));
       // How far the control really turns: against what its shaft turns in (see housing), not
       // just its joint's angle, which a shaft spinning back under it makes up without the
