@@ -88,8 +88,8 @@
         "moves": [
           "p66 11949",
           "p76 11949",
-          "p96 4254",
-          "p97 4254"
+          "p96 76537",
+          "p97 76537"
         ],
         "note": "lifted: the text has the wheel or arm moved (\"moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
@@ -136,9 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
-    "seconds": 163,
+    "seconds": 131,
     "counts": {
       "works": 4,
       "not back": 2,
@@ -226,7 +226,7 @@
             ]
           ]
         ],
-        "seconds": 21.2
+        "seconds": 19.3
       },
       {
         "result": "works",
@@ -272,7 +272,7 @@
         "pushed": [
           true
         ],
-        "seconds": 88.6
+        "seconds": 77.3
       },
       {
         "result": "partly",
@@ -339,7 +339,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p493 45982",
-        "seconds": 38
+        "seconds": 21.7
       },
       {
         "result": "no",
@@ -356,8 +356,8 @@
         "still": [
           "p66 11949",
           "p76 11949",
-          "p96 4254",
-          "p97 4254"
+          "p96 76537",
+          "p97 76537"
         ],
         "rates": [
           {
@@ -369,11 +369,11 @@
               0,
               0
             ],
-            "p96 4254": [
+            "p96 76537": [
               0,
               0
             ],
-            "p97 4254": [
+            "p97 76537": [
               0,
               0
             ]
@@ -387,11 +387,11 @@
               0,
               0
             ],
-            "p96 4254": [
+            "p96 76537": [
               0,
               0
             ],
-            "p97 4254": [
+            "p97 76537": [
               0,
               0
             ]
@@ -438,8 +438,8 @@
           []
         ],
         "cause": "part-fixed",
-        "detail": "p96 4254",
-        "seconds": 0.5
+        "detail": "p96 76537",
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -533,7 +533,7 @@
             "p292 4254"
           ]
         ],
-        "seconds": 10.3
+        "seconds": 8
       },
       {
         "result": "skipped",
@@ -562,7 +562,7 @@
             ]
           ]
         ],
-        "seconds": 4
+        "seconds": 3.5
       }
     ]
   }

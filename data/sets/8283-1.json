@@ -123,11 +123,12 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
       "partly": 2,
+      "pivoted": 1,
       "works": 4
     },
     "loose": [],
@@ -160,15 +161,15 @@
             ],
             "p83 32069 against p65 32524": [
               0,
-              2.51e-29
+              1.96e-29
             ],
             "p88 32069 against p65 32524": [
               0,
-              5.52e-29
+              4.31e-29
             ],
             "p311 6595 against p65 32524": [
               0,
-              2.02e-28
+              0
             ],
             "p105 32525 against p65 32524": [
               0,
@@ -205,6 +206,11 @@
         ],
         "cause": "part-fixed",
         "detail": "p83 32069 against p65 32524",
+        "pivoted": {
+          "slide": 0.01,
+          "rise": 0,
+          "tyre": "p318 32180"
+        },
         "seconds": 0.3
       },
       {

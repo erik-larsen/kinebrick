@@ -2,7 +2,8 @@
 // piece: how far the control went, which bodies moved most, how far each part the function lists
 // moved, and what stopped it, if anything did. For finding out why a drag stops or moves the
 // wrong thing (see docs/plan.md, phase 1). The model is worked as built: controls the function
-// says to work first aren't.
+// says to work first aren't. A function marked `lifted` is worked with the model lifted, as the
+// function check works it.
 //
 //   npm run probe -- 8880 2           the 8880's second function, its first control, both ways
 //   npm run probe -- 8880 2 --json    the same, as JSON, to compare two runs line by line
@@ -11,6 +12,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { loadModel } from './load-model.ts';
+import { Kinematics } from '../src/kinematics.ts';
 
 const REACH = 1.5; // how far the control is worked each way: radians, or for a slide, PUSH LDU
 const PUSH = 20;
@@ -27,7 +29,12 @@ if (!file || !(Number(args[1]) >= 1)) {
 const set = JSON.parse(readFileSync(join('data', 'sets', file), 'utf-8'));
 const fn = set.curated.functions[Number(args[1]) - 1];
 const model: string = fn.model ?? set.curated.model;
-const { parts, mech, kin } = loadModel(model, model.startsWith('omr/'));
+const loaded = loadModel(model, model.startsWith('omr/'));
+const { parts, mech } = loaded;
+// A function worked with the model lifted (its `lifted` field) is probed so, as the function
+// check works it: the model held where it is, no tyre on the ground.
+const kin = fn.lifted ? Object.assign(new Kinematics(mech, { lifted: true }), { scrub: loaded.kin.scrub }) : loaded.kin;
+if (fn.lifted) console.error('lifted: the model held where it is, no tyre on the ground');
 
 // A part named as the function lists name it ("p483 3736"), and a part's name.
 const part = (ref: string) => Number(/^p(\d+)\b/.exec(ref.trim())![1]);

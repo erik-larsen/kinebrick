@@ -169,6 +169,7 @@ interface Checked {
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
   movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
+  pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted)
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
 }
@@ -222,13 +223,14 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
 // How many functions came out each way, and how many moved a part by the wrong amount or left
 // one not back.
 function countsOf(checked: Checked[]) {
-  const counts: Partial<Record<Result | 'wrong amount' | 'not back', number>> = {};
+  const counts: Partial<Record<Result | 'wrong amount' | 'not back' | 'pivoted', number>> = {};
   const count = (what: keyof typeof counts) => (counts[what] = (counts[what] ?? 0) + 1);
   for (const c of checked) {
     if (!c) continue; // left out (see check's `only`)
     count(c.result);
     if (c.wrong) count('wrong amount');
     if (c.strayed) count('not back');
+    if (c.pivoted) count('pivoted');
   }
   return counts;
 }
@@ -955,8 +957,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   const checked = functions.map((fn, i): Checked => {
     const started = Date.now();
     let found: Checked;
+    kin.pivoted = null;
     try {
       found = checkOne(fn, priors[i]);
+      const p = kin.pivoted as { slide: number; rise: number; tread: number } | null;
+      if (p && found.result !== 'skipped' && found.result !== 'not checked') found = { ...found, pivoted: { slide: round(p.slide), rise: round(p.rise), tyre: name(mech.treads[p.tread].part) } };
     } catch (err) {
       found = { result: 'error', cause: 'bad-reference', why: [(err as Error).message] };
     }

@@ -159,7 +159,7 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
     "seconds": 6,
     "counts": {
@@ -274,7 +274,7 @@
         "freed": 1,
         "cause": "not-driven",
         "detail": "p291 2819",
-        "seconds": 1.1
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -349,7 +349,7 @@
         ],
         "cause": "not-driven",
         "detail": "p427 2854",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -550,7 +550,7 @@
         "freed": 1,
         "cause": "not-driven",
         "detail": "p558 32030 against p234 3702",
-        "seconds": 0.8
+        "seconds": 0.9
       }
     ]
   }
