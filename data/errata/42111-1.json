@@ -1,0 +1,18 @@
+{
+  "set": "42111-1",
+  "entries": [
+    {
+      "id": "rear-shock-cylinder-on-the-rods-axis",
+      "what": "move",
+      "file": "42111 - rear-shock-assy.ldr",
+      "line": "1 16 0 9.819 -1.309 1 0 0 0 1 0 0 0 1 4255.dat",
+      "part": "p101 4255 and p105 4255",
+      "position": [
+        0,
+        9.819,
+        0
+      ],
+      "evidence": "In the rear shock absorber sub-assembly (42111 - rear-shock-assy.ldr, placed twice), the cylinder 4255 is drawn at z -1.309 and the rod 4254 at z 0, so the rod lies 1.31 LDU off the cylinder's axis, beyond the 1 LDU a rod is found in its cylinder with, and the two halves are read as unjoined. The offset is along the cylinder's own pin hole (its local z), so moving it to z 0 keeps it on its pin and puts it on the rod's axis. The booklet fits the two shock absorbers whole, rod in cylinder, between the frame and the rear axle at step 34 (page 22, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6324428.pdf#page=22). Moved 1.309 LDU along its pin."
+    }
+  ]
+}
