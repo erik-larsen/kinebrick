@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Connection } from '../mechanism.ts';
-import { axialOverlap, AXIS_TOLERANCE, type WorldCylinder } from './shared.ts';
+import { axialOverlap, AXIS_TOLERANCE, axleStops, type WorldCylinder } from './shared.ts';
 
 // A part turning on an axle may slide along it too, as far as the parts either side of it on
 // the axle let it, if a linkage works it that way: its body turns on another body about an
@@ -90,6 +90,12 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
         if (b <= lo + TOUCH) below = Math.min(below, Math.max(0, lo - b));
         else if (a >= hi - TOUCH) above = Math.min(above, Math.max(0, a - hi));
         else [below, above] = [0, 0]; // something else round the axle in the stack's way
+      }
+      // Nor past a stop on the axle itself (an axle with a stop's flange).
+      for (const [a, b] of axleStops(axle)) {
+        if (b <= lo + TOUCH) below = Math.min(below, Math.max(0, lo - b));
+        else if (a >= hi - TOUCH) above = Math.min(above, Math.max(0, a - hi));
+        else [below, above] = [0, 0];
       }
       if (below + above < TOUCH) continue;
       for (const c of connections) {
