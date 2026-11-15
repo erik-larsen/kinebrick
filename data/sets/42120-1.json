@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 6,
+    "seconds": 5,
     "counts": {
       "works": 4,
       "partly": 1,
@@ -170,7 +170,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -277,11 +277,11 @@
           [
             [
               0.91,
-              6.04
+              1.37
             ],
             [
               0.91,
-              6.04
+              1.37
             ]
           ]
         ],
@@ -294,6 +294,9 @@
             "dead point",
             "dead point"
           ]
+        ],
+        "judged": [
+          0
         ],
         "cause": "stay-chosen",
         "detail": "p51 4185a",
@@ -368,7 +371,7 @@
           [],
           []
         ],
-        "seconds": 1.8
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -405,7 +408,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       }
     ]
   }

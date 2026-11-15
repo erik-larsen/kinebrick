@@ -123,7 +123,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -216,6 +216,9 @@
             "dead point"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p83 32069 against p65 32524",
         "pivoted": {
@@ -306,6 +309,9 @@
           ]
         ],
         "freed": 2,
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p223 41239 against p65 32524",
         "seconds": 0.4

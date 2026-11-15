@@ -224,9 +224,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 164,
+    "seconds": 166,
     "counts": {
       "works": 8,
       "no": 2,
@@ -453,7 +453,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 33.7
+        "seconds": 38.4
       },
       {
         "result": "works",
@@ -677,7 +677,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 45.6
+        "seconds": 52.1
       },
       {
         "result": "no",
@@ -728,8 +728,12 @@
             "no motion"
           ]
         ],
-        "cause": "control-jammed",
-        "seconds": 8.7
+        "judged": [
+          0
+        ],
+        "cause": "not-driven",
+        "detail": "p240 6539",
+        "seconds": 9.5
       },
       {
         "result": "works",
@@ -795,7 +799,7 @@
             ]
           ]
         ],
-        "seconds": 8.2
+        "seconds": 10.4
       },
       {
         "result": "works",
@@ -854,7 +858,7 @@
             ]
           ]
         ],
-        "seconds": 8.1
+        "seconds": 9.9
       },
       {
         "result": "works",
@@ -917,7 +921,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -996,7 +1000,7 @@
           [],
           []
         ],
-        "seconds": 10.5
+        "seconds": 8.6
       },
       {
         "result": "partly",
@@ -1077,8 +1081,12 @@
           [],
           []
         ],
+        "judged": [
+          1,
+          1
+        ],
         "cause": "stopped-early",
-        "seconds": 17.9
+        "seconds": 9.2
       },
       {
         "result": "skipped",
@@ -1108,8 +1116,11 @@
         "why": [
           "p1240 4477 is part of the frame"
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-fixed",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -1180,7 +1191,7 @@
           [],
           []
         ],
-        "seconds": 15.7
+        "seconds": 13
       },
       {
         "result": "works",
@@ -1240,7 +1251,7 @@
             ]
           ]
         ],
-        "seconds": 8.1
+        "seconds": 8.6
       }
     ]
   }

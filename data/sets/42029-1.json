@@ -180,9 +180,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 302,
+    "seconds": 279,
     "counts": {
       "works": 6,
       "not back": 1,
@@ -255,7 +255,7 @@
             ]
           ]
         ],
-        "seconds": 76.4
+        "seconds": 65.7
       },
       {
         "result": "works",
@@ -297,7 +297,7 @@
             ]
           ]
         ],
-        "seconds": 13.4
+        "seconds": 11.7
       },
       {
         "result": "works",
@@ -373,7 +373,7 @@
             ]
           ]
         ],
-        "seconds": 77.1
+        "seconds": 65.9
       },
       {
         "result": "works",
@@ -406,7 +406,7 @@
             ],
             [
               0.3,
-              2.25
+              2.05
             ]
           ]
         ],
@@ -414,7 +414,7 @@
           "p947 43093",
           "p1135 6141"
         ],
-        "seconds": 79
+        "seconds": 67.3
       },
       {
         "result": "works",
@@ -467,7 +467,7 @@
         "why": [
           "p48 6539 against p47 3705 is held by friction pins the control doesn't reach"
         ],
-        "seconds": 13.9
+        "seconds": 12.3
       },
       {
         "result": "partly",
@@ -545,9 +545,12 @@
             ]
           ]
         ],
+        "judged": [
+          1
+        ],
         "cause": "not-driven",
         "detail": "p64 6542b against p0 32278",
-        "seconds": 15.1
+        "seconds": 12.7
       },
       {
         "result": "partly",
@@ -612,9 +615,12 @@
             ]
           ]
         ],
+        "judged": [
+          1
+        ],
         "cause": "not-driven",
         "detail": "p597 92695 against p596 92693c01",
-        "seconds": 13.3
+        "seconds": 12.8
       },
       {
         "result": "works",
@@ -656,15 +662,13 @@
             ]
           ]
         ],
-        "seconds": 11.3
+        "seconds": 11.1
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       },
       {
-        "result": "not checked",
-        "seconds": 0
+        "result": "not checked"
       }
     ]
   }

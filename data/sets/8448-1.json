@@ -211,9 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 50,
+    "seconds": 40,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -309,9 +309,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 3.6
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -388,7 +391,7 @@
             ]
           ]
         ],
-        "seconds": 27.1
+        "seconds": 20.4
       },
       {
         "result": "works",
@@ -442,7 +445,7 @@
             ]
           ]
         ],
-        "seconds": 3.4
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -496,7 +499,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -618,7 +621,7 @@
             "p484 32196"
           ]
         ],
-        "seconds": 2.5
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -659,8 +662,12 @@
           [],
           []
         ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "control-fixed",
-        "seconds": 3.5
+        "seconds": 3.3
       },
       {
         "result": "skipped",
@@ -774,9 +781,13 @@
           ],
           []
         ],
+        "judged": [
+          1,
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 3.3
+        "seconds": 3.1
       },
       {
         "result": "partly",
@@ -833,9 +844,12 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 2.7
+        "seconds": 2.8
       },
       {
         "result": "skipped",
@@ -872,6 +886,10 @@
         "movedBy": [
           [],
           []
+        ],
+        "judged": [
+          0,
+          0
         ],
         "cause": "control-fixed",
         "seconds": 0

@@ -113,9 +113,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 56,
+    "seconds": 42,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -220,11 +220,11 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
@@ -232,11 +232,11 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
@@ -246,9 +246,12 @@
             "limit"
           ]
         ],
+        "judged": [
+          1
+        ],
         "cause": "loose-part",
         "detail": "p524 32524",
-        "seconds": 9.3
+        "seconds": 10.1
       },
       {
         "result": "works",
@@ -308,7 +311,7 @@
             "dead point"
           ]
         ],
-        "seconds": 6
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -358,7 +361,7 @@
             ]
           ]
         ],
-        "seconds": 4.2
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -476,7 +479,7 @@
             "p251 2851"
           ]
         ],
-        "seconds": 22.8
+        "seconds": 12.3
       },
       {
         "result": "partly",
@@ -555,9 +558,21 @@
           [],
           []
         ],
+        "wrongBy": [
+          [
+            "p245 2853"
+          ],
+          [
+            "p245 2853"
+          ]
+        ],
+        "judged": [
+          0,
+          0
+        ],
         "cause": "stay-chosen",
         "detail": "p245 2853",
-        "seconds": 12.8
+        "seconds": 12.3
       },
       {
         "result": "no",
@@ -632,6 +647,10 @@
         "movedBy": [
           [],
           []
+        ],
+        "judged": [
+          0,
+          0
         ],
         "cause": "control-jammed",
         "seconds": 0.6

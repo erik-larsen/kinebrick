@@ -160,7 +160,7 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
     "seconds": 3,
     "counts": {
@@ -265,6 +265,9 @@
             ]
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "not-driven",
         "detail": "p73 3705",
         "seconds": 0.5
@@ -309,7 +312,7 @@
           [
             [
               0,
-              0.03
+              0
             ],
             [
               0,
@@ -321,7 +324,7 @@
           [
             [
               0,
-              0.03
+              0
             ],
             [
               0,
@@ -425,7 +428,10 @@
         "pushed": [
           true
         ],
-        "cause": "stay-chosen",
+        "judged": [
+          1
+        ],
+        "cause": "stay-forced",
         "detail": "p141 3706",
         "seconds": 0.4
       },
@@ -511,7 +517,7 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -632,8 +638,11 @@
             "no motion"
           ]
         ],
+        "judged": [
+          0
+        ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",

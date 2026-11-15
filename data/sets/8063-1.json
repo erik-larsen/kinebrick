@@ -221,9 +221,9 @@
     ]
   },
   "generated": {
-    "commit": "716b8262",
+    "commit": "97d7e2f0",
     "date": "2026-11-15",
-    "seconds": 334,
+    "seconds": 330,
     "counts": {
       "works": 8,
       "not back": 2,
@@ -314,7 +314,7 @@
             ]
           ]
         ],
-        "seconds": 5.1
+        "seconds": 4.5
       },
       {
         "result": "works",
@@ -356,7 +356,7 @@
             ]
           ]
         ],
-        "seconds": 5.3
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -502,7 +502,7 @@
             "p259 2852"
           ]
         ],
-        "seconds": 25.9
+        "seconds": 24.4
       },
       {
         "result": "works",
@@ -568,7 +568,7 @@
           [],
           []
         ],
-        "seconds": 9.6
+        "seconds": 8.9
       },
       {
         "result": "works",
@@ -614,7 +614,7 @@
             ]
           ]
         ],
-        "seconds": 5.3
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -684,21 +684,21 @@
           [
             [
               3.36,
-              25.54
+              19.33
             ],
             [
               8.54,
-              66.83
+              50.57
             ]
           ],
           [
             [
               1.48,
-              11.21
+              8.48
             ],
             [
               1.93,
-              14.62
+              11.06
             ]
           ]
         ],
@@ -718,7 +718,7 @@
             "p65 3706"
           ]
         ],
-        "seconds": 87.3
+        "seconds": 81.3
       },
       {
         "result": "partly",
@@ -799,9 +799,12 @@
           "p13 32009 is held by friction pins the control doesn't reach",
           "p184 32009 is held by friction pins the control doesn't reach"
         ],
+        "judged": [
+          0
+        ],
         "cause": "part-fixed",
         "detail": "p13 32009",
-        "seconds": 13
+        "seconds": 12.3
       },
       {
         "result": "works",
@@ -937,11 +940,10 @@
             "p1004 64782"
           ]
         ],
-        "seconds": 20.2
+        "seconds": 18.9
       },
       {
-        "result": "not checked",
-        "seconds": 0
+        "result": "not checked"
       },
       {
         "result": "works",
@@ -1015,41 +1017,41 @@
           [
             [
               1.12,
-              9.7
+              7.49
             ],
             [
               2.41,
-              20.9
+              16.15
             ]
           ],
           [
             [
               1.12,
-              9.7
+              7.49
             ],
             [
               2.41,
-              20.9
+              16.15
             ]
           ],
           [
             [
               0.72,
-              6.22
+              4.8
             ],
             [
               0.57,
-              4.94
+              3.82
             ]
           ],
           [
             [
               0.72,
-              6.22
+              4.8
             ],
             [
               0.57,
-              4.94
+              3.82
             ]
           ]
         ],
@@ -1063,15 +1065,13 @@
           [],
           []
         ],
-        "seconds": 161.3
+        "seconds": 162.7
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       }
     ]
   }
