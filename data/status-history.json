@@ -1,4 +1,4 @@
-{"start":"6987cc1a","upto":"112b1a63a23ecee490307acbc69212e2db6e9363","points":[{"time":1794367752,"commit":"6987cc1a","buckets":[8,57,74,19,28,0],"functions":[532,319,196]},
+{"start":"6987cc1a","upto":"606f9bca5465a608eb8c9722fa1498b05f5a454b","points":[{"time":1794367752,"commit":"6987cc1a","buckets":[8,57,74,19,28,0],"functions":[532,319,196]},
 {"time":1794430274,"commit":"4d921e37","buckets":[8,56,75,19,28,0],"functions":[533,318,196]},
 {"time":1794517021,"commit":"1e8d20a9","buckets":[8,59,73,19,27,0],"functions":[522,329,196]},
 {"time":1794535383,"commit":"c21f3c80","buckets":[8,60,72,19,27,0],"functions":[521,330,196]},
@@ -30,4 +30,6 @@
 {"time":1794698395,"commit":"5f40db1a","buckets":[5,34,72,31,44,0],"functions":[640,278,128]},
 {"time":1794699256,"commit":"4310e496","buckets":[5,35,71,32,43,0],"functions":[640,279,129]},
 {"time":1794704316,"commit":"c81f1b1b","buckets":[3,36,70,34,43,0],"functions":[649,275,124]},
-{"time":1794706396,"commit":"112b1a63","buckets":[3,35,71,34,43,0],"functions":[650,274,124]}]}
+{"time":1794706396,"commit":"112b1a63","buckets":[3,35,71,34,43,0],"functions":[650,274,124]},
+{"time":1794706900,"commit":"26c74548","buckets":[3,34,72,34,43,0],"functions":[652,273,123]},
+{"time":1794711166,"commit":"606f9bca","buckets":[3,31,73,36,43,0],"functions":[663,262,123]}]}

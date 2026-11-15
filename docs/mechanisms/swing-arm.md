@@ -4,7 +4,7 @@ One arm carries the rear wheel, both rear wheels or the whole rear unit, pivotin
 
 First appears in 1988, in [8832 Roadster](https://erik-larsen.github.io/kinebrick/?model=8832-Roadster): The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.
 
-Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 6 works, 4 partly, 6 no.
+Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 5 works, 4 partly, 7 no.
 
 ## By decade
 
@@ -84,7 +84,7 @@ Each detail by the set it first appears in.
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
-- The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall. (works)
+- The rear wheel rides on the swing arm, which pivots on the gearbox's output shaft; the shock absorber between the swing arm's linkage and the frame lets the rear wheel rise and fall. (no)
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 

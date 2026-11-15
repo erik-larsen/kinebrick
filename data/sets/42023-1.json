@@ -84,9 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 5,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 9,
     "counts": {
       "no": 1,
       "partly": 1,
@@ -152,7 +152,7 @@
         ],
         "freed": 1,
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -253,7 +253,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 3.5
+        "seconds": 6
       },
       {
         "result": "works",
@@ -283,7 +283,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -359,7 +359,7 @@
           [],
           []
         ],
-        "seconds": 1
+        "seconds": 1.8
       }
     ]
   }

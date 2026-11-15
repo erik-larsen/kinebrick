@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 142 works, 8 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 146 works, 4 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -223,12 +223,12 @@ Each detail by the set it first appears in.
 
 **1998, [8245 Robot's Revenge](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8245-1)**
 
-- The buggy rolls on three wheels with yellow hubs: two on one axle at the back and one at the front, held in a fork; there's no steering. (partly)
+- The buggy rolls on three wheels with yellow hubs: two on one axle at the back and one at the front, held in a fork; there's no steering. (works)
 - The two small black wheels at the end of the purple tail roll freely. (works)
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
-- The teal striker runs on three wheels that roll freely: one at the front, under the target, and two on an axle under the handle. Nothing drives them: it's pushed along the floor by its handle. (partly)
+- The teal striker runs on three wheels that roll freely: one at the front, under the target, and two on an axle under the handle. Nothing drives them: it's pushed along the floor by its handle. (works)
 
 **2000, [8002 Destroyer Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8002-1)**
 
@@ -416,7 +416,7 @@ Each detail by the set it first appears in.
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
-- The mine truck's four wheels roll freely. (partly)
+- The mine truck's four wheels roll freely. (works)
 
 **2017, [42057 Ultralight Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42057-1)**
 
@@ -442,7 +442,7 @@ Each detail by the set it first appears in.
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
 - The truck's and the trailer's wheels roll freely. (works)
-- The reach stacker's four wheels roll freely. (partly)
+- The reach stacker's four wheels roll freely. (works)
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 

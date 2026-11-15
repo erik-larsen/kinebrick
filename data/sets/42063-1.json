@@ -113,10 +113,9 @@
     ]
   },
   "generated": {
-    "commit": "b32d688c",
-    "uncommitted": true,
+    "commit": "6fbe31fe",
     "date": "2026-11-15",
-    "seconds": 6,
+    "seconds": 7,
     "counts": {
       "works": 3,
       "not back": 1,
@@ -216,7 +215,7 @@
             "p345 32278"
           ]
         ],
-        "seconds": 3.1
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -266,7 +265,7 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 2
       },
       {
         "result": "works",

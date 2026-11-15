@@ -66,6 +66,7 @@ export function holds(solver: Kinematics, eq: Equations) {
   const fixed = new Set([...[...solver.frozen].filter((b) => !onShaft(b)), ...solver.drag.held]);
   const toFrame = new Set([...[...solver.frozen].filter(onShaft), ...solver.drag.heldToFrame]);
   if (solver.fixedBody >= 0) fixed.add(solver.fixedBody);
+  for (const f of solver.stillFrames) fixed.add(f);
   // Held bodies stay held while the loops close too (the weights are closing's): where the
   // rules can't all hold, what's held gives last. Else a layout's track gave a little as its
   // cars, far off the rails as built, were drawn onto it.
@@ -77,11 +78,14 @@ export function holds(solver: Kinematics, eq: Equations) {
   // body whole, not just on its joint, as the rows on nothing but these bodies and the frame are
   // left out (see buildEquations). Held only on their joints, without their joints' own rows,
   // they came loose: the 8859 Tractor's front wheel, rolling it, stopped short at a dead point.
+  // On the frame of the model it is in (see Kinematics.frames); a further model's frame out of
+  // reach is held where it is.
   for (const body of solver.drag.outOfReach) {
+    const frame = solver.frameOf[body];
     for (let k = 0; k < 6; k++) {
       const row = new Array(n).fill(0);
       row[6 * body + k] = 1;
-      row[k] = -1;
+      if (frame !== body) row[6 * frame + k] = -1;
       add(row, 0, DRIVE_WEIGHT);
     }
   }

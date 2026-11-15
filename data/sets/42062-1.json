@@ -166,14 +166,13 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 109,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 139,
     "counts": {
-      "partly": 7,
-      "works": 1,
-      "no": 2,
-      "not back": 1
+      "partly": 3,
+      "works": 5,
+      "no": 2
     },
     "loose": [],
     "functions": [
@@ -229,7 +228,7 @@
         ],
         "cause": "not-driven",
         "detail": "p87 48989",
-        "seconds": 2.2
+        "seconds": 3.7
       },
       {
         "result": "partly",
@@ -264,7 +263,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 2.2
+        "seconds": 3.6
       },
       {
         "result": "works",
@@ -372,7 +371,7 @@
           [],
           []
         ],
-        "seconds": 19.5
+        "seconds": 39.8
       },
       {
         "result": "no",
@@ -431,7 +430,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -451,27 +450,27 @@
           {
             "p406 48989": [
               0,
-              1.25e-13
+              0
             ],
             "p407 48989": [
               0,
-              1.25e-13
+              0
             ],
             "p597 55981": [
               0,
-              2.6e-13
+              3.79e-14
             ],
             "p601 55981": [
               0,
-              8.53e-14
+              3.79e-14
             ],
             "p603 55981": [
               0,
-              1.12e-13
+              0
             ],
             "p510 18940": [
               0,
-              1.14e-13
+              0
             ]
           }
         ],
@@ -487,56 +486,122 @@
             ]
           ]
         ],
-        "cause": "second-model",
-        "detail": "p508 32270",
-        "seconds": 4.3
+        "cause": "not-driven",
+        "detail": "p406 48989",
+        "seconds": 5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p508 32270"
-        ],
         "rates": [
           {
             "p443 42062 - 18575": [
               0.05,
-              6.29
+              0
             ],
             "p510 18940": [
-              0.0343,
-              1.12
+              0.0352,
+              6.49
             ],
             "p547 32524": [
               8.43e-8,
-              14.1
+              21
             ],
             "p508 32270": [
               0,
-              6.29
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.01,
+              0,
               0
             ],
             [
-              0.01,
+              0,
               0
             ]
           ]
         ],
-        "cause": "second-model",
-        "detail": "p507 32270",
-        "seconds": 6.9
+        "seconds": 7.6
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p511 18942 against p510 18940": [
+              2.81e-8,
+              69.8
+            ],
+            "p547 32524 against p510 18940": [
+              0.00000499,
+              69.8
+            ],
+            "p510 18940": [
+              0,
+              5.68e-13
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "seconds": 17.5
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p511 18942": [
+              0,
+              5.07e-13
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 8.5
       },
       {
         "result": "no",
@@ -547,99 +612,8 @@
           ]
         ],
         "still": [
-          "p511 18942 against p510 18940",
-          "p547 32524 against p510 18940"
-        ],
-        "moved": [
-          "p510 18940"
-        ],
-        "rates": [
-          {
-            "p511 18942 against p510 18940": [
-              0,
-              0
-            ],
-            "p547 32524 against p510 18940": [
-              0,
-              0
-            ],
-            "p510 18940": [
-              0,
-              0
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "cause": "second-model",
-        "detail": "p530 6553",
-        "seconds": 25.8
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "moved": [
-          "p511 18942"
-        ],
-        "rates": [
-          {
-            "p511 18942": [
-              0,
-              29
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              1.35,
-              0
-            ],
-            [
-              1.35,
-              0
-            ]
-          ]
-        ],
-        "strayed": [
-          "p596 32556",
-          "p617 2780"
-        ],
-        "cause": "second-model",
-        "detail": "p547 32524",
-        "seconds": 4.8
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            0,
-            0
-          ]
+          "p581 6553",
+          "p568 32526"
         ],
         "rates": [
           {
@@ -674,12 +648,11 @@
         "pushed": [
           true
         ],
-        "cause": "second-model",
-        "detail": "p574 32073",
-        "seconds": 26
+        "cause": "stopped-early",
+        "seconds": 31.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -752,9 +725,7 @@
           [],
           []
         ],
-        "cause": "second-model",
-        "detail": "p597 55981",
-        "seconds": 16.4
+        "seconds": 21
       }
     ]
   }

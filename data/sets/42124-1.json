@@ -124,129 +124,125 @@
     ]
   },
   "generated": {
-    "commit": "b32d688c",
-    "uncommitted": true,
+    "commit": "50428c4b",
     "date": "2026-11-15",
-    "seconds": 3,
+    "seconds": 5,
     "counts": {
-      "no": 3,
-      "partly": 1,
       "works": 2,
+      "not back": 2,
+      "partly": 2,
+      "no": 2,
       "skipped": 2
     },
     "loose": [
       "p1 23816c01",
-      "p502 23816c02",
-      "p984 22977",
-      "p986 22977"
+      "p502 23816c02"
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1,
+            -1
           ]
-        ],
-        "still": [
-          "p318 32524",
-          "p343 15460",
-          "p345 15460"
         ],
         "rates": [
           {
             "p318 32524": [
-              0,
-              0
+              0.337,
+              20
             ],
             "p343 15460": [
-              0,
-              0
+              1.22,
+              1.26e-11
             ],
             "p345 15460": [
-              0,
-              0
+              0.404,
+              2.26e-11
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              54.91,
+              85.34
             ],
             [
-              0,
-              0
+              55.63,
+              89
             ]
           ]
         ],
+        "strayed": [
+          "p344 87083",
+          "p346 87083"
+        ],
         "stop": [
           [
-            "limit",
-            "limit"
+            "dead point",
+            "dead point"
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p343 15460",
-        "seconds": 0.1
+        "seconds": 1.5
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1,
+            -1
           ]
         ],
         "still": [
-          "p889 32498",
-          "p464 65414c01",
-          "p972 56908",
-          "p974 56908"
+          "p889 32498"
         ],
         "rates": [
           {
             "p889 32498": [
-              0,
-              0
+              8.43e-8,
+              3.38e-13
             ],
             "p464 65414c01": [
-              0,
-              0
+              0.48,
+              3.78e-13
             ],
             "p972 56908": [
-              0,
-              0
+              0.48,
+              4.45e-13
             ],
             "p974 56908": [
-              0,
-              0
+              0.48,
+              4.45e-13
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              54.91,
+              85.34
             ],
             [
-              0,
-              0
+              55.63,
+              89
             ]
           ]
         ],
+        "strayed": [
+          "p344 87083",
+          "p346 87083"
+        ],
         "stop": [
           [
-            "limit",
-            "limit"
+            "dead point",
+            "dead point"
           ]
         ],
         "cause": "not-driven",
         "detail": "p889 32498",
-        "seconds": 0.1
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -262,8 +258,8 @@
         "rates": [
           {
             "p974 56908 against p464 65414c01": [
-              5.62e-8,
-              2.13e-13
+              0,
+              8.47e-14
             ]
           }
         ],
@@ -284,47 +280,51 @@
         ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            0.63,
+            0,
             0
           ],
           [
             0,
-            -0.63
+            0
           ]
+        ],
+        "still": [
+          "p343 15460",
+          "p345 15460"
         ],
         "rates": [
           {
             "p343 15460": [
-              0.0093,
-              2.27e-12
+              0,
+              0
             ],
             "p345 15460": [
-              0.118,
-              80
+              0,
+              0
             ]
           },
           {
             "p343 15460": [
-              0.118,
-              80
+              0,
+              0
             ],
             "p345 15460": [
-              0.0093,
-              2.57e-12
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.07,
-              0.11
+              0,
+              0
             ],
             [
               0,
@@ -337,30 +337,27 @@
               0
             ],
             [
-              0.07,
-              0.11
+              0,
+              0
             ]
           ]
         ],
         "stop": [
           [
-            "limit",
-            "limit"
+            "no motion",
+            "no motion"
           ],
           [
-            "limit",
-            "limit"
+            "no motion",
+            "no motion"
           ]
         ],
         "movedBy": [
-          [
-            "p345 15460"
-          ],
-          [
-            "p343 15460"
-          ]
+          [],
+          []
         ],
-        "seconds": 0.6
+        "cause": "control-jammed",
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -388,7 +385,7 @@
           "p470 40490 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "skipped",
@@ -436,7 +433,7 @@
           [],
           []
         ],
-        "seconds": 1.3
+        "seconds": 1.1
       }
     ]
   }
