@@ -96,13 +96,14 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
     "seconds": 6,
     "counts": {
       "works": 4,
       "partly": 1,
-      "not back": 1
+      "not back": 1,
+      "pivoted": 1
     },
     "loose": [
       "p218 3623",
@@ -156,7 +157,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -227,18 +228,18 @@
             ],
             "p585 30031": [
               0.93,
-              3.64e-13
+              2.48e-13
             ],
             "p51 4185a": [
               0.351,
-              6.09e-14
+              1.04e-13
             ]
           }
         ],
         "back": [
           [
             [
-              13.9,
+              13.89,
               6.51
             ],
             [
@@ -259,7 +260,12 @@
         ],
         "cause": "stay-chosen",
         "detail": "p51 4185a",
-        "seconds": 1
+        "pivoted": {
+          "slide": 0.13,
+          "rise": 0.41,
+          "tyre": "p116 50951"
+        },
+        "seconds": 1.1
       },
       {
         "result": "works",

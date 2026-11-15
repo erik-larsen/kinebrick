@@ -95,7 +95,7 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -226,7 +226,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "not checked",
@@ -282,7 +282,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p541 98138p0e",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -326,7 +326,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       }
     ]
   }

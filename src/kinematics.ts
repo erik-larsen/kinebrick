@@ -72,6 +72,9 @@ const HOLDS_DETOUR = 10;
 // built) rises or sinks a little as it turns; an axle rocking with the car standing still
 // would push one tyre into the ground, and isn't allowed.
 const LIFT = 0.05;
+// How far a steered tyre's contact may be from the upright axis it steers on, and still pivot on
+// the ground about it (see steeringPivot): a stud.
+const PIVOT_REACH = 20;
 // How far loop closing may move any joint from where a step's motion had it going, as a
 // fraction of the step's largest joint turn, before the step counts as past a dead point (see
 // turnJoint). Steps short of one need a few percent at most.
@@ -880,6 +883,59 @@ export class Kinematics {
     if (j < 0) return null;
     const joint = this.mech.joints[j];
     return { parent: joint.bodyA === body ? joint.bodyB : joint.bodyA, joint: j };
+  }
+
+  // The upright joint a tyre's wheel steers on, for a tyre on the ground (see tyres.ts): of the
+  // turning joints on the tree's path from the tyre's body to its model's frame, the first whose
+  // axis is within 45 degrees of upright (a kingpin, a fork's steering head, a swivelling leg),
+  // with where its axis is now; null if there's none, or if the tyre's contact, `contact`, is
+  // more than PIVOT_REACH ahead of or behind that axis, along `forward`, the way the tyre rolls
+  // (its trail). Carried round the axis, the contact rolls along by its distance out to the side
+  // of it, which the tyre turning on its axle takes up, and slides sideways by its trail.
+  steeringPivot(tread: number, contact: Vector3, forward: Vector3): { joint: number; at: Vector3; axis: Vector3 } | null {
+    const t = this.mech.treads[tread];
+    const frame = this.frameOf[t.body];
+    let body = t.body;
+    for (let n = 0; n < this.bodyCount && body !== frame; n++) {
+      const link = this.parentLink(body);
+      if (!link) return null;
+      const j = this.mech.joints[link.joint];
+      const axis = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+      if (Math.abs(axis.dot(DOWN)) > Math.SQRT1_2) {
+        const at = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+        const off = contact.clone().sub(at);
+        off.addScaledVector(axis, -off.dot(axis));
+        return Math.abs(off.dot(forward)) <= PIVOT_REACH ? { joint: link.joint, at, axis } : null;
+      }
+      body = link.parent;
+    }
+    return null;
+  }
+
+  // A drag's steps that pivot a steered tyre on the ground about its steering axis (see
+  // steeringPivot and tyres.ts): the most its contact was carried sideways and up or down, in LDU
+  // for each radian of the dragged joint, and the tyre. The function check stores it with the
+  // function's result and sets it back to null, so a result that leaned on the pivot shows it.
+  pivoted: { slide: number; rise: number; tread: number } | null = null;
+
+  private notePivots(motion: number[]) {
+    const joint = this.drag.turning?.joint;
+    if (joint === undefined) return;
+    const rate = Math.abs(this.jointRate(motion, joint));
+    if (rate < EPSILON) return;
+    for (const i of this.contactTreads) {
+      const p = this.contactPoint(i);
+      if (!p) continue;
+      const t = this.mech.treads[i];
+      const axis = t.axis.clone().transformDirection(this.poses[t.body]);
+      const forward = new Vector3().crossVectors(DOWN, axis).normalize();
+      const sideways = new Vector3().crossVectors(forward, DOWN).normalize();
+      const pivot = this.steeringPivot(i, p, forward);
+      if (!pivot) continue;
+      const carried = new Vector3().crossVectors(pivot.axis, p.clone().sub(pivot.at)).multiplyScalar(this.jointRate(motion, pivot.joint) / rate);
+      const [slide, rise] = [Math.abs(carried.dot(sideways)), Math.abs(carried.dot(DOWN))];
+      if (Math.max(slide, rise) > 1e-3 && (!this.pivoted || Math.max(slide, rise) > Math.max(this.pivoted.slide, this.pivoted.rise))) this.pivoted = { slide, rise, tread: i };
+    }
   }
 
   // What the shaft a body turns on turns in: up the tree from the body, past everything turning
@@ -2787,6 +2843,7 @@ export class Kinematics {
   // degrees): the motion is only exact at the start of the step.
   // Returns how far apart the joints are left (see closeLoops).
   advance(motion: number[], amount: number, keep = -1): number {
+    this.notePivots(motion);
     // Least motion: a step that leaves the car where it is (steering it) keeps it there while the
     // loops are closed, and doesn't set it down again, as a car held still for a drag (see settle).
     // (Each model in the file by itself: see frames.)

@@ -106,11 +106,12 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
     "seconds": 3,
     "counts": {
-      "works": 6
+      "works": 6,
+      "pivoted": 1
     },
     "loose": [],
     "functions": [
@@ -164,6 +165,11 @@
             "dead point"
           ]
         ],
+        "pivoted": {
+          "slide": 0.61,
+          "rise": 0,
+          "tyre": "p254 15413"
+        },
         "seconds": 0.4
       },
       {
@@ -190,7 +196,7 @@
             ],
             "p252 32270": [
               0,
-              0
+              8.46e-12
             ]
           }
         ],
@@ -364,7 +370,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "works",
