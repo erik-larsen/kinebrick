@@ -83,6 +83,19 @@ export function isAntiStud(c: WorldCylinder): boolean {
   return closedAtOneEnd(c) && c.secs.length === 1 && (sec.shape === 'R' || sec.shape === 'S') && Math.abs(sec.radius - 6) < AXIS_TOLERANCE;
 }
 
+// An axle's stops: the stretches of it wider than an axle (an axle with a stop's flange, 8 LDU
+// round, where an axle is 6), which nothing on the axle slides past: from and to, in LDU along it
+// from its start.
+export function axleStops(axle: WorldCylinder): [number, number][] {
+  const stops: [number, number][] = [];
+  let at = 0;
+  for (const sec of axle.secs) {
+    if (sec.radius > 7) stops.push([at, at + sec.length]);
+    at += sec.length;
+  }
+  return stops;
+}
+
 // Where two cylinders on the same axis overlap, or null if they're not on the same axis or
 // overlap by less than MIN_OVERLAP.
 export function axialOverlap(m: WorldCylinder, f: WorldCylinder, align = ALIGN_TOLERANCE): { from: Vector3; to: Vector3 } | null {
