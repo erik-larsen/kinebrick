@@ -456,6 +456,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Proposed, not applied until signed off |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
+| [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Proposed, not applied until signed off |
+| [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Proposed, not applied until signed off |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Proposed, not applied until signed off |
@@ -584,6 +586,32 @@ In the main model, the line
 ```
 
 is read with its part at 250 -123 420, turned to 0 0 -1 0 1 0 1 0 0.
+
+### 42093-1: no-12-tooth-on-the-engine-shaft
+
+Proposed, not applied until signed off.
+
+The shaft that drives the engine has a 12 tooth double bevel gear (32270) where the set has an 8 tooth gear (10928): step 2 (42093-1-1.pdf page 4) puts an 8 tooth gear on that shaft, and the parts list has two 8 tooth gears (element 6012451) and three 12 tooth double bevel gears (element 4177431) where the file has one and four. A 12 tooth and an 8 tooth gear need 25 LDU between their axes; at 20 the 12 tooth gear overlaps the crankshaft's 8 tooth gear rather than meshing. Line 3115 of 42093 - corvette.ldr (docs/ldraw-errata.md, the 42093's section, written before the errata were applied; docs/audits/for-erik.md, Model-file findings, high).
+
+In `42093 - corvette.ldr` (p7 32270), the line
+
+```
+1 0 0 0 -80 0 1 0 1 0 0 0 0 -1 32270.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42093-1: 8-tooth-on-the-engine-shaft
+
+Proposed, not applied until signed off.
+
+The 8 tooth gear the set has in place of the removed 12 tooth gear: the same place and turn, in the main model's coordinates (corvette.ldr is placed unturned at 0 -55 160), in dark bluish grey like the crankshaft's gear.
+
+Added to the main model:
+
+```
+1 72 0 -55 80 0 1 0 1 0 0 0 0 -1 10928.dat
+```
 
 ### 42109-1: no-pin-p381
 
