@@ -22,7 +22,12 @@
         "1 0 -60 -0.155 261.282 1 0 0 0 1 -0.008 0 0.008 1 2910.dat",
         "1 0 -60 -0.235 271.282 0 0 1 0.008 1 0 -1 0.008 0 2780.dat"
       ],
-      "evidence": "The four shock absorbers are LDCad springs in the OMR file (41999 - step70-9-shock.ldr and 41999 - step70-9-shock2.ldr, each placed twice, in 41999 - step70.ldr and 41999 - step72.ldr) with no part lines: only !LDCAD SPRING_CAP metas, which name the cylinder 2909 at y 50, the rod 2910 at y 170, and the pins 43093 and 2780 at their ends. LDCad draws those parts; no other reader sees them, so the model has no shock absorbers, and each axle hangs on its links alone. The booklet fits them at step 70 (book 2, page 25, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064367.pdf#page=25), whose inset shows the two shock absorbers on the sub-assembly. Added: the four caps of each spring, placed as the metas say, in the main model's coordinates (colour 16 takes the spring's 14). Decision 30."
+      "evidence": "The four shock absorbers are LDCad springs in the OMR file (41999 - step70-9-shock.ldr and 41999 - step70-9-shock2.ldr, each placed twice, in 41999 - step70.ldr and 41999 - step72.ldr) with no part lines: only !LDCAD SPRING_CAP metas, which name the cylinder 2909 at y 50, the rod 2910 at y 170, and the pins 43093 and 2780 at their ends. LDCad draws those parts; no other reader sees them, so the model has no shock absorbers, and each axle hangs on its links alone. The booklet fits them at step 70 (book 2, page 25, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6064367.pdf#page=25), whose inset shows the two shock absorbers on the sub-assembly. Added: the four caps of each spring, placed as the metas say, in the main model's coordinates (colour 16 takes the spring's 14). Decision 30.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-15",
+        "words": "Sign 41999"
+      }
     }
   ]
 }

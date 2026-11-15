@@ -8,7 +8,11 @@
       "line": "1 1 -160 -211.5552 -68.6371 0 0 -1 0.0523 0.9986 0 0.9986 -0.0523 0 42040 - seats.ldr",
       "position": [-160, -211.6552, -70.6371],
       "evidence": "The hatch behind the engine and its lever group (seats.ldr: the 42003s p249 and p259, the 32140s, the 32054s and the 32316) are loose in the file: each 42003's pin hole lies 2.00 LDU off its pin, the 6558s p165 and p164 of motor.ldr, both off by the same amount (0, -0.10, -2.00), along the holes' line. The booklet has the lever group and the hatch move together on those pins (42040-1-1.pdf pages 48 to 52, 89 and 115; docs/audits/for-erik.md, Model-file findings, medium). Moved by that amount, with its turn as built, both 42003s sit on their pins.",
-      "signedOff": null
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-15",
+        "words": "Sign 42040"
+      }
     }
   ]
 }

@@ -8,7 +8,12 @@
       "line": "1 19 17 -40 -3 0 0 -1 1 0 0 0 -1 0 6589.dat",
       "part": "p45 6589",
       "position": [17, -40, 0],
-      "evidence": "The rear differential's two side gears (p45 and p46, 6589, lines 1132 and 1133 of the OMR file, in 42099 - rearaxle.ldr, its sixth step) lie 3 LDU off the line of the casing (p43 62821, line 1130): at z -3, where the casing's line, and its half shafts', is at z 0. So neither turns on its half shaft, and the differential is read as locked. The booklet builds this differential at step 140 (42099-1-1.pdf page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86): its 1:1 inset has the two side gears facing each other on the casing's line. The front differential, laid out the same way (lines 95 to 98), has them at z 0. Of the differentials in all the models Kinebrick checks, this is the only one with a side gear off its casing's line. Moved 3 LDU onto the line."
+      "evidence": "The rear differential's two side gears (p45 and p46, 6589, lines 1132 and 1133 of the OMR file, in 42099 - rearaxle.ldr, its sixth step) lie 3 LDU off the line of the casing (p43 62821, line 1130): at z -3, where the casing's line, and its half shafts', is at z 0. So neither turns on its half shaft, and the differential is read as locked. The booklet builds this differential at step 140 (42099-1-1.pdf page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86): its 1:1 inset has the two side gears facing each other on the casing's line. The front differential, laid out the same way (lines 95 to 98), has them at z 0. Of the differentials in all the models Kinebrick checks, this is the only one with a side gear off its casing's line. Moved 3 LDU onto the line.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-15",
+        "words": "Sign 42099"
+      }
     },
     {
       "id": "rear-side-gear-p46-in-line",
@@ -17,7 +22,12 @@
       "line": "1 19 -17 -40 -3 0 0 1 -1 0 0 0 -1 0 6589.dat",
       "part": "p46 6589",
       "position": [-17, -40, 0],
-      "evidence": "As p45: the rear differential's other side gear, 3 LDU off the casing's line (line 1133; booklet step 140, page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86). Moved 3 LDU onto the line."
+      "evidence": "As p45: the rear differential's other side gear, 3 LDU off the casing's line (line 1133; booklet step 140, page 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314520.pdf#page=86). Moved 3 LDU onto the line.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-15",
+        "words": "Sign 42099"
+      }
     }
   ]
 }
