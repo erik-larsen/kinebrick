@@ -92,7 +92,7 @@
       .lil-gui.root.stats:not(.closed) #readout { width: auto; }
       .lil-gui.root { border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15); }
       /* The FPS card, above Options: its title shows the frames drawn each second, and its number
-         keeps its width as it changes. Inside: the lowest, highest and average, one to a line. */
+         keeps its width as it changes. Inside: the average and the 1% low, one to a line. */
       .lil-gui.root.fps > .title { font-variant-numeric: tabular-nums; }
       #fps { padding: 6px 8px 8px; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-variant-numeric: tabular-nums; }
       #fps span { color: #5a6475; }
@@ -163,9 +163,8 @@
          (see src/main.ts, which makes them and puts #fps in the first and #stats in the last). -->
     <div id="cards"></div>
     <div id="fps">
-      <span>Min</span><b id="fps-min">–</b>
-      <span>Max</span><b id="fps-max">–</b>
-      <span>Avg</span><b id="fps-avg">–</b>
+      <span>Average FPS:</span><b id="fps-average">–</b>
+      <span>Minimum 1% FPS:</span><b id="fps-low">–</b>
       <p>Over the last 10 seconds</p>
     </div>
     <div id="stats">
