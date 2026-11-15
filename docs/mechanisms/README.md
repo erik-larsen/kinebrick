@@ -116,7 +116,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
 | [Sprung live axle](sprung-axle.md) | 6 | 2011 |  |  |  |  | 4 | 2 | 1 works, 3 no, 2 skipped |
 | [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 1 works, 1 partly, 1 no |
-| [Telelever](telelever.md) | 1 | 2017 |  |  |  |  | 1 |  | 1 no |
+| [Telelever](telelever.md) | 1 | 2017 |  |  |  |  | 1 |  | 1 works |
 | [Bogie](bogie.md) | 5 | 2007 |  |  |  | 2 | 1 | 2 | 3 works, 2 skipped |
 | [Track suspension](track-suspension.md) | 1 | 2019 |  |  |  |  | 1 |  | 1 skipped |
 
