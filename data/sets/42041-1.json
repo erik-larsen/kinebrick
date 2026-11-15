@@ -50,10 +50,14 @@
         ],
         "source": "book 1: rear axle steps 1-6 (pages 22-23)",
         "control": "p647 56908",
+        "lifted": true,
         "moves": [
-          "p649 56908",
+          "p649 56908"
+        ],
+        "stays": [
           "p153 62821"
-        ]
+        ],
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the casing p153 stays: with the truck lifted the free wheel is the easy way, so the casing stands (booklet book 1 page 22) (Erik signed it, \"Sign casings\", 2026-11-15)"
       },
       {
         "does": "The gear on top of the cab's roof steers the front wheels (hand of god steering): a long vertical shaft runs down behind the seat, two knob wheels turn the drive forward, and a 12 tooth gear drives the steering rack, whose links turn both front wheels.",

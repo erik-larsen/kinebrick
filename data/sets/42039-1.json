@@ -106,15 +106,15 @@
         ],
         "source": "book: the rear axle steps; inferred: how far it moves",
         "control": [
-          "p52 32494",
-          "p53 32494"
+          "p61 32524",
+          "p63 32524"
         ],
         "lifted": true,
         "moves": [
           "p80 4254",
           "p82 4254"
         ],
-        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
+        "note": "the controls are the two lower arms, not the drive shafts' CV parts (booklet step 12, page 8, and step 17, page 11) (Erik signed it, \"Sign suspension lists\", 2026-11-15); lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",

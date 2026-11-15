@@ -105,13 +105,13 @@
         "source": "book: front axle steps 8-37 (the differential in its housing)",
         "control": "p1866 23798",
         "lifted": true,
-        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the casing stays: its ring meshes the motor's pinion, which stands still, so it is held (Erik signed it, \"Sign casings\", 2026-11-15)",
         "moves": [
-          "p1862 23798",
-          "p490 62821"
+          "p1862 23798"
         ],
         "stays": [
-          "p878 42099 - 18575"
+          "p878 42099 - 18575",
+          "p490 62821"
         ]
       },
       {
@@ -122,13 +122,13 @@
         "source": "book: rear axle steps 127-140",
         "control": "p1868 23798",
         "lifted": true,
-        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the casing stays: its ring meshes the motor's pinion, which stands still, so it is held (Erik signed it, \"Sign casings\", 2026-11-15)",
         "moves": [
-          "p1864 23798",
-          "p43 62821"
+          "p1864 23798"
         ],
         "stays": [
-          "p363 42099 - 18575"
+          "p363 42099 - 18575",
+          "p43 62821"
         ]
       },
       {

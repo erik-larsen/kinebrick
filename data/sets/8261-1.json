@@ -35,27 +35,6 @@
         ]
       },
       {
-        "does": "The front axle swings side to side about the steering shaft it hangs from, so the front wheels can follow rough ground; the steering still works as it swings.",
-        "mechanisms": [
-          "pendular-axle"
-        ],
-        "source": "inferred: the front axle hangs from a 180 degree angle connector on the steering shaft (book step 20); not shown in the book",
-        "control": "p63 32524",
-        "lifted": true,
-        "moves": [
-          "p63 32524",
-          "p66 48989",
-          "p67 48989",
-          "p192 56145",
-          "p190 56145"
-        ],
-        "stays": [
-          "p0 32526",
-          "p18 32269"
-        ],
-        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
-      },
-      {
         "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
         "mechanisms": [
           "swing-arm"
@@ -69,13 +48,13 @@
           "p43 59426",
           "p52 59426",
           "p194 56145",
-          "p196 56145"
-        ],
-        "stays": [
-          "p0 32526",
+          "p196 56145",
           "p55 44294"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel; its two ends swing a little on their pins as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
+        "stays": [
+          "p0 32526"
+        ],
+        "note": "how far the arm can swing is set by the shock absorber's travel; its two ends swing a little on their pins as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel; p55 moves: the pivot axle goes through the axle holes at the ends of both bent beams, so it turns with the arm (booklet step 13, page 9) (Erik signed it, \"Sign suspension lists\", 2026-11-15)"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
@@ -102,7 +81,8 @@
     ],
     "questions": [
       {
-        "question": "Is the front axle pendular?"
+        "question": "Is the front axle pendular?",
+        "answer": "No. Function 2 dropped (Erik signed it, \"Drop 8261 function 2\", 2026-11-15): \"The front axle swings side to side about the steering shaft it hangs from, so the front wheels can follow rough ground; the steering still works as it swings.\" Booklet steps 20 and 21 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=14 to #page=16) hold the front axle fast in the chassis on two pins and the steering axle; it steers at its hubs and doesn't swing. The model's front axle differs from the booklet: a 180 degree connector p85 32034 with two 43093 (p84, p86) on top and no pins up from the top beam, and the 33299 on a 4L axle, not the 6L steering axle; that difference may become an erratum. The functions after it moved up one number."
       }
     ]
   },
