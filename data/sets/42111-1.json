@@ -69,10 +69,11 @@
         ],
         "source": "book: steps 58-73",
         "control": "p471 56908",
+        "lifted": true,
         "moves": [
           "p473 56908"
         ],
-        "note": "with the drive shaft held still, turning one rear wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held still\"): the drive shaft p56, which function 2 names (\"a drive shaft running forward\"), is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); with the drive shaft held still, turning one rear wheel turns the other the opposite way; the drive shaft is held, as the note says (\"with the drive shaft held still\"): the drive shaft p56, which function 2 names (\"a drive shaft running forward\"), is frozen while the wheel is turned, as a user freezes it in the viewer",
         "held": [
           "p56 59426"
         ]

@@ -104,6 +104,8 @@
         ],
         "source": "book: front axle steps 8-37 (the differential in its housing)",
         "control": "p1866 23798",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p1862 23798",
           "p490 62821"
@@ -119,6 +121,8 @@
         ],
         "source": "book: rear axle steps 127-140",
         "control": "p1868 23798",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p1864 23798",
           "p43 62821"

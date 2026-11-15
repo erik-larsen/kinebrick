@@ -81,6 +81,7 @@
         ],
         "source": "book: step 6 (differential); inferred: what it's for",
         "control": "p900 3739",
+        "lifted": true,
         "moves": [
           "p904 3739",
           "p150 4143"
@@ -89,7 +90,7 @@
           "p176 4143",
           "p514 3708"
         ],
-        "note": "Kinebrick today: partly, as checked, since the check holds nothing: the car stands on its rear wheels alone (the front ones are 9 LDU above the ground), and the drag rolls it along, turning the engine, rather than turning the other wheel the opposite way. With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts).; the engine is held, as the function says (\"with the engine held\"): the crankshaft p514, which it lists to stay and function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); Kinebrick today: partly, as checked, since the check holds nothing: the car stands on its rear wheels alone (the front ones are 9 LDU above the ground), and the drag rolls it along, turning the engine, rather than turning the other wheel the opposite way. With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts).; the engine is held, as the function says (\"with the engine held\"): the crankshaft p514, which it lists to stay and function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
         "held": [
           "p514 3708"
         ]

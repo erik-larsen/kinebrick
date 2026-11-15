@@ -89,6 +89,7 @@
         ],
         "source": "book: front axle (page 5); inferred: what it's for",
         "control": "p655 22969",
+        "lifted": true,
         "moves": [
           "p676 22969",
           "p637 6589",
@@ -101,7 +102,7 @@
         "held": [
           "p802 6573"
         ],
-        "note": "the drive shaft is held, as the function says (\"with the drive shaft held\"): p802, which it lists to stay and function 3 names in the drive, is frozen while the wheel is turned, as a user freezes it in the viewer"
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the drive shaft is held, as the function says (\"with the drive shaft held\"): p802, which it lists to stay and function 3 names in the drive, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The rear differential does the same for the rear wheels.",
@@ -110,6 +111,8 @@
         ],
         "source": "book: rear axle (page 53); inferred: what it's for",
         "control": "p1049 22969",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p1067 22969",
           "p1019 6589",

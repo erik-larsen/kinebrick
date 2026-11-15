@@ -39,6 +39,8 @@
         ],
         "source": "book: step 7 (the differential's gears)",
         "control": "p971 56145",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p15 59426",
           "p27 3707",

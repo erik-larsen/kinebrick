@@ -69,6 +69,7 @@
         ],
         "source": "book page 490 (three differentials drawn); inferred: the test, from the model",
         "control": "p2606 42110 - 49294",
+        "lifted": true,
         "moves": [
           "p2613 42110 - 49294",
           "p38 62821"
@@ -79,7 +80,7 @@
         "held": [
           "p242 3708"
         ],
-        "note": "the engine is held, as the function says (\"with the engine held\"): p242, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the engine is held, as the function says (\"with the engine held\"): p242, which it lists to stay, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The four-speed sequential gearbox at the back: rocking the round + / - knob between the front seats left and right turns the rod p385 running back to a 4 tooth knob gear, which turns the changeover rotary catch one step, moving the driving rings to the next gear up or down.",
