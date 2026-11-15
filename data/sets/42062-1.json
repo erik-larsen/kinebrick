@@ -166,9 +166,9 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
-    "seconds": 117,
+    "seconds": 90,
     "counts": {
       "partly": 3,
       "works": 5,
@@ -228,7 +228,7 @@
         ],
         "cause": "not-driven",
         "detail": "p87 48989",
-        "seconds": 3.2
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -263,7 +263,7 @@
         ],
         "cause": "not-driven",
         "detail": "p188 32525",
-        "seconds": 3.2
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -371,7 +371,7 @@
           [],
           []
         ],
-        "seconds": 34.3
+        "seconds": 25.8
       },
       {
         "result": "no",
@@ -430,7 +430,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -488,7 +488,7 @@
         ],
         "cause": "not-driven",
         "detail": "p406 48989",
-        "seconds": 4.6
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -505,12 +505,12 @@
               0
             ],
             "p510 18940": [
-              0.0352,
-              6.49
+              0.0343,
+              6.32
             ],
             "p547 32524": [
               8.43e-8,
-              21
+              20.4
             ],
             "p508 32270": [
               0,
@@ -530,7 +530,7 @@
             ]
           ]
         ],
-        "seconds": 6.7
+        "seconds": 5
       },
       {
         "result": "works",
@@ -552,7 +552,7 @@
             ],
             "p510 18940": [
               0,
-              5.68e-13
+              1.21e-12
             ]
           }
         ],
@@ -571,7 +571,7 @@
         "pushed": [
           true
         ],
-        "seconds": 9.2
+        "seconds": 6.8
       },
       {
         "result": "works",
@@ -585,7 +585,7 @@
           {
             "p511 18942": [
               0,
-              5.07e-13
+              4.08e-13
             ]
           }
         ],
@@ -601,7 +601,7 @@
             ]
           ]
         ],
-        "seconds": 6.1
+        "seconds": 4.5
       },
       {
         "result": "no",
@@ -649,7 +649,7 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 31.2
+        "seconds": 23.1
       },
       {
         "result": "works",
@@ -725,7 +725,7 @@
           [],
           []
         ],
-        "seconds": 17.2
+        "seconds": 16
       }
     ]
   }

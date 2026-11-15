@@ -107,7 +107,7 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -166,11 +166,11 @@
             ],
             "p32 4262": [
               0,
-              6.39e-13
+              4.77e-13
             ],
             "p26 2695": [
               0.0139,
-              2.2e-13
+              0
             ]
           }
         ],
@@ -268,7 +268,7 @@
         "pushed": [
           true
         ],
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",

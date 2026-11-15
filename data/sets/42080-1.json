@@ -129,12 +129,13 @@
     ]
   },
   "generated": {
-    "commit": "1ef58455",
+    "commit": "00ab5bf2",
     "date": "2026-11-15",
-    "seconds": 178,
+    "seconds": 123,
     "counts": {
       "works": 5,
       "not back": 2,
+      "pivoted": 1,
       "no": 3
     },
     "loose": [
@@ -390,8 +391,8 @@
               1.5
             ],
             [
-              559.63,
-              121.43
+              551.53,
+              119.65
             ]
           ]
         ],
@@ -407,7 +408,12 @@
         "pushed": [
           true
         ],
-        "seconds": 94.9
+        "pivoted": {
+          "slide": 415.94,
+          "rise": 270.32,
+          "tyre": "p1074 55976"
+        },
+        "seconds": 62.4
       },
       {
         "result": "no",
@@ -432,7 +438,7 @@
           "p1893 42080 - 18575 is part of the frame"
         ],
         "cause": "control-fixed",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -487,7 +493,7 @@
             ]
           ]
         ],
-        "seconds": 5.3
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -528,7 +534,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 15.2
+        "seconds": 11.1
       },
       {
         "result": "no",
@@ -576,7 +582,7 @@
           true
         ],
         "cause": "stopped-early",
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -601,7 +607,7 @@
             ]
           ]
         ],
-        "seconds": 7.3
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -741,7 +747,7 @@
           [],
           []
         ],
-        "seconds": 53.3
+        "seconds": 38.4
       }
     ]
   }
