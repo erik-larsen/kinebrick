@@ -4,7 +4,7 @@ A pump, worked by hand or by a motor, fills the pneumatic system with air. (Powe
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): The hand pump: pushing the red plunger down blows air through the valves, and its spring pushes it back up.
 
-Used in 12 of the 186 surveyed sets, by 13 functions. Kinebrick: 2 works, 3 partly, 1 no, 7 skipped.
+Used in 12 of the 186 surveyed sets, by 13 functions. Kinebrick: 3 works, 3 partly, 7 skipped.
 
 ## By decade
 
@@ -42,7 +42,7 @@ Each detail by the set it first appears in.
 
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
-- *compressor:* The 9V motor, switched at the battery box on the cab roof, runs the compressor: a rubber band from the motor turns a pulley on a crank, and the crank works a small pump on its pivot, feeding air to the four valves. (no)
+- *compressor:* The 9V motor, switched at the battery box on the cab roof, runs the compressor: a rubber band from the motor turns a pulley on a crank, and the crank works a small pump on its pivot, feeding air to the four valves. (works)
 
 **2001, [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1)**
 
