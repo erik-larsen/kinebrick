@@ -169,7 +169,7 @@ interface Checked {
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
   movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
-  pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted)
+  pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
 }
