@@ -37,6 +37,21 @@ export function tyres(solver: Kinematics, eq: Equations) {
       for (let k = 0; k < 3; k++) addPointVelocity(row, tread.body, point, k, dir.getComponent(k));
       return row;
     };
+    // A steered tyre pivots on the ground about the upright axis its wheel steers on, as a parked
+    // car's does: its contact, carried round that axis as part of the wheel, isn't counted as
+    // scrubbing sideways or lifting (see steeringPivot). What the steering joint's turning moves
+    // the contact by is taken out of those rows.
+    const pivot = solver.steeringPivot(i, p, forward);
+    const pivoting = (row: Row, dir: Vector3) => {
+      if (!pivot) return row;
+      const j = solver.mech.joints[pivot.joint];
+      const c = new Vector3().crossVectors(pivot.axis, p.clone().sub(pivot.at)).dot(dir);
+      for (let k = 0; k < 3; k++) {
+        row[6 * j.bodyB + k] -= c * pivot.axis.getComponent(k);
+        row[6 * j.bodyA + k] += c * pivot.axis.getComponent(k);
+      }
+      return row;
+    };
     if (!rolling.has(tread.body)) rolling.set(tread.body, { axis, rows: [] });
     // (A track rolls at its path's radius, nearer the axle than where it touches; see Tread.)
     const hub = solver.onAxis(tread.body, tread.center.clone().applyMatrix4(pose), axis);
@@ -54,9 +69,9 @@ export function tyres(solver: Kinematics, eq: Equations) {
       // closing the loops: how far it stands off the rail head.
       add(along(p, DOWN), (solver.groundY ?? p.y) - p.y);
     } else if (slip) {
-      if (tread.track === undefined) slip.sideways.push(along(p, sideways));
+      if (tread.track === undefined) slip.sideways.push(pivoting(along(p, sideways), sideways));
       slip.travel.push(along(hub, forward));
-      slip.lift.push(along(p, DOWN));
+      slip.lift.push(pivoting(along(p, DOWN), DOWN));
       const rise = new Array(n).fill(0);
       for (let k = 0; k < 3; k++) {
         addPointVelocity(rise, solver.frameOf[tread.body], hub, k, DOWN.getComponent(k));
@@ -64,7 +79,7 @@ export function tyres(solver: Kinematics, eq: Equations) {
       }
       slip.rise.push(rise);
     } else {
-      add(along(p, DOWN));
+      add(pivoting(along(p, DOWN), DOWN));
     }
   }
   for (const { rows: tyres } of [...rolling.values(), ...tracks.values()]) {
