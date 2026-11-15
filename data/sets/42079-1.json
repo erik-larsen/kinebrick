@@ -115,12 +115,12 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "b3cc95e2",
     "date": "2026-11-15",
-    "seconds": 33,
+    "seconds": 23,
     "counts": {
-      "partly": 2,
-      "works": 3,
+      "partly": 1,
+      "works": 4,
       "not back": 1,
       "torn": 1,
       "no": 1
@@ -253,7 +253,7 @@
         ],
         "cause": "loose-part",
         "detail": "p524 32524",
-        "seconds": 7.7
+        "seconds": 6.9
       },
       {
         "result": "works",
@@ -313,7 +313,7 @@
             "dead point"
           ]
         ],
-        "seconds": 3.4
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -363,7 +363,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -481,10 +481,10 @@
             "p251 2851"
           ]
         ],
-        "seconds": 9.7
+        "seconds": 8.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -495,20 +495,17 @@
             -1.5
           ]
         ],
-        "moved": [
-          "p245 2853"
-        ],
         "rates": [
           {
             "p245 2853": [
-              1.4,
-              14
+              0,
+              0
             ]
           },
           {
             "p245 2853": [
-              1.4,
-              14
+              0,
+              0
             ]
           }
         ],
@@ -560,21 +557,7 @@
           [],
           []
         ],
-        "wrongBy": [
-          [
-            "p245 2853"
-          ],
-          [
-            "p245 2853"
-          ]
-        ],
-        "judged": [
-          0,
-          0
-        ],
-        "cause": "stay-chosen",
-        "detail": "p245 2853",
-        "seconds": 9.7
+        "seconds": 2.5
       },
       {
         "result": "no",

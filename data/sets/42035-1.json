@@ -95,12 +95,11 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "b3cc95e2",
     "date": "2026-11-15",
-    "seconds": 5,
+    "seconds": 4,
     "counts": {
-      "works": 4,
-      "partly": 1
+      "works": 5
     },
     "loose": [
       "p123 14682",
@@ -253,21 +252,18 @@
         "seconds": 0.6
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p38 60485 against p0 32525"
-        ],
         "rates": [
           {
             "p38 60485 against p0 32525": [
-              1.67,
-              9.63e-14
+              0,
+              0
             ]
           }
         ],
@@ -295,12 +291,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "stay-forced",
-        "detail": "p38 60485 against p0 32525",
-        "seconds": 1.4
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -366,7 +357,7 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 1.8
       },
       {
         "result": "works",

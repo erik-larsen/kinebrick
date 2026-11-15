@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 146 works, 4 partly, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 149 works, 1 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -302,7 +302,7 @@ Each detail by the set it first appears in.
 
 **2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1)**
 
-- The left rear wheel turns on its own short axle, so only the right one drives the tedder. (partly)
+- The left rear wheel turns on its own short axle, so only the right one drives the tedder. (works)
 
 **2012, [9394 Jet Plane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9394-1)**
 
@@ -363,7 +363,7 @@ Each detail by the set it first appears in.
 
 **2015, [42035 Mining Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42035-1)**
 
-- The left rear wheel rolls freely on its own axle. (partly)
+- The left rear wheel rolls freely on its own axle. (works)
 - The two front wheels roll freely on their steering hubs. (works)
 
 **2015, [42036 Street Motorcycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42036-1)**
@@ -496,7 +496,7 @@ Each detail by the set it first appears in.
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
-- The rear wheels roll freely; they aren't driven. (partly)
+- The rear wheels roll freely; they aren't driven. (works)
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
