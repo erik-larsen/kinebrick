@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "72e665da",
-    "date": "2026-11-14",
-    "seconds": 8081,
+    "commit": "ec7b2fa0",
+    "date": "2026-11-15",
+    "seconds": 5657,
     "counts": {
       "works": 4,
       "partly": 4,
@@ -234,7 +234,7 @@
             ]
           ]
         ],
-        "seconds": 171.8
+        "seconds": 101
       },
       {
         "result": "partly",
@@ -269,7 +269,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p464 92695 against p463 92693c01",
-        "seconds": 749.1
+        "seconds": 575.4
       },
       {
         "result": "partly",
@@ -309,7 +309,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p528 32140",
-        "seconds": 747.9
+        "seconds": 573.4
       },
       {
         "result": "partly",
@@ -344,7 +344,7 @@
         ],
         "cause": "not-driven",
         "detail": "p624 62274c01 against p623 62271c01",
-        "seconds": 739.1
+        "seconds": 503.4
       },
       {
         "result": "works",
@@ -369,7 +369,7 @@
             ]
           ]
         ],
-        "seconds": 741
+        "seconds": 527
       },
       {
         "result": "not checked"
@@ -418,7 +418,7 @@
             ]
           ]
         ],
-        "seconds": 171
+        "seconds": 98.1
       },
       {
         "result": "partly",
@@ -438,30 +438,30 @@
         "rates": [
           {
             "p22 62821": [
-              0.978,
-              1.15e-10
+              1.02,
+              4.75e-10
             ],
             "p778 2853": [
-              1.37,
-              2.64e-13
+              1.43,
+              2.86e-13
             ],
             "p779 2852": [
-              0.188,
-              13.7
+              0.196,
+              14.3
             ],
             "p790 2851 against p472 32278": [
               5.62e-8,
-              10.4
+              10.9
             ]
           },
           {
             "p22 62821": [
               0.978,
-              1e-10
+              2.78e-10
             ],
             "p778 2853": [
               1.37,
-              2.93e-13
+              2.51e-13
             ],
             "p779 2852": [
               0.188,
@@ -513,7 +513,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p790 2851 against p472 32278",
-        "seconds": 1565.1
+        "seconds": 1087.2
       },
       {
         "result": "works",
@@ -625,7 +625,7 @@
           [],
           []
         ],
-        "seconds": 3154.3
+        "seconds": 2171.7
       }
     ]
   }

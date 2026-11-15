@@ -49,6 +49,8 @@
         ],
         "source": "book: the rear module's steps 2-7 (differential and the drive shafts with their constant velocity joints, pages 32-35)",
         "control": "p489 45982",
+        "lifted": true,
+        "note": "lifted: the function's own words say so (\"with the car lifted\"), so it is worked with the car off the floor (decision 36)",
         "moves": [
           "p493 45982",
           "p225 62821"
@@ -136,13 +138,13 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "fbb48a9b",
     "date": "2026-11-15",
-    "seconds": 686,
+    "seconds": 104,
     "counts": {
       "works": 4,
-      "not back": 2,
       "partly": 1,
+      "not back": 1,
       "no": 1,
       "skipped": 1
     },
@@ -228,54 +230,44 @@
             ]
           ]
         ],
-        "seconds": 20.8
+        "seconds": 33.3
       },
       {
         "result": "works",
         "turned": [
           [
-            1.24,
-            -1.07
+            1.6,
+            -1.6
           ]
         ],
         "rates": [
           {
             "p493 45982": [
-              1.04,
-              0.00281
+              0.432,
+              0.00117
             ],
             "p225 62821": [
-              1.02,
-              5.2e-12
+              0.284,
+              3.44e-13
             ]
           }
         ],
         "back": [
           [
             [
-              156.12,
-              101.74
+              0,
+              0.01
             ],
             [
-              133.03,
-              84.24
+              0,
+              0.01
             ]
-          ]
-        ],
-        "strayed": [
-          "p490 56908",
-          "p349 32270"
-        ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 626.9
+        "seconds": 10.5
       },
       {
         "result": "partly",
@@ -342,7 +334,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p493 45982",
-        "seconds": 22.2
+        "seconds": 34.8
       },
       {
         "result": "no",
@@ -442,7 +434,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p96 4254",
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -536,7 +528,7 @@
             "p292 4254"
           ]
         ],
-        "seconds": 9.6
+        "seconds": 15.2
       },
       {
         "result": "skipped"
@@ -564,7 +556,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 4.9
       }
     ]
   }
