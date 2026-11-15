@@ -15,12 +15,14 @@ describe('a shock absorber in two parts', () => {
   const mech = inferMechanism([placed('4255.dat', 0, 0, 0), placed('4254.dat', 0, 110, 0)], table, roles, []);
   const slide = mech.joints.find((j) => j.kind === 'slide');
 
-  it('slides, and turns, between its end stops: fully out as built, 20 LDU to fully in', () => {
+  // Each end stop has ALIGN_TOLERANCE (1 LDU) beyond it, the tolerance the rod is found in its
+  // cylinder with (see shockAbsorbers in pistons.ts).
+  it('slides, and turns, between its end stops: fully out as built, 20 LDU to fully in, and 1 LDU beyond each', () => {
     expect(slide).toBeDefined();
     expect(slide!.turns).toBe(true);
     const [lo, hi] = slide!.range!;
-    expect(Math.min(Math.abs(lo), Math.abs(hi))).toBeCloseTo(0, 6);
-    expect(Math.max(Math.abs(lo), Math.abs(hi))).toBeCloseTo(20, 6);
+    expect(Math.min(Math.abs(lo), Math.abs(hi))).toBeCloseTo(1, 6);
+    expect(Math.max(Math.abs(lo), Math.abs(hi))).toBeCloseTo(21, 6);
   });
 
   it('is held by its spring at rest: its slide and its joint say so', () => {
