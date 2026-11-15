@@ -124,9 +124,9 @@
     ]
   },
   "generated": {
-    "commit": "6f940275",
+    "commit": "42e25956",
     "date": "2026-11-15",
-    "seconds": 4,
+    "seconds": 5,
     "counts": {
       "works": 4,
       "not back": 1,
@@ -188,7 +188,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -275,7 +275,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -443,7 +443,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1.2
       }
     ]
   }

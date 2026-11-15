@@ -199,9 +199,9 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
-    "seconds": 456,
+    "seconds": 458,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -282,7 +282,7 @@
             ]
           ]
         ],
-        "seconds": 43.5
+        "seconds": 43.3
       },
       {
         "result": "partly",
@@ -362,7 +362,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 31.2
+        "seconds": 30.9
       },
       {
         "result": "partly",
@@ -456,7 +456,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 24.5
+        "seconds": 24.8
       },
       {
         "result": "partly",
@@ -496,17 +496,17 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 12.5
+        "seconds": 12.6
       },
       {
         "result": "works",
         "turned": [
           [
-            0.03,
+            0.07,
             -0.37
           ],
           [
-            0.03,
+            0.07,
             -0.37
           ]
         ],
@@ -578,32 +578,32 @@
         "result": "works",
         "turned": [
           [
-            0.07,
-            -0.07
+            0.1,
+            -0.1
           ],
           [
-            0.07,
-            -0.07
+            0.1,
+            -0.1
           ]
         ],
         "rates": [
           {
             "p2725 23800": [
-              0.00513,
+              0.00363,
               100
             ],
             "p2728 23800": [
-              0.00902,
+              0.00698,
               29.1
             ]
           },
           {
             "p2725 23800": [
-              0.00915,
+              0.00712,
               29.1
             ],
             "p2728 23800": [
-              0.00497,
+              0.00348,
               100
             ]
           }
@@ -611,22 +611,22 @@
         "back": [
           [
             [
-              0.15,
-              0.05
+              0.22,
+              0.08
             ],
             [
-              0.19,
-              0.05
+              0.28,
+              0.08
             ]
           ],
           [
             [
-              0.15,
-              0.05
+              0.22,
+              0.08
             ],
             [
-              0.19,
-              0.05
+              0.28,
+              0.08
             ]
           ]
         ],
@@ -650,7 +650,7 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 12.3
+        "seconds": 16.9
       },
       {
         "result": "skipped"
@@ -731,7 +731,7 @@
           [],
           []
         ],
-        "seconds": 71
+        "seconds": 70.6
       },
       {
         "result": "works",
@@ -770,7 +770,7 @@
         "pushed": [
           true
         ],
-        "seconds": 98.9
+        "seconds": 98
       },
       {
         "result": "no",
@@ -829,7 +829,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 23.7
+        "seconds": 23.8
       },
       {
         "result": "works",
@@ -865,7 +865,7 @@
         "pushed": [
           true
         ],
-        "seconds": 44.4
+        "seconds": 43.3
       },
       {
         "result": "works",
@@ -909,7 +909,7 @@
           [],
           []
         ],
-        "seconds": 25.1
+        "seconds": 24.8
       }
     ]
   }

@@ -107,7 +107,7 @@
     ]
   },
   "generated": {
-    "commit": "6f940275",
+    "commit": "42e25956",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
@@ -190,7 +190,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -330,7 +330,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p55 44294",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -410,7 +410,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.6
       }
     ]
   }

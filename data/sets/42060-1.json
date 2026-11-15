@@ -131,7 +131,7 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
     "seconds": 3,
     "counts": {
@@ -204,7 +204,7 @@
             "dead point"
           ]
         ],
-        "cause": "stopped-early",
+        "cause": "one-link-too-many",
         "seconds": 0.1
       },
       {

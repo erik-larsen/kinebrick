@@ -136,7 +136,7 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "42e25956",
     "date": "2026-11-15",
     "seconds": 28,
     "counts": {
@@ -275,7 +275,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p561 6539 against p558 3706",
-        "seconds": 1.3
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -422,7 +422,7 @@
           "p50 32039, worked first, went 0 of -0.5"
         ],
         "cause": "first-failed",
-        "seconds": 2.9
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -530,7 +530,7 @@
           [],
           []
         ],
-        "seconds": 17.8
+        "seconds": 17.7
       },
       {
         "result": "not checked",
