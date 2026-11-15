@@ -216,13 +216,28 @@
         }
       ],
       "reply": "Sign the two audit rows"
+    },
+    {
+      "id": "monorail-look",
+      "kind": "Look, if you like",
+      "title": "The monorail at 60 and 120 rpm, on screen",
+      "since": "2026-11-15",
+      "what": "You saw the monorail sets go choppy above 70 rpm. The motor's step is mended, and the train branch runs again after today's merge: all 51 train functions work, and the 6990 goes round its track at 60 and 120 rpm. No session can watch the animation as you see it (their panes are hidden), so only you can say whether it is smooth. The motor's own work leaves room for about 30 frames a second at 120 rpm.",
+      "effect": "Optional. Nothing waits on it.",
+      "links": [
+        {
+          "label": "6990 at 120 rpm",
+          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=120&autospin=652"
+        },
+        {
+          "label": "6990 at 60 rpm",
+          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=60&autospin=652"
+        }
+      ],
+      "reply": "The monorail is smooth now"
     }
   ],
   "coming": [
-    {
-      "title": "The monorail at 120 rpm: not ready to look at",
-      "what": "After today's merge of preview into the train branch the monorails stop at once in the viewer: preview's stricter test of which parts touch as built now watches parts of one train that sit a few LDU apart, and they meet on a curve. The train owner is mending it on the train branch (a wider distance for layouts only). Claude puts the link back under \"waiting\" when the 6990 runs again."
-    },
     {
       "title": "42099 4x4 X-treme Off-Roader: the rear differential's side gears",
       "what": "A fault in the published file: both side gears are drawn 3 LDU off the casing's line, which locks the differential. The worker is writing the correction with its booklet page. It is the only differential in the 190 models that is off."
