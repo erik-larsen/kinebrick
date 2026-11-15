@@ -89,6 +89,7 @@
         ],
         "source": "book: front axle (page 5); inferred: what it's for",
         "control": "p655 22969",
+        "lifted": true,
         "moves": [
           "p676 22969",
           "p637 6589",
@@ -101,7 +102,7 @@
         "held": [
           "p802 6573"
         ],
-        "note": "the drive shaft is held, as the function says (\"with the drive shaft held\"): p802, which it lists to stay and function 3 names in the drive, is frozen while the wheel is turned, as a user freezes it in the viewer"
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the drive shaft is held, as the function says (\"with the drive shaft held\"): p802, which it lists to stay and function 3 names in the drive, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The rear differential does the same for the rear wheels.",
@@ -110,6 +111,8 @@
         ],
         "source": "book: rear axle (page 53); inferred: what it's for",
         "control": "p1049 22969",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p1067 22969",
           "p1019 6589",
@@ -207,9 +210,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "8ff7ad42",
     "date": "2026-11-15",
-    "seconds": 76,
+    "seconds": 72,
     "counts": {
       "partly": 7,
       "not checked": 1,
@@ -321,7 +324,7 @@
         ],
         "cause": "not-driven",
         "detail": "p718 3647",
-        "seconds": 5.4
+        "seconds": 5.5
       },
       {
         "result": "partly",
@@ -399,7 +402,7 @@
         ],
         "cause": "not-driven",
         "detail": "p705 6592",
-        "seconds": 5.1
+        "seconds": 5
       },
       {
         "result": "partly",
@@ -509,14 +512,11 @@
           "p637 6589",
           "p638 6589"
         ],
-        "moved": [
-          "p1049 22969"
-        ],
         "rates": [
           {
             "p676 22969": [
               1,
-              3.95e-13
+              2.19e-13
             ],
             "p637 6589": [
               0,
@@ -528,11 +528,11 @@
             ],
             "p802 6573": [
               0,
-              8.29e-15
+              0
             ],
             "p1049 22969": [
-              1,
-              9.1e-10
+              0,
+              0
             ]
           }
         ],
@@ -565,7 +565,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 5.2
+        "seconds": 3.1
       },
       {
         "result": "partly",
@@ -576,17 +576,15 @@
           ]
         ],
         "still": [
+          "p1067 22969",
           "p1019 6589",
           "p1020 6589"
-        ],
-        "moved": [
-          "p655 22969"
         ],
         "rates": [
           {
             "p1067 22969": [
-              1,
-              6.21e-10
+              0,
+              0
             ],
             "p1019 6589": [
               0,
@@ -598,11 +596,11 @@
             ],
             "p802 6573": [
               0,
-              7.11e-15
+              0
             ],
             "p655 22969": [
-              1,
-              5.9e-13
+              0,
+              0
             ]
           }
         ],
@@ -634,8 +632,8 @@
           0
         ],
         "cause": "not-driven",
-        "detail": "p1019 6589",
-        "seconds": 5.3
+        "detail": "p1067 22969",
+        "seconds": 3.5
       },
       {
         "result": "partly",
@@ -698,7 +696,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 3.5
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -848,7 +846,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 15.7
+        "seconds": 14.8
       },
       {
         "result": "skipped",
@@ -950,7 +948,7 @@
             "p274 32189"
           ]
         ],
-        "seconds": 27.9
+        "seconds": 27.4
       },
       {
         "result": "skipped",
@@ -1035,7 +1033,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 2
+        "seconds": 2.1
       }
     ]
   }

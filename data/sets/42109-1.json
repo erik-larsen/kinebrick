@@ -39,6 +39,8 @@
         ],
         "source": "book: step 7 (the differential's gears)",
         "control": "p971 56145",
+        "lifted": true,
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
         "moves": [
           "p15 59426",
           "p27 3707",
@@ -106,7 +108,7 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "8ff7ad42",
     "date": "2026-11-15",
     "seconds": 2,
     "counts": {
@@ -193,7 +195,7 @@
         ],
         "cause": "not-driven",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -207,19 +209,19 @@
           {
             "p15 59426": [
               1,
-              1.14e-14
+              0
             ],
             "p27 3707": [
               1,
-              1.14e-14
+              0
             ],
             "p969 56145": [
               1,
-              1.14e-14
+              0
             ],
             "p351 32498": [
               0,
-              1.72e-14
+              0
             ],
             "p40 22172": [
               0,
@@ -251,7 +253,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -339,7 +341,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -405,7 +407,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "not checked",
@@ -456,7 +458,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 0.6
+        "seconds": 0.4
       }
     ]
   }
