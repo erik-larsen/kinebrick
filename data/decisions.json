@@ -1,0 +1,288 @@
+{
+  "state": {
+    "main": {
+      "commit": "d69e86dd",
+      "works": 673,
+      "moved": "2026-11-15"
+    },
+    "preview": {
+      "commit": "077c09ea",
+      "works": 672,
+      "partly": 262,
+      "no": 114,
+      "functions": 1227
+    },
+    "viewer": "The viewer links open the preview viewer on this Mac (http://localhost:5174). If one does not open, tell Claude and it starts the server again."
+  },
+  "waiting": [
+    {
+      "id": "worker-waits",
+      "kind": "Answer in a session",
+      "title": "The worker session waits for your answer",
+      "since": "2026-11-15",
+      "what": "The session \"Inference worker: split src/mechanism.ts\" has stopped on a request that only you can answer, in its own window (most likely a permission for a command). Claude here cannot see or answer it. Its work stands still until you do: bringing the axle role up to preview, and the 42099's correction.",
+      "effect": "Open that session in the sidebar and answer its request.",
+      "reply": "I answered the worker"
+    },
+    {
+      "id": "42040-seats",
+      "kind": "Sign-off",
+      "title": "42040 Fire Plane: the hatch group onto its pins",
+      "since": "2026-11-14",
+      "what": "A correction to the published file. The hatch behind the engine, with its lever group, is drawn 2 LDU off its two pins, so the whole group hangs on nothing. The correction moves it 2 LDU onto the pins.",
+      "effect": "Function 3 (the hatch flips forward to fill the tank) goes from partly to working.",
+      "confidence": "The worker rates it medium. Claude has not looked at the booklet pages.",
+      "links": [
+        {
+          "label": "Booklet p. 48",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=48"
+        },
+        {
+          "label": "p. 89",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=89"
+        },
+        {
+          "label": "p. 115",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6133208.pdf#page=115"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42040-1+Fire+Plane.mpd&show=249,259,251"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42040-1+Fire+Plane.mpd&option=proposed&show=249,259,251"
+        }
+      ],
+      "reply": "Sign 42040"
+    },
+    {
+      "id": "42093-gear",
+      "kind": "Sign-off",
+      "title": "42093 Chevrolet Corvette ZR1: an 8-tooth gear on the engine shaft",
+      "since": "2026-11-14",
+      "what": "A correction to the published file. The shaft that drives the engine has a 12-tooth gear where step 2 of the instructions puts an 8-tooth gear. The parts list has two 8-tooth and three 12-tooth gears; the file has one and four. The correction removes the 12-tooth gear and adds the 8-tooth gear in its place.",
+      "effect": "The new gear meshes the crankshaft's gear, so pushing the car turns the crankshaft. The pistons still do not move, so function 1 stays skipped.",
+      "confidence": "The worker rates it high. Claude checked the mesh in the viewer, not the booklet page.",
+      "links": [
+        {
+          "label": "Booklet p. 4",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6270469.pdf#page=4"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42093-1+Chevrolet+Corvette+ZR1.mpd&show=7"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42093-1+Chevrolet+Corvette+ZR1.mpd&option=proposed&show=575"
+        }
+      ],
+      "reply": "Sign 42093"
+    },
+    {
+      "id": "audit-agree",
+      "kind": "Sign-off",
+      "title": "Five audit rows where the booklet and the model agree by trial",
+      "since": "2026-11-14",
+      "what": "Changes to our function lists. The worker set each control the way the booklet says and ran it in the model. A sign-off fixes the directions in the list; on the 42052 and the 42070 it does not make the functions that fail for other reasons work.",
+      "rows": [
+        {
+          "set": "42048 Race Kart",
+          "fn": "2, 3",
+          "says": "Gear 1 is the 1:1 path, gear 2 the 8-to-24 path.",
+          "links": [
+            {
+              "label": "p. 81",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6150251.pdf#page=81"
+            },
+            {
+              "label": "viewer",
+              "url": "http://localhost:5174/?file=omr/42048-1+Race+Kart.mpd&show=73,64&autospin=368,paused"
+            }
+          ]
+        },
+        {
+          "set": "42048 Race Kart",
+          "fn": "2",
+          "says": "Handle forward and down = gear 1, level = neutral, up and back = gear 2.",
+          "links": [
+            {
+              "label": "p. 81",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6150251.pdf#page=81"
+            },
+            {
+              "label": "viewer",
+              "url": "http://localhost:5174/?file=omr/42048-1+Race+Kart.mpd&show=368,278,215,67&autospin=368,paused"
+            }
+          ]
+        },
+        {
+          "set": "42052 Heavy Lift Helicopter",
+          "fn": "2 to 5",
+          "says": "Knob toward the tail = rotors (A) and doors (C); toward the nose = ramp (B) and winch (D). Our list has A and B the other way round.",
+          "links": [
+            {
+              "label": "p. 190",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182578.pdf#page=190"
+            },
+            {
+              "label": "viewer",
+              "url": "http://localhost:5174/?file=omr/42052-1+Heavy+Lift+Helicopter.mpd&show=407,272,276,278&autospin=407,paused"
+            }
+          ]
+        },
+        {
+          "set": "42070 6x6 All Terrain Tow Truck",
+          "fn": "1, 3 to 9",
+          "says": "Left lever: tip down = drive, up = crane. Right lever: tip up = slewing and winch, down = outriggers and boom.",
+          "links": [
+            {
+              "label": "p. 394",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=394"
+            },
+            {
+              "label": "p. 396",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=396"
+            },
+            {
+              "label": "p. 397",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=397"
+            },
+            {
+              "label": "viewer",
+              "url": "http://localhost:5174/?file=omr/42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=402,372,405,448,381&autospin=402,paused"
+            }
+          ]
+        },
+        {
+          "set": "42039 24 Hours Race Car",
+          "fn": "8, 9",
+          "says": "Lever position 1 = doors, position 2 = engine cover. (Claude looked at these two pages: the inset is numbered 1 and 2.)",
+          "links": [
+            {
+              "label": "p. 238",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=238"
+            },
+            {
+              "label": "p. 239",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=239"
+            },
+            {
+              "label": "viewer",
+              "url": "http://localhost:5174/?file=omr/42039-1+24+Hours+Race+Car.mpd&show=813,636,670,653&autospin=813,paused"
+            }
+          ]
+        }
+      ],
+      "reply": "Sign the five audit rows"
+    },
+    {
+      "id": "audit-kind",
+      "kind": "Sign-off",
+      "title": "Two audit rows where booklet and file agree on what the function is",
+      "since": "2026-11-14",
+      "what": "Changes to our function lists. The trial could not move these, because our reading still holds the parts rigid. The file's parts match the booklet's description.",
+      "rows": [
+        {
+          "set": "42039 24 Hours Race Car",
+          "fn": "6",
+          "says": "Our list: the rear axle is sprung on two shock absorbers. The booklet: independent rear suspension, arms and hubs each side, with rockers and two crosswise shock absorbers, like the front.",
+          "links": [
+            {
+              "label": "p. 6 to 13",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=6"
+            },
+            {
+              "label": "viewer",
+              "url": "http://localhost:5174/?file=omr/42039-1+24+Hours+Race+Car.mpd&show=52,53&autospin=52,paused"
+            }
+          ]
+        },
+        {
+          "set": "42042 Crawler Crane",
+          "fn": "6",
+          "says": "Our list: four levers, in two pairs. The booklet: two levers, each in an H gate; left lever A or B, right lever C or D.",
+          "links": [
+            {
+              "label": "p. 234",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6151636.pdf#page=234"
+            },
+            {
+              "label": "viewer",
+              "url": "http://localhost:5174/?file=omr/42042-1+Crawler+Crane.mpd&show=829,840,575,576,577&autospin=829,paused"
+            }
+          ]
+        }
+      ],
+      "reply": "Sign the two audit rows"
+    },
+    {
+      "id": "monorail-look",
+      "kind": "Look, if you like",
+      "title": "The monorail at 60 and 120 rpm, on screen",
+      "since": "2026-11-15",
+      "what": "You saw the monorail sets go choppy above 70 rpm. The motor's step is mended, and the train branch runs again after today's merge: all 51 train functions work, and the 6990 goes round its track at 60 and 120 rpm. No session can watch the animation as you see it (their panes are hidden), so only you can say whether it is smooth. The motor's own work leaves room for about 30 frames a second at 120 rpm.",
+      "effect": "Optional. Nothing waits on it.",
+      "links": [
+        {
+          "label": "6990 at 120 rpm",
+          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=120&autospin=652"
+        },
+        {
+          "label": "6990 at 60 rpm",
+          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=60&autospin=652"
+        }
+      ],
+      "reply": "The monorail is smooth now"
+    }
+  ],
+  "coming": [
+    {
+      "title": "42099 4x4 X-treme Off-Roader: the rear differential's side gears",
+      "what": "A fault in the published file: both side gears are drawn 3 LDU off the casing's line, which locks the differential. The worker is writing the correction with its booklet page. It is the only differential in the 190 models that is off."
+    },
+    {
+      "title": "42109 Top Gear Rally Car: a fourth wrong part at the right half shaft?",
+      "what": "A friction pin lies in the same hole as the half shaft's axle. The worker is checking it against the parts list and the building step."
+    },
+    {
+      "title": "The next offer of main",
+      "what": "Preview is one commit group ahead of main (the bound against wild motions; 672 functions work, since one function that only seemed to work now stops honestly). The next offer comes after the next larger branch is in and the slow 8110 check has passed again."
+    },
+    {
+      "title": "A second worker?",
+      "what": "Of the 376 functions that do not work in full, 318 are faults in how we read the models, and one worker mends them. A fleet is your call. Claude will ask with numbers once the largest group (a part that nothing ties to its control, 142 functions) is sorted by what would mend it."
+    }
+  ],
+  "done": [
+    {
+      "date": "2026-11-15",
+      "what": "You moved main to d69e86dd (673 functions work; ca95bf02 had 619)."
+    },
+    {
+      "date": "2026-11-14",
+      "what": "You agreed that the collision pass should not block the page and that its result is kept per set. Done and on main."
+    },
+    {
+      "date": "2026-11-14",
+      "what": "You signed the corrections for the 42109, the 850 and the 8838 (\"Sign all three\")."
+    },
+    {
+      "date": "2026-11-14",
+      "what": "You read page 267 of the 42108's booklet: all three knobs turn counterclockwise. Written into the list."
+    },
+    {
+      "date": "2026-11-14",
+      "what": "You signed twelve function-list changes from the audit, and kept the 42064's hatch as not a function."
+    },
+    {
+      "date": "2026-11-14",
+      "what": "You signed the corrections for the 42064, the 8258 and the 9396 (\"Sign all three\")."
+    },
+    {
+      "date": "2026-11-14",
+      "what": "You moved main to ca95bf02."
+    }
+  ]
+}

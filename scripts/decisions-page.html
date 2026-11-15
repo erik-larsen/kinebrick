@@ -1,0 +1,125 @@
+<title>Kinebrick Decisions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: one narrow column to sit beside the chat. A count of what waits for Erik, then one block for each thing (what it is, its effect, its links, the words to reply with), then what is coming, then what was decided. The status page's colours and type. */
+:root {
+  --bg: #f6f5f0; --panel: #ffffff; --fg: #17202e; --muted: #5a6474; --line: #d9d6cc;
+  --wait: #c2410c; --wait-bg: #fdebdc; --look: #3d6fb4; --look-bg: #e3ecf8; --done: #2f9e5b;
+  --display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --text: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; --wait: #f59e5b; --wait-bg: #3a2616; --look: #8db4ea; --look-bg: #1f2c40; --done: #5cc98a; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #15181e; --panel: #1e222b; --fg: #eceef2; --muted: #a3acba; --line: #363c49; --wait: #f59e5b; --wait-bg: #3a2616; --look: #8db4ea; --look-bg: #1f2c40; --done: #5cc98a; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--text); font-size: 15px; line-height: 1.5; padding-block: 24px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.page { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: 22px; }
+h1 { font-family: var(--display); font-size: 28px; font-weight: 700; line-height: 1.15; margin: 0; }
+h2 { font-family: var(--display); font-size: 19px; font-weight: 700; margin: 0; }
+h3 { font-family: var(--display); font-size: 17px; font-weight: 700; line-height: 1.3; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--look); outline-offset: 2px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+.count { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.count b { font-family: var(--display); font-size: 40px; font-weight: 700; line-height: 1; color: var(--wait); font-variant-numeric: tabular-nums; }
+.count.none b { color: var(--done); }
+.state { display: flex; flex-wrap: wrap; gap: 6px 22px; font-variant-numeric: tabular-nums; }
+.state code, .reply code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+section { display: flex; flex-direction: column; gap: 12px; }
+.item { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.kind { align-self: flex-start; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 9px; border-radius: 999px; background: var(--wait-bg); color: var(--wait); }
+.kind.look { background: var(--look-bg); color: var(--look); }
+.effect b { font-weight: 600; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.rows { display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.rows li { border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.rows .set { font-weight: 600; }
+.reply { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.reply code { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; user-select: all; }
+button.copy { font: 600 13px var(--text); color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+button.copy:hover { border-color: var(--fg); }
+.plain { display: flex; flex-direction: column; gap: 12px; padding: 0; margin: 0; list-style: none; }
+.plain li { display: flex; flex-direction: column; gap: 2px; }
+.plain .t { font-weight: 600; }
+.log li { flex-direction: row; gap: 12px; align-items: baseline; }
+.log time { flex: none; width: 6.2em; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+</style>
+<div class="page">
+  <header>
+    <h1>Kinebrick Decisions</h1>
+    <p class="muted small" id="updated"></p>
+    <p class="count" id="count"></p>
+    <p class="state" id="state"></p>
+    <p class="muted small" id="viewer"></p>
+  </header>
+  <section id="waiting" aria-label="Waiting for you"></section>
+  <section id="coming"><h2>Coming, nothing to do yet</h2><ul class="plain" id="coming-list"></ul></section>
+  <section id="done"><h2>Decided</h2><ul class="plain log" id="done-list"></ul></section>
+</div>
+<script>
+const DATA = /*DATA*/null;
+
+// Makes an element with a class and text, and puts it into a parent if one is given.
+function el(tag, cls, text, parent) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function links(list, parent) {
+  const box = el('p', 'links', undefined, parent);
+  for (const l of list) { const a = el('a', '', l.label, box); a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; }
+}
+
+const mustAnswer = DATA.waiting.filter((w) => !/look/i.test(w.kind)).length;
+document.getElementById('updated').textContent = 'Updated ' + DATA.updated + '. Claude keeps this page current; answer in the chat.';
+const count = document.getElementById('count');
+count.classList.toggle('none', mustAnswer === 0);
+el('b', '', String(mustAnswer), count);
+el('span', '', mustAnswer === 1 ? 'thing waits for your answer' : 'things wait for your answer', count);
+const s = DATA.state, state = document.getElementById('state');
+el('span', '', 'main: ' + s.main.works + ' functions work, at ', state).appendChild(el('code', '', s.main.commit));
+el('span', '', 'preview: ' + s.preview.works + ' of ' + s.preview.functions.toLocaleString('en') + ' work, at ', state).appendChild(el('code', '', s.preview.commit));
+document.getElementById('viewer').textContent = s.viewer;
+
+const waiting = document.getElementById('waiting');
+if (!DATA.waiting.length) el('p', 'muted', 'Nothing waits for you.', waiting);
+for (const w of DATA.waiting) {
+  const item = el('article', 'item', undefined, waiting);
+  item.id = w.id;
+  el('span', 'kind' + (/look/i.test(w.kind) ? ' look' : ''), w.kind, item);
+  el('h3', '', w.title, item);
+  el('p', '', w.what, item);
+  if (w.effect) { const p = el('p', 'effect', undefined, item); el('b', '', 'Effect: ', p); p.append(w.effect); }
+  if (w.confidence) el('p', 'muted small', w.confidence, item);
+  if (w.links) links(w.links, item);
+  if (w.rows) {
+    const ul = el('ul', 'rows', undefined, item);
+    for (const r of w.rows) {
+      const li = el('li', '', undefined, ul);
+      el('span', 'set', r.set + ', function ' + r.fn, li);
+      el('span', '', r.says, li);
+      links(r.links, li);
+    }
+  }
+  const reply = el('p', 'reply', undefined, item);
+  el('span', 'muted small', 'To decide, say in the chat:', reply);
+  el('code', '', w.reply, reply);
+  const button = el('button', 'copy', 'Copy', reply);
+  button.type = 'button';
+  button.addEventListener('click', () => {
+    navigator.clipboard.writeText(w.reply).then(() => { button.textContent = 'Copied'; }, () => { button.textContent = 'Select the text'; });
+    setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+  });
+  el('span', 'muted small', 'since ' + w.since, reply);
+}
+
+const coming = document.getElementById('coming-list');
+for (const c of DATA.coming) { const li = el('li', '', undefined, coming); el('span', 't', c.title, li); el('span', 'muted', c.what, li); }
+document.getElementById('coming').hidden = !DATA.coming.length;
+const done = document.getElementById('done-list');
+for (const d of DATA.done) { const li = el('li', '', undefined, done); el('time', '', d.date, li); el('span', '', d.what, li); }
+</script>
