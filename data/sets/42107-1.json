@@ -61,7 +61,7 @@
         "lifted": true,
         "moves": [
           "p247 35189",
-          "p284 76537"
+          "p284 4254"
         ],
         "stays": [
           "p379 88516",
@@ -75,7 +75,7 @@
           "spring: suspension"
         ],
         "source": "book: page 120 bottom-left inset",
-        "control": "p284 76537",
+        "control": "p284 4254",
         "skip": "a spring only matters under gravity or force"
       },
       {
@@ -154,15 +154,15 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "6f940275",
     "date": "2026-11-15",
-    "seconds": 6,
+    "seconds": 5,
     "counts": {
       "partly": 3,
-      "no": 3,
+      "works": 2,
       "skipped": 1,
       "not back": 1,
-      "works": 1,
+      "no": 2,
       "not checked": 1
     },
     "loose": [
@@ -185,7 +185,8 @@
       "p557 3711",
       "p558 3711",
       "p559 3711",
-      "p639 42107 - 67144p01c01"
+      "p639 42107 - 67144p01c01",
+      "p641 22977"
     ],
     "functions": [
       {
@@ -207,7 +208,7 @@
             ],
             "p127 18947": [
               0,
-              5.68e-14
+              1.14e-13
             ],
             "p185 2854": [
               0,
@@ -233,7 +234,7 @@
         ],
         "cause": "loose-part",
         "detail": "p127 18947",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -257,35 +258,35 @@
           {
             "p288 23948": [
               1.52,
-              4.24e-13
+              6.04e-13
             ],
             "p289 94925": [
               1.52,
-              4.36e-13
+              6.16e-13
             ],
             "p185 2854": [
-              2.81e-8,
-              3.69e-13
+              8.43e-8,
+              5.07e-13
             ],
             "p190 2851": [
-              2.81e-8,
-              9.97e-12
+              8.43e-8,
+              1.02e-11
             ],
             "p191 2851": [
-              2.81e-8,
-              5.48e-12
+              8.43e-8,
+              6.6e-12
             ],
             "p192 2851": [
-              2.81e-8,
-              1.11e-12
+              8.43e-8,
+              1.78e-11
             ],
             "p193 2851": [
-              2.81e-8,
-              2.56e-12
+              8.43e-8,
+              3.73e-12
             ],
             "p379 88516": [
               1,
-              8.06e-13
+              7.83e-13
             ]
           }
         ],
@@ -311,29 +312,25 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 1.7
+        "seconds": 1.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.3,
+            -0.01
           ]
-        ],
-        "still": [
-          "p247 35189",
-          "p284 76537"
         ],
         "rates": [
           {
             "p247 35189": [
-              0,
-              0
+              1,
+              201
             ],
-            "p284 76537": [
-              0,
-              0
+            "p284 4254": [
+              0.235,
+              72.1
             ],
             "p379 88516": [
               0,
@@ -359,16 +356,14 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "part-fixed",
-        "detail": "p284 76537",
-        "seconds": 0.1
+        "seconds": 0.4
       },
       {
         "result": "skipped",
@@ -429,7 +424,7 @@
         ],
         "freed": 2,
         "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -489,7 +484,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 1.3
       },
       {
         "result": "no",

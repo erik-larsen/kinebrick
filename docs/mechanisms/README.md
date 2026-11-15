@@ -108,9 +108,9 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Swing arm](swing-arm.md) | 16 | 1988 |  | 1 | 6 | 1 | 5 | 3 | 6 works, 4 partly, 6 no |
+| [Swing arm](swing-arm.md) | 16 | 1988 |  | 1 | 6 | 1 | 5 | 3 | 8 works, 5 partly, 3 no |
 | [Trailing arms](trailing-arm.md) | 1 | 1981 |  | 1 |  |  |  |  | 1 works |
-| [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 11 works, 4 partly, 10 no, 1 skipped |
+| [Double wishbone suspension](double-wishbone.md) | 17 | 1988 |  | 1 | 2 | 2 | 9 | 3 | 13 works, 4 partly, 8 no, 1 skipped |
 | [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 2 works, 2 partly |
 | [Pendular axle](pendular-axle.md) | 8 | 1986 |  | 1 |  | 1 | 5 | 1 | 2 works, 2 partly, 3 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |

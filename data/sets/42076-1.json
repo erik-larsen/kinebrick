@@ -122,7 +122,7 @@
         ],
         "lifted": true,
         "moves": [
-          "p883 73129"
+          "p883 4254"
         ],
         "note": "the spring only matters under the truck's weight; the axle's travel is what's checked. lifted: the text has the wheel or arm moved (\"the truck's rear axle swings up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
@@ -158,9 +158,9 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "6f940275",
     "date": "2026-11-15",
-    "seconds": 29,
+    "seconds": 24,
     "counts": {
       "works": 3,
       "partly": 3,
@@ -346,21 +346,21 @@
           {
             "p615 15790": [
               2.78,
-              1.03e-12
+              1.19e-12
             ],
             "p647 15790": [
               2.78,
-              1.13e-12
+              1.19e-12
             ]
           },
           {
             "p615 15790": [
               2.78,
-              1.03e-12
+              1.19e-12
             ],
             "p647 15790": [
               2.78,
-              1.13e-12
+              1.19e-12
             ]
           }
         ],
@@ -396,7 +396,7 @@
             "p647 15790"
           ]
         ],
-        "seconds": 4.4
+        "seconds": 3.5
       },
       {
         "result": "partly",
@@ -443,8 +443,8 @@
           ]
         ],
         "strayed": [
-          "p615 15790",
-          "p639 4519"
+          "p639 4519",
+          "p607 4519"
         ],
         "stop": [
           [
@@ -453,7 +453,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -476,7 +476,7 @@
           {
             "p544 64782": [
               0,
-              0
+              5.04e-108
             ],
             "p568 92696": [
               0,
@@ -494,7 +494,7 @@
           {
             "p544 64782": [
               0,
-              0
+              1.71e-107
             ],
             "p568 92696": [
               0,
@@ -538,7 +538,7 @@
         ],
         "cause": "not-driven",
         "detail": "p544 64782",
-        "seconds": 4.5
+        "seconds": 3.7
       },
       {
         "result": "no",
@@ -657,9 +657,12 @@
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "stuck",
+            "stuck"
           ]
+        ],
+        "pushed": [
+          true
         ],
         "cause": "stopped-early",
         "seconds": 0.5
@@ -677,17 +680,17 @@
           ]
         ],
         "still": [
-          "p883 73129"
+          "p883 4254"
         ],
         "rates": [
           {
-            "p883 73129": [
+            "p883 4254": [
               0,
               0
             ]
           },
           {
-            "p883 73129": [
+            "p883 4254": [
               0,
               0
             ]
@@ -719,9 +722,9 @@
           [],
           []
         ],
-        "cause": "part-fixed",
-        "detail": "p883 73129",
-        "seconds": 3.2
+        "cause": "not-driven",
+        "detail": "p883 4254",
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -797,7 +800,7 @@
           [],
           []
         ],
-        "seconds": 8.9
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -841,7 +844,7 @@
           [],
           []
         ],
-        "seconds": 4.4
+        "seconds": 3.5
       }
     ]
   }

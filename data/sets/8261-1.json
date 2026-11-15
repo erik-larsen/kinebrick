@@ -83,7 +83,7 @@
           "spring: suspension"
         ],
         "source": "inferred: from the model file",
-        "control": "p3 41838",
+        "control": "p3 4254",
         "skip": "a spring only matters under gravity or force"
       },
       {
@@ -107,15 +107,18 @@
     ]
   },
   "generated": {
-    "commit": "00ab5bf2",
+    "commit": "6f940275",
     "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "works": 2,
-      "no": 2,
+      "no": 1,
+      "partly": 1,
       "skipped": 1
     },
-    "loose": [],
+    "loose": [
+      "p199 41837"
+    ],
     "functions": [
       {
         "result": "works",
@@ -187,7 +190,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -261,31 +264,72 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
+            0.27,
             0
           ]
         ],
-        "still": [
-          "p45 32271",
-          "p51 32271",
-          "p43 59426",
-          "p52 59426",
-          "p194 56145",
-          "p196 56145"
+        "moved": [
+          "p55 44294"
         ],
         "rates": [
-          {}
+          {
+            "p45 32271": [
+              1,
+              0
+            ],
+            "p51 32271": [
+              1,
+              0
+            ],
+            "p43 59426": [
+              1,
+              133
+            ],
+            "p52 59426": [
+              1,
+              133
+            ],
+            "p194 56145": [
+              1,
+              133
+            ],
+            "p196 56145": [
+              1,
+              133
+            ],
+            "p0 32526": [
+              0,
+              0
+            ],
+            "p55 44294": [
+              1,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p45 32271 is part of the frame"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
-        "cause": "control-fixed",
+        "cause": "stay-forced",
+        "detail": "p55 44294",
         "seconds": 0
       },
       {
