@@ -250,9 +250,9 @@
     ]
   },
   "generated": {
-    "commit": "10433fa3",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 312,
+    "seconds": 290,
     "counts": {
       "partly": 3,
       "not back": 2,
@@ -422,7 +422,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p490 3743",
-        "seconds": 69.2
+        "seconds": 64.9
       },
       {
         "result": "works",
@@ -518,7 +518,7 @@
           [],
           []
         ],
-        "seconds": 105.8
+        "seconds": 97.9
       },
       {
         "result": "works",
@@ -576,7 +576,7 @@
             ]
           ]
         ],
-        "seconds": 8.2
+        "seconds": 7.7
       },
       {
         "result": "works",
@@ -618,7 +618,7 @@
             ]
           ]
         ],
-        "seconds": 8.3
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -667,7 +667,7 @@
         "pushed": [
           true
         ],
-        "seconds": 34.7
+        "seconds": 34.6
       },
       {
         "result": "partly",
@@ -736,7 +736,7 @@
         ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 8.2
+        "seconds": 7.6
       },
       {
         "result": "partly",
@@ -798,7 +798,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 8
+        "seconds": 7.5
       },
       {
         "result": "skipped"
@@ -860,7 +860,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 21.8
+        "seconds": 21
       },
       {
         "result": "works",
@@ -910,7 +910,7 @@
             ]
           ]
         ],
-        "seconds": 8.2
+        "seconds": 7.7
       },
       {
         "result": "skipped"
@@ -976,7 +976,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 4.8
+        "seconds": 4.5
       },
       {
         "result": "no",
@@ -1035,7 +1035,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 4.7
+        "seconds": 4.4
       },
       {
         "result": "no",
@@ -1120,7 +1120,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 5.8
+        "seconds": 5.4
       }
     ]
   }

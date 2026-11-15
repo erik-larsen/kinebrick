@@ -136,9 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "10433fa3",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 24,
+    "seconds": 23,
     "counts": {
       "works": 2,
       "no": 1,
@@ -232,7 +232,7 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "seconds": 2.1
       },
       {
         "result": "no",
@@ -401,7 +401,7 @@
           0
         ],
         "cause": "first-failed",
-        "seconds": 2.3
+        "seconds": 2.2
       },
       {
         "result": "partly",
@@ -479,7 +479,7 @@
           0
         ],
         "cause": "first-failed",
-        "seconds": 2.3
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -649,7 +649,7 @@
           [],
           []
         ],
-        "seconds": 14.3
+        "seconds": 13.8
       },
       {
         "result": "not checked",

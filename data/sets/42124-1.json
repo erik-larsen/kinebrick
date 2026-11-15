@@ -125,13 +125,13 @@
     ]
   },
   "generated": {
-    "commit": "8ff7ad42",
+    "commit": "28315418",
     "date": "2026-11-15",
     "seconds": 4,
     "counts": {
       "works": 4,
       "not back": 1,
-      "torn": 1,
+      "free-turned": 1,
       "partly": 2,
       "skipped": 2
     },
@@ -192,6 +192,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p344 87083",
           "p346 87083"
@@ -202,7 +203,7 @@
             "dead point"
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -543,7 +544,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 1
       }
     ]
   }
