@@ -50,10 +50,9 @@
           "p455 4254"
         ],
         "stays": [
-          "p454 4255",
           "p146 3705"
         ],
-        "note": "lifted: the text has the wheel or arm moved (\"so the rear wheel moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
+        "note": "lifted: the text has the wheel or arm moved (\"so the rear wheel moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel. The shock absorber's cylinder p454 (4255) is no longer among the parts that stay (2026-11-14): pinned to the frame at one end and to the swing arm through its rod at the other, it swings on its pin as the arm moves, so it can't stay still (a fault in the list, not in the model)"
       },
       {
         "does": "The front wheel rides between two long shock absorbers, a telescopic front fork, so it moves up and down.",
@@ -124,12 +123,12 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "26c74548",
     "date": "2026-11-15",
-    "seconds": 5,
+    "seconds": 6,
     "counts": {
-      "works": 3,
-      "partly": 2,
+      "works": 4,
+      "partly": 1,
       "not back": 1,
       "skipped": 1,
       "no": 1
@@ -152,7 +151,7 @@
           {
             "p130 3648b": [
               1,
-              2.45e-11
+              8.51e-13
             ],
             "p129 94925": [
               1.45,
@@ -160,15 +159,15 @@
             ],
             "p117 6542b": [
               1.45,
-              1.89e-13
+              2.65e-13
             ],
             "p107 3648b": [
               1.45,
-              3.3e-13
+              2.27e-13
             ],
             "p146 3705": [
               4.34,
-              2.92e-13
+              4.14e-13
             ],
             "p149 2851": [
               0,
@@ -208,18 +207,15 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "seconds": 1.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             0,
             -0.27
           ]
-        ],
-        "moved": [
-          "p454 4255"
         ],
         "rates": [
           {
@@ -230,10 +226,6 @@
             "p455 4254": [
               0.132,
               72.1
-            ],
-            "p454 4255": [
-              0.132,
-              0
             ],
             "p146 3705": [
               0,
@@ -259,10 +251,7 @@
             "limit"
           ]
         ],
-        "freed": 1,
-        "cause": "stay-forced",
-        "detail": "p454 4255",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -354,7 +343,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -414,7 +403,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -458,7 +447,7 @@
           [],
           []
         ],
-        "seconds": 2.5
+        "seconds": 2.6
       }
     ]
   }
