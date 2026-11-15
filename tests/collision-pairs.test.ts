@@ -11,6 +11,10 @@ import { partShapes } from '../scripts/part-shapes.ts';
 // stale, and the viewer would ignore it, doing the pass itself.
 describe('the kept collision pass', () => {
   const release = libraryRelease(readFileSync('ldraw/LDConfig.ldr', 'utf-8'));
+  it('is in files the viewer can load by their address (no # or ?)', () => {
+    expect(keptName('omr/42125-1 Ferrari 488 GTE AF CORSE #51.mpd')).toBe('42125-1 Ferrari 488 GTE AF CORSE _51');
+    for (const f of readdirSync(DIR)) expect(f).toMatch(/^[A-Za-z0-9 ._()-]+$/);
+  });
   it('is for the parts library as it is', () => {
     expect(JSON.parse(readFileSync(RELEASE_FILE, 'utf-8')).release).toBe(release);
   });

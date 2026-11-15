@@ -166,6 +166,16 @@ export async function collisionKey(modelText: string, libraryRelease: string): P
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
+// The kept file's name for a model (see keptPairs.ts): the model file's name, without .mpd or
+// .ldr, with any sign but letters, digits, spaces and . _ ( ) - made _, since the viewer loads
+// the file by its address, where a # or a ? would cut it short (the 42125 Ferrari 488 GTE AF
+// CORSE #51).
+export const keptFileName = (model: string) =>
+  model
+    .replace(/^.*[\\/]/, '')
+    .replace(/\.(ldr|mpd|io)$/i, '')
+    .replace(/[^A-Za-z0-9 ._()-]/g, '_');
+
 // The parts library's release, from LDConfig.ldr's text: its "!LDRAW_ORG ... UPDATE" line.
 export function libraryRelease(ldconfig: string): string {
   return /^0 !LDRAW_ORG .*$/m.exec(ldconfig)?.[0].trim() ?? '';

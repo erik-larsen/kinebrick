@@ -3,7 +3,7 @@
 // by npm run collisions); for a file you open yourself, this browser's own store (IndexedDB), filed
 // under the same key. With neither, or a key that doesn't match, the pass is done as ever.
 
-import { collisionKey } from './collisions.ts';
+import { collisionKey, keptFileName } from './collisions.ts';
 
 const keptFiles = import.meta.glob('../data/collisions/*.json', { import: 'default' }) as Record<string, () => Promise<{ key: string; near: [number, number][]; release?: string }>>;
 const release = import.meta.glob('../data/collisions/library.json', { eager: true, import: 'default' }) as Record<string, { release: string }>;
@@ -22,7 +22,7 @@ export const keyFor = (modelText: string) => collisionKey(modelText, release['..
 // The kept file's result for the model named `name` (its file's name, without .mpd or .ldr), if
 // its key is `key`.
 export async function keptPairs(name: string, key: string): Promise<KnownPairs | null> {
-  const load = keptFiles[`../data/collisions/${name}.json`];
+  const load = keptFiles[`../data/collisions/${keptFileName(name)}.json`];
   if (!load) return null;
   try {
     const kept = await load();

@@ -10,7 +10,7 @@
 //   npm run collisions -- --force      worked out again even where the key matches
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { collisionKey, libraryRelease, nearPairsOf } from '../src/collisions.ts';
+import { collisionKey, keptFileName, libraryRelease, nearPairsOf } from '../src/collisions.ts';
 import { readParts } from './load-model.ts';
 import { partShapes } from './part-shapes.ts';
 
@@ -27,8 +27,8 @@ export function keptModels(): string[] {
   return [...models].sort();
 }
 
-// The kept file's name for a model, from its file's name.
-export const keptName = (model: string) => model.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
+// The kept file's name for a model (see keptFileName).
+export const keptName = keptFileName;
 
 // The model's text as the viewer reads it: a set's file from the OMR with its signed errata.
 export const modelText = (model: string) => readParts(model, model.startsWith('omr/')).text;
