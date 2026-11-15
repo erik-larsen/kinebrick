@@ -2304,9 +2304,15 @@ export class Kinematics {
     const geared = this.gearedTo(turnedBody, true);
     const steps = Math.ceil(Math.abs(angle) / maxStep);
     const full = angle / steps;
+    // The motion found where the last step ended (see below), for the next step to take.
+    let ahead: number[] | null = null;
     while (Math.abs(angle - turned) > 1e-12) {
-      this.gripped = false;
-      let motion = this.jointMotion(joint);
+      let motion = ahead;
+      ahead = null;
+      if (!motion) {
+        this.gripped = false;
+        motion = this.jointMotion(joint);
+      }
       // Holds chosen where a drag started may not suit it further on (as a steered car's
       // wheels turn, they turn by more and more different angles, and its differential has to
       // turn a little too): stuck, the drag chooses them afresh where it now is.
@@ -2392,7 +2398,27 @@ export class Kinematics {
       }
       if (TRACE && played) trace({ event: 'played', joint });
       turned += step;
+      const lastStep = this.lastStep;
       this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
+      // A step after which the joint has no motion, or another joint would turn wild, has gone
+      // into a jam that no step can leave, back the way it came or on: those stops are the same
+      // both ways. It is undone, and the drag stops before it, as a hand on the real model never
+      // ends in a pose it can't leave (the 8826 ATX Sport Cycle's steering went one step, then
+      // couldn't be turned back; decision 84 of 2026-11-15). The motion found is the next step's.
+      this.gripped = false;
+      ahead = this.jointMotion(joint);
+      if (!ahead && this.drag.turning?.joint === joint) {
+        this.holdWhatTheDragDoesntNeed(this.drag.turning.grabbed, () => this.jointMotion(joint) !== null, joint);
+        this.gripped = false;
+        ahead = this.jointMotion(joint);
+      }
+      const wild = (m: number[]) => this.mech.joints.some((j, k) => k !== joint && checked(j) && !geared.has(j.bodyA) && !geared.has(j.bodyB) && Math.abs(this.jointRate(m, k)) > WILD_RATE);
+      if (!ahead || wild(ahead)) {
+        if (TRACE) trace({ event: 'undone', joint, turned, why: ahead ? 'wild ahead' : 'no motion ahead' });
+        this.restore(before);
+        this.lastStep = lastStep;
+        return stop(turned - step);
+      }
     }
     return turned;
   }
