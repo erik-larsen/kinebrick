@@ -1350,9 +1350,11 @@ export class Kinematics {
   // The bodies that steer a car: those that turn when, and only when, its wheels turn about
   // upright axes (a steering wheel, and the gears and shafts down to its rack). Found with the
   // tyres it stands on lifted off the ground and not turning on their axles, so that steering
-  // doesn't roll them.
+  // doesn't roll them. A model lifted (see Options.lifted) stands on none: its steering is what
+  // turns any of its tyres so, as held in the hand.
   private steeringBodies(): Set<number> {
-    const treads = this.contactTreads.map((i) => this.mech.treads[i].body);
+    const standing = this.options.lifted ? this.mech.treads.map((_, i) => i) : this.contactTreads;
+    const treads = [...new Set(standing.map((i) => this.mech.treads[i].body))];
     const [contact, held, toFrame] = [this.contactTreads, this.drag.held, this.drag.heldToFrame];
     // What working out the free motions sets, as it was (this works them out for a car that isn't there).
     const [scrubNeeded, leastScrub, slipRows] = [this.scrubNeeded, this.leastScrub, this.slipRows];
@@ -2776,11 +2778,15 @@ export class Kinematics {
     };
     const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
-    if (this.contactTreads.length > 0 && !this.drag.steering) this.drag.steering = this.steeringBodies();
+    // The steering is kept still on a car on its tyres, and lifted too: in the hand, nothing turns a
+    // knuckle against its chassis but friction in the steering, which holds it there (the 42053
+    // Volvo EW160E, slewed in the hand, steered its front wheels; decision 90 of 2026-11-15).
+    const steers = this.contactTreads.length > 0 || (this.options.lifted && this.mech.treads.length > 0);
+    if (steers && !this.drag.steering) this.drag.steering = this.steeringBodies();
     // A drag that drives the steering through its gears (a steering knob) is meant to steer, so
     // the steering isn't kept still for it: kept still, the 8837 Pneumatic Excavator's knob,
     // whose gear crosses the turntable, slewed the excavator round instead.
-    const keepSteering = this.contactTreads.length > 0 && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
+    const keepSteering = steers && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
     const steering = keepSteering ? [...this.drag.steering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
     const steered = (z: number[]) => steering.map((j) => rateOf(z, j));
     // Friction pins, and motors' outputs, which their gearboxes hold (see chooseHolds).
