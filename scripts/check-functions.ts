@@ -292,10 +292,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return n;
   };
   const name = (p: number) => `p${p} ${parts[p].name.replace(/\.dat$/, '')}`;
-  // "p402 3703 against p315 3029": the part, and the body it's measured against (the frame if none).
+  // "p402 3703 against p315 3029": the part, and the body it's measured against (if none, the
+  // frame of the model it is in: a set's second vehicle's own, see Kinematics.frames).
   const against = (ref: string) => {
     const [a, b] = ref.split(' against ');
-    return { ref, part: part(a), body: b ? mech.bodyOf[part(b)] : 0 };
+    return { ref, part: part(a), body: b ? mech.bodyOf[part(b)] : kin.frameOf[mech.bodyOf[part(a)]] };
   };
   // Whether a part moved against its body, from the poses at `start` to now, or is a driving
   // ring a catch has shifted (`shifted`).
@@ -411,7 +412,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The slide a control with no turning joint of its own slides on: a body that is the root of a
   // tree of its own, held to the rest by a slide (see buildTree), as an outrigger's beam slides in
   // a chassis. -1 if it has none.
-  const slideOf = (body: number) => (body === 0 || kin.parentLink(body) ? -1 : mech.joints.findIndex((j) => j.kind === 'slide' && (j.bodyA === body || j.bodyB === body)));
+  const slideOf = (body: number) => (kin.frames.includes(body) || kin.parentLink(body) ? -1 : mech.joints.findIndex((j) => j.kind === 'slide' && (j.bodyA === body || j.bodyB === body)));
   // A control that slides (see slideOf) pushed along its slide by `amount` LDU, as a drag of it in
   // the viewer pushes it, each step the way the slide now points: how far it slid along it
   // (signed), how far each of `parts` went, and what stopped it, if anything did.
@@ -451,7 +452,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The ball a control with no turning joint of its own and no slide turns on: a body that is the
   // root of a tree of its own, held to the rest by a ball (see buildTree), as a pendular axle
   // swings on its ball pivot under a chassis (the 42038 Arctic Truck). -1 if it has none.
-  const ballOf = (body: number) => (body === 0 || kin.parentLink(body) || slideOf(body) >= 0 ? -1 : mech.joints.findIndex((j) => j.kind === 'ball' && (j.bodyA === body || j.bodyB === body)));
+  const ballOf = (body: number) => (kin.frames.includes(body) || kin.parentLink(body) || slideOf(body) >= 0 ? -1 : mech.joints.findIndex((j) => j.kind === 'ball' && (j.bodyA === body || j.bodyB === body)));
   // The line a control on a ball (see ballOf) turns about, through the ball's middle, on the body
   // it turns against: the way the free motions turn it most against that body, as a pendular
   // axle turns on its ball only about the drive shaft through it. Kept for the way back. Null if
@@ -616,7 +617,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const c = part(ref);
         const l = kin.parentLink(worked(c));
         const noGrab = () => !fn.together && isPushed(worked(c)) && grabOf(worked(c), c) === null;
-        if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null || noGrab()) {
+        if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
         }
@@ -630,7 +631,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (held.length) {
           // Whether the control goes a hair, holding what a drag of it holds.
           const goes = () => {
-            if (worked(c) === 0 || !l || kin.jointMotion(l.joint) === null || noGrab()) return false;
+            if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) return false;
             const before = kin.snapshot();
             kin.holdWhatTheDragDoesntNeed(worked(c), () => kin.jointMotion(l.joint) !== null, l.joint);
             const went = kin.turnJoint(l.joint, 0.01, () => true);
@@ -685,14 +686,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // function that names one can't work, whatever the drag does: at most partly (the 8285's
       // wheels "rolling freely" on rims that sit on nothing).
       const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
-      // A part of a second model, welded to the main one until the solver gives it a frame of its
-      // own, counts as loose does (to be taken out with the solver's frames).
-      const onSecondModel = new Set((mech.frameParts ?? []).flat());
-      const secondPart = loosePart === undefined ? [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => onSecondModel.has(p)) : undefined;
-      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : secondPart !== undefined ? { cause: 'second-model', detail: name(secondPart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
+      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
       const nothing = (explained: Explained) => ({ works: false, pushed: false, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
-      if (b === 0 || !link) {
-        why.push(`${ref} ${b === 0 ? 'is part of the frame' : 'has no joint to work'}`);
+      if (kin.frames.includes(b) || !link) {
+        why.push(`${ref} ${kin.frames.includes(b) ? 'is part of the frame' : 'has no joint to work'}`);
         return nothing(early ?? { cause: 'control-fixed' });
       }
       // How far the control is worked each way. A function whose parts would move too little
@@ -714,7 +711,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // control's own body, which turn with it whatever the gears do).
       const geared = gearRates(mech, (x) => kin.parentLink(x), b, together);
       const expected: Record<string, number> = {};
-      for (const m of listed) if (m.body === 0 && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
+      for (const m of listed) if (m.body === kin.frameOf[mech.bodyOf[m.part]] && mech.bodyOf[m.part] !== b && geared.has(mech.bodyOf[m.part])) expected[m.ref] = sig(geared.get(mech.bodyOf[m.part])!);
       // The cause, from where the control starts: given the parts that didn't move and should
       // have, those that moved and shouldn't have, and how far the control went.
       const listedAs = (m: { ref: string; part: number; body: number }): Listed => ({ ref: m.ref, body: mech.bodyOf[m.part], against: m.body });
@@ -850,7 +847,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       together = [];
       const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
       // A function that names a loose part can't work, whatever the drag did (see loosePart).
-      const works = best.works && loosePart === undefined && secondPart === undefined;
+      const works = best.works && loosePart === undefined;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.

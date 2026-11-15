@@ -111,9 +111,9 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 2,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "works": 4,
       "not checked": 2,
@@ -220,7 +220,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -262,7 +262,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -328,7 +328,7 @@
             "p3083 6538b against p3462 41681"
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "not checked",
@@ -447,7 +447,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 1.5
       },
       {
         "result": "not checked",

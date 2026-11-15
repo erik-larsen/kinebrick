@@ -106,9 +106,9 @@
     ]
   },
   "generated": {
-    "commit": "8eb0944c",
-    "date": "2026-11-14",
-    "seconds": 3,
+    "commit": "6fbe31fe",
+    "date": "2026-11-15",
+    "seconds": 4,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -118,6 +118,14 @@
       "p41 23816c02",
       "p391 23816c02"
     ],
+    "errata": {
+      "applied": [
+        "no-pin-p381",
+        "no-pin-p382",
+        "no-beam-p383"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "partly",
@@ -168,14 +176,9 @@
             ]
           ]
         ],
-        "why": [
-          "p16 42109 - 65414c01 is held by friction pins the control doesn't reach",
-          "p969 56145 is held by friction pins the control doesn't reach",
-          "p971 56145 is held by friction pins the control doesn't reach"
-        ],
-        "cause": "part-fixed",
+        "cause": "not-driven",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -189,19 +192,19 @@
           {
             "p15 59426": [
               1,
-              2.37e-14
+              2.56e-14
             ],
             "p27 3707": [
               1,
-              2.37e-14
+              2.56e-14
             ],
             "p969 56145": [
               1,
-              2.37e-14
+              2.56e-14
             ],
             "p351 32498": [
               0,
-              1.27e-14
+              2.63e-14
             ],
             "p40 22172": [
               0,
@@ -221,8 +224,7 @@
             ]
           ]
         ],
-        "freed": 1,
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -295,18 +297,18 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
         "turned": [
           [
-            0.43,
-            -0.47
+            1.5,
+            -1.5
           ],
           [
-            0.47,
-            -0.43
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -335,21 +337,11 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ],
-          [
-            "limit",
-            "limit"
-          ]
-        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "not checked",
@@ -388,7 +380,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 0.4
+        "seconds": 0.9
       }
     ]
   }
