@@ -199,9 +199,9 @@
     ]
   },
   "generated": {
-    "commit": "10433fa3",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 473,
+    "seconds": 438,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -295,7 +295,7 @@
             ]
           ]
         ],
-        "seconds": 37.5
+        "seconds": 34.4
       },
       {
         "result": "partly",
@@ -390,7 +390,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p917 2851",
-        "seconds": 26.5
+        "seconds": 24.2
       },
       {
         "result": "partly",
@@ -510,7 +510,7 @@
         ],
         "cause": "loose-part",
         "detail": "p235 18947",
-        "seconds": 21.2
+        "seconds": 19.7
       },
       {
         "result": "partly",
@@ -565,7 +565,7 @@
         ],
         "cause": "loose-part",
         "detail": "p478 87079",
-        "seconds": 10.9
+        "seconds": 10
       },
       {
         "result": "works",
@@ -663,7 +663,7 @@
             "p2734 23800"
           ]
         ],
-        "seconds": 10.7
+        "seconds": 10
       },
       {
         "result": "works",
@@ -763,7 +763,7 @@
             "p2728 23800"
           ]
         ],
-        "seconds": 13.7
+        "seconds": 12.9
       },
       {
         "result": "skipped"
@@ -876,7 +876,7 @@
           [],
           []
         ],
-        "seconds": 83.9
+        "seconds": 77.8
       },
       {
         "result": "works",
@@ -927,7 +927,7 @@
         "pushed": [
           true
         ],
-        "seconds": 85.7
+        "seconds": 78.5
       },
       {
         "result": "no",
@@ -1012,7 +1012,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 40.7
+        "seconds": 37.3
       },
       {
         "result": "works",
@@ -1060,7 +1060,7 @@
         "pushed": [
           true
         ],
-        "seconds": 38.3
+        "seconds": 35.1
       },
       {
         "result": "works",
@@ -1126,7 +1126,7 @@
           [],
           []
         ],
-        "seconds": 20.9
+        "seconds": 19.9
       }
     ]
   }

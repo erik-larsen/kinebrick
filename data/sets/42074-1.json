@@ -85,9 +85,9 @@
     ]
   },
   "generated": {
-    "commit": "10433fa3",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
       "works": 3,
       "skipped": 1
@@ -291,7 +291,7 @@
             "p275 32278"
           ]
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -409,7 +409,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "skipped",

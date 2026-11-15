@@ -216,9 +216,9 @@
     ]
   },
   "generated": {
-    "commit": "10433fa3",
+    "commit": "28315418",
     "date": "2026-11-15",
-    "seconds": 460,
+    "seconds": 434,
     "counts": {
       "works": 9,
       "no": 1,
@@ -301,7 +301,7 @@
             ]
           ]
         ],
-        "seconds": 9.3
+        "seconds": 8.6
       },
       {
         "result": "no",
@@ -348,7 +348,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 9.4
+        "seconds": 8.9
       },
       {
         "result": "partly",
@@ -411,7 +411,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 42054 - 18938",
-        "seconds": 8.9
+        "seconds": 8.5
       },
       {
         "result": "partly",
@@ -474,7 +474,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1820 92696 against p1818 92693c01",
-        "seconds": 10.5
+        "seconds": 10.1
       },
       {
         "result": "partly",
@@ -532,7 +532,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1659 42054 - 18938 against p1660 18939",
-        "seconds": 10.8
+        "seconds": 10.1
       },
       {
         "result": "works",
@@ -574,7 +574,7 @@
             ]
           ]
         ],
-        "seconds": 8.7
+        "seconds": 8.3
       },
       {
         "result": "works",
@@ -628,7 +628,7 @@
             ]
           ]
         ],
-        "seconds": 9.4
+        "seconds": 8.8
       },
       {
         "result": "works",
@@ -670,7 +670,7 @@
             ]
           ]
         ],
-        "seconds": 9
+        "seconds": 8.6
       },
       {
         "result": "works",
@@ -751,7 +751,7 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 58.5
+        "seconds": 55.9
       },
       {
         "result": "works",
@@ -848,7 +848,7 @@
             "p1779 6558"
           ]
         ],
-        "seconds": 182.9
+        "seconds": 171
       },
       {
         "result": "partly",
@@ -925,7 +925,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p12 87083",
-        "seconds": 9.4
+        "seconds": 8.9
       },
       {
         "result": "works",
@@ -962,7 +962,7 @@
             ]
           ]
         ],
-        "seconds": 9.8
+        "seconds": 9.3
       },
       {
         "result": "works",
@@ -1080,7 +1080,7 @@
           [],
           []
         ],
-        "seconds": 37.5
+        "seconds": 35.5
       },
       {
         "result": "works",
@@ -1117,7 +1117,7 @@
             ]
           ]
         ],
-        "seconds": 10.7
+        "seconds": 10.1
       }
     ]
   }

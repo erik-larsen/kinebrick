@@ -70,7 +70,7 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
     "seconds": 3,
     "counts": {
@@ -279,7 +279,7 @@
             "p15 2851 against p10 2850a"
           ]
         ],
-        "seconds": 1
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -397,7 +397,7 @@
           [],
           []
         ],
-        "seconds": 1.8
+        "seconds": 1.5
       }
     ]
   }

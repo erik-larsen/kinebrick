@@ -15,6 +15,9 @@ export function couplings(solver: Kinematics, eq: Equations) {
   // already: as rows, their ends would come out, from parts placed only so precisely in an
   // LDraw file, as a hair's breadth short of that, and stop some other motion altogether (a
   // car turning a corner).
+  solver.couplings.forEach(({ hangs }, i) => {
+    if (hangs) hanging(solver, eq, i, hangs);
+  });
   for (const { shafts, turningOnly } of solver.couplings) {
     if (turningOnly) continue;
     if (shafts.every((sh) => sh.joint >= 0 && sh.mount === shafts[0].mount)) continue;
@@ -52,4 +55,36 @@ export function couplings(solver: Kinematics, eq: Equations) {
     });
     add(row, 0, DRIVE_WEIGHT);
   });
+}
+
+// A grooved ball on a shaft that hangs on nothing else (see Kinematics.hangingBalls): held at its
+// place in its socket (three rows), or on its socket's axis (two rows, across it). As a loop's
+// joint is, its gap closed (see closeLoops): the ball's middle, on the shaft, against where it
+// should be in the socket.
+function hanging(solver: Kinematics, eq: Equations, i: number, hangs: 'point' | 'axis') {
+  const { n, add } = eq;
+  const c = solver.mech.couplings[i];
+  const ball = c.center.clone().applyMatrix4(solver.poses[c.bodyA]);
+  const socket = c.center.clone().applyMatrix4(solver.poses[c.bodyB]);
+  const gap = eq.gaps ? socket.clone().sub(ball) : new Vector3();
+  const axis = c.axisB.clone().transformDirection(solver.poses[c.bodyB]);
+  const across = hangs === 'point' ? [new Vector3(1, 0, 0), new Vector3(0, 1, 0), new Vector3(0, 0, 1)] : acrossOf(axis);
+  for (const d of across) {
+    const row = new Array(n).fill(0);
+    for (let k = 0; k < 3; k++) {
+      const w = d.getComponent(k);
+      if (w === 0) continue;
+      addPointVelocity(row, c.bodyA, ball, k, w);
+      addPointVelocity(row, c.bodyB, ball, k, -w);
+    }
+    add(row, gap.dot(d));
+  }
+}
+
+// Two directions square to `axis` and to each other.
+function acrossOf(axis: Vector3): Vector3[] {
+  const d = axis.clone().normalize();
+  const other = Math.abs(d.x) < 0.9 ? new Vector3(1, 0, 0) : new Vector3(0, 1, 0);
+  const first = new Vector3().crossVectors(d, other).normalize();
+  return [first, new Vector3().crossVectors(d, first).normalize()];
 }
