@@ -201,7 +201,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 146 works, 4 partly, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 78 works, 15 partly, 31 no, 2 skipped, 5 not checked |
+| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 78 works, 14 partly, 32 no, 2 skipped, 5 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 3 works, 2 partly, 3 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 9 works, 1 no, 1 skipped |
 | [Hangs free](hangs-free.md) | 18 | 1978 | 1 | 1 | 2 | 4 | 10 |  | 5 works, 1 partly, 6 skipped, 6 not checked |

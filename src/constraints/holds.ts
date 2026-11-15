@@ -72,8 +72,8 @@ export function holds(solver: Kinematics, eq: Equations) {
   // cars, far off the rails as built, were drawn onto it.
   for (const row of holdRows(solver, fixed, toFrame)) add(row, 0, DRIVE_WEIGHT);
   // Slides that springs hold at rest, held still while the steering is found (see
-  // Kinematics.steeringBodies).
-  if (solver.springsHeld) for (const row of solver.springRows()) add(row, 0, DRIVE_WEIGHT);
+  // Kinematics.steeringBodies), and for a drag that doesn't need them (see chooseDragHolds).
+  if (solver.springsHeld || solver.drag.springs) for (const row of solver.springRows()) add(row, 0, DRIVE_WEIGHT);
   // What a drag can't reach is held where it is on the frame (see Kinematics.outOfReach): each
   // body whole, not just on its joint, as the rows on nothing but these bodies and the frame are
   // left out (see buildEquations). Held only on their joints, without their joints' own rows,

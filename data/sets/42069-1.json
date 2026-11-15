@@ -166,9 +166,10 @@
     ]
   },
   "generated": {
-    "commit": "30803f45",
+    "commit": "f8064d1e",
+    "uncommitted": true,
     "date": "2026-11-15",
-    "seconds": 1206,
+    "seconds": 973,
     "counts": {
       "works": 6,
       "skipped": 2,
@@ -389,11 +390,11 @@
           {
             "p4 32270": [
               1,
-              1.67e-13
+              9.63e-14
             ],
             "p1894 32270": [
               1,
-              7.87e-13
+              2.91e-13
             ],
             "p1879 64781": [
               0.0239,
@@ -409,7 +410,7 @@
             ],
             "p1490 57519": [
               0,
-              1.81e-12
+              2.66e-13
             ]
           }
         ],
@@ -425,7 +426,7 @@
             ]
           ]
         ],
-        "seconds": 185.1
+        "seconds": 159.3
       },
       {
         "result": "works",
@@ -471,7 +472,7 @@
             ]
           ]
         ],
-        "seconds": 59.8
+        "seconds": 28.6
       },
       {
         "result": "skipped"
@@ -542,7 +543,7 @@
         ],
         "cause": "not-driven",
         "detail": "p567 6589",
-        "seconds": 49.1
+        "seconds": 29.3
       },
       {
         "result": "works",
@@ -556,11 +557,11 @@
           {
             "p1333 62821": [
               1,
-              6.73e-13
+              3.43e-13
             ],
             "p146 2853": [
               2.33,
-              3.79e-14
+              1.14e-13
             ],
             "p162 2851": [
               0,
@@ -586,7 +587,7 @@
             ]
           ]
         ],
-        "seconds": 203.8
+        "seconds": 184
       },
       {
         "result": "works",
@@ -662,7 +663,7 @@
           [],
           []
         ],
-        "seconds": 212.2
+        "seconds": 193.3
       },
       {
         "result": "works",
@@ -738,7 +739,7 @@
             "p1033 62531"
           ]
         ],
-        "seconds": 261
+        "seconds": 230
       },
       {
         "result": "partly",
@@ -778,7 +779,7 @@
         ],
         "cause": "loose-part",
         "detail": "p722 64782",
-        "seconds": 72.1
+        "seconds": 30.3
       },
       {
         "result": "works",
@@ -823,7 +824,7 @@
           [],
           []
         ],
-        "seconds": 138.8
+        "seconds": 98.4
       },
       {
         "result": "skipped"
