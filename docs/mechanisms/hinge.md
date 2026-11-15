@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 78 works, 15 partly, 31 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 78 works, 14 partly, 32 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -256,7 +256,7 @@ Each detail by the set it first appears in.
 **2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1)**
 
 - *stick:* The black gear at the top of the boom swings the backhoe's stick (dipper) in and out; it is a handle on the stick's pivot axle. (works)
-- *backhoe swing:* The backhoe swings from side to side by hand on its upright axle p147. (partly)
+- *backhoe swing:* The backhoe swings from side to side by hand on its upright axle p147. (no)
 
 **2014, [42021 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42021-1)**
 

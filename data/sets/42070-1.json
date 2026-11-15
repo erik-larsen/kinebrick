@@ -231,7 +231,9 @@
         "control": [
           "p742 64179",
           "p829 64179"
-        ]
+        ],
+        "lifted": true,
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36); and here the axle swings about its own drive shaft, so the differential’s ring gear goes round the pinion and the wheels must turn against each other, which the floor’s hold on the tyres would stop"
       },
       {
         "does": "The 24 tooth clutch gears in the steering and crane drives slip at the end of travel, so the motors can keep running.",
@@ -249,13 +251,13 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "f8064d1e",
+    "uncommitted": true,
     "date": "2026-11-15",
-    "seconds": 433,
+    "seconds": 307,
     "counts": {
       "partly": 7,
-      "works": 2,
-      "no": 1,
+      "works": 3,
       "skipped": 1
     },
     "loose": [
@@ -374,7 +376,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p405 18946",
-        "seconds": 31.3
+        "seconds": 17.3
       },
       {
         "result": "partly",
@@ -419,7 +421,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p592 18946",
-        "seconds": 30.8
+        "seconds": 17.4
       },
       {
         "result": "partly",
@@ -487,7 +489,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p406 18946",
-        "seconds": 32.1
+        "seconds": 17.3
       },
       {
         "result": "works",
@@ -535,7 +537,7 @@
             "dead point"
           ]
         ],
-        "seconds": 64.1
+        "seconds": 36
       },
       {
         "result": "works",
@@ -583,7 +585,7 @@
             "dead point"
           ]
         ],
-        "seconds": 64.4
+        "seconds": 36.9
       },
       {
         "result": "partly",
@@ -657,7 +659,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1096 3648b",
-        "seconds": 40.2
+        "seconds": 23
       },
       {
         "result": "partly",
@@ -736,7 +738,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 18946",
-        "seconds": 30.4
+        "seconds": 17.2
       },
       {
         "result": "partly",
@@ -805,7 +807,7 @@
         ],
         "cause": "not-driven",
         "detail": "p161 18946",
-        "seconds": 31.1
+        "seconds": 17.4
       },
       {
         "result": "partly",
@@ -876,18 +878,18 @@
         ],
         "cause": "stay-forced",
         "detail": "p1320 18938",
-        "seconds": 40.2
+        "seconds": 23.6
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -916,22 +918,11 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
         "movedBy": [
           [],
           []
         ],
-        "cause": "control-jammed",
-        "seconds": 9.6
+        "seconds": 62.8
       },
       {
         "result": "skipped"

@@ -4,7 +4,7 @@ Two axles or wheels rock together on one pivot, sharing the load. (Suspension.)
 
 First appears in 2007, in [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1): The four rear wheels are on a bogie that rocks on one cross axle through the frame, so both rear axles stay on the ground over bumps.
 
-Used in 5 of the 186 surveyed sets, by 5 functions. Kinebrick: 2 works, 1 no, 2 skipped.
+Used in 5 of the 186 surveyed sets, by 5 functions. Kinebrick: 3 works, 2 skipped.
 
 ## By decade
 
@@ -27,7 +27,7 @@ Each detail by the set it first appears in.
 
 **2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1)**
 
-- The four rear wheels are on a bogie that rocks on one cross axle through the frame, so both rear axles stay on the ground over bumps. (no)
+- The four rear wheels are on a bogie that rocks on one cross axle through the frame, so both rear axles stay on the ground over bumps. (works)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
 
