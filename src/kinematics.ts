@@ -245,6 +245,7 @@ class Drag {
   plainOnly = false; // while they are, whether its motions may not use the suspension (see chooseDragHolds)
   drivenLast = false; // while they are, whether what its part drives is tried last (see chooseDragHolds)
   outOfReach = new Set<number>(); // the bodies it can't reach, held where they are on the frame (see Options.reach)
+  springs = false; // whether the slides that springs hold at rest are held still for it (see chooseDragHolds)
 
   constructor(together: number[] = []) {
     this.together = together;
@@ -1137,6 +1138,16 @@ export class Kinematics {
     for (const worm of worms) this.drag.held.add(worm);
     const wormLocked = worms.length > 0;
     this.drag.turning = joint >= 0 ? { grabbed, joint } : null;
+    // A drag that can go with the slides that springs hold at rest held still (see
+    // Joint.springHeld) keeps them so for its whole length, its loops closed with them held too:
+    // the car stays at its height while a motor steers it or drives it. Free, the 42124's
+    // steering motor slid its front shock absorbers' rods, built at the top of their travel, past
+    // it as the loops closed, and stopped at once. Only a drag that needs them (a suspension arm,
+    // a shock absorber's rod) lets them slide.
+    if (this.mech.joints.some((j) => j.springHeld && j.kind === 'slide')) {
+      this.drag.springs = true;
+      if (!stillPossible()) this.drag.springs = false;
+    }
     // Least motion: only worms are held (they lock), and what stands alone on what's still (it
     // can't be needed, and holding it only saves work; held on something that turns, it would
     // be carried round: the 956 Auto Chassis's gear lever, which sits on the drive shaft);

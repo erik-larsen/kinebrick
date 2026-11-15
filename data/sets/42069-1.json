@@ -105,7 +105,9 @@
           "p1492 57519",
           "p1871 57519",
           "p1872 57519"
-        ]
+        ],
+        "lifted": true,
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "Each front door swings open, and a steering link from the door lowers the side step under it.",
@@ -164,9 +166,10 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "f8064d1e",
+    "uncommitted": true,
     "date": "2026-11-15",
-    "seconds": 1207,
+    "seconds": 973,
     "counts": {
       "works": 6,
       "skipped": 2,
@@ -387,11 +390,11 @@
           {
             "p4 32270": [
               1,
-              1.67e-13
+              9.63e-14
             ],
             "p1894 32270": [
               1,
-              7.87e-13
+              2.91e-13
             ],
             "p1879 64781": [
               0.0239,
@@ -407,7 +410,7 @@
             ],
             "p1490 57519": [
               0,
-              1.81e-12
+              2.66e-13
             ]
           }
         ],
@@ -423,7 +426,7 @@
             ]
           ]
         ],
-        "seconds": 192.4
+        "seconds": 159.3
       },
       {
         "result": "works",
@@ -469,7 +472,7 @@
             ]
           ]
         ],
-        "seconds": 59.3
+        "seconds": 28.6
       },
       {
         "result": "skipped"
@@ -540,7 +543,7 @@
         ],
         "cause": "not-driven",
         "detail": "p567 6589",
-        "seconds": 49.5
+        "seconds": 29.3
       },
       {
         "result": "works",
@@ -554,11 +557,11 @@
           {
             "p1333 62821": [
               1,
-              6.73e-13
+              3.43e-13
             ],
             "p146 2853": [
               2.33,
-              3.79e-14
+              1.14e-13
             ],
             "p162 2851": [
               0,
@@ -584,7 +587,7 @@
             ]
           ]
         ],
-        "seconds": 205.6
+        "seconds": 184
       },
       {
         "result": "works",
@@ -660,7 +663,7 @@
           [],
           []
         ],
-        "seconds": 212.9
+        "seconds": 193.3
       },
       {
         "result": "works",
@@ -736,7 +739,7 @@
             "p1033 62531"
           ]
         ],
-        "seconds": 261.9
+        "seconds": 230
       },
       {
         "result": "partly",
@@ -776,7 +779,7 @@
         ],
         "cause": "loose-part",
         "detail": "p722 64782",
-        "seconds": 65
+        "seconds": 30.3
       },
       {
         "result": "works",
@@ -821,7 +824,7 @@
           [],
           []
         ],
-        "seconds": 139.7
+        "seconds": 98.4
       },
       {
         "result": "skipped"

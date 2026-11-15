@@ -165,7 +165,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *boom:* The black knob nearer the cab on the superstructure's left side raises and lowers the boom: its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up. (works)
+- *boom:* The black knob nearer the cab on the superstructure's right side raises and lowers the boom: turned anticlockwise (seen from its own side) it raises it. Its 12 tooth gear drives a 20 tooth bevel gear on the linear actuator's input, and the actuator pushes the boom up. (works)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 

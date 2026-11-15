@@ -545,7 +545,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     let halt: Halt | null = null;
     let length = 0;
     const far = 'back' in to ? to.back.length : PUSH_FAR;
-    while (length < far - 1e-9 && ('back' in to || ownTurned < Math.abs(to.reach) - 1e-9)) {
+    // A control whose joint can't turn, with what the push holds held, could only be carried by
+    // what it turns in (the whole 42055 Bucket Wheel Excavator rolling, pushed by its battery
+    // switch), step after step until it ran into something: it goes nowhere.
+    if (!('back' in to) && kin.jointMotion(joint) === null) halt = 'no motion';
+    while (!halt && length < far - 1e-9 && ('back' in to || ownTurned < Math.abs(to.reach) - 1e-9)) {
       if (dir.length() < 0.5) {
         halt = 'no motion';
         break;
