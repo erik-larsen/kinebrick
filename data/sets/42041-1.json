@@ -102,11 +102,12 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "8ff7ad42",
     "date": "2026-11-15",
-    "seconds": 10,
+    "seconds": 7,
     "counts": {
-      "works": 4,
+      "works": 3,
+      "partly": 1,
       "pivoted": 1,
       "no": 1
     },
@@ -332,15 +333,18 @@
             "p112 2851"
           ]
         ],
-        "seconds": 3.5
+        "seconds": 2.9
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
             -1.5
           ]
+        ],
+        "still": [
+          "p153 62821"
         ],
         "rates": [
           {
@@ -349,19 +353,19 @@
               0.2
             ],
             "p153 62821": [
-              1,
-              9.55e-13
+              2.81e-8,
+              1.14e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0.01,
+              0,
               0
             ],
             [
-              0.01,
+              0,
               0
             ]
           ]
@@ -378,7 +382,12 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "judged": [
+          0
+        ],
+        "cause": "not-driven",
+        "detail": "p153 62821",
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -471,7 +480,7 @@
           "rise": 0.75,
           "tyre": "p646 41897"
         },
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -537,7 +546,7 @@
           [],
           []
         ],
-        "seconds": 3.5
+        "seconds": 2.7
       },
       {
         "result": "no",

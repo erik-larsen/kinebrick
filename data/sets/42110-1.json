@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "10433fa3",
+    "commit": "8ff7ad42",
     "date": "2026-11-15",
-    "seconds": 1002,
+    "seconds": 951,
     "counts": {
       "works": 12,
       "partly": 1,
@@ -310,7 +310,7 @@
             ]
           ]
         ],
-        "seconds": 100.8
+        "seconds": 105.4
       },
       {
         "result": "works",
@@ -352,7 +352,7 @@
             ]
           ]
         ],
-        "seconds": 101.4
+        "seconds": 107.4
       },
       {
         "result": "partly",
@@ -411,7 +411,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 37.9
+        "seconds": 40.4
       },
       {
         "result": "works",
@@ -424,28 +424,28 @@
         "rates": [
           {
             "p2613 42110 - 49294": [
-              1,
-              1.61e-9
+              0.0211,
+              1.89e-14
             ],
             "p38 62821": [
-              1,
-              7.52e-13
+              0.489,
+              5.42e-13
             ],
             "p242 3708": [
-              5.62e-8,
-              2.46e-13
+              0,
+              8.76e-46
             ]
           }
         ],
         "back": [
           [
             [
-              0.04,
-              0.02
+              0,
+              0
             ],
             [
-              0.02,
-              0.01
+              0,
+              0
             ]
           ]
         ],
@@ -453,15 +453,15 @@
           [
             [
               0,
-              0.01
+              0
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
-        "seconds": 95.6
+        "seconds": 10.3
       },
       {
         "result": "works",
@@ -517,7 +517,7 @@
             ]
           ]
         ],
-        "seconds": 14.2
+        "seconds": 15
       },
       {
         "result": "works",
@@ -559,7 +559,7 @@
             ]
           ]
         ],
-        "seconds": 14.2
+        "seconds": 15.1
       },
       {
         "result": "works",
@@ -601,7 +601,7 @@
             ]
           ]
         ],
-        "seconds": 14.4
+        "seconds": 15.3
       },
       {
         "result": "works",
@@ -643,7 +643,7 @@
             ]
           ]
         ],
-        "seconds": 14.1
+        "seconds": 14.6
       },
       {
         "result": "skipped"
@@ -721,7 +721,7 @@
           [],
           []
         ],
-        "seconds": 425.2
+        "seconds": 439.7
       },
       {
         "result": "works",
@@ -758,7 +758,7 @@
             ]
           ]
         ],
-        "seconds": 14.3
+        "seconds": 15.8
       },
       {
         "result": "works",
@@ -803,7 +803,7 @@
         "pushed": [
           true
         ],
-        "seconds": 9.8
+        "seconds": 10.5
       },
       {
         "result": "works",
@@ -841,7 +841,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 57.6
+        "seconds": 57.7
       },
       {
         "result": "works",
@@ -879,7 +879,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 57.5
+        "seconds": 58.2
       },
       {
         "result": "skipped"

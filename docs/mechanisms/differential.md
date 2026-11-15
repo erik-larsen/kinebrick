@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 45 works, 31 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 44 works, 32 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -134,7 +134,7 @@ Each detail by the set it first appears in.
 **2015, [42041 Race Truck {Reissue}](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42041-1)**
 
 - Pushed along, the rear wheels run the V8 engine behind the cab: the rear differential's 28 tooth crown drives a 12 tooth bevel gear on a shaft running forward, two 20 tooth bevel gears turn the drive up and forward into the crankshaft, and the eight pistons pump up and down in their two banks. (works)
-- The rear differential lets the two rear wheels turn at different speeds; with the truck lifted, turning one rear wheel turns the other the opposite way. (works)
+- The rear differential lets the two rear wheels turn at different speeds; with the truck lifted, turning one rear wheel turns the other the opposite way. (partly)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
