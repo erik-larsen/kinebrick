@@ -105,10 +105,12 @@
           "p52 32494",
           "p53 32494"
         ],
+        "lifted": true,
         "moves": [
           "p80 4254",
           "p82 4254"
-        ]
+        ],
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -206,9 +208,9 @@
     ]
   },
   "generated": {
-    "commit": "6fbe31fe",
+    "commit": "30803f45",
     "date": "2026-11-15",
-    "seconds": 105,
+    "seconds": 131,
     "counts": {
       "works": 7,
       "partly": 1,
@@ -402,7 +404,7 @@
             "p195 2851"
           ]
         ],
-        "seconds": 38.9
+        "seconds": 43.5
       },
       {
         "result": "works",
@@ -436,7 +438,7 @@
             ]
           ]
         ],
-        "seconds": 16
+        "seconds": 19.5
       },
       {
         "result": "works",
@@ -504,7 +506,7 @@
             ]
           ]
         ],
-        "seconds": 11.9
+        "seconds": 17.8
       },
       {
         "result": "works",
@@ -529,7 +531,7 @@
             ]
           ]
         ],
-        "seconds": 4.7
+        "seconds": 6.6
       },
       {
         "result": "partly",
@@ -629,7 +631,7 @@
         ],
         "cause": "not-driven",
         "detail": "p515 11949",
-        "seconds": 2.2
+        "seconds": 3.3
       },
       {
         "result": "no",
@@ -706,7 +708,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 6.4
+        "seconds": 1.6
       },
       {
         "result": "skipped",
@@ -779,7 +781,7 @@
             ]
           ]
         ],
-        "seconds": 11.2
+        "seconds": 17
       },
       {
         "result": "works",
@@ -851,7 +853,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 13
       },
       {
         "result": "works",
@@ -881,7 +883,7 @@
             ]
           ]
         ],
-        "seconds": 4.2
+        "seconds": 6.9
       },
       {
         "result": "not checked",

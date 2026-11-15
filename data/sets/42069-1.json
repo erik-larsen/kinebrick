@@ -105,7 +105,9 @@
           "p1492 57519",
           "p1871 57519",
           "p1872 57519"
-        ]
+        ],
+        "lifted": true,
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "Each front door swings open, and a steering link from the door lowers the side step under it.",
@@ -164,9 +166,9 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "30803f45",
     "date": "2026-11-15",
-    "seconds": 1207,
+    "seconds": 1206,
     "counts": {
       "works": 6,
       "skipped": 2,
@@ -423,7 +425,7 @@
             ]
           ]
         ],
-        "seconds": 192.4
+        "seconds": 185.1
       },
       {
         "result": "works",
@@ -469,7 +471,7 @@
             ]
           ]
         ],
-        "seconds": 59.3
+        "seconds": 59.8
       },
       {
         "result": "skipped"
@@ -540,7 +542,7 @@
         ],
         "cause": "not-driven",
         "detail": "p567 6589",
-        "seconds": 49.5
+        "seconds": 49.1
       },
       {
         "result": "works",
@@ -584,7 +586,7 @@
             ]
           ]
         ],
-        "seconds": 205.6
+        "seconds": 203.8
       },
       {
         "result": "works",
@@ -660,7 +662,7 @@
           [],
           []
         ],
-        "seconds": 212.9
+        "seconds": 212.2
       },
       {
         "result": "works",
@@ -736,7 +738,7 @@
             "p1033 62531"
           ]
         ],
-        "seconds": 261.9
+        "seconds": 261
       },
       {
         "result": "partly",
@@ -776,7 +778,7 @@
         ],
         "cause": "loose-part",
         "detail": "p722 64782",
-        "seconds": 65
+        "seconds": 72.1
       },
       {
         "result": "works",
@@ -821,7 +823,7 @@
           [],
           []
         ],
-        "seconds": 139.7
+        "seconds": 138.8
       },
       {
         "result": "skipped"

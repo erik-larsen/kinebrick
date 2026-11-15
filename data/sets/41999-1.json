@@ -76,7 +76,9 @@
         "control": [
           "p79 64178",
           "p177 64178"
-        ]
+        ],
+        "lifted": true,
+        "note": "lifted: an axle that rocks or swings on a flat floor would push one wheel into the floor, so it is worked as a hand works it, with the model off the floor (decision 36)"
       },
       {
         "does": "The shock absorbers' springs hold the chassis up on its axles.",
@@ -146,9 +148,9 @@
     ]
   },
   "generated": {
-    "commit": "50428c4b",
+    "commit": "30803f45",
     "date": "2026-11-15",
-    "seconds": 58,
+    "seconds": 60,
     "counts": {
       "works": 3,
       "partly": 1,
@@ -289,7 +291,7 @@
             "p1545 44772"
           ]
         ],
-        "seconds": 19.9
+        "seconds": 20.9
       },
       {
         "result": "partly",
@@ -349,7 +351,7 @@
         ],
         "cause": "not-driven",
         "detail": "p299 87761",
-        "seconds": 8.4
+        "seconds": 10.2
       },
       {
         "result": "no",
@@ -404,7 +406,7 @@
           []
         ],
         "cause": "control-jammed",
-        "seconds": 3.1
+        "seconds": 2.3
       },
       {
         "result": "skipped",
@@ -448,7 +450,7 @@
             ]
           ]
         ],
-        "seconds": 8.4
+        "seconds": 9.6
       },
       {
         "result": "works",
@@ -514,7 +516,7 @@
             "p1216 11954"
           ]
         ],
-        "seconds": 16.1
+        "seconds": 15.8
       },
       {
         "result": "no",
