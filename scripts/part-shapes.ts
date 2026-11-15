@@ -23,7 +23,8 @@ async function readLdrawFile(name: string): Promise<string | null> {
   return null;
 }
 
-export async function partShapes(file: string): Promise<{ name: string; shape: PartMesh[] }[]> {
+// `modelText`: the model's text as read, if not the file's own (a set's file with its errata).
+export async function partShapes(file: string, modelText?: string): Promise<{ name: string; shape: PartMesh[] }[]> {
   const base = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   let text: string;
   if (existsSync(join('packed', `${base}.mpd`))) text = readFileSync(join('packed', `${base}.mpd`), 'utf-8');
@@ -34,7 +35,7 @@ export async function partShapes(file: string): Promise<{ name: string; shape: P
       .join('\n');
     const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
     const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-    text = (await packModel(base, readFileSync(file, 'utf-8'), colours, readLdrawFile, isPrimitive, roles)).text;
+    text = (await packModel(base, modelText ?? readFileSync(file, 'utf-8'), colours, readLdrawFile, isPrimitive, roles)).text;
   }
   const loader = new LDrawLoader();
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);

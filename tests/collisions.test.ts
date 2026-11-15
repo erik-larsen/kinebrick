@@ -52,5 +52,14 @@ describe('collisions', () => {
     const sorted = meetingPairs(boxes, placed, () => true).map(([a, b]) => `${a},${b}`);
     expect(sorted.sort()).toEqual(every.sort());
   });
-});
 
+  it('never traps a model moved into overlap before the near pairs were known: that pose is its start', () => {
+    const placed = [at(0), at(50)];
+    const later = new Collisions([cube(), cube()], [0, 1], new Set(), placed, true);
+    const dragged = [at(0), at(10)]; // a drag ran the second cube into the first meanwhile
+    const tested = later.candidates([0, 1], new Set(), placed);
+    later.setNear(tested, new Set(), placed, dragged);
+    expect(later.check(dragged)).toBeNull(); // not stuck where it is
+    expect(later.check([at(0), at(40)])).toBeNull(); // and free to come back out
+  });
+});

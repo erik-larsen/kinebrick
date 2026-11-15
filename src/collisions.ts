@@ -23,10 +23,10 @@ import type { Mechanism } from './mechanism.ts';
 // How far each part's shape is pulled in at each face of its box for collision checks, in
 // LDU. Faces that merely touch (a beam sliding across the flush head of a pin) then don't
 // count as overlapping; anything that really passes through still does.
-const INSET = 0.25;
+export const INSET = 0.25;
 // Parts this close when the model loads, in LDU (after INSET), aren't checked against each
 // other: real models are built tight, and parts that rub on the real thing don't stop it.
-const NEAR = 1;
+export const NEAR = 1;
 
 // A copy of a mesh's geometry for collision checks: its positions and its index.
 export function collisionGeometry(source: BufferGeometry): BufferGeometry {
@@ -124,7 +124,12 @@ export function shapesNear(a: { meshes: { geometry: BufferGeometry; bvh: MeshBVH
       const toA = aMeshInverse.clone().multiply(bToA).multiply(mb.matrix);
       if (ma.bvh.intersectsGeometry(mb.geometry, toA)) return true;
       const hit = () => ({ point: new Vector3(), distance: 0, faceIndex: 0 });
-      if (ma.bvh.closestPointToGeometry(mb.geometry, toA, hit(), hit(), 0, NEAR)) return true;
+      // The closest points found, if any: the search skips boxes further than NEAR, but within a
+      // box it keeps the closest triangles it meets, however far (on the 8838, two parts 5.3 LDU
+      // apart, or not, by which boxes it happened to enter, so the answer hung on what was tested
+      // before). So the distance is what says.
+      const closest = ma.bvh.closestPointToGeometry(mb.geometry, toA, hit(), hit(), 0, NEAR);
+      if (closest && closest.distance <= NEAR) return true;
     }
   }
   return false;
@@ -149,6 +154,30 @@ export function meetingPairs(boxes: Box3[], partMatrices: Matrix4[], keep: (a: n
     }
   }
   return pairs;
+}
+
+// The key a kept result of the first pass is filed under (see nearPairsOf, data/collisions/):
+// what the result depends on, and nothing of the reading. The model's text as read (after its
+// errata), the parts library's release (LDConfig.ldr's update line, which a release changes; a
+// part changed between releases isn't caught), INSET and NEAR. A SHA-256 in hex.
+export async function collisionKey(modelText: string, libraryRelease: string): Promise<string> {
+  const bytes = new TextEncoder().encode(JSON.stringify([modelText, libraryRelease, INSET, NEAR]));
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+// The parts library's release, from LDConfig.ldr's text: its "!LDRAW_ORG ... UPDATE" line.
+export function libraryRelease(ldconfig: string): string {
+  return /^0 !LDRAW_ORG .*$/m.exec(ldconfig)?.[0].trim() ?? '';
+}
+
+// The first pass's whole result, kept per model (see data/collisions/): every pair of parts
+// whose boxes meet as built, whatever bodies they're on, and which of them are near. It doesn't
+// depend on how the model is read, so a change to the inference never makes it stale.
+export function nearPairsOf(meshes: PartMesh[][], partMatrices: Matrix4[]): { tested: [number, number][]; near: [number, number][] } {
+  const c = new Collisions(meshes, meshes.map((_, i) => i), new Set(), partMatrices, true);
+  const tested = meetingPairs(c.shapeBoxes(), partMatrices, () => true);
+  return { tested, near: tested.filter(([a, b]) => c.nearNow(a, b, partMatrices)) };
 }
 
 export class Collisions {
@@ -186,6 +215,11 @@ export class Collisions {
     this.watch(bodyOf, connected, partMatrices);
   }
 
+  // Each part's box, in its own coordinates.
+  shapeBoxes(): Box3[] {
+    return this.shapes.map((s) => s.box);
+  }
+
   // The pairs to test for nearness: on different bodies, not connected, their boxes meeting.
   candidates(bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[]): [number, number][] {
     return meetingPairs(
@@ -196,12 +230,16 @@ export class Collisions {
   }
 
   // The answer to `candidates`, found elsewhere: which of `tested` (placed as `partMatrices`
-  // said) are near. Then the pairs to watch are worked out, for the mechanism last given.
-  setNear(tested: [number, number][], near: Set<number>, partMatrices: Matrix4[]) {
+  // said) are near. Then the pairs to watch are worked out, for the mechanism last given, placed
+  // as `now` says: a drag or a motor may have moved the model while the answer was being found,
+  // even passing a part through another, and the stop must never trap it, so the pose it comes in
+  // is taken as the start (a pair that moved is tested again there, and one that overlaps then
+  // isn't watched, as if built touching).
+  setNear(tested: [number, number][], near: Set<number>, partMatrices: Matrix4[], now = partMatrices) {
     const n = this.shapes.length;
     for (const [a, b] of tested) this.known.set(pairNumber(a, b, n), { near: near.has(pairNumber(a, b, n)), relative: partMatrices[a].clone().invert().multiply(partMatrices[b]) });
     this.waiting = false;
-    if (this.last) this.watch(this.last.bodyOf, this.last.connected, this.last.partMatrices);
+    if (this.last) this.watch(this.last.bodyOf, this.last.connected, now);
   }
 
   // The shapes, as plain arrays, for finding the near pairs beside the page (collisionWorker.ts).

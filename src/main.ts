@@ -30,6 +30,7 @@ import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawCondit
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { collisionGeometry, Collisions, connectedPairs, pairNumber, PartMesh } from './collisions.ts';
+import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -472,7 +473,11 @@ async function start() {
   let pinWorker: Worker | null = null;
   let asked = 0;
   const answers = new Map<number, (pins: number[]) => void>();
+  // Started once the first collision pass has its answer (see read), so the two helpers don't
+  // share the machine (on the 42114, each made the other's work twice as slow), or at once if a
+  // drag asks for pins before then.
   function startPinWorker() {
+    if (pinWorker) return;
     try {
       pinWorker = new Worker(new URL('./pinWorker.ts', import.meta.url), { type: 'module' });
     } catch {
@@ -491,6 +496,7 @@ async function start() {
   }
   const pinsToFree = (part: number) =>
     new Promise<number[]>((resolve) => {
+      startPinWorker();
       if (!pinWorker) return resolve([]);
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
@@ -612,31 +618,52 @@ async function start() {
       const placedAt = partMatrices();
       collisions = new Collisions(shapes, mech.bodyOf, connected, placedAt, true);
       const tested = collisions.candidates(mech.bodyOf, connected, placedAt);
+      const n = shapes.length;
       const done = (near: [number, number][]) => {
-        const n = shapes.length;
-        collisions!.setNear(tested, new Set(near.map(([a, b]) => pairNumber(a, b, n))), placedAt);
+        collisions!.setNear(tested, new Set(near.map(([a, b]) => pairNumber(a, b, n))), placedAt, partMatrices());
         collisionNote.textContent = '';
+        startPinWorker();
       };
       collisionNote.textContent = 'Finding the parts that touch as built: until then, a drag or a motor isn\u2019t stopped where parts meet.';
-      try {
-        const worker = new Worker(new URL('./collisionWorker.ts', import.meta.url), { type: 'module' });
-        worker.onmessage = (e: MessageEvent) => {
-          if (OPTIONS.includes('debug')) console.log('collision pass beside the page', e.data.took, `${tested.length} pairs tested, ${e.data.near.length} near`);
-          done(e.data.near);
-          worker.terminate();
-        };
-        worker.onerror = () => {
-          worker.terminate();
-          done(tested.filter(([a, b]) => collisions!.nearNow(a, b, placedAt)));
-        };
-        // Only the parts some pair names are sent, their arrays handed over rather than copied.
-        const named = new Set(tested.flat());
-        const arrays = collisions.shapeArrays(named);
-        const transfer = arrays.flatMap((s) => s.meshes.flatMap((m) => [m.position.buffer, ...(m.index ? [m.index.buffer] : [])]));
-        worker.postMessage({ shapes: arrays, pairs: tested, matrices: placedAt.map((m) => m.toArray()) }, transfer);
-      } catch {
-        done(tested.filter(([a, b]) => collisions!.nearNow(a, b, placedAt)));
-      }
+      // The pairs tested beside the page, or on it if no helper can be started.
+      const testBeside = (pairs: [number, number][]): Promise<[number, number][]> =>
+        new Promise((resolve) => {
+          if (!pairs.length) return resolve([]);
+          const onPage = () => resolve(pairs.filter(([a, b]) => collisions!.nearNow(a, b, placedAt)));
+          try {
+            const worker = new Worker(new URL('./collisionWorker.ts', import.meta.url), { type: 'module' });
+            worker.onmessage = (e: MessageEvent) => {
+              if (OPTIONS.includes('debug')) console.log('collision pass beside the page', e.data.took, `${pairs.length} pairs tested, ${e.data.near.length} near`);
+              worker.terminate();
+              resolve(e.data.near);
+            };
+            worker.onerror = () => {
+              worker.terminate();
+              onPage();
+            };
+            // Only the parts some pair names are sent, their arrays handed over rather than copied.
+            const arrays = collisions!.shapeArrays(new Set(pairs.flat()));
+            const transfer = arrays.flatMap((s) => s.meshes.flatMap((m) => [m.position.buffer, ...(m.index ? [m.index.buffer] : [])]));
+            worker.postMessage({ shapes: arrays, pairs, matrices: placedAt.map((m) => m.toArray()) }, transfer);
+          } catch {
+            onPage();
+          }
+        });
+      // A kept result first (see keptPairs.ts): the model's own file, else this browser's store;
+      // the pairs neither covers are tested, and what's found is stored for next time.
+      (async () => {
+        const key = await keyFor(modelText);
+        const name = FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL;
+        const known = (await keptPairs(name, key)) ?? (await storedPairs(key));
+        const nearKnown = new Set((known?.near ?? []).map(([a, b]) => pairNumber(a, b, n)));
+        const testedKnown = new Set((known?.tested ?? []).map(([a, b]) => pairNumber(a, b, n)));
+        const covered = ([a, b]: [number, number]) => known?.all || testedKnown.has(pairNumber(a, b, n));
+        const untested = tested.filter((p) => !covered(p));
+        const found = await testBeside(untested);
+        if (OPTIONS.includes('debug')) console.log(`collision pass: ${known ? (known.all ? 'kept file' : 'this browser\u2019s store') : 'nothing kept'}, ${tested.length - untested.length} pairs known, ${untested.length} tested`);
+        done([...tested.filter((p) => covered(p) && nearKnown.has(pairNumber(p[0], p[1], n))), ...found]);
+        if (untested.length && !known?.all) storePairs(key, { all: false, tested: [...(known?.tested ?? []), ...untested], near: [...(known?.near ?? []), ...found] });
+      })();
     }
 
     // The counts go in the Stats card; the summary line is only for what's going on while loading.
@@ -1073,7 +1100,6 @@ async function start() {
     grid.position.z = home.z + Math.round((controls.target.z - home.z) / cell) * cell;
   };
   showPoses();
-  startPinWorker();
 
   // Back to the model as loaded, shifted back too, with nothing turning, and the camera and
   // grid back where they started.
