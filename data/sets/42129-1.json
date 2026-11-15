@@ -27,10 +27,10 @@
         ],
         "moves": [
           "p468 6573",
-          "p1311 65414",
-          "p1030 65414",
-          "p2934 42129 - 69912",
-          "p2936 42129 - 69912"
+          "p1309 65414c01",
+          "p1032 65414c01",
+          "p2930 42129 - 69912",
+          "p2932 42129 - 69912"
         ],
         "note": "The motors are single parts; their 24 tooth gears (p483 3648b, p484 3648b) are what they turn."
       },
@@ -43,7 +43,12 @@
         "control": "p466 99008",
         "moves": [
           "p471 4519 against p468 6573"
-        ]
+        ],
+        "held": [
+          "p483 3648b",
+          "p484 3648b"
+        ],
+        "note": "the motors are held, as the function says (\"holding the motors\"): their 24 tooth gears p483 and p484, which function 1's note names as what they turn, are frozen while the shaft is turned, as a user freezes them in the viewer"
       },
       {
         "does": "The front and rear axle differentials let each axle's wheels turn at different speeds in a corner.",
@@ -52,14 +57,18 @@
         ],
         "source": "book: the front and rear axle steps",
         "control": [
-          "p2934 42129 - 69912",
-          "p2936 42129 - 69912"
+          "p2930 42129 - 69912",
+          "p2932 42129 - 69912"
         ],
         "moves": [
-          "p2940 42129 - 69912 against p1311 65414",
-          "p2938 42129 - 69912 against p1030 65414"
+          "p2936 42129 - 69912 against p1309 65414c01",
+          "p2934 42129 - 69912 against p1032 65414c01"
         ],
-        "note": "With the drive held, turning one wheel turns the other on the same axle backwards (until the rear lock is engaged)."
+        "note": "With the drive held, turning one wheel turns the other on the same axle backwards (until the rear lock is engaged).; the drive is held, as the note says (\"With the drive held\"): the drive's input, the motors' 24 tooth gears p483 and p484 that function 1 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p483 3648b",
+          "p484 3648b"
+        ]
       },
       {
         "does": "The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course.",
@@ -72,9 +81,9 @@
         "control": "p550 21980",
         "moves": [
           "p517 35188",
-          "p1066 35188",
+          "p1064 35188",
           "p513 18947 against p468 6573",
-          "p1028 18947 against p1030 65414"
+          "p1030 18947 against p1032 65414c01"
         ],
         "note": "The motor is one part; its 16 tooth gear (p741 94925) is what it turns. Which differentials the lock reaches (centre and rear, or also the front) is drawn from the parts, not the book; see the report."
       },
@@ -85,13 +94,13 @@
           "rack-steering"
         ],
         "source": "book: page 372 (main control), the front axle and steerbar steps",
-        "control": "p1482 22169",
+        "control": "p1478 22169",
         "moves": [
-          "p1406 87761",
-          "p1354 46490c01",
-          "p1355 46490c01"
+          "p1402 87761",
+          "p1348 46490c02",
+          "p1351 46490c02"
         ],
-        "note": "The motor is one part; its 12 tooth gear (p1702 32270) is what it turns."
+        "note": "The motor is one part; its 12 tooth gear (p1710 32270) is what it turns."
       },
       {
         "does": "Each axle is held under the chassis on swinging suspension arms and sways and rises over rough ground, between two shock absorbers.",
@@ -101,13 +110,13 @@
         "source": "book: page 372 (left inset, the truck articulating over rough ground), the front and rear axle steps",
         "control": [
           "p958 42129 - 31794",
-          "p1200 42129 - 31794"
+          "p1198 42129 - 31794"
         ],
         "moves": [
-          "p1311 65414",
-          "p1030 65414",
-          "p1383 4254 against p1384 4255",
-          "p1217 4254 against p1218 4255"
+          "p1309 65414c01",
+          "p1032 65414c01",
+          "p1379 4254 against p1380 4255",
+          "p1215 4254 against p1216 4255"
         ]
       },
       {
@@ -124,9 +133,9 @@
           "for-show: steering wheel"
         ],
         "source": "inferred: the wheel sits on a short axle in the cab with nothing below it",
-        "control": "p1939 2819",
+        "control": "p1935 2819",
         "stays": [
-          "p1406 87761"
+          "p1402 87761"
         ]
       }
     ],
@@ -137,15 +146,13 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 121,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 396,
     "counts": {
-      "partly": 3,
-      "works": 3,
+      "partly": 2,
+      "works": 4,
       "no": 1,
-      "not back": 1,
       "skipped": 1
     },
     "loose": [
@@ -153,36 +160,19 @@
       "p237 23816c02",
       "p513 18947",
       "p551 23816c01",
-      "p750 42129 - 77590",
-      "p788 42129 - 77590",
-      "p830 42129 - 77590",
-      "p1028 18947",
-      "p1138 42129 - 52731",
-      "p1140 42129 - 52731",
-      "p1213 22977",
-      "p1216 22977",
-      "p1226 3705",
-      "p1227 32073",
-      "p1373 22977",
-      "p1376 22977",
-      "p1430 42129 - 52731",
-      "p1471 23816c02",
-      "p1736 3706",
-      "p1822 49661p01",
-      "p1848 3020",
-      "p1849 2412b",
-      "p1850 2412b",
-      "p1851 2412b",
-      "p1852 2412b",
-      "p1892 42129 - 22127",
-      "p2941 3737",
-      "p2942 59443",
-      "p2943 63965a",
-      "p2944 42129 - 11055",
-      "p2945 42129 - 11055",
-      "p2946 44375b",
-      "p2947 4032a",
-      "p2948 15535",
+      "p1030 18947",
+      "p1217 22977",
+      "p1220 22977",
+      "p1381 22977",
+      "p1384 22977",
+      "p1479 23816c02",
+      "p1830 49661p01",
+      "p1856 3020",
+      "p1857 2412b",
+      "p1858 2412b",
+      "p1859 2412b",
+      "p1860 2412b",
+      "p1900 42129 - 22127",
       "p2949 3737",
       "p2950 59443",
       "p2951 63965a",
@@ -206,7 +196,15 @@
       "p2969 42129 - 11055",
       "p2970 44375b",
       "p2971 4032a",
-      "p2972 15535"
+      "p2972 15535",
+      "p2973 3737",
+      "p2974 59443",
+      "p2975 63965a",
+      "p2976 42129 - 11055",
+      "p2977 42129 - 11055",
+      "p2978 44375b",
+      "p2979 4032a",
+      "p2980 15535"
     ],
     "functions": [
       {
@@ -222,30 +220,30 @@
           ]
         ],
         "still": [
-          "p1305 65414c01",
-          "p1030 65414c01",
-          "p2922 42129 - 69912",
-          "p2924 42129 - 69912"
+          "p1309 65414c01",
+          "p1032 65414c01",
+          "p2930 42129 - 69912",
+          "p2932 42129 - 69912"
         ],
         "rates": [
           {
             "p468 6573": [
               1,
-              9.47e-14
+              8.97e-14
             ],
-            "p1305 65414c01": [
+            "p1309 65414c01": [
+              0,
+              1.11e-42
+            ],
+            "p1032 65414c01": [
               0,
               0
             ],
-            "p1030 65414c01": [
+            "p2930 42129 - 69912": [
               0,
               0
             ],
-            "p2922 42129 - 69912": [
-              0,
-              0
-            ],
-            "p2924 42129 - 69912": [
+            "p2932 42129 - 69912": [
               0,
               0
             ]
@@ -253,21 +251,21 @@
           {
             "p468 6573": [
               1,
-              9.47e-14
+              8.97e-14
             ],
-            "p1305 65414c01": [
+            "p1309 65414c01": [
+              0,
+              1.11e-42
+            ],
+            "p1032 65414c01": [
               0,
               0
             ],
-            "p1030 65414c01": [
+            "p2930 42129 - 69912": [
               0,
               0
             ],
-            "p2922 42129 - 69912": [
-              0,
-              0
-            ],
-            "p2924 42129 - 69912": [
+            "p2932 42129 - 69912": [
               0,
               0
             ]
@@ -303,9 +301,17 @@
             ]
           ]
         ],
+        "movedBy": [
+          [
+            "p468 6573"
+          ],
+          [
+            "p468 6573"
+          ]
+        ],
         "cause": "not-driven",
-        "detail": "p1305 65414c01",
-        "seconds": 23.3
+        "detail": "p1309 65414c01",
+        "seconds": 69.6
       },
       {
         "result": "works",
@@ -319,7 +325,7 @@
           {
             "p471 4519 against p468 6573": [
               1,
-              3.08e-13
+              2.14e-13
             ]
           }
         ],
@@ -335,7 +341,164 @@
             ]
           ]
         ],
-        "seconds": 11.5
+        "seconds": 34.7
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ],
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p2936 42129 - 69912 against p1309 65414c01": [
+              6.4,
+              0.00629
+            ],
+            "p2934 42129 - 69912 against p1032 65414c01": [
+              0,
+              0
+            ]
+          },
+          {
+            "p2936 42129 - 69912 against p1309 65414c01": [
+              5.62e-8,
+              2.04e-8
+            ],
+            "p2934 42129 - 69912 against p1032 65414c01": [
+              4.4,
+              1.39e-12
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "movedBy": [
+          [
+            "p2936 42129 - 69912 against p1309 65414c01"
+          ],
+          [
+            "p2934 42129 - 69912 against p1032 65414c01"
+          ]
+        ],
+        "seconds": 173
+      },
+      {
+        "result": "partly",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "still": [
+          "p517 35188",
+          "p1064 35188",
+          "p513 18947 against p468 6573",
+          "p1030 18947 against p1032 65414c01"
+        ],
+        "rates": [
+          {
+            "p517 35188": [
+              0,
+              0
+            ],
+            "p1064 35188": [
+              0,
+              0
+            ],
+            "p513 18947 against p468 6573": [
+              8.43e-8,
+              2.28e-13
+            ],
+            "p1030 18947 against p1032 65414c01": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "why": [
+          "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
+        ],
+        "cause": "loose-part",
+        "detail": "p513 18947",
+        "seconds": 32.6
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p1402 87761": [
+              0,
+              15
+            ],
+            "p1348 46490c02": [
+              0,
+              15
+            ],
+            "p1351 46490c02": [
+              0,
+              15
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 34.3
       },
       {
         "result": "no",
@@ -350,165 +513,46 @@
           ]
         ],
         "still": [
-          "p2928 42129 - 69912 against p1305 65414c01",
-          "p2926 42129 - 69912 against p1030 65414c01"
-        ],
-        "rates": [
-          {},
-          {}
-        ],
-        "back": [
-          [],
-          []
-        ],
-        "why": [
-          "p2922 42129 - 69912 has no joint to work",
-          "p2924 42129 - 69912 has no joint to work"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0.8
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "still": [
-          "p517 35188",
-          "p1060 35188",
-          "p513 18947 against p468 6573",
-          "p1028 18947 against p1030 65414c01"
+          "p1309 65414c01",
+          "p1032 65414c01",
+          "p1379 4254 against p1380 4255",
+          "p1215 4254 against p1216 4255"
         ],
         "rates": [
           {
-            "p517 35188": [
+            "p1309 65414c01": [
               0,
               0
             ],
-            "p1060 35188": [
+            "p1032 65414c01": [
               0,
               0
             ],
-            "p513 18947 against p468 6573": [
-              5.62e-08,
-              1.94e-13
-            ],
-            "p1028 18947 against p1030 65414c01": [
-              0,
-              0
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
+            "p1379 4254 against p1380 4255": [
               0,
               0
             ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "cause": "loose-part",
-        "detail": "p513 18947",
-        "seconds": 11.5
-      },
-      {
-        "result": "works",
-        "turned": [
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "rates": [
-          {
-            "p1394 87761": [
-              0,
-              15
-            ],
-            "p1342 46490c01": [
-              0,
-              15
-            ],
-            "p1343 46490c01": [
-              0,
-              15
-            ]
-          }
-        ],
-        "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
-        ],
-        "seconds": 11.5
-      },
-      {
-        "result": "partly",
-        "turned": [
-          [
-            0,
-            0
-          ],
-          [
-            1.5,
-            -1.5
-          ]
-        ],
-        "still": [
-          "p1305 65414c01",
-          "p1030 65414c01",
-          "p1371 4254 against p1372 4255",
-          "p1211 4254 against p1212 4255"
-        ],
-        "rates": [
-          {
-            "p1305 65414c01": [
-              0,
-              0
-            ],
-            "p1030 65414c01": [
-              0,
-              0
-            ],
-            "p1371 4254 against p1372 4255": [
-              0,
-              0
-            ],
-            "p1211 4254 against p1212 4255": [
+            "p1215 4254 against p1216 4255": [
               0,
               0
             ]
           },
           {
-            "p1305 65414c01": [
+            "p1309 65414c01": [
               0,
-              8.1e-13
+              0
             ],
-            "p1030 65414c01": [
-              0.00834,
-              79.5
-            ],
-            "p1371 4254 against p1372 4255": [
+            "p1032 65414c01": [
               0,
-              7.89e-13
+              0
             ],
-            "p1211 4254 against p1212 4255": [
-              0.00834,
-              79.8
+            "p1379 4254 against p1380 4255": [
+              0,
+              0
+            ],
+            "p1215 4254 against p1216 4255": [
+              0,
+              0
             ]
           }
         ],
@@ -529,13 +573,10 @@
               0
             ],
             [
-              3.13,
+              0,
               0
             ]
           ]
-        ],
-        "strayed": [
-          "p2953 42129 - 11055"
         ],
         "stop": [
           [
@@ -543,12 +584,16 @@
             "no motion"
           ],
           [
-            null,
-            null
+            "no motion",
+            "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 50.7
+        "seconds": 13.6
       },
       {
         "result": "skipped",
@@ -564,9 +609,9 @@
         ],
         "rates": [
           {
-            "p1394 87761": [
+            "p1402 87761": [
               0,
-              0
+              1.59e-80
             ]
           }
         ],
@@ -582,7 +627,7 @@
             ]
           ]
         ],
-        "seconds": 10.6
+        "seconds": 34.4
       }
     ]
   }

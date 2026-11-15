@@ -44,6 +44,7 @@
         ],
         "source": "book: 1 page 3 (blueprint and shock absorber, up-and-down arrows); steps 4-9 (wishbones and shock absorbers)",
         "control": "p12 32063",
+        "lifted": true,
         "moves": [
           "p43 32063",
           "p17 32063",
@@ -55,7 +56,8 @@
         "stays": [
           "p9 32063",
           "p626 32271"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"and moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The right ski has independent suspension, as the left.",
@@ -121,10 +123,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 10,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 13,
     "counts": {
       "works": 3,
       "not back": 2,
@@ -205,7 +206,7 @@
           "p621 32449",
           "p83 32054"
         ],
-        "seconds": 3.1
+        "seconds": 4.9
       },
       {
         "result": "no",
@@ -278,7 +279,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -351,7 +352,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -361,50 +362,50 @@
         "result": "works",
         "turned": [
           [
-            1.51,
-            -1.53
+            1.6,
+            -1.5
           ]
         ],
         "rates": [
           {
             "p142 57520": [
-              0.926,
-              16.7
+              0.88,
+              0.641
             ],
             "p150 57520": [
-              0.954,
-              16.7
+              0.69,
+              0.552
             ],
             "p166 57518": [
-              0.206,
-              18.9
+              0.125,
+              29.9
             ],
             "p180 57518": [
-              0.0488,
-              33.4
+              0.163,
+              21.8
             ]
           }
         ],
         "back": [
           [
             [
-              7.88,
-              16.67
+              13.26,
+              17.89
             ],
             [
-              57.42,
-              83.28
+              11.13,
+              16.3
             ]
           ]
         ],
         "strayed": [
-          "p178 57518",
-          "p181 57518"
+          "p166 57518",
+          "p182 57518"
         ],
         "pushed": [
           true
         ],
-        "seconds": 5.2
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -462,7 +463,11 @@
             ]
           ]
         ],
-        "seconds": 1.3
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 2
       }
     ]
   }

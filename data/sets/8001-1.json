@@ -66,11 +66,11 @@
         ]
       },
       {
-        "does": "Turning the grey gear on the backpack raises the right arm, which holds the blaster, to aim: the gear's axle carries a 24-tooth gear driving an 8-tooth gear in the torso, whose 12-tooth bevel gear turns a 20-tooth bevel gear on the right shoulder's axle.",
+        "does": "Turning the grey gear on the backpack swings the right arm back over the shoulder to the blaster on the backpack, then forward to aim with it: the gear's axle carries a 24-tooth gear driving an 8-tooth gear in the torso, whose 12-tooth bevel gear turns a 20-tooth bevel gear on the right shoulder's axle.",
         "mechanisms": [
           "hinge: right arm"
         ],
-        "source": "book: torso steps 4-8 (bevel gears), backpack steps 13-16 and 20 (pages 42-46); photos on pages 53-55",
+        "source": "book: torso steps 4-8 (bevel gears), backpack steps 13-16 and 20 (pages 42-46); pages 53 to 55 (the arm swung back to the blaster, then forward to aim)",
         "control": "p897 32269",
         "moves": [
           "p898 3648b",
@@ -82,7 +82,8 @@
         "stays": [
           "p95 32184",
           "p830 32177 against p95 32184"
-        ]
+        ],
+        "note": "Signed by Erik, 2026-11-14: the arm swings back to the blaster on the backpack, then forward to aim"
       },
       {
         "does": "The left arm swings at the shoulder and bends at the elbow, so it can be posed.",
@@ -117,12 +118,13 @@
         "note": "the rubber band only matters under force; whether the knees are meant to bend is unsure"
       },
       {
-        "does": "The blaster is held in the right hand by a magnet, so it can be taken out and put back.",
+        "does": "The blaster is stored on the backpack; the magnet on the right wrist picks it up when the arm swings back (function 5).",
         "mechanisms": [
           "accessory: blaster"
         ],
-        "source": "book: arm step 12 (magnet holder) and the blaster steps (page 37)",
-        "skip": "magnets only matter under force"
+        "source": "book: pages 53 to 55; arm step 12 (magnet holder) and the blaster steps (page 37)",
+        "skip": "magnets only matter under force",
+        "note": "Signed by Erik, 2026-11-14: the blaster is stored on the backpack and picked up by the wrist magnet"
       }
     ],
     "questions": [
@@ -132,16 +134,14 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 3,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 5,
     "counts": {
-      "works": 4,
+      "works": 5,
       "skipped": 2,
       "not back": 1,
-      "no": 1,
-      "partly": 1
+      "no": 1
     },
     "loose": [
       "p871 75535",
@@ -187,7 +187,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -221,7 +221,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -243,7 +243,7 @@
             ],
             "p95 32184": [
               0,
-              1.18e-14
+              2.13e-14
             ]
           }
         ],
@@ -262,7 +262,7 @@
         "strayed": [
           "p128 32062"
         ],
-        "seconds": 1.2
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -328,10 +328,10 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -342,10 +342,6 @@
             -1.5
           ]
         ],
-        "still": [
-          "p71 32165 against p91 32177",
-          "p42 32165 against p62 32177"
-        ],
         "rates": [
           {
             "p42 32165 against p62 32177": [
@@ -354,13 +350,13 @@
             ],
             "p71 32165 against p91 32177": [
               0,
-              2.07e-14
+              2.04e-14
             ]
           },
           {
             "p42 32165 against p62 32177": [
               0,
-              7.31e-15
+              2.03e-14
             ],
             "p71 32165 against p91 32177": [
               1,
@@ -390,9 +386,15 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p71 32165 against p91 32177",
-        "seconds": 0.5
+        "movedBy": [
+          [
+            "p42 32165 against p62 32177"
+          ],
+          [
+            "p71 32165 against p91 32177"
+          ]
+        ],
+        "seconds": 0.8
       },
       {
         "result": "skipped",

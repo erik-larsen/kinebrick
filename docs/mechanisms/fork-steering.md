@@ -4,7 +4,7 @@ Handlebars turn the whole fork with its wheel or ski, as on a motorbike. (Steeri
 
 First appears in 1991, in [8810 Cafe Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8810-1) and [8838 Shock Cycle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8838-1): The handlebars steer the front wheel: the whole front fork, with its two long fork legs, headlight and handlebars, turns on a 4-long axle pushed down through the frame's motorcycle steering head.
 
-Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 4 partly, 2 no.
+Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 works, 4 partly, 1 no.
 
 ## By decade
 
@@ -41,7 +41,7 @@ Used in 8 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 4 partly
 
 **2017, [42063 BMW R 1200 GS Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42063-1)**
 
-- The handlebars steer the front wheel: the whole front fork turns with them. (no)
+- The handlebars steer the front wheel: the whole front fork turns with them. (works)
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 

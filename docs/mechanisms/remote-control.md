@@ -4,7 +4,7 @@ The motors are worked from a distance: infrared, a Bluetooth hub or an app. (Pow
 
 First appears in 2007, in [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1): The left XL motor drives the left track: a 16 tooth gear on its shaft drives, through a 16 tooth idler and another 16 tooth gear, a 12 tooth bevel gear that turns the 20 tooth gear on the axle of the left front sprocket.
 
-Used in 11 of the 186 surveyed sets, by 21 functions. Kinebrick: 4 works, 15 partly, 2 not checked.
+Used in 11 of the 186 surveyed sets, by 21 functions. Kinebrick: 7 works, 12 partly, 2 not checked.
 
 ## By decade
 
@@ -54,8 +54,8 @@ Each detail by the set it first appears in.
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
-- *Control+:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (partly)
-- *Control+:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (partly)
+- *Control+:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
+- *Control+:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (works)
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
 
@@ -76,7 +76,7 @@ Each detail by the set it first appears in.
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 
-- *Control+:* The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track. (partly)
+- *Control+:* The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track. (works)
 - *Control+:* The two drive motors and two gearbox motors are worked from the LEGO Technic Control+ app, which also shows the gearbox test and challenges. (not checked)
 
 ---

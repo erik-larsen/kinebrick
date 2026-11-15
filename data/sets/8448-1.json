@@ -49,6 +49,12 @@
           "p481 32196"
         ],
         "together": true,
+        "first": [
+          {
+            "control": "p509 6539",
+            "by": -5
+          }
+        ],
         "moves": [
           "p236 6573",
           "p31 3706",
@@ -58,7 +64,7 @@
           "p594 2851",
           "p598 2851"
         ],
-        "note": "only in gear: the gearbox has a neutral, and the model file may be built in it; which gear the file is in isn't known"
+        "note": "only in gear: the file is built in neutral. The first step puts the gearbox in first gear, the lowest (ring p509 onto the extension p508 and the gear beyond it: the crankshaft turns 3.75 times for each turn of the wheels); any gear would do, and first gear is the check's choice, not something the book says"
       },
       {
         "does": "The gear lever between the seats changes gear: moving it across picks one of the gearbox's three shafts by sliding the selector rail, and moving it fore or aft slides that shaft's driving ring onto one of its 16-tooth clutch gears, so the engine turns at a different speed for the same wheel speed.",
@@ -91,7 +97,12 @@
         "stays": [
           "p31 3706",
           "p100 3737"
-        ]
+        ],
+        "lifted": true,
+        "held": [
+          "p31 3706"
+        ],
+        "note": "the drive is held, as the function says (\"with the drive held\"): the propeller shaft p31, which it lists to stay and function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer"
       },
       {
         "does": "The front wheels have independent suspension: each hub rides between two suspension arms with a shock absorber, and moves up and down, steering as it goes.",
@@ -103,12 +114,14 @@
           "p364 32195a",
           "p380 32195a"
         ],
+        "lifted": true,
         "moves": [
           "p370 32184",
           "p384 32184",
           "p475 32196",
           "p484 32196"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheels have independent suspension: each upright rides between two arms with a shock absorber, and the half shafts' universal joints let it move up and down.",
@@ -120,12 +133,14 @@
           "p231 6629",
           "p224 6629"
         ],
+        "lifted": true,
         "moves": [
           "p259 32184",
           "p270 32184",
           "p481 32196",
           "p478 32196"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"the half shafts' universal joints let it move up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -196,13 +211,12 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 14,
+    "commit": "6fbe31fe",
+    "date": "2026-11-15",
+    "seconds": 53,
     "counts": {
-      "partly": 6,
-      "works": 1,
+      "partly": 3,
+      "works": 4,
       "not back": 1,
       "no": 2,
       "skipped": 2
@@ -242,7 +256,7 @@
             ],
             "p345 32185": [
               0,
-              2.41e-13
+              1.76e-13
             ],
             "p365 32186": [
               0,
@@ -284,51 +298,45 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 2
+        "seconds": 4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            2,
+            -1.8
           ]
-        ],
-        "still": [
-          "p577 32073",
-          "p692 32125",
-          "p594 2851",
-          "p598 2851"
         ],
         "rates": [
           {
             "p236 6573": [
               1,
-              4.03e-13
+              5.55e-13
             ],
             "p31 3706": [
               1.5,
-              1.9e-13
+              3.35e-13
             ],
             "p100 3737": [
               1.5,
-              1.07e-14
+              2.72e-14
             ],
             "p577 32073": [
-              0,
-              5.88e-27
+              3.75,
+              1.23e-13
             ],
             "p692 32125": [
-              0,
-              5.88e-27
+              3.75,
+              1.23e-13
             ],
             "p594 2851": [
               0,
-              6.63e-14
+              25.2
             ],
             "p598 2851": [
               0,
-              6.63e-14
+              21.4
             ]
           }
         ],
@@ -337,8 +345,10 @@
             "p236 6573": 1,
             "p31 3706": 1.5,
             "p100 3737": 1.5,
-            "p594 2851": 0,
-            "p598 2851": 0
+            "p577 32073": 3.75,
+            "p692 32125": 3.75,
+            "p594 2851": 25.2,
+            "p598 2851": 21.4
           }
         ],
         "back": [
@@ -353,9 +363,7 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p577 32073",
-        "seconds": 2.1
+        "seconds": 30.5
       },
       {
         "result": "works",
@@ -397,37 +405,33 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 3.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p31 3706",
-          "p100 3737"
-        ],
         "rates": [
           {
             "p481 32196": [
               1,
-              1.99e-13
+              4.74e-14
             ],
             "p237 6589": [
               1,
-              17
+              5.26e-13
             ],
             "p31 3706": [
-              1.5,
-              3.89e-13
+              0,
+              0
             ],
             "p100 3737": [
-              1.5,
-              5.64e-14
+              0,
+              0
             ]
           }
         ],
@@ -443,20 +447,18 @@
             ]
           ]
         ],
-        "cause": "stay-forced",
-        "detail": "p31 3706",
-        "seconds": 2.1
+        "seconds": 2.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.07,
-            -0.07
+            0,
+            -0.2
           ],
           [
-            0.07,
-            -0.07
+            0.2,
+            0
           ]
         ],
         "rates": [
@@ -467,32 +469,32 @@
             ],
             "p384 32184": [
               0,
-              40
+              0
             ],
             "p475 32196": [
-              0.101,
+              0.561,
               110
             ],
             "p484 32196": [
-              0.101,
-              110
+              0.0188,
+              0.225
             ]
           },
           {
             "p370 32184": [
               0,
-              40
+              0
             ],
             "p384 32184": [
               0,
               40
             ],
             "p475 32196": [
-              0.101,
-              110
+              0.0188,
+              0.225
             ],
             "p484 32196": [
-              0.101,
+              0.561,
               110
             ]
           }
@@ -500,40 +502,50 @@
         "back": [
           [
             [
-              9.87,
-              3.86
+              0,
+              0
             ],
             [
-              9.88,
-              3.86
+              14.87,
+              8.47
             ]
           ],
           [
             [
-              9.88,
-              3.86
+              14.87,
+              8.47
             ],
             [
-              9.87,
-              3.86
+              0,
+              0
             ]
           ]
         ],
         "strayed": [
-          "p1030 2431"
+          "p344 2736",
+          "p346 2736"
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ],
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "cause": "stopped-early",
-        "seconds": 0.7
+        "movedBy": [
+          [
+            "p370 32184",
+            "p475 32196"
+          ],
+          [
+            "p384 32184",
+            "p484 32196"
+          ]
+        ],
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -565,8 +577,13 @@
           "p231 6629 is part of the frame",
           "p224 6629 is part of the frame"
         ],
+        "freed": 4,
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-fixed",
-        "seconds": 0.7
+        "seconds": 3.3
       },
       {
         "result": "skipped",
@@ -583,11 +600,6 @@
             0,
             0
           ]
-        ],
-        "still": [
-          "p1016 32015",
-          "p1017 32015",
-          "p1078 32000"
         ],
         "rates": [
           {
@@ -655,9 +667,17 @@
           false,
           true
         ],
+        "movedBy": [
+          [
+            "p1016 32015",
+            "p1017 32015",
+            "p1078 32000"
+          ],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 1.9
+        "seconds": 3.6
       },
       {
         "result": "partly",
@@ -704,7 +724,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 1.9
+        "seconds": 2.9
       },
       {
         "result": "skipped",
@@ -733,6 +753,10 @@
         "why": [
           "p757 6536 is part of the frame",
           "p725 6536 is part of the frame"
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "control-fixed",
         "seconds": 0

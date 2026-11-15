@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 29 works, 39 partly, 9 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 41 works, 29 partly, 7 no, 1 not checked.
 
 ## By decade
 
@@ -65,7 +65,7 @@ Each detail by the set it first appears in.
 
 **1979, [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer)**
 
-- *loader arms:* The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise. (partly)
+- *loader arms:* The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise. (works)
 - *bucket:* The handwheel at the back on the right tips the bucket: its 8-tooth gear turns a crown gear, which turns the 24-tooth gear on the axle across the top of the cab; that axle's two 8-tooth gears slide two racks along the cab sides, which work a pair of levers on the arms' pivot axle, and rods from there through levers on the arms tip the bucket at the arm tips. (works)
 
 **1981, [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck)**
@@ -94,7 +94,7 @@ Each detail by the set it first appears in.
 
 - *loader arms:* The handwheel low on the right, in front of the cab, raises and lowers the loader arms: a bevel pair and a worm turn a crown gear on a cross-shaft, whose cranks push the arms up through short links. The bucket stays roughly level. (partly)
 - *loader bucket:* The handwheel low on the left, in front of the cab, tips the loader bucket: a bevel pair and a worm turn a crown gear on a second cross-shaft, whose cranks work rods along the arms to a three-armed rocker on each arm and on to the bucket. (works)
-- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (partly)
+- *bucket:* The cylinder on the dipper arm curls and opens the backhoe bucket through a short linkage. (works)
 
 **1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1)**
 
@@ -187,8 +187,8 @@ Each detail by the set it first appears in.
 **2015, [42032 Compact Tracked Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42032-1)**
 
 - *loader arms:* The gear-wheel knob at the back turns a worm, which turns a 24-tooth gear behind the cab; cranks on the gear's axle push links that raise and lower the two loader arms, carrying the bucket and the fork with them. The worm holds the arms wherever they're left. (works)
-- *bucket:* The upright lever on the left loader arm tilts the bucket: rocking it pushes a long white link along the arm to the bucket's back. (no)
-- *fork:* The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm. (no)
+- *bucket:* The upright lever on the left loader arm tilts the bucket: rocking it pushes a long white link along the arm to the bucket's back. (partly)
+- *fork:* The upright lever on the right loader arm tilts the fork above the bucket up and down, through a long white link along the arm. (works)
 
 **2015, [42035 Mining Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42035-1)**
 
@@ -196,7 +196,7 @@ Each detail by the set it first appears in.
 
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 
-- *doors:* With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (partly)
+- *doors:* With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (works)
 
 **2016, [42044 Display Team Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42044-1)**
 
@@ -230,30 +230,30 @@ Each detail by the set it first appears in.
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
 - *tipper:* Turning the axle end on the side of the truck under the tipper tips the tipper up: a crank arm on the axle pushes the tipper's front up, and turning it back lowers it. (works)
-- *boom:* The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down. (partly)
-- *arm:* Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom. (partly)
+- *boom:* The round knob on top of the excavator's engine cover raises and lowers the boom: its upright shaft carries a worm, which turns a 20 tooth gear, whose crank arm pushes the boom up or lets it down. (works)
+- *arm:* Turning the axle at the boom's elbow swings the excavator's arm and bucket in and out: a crank arm on the axle pushes the arm about its pivot on the boom. (works)
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
-- *bucket:* The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot. (partly)
+- *bucket:* The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot. (works)
 
 **2017, [42062 Container Yard](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42062-1)**
 
-- *boom:* The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot. (partly)
+- *boom:* The upper gear at the reach stacker's back end raises and lowers the boom: a worm on its axle turns a 20 tooth gear, whose crank arm and links push the boom up about its pivot. (works)
 - *claws:* Turning the axle at the spreader's end swings its claws in to grip a container's top or out to let it go. (no)
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
-- *landing gear:* With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (partly)
+- *landing gear:* With the right lever set, the motor raises and lowers the landing gear: a worm on the right output turns a 24 tooth gear whose arms push links that fold the two main legs up into the wings, and a long rod forward folds the nose leg up into the nose. (works)
 - *canopy, air brake and exhaust:* With the left lever set, the motor opens and closes the canopy, lowers the air brake under the fuselage and swivels the exhaust at the tail, all together: a worm on the left output turns a 24 tooth gear whose arms push links and long rods to all three. (partly)
 
 **2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1)**
 
-- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (partly)
+- *side steps:* Each front door swings open, and a steering link from the door lowers the side step under it. (works)
 
 **2018, [42071 Dozer Compactor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42071-1)**
 
-- *blade:* The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises. (partly)
+- *blade:* The upright axle in front of the cab raises and lowers the blade: a worm at its foot turns the 20 tooth gear on the blade arms' axle, and links from the front axle keep the blade upright as it rises. (works)
 
 **2018, [42072 WHACK!](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42072-1)**
 
@@ -301,7 +301,7 @@ Each detail by the set it first appears in.
 
 **2021, [42116 Skid Steer Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42116-1)**
 
-- *loader arm:* The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link. (partly)
+- *loader arm:* The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link. (works)
 - *bucket:* The black 12 tooth gear on the right side at the back tilts the bucket: its shaft carries a crank at the arm's pivot, which slides the arm's upper white beam along the lower one, and the upper beam tips the bucket at the front. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

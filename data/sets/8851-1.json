@@ -118,10 +118,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 2,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "no": 3,
       "skipped": 1,
@@ -273,7 +272,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p908 3649 against p852 3738",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -349,7 +348,13 @@
           "p1102 3001",
           "p1073 4265a"
         ],
-        "seconds": 1.1
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 1.7
       }
     ]
   }

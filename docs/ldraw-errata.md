@@ -15,6 +15,7 @@ This page lists the errors Kinebrick has found that way in the LDraw models it u
 | [8880-1](#8880-1-super-car) | Super Car (1994) | Orion Pobursky | LDraw OMR | 4 | Corrected in Kinebrick |
 | [42093-1](#42093-1-chevrolet-corvette-zr1) | Chevrolet Corvette ZR1 (2019) | Philippe Hurbain | LDraw OMR | 1 | Not corrected |
 | [10001-1](#10001-1-metroliner) | Metroliner (2001) | Zoltán Kéri | LDraw OMR | 3 | Corrected in Kinebrick |
+| [950-1](#950-1-fork-lift) | Fork Lift (1979) | Merlijn Wissink | LDraw OMR | 1 | Corrected in Kinebrick |
 
 ## 852-1 Helicopter
 
@@ -406,3 +407,252 @@ The tap in the second car (a 3496 base with a 3278 spout) is placed with its bas
 ```
 
 Kinebrick's copy has both at y = -142, the base on the studs.
+
+## 950-1 Fork Lift
+
+| | |
+| --- | --- |
+| Set | 950 Fork Lift, 1979 |
+| Model | Fork-Lift Truck, `950-1.mpd` |
+| Author | Merlijn Wissink [legolijntje] |
+| Licence | CCAL 2.0 (CC BY 2.0) |
+| Original | [LDraw Official Model Repository, set 92](https://library.ldraw.org/omr/sets/92) |
+| In Kinebrick | Corrected, the change with a comment saying how: [`models/950-Fork Lift.mpd`](../models/950-Fork%20Lift.mpd) |
+
+### The lower axle and its gear are missing (corrected in Kinebrick)
+
+Step 13 of the instructions adds a second Technic Axle 10 (3737) through the mast's upright beams, two holes below the axle at the top of the mast, with an 8 tooth gear (3647) that meshes the 24 tooth gear on the top axle, and puts the handwheel on its other end. The file leaves out the lower axle and its gear, and has the handwheel (3736) and its pin (3673) on the top axle, so its 24 tooth gear meshes with nothing:
+
+```
+1 7 -90 -238 -100 0 0 1 0 -1 0 1 0 0 3736.dat
+1 7 -100 -238 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
+```
+
+Kinebrick's copy moves the handwheel and its pin down 40 LDU onto the lower axle, and adds the axle and its gear at the end of the main model:
+
+```
+1 7 -90 -198 -100 0 0 1 0 -1 0 1 0 0 3736.dat
+1 7 -100 -198 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
+1 0 0 -198 -100 -1 0 0 0 1 0 0 0 -1 3737.dat
+1 7 90 -198 -100 0 0 1 0 1 0 -1 0 0 3647.dat
+```
+
+The handwheel then turns the top axle a third as fast, through the 8 and 24 tooth gears. The 850 Fork Lift's model has the same lines and the same omission.
+
+<!-- errata: from data/errata/*.json by npm run errata, not by hand -->
+
+## Corrections Kinebrick applies to the OMR files
+
+The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's file with these corrections (data/errata/<set>.json), in the viewer, the function check and every script alike. A file you open yourself is never corrected. An entry is applied once Erik has signed it off; a proposed one only when asked for (the check's `--proposed`, the viewer's `option=proposed`), to see the set before and after. No part number moves: a moved part keeps its number, a removed part keeps its number too, and an added part is numbered after the model's last part.
+
+| Set | Entry | What it does | Status |
+| --- | --- | --- | --- |
+| [850-1](#850-1-handwheel-down) | handwheel-down | moves `3736.dat` to -90 -198 -100 | Signed off by Erik, 2026-11-14 |
+| [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Signed off by Erik, 2026-11-14 |
+| [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Signed off by Erik, 2026-11-14 |
+| [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
+| [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
+| [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
+| [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Proposed, not applied until signed off |
+| [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
+| [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
+| [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Proposed, not applied until signed off |
+| [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Proposed, not applied until signed off |
+| [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+
+### 850-1: handwheel-down
+
+Signed off by Erik, 2026-11-14.
+
+The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
+
+In the main model (p188 3736), the line
+
+```
+1 7 -90 -238 -100 0 0 1 0 -1 0 1 0 0 3736.dat
+```
+
+is read with its part at -90 -198 -100.
+
+### 850-1: handwheel-pin-down
+
+Signed off by Erik, 2026-11-14.
+
+The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
+
+In the main model (p189 3673), the line
+
+```
+1 7 -100 -238 -130 -1 0 0 0 1 0 0 0 -1 3673.dat
+```
+
+is read with its part at -100 -198 -130.
+
+### 850-1: lower-axle-and-gear
+
+Signed off by Erik, 2026-11-14.
+
+The instructions' step 13 (850-1 scans, 008) add a second axle 10 through the mast's upright beams, two holes below the top axle, with an 8 tooth gear meshing the 24 tooth gear p185, and the handwheel on its other end (docs/audits, the build-step answers: high for the axle and gear, medium for the handwheel's end). The file leaves out the axle and gear and has the handwheel on the top axle, as the 950's file does; Kinebrick's copy of the 950 is corrected the same way (docs/ldraw-errata.md).
+
+Added to the main model:
+
+```
+1 0 0 -198 -100 -1 0 0 0 1 0 0 0 -1 3737.dat
+1 7 90 -198 -100 0 0 1 0 1 0 -1 0 0 3647.dat
+```
+
+### 8258-1: front-drive-gear-4-high
+
+Signed off by Erik, 2026-11-14.
+
+The front outriggers' drive gear p586 4019, on its axle pin p587 3749 (submodel m-1k'ka), is drawn 4 LDU off its hole's axis in the beam p583, so it is loose and nothing drives the front outriggers' pinion. Book 2 page 42 step 78.21 shows the gear meshing the next one (8258-1-5.pdf; docs/audits/function-lists-batch-2.md, "Model file checks the orchestrator asked for"). Confidence high (the audit). Moved 4 LDU, y -24 to -20.
+
+In `8258 - m-1k'k.ldr`, the line
+
+```
+1 71 20 -24 0 1 0 0 0 1 0 0 0 1 8258 - m-1k'ka.ldr
+```
+
+is read with its part at 20 -20 0.
+
+### 8838-1: axle-with-gears
+
+Signed off by Erik, 2026-11-14.
+
+The file defines the submodel Axle-with-Gears (a 6L axle with a 14 tooth bevel gear and an 8 tooth gear) but never places it; step 20 (scan 011) places it (docs/audits/for-erik.md, Model-file findings, high as a fact, medium for the line). The audit's line, `1 0 0 10 -60 -1 0 0 0 1 0 0 0 -1 8838 - Axle-with-Gears.ldr` in "8838 - Shock Cycle.ldr", put into the main model's coordinates (it places Shock Cycle turned): worked out, not yet seen in place.
+
+Added to the main model:
+
+```
+1 0 0 17.19 58.37 1 0 0 0 0.993 0.121 0 -0.121 0.993 8838 - Axle-with-Gears.ldr
+```
+
+### 9396-1: left-inner-main-wheel
+
+Signed off by Erik, 2026-11-14.
+
+The file has the left main wheel's outer rim and tyre (p1200 42610, p1201 51011, at x -180) on nothing, but not its inner wheel or the tan long pin 32556 that carries both, which the right side has (p1197 at x 160, wheels p1198 and p1224 at x 180 and 140). The parts list on book 3 page 59 has 6 tyres, the file 5 (docs/audits/function-lists-batch-2.md, "Model file checks the orchestrator asked for"). Confidence medium-high (the audit). Added as the right side's mirror: the pin at x -160, as the right pin is placed; the inner rim and tyre at x -140, turned as the left outer ones are.
+
+Added to the main model:
+
+```
+1 19 -160 18.2505 398.793 -1 0 0 0 0.896649 0.44326 0 0.44326 -0.896649 32556.dat
+1 71 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 42610.dat
+1 256 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 51011.dat
+```
+
+### 42040-1: seats-on-their-pins
+
+Proposed, not applied until signed off.
+
+The hatch behind the engine and its lever group (seats.ldr: the 42003s p249 and p259, the 32140s, the 32054s and the 32316) are loose in the file: each 42003's pin hole lies 2.00 LDU off its pin, the 6558s p165 and p164 of motor.ldr, both off by the same amount (0, -0.10, -2.00), along the holes' line. The booklet has the lever group and the hatch move together on those pins (42040-1-1.pdf pages 48 to 52, 89 and 115; docs/audits/for-erik.md, Model-file findings, medium). Moved by that amount, with its turn as built, both 42003s sit on their pins.
+
+In the main model, the line
+
+```
+1 1 -160 -211.5552 -68.6371 0 0 -1 0.0523 0.9986 0 0.9986 -0.0523 0 42040 - seats.ldr
+```
+
+is read with its part at -160 -211.6552 -70.6371.
+
+### 42064-1: hatch-20-high
+
+Signed off by Erik, 2026-11-14.
+
+The foredeck hatch (hatch.ldr, 17 parts) is drawn 20 LDU above where it belongs: its panel's holes lie on the axes of its two pins 15100 (p457, p458), 20 LDU past their ends, so it is loose. The booklet presses it down onto those two pins (42064-1 book, pages 185 to 187; docs/audits/function-lists-batch-3.md). Confidence high (the audit). Moved 20 LDU down.
+
+In `42064 - ship.ldr`, the line
+
+```
+1 0 0 -130 -380 -1 0 0 0 1 0 0 0 -1 42064 - hatch.ldr
+```
+
+is read with its part at 0 -110 -380.
+
+In the real set the hatch is fixed on its two pins, not hinged; what that means for fn 9 is the audit's table for Erik.
+
+### 42083-1: speed-key-in-its-hole
+
+Proposed, not applied until signed off.
+
+The speed key (startkey.ldr, its 11L axle p3540 23948) lies on the ground in the file. Book 2 page 310 (42083-1-2.pdf) shows it in place: the axle goes 3 to 4 studs into a hole above and behind the left rear hub, likely the 59443 p2099, into the shaft under the wing (docs/audits, the build-step answers; medium, measured on a perspective picture). Placed with the axle along that hole's line (x, at y -143, z 440), 3.5 studs (70 LDU) in from its outer face at x 210, its tip at x 140; the key's turn about the axle is as built.
+
+In the main model, the line
+
+```
+1 272 426 -10 365 0.866 0 -0.5 0 1 0 0.5 0 0.866 42083 - startkey.ldr
+```
+
+is read with its part at 250 -123 420, turned to 0 0 -1 0 1 0 1 0 0.
+
+### 42093-1: no-12-tooth-on-the-engine-shaft
+
+Proposed, not applied until signed off.
+
+The shaft that drives the engine has a 12 tooth double bevel gear (32270) where the set has an 8 tooth gear (10928): step 2 (42093-1-1.pdf page 4) puts an 8 tooth gear on that shaft, and the parts list has two 8 tooth gears (element 6012451) and three 12 tooth double bevel gears (element 4177431) where the file has one and four. A 12 tooth and an 8 tooth gear need 25 LDU between their axes; at 20 the 12 tooth gear overlaps the crankshaft's 8 tooth gear rather than meshing. Line 3115 of 42093 - corvette.ldr (docs/ldraw-errata.md, the 42093's section, written before the errata were applied; docs/audits/for-erik.md, Model-file findings, high).
+
+In `42093 - corvette.ldr` (p7 32270), the line
+
+```
+1 0 0 0 -80 0 1 0 1 0 0 0 0 -1 32270.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42093-1: 8-tooth-on-the-engine-shaft
+
+Proposed, not applied until signed off.
+
+The 8 tooth gear the set has in place of the removed 12 tooth gear: the same place and turn, in the main model's coordinates (corvette.ldr is placed unturned at 0 -55 160), in dark bluish grey like the crankshaft's gear.
+
+Added to the main model:
+
+```
+1 72 0 -55 80 0 1 0 1 0 0 0 0 -1 10928.dat
+```
+
+### 42109-1: no-pin-p381
+
+Signed off by Erik, 2026-11-14.
+
+Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
+
+In `42109 - car.ldr` (p381 2780), the line
+
+```
+1 0 0 0 0 0 0 -1 0 1 0 1 0 0 2780.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42109-1: no-pin-p382
+
+Signed off by Erik, 2026-11-14.
+
+Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
+
+In `42109 - car.ldr` (p382 2780), the line
+
+```
+1 0 0 40 0 0 0 -1 0 1 0 1 0 0 2780.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42109-1: no-beam-p383
+
+Signed off by Erik, 2026-11-14.
+
+Three parts the set doesn't have: the parts list confirms they are not in the set (42109-1-1.pdf p.17-18, 39-40, 113; docs/audits/for-erik.md, Model-file findings, high). In the file they are lines 1002 to 1004, in 42109 - car.ldr.
+
+In `42109 - car.ldr` (p383 32526), the line
+
+```
+1 0 80 40 -10 0 0 -1 -1 0 0 0 1 0 32526.dat
+```
+
+is read as not there. The part keeps its number.
+
+<!-- errata: end -->

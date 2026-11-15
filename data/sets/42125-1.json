@@ -58,7 +58,11 @@
         "moves": [
           "p3025 44771 against p15 62821"
         ],
-        "note": "With the crankshaft held, turning one rear wheel turns the other backwards."
+        "note": "With the crankshaft held, turning one rear wheel turns the other backwards.; the engine is held, as the function says (\"holding the engine\") and its note (\"With the crankshaft held\"): the crankshaft p165, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
+        "held": [
+          "p165 2853"
+        ]
       },
       {
         "does": "Each front wheel rides on its own pair of wishbones (independent suspension), sprung by a shock absorber.",
@@ -126,10 +130,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 142,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 247,
     "counts": {
       "partly": 1,
       "works": 5,
@@ -265,7 +268,7 @@
         ],
         "cause": "not-driven",
         "detail": "p441 87761",
-        "seconds": 4.7
+        "seconds": 8.1
       },
       {
         "result": "works",
@@ -283,7 +286,7 @@
           {
             "p15 62821": [
               1,
-              9.49e-13
+              9.56e-13
             ],
             "p165 2853": [
               2.33,
@@ -291,38 +294,38 @@
             ],
             "p181 2851 against p150 2850b": [
               8.43e-8,
-              14.1
+              14.7
             ],
             "p441 87761": [
-              5.62e-8,
-              2.3e-9
+              0,
+              1.54e-9
             ]
           },
           {
             "p15 62821": [
               1,
-              6.34e-13
+              8.3e-13
             ],
             "p165 2853": [
               2.33,
               23.3
             ],
             "p181 2851 against p150 2850b": [
-              5.62e-8,
-              14.1
+              1.4e-7,
+              14.7
             ],
             "p441 87761": [
               1.12e-7,
-              2.07e-9
+              1.54e-9
             ]
           }
         ],
         "expected": [
           {
-            "p181 2851 against p150 2850b": 14.1
+            "p181 2851 against p150 2850b": 14.7
           },
           {
-            "p181 2851 against p150 2850b": 14.1
+            "p181 2851 against p150 2850b": 14.7
           }
         ],
         "back": [
@@ -347,7 +350,19 @@
             ]
           ]
         ],
-        "seconds": 33.2
+        "movedBy": [
+          [
+            "p15 62821",
+            "p165 2853",
+            "p181 2851 against p150 2850b"
+          ],
+          [
+            "p15 62821",
+            "p165 2853",
+            "p181 2851 against p150 2850b"
+          ]
+        ],
+        "seconds": 61.4
       },
       {
         "result": "works",
@@ -360,24 +375,24 @@
         "rates": [
           {
             "p3025 44771 against p15 62821": [
-              0.000448,
-              35.7
+              1,
+              1.09e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0.16,
-              0.06
+              0,
+              0
             ],
             [
-              0.13,
-              0.04
+              0,
+              0
             ]
           ]
         ],
-        "seconds": 16.7
+        "seconds": 7.1
       },
       {
         "result": "no",
@@ -449,8 +464,12 @@
             "dead point"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "stopped-early",
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -494,7 +513,11 @@
             ]
           ]
         ],
-        "seconds": 33.5
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 59.9
       },
       {
         "result": "works",
@@ -538,7 +561,11 @@
           true,
           true
         ],
-        "seconds": 17.6
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 48
       },
       {
         "result": "works",
@@ -578,7 +605,11 @@
             ]
           ]
         ],
-        "seconds": 35
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 60.4
       }
     ]
   }

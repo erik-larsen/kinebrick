@@ -52,6 +52,7 @@
         ],
         "source": "book: step 8 (rear frame), step 9 (the pivot axle pushed in, red arrow), step 15 (the shock absorbers); the cover",
         "control": "p86 3701",
+        "lifted": true,
         "moves": [
           "p210 4266 against p0 3703",
           "p213 4266 against p0 3703",
@@ -61,7 +62,8 @@
         "stays": [
           "p206 4266 against p0 3703",
           "p208 4266 against p0 3703"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"the whole rear frame ... swings up and down on the cross axle under the seat\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the rear frame down and let it bounce back.",
@@ -106,14 +108,12 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 2,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "partly": 2,
       "works": 2,
-      "not back": 1,
       "skipped": 1,
       "not checked": 1
     },
@@ -170,7 +170,7 @@
         ],
         "cause": "not-driven",
         "detail": "p51 4261 against p0 3703",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -188,11 +188,11 @@
           {
             "p101 3648a against p86 3701": [
               1,
-              2.98e-13
+              3.5e-13
             ],
             "p116 2853 against p86 3701": [
               3,
-              1.94e-13
+              3.53e-13
             ],
             "p117 2852 against p86 3701": [
               3,
@@ -200,11 +200,11 @@
             ],
             "p120 2851 against p86 3701": [
               0,
-              1.14e-13
+              5.85e-14
             ],
             "p121 2851 against p86 3701": [
               0,
-              7.38e-14
+              5.68e-14
             ]
           }
         ],
@@ -222,14 +222,14 @@
         ],
         "cause": "not-driven",
         "detail": "p120 2851 against p86 3701",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.21,
+            -0.32
           ]
         ],
         "rates": [
@@ -239,42 +239,47 @@
               79.8
             ],
             "p213 4266 against p0 3703": [
-              1,
+              0.857,
               79.8
             ],
             "p200 4255 against p0 3703": [
-              1,
+              0.715,
               80
             ],
             "p202 4255 against p0 3703": [
-              1,
+              0.715,
               80
             ],
             "p206 4266 against p0 3703": [
               0,
-              1.3e-14
+              0
             ],
             "p208 4266 against p0 3703": [
               0,
-              1.54e-14
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              3.23,
-              1.84
+              0,
+              0
             ],
             [
-              4.62,
-              0
+              0,
+              0.01
             ]
           ]
         ],
-        "strayed": [
-          "p118 2852",
-          "p120 2851"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "pushed": [
+          true
         ],
         "seconds": 0.4
       },
@@ -350,7 +355,13 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 1.2
       },
       {
         "result": "not checked",

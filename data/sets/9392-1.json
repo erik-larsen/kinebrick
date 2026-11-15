@@ -81,13 +81,15 @@
         ],
         "source": "book: steps 1-13 (rear axle and swinging arm) and the side views on pages 26 and 41",
         "control": "p22 32140",
+        "lifted": true,
         "moves": [
           "p13 3737",
           "p182 56145"
         ],
         "stays": [
           "p134 2850a"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"pushing the rear axle up swings the arm about its pivot\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The front wheels have independent suspension: each hub rides between an upper and a lower suspension arm with a shock absorber, and moves up and down, steering as it goes.",
@@ -99,12 +101,14 @@
           "p95 6572",
           "p99 6572"
         ],
+        "lifted": true,
         "moves": [
           "p106 6572",
           "p104 6572",
           "p107 6571",
           "p109 6571"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The three shock absorbers' springs hold the quad up and spring back.",
@@ -122,10 +126,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 4,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 6,
     "counts": {
       "no": 3,
       "partly": 2,
@@ -195,7 +198,7 @@
         ],
         "cause": "not-driven",
         "detail": "p107 6571",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -214,23 +217,23 @@
           {
             "p17 94925": [
               1,
-              2.2e-12
+              2.91e-12
             ],
             "p146 94925": [
-              1.12e-7,
-              7.61e-14
+              2.81e-8,
+              6.72e-14
             ],
             "p137 2853": [
-              1.12e-7,
-              1.3e-13
+              2.81e-8,
+              9.82e-14
             ],
             "p140 2851": [
               5.62e-8,
-              2.15e-13
+              2.43e-13
             ],
             "p134 2850a": [
-              1.12e-7,
-              2.68e-13
+              2.81e-8,
+              2.8e-13
             ]
           }
         ],
@@ -248,7 +251,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p140 2851",
-        "seconds": 1.5
+        "seconds": 2.4
       },
       {
         "result": "partly",
@@ -270,7 +273,7 @@
             ],
             "p146 94925": [
               1,
-              5.33e-15
+              2.96e-15
             ],
             "p17 94925": [
               0,
@@ -281,8 +284,8 @@
               0
             ],
             "p134 2850a": [
-              0,
-              1.35e-13
+              2.81e-8,
+              2.68e-13
             ]
           }
         ],
@@ -300,7 +303,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 94925",
-        "seconds": 1.7
+        "seconds": 2.3
       },
       {
         "result": "no",
@@ -439,8 +442,12 @@
             "no motion"
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "skipped",

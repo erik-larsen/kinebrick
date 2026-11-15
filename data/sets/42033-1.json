@@ -84,9 +84,8 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
+    "commit": "50428c4b",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "works": 3,
@@ -159,7 +158,17 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "movedBy": [
+          [
+            "p118 56145 against p12 12799",
+            "p120 56145 against p12 12799"
+          ],
+          [
+            "p118 56145 against p12 12799",
+            "p120 56145 against p12 12799"
+          ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -216,6 +225,10 @@
             ]
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p111 3706",
         "seconds": 0.1
@@ -252,7 +265,7 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -282,7 +295,7 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

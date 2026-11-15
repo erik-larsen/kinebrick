@@ -78,9 +78,8 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
+    "commit": "50428c4b",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "partly": 1,
@@ -175,6 +174,20 @@
         ],
         "strayed": [
           "p49 32013"
+        ],
+        "movedBy": [
+          [
+            "p40 4019",
+            "p51 4019",
+            "p34 4019",
+            "p24 32012"
+          ],
+          [
+            "p40 4019",
+            "p51 4019",
+            "p34 4019",
+            "p24 32012"
+          ]
         ],
         "cause": "stay-chosen",
         "detail": "p45 32013",

@@ -59,7 +59,15 @@
         "stays": [
           "p411 2851 against p0 32278"
         ],
-        "note": "through the differential: turning one rear wheel with the other held turns the engine at half speed; the pistons slide in fixed cylinders"
+        "note": "through the differential: turning one rear wheel with the other held turns the engine at half speed; the pistons slide in fixed cylinders; each rear wheel is turned with the other held, as the note says (\"turning one rear wheel with the other held turns the engine at half speed\"): each control's working freezes the other rear wheel's hub, as a user freezes it in the viewer",
+        "held": {
+          "p350 92909": [
+            "p358 92909"
+          ],
+          "p358 92909": [
+            "p350 92909"
+          ]
+        }
       },
       {
         "does": "The black knob on the side behind the cockpit, with the yellow selector lever above it, works two things: with the lever one way, the knob tilts the rear wing's upper flap (a small linear actuator behind the engine pushes it); with the lever the other way, it lifts the whole engine cover, raised by two small linear actuators beside the engine.",
@@ -105,8 +113,11 @@
         ],
         "moves": [
           "p298 87083",
-          "p464 4254"
-        ]
+          "p464 4254",
+          "p304 87083",
+          "p459 4254"
+        ],
+        "note": "The parts that move are each side's rocker and shock absorber rod: p298 and p464 on the right (x -140, worked by p278), p304 and p459 on the left (x +140, worked by p291). Until 2026-11-14 only the right side's were listed, so p291 moved nothing listed (a fault in the list, not in the model)"
       },
       {
         "does": "The shock absorbers' springs hold the car up on its suspension.",
@@ -135,14 +146,14 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 37,
+    "commit": "6fbe31fe",
+    "date": "2026-11-15",
+    "seconds": 45,
     "counts": {
-      "works": 2,
-      "partly": 4,
-      "not back": 2,
+      "works": 3,
+      "no": 1,
+      "partly": 2,
+      "not back": 1,
       "skipped": 1
     },
     "loose": [
@@ -155,15 +166,7 @@
       "p616 u9269",
       "p617 u9269",
       "p618 u9269",
-      "p619 u9269",
-      "p1369 44772",
-      "p1370 44772",
-      "p1371 44772",
-      "p1372 44772",
-      "p1373 44771",
-      "p1374 44771",
-      "p1375 44771",
-      "p1376 44771"
+      "p619 u9269"
     ],
     "functions": [
       {
@@ -178,27 +181,27 @@
           {
             "p644 32269": [
               1,
-              5.73e-31
+              8.48e-31
             ],
             "p497 32270": [
               1,
               0
             ],
             "p585 92909": [
-              0.457,
-              11.9
-            ],
-            "p588 92909": [
               0.464,
               12
             ],
+            "p588 92909": [
+              0.457,
+              11.9
+            ],
             "p350 92909": [
               0,
-              8.11e-13
+              8.53e-14
             ],
             "p358 92909": [
               0,
-              5.99e-13
+              1.05e-13
             ]
           }
         ],
@@ -219,14 +222,14 @@
             ]
           ]
         ],
-        "seconds": 12.5
+        "seconds": 21.1
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
@@ -239,23 +242,23 @@
           {
             "p274 62821": [
               0,
-              1.42e-14
+              0
             ],
             "p395 2853": [
               0,
-              1.06e-26
+              0
             ],
             "p396 2852": [
               0,
-              1.54e-14
+              0
             ],
             "p400 2852": [
               0,
-              4.74e-15
+              0
             ],
             "p411 2851 against p0 32278": [
               0,
-              2.68e-13
+              0
             ]
           }
         ],
@@ -271,9 +274,14 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p274 62821",
-        "seconds": 3.7
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "cause": "control-jammed",
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -293,7 +301,7 @@
           {
             "p105 92693c01": [
               0,
-              7.85e-79
+              0
             ],
             "p252 3706": [
               0,
@@ -323,17 +331,17 @@
         ],
         "cause": "part-fixed",
         "detail": "p105 92693c01",
-        "seconds": 3.1
+        "seconds": 5.2
       },
       {
         "result": "partly",
         "turned": [
           [
             0.03,
-            -0.03
+            -0.07
           ],
           [
-            0.03,
+            0.07,
             -0.03
           ]
         ],
@@ -349,47 +357,44 @@
             ],
             "p566 4255": [
               0,
-              0
+              5.33e-14
             ]
           },
           {
             "p559 32056": [
               0,
-              4.26e-13
+              0
             ],
             "p566 4255": [
               0,
-              8.53e-13
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              4.83,
-              3.8
+              7.33,
+              1.94
             ],
             [
-              4.59,
-              4.28
+              14.64,
+              3.88
             ]
           ],
           [
             [
-              4.59,
-              4.28
+              14.64,
+              3.88
             ],
             [
-              4.83,
-              3.8
+              7.33,
+              1.94
             ]
           ]
         ],
         "strayed": [
-          "p1033 64391",
-          "p1343 64391",
-          "p1333 64683",
-          "p1057 64683"
+          "p1000 32062"
         ],
         "stop": [
           [
@@ -400,83 +405,108 @@
             "dead point",
             "dead point"
           ]
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "not-driven",
         "detail": "p559 32056",
         "seconds": 1.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.43,
-            -0.23
+            0.07,
+            -0.07
           ],
           [
-            0.23,
-            -0.43
+            0.07,
+            -0.07
           ]
         ],
         "rates": [
           {
             "p298 87083": [
-              3.41,
-              5.53e-13
+              2.72,
+              4.26e-13
             ],
             "p464 4254": [
-              3.41,
-              136
+              0.106,
+              109
+            ],
+            "p304 87083": [
+              0,
+              0
+            ],
+            "p459 4254": [
+              0,
+              5.33e-14
             ]
           },
           {
             "p298 87083": [
-              0.399,
-              9.89e-13
+              0,
+              1.77e-12
             ],
             "p464 4254": [
-              0.399,
-              16
+              0,
+              5.13e-12
+            ],
+            "p304 87083": [
+              2.72,
+              1.81e-12
+            ],
+            "p459 4254": [
+              0.106,
+              109
             ]
           }
         ],
         "back": [
           [
             [
-              0.9,
-              1.34
+              0.15,
+              0.15
             ],
             [
-              0.51,
-              0.71
+              0.15,
+              0.16
             ]
           ],
           [
             [
-              0.51,
-              0.71
+              0.15,
+              0.16
             ],
             [
-              0.89,
-              1.34
+              0.15,
+              0.15
             ]
           ]
-        ],
-        "strayed": [
-          "p335 32293",
-          "p336 32293"
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ],
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "cause": "stopped-early",
-        "seconds": 9
+        "movedBy": [
+          [
+            "p298 87083",
+            "p464 4254"
+          ],
+          [
+            "p304 87083",
+            "p459 4254"
+          ]
+        ],
+        "seconds": 3.4
       },
       {
         "result": "skipped",
@@ -520,7 +550,11 @@
             ]
           ]
         ],
-        "seconds": 6.8
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 10.7
       }
     ]
   }

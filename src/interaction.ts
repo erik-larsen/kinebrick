@@ -38,7 +38,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
 import { Mechanism } from './mechanism.ts';
-import { leastSquares, pointDirections as directionsOf, pushStep } from './push.ts';
+import { leastSquares, pointDirections as directionsOf, pushStep, wayOnJoint } from './push.ts';
 import { knobTurn } from './turn.ts';
 
 const HANDLE_COLOUR = 0x1d6fe0;
@@ -68,6 +68,29 @@ export const DEFAULT_RPM = 15;
 // than a drag's steps, to keep up on big models; it's just as exact, except where it runs into
 // something, so it creeps up to that in a drag's steps.
 const MOTOR_MAX_STEP = (15 * Math.PI) / 180;
+// Steps are full solves, and a frame's turn may need more than one. On a big model (the 6990
+// monorail, 36 ms a step) that makes the frame longer, so the next frame's turn bigger, so more
+// steps: down to 10 frames a second, the part jumping (Erik saw it above 70 rpm). So a frame's
+// steps take at most MOTOR_FRAME_BUDGET, at the time steps have been taking (see motorSteps):
+// fewer and larger steps, each at most MOTOR_BIG_STEP. A model that keeps up keeps 15 degree
+// steps, so a motor-driven lever doesn't pass through a thin part in one big step.
+const MOTOR_FRAME_BUDGET = 30; // ms
+const MOTOR_BIG_STEP = (45 * Math.PI) / 180;
+
+// A frame's turn for the part kept turning, `angle` (radians), split into steps: as far as it
+// turns this frame and the largest step it takes. In MOTOR_MAX_STEP steps if they fit in
+// MOTOR_FRAME_BUDGET, at `stepTime` ms a step (null: not timed yet); else in as many steps as
+// fit (at least one), larger, up to MOTOR_BIG_STEP. If even those can't cover the frame's turn,
+// it turns only as far as they go: the part runs slower than asked, rather than chopping, and
+// what it fell short of isn't made up later.
+export function motorSteps(angle: number, stepTime: number | null): { angle: number; maxStep: number } {
+  const needed = Math.max(1, Math.ceil(Math.abs(angle) / MOTOR_MAX_STEP));
+  const fit = stepTime === null || stepTime <= 0 ? needed : Math.max(1, Math.floor(MOTOR_FRAME_BUDGET / stepTime));
+  if (fit >= needed) return { angle, maxStep: MOTOR_MAX_STEP };
+  const step = Math.min(Math.abs(angle) / fit, MOTOR_BIG_STEP);
+  // (A hair over the step, so the turn is taken in `fit` steps, not one more from rounding.)
+  return { angle: Math.sign(angle) * Math.min(Math.abs(angle), step * fit), maxStep: step * (1 + 1e-9) };
+}
 // How fast a part kept moving (Ctrl-click on a part that's pushed) moves: this much of the
 // model's size along the way it moves, per second.
 const MOVE_SPEED = 0.1;
@@ -159,6 +182,10 @@ export function setUpInteraction(s: InteractionSetup) {
   // The kinematics the motor's holds were worked out for, or null if they need working out
   // again (after a drag, a freeze, a shift).
   let motorHeldIn: Kinematics | null = null;
+  // How long the motor's steps have been taking, in ms, smoothed, and the kinematics they were
+  // timed in (see motorSteps).
+  let motorStepTime: number | null = null;
+  let motorTimedIn: Kinematics | null = null;
   let ctrlHeld = false; // the Ctrl key is down (see the contextmenu handler)
   let ctrlClickHandled = false; // a press already handled the Ctrl-click a context menu follows
   // True while the label shows a message (such as "Froze ...") rather than the
@@ -536,7 +563,7 @@ export function setUpInteraction(s: InteractionSetup) {
 
   function toggleFreeze(body: number, clientX: number, clientY: number) {
     const name = s.mech.bodies[body].name;
-    if (body === 0 && s.kin.frameFixed()) {
+    if ((body === 0 && s.kin.frameFixed()) || s.kin.stillFrames.has(body)) {
       showMessage(`The ${name} already stays put: the model has no means of locomotion`, clientX, clientY);
       return;
     }
@@ -741,7 +768,9 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const sign = s.mech.joints[link.joint].bodyB === body ? 1 : -1;
-    const angle = sign * motorDirection * motorSpeed * seconds;
+    if (motorTimedIn !== s.kin) [motorStepTime, motorTimedIn] = [null, s.kin];
+    const steps = motorSteps(sign * motorDirection * motorSpeed * seconds, motorStepTime);
+    const angle = steps.angle;
     let turned = 0;
     let blocked = false;
     const allowed = () => {
@@ -755,7 +784,11 @@ export function setUpInteraction(s: InteractionSetup) {
         s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(link.joint) !== null, link.joint);
         motorHeldIn = s.kin;
       }
-      turned += s.kin.turnJoint(link.joint, angle - turned, allowed, MOTOR_MAX_STEP);
+      const start = performance.now();
+      const count = Math.max(1, Math.ceil(Math.abs(angle - turned) / steps.maxStep));
+      turned += s.kin.turnJoint(link.joint, angle - turned, allowed, steps.maxStep);
+      const each = (performance.now() - start) / count;
+      motorStepTime = motorStepTime === null ? each : 0.7 * motorStepTime + 0.3 * each;
     }
     // A big step that ran into something: creep up to it in a drag's small steps, so the
     // motor gets as far as a drag would.
@@ -804,6 +837,11 @@ export function setUpInteraction(s: InteractionSetup) {
       }
       stuck = false;
       while (moved < distance - 1e-9) {
+        // A part on a joint of its own (a door, a lid) is kept moving the way its joint now
+        // carries the point, round its hinge, rather than along the line it first went, which
+        // the push would keep it to by moving other parts (see wayOnJoint).
+        const way = wayOnJoint(s.kin, body, push.grabStart.clone().applyMatrix4(s.kin.poses[body]));
+        if (way) push.dir.copy(way.dot(push.dir) >= 0 ? way : way.negate());
         const step = Math.min(MAX_STEP, distance - moved);
         const went = pushStep(s.kin, body, push.grabStart, push.dir, step, () => {
           const pair = s.blockedBy();

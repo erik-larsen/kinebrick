@@ -44,6 +44,7 @@
           "p8 15459",
           "p9 15459"
         ],
+        "lifted": true,
         "moves": [
           "p11 15459 against p8 15459",
           "p12 15460"
@@ -51,7 +52,7 @@
         "stays": [
           "p13 15460"
         ],
-        "note": "the arms on the other side stay put; each side works alone"
+        "note": "the arms on the other side stay put; each side works alone. lifted: the text has the wheel or arm moved (\"pushing a ski up swings its upper and lower arms together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The two shock absorbers' springs hold the front up.",
@@ -105,13 +106,12 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 2,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 3,
     "counts": {
       "partly": 2,
-      "not back": 2,
+      "not back": 1,
       "skipped": 1,
       "works": 2,
       "not checked": 1
@@ -164,78 +164,76 @@
         "result": "partly",
         "turned": [
           [
-            1.57,
-            -1.58
+            1.5,
+            -1.5
           ]
         ],
-        "moved": [
-          "p8 15459",
-          "p9 15459"
+        "still": [
+          "p12 15460",
+          "p169 92907"
         ],
         "rates": [
           {
             "p12 15460": [
-              0.0338,
-              0.65
+              0.0302,
+              1.64e-13
             ],
             "p13 15460": [
-              0.537,
-              0.649
+              0.547,
+              1.3e-13
             ],
             "p169 92907": [
-              0.0338,
-              1.35
+              0.0302,
+              0.854
             ],
             "p178 92907": [
-              0.537,
-              15.2
+              0.547,
+              15.5
             ],
             "p8 15459": [
-              0.00254,
-              0.655
+              0,
+              1.66e-14
             ],
             "p9 15459": [
-              0.00254,
-              0.655
+              0,
+              1.66e-14
             ]
           }
         ],
         "back": [
           [
             [
-              0.85,
-              1.22
+              0.6,
+              0.77
             ],
             [
-              0.92,
-              1.24
+              0.58,
+              0.74
             ]
           ]
         ],
         "strayed": [
-          "p5 32184"
+          "p13 15460",
+          "p12 15460"
         ],
         "pushed": [
           true
         ],
-        "cause": "stay-chosen",
-        "detail": "p8 15459",
-        "seconds": 0.3
+        "cause": "not-driven",
+        "detail": "p12 15460",
+        "seconds": 0.7
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.39,
-            -1.39
+            0.3,
+            -0.2
           ],
           [
-            1.39,
-            -1.39
+            0.2,
+            -0.3
           ]
-        ],
-        "still": [
-          "p11 15459 against p8 15459"
         ],
         "moved": [
           "p13 15460"
@@ -243,76 +241,79 @@
         "rates": [
           {
             "p11 15459 against p8 15459": [
-              9.1e-8,
+              1.4e-7,
               40
             ],
             "p12 15460": [
-              1.12,
-              81.8
+              0.0719,
+              80
             ],
             "p13 15460": [
-              0.0944,
-              3.26
+              0.0509,
+              2.48e-13
             ]
           },
           {
             "p11 15459 against p8 15459": [
-              6.07e-8,
-              0.00166
+              0,
+              1.18e-14
             ],
             "p12 15460": [
-              0.0944,
-              3.26
+              0.0509,
+              1.53e-13
             ],
             "p13 15460": [
-              1.12,
-              78.2
+              0.0719,
+              80
             ]
           }
         ],
         "back": [
           [
             [
-              151.37,
-              89.16
+              0.09,
+              0.11
             ],
             [
-              147.36,
-              89.15
+              0.08,
+              0.11
             ]
           ],
           [
             [
-              147.36,
-              89.15
+              0.08,
+              0.11
             ],
             [
-              151.37,
-              89.16
+              0.09,
+              0.11
             ]
           ]
         ],
-        "strayed": [
-          "p173 32062",
-          "p182 32062"
-        ],
         "stop": [
           [
-            "stuck",
-            "stuck"
+            "limit",
+            "limit"
           ],
           [
-            "stuck",
-            "stuck"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true,
           true
         ],
-        "cause": "stay-chosen",
-        "detail": "p13 15460",
-        "seconds": 0.3
+        "movedBy": [
+          [
+            "p11 15459 against p8 15459",
+            "p12 15460"
+          ],
+          []
+        ],
+        "cause": "not-driven",
+        "detail": "p11 15459 against p8 15459",
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -356,7 +357,11 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -426,7 +431,13 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 1
       },
       {
         "result": "not checked",

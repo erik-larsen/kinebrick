@@ -44,9 +44,8 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
+    "commit": "50428c4b",
+    "date": "2026-11-15",
     "seconds": 0,
     "counts": {
       "partly": 1,
@@ -144,7 +143,7 @@
             ]
           ]
         ],
-        "cause": "stay-forced",
+        "cause": "loose-part",
         "detail": "p30 4282",
         "seconds": 0.1
       },

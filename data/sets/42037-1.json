@@ -84,12 +84,14 @@
           "p58 57515",
           "p72 57515"
         ],
+        "lifted": true,
         "moves": [
           "p66 11949",
           "p76 11949",
           "p96 76537",
           "p97 76537"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheels each have independent suspension: each hub rides on two pairs of arms with a shock absorber, and the drive shafts' constant velocity joints let it move up and down while driven.",
@@ -101,12 +103,14 @@
           "p229 32063",
           "p241 32063"
         ],
+        "lifted": true,
         "moves": [
           "p235 11950",
           "p236 11950",
           "p290 4254",
           "p292 4254"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"let it move up and down while driven\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -132,14 +136,13 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 113,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 85,
     "counts": {
-      "partly": 2,
-      "works": 3,
+      "works": 4,
       "not back": 2,
+      "partly": 1,
       "no": 1,
       "skipped": 1
     },
@@ -148,26 +151,18 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p153 94925",
-          "p113 2853",
-          "p126 2851",
-          "p127 2851",
-          "p128 2851",
-          "p129 2851"
-        ],
         "rates": [
           {
             "p225 62821": [
               1,
-              7.55e-13
+              5.84e-13
             ],
             "p214 32269": [
               1.4,
@@ -178,32 +173,32 @@
               0.000639
             ],
             "p154 6542b": [
-              0.102,
-              0.000633
+              1.4,
+              0.00868
             ],
             "p153 94925": [
-              5.62e-8,
-              1.82e-11
+              1.4,
+              0.00122
             ],
             "p113 2853": [
-              5.62e-8,
-              1.21e-8
+              1.4,
+              14
             ],
             "p126 2851": [
-              5.62e-8,
-              9.13e-12
+              8.43e-8,
+              10.7
             ],
             "p127 2851": [
-              5.62e-8,
-              1.3e-11
+              8.43e-8,
+              10.7
             ],
             "p128 2851": [
-              5.62e-8,
-              1.01e-11
+              1.12e-7,
+              9.4
             ],
             "p129 2851": [
-              5.62e-8,
-              1.45e-11
+              1.12e-7,
+              9.4
             ]
           }
         ],
@@ -212,132 +207,148 @@
             "p225 62821": 1,
             "p214 32269": 1.4,
             "p136 94925": 1.4,
-            "p126 2851": 0,
-            "p127 2851": 0,
-            "p128 2851": 0,
-            "p129 2851": 0
+            "p154 6542b": 1.4,
+            "p126 2851": 10.7,
+            "p127 2851": 10.7,
+            "p128 2851": 9.4,
+            "p129 2851": 9.4
           }
         ],
         "back": [
           [
             [
-              0.01,
-              0.02
+              0,
+              0
             ],
             [
-              0.11,
-              0.03
+              0.01,
+              0
             ]
           ]
         ],
-        "cause": "part-fixed",
-        "detail": "p126 2851",
-        "seconds": 15.8
+        "seconds": 27.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.51
+            1.22,
+            -1.07
           ]
         ],
         "rates": [
           {
             "p493 45982": [
               1,
-              0.00271
+              0.0027
             ],
             "p225 62821": [
               1,
-              6.68e-12
+              5.92e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0.07,
-              0.05
+              135.92,
+              98.1
             ],
             [
-              0.08,
-              0.06
+              110.84,
+              85.66
             ]
+          ]
+        ],
+        "strayed": [
+          "p227 6589",
+          "p116 32062"
+        ],
+        "stop": [
+          [
+            "stuck",
+            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 71.9
+        "seconds": 40.6
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ],
-        "moved": [
-          "p489 45982",
-          "p493 45982"
+        "still": [
+          "p54 87761",
+          "p66 11949",
+          "p76 11949",
+          "p491 45982",
+          "p495 45982"
         ],
         "rates": [
           {
             "p34 3737": [
               0.999,
-              5.57e-13
+              1.91e-12
             ],
             "p54 87761": [
-              1.12e-7,
+              0,
               15
             ],
             "p66 11949": [
-              0.397,
-              0.198
+              0.37,
+              0.185
             ],
             "p76 11949": [
-              0.402,
-              0.201
+              0.38,
+              0.19
             ],
             "p491 45982": [
-              0.475,
-              19.9
+              0.407,
+              18.5
             ],
             "p495 45982": [
-              0.432,
-              20.1
+              0.418,
+              19
             ],
             "p489 45982": [
-              0.0721,
-              2
+              0.011,
+              1.72
             ],
             "p493 45982": [
-              0.0564,
-              1.57
+              0.0115,
+              1.71
             ]
           }
         ],
         "back": [
           [
             [
-              73.14,
-              53.03
+              0.6,
+              1.9
             ],
             [
-              65.91,
-              49.37
+              0.6,
+              1.9
             ]
           ]
         ],
         "strayed": [
-          "p490 56908",
-          "p494 56908"
+          "p293 3705"
         ],
-        "cause": "stay-chosen",
-        "detail": "p489 45982",
-        "seconds": 10.5
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
+        "cause": "stopped-early",
+        "seconds": 0.6
       },
       {
         "result": "no",
@@ -431,56 +442,60 @@
           true,
           true
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "part-fixed",
         "detail": "p96 76537",
-        "seconds": 0.2
+        "seconds": 0.5
       },
       {
         "result": "works",
         "turned": [
           [
-            1.23,
-            -0.37
+            0.4,
+            -0.23
           ],
           [
-            1.23,
-            -0.37
+            0.4,
+            -0.23
           ]
         ],
         "rates": [
           {
             "p235 11950": [
-              1.03e-7,
+              0,
               100
             ],
             "p236 11950": [
-              1.03e-7,
-              101
+              0,
+              0
             ],
             "p290 4254": [
-              1,
+              0.244,
               40
             ],
             "p292 4254": [
-              1.01,
-              40.3
+              0,
+              0
             ]
           },
           {
             "p235 11950": [
-              1.03e-7,
-              99.2
+              0,
+              0
             ],
             "p236 11950": [
-              1.71e-7,
+              0,
               100
             ],
             "p290 4254": [
-              0.993,
-              39.7
+              0,
+              0
             ],
             "p292 4254": [
-              1,
+              0.244,
               40
             ]
           }
@@ -488,41 +503,46 @@
         "back": [
           [
             [
-              159.06,
-              74.29
+              0,
+              0
             ],
             [
-              46.03,
-              54.55
+              0,
+              0
             ]
           ],
           [
             [
-              158.11,
-              73.48
+              0,
+              0
             ],
             [
-              45.96,
-              54.84
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p478 32009",
-          "p293 3705",
-          "p481 32009"
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ],
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "seconds": 10.7
+        "movedBy": [
+          [
+            "p235 11950",
+            "p290 4254"
+          ],
+          [
+            "p236 11950",
+            "p292 4254"
+          ]
+        ],
+        "seconds": 11.3
       },
       {
         "result": "skipped",
@@ -551,7 +571,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 4.5
       }
     ]
   }

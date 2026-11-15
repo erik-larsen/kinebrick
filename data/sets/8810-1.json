@@ -43,6 +43,7 @@
         ],
         "source": "book: steps 6 (the two shock absorbers hang from the frame), 7 (pivot axle), 8 (rear wheel and axle), 9-10 (the two 1x6 plates and bushes)",
         "control": "p32 4262",
+        "lifted": true,
         "moves": [
           "p33 4262",
           "p21 3706",
@@ -56,7 +57,7 @@
           "p25 3894",
           "p53 2695"
         ],
-        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top pins as the arm moves"
+        "note": "how far the arm can swing is set by the shock absorbers' travel; the shocks' cylinders swing a little on their top pins as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheel can rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The two shock absorbers' springs push the rear wheel back down.",
@@ -106,16 +107,14 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
+    "commit": "50428c4b",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "partly": 1,
       "not back": 1,
-      "no": 1,
-      "skipped": 1,
-      "works": 2
+      "works": 3,
+      "skipped": 1
     },
     "loose": [],
     "functions": [
@@ -162,16 +161,16 @@
               44.5
             ],
             "p5 2904": [
-              0.00000126,
-              2.15e-13
+              0,
+              4.3e-13
             ],
             "p32 4262": [
-              0.00443,
-              0.221
+              0,
+              4.77e-13
             ],
             "p26 2695": [
-              0.0159,
-              0.443
+              0.0139,
+              0
             ]
           }
         ],
@@ -182,13 +181,14 @@
               8.95
             ],
             [
-              1.07,
-              1.07
+              1.03,
+              1.01
             ]
           ]
         ],
         "strayed": [
-          "p26 2695"
+          "p26 2695",
+          "p30 4276b"
         ],
         "stop": [
           [
@@ -197,48 +197,41 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
             0,
-            0
+            -0.22
           ]
-        ],
-        "still": [
-          "p33 4262",
-          "p21 3706",
-          "p26 2695",
-          "p16 4254",
-          "p18 4254"
         ],
         "rates": [
           {
             "p33 4262": [
-              0,
-              0
+              1,
+              50
             ],
             "p21 3706": [
-              0,
-              0
+              0.5,
+              100
             ],
             "p26 2695": [
-              0,
-              0
+              0.5,
+              100
             ],
             "p16 4254": [
-              0,
-              0
+              0.5,
+              100
             ],
             "p18 4254": [
-              0,
-              0
+              0.5,
+              100
             ],
             "p5 2904": [
               0,
-              0
+              1.01e-56
             ],
             "p24 3894": [
               0,
@@ -268,15 +261,13 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
-        "cause": "not-driven",
-        "detail": "p33 4262",
         "seconds": 0
       },
       {
@@ -321,7 +312,11 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -368,7 +363,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 0.1
+        "seconds": 0.2
       }
     ]
   }

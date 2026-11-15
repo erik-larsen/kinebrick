@@ -129,9 +129,11 @@
           "p1051 15459",
           "p1044 15459"
         ],
+        "lifted": true,
         "moves": [
           "p1046 42083 - 23801"
-        ]
+        ],
+        "note": "lifted: the text has the wheel or arm moved (\"so the wheel can rise and fall\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "Each rear wheel has independent suspension in the same way: its upright rides between two arms, with two shock absorbers.",
@@ -171,15 +173,13 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 439,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 817,
     "counts": {
       "works": 4,
       "partly": 3,
       "skipped": 2,
-      "not back": 1,
       "no": 1,
       "not checked": 1
     },
@@ -329,7 +329,7 @@
             ],
             "p1046 42083 - 23801": [
               0.23,
-              8.84e-12
+              8.82e-12
             ],
             "p1119 64781": [
               0,
@@ -349,7 +349,7 @@
             ]
           ]
         ],
-        "seconds": 84.8
+        "seconds": 143.4
       },
       {
         "result": "partly",
@@ -428,9 +428,13 @@
             ]
           ]
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p1345 24505",
-        "seconds": 50.4
+        "seconds": 89.5
       },
       {
         "result": "skipped"
@@ -457,11 +461,11 @@
           {
             "p597 2854": [
               0,
-              1.31e-16
+              1.2e-16
             ],
             "p609 2851": [
               0,
-              5.13e-13
+              3.02e-13
             ],
             "p671 2854": [
               0,
@@ -469,7 +473,7 @@
             ],
             "p682 2851": [
               0,
-              5.82e-13
+              2.64e-13
             ],
             "p705 2854": [
               0,
@@ -477,15 +481,15 @@
             ],
             "p716 2851": [
               0,
-              5.82e-13
+              2.64e-13
             ],
             "p218 62821": [
               0,
-              4.19e-30
+              4.74e-15
             ],
             "p1012 62821": [
               0,
-              6.45e-30
+              1.07e-29
             ]
           }
         ],
@@ -509,7 +513,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p682 2851",
-        "seconds": 27
+        "seconds": 49.1
       },
       {
         "result": "works",
@@ -549,7 +553,11 @@
             ]
           ]
         ],
-        "seconds": 49.8
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 91.3
       },
       {
         "result": "works",
@@ -583,7 +591,7 @@
             ]
           ]
         ],
-        "seconds": 24.3
+        "seconds": 42.8
       },
       {
         "result": "works",
@@ -623,73 +631,80 @@
             ]
           ]
         ],
-        "seconds": 48.2
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 87.6
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.03,
-            -0.03
+            0.3,
+            -0.2
           ],
           [
-            0.03,
-            -0.03
+            0.3,
+            -0.2
           ]
         ],
         "rates": [
           {
             "p1046 42083 - 23801": [
-              0.0467,
+              0.0985,
               80
             ]
           },
           {
             "p1046 42083 - 23801": [
-              0.0467,
-              80
+              0.00353,
+              3.01e-13
             ]
           }
         ],
         "back": [
           [
             [
-              3.71,
-              1.92
+              0,
+              0.02
             ],
             [
-              3.71,
-              1.92
+              0,
+              0
             ]
           ],
           [
             [
-              3.71,
-              1.92
+              0,
+              0.02
             ],
             [
-              3.71,
-              1.92
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p3369 32015",
-          "p3366 32015"
         ],
         "stop": [
           [
-            null,
-            "dead point"
+            "limit",
+            "limit"
           ],
           [
-            null,
-            null
+            "limit",
+            "limit"
           ]
         ],
         "freed": 4,
-        "cause": "stopped-early",
-        "seconds": 102.9
+        "movedBy": [
+          [
+            "p1046 42083 - 23801"
+          ],
+          []
+        ],
+        "cause": "not-driven",
+        "detail": "p1046 42083 - 23801",
+        "seconds": 136.7
       },
       {
         "result": "no",
@@ -756,9 +771,13 @@
           true,
           true
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "not-driven",
         "detail": "p3525 42083 - 37383p01",
-        "seconds": 4
+        "seconds": 67.2
       },
       {
         "result": "skipped"

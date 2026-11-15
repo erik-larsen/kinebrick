@@ -40,6 +40,7 @@ import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
+import { applyErrata, type Errata, setOfFile } from './errata.ts';
 import { drawnDirectly, packModel, shapeName } from './pack.ts';
 import { studioModel, studioParts } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
@@ -52,6 +53,8 @@ import titlesUrl from '../packed/titles.json?url';
 import packedModels from '../packed/models.json';
 import notMovingYet from '../data/not-moving-yet.json';
 import wipModels from '../data/wip-models.json';
+// Each set's errata (src/errata.ts), by file name.
+const errataFiles = import.meta.glob('../data/errata/*.json', { eager: true, import: 'default' }) as Record<string, Errata>;
 
 // The test models in models/, and their names in the picker. Any other model in models/ (the
 // real LEGO sets) comes after them, under its file name.
@@ -122,7 +125,7 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   axes         each joint's axis
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
-//   nosymbols    no symbols pinned to parts (📌 frozen, ⚠ loose), which show otherwise
+//   symbols      the symbols pinned to parts (📌 frozen, ⚠ loose), which are hidden otherwise
 //   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
 //                to drive from the browser's console
 const OPTIONS = params.getAll('option').join(',').split(',');
@@ -139,6 +142,9 @@ const MAX_RPM = 300;
 // How far tyres may scrub sideways, as a percentage of how far they roll, e.g. ?scrub=10, if
 // not the model's own (see modelSettings in ldr.ts).
 const SCRUB_PARAM = percent(params.get('scrub'));
+// ?lifted=1: the model lifted off the ground, as held in the hand (see Options.lifted in
+// kinematics.ts). Set with the "Lift off the ground" option too.
+const LIFTED = params.get('lifted') === '1';
 // The most the Tyre scrub option allows, in percent; and how far over what a motion needs it's
 // raised when a motion needs more than it allows (see allowScrub below).
 const MAX_SCRUB = 30;
@@ -146,8 +152,12 @@ const SCRUB_MARGIN = 2;
 // A part kept turning from the start, by its place in the model file (counting from 0, as
 // the model's parts come, submodels flattened), counter-clockwise as seen from where the
 // camera starts, or with ",cw" clockwise: e.g. ?autospin=271 or ?autospin=271,cw. Ctrl-click
-// keeps it up to date, so the address shares the animation.
-const AUTOSPIN = /^(\d+)(,cw)?$/.exec(params.get('autospin') ?? '');
+// keeps it up to date, so the address shares the animation. With ",paused" last it is chosen
+// and outlined but waits, as after the pause button: ?autospin=271,paused.
+const AUTOSPIN = /^(\d+)(,cw)?(,paused)?$/.exec(params.get('autospin') ?? '');
+// Parts to point at, outlined in magenta whether they can move or not, by their places in the
+// model file: ?show=182,183. For a link that says "this part".
+const SHOW = (params.get('show') ?? '').split(',').filter((p) => /^\d+$/.test(p)).map(Number);
 // Parts turned from the start, each by its place in the model file and how many degrees,
 // counter-clockwise as seen from where the camera starts (negative: clockwise), in the order
 // given, as a drag would turn them, before Auto spin starts: e.g. ?turn=12,30&turn=271,-45.
@@ -331,9 +341,21 @@ async function start() {
   let load: (onProgress: (event: ProgressEvent) => void) => Promise<Group>;
   let missingFiles: string[] = [];
   if (FILE) {
-    const kept = await keptFile(FILE);
+    // A file this browser doesn't keep is looked for beside the page, where npm run dev serves
+    // the sets' own files, e.g. ?file=omr/8081-1+Extreme+Cruiser.mpd.
+    // A set's own file, fetched, is read with its errata (src/errata.ts), as the check reads it;
+    // with option=proposed, those not yet signed off too. A file you opened yourself is never
+    // corrected. (The part-number check is the check's: here the pieces of split parts that the
+    // numbers count aren't known before the model is packed.)
+    const own = await keptFile(FILE);
+    const fetched = own === null ? await fetch(FILE).then((r) => (r.ok ? r.text() : null), () => null) : null;
+    const kept = own ?? fetched;
     if (kept === null) throw new Error(`${FILE} isn't kept in this browser: open it again with "Open a model file…" above`);
-    modelText = kept;
+    const set = fetched !== null ? setOfFile(FILE) : null;
+    const corrected = applyErrata(kept, set ? errataFiles[`../data/errata/${set}.json`] : null, OPTIONS.includes('proposed'), null);
+    if (corrected.applied.length) console.info(`Errata applied to ${set}: ${corrected.applied.join(', ')}`);
+    if (corrected.refused.length) console.warn(`Errata refused for ${set}: ${corrected.refused.join('; ')}`);
+    modelText = corrected.text;
     const [colours, primitiveList, library] = await Promise.all([
       fetch(coloursUrl).then((r) => r.text()),
       fetch(primitivesUrl).then((r) => r.json()),
@@ -412,7 +434,7 @@ async function start() {
   });
   const loadedShapeMatrices = shapeObjects.map((obj) => obj.matrix.clone());
   partObjects.forEach((obj, i) => {
-    if (normalizePartName(obj.name) !== startParts[i].name) {
+    if (!startParts[i].removed && normalizePartName(obj.name) !== startParts[i].name) {
       throw new Error(`Part ${i}: loader has ${obj.name}, model has ${startParts[i].name}`);
     }
     obj.userData.partIndex = i;
@@ -488,7 +510,9 @@ async function start() {
   // says otherwise.
   const modelScrub = modelSettings(modelText).scrub ?? DEFAULT_SCRUB * 100;
   let scrub = SCRUB_PARAM ?? modelScrub;
-  let kin = new Kinematics(mech);
+  // Whether the model is lifted off the ground (see LIFTED).
+  let lifted = LIFTED;
+  let kin = new Kinematics(mech, { lifted });
   kin.scrub = scrub / 100;
   let sliders: Slider[] = [];
   let sticks: Stick[] = [];
@@ -500,8 +524,9 @@ async function start() {
   const contacts = new Group();
   contacts.visible = OPTIONS.includes('contacts');
   ldrawSpace.add(contacts);
-  badgeRenderer.domElement.hidden = OPTIONS.includes('nosymbols');
+  badgeRenderer.domElement.hidden = !OPTIONS.includes('symbols');
   const appearance = new Appearance(partObjects, mech, outlines);
+  appearance.shownParts = new Set(SHOW);
   appearance.showBodyColours = OPTIONS.includes('bodycolours');
   // Drivetrain focus (see OPTIONS): the bodies the motion going on (a drag, or a part kept
   // turning or moving) has moved against the frame, and where each was against the frame as it
@@ -542,7 +567,7 @@ async function start() {
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
     mech = known ?? inferMechanism(parts, table, roles, paths, freed);
-    kin = new Kinematics(mech);
+    kin = new Kinematics(mech, { lifted });
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
@@ -825,6 +850,7 @@ async function start() {
     focus: focusOn,
     symbols: !badgeRenderer.domElement.hidden,
     scrub,
+    lifted,
   };
   const keepOption = (name: string, on: boolean) => {
     const options = new Set(OPTIONS.filter((o) => o));
@@ -855,7 +881,7 @@ async function start() {
   });
   gui.add(settings, 'symbols').name('Symbols').onChange((on: boolean) => {
     badgeRenderer.domElement.hidden = !on;
-    keepOption('nosymbols', !on);
+    keepOption('symbols', on);
   });
 
   // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" (in the options panel,
@@ -927,6 +953,21 @@ async function start() {
   const stuck = placed.filter((name) => name in notMovingYet && !inputs.has(name));
   showWarnings(startParts.map((p) => p.name), mech.loose, unconnected(startParts, table, roles), stuck, missingFiles);
   const grid = frameCamera(model, kin.groundY);
+  // A link that points at parts (see SHOW) starts close to them, seen from the usual side.
+  const pointedAt = SHOW.filter((part) => part < partObjects.length).map((part) => partObjects[part]);
+  if (pointedAt.length) {
+    const box = new Box3();
+    // The model may not have been drawn yet, so its parts' places in the scene are worked out here.
+    for (const object of pointedAt) object.updateWorldMatrix(true, true);
+    for (const object of pointedAt) box.expandByObject(object);
+    // A part that an erratum removed has nothing drawn: the view goes to where it was.
+    for (const object of pointedAt) box.expandByPoint(object.getWorldPosition(new Vector3()));
+    const centre = box.getCenter(new Vector3());
+    const reach = Math.max(box.getSize(new Vector3()).length() * 3, 300);
+    controls.target.copy(centre);
+    camera.position.copy(centre).add(new Vector3(0.9, 0.7, 1.1).normalize().multiplyScalar(reach));
+    controls.update();
+  }
   model.visible = true;
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
@@ -964,6 +1005,23 @@ async function start() {
     else params.set('scrub', String(scrub));
     history.replaceState(null, '', address());
   };
+  // The model lifted off the ground, or set down on it again (see LIFTED): the solver is made
+  // afresh with it so, posed as the model now is, with the same parts frozen. Kept in the address.
+  gui.add(settings, 'lifted').name('Lift off the ground').onChange((on: boolean) => {
+    lifted = on;
+    const was = kin;
+    kin = new Kinematics(mech, { lifted });
+    kin.scrub = scrub / 100;
+    kin.poseAs(was.poses, was.jointAngles);
+    for (const body of was.frozenBodies()) kin.toggleFreeze(body);
+    setup.kin = kin;
+    interaction.motionsChanged();
+    showPoses();
+    showFrozen();
+    if (on) params.set('lifted', '1');
+    else params.delete('lifted');
+    history.replaceState(null, '', address());
+  });
   // While a part is kept turning, the camera follows the model: it moves by however far the
   // frame's middle moved, so the model stays in view while you still orbit and zoom around it.
   const frameMiddle = ldrawSpace.worldToLocal(new Box3().setFromObject(model).getCenter(new Vector3())); // LDraw coordinates
@@ -1037,7 +1095,7 @@ async function start() {
     // Kept in the address, so it can be shared (see AUTOSPIN).
     if (interaction.motorRunning()) {
       const clockwise = interaction.motorClockwiseFrom(startCamera.position);
-      params.set('autospin', `${interaction.motorPart()}${clockwise ? ',cw' : ''}`);
+      params.set('autospin', `${interaction.motorPart()}${clockwise ? ',cw' : ''}${paused ? ',paused' : ''}`);
     } else {
       params.delete('autospin');
     }
@@ -1066,7 +1124,10 @@ async function start() {
     if (Math.abs(turned) > 1e-9) keepTurn(part, turned);
     meshAfresh();
   }
-  if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
+  if (AUTOSPIN && Number(AUTOSPIN[1]) < startParts.length) {
+    interaction.startMotor(Number(AUTOSPIN[1]), startCamera.position, AUTOSPIN[2] === ',cw');
+    if (AUTOSPIN[3] && interaction.motorRunning()) interaction.pauseMotor(true);
+  }
   unfreezeButton = gui.add({ unfreezeAll }, 'unfreezeAll').name('Unfreeze all');
   showFrozen();
 }
@@ -1219,7 +1280,7 @@ const filePicker = document.getElementById('file') as HTMLInputElement;
 // Switching model keeps the options, except tyre scrub, turned parts, spinning and spin speed:
 // the next model has its own.
 function openModel(set: (params: URLSearchParams) => void) {
-  for (const name of ['model', 'file', 'scrub', 'turn', 'free', 'autospin', 'rpm']) params.delete(name);
+  for (const name of ['model', 'file', 'scrub', 'turn', 'free', 'autospin', 'show', 'rpm']) params.delete(name);
   set(params);
   window.location.search = address();
 }

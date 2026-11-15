@@ -95,6 +95,15 @@ export function signedGearRates(mech: Mechanism, parentLink: (body: number) => {
   // ball joint), the shafts at either end.
   const shafts = new Map<number, number[]>();
   for (const c of mech.couplings) {
+    // A reduction (a planetary wheel hub's): the hub turns `ratio` times slower than its
+    // driving shaft, the same way round, both in the one bearing body.
+    if (c.ratio !== undefined) {
+      if (!counted(c.bodyA) || !counted(c.bodyB)) continue;
+      const same = way(axisOf(c.bodyA).dot(axisOf(c.bodyB)));
+      tie(c.bodyA, c.bodyB, same / c.ratio);
+      tie(c.bodyB, c.bodyA, same * c.ratio);
+      continue;
+    }
     for (const [x, y] of [[c.bodyA, c.bodyB], [c.bodyB, c.bodyA]]) shafts.set(x, [...(shafts.get(x) ?? []), y]);
   }
   for (const [x, ys] of shafts) {

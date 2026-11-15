@@ -110,14 +110,13 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 5,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 7,
     "counts": {
-      "partly": 3,
+      "partly": 2,
       "not back": 4,
-      "works": 2,
+      "works": 3,
       "not checked": 1
     },
     "loose": [
@@ -149,7 +148,7 @@
         "rates": [
           {
             "p270 3482 against p0 3034": [
-              0.0000306,
+              0.0000307,
               0.00099
             ],
             "p279 3482 against p0 3034": [
@@ -169,8 +168,8 @@
               791
             ],
             "p172 3648a against p65 3673": [
-              0,
-              2.21e-13
+              0.00886,
+              7.73e-13
             ]
           }
         ],
@@ -197,34 +196,29 @@
         ],
         "cause": "not-driven",
         "detail": "p270 3482 against p0 3034",
-        "seconds": 1.1
+        "seconds": 1.6
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p172 3648a against p65 3673",
-          "p206 4262 against p65 3673",
-          "p207 4262 against p65 3673"
-        ],
         "rates": [
           {
             "p172 3648a against p65 3673": [
-              0,
-              3.55e-15
+              1,
+              2.81e-13
             ],
             "p206 4262 against p65 3673": [
-              0,
-              4.74e-15
+              2.81e-8,
+              20
             ],
             "p207 4262 against p65 3673": [
-              0,
-              1.07e-14
+              2.81e-8,
+              20
             ],
             "p270 3482": [
               0,
@@ -251,9 +245,7 @@
         "strayed": [
           "p123 3737"
         ],
-        "cause": "not-driven",
-        "detail": "p172 3648a against p65 3673",
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -301,7 +293,7 @@
         ],
         "cause": "not-driven",
         "detail": "p134 3650b against p65 3673",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -360,7 +352,12 @@
           "p301 3070b",
           "p278 3749"
         ],
-        "seconds": 1.9
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
+        "seconds": 2.6
       },
       {
         "result": "works",
@@ -400,7 +397,11 @@
             ]
           ]
         ],
-        "seconds": 1
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 1.5
       },
       {
         "result": "not checked",

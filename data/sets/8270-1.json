@@ -145,9 +145,8 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
+    "commit": "50428c4b",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "no": 2,
@@ -287,6 +286,9 @@
             ]
           ]
         ],
+        "why": [
+          "p57 30395 against p30 57779 is held by friction pins the control doesn't reach"
+        ],
         "cause": "loose-part",
         "detail": "p57 30395",
         "seconds": 0.1
@@ -333,6 +335,10 @@
               0
             ]
           ]
+        ],
+        "why": [
+          "p55 32278 against p30 57779 is held by friction pins the control doesn't reach",
+          "p50 6632 against p30 57779 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p55 32278 against p30 57779",
@@ -428,6 +434,10 @@
           true,
           true
         ],
+        "movedBy": [
+          [],
+          []
+        ],
         "cause": "control-jammed",
         "seconds": 0
       },
@@ -503,7 +513,13 @@
           "p102 2432",
           "p39 32270"
         ],
-        "seconds": 0.5
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 0.7
       },
       {
         "result": "skipped",

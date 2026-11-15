@@ -4,7 +4,7 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 12 works, 10 partly, 7 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 13 works, 9 partly, 7 no.
 
 ## By decade
 
@@ -104,7 +104,7 @@ Each detail by the set it first appears in.
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
-- The black gear on top of the rear unit, just behind the cab, steers the machine: through a pair of gears it turns the 60 tooth turntable joining the front and rear units, and a lever linkage steers the front wheels with it. (partly)
+- The black gear on top of the rear unit, just behind the cab, steers the machine: through a pair of gears it turns the 60 tooth turntable joining the front and rear units, and a lever linkage steers the front wheels with it. (works)
 
 **2018, [42084 Hook Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42084-1)**
 

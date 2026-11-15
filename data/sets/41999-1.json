@@ -129,12 +129,14 @@
         ]
       },
       {
-        "does": "The headlights (two Power Functions LEDs) light up when the battery box is switched on.",
+        "does": "The headlights (two Power Functions LEDs) light up when the battery box's orange slide switch, on its side under the cab, is switched on.",
         "mechanisms": [
           "lights"
         ],
-        "source": "book 4: function page 64 (lights inset); book 3: step 90",
-        "note": "electrical only"
+        "source": "book 4: function page 64 (lights inset, the switch); book 3: step 90",
+        "note": "Signed by Erik, 2026-11-14: the control is the battery box's slide switch",
+        "control": "p604 58119",
+        "skip": "electrical only: the switch, part of the battery box (58119), lights the LEDs, and nothing moves"
       }
     ],
     "questions": [
@@ -144,16 +146,14 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 30,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 58,
     "counts": {
-      "works": 1,
-      "partly": 3,
+      "works": 3,
+      "partly": 1,
       "no": 2,
-      "skipped": 1,
-      "not checked": 1
+      "skipped": 2
     },
     "loose": [
       "p308 32270",
@@ -180,15 +180,7 @@
       "p623 87083",
       "p624 6536",
       "p625 43093",
-      "p626 3713",
-      "p1539 44772",
-      "p1540 54120",
-      "p1541 44772",
-      "p1542 54120",
-      "p1543 44772",
-      "p1544 54120",
-      "p1545 44772",
-      "p1546 54120"
+      "p626 3713"
     ],
     "functions": [
       {
@@ -207,53 +199,53 @@
           {
             "p94 62821": [
               0.429,
-              3e-13
+              1.84e-13
             ],
             "p192 62821": [
               0.429,
-              4.32e-13
+              5.42e-13
             ],
             "p1539 44772": [
               0.154,
-              2e-13
+              1.94e-13
             ],
             "p1541 44772": [
               0.154,
-              2.69e-13
+              1.94e-13
             ],
             "p1543 44772": [
               0.154,
-              8.66e-13
+              1.75e-12
             ],
             "p1545 44772": [
               0.154,
-              8.31e-13
+              1.76e-12
             ]
           },
           {
             "p94 62821": [
               0.429,
-              4.32e-13
+              6.11e-13
             ],
             "p192 62821": [
               0.429,
-              3.43e-13
+              3.92e-13
             ],
             "p1539 44772": [
               0.154,
-              6.3e-13
+              2.37e-12
             ],
             "p1541 44772": [
               0.154,
-              5.61e-13
+              2.27e-12
             ],
             "p1543 44772": [
               0.154,
-              3.78e-13
+              5.14e-13
             ],
             "p1545 44772": [
               0.154,
-              4.62e-13
+              4.41e-13
             ]
           }
         ],
@@ -279,7 +271,25 @@
             ]
           ]
         ],
-        "seconds": 10.4
+        "movedBy": [
+          [
+            "p94 62821",
+            "p192 62821",
+            "p1539 44772",
+            "p1541 44772",
+            "p1543 44772",
+            "p1545 44772"
+          ],
+          [
+            "p94 62821",
+            "p192 62821",
+            "p1539 44772",
+            "p1541 44772",
+            "p1543 44772",
+            "p1545 44772"
+          ]
+        ],
+        "seconds": 19.9
       },
       {
         "result": "partly",
@@ -301,11 +311,11 @@
           {
             "p299 87761": [
               0,
-              7.72e-42
+              3.73e-46
             ],
             "p316 87761": [
               0,
-              7.6e-42
+              1.71e-46
             ],
             "p151 92909": [
               0,
@@ -339,7 +349,7 @@
         ],
         "cause": "not-driven",
         "detail": "p299 87761",
-        "seconds": 4.5
+        "seconds": 8.4
       },
       {
         "result": "no",
@@ -358,42 +368,72 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ],
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "movedBy": [
           [],
           []
         ],
-        "why": [
-          "p79 64178 has no joint to work",
-          "p177 64178 has no joint to work"
-        ],
-        "cause": "control-fixed",
-        "seconds": 0.7
+        "cause": "control-jammed",
+        "seconds": 3.1
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p722 76244",
-          "p720 32012"
-        ],
         "rates": [
           {
             "p722 76244": [
-              0,
-              2.13e-63
+              0.0417,
+              0
             ],
             "p720 32012": [
-              0,
-              2.13e-63
+              0.0417,
+              0
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p722 76244": 0.0417,
+            "p720 32012": 0.0417
           }
         ],
         "back": [
@@ -408,12 +448,10 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p722 76244",
-        "seconds": 4.6
+        "seconds": 8.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -423,10 +461,6 @@
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p1216 11954",
-          "p1171 11954"
         ],
         "rates": [
           {
@@ -472,9 +506,15 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p1216 11954",
-        "seconds": 8.7
+        "movedBy": [
+          [
+            "p1171 11954"
+          ],
+          [
+            "p1216 11954"
+          ]
+        ],
+        "seconds": 16.1
       },
       {
         "result": "no",
@@ -518,10 +558,10 @@
         ],
         "cause": "part-fixed",
         "detail": "p50 32524",
-        "seconds": 0.3
+        "seconds": 0.6
       },
       {
-        "result": "not checked",
+        "result": "skipped",
         "seconds": 0
       }
     ]

@@ -108,6 +108,12 @@
           "p688 56145"
         ],
         "together": true,
+        "first": [
+          {
+            "control": "p354 18947",
+            "by": -10
+          }
+        ],
         "moves": [
           "p231 94925",
           "p356 42112 - 35185",
@@ -120,7 +126,7 @@
         "stays": [
           "p1039 42112 - 33299b"
         ],
-        "note": "needs the selector lever moved to the driving side first; how far isn't known, so there's no `first` yet"
+        "note": "needs the selector lever moved to the driving side first; the first step slides the driving ring p354 itself onto the 20 tooth clutch gear p356; which way the lever goes for that isn't known"
       },
       {
         "does": "With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft.",
@@ -130,6 +136,12 @@
         ],
         "source": "book: book 2 page 89 bottom inset (arrow on the crank, the drum turning, concrete pouring)",
         "control": "p1039 42112 - 33299b",
+        "first": [
+          {
+            "control": "p354 18947",
+            "by": 10
+          }
+        ],
         "moves": [
           "p347 32270",
           "p344 6589",
@@ -181,10 +193,9 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 31,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 45,
     "counts": {
       "works": 4,
       "partly": 3,
@@ -361,11 +372,11 @@
             ],
             "p688 56145": [
               0,
-              3.29e-30
+              6.61e-31
             ],
             "p696 56145": [
               0,
-              2.47e-31
+              0
             ],
             "p1118 42112 - 65421p01": [
               0,
@@ -385,7 +396,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -515,7 +526,17 @@
             ]
           ]
         ],
-        "seconds": 17.2
+        "movedBy": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 24.8
       },
       {
         "result": "partly",
@@ -535,19 +556,19 @@
           {
             "p249 62821": [
               1,
-              2.18e-13
+              5.39e-13
             ],
             "p245 18575": [
               1.4,
-              1.44e-14
+              1.99e-14
             ],
             "p17 60485": [
               0,
-              3.94e-28
+              1.64e-27
             ],
             "p160 94925": [
               0,
-              3.94e-28
+              1.64e-27
             ],
             "p139 94925": [
               0,
@@ -583,7 +604,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 60485",
-        "seconds": 2.1
+        "seconds": 3
       },
       {
         "result": "no",
@@ -627,7 +648,7 @@
         ],
         "cause": "not-driven",
         "detail": "p354 18947",
-        "seconds": 0.1
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -650,15 +671,15 @@
           {
             "p231 94925": [
               0,
-              3.94e-28
+              2.73e-27
             ],
             "p356 42112 - 35185": [
               0,
-              1.63e-27
+              1.48e-27
             ],
             "p361 32270": [
               0,
-              1.51e-27
+              1.48e-27
             ],
             "p390 3648b": [
               0,
@@ -674,7 +695,7 @@
             ],
             "p1118 42112 - 65421p01": [
               0,
-              2.37e-15
+              0
             ],
             "p1039 42112 - 33299b": [
               0,
@@ -696,7 +717,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 94925",
-        "seconds": 2.2
+        "seconds": 3.2
       },
       {
         "result": "partly",
@@ -709,26 +730,29 @@
         "still": [
           "p1118 42112 - 65421p01"
         ],
+        "moved": [
+          "p17 60485"
+        ],
         "rates": [
           {
             "p347 32270": [
               1,
-              9.47e-15
+              0
             ],
             "p344 6589": [
               1,
-              9.47e-15
+              1.42e-14
             ],
             "p342 94925": [
               1,
-              9.47e-15
+              1.42e-14
             ],
             "p352 18946": [
               1,
-              6.36e-14
+              0
             ],
             "p361 32270": [
-              0.444,
+              1,
               0
             ],
             "p1118 42112 - 65421p01": [
@@ -737,10 +761,10 @@
             ],
             "p696 56145": [
               0,
-              1.22e-63
+              4.05e-64
             ],
             "p17 60485": [
-              0,
+              0.22,
               0
             ]
           }
@@ -749,7 +773,8 @@
           {
             "p344 6589": 1,
             "p342 94925": 1,
-            "p352 18946": 1
+            "p352 18946": 1,
+            "p361 32270": 1
           }
         ],
         "back": [
@@ -766,7 +791,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1118 42112 - 65421p01",
-        "seconds": 2
+        "seconds": 3
       },
       {
         "result": "works",
@@ -800,7 +825,7 @@
             ]
           ]
         ],
-        "seconds": 2.2
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -822,7 +847,7 @@
             ],
             "p696 56145": [
               0,
-              0
+              3.96e-67
             ]
           }
         ],
@@ -838,7 +863,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 3
       }
     ]
   }

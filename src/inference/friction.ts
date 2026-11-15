@@ -41,9 +41,11 @@ export function pinsToFree(allFree: Mechanism, part: number): number[] {
   if (!motions.some(movesPart)) return [];
 
   // Each friction pin, with the pairs of bodies it joins (a pin may sit in more than one hole).
+  // A motor's output turns stiffly too, but it is the motor's gearbox that holds it, not a pin
+  // to free: freeing it would let the drag turn the motor (the 42109's steering).
   const pins = new Map<number, [number, number][]>();
   for (const c of allFree.connections) {
-    if (!c.stiff) continue;
+    if (!c.stiff || c.motor) continue;
     const [a, b] = [allFree.bodyOf[c.male], allFree.bodyOf[c.female]];
     if (a === b) continue;
     if (!pins.has(c.male)) pins.set(c.male, []);

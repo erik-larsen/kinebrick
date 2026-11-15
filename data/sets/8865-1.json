@@ -89,7 +89,10 @@
           "p176 4143",
           "p514 3708"
         ],
-        "note": "Kinebrick today: partly, as checked, since the check holds nothing: the car stands on its rear wheels alone (the front ones are 9 LDU above the ground), and the drag rolls it along, turning the engine, rather than turning the other wheel the opposite way. With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts)."
+        "note": "Kinebrick today: partly, as checked, since the check holds nothing: the car stands on its rear wheels alone (the front ones are 9 LDU above the ground), and the drag rolls it along, turning the engine, rather than turning the other wheel the opposite way. With the engine held (frozen in the viewer), it works: turning one rear wheel turns the other the opposite way, the car standing on the ground (tests/bevel.test.ts).; the engine is held, as the function says (\"with the engine held\"): the crankshaft p514, which it lists to stay and function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "held": [
+          "p514 3708"
+        ]
       },
       {
         "does": "The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.",
@@ -101,7 +104,8 @@
           "p37 2738",
           "p38 2738"
         ],
-        "note": "Kinebrick today: doesn't. Swinging a lower arm turns only its pivot axle; the steering arm and wheel don't follow, and the shock absorbers spin on their pins rather than shortening."
+        "lifted": true,
+        "note": "Kinebrick today: doesn't. Swinging a lower arm turns only its pivot axle; the steering arm and wheel don't follow, and the shock absorbers spin on their pins rather than shortening.. lifted: the text has the wheel or arm moved (\"and moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The rear wheels have independent suspension: each rides on an upright held between two wishbones of 1x6 bricks, with a shock absorber, and moves up and down, the half shafts' universal joints letting it.",
@@ -113,7 +117,8 @@
           "p21 3894",
           "p22 3894"
         ],
-        "note": "Kinebrick today: doesn't. Swinging a wishbone turns only its pivot axle; the upright and wheel don't follow (the upright p361 flops on the lower wishbone's outer axle)."
+        "lifted": true,
+        "note": "Kinebrick today: doesn't. Swinging a wishbone turns only its pivot axle; the upright and wheel don't follow (the upright p361 flops on the lower wishbone's outer axle).. lifted: the text has the wheel or arm moved (\"and moves up and down\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -192,15 +197,13 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 27,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 49,
     "counts": {
-      "works": 2,
-      "not back": 2,
-      "partly": 3,
-      "no": 5,
+      "works": 4,
+      "partly": 2,
+      "no": 4,
       "skipped": 1
     },
     "loose": [],
@@ -221,11 +224,11 @@
             ],
             "p423 2737": [
               0.184,
-              2.97e-13
+              3.05e-13
             ],
             "p424 2737": [
               0.16,
-              2.36e-13
+              2.33e-13
             ],
             "p898 3739": [
               0.184,
@@ -261,7 +264,7 @@
             ]
           ]
         ],
-        "seconds": 5.7
+        "seconds": 8.6
       },
       {
         "result": "works",
@@ -275,54 +278,51 @@
           {
             "p904 3739": [
               1,
-              5.31e-13
+              5.68e-13
             ],
             "p149 73071": [
               1,
-              7.32e-13
+              8.23e-13
             ],
             "p175 3706": [
               2,
-              2.84e-14
+              9.47e-15
             ],
             "p178 3737": [
               2,
-              1.95e-13
+              1.29e-13
             ],
             "p400 3707": [
               1.33,
-              1.89e-14
+              2.37e-14
             ],
             "p514 3708": [
               1.33,
-              9.47e-15
+              1.37e-13
             ],
             "p536 3652": [
-              8.43e-8,
-              14.7
+              5.62e-8,
+              13.4
             ],
             "p659 4032a": [
               1.33,
-              1.89e-14
+              2.37e-14
             ]
           }
         ],
         "back": [
           [
             [
-              5.26,
+              0,
               0
             ],
             [
-              5.26,
+              0,
               0
             ]
           ]
         ],
-        "strayed": [
-          "p220 3326b"
-        ],
-        "seconds": 6.5
+        "seconds": 10.1
       },
       {
         "result": "partly",
@@ -380,58 +380,49 @@
         ],
         "cause": "not-driven",
         "detail": "p400 3707",
-        "seconds": 2.1
+        "seconds": 3.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p176 4143",
-          "p514 3708"
-        ],
         "rates": [
           {
             "p904 3739": [
               1,
-              5.31e-13
+              2.18e-12
             ],
             "p150 4143": [
               1,
-              17
+              1.48e-12
             ],
             "p176 4143": [
-              2,
-              2.84e-14
+              8.43e-8,
+              8.53e-13
             ],
             "p514 3708": [
-              1.33,
-              9.47e-15
+              8.43e-8,
+              6.81e-13
             ]
           }
         ],
         "back": [
           [
             [
-              5.26,
+              0,
               0
             ],
             [
-              5.26,
+              0,
               0
             ]
           ]
         ],
-        "strayed": [
-          "p220 3326b"
-        ],
-        "cause": "stay-chosen",
-        "detail": "p176 4143",
-        "seconds": 6.6
+        "seconds": 9.6
       },
       {
         "result": "no",
@@ -484,9 +475,13 @@
         "pushed": [
           true,
           true
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 2.6
       },
       {
         "result": "no",
@@ -539,6 +534,10 @@
         "pushed": [
           true,
           true
+        ],
+        "movedBy": [
+          [],
+          []
         ],
         "cause": "stopped-early",
         "seconds": 0.2
@@ -598,7 +597,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 2
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -647,18 +646,18 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -687,22 +686,12 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
+        "freed": 4,
+        "movedBy": [
+          [],
+          []
         ],
-        "pushed": [
-          true,
-          true
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 9.1
       },
       {
         "result": "partly",
@@ -757,7 +746,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 3708",
-        "seconds": 2.1
+        "seconds": 3.1
       }
     ]
   }

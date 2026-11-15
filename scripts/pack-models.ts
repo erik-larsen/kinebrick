@@ -16,6 +16,7 @@
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { PIECES_AFTER } from '../src/ldr.ts';
 import { packModel } from '../src/pack.ts';
 
 const LDRAW_DIR = 'ldraw';
@@ -88,8 +89,8 @@ console.log(`Wrote ${OUT_DIR}/primitives.json: ${primitives.length} primitives`)
 // that read sets from the OMR (scripts/load-model.ts).
 const pieces: Record<string, string[]> = {};
 for (const [name, role] of Object.entries(roles).sort(([a], [b]) => a.localeCompare(b))) {
-  const text = role === 'split' ? await readLdrawFile(name) : null;
-  if (text) pieces[name] = text.split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)).map((line) => line.trim());
+  const text = role === 'split' || role === 'pieces' ? await readLdrawFile(name) : null;
+  if (text) pieces[name] = [...(role === 'pieces' ? [PIECES_AFTER] : []), ...text.split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)).map((line) => line.trim())];
 }
 writeFileSync(join(OUT_DIR, 'pieces.json'), JSON.stringify(pieces, null, 2) + '\n');
 console.log(`Wrote ${OUT_DIR}/pieces.json: ${Object.keys(pieces).length} parts`);

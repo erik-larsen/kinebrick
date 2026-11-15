@@ -128,6 +128,19 @@
           "p412 55982",
           "p526 42066 - 18976"
         ]
+      },
+      {
+        "does": "The canopy lifts by hand.",
+        "mechanisms": [
+          "hinge: canopy"
+        ],
+        "source": "book: page 246",
+        "control": "p994 32192",
+        "moves": [
+          "p997 32015",
+          "p998 32015"
+        ],
+        "note": "Signed by Erik, 2026-11-14 (the function, from the booklet). The parts are Kinebrick's choice from the model: the canopy is windscreen.ldr, its frame p994 the control; it hangs on the cabin's pins p583 and p587 (15100) at the ends of two short beams (p585, p589 32523)"
       }
     ],
     "questions": [
@@ -137,15 +150,14 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 68,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 293,
     "counts": {
-      "partly": 4,
+      "works": 3,
       "not back": 1,
-      "no": 1,
-      "works": 1
+      "partly": 2,
+      "no": 2
     },
     "loose": [
       "p22 58120",
@@ -243,37 +255,39 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p135 76019",
-          "p140 32269",
-          "p804 10928",
-          "p800 94925"
-        ],
         "rates": [
           {
             "p135 76019": [
-              0,
-              1.15e-77
+              0.333,
+              4.04e-13
             ],
             "p140 32269": [
-              0,
-              8.64e-78
+              0.2,
+              6.14e-13
             ],
             "p804 10928": [
-              0,
-              2.02e-77
+              0.2,
+              5.13e-13
             ],
             "p800 94925": [
-              0,
-              2.02e-77
+              0.2,
+              3.21e-13
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p135 76019": 0.333,
+            "p140 32269": 0.2,
+            "p804 10928": 0.2,
+            "p800 94925": 0.2
           }
         ],
         "back": [
@@ -288,46 +302,41 @@
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p135 76019",
-        "seconds": 3.9
+        "seconds": 6.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            5.07,
+            -3.1
           ]
-        ],
-        "still": [
-          "p499 11478"
         ],
         "rates": [
           {
             "p158 3648b": [
               0.0417,
-              7.72e-13
+              7.02e-13
             ],
             "p244 3706": [
-              0.0483,
-              5.87e-13
+              0.0485,
+              4.86e-13
             ],
             "p400 40490": [
-              0.0151,
-              1.21
+              0.0197,
+              1.57
             ],
             "p411 40490": [
-              0.0151,
-              1.21
+              0.0197,
+              1.57
             ],
             "p499 11478": [
-              0.0028,
-              0.112
+              0.0073,
+              0.293
             ],
             "p1117 4716": [
-              1.12e-7,
-              4.26e-13
+              9.52e-8,
+              5.78e-13
             ]
           }
         ],
@@ -339,22 +348,20 @@
         "back": [
           [
             [
-              4591.65,
-              128.53
+              390.62,
+              154.27
             ],
             [
-              54.68,
-              103.27
+              287.93,
+              171.47
             ]
           ]
         ],
         "strayed": [
-          "p1205 41677",
-          "p525 4519"
+          "p507 6628",
+          "p1240 41677"
         ],
-        "cause": "too-little",
-        "detail": "p499 11478",
-        "seconds": 40.8
+        "seconds": 248.2
       },
       {
         "result": "partly",
@@ -416,7 +423,7 @@
         ],
         "cause": "not-driven",
         "detail": "p669 60483",
-        "seconds": 4.5
+        "seconds": 7.2
       },
       {
         "result": "partly",
@@ -465,7 +472,7 @@
           ]
         ],
         "cause": "stopped-early",
-        "seconds": 4
+        "seconds": 6.6
       },
       {
         "result": "no",
@@ -519,7 +526,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 0.9
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -574,7 +581,60 @@
             ]
           ]
         ],
-        "seconds": 12.8
+        "movedBy": [
+          [],
+          [],
+          []
+        ],
+        "seconds": 21.5
+      },
+      {
+        "result": "no",
+        "turned": [
+          [
+            0,
+            0
+          ]
+        ],
+        "still": [
+          "p997 32015",
+          "p998 32015"
+        ],
+        "rates": [
+          {
+            "p997 32015": [
+              0,
+              0
+            ],
+            "p998 32015": [
+              0,
+              0
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "cause": "control-jammed",
+        "seconds": 0.5
       }
     ]
   }

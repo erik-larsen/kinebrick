@@ -4,7 +4,7 @@ Tracks run round sprockets and idlers. (Drivetrain.)
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.
 
-Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 19 works, 10 partly.
+Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 partly.
 
 ## By decade
 
@@ -107,8 +107,8 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 19 works, 10 pa
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 
-- The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track. (partly)
-- The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket. (partly)
+- The angular motor at the back on the right drives the right track: its shaft turns, through a CV joint and the planetary hub, the big raised sprocket at the back of the right track. (works)
+- The angular motor at the back on the left drives the left track the same way, through its own CV joint and planetary hub to the left rear sprocket. (works)
 
 ---
 

@@ -556,7 +556,7 @@ function partsInModels(): string[] {
   const parts = new Set<string>();
   const isPrimitive = (name: string) => !existsSync(join(LDRAW_DIR, 'parts', name)) && existsSync(join(LDRAW_DIR, 'p', name));
   // A part read as its pieces (role "split") brings those instead.
-  const piecesOf = (name: string) => (roles[name] === 'split' ? (readLdrawFile(name) ?? '').split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
+  const piecesOf = (name: string) => (roles[name] === 'split' || roles[name] === 'pieces' ? (readLdrawFile(name) ?? '').split(/\r?\n/).filter((line) => /^\s*1\s/.test(line)) : null);
   for (const text of modelTexts()) for (const p of parseLdr(text, isPrimitive, piecesOf)) parts.add(p.name);
   return [...parts].sort();
 }
@@ -587,6 +587,39 @@ function tracksFromCorrections(): Record<string, { depth: number }> {
     }
   }
   return tracks;
+}
+
+// REDUCTION lines in data/corrections.ldr: a reduction between two pieces of a part read as its
+// pieces, e.g. "0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat] [against=46490c02.dat]
+// [ratio=5.4]" (see ConnectionTable.reductions).
+function reductionsFromCorrections(): Record<string, { from: string; to: string; against: string; ratio: number }> {
+  const reductions: Record<string, { from: string; to: string; against: string; ratio: number }> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (meta && meta.kind === 'REDUCTION') {
+        const piece = (key: string) => normalizePartName(meta.params.get(key) ?? '');
+        reductions[name] = { from: piece('from'), to: piece('to'), against: piece('against'), ratio: Number(meta.params.get('ratio')) };
+      }
+    }
+  }
+  return reductions;
+}
+
+// SHOCK lines in data/corrections.ldr: a shock absorber's cylinder and the rod that slides in
+// it, e.g. "0 !KINEBRICK SHOCK [rod=2910] [dir=0 1 0] [from=80] [to=120]" on the cylinder (see
+// ConnectionTable.shocks).
+function shocksFromCorrections(): Record<string, { rod: string; dir: [number, number, number]; from: number; to: number }[]> {
+  const shocks: Record<string, { rod: string; dir: [number, number, number]; from: number; to: number }[]> = {};
+  for (const [name, lines] of corrections) {
+    for (const line of lines) {
+      const meta = parseMeta(line);
+      if (!meta || meta.kind !== 'SHOCK') continue;
+      const rod = meta.params.get('rod')!;
+      (shocks[name] ??= []).push({ rod: rod.endsWith('.dat') ? rod : rod + '.dat', dir: numbers(meta.params.get('dir'), [0, 1, 0]) as [number, number, number], from: Number(meta.params.get('from')), to: Number(meta.params.get('to')) });
+    }
+  }
+  return shocks;
 }
 
 // GROOVE lines in data/corrections.ldr: grooves a plate slides into edge first, as boxes, e.g.
@@ -656,7 +689,7 @@ for (const name of partsInModels()) {
   first = false;
   console.log(`${name}: ${cyls.length} connection points`);
 }
-const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections());
+const extras = () => ',\n  "slides": ' + JSON.stringify(slidesFromCorrections()) + ',\n  "tracks": ' + JSON.stringify(tracksFromCorrections()) + ',\n  "grooves": ' + JSON.stringify(groovesFromCorrections()) + ',\n  "reductions": ' + JSON.stringify(reductionsFromCorrections()) + ',\n  "shocks": ' + JSON.stringify(shocksFromCorrections());
 out += '\n  }' + extras() + ',\n  "stickers": ' + JSON.stringify(stickers) + '\n}\n';
 writeFileSync(OUTPUT_FILE, out);
 console.log(`Wrote ${OUTPUT_FILE}`);

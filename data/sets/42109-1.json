@@ -89,23 +89,43 @@
         ],
         "source": "book: pages 114-115",
         "note": "not a mechanism"
+      },
+      {
+        "does": "The bonnet lifts by hand.",
+        "mechanisms": [
+          "hinge: bonnet"
+        ],
+        "source": "book: page 115",
+        "control": "p894 64391",
+        "moves": [
+          "p893 64683",
+          "p890 32524"
+        ],
+        "note": "Signed by Erik, 2026-11-14 (the function, from the booklet). The parts are Kinebrick's choice from the model: the bonnet is bonnet.ldr, its panel p894 the control. In the reading it is part of the frame: the side panels' pins p749 and p761 (6558) sit in the bonnet's pins with holes p895 and p896 (15100) and are read as rigid, not as its hinge"
       }
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 2,
+    "commit": "6fbe31fe",
+    "date": "2026-11-15",
+    "seconds": 4,
     "counts": {
-      "partly": 3,
-      "works": 1,
+      "partly": 2,
+      "works": 3,
       "not checked": 1
     },
     "loose": [
       "p41 23816c02",
       "p391 23816c02"
     ],
+    "errata": {
+      "applied": [
+        "no-pin-p381",
+        "no-pin-p382",
+        "no-beam-p383"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "partly",
@@ -156,9 +176,9 @@
             ]
           ]
         ],
-        "cause": "part-fixed",
+        "cause": "not-driven",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -172,19 +192,19 @@
           {
             "p15 59426": [
               1,
-              2.37e-14
+              2.56e-14
             ],
             "p27 3707": [
               1,
-              2.37e-14
+              2.56e-14
             ],
             "p969 56145": [
               1,
-              2.37e-14
+              2.56e-14
             ],
             "p351 32498": [
               0,
-              1.27e-14
+              2.63e-14
             ],
             "p40 22172": [
               0,
@@ -204,8 +224,7 @@
             ]
           ]
         ],
-        "freed": 1,
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -278,18 +297,18 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.43,
-            -0.47
+            1.5,
+            -1.5
           ],
           [
-            0.47,
-            -0.43
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -318,22 +337,50 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ],
-          [
-            "limit",
-            "limit"
-          ]
+        "movedBy": [
+          [],
+          []
         ],
-        "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "not checked",
         "seconds": 0
+      },
+      {
+        "result": "works",
+        "turned": [
+          [
+            1.5,
+            -1.5
+          ]
+        ],
+        "rates": [
+          {
+            "p893 64683": [
+              1,
+              28.3
+            ],
+            "p890 32524": [
+              1,
+              82.4
+            ]
+          }
+        ],
+        "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "freed": 2,
+        "seconds": 0.9
       }
     ]
   }

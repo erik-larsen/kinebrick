@@ -67,24 +67,13 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 0,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 1,
     "counts": {
-      "works": 1,
-      "no": 2
+      "works": 3
     },
-    "loose": [
-      "p58 30285",
-      "p59 30648",
-      "p60 30648",
-      "p61 30285",
-      "p62 30648",
-      "p63 30285",
-      "p64 30648",
-      "p65 30285"
-    ],
+    "loose": [],
     "functions": [
       {
         "result": "works",
@@ -151,24 +140,21 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p57 30394 against p47 3706"
         ],
         "rates": [
           {
             "p57 30394 against p47 3706": [
-              0,
-              0
+              1,
+              0.01
             ],
             "p47 3706 against p0 32009": [
               0,
@@ -188,34 +174,27 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "cause": "part-fixed",
-        "detail": "p57 30394 against p47 3706",
-        "seconds": 0
+        "freed": 1,
+        "seconds": 0.1
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -225,20 +204,54 @@
           {}
         ],
         "back": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "why": [
-          "p58 30285 is part of the frame",
-          "p61 30285 is part of the frame",
-          "p63 30285 is part of the frame",
-          "p65 30285 is part of the frame"
-        ],
-        "cause": "loose-part",
-        "detail": "p58 30285",
-        "seconds": 0
+        "seconds": 0.2
       }
     ]
   }

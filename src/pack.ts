@@ -7,7 +7,7 @@
 // own computer the same way, fetching the files from an LDraw library online (src/library.ts).
 
 import { normalizePartName } from './connections.ts';
-import { embeddedParts, modelFiles, parseModel, partLine, PlacedPart, PlacedPath, PlacedShape } from './ldr.ts';
+import { embeddedParts, modelFiles, parseModel, partLine, PIECES_AFTER, PlacedPart, PlacedPath, PlacedShape } from './ldr.ts';
 
 export interface Packed {
   text: string; // the packed file
@@ -63,6 +63,9 @@ function smallS(text: string): string {
 // ones) come first. `colours` is LDConfig.ldr's "!COLOUR" lines, so the packed file brings its own
 // colours. `isPrimitive` says which files are LDraw primitives (see parseModel), and `roles` which
 // parts are read as their pieces.
+// The file a removed part is drawn as (see packModel).
+export const REMOVED_FILE = 'kinebrick-removed.ldr';
+
 export async function packModel(
   name: string,
   source: string,
@@ -85,22 +88,28 @@ export async function packModel(
   const pieces: Record<string, string[]> = {};
   // A part the model file embeds ("42108 - 40918-f1.dat", as the OMR names them) is read as its
   // pieces if the library's part of that name is (as scripts/load-model.ts reads it).
-  const isSplit = (file: string) => roles[file] === 'split' || (embedded.has(file) && roles[file.replace(/^.* - /, '')] === 'split');
+  // Role "pieces" is read as its pieces too, numbered after the model's other parts (see
+  // PIECES_AFTER in ldr.ts).
+  const roleOf = (file: string) => roles[file] ?? (embedded.has(file) ? roles[file.replace(/^.* - /, '')] : undefined);
+  const isSplit = (file: string) => roleOf(file) === 'split' || roleOf(file) === 'pieces';
   const split = placed.filter(isSplit);
   for (const file of split) {
     if (pieces[file]) continue;
-    pieces[file] = (await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line));
+    pieces[file] = [...(roleOf(file) === 'pieces' ? [PIECES_AFTER] : []), ...(await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line))];
     split.push(...pieces[file].flatMap((line) => references(line)).filter(isSplit));
   }
   const { parts, shapes, paths } = parseModel(source, isPrimitive, (file) => pieces[file] ?? null);
+  // A part an erratum removed is drawn as an empty file, so the loader's parts keep the parts'
+  // numbers (see REMOVED in ldr.ts).
   const model = [
-    ...parts.map(partLine),
+    ...parts.map((p) => partLine(p.removed ? { ...p, name: REMOVED_FILE } : p)),
     ...shapes.map((s) => partLine({ name: shapeName(s.submodel), color: s.color, matrix: s.matrix })),
   ].join('\n');
 
   // Every file the model needs, each once, found by following references, a round of
   // references at a time (each round's files read all at once).
   const included = new Map<string, string>();
+  if (parts.some((p) => p.removed)) included.set(REMOVED_FILE, '0 A part removed by an erratum: nothing to draw');
   for (const s of shapes) included.set(shapeName(s.submodel), s.lines.join('\n'));
   let round = [...references(model), ...shapes.flatMap((s) => references(s.lines.join('\n')))];
   while (round.length) {
@@ -111,7 +120,7 @@ export async function packModel(
   }
 
   const titles: Record<string, string> = {};
-  for (const p of parts) titles[p.name] = included.get(p.name)!.split(/\r?\n/)[0].replace(/^0\s+/, '').replace(/\s+/g, ' ').trim();
+  for (const p of parts) if (!p.removed) titles[p.name] = included.get(p.name)!.split(/\r?\n/)[0].replace(/^0\s+/, '').replace(/\s+/g, ' ').trim();
 
   let text = `0 FILE ${name}.ldr\n${colours}\n${model}\n`;
   for (const [file, lines] of included) text += `\n0 NOFILE\n0 FILE ${packedName(file)}\n${smallS(lines).trimEnd()}\n`;

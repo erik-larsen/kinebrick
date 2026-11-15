@@ -89,9 +89,8 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
+    "commit": "50428c4b",
+    "date": "2026-11-15",
     "seconds": 1,
     "counts": {
       "works": 3,
@@ -133,7 +132,7 @@
         "rates": [
           {
             "p491 32316": [
-              2.81e-8,
+              0,
               20
             ],
             "p505 55982": [
@@ -157,19 +156,19 @@
         "back": [
           [
             [
-              0.01,
-              0.01
+              0,
+              0
             ],
             [
-              0.01,
-              0.01
+              0,
+              0
             ]
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -203,7 +202,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -251,7 +250,11 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 0.3
       }
     ]
   }

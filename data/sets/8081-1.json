@@ -77,7 +77,11 @@
         "moves": [
           "p95 6589"
         ],
-        "note": "with the engine held still, turning one rear wheel turns the other the opposite way"
+        "note": "with the engine held still, turning one rear wheel turns the other the opposite way; the engine is held, as the note says (\"with the engine held still\"): the crankshaft p154, which function 2 names, is frozen while the wheel is turned, as a user freezes it in the viewer",
+        "lifted": true,
+        "held": [
+          "p154 2853"
+        ]
       },
       {
         "does": "The bonnet tilts up on a hinge at the windscreen, showing the engine.",
@@ -94,19 +98,21 @@
         ]
       },
       {
-        "does": "The two front doors open, each swinging out on a hinge at its front edge.",
+        "does": "The two front doors open, each swinging up about its lower front corner, the corner nearest the front wheel.",
         "mechanisms": [
           "hinge: doors"
         ],
-        "source": "book: book 3 steps 9-12 (doors fitted on their hinge pins); inferred: that they're meant to open",
+        "source": "book 3 (8081-1-3.pdf): page 8 step 8.4 puts the 32054 down through the rear hole of the black 13L sill and the blue 6558 in its front hole, and page 9 pins both into the body; steps 9 and 12 to 13 (pages 10 to 11 and 16 to 19) lay the door, a red 13L beam with its panel, on the sill, hung on the upper end of the 6558. Erik, from a review video of the set: \"the door is hinged in the lower corner of the door closest to the front wheel\"; asked whether a pin is pulled first: \"No, it just swings\"",
         "control": [
-          "p472 41239",
-          "p504 41239"
+          "p475 41239",
+          "p507 41239"
         ],
         "stays": [
+          "p472 41239",
+          "p504 41239",
           "p415 32278"
         ],
-        "note": "each door opens on its own; the left one's panel is p478 64392, the right one's p510 64682"
+        "note": "each door opens on its own: the left door is the red beam p475 with its panel p478 64392, the right one p507 with p510 64682. The black sills p472 and p504, which this function named as its controls before, are pinned to the body at both ends (the 6558 p473 and p505 at the front, the 32054 p474 and p506 at the rear) and stay. Each door hangs on the upper end of its 6558, its hinge at the lower front corner; at the rear it only rests over the 32054's bush. In the file each door is drawn about 4.6 degrees open, its rear hole 18 LDU off the bush, so nothing joins them there"
       },
       {
         "does": "The tailgate at the back swings up on a hinge at the roof.",
@@ -137,11 +143,12 @@
           "p199 6572",
           "p202 6572"
         ],
+        "lifted": true,
         "moves": [
           "p210 6571",
           "p213 6571"
         ],
-        "note": "unsure how the front shock absorber p209 76537 and the rear axle are hung; to be checked against the book"
+        "note": "unsure how the front shock absorber p209 76537 and the rear axle are hung; to be checked against the book. lifted: the text has the wheel or arm moved (\"and moves up and down, steering as it goes\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorbers' springs hold the car up and spring back.",
@@ -165,66 +172,58 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 10,
+    "commit": "50428c4b",
+    "date": "2026-11-15",
+    "seconds": 26,
     "counts": {
-      "partly": 1,
-      "works": 4,
-      "no": 3,
+      "works": 7,
+      "not back": 2,
+      "no": 1,
       "skipped": 1
     },
     "loose": [],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p216 6574",
-          "p210 6571",
-          "p213 6571",
-          "p582 56908",
-          "p588 56908"
-        ],
         "rates": [
           {
             "p48 32072": [
               1,
-              3.14e-13
+              3.41e-13
             ],
             "p52 32072": [
               1,
-              3.02e-13
+              3.96e-13
             ],
             "p219 3647": [
               1,
-              1.72e-13
+              1.56e-13
             ],
             "p216 6574": [
               0,
-              0
+              10
             ],
             "p210 6571": [
-              0,
-              0
+              0.418,
+              0.355
             ],
             "p213 6571": [
-              0,
-              0
+              0.524,
+              0.354
             ],
             "p582 56908": [
-              0,
-              0
+              0.461,
+              16.7
             ],
             "p588 56908": [
-              0,
-              0
+              0.578,
+              20.9
             ],
             "p584 56908": [
               0,
@@ -245,18 +244,16 @@
         "back": [
           [
             [
-              0,
-              0
+              0.01,
+              0.01
             ],
             [
-              0,
-              0
+              0.01,
+              0.01
             ]
           ]
         ],
-        "cause": "not-driven",
-        "detail": "p216 6574",
-        "seconds": 0.8
+        "seconds": 8.4
       },
       {
         "result": "works",
@@ -273,114 +270,142 @@
         "rates": [
           {
             "p94 62821": [
-              1,
-              7.23e-13
+              1.05,
+              1.04e-12
             ],
             "p81 32269": [
-              1.4,
-              2.61e-13
+              1.47,
+              3.93e-13
             ],
             "p8 94925": [
-              1.4,
-              2.38e-13
+              1.47,
+              1.67e-13
             ],
             "p60 6542a": [
-              1.4,
-              2.29e-13
+              1.47,
+              2.63e-13
             ],
             "p183 94925": [
-              1.4,
-              2.72e-13
+              1.47,
+              2.56e-13
             ],
             "p154 2853": [
-              1.4,
-              2.01e-13
+              1.47,
+              2.55e-13
             ],
             "p161 2851": [
-              2.81e-8,
-              11.3
+              5.62e-8,
+              11.5
             ],
             "p164 2851": [
-              2.81e-8,
-              8.35
+              1.12e-7,
+              9.05
             ],
             "p0 64179": [
-              2.81e-8,
-              3.38e-14
+              8.43e-8,
+              6.39e-14
             ]
           },
           {
             "p94 62821": [
-              1,
-              6.36e-13
+              0.958,
+              1.27e-12
             ],
             "p81 32269": [
-              1.4,
-              5.22e-13
+              1.34,
+              5.2e-13
             ],
             "p8 94925": [
-              1.4,
-              3.32e-13
+              1.34,
+              1.82e-13
             ],
             "p60 6542a": [
-              1.4,
-              2.09e-13
+              1.34,
+              2.71e-13
             ],
             "p183 94925": [
-              1.4,
-              2.68e-13
+              1.34,
+              2.9e-13
             ],
             "p154 2853": [
-              1.4,
-              2.8e-13
+              1.34,
+              2.69e-13
             ],
             "p161 2851": [
               8.43e-8,
-              11.3
+              11.1
             ],
             "p164 2851": [
-              8.43e-8,
-              8.35
+              1.12e-7,
+              7.76
             ],
             "p0 64179": [
-              8.43e-8,
-              2.93e-14
+              5.62e-8,
+              4.45e-14
             ]
           }
         ],
         "expected": [
           {
-            "p161 2851": 11.3,
-            "p164 2851": 8.35
+            "p161 2851": 11.5,
+            "p164 2851": 9.05
           },
           {
-            "p161 2851": 11.3,
-            "p164 2851": 8.35
+            "p161 2851": 11.1,
+            "p164 2851": 7.76
           }
         ],
         "back": [
           [
             [
-              0.04,
-              0
+              1.06,
+              0.51
             ],
             [
-              0.05,
-              0
+              0.86,
+              0.35
             ]
           ],
           [
             [
-              0.04,
-              0
+              0.86,
+              0.35
             ],
             [
-              0.05,
-              0
+              1.06,
+              0.45
             ]
           ]
         ],
-        "seconds": 4.6
+        "strayed": [
+          "p428 6558",
+          "p545 87080",
+          "p444 6558",
+          "p546 87086"
+        ],
+        "movedBy": [
+          [
+            "p94 62821",
+            "p81 32269",
+            "p8 94925",
+            "p60 6542a",
+            "p183 94925",
+            "p154 2853",
+            "p161 2851",
+            "p164 2851"
+          ],
+          [
+            "p94 62821",
+            "p81 32269",
+            "p8 94925",
+            "p60 6542a",
+            "p183 94925",
+            "p154 2853",
+            "p161 2851",
+            "p164 2851"
+          ]
+        ],
+        "seconds": 6.7
       },
       {
         "result": "works",
@@ -394,23 +419,23 @@
           {
             "p95 6589": [
               1,
-              3.59e-13
+              2.37e-14
             ]
           }
         ],
         "back": [
           [
             [
-              0.04,
+              0,
               0
             ],
             [
-              0.05,
+              0,
               0
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -445,28 +470,44 @@
           ]
         ],
         "freed": 2,
-        "seconds": 0.9
+        "seconds": 1.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ],
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
           {
+            "p472 41239": [
+              0,
+              1.89e-14
+            ],
+            "p504 41239": [
+              0,
+              0
+            ],
             "p415 32278": [
               0,
               0
             ]
           },
           {
+            "p472 41239": [
+              0,
+              0
+            ],
+            "p504 41239": [
+              0,
+              5.68e-14
+            ],
             "p415 32278": [
               0,
               0
@@ -495,22 +536,12 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ],
-          [
-            "no motion",
-            "no motion"
-          ]
+        "freed": 1,
+        "movedBy": [
+          [],
+          []
         ],
-        "pushed": [
-          true,
-          true
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "seconds": 2.5
       },
       {
         "result": "no",
@@ -538,77 +569,86 @@
         "seconds": 0
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.87
           ],
           [
-            0,
-            0
+            0.87,
+            -1.5
           ]
-        ],
-        "still": [
-          "p210 6571",
-          "p213 6571"
         ],
         "rates": [
           {
             "p210 6571": [
-              0,
-              0
+              1.84,
+              80
             ],
             "p213 6571": [
-              0,
-              0
+              0.0932,
+              46.7
             ]
           },
           {
             "p210 6571": [
-              0,
-              0
+              0.0932,
+              46.7
             ],
             "p213 6571": [
-              0,
-              0
+              1.84,
+              80
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.39,
+              1.35
             ],
             [
-              0,
-              0
+              2.27,
+              7.7
             ]
           ],
           [
             [
-              0,
-              0
+              2.27,
+              7.7
             ],
             [
-              0,
-              0
+              0.39,
+              1.35
             ]
           ]
+        ],
+        "strayed": [
+          "p47 4519",
+          "p51 6587"
         ],
         "stop": [
           [
-            "dead point",
+            null,
             "dead point"
           ],
           [
             "dead point",
-            "dead point"
+            null
           ]
         ],
-        "cause": "stopped-early",
-        "seconds": 0.1
+        "movedBy": [
+          [
+            "p210 6571",
+            "p213 6571"
+          ],
+          [
+            "p210 6571",
+            "p213 6571"
+          ]
+        ],
+        "seconds": 4.9
       },
       {
         "result": "skipped",
@@ -642,7 +682,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 1.1
       }
     ]
   }

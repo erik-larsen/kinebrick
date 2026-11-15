@@ -84,14 +84,21 @@
     ]
   },
   "generated": {
-    "commit": "25ca2b8",
-    "uncommitted": true,
-    "date": "2026-11-13",
-    "seconds": 1,
+    "commit": "6fbe31fe",
+    "date": "2026-11-15",
+    "seconds": 2,
     "counts": {
       "works": 4
     },
     "loose": [],
+    "errata": {
+      "applied": [
+        "handwheel-down",
+        "handwheel-pin-down",
+        "lower-axle-and-gear"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "works",
@@ -105,15 +112,15 @@
           {
             "p199 3710": [
               0,
-              10
+              3.33
             ],
             "p191 3460": [
               0,
-              10
+              3.33
             ],
             "p192 3460": [
               0,
-              10
+              3.33
             ],
             "p178 3736": [
               0,
@@ -137,7 +144,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -163,7 +170,7 @@
             ],
             "p199 3710": [
               0,
-              7.77e-16
+              3.27e-16
             ],
             "p109 3482 against p0 3030": [
               0,
@@ -253,7 +260,13 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "movedBy": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -311,7 +324,11 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "movedBy": [
+          [],
+          []
+        ],
+        "seconds": 0.3
       }
     ]
   }
