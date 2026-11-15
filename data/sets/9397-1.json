@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 4516,
+    "seconds": 4055,
     "counts": {
       "works": 4,
       "partly": 4,
@@ -247,7 +247,7 @@
             ]
           ]
         ],
-        "seconds": 93.2
+        "seconds": 78.6
       },
       {
         "result": "partly",
@@ -297,7 +297,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p464 92695 against p463 92693c01",
-        "seconds": 400.3
+        "seconds": 383.4
       },
       {
         "result": "partly",
@@ -352,7 +352,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p528 32140",
-        "seconds": 398.9
+        "seconds": 384.1
       },
       {
         "result": "partly",
@@ -402,7 +402,7 @@
         ],
         "cause": "not-driven",
         "detail": "p624 62274c01 against p623 62271c01",
-        "seconds": 395.7
+        "seconds": 380
       },
       {
         "result": "works",
@@ -439,7 +439,7 @@
             ]
           ]
         ],
-        "seconds": 398.6
+        "seconds": 379.7
       },
       {
         "result": "not checked"
@@ -500,7 +500,7 @@
             ]
           ]
         ],
-        "seconds": 92.2
+        "seconds": 77.8
       },
       {
         "result": "partly",
@@ -629,7 +629,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p790 2851 against p472 32278",
-        "seconds": 798.9
+        "seconds": 720.7
       },
       {
         "result": "works",
@@ -803,7 +803,7 @@
           [],
           []
         ],
-        "seconds": 1921.8
+        "seconds": 1634.7
       }
     ]
   }

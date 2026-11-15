@@ -106,9 +106,9 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -193,7 +193,7 @@
         ],
         "cause": "not-driven",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -405,7 +405,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "not checked",

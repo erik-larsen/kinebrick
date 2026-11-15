@@ -136,14 +136,15 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 26,
+    "seconds": 21,
     "counts": {
       "works": 5,
       "not back": 3,
-      "torn": 3,
+      "free-turned": 2,
       "partly": 1,
+      "torn": 1,
       "skipped": 3
     },
     "loose": [
@@ -205,6 +206,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p851 6538b"
         ],
@@ -217,7 +219,7 @@
         "pushed": [
           true
         ],
-        "seconds": 12.9
+        "seconds": 10.4
       },
       {
         "result": "works",
@@ -263,7 +265,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -351,6 +353,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p636 77",
           "p873 77"
@@ -367,7 +370,7 @@
             "p856 6536 against p0 32009"
           ]
         ],
-        "seconds": 1.9
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -469,7 +472,7 @@
         ],
         "cause": "not-driven",
         "detail": "p619 6536 against p238 6632",
-        "seconds": 1.4
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -515,7 +518,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -570,7 +573,7 @@
         "pushed": [
           true
         ],
-        "seconds": 8.2
+        "seconds": 6.6
       },
       {
         "result": "skipped",

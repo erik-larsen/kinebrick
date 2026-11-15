@@ -123,13 +123,13 @@
     ]
   },
   "generated": {
-    "commit": "97d7e2f0",
+    "commit": "6b12e9c4",
     "date": "2026-11-15",
-    "seconds": 11,
+    "seconds": 9,
     "counts": {
       "works": 3,
       "not back": 2,
-      "torn": 2,
+      "free-turned": 2,
       "no": 2,
       "skipped": 1
     },
@@ -217,11 +217,12 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p621 32449",
           "p83 32054"
         ],
-        "seconds": 4
+        "seconds": 3.2
       },
       {
         "result": "no",
@@ -455,6 +456,7 @@
             ]
           ]
         ],
+        "freeTurned": true,
         "strayed": [
           "p182 57518",
           "p184 57518"
@@ -462,7 +464,7 @@
         "pushed": [
           true
         ],
-        "seconds": 4.3
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -546,7 +548,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 1.4
       }
     ]
   }
