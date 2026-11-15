@@ -126,6 +126,52 @@
       "reply": "Sign casings"
     },
     {
+      "id": "suspension-lists",
+      "kind": "Sign-off",
+      "title": "Two suspension functions: the list names the wrong part",
+      "since": "2026-11-15",
+      "what": "Two changes to function lists, found by the worker while tracing suspension functions that do not work. In each, the model moves as the booklet shows, but the list asks for something else.",
+      "effect": "The 42039’s function 6 goes from doesn’t work to works (tried by the worker). The 8261’s function 3 should go from partly to works; it is checked when you sign.",
+      "confidence": "High for both: each follows from how the parts are joined in the booklet step linked.",
+      "rows": [
+        {
+          "set": "42039 24 Hours Race Car",
+          "fn": "6 (rear suspension)",
+          "says": "The control is two parts on the rear drive shafts, which can always spin, so pushing them never moves the suspension. The change makes the two lower arms the control (p61 and p63). Pushed there, each arm swings and the shock absorbers’ rods move.",
+          "links": [
+            {
+              "label": "Booklet p. 8 (hubs on the arms, step 12)",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=8"
+            },
+            {
+              "label": "Booklet p. 11 (shock absorbers, step 17)",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6117421.pdf#page=11"
+            },
+            {
+              "label": "Viewer",
+              "url": "http://localhost:5174/?file=omr%2F42039-1+24+Hours+Race+Car.mpd&show=61,63,80,82"
+            }
+          ]
+        },
+        {
+          "set": "8261 Rally Truck",
+          "fn": "3 (rear suspension)",
+          "says": "The list says the pivot axle p55 stays still. The axle goes through the axle holes of both bent beams of the arm and through round holes in the frame, so it turns with the arm. The change moves p55 from the parts that stay to the parts that move.",
+          "links": [
+            {
+              "label": "Booklet p. 9 (step 13)",
+              "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4548627.pdf#page=9"
+            },
+            {
+              "label": "Viewer",
+              "url": "http://localhost:5174/?file=omr%2F8261-1+Rally+Truck.mpd&show=45,51,55"
+            }
+          ]
+        }
+      ],
+      "reply": "Sign suspension lists"
+    },
+    {
       "id": "audit-agree",
       "kind": "Sign-off",
       "title": "Five audit rows where the booklet and the model agree by trial",
