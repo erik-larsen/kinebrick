@@ -257,9 +257,9 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 2054,
+    "seconds": 2121,
     "counts": {
       "no": 1,
       "works": 2,
@@ -570,6 +570,18 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             "no motion",
@@ -577,7 +589,7 @@
           ]
         ],
         "cause": "control-jammed",
-        "seconds": 46.2
+        "seconds": 48.7
       },
       {
         "result": "works",
@@ -773,6 +785,48 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "movedBy": [
           [
             "p1223 2854",
@@ -807,7 +861,7 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 724.1
+        "seconds": 770.1
       },
       {
         "result": "works",
@@ -841,7 +895,19 @@
             ]
           ]
         ],
-        "seconds": 49.5
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 52.2
       },
       {
         "result": "partly",
@@ -918,9 +984,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0.01
+            ],
+            [
+              0,
+              0.01
+            ]
+          ]
+        ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 214.9
+        "seconds": 205.4
       },
       {
         "result": "partly",
@@ -966,9 +1044,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0.01
+            ],
+            [
+              0,
+              0.01
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 145.9
+        "seconds": 149.5
       },
       {
         "result": "partly",
@@ -1019,9 +1109,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 142.9
+        "seconds": 142.3
       },
       {
         "result": "partly",
@@ -1067,9 +1169,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 139.6
+        "seconds": 145.5
       },
       {
         "result": "partly",
@@ -1115,12 +1229,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "why": [
           "p3371 2736 against p3076 3703 is held by friction pins the control doesn't reach"
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 141.2
+        "seconds": 145.3
       },
       {
         "result": "partly",
@@ -1153,12 +1279,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0.02
+            ],
+            [
+              0,
+              0.02
+            ]
+          ]
+        ],
         "why": [
           "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 187.7
+        "seconds": 175
       },
       {
         "result": "not checked"

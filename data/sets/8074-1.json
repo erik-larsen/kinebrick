@@ -114,12 +114,13 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 5,
+    "seconds": 6,
     "counts": {
       "partly": 4,
       "not back": 1,
+      "torn": 1,
       "skipped": 1
     },
     "loose": [
@@ -193,13 +194,25 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              56.9,
+              154.42
+            ],
+            [
+              74.7,
+              178.04
+            ]
+          ]
+        ],
         "strayed": [
           "p54 3705",
           "p47 3706"
         ],
         "cause": "not-driven",
         "detail": "p231 8074 - 4185a",
-        "seconds": 2.8
+        "seconds": 3.7
       },
       {
         "result": "skipped",
@@ -274,12 +287,24 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "why": [
           "p96 3738 is held by friction pins the control doesn't reach"
         ],
         "cause": "part-fixed",
         "detail": "p96 3738",
-        "seconds": 1
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -353,9 +378,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p177 3708",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -429,9 +466,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "part-fixed",
         "detail": "p223 3705",
-        "seconds": 0.3
+        "seconds": 0.5
       }
     ]
   }

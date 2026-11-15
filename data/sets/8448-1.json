@@ -211,13 +211,14 @@
     ]
   },
   "generated": {
-    "commit": "42e25956",
+    "commit": "716b8262",
     "date": "2026-11-15",
-    "seconds": 43,
+    "seconds": 50,
     "counts": {
       "partly": 3,
       "works": 4,
       "not back": 1,
+      "torn": 1,
       "no": 2,
       "skipped": 2
     },
@@ -296,9 +297,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 2.9
+        "seconds": 3.6
       },
       {
         "result": "works",
@@ -363,7 +376,19 @@
             ]
           ]
         ],
-        "seconds": 22.7
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 27.1
       },
       {
         "result": "works",
@@ -405,7 +430,19 @@
             ]
           ]
         ],
-        "seconds": 2.8
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -447,7 +484,19 @@
             ]
           ]
         ],
-        "seconds": 2
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -521,6 +570,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              15.88,
+              9.05
+            ],
+            [
+              14.85,
+              8.46
+            ]
+          ],
+          [
+            [
+              14.85,
+              8.46
+            ],
+            [
+              15.88,
+              9.05
+            ]
+          ]
+        ],
         "strayed": [
           "p348 32123a",
           "p344 2736",
@@ -547,7 +618,7 @@
             "p484 32196"
           ]
         ],
-        "seconds": 2
+        "seconds": 2.5
       },
       {
         "result": "no",
@@ -575,6 +646,10 @@
           [],
           []
         ],
+        "torn": [
+          [],
+          []
+        ],
         "why": [
           "p231 6629 is part of the frame",
           "p224 6629 is part of the frame"
@@ -585,7 +660,7 @@
           []
         ],
         "cause": "control-fixed",
-        "seconds": 3.1
+        "seconds": 3.5
       },
       {
         "result": "skipped",
@@ -655,6 +730,28 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "stop": [
           [
             null,
@@ -679,7 +776,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 3.1
+        "seconds": 3.3
       },
       {
         "result": "partly",
@@ -724,9 +821,21 @@
             ]
           ]
         ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 2.8
+        "seconds": 2.7
       },
       {
         "result": "skipped",
@@ -749,6 +858,10 @@
           {}
         ],
         "back": [
+          [],
+          []
+        ],
+        "torn": [
           [],
           []
         ],
