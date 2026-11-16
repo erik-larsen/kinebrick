@@ -23,6 +23,7 @@
         ],
         "source": "book: steps 15-16 (steering column, pages 38-39) and step 33 (handlebars, page 56); the links and hubs on pages 33-37",
         "control": "p194 32016",
+        "lifted": true,
         "moves": [
           "p121 32209",
           "p114 2739a",
@@ -32,7 +33,8 @@
         "stays": [
           "p182 56145",
           "p183 56145"
-        ]
+        ],
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89)"
       },
       {
         "does": "Rolling the quad works the engine: the rear axle's sprocket drives a chain forward to a cross shaft, whose gear turns the crankshaft, and the yellow piston pumps up and down in its cylinder.",

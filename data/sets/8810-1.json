@@ -20,6 +20,7 @@
         ],
         "source": "book: step 11 (the fork is built in sub-steps 1-7, then the 4-long axle is pushed down through the steering head) and step 12",
         "control": "p51 3176",
+        "lifted": true,
         "moves": [
           "p41 3176",
           "p57 3707",
@@ -34,7 +35,8 @@
           "p5 2904",
           "p32 4262",
           "p26 2695"
-        ]
+        ],
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89)"
       },
       {
         "does": "The rear wheel rides on a swinging arm: two 1x6 technic plates pivot on the axle under the frame and carry the rear wheel's axle, and two shock absorbers run from pins high on the frame down to the rear axle, so the rear wheel can rise and fall.",

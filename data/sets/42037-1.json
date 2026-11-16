@@ -63,6 +63,7 @@
         ],
         "source": "book: front module steps 5 (the rack, page 10) and 17-21 (hubs and links, pages 12-14); step 25 (the gear on its vertical shaft, page 47); steps 39-41 (the long shaft joined, pages 50-52)",
         "control": "p349 32270",
+        "lifted": true,
         "moves": [
           "p34 3737",
           "p54 87761",
@@ -74,7 +75,8 @@
         "stays": [
           "p489 45982",
           "p493 45982"
-        ]
+        ],
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89)"
       },
       {
         "does": "The front wheels each have independent suspension: each steering hub rides between an upper and a lower suspension arm, with a yellow shock absorber, and moves up and down, steering as it goes.",

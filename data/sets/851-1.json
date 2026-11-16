@@ -71,6 +71,7 @@
         ],
         "source": "book: steps 18 and 29-31, step 33; inferred: no motion is drawn, and unsure that the lever is meant to lift the hitch rather than only hold it at one height",
         "control": "p232 3702",
+        "lifted": true,
         "moves": [
           "p39 3702",
           "p102 3702",
@@ -79,7 +80,8 @@
         "stays": [
           "p245 3739 against p0 3710",
           "p309 3649 against p260 3709b"
-        ]
+        ],
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89)"
       }
     ],
     "questions": [

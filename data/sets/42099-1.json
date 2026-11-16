@@ -45,6 +45,7 @@
         ],
         "source": "book: rear axle steps 127-172, rear motor steps 173-180 (marked 2); app pages 218-219; the gear train is inferred from the model",
         "control": "p363 42099 - 18575",
+        "lifted": true,
         "moves": [
           "p83 32270",
           "p59 42099 - 18575",
@@ -57,7 +58,7 @@
           "p1862 23798",
           "p1866 23798"
         ],
-        "note": "The motor (p138 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89); The motor (p138 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
       },
       {
         "does": "With both XL motors driven together the off-roader has four-wheel drive, forwards or back.",
