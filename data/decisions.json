@@ -5,54 +5,45 @@
       "moved": "2026-11-15"
     },
     "preview": {
-      "works": 700,
-      "partly": 240,
+      "works": 701,
+      "partly": 239,
       "no": 107,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [
-    {
-      "id": "42070-diff",
-      "kind": "Sign-off",
-      "title": "42070 6x6 All Terrain Tow Truck: the rear differential turned round",
-      "since": "2026-11-16",
-      "what": "A correction to the published file. The two rear axles are built as two modules whose differentials are mirror images: the booklet’s 1:1 pictures have the ring on the right of the casing in the first (step 123) and on the left in the second (step 147). The file draws both alike, so the one shaft that drives them turns the two rear axles against each other. The correction turns the rear differential’s casing half a turn, so its ring faces the other way, as in step 147.",
-      "effect": "No score changes yet (3 work, 4 partly, 3 don’t): the drive (function 1) stays jammed for another reason, which the worker is tracing (the front wheels’ universal joints, read as rigid).",
-      "confidence": "High. The worker looked at the booklet pages: the two 1:1 pictures are mirror images, drawn from the same side, and step 166 fits the second module at the rear.",
-      "links": [
-        {
-          "label": "Booklet p. 78",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=78"
-        },
-        {
-          "label": "p. 92",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=92"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=755,808,845,898"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&option=proposed&show=755,808,845,898"
-        }
-      ],
-      "reply": "Sign 42070"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "Preview is ahead of main by 15 working functions (700 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
+      "what": "Preview is ahead of main by 16 working functions (701 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
     },
     {
-      "title": "A second worker?",
-      "what": "Of the 362 functions that do not work in full, most are faults in how we read the models, and one worker mends them. A fleet is your call. Claude will ask with numbers once the largest group (a part that nothing ties to its control, about 140 functions) is sorted by what would mend it."
+      "title": "A second worker, asked again at mid-week",
+      "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
+    },
+    {
+      "title": "8832 Roadster: the correction for the shock absorber's top",
+      "what": "By your answer of 16 November the worker puts the shock absorber's top on the seat so that the rear arm swings. You get the exact correction to sign, with viewer links before and after."
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster, function 2: the function should work, so if the file does not allow it the file is wrong; you believe the shock absorber's top sits on the seat. The worker makes the correction and it comes back to you to sign."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the rear differential is turned round (\"Sign 42070\"). No score changes; its drive is still jammed for another reason, which the worker traces."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8820 Mountain Rambler, function 2: the shock absorber's top axle is off the parts that must stay (\"Sign 8820 list\"). The function now works in full; 701 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "No second worker yet (\"Second worker: not yet\"). The solver owner takes faults of reading when its three solver tasks are done, and the worker takes the recurring part types first. Claude asks again at mid-week."
+    },
     {
       "date": "2026-11-16",
       "what": "You looked at the monorail with the FPS card (\"The monorail is smooth now\")."
