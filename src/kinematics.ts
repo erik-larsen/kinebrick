@@ -2826,7 +2826,7 @@ export class Kinematics {
     // with the steering kept still, its steering shaft turned as the axle rocked, where the
     // function has it stay. A drag about the upright (the 42053's slewing, which turns all its
     // tyres round together) still keeps it.
-    const rocks = this.options.lifted && this.drag.steering!.has(grabbed) && Math.abs(axisOf(this.mech.joints[joint].from, this.mech.joints[joint].to).transformDirection(this.poses[this.mech.joints[joint].bodyA]).dot(DOWN)) < LEVEL_AXIS;
+    const rocks = steers && this.options.lifted && this.drag.steering!.has(grabbed) && Math.abs(axisOf(this.mech.joints[joint].from, this.mech.joints[joint].to).transformDirection(this.poses[this.mech.joints[joint].bodyA]).dot(DOWN)) < LEVEL_AXIS;
     const keepSteering = steers && !rocks && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
     const steering = keepSteering ? [...this.drag.steering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
     const steered = (z: number[]) => steering.map((j) => rateOf(z, j));
