@@ -145,9 +145,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
-    "seconds": 10,
+    "seconds": 5,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -187,7 +187,7 @@
           {
             "p160 6589": [
               1,
-              2.84e-14
+              9.47e-15
             ],
             "p157 32270": [
               1,
@@ -195,11 +195,11 @@
             ],
             "p144 6589": [
               1,
-              2.62e-13
+              3.19e-13
             ],
             "p148 6589": [
               1,
-              2.78e-13
+              3.79e-13
             ],
             "p557 99012": [
               0,
@@ -247,7 +247,7 @@
         ],
         "cause": "not-driven",
         "detail": "p557 99012",
-        "seconds": 1.1
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -261,7 +261,7 @@
           {
             "p75 2853": [
               1,
-              4.57e-13
+              4.68e-13
             ],
             "p76 2852": [
               0.168,
@@ -283,6 +283,7 @@
         ],
         "expected": [
           {
+            "p78 2851": 5.35,
             "p79 2851": 7.04
           }
         ],
@@ -310,7 +311,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -347,7 +348,8 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "freed": 2,
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -402,7 +404,7 @@
         ],
         "cause": "not-driven",
         "detail": "p226 60483",
-        "seconds": 1
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -490,7 +492,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p381 32072",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "no",
@@ -559,7 +561,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p371 2739a",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "no",
@@ -732,7 +734,7 @@
           [],
           []
         ],
-        "seconds": 3.9
+        "seconds": 2.1
       }
     ]
   }

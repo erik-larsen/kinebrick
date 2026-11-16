@@ -4,7 +4,7 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 41 works, 29 partly, 7 no, 1 not checked.
+Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 36 works, 28 partly, 13 no, 1 not checked.
 
 ## By decade
 
@@ -157,7 +157,7 @@ Each detail by the set it first appears in.
 **2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1)**
 
 - *jib:* The gear knob at the top of the red arm folds the black jib up and down: it turns a worm inside the arm, which drives an 8-tooth gear and a linkage to the jib. (works)
-- *bed:* The gear knob low on the right side, behind the cab, tips the grey bed: its shaft's crank, an offset axle joiner in the middle of the frame, pushes the bed's front up through a lever and links, the bed pivoting at its back end. (works)
+- *bed:* The gear knob low on the right side, behind the cab, tips the grey bed: its shaft's crank, an offset axle joiner in the middle of the frame, pushes the bed's front up through a lever and links, the bed pivoting at its back end. (no)
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
@@ -265,11 +265,11 @@ Each detail by the set it first appears in.
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- *landing gear:* The black gear low on the side of the trailer's front winds the landing gear's two legs, with their little wheels, down to the ground and back up. (works)
+- *landing gear:* The black gear low on the side of the trailer's front winds the landing gear's two legs, with their little wheels, down to the ground and back up. (no)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
-- *mast tilt:* The lever on the side of the body tilts the mast forward and back. (works)
+- *mast tilt:* The lever on the side of the body tilts the mast forward and back. (no)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 
@@ -285,7 +285,7 @@ Each detail by the set it first appears in.
 
 **2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1)**
 
-- *legs:* The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end. (works)
+- *legs:* The 12 tooth gear on the trailer's side swings the blue legs at its front down, so the unhitched trailer stands as a launch ramp sloping down to its back end. (no)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 
@@ -297,12 +297,12 @@ Each detail by the set it first appears in.
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 
-- *spoiler:* The rear spoiler rises and tilts: a lever in the interior pushes a flexible axle, used as a push rod, back to the spoiler lift under the engine cover, whose yellow axles push the wing up. (partly)
+- *spoiler:* The rear spoiler rises and tilts: a lever in the interior pushes a flexible axle, used as a push rod, back to the spoiler lift under the engine cover, whose yellow axles push the wing up. (no)
 
 **2021, [42116 Skid Steer Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42116-1)**
 
 - *loader arm:* The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link. (works)
-- *bucket:* The black 12 tooth gear on the right side at the back tilts the bucket: its shaft carries a crank at the arm's pivot, which slides the arm's upper white beam along the lower one, and the upper beam tips the bucket at the front. (works)
+- *bucket:* The black 12 tooth gear on the right side at the back tilts the bucket: its shaft carries a crank at the arm's pivot, which slides the arm's upper white beam along the lower one, and the upper beam tips the bucket at the front. (no)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 

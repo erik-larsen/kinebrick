@@ -208,15 +208,15 @@
     ]
   },
   "generated": {
-    "commit": "1943fba9",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
-    "seconds": 19,
+    "seconds": 11,
     "counts": {
-      "works": 6,
+      "works": 4,
       "partly": 2,
       "not back": 1,
       "moved whole": 1,
-      "no": 1,
+      "no": 3,
       "skipped": 1,
       "not checked": 2
     },
@@ -244,7 +244,7 @@
               0.00438
             ],
             "p288 64781": [
-              2.81e-8,
+              0,
               15.9
             ],
             "p284 92909": [
@@ -290,7 +290,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 2.1
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -345,15 +345,21 @@
             ]
           }
         ],
+        "expected": [
+          {
+            "p69 18947": 1.67,
+            "p67 18946": 1.67
+          }
+        ],
         "back": [
           [
             [
               0,
-              6.66
+              1.04
             ],
             [
               0,
-              1.11
+              1.9
             ]
           ]
         ],
@@ -361,11 +367,11 @@
           [
             [
               0,
-              6.66
+              1.04
             ],
             [
               0,
-              1.11
+              1.9
             ]
           ]
         ],
@@ -377,7 +383,7 @@
         ],
         "cause": "not-driven",
         "detail": "p113 92695",
-        "seconds": 1.7
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -435,6 +441,16 @@
             ]
           }
         ],
+        "expected": [
+          {
+            "p69 18947": 1.67,
+            "p71 18946": 1.67,
+            "p33 94925": 1.67,
+            "p46 6589": 1.67,
+            "p107 32269": 1,
+            "p862 62520": 1
+          }
+        ],
         "back": [
           [
             [
@@ -462,9 +478,9 @@
         "judged": [
           1
         ],
-        "cause": "not-driven",
+        "cause": "part-fixed",
         "detail": "p866 92696",
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -506,25 +522,29 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 1.2
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p888 41239",
+          "p866 92696"
         ],
         "rates": [
           {
             "p888 41239": [
-              1,
-              58.6
+              0,
+              0
             ],
             "p866 92696": [
-              1,
-              70.9
+              0,
+              0
             ],
             "p323 64782": [
               0,
@@ -556,21 +576,34 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 0.1
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p893 61510"
         ],
         "rates": [
           {
             "p893 61510": [
-              1,
-              1.33e-13
+              0,
+              0
             ],
             "p888 41239": [
               0,
@@ -602,7 +635,17 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -718,7 +761,7 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -840,7 +883,7 @@
           [],
           []
         ],
-        "seconds": 6.3
+        "seconds": 4.4
       },
       {
         "result": "not checked",
@@ -881,7 +924,8 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "freed": 1,
+        "seconds": 1.2
       },
       {
         "result": "not checked",

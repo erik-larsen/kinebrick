@@ -4,7 +4,7 @@ A part slews round on a turntable or an upright pivot, geared or by hand. (Movin
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The cab slews round on its turntable, carrying the boom with it.
 
-Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 18 works, 16 partly, 5 no, 1 not checked.
+Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 16 works, 14 partly, 9 no, 1 not checked.
 
 ## By decade
 
@@ -82,7 +82,7 @@ Each detail by the set it first appears in.
 
 **2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1)**
 
-- *crane:* The rear of the two gear knobs on the chassis's left side slews the crane round on its turntable, all the way round. (partly)
+- *crane:* The rear of the two gear knobs on the chassis's left side slews the crane round on its turntable, all the way round. (no)
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
@@ -114,7 +114,7 @@ Each detail by the set it first appears in.
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- *crane:* The crane slews round on its turntable behind the cab, turned by hand; a 20 tooth gear beside it meshes with the turntable's teeth. (works)
+- *crane:* The crane slews round on its turntable behind the cab, turned by hand; a 20 tooth gear beside it meshes with the turntable's teeth. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
@@ -131,7 +131,7 @@ Each detail by the set it first appears in.
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
 - *cab:* Lever A, the lower grey lever on the fuel tank, turned up or down, rotates the whole cab one way or the other on its turntable (so it can face backwards to work the crane): through a 16 and a 20 tooth gear it tips a changeover catch that slides a driving ring up or down a vertical shaft between two clutch gears turning opposite ways, and the shaft's 12 tooth gear at the top turns the cab's turntable. (partly)
-- *crane:* Lever C, the right red lever, pushed up or down, slews the crane round one way or the other: its driving ring picks a clutch gear, and a 24 and two 12 tooth gears turn a gear on the crane's turntable. (partly)
+- *crane:* Lever C, the right red lever, pushed up or down, slews the crane round one way or the other: its driving ring picks a clutch gear, and a 24 and two 12 tooth gears turn a gear on the crane's turntable. (no)
 - *grab:* The grab hangs from the jib's tip on a small turntable, so it can be turned round by hand. (works)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
@@ -153,7 +153,7 @@ Each detail by the set it first appears in.
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
-- *cab and boom:* The cab and boom slew round on a turntable on the front unit, about 270 degrees. (works)
+- *cab and boom:* The cab and boom slew round on a turntable on the front unit, about 270 degrees. (no)
 - *harvester head:* The black gear on the boom's tip turns the harvester head round on its 28 tooth turntable. (no)
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**

@@ -136,9 +136,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
-    "seconds": 37,
+    "seconds": 14,
     "counts": {
       "works": 2,
       "no": 1,
@@ -232,7 +232,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 1.5
       },
       {
         "result": "no",
@@ -248,61 +248,22 @@
           "p561 6539 against p558 3706"
         ],
         "rates": [
-          {
-            "p50 32039 against p0 4519": [
-              0,
-              0
-            ],
-            "p509 6641 against p0 4519": [
-              0,
-              0
-            ],
-            "p561 6539 against p558 3706": [
-              0,
-              0
-            ],
-            "p558 3706 against p0 4519": [
-              0,
-              0
-            ]
-          }
+          {}
         ],
         "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
+          []
         ],
         "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
+          []
         ],
-        "stop": [
-          [
-            "dead point",
-            "dead point"
-          ]
+        "why": [
+          "p50 32039 is part of the frame"
         ],
         "judged": [
           0
         ],
-        "cause": "part-fixed",
-        "detail": "p561 6539 against p558 3706",
-        "seconds": 1.2
+        "cause": "control-fixed",
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -401,7 +362,7 @@
           0
         ],
         "cause": "first-failed",
-        "seconds": 3.9
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -479,7 +440,7 @@
           0
         ],
         "cause": "first-failed",
-        "seconds": 3.8
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -649,7 +610,7 @@
           [],
           []
         ],
-        "seconds": 23.7
+        "seconds": 9.1
       },
       {
         "result": "not checked",

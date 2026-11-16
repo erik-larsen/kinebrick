@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 19 works, 6 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 18 works, 4 partly, 8 no.
 
 ## By decade
 
@@ -106,11 +106,11 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *outriggers:* Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (partly)
+- *outriggers:* Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (no)
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
-- *jib:* The small gear on top of the boom's end slides the jib in and out: it runs on the rack along the jib. (works)
+- *jib:* The small gear on top of the boom's end slides the jib in and out: it runs on the rack along the jib. (no)
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
@@ -126,7 +126,7 @@ Each detail by the set it first appears in.
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
-- *mast:* Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further. (partly)
+- *mast:* Turning the orange beacon on the cab roof raises and lowers the forks: its upright shaft turns bevel gears and an 8 tooth gear under the floor, and a shaft with two universal joints runs forward into the mast, where a rack lifts the inner mast and a string over a pulley at its top lifts the fork carriage further. (no)
 
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 

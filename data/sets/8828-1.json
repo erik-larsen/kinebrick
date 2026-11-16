@@ -92,7 +92,7 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
     "seconds": 2,
     "counts": {
@@ -257,7 +257,7 @@
         ],
         "cause": "not-driven",
         "detail": "p163 2951 against p128 3702",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -442,7 +442,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       }
     ]
   }

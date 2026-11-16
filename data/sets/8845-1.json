@@ -93,7 +93,7 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
     "seconds": 2,
     "counts": {
@@ -271,7 +271,7 @@
             "p103 4255 against p104 4254"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.6
       },
       {
         "result": "skipped",
@@ -393,7 +393,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1
       },
       {
         "result": "not checked",

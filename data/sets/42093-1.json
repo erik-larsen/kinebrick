@@ -86,13 +86,14 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
-    "seconds": 5,
+    "seconds": 2,
     "counts": {
       "skipped": 1,
       "partly": 1,
-      "works": 2
+      "works": 1,
+      "no": 1
     },
     "loose": [],
     "errata": {
@@ -191,7 +192,7 @@
         ],
         "cause": "not-driven",
         "detail": "p194 22961",
-        "seconds": 1.1
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -257,44 +258,33 @@
           [],
           []
         ],
-        "seconds": 2.4
+        "seconds": 1.2
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "rates": [
           {}
         ],
         "back": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
+          []
         ],
         "torn": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ]
+          []
         ],
-        "seconds": 1
+        "why": [
+          "p293 2819 is part of the frame"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-fixed",
+        "seconds": 0.1
       }
     ]
   }

@@ -4,7 +4,7 @@ A control or part that looks as if it works something but isn't linked to anythi
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The two levers beside the seat tip fore and aft on their pins, as the driver's controls; they work nothing.
 
-Used in 33 of the 186 surveyed sets, by 33 functions. Kinebrick: 26 works, 2 no, 1 skipped, 4 not checked.
+Used in 33 of the 186 surveyed sets, by 33 functions. Kinebrick: 20 works, 8 no, 1 skipped, 4 not checked.
 
 ## By decade
 
@@ -63,11 +63,11 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- *steering wheel:* The small steering wheel in the cab turns on its own; it isn't linked to the steering. (works)
+- *steering wheel:* The small steering wheel in the cab turns on its own; it isn't linked to the steering. (no)
 
 **2006, [8289 Fire Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8289-1)**
 
-- *steering wheel:* The small steering wheel in the cab turns on its own; it isn't linked to the steering. (works)
+- *steering wheel:* The small steering wheel in the cab turns on its own; it isn't linked to the steering. (no)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
 
@@ -107,7 +107,7 @@ Each detail by the set it first appears in.
 
 **2015, [42033 Record Breaker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42033-1)**
 
-- *steering wheel:* The steering wheel in the cockpit turns, but steers nothing: the front wheels are on a fixed axle. (works)
+- *steering wheel:* The steering wheel in the cockpit turns, but steers nothing: the front wheels are on a fixed axle. (no)
 
 **2015, [42034 Quad Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42034-1)**
 
@@ -115,7 +115,7 @@ Each detail by the set it first appears in.
 
 **2015, [42037 Formula Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42037-1)**
 
-- *steering wheel:* The steering wheel in front of the seat turns freely; it isn't linked to the steering. (works)
+- *steering wheel:* The steering wheel in front of the seat turns freely; it isn't linked to the steering. (no)
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
@@ -131,7 +131,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *steering wheel:* The steering wheel in the cab turns freely; it doesn't steer. (works)
+- *steering wheel:* The steering wheel in the cab turns freely; it doesn't steer. (no)
 
 **2017, [42057 Ultralight Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42057-1)**
 
@@ -143,7 +143,7 @@ Each detail by the set it first appears in.
 
 **2019, [42093 Chevrolet Corvette ZR1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42093-1)**
 
-- *steering wheel:* The steering wheel in the cockpit turns on its pin; it isn't linked to the steering. (works)
+- *steering wheel:* The steering wheel in the cockpit turns on its pin; it isn't linked to the steering. (no)
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 

@@ -4,7 +4,7 @@ A drum winds a string or cable, over pulleys, to a hook, a grab or a boom. (Movi
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.
 
-Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 partly.
+Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 18 works, 7 partly, 4 no.
 
 ## By decade
 
@@ -50,11 +50,11 @@ Each detail by the set it first appears in.
 
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
 
-- *hook:* The gear knob on the end of the winch drum's axle, high on the upper works' side, winds the winch, raising or lowering the hook: the string runs from the drum along the boom and over its tip. (partly)
+- *hook:* The gear knob on the end of the winch drum's axle, high on the upper works' side, winds the winch, raising or lowering the hook: the string runs from the drum along the boom and over its tip. (no)
 
 **2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1)**
 
-- *hook:* The gear knob at the front bumper winds the winch, pulling in or paying out the hook on its string. (works)
+- *hook:* The gear knob at the front bumper winds the winch, pulling in or paying out the hook on its string. (no)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
@@ -86,7 +86,7 @@ Each detail by the set it first appears in.
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- *hook:* The black gear at the crane's base winds the winch, raising and lowering the hook and its load on the string over the boom tip. (works)
+- *hook:* The black gear at the crane's base winds the winch, raising and lowering the hook and its load on the string over the boom tip. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
@@ -129,7 +129,7 @@ Each detail by the set it first appears in.
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 
-- *hook:* The black knob at the back of the superstructure's right side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys: turned anticlockwise (seen from its own side) it lowers the hook, playing the string out. (works)
+- *hook:* The black knob at the back of the superstructure's right side winds the winch, raising or lowering the hook on its string over the boom tip's pulleys: turned anticlockwise (seen from its own side) it lowers the hook, playing the string out. (no)
 
 **2021, [42122 Jeep Wrangler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42122-1)**
 

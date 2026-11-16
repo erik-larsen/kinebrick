@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 51 works, 31 partly, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 50 works, 28 partly, 4 no, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -105,12 +105,12 @@ Each detail by the set it first appears in.
 
 **2007, [8273 Off Road Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8273-1)**
 
-- The front of the two gear knobs on the chassis's left side raises and lowers the crane's red arm: a shaft up through the turntable's middle turns a worm, which turns the 24-tooth crown gear on the arm's pivot. (partly)
+- The front of the two gear knobs on the chassis's left side raises and lowers the crane's red arm: a shaft up through the turntable's middle turns a worm, which turns the 24-tooth crown gear on the arm's pivot. (no)
 - The gear knob at the top of the red arm folds the black jib up and down: it turns a worm inside the arm, which drives an 8-tooth gear and a linkage to the jib. (works)
 
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 
-- The 20-tooth gear on top at the front raises and lowers the header: its shaft runs down to a knob gear, which turns a worm, which turns a 24-tooth gear that lifts the feeder holding the header. (partly)
+- The 20-tooth gear on top at the front raises and lowers the header: its shaft runs down to a knob gear, which turns a worm, which turns a 24-tooth gear that lifts the feeder holding the header. (no)
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
@@ -119,7 +119,7 @@ Each detail by the set it first appears in.
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
 
-- The black knob behind the cab raises and lowers the rear three-point linkage: it turns a vertical worm, which turns a 24 tooth crown gear on a cross axle; bent liftarms on that axle lift the lower links through two long beams. (partly)
+- The black knob behind the cab raises and lowers the rear three-point linkage: it turns a vertical worm, which turns a 24 tooth crown gear on a cross axle; bent liftarms on that axle lift the lower links through two long beams. (no)
 
 **2009, [8259 Mini Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8259-1)**
 
@@ -185,7 +185,7 @@ Each detail by the set it first appears in.
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 
 - With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (works)
-- *engine cover:* With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover. (works)
+- *engine cover:* With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 

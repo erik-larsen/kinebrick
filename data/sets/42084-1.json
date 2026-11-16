@@ -84,12 +84,12 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
-    "seconds": 2,
+    "seconds": 1,
     "counts": {
-      "no": 1,
-      "works": 2,
+      "no": 2,
+      "works": 1,
       "not checked": 1
     },
     "loose": [],
@@ -169,30 +169,36 @@
         "seconds": 0.1
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p81 32014",
+          "p96 10928",
+          "p99 10928",
+          "p169 62531"
         ],
         "rates": [
           {
             "p81 32014": [
-              1,
-              100
+              0,
+              0
             ],
             "p96 10928": [
-              1,
+              0,
               0
             ],
             "p99 10928": [
-              1,
+              0,
               0
             ],
             "p169 62531": [
               0,
-              134
+              0
             ],
             "p108 32270": [
               0,
@@ -202,13 +208,6 @@
               0,
               0
             ]
-          }
-        ],
-        "expected": [
-          {
-            "p81 32014": 1,
-            "p96 10928": 1,
-            "p99 10928": 1
           }
         ],
         "back": [
@@ -235,7 +234,17 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 0
       },
       {
         "result": "works",
@@ -353,7 +362,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 0.8
       },
       {
         "result": "not checked",

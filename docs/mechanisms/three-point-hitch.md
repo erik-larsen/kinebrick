@@ -4,7 +4,7 @@ Lift arms raise and lower a tractor's implement on two lower links and a top lin
 
 First appears in 1977, in [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The tall lever beside the seat, linked by a short rod at its foot to the hitch, raises and lowers the three-point hitch and the harrow hung on it: the lower arms pivot on the rear axle line and the top link on an axle above it.
 
-Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 5 works, 2 partly, 1 not checked.
+Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 5 works, 1 partly, 1 no, 1 not checked.
 
 ## By decade
 
@@ -44,7 +44,7 @@ Each detail by the set it first appears in.
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
 
-- The black knob behind the cab raises and lowers the rear three-point linkage: it turns a vertical worm, which turns a 24 tooth crown gear on a cross axle; bent liftarms on that axle lift the lower links through two long beams. (partly)
+- The black knob behind the cab raises and lowers the rear three-point linkage: it turns a vertical worm, which turns a 24 tooth crown gear on a cross axle; bent liftarms on that axle lift the lower links through two long beams. (no)
 
 **2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1)**
 

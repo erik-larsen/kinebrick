@@ -216,13 +216,13 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "2129f0fe",
     "date": "2026-11-16",
-    "seconds": 485,
+    "seconds": 229,
     "counts": {
-      "works": 9,
-      "no": 1,
-      "partly": 4
+      "works": 8,
+      "no": 4,
+      "partly": 2
     },
     "loose": [
       "p592 44294",
@@ -299,7 +299,7 @@
             ]
           ]
         ],
-        "seconds": 14.3
+        "seconds": 6.5
       },
       {
         "result": "no",
@@ -346,7 +346,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 2.2
+        "seconds": 1.3
       },
       {
         "result": "partly",
@@ -409,17 +409,18 @@
         ],
         "cause": "not-driven",
         "detail": "p692 42054 - 18938",
-        "seconds": 14.1
+        "seconds": 9.5
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p1627 18947",
           "p1820 92696 against p1818 92693c01",
           "p1841 40490 against p1659 42054 - 18938"
         ],
@@ -431,7 +432,7 @@
             ],
             "p1820 92696 against p1818 92693c01": [
               0,
-              8.28e-58
+              0
             ],
             "p1841 40490 against p1659 42054 - 18938": [
               0,
@@ -467,22 +468,28 @@
             ]
           ]
         ],
-        "judged": [
-          1
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
         ],
-        "cause": "not-driven",
-        "detail": "p1820 92696 against p1818 92693c01",
-        "seconds": 16.3
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 1.9
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p1620 18947",
           "p1659 42054 - 18938 against p1660 18939"
         ],
         "rates": [
@@ -525,26 +532,34 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
         "judged": [
           0
         ],
-        "cause": "not-driven",
-        "detail": "p1659 42054 - 18938 against p1660 18939",
-        "seconds": 16.6
+        "cause": "control-jammed",
+        "seconds": 1.9
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p1897 64781 against p1841 40490"
         ],
         "rates": [
           {
             "p1897 64781 against p1841 40490": [
               0,
-              15
+              0
             ]
           }
         ],
@@ -572,7 +587,17 @@
             ]
           ]
         ],
-        "seconds": 13.4
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "control-jammed",
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -586,19 +611,19 @@
           {
             "p1943 4716": [
               1,
-              2.02e-13
+              2.05e-13
             ],
             "p1924 3648b": [
               0.0417,
-              1.38e-14
+              9.87e-15
             ],
             "p1929 32348": [
               0.0417,
-              9.95e-14
+              1.24e-13
             ],
             "p1933 32348": [
               0.0417,
-              6.16e-14
+              5.68e-14
             ]
           }
         ],
@@ -626,7 +651,7 @@
             ]
           ]
         ],
-        "seconds": 14.3
+        "seconds": 6.7
       },
       {
         "result": "works",
@@ -639,7 +664,7 @@
         "rates": [
           {
             "p1924 3648b": [
-              0,
+              2.81e-8,
               40
             ]
           }
@@ -668,7 +693,7 @@
             ]
           ]
         ],
-        "seconds": 14.4
+        "seconds": 6.5
       },
       {
         "result": "works",
@@ -685,14 +710,14 @@
         "rates": [
           {
             "p1660 18939": [
-              5.62e-8,
-              0.684
+              0,
+              0.678
             ]
           },
           {
             "p1660 18939": [
-              5.62e-8,
-              0.684
+              0,
+              0.678
             ]
           }
         ],
@@ -749,7 +774,7 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 54.9
+        "seconds": 27.9
       },
       {
         "result": "works",
@@ -842,7 +867,7 @@
             "p1779 6558"
           ]
         ],
-        "seconds": 208.5
+        "seconds": 105.5
       },
       {
         "result": "partly",
@@ -874,11 +899,11 @@
             ],
             "p480 42054 - 23801": [
               0,
-              5.68e-14
+              0
             ],
             "p484 42054 - 23801": [
               0,
-              1.89e-14
+              0
             ],
             "p692 42054 - 18938": [
               1,
@@ -914,12 +939,17 @@
             ]
           ]
         ],
+        "why": [
+          "p200 3648b is held by friction pins the control doesn't reach",
+          "p480 42054 - 23801 is held by friction pins the control doesn't reach",
+          "p484 42054 - 23801 is held by friction pins the control doesn't reach"
+        ],
         "judged": [
           0
         ],
         "cause": "part-fixed",
         "detail": "p12 87083",
-        "seconds": 14.5
+        "seconds": 6.7
       },
       {
         "result": "works",
@@ -956,7 +986,7 @@
             ]
           ]
         ],
-        "seconds": 15.6
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -1074,7 +1104,7 @@
           [],
           []
         ],
-        "seconds": 60.1
+        "seconds": 24
       },
       {
         "result": "works",
@@ -1111,7 +1141,7 @@
             ]
           ]
         ],
-        "seconds": 16.2
+        "seconds": 9.3
       }
     ]
   }
