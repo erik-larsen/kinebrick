@@ -451,6 +451,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Signed off by Erik, 2026-11-14 |
 | [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
+| [8832-1](#8832-1-roll-bar-brace-right-axle-through-its-toggles) | roll-bar-brace-right-axle-through-its-toggles | moves `3706.dat` to 70 -51.125 105.603, turned | Proposed, not applied until signed off |
+| [8832-1](#8832-1-roll-bar-brace-left-axle-through-its-toggles) | roll-bar-brace-left-axle-through-its-toggles | moves `3706.dat` to -70 -51.125 105.603, turned | Proposed, not applied until signed off |
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
@@ -523,6 +525,34 @@ In `8258 - m-1k'k.ldr`, the line
 ```
 
 is read with its part at 20 -20 0.
+
+### 8832-1: roll-bar-brace-right-axle-through-its-toggles
+
+Proposed, not applied until signed off.
+
+The roll bar (the suspension arm p9 2738) hangs on the axle p8 at its foot and holds the roll bar's top axle p32 3707 at its head; two slanted axles 6, p64 and p67, brace that top axle from the frame, each through a toggle joint at its foot (p66, p69) and one at its head (p62, p68, on p32). The file draws each slanted axle 1 LDU off the axis of its head toggle's axle hole (it reaches 14 LDU into it), so the bracing is read as not there: the roll bar swings back on p8 as the swinging arm pushes the shock absorber up against its top axle, and both move, where the function lists them to stay (function 2). Turned half a degree about its foot toggle's hole, each slanted axle runs through both its toggles' holes, as a real axle must, and the roll bar is braced. The shock absorber's top stays on the roll bar's top axle, as drawn; held so, the arm swings and the shock absorber gives through its travel. Booklet: step 12 adds the two slanted axles, step 13's inset shows the shock absorber behind the seat (scans 004, https://lego.brickinstructions.com/en/lego_instructions/set/8832).
+
+In the main model (p64 3706), the line
+
+```
+1 0 70 -50.691 105.846 0 0 -1 -0.485 0.875 0 0.875 0.485 0 3706.dat
+```
+
+is read with its part at 70 -51.125 105.603, turned to 0 0 -1 -0.4927 0.8702 0 0.8702 0.4927 0.
+
+### 8832-1: roll-bar-brace-left-axle-through-its-toggles
+
+Proposed, not applied until signed off.
+
+The roll bar (the suspension arm p9 2738) hangs on the axle p8 at its foot and holds the roll bar's top axle p32 3707 at its head; two slanted axles 6, p64 and p67, brace that top axle from the frame, each through a toggle joint at its foot (p66, p69) and one at its head (p62, p68, on p32). The file draws each slanted axle 1 LDU off the axis of its head toggle's axle hole (it reaches 14 LDU into it), so the bracing is read as not there: the roll bar swings back on p8 as the swinging arm pushes the shock absorber up against its top axle, and both move, where the function lists them to stay (function 2). Turned half a degree about its foot toggle's hole, each slanted axle runs through both its toggles' holes, as a real axle must, and the roll bar is braced. The shock absorber's top stays on the roll bar's top axle, as drawn; held so, the arm swings and the shock absorber gives through its travel. Booklet: step 12 adds the two slanted axles, step 13's inset shows the shock absorber behind the seat (scans 004, https://lego.brickinstructions.com/en/lego_instructions/set/8832).
+
+In the main model (p67 3706), the line
+
+```
+1 0 -70 -50.691 105.846 0 0 -1 -0.485 0.875 0 0.875 0.485 0 3706.dat
+```
+
+is read with its part at -70 -51.125 105.603, turned to 0 0 -1 -0.4927 0.8702 0 0.8702 0.4927 0.
 
 ### 8838-1: axle-with-gears
 
