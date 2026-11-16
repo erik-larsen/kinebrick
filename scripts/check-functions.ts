@@ -161,8 +161,10 @@ const QUICK = ['8270', '42107', '8849', '42061', '42109', '8001', '8204', '8245'
 
 type Stop = 'meets' | 'limit' | 'stuck' | 'free';
 // What stopped a drag short of its reach: the end of a slide's or rack's travel, a dead point,
-// no motion left that turns the joint, or a step that couldn't be taken.
-type Halt = 'limit' | 'dead point' | 'no motion' | 'stuck';
+// no motion left that turns the joint, or a step that couldn't be taken. Or the end of a
+// linkage's travel: a true dead point, where a part the function lists to move has turned far
+// enough (see turnMeasuring and END_OF_TRAVEL).
+type Halt = 'limit' | 'dead point' | 'end of travel' | 'no motion' | 'stuck';
 // With --causes, nothing is dragged: each failing function's cause is worked out afresh.
 const causesOnly = process.env.KINEBRICK_CAUSES === '1';
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
@@ -381,9 +383,14 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const went = parts.map(() => [0, 0]);
     let was = parts.map((p) => relative(p.part, p.body, kin.poses));
     let turned = 0;
+    const start = kin.snapshot();
     // What stops it short, if anything does: a limit is told as the step that reached it is undone.
     let limited = false;
     let halt: Halt | null = null;
+    // Whether a dead point it stopped at is a true one: the model has fewer free motions there
+    // than where the turn started, as a linkage does with a link in line (the 9392 Quad Bike's
+    // steering, whose outer hub's arm comes in line with its link), and a jam needn't.
+    let loses = false;
     const allowed = () => {
       if (kin.atLimit() === null) return true;
       limited = true;
@@ -402,12 +409,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       was = is;
       if (Math.abs(step) < Math.abs(piece) - 1e-9) {
         halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
+        if (halt === 'dead point') {
+          const there = kin.snapshot();
+          const atHalt = kin.freeMotions().length;
+          kin.restore(start);
+          loses = atHalt < kin.freeMotions().length;
+          kin.restore(there);
+        }
         break;
       }
       if (enough(turned)) break;
     }
     kin.letGoAfterDrag();
-    return { turned, went, halt };
+    return { turned, went, halt, loses };
   };
   // Whether the viewer would push a control's body, not turn it: it hangs on a hinge, but doesn't
   // spin on it like a knob (see Kinematics.turnsLikeAKnob: a door, an arm in a linkage, a gear
@@ -1008,9 +1022,14 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // Far enough: half the reach, or as far as it can go, to an end stop from part data (a
         // slide's travel, such as a shock absorber's, or the end of a rack's teeth), however short
         // that is: an arm built at one end of its shock's travel moves one way only, and that counts.
-        const farEnough = Math.abs(turned) >= half || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
+        // Or to the end of a linkage's travel (decisions 104 and 106): a true dead point (see
+        // turnMeasuring), reached once a part the function lists to move has itself turned by
+        // half the reach or more, as a steering's hub does well before its handlebars turn that far.
+        const endOfTravel = measured.halt === 'dead point' && 'loses' in measured && measured.loses === true && moves.some((_, k) => went[k][0] >= half);
+        const halt: Halt | null = endOfTravel ? 'end of travel' : measured.halt;
+        const farEnough = Math.abs(turned) >= half || endOfTravel || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
         const share = farEnough && !wrong.length && (!moves.length || still.length < moves.length);
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt: measured.halt, works: shared ? share : farEnough && !still.length && !wrong.length };
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
