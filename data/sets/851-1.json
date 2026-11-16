@@ -91,12 +91,11 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
+    "commit": "60b8d4c9",
+    "date": "2026-11-16",
     "seconds": 1,
     "counts": {
-      "works": 3,
-      "no": 1
+      "works": 4
     },
     "loose": [
       "p243 3024",
@@ -310,7 +309,7 @@
             "p321 3649 against p260 3709b"
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -379,39 +378,34 @@
         "seconds": 0.3
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.03
           ]
-        ],
-        "still": [
-          "p39 3702",
-          "p102 3702",
-          "p260 3709b"
         ],
         "rates": [
           {
             "p39 3702": [
-              0,
-              0
+              0.602,
+              36.8
             ],
             "p102 3702": [
-              0,
-              0
+              0.649,
+              39.1
             ],
             "p260 3709b": [
-              0,
-              0
+              0.187,
+              87.2
             ],
             "p245 3739 against p0 3710": [
               0,
               0
             ],
             "p309 3649 against p260 3709b": [
-              0,
-              0
+              5.62e-8,
+              2.49e-13
             ]
           }
         ],
@@ -441,15 +435,11 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "dead point"
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       }
     ]
   }

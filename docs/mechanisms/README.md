@@ -94,13 +94,13 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 62 works, 9 partly, 5 no |
-| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 13 works, 9 partly, 7 no |
+| [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 63 works, 8 partly, 5 no |
+| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 13 works, 10 partly, 6 no |
 | [Swivelling axle steering](swivel-axle-steering.md) | 4 | 1993 |  |  | 1 |  | 3 |  | 3 partly, 1 no |
 | [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 3 works, 3 partly, 1 no |
 | [Multi-axle steering](multi-axle-steering.md) | 12 | 1990 |  |  | 2 | 1 | 7 | 2 | 10 works, 2 partly, 2 no |
 | [Steering mode selector](steering-mode-selector.md) | 1 | 2016 |  |  |  |  | 1 |  | 1 works |
-| [Fork steering](fork-steering.md) | 8 | 1991 |  |  | 5 |  | 2 | 1 | 3 works, 4 partly, 1 no |
+| [Fork steering](fork-steering.md) | 8 | 1991 |  |  | 5 |  | 2 | 1 | 5 works, 2 partly, 1 no |
 | [Skid steering](skid-steering.md) | 5 | 2007 |  |  |  | 1 | 3 | 1 | 3 works, 1 partly, 1 not checked |
 | [Rudder](rudder.md) | 3 | 2017 |  |  |  |  | 2 | 1 | 1 works, 2 partly |
 
@@ -124,9 +124,9 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 48 works, 27 partly, 2 no, 1 skipped |
+| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 49 works, 26 partly, 2 no, 1 skipped |
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 partly |
-| [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 3 works, 2 partly |
+| [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 4 works, 1 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 1 works, 3 partly, 2 no |
 | [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 7 works, 4 partly |
 | [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 8 works, 4 partly |
@@ -158,7 +158,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
 | [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 20 works, 9 partly |
 | [Turntable](turntable.md) | 36 | 1978 | 1 | 3 | 4 | 5 | 20 | 3 | 15 works, 19 partly, 5 no, 1 not checked |
-| [Three-point hitch](three-point-hitch.md) | 7 | 1977 | 2 | 2 |  | 1 | 2 |  | 4 works, 2 partly, 1 no, 1 not checked |
+| [Three-point hitch](three-point-hitch.md) | 7 | 1977 | 2 | 2 |  | 1 | 2 |  | 5 works, 2 partly, 1 not checked |
 | [Telescopic mast](telescopic-mast.md) | 2 | 2005 |  |  |  | 1 | 1 |  | 2 partly |
 | [Hook lift](hook-lift.md) | 1 | 2018 |  |  |  |  | 1 |  | 1 works |
 | [Rotary tool](rotary-tool.md) | 2 | 2016 |  |  |  |  | 1 | 1 | 3 partly |
@@ -181,7 +181,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 29 works, 50 partly, 5 no, 5 not checked |
+| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 30 works, 49 partly, 5 no, 5 not checked |
 | [Remote control](remote-control.md) | 11 | 2007 |  |  |  | 1 | 6 | 4 | 7 works, 10 partly, 2 no, 2 not checked |
 | [Pneumatic pump](pneumatic-pump.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 3 works, 3 partly, 7 skipped |
 | [Pull-back motor](pull-back-motor.md) | 11 | 1998 |  |  | 1 |  | 9 | 1 | 11 works, 11 skipped |
