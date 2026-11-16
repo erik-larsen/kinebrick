@@ -458,6 +458,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
+| [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Proposed, not applied until signed off |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Signed off by Erik, 2026-11-15 |
@@ -633,6 +634,20 @@ In `42070 - axle3.ldr` (p845 62821), the line
 ```
 
 is read with its part at 0 0 0, turned to 0 0 -1 -1 0 0 0 1 0.
+
+### 42070-1: rear-differential-spider-gear-with-its-casing
+
+Proposed, not applied until signed off.
+
+Follows from the signed entry rear-differential-ring-faces-back, which turns the rear differential's casing p845 half a turn about the vertical: the casing's small bevel gear p848 sits on the casing's own pin, inside it, and turns with it, from 17 LDU behind the casing's centre to 17 in front, as the middle differential's p758 sits in its casing p755. Left where it was, it is joined to the axle housing instead of the casing (the reading has no joint between p845 and p848), so the two side gears must turn against each other and the rear axle's wheels can't roll together: the truck can't roll straight, and the XL motor can't turn on the floor (function 1). The side gears p846 and p847 change places under the same half turn, as drawn already.
+
+In `42070 - axle3.ldr` (p848 6589), the line
+
+```
+1 19 0 0 17 0.259 -0.966 0 -0.966 -0.259 0 0 0 -1 6589.dat
+```
+
+is read with its part at 0 0 -17, turned to -0.259 0.966 0 -0.966 -0.259 0 0 0 1.
 
 ### 42083-1: speed-key-in-its-hole
 

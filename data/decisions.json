@@ -12,7 +12,32 @@
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "42070-spider",
+      "kind": "Sign-off",
+      "title": "42070 6x6 All Terrain Tow Truck: the small gear inside the turned rear differential",
+      "since": "2026-11-16",
+      "what": "A second correction to the published file, following the one you signed today. That one turned the rear differential’s casing half a turn. The small bevel gear inside the casing sits on the casing’s own pin and must turn with it, but it stayed where it was. Left there, it is held by the axle housing instead of the casing, so the rear axle’s two wheels can only turn against each other: the truck can’t roll, and the XL motor can’t drive it. The correction moves that small gear to the other side of the casing’s centre, where the casing’s pin now is, as in the middle differential.",
+      "effect": "The drive (function 1) goes from not working to working: the motor turns both ways and moves all nine parts the function lists. Checked on that function alone; the whole set is checked when you sign.",
+      "confidence": "High. It follows from the part itself: the small gear always sits on its casing’s pin. The worker looked at the middle differential, built the same way, and the gear sits in its casing as this correction puts it.",
+      "links": [
+        {
+          "label": "Booklet p. 92",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=92"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=845,846,847,848"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&option=proposed&show=845,846,847,848"
+        }
+      ],
+      "reply": "Sign 42070 spider"
+    }
+  ],
   "coming": [
     {
       "title": "The next offer of main",
