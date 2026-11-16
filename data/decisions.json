@@ -1,105 +1,74 @@
 {
   "state": {
     "main": {
-      "works": 685,
-      "moved": "2026-11-15"
+      "works": 701,
+      "moved": "2026-11-16"
     },
     "preview": {
-      "works": 700,
-      "partly": 240,
-      "no": 107,
+      "works": 703,
+      "partly": 238,
+      "no": 106,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
   "waiting": [
     {
-      "id": "42070-diff",
+      "id": "piston-lists",
       "kind": "Sign-off",
-      "title": "42070 6x6 All Terrain Tow Truck: the rear differential turned round",
+      "title": "9397 Logging Truck and 42022 Hot Rod: the piston listed as a part that stays",
       "since": "2026-11-16",
-      "what": "A correction to the published file. The two rear axles are built as two modules whose differentials are mirror images: the booklet’s 1:1 pictures have the ring on the right of the casing in the first (step 123) and on the left in the second (step 147). The file draws both alike, so the one shaft that drives them turns the two rear axles against each other. The correction turns the rear differential’s casing half a turn, so its ring faces the other way, as in step 147.",
-      "effect": "No score changes yet (3 work, 4 partly, 3 don’t): the drive (function 1) stays jammed for another reason, which the worker is tracing (the front wheels’ universal joints, read as rigid).",
-      "confidence": "High. The worker looked at the booklet pages: the two 1:1 pictures are mirror images, drawn from the same side, and step 166 fits the second module at the rear.",
+      "what": "Two changes to function lists. In the 9397’s function 8 (rolling the truck turns the engine) and the 42022’s function 2 (rolling the car turns the V6 engine), the list names a piston as a part that stays still against the frame. A piston must go up and down in a running engine, and the check found it doing so, which made both functions partly work. The change moves the piston to the parts that move, measured against its own cylinder, and names the cylinder as the part that stays, against the frame, since the text means the engine block.",
+      "effect": "Both functions go from partly working to working: the 42022’s function 2 checked with the whole set, the 9397’s function 8 checked on its own (the whole 9397 set takes over an hour).",
+      "confidence": "High: the pistons slide in their cylinders as the crankshaft turns, as the function text says (\"the pistons go up and down\").",
       "links": [
         {
-          "label": "Booklet p. 78",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=78"
+          "label": "9397, before",
+          "url": "http://localhost:5174/?file=omr%2F9397-1+Logging+Truck.mpd&show=790,775"
         },
         {
-          "label": "p. 92",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=92"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=755,808,845,898"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&option=proposed&show=755,808,845,898"
+          "label": "42022, before",
+          "url": "http://localhost:5174/?file=omr%2F42022-1+Hot+Rod.mpd&show=314,306"
         }
       ],
-      "reply": "Sign 42070"
-    },
-    {
-      "id": "second-worker",
-      "kind": "Decision",
-      "title": "A second worker for the faults of reading?",
-      "since": "2026-11-16",
-      "what": "347 functions are partly or not working. Only 41 of them fail for a reason in the solver. 303 fail by how we read the models or by a function list, and they stand on about 150 to 200 distinct faults: a part that nothing ties to its control (136 functions), a part held fixed (49), a loose part (47), a jammed control (40), a fixed control (25), a part forced to stay (6). One worker mends these. A second worker would be a third working session beside the solver owner and the worker.",
-      "effect": "Rate now: 21 more working functions on 15 November and 13 on 16 November, from both sessions together. A second worker might add 5 to 10 a day, less than double, because this Mac is the limit: it runs one full check at a time and stood at a load of 30 on 12 cores today. Cost: the week's usage stood at 5% about 8 hours after its reset, with three sessions at work. At that pace a week of work day and night uses about the whole weekly limit, which you reached last week. A second worker adds roughly a third to that. Both figures are rough.",
-      "confidence": "Claude's advice: not yet (to start one, reply \"Second worker: yes\"). First, with no new session: the solver owner takes faults of reading when its three solver tasks are done (it has only 41 functions of its own), and the worker takes first the few part types that recur over many sets (62274c01, 62821, 94925, 92695, 92696, 2851, 18947), where one fault in the library's connections may hold several functions. Claude asks again at mid-week with the usage and the rate measured.",
-      "links": [],
-      "reply": "Second worker: not yet"
-    },
-    {
-      "id": "8820-fn2-axle",
-      "kind": "Sign-off",
-      "title": "8820 Mountain Rambler, function 2: the shock absorber's top axle may turn",
-      "since": "2026-11-16",
-      "what": "Function 2 is the rear swinging arm with its shock absorber. Its list says that the 6-long axle at the shock absorber's top (p31) stays still. That axle sits in round holes and the shock absorber turns on it, both without friction, so in the real set the axle is free to turn with the shock absorber. The booklet does not say that it stays. The change: take the axle out of the parts that must stay. The frame and the front wheel stay on the list.",
-      "effect": "The function is partly today only because this axle turns a little. With the change it should work in full; the worker checks it after your word.",
-      "confidence": "High that the axle is free in the real set: an axle in round holes has nothing to hold it. The solver owner traced that the axle turning and the shock absorber turning on it are equally free.",
-      "links": [
-        {
-          "label": "Booklet (steps 5 and 11)",
-          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8820"
-        },
-        {
-          "label": "Viewer: the arm and the axle",
-          "url": "http://localhost:5174/?file=omr/8820-1+Mountain+Rambler.mpd&show=102,31"
-        }
-      ],
-      "reply": "Sign 8820 list"
-    },
-    {
-      "id": "8832-fn2-shock",
-      "kind": "Question",
-      "title": "8832 Roadster, function 2: where is the shock absorber's top held?",
-      "since": "2026-11-16",
-      "what": "Function 2 is the rear swinging arm, whose axle pushes the shock absorber up. In our reading the arm cannot move at all with the roll bar and its top axle held, so either the file or our list has the shock absorber's top in the wrong place. The booklet scan is too coarse for Claude to tell whether the top sits on the roll bar's top axle or on the seat. If you have the set or a better scan, look at steps 11 to 13; the inset of step 13 shows the shock absorber behind the seat.",
-      "effect": "The function does not work today. With the mount known, the worker corrects the list or proposes an erratum.",
-      "confidence": "No rush. If you cannot tell either, say so and the function stays as it is.",
-      "links": [
-        {
-          "label": "Booklet (steps 11 to 13)",
-          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8832"
-        },
-        {
-          "label": "Viewer: the arm, the roll bar and its axle",
-          "url": "http://localhost:5174/?file=models/8832-Roadster.mpd&show=58,9,32"
-        }
-      ],
-      "reply": "8832 shock: on the roll bar's axle — or — 8832 shock: on the seat"
+      "reply": "Sign piston lists"
     }
   ],
   "coming": [
     {
-      "title": "The next offer of main",
-      "what": "Preview is ahead of main by 15 working functions (700 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
+      "title": "A second worker, asked again at mid-week",
+      "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the small gear inside the turned rear differential (\"Sign 42070 spider\"). The drive (function 1) now works; 702 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster: the roll bar's two bracing axles (\"Sign 8832\"). The correction is made in Kinebrick's own copy of the file; function 2 now works. 703 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "You moved main to 24366c8f: 701 of 1,226 functions work on main, where 685 did."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster, function 2: the function should work, so if the file does not allow it the file is wrong; you believe the shock absorber's top sits on the seat. The worker makes the correction and it comes back to you to sign."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the rear differential is turned round (\"Sign 42070\"). No score changes; its drive is still jammed for another reason, which the worker traces."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8820 Mountain Rambler, function 2: the shock absorber's top axle is off the parts that must stay (\"Sign 8820 list\"). The function now works in full; 701 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "No second worker yet (\"Second worker: not yet\"). The solver owner takes faults of reading when its three solver tasks are done, and the worker takes the recurring part types first. Claude asks again at mid-week."
+    },
     {
       "date": "2026-11-16",
       "what": "You looked at the monorail with the FPS card (\"The monorail is smooth now\")."

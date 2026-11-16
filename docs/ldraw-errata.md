@@ -451,13 +451,16 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Signed off by Erik, 2026-11-14 |
 | [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
+| [8832-1](#8832-1-roll-bar-brace-right-axle-through-its-toggles) | roll-bar-brace-right-axle-through-its-toggles | moves `3706.dat` to 70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
+| [8832-1](#8832-1-roll-bar-brace-left-axle-through-its-toggles) | roll-bar-brace-left-axle-through-its-toggles | moves `3706.dat` to -70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
 | [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
-| [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
+| [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
+| [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Signed off by Erik, 2026-11-16 |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Signed off by Erik, 2026-11-15 |
@@ -522,6 +525,34 @@ In `8258 - m-1k'k.ldr`, the line
 ```
 
 is read with its part at 20 -20 0.
+
+### 8832-1: roll-bar-brace-right-axle-through-its-toggles
+
+Signed off by Erik, 2026-11-16.
+
+The roll bar (the suspension arm p9 2738) hangs on the axle p8 at its foot and holds the roll bar's top axle p32 3707 at its head; two slanted axles 6, p64 and p67, brace that top axle from the frame, each through a toggle joint at its foot (p66, p69) and one at its head (p62, p68, on p32). The file draws each slanted axle 1 LDU off the axis of its head toggle's axle hole (it reaches 14 LDU into it), so the bracing is read as not there: the roll bar swings back on p8 as the swinging arm pushes the shock absorber up against its top axle, and both move, where the function lists them to stay (function 2). Turned half a degree about its foot toggle's hole, each slanted axle runs through both its toggles' holes, as a real axle must, and the roll bar is braced. The shock absorber's top stays on the roll bar's top axle, as drawn; held so, the arm swings and the shock absorber gives through its travel. Booklet: step 12 adds the two slanted axles, step 13's inset shows the shock absorber behind the seat (scans 004, https://lego.brickinstructions.com/en/lego_instructions/set/8832).
+
+In the main model (p64 3706), the line
+
+```
+1 0 70 -50.691 105.846 0 0 -1 -0.485 0.875 0 0.875 0.485 0 3706.dat
+```
+
+is read with its part at 70 -51.125 105.603, turned to 0 0 -1 -0.4927 0.8702 0 0.8702 0.4927 0.
+
+### 8832-1: roll-bar-brace-left-axle-through-its-toggles
+
+Signed off by Erik, 2026-11-16.
+
+The roll bar (the suspension arm p9 2738) hangs on the axle p8 at its foot and holds the roll bar's top axle p32 3707 at its head; two slanted axles 6, p64 and p67, brace that top axle from the frame, each through a toggle joint at its foot (p66, p69) and one at its head (p62, p68, on p32). The file draws each slanted axle 1 LDU off the axis of its head toggle's axle hole (it reaches 14 LDU into it), so the bracing is read as not there: the roll bar swings back on p8 as the swinging arm pushes the shock absorber up against its top axle, and both move, where the function lists them to stay (function 2). Turned half a degree about its foot toggle's hole, each slanted axle runs through both its toggles' holes, as a real axle must, and the roll bar is braced. The shock absorber's top stays on the roll bar's top axle, as drawn; held so, the arm swings and the shock absorber gives through its travel. Booklet: step 12 adds the two slanted axles, step 13's inset shows the shock absorber behind the seat (scans 004, https://lego.brickinstructions.com/en/lego_instructions/set/8832).
+
+In the main model (p67 3706), the line
+
+```
+1 0 -70 -50.691 105.846 0 0 -1 -0.485 0.875 0 0.875 0.485 0 3706.dat
+```
+
+is read with its part at -70 -51.125 105.603, turned to 0 0 -1 -0.4927 0.8702 0 0.8702 0.4927 0.
 
 ### 8838-1: axle-with-gears
 
@@ -622,7 +653,7 @@ In the real set the hatch is fixed on its two pins, not hinged; what that means 
 
 ### 42070-1: rear-differential-ring-faces-back
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-16.
 
 The two tandem axles are built as two modules: the middle one at steps 121 to 128 (pages 78 and 79, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=78), fitted next to the gearbox at step 139 (page 87), and the rear one at steps 143 to 151 (page 92, #page=92), fitted at the end at step 166 (page 101). The 1:1 pictures of their differentials are mirror images: in step 123 the ring is on the right of the casing, in step 147 on the left, both drawn from the same side. The file draws both alike: its two sub-models, 42070 - axle2.ldr and 42070 - axle3.ldr, hold the casing (62821) turned the same way, its ring facing +x, on the side of their red connectors. One shaft drives both, its pinions meeting the middle ring from behind and the rear ring from in front, so with both rings facing one way the two rear axles turn against each other, and the truck can't roll (function 1). Turned half a turn about the vertical, the rear casing's ring faces -x, as in step 147.
 
@@ -633,6 +664,20 @@ In `42070 - axle3.ldr` (p845 62821), the line
 ```
 
 is read with its part at 0 0 0, turned to 0 0 -1 -1 0 0 0 1 0.
+
+### 42070-1: rear-differential-spider-gear-with-its-casing
+
+Signed off by Erik, 2026-11-16.
+
+Follows from the signed entry rear-differential-ring-faces-back, which turns the rear differential's casing p845 half a turn about the vertical: the casing's small bevel gear p848 sits on the casing's own pin, inside it, and turns with it, from 17 LDU behind the casing's centre to 17 in front, as the middle differential's p758 sits in its casing p755. Left where it was, it is joined to the axle housing instead of the casing (the reading has no joint between p845 and p848), so the two side gears must turn against each other and the rear axle's wheels can't roll together: the truck can't roll straight, and the XL motor can't turn on the floor (function 1). The side gears p846 and p847 change places under the same half turn, as drawn already.
+
+In `42070 - axle3.ldr` (p848 6589), the line
+
+```
+1 19 0 0 17 0.259 -0.966 0 -0.966 -0.259 0 0 0 -1 6589.dat
+```
+
+is read with its part at 0 0 -17, turned to -0.259 0.966 0 -0.966 -0.259 0 0 0 1.
 
 ### 42083-1: speed-key-in-its-hole
 

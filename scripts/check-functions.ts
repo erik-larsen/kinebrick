@@ -191,6 +191,7 @@ interface Checked {
   pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
+  way?: WayShare & { why: string[]; freed: number }; // (internal) with --way: that control's share, its notes and freed pins, for the process that put it to work (see combineWays)
 }
 interface Fn {
   control?: string | string[];
@@ -760,7 +761,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const controls = [fn.control!].flat();
     // Several controls not worked together: each drives its own share of the parts.
     const shared = controls.length > 1 && !fn.together;
-    const ways = (fn.together ? controls.slice(0, 1) : controls).map((ref, wi) => {
+    const workWay = (ref: string, wi: number) => {
       together = [];
       use(asLoaded);
       kin.reset();
@@ -1094,48 +1095,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // Why the parts no control moved didn't move, for a function whose controls share them out.
       const explainStill = (left: string[]) => explain(left, best.moved, best.turned);
       return { works, movedParts, explainStill, pushed, judged: each.indexOf(best), turned: each.map((w) => round(w.turned)) as [number, number], still: best.still, moved: best.moved, something, rates: best.rates, expected: best.expected, off: best.off, back: each.map((w) => w.back), torn: each.map((w) => w.torn), free: each.map((w) => w.free), strayed: each.flatMap((w) => w.strayed), lock, stop: each.map((w) => w.halt), explained };
-    });
-    // Controls that share out the parts: the parts none of them moved are still.
-    const movedByAny = new Set(ways.flatMap((w) => w.movedParts));
-    const still = shared ? (fn.moves ?? []).filter((m) => !movedByAny.has(m)) : [...new Set(ways.flatMap((w) => w.still))];
-    // The cause is that of the first control that doesn't work.
-    const first = ways.find((w) => w.explained)?.explained ?? (shared && still.length ? ways[0].explainStill(still) : undefined);
-    const explained = first ? { cause: first.cause, ...(first.detail ? { detail: first.detail } : {}) } : {};
-    if (causesOnly) {
-      const kept: Checked = { ...prior! };
-      delete kept.cause;
-      delete kept.detail;
-      return { ...kept, ...explained };
-    }
-    const result: Result = ways.every((w) => w.works) && !(shared && still.length) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
-    const wrong = [...new Set(ways.flatMap((w) => w.moved))];
-    const off = [...new Set(ways.flatMap((w) => w.off))];
-    const strayed = [...new Set(ways.flatMap((w) => w.strayed))];
-    const expected = ways.some((w) => Object.keys(w.expected).length) ? { expected: ways.map((w) => w.expected) } : {};
-    return {
-      result,
-      turned: ways.map((w) => w.turned),
-      ...(still.length ? { still } : {}),
-      ...(wrong.length ? { moved: wrong } : {}),
-      rates: ways.map((w) => w.rates),
-      ...expected,
-      ...(off.length ? { wrong: off } : {}),
-      back: ways.map((w) => w.back),
-      torn: ways.map((w) => w.torn),
-      ...(ways.some((w) => w.torn.some(([ldu]) => ldu > BACK)) && ways.every((w) => w.torn.every(([ldu], k) => ldu <= BACK || w.free[k])) ? { freeTurned: true } : {}),
-      ...(strayed.length ? { strayed } : {}),
-      ...(ways.some((w) => w.lock) ? { lock: ways.map((w) => w.lock ?? []) } : {}),
-      ...(why.length ? { why: [...new Set(why)] } : {}),
-      ...(ways.some((w) => w.stop.some((h) => h)) ? { stop: ways.map((w) => w.stop) } : {}),
-      ...(ways.some((w) => w.pushed) ? { pushed: ways.map((w) => w.pushed) } : {}),
-      ...(freedPins ? { freed: freedPins } : {}),
-      ...(shared ? { movedBy: ways.map((w) => w.movedParts) } : {}),
-      ...(shared && wrong.length ? { wrongBy: ways.map((w) => w.moved) } : {}),
-      ...(result === 'works' ? {} : { judged: ways.map((w) => w.judged) }),
-      ...(result === 'works' ? {} : explained),
     };
+    const all = fn.together ? controls.slice(0, 1) : controls;
+    // With --way (see SPLIT_WAYS_OVER), only that control, its share written for the process that
+    // put it to work, to put together with the others'.
+    if (onlyWay !== null) {
+      const { explainStill, ...share } = workWay(all[onlyWay], onlyWay);
+      return { result: 'error', way: { ...share, why, freed: freedPins } };
+    }
+    const ways = all.map(workWay);
+    return combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still), causesOnly ? prior : undefined)!;
   };
 
+  // Each function's entry says how long it took (`seconds`), so a slow set shows which function
   // Each function's entry says how long it took (`seconds`), so a slow set shows which function
   // is slow. KINEBRICK_TIMES=1 says it as the set goes, too.
   const checked = functions.map((fn, i): Checked => {
@@ -1156,6 +1128,81 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     return { ...found, seconds };
   });
   return { checked, loose: mech.loose.map(name), errata: loaded.errata };
+}
+
+// One control's share of a function's check (see checkModel's workWay), as data: what a process
+// checking only that control (--way) writes, for the process that put it to work.
+interface WayShare {
+  works: boolean;
+  movedParts: string[];
+  pushed: boolean;
+  judged: number;
+  turned: [number, number];
+  still: string[];
+  moved: string[];
+  something: boolean;
+  rates: Record<string, [number, number]>;
+  expected: Record<string, number>;
+  off: string[];
+  back: [number, number][];
+  torn: [number, number][];
+  free: boolean[];
+  strayed: string[];
+  lock: [number, number, Stop][] | null;
+  stop: (Halt | null)[];
+  explained: Explained | null;
+}
+
+// A function's result from its controls' shares, in order, with the notes (`why`) they left and
+// the most friction pins any freed. `explainStill` says why parts no control moved are still,
+// from the first control's working, for a function whose controls share out its parts; null
+// where that working is gone (its share came from another process): then, if it's needed, this
+// is null, and the function is checked again whole. With `prior` (--causes), only the cause is
+// found afresh.
+function combineWays(fn: Fn, ways: WayShare[], why: string[], freedPins: number, explainStill: ((still: string[]) => Explained | null) | null, prior?: Checked): Checked | null {
+  const controls = [fn.control!].flat();
+  const shared = controls.length > 1 && !fn.together;
+  // Controls that share out the parts: the parts none of them moved are still.
+  const movedByAny = new Set(ways.flatMap((w) => w.movedParts));
+  const still = shared ? (fn.moves ?? []).filter((m) => !movedByAny.has(m)) : [...new Set(ways.flatMap((w) => w.still))];
+  // The cause is that of the first control that doesn't work.
+  const found = ways.find((w) => w.explained)?.explained;
+  if (!found && shared && still.length && !explainStill) return null;
+  const first = found ?? (shared && still.length ? explainStill!(still) : undefined);
+  const explained = first ? { cause: first.cause, ...(first.detail ? { detail: first.detail } : {}) } : {};
+  if (prior) {
+    const kept: Checked = { ...prior };
+    delete kept.cause;
+    delete kept.detail;
+    return { ...kept, ...explained };
+  }
+  const result: Result = ways.every((w) => w.works) && !(shared && still.length) ? 'works' : ways.some((w) => w.something) ? 'partly' : 'no';
+    const wrong = [...new Set(ways.flatMap((w) => w.moved))];
+  const off = [...new Set(ways.flatMap((w) => w.off))];
+  const strayed = [...new Set(ways.flatMap((w) => w.strayed))];
+  const expected = ways.some((w) => Object.keys(w.expected).length) ? { expected: ways.map((w) => w.expected) } : {};
+  return {
+    result,
+    turned: ways.map((w) => w.turned),
+    ...(still.length ? { still } : {}),
+    ...(wrong.length ? { moved: wrong } : {}),
+    rates: ways.map((w) => w.rates),
+    ...expected,
+    ...(off.length ? { wrong: off } : {}),
+    back: ways.map((w) => w.back),
+    torn: ways.map((w) => w.torn),
+    ...(ways.some((w) => w.torn.some(([ldu]) => ldu > BACK)) && ways.every((w) => w.torn.every(([ldu], k) => ldu <= BACK || w.free[k])) ? { freeTurned: true } : {}),
+    ...(strayed.length ? { strayed } : {}),
+    ...(ways.some((w) => w.lock) ? { lock: ways.map((w) => w.lock ?? []) } : {}),
+    ...(why.length ? { why: [...new Set(why)] } : {}),
+    ...(ways.some((w) => w.stop.some((h) => h)) ? { stop: ways.map((w) => w.stop) } : {}),
+    ...(ways.some((w) => w.pushed) ? { pushed: ways.map((w) => w.pushed) } : {}),
+    ...(freedPins ? { freed: freedPins } : {}),
+    ...(shared ? { movedBy: ways.map((w) => w.movedParts) } : {}),
+    ...(shared && wrong.length ? { wrongBy: ways.map((w) => w.moved) } : {}),
+    ...(result === 'works' ? {} : { judged: ways.map((w) => w.judged) }),
+    ...(result === 'works' ? {} : explained),
+  };
 }
 
 // How each result ranks, best first, for telling better from worse.
@@ -1188,6 +1235,8 @@ function changes(functions: { does: string }[], was: Checked[], now: Checked[]):
 
 const args = process.argv.slice(2);
 const one = args.indexOf('--one'); // (internal) check this one set's file and print what it found
+const wayAt = args.indexOf('--way'); // (internal) with --only, only this control, by its place in the list
+const onlyWay = wayAt >= 0 ? Number(args[wayAt + 1]) : null;
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
@@ -1251,10 +1300,10 @@ async function main() {
   type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
   // Checks a set in a process of its own, or with `only`, one of its functions: what it found,
   // and how long it took.
-  const inProcess = (s: (typeof files)[number], only: number | null) =>
+  const inProcess = (s: (typeof files)[number], only: number | null, way: number | null = null) =>
     new Promise<{ found: Found; seconds: number }>((resolve) => {
       const started = Date.now();
-      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)]), ...(way === null ? [] : ['--way', String(way)])], { stdio: ['ignore', 'pipe', 'inherit'] });
       let out = '';
       let timedOut = false;
       const timer = setTimeout(() => {
@@ -1306,6 +1355,13 @@ async function main() {
   // and the set takes as long as its slowest function, not as all of them (the 8110 Unimog, 5
   // hours in one process). Its `seconds` are its functions' added up, to compare with a set
   // checked in one.
+  // In the slow check, or anywhere with KINEBRICK_SPLIT_WAYS=1 (to try it on a quick set), a split
+  // set's function with several controls not worked together goes a control to a process (see
+  // combineWays): each control starts from the model as loaded too, so the results are the same,
+  // and the function takes as long as its slowest control (the 8110 Unimog's rolling, four
+  // wheels, 2 hours in one process). KINEBRICK_SPLIT_WAYS=1 splits every set so.
+  const forceWays = process.env.KINEBRICK_SPLIT_WAYS === '1';
+  const waysOf = (fn: Fn) => (slowOnly || forceWays) && !fn.together && Array.isArray(fn.control) && fn.control.length > 1 ? fn.control.length : 0;
   const queue: (() => Promise<void>)[] = [];
   for (const s of files) {
     const functions: Fn[] = s.data.curated.functions;
@@ -1314,7 +1370,7 @@ async function main() {
     // Not a set with a model none of whose functions is checked: no process would load it, to
     // list its loose parts.
     const everyModelChecked = models.every((m) => functions.some((fn) => modelOf(fn) === m && !withoutChecking(fn)));
-    if (causes || functions.length < 2 || !(took(s) > SPLIT_OVER) || !everyModelChecked) {
+    if (causes || (functions.length < 2 && !waysOf(functions[0])) || !(took(s) > SPLIT_OVER || forceWays) || !everyModelChecked) {
       queue.push(async () => {
         checking.set(s.data.set, Date.now());
         const { found, seconds } = await inProcess(s, null);
@@ -1330,21 +1386,59 @@ async function main() {
     let failed: Found | null = null;
     const loose = new Map<string, string[]>(); // each model's loose parts
     const errata = new Map<string, { applied: string[]; refused: string[] }>(); // each model's errata
+    const functionDone = () => {
+      const applied = [...errata.values()].flatMap((e) => e.applied);
+      const refused = [...errata.values()].flatMap((e) => e.refused);
+      const ofErrata = applied.length || refused.length ? { errata: { applied: [...new Set(applied)], refused: [...new Set(refused)] } } : {};
+      if (--left === 0) finish(s, failed ?? { counts: countsOf(checked), loose: models.flatMap((m) => loose.get(m) ?? []), ...ofErrata, functions: checked }, total);
+    };
+    // Checks function i in a process (its control `way` only, if given): its entry, or null if the
+    // process failed.
+    const run = async (i: number, way: number | null = null): Promise<Checked | null> => {
+      if (!checking.has(s.data.set)) checking.set(s.data.set, Date.now());
+      const { found, seconds } = await inProcess(s, i, way);
+      total += seconds;
+      if (!('functions' in found)) {
+        failed ??= found;
+        return null;
+      }
+      loose.set(modelOf(functions[i]), found.loose);
+      if (found.errata) errata.set(modelOf(functions[i]), found.errata);
+      return found.functions[i];
+    };
     for (const i of todo) {
-      queue.push(async () => {
-        if (!checking.has(s.data.set)) checking.set(s.data.set, Date.now());
-        const { found, seconds } = await inProcess(s, i);
-        total += seconds;
-        if ('functions' in found) {
-          checked[i] = found.functions[i];
-          loose.set(modelOf(functions[i]), found.loose);
-          if (found.errata) errata.set(modelOf(functions[i]), found.errata);
-        } else failed ??= found;
-        const applied = [...errata.values()].flatMap((e) => e.applied);
-        const refused = [...errata.values()].flatMap((e) => e.refused);
-        const ofErrata = applied.length || refused.length ? { errata: { applied: [...new Set(applied)], refused: [...new Set(refused)] } } : {};
-        if (--left === 0) finish(s, failed ?? { counts: countsOf(checked), loose: models.flatMap((m) => loose.get(m) ?? []), ...ofErrata, functions: checked }, total);
-      });
+      const fn = functions[i];
+      const n = waysOf(fn);
+      if (!n) {
+        queue.push(async () => {
+          checked[i] = (await run(i)) ?? checked[i];
+          functionDone();
+        });
+        continue;
+      }
+      // A control to a process, put together when the last is done; checked again whole if
+      // putting them together needs the first control's working (see combineWays).
+      const shares: (Checked | null)[] = new Array(n).fill(null);
+      let waysLeft = n;
+      for (let w = 0; w < n; w++) {
+        queue.push(async () => {
+          shares[w] = await run(i, w);
+          if (--waysLeft > 0) return;
+          if (shares.every((c) => c?.way)) {
+            const ways = shares.map((c) => c!.way!);
+            const combined = combineWays(fn, ways, ways.flatMap((w) => w.why), Math.max(0, ...ways.map((w) => w.freed)), null);
+            // The pivot that slid or rose most, the first of equals, as one process keeps it.
+            const pivoted = shares.reduce<Checked['pivoted']>((most, c) => (c!.pivoted && (!most || Math.max(c!.pivoted.slide, c!.pivoted.rise) > Math.max(most.slide, most.rise)) ? c!.pivoted : most), undefined);
+            const seconds = Math.round(shares.reduce((sum, c) => sum + (c!.seconds ?? 0), 0) * 10) / 10;
+            checked[i] = combined ? { ...combined, ...(pivoted ? { pivoted } : {}), seconds } : ((await run(i)) ?? checked[i]);
+          } else {
+            // A control that failed as one process would have failed the function there too.
+            const error = shares.find((c) => c && !c.way);
+            if (error) checked[i] = error;
+          }
+          functionDone();
+        });
+      }
     }
   }
 
