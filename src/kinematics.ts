@@ -181,8 +181,10 @@ export interface Options {
   // allows. Off by default, for now; KINEBRICK_SCRUB_JOINED=1 turns it on.
   scrubJoined: boolean;
   // Play as an amount, not a rate (see loopBudgets): a pose is allowed while every loop closes
-  // within the clearances of its joints, and pushes take play as turns do. Off by default, for a
-  // trial; KINEBRICK_LOOP_PLAY=1 turns it on, and KINEBRICK_PLAY_SCALE scales the clearances.
+  // within the clearances of its joints, and pushes take play as turns do. Play is the last
+  // resort (see jointMotion), and a step on play must still turn the dragged joint as asked (see
+  // turnJoint). On by default (decision 121 of 2026-11-16); KINEBRICK_LOOP_PLAY=0 turns it off,
+  // and KINEBRICK_PLAY_SCALE scales the clearances.
   loopPlay: boolean;
   // The model lifted off the ground, as held in the hand: no tyre touches the ground, and the
   // frame (the first body) is kept still instead, as for a model with no tyres (see findGround).
@@ -210,7 +212,7 @@ export const experiments: Options = {
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
   freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
   scrubJoined: setting('KINEBRICK_SCRUB_JOINED') === '1',
-  loopPlay: setting('KINEBRICK_LOOP_PLAY') === '1',
+  loopPlay: setting('KINEBRICK_LOOP_PLAY') !== '0',
   lifted: false,
 };
 
@@ -2407,10 +2409,14 @@ export class Kinematics {
       }
       const gap = this.advance(motion, step, joint);
       const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-      // With loopPlay, a step taken on play is judged by the budgets alone: its motion keeps the
-      // loops only to first order by design, so closing them always turns some joints off where it
-      // had them going, and a linkage that flips opens its loops far past any budget.
-      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(this.options.loopPlay && played))) {
+      // With loopPlay, a step taken on play is judged by the budgets, and other joints may stray:
+      // its motion keeps the loops only to first order by design, so closing them always turns
+      // some joints off where it had them going, and a linkage that flips opens its loops far past
+      // any budget. But not the dragged joint itself: closing the loops may undo its turn, and
+      // then nothing turned (the 8272 Snowmobile's ski, whose joint turned 1e-14 radians a step
+      // while the loops closed exactly and six other joints moved).
+      const ownTurnLost = strayed.includes(joint);
+      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(this.options.loopPlay && played && !ownTurnLost))) {
         if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length });
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
@@ -2634,9 +2640,11 @@ export class Kinematics {
   // anything else (a steering rack in its round guide, its tie rods on their ball joints) would
   // cost nothing, and could be mixed in any amount, wrecking the loops over a step (the 8448
   // Super Car's steering, once its tyres stood on the ground). Null if the joint can't turn.
-  jointMotion(joint: number): number[] | null {
+  // With `play` false, and with loopPlay, only an exact motion: for a test of whether a control
+  // can move at all, before friction pins are freed for it (see playMotion).
+  jointMotion(joint: number, play = true): number[] | null {
     return this.nearOrigin((toModel) => {
-      const motion = this.jointMotionNearOrigin(joint);
+      const motion = this.jointMotionNearOrigin(joint, play);
       return motion && toModel(motion);
     });
   }
@@ -2680,7 +2688,7 @@ export class Kinematics {
     return { turning, rateOf, rate, size };
   }
 
-  private jointMotionNearOrigin(joint: number): number[] | null {
+  private jointMotionNearOrigin(joint: number, play: boolean): number[] | null {
     // Chosen in the tree basis's coordinates (see freeMotionsInBasis), each motion's bodies'
     // turning read off the basis's rows as they're needed, and only the motion chosen turned
     // back into a motion vector: a big model has many free motions, most of them left out.
@@ -2717,6 +2725,12 @@ export class Kinematics {
     // left the drag only play would be kept, and the drag would turn a joint it needn't (the
     // 42112 Concrete Mixer Truck's wheels, which stopped partway round).
     if (this.drag.choosingHolds) return null;
+    // With loopPlay, play is the last resort (decision 121 of 2026-11-16): an exact motion first,
+    // then friction pins freed for a control with none, and play only where neither gives a
+    // motion. So only a drag of this very joint takes play, never a test of whether it can move
+    // at all: a play motion found there would keep the pins (the 8081 Extreme Cruiser's bonnet,
+    // which then went 5 radians on play and never lifted, where freeing two pins lifts it).
+    if (this.options.loopPlay && (!play || this.drag.turning?.joint !== joint)) return null;
     if (TRACE) traceJam(this, joint, rate);
     const played = this.playMotion(rate, size);
     if (TRACE) trace({ event: 'play', joint, found: played !== null });

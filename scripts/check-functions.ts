@@ -142,6 +142,18 @@ const LOCK = 4 * Math.PI;
 const LEVEL = Math.PI / 6;
 const STEERING = ['rack-steering', 'linkage-steering', 'multi-axle-steering', 'fork-steering', 'articulated-steering', 'swivel-axle-steering'];
 const locks = process.env.KINEBRICK_CHECK_LOCK === '1';
+// A way counts toward a result only if its control moved: turned at least 0.01 (radians, or LDU
+// for a slide), or, pushed, went 0.01 LDU. A listed part's motion with the control at rest counts
+// for nothing (decision 121 of 2026-11-16: the 8272 Snowmobile's ski came out partly on parts
+// that moved while its control stood still). On by default; KINEBRICK_CONTROL_MOVED=0 turns it off.
+const controlMovedRule = process.env.KINEBRICK_CONTROL_MOVED !== '0';
+// A part left still that the control does move, at a rate that isn't zero (more than SLOW_RATE:
+// below it, a rate is rounding), has moved too little, not been held fast: its cause is too-little, not part-fixed,
+// and the longer turn is tried (decision 121 of 2026-11-16: the 42052 Heavy Lift Helicopter's
+// doors, which a worm and a toggle move 0.001 radians for each radian of the control, read as
+// fixed). On by default; KINEBRICK_SLOW_PARTS=0 turns it off.
+const slowPartsRule = process.env.KINEBRICK_SLOW_PARTS !== '0';
+const SLOW_RATE = 1e-6;
 // With --lock, each model's part shapes (see partShapes), read before it's checked.
 const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
 // The quick sets: between them, every kind of mechanism the check can work (in the mechanism
@@ -766,7 +778,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       use(asLoaded);
       kin.reset();
       freed = new Set();
-      // A control with no motion at the start, held by friction pins: those pins are freed, and
+      // A control with no exact motion at the start (play is the last resort: see
+      // Kinematics.jointMotion), held by friction pins: those pins are freed, and
       // the model worked out again, for this control only (see pinsToFree). So too a control
       // the viewer would push whose joint turns only by swinging the rest of the model round it,
       // so that no point of it moves and the push couldn't start (see grabOf): the 8865's seat
@@ -775,7 +788,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const c = part(ref);
         const l = kin.parentLink(worked(c));
         const noGrab = () => !fn.together && isPushed(worked(c)) && grabOf(worked(c), c) === null;
-        if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) {
+        if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint, false) === null || noGrab()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
         }
@@ -789,7 +802,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (held.length) {
           // Whether the control goes a hair, holding what a drag of it holds.
           const goes = () => {
-            if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) return false;
+            if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint, false) === null || noGrab()) return false;
             const before = kin.snapshot();
             kin.holdWhatTheDragDoesntNeed(worked(c), () => kin.jointMotion(l.joint) !== null, l.joint);
             const went = kin.turnJoint(l.joint, 0.01, () => true);
@@ -978,6 +991,13 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           return rate * Math.abs(turned) < least && Math.abs(rateOf(m) - rate) <= RATE_OFF * rate;
         };
         const still = moves.filter((m) => !moved(m, startPoses, shifted) && !slowGeared(m)).map((m) => m.ref);
+        // Whether every part left still moves with the control, slowly (see slowPartsRule).
+        const slow = still.length > 0 && still.every((ref) => {
+          const m = listed.find((l) => l.ref === ref);
+          return m !== undefined && Math.abs(rateOf(m)) > SLOW_RATE;
+        });
+        // Whether the control itself moved (see controlMovedRule).
+        const controlMoved = Math.abs(turned) >= 0.01 || (measured.pushed !== null && Math.abs(went[listed.length][1]) >= 0.01);
         const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
         // Each piston's slide in its cylinder, against what its crank's turn says, both for
@@ -1012,14 +1032,17 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // that is: an arm built at one end of its shock's travel moves one way only, and that counts.
         const farEnough = Math.abs(turned) >= half || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
         const share = farEnough && !wrong.length && (!moves.length || still.length < moves.length);
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt: measured.halt, works: shared ? share : farEnough && !still.length && !wrong.length };
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt: measured.halt, slow, controlMoved, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       let each = bothWays();
       kin.restore(start);
       let best = bestOf(each);
-      let explained = best.works ? null : explain(best.still, best.moved, best.turned);
+      // Parts the control moves too slowly to see over the usual reach are too-little, not
+      // part-fixed (see slowPartsRule).
+      const slowly = (e: Explained | null): Explained | null => (slowPartsRule && e?.cause === 'part-fixed' && best.slow ? { ...e, cause: 'too-little' } : e);
+      let explained = best.works ? null : slowly(explain(best.still, best.moved, best.turned));
       // Parts geared so far down that the usual reach moves them too little: worked again, up
       // to LONG_REACH each way, a limit met on the way ending the turn as usual. Not a slide's
       // control, whose reach is in LDU.
@@ -1028,11 +1051,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         each = bothWays();
         kin.restore(start);
         best = bestOf(each);
-        explained = best.works ? null : explain(best.still, best.moved, best.turned);
+        explained = best.works ? null : slowly(explain(best.still, best.moved, best.turned));
       }
       kin.frozen = new Set();
       together = [];
-      const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
+      const something = each.some((w) => (!controlMovedRule || w.controlMoved) && (Math.abs(w.turned) >= 0.01 || w.still.length < moves.length));
       // A function that names a loose part can't work, whatever the drag did (see loosePart).
       const works = best.works && loosePart === undefined;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
