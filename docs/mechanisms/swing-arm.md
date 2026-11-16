@@ -4,7 +4,7 @@ One arm carries the rear wheel, both rear wheels or the whole rear unit, pivotin
 
 First appears in 1988, in [8832 Roadster](https://erik-larsen.github.io/kinebrick/?model=8832-Roadster): The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.
 
-Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 10 works, 3 partly, 3 no.
+Used in 16 of the 186 surveyed sets, by 16 functions. Kinebrick: 11 works, 2 partly, 3 no.
 
 ## By decade
 
@@ -28,7 +28,7 @@ Each detail by the set it first appears in.
 
 **1988, [8832 Roadster](https://erik-larsen.github.io/kinebrick/?model=8832-Roadster)**
 
-- The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together. (partly)
+- The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together. (works)
 
 **1990, [8840 Rally Shock n' Roll Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8840-1)**
 

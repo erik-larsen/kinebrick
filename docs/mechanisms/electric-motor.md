@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 34 works, 46 partly, 4 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 35 works, 46 partly, 3 no, 5 not checked.
 
 ## By decade
 
@@ -137,7 +137,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- *XL:* The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (no)
+- *XL:* The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (works)
 - *M:* The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (works)
 - *XL:* In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable. (works)
 - *XL:* In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks. (no)

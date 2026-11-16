@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 33 works, 55 partly, 5 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 34 works, 55 partly, 4 no, 4 not checked.
 
 ## By decade
 
@@ -160,7 +160,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (no)
+- The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (works)
 - The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (works)
 - *drive or crane:* The drive/crane lever on the side of the cab switches both motors at once, from driving and steering to working the crane. (works)
 - *crane functions:* The crane-function lever behind the cab chooses which two crane functions the motors work: in one position the left remote lever slews the crane and the right one works the winch; in the other the left lever works the outriggers and the right one raises and lowers the boom. (works)
