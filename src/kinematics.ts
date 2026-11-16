@@ -2407,7 +2407,10 @@ export class Kinematics {
       }
       const gap = this.advance(motion, step, joint);
       const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || strayed.length) {
+      // With loopPlay, a step taken on play is judged by the budgets alone: its motion keeps the
+      // loops only to first order by design, so closing them always turns some joints off where it
+      // had them going, and a linkage that flips opens its loops far past any budget.
+      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(this.options.loopPlay && played))) {
         if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length });
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
@@ -2582,7 +2585,7 @@ export class Kinematics {
     const largest = Math.max(...predicted.map(Math.abs));
     const gap = this.advance(motion, step, joint);
     const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-    if ((this.options.loopPlay ? !this.withinPlay() : gap > DEAD_POINT_GAP) || strayed.length) {
+    if ((this.options.loopPlay ? !this.withinPlay() : gap > DEAD_POINT_GAP) || (strayed.length && !played)) {
       if (TRACE) trace({ event: 'push refused', body, gap, strayed: strayed.length });
       this.restore(before);
       // A step that turned a joint more than a drag's step does (MAX_TURN_STEP: a short lever
