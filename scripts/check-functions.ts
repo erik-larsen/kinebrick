@@ -187,6 +187,7 @@ interface Checked {
   wrongBy?: string[][]; // for a function with several controls not worked together, if any moved a part in `stays`: for each control, those it moved
   judged?: number[]; // for a function that doesn't work: for each control, which way (0 or 1, as in `turned`) its cause was judged from, so that --causes judges it so too
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
+  onPlay?: number; // how far its drags went on play, all ways together (radians, or LDU for a push; see Kinematics.onPlay): a record, read beside `turned`
   pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
@@ -1141,8 +1142,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const started = Date.now();
     let found: Checked;
     kin.pivoted = null;
+    kin.onPlay = 0;
     try {
       found = checkOne(fn, priors[i]);
+      if (kin.onPlay > 0 && found.result !== 'skipped' && found.result !== 'not checked') found = { ...found, onPlay: round(kin.onPlay) };
       const p = kin.pivoted as { slide: number; rise: number; tread: number } | null;
       if (p && found.result !== 'skipped' && found.result !== 'not checked') found = { ...found, pivoted: { slide: round(p.slide), rise: round(p.rise), tyre: name(mech.treads[p.tread].part) } };
     } catch (err) {

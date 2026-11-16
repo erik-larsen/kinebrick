@@ -116,6 +116,14 @@ const LEVEL_AXIS = 0.1;
 // compares with the rest.
 const PLAY_RATE = 1;
 const PLAY = 0.1;
+// With loopPlay, the clearances of real parts, in LDU (estimates, 2026-11-16, not measured; see
+// loopBudgets): a pin or axle turning in a round hole, across it (RADIAL) and along it (AXIAL),
+// and a towball in its socket (BALL). KINEBRICK_PLAY_SCALE multiplies them all, to see how much
+// a result hangs on them.
+const PLAY_SCALE = Number((typeof process !== 'undefined' ? process.env?.KINEBRICK_PLAY_SCALE : undefined) ?? 1);
+const RADIAL = 0.1 * PLAY_SCALE;
+const AXIAL = 0.25 * PLAY_SCALE;
+const BALL = 0.05 * PLAY_SCALE;
 // How much the joints' turning counts against the loops' opening in choosing a motion that takes
 // up play: only enough to choose between motions that open them alike.
 const TIE_BREAK = 0.1;
@@ -172,6 +180,10 @@ export interface Options {
   // motions joined, those in which tyres travel are kept only if they scrub no more than rolling
   // allows. Off by default, for now; KINEBRICK_SCRUB_JOINED=1 turns it on.
   scrubJoined: boolean;
+  // Play as an amount, not a rate (see loopBudgets): a pose is allowed while every loop closes
+  // within the clearances of its joints, and pushes take play as turns do. Off by default, for a
+  // trial; KINEBRICK_LOOP_PLAY=1 turns it on, and KINEBRICK_PLAY_SCALE scales the clearances.
+  loopPlay: boolean;
   // The model lifted off the ground, as held in the hand: no tyre touches the ground, and the
   // frame (the first body) is kept still instead, as for a model with no tyres (see findGround).
   // Its wheels then turn freely, and a differential worked with its drive held turns one wheel
@@ -198,6 +210,7 @@ export const experiments: Options = {
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
   freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
   scrubJoined: setting('KINEBRICK_SCRUB_JOINED') === '1',
+  loopPlay: setting('KINEBRICK_LOOP_PLAY') === '1',
   lifted: false,
 };
 
@@ -975,6 +988,11 @@ export class Kinematics {
   // for each radian of the dragged joint, and the tyre. The function check stores it with the
   // function's result and sets it back to null, so a result that leaned on the pivot shows it.
   pivoted: { slide: number; rise: number; tread: number } | null = null;
+  // How far drags have gone on play (radians, or LDU for a push) since this was last set to 0: a
+  // record for the check, as pivoted is.
+  onPlay = 0;
+  // With loopPlay: each joint that closes a loop, and how far it may open (see loopBudgets).
+  private budgets: Map<number, number> | null = null;
 
   private notePivots(motion: number[]) {
     const joint = this.drag.turning?.joint;
@@ -2389,7 +2407,7 @@ export class Kinematics {
       }
       const gap = this.advance(motion, step, joint);
       const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-      if (gap > (played ? PLAY : DEAD_POINT_GAP) || strayed.length) {
+      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || strayed.length) {
         if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length });
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
@@ -2426,6 +2444,7 @@ export class Kinematics {
         break;
       }
       if (TRACE && played) trace({ event: 'played', joint });
+      if (played) this.onPlay += Math.abs(step);
       turned += step;
       const lastStep = this.lastStep;
       this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
@@ -2501,6 +2520,7 @@ export class Kinematics {
   pushStepByTiers(body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
     const joint = this.drag.turning!.joint;
     const g = grab.clone().applyMatrix4(this.poses[body]);
+    let played = false;
     const motion = this.nearOrigin((toModel) => {
       const basis = this.treeBasis();
       const [usual, suspension] = this.freeMotionsApart();
@@ -2532,6 +2552,11 @@ export class Kinematics {
       // the tiers choose from every motion.
       const off = (m: number[] | null) => !m || velocity(m).length() < 1e-9 || velocity(m).normalize().dot(dir) < 0.5;
       if (off(z)) z = leastTurning(orthonormalize([...usual, ...suspension]), along, tiers) ?? z;
+      // With loopPlay, a push takes play where nothing else goes, as a turn does (see jointMotion).
+      if (!z && this.options.loopPlay) {
+        z = this.playMotion(along, size);
+        played = z !== null;
+      }
       if (!z) {
         if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'no motion' });
         return null;
@@ -2557,7 +2582,7 @@ export class Kinematics {
     const largest = Math.max(...predicted.map(Math.abs));
     const gap = this.advance(motion, step, joint);
     const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-    if (gap > DEAD_POINT_GAP || strayed.length) {
+    if ((this.options.loopPlay ? !this.withinPlay() : gap > DEAD_POINT_GAP) || strayed.length) {
       if (TRACE) trace({ event: 'push refused', body, gap, strayed: strayed.length });
       this.restore(before);
       // A step that turned a joint more than a drag's step does (MAX_TURN_STEP: a short lever
@@ -2582,6 +2607,7 @@ export class Kinematics {
     }
     const now = grab.clone().applyMatrix4(this.poses[body]).sub(g);
     if (now.length() > 1e-9) dir.copy(now.normalize());
+    if (played) this.onPlay += Math.abs(step);
     return 'moved';
   }
 
@@ -2695,6 +2721,61 @@ export class Kinematics {
     return played ? fromBasis(played, basis) : null;
   }
 
+  // With loopPlay: how far each joint that closes a loop may open, in LDU. A loop may open as far
+  // as its joints' clearances add up to, all round it: the joint that closes it and the tree's
+  // joints between its two bodies. A turning joint (a pin or axle in a round hole) gives RADIAL
+  // and AXIAL, a slide RADIAL, a ball BALL; gears, tyres, universal joints and holds none (they
+  // aren't joints, or stay firm). Worked out once: the tree doesn't change.
+  private loopBudgets(): Map<number, number> {
+    if (this.budgets) return this.budgets;
+    const clearance = (j: number) => {
+      const kind = this.mech.joints[j].kind;
+      return kind === 'revolute' ? RADIAL + AXIAL : kind === 'slide' ? RADIAL : kind === 'ball' ? BALL : 0;
+    };
+    // The joints from a body up the tree to the root, in order.
+    const up = (body: number) => {
+      const path: number[] = [];
+      for (let link = this.parentLink(body); link; link = this.parentLink(link.parent)) path.push(link.joint);
+      return path;
+    };
+    this.budgets = new Map();
+    this.mech.joints.forEach((joint, j) => {
+      if (this.inTree(j) || clearance(j) === 0) return;
+      const a = up(joint.bodyA);
+      const b = new Set(up(joint.bodyB));
+      // The joints on one path and not the other: those between the two bodies.
+      const between = [...a.filter((k) => !b.has(k)), ...[...b].filter((k) => !a.includes(k))];
+      this.budgets!.set(j, clearance(j) + between.reduce((sum, k) => sum + clearance(k), 0));
+    });
+    return this.budgets;
+  }
+
+  // With loopPlay: whether every loop is closed within its budget (see loopBudgets), and every
+  // other equation (gears, tyres, holds) as closely as without play (DEAD_POINT_GAP). How far a
+  // joint has opened: how far apart its two halves are at its point (a slide's across its axis
+  // only), and how far it's turned out of line, counted at a stud away.
+  private withinPlay(): boolean {
+    const budgets = this.loopBudgets();
+    const gaps: number[] = [];
+    const play: number[] = [];
+    this.buildEquations(gaps, null, true, null, play);
+    if (gaps.some((g, i) => !play[i] && Math.abs(g) > DEAD_POINT_GAP)) return false;
+    for (const [j, budget] of budgets) {
+      const joint = this.mech.joints[j];
+      const pA = joint.from.clone().applyMatrix4(this.poses[joint.bodyA]);
+      const apart = joint.from.clone().applyMatrix4(this.poses[joint.bodyB]).sub(pA);
+      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+      if (joint.kind === 'slide') apart.sub(d.clone().multiplyScalar(apart.dot(d)));
+      let out = 0;
+      if (joint.kind === 'revolute' || joint.kind === 'slide') {
+        const dB = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyB]);
+        out = new Vector3().crossVectors(dB, d).length() * STUD;
+      }
+      if (apart.length() + out > budget) return false;
+    }
+    return true;
+  }
+
   // A motion that turns the joint (at rate 1, by `rate`) when none does exactly, taking up play
   // (see PLAY_RATE): of those that keep every other rule exactly (gears, tyres rolling and, more
   // strictly than usual, neither scrubbing nor lifting, holds, universal joints), the one that opens the loops least (by the length of the loops' rows
@@ -2728,7 +2809,9 @@ export class Kinematics {
     const turns = mix.reduce((sum, a, k) => sum + a * rates[k], 0);
     if (Math.abs(turns) < EPSILON) return null;
     const z = combine(motions, mix.map((a) => a / turns));
-    return Math.hypot(...apply(z)) <= PLAY_RATE * Math.abs(rate(z)) ? z : null;
+    // With loopPlay, at any rate: how far the loops may open is the budgets' to say (see
+    // withinPlay), a step at a time.
+    return this.options.loopPlay || Math.hypot(...apply(z)) <= PLAY_RATE * Math.abs(rate(z)) ? z : null;
   }
 
   // The motion jointMotion chooses from these (orthonormal, in the tree basis's coordinates), by
