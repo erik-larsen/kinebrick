@@ -85,9 +85,11 @@
         ],
         "source": "book: step 48; inferred from the separate left hub",
         "control": "p282 56908",
+        "lifted": true,
         "stays": [
           "p301 6587 against p299 48989"
-        ]
+        ],
+        "note": "lifted: a wheel shown rolling freely, not driven, whose list names a part that must stay still: on the floor, turning the wheel rolls the model and the other wheels turn that part, so it is checked with the model off the floor (decision 80, narrowed)"
       },
       {
         "does": "The tedder's two arms fold up over it for transport, each swinging its rotor up on a pivot beside the gearbox.",
@@ -127,13 +129,12 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "b3cc95e2",
     "date": "2026-11-15",
-    "seconds": 6,
+    "seconds": 5,
     "counts": {
-      "works": 5,
-      "pivoted": 1,
-      "partly": 1
+      "works": 6,
+      "pivoted": 1
     },
     "loose": [],
     "functions": [
@@ -210,7 +211,7 @@
           "rise": 0.31,
           "tyre": "p287 55976"
         },
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -282,7 +283,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -360,57 +361,49 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p301 6587 against p299 48989"
-        ],
         "rates": [
           {
             "p301 6587 against p299 48989": [
-              2.97,
-              5.97e-13
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.03,
-              0.09
+              0,
+              0
             ],
             [
-              0.03,
-              0.09
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.03,
-              0.09
+              0,
+              0
             ],
             [
-              0.03,
-              0.09
+              0,
+              0
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "stay-forced",
-        "detail": "p301 6587 against p299 48989",
-        "seconds": 0.6
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -506,7 +499,7 @@
             "p311 6587"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -552,7 +545,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.4
       }
     ]
   }

@@ -153,9 +153,9 @@
         "note": "the ring is slid as the lever would slide it; -10 the other way. The grab hangs on the string"
       },
       {
-        "does": "The four levers on the superstructure (two pairs) each slide one driving ring forward or back, between its two clutch gears: forward drives its function one way, back the other way, and in the middle it's in neutral.",
+        "does": "Two levers on the superstructure, each in an H gate, choose and work the four crane functions: the left lever goes left for A or right for B, the right lever left for C or right for D, and pushed forward or back in its slot it slides that function’s driving ring between its two clutch gears, driving the function one way or the other; in the middle it is in neutral.",
         "mechanisms": [
-          "function-selector: 4 functions"
+          "function-selector: 4 functions, two H gates"
         ],
         "source": "book: the controlsticks sub-assemblies; page 234 (the levers A-D with their arrows and icons)",
         "control": [
@@ -168,7 +168,7 @@
           "p577 18947",
           "p578 18947"
         ],
-        "note": "unsure how the model's lever parts map to A-D: by the model, each stick (p829, p840) carries a changeover catch between two rings, and p838 32054 sits on a third pivot"
+        "note": "each stick (p829, p840, 15462) carries one changeover catch that sits midway between two driving rings: p829 between p575 and p576, p840 between p577 and p578; sliding a stick sideways picks a ring and turning it shifts that ring. Which ring is A to D is not yet tried: the sticks' sideways slide is not read yet (Erik signed it, \"Sign the two audit rows\", 2026-11-15)"
       },
       {
         "does": "The black knob gear on top of the grab opens and closes its four claws: it turns a 20 tooth bevel gear and a 12 tooth bevel gear on a small linear actuator, whose piston pushes the claws' arms.",
@@ -222,9 +222,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
+    "commit": "c38e9303",
     "date": "2026-11-15",
-    "seconds": 136,
+    "seconds": 164,
     "counts": {
       "works": 6,
       "partly": 2,
@@ -321,7 +321,7 @@
             ]
           ]
         ],
-        "seconds": 8.1
+        "seconds": 9.5
       },
       {
         "result": "works",
@@ -408,7 +408,7 @@
             ]
           ]
         ],
-        "seconds": 10
+        "seconds": 12.2
       },
       {
         "result": "works",
@@ -494,7 +494,7 @@
             ]
           ]
         ],
-        "seconds": 10
+        "seconds": 12.2
       },
       {
         "result": "partly",
@@ -588,7 +588,7 @@
         ],
         "cause": "not-driven",
         "detail": "p906 44294",
-        "seconds": 24.2
+        "seconds": 29
       },
       {
         "result": "works",
@@ -672,7 +672,7 @@
             ]
           ]
         ],
-        "seconds": 28.3
+        "seconds": 34.1
       },
       {
         "result": "partly",
@@ -784,7 +784,7 @@
         ],
         "cause": "not-driven",
         "detail": "p575 18947",
-        "seconds": 12.7
+        "seconds": 15.7
       },
       {
         "result": "works",
@@ -851,7 +851,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 23.6
+        "seconds": 28.7
       },
       {
         "result": "no",
@@ -898,7 +898,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -964,7 +964,7 @@
           [],
           []
         ],
-        "seconds": 17.4
+        "seconds": 19.7
       },
       {
         "result": "not checked",

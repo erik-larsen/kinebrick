@@ -444,7 +444,14 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The slide a control with no turning joint of its own slides on: a body that is the root of a
   // tree of its own, held to the rest by a slide (see buildTree), as an outrigger's beam slides in
   // a chassis. -1 if it has none.
-  const slideOf = (body: number) => (kin.frames.includes(body) || kin.parentLink(body) ? -1 : mech.joints.findIndex((j) => j.kind === 'slide' && (j.bodyA === body || j.bodyB === body)));
+  // Only a body whose one joint to the rest is that slide: a body that also hangs on something
+  // else (the 42063's handlebars, on a fork top that rides the legs and hangs on a ball) is pushed
+  // at a point, as any other.
+  const slideOf = (body: number) => {
+    if (kin.frames.includes(body) || kin.parentLink(body)) return -1;
+    const own = mech.joints.flatMap((j, k) => (j.bodyA === body || j.bodyB === body ? [k] : []));
+    return own.length === 1 && mech.joints[own[0]].kind === 'slide' ? own[0] : -1;
+  };
   // A control that slides (see slideOf) pushed along its slide by `amount` LDU, as a drag of it in
   // the viewer pushes it, each step the way the slide now points: how far it slid along it
   // (signed), how far each of `parts` went, and what stopped it, if anything did.
@@ -465,6 +472,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     while (Math.abs(along() - start) < Math.abs(amount) - 1e-9) {
       const dir = axis.clone().transformDirection(kin.poses[other]).multiplyScalar(Math.sign(amount));
       const step = Math.min(PUSH_STEP, Math.abs(amount) - Math.abs(along() - start));
+      const before = along();
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
         halt = how === 'blocked' ? 'limit' : 'stuck';
@@ -477,6 +485,12 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         went[k][1] += at[p.part].clone().applyMatrix4(is[k]).distanceTo(at[p.part].clone().applyMatrix4(was[k]));
       });
       was = is;
+      // A step that moved, but hardly along the slide (the push carries the body and what it
+      // slides on along together), would go on for ever: it is stuck.
+      if (Math.abs(along() - before) < 0.01 * step) {
+        halt = 'stuck';
+        break;
+      }
     }
     kin.letGoAfterDrag();
     return { turned: along() - start, went, halt, pushed: null };

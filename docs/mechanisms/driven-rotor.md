@@ -4,7 +4,7 @@ The drive spins a propeller, rotor or fan: rolling the model, a knob, a motor or
 
 First appears in 1977, in [852 Helicopter](https://erik-larsen.github.io/kinebrick/?model=852-Helicopter): The handwheel on the cabin's right side turns both rotors: through a crown gear and an 8-tooth gear it drives the 24-tooth gear on the upright rotor mast, slowly, and through a lengthwise shaft with universal joints running back along the tail boom it turns the tail rotor, faster.
 
-Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 14 works, 11 partly.
+Used in 20 of the 186 surveyed sets, by 25 functions. Kinebrick: 15 works, 10 partly.
 
 ## By decade
 
@@ -90,7 +90,7 @@ Each detail by the set it first appears in.
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 
-- *coaxial rotors:* Function A: with the lever on the right side behind the cockpit pushed to A, the motor turns the two coaxial three-blade rotors: the right shaft's driving ring locks its rear 16-tooth clutch gear, which turns through two idler clutch gears and a gear above them to a 16-tooth gear on the rotor drive shaft; its two 12-tooth bevel gears turn the two rotor turntables, one from above and one from below, so the rotors turn opposite ways. (partly)
+- *coaxial rotors:* Function A: with the lever on the right side behind the cockpit pushed to A, the motor turns the two coaxial three-blade rotors: the right shaft's driving ring locks its rear 16-tooth clutch gear, which turns through two idler clutch gears and a gear above them to a 16-tooth gear on the rotor drive shaft; its two 12-tooth bevel gears turn the two rotor turntables, one from above and one from below, so the rotors turn opposite ways. (works)
 
 **2017, [42057 Ultralight Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42057-1)**
 

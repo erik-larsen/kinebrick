@@ -105,13 +105,13 @@
         "source": "book: front axle steps 8-37 (the differential in its housing)",
         "control": "p1866 23798",
         "lifted": true,
-        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the casing stays: its ring meshes the motor's pinion, which stands still, so it is held (Erik signed it, \"Sign casings\", 2026-11-15)",
         "moves": [
-          "p1862 23798",
-          "p490 62821"
+          "p1862 23798"
         ],
         "stays": [
-          "p878 42099 - 18575"
+          "p878 42099 - 18575",
+          "p490 62821"
         ]
       },
       {
@@ -122,13 +122,13 @@
         "source": "book: rear axle steps 127-140",
         "control": "p1868 23798",
         "lifted": true,
-        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74)",
+        "note": "lifted: one wheel is turned against its differential to show the other turning the opposite way, which the other wheel's grip on the floor would stop, so it is worked with the model off the floor (decision 74); the casing stays: its ring meshes the motor's pinion, which stands still, so it is held (Erik signed it, \"Sign casings\", 2026-11-15)",
         "moves": [
-          "p1864 23798",
-          "p43 62821"
+          "p1864 23798"
         ],
         "stays": [
-          "p363 42099 - 18575"
+          "p363 42099 - 18575",
+          "p43 62821"
         ]
       },
       {
@@ -164,15 +164,14 @@
     ]
   },
   "generated": {
-    "commit": "26b98c38",
-    "uncommitted": true,
+    "commit": "01139e16",
     "date": "2026-11-15",
-    "seconds": 286,
+    "seconds": 195,
     "counts": {
-      "works": 4,
+      "works": 6,
       "not back": 3,
       "free-turned": 1,
-      "partly": 3,
+      "partly": 1,
       "torn": 2,
       "not checked": 1,
       "skipped": 1
@@ -302,35 +301,35 @@
           {
             "p869 32270": [
               1.67,
-              7.09e-13
+              6.81e-13
             ],
             "p514 42099 - 18575": [
               1.67,
-              9.66e-13
+              9.53e-13
             ],
             "p469 32270": [
               2.78,
-              2.3e-12
+              2.27e-12
             ],
             "p490 62821": [
               1.98,
-              7.04e-13
+              8.04e-13
             ],
             "p1862 23798": [
-              0.234,
-              30.6
+              0.19,
+              22.3
             ],
             "p1866 23798": [
-              0.234,
-              30.6
+              0.19,
+              22.3
             ],
             "p1864 23798": [
               0,
-              1.05e-12
+              8.25e-12
             ],
             "p1868 23798": [
               0,
-              1.02e-12
+              8.37e-12
             ]
           }
         ],
@@ -370,7 +369,7 @@
         "strayed": [
           "p603 2739a"
         ],
-        "seconds": 31.4
+        "seconds": 25
       },
       {
         "result": "partly",
@@ -388,19 +387,19 @@
           {
             "p83 32270": [
               1.67,
-              2.91e-9
+              3.92e-9
             ],
             "p59 42099 - 18575": [
               1.67,
-              2.91e-9
+              3.92e-9
             ],
             "p20 32270": [
               2.78,
-              5.82e-9
+              7.84e-9
             ],
             "p43 62821": [
               1.98,
-              5.82e-9
+              7.84e-9
             ],
             "p1864 23798": [
               0.367,
@@ -453,7 +452,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p1862 23798",
-        "seconds": 67
+        "seconds": 47
       },
       {
         "result": "works",
@@ -470,20 +469,20 @@
         "rates": [
           {
             "p1862 23798": [
-              0.234,
-              30.6
+              0.19,
+              22.3
             ],
             "p1866 23798": [
-              0.234,
-              30.6
+              0.19,
+              22.3
             ],
             "p1864 23798": [
               0,
-              1.05e-12
+              8.25e-12
             ],
             "p1868 23798": [
               0,
-              1.02e-12
+              8.37e-12
             ]
           },
           {
@@ -566,7 +565,7 @@
             "p1868 23798"
           ]
         ],
-        "seconds": 106.6
+        "seconds": 69.7
       },
       {
         "result": "works",
@@ -624,18 +623,15 @@
             ]
           ]
         ],
-        "seconds": 27.3
+        "seconds": 19.5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p490 62821"
         ],
         "rates": [
           {
@@ -643,13 +639,13 @@
               1,
               0.0733
             ],
-            "p490 62821": [
-              2.81e-8,
-              6.79e-13
-            ],
             "p878 42099 - 18575": [
               0,
-              1.21e-28
+              1.02e-28
+            ],
+            "p490 62821": [
+              0,
+              1.06e-12
             ]
           }
         ],
@@ -677,23 +673,15 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p490 62821",
-        "seconds": 15.6
+        "seconds": 10
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p43 62821"
         ],
         "rates": [
           {
@@ -701,13 +689,13 @@
               1,
               0.0545
             ],
-            "p43 62821": [
-              2.81e-8,
-              6.6e-13
-            ],
             "p363 42099 - 18575": [
               0,
-              2.52e-29
+              2.73e-29
+            ],
+            "p43 62821": [
+              2.81e-8,
+              6.33e-13
             ]
           }
         ],
@@ -735,12 +723,7 @@
             ]
           ]
         ],
-        "judged": [
-          1
-        ],
-        "cause": "not-driven",
-        "detail": "p43 62821",
-        "seconds": 21.1
+        "seconds": 13.4
       },
       {
         "result": "not checked",
@@ -785,7 +768,7 @@
             ]
           ]
         ],
-        "seconds": 15.4
+        "seconds": 9.8
       }
     ]
   }

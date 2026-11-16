@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 45 works, 31 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 48 works, 27 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -80,7 +80,7 @@ Each detail by the set it first appears in.
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 
 - Pushing the combine along turns the header's reel: the front axle's differential turns a 24-tooth gear on a cross shaft, whose knob gear drives a shaft running forward through a universal joint to a knob gear at the front, which meshes with the header's knob gear; through two 24-tooth gears at the header's right end it turns the reel's red bars round, sweeping the crop down. (partly)
-- The front wheels drive through a differential, so they can turn at different speeds in a bend: with the reel's drive held, turning one front wheel turns the other the opposite way. (partly)
+- The front wheels drive through a differential, so they can turn at different speeds in a bend: with the reel's drive held, turning one front wheel turns the other the opposite way. (works)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
 
@@ -155,7 +155,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- *centre:* The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (partly)
+- *centre:* The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (no)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
@@ -195,8 +195,8 @@ Each detail by the set it first appears in.
 
 - The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
 - The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (partly)
-- *front:* The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way. (partly)
-- *rear:* The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way. (partly)
+- *front:* The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way. (works)
+- *rear:* The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way. (works)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 

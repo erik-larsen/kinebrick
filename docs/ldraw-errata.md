@@ -455,6 +455,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
+| [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
@@ -587,6 +588,20 @@ In the main model, the line
 ```
 
 is read with its part at -160 -211.6552 -70.6371.
+
+### 42052-1: no-third-link-pin-p586
+
+Signed off by Erik, 2026-11-15.
+
+Step 155 (page 84, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182578.pdf#page=84) builds the two door links: four 6L thin liftarms, two black friction pins at the slider ends and two light grey pins (3673) at the outer ends, where the doors hang at step 156 (page 86). The file places that step as its main model's step 19 with three light grey pins: p587 and p592 at the links' outer ends (x 140 and -140), and p586 at x -100, in the left links' fourth hole, where it pins them to the fuselage panel p40. The right side has no such pin. As read, p586 holds the left links to the frame, so the slider they hang from cannot slide. Removed: the booklet has two grey pins, not three.
+
+In the main model (p586 3673), the line
+
+```
+1 71 -100 -370 -130 0 1 0 0 0 -1 -1 0 0 3673.dat
+```
+
+is read as not there. The part keeps its number.
 
 ### 42064-1: hatch-20-high
 

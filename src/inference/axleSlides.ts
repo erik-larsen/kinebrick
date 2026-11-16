@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import type { Connection } from '../mechanism.ts';
-import { axialOverlap, AXIS_TOLERANCE, axleStops, type WorldCylinder } from './shared.ts';
+import { axialOverlap, AXIS_TOLERANCE, axleStops, rigidGroups, type WorldCylinder } from './shared.ts';
 
 // A part turning on an axle may slide along it too, as far as the parts either side of it on
 // the axle let it, if a linkage works it that way: its body turns on another body about an
@@ -144,6 +144,11 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
         const room: [number, number] = a === shaft ? [-above, below] : [-below, above];
         c.kind = 'slide';
         c.turns = true;
+        // Held where it is built, as a shock absorber's spring holds its slide (see
+        // Joint.springHeld): a part turning on an axle stays put along it by friction, and slides
+        // only when a drag can't go otherwise (the 8002's tail on its 10L axle, which a drag of
+        // the shell slid 33 LDU and left there).
+        c.springHeld = true;
         c.extents = { male: [0, 0], female: way > 0 ? room : [-room[1], -room[0]], overlap: 0 };
       }
       // The stack's parts, each turning against the next.
@@ -157,4 +162,117 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
     }
   }
   return result;
+}
+
+// A part riding in round holes on two or more parallel axles, all gripped by one other body,
+// slides along them, if a linkage works it that way (a telescopic fork: the 42063's top piece
+// rides on the two leg axles that the lower fork grips, and the fork's ball at the top and the
+// suspension arm's ball at the bottom close a loop that can only move if it slides). Two hinges
+// on two lines would hold it fast (see groupIntoBodies), so this comes before the bodies are
+// found. The test of need is the single axle's: the rider joins back to the axles' body through
+// a hinge across them (or a ball) on another body. Its travel is what every axle allows: the
+// parts either side of it on each axle, and the axles' stops. Turns those hinges into slides
+// along the axles, which don't turn.
+export function slidingOnParallelAxles(roles: string[], frameRoles: string[], cyls: WorldCylinder[], connections: Connection[], count: number): void {
+  const TOUCH = 0.5; // LDU: parts along an axle this close touch
+  const group = rigidGroups(count, connections);
+  const axles = cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle');
+  const onLine = (axle: WorldCylinder, c: Connection) => Math.max(...[c.from, c.to].map((p) => new Vector3().subVectors(p, axle.start).cross(axle.dir).length())) < AXIS_TOLERANCE;
+  // Each rider and holder (by their groups), with the axles the rider turns on.
+  const rides = new Map<string, { rider: number; holder: number; axles: WorldCylinder[] }>();
+  for (const axle of axles) {
+    const holder = group[axle.part];
+    for (const c of connections) {
+      if (c.kind !== 'revolute' || !onLine(axle, c)) continue;
+      const other = c.male === axle.part ? c.female : c.female === axle.part ? c.male : -1;
+      if (other < 0 || group[other] === holder) continue;
+      const key = `${group[other]} ${holder}`;
+      if (!rides.has(key)) rides.set(key, { rider: group[other], holder, axles: [] });
+      const ride = rides.get(key)!;
+      if (!ride.axles.includes(axle)) ride.axles.push(axle);
+    }
+  }
+  // The group the frame will be: the one with the most structure parts (see groupIntoBodies).
+  const structure = new Map<number, number>();
+  for (let i = 0; i < count; i++) if (frameRoles[i] === 'structure') structure.set(group[i], (structure.get(group[i]) ?? 0) + 1);
+  const frame = [...structure].reduce((a, b) => (b[1] > a[1] ? b : a), [-1, 0])[0];
+  for (const { rider, holder, axles: on } of rides.values()) {
+    if (rider === frame || on.length < 2) continue;
+    const ref = on[0].dir;
+    if (on.some((a) => new Vector3().crossVectors(a.dir, ref).length() > 1e-3)) continue;
+    const lines = on.filter((a, k) => !on.slice(0, k).some((b) => new Vector3().subVectors(a.start, b.start).cross(ref).length() < AXIS_TOLERANCE));
+    if (lines.length < 2) continue;
+    // Every hinge between the two must be on those axles, or the rider is held some other way.
+    const between = connections.filter((c) => c.kind === 'revolute' && [group[c.male], group[c.female]].sort().join() === [rider, holder].sort().join());
+    if (!between.every((c) => on.some((a) => onLine(a, c)))) continue;
+    // The test of need: a hinge across the axles, or a ball, from the rider to another body
+    // that joins back to the holder without the rider.
+    const joinsHolder = (start: number) => {
+      const seen = new Set([start, rider]);
+      const queue = [start];
+      while (queue.length) {
+        const g = queue.shift()!;
+        if (g === holder) return true;
+        for (const c of connections) {
+          if (c.kind !== 'revolute' && c.kind !== 'ball' && c.kind !== 'slide') continue;
+          const [a, b] = [group[c.male], group[c.female]];
+          const next = a === g ? b : b === g ? a : -1;
+          if (next >= 0 && !seen.has(next)) {
+            seen.add(next);
+            queue.push(next);
+          }
+        }
+      }
+      return false;
+    };
+    const linked = connections.some((c) => {
+      if (c.kind !== 'ball' && c.kind !== 'revolute') return false;
+      const [a, b] = [group[c.male], group[c.female]];
+      const other = a === rider ? b : b === rider ? a : -1;
+      if (other < 0 || other === rider || other === holder) return false;
+      if (c.kind === 'revolute' && new Vector3().subVectors(c.to, c.from).normalize().cross(ref).length() <= 0.5) return false;
+      return joinsHolder(other);
+    });
+    if (!linked) continue;
+    // The room either side of the rider on each axle, measured along the first axle's way.
+    let [below, above] = [Infinity, Infinity];
+    for (const axle of on) {
+      const length = axle.secs.reduce((sum, sec) => sum + sec.length, 0);
+      const at = (p: Vector3) => new Vector3().subVectors(p, axle.start).dot(axle.dir);
+      const spans = new Map<number, [number, number]>();
+      for (const c of cyls) {
+        if (c.part === axle.part) continue;
+        const overlap = axialOverlap(axle, c);
+        if (!overlap) continue;
+        const [lo, hi] = [at(overlap.from), at(overlap.to)].sort((x, y) => x - y);
+        const span = spans.get(c.part);
+        spans.set(c.part, span ? [Math.min(span[0], lo), Math.max(span[1], hi)] : [lo, hi]);
+      }
+      const mine = [...spans].filter(([p]) => group[p] === rider).map(([, s]) => s);
+      if (!mine.length) continue;
+      const [lo, hi] = [Math.min(...mine.map((s) => s[0])), Math.max(...mine.map((s) => s[1]))];
+      let [down, up] = [lo, length - hi];
+      for (const [other, [a, b]] of spans) {
+        if (group[other] === rider) continue;
+        if (b <= lo + TOUCH) down = Math.min(down, Math.max(0, lo - b));
+        else if (a >= hi - TOUCH) up = Math.min(up, Math.max(0, a - hi));
+        else [down, up] = [0, 0];
+      }
+      for (const [a, b] of axleStops(axle)) {
+        if (b <= lo + TOUCH) down = Math.min(down, Math.max(0, lo - b));
+        else if (a >= hi - TOUCH) up = Math.min(up, Math.max(0, a - hi));
+        else [down, up] = [0, 0];
+      }
+      if (axle.dir.dot(ref) < 0) [down, up] = [up, down];
+      [below, above] = [Math.min(below, down), Math.min(above, up)];
+    }
+    if (!(below + above >= TOUCH)) continue;
+    for (const c of between) {
+      // How far the axles may slide against the rider, along from -> to.
+      const way = new Vector3().subVectors(c.to, c.from).dot(ref) >= 0 ? 1 : -1;
+      const room: [number, number] = group[c.male] === holder ? [-above, below] : [-below, above];
+      c.kind = 'slide';
+      c.extents = { male: [0, 0], female: way > 0 ? room : [-room[1], -room[0]], overlap: 0 };
+    }
+  }
 }

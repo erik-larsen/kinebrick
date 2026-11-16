@@ -1,68 +1,60 @@
 {
   "state": {
     "main": {
-      "works": 673,
+      "works": 685,
       "moved": "2026-11-15"
     },
     "preview": {
-      "works": 675,
-      "partly": 261,
+      "works": 687,
+      "partly": 248,
       "no": 112,
-      "functions": 1227
+      "functions": 1226
     },
-    "viewer": "The viewer links open the preview viewer on this Mac (http://localhost:5174). If one does not open, tell Claude and it starts the server again."
+    "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [
-    {
-      "id": "monorail-look",
-      "kind": "Look, if you like",
-      "title": "The monorail at 60 and 120 rpm, on screen",
-      "since": "2026-11-15",
-      "what": "You saw the monorail sets go choppy above 70 rpm. The motor's step is mended, and the train branch runs again after today's merge: all 51 train functions work, and the 6990 goes round its track at 60 and 120 rpm. No session can watch the animation as you see it (their panes are hidden), so only you can say whether it is smooth. The motor's own work leaves room for about 30 frames a second at 120 rpm.",
-      "effect": "Optional. Nothing waits on it.",
-      "links": [
-        {
-          "label": "6990 at 120 rpm",
-          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=120&autospin=652"
-        },
-        {
-          "label": "6990 at 60 rpm",
-          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=60&autospin=652"
-        }
-      ],
-      "reply": "The monorail is smooth now"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "Preview is one commit group ahead of main (the bound against wild motions; 672 functions work, since one function that only seemed to work now stops honestly). The next offer comes after the next larger branch is in and the slow 8110 check has passed again."
+      "what": "Preview is ahead of main by the telescopic fork rule, the 858 model mend, the 8851’s function checked lifted and your 42052 sign-off (687 functions work). Full check 30, with two mends for models that do not come back to their start, is running. The next offer comes after it is in and the slow 8110 check has passed on that commit."
     },
     {
       "title": "A second worker?",
-      "what": "Of the 376 functions that do not work in full, 318 are faults in how we read the models, and one worker mends them. A fleet is your call. Claude will ask with numbers once the largest group (a part that nothing ties to its control, 142 functions) is sorted by what would mend it."
+      "what": "Of the 362 functions that do not work in full, most are faults in how we read the models, and one worker mends them. A fleet is your call. Claude will ask with numbers once the largest group (a part that nothing ties to its control, about 140 functions) is sorted by what would mend it."
     }
   ],
   "done": [
     {
-      "date": "2026-11-15",
-      "what": "You signed the two audit rows where booklet and file agree on what the function is (\"Sign the two audit rows\"): the 42039’s function 6 is independent rear suspension, and the 42042’s function 6 has two levers, each in an H gate. The worker writes them; they are not on preview yet."
+      "date": "2026-11-16",
+      "what": "You looked at the monorail with the FPS card (\"The monorail is smooth now\")."
     },
     {
       "date": "2026-11-15",
-      "what": "You signed the five audit rows where the booklet and the model agree (\"Sign the five audit rows\"): 42048 functions 2 and 3, 42052 functions 2 to 5, 42070 functions 1 and 3 to 9, 42039 functions 8 and 9. The worker writes them; they are not on preview yet."
+      "what": "You moved main to c217b4ea (\"main pushed\"): 685 of 1,226 functions work on main, 673 before."
     },
     {
       "date": "2026-11-15",
-      "what": "You signed dropping the 8261’s function 2, the front axle that swings (\"Drop 8261 function 2\"). The worker writes it; it is not on preview yet."
+      "what": "You signed the correction \"42052 Heavy Lift Helicopter: no third grey pin on the door links\" (\"Sign 42052\"). It is applied on preview; no score changes."
     },
     {
       "date": "2026-11-15",
-      "what": "You signed the two suspension list changes (\"Sign suspension lists\"): the 42039’s function 6 is controlled at its lower arms, and the 8261’s pivot axle moves with its arm in function 3. The worker writes them; they are not on preview yet."
+      "what": "You signed the two audit rows where booklet and file agree on what the function is (\"Sign the two audit rows\"): the 42039’s function 6 is independent rear suspension, and the 42042’s function 6 has two levers, each in an H gate. They are on preview."
     },
     {
       "date": "2026-11-15",
-      "what": "You signed the casings change (\"Sign casings\"): the differential casing stands still in the 42099’s functions 5 and 6, the 42041’s function 2 and the 8274’s function 4. The worker writes it; it is not on preview yet."
+      "what": "You signed the five audit rows where the booklet and the model agree (\"Sign the five audit rows\"): 42048 functions 2 and 3, 42052 functions 2 to 5, 42070 functions 1 and 3 to 9, 42039 functions 8 and 9. They are on preview."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed dropping the 8261’s function 2, the front axle that swings (\"Drop 8261 function 2\"). It is on preview."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the two suspension list changes (\"Sign suspension lists\"): the 42039’s function 6 is controlled at its lower arms, and the 8261’s pivot axle moves with its arm in function 3. They are on preview."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the casings change (\"Sign casings\"): the differential casing stands still in the 42099’s functions 5 and 6, the 42041’s function 2 and the 8274’s function 4. It is on preview."
     },
     {
       "date": "2026-11-15",

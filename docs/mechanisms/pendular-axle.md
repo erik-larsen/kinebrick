@@ -4,14 +4,14 @@ A rigid axle swings side to side on a central pivot or turntable. (Suspension.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.
 
-Used in 8 of the 186 surveyed sets, by 9 functions. Kinebrick: 2 works, 2 partly, 3 no, 2 skipped.
+Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 2 partly, 2 no, 2 skipped.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 0 of 9 | 1 of 18 | 0 of 32 | 1 of 23 | 5 of 83 | 1 of 21 |
-| Functions | 0 | 1 | 0 | 1 | 5 | 2 |
+| Sets | 0 of 9 | 1 of 18 | 0 of 32 | 0 of 23 | 5 of 83 | 1 of 21 |
+| Functions | 0 | 1 | 0 | 0 | 5 | 2 |
 
 ## Details
 
@@ -29,10 +29,6 @@ Each detail by the set it first appears in.
 **1986, [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor)**
 
 - The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground. (works)
-
-**2009, [8261 Rally Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8261-1)**
-
-- The front axle swings side to side about the steering shaft it hangs from, so the front wheels can follow rough ground; the steering still works as it swings. (no)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
