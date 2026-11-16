@@ -135,3 +135,28 @@ function stoppedWhy(kin: Kinematics, control: { body: number; parent: number }):
   const ratio = gaps[0] / Math.max(gaps[1], 1e-12);
   return gaps[0] > CLOSED && ratio > 3 && ratio < 5 ? { cause: 'one-link-too-many' } : { cause: 'stopped-early' };
 }
+
+// Whether a joint lies on a closed loop of joints: its two bodies are still joined, through
+// other joints, without it. Gears, worms, chains and couplings don't count. A control whose
+// joint is on such a loop turns one of the loop's links itself (the 9392 Quad Bike's
+// handlebars); one whose joint isn't reaches any loop only through them (the 8273's winch knob).
+export function onALoop(mech: { joints: { bodyA: number; bodyB: number }[] }, joint: number): boolean {
+  const j = mech.joints[joint];
+  const seen = new Set([j.bodyA]);
+  let front = new Set([j.bodyA]);
+  while (front.size) {
+    const next = new Set<number>();
+    for (let k = 0; k < mech.joints.length; k++) {
+      if (k === joint) continue;
+      const x = mech.joints[k];
+      for (const [from, to] of [[x.bodyA, x.bodyB], [x.bodyB, x.bodyA]]) {
+        if (!front.has(from) || seen.has(to)) continue;
+        if (to === j.bodyB) return true;
+        seen.add(to);
+        next.add(to);
+      }
+    }
+    front = next;
+  }
+  return false;
+}
