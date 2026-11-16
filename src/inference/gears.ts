@@ -123,7 +123,14 @@ function spurMesh(ga: Gear, gb: Gear): boolean {
 
 // A worm meshes with a spur gear of the same tooth size when their axes are at right angles,
 // exactly their two pitch radii apart where they pass closest, and that closest point lies
-// along both the worm and the gear's teeth.
+// along the worm, and the gear's teeth come near enough to the worm's axis for its threads to
+// reach them. Seen along the worm, the threads stand above the worm's core for as far either
+// side of its axis as the core is round, and there they reach well into the gear's teeth (the
+// 4716: core 7 LDU round, threads out to 12.7, the 24 tooth gear's tips 7.5 from the worm's
+// axis, so at least 3 LDU of thread in its teeth, more than a tooth's height). So the gear's
+// middle plane may lie as far from the worm's axis as half the gear's width and the core's
+// radius: 11.75 LDU for the 4716 and a 24 tooth gear (the 42070's slewing worm, 5 LDU off it).
+// The core is 1.2 modules below the pitch radius, as the 4716's shape has it.
 function wormMesh(worm: Gear, gear: Gear): boolean {
   if (!gear.spur || gear.worm) return false;
   if (Math.abs(worm.axis.dot(gear.axis)) > 0.01) return false;
@@ -132,7 +139,8 @@ function wormMesh(worm: Gear, gear: Gear): boolean {
   if (Math.abs(closest.distance - (worm.radius + gear.radius)) > AXIS_TOLERANCE) return false;
   const alongWorm = new Vector3().subVectors(closest.onA, worm.center).dot(worm.axis);
   const alongGear = new Vector3().subVectors(closest.onB, gear.center).dot(gear.axis);
-  return Math.abs(alongWorm) <= worm.width / 2 && Math.abs(alongGear) <= gear.width / 2;
+  const core = worm.radius - 1.2 * (worm.worm / Math.PI);
+  return Math.abs(alongWorm) <= worm.width / 2 && Math.abs(alongGear) <= gear.width / 2 + core;
 }
 
 // A worm lying along a rack (the 1L worm on the 1 x 14 rack with bottom beam, as a lead screw):
