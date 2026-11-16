@@ -40,16 +40,23 @@
         }
       ],
       "reply": "Sign 42070"
+    },
+    {
+      "id": "second-worker",
+      "kind": "Decision",
+      "title": "A second worker for the faults of reading?",
+      "since": "2026-11-16",
+      "what": "347 functions are partly or not working. Only 41 of them fail for a reason in the solver. 303 fail by how we read the models or by a function list, and they stand on about 150 to 200 distinct faults: a part that nothing ties to its control (136 functions), a part held fixed (49), a loose part (47), a jammed control (40), a fixed control (25), a part forced to stay (6). One worker mends these. A second worker would be a third working session beside the solver owner and the worker.",
+      "effect": "Rate now: 21 more working functions on 15 November and 13 on 16 November, from both sessions together. A second worker might add 5 to 10 a day, less than double, because this Mac is the limit: it runs one full check at a time and stood at a load of 30 on 12 cores today. Cost: the week's usage stood at 5% about 8 hours after its reset, with three sessions at work. At that pace a week of work day and night uses about the whole weekly limit, which you reached last week. A second worker adds roughly a third to that. Both figures are rough.",
+      "confidence": "Claude's advice: not yet (to start one, reply \"Second worker: yes\"). First, with no new session: the solver owner takes faults of reading when its three solver tasks are done (it has only 41 functions of its own), and the worker takes first the few part types that recur over many sets (62274c01, 62821, 94925, 92695, 92696, 2851, 18947), where one fault in the library's connections may hold several functions. Claude asks again at mid-week with the usage and the rate measured.",
+      "links": [],
+      "reply": "Second worker: not yet"
     }
   ],
   "coming": [
     {
       "title": "The next offer of main",
       "what": "Preview is ahead of main by 15 working functions (700 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
-    },
-    {
-      "title": "A second worker?",
-      "what": "Of the 362 functions that do not work in full, most are faults in how we read the models, and one worker mends them. A fleet is your call. Claude will ask with numbers once the largest group (a part that nothing ties to its control, about 140 functions) is sorted by what would mend it."
     }
   ],
   "done": [
