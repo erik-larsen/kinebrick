@@ -160,8 +160,8 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
+    "commit": "2c010e2d",
+    "date": "2026-11-16",
     "seconds": 3,
     "counts": {
       "partly": 2,
@@ -270,7 +270,7 @@
         ],
         "cause": "not-driven",
         "detail": "p73 3705",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -433,7 +433,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p141 3706",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "skipped",
@@ -517,7 +517,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -642,7 +642,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",
