@@ -170,6 +170,13 @@ const causesOnly = process.env.KINEBRICK_CAUSES === '1';
 // Whether a turn that stops at a dead point can be at its end of travel (see farEnough; decisions
 // 104, 106 and 115). On; off with KINEBRICK_DEAD_POINT_TRAVEL=0, for measuring.
 const DEAD_POINT_TRAVEL = process.env.KINEBRICK_DEAD_POINT_TRAVEL !== '0';
+// Whether a part the function lists to move counts as moved if it got MOVED or more from where
+// it started at any step on the way, not only by where it ends (decision 116): a piston, a crank
+// pin or a rocker that goes round ends near its start when the turn happens to end near a whole
+// turn (the 42075's pistons, their crank turned 5.8 radians). The farthest it got, not the path
+// it went, so that small jitter over many steps can't add up. On; off with
+// KINEBRICK_MOVED_ON_THE_WAY=0, for measuring.
+const ON_THE_WAY = process.env.KINEBRICK_MOVED_ON_THE_WAY !== '0';
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
@@ -942,7 +949,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           return done > 0 && done === stirred;
         };
         const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : ballOf(b) >= 0 ? ballMeasuring(b, control, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
+        // Which parts to move got MOVED or more from their start at some step (see ON_THE_WAY).
+        const gotThere = moves.map(() => false);
         const measured = measure(way * reach, [...listed, itself, ...pistons.map((p) => p.in)], () => {
+          if (ON_THE_WAY) moves.forEach((m, k) => (gotThere[k] ||= moved(m, startPoses, new Map())));
           const now = pistons.map((p, k) => pistonAt(p.sc, crankAngle(p.sc.crank), was[k] === null ? undefined : was[k]! + last[k]));
           now.forEach((x, k) => {
             should[k] += x === null || was[k] === null ? NaN : Math.abs(x - was[k]!);
@@ -980,7 +990,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           const least = slidesOn(m) ? MOVED : (MOVED * Math.PI) / 180;
           return rate * Math.abs(turned) < least && Math.abs(rateOf(m) - rate) <= RATE_OFF * rate;
         };
-        const still = moves.filter((m) => !moved(m, startPoses, shifted) && !slowGeared(m)).map((m) => m.ref);
+        const still = moves.filter((m, k) => !moved(m, startPoses, shifted) && !slowGeared(m) && !gotThere[k]).map((m) => m.ref);
         const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
         // Each piston's slide in its cylinder, against what its crank's turn says, both for
