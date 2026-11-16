@@ -167,6 +167,9 @@ type Stop = 'meets' | 'limit' | 'stuck' | 'free';
 type Halt = 'limit' | 'dead point' | 'end of travel' | 'no motion' | 'stuck';
 // With --causes, nothing is dragged: each failing function's cause is worked out afresh.
 const causesOnly = process.env.KINEBRICK_CAUSES === '1';
+// Whether a turn that stops at a dead point can be at its end of travel (see farEnough; decisions
+// 104, 106 and 115). On; off with KINEBRICK_DEAD_POINT_TRAVEL=0, for measuring.
+const DEAD_POINT_TRAVEL = process.env.KINEBRICK_DEAD_POINT_TRAVEL !== '0';
 type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
@@ -1020,7 +1023,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // the loop only through gears, a worm, a chain or a motor turns on in the real set past
         // where the loop stops (a winch knob slips, a crank goes over its dead point, a motor
         // stalls), so its stop stays a dead point (decision 115).
-        const endOfTravel = measured.halt === 'dead point' && moves.some((_, k) => went[k][0] >= half) && mech.roles[control] !== 'motor' && onALoop(mech, link.joint);
+        const endOfTravel = DEAD_POINT_TRAVEL && measured.halt === 'dead point' && moves.some((_, k) => went[k][0] >= half) && mech.roles[control] !== 'motor' && onALoop(mech, link.joint);
         const halt: Halt | null = endOfTravel ? 'end of travel' : measured.halt;
         const farEnough = Math.abs(turned) >= half || endOfTravel || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
         const share = farEnough && !wrong.length && (!moves.length || still.length < moves.length);
