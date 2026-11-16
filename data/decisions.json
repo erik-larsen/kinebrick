@@ -12,7 +12,28 @@
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "piston-lists",
+      "kind": "Sign-off",
+      "title": "9397 Logging Truck and 42022 Hot Rod: the piston listed as a part that stays",
+      "since": "2026-11-16",
+      "what": "Two changes to function lists. In the 9397’s function 8 (rolling the truck turns the engine) and the 42022’s function 2 (rolling the car turns the V6 engine), the list names a piston as a part that stays still against the frame. A piston must go up and down in a running engine, and the check found it doing so, which made both functions partly work. The change moves the piston to the parts that move, measured against its own cylinder, and names the cylinder as the part that stays, against the frame, since the text means the engine block.",
+      "effect": "Both functions go from partly working to working: the 42022’s function 2 checked with the whole set, the 9397’s function 8 checked on its own (the whole 9397 set takes over an hour).",
+      "confidence": "High: the pistons slide in their cylinders as the crankshaft turns, as the function text says (\"the pistons go up and down\").",
+      "links": [
+        {
+          "label": "9397, before",
+          "url": "http://localhost:5174/?file=omr%2F9397-1+Logging+Truck.mpd&show=790,775"
+        },
+        {
+          "label": "42022, before",
+          "url": "http://localhost:5174/?file=omr%2F42022-1+Hot+Rod.mpd&show=314,306"
+        }
+      ],
+      "reply": "Sign piston lists"
+    }
+  ],
   "coming": [
     {
       "title": "A second worker, asked again at mid-week",
