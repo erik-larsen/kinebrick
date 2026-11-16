@@ -303,7 +303,20 @@ const SHOCK_PIVOTS = typeof process !== 'undefined' && process.env?.KINEBRICK_SH
 // than parts (a string), which the parts alone don't show.
 // `freed`: friction pins left to turn, stiffly, though the others are held (see pinsToFree);
 // `allFree`, every friction pin left to turn, as KINEBRICK_FRICTION_RIGID=0 has them.
-export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], freed = new Set<number>(), allFree = false): Mechanism {
+// `kept`: the pins the rule for stuck actuators frees in this model, kept for it (see
+// pivotsOfStuckSlides, keptPivots.ts and npm run pivots), so the rule isn't worked out again.
+// Used only with no pins `freed`, as the kept result was found; else the rule is worked out.
+export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], freed = new Set<number>(), allFree = false, kept: number[] | null = null): Mechanism {
+  return infer(parts, table, roleList, paths, freed, allFree, kept).mech;
+}
+
+// The pins the rule for stuck actuators frees in a model as read, an empty list if none: what
+// npm run pivots keeps.
+export function actuatorPivots(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = []): number[] {
+  return infer(parts, table, roleList, paths, new Set(), false, null).pivots;
+}
+
+function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[], freed: Set<number>, allFree: boolean, kept: number[] | null): { mech: Mechanism; pivots: number[] } {
   parts = parts.map((p) => ({ ...p, name: libraryName(p.name, table) }));
   // Friction pins hold what they join in place, unless they're the only way the model can
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
@@ -318,21 +331,25 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
     }
     return buildMechanism(parts, table, roleList, false, guide, allPaths, free);
   };
+  const useKept = kept !== null && !freed.size && FRICTION_RIGID && !allFree;
+  let pivots: number[] = useKept ? kept : [];
+  if (useKept) freed = new Set(kept);
   let mech = build(new Set());
   // A linear actuator exists to change its length: where its slide can't move at all with the
   // friction pins held, the pins that hold it are real pivots (the 42070's front outrigger
   // arms), and stay joints, stiff ones, as a linkage built on friction pins does when the whole
   // model couldn't move otherwise. Once per reading, with only the friction pins near the
   // actuator freed to find them (see pivotsOfStuckSlides).
-  if (FRICTION_RIGID && !allFree && mech.connections.some((c) => c.held)) {
+  if (!useKept && FRICTION_RIGID && !allFree && mech.connections.some((c) => c.held)) {
     const found = pivotsOfStuckSlides(mech, parts, table, (pins) => buildMechanism(parts, table, roleList, true, new Set(), allPaths, new Set([...freed, ...pins])));
     if (found) {
+      pivots = found.pins;
       freed = new Set([...freed, ...found.pins]);
       mech = found.mech ?? build(new Set());
     }
   }
   const guide = racksToGuide(mech);
-  return guide.size ? build(guide) : mech;
+  return { mech: guide.size ? build(guide) : mech, pivots };
 }
 
 // The friction pins that hold a linear actuator's slide still (see inferMechanism), with the

@@ -31,6 +31,8 @@ import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { collisionGeometry, Collisions, connectedPairs, pairNumber, PartMesh } from './collisions.ts';
 import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
+import { keptPivots } from './keptPivots.ts';
+import { pivotsKey } from './pivotsKey.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -420,7 +422,10 @@ async function start() {
   // needn't build the pieces of a string's shape that won't be shown (see showStrings).
   summary.textContent = 'Working out how it moves…';
   await shown();
-  let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)));
+  // The pins the rule for stuck actuators frees, as kept for this model (see keptPivots.ts), if
+  // its kept file's key matches: else the rule is worked out as the model is read.
+  const keptPins = await keptPivots(FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL, pivotsKey(startParts, table, roles));
+  let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)), false, keptPins);
   // The paths as the file drew them, for Reset: working the mechanism out afresh moves them with
   // the parts they run round (see movePaths).
   const copyPoint = (p: PathPoint) => ({ ...p, center: p.center.clone(), axis: p.axis.clone() });
@@ -601,7 +606,7 @@ async function start() {
   // partObjects already there.
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
-    mech = known ?? inferMechanism(parts, table, roles, paths, freed);
+    mech = known ?? inferMechanism(parts, table, roles, paths, freed, false, placed === startParts ? keptPins : null);
     kin = new Kinematics(mech, { lifted });
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);

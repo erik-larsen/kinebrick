@@ -21,7 +21,7 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { inferMechanism } from '../src/mechanism.ts';
-import { readParts } from './load-model.ts';
+import { keptPivots, readParts } from './load-model.ts';
 
 const SETS_DIR = join('data', 'sets');
 
@@ -41,7 +41,7 @@ function text(value: unknown): string {
 function lineFor(set: string, model: string): string {
   const { table, parts, paths } = readParts(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
-  const mech = inferMechanism(parts, table, roles, paths) as unknown as Record<string, unknown>;
+  const mech = inferMechanism(parts, table, roles, paths, new Set(), false, keptPivots(model, parts, table, roles)) as unknown as Record<string, unknown>;
   const fields = Object.keys(mech)
     .sort()
     .map((k) => `${k}=${createHash('sha256').update(text(mech[k]) ?? 'undefined').digest('hex').slice(0, 12)}`);
