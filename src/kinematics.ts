@@ -95,6 +95,8 @@ const DEAD_POINT_GAP = 1e-3;
 const MAX_TURN_STEP = 0.035;
 // The smallest step a turn is cut down to, a step at a time, to leave a jam ahead (see turnJoint).
 const LEAST_TURN_STEP = MAX_TURN_STEP / 16;
+// How fast a loop joint must turn, in a free motion of unit size, to count as slop (see loopSlop).
+const SLOP_RATE = 1e-6;
 // How many times as fast as the joint being turned another joint may turn, if gears don't tie it
 // to that joint, before the motion counts as a dead point (see turnJoint). Linkages turn their
 // joints a few times as fast at most; past this, the mechanism is near singular as read (the
@@ -176,6 +178,9 @@ export interface Options {
   // fast stops there as stuck (see pushStepByTiers). On by default; KINEBRICK_PUSH_WILD=0 turns it
   // off.
   pushWild: boolean;
+  // Least motion: a loop's slop is held for a drag (see loopSlop). Off by default, for now: in its
+  // trial, two functions came back, and three ended further out; KINEBRICK_LOOP_SLOP=1 turns it on.
+  loopSlop: boolean;
   // The model lifted off the ground, as held in the hand: no tyre touches the ground, and the
   // frame (the first body) is kept still instead, as for a model with no tyres (see findGround).
   // Its wheels then turn freely, and a differential worked with its drive held turns one wheel
@@ -203,6 +208,7 @@ export const experiments: Options = {
   freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
   scrubJoined: setting('KINEBRICK_SCRUB_JOINED') === '1',
   pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
+  loopSlop: setting('KINEBRICK_LOOP_SLOP') === '1',
   lifted: false,
 };
 
@@ -1276,6 +1282,22 @@ export class Kinematics {
         const parent = this.parentLink(body)!.parent;
         if (this.parentJoint[parent] < 0 || this.drag.held.has(parent) || this.frozen.has(parent)) this.drag.held.add(body);
       }
+      // And a loop's slop (see loopSlop), each body if the drag can still go: tried by the quick
+      // test (see quickTest), then all let go if the drag can't go with them held after all.
+      // Not one the drag's motion turns, as chosen before these holds: the control drives it,
+      // whatever else may move it too (the 9394's function 4, whose parts all stayed still).
+      const first = this.options.loopSlop ? this.jointMotion(joint) : null;
+      const slop = first ? [...this.loopSlop(grabbed)].filter((b) => Math.abs(this.jointRate(first, this.parentJoint[b])) < SLOP_RATE) : [].filter((b) => !this.frozen.has(b) && !this.drag.held.has(b));
+      const quick = slop.length ? this.quickTest(joint) : null;
+      if (quick) {
+        const kept = slop.filter((b) => {
+          this.drag.held.add(b);
+          if (quick()) return true;
+          this.drag.held.delete(b);
+          return false;
+        });
+        if (kept.length && !stillPossible()) for (const b of kept) this.drag.held.delete(b);
+      }
       if (this.options.reach) this.drag.outOfReach = this.outOfReach(grabbed);
       // A car that can't roll with its steering free (the scrub its steering leaves rules out
       // every way to roll: the 8245's caster fork) has its steering held, as tier 2 would keep
@@ -1503,6 +1525,33 @@ export class Kinematics {
       if (!stillPossible() || (shaftCouldStay && !this.couldStayStill(shaft, stillPossible))) this.drag.held.delete(body);
     }
     return [0, ...this.mounts.keys(), ...candidates];
+  }
+
+  // A loop's slop: the bodies in closed loops that can turn on their joints with the part
+  // grabbed held still, as things are held now. The control doesn't drive them, so nothing in
+  // the drag needs them to move, and left free, the drag mixes a little of their motion into
+  // each step and doesn't undo it on the way back (the 9392 Quad Bike's steering arm, on a
+  // frictionless axle-pin, rolled as the handlebars turned, and steered its wheels unevenly).
+  // A tie rod isn't: it can't move with the steering held. Nor a gear: a differential's gears
+  // turn free with one side held, and a drag may need them to.
+  private loopSlop(grabbed: number): Set<number> {
+    const slop = new Set<number>();
+    const gears = new Set(this.mech.gears.map((g) => g.body));
+    const added = !this.drag.held.has(grabbed);
+    this.drag.held.add(grabbed);
+    let motions: number[][];
+    try {
+      const basis = this.treeBasis();
+      motions = this.freeMotionsInBasis().map((z) => fromBasis(z, basis));
+    } finally {
+      if (added) this.drag.held.delete(grabbed);
+    }
+    for (let body = 1; body < this.bodyCount; body++) {
+      const j = this.parentJoint[body];
+      if (j < 0 || body === grabbed || gears.has(body) || this.mech.joints[j].kind !== 'revolute' || !this.inLoop(j)) continue;
+      if (motions.some((m) => Math.abs(this.jointRate(m, j)) > SLOP_RATE)) slop.add(body);
+    }
+    return slop;
   }
 
   // A quick stand-in for asking whether a drag that turns `joint` is still possible, for trying
