@@ -594,18 +594,36 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const from = kin.jointAngles[joint];
     let halt: Halt | null = null;
     let length = 0;
-    // Pushed back: how far the joint has still to turn, and how fast it turns for each LDU
-    // pushed (from the push out at first, then from each step), to shorten the last steps so as
-    // to stop where it began. At most twice as far as the push out went.
+    // Pushed back: first as far as the push out went, then on, or back, to where the joint began,
+    // the last steps shortened by how fast it turns for each LDU pushed (from the push out at
+    // first, then from each step). Pushed back only as far as it went, it ended up to a fortieth of
+    // a radian off; pushed back only to the joint's angle, a push that carried a part away hardly
+    // turning the joint (the 42062's spreader, 200 LDU) brought it nowhere back.
     const left = () => ('back' in to ? to.back.from - kin.jointAngles[joint] : 0);
     const backWay = Math.sign(left());
     let rate = 'back' in to && to.back.length > 0 ? Math.abs(left()) / to.back.length : 0;
-    const far = 'back' in to ? 2 * to.back.length + PUSH_STEP : PUSH_FAR;
+    const far = 'back' in to ? to.back.length : PUSH_FAR;
+    let mending = false;
+    let mendWay = 0;
+    let mended = 0;
+    const going = () => {
+      if (!('back' in to)) return length < far - 1e-9 && ownTurned < Math.abs(to.reach) - 1e-9;
+      if (!mending) {
+        if (length < far - 1e-9) return true;
+        mending = true;
+        mendWay = Math.sign(left());
+        if (backWay === 0 || mendWay === 0 || Math.abs(left()) <= BACK_ANGLE) return false;
+        // Gone past where it began: turned round.
+        if (mendWay !== backWay) dir.negate();
+        return true;
+      }
+      return mended < to.back.length + PUSH_STEP && Math.sign(left()) === mendWay && Math.abs(left()) > BACK_ANGLE;
+    };
     // A control whose joint can't turn, with what the push holds held, could only be carried by
     // what it turns in (the whole 42055 Bucket Wheel Excavator rolling, pushed by its battery
     // switch), step after step until it ran into something: it goes nowhere.
     if (!('back' in to) && kin.jointMotion(joint) === null) halt = 'no motion';
-    while (!halt && length < far - 1e-9 && ('back' in to ? backWay !== 0 && Math.sign(left()) === backWay && Math.abs(left()) > BACK_ANGLE : ownTurned < Math.abs(to.reach) - 1e-9)) {
+    while (!halt && going()) {
       if (dir.length() < 0.5) {
         halt = 'no motion';
         break;
@@ -614,7 +632,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // wayOnJoint), as a hand follows a door round, and not along the line it first went.
       const way = wayOnJoint(kin, body, grabNow());
       if (way) dir.copy(way.dot(dir) >= 0 ? way : way.negate());
-      const step = Math.min(PUSH_STEP, far - length, 'back' in to && rate > 1e-9 ? Math.max(PUSH_LEAST, Math.abs(left()) / rate) : PUSH_STEP);
+      const step = mending ? Math.min(PUSH_STEP, rate > 1e-9 ? Math.max(PUSH_LEAST, Math.abs(left()) / rate) : PUSH_STEP) : Math.min(PUSH_STEP, far - length);
       const angleWas = kin.jointAngles[joint];
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
@@ -622,6 +640,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         break;
       }
       length += step;
+      if (mending) mended += step;
       if (Math.abs(kin.jointAngles[joint] - angleWas) > 1e-9) rate = Math.abs(kin.jointAngles[joint] - angleWas) / step;
       each();
       const is = parts.map((p) => relative(p.part, p.body, kin.poses));
