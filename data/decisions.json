@@ -12,28 +12,7 @@
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [
-    {
-      "id": "8832-fn2-shock",
-      "kind": "Question",
-      "title": "8832 Roadster, function 2: where is the shock absorber's top held?",
-      "since": "2026-11-16",
-      "what": "Function 2 is the rear swinging arm, whose axle pushes the shock absorber up. In our reading the arm cannot move at all with the roll bar and its top axle held, so either the file or our list has the shock absorber's top in the wrong place. The booklet scan is too coarse for Claude to tell whether the top sits on the roll bar's top axle or on the seat. If you have the set or a better scan, look at steps 11 to 13; the inset of step 13 shows the shock absorber behind the seat.",
-      "effect": "The function does not work today. With the mount known, the worker corrects the list or proposes an erratum.",
-      "confidence": "No rush. If you cannot tell either, say so and the function stays as it is.",
-      "links": [
-        {
-          "label": "Booklet (steps 11 to 13)",
-          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8832"
-        },
-        {
-          "label": "Viewer: the arm, the roll bar and its axle",
-          "url": "http://localhost:5174/?file=models/8832-Roadster.mpd&show=58,9,32"
-        }
-      ],
-      "reply": "8832 shock: on the roll bar's axle — or — 8832 shock: on the seat"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "The next offer of main",
@@ -42,9 +21,17 @@
     {
       "title": "A second worker, asked again at mid-week",
       "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
+    },
+    {
+      "title": "8832 Roadster: the correction for the shock absorber's top",
+      "what": "By your answer of 16 November the worker puts the shock absorber's top on the seat so that the rear arm swings. You get the exact correction to sign, with viewer links before and after."
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster, function 2: the function should work, so if the file does not allow it the file is wrong; you believe the shock absorber's top sits on the seat. The worker makes the correction and it comes back to you to sign."
+    },
     {
       "date": "2026-11-16",
       "what": "42070 6x6 All Terrain Tow Truck: the rear differential is turned round (\"Sign 42070\"). No score changes; its drive is still jammed for another reason, which the worker traces."
