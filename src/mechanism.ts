@@ -297,6 +297,7 @@ export interface Coupling {
 
 // Whether inferMechanism first tries friction pins as rigid (on unless KINEBRICK_FRICTION_RIGID=0).
 const FRICTION_RIGID = typeof process === 'undefined' || process.env?.KINEBRICK_FRICTION_RIGID !== '0';
+const SHOCK_PIVOTS = typeof process !== 'undefined' && process.env?.KINEBRICK_SHOCK_PIVOTS === '1';
 
 // `paths`: every path in the model (see parseModel), including those drawn with shapes rather
 // than parts (a string), which the parts alone don't show.
@@ -308,50 +309,102 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
   // still move, that's it; if not, they stay joints, stiff ones.
   const allPaths = [...new Set([...paths, ...parts.flatMap((p) => (p.path ? [p.path] : []))])];
-  const build = (guide: Set<number>) => {
+  const build = (guide: Set<number>, free = freed) => {
     // KINEBRICK_FRICTION_RIGID=0 skips that first try: friction pins are always stiff joints.
     // For measuring what the rule does; unset, nothing changes.
     if (FRICTION_RIGID && !allFree) {
-      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths, freed);
+      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths, free);
       if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
     }
-    return buildMechanism(parts, table, roleList, false, guide, allPaths, freed);
+    return buildMechanism(parts, table, roleList, false, guide, allPaths, free);
   };
   let mech = build(new Set());
-  // A linear actuator or a shock absorber exists to change its length: where its slide can't
-  // move at all with the friction pins held, the pins that hold it are real pivots (the 42070's
-  // front outrigger arms, the 42039's rear suspension arms), and stay joints, stiff ones, as a
-  // linkage built on friction pins does when the whole model couldn't move otherwise. Once per
-  // reading, with the model built with every friction pin free to find them (see pinsToSlide).
+  // A linear actuator exists to change its length: where its slide can't move at all with the
+  // friction pins held, the pins that hold it are real pivots (the 42070's front outrigger
+  // arms), and stay joints, stiff ones, as a linkage built on friction pins does when the whole
+  // model couldn't move otherwise. Once per reading, with only the friction pins near the
+  // actuator freed to find them (see pivotsOfStuckSlides).
   if (FRICTION_RIGID && !allFree && mech.connections.some((c) => c.held)) {
-    const pivots = pivotsOfStuckSlides(mech, parts, table, () => inferMechanism(parts, table, roleList, paths, new Set(), true));
-    if (pivots.length) {
-      freed = new Set([...freed, ...pivots]);
-      mech = build(new Set());
+    const found = pivotsOfStuckSlides(mech, parts, table, (pins) => buildMechanism(parts, table, roleList, true, new Set(), allPaths, new Set([...freed, ...pins])));
+    if (found) {
+      freed = new Set([...freed, ...found.pins]);
+      mech = found.mech ?? build(new Set());
     }
   }
   const guide = racksToGuide(mech);
   return guide.size ? build(guide) : mech;
 }
 
-// The friction pins that hold an actuator's or a shock absorber's slide still (see
-// inferMechanism): for each such slide that no free motion slides, the pins it needs freed.
-function pivotsOfStuckSlides(mech: Mechanism, parts: PlacedPart[], table: ConnectionTable, allFree: () => Mechanism): number[] {
-  const shockParts = new Set(Object.entries(table.shocks ?? {}).flatMap(([cylinder, list]) => [cylinder, ...list.map((s) => s.rod)]));
+// The friction pins that hold a linear actuator's slide still (see inferMechanism), with the
+// mechanism built with them freed when that build is already at hand; null if there are none.
+// For each actuator slide that no free motion slides, the pins are looked for near it only, as
+// a build with every friction pin free costs too much in a large model. Near means: the bodies
+// within NEAR joints of either end of the actuator (not through its own slide), and the bodies
+// joined to those; each part of them sits in a piece of parts held together without friction
+// pins, and the friction pins of those pieces are freed, all at once, and the slide tried in
+// that build (see pinsToSlide). The largest piece of a frame is left out, or nearly every pin
+// would be freed.
+const NEAR = 1;
+function pivotsOfStuckSlides(mech: Mechanism, parts: PlacedPart[], table: ConnectionTable, withFreed: (pins: Set<number>) => Mechanism): { pins: number[]; mech: Mechanism | null } | null {
+  // Shock absorbers are left out for now: freeing their arms' pins made the drag far slower in
+  // the 42039 and the 42125 (decision 103). KINEBRICK_SHOCK_PIVOTS=1 takes them in again, for a trial.
+  const shockParts = new Set(SHOCK_PIVOTS ? Object.entries(table.shocks ?? {}).flatMap(([cylinder, list]) => [cylinder, ...list.map((s) => s.rod)]) : []);
   const pistons = new Set((mech.screws ?? []).map((s) => s.piston));
   const slides = mech.joints.filter((j) => j.kind === 'slide' && j.sliding && (pistons.has(j.bodyA) || pistons.has(j.bodyB) || j.sliding.some((p) => shockParts.has(parts[p].name))));
-  if (!slides.length) return [];
+  if (!slides.length) return null;
+  const axisOf = (j: Joint) => new Vector3().subVectors(j.to, j.from).normalize();
   const kin = new Kinematics(mech);
   const motions = kin.freeMotions().map((m) => Array.from(m));
-  const stuck = slides.filter((j) => {
-    const axis = new Vector3().subVectors(j.to, j.from).normalize();
-    return !motions.some((m) => Math.abs(kin.pointVelocity(m, j.bodyA, j.from).sub(kin.pointVelocity(m, j.bodyB, j.from)).dot(axis)) > 1e-6);
+  const stuck = slides.filter((j) => !motions.some((m) => Math.abs(kin.pointVelocity(m, j.bodyA, j.from).sub(kin.pointVelocity(m, j.bodyB, j.from)).dot(axisOf(j))) > 1e-6));
+  if (!stuck.length) return null;
+
+  // The pieces: each part's piece, by the first part of it (joined through connections that
+  // aren't friction pins, within one body), and how many parts each has.
+  const pieceOf = parts.map((_, i) => i);
+  const find = (i: number): number => (pieceOf[i] === i ? i : (pieceOf[i] = find(pieceOf[i])));
+  for (const c of mech.connections) {
+    if (c.held || mech.bodyOf[c.male] !== mech.bodyOf[c.female]) continue;
+    const [a, b] = [find(c.male), find(c.female)];
+    if (a !== b) pieceOf[Math.max(a, b)] = Math.min(a, b);
+  }
+  const size = new Map<number, number>();
+  parts.forEach((_, i) => size.set(find(i), (size.get(find(i)) ?? 0) + 1));
+  const frames = new Set(mech.frames ?? [0]);
+  const largest = new Map<number, number>();
+  parts.forEach((_, i) => {
+    const [body, piece] = [mech.bodyOf[i], find(i)];
+    if (frames.has(body) && (!largest.has(body) || size.get(piece)! > size.get(largest.get(body)!)!)) largest.set(body, piece);
   });
-  if (!stuck.length) return [];
-  const free = allFree();
+
+  // The pieces near each stuck slide, and the friction pins in them.
+  const bodies = new Set<number>();
+  for (const j of stuck) {
+    let front = [j.bodyA, j.bodyB];
+    front.forEach((b) => bodies.add(b));
+    for (let hop = 0; hop < NEAR; hop++) {
+      const next: number[] = [];
+      for (const k of mech.joints) {
+        if (k === j) continue;
+        for (const [from, to] of [[k.bodyA, k.bodyB], [k.bodyB, k.bodyA]]) if (front.includes(from) && !bodies.has(to)) (bodies.add(to), next.push(to));
+      }
+      front = next;
+    }
+  }
+  const near = new Set<number>();
+  for (const c of mech.connections) {
+    if (bodies.has(mech.bodyOf[c.male]) || bodies.has(mech.bodyOf[c.female])) (near.add(find(c.male)), near.add(find(c.female)));
+  }
+  for (const piece of [...near]) if (largest.get(mech.bodyOf[piece]) === piece) near.delete(piece);
+  const candidates = new Set<number>();
+  for (const c of mech.connections) if (c.held && (near.has(find(c.male)) || near.has(find(c.female)))) candidates.add(c.male);
+  if (!candidates.size) return null;
+
+  const tried = withFreed(candidates);
   const pins = new Set<number>();
-  for (const j of stuck) for (const pin of pinsToSlide(free, j.sliding![0], j.sliding![1], j.from, new Vector3().subVectors(j.to, j.from).normalize())) pins.add(pin);
-  return [...pins].sort((a, b) => a - b);
+  for (const j of stuck) for (const pin of pinsToSlide(tried, j.sliding![0], j.sliding![1], j.from, axisOf(j))) pins.add(pin);
+  if (!pins.size) return null;
+  // The build tried is the one wanted when every pin freed in it is needed.
+  return { pins: [...pins].sort((a, b) => a - b), mech: [...candidates].every((p) => pins.has(p)) ? tried : null };
 }
 
 // The OMR embeds parts that weren't in the LDraw library yet in the model's file, named
