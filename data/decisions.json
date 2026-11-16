@@ -12,27 +12,7 @@
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [
-    {
-      "id": "monorail-look",
-      "kind": "Look, if you like",
-      "title": "The monorail at 60 and 120 rpm, on screen",
-      "since": "2026-11-15",
-      "what": "You saw the monorail sets go choppy above 70 rpm. The motor's step is mended, and the train branch runs again after today's merge: all 51 train functions work, and the 6990 goes round its track at 60 and 120 rpm. No session can watch the animation as you see it (their panes are hidden), so only you can say whether it is smooth. The motor's own work leaves room for about 30 frames a second at 120 rpm.",
-      "effect": "Optional. Nothing waits on it.",
-      "links": [
-        {
-          "label": "6990 at 120 rpm",
-          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=120&autospin=652"
-        },
-        {
-          "label": "6990 at 60 rpm",
-          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=60&autospin=652"
-        }
-      ],
-      "reply": "The monorail is smooth now"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "The next offer of main",
@@ -44,6 +24,10 @@
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "You looked at the monorail with the FPS card (\"The monorail is smooth now\")."
+    },
     {
       "date": "2026-11-15",
       "what": "You moved main to c217b4ea (\"main pushed\"): 685 of 1,226 functions work on main, 673 before."
