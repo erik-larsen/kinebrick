@@ -169,7 +169,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 45 works, 23 partly, 2 no, 1 skipped |
+| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 46 works, 22 partly, 2 no, 1 skipped |
 | [Valve train](valve-train.md) | 1 | 1980 |  | 1 |  |  |  |  | 3 works |
 | [Driven rotor](driven-rotor.md) | 20 | 1977 | 1 | 1 | 6 |  | 10 | 2 | 15 works, 10 partly |
 | [Rotor blade pitch](rotor-pitch.md) | 2 | 1977 | 1 |  | 1 |  |  |  | 2 partly, 1 no |
