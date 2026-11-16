@@ -4,7 +4,7 @@ A rigid axle swings side to side on a central pivot or turntable. (Suspension.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.
 
-Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 3 partly, 1 no, 2 skipped.
+Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 works, 2 partly, 1 no, 2 skipped.
 
 ## By decade
 
@@ -28,7 +28,7 @@ Each detail by the set it first appears in.
 
 **1986, [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor)**
 
-- The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground. (partly)
+- The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground. (works)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 

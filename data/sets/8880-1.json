@@ -224,9 +224,9 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
-    "seconds": 171,
+    "seconds": 126,
     "counts": {
       "works": 8,
       "no": 2,
@@ -454,7 +454,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 37.6
+        "seconds": 32.6
       },
       {
         "result": "works",
@@ -678,7 +678,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 51.2
+        "seconds": 36.6
       },
       {
         "result": "no",
@@ -734,7 +734,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 6539",
-        "seconds": 9.9
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -800,7 +800,7 @@
             ]
           ]
         ],
-        "seconds": 9.7
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -859,7 +859,7 @@
             ]
           ]
         ],
-        "seconds": 9.5
+        "seconds": 8.1
       },
       {
         "result": "works",
@@ -922,7 +922,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -1002,14 +1002,14 @@
           [],
           []
         ],
-        "seconds": 8.6
+        "seconds": 7
       },
       {
         "result": "partly",
         "turned": [
           [
             0.03,
-            -0.03
+            -0.04
           ],
           [
             0.1,
@@ -1027,8 +1027,8 @@
               2.34
             ],
             [
-              5.93,
-              2.35
+              4.84,
+              1.93
             ]
           ],
           [
@@ -1049,8 +1049,8 @@
               2.89
             ],
             [
-              4.97,
-              2.9
+              4.08,
+              2.38
             ]
           ],
           [
@@ -1084,11 +1084,11 @@
           []
         ],
         "judged": [
-          0,
+          1,
           1
         ],
         "cause": "stopped-early",
-        "seconds": 15.2
+        "seconds": 11.4
       },
       {
         "result": "skipped",
@@ -1193,7 +1193,7 @@
           [],
           []
         ],
-        "seconds": 13.4
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -1253,7 +1253,7 @@
             ]
           ]
         ],
-        "seconds": 8.6
+        "seconds": 7.7
       }
     ]
   }

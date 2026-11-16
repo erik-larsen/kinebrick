@@ -148,9 +148,9 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
-    "seconds": 53,
+    "seconds": 50,
     "counts": {
       "works": 3,
       "partly": 1,
@@ -319,7 +319,7 @@
             "p1545 44772"
           ]
         ],
-        "seconds": 17
+        "seconds": 16.7
       },
       {
         "result": "partly",
@@ -394,7 +394,7 @@
         ],
         "cause": "not-driven",
         "detail": "p299 87761",
-        "seconds": 7.5
+        "seconds": 7.4
       },
       {
         "result": "no",
@@ -535,7 +535,7 @@
             ]
           ]
         ],
-        "seconds": 7.3
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -682,7 +682,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p50 32524",
-        "seconds": 2.9
+        "seconds": 1.1
       },
       {
         "result": "skipped",

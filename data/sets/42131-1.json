@@ -232,9 +232,9 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
-    "seconds": 631,
+    "seconds": 412,
     "counts": {
       "works": 4,
       "partly": 6,
@@ -389,7 +389,7 @@
             ]
           ]
         ],
-        "seconds": 24.4
+        "seconds": 24.6
       },
       {
         "result": "works",
@@ -444,7 +444,7 @@
             ]
           ]
         ],
-        "seconds": 24.7
+        "seconds": 25.1
       },
       {
         "result": "works",
@@ -540,7 +540,7 @@
             "p3613 42529"
           ]
         ],
-        "seconds": 48.1
+        "seconds": 52.4
       },
       {
         "result": "partly",
@@ -662,7 +662,7 @@
         ],
         "cause": "not-driven",
         "detail": "p5 62821",
-        "seconds": 48.5
+        "seconds": 52.1
       },
       {
         "result": "partly",
@@ -717,7 +717,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3297 18947",
-        "seconds": 39
+        "seconds": 41.5
       },
       {
         "result": "partly",
@@ -788,7 +788,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3399 62274c01 against p3398 42131 - u9559c01",
-        "seconds": 39.7
+        "seconds": 42.1
       },
       {
         "result": "partly",
@@ -857,7 +857,7 @@
         ],
         "cause": "not-driven",
         "detail": "p4122 62274c01 against p4121 42131 - u9559c01",
-        "seconds": 39.3
+        "seconds": 41.5
       },
       {
         "result": "partly",
@@ -925,7 +925,7 @@
         ],
         "cause": "loose-part",
         "detail": "p6078 62274c01",
-        "seconds": 39
+        "seconds": 39.9
       },
       {
         "result": "partly",
@@ -988,7 +988,7 @@
         ],
         "cause": "not-driven",
         "detail": "p5717 42131 - 71710",
-        "seconds": 38.8
+        "seconds": 39.4
       },
       {
         "result": "works",
@@ -1030,7 +1030,7 @@
             ]
           ]
         ],
-        "seconds": 25
+        "seconds": 26.2
       },
       {
         "result": "not checked"

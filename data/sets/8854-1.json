@@ -169,7 +169,7 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
     "seconds": 11,
     "counts": {
@@ -372,7 +372,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -422,7 +422,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -726,7 +726,7 @@
         ],
         "cause": "loose-part",
         "detail": "p903 2428",
-        "seconds": 3.1
+        "seconds": 3.3
       },
       {
         "result": "skipped",
@@ -848,7 +848,7 @@
           [],
           []
         ],
-        "seconds": 2.3
+        "seconds": 2.5
       },
       {
         "result": "not checked",

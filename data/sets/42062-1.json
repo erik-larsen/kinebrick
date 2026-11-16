@@ -166,9 +166,9 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
-    "seconds": 105,
+    "seconds": 103,
     "counts": {
       "partly": 3,
       "works": 5,
@@ -463,7 +463,7 @@
           [],
           []
         ],
-        "seconds": 31.5
+        "seconds": 32.1
       },
       {
         "result": "no",
@@ -548,7 +548,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -621,7 +621,7 @@
         ],
         "cause": "not-driven",
         "detail": "p406 48989",
-        "seconds": 3.9
+        "seconds": 4
       },
       {
         "result": "works",
@@ -833,7 +833,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 24.9
+        "seconds": 23.9
       },
       {
         "result": "works",
@@ -951,7 +951,7 @@
           [],
           []
         ],
-        "seconds": 20
+        "seconds": 17.7
       }
     ]
   }

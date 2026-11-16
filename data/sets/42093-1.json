@@ -86,9 +86,9 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
-    "seconds": 4,
+    "seconds": 5,
     "counts": {
       "skipped": 1,
       "partly": 1,
@@ -191,7 +191,7 @@
         ],
         "cause": "not-driven",
         "detail": "p194 22961",
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -257,7 +257,7 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 2.4
       },
       {
         "result": "works",
@@ -294,7 +294,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1
       }
     ]
   }

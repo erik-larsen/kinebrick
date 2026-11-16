@@ -62,7 +62,7 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
     "seconds": 4,
     "counts": {
@@ -165,7 +165,7 @@
         ],
         "cause": "too-little",
         "detail": "p56 4716 against p0 32523",
-        "seconds": 3.7
+        "seconds": 3.9
       },
       {
         "result": "works",

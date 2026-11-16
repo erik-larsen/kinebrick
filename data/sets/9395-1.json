@@ -164,9 +164,9 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
-    "seconds": 495,
+    "seconds": 493,
     "counts": {
       "works": 4,
       "no": 1,
@@ -297,7 +297,7 @@
             ]
           ]
         ],
-        "seconds": 31.1
+        "seconds": 31
       },
       {
         "result": "works",
@@ -425,7 +425,7 @@
             "p297 2851"
           ]
         ],
-        "seconds": 128.8
+        "seconds": 127.7
       },
       {
         "result": "no",
@@ -566,7 +566,7 @@
         "why": [
           "p612 2825, worked first, went 0 of 0.3"
         ],
-        "seconds": 29.8
+        "seconds": 29.7
       },
       {
         "result": "partly",
@@ -766,7 +766,7 @@
           [],
           []
         ],
-        "seconds": 265.8
+        "seconds": 268.1
       }
     ]
   }

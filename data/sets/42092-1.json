@@ -101,9 +101,9 @@
     ]
   },
   "generated": {
-    "commit": "c0f5c4bd",
+    "commit": "a3fd19c1",
     "date": "2026-11-16",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "works": 4,
       "no": 1,
@@ -182,7 +182,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -347,7 +347,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p307 74695",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",
@@ -413,7 +413,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "skipped",
