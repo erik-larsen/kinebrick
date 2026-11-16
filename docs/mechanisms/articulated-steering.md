@@ -4,7 +4,7 @@ The machine bends at an upright hinge between its front and rear halves. (Steeri
 
 First appears in 2001, in [8464 Pneumatic Front End Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8464-1): The steering wheel in the cab steers the loader by bending it in the middle: an 8-tooth pinion at the foot of its column runs on a 40-tooth gear lying flat on the joint between the two frames, so the front frame, with its wheels, boom and bucket, swings left and right against the rear about a vertical pivot.
 
-Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 4 works, 3 partly.
+Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 3 works, 4 partly.
 
 ## By decade
 
@@ -34,7 +34,7 @@ Used in 6 of the 186 surveyed sets, by 7 functions. Kinebrick: 4 works, 3 partly
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
-- The black gear on top of the rear unit, just behind the cab, steers the machine: through a pair of gears it turns the 60 tooth turntable joining the front and rear units, and a lever linkage steers the front wheels with it. (works)
+- The black gear on top of the rear unit, just behind the cab, steers the machine: through a pair of gears it turns the 60 tooth turntable joining the front and rear units, and a lever linkage steers the front wheels with it. (partly)
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 

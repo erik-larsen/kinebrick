@@ -210,9 +210,9 @@
     ]
   },
   "generated": {
-    "commit": "28315418",
-    "date": "2026-11-15",
-    "seconds": 66,
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
+    "seconds": 93,
     "counts": {
       "partly": 7,
       "not checked": 1,
@@ -324,7 +324,7 @@
         ],
         "cause": "not-driven",
         "detail": "p718 3647",
-        "seconds": 4.9
+        "seconds": 7.4
       },
       {
         "result": "partly",
@@ -402,7 +402,7 @@
         ],
         "cause": "not-driven",
         "detail": "p705 6592",
-        "seconds": 4.6
+        "seconds": 7.1
       },
       {
         "result": "partly",
@@ -494,7 +494,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 4.8
+        "seconds": 7.6
       },
       {
         "result": "not checked",
@@ -565,7 +565,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 2.9
+        "seconds": 4.7
       },
       {
         "result": "partly",
@@ -633,7 +633,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1067 22969",
-        "seconds": 3.2
+        "seconds": 5.3
       },
       {
         "result": "partly",
@@ -696,7 +696,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 3.2
+        "seconds": 5.3
       },
       {
         "result": "partly",
@@ -706,16 +706,16 @@
             -0.03
           ],
           [
-            0.13,
+            0.1,
             -0.63
           ],
           [
-            0.03,
-            -0.03
+            0,
+            0
           ],
           [
-            0.03,
-            -0.03
+            0,
+            0
           ]
         ],
         "rates": [
@@ -747,22 +747,22 @@
           ],
           [
             [
-              6.06,
-              2.47
+              0,
+              0
             ],
             [
-              5.79,
-              2.18
+              0,
+              0
             ]
           ],
           [
             [
-              5.94,
-              2.24
+              0,
+              0
             ],
             [
-              5.92,
-              2.24
+              0,
+              0
             ]
           ]
         ],
@@ -789,31 +789,29 @@
           ],
           [
             [
-              4,
-              2.32
+              0,
+              0
             ],
             [
-              3.67,
-              2.1
+              0,
+              0
             ]
           ],
           [
             [
-              3.7,
-              2.13
+              0,
+              0
             ],
             [
-              3.7,
-              2.13
+              0,
+              0
             ]
           ]
         ],
         "strayed": [
           "p1161 32016",
           "p789 2739a",
-          "p696 32449",
-          "p346 3749",
-          "p324 3749"
+          "p696 32449"
         ],
         "stop": [
           [
@@ -825,12 +823,12 @@
             "limit"
           ],
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ],
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "movedBy": [
@@ -846,7 +844,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 14.3
+        "seconds": 17.5
       },
       {
         "result": "skipped",
@@ -948,7 +946,7 @@
             "p274 32189"
           ]
         ],
-        "seconds": 25.1
+        "seconds": 34.5
       },
       {
         "result": "skipped",
@@ -1033,7 +1031,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 1.9
+        "seconds": 2.4
       }
     ]
   }

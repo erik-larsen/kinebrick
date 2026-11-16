@@ -62,8 +62,8 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
     "seconds": 2,
     "counts": {
       "works": 3
@@ -146,7 +146,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -160,7 +160,7 @@
           {
             "p17 2853": [
               1,
-              1.23e-13
+              1.54e-13
             ],
             "p18 2852": [
               0.168,
@@ -201,7 +201,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -319,7 +319,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.5
       }
     ]
   }

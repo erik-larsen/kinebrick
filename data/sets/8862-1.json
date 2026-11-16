@@ -189,9 +189,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 35,
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
+    "seconds": 45,
     "counts": {
       "works": 10,
       "partly": 1,
@@ -247,7 +247,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -284,7 +284,7 @@
             ],
             "p224 3404": [
               0,
-              5.36e-53
+              4.87e-53
             ]
           }
         ],
@@ -317,7 +317,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 2.3
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -335,7 +335,7 @@
             ],
             "p580 3895": [
               0,
-              5.31e-13
+              5.61e-13
             ],
             "p596 3702 against p580 3895": [
               0.0039,
@@ -367,7 +367,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 3
       },
       {
         "result": "works",
@@ -417,7 +417,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -483,7 +483,7 @@
           [],
           []
         ],
-        "seconds": 2.3
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -538,7 +538,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -580,7 +580,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -598,7 +598,7 @@
             ],
             "p264 3702": [
               0,
-              1.46e-11
+              2.84e-11
             ]
           }
         ],
@@ -629,7 +629,7 @@
         "pushed": [
           true
         ],
-        "seconds": 13.1
+        "seconds": 15.7
       },
       {
         "result": "works",
@@ -647,7 +647,7 @@
             ],
             "p292 3703": [
               0,
-              7.33e-12
+              9.81e-12
             ]
           }
         ],
@@ -678,7 +678,7 @@
         "pushed": [
           true
         ],
-        "seconds": 2.2
+        "seconds": 2.7
       },
       {
         "result": "skipped",
@@ -719,7 +719,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -837,7 +837,7 @@
           [],
           []
         ],
-        "seconds": 5.4
+        "seconds": 7
       }
     ]
   }

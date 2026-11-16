@@ -87,8 +87,8 @@
     }
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
     "seconds": 2,
     "counts": {
       "works": 3,
@@ -171,7 +171,7 @@
           "rise": 0.32,
           "tyre": "p319 3634"
         },
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -196,30 +196,30 @@
               42.3
             ],
             "p100 3652 against p0 3702": [
-              5.62e-8,
+              8.43e-8,
               23.2
             ],
             "p155 3736 against p0 3702": [
               0,
-              1.46e-13
+              1.8e-13
             ]
           },
           {
             "p46 3647 against p0 3702": [
               3,
-              2.14e-13
+              1.73e-13
             ],
             "p47 3705 against p0 3702": [
               3,
               42.3
             ],
             "p100 3652 against p0 3702": [
-              8.43e-8,
+              1.12e-7,
               23.2
             ],
             "p155 3736 against p0 3702": [
               5.62e-8,
-              3.69e-13
+              3.39e-13
             ]
           }
         ],
@@ -285,7 +285,7 @@
             "p100 3652 against p0 3702"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -351,7 +351,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "not checked",

@@ -123,9 +123,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 1,
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
+    "seconds": 2,
     "counts": {
       "partly": 2,
       "pivoted": 1,
@@ -226,7 +226,7 @@
           "rise": 0,
           "tyre": "p318 32180"
         },
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -314,7 +314,7 @@
         ],
         "cause": "not-driven",
         "detail": "p223 41239 against p65 32524",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -548,7 +548,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",

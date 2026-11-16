@@ -111,8 +111,8 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
     "seconds": 2,
     "counts": {
       "works": 4,
@@ -287,7 +287,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -558,7 +558,7 @@
           [],
           []
         ],
-        "seconds": 1
+        "seconds": 1.2
       },
       {
         "result": "not checked",

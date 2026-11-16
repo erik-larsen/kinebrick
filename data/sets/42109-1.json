@@ -108,7 +108,7 @@
     ]
   },
   "generated": {
-    "commit": "2c010e2d",
+    "commit": "c0f5c4bd",
     "date": "2026-11-16",
     "seconds": 3,
     "counts": {
@@ -195,7 +195,7 @@
         ],
         "cause": "not-driven",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -341,7 +341,7 @@
         ],
         "cause": "not-driven",
         "detail": "p692 32270",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -458,7 +458,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 0.8
+        "seconds": 0.7
       }
     ]
   }

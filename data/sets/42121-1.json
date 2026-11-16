@@ -89,9 +89,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 10,
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
+    "seconds": 13,
     "counts": {
       "partly": 1,
       "no": 1,
@@ -215,7 +215,7 @@
         ],
         "cause": "too-little",
         "detail": "p84 32271",
-        "seconds": 7
+        "seconds": 9
       },
       {
         "result": "no",
@@ -296,7 +296,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -414,7 +414,7 @@
           [],
           []
         ],
-        "seconds": 2.3
+        "seconds": 3.2
       },
       {
         "result": "not checked",

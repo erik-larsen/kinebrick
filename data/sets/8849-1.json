@@ -125,11 +125,12 @@
     ]
   },
   "generated": {
-    "commit": "2c010e2d",
+    "commit": "c0f5c4bd",
     "date": "2026-11-16",
-    "seconds": 3,
+    "seconds": 2,
     "counts": {
-      "works": 6,
+      "works": 5,
+      "partly": 1,
       "not checked": 1
     },
     "loose": [],
@@ -254,29 +255,32 @@
         "seconds": 0.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            -1.5,
+            1.5
           ]
+        ],
+        "moved": [
+          "p118 3707"
         ],
         "rates": [
           {
             "p100 4261": [
-              1.03,
+              1,
               76.2
             ],
             "p101 4261": [
-              1.03,
+              1,
               76.2
             ],
             "p114 3743": [
               1,
-              7.87
+              11
             ],
             "p118 3707": [
-              0,
+              1,
               0
             ]
           }
@@ -284,31 +288,36 @@
         "back": [
           [
             [
-              0.01,
-              0.02
+              0,
+              0
             ],
             [
-              0.01,
-              0.02
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.01,
-              0.02
+              0,
+              0
             ],
             [
-              0.01,
-              0.02
+              0,
+              0
             ]
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 0.5
+        "judged": [
+          0
+        ],
+        "cause": "stay-chosen",
+        "detail": "p118 3707",
+        "seconds": 0.4
       },
       {
         "result": "works",

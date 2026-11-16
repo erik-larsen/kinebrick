@@ -84,9 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 3,
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
+    "seconds": 4,
     "counts": {
       "works": 3,
       "partly": 1,
@@ -238,7 +238,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 42032 - 33299b against p120 32278",
-        "seconds": 1.4
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -302,7 +302,7 @@
           true
         ],
         "freed": 1,
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -371,7 +371,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.6
       }
     ]
   }

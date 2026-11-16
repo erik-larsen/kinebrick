@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 64 works, 9 partly, 3 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 64 works, 8 partly, 4 no.
 
 ## By decade
 
@@ -275,7 +275,7 @@ Each detail by the set it first appears in.
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
-- The small handwheel at the very back of the chassis steers all four wheels: a shaft along the chassis turns a pinion on the rear steering rack and, through idler gears, one on the front rack, so the front and rear wheels steer opposite ways. (partly)
+- The small handwheel at the very back of the chassis steers all four wheels: a shaft along the chassis turns a pinion on the rear steering rack and, through idler gears, one on the front rack, so the front and rear wheels steer opposite ways. (no)
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 

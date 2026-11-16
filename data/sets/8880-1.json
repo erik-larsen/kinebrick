@@ -224,9 +224,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 134,
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
+    "seconds": 171,
     "counts": {
       "works": 8,
       "no": 2,
@@ -454,7 +454,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 29.8
+        "seconds": 37.6
       },
       {
         "result": "works",
@@ -678,7 +678,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 42.5
+        "seconds": 51.2
       },
       {
         "result": "no",
@@ -734,7 +734,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 6539",
-        "seconds": 8.2
+        "seconds": 9.9
       },
       {
         "result": "works",
@@ -800,7 +800,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 9.7
       },
       {
         "result": "works",
@@ -859,7 +859,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 9.5
       },
       {
         "result": "works",
@@ -922,7 +922,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 3.3
       },
       {
         "result": "works",
@@ -1002,14 +1002,14 @@
           [],
           []
         ],
-        "seconds": 7
+        "seconds": 8.6
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.07,
-            -0.07
+            0.03,
+            -0.03
           ],
           [
             0.1,
@@ -1023,12 +1023,12 @@
         "back": [
           [
             [
-              9.26,
-              3.17
+              5.95,
+              2.34
             ],
             [
-              9.13,
-              3.18
+              5.93,
+              2.35
             ]
           ],
           [
@@ -1045,12 +1045,12 @@
         "torn": [
           [
             [
-              7.33,
-              4.29
+              4.95,
+              2.89
             ],
             [
-              7.34,
-              4.29
+              4.97,
+              2.9
             ]
           ],
           [
@@ -1065,14 +1065,14 @@
           ]
         ],
         "strayed": [
-          "p1360 2430",
+          "p1327 2429",
           "p617 3666",
           "p937 3041p01"
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ],
           [
             "limit",
@@ -1084,11 +1084,11 @@
           []
         ],
         "judged": [
-          1,
+          0,
           1
         ],
         "cause": "stopped-early",
-        "seconds": 7.6
+        "seconds": 15.2
       },
       {
         "result": "skipped",
@@ -1193,7 +1193,7 @@
           [],
           []
         ],
-        "seconds": 10.9
+        "seconds": 13.4
       },
       {
         "result": "works",
@@ -1253,7 +1253,7 @@
             ]
           ]
         ],
-        "seconds": 6.8
+        "seconds": 8.6
       }
     ]
   }

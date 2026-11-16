@@ -106,8 +106,8 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
     "seconds": 2,
     "counts": {
       "partly": 2,
@@ -238,7 +238,7 @@
         ],
         "cause": "not-driven",
         "detail": "p13 15460",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -432,7 +432,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -550,7 +550,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.8
       },
       {
         "result": "not checked",

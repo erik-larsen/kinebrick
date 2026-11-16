@@ -137,9 +137,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 4,
+    "commit": "c0f5c4bd",
+    "date": "2026-11-16",
+    "seconds": 5,
     "counts": {
       "works": 4,
       "no": 1,
@@ -211,7 +211,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -229,7 +229,7 @@
           {
             "p0 73071": [
               1,
-              9.37e-14
+              1.29e-13
             ],
             "p221 3736": [
               0,
@@ -247,7 +247,7 @@
           {
             "p0 73071": [
               1,
-              7.62e-14
+              3.61e-14
             ],
             "p221 3736": [
               0,
@@ -315,7 +315,7 @@
             "p0 73071"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -333,21 +333,21 @@
           {
             "p40 3708 against p8 3895": [
               2,
-              2.03e-13
+              3.28e-14
             ],
             "p86 3705 against p8 3895": [
               2,
-              1.18e-13
+              4.66e-14
             ]
           },
           {
             "p40 3708 against p8 3895": [
               2,
-              2.43e-13
+              1.78e-13
             ],
             "p86 3705 against p8 3895": [
               2,
-              8.05e-14
+              5.73e-14
             ]
           }
         ],
@@ -405,7 +405,7 @@
             "p86 3705 against p8 3895"
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -551,7 +551,7 @@
         ],
         "cause": "not-driven",
         "detail": "p191 3705",
-        "seconds": 0.8
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -613,7 +613,7 @@
         ],
         "cause": "not-driven",
         "detail": "p359 3034 against p383 3737",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -679,7 +679,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       }
     ]
   }

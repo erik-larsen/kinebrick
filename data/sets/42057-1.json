@@ -88,7 +88,7 @@
     ]
   },
   "generated": {
-    "commit": "2c010e2d",
+    "commit": "c0f5c4bd",
     "date": "2026-11-16",
     "seconds": 3,
     "counts": {
@@ -162,7 +162,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -276,7 +276,7 @@
         ],
         "cause": "loose-part",
         "detail": "p60 42057 -32523p01",
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -405,7 +405,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       }
     ]
   }
