@@ -5,73 +5,14 @@
       "moved": "2026-11-15"
     },
     "preview": {
-      "works": 700,
-      "partly": 240,
+      "works": 701,
+      "partly": 239,
       "no": 107,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
   "waiting": [
-    {
-      "id": "42070-diff",
-      "kind": "Sign-off",
-      "title": "42070 6x6 All Terrain Tow Truck: the rear differential turned round",
-      "since": "2026-11-16",
-      "what": "A correction to the published file. The two rear axles are built as two modules whose differentials are mirror images: the booklet’s 1:1 pictures have the ring on the right of the casing in the first (step 123) and on the left in the second (step 147). The file draws both alike, so the one shaft that drives them turns the two rear axles against each other. The correction turns the rear differential’s casing half a turn, so its ring faces the other way, as in step 147.",
-      "effect": "No score changes yet (3 work, 4 partly, 3 don’t): the drive (function 1) stays jammed for another reason, which the worker is tracing (the front wheels’ universal joints, read as rigid).",
-      "confidence": "High. The worker looked at the booklet pages: the two 1:1 pictures are mirror images, drawn from the same side, and step 166 fits the second module at the rear.",
-      "links": [
-        {
-          "label": "Booklet p. 78",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=78"
-        },
-        {
-          "label": "p. 92",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=92"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=755,808,845,898"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&option=proposed&show=755,808,845,898"
-        }
-      ],
-      "reply": "Sign 42070"
-    },
-    {
-      "id": "second-worker",
-      "kind": "Decision",
-      "title": "A second worker for the faults of reading?",
-      "since": "2026-11-16",
-      "what": "347 functions are partly or not working. Only 41 of them fail for a reason in the solver. 303 fail by how we read the models or by a function list, and they stand on about 150 to 200 distinct faults: a part that nothing ties to its control (136 functions), a part held fixed (49), a loose part (47), a jammed control (40), a fixed control (25), a part forced to stay (6). One worker mends these. A second worker would be a third working session beside the solver owner and the worker.",
-      "effect": "Rate now: 21 more working functions on 15 November and 13 on 16 November, from both sessions together. A second worker might add 5 to 10 a day, less than double, because this Mac is the limit: it runs one full check at a time and stood at a load of 30 on 12 cores today. Cost: the week's usage stood at 5% about 8 hours after its reset, with three sessions at work. At that pace a week of work day and night uses about the whole weekly limit, which you reached last week. A second worker adds roughly a third to that. Both figures are rough.",
-      "confidence": "Claude's advice: not yet (to start one, reply \"Second worker: yes\"). First, with no new session: the solver owner takes faults of reading when its three solver tasks are done (it has only 41 functions of its own), and the worker takes first the few part types that recur over many sets (62274c01, 62821, 94925, 92695, 92696, 2851, 18947), where one fault in the library's connections may hold several functions. Claude asks again at mid-week with the usage and the rate measured.",
-      "links": [],
-      "reply": "Second worker: not yet"
-    },
-    {
-      "id": "8820-fn2-axle",
-      "kind": "Sign-off",
-      "title": "8820 Mountain Rambler, function 2: the shock absorber's top axle may turn",
-      "since": "2026-11-16",
-      "what": "Function 2 is the rear swinging arm with its shock absorber. Its list says that the 6-long axle at the shock absorber's top (p31) stays still. That axle sits in round holes and the shock absorber turns on it, both without friction, so in the real set the axle is free to turn with the shock absorber. The booklet does not say that it stays. The change: take the axle out of the parts that must stay. The frame and the front wheel stay on the list.",
-      "effect": "The function is partly today only because this axle turns a little. With the change it should work in full; the worker checks it after your word.",
-      "confidence": "High that the axle is free in the real set: an axle in round holes has nothing to hold it. The solver owner traced that the axle turning and the shock absorber turning on it are equally free.",
-      "links": [
-        {
-          "label": "Booklet (steps 5 and 11)",
-          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8820"
-        },
-        {
-          "label": "Viewer: the arm and the axle",
-          "url": "http://localhost:5174/?file=omr/8820-1+Mountain+Rambler.mpd&show=102,31"
-        }
-      ],
-      "reply": "Sign 8820 list"
-    },
     {
       "id": "8832-fn2-shock",
       "kind": "Question",
@@ -96,10 +37,26 @@
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "Preview is ahead of main by 15 working functions (700 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
+      "what": "Preview is ahead of main by 16 working functions (701 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
+    },
+    {
+      "title": "A second worker, asked again at mid-week",
+      "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the rear differential is turned round (\"Sign 42070\"). No score changes; its drive is still jammed for another reason, which the worker traces."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8820 Mountain Rambler, function 2: the shock absorber's top axle is off the parts that must stay (\"Sign 8820 list\"). The function now works in full; 701 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "No second worker yet (\"Second worker: not yet\"). The solver owner takes faults of reading when its three solver tasks are done, and the worker takes the recurring part types first. Claude asks again at mid-week."
+    },
     {
       "date": "2026-11-16",
       "what": "You looked at the monorail with the FPS card (\"The monorail is smooth now\")."
