@@ -19,12 +19,34 @@ import { axialOverlap, AXIS_TOLERANCE, axleStops, rigidGroups, type WorldCylinde
 export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connections: Connection[], bodyOf: number[]): Connection[] {
   const TOUCH = 0.5; // LDU: parts along an axle this close touch
   const result: Connection[] = [];
+  // Indexes, made once: on a big model every axle against every cylinder and every connection,
+  // and a search through all the connections for each body, took a minute a reading (the 42082:
+  // 421 axles, 8,481 connections). Each part's and each body's connections, in their order; the
+  // bodies joined by a turning or sliding connection (those the search follows: the slides this
+  // makes below were turning connections, so they stay in it); and the cylinders by where they
+  // lie (see near).
+  const byPart = new Map<number, Connection[]>();
+  const byBody = new Map<number, Connection[]>();
+  const neighbours = new Map<number, Set<number>>();
+  const add = <K>(map: Map<K, Connection[]>, key: K, c: Connection) => (map.get(key) ?? map.set(key, []).get(key)!).push(c);
+  for (const c of connections) {
+    add(byPart, c.male, c);
+    if (c.female !== c.male) add(byPart, c.female, c);
+    const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
+    add(byBody, a, c);
+    if (b !== a) add(byBody, b, c);
+    if (a !== b && (c.kind === 'revolute' || c.kind === 'ball' || c.kind === 'slide')) {
+      (neighbours.get(a) ?? neighbours.set(a, new Set()).get(a)!).add(b);
+      (neighbours.get(b) ?? neighbours.set(b, new Set()).get(b)!).add(a);
+    }
+  }
+  const near = cylindersNear(cyls);
   for (const axle of cyls.filter((c) => c.gender === 'M' && roles[c.part] === 'axle')) {
     const length = axle.secs.reduce((sum, sec) => sum + sec.length, 0);
     const at = (p: Vector3) => new Vector3().subVectors(p, axle.start).dot(axle.dir);
     // The parts on the axle, each with where it lies along it.
     const spans = new Map<number, [number, number]>();
-    for (const c of cyls) {
+    for (const c of near(axle)) {
       if (c.part === axle.part) continue;
       const overlap = axialOverlap(axle, c);
       if (!overlap) continue;
@@ -35,7 +57,7 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
     const shaft = bodyOf[axle.part];
     const onAxle = (c: Connection) => Math.max(...[c.from, c.to].map((p) => new Vector3().subVectors(p, axle.start).cross(axle.dir).length())) < AXIS_TOLERANCE;
     // Parts that turn on it, and of those, the ones a linkage works.
-    const turning = (part: number) => bodyOf[part] !== shaft && connections.some((c) => c.kind === 'revolute' && c.male === axle.part && c.female === part);
+    const turning = (part: number) => bodyOf[part] !== shaft && (byPart.get(part) ?? []).some((c) => c.kind === 'revolute' && c.male === axle.part && c.female === part);
     // Whether a body joins back up with the shaft's through joints, other than through `not`.
     const joinsShaft = (start: number, not: number) => {
       const seen = new Set([start, not]);
@@ -43,11 +65,8 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
       while (queue.length) {
         const body = queue.shift()!;
         if (body === shaft) return true;
-        for (const c of connections) {
-          if (c.kind !== 'revolute' && c.kind !== 'ball' && c.kind !== 'slide') continue;
-          const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
-          const next = a === body ? b : b === body ? a : -1;
-          if (next >= 0 && !seen.has(next)) {
+        for (const next of neighbours.get(body) ?? []) {
+          if (!seen.has(next)) {
             seen.add(next);
             queue.push(next);
           }
@@ -56,7 +75,7 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
       return false;
     };
     const linked = (part: number) =>
-      connections.some((c) => {
+      (byBody.get(bodyOf[part]) ?? []).some((c) => {
         if (c.kind !== 'revolute') return false;
         const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
         const other = a === bodyOf[part] ? b : b === bodyOf[part] ? a : -1;
@@ -72,7 +91,7 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
     // Where `other` is joined to the shaft only through other bodies, it may move as the
     // linkage lets it, and the part is taken to swing.
     const canSwing = (hinge: Connection, other: number) => {
-      const bearings = connections.filter((k) => (k.kind === 'revolute' || k.kind === 'rigid') && [bodyOf[k.male], bodyOf[k.female]].sort().join() === [shaft, other].sort().join());
+      const bearings = (byBody.get(shaft) ?? []).filter((k) => (k.kind === 'revolute' || k.kind === 'rigid') && [bodyOf[k.male], bodyOf[k.female]].sort().join() === [shaft, other].sort().join());
       if (!bearings.length) return true;
       // Each joint as a turn about a line, written as how a body turning about it at 1 radian
       // per second moves: its turn, and the speed of the point at the axle's start.
@@ -135,7 +154,7 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
         else [below, above] = [0, 0];
       }
       if (below + above < TOUCH) continue;
-      for (const c of connections) {
+      for (const c of byBody.get(shaft) ?? []) {
         if (c.kind !== 'revolute' || !onAxle(c)) continue;
         const [a, b] = [bodyOf[c.male], bodyOf[c.female]];
         if (!((a === shaft && bodies.has(b)) || (b === shaft && bodies.has(a)))) continue;
@@ -162,6 +181,33 @@ export function slidingOnAxles(roles: string[], cyls: WorldCylinder[], connectio
     }
   }
   return result;
+}
+
+// The cylinders that may overlap a given one along its axis (see axialOverlap), in their order:
+// those whose boxes, grown by a hair, meet its box. Each cylinder is filed in a grid of 40 LDU
+// cells by its box, once.
+function cylindersNear(cyls: WorldCylinder[]): (c: WorldCylinder) => WorldCylinder[] {
+  const CELL = 40;
+  const GROW = 2; // LDU: more than an axis may be off another's and still be on it
+  const box = (c: WorldCylinder) => {
+    const end = c.start.clone().addScaledVector(c.dir, c.secs.reduce((sum, s) => sum + s.length, 0));
+    return [Math.min(c.start.x, end.x) - GROW, Math.min(c.start.y, end.y) - GROW, Math.min(c.start.z, end.z) - GROW, Math.max(c.start.x, end.x) + GROW, Math.max(c.start.y, end.y) + GROW, Math.max(c.start.z, end.z) + GROW];
+  };
+  const cells = (b: number[]) => {
+    const keys: string[] = [];
+    for (let x = Math.floor(b[0] / CELL); x <= Math.floor(b[3] / CELL); x++)
+      for (let y = Math.floor(b[1] / CELL); y <= Math.floor(b[4] / CELL); y++) for (let z = Math.floor(b[2] / CELL); z <= Math.floor(b[5] / CELL); z++) keys.push(`${x},${y},${z}`);
+    return keys;
+  };
+  const grid = new Map<string, number[]>();
+  cyls.forEach((c, i) => {
+    for (const k of cells(box(c))) (grid.get(k) ?? grid.set(k, []).get(k)!).push(i);
+  });
+  return (c) => {
+    const found = new Set<number>();
+    for (const k of cells(box(c))) for (const i of grid.get(k) ?? []) found.add(i);
+    return [...found].sort((a, b) => a - b).map((i) => cyls[i]);
+  };
 }
 
 // A part riding in round holes on two or more parallel axles, all gripped by one other body,
