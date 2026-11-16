@@ -37,6 +37,7 @@ export { axesCrossing, closestPoints, findMeshes, meshesChanged } from './infere
 export { withoutSlidesOnCouplers } from './inference/joints.ts';
 export { lineUpBalls } from './inference/lineUp.ts';
 export { pinsToFree } from './inference/friction.ts';
+import { pinsToSlide } from './inference/friction.ts';
 export { movePaths } from './inference/loops.ts';
 export { restTouch } from './inference/rests.ts';
 
@@ -316,9 +317,41 @@ export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, role
     }
     return buildMechanism(parts, table, roleList, false, guide, allPaths, freed);
   };
-  const mech = build(new Set());
+  let mech = build(new Set());
+  // A linear actuator or a shock absorber exists to change its length: where its slide can't
+  // move at all with the friction pins held, the pins that hold it are real pivots (the 42070's
+  // front outrigger arms, the 42039's rear suspension arms), and stay joints, stiff ones, as a
+  // linkage built on friction pins does when the whole model couldn't move otherwise. Once per
+  // reading, with the model built with every friction pin free to find them (see pinsToSlide).
+  if (FRICTION_RIGID && !allFree && mech.connections.some((c) => c.held)) {
+    const pivots = pivotsOfStuckSlides(mech, parts, table, () => inferMechanism(parts, table, roleList, paths, new Set(), true));
+    if (pivots.length) {
+      freed = new Set([...freed, ...pivots]);
+      mech = build(new Set());
+    }
+  }
   const guide = racksToGuide(mech);
   return guide.size ? build(guide) : mech;
+}
+
+// The friction pins that hold an actuator's or a shock absorber's slide still (see
+// inferMechanism): for each such slide that no free motion slides, the pins it needs freed.
+function pivotsOfStuckSlides(mech: Mechanism, parts: PlacedPart[], table: ConnectionTable, allFree: () => Mechanism): number[] {
+  const shockParts = new Set(Object.entries(table.shocks ?? {}).flatMap(([cylinder, list]) => [cylinder, ...list.map((s) => s.rod)]));
+  const pistons = new Set((mech.screws ?? []).map((s) => s.piston));
+  const slides = mech.joints.filter((j) => j.kind === 'slide' && j.sliding && (pistons.has(j.bodyA) || pistons.has(j.bodyB) || j.sliding.some((p) => shockParts.has(parts[p].name))));
+  if (!slides.length) return [];
+  const kin = new Kinematics(mech);
+  const motions = kin.freeMotions().map((m) => Array.from(m));
+  const stuck = slides.filter((j) => {
+    const axis = new Vector3().subVectors(j.to, j.from).normalize();
+    return !motions.some((m) => Math.abs(kin.pointVelocity(m, j.bodyA, j.from).sub(kin.pointVelocity(m, j.bodyB, j.from)).dot(axis)) > 1e-6);
+  });
+  if (!stuck.length) return [];
+  const free = allFree();
+  const pins = new Set<number>();
+  for (const j of stuck) for (const pin of pinsToSlide(free, j.sliding![0], j.sliding![1], j.from, new Vector3().subVectors(j.to, j.from).normalize())) pins.add(pin);
+  return [...pins].sort((a, b) => a - b);
 }
 
 // The OMR embeds parts that weren't in the LDraw library yet in the model's file, named
