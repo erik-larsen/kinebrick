@@ -93,6 +93,8 @@ const DEAD_POINT_SAMPLE = (10 * Math.PI) / 180;
 const DEAD_POINT_GAP = 1e-3;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
+// The smallest step a turn is cut down to, a step at a time, to leave a jam ahead (see turnJoint).
+const LEAST_TURN_STEP = MAX_TURN_STEP / 16;
 // How many times as fast as the joint being turned another joint may turn, if gears don't tie it
 // to that joint, before the motion counts as a dead point (see turnJoint). Linkages turn their
 // joints a few times as fast at most; past this, the mechanism is near singular as read (the
@@ -103,6 +105,9 @@ const WILD_RATE = 50;
 // How much faster the joints may turn in a drag's motion without the car moving on its
 // suspension than with it, for the motion without to be taken all the same (see jointMotion).
 const SUSPENSION_GAIN = 2;
+// A joint whose axis lies this near level (the sine of its angle to the level) rocks or tips
+// what it carries rather than turning it round (see leastTiers' keepSteering).
+const LEVEL_AXIS = 0.1;
 // Play. Real parts have a little of it, and a loop of rigid parts built to fit only as the model
 // was built (an upright on two towballs a hair further apart than the arms it hangs from) turns
 // on it. When nothing turns a joint exactly, a motion that opens the loops at most PLAY_RATE (LDU
@@ -1350,9 +1355,11 @@ export class Kinematics {
   // The bodies that steer a car: those that turn when, and only when, its wheels turn about
   // upright axes (a steering wheel, and the gears and shafts down to its rack). Found with the
   // tyres it stands on lifted off the ground and not turning on their axles, so that steering
-  // doesn't roll them.
+  // doesn't roll them. A model lifted (see Options.lifted) stands on none: its steering is what
+  // turns any of its tyres so, as held in the hand.
   private steeringBodies(): Set<number> {
-    const treads = this.contactTreads.map((i) => this.mech.treads[i].body);
+    const standing = this.options.lifted ? this.mech.treads.map((_, i) => i) : this.contactTreads;
+    const treads = [...new Set(standing.map((i) => this.mech.treads[i].body))];
     const [contact, held, toFrame] = [this.contactTreads, this.drag.held, this.drag.heldToFrame];
     // What working out the free motions sets, as it was (this works them out for a car that isn't there).
     const [scrubNeeded, leastScrub, slipRows] = [this.scrubNeeded, this.leastScrub, this.slipRows];
@@ -1392,6 +1399,26 @@ export class Kinematics {
         for (let i = 0; i < left.length; i++) left[i] -= d * h[i];
       }
       if (Math.hypot(...left) < 1e-6 * size) steering.add(body);
+    }
+    // Not a gear that only idles on the steering: riding on a steering body and carrying none of
+    // its own, it turns against its shaft just as the steering does, with the tyres held, but
+    // it doesn't steer. Counted, its spin was kept as small as the steering's, so a drive
+    // running through it turned the steering shaft along (the 8285 Tow Truck's 16 tooth gear
+    // idling on its steering shaft, in the drive to its engine: rolling the truck steered it;
+    // decision 90 of 2026-11-15). Only if no tyre's heading depends on it: held still against the
+    // frame, such a gear stops no motion, since its mesh already holds it. A gear that is itself
+    // the steering turns against the frame as the tyres do, and stays in, though the tyres it
+    // steers hang on a linkage rather than under it (the 42080 Forest Machine's turntable).
+    for (const body of [...steering]) {
+      const link = this.parentLink(body);
+      const carries = [...steering].some((c) => this.parentLink(c)?.parent === body);
+      if (!link || !steering.has(link.parent) || carries || !this.mech.gears.some((g) => g.body === body)) continue;
+      const j = link.joint;
+      const d = axes[j];
+      const f = this.frameOf[body];
+      const own = motions.map((w) => this.rateIn(w, axes, j));
+      const against = motions.map((w) => d.x * (w[3 * body] - w[3 * f]) + d.y * (w[3 * body + 1] - w[3 * f + 1]) + d.z * (w[3 * body + 2] - w[3 * f + 2]));
+      if (Math.hypot(...against) < 1e-6 * Math.hypot(...own)) steering.delete(body);
     }
     return steering;
   }
@@ -2304,9 +2331,17 @@ export class Kinematics {
     const geared = this.gearedTo(turnedBody, true);
     const steps = Math.ceil(Math.abs(angle) / maxStep);
     const full = angle / steps;
+    // The motion found where the last step ended (see below), for the next step to take.
+    let ahead: number[] | null = null;
+    // How big a step may be: halved for each step undone (see below), down to LEAST_TURN_STEP.
+    let most = Math.abs(full);
     while (Math.abs(angle - turned) > 1e-12) {
-      this.gripped = false;
-      let motion = this.jointMotion(joint);
+      let motion = ahead;
+      ahead = null;
+      if (!motion) {
+        this.gripped = false;
+        motion = this.jointMotion(joint);
+      }
       // Holds chosen where a drag started may not suit it further on (as a steered car's
       // wheels turn, they turn by more and more different angles, and its differential has to
       // turn a little too): stuck, the drag chooses them afresh where it now is.
@@ -2320,7 +2355,7 @@ export class Kinematics {
       }
       const played = this.played;
       const before = this.snapshot();
-      const step = Math.abs(angle - turned) < Math.abs(full) ? angle - turned : full;
+      const step = Math.abs(angle - turned) < most ? angle - turned : Math.sign(angle) * most;
       // How far each joint should turn in the step, and how far it has. Not a resting body's
       // (see Rest): what it rests on may change in the step (a pin coming round under a push
       // rod), and with it how fast it goes, as a dead point wouldn't.
@@ -2392,7 +2427,35 @@ export class Kinematics {
       }
       if (TRACE && played) trace({ event: 'played', joint });
       turned += step;
+      const lastStep = this.lastStep;
       this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
+      // A step after which the joint has no motion, or another joint would turn wild, has gone
+      // into a jam that no step can leave, back the way it came or on: those stops are the same
+      // both ways. It is undone, and the drag stops before it, as a hand on the real model never
+      // ends in a pose it can't leave (the 8826 ATX Sport Cycle's steering went one step, then
+      // couldn't be turned back; decision 84 of 2026-11-15). The motion found is the next step's.
+      this.gripped = false;
+      ahead = this.jointMotion(joint);
+      if (!ahead && this.drag.turning?.joint === joint) {
+        this.holdWhatTheDragDoesntNeed(this.drag.turning.grabbed, () => this.jointMotion(joint) !== null, joint);
+        this.gripped = false;
+        ahead = this.jointMotion(joint);
+      }
+      const wild = (m: number[]) => this.mech.joints.some((j, k) => k !== joint && checked(j) && !geared.has(j.bodyA) && !geared.has(j.bodyB) && Math.abs(this.jointRate(m, k)) > WILD_RATE);
+      if (!ahead || wild(ahead)) {
+        if (TRACE) trace({ event: 'undone', joint, turned, why: ahead ? 'wild ahead' : 'no motion ahead' });
+        this.restore(before);
+        this.lastStep = lastStep;
+        turned -= step;
+        ahead = null;
+        // A smaller step may leave it a way to go on (the 42082's steering, whose first whole
+        // step from where it was built jammed).
+        if (most / 2 >= LEAST_TURN_STEP) {
+          most /= 2;
+          continue;
+        }
+        return stop(turned);
+      }
     }
     return turned;
   }
@@ -2750,11 +2813,21 @@ export class Kinematics {
     };
     const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
-    if (this.contactTreads.length > 0 && !this.drag.steering) this.drag.steering = this.steeringBodies();
+    // The steering is kept still on a car on its tyres, and lifted too: in the hand, nothing turns a
+    // knuckle against its chassis but friction in the steering, which holds it there (the 42053
+    // Volvo EW160E, slewed in the hand, steered its front wheels; decision 90 of 2026-11-15).
+    const steers = this.contactTreads.length > 0 || (this.options.lifted && this.mech.treads.length > 0);
+    if (steers && !this.drag.steering) this.drag.steering = this.steeringBodies();
     // A drag that drives the steering through its gears (a steering knob) is meant to steer, so
     // the steering isn't kept still for it: kept still, the 8837 Pneumatic Excavator's knob,
-    // whose gear crosses the turntable, slewed the excavator round instead.
-    const keepSteering = this.contactTreads.length > 0 && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
+    // whose gear crosses the turntable, slewed the excavator round instead. Nor, lifted, for a
+    // drag that rocks a body counted as steering, about a level axis: the 8849 Tractor's front
+    // axle, rocking on its steering shaft, turns the steering gear in it a little, so it counts;
+    // with the steering kept still, its steering shaft turned as the axle rocked, where the
+    // function has it stay. A drag about the upright (the 42053's slewing, which turns all its
+    // tyres round together) still keeps it.
+    const rocks = steers && this.options.lifted && this.drag.steering!.has(grabbed) && Math.abs(axisOf(this.mech.joints[joint].from, this.mech.joints[joint].to).transformDirection(this.poses[this.mech.joints[joint].bodyA]).dot(DOWN)) < LEVEL_AXIS;
+    const keepSteering = steers && !rocks && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
     const steering = keepSteering ? [...this.drag.steering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
     const steered = (z: number[]) => steering.map((j) => rateOf(z, j));
     // Friction pins, and motors' outputs, which their gearboxes hold (see chooseHolds).

@@ -105,6 +105,10 @@ const PIECE = 0.1;
 // A control the viewer would push, not turn (see pushMeasuring), is pushed in steps of up to this
 // many LDU, as the viewer's are (MAX_STEP in src/interaction.ts).
 const PUSH_STEP = 1;
+// Pushed back, a control stops within BACK_ANGLE (radians) of where its joint began, and the
+// last steps that shorten to get there are at least PUSH_LEAST (LDU).
+const BACK_ANGLE = 1e-4;
+const PUSH_LEAST = 1e-3;
 // Such a control is grabbed by its part's middle, or a point this many LDU from it (see grabOf).
 const GRAB = 10;
 // And pushed this many LDU at most, each way: more than a turn of REACH takes on any Technic lever.
@@ -435,10 +439,12 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // is grabbed by (see grabOf), by the viewer's own steps (see pushStep), holding what a push
   // holds. `to` says how far. `reach`: the way that point goes as the control's joint turns (or
   // the other way, if negative), until the control has turned that far against what its shaft
-  // turns in, or the push can go no further. `back`: back the way an earlier push went, as far as it went. It
-  // follows the way the point goes, round a curve. Also returns how the push went, to push it
-  // back.
-  type Pushed = { grab: Vector3; dir: Vector3; length: number };
+  // turns in, or the push can go no further. `back`: back the way an earlier push went, until
+  // the control's joint is where that push began (`from`): pushed back as far as it went, it
+  // ended up to a fortieth of a radian off (the 42056's rear wing, 2.4 LDU out of place;
+  // decision 84 of 2026-11-15). It follows the way the point goes, round a curve. Also returns
+  // how the push went, to push it back.
+  type Pushed = { grab: Vector3; dir: Vector3; length: number; from: number };
   // The slide a control with no turning joint of its own slides on: a body that is the root of a
   // tree of its own, held to the rest by a slide (see buildTree), as an outrigger's beam slides in
   // a chassis. -1 if it has none.
@@ -591,12 +597,36 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const from = kin.jointAngles[joint];
     let halt: Halt | null = null;
     let length = 0;
+    // Pushed back: first as far as the push out went, then on, or back, to where the joint began,
+    // the last steps shortened by how fast it turns for each LDU pushed (from the push out at
+    // first, then from each step). Pushed back only as far as it went, it ended up to a fortieth of
+    // a radian off; pushed back only to the joint's angle, a push that carried a part away hardly
+    // turning the joint (the 42062's spreader, 200 LDU) brought it nowhere back.
+    const left = () => ('back' in to ? to.back.from - kin.jointAngles[joint] : 0);
+    const backWay = Math.sign(left());
+    let rate = 'back' in to && to.back.length > 0 ? Math.abs(left()) / to.back.length : 0;
     const far = 'back' in to ? to.back.length : PUSH_FAR;
+    let mending = false;
+    let mendWay = 0;
+    let mended = 0;
+    const going = () => {
+      if (!('back' in to)) return length < far - 1e-9 && ownTurned < Math.abs(to.reach) - 1e-9;
+      if (!mending) {
+        if (length < far - 1e-9) return true;
+        mending = true;
+        mendWay = Math.sign(left());
+        if (backWay === 0 || mendWay === 0 || Math.abs(left()) <= BACK_ANGLE) return false;
+        // Gone past where it began: turned round.
+        if (mendWay !== backWay) dir.negate();
+        return true;
+      }
+      return mended < to.back.length + PUSH_STEP && Math.sign(left()) === mendWay && Math.abs(left()) > BACK_ANGLE;
+    };
     // A control whose joint can't turn, with what the push holds held, could only be carried by
     // what it turns in (the whole 42055 Bucket Wheel Excavator rolling, pushed by its battery
     // switch), step after step until it ran into something: it goes nowhere.
     if (!('back' in to) && kin.jointMotion(joint) === null) halt = 'no motion';
-    while (!halt && length < far - 1e-9 && ('back' in to || ownTurned < Math.abs(to.reach) - 1e-9)) {
+    while (!halt && going()) {
       if (dir.length() < 0.5) {
         halt = 'no motion';
         break;
@@ -605,13 +635,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // wayOnJoint), as a hand follows a door round, and not along the line it first went.
       const way = wayOnJoint(kin, body, grabNow());
       if (way) dir.copy(way.dot(dir) >= 0 ? way : way.negate());
-      const step = Math.min(PUSH_STEP, far - length);
+      const step = mending ? Math.min(PUSH_STEP, rate > 1e-9 ? Math.max(PUSH_LEAST, Math.abs(left()) / rate) : PUSH_STEP) : Math.min(PUSH_STEP, far - length);
+      const angleWas = kin.jointAngles[joint];
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
         halt = how === 'blocked' ? 'limit' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
         break;
       }
       length += step;
+      if (mending) mended += step;
+      if (Math.abs(kin.jointAngles[joint] - angleWas) > 1e-9) rate = Math.abs(kin.jointAngles[joint] - angleWas) / step;
       each();
       const is = parts.map((p) => relative(p.part, p.body, kin.poses));
       parts.forEach((p, k) => {
@@ -626,7 +659,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     // The whole length was pushed, and the control didn't turn as far as it should.
     if (!halt && !('back' in to) && ownTurned < Math.abs(to.reach) - 1e-9) halt = 'stuck';
     kin.letGoAfterDrag();
-    return { turned: kin.jointAngles[joint] - from, went, halt, pushed: { grab, dir: dir.clone(), length } };
+    return { turned: kin.jointAngles[joint] - from, went, halt, pushed: { grab, dir: dir.clone(), length, from } };
   };
   // The furthest any part is from where it was in `poses` (LDU, degrees), and the part that's
   // furthest (by LDU, or degrees for a part that only turns). With `onFrame`, where each part

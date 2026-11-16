@@ -204,16 +204,15 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 1791,
+    "commit": "a3fd19c1",
+    "date": "2026-11-16",
+    "seconds": 1828,
     "counts": {
       "works": 8,
       "partly": 3,
-      "not back": 4,
+      "not back": 3,
       "moved whole": 3,
-      "no": 2,
-      "torn": 1
+      "no": 2
     },
     "loose": [
       "p1258 3710",
@@ -304,7 +303,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 66.7
+        "seconds": 66.3
       },
       {
         "result": "partly",
@@ -386,7 +385,7 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 102.1
+        "seconds": 107.8
       },
       {
         "result": "works",
@@ -456,7 +455,7 @@
           [],
           []
         ],
-        "seconds": 229
+        "seconds": 241.8
       },
       {
         "result": "works",
@@ -515,7 +514,7 @@
         "pushed": [
           true
         ],
-        "seconds": 131.1
+        "seconds": 131.3
       },
       {
         "result": "works",
@@ -582,7 +581,7 @@
           [],
           []
         ],
-        "seconds": 64.7
+        "seconds": 64.6
       },
       {
         "result": "no",
@@ -629,7 +628,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 11.5
+        "seconds": 8.5
       },
       {
         "result": "works",
@@ -675,7 +674,7 @@
             ]
           ]
         ],
-        "seconds": 48.8
+        "seconds": 51.2
       },
       {
         "result": "works",
@@ -721,7 +720,7 @@
             ]
           ]
         ],
-        "seconds": 48.7
+        "seconds": 52.9
       },
       {
         "result": "partly",
@@ -796,7 +795,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2188 62274c01",
-        "seconds": 36.7
+        "seconds": 33.2
       },
       {
         "result": "partly",
@@ -869,7 +868,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 15.1
+        "seconds": 17.2
       },
       {
         "result": "works",
@@ -890,50 +889,46 @@
         "back": [
           [
             [
-              0.71,
-              0.26
+              0,
+              0
             ],
             [
-              1.05,
-              0.38
+              0,
+              0
             ]
           ],
           [
             [
-              1.05,
-              0.38
+              0,
+              0
             ],
             [
-              0.71,
-              0.26
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.71,
-              0.26
+              0,
+              0
             ],
             [
-              1.05,
-              0.38
+              0,
+              0
             ]
           ],
           [
             [
-              1.05,
-              0.38
+              0,
+              0
             ],
             [
-              0.71,
-              0.26
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p2069 4274",
-          "p2292 98138"
         ],
         "stop": [
           [
@@ -954,7 +949,7 @@
           [],
           []
         ],
-        "seconds": 476.3
+        "seconds": 477.8
       },
       {
         "result": "no",
@@ -980,7 +975,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 9.4
+        "seconds": 6.3
       },
       {
         "result": "works",
@@ -1102,7 +1097,7 @@
           [],
           []
         ],
-        "seconds": 454.5
+        "seconds": 482.4
       }
     ]
   }
