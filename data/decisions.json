@@ -36,6 +36,30 @@
         }
       ],
       "reply": "Sign 42070 spider"
+    },
+    {
+      "id": "8832-brace",
+      "kind": "Sign-off",
+      "title": "8832 Roadster: the roll bar's two bracing axles",
+      "since": "2026-11-16",
+      "what": "A correction to the published file, for the swinging arm and its shock absorber (function 2). The shock absorber’s top sits on the roll bar’s top axle, and the file draws it so. The roll bar is braced from the frame by two slanted axles, each running through a toggle joint at its foot and one at its head. The file draws each slanted axle 1 LDU beside its head toggle’s hole, so the bracing isn’t read: the roll bar swings back as the arm pushes the shock absorber up. The correction turns each slanted axle half a degree, so it runs through both its toggles’ holes. The roll bar is then braced, the arm swings, and the shock absorber gives. You said the top sits on the seat. The worker found the top already held, as drawn, once the roll bar is braced, so it isn’t moved.",
+      "effect": "Function 2 goes from partly working to working: the arm swings up to the end of the shock absorber’s travel and comes back, and the roll bar stays. The other three functions are as before. The set is read from Kinebrick’s copy of the file in models/, which is the same as the published file; once you sign, the set reads the published file, so that the correction applies.",
+      "confidence": "High for the bracing: an axle must run through both holes it is drawn in, and turned half a degree it does. The worker looked at steps 12 and 13 of the booklet: step 12 adds the two slanted axles, and step 13’s inset shows the shock absorber behind the seat. The scan doesn’t show clearly where its top sits.",
+      "links": [
+        {
+          "label": "Booklet scans, steps 11 to 13",
+          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8832"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F8832-1+Roadster.mpd&show=31,145,46,9,32,62,64"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F8832-1+Roadster.mpd&option=proposed&show=31,145,46,9,32,62,64"
+        }
+      ],
+      "reply": "Sign 8832"
     }
   ],
   "coming": [
@@ -46,10 +70,6 @@
     {
       "title": "A second worker, asked again at mid-week",
       "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
-    },
-    {
-      "title": "8832 Roadster: the correction for the shock absorber's top",
-      "what": "By your answer of 16 November the worker puts the shock absorber's top on the seat so that the rear arm swings. You get the exact correction to sign, with viewer links before and after."
     }
   ],
   "done": [
