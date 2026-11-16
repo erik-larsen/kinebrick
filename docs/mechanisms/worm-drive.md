@@ -4,7 +4,7 @@ A worm turns a gear, slowly, and holds it where it's left. (Drivetrain.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.
 
-Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 51 works, 31 partly, 2 skipped, 1 not checked.
+Used in 54 of the 186 surveyed sets, by 85 functions. Kinebrick: 50 works, 31 partly, 1 no, 2 skipped, 1 not checked.
 
 ## By decade
 
@@ -185,7 +185,7 @@ Each detail by the set it first appears in.
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 
 - With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (works)
-- *engine cover:* With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover. (works)
+- *engine cover:* With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover. (no)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 

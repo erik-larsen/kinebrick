@@ -155,9 +155,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
-    "seconds": 216,
+    "seconds": 224,
     "counts": {
       "no": 1,
       "partly": 3,
@@ -280,7 +280,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 1.2
+        "seconds": 2.2
       },
       {
         "result": "partly",
@@ -315,7 +315,7 @@
             ],
             "p621 18940 against p0 64179": [
               0,
-              1.42e-12
+              4.12e-19
             ],
             "p506 62274c01 against p505 62271c01": [
               0.000456,
@@ -337,7 +337,7 @@
             ],
             "p621 18940 against p0 64179": [
               0,
-              1.42e-12
+              4.12e-19
             ],
             "p506 62274c01 against p505 62271c01": [
               0.000456,
@@ -408,7 +408,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 10.8
+        "seconds": 13.2
       },
       {
         "result": "partly",
@@ -522,7 +522,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 20.6
+        "seconds": 24.8
       },
       {
         "result": "partly",
@@ -543,29 +543,29 @@
           {
             "p315 64179 against p0 64179": [
               0,
-              4.77e-38
+              2.39e-40
             ],
             "p243 62274c01 against p242 62271c01": [
               0.0493,
-              0.0031
+              0.00311
             ],
             "p464 32271 against p0 64179": [
               0,
-              3.79e-14
+              0
             ]
           },
           {
             "p315 64179 against p0 64179": [
               0,
-              4.77e-38
+              2.39e-40
             ],
             "p243 62274c01 against p242 62271c01": [
               0.0493,
-              0.0031
+              0.00311
             ],
             "p464 32271 against p0 64179": [
               0,
-              3.79e-14
+              0
             ]
           }
         ],
@@ -613,6 +613,9 @@
             ]
           ]
         ],
+        "why": [
+          "p315 64179 against p0 64179 is held by friction pins the control doesn't reach"
+        ],
         "movedBy": [
           [
             "p243 62274c01 against p242 62271c01"
@@ -622,11 +625,11 @@
           ]
         ],
         "judged": [
-          0,
-          0
+          1,
+          1
         ],
         "cause": "control-jammed",
-        "seconds": 83.4
+        "seconds": 103.7
       },
       {
         "result": "works",
@@ -644,7 +647,7 @@
             ],
             "p610 18942 against p0 64179": [
               0,
-              1.15e-32
+              0
             ],
             "p464 32271 against p0 64179": [
               0,
@@ -676,7 +679,7 @@
             ]
           ]
         ],
-        "seconds": 9.9
+        "seconds": 7
       },
       {
         "result": "works",
@@ -794,7 +797,7 @@
           [],
           []
         ],
-        "seconds": 32.8
+        "seconds": 30.6
       },
       {
         "result": "works",
@@ -912,7 +915,7 @@
           [],
           []
         ],
-        "seconds": 38.3
+        "seconds": 27.9
       },
       {
         "result": "works",
@@ -978,7 +981,7 @@
           [],
           []
         ],
-        "seconds": 18.4
+        "seconds": 13.4
       },
       {
         "result": "skipped",

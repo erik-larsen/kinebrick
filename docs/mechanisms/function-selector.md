@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 33 works, 55 partly, 5 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 32 works, 54 partly, 7 no, 4 not checked.
 
 ## By decade
 
@@ -106,7 +106,7 @@ Each detail by the set it first appears in.
 **2015, [42039 24 Hours Race Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42039-1)**
 
 - With the red selector lever on the side in position 1, the black gear on the car's left side opens and closes both doors, which swing up and forward: a cross shaft and the selector's driving ring turn one clutch gear, gears carry the drive to a worm, and the worm's gear drives a shaft whose knob wheels and arms push the doors open. (works)
-- With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover. (works)
+- With the lever in position 2, the same gear lifts the rear engine cover, which tips back on its hinge: the other clutch gear drives a second shaft, a 12 tooth bevel gear turns a worm, and the worm's 24 tooth gear raises the cover. (no)
 - *2 functions:* The red selector lever slides the driving ring between the two clutch gears: position 1 for the doors, position 2 for the engine cover. (works)
 - With the Power Functions motor fitted (sold separately), the motor in the nose turns the same drive, and the lever chooses doors or cover as before. (not checked)
 
@@ -125,7 +125,7 @@ Each detail by the set it first appears in.
 - Function A: with the red lever on the right of the chassis pushed forward, to A, the motor tips the dump body backwards: the right driving ring locks its front clutch gear, which turns through a 16-tooth gear and bevel gears a shaft running back to the large linear actuator under the body, which pushes the body up on its hinge at the back. (partly)
 - Function D: with the same right lever pulled back, to PUMP, the motor works the pneumatic pump: the right driving ring locks its rear clutch gear, which turns a 20-tooth gear on a short crank that pumps the pump's piston, filling the crane's pneumatic system with air. (works)
 - Function C: with the red lever on the left of the chassis pushed forward, to C, the motor slews the crane on its turntable, through 180 degrees: the left driving ring locks its front clutch gear, which turns through two idler clutch gears a 16-tooth gear on a shaft running forward, then bevel gears up to a 12-tooth gear on the turntable's 60 teeth. (works)
-- Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (partly)
+- Function B: with the left lever pulled back, to B, the motor slides the two outriggers out sideways from under the chassis, one to each side: the left driving ring locks its rear clutch gear, which turns a row of gears whose two 12-tooth gears drive the outriggers' two racks. (no)
 
 **2016, [42052 Heavy Lift Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42052-1)**
 

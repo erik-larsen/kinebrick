@@ -197,9 +197,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
-    "seconds": 95,
+    "seconds": 136,
     "counts": {
       "not checked": 3,
       "works": 3,
@@ -364,7 +364,7 @@
             ]
           ]
         ],
-        "seconds": 20.7
+        "seconds": 29
       },
       {
         "result": "partly",
@@ -395,7 +395,7 @@
             ],
             "p2046 40490": [
               0,
-              4.75e-42
+              2.58e-30
             ],
             "p524 32524": [
               0,
@@ -432,7 +432,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2097 62274c01",
-        "seconds": 9.2
+        "seconds": 12.8
       },
       {
         "result": "partly",
@@ -455,7 +455,7 @@
             ],
             "p2046 40490": [
               0,
-              4.75e-42
+              2.58e-30
             ],
             "p2123 32526": [
               0,
@@ -502,9 +502,9 @@
         "judged": [
           0
         ],
-        "cause": "part-fixed",
+        "cause": "not-driven",
         "detail": "p2027 48168",
-        "seconds": 9.1
+        "seconds": 12.8
       },
       {
         "result": "partly",
@@ -515,22 +515,21 @@
           ]
         ],
         "still": [
-          "p2167 62274c01 against p2166 62271c01",
-          "p2180 32524 against p2123 32526"
+          "p2167 62274c01 against p2166 62271c01"
         ],
         "rates": [
           {
             "p2167 62274c01 against p2166 62271c01": [
-              1.4e-7,
-              0.198
+              8.43e-8,
+              0.14
             ],
             "p2180 32524 against p2123 32526": [
-              0.00416,
-              0.25
+              0.0196,
+              1.18
             ],
             "p2123 32526 against p2046 40490": [
               0,
-              9.15e-14
+              1.07e-13
             ]
           }
         ],
@@ -559,11 +558,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "not-driven",
         "detail": "p2167 62274c01 against p2166 62271c01",
-        "seconds": 19.8
+        "seconds": 28.3
       },
       {
         "result": "works",
@@ -642,7 +641,7 @@
             ]
           ]
         ],
-        "seconds": 8.1
+        "seconds": 12
       },
       {
         "result": "works",
@@ -656,7 +655,7 @@
           {
             "p682 62821": [
               1,
-              5.68e-14
+              3.79e-14
             ],
             "p6 3708": [
               1.4,
@@ -714,7 +713,7 @@
             ]
           ]
         ],
-        "seconds": 27.5
+        "seconds": 39.9
       },
       {
         "result": "not checked",

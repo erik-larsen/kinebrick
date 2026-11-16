@@ -155,14 +155,14 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
-    "seconds": 9,
+    "seconds": 15,
     "counts": {
-      "partly": 2,
+      "partly": 3,
       "works": 3,
       "skipped": 1,
-      "no": 2,
+      "no": 1,
       "not checked": 1
     },
     "loose": [
@@ -208,7 +208,7 @@
             ],
             "p127 18947": [
               0,
-              1.14e-13
+              5.68e-14
             ],
             "p185 2854": [
               0,
@@ -249,7 +249,7 @@
         ],
         "cause": "loose-part",
         "detail": "p127 18947",
-        "seconds": 1.2
+        "seconds": 1.7
       },
       {
         "result": "partly",
@@ -273,35 +273,35 @@
           {
             "p288 23948": [
               1.52,
-              6.04e-13
+              4.96e-13
             ],
             "p289 94925": [
               1.52,
-              6.16e-13
+              5.06e-13
             ],
             "p185 2854": [
               8.43e-8,
-              5.07e-13
+              2.14e-13
             ],
             "p190 2851": [
               8.43e-8,
-              1.02e-11
+              6.91e-12
             ],
             "p191 2851": [
               8.43e-8,
-              6.6e-12
+              1.05e-11
             ],
             "p192 2851": [
               8.43e-8,
-              1.78e-11
+              9.86e-12
             ],
             "p193 2851": [
               8.43e-8,
-              3.73e-12
+              6.78e-12
             ],
             "p379 88516": [
               1,
-              7.83e-13
+              6.88e-13
             ]
           }
         ],
@@ -316,11 +316,11 @@
         "back": [
           [
             [
-              0.08,
+              0.09,
               0.01
             ],
             [
-              0.07,
+              0.08,
               0.01
             ]
           ]
@@ -342,7 +342,7 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 3
+        "seconds": 3.8
       },
       {
         "result": "works",
@@ -405,7 +405,7 @@
         "pushed": [
           true
         ],
-        "seconds": 0.7
+        "seconds": 1.2
       },
       {
         "result": "skipped",
@@ -468,7 +468,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -511,7 +511,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -527,11 +527,11 @@
         "back": [
           [
             [
-              0.07,
+              0.08,
               0.01
             ],
             [
-              0.08,
+              0.09,
               0.01
             ]
           ]
@@ -548,25 +548,24 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 3.8
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p36 32524",
           "p247 35189"
         ],
         "rates": [
           {
             "p36 32524": [
-              0,
-              0
+              1,
+              20
             ],
             "p247 35189": [
               0,
@@ -598,20 +597,12 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
         "judged": [
-          0
+          1
         ],
-        "cause": "control-jammed",
-        "seconds": 0.1
+        "cause": "not-driven",
+        "detail": "p247 35189",
+        "seconds": 1.6
       },
       {
         "result": "not checked",

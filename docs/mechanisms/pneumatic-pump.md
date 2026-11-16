@@ -4,7 +4,7 @@ A pump, worked by hand or by a motor, fills the pneumatic system with air. (Powe
 
 First appears in 1984, in [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator): The hand pump: pushing the red plunger down blows air through the valves, and its spring pushes it back up.
 
-Used in 12 of the 186 surveyed sets, by 13 functions. Kinebrick: 3 works, 3 partly, 7 skipped.
+Used in 12 of the 186 surveyed sets, by 13 functions. Kinebrick: 2 works, 3 partly, 1 no, 7 skipped.
 
 ## By decade
 
@@ -71,7 +71,7 @@ Each detail by the set it first appears in.
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 
-- The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air. (works)
+- The Power Functions L motor on the rear unit, run from the battery box behind it, works the pneumatic pump through a crank, filling the system with air. (no)
 
 ---
 

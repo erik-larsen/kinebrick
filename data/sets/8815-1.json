@@ -83,9 +83,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
-    "seconds": 2,
+    "seconds": 4,
     "counts": {
       "works": 4
     },
@@ -163,7 +163,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -225,7 +225,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -343,7 +343,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -390,7 +390,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 0.2
+        "seconds": 0.3
       }
     ]
   }

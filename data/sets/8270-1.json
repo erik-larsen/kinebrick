@@ -145,15 +145,13 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
-    "seconds": 1,
+    "seconds": 2,
     "counts": {
       "no": 2,
       "partly": 3,
       "works": 1,
-      "not back": 1,
-      "moved whole": 1,
       "skipped": 1,
       "not checked": 1
     },
@@ -224,7 +222,7 @@
             ],
             "p0 2905 against p61 32184": [
               0,
-              9.51e-124
+              0
             ],
             "p34 2585 against p0 2905": [
               0,
@@ -267,7 +265,7 @@
         ],
         "cause": "not-driven",
         "detail": "p30 57779 against p0 2905",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -320,15 +318,13 @@
             ]
           ]
         ],
-        "why": [
-          "p57 30395 against p30 57779 is held by friction pins the control doesn't reach"
-        ],
+        "freed": 1,
         "judged": [
           0
         ],
         "cause": "loose-part",
         "detail": "p57 30395",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -394,7 +390,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p55 32278 against p30 57779",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "no",
@@ -504,10 +500,6 @@
             "no motion"
           ]
         ],
-        "pushed": [
-          true,
-          true
-        ],
         "movedBy": [
           [],
           []
@@ -548,41 +540,41 @@
         "back": [
           [
             [
-              0.81,
+              0,
               0
             ],
             [
-              0.64,
+              0,
               0
             ]
           ],
           [
             [
-              0.81,
+              0,
               0
             ],
             [
-              0.64,
+              0,
               0
             ]
           ],
           [
             [
-              0.64,
+              0,
               0
             ],
             [
-              0.81,
+              0,
               0
             ]
           ],
           [
             [
-              0.64,
+              0,
               0
             ],
             [
-              0.81,
+              0,
               0
             ]
           ]
@@ -629,17 +621,13 @@
             ]
           ]
         ],
-        "strayed": [
-          "p102 2432",
-          "p39 32270"
-        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 1.1
       },
       {
         "result": "skipped",

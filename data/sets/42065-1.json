@@ -105,7 +105,7 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
     "seconds": 7,
     "counts": {
@@ -182,7 +182,7 @@
         ],
         "cause": "not-driven",
         "detail": "p651 57518",
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -330,7 +330,7 @@
             "p524 57519"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -566,7 +566,7 @@
         "judged": [
           0
         ],
-        "cause": "not-driven",
+        "cause": "part-fixed",
         "detail": "p529 6558",
         "seconds": 0.1
       },

@@ -101,9 +101,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "works": 2,
@@ -180,12 +180,13 @@
             ]
           ]
         ],
+        "freed": 1,
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p60 40490",
-        "seconds": 0.5
+        "seconds": 1
       },
       {
         "result": "works",
@@ -252,7 +253,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -315,7 +316,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "no",

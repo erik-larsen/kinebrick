@@ -95,7 +95,7 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "7c109848",
     "date": "2026-11-16",
     "seconds": 2,
     "counts": {
@@ -316,12 +316,13 @@
         "pushed": [
           true
         ],
+        "freed": 2,
         "judged": [
           0
         ],
-        "cause": "part-fixed",
+        "cause": "not-driven",
         "detail": "p541 98138p0e",
-        "seconds": 0
+        "seconds": 0.2
       },
       {
         "result": "works",
