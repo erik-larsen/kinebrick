@@ -1,8 +1,8 @@
 {
   "state": {
     "main": {
-      "works": 685,
-      "moved": "2026-11-15"
+      "works": 701,
+      "moved": "2026-11-16"
     },
     "preview": {
       "works": 701,
@@ -13,17 +13,6 @@
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
   "waiting": [
-    {
-      "id": "main-24366c8f",
-      "kind": "Offer",
-      "title": "Move main to preview at 24366c8f: 701 functions work (685 on main)",
-      "since": "2026-11-16",
-      "what": "The slow 8110 check passed on a16baaa3 with the same results as stored (8 functions work, 4 partly, 4 don't). Since that commit only data, the plan and this page changed, no code. Type check and all 791 tests pass at 24366c8f. In a terminal in the main checkout: git fetch origin — then: git merge --ff-only 24366c8f — then: git push origin main.",
-      "effect": "Main gains 16 working functions: the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your sign-offs (42052, 42070, 8820), and full check 32 with the mends for models that do not come back to their start. One function is worse and accepted: the 8826's handlebars go from partly to no.",
-      "confidence": "The two corrections that wait for your sign-off (8832, 42070 spider) are in this commit as proposals only; they change nothing until signed.",
-      "links": [],
-      "reply": "main pushed"
-    },
     {
       "id": "42070-spider",
       "kind": "Sign-off",
@@ -80,6 +69,10 @@
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "You moved main to 24366c8f: 701 of 1,226 functions work on main, where 685 did."
+    },
     {
       "date": "2026-11-16",
       "what": "8832 Roadster, function 2: the function should work, so if the file does not allow it the file is wrong; you believe the shock absorber's top sits on the seat. The worker makes the correction and it comes back to you to sign."
