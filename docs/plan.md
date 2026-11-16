@@ -26,13 +26,13 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 
 | Result | Functions |
 |---|---|
-| Works | 687 |
-| Partly | 248 |
-| Doesn't work | 112 |
+| Works | 692 |
+| Partly | 245 |
+| Doesn't work | 110 |
 | Skipped (needs force) | 122 |
 | Not checked (nothing worked by hand) | 57 |
 
-In 48 sets, every checked function works. In 24 of those, no function is skipped or unchecked either. 81 more sets are one or two checked functions short.
+In 52 sets, every checked function works. In 25 of those, no function is skipped or unchecked either. 77 more sets are one or two checked functions short.
 
 What we know about the 514 failures:
 
@@ -478,6 +478,7 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 94. **The Studio tryout's recommendations wait for the resume.** They are in kinebrick-studio-recommendations.md in the notes folder (sent at Erik's word on 2026-11-15, during the pause). To weigh then, in its order: whether the 42114 still spends long on the collision pass now that the pass runs beside the page from kept files (its 15 s was measured before decision 64); a profile of the 42114's 2.5 s load in Node; a fast path in the function check for a control whose drive is only gears and fixed joints; one command that prints a model's problems as JSON; a probe that drives any part by its number; and two checks of who is right (the 8835 and the 42058, where Studio reports jammed gear trains and ours work; the 9392's function 1 and the 852's function 2, where Studio gets one link further). Nothing is started.
 95. **Work resumes on 2026-11-16; the monorails run smoothly.** Erik looked at the monorail with the FPS card on a quiet machine and found it smooth, which closes the choppiness he saw above 70 rpm (mended by the adaptive motor step, decision 49; the low readings of 2026-11-15 were the machine's load). The sessions take up decision 92's queue: the solver owner traces full check 30's three worse results, then tries the two steering mends; the worker goes on with its queue; the train owner merges preview into preview-train for the day.
 96. **Check 30's three worse results traced: two are the fork rule's check change, already on preview; a change in the check gets a full check.** The 8838's function 2 (works to no) and the 42036's function 3 (partly to no) are not the torn mends': they fail on preview itself since decision 86's change to slideOf (a body is a slide control only if the slide is its one joint), because each fork's shock rod also has a revolute to the wheel's axle holder and so stopped being a control. Preview's stored results for those two sets predate the change, so preview's count of 687 is one too high until it is mended. That change was merged on 34 sets checked by name; the lesson, now a rule: a change in scripts/check-functions.ts touches every set and gets a full check before it is merged, not a quick set. Main (c217b4ea) does not hold the change. The mend: slideOf accepts a body whose one slide comes with only revolutes; the solver owner makes it first, on its own branch. The 42062's function 9 (200 LDU out) is mend (b)'s: a push that carries a part far while hardly turning the control's joint is not undone by pushing back to the start angle, which is reached at once. Mend (b) becomes a push back in two phases: back as far as the push out went, then a short correction to the start angle. The 8826's function 1 stays the accepted cost of mend (a). All of it goes into full check 31.
+97. **Six functions whose list holds still a wheel on the floor are checked lifted: 692 functions work; the 42070's rear differential proposed.** Under decision 89 the worker listed the 129 functions not yet lifted that hold still a part on a body with a tyre or track on the floor; 80 work already, and the other 49 were tried lifted, each alone. Six are marked (claude/lifted-floor): the 42037's function 3, the 42107's function 5 and the 8810's function 1 (steering; partly to works), the 42099's function 2 (the rear motor rolls the truck; partly to works), the 851's function 4 (a hitch lever with the rear wheel listed to stay; no to works) and the 9392's function 1 (no to partly: lifted, its steering moves, and its linkage then leaves a tow ball pin 2.8 LDU out both ways, a fault of its own that the floor had hidden; counted worse by ways not back, accepted). Not marked, since they fail lifted too: the 8824's function 1 and the 42120's function 3; the other 41 give the same result either way. 52 sets have every checked function working, 25 of them fully. Also in: the worker's proposed erratum for the 42070 (the rear differential p845 turned half a turn, as booklet steps 123 and 147 build the two rear axles as mirror images; no result changes yet), for Erik. Preview's count still holds the 8838's function 2 as working, which it is not until decision 96's mend. Gate: 790 tests, the ratchet against 7a0c2312.
 
 
 ## First steps

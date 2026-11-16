@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 29 works, 50 partly, 5 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 30 works, 49 partly, 5 no, 5 not checked.
 
 ## By decade
 
@@ -164,7 +164,7 @@ Each detail by the set it first appears in.
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
 - *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
-- *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (partly)
+- *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (works)
 - *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (works)
 - *Control+ L:* The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs. (works)
 

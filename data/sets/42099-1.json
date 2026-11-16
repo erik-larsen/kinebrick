@@ -45,6 +45,7 @@
         ],
         "source": "book: rear axle steps 127-172, rear motor steps 173-180 (marked 2); app pages 218-219; the gear train is inferred from the model",
         "control": "p363 42099 - 18575",
+        "lifted": true,
         "moves": [
           "p83 32270",
           "p59 42099 - 18575",
@@ -57,7 +58,7 @@
           "p1862 23798",
           "p1866 23798"
         ],
-        "note": "The motor (p138 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89); The motor (p138 42099 - 22172, a Control+ XL motor) turns the control, the 20 tooth gear on its shaft."
       },
       {
         "does": "With both XL motors driven together the off-roader has four-wheel drive, forwards or back.",
@@ -164,15 +165,14 @@
     ]
   },
   "generated": {
-    "commit": "01139e16",
-    "date": "2026-11-15",
-    "seconds": 195,
+    "commit": "60b8d4c9",
+    "date": "2026-11-16",
+    "seconds": 185,
     "counts": {
-      "works": 6,
-      "not back": 3,
+      "works": 7,
+      "not back": 2,
       "free-turned": 1,
-      "partly": 1,
-      "torn": 2,
+      "torn": 1,
       "not checked": 1,
       "skipped": 1
     },
@@ -372,87 +372,74 @@
         "seconds": 25
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p1862 23798",
-          "p1866 23798"
-        ],
         "rates": [
           {
             "p83 32270": [
-              1.67,
-              3.92e-9
+              1.64,
+              0.335
             ],
             "p59 42099 - 18575": [
-              1.67,
-              3.92e-9
+              1.64,
+              0.335
             ],
             "p20 32270": [
-              2.78,
-              7.84e-9
+              2.76,
+              0.67
             ],
             "p43 62821": [
-              1.98,
-              7.84e-9
+              1.97,
+              0.67
             ],
             "p1864 23798": [
-              0.367,
-              0.02
+              0.364,
+              2.11
             ],
             "p1868 23798": [
-              0.367,
-              0.0204
+              0.364,
+              2.08
             ],
             "p1862 23798": [
-              0.347,
-              38.1
+              0,
+              0
             ],
             "p1866 23798": [
-              0.347,
-              38.1
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              82.68,
-              155.49
+              0,
+              0
             ],
             [
-              30.11,
-              10.37
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              111.75,
-              155.45
+              0,
+              0
             ],
             [
-              24.57,
-              9.78
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p18 99008",
-          "p1218 32009"
-        ],
-        "judged": [
-          1
-        ],
-        "cause": "stay-chosen",
-        "detail": "p1862 23798",
-        "seconds": 47
+        "seconds": 35.6
       },
       {
         "result": "works",
@@ -565,7 +552,7 @@
             "p1868 23798"
           ]
         ],
-        "seconds": 69.7
+        "seconds": 60.6
       },
       {
         "result": "works",
@@ -623,7 +610,7 @@
             ]
           ]
         ],
-        "seconds": 19.5
+        "seconds": 21.7
       },
       {
         "result": "works",
@@ -673,7 +660,7 @@
             ]
           ]
         ],
-        "seconds": 10
+        "seconds": 12.1
       },
       {
         "result": "works",
@@ -723,7 +710,7 @@
             ]
           ]
         ],
-        "seconds": 13.4
+        "seconds": 15.8
       },
       {
         "result": "not checked",
@@ -768,7 +755,7 @@
             ]
           ]
         ],
-        "seconds": 9.8
+        "seconds": 11.3
       }
     ]
   }
