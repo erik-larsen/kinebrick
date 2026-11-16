@@ -34,7 +34,8 @@
         ],
         "stays": [
           "p45 32013"
-        ]
+        ],
+        "note": "The idler's arm (p45 32013) swings freely as the rear axle turns, -0.50 and +0.26 radian: it is a swing-arm one-way clutch, which swings in to mesh with the reel's gear when the chopper is pulled back and out when it is pushed forward, and nothing in the reading stops it where its gear meets the reel's (traced 2026-11-15; no mend)."
       },
       {
         "does": "Let go, the stretched bungee pulls the string back off the reel, which drives the rear wheels forward through the gears and launches the chopper, over a paper ramp in the book's game.",
@@ -78,9 +79,9 @@
     ]
   },
   "generated": {
-    "commit": "08f987da",
-    "date": "2026-11-15",
-    "seconds": 0,
+    "commit": "2c010e2d",
+    "date": "2026-11-16",
+    "seconds": 1,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -227,7 +228,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p45 32013",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -285,7 +286,7 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       }
     ]
   }

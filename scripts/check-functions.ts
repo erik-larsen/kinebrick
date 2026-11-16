@@ -448,13 +448,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The slide a control with no turning joint of its own slides on: a body that is the root of a
   // tree of its own, held to the rest by a slide (see buildTree), as an outrigger's beam slides in
   // a chassis. -1 if it has none.
-  // Only a body whose one joint to the rest is that slide: a body that also hangs on something
-  // else (the 42063's handlebars, on a fork top that rides the legs and hangs on a ball) is pushed
-  // at a point, as any other.
+  // A slide control, so: a body with one slide among its joints, and no other joint but hinges
+  // (revolutes), such as what hangs from it turning on its pins (a telescopic fork's shock rod,
+  // with the wheel's axle holder on it: the 8838's and the 42036's). A body that also hangs on
+  // something else in another way (the 42063's handlebars, on a fork top that rides the legs and
+  // hangs on a ball), or slides two ways, is pushed at a point, as any other.
   const slideOf = (body: number) => {
     if (kin.frames.includes(body) || kin.parentLink(body)) return -1;
     const own = mech.joints.flatMap((j, k) => (j.bodyA === body || j.bodyB === body ? [k] : []));
-    return own.length === 1 && mech.joints[own[0]].kind === 'slide' ? own[0] : -1;
+    const slides = own.filter((k) => mech.joints[k].kind === 'slide');
+    return slides.length === 1 && own.every((k) => k === slides[0] || mech.joints[k].kind === 'revolute') ? slides[0] : -1;
   };
   // A control that slides (see slideOf) pushed along its slide by `amount` LDU, as a drag of it in
   // the viewer pushes it, each step the way the slide now points: how far it slid along it

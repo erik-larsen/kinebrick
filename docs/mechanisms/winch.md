@@ -4,7 +4,7 @@ A drum winds a string or cable, over pulleys, to a hook, a grab or a boom. (Movi
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.
 
-Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 20 works, 9 partly.
+Used in 26 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 partly.
 
 ## By decade
 
@@ -103,7 +103,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- *hook:* In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook. (partly)
+- *hook:* In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook. (works)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 

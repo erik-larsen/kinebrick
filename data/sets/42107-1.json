@@ -85,6 +85,7 @@
         ],
         "source": "book: steps 116-124 (fork, wheel and steering head), page 120 bottom-right inset (arrow at the front wheel)",
         "control": "p340 15462",
+        "lifted": true,
         "moves": [
           "p351 15462",
           "p372 44294",
@@ -94,7 +95,7 @@
           "p247 35189",
           "p129 33299a"
         ],
-        "note": "inferred: which parts are the handlebars (the two axles with stops, p340 and p351, either side of the top yoke)"
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89); inferred: which parts are the handlebars (the two axles with stops, p340 and p351, either side of the top yoke)"
       },
       {
         "does": "The front fork's two gold legs are shock absorbers: they shorten so the front wheel can rise.",
@@ -154,15 +155,13 @@
     ]
   },
   "generated": {
-    "commit": "08f987da",
-    "date": "2026-11-15",
-    "seconds": 6,
+    "commit": "36031fbf",
+    "date": "2026-11-16",
+    "seconds": 7,
     "counts": {
-      "partly": 3,
-      "works": 2,
+      "partly": 2,
+      "works": 3,
       "skipped": 1,
-      "not back": 1,
-      "free-turned": 1,
       "no": 2,
       "not checked": 1
     },
@@ -250,7 +249,7 @@
         ],
         "cause": "loose-part",
         "detail": "p127 18947",
-        "seconds": 0.7
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -343,7 +342,7 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 1.9
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -406,18 +405,18 @@
         "pushed": [
           true
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.1,
-            -0.17
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -428,7 +427,7 @@
             ],
             "p372 44294": [
               1,
-              4.6e-13
+              6.15e-13
             ],
             "p379 88516": [
               1,
@@ -447,43 +446,29 @@
         "back": [
           [
             [
-              23.64,
-              13.42
+              0,
+              0
             ],
             [
-              14.09,
-              8
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              7.2,
-              13.41
+              0,
+              0
             ],
             [
-              4.3,
-              7.99
+              0,
+              0
             ]
           ]
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p555 3711"
-        ],
-        "stop": [
-          [
-            "dead point",
-            "dead point"
-          ]
-        ],
         "freed": 2,
-        "judged": [
-          1
-        ],
-        "cause": "stopped-early",
-        "seconds": 0.4
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -563,7 +548,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.8
       },
       {
         "result": "no",

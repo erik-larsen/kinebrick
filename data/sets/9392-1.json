@@ -23,6 +23,7 @@
         ],
         "source": "book: steps 15-16 (steering column, pages 38-39) and step 33 (handlebars, page 56); the links and hubs on pages 33-37",
         "control": "p194 32016",
+        "lifted": true,
         "moves": [
           "p121 32209",
           "p114 2739a",
@@ -32,7 +33,8 @@
         "stays": [
           "p182 56145",
           "p183 56145"
-        ]
+        ],
+        "note": "lifted: its list holds still a wheel that the floor would turn (a steered wheel rolls as it swivels, or the model rolls), so it is checked with the model off the floor (decision 89)"
       },
       {
         "does": "Rolling the quad works the engine: the rear axle's sprocket drives a chain forward to a cross shaft, whose gear turns the crankshaft, and the yellow piston pumps up and down in its cylinder.",
@@ -126,12 +128,14 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 6,
+    "commit": "36031fbf",
+    "date": "2026-11-16",
+    "seconds": 10,
     "counts": {
-      "no": 2,
-      "partly": 2,
+      "partly": 3,
+      "not back": 1,
+      "free-turned": 1,
+      "no": 1,
       "works": 1,
       "skipped": 1
     },
@@ -142,70 +146,68 @@
     ],
     "functions": [
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.27,
+            -0.27
           ]
-        ],
-        "still": [
-          "p121 32209",
-          "p114 2739a",
-          "p107 6571",
-          "p109 6571"
         ],
         "rates": [
           {
             "p121 32209": [
-              0,
-              0
+              1,
+              0.000554
             ],
             "p114 2739a": [
-              0,
-              0
+              0.912,
+              64.7
             ],
             "p107 6571": [
-              0,
-              0
+              3.75,
+              0.00196
             ],
             "p109 6571": [
-              0,
-              0
+              2.41,
+              0.000447
             ],
             "p182 56145": [
               0,
-              0
+              0.000113
             ],
             "p183 56145": [
               0,
-              0
+              0.000113
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              2.8,
+              7.9
             ],
             [
-              0,
-              0
+              2.8,
+              7.9
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              2.8,
+              7.9
             ],
             [
-              0,
-              0
+              2.8,
+              7.9
             ]
           ]
+        ],
+        "freeTurned": true,
+        "strayed": [
+          "p112 6628"
         ],
         "stop": [
           [
@@ -214,11 +216,10 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
-        "cause": "not-driven",
-        "detail": "p107 6571",
-        "seconds": 0.2
+        "cause": "stopped-early",
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -237,23 +238,23 @@
           {
             "p17 94925": [
               1,
-              5.05e-10
+              6.34e-10
             ],
             "p146 94925": [
               2.81e-8,
-              8.08e-14
+              5.77e-14
             ],
             "p137 2853": [
               2.81e-8,
-              1.48e-13
+              9.37e-14
             ],
             "p140 2851": [
               8.43e-8,
-              2.67e-13
+              1.58e-13
             ],
             "p134 2850a": [
               2.81e-8,
-              2.42e-13
+              3.08e-13
             ]
           }
         ],
@@ -286,7 +287,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p140 2851",
-        "seconds": 2.1
+        "seconds": 4.9
       },
       {
         "result": "partly",
@@ -308,7 +309,7 @@
             ],
             "p146 94925": [
               1,
-              2.96e-15
+              6.51e-15
             ],
             "p17 94925": [
               0,
@@ -319,8 +320,8 @@
               0
             ],
             "p134 2850a": [
-              2.81e-8,
-              2.22e-13
+              0,
+              1.49e-13
             ]
           }
         ],
@@ -349,11 +350,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p17 94925",
-        "seconds": 1.8
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -536,7 +537,7 @@
             "p109 6571"
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.7
       },
       {
         "result": "skipped",

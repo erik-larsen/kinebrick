@@ -145,8 +145,8 @@
     ]
   },
   "generated": {
-    "commit": "08f987da",
-    "date": "2026-11-15",
+    "commit": "2c010e2d",
+    "date": "2026-11-16",
     "seconds": 1,
     "counts": {
       "no": 2,
@@ -267,7 +267,7 @@
         ],
         "cause": "not-driven",
         "detail": "p30 57779 against p0 2905",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -639,7 +639,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "skipped",

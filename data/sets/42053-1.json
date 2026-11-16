@@ -118,6 +118,7 @@
         ],
         "source": "book: step 90 (page 46, the turntable), step 209 (page 123, the upper body set on it); inferred: that it slews by hand, since nothing drives the turntable and the overview pages don't show it",
         "control": "p284 18939",
+        "lifted": true,
         "moves": [
           "p0 92907"
         ],
@@ -125,7 +126,7 @@
           "p66 87761 against p0 92907",
           "p55 59426 against p0 92907"
         ],
-        "note": "slewing mustn't steer: the steering shaft lies wholly in the chassis"
+        "note": "slewing mustn't steer: the steering shaft lies wholly in the chassis. lifted: on the floor slewing turns the chassis on its wheels (the upper body is the frame), so its front wheels roll; held in the hand, it slews alone."
       },
       {
         "does": "The two rear outriggers swing down from the chassis' back corners onto their feet, and a grey liftarm on each folds over to lock it down.",
@@ -161,9 +162,9 @@
     ]
   },
   "generated": {
-    "commit": "28315418",
+    "commit": "01139e16",
     "date": "2026-11-15",
-    "seconds": 26,
+    "seconds": 20,
     "counts": {
       "skipped": 4,
       "works": 3,
@@ -345,7 +346,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 4.3
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -411,7 +412,7 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -469,7 +470,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p55 59426 against p0 92907",
-        "seconds": 3
+        "seconds": 2.3
       },
       {
         "result": "no",
@@ -554,7 +555,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -676,7 +677,7 @@
           [],
           []
         ],
-        "seconds": 14.7
+        "seconds": 11.1
       }
     ]
   }

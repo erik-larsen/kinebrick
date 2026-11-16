@@ -4,7 +4,7 @@ A part slews round on a turntable or an upright pivot, geared or by hand. (Movin
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The cab slews round on its turntable, carrying the boom with it.
 
-Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 14 works, 20 partly, 5 no, 1 not checked.
+Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 17 works, 17 partly, 5 no, 1 not checked.
 
 ## By decade
 
@@ -42,7 +42,7 @@ Each detail by the set it first appears in.
 
 **1984, [8851 Excavator](https://erik-larsen.github.io/kinebrick/?model=8851-Excavator)**
 
-- *cab:* The cab and arm slew round on the turntable above the tracks. (partly)
+- *cab:* The cab and arm slew round on the turntable above the tracks. (works)
 
 **1989, [8854 Power Crane](https://erik-larsen.github.io/kinebrick/?model=8854-Power%20Crane)**
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 **1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1)**
 
-- *robot:* The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth. (partly)
+- *robot:* The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth. (works)
 
 **1991, [8074 Universal Set with Flex System](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8074-1)**
 
@@ -149,7 +149,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- *crane:* In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable. (partly)
+- *crane:* In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable. (works)
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
 

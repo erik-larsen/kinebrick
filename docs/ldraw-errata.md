@@ -455,7 +455,9 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
+| [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
+| [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Signed off by Erik, 2026-11-15 |
@@ -588,6 +590,20 @@ In the main model, the line
 
 is read with its part at -160 -211.6552 -70.6371.
 
+### 42052-1: no-third-link-pin-p586
+
+Signed off by Erik, 2026-11-15.
+
+Step 155 (page 84, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182578.pdf#page=84) builds the two door links: four 6L thin liftarms, two black friction pins at the slider ends and two light grey pins (3673) at the outer ends, where the doors hang at step 156 (page 86). The file places that step as its main model's step 19 with three light grey pins: p587 and p592 at the links' outer ends (x 140 and -140), and p586 at x -100, in the left links' fourth hole, where it pins them to the fuselage panel p40. The right side has no such pin. As read, p586 holds the left links to the frame, so the slider they hang from cannot slide. Removed: the booklet has two grey pins, not three.
+
+In the main model (p586 3673), the line
+
+```
+1 71 -100 -370 -130 0 1 0 0 0 -1 -1 0 0 3673.dat
+```
+
+is read as not there. The part keeps its number.
+
 ### 42064-1: hatch-20-high
 
 Signed off by Erik, 2026-11-14.
@@ -603,6 +619,20 @@ In `42064 - ship.ldr`, the line
 is read with its part at 0 -110 -380.
 
 In the real set the hatch is fixed on its two pins, not hinged; what that means for fn 9 is the audit's table for Erik.
+
+### 42070-1: rear-differential-ring-faces-back
+
+Proposed, not applied until signed off.
+
+The two tandem axles are built as two modules: the middle one at steps 121 to 128 (pages 78 and 79, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=78), fitted next to the gearbox at step 139 (page 87), and the rear one at steps 143 to 151 (page 92, #page=92), fitted at the end at step 166 (page 101). The 1:1 pictures of their differentials are mirror images: in step 123 the ring is on the right of the casing, in step 147 on the left, both drawn from the same side. The file draws both alike: its two sub-models, 42070 - axle2.ldr and 42070 - axle3.ldr, hold the casing (62821) turned the same way, its ring facing +x, on the side of their red connectors. One shaft drives both, its pinions meeting the middle ring from behind and the rear ring from in front, so with both rings facing one way the two rear axles turn against each other, and the truck can't roll (function 1). Turned half a turn about the vertical, the rear casing's ring faces -x, as in step 147.
+
+In `42070 - axle3.ldr` (p845 62821), the line
+
+```
+1 72 0 0 0 0 0 1 -1 0 0 0 -1 0 62821.dat
+```
+
+is read with its part at 0 0 0, turned to 0 0 -1 -1 0 0 0 1 0.
 
 ### 42083-1: speed-key-in-its-hole
 

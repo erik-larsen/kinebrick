@@ -121,7 +121,7 @@
         "stays": [
           "p213 32012"
         ],
-        "note": "C: the left knob p132 toward the tail (by +0.4), as the booklet has it (Erik signed it, \"Sign the five audit rows\", 2026-11-15)"
+        "note": "C: the left knob p132 toward the tail (by +0.4), as the booklet has it (Erik signed it, \"Sign the five audit rows\", 2026-11-15); a loop that does not fit as built (as the 42111's function 6): the doors are drawn closed, and closed, each door link lies level, from the slider (x ±40) to the door's pin (x ±140), which sits at (20, 40) from the door's hinge; the slider moves straight up and down, so a level link gives the door no turn at all to first order: a toggle in the built pose, which the real model passes on the play in its pins (booklet steps 155 and 156, pages 84 to 86, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6182578.pdf#page=84)"
       },
       {
         "does": "Function D: with the left lever pushed to D, the motor winds the winch, raising or lowering the hook on its string under the fuselage: the left shaft's driving ring locks its front clutch gear, which turns a 16-tooth gear on a shaft whose 20-tooth gear turns a 12-tooth gear on a worm shaft; the worm turns an 8-tooth gear on the winch reel.",
@@ -184,14 +184,15 @@
     ]
   },
   "generated": {
-    "commit": "08f987da",
+    "commit": "126966d7",
+    "uncommitted": true,
     "date": "2026-11-15",
-    "seconds": 35,
+    "seconds": 37,
     "counts": {
       "works": 5,
       "partly": 1,
       "not back": 1,
-      "moved whole": 1,
+      "torn": 1,
       "not checked": 1
     },
     "loose": [
@@ -235,6 +236,12 @@
       "p1243 32126",
       "p1244 87994"
     ],
+    "errata": {
+      "applied": [
+        "no-third-link-pin-p586"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "works",
@@ -308,7 +315,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 3.3
       },
       {
         "result": "works",
@@ -330,11 +337,11 @@
             ],
             "p278 18946": [
               0.5,
-              7.43e-13
+              6.75e-13
             ],
             "p393 18946": [
               0.5,
-              9.72e-13
+              7.97e-13
             ],
             "p392 94925": [
               0.5,
@@ -362,7 +369,7 @@
             ],
             "p925 64782": [
               0,
-              2.08e-69
+              1.77e-64
             ]
           }
         ],
@@ -390,7 +397,7 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 4.4
       },
       {
         "result": "works",
@@ -471,19 +478,17 @@
             ]
           ]
         ],
-        "seconds": 8.8
+        "seconds": 9.5
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.07,
+            0.3,
             -0.07
           ]
         ],
         "still": [
-          "p153 10928",
-          "p148 32073",
           "p602 62531",
           "p595 62531"
         ],
@@ -491,59 +496,59 @@
           {
             "p271 18947": [
               0.5,
-              0.000148
+              0.0000175
             ],
             "p275 18946": [
               0.5,
-              0.000148
+              0.0000175
             ],
             "p168 94925": [
               0.5,
-              0.000151
+              0.0000178
             ],
             "p167 4716": [
               0.5,
-              0.000151
+              0.0000178
             ],
             "p153 10928": [
               0.0625,
-              0.000154
+              0.0000183
             ],
             "p148 32073": [
               0.0625,
-              0.00014
+              0.0000166
             ],
             "p602 62531": [
-              0.0000019,
-              4.26e-13
+              0.000197,
+              5.74e-13
             ],
             "p595 62531": [
-              0.0000019,
-              2.57e-12
+              0.0000541,
+              4.8e-13
             ],
             "p213 32012": [
-              6.32e-7,
-              0.0000991
+              2.81e-7,
+              0.0000117
             ]
           }
         ],
         "back": [
           [
             [
-              1.11,
-              0.11
+              1.21,
+              17.19
             ],
             [
-              1.11,
-              0.78
+              0.66,
+              0.36
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.06,
-              0.1
+              0.78,
+              17.19
             ],
             [
               0.21,
@@ -552,6 +557,7 @@
           ]
         ],
         "strayed": [
+          "p193 15462",
           "p889 32525"
         ],
         "stop": [
@@ -561,11 +567,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "part-fixed",
         "detail": "p602 62531",
-        "seconds": 2.3
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -639,7 +645,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 4.1
       },
       {
         "result": "not checked",
@@ -761,7 +767,7 @@
           [],
           []
         ],
-        "seconds": 12.4
+        "seconds": 11.1
       }
     ]
   }

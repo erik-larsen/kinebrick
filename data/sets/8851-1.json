@@ -86,6 +86,7 @@
         ],
         "source": "book: steps 7-8 and 13 (a turntable, held by a threaded axle and nut); that it slews by hand is inferred",
         "control": "p852 3738",
+        "lifted": true,
         "moves": [
           "p906 3403"
         ],
@@ -94,7 +95,7 @@
           "p909 3649 against p852 3738",
           "p1038 3703"
         ],
-        "note": "The frame is the cab, so the undercarriage is the part to turn. Today it turns, but it drags the sprockets and idlers round with it: six top-run track links (p925, p938, p939, p980, p993, p994, all 3873) are stuck to the cab. The threaded axle p872 8851-73485 and its nuts are loose parts."
+        "note": "The frame is the cab, so slewing turns the undercarriage. lifted: on the floor the undercarriage pivots by rolling its two tracks opposite ways, which turns the sprocket gears p908 and p909 against the turntable; held in the hand, it slews alone (traced 2026-11-15: the six top-run track links ride with the cab, but freed from it nothing changes). The threaded axle p872 8851-73485 and its nuts are loose parts."
       },
       {
         "does": "The tracks roll freely round the 40-tooth sprockets and the 16-tooth idlers; nothing drives them.",
@@ -118,14 +119,13 @@
     ]
   },
   "generated": {
-    "commit": "08f987da",
-    "date": "2026-11-15",
+    "commit": "36031fbf",
+    "date": "2026-11-16",
     "seconds": 2,
     "counts": {
       "no": 3,
       "skipped": 1,
-      "partly": 1,
-      "works": 1,
+      "works": 2,
       "not back": 1,
       "moved whole": 1
     },
@@ -246,30 +246,26 @@
         "seconds": 0
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "moved": [
-          "p908 3649 against p852 3738",
-          "p909 3649 against p852 3738"
-        ],
         "rates": [
           {
             "p906 3403": [
               1,
-              0
+              1.18e-15
             ],
             "p908 3649 against p852 3738": [
-              2.15,
-              5.26e-13
+              2.81e-8,
+              1.11e-13
             ],
             "p909 3649 against p852 3738": [
-              2.15,
-              3.54e-13
+              2.81e-8,
+              8.47e-14
             ],
             "p1038 3703": [
               0,
@@ -301,12 +297,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "stay-chosen",
-        "detail": "p908 3649 against p852 3738",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -430,7 +421,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1.3
       }
     ]
   }

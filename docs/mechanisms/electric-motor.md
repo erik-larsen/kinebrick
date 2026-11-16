@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 29 works, 50 partly, 5 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 34 works, 46 partly, 4 no, 5 not checked.
 
 ## By decade
 
@@ -42,7 +42,7 @@ Each detail by the set it first appears in.
 
 **1990, [8094 Control Center](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8094-1)**
 
-- The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth. (partly)
+- The base motor slews the robot round on its turntable: a rubber band from the motor turns the belt wheel on the side of the base, whose shaft's 8 tooth gear drives a 24 tooth gear, then two 16 tooth gears, a worm, a crown gear on an upright axle, and that axle's 8 tooth gear on top drives the turntable's teeth. (works)
 - The arm motor, at the back of the arm as a counterweight, opens and closes the gripper: through a rubber band and a worm it turns a train of gears along the arm to the elbow's 40 tooth gear, which turns the long shaft down the forearm; at its foot an 8 tooth gear turns two shafts the opposite way to each other through their 16 tooth gears, and their bevel gears swing the two claws together or apart. (partly)
 - The same arm motor raises and lowers the arm: once the claws have closed on something, the drive turns the whole arm up on its shoulder pivot, and run the other way the arm comes down before the claws open again. (works)
 
@@ -138,10 +138,10 @@ Each detail by the set it first appears in.
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
 - *XL:* The XL motor drives all six wheels: through a 16 tooth gear it turns a centre differential, which drives a shaft forward to the front differential and a shaft back to the two rear differentials, and each wheel is driven through an 8 and 24 tooth gear pair in its portal hub. It's worked from the remote's left lever, with the drive/crane lever set to drive. (no)
-- *M:* The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (no)
-- *XL:* In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable. (partly)
+- *M:* The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (works)
+- *XL:* In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable. (works)
 - *XL:* In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks. (no)
-- *M:* In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook. (partly)
+- *M:* In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook. (works)
 - *M:* In crane mode, the M motor raises and lowers the boom: its crane shaft drives an upright shaft through the turntable's centre to bevel gears that turn the large linear actuator under the boom. (partly)
 
 **2018, [42080 Forest Machine](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42080-1)**
@@ -164,7 +164,7 @@ Each detail by the set it first appears in.
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
 - *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
-- *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (partly)
+- *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (works)
 - *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (works)
 - *Control+ L:* The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs. (works)
 

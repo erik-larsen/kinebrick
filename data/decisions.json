@@ -1,58 +1,51 @@
 {
   "state": {
     "main": {
-      "works": 673,
+      "works": 685,
       "moved": "2026-11-15"
     },
     "preview": {
-      "works": 686,
-      "partly": 249,
-      "no": 112,
+      "works": 697,
+      "partly": 243,
+      "no": 107,
       "functions": 1226
     },
-    "viewer": "The viewer links open the preview viewer on this Mac (http://localhost:5174). If one does not open, tell Claude and it starts the server again."
+    "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
   "waiting": [
     {
-      "id": "main-c217b4ea",
-      "kind": "Move main",
-      "title": "Move main to c217b4ea: 685 of 1,226 functions work (673 on main)",
-      "since": "2026-11-15",
-      "what": "Preview at c217b4ea is ready for main. Since main’s d69e86dd it holds: full checks 28 and 29 (a part turned on its free axis counts as back; drive shafts held in their CV sockets; the free-turned label), the axle role, functions checked lifted where the floor would spoil them, your ten sign-offs of today (five corrections to files, the casings, the suspension lists, the 8261’s function 2 dropped, seven audit rows), and the viewer’s FPS card and title card.",
-      "effect": "main goes from 673 to 685 working functions, of 1,226. 47 sets have every checked function working (43 on main).",
-      "confidence": "The slow 8110 check passed on e90ae7d8: 8 work, 4 partly, 4 don’t, as stored, one function better, none worse. Since that commit only data and the viewer’s page changed, no solver, reading or check code. Type check and 790 tests pass on c217b4ea. Three functions are worse than on main, each accepted and recorded: the 42070’s functions 1, 3 and 7 (partly to doesn’t work, with the levers set as the booklet has them).",
+      "id": "42070-diff",
+      "kind": "Sign-off",
+      "title": "42070 6x6 All Terrain Tow Truck: the rear differential turned round",
+      "since": "2026-11-16",
+      "what": "A correction to the published file. The two rear axles are built as two modules whose differentials are mirror images: the booklet’s 1:1 pictures have the ring on the right of the casing in the first (step 123) and on the left in the second (step 147). The file draws both alike, so the one shaft that drives them turns the two rear axles against each other. The correction turns the rear differential’s casing half a turn, so its ring faces the other way, as in step 147.",
+      "effect": "No score changes yet (3 work, 4 partly, 3 don’t): the drive (function 1) stays jammed for another reason, which the worker is tracing (the front wheels’ universal joints, read as rigid).",
+      "confidence": "High. The worker looked at the booklet pages: the two 1:1 pictures are mirror images, drawn from the same side, and step 166 fits the second module at the rear.",
       "links": [
         {
-          "label": "Status page",
-          "url": "https://claude.ai/artifact/8NVghVnAY8hsbqA81yw3XV"
-        }
-      ],
-      "reply": "git fetch origin && git merge --ff-only c217b4ea && git push origin main"
-    },
-    {
-      "id": "monorail-look",
-      "kind": "Look, if you like",
-      "title": "The monorail at 60 and 120 rpm, on screen",
-      "since": "2026-11-15",
-      "what": "You saw the monorail sets go choppy above 70 rpm. The motor's step is mended, and the train branch runs again after today's merge: all 51 train functions work, and the 6990 goes round its track at 60 and 120 rpm. No session can watch the animation as you see it (their panes are hidden), so only you can say whether it is smooth. The motor's own work leaves room for about 30 frames a second at 120 rpm.",
-      "effect": "Optional. Nothing waits on it.",
-      "links": [
-        {
-          "label": "6990 at 120 rpm",
-          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=120&autospin=652"
+          "label": "Booklet p. 78",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=78"
         },
         {
-          "label": "6990 at 60 rpm",
-          "url": "http://localhost:5183/?train=6990-Monorail%20Transport%20System.mpd&rpm=60&autospin=652"
+          "label": "p. 92",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6208469.pdf#page=92"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&show=755,808,845,898"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42070-1+6x6+All+Terrain+Tow+Truck.mpd&option=proposed&show=755,808,845,898"
         }
       ],
-      "reply": "The monorail is smooth now"
+      "reply": "Sign 42070"
     }
   ],
   "coming": [
     {
-      "title": "After this offer",
-      "what": "Preview already holds one thing more than the offer: the telescopic fork rule (the 42063’s fork works; 686 functions). Two mends for models that do not come back to their start are in a full check now. They wait for the next offer of main."
+      "title": "The next offer of main",
+      "what": "Preview is ahead of main by the telescopic fork rule, the 858 model mend, the 8851’s function checked lifted and your 42052 sign-off (687 functions work). Full check 30, with two mends for models that do not come back to their start, is running. The next offer comes after it is in and the slow 8110 check has passed on that commit."
     },
     {
       "title": "A second worker?",
@@ -60,6 +53,18 @@
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "You looked at the monorail with the FPS card (\"The monorail is smooth now\")."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You moved main to c217b4ea (\"main pushed\"): 685 of 1,226 functions work on main, 673 before."
+    },
+    {
+      "date": "2026-11-15",
+      "what": "You signed the correction \"42052 Heavy Lift Helicopter: no third grey pin on the door links\" (\"Sign 42052\"). It is applied on preview; no score changes."
+    },
     {
       "date": "2026-11-15",
       "what": "You signed the two audit rows where booklet and file agree on what the function is (\"Sign the two audit rows\"): the 42039’s function 6 is independent rear suspension, and the 42042’s function 6 has two levers, each in an H gate. They are on preview."
