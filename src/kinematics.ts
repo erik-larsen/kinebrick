@@ -172,6 +172,10 @@ export interface Options {
   // motions joined, those in which tyres travel are kept only if they scrub no more than rolling
   // allows. Off by default, for now; KINEBRICK_SCRUB_JOINED=1 turns it on.
   scrubJoined: boolean;
+  // Least motion: a push step that would turn a joint gears don't tie to the pushed part wildly
+  // fast stops there as stuck (see pushStepByTiers). On by default; KINEBRICK_PUSH_WILD=0 turns it
+  // off.
+  pushWild: boolean;
   // The model lifted off the ground, as held in the hand: no tyre touches the ground, and the
   // frame (the first body) is kept still instead, as for a model with no tyres (see findGround).
   // Its wheels then turn freely, and a differential worked with its drive held turns one wheel
@@ -198,6 +202,7 @@ export const experiments: Options = {
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
   freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
   scrubJoined: setting('KINEBRICK_SCRUB_JOINED') === '1',
+  pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
   lifted: false,
 };
 
@@ -2555,6 +2560,16 @@ export class Kinematics {
     const checked = (j: Joint) => j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) && !pins.has(j.bodyA) && !pins.has(j.bodyB) && !couplings.has(j.bodyA) && !couplings.has(j.bodyB);
     const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) ? this.jointRate(motion, k) * step : 0));
     const largest = Math.max(...predicted.map(Math.abs));
+    // A joint that gears don't tie to the part pushed, turning more than WILD_RATE drag steps for
+    // each LDU of the push: the point pushed hardly moves in the motion chosen (the mechanism is
+    // near singular as read), so it stops there, as a drag's step does (see turnJoint). Taken in
+    // pieces small enough for a drag's step instead, a push of the 42125 Ferrari 488 GTE's rear
+    // wheels, with its suspension's friction pins free, cut one step into 256,000.
+    const geared = this.gearedTo(body, true);
+    if (this.options.pushWild && this.mech.joints.some((j, k) => k !== joint && checked(j) && !geared.has(j.bodyA) && !geared.has(j.bodyB) && Math.abs(predicted[k]) > WILD_RATE * MAX_TURN_STEP * Math.abs(step))) {
+      if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'wild' });
+      return 'stuck';
+    }
     const gap = this.advance(motion, step, joint);
     const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
     if (gap > DEAD_POINT_GAP || strayed.length) {
