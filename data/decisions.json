@@ -120,6 +120,34 @@
         }
       ],
       "reply": "Sign 42054 lists"
+    },
+    {
+      "id": "42050-bevel",
+      "kind": "Sign-off",
+      "title": "42050 Drag Racer, function 4 (the wheelie): the actuator’s input gear drawn off its axis",
+      "since": "2026-11-17",
+      "what": "A correction to the published file. The knob in front of the right rear wheel works a small linear actuator through two bevel gears. In the file the 12-tooth double bevel on the actuator’s input is drawn 0.7 LDU off the actuator’s axis and turned 15.0 degrees where the actuator is at 14.6, so it meshes with nothing and the knob drives nothing. The booklet’s step 64 builds the two bevels meshing at the actuator’s end, on its own axis. The correction puts the double bevel on the axis, turned as the actuator is.",
+      "effect": "Function 4 goes from partly working to working: the knob turns the bevels and the actuator’s rod slides. Nothing else in the set changes. A limit you should know: in the viewer the rod slides 0.73 LDU for a quarter turn of its input and the car’s nose does not visibly rise in so short a stroke; the list counts the bevel and the rod, not the nose.",
+      "confidence": "High: step 64 shows both bevels and where they sit, and step 69 shows the pair from below. Claude tried it in the viewer with the correction switched on and the collision pass ready: the knob turned 1.5 radians turns the bevel 86 degrees and slides the rod 0.73 LDU, with no stop; the worker saw the same.",
+      "links": [
+        {
+          "label": "42050 in the viewer with the correction: the knob, the two bevels and the rod",
+          "url": "http://localhost:5174/?file=omr/42050-1+Drag+Racer.mpd&option=proposed&show=257,244,246,242"
+        },
+        {
+          "label": "The same without the correction",
+          "url": "http://localhost:5174/?file=omr/42050-1+Drag+Racer.mpd&show=257,244,246,242"
+        },
+        {
+          "label": "Booklet page 35, step 64: the two bevels",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=35"
+        },
+        {
+          "label": "Booklet page 38, step 69: the pair from below",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=38"
+        }
+      ],
+      "reply": "Sign 42050"
     }
   ],
   "coming": [

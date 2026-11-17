@@ -1,0 +1,29 @@
+{
+  "set": "42050-1",
+  "entries": [
+    {
+      "id": "wheelie-actuator-bevel-on-its-axis",
+      "what": "move",
+      "file": "42050 - linact.ldr",
+      "line": "1 0 -280.258 -6.837 0 0 0.259 0.966 0 -0.966 0.259 1 0 0 32270.dat",
+      "part": "p244 32270",
+      "position": [
+        -280.431,
+        -6.163,
+        0
+      ],
+      "orientation": [
+        0,
+        0.252,
+        0.968,
+        0,
+        -0.968,
+        0.252,
+        1,
+        0,
+        0
+      ],
+      "evidence": "Step 64 (page 35, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=35) builds the wheelie actuator (92693c01): its input (92695) takes a 12 tooth double bevel (32270, sub-step 1), and the yellow axle 7 (44294) through the actuator’s top eye takes a 12 tooth bevel (6589, sub-step 2), so the two bevels mesh at the actuator’s end, on its own axis, and stay in mesh as it swings on that axle. Step 69 (page 38, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=38) shows the pair from below, and the functions page (page 119, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=119, function B) the knob working it. In the submodel 42050 - linact.ldr the double bevel (p244) is drawn 0.7 LDU off the actuator’s axis and turned 15.0 degrees where the actuator is at 14.6, so its axis passes the knob’s axle 0.84 LDU off, and it is read as meshing nothing: the knob doesn’t drive the actuator (function 4). Placed on the actuator’s axis, 20 LDU from the axle, turned as the actuator is, it meshes the knob’s bevel; nothing else moves."
+    }
+  ]
+}
