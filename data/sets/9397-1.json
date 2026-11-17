@@ -178,12 +178,12 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 8632,
+    "commit": "b678cf3c",
+    "date": "2026-11-17",
+    "seconds": 7846,
     "counts": {
-      "works": 4,
-      "partly": 4,
+      "works": 5,
+      "partly": 3,
       "not checked": 1
     },
     "loose": [
@@ -246,7 +246,7 @@
             ]
           ]
         ],
-        "seconds": 184.2
+        "seconds": 194.9
       },
       {
         "result": "partly",
@@ -296,7 +296,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p464 92695 against p463 92693c01",
-        "seconds": 784.2
+        "seconds": 793.3
       },
       {
         "result": "partly",
@@ -351,7 +351,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p528 32140",
-        "seconds": 795.1
+        "seconds": 609.1
       },
       {
         "result": "partly",
@@ -401,7 +401,7 @@
         ],
         "cause": "not-driven",
         "detail": "p624 62274c01 against p623 62271c01",
-        "seconds": 734.1
+        "seconds": 765
       },
       {
         "result": "works",
@@ -438,7 +438,7 @@
             ]
           ]
         ],
-        "seconds": 784.9
+        "seconds": 779.5
       },
       {
         "result": "not checked"
@@ -499,10 +499,10 @@
             ]
           ]
         ],
-        "seconds": 174.7
+        "seconds": 182.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
@@ -512,9 +512,6 @@
             1.5,
             -1.5
           ]
-        ],
-        "moved": [
-          "p790 2851 against p472 32278"
         ],
         "rates": [
           {
@@ -530,9 +527,13 @@
               0.192,
               14
             ],
-            "p790 2851 against p472 32278": [
+            "p790 2851 against p775 2850a": [
               0,
               10.7
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              1.14e-13
             ]
           },
           {
@@ -548,10 +549,22 @@
               0.192,
               14
             ],
-            "p790 2851 against p472 32278": [
+            "p790 2851 against p775 2850a": [
               0,
               10.7
+            ],
+            "p775 2850a against p472 32278": [
+              0,
+              1.14e-13
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p790 2851 against p775 2850a": 10.7
+          },
+          {
+            "p790 2851 against p775 2850a": 10.7
           }
         ],
         "back": [
@@ -602,29 +615,17 @@
           [
             "p22 62821",
             "p778 2853",
-            "p779 2852"
+            "p779 2852",
+            "p790 2851 against p775 2850a"
           ],
           [
             "p22 62821",
             "p778 2853",
-            "p779 2852"
+            "p779 2852",
+            "p790 2851 against p775 2850a"
           ]
         ],
-        "wrongBy": [
-          [
-            "p790 2851 against p472 32278"
-          ],
-          [
-            "p790 2851 against p472 32278"
-          ]
-        ],
-        "judged": [
-          1,
-          0
-        ],
-        "cause": "stay-chosen",
-        "detail": "p790 2851 against p472 32278",
-        "seconds": 1699
+        "seconds": 1222.9
       },
       {
         "result": "works",
@@ -794,7 +795,7 @@
           [],
           []
         ],
-        "seconds": 3461.4
+        "seconds": 3289.4
       }
     ]
   }

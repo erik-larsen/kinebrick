@@ -72,7 +72,7 @@ import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
-import { Joint, Mechanism, meshesChanged } from '../src/mechanism.ts';
+import { Joint, Mechanism, meshesChanged, motorOutput } from '../src/mechanism.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts';
@@ -373,9 +373,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // (its output's axle), as the motor would turn it.
   const worked = (control: number) => {
     const b = mech.bodyOf[control];
-    if (mech.roles[control] !== 'motor') return b;
-    const j = mech.joints.find((x) => x.motor && (x.bodyA === b || x.bodyB === b));
-    return j ? (j.bodyA === b ? j.bodyB : j.bodyA) : b;
+    return mech.roles[control] === 'motor' ? motorOutput(mech, control) : b;
   };
   // The bodies turned with the one worked, for a function whose controls are worked together.
   let together: number[] = [];

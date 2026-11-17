@@ -4,7 +4,7 @@ A rotary catch, turned a step at a time, slides the driving rings through the ge
 
 First appears in 2016, in [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1): The paddle shifters behind the steering wheel shift the sequential gearbox up and down: each paddle swings a lever that steps a knob gear round, and a shaft with constant velocity joints takes the turn back to the gearbox, where a selector moves the driving rings through the gears one by one.
 
-Used in 6 of the 186 surveyed sets, by 11 functions. Kinebrick: 1 works, 10 partly.
+Used in 6 of the 186 surveyed sets, by 11 functions. Kinebrick: 2 works, 9 partly.
 
 ## By decade
 
@@ -43,7 +43,7 @@ Each detail by the set it first appears in.
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
-- *2 speeds:* The grey gear lever on the gearbox's right side picks neutral, first or second gear: it turns the selector shaft, whose orange rotary catch slides the driving ring between the two clutch gears. (partly)
+- *2 speeds:* The grey gear lever on the gearbox's right side picks neutral, first or second gear: it turns the selector shaft, whose orange rotary catch slides the driving ring between the two clutch gears. (works)
 - *2 speeds:* In first or second gear, turning the rear wheel runs the V4 engine: the chain from the rear sprocket drives the output shaft at the swing arm's pivot, which drives the gearbox and then the crankshaft, pumping the four pistons up and down. Second gear turns the engine at a different speed from first. (partly)
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**

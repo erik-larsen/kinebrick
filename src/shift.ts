@@ -89,15 +89,56 @@ export interface Catch {
   part: number;
   ring: Slider;
   fork: Vector3; // where the ring's middle was as built, in the catch's own coordinates
+  rotary?: boolean; // a rotary catch (35188), whose cam moves the ring along its own axis (see camAt)
 }
 
 // How far each catch's fork is from its middle, in LDU.
 const CATCH_REACH: Record<string, number> = { '6641.dat': 60 };
 
+// A rotary changeover catch (35188 Technic Changeover Rotary Catch): a disc, turning on an axle
+// parallel to a driving ring's shaft, the ring's middle 40 LDU across from its own (ROTARY_REACH).
+// Its rim reaches into the ring's groove, and the rim is a cam: where it faces the ring, it holds
+// the ring that far along the catch's axis. Measured from the LDraw shape (s\35188s01.dat, the
+// quarter the part is built of, mirrored in x and in y and z): the middle of the rim's edge, by
+// the angle from the catch's x axis, in degrees, against how far along its axis (LDU), in its
+// first quarter; from 50 to 90 degrees the rim is a slot from 5 to 15 LDU, holding the ring at
+// 10. Over a whole turn (see camAt): the ring is in its middle at 0 and 180 degrees, 10 LDU one
+// way from about 50 to 130, and 10 LDU the other way from about 230 to 310. The models agree: of
+// the 16 rings round the 10 rotary catches in the sets, 15 stand where this puts them (at 0 and
+// 180 degrees in the middle, at 90 degrees 10 LDU along, at -90 degrees 10 LDU back); the 42083's
+// p398, at 90 degrees from its catch p410, is drawn in its middle.
+const ROTARY_REACH = 40;
+const CAM: [number, number][] = [[0, 0], [7.5, 1.4], [12.5, 2.1], [17.5, 2.75], [22.5, 3.35], [27.5, 3.9], [32.5, 4.4], [37.5, 4.8], [50, 10], [90, 10]];
+
+// How far along a rotary catch's axis its cam holds a ring that faces it at `degrees` (see CAM).
+export function camAt(degrees: number): number {
+  let a = degrees; // brought to above -180 and up to 180
+  while (a > 180) a -= 360;
+  while (a <= -180) a += 360;
+  if (a < 0) return -camAt(-a);
+  const t = a > 90 ? 180 - a : a;
+  for (let i = 1; i < CAM.length; i++) {
+    const [a0, z0] = CAM[i - 1], [a1, z1] = CAM[i];
+    if (t <= a1) return z0 + ((z1 - z0) * (t - a0)) / (a1 - a0);
+  }
+  return CAM[CAM.length - 1][1];
+}
+
 // The catches in a model, each with the driving ring its fork sits in.
 export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
   const catches: Catch[] = [];
   parts.forEach((p, i) => {
+    if (p.name.replace(/^.* - /, '') === '35188.dat') {
+      // A rotary catch: every ring whose middle is ROTARY_REACH across from it, in its own plane
+      // (the ring's click places take it up to 10 LDU along its axis). A sequential gearbox's
+      // catch holds two or three rings round it, at different angles, and so steps through its
+      // gears: the 42114's holds rings at 90, -90 and 180 degrees.
+      for (const ring of sliders) {
+        const local = new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
+        if (Math.abs(Math.hypot(local.x, local.y) - ROTARY_REACH) < 1 && Math.abs(local.z) <= 12) catches.push({ part: i, ring, fork: local, rotary: true });
+      }
+      return;
+    }
     const reach = CATCH_REACH[p.name];
     if (!reach) return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
@@ -114,7 +155,13 @@ export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
 export function catchShifts(parts: PlacedPart[], table: ConnectionTable, catches: Catch[]): Map<number, number> {
   const shifts = new Map<number, number>();
   for (const c of catches) {
-    const fork = c.fork.clone().applyMatrix4(parts[c.part].matrix);
+    let fork = c.fork.clone().applyMatrix4(parts[c.part].matrix);
+    if (c.rotary) {
+      // Where the catch now faces the ring's middle, and how far along its axis its cam holds
+      // the ring there.
+      const local = new Vector3().setFromMatrixPosition(parts[c.ring.part].matrix).applyMatrix4(parts[c.part].matrix.clone().invert());
+      fork = new Vector3(local.x, local.y, camAt((Math.atan2(local.y, local.x) * 180) / Math.PI)).applyMatrix4(parts[c.part].matrix);
+    }
     const base = c.ring.origin ?? new Vector3().setFromMatrixPosition(parts[c.ring.base].matrix);
     const to = nearestPosition(c.ring, fork.sub(base).dot(slideDirection(parts, table, c.ring)));
     if (to !== nearestPosition(c.ring, sliderPosition(parts, table, c.ring))) shifts.set(c.ring.part, to);

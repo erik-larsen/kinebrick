@@ -208,9 +208,10 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 20,
+    "commit": "35e318bc",
+    "uncommitted": true,
+    "date": "2026-11-17",
+    "seconds": 19,
     "counts": {
       "works": 6,
       "partly": 2,
@@ -290,7 +291,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 2.2
+        "seconds": 2.1
       },
       {
         "result": "partly",
@@ -464,7 +465,7 @@
         ],
         "cause": "not-driven",
         "detail": "p866 92696",
-        "seconds": 1.6
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -506,7 +507,7 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -602,7 +603,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.6
       },
       {
         "result": "no",
@@ -840,7 +841,7 @@
           [],
           []
         ],
-        "seconds": 6.4
+        "seconds": 6.5
       },
       {
         "result": "not checked",
