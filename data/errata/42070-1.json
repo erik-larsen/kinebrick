@@ -29,6 +29,35 @@
         "date": "2026-11-16",
         "words": "Sign 42070"
       }
+    },
+    {
+      "id": "rear-differential-spider-gear-with-its-casing",
+      "what": "move",
+      "file": "42070 - axle3.ldr",
+      "line": "1 19 0 0 17 0.259 -0.966 0 -0.966 -0.259 0 0 0 -1 6589.dat",
+      "part": "p848 6589",
+      "position": [
+        0,
+        0,
+        -17
+      ],
+      "orientation": [
+        -0.259,
+        0.966,
+        0,
+        -0.966,
+        -0.259,
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": "Follows from the signed entry rear-differential-ring-faces-back, which turns the rear differential's casing p845 half a turn about the vertical: the casing's small bevel gear p848 sits on the casing's own pin, inside it, and turns with it, from 17 LDU behind the casing's centre to 17 in front, as the middle differential's p758 sits in its casing p755. Left where it was, it is joined to the axle housing instead of the casing (the reading has no joint between p845 and p848), so the two side gears must turn against each other and the rear axle's wheels can't roll together: the truck can't roll straight, and the XL motor can't turn on the floor (function 1). The side gears p846 and p847 change places under the same half turn, as drawn already.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-16",
+        "words": "Sign 42070 spider"
+      }
     }
   ]
 }

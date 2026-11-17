@@ -1,13 +1,13 @@
 {
   "state": {
     "main": {
-      "works": 685,
-      "moved": "2026-11-15"
+      "works": 701,
+      "moved": "2026-11-16"
     },
     "preview": {
-      "works": 701,
-      "partly": 239,
-      "no": 107,
+      "works": 704,
+      "partly": 237,
+      "no": 106,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
@@ -15,19 +15,27 @@
   "waiting": [],
   "coming": [
     {
-      "title": "The next offer of main",
-      "what": "Preview is ahead of main by 16 working functions (701 against 685): the telescopic fork rule, the worm gear and universal joint mends, the functions checked lifted, your 42052 sign-off, and full check 32 with the mends for models that do not come back to their start. The slow 8110 check is running on that commit. The offer comes when it has passed."
-    },
-    {
       "title": "A second worker, asked again at mid-week",
       "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
-    },
-    {
-      "title": "8832 Roadster: the correction for the shock absorber's top",
-      "what": "By your answer of 16 November the worker puts the shock absorber's top on the seat so that the rear arm swings. You get the exact correction to sign, with viewer links before and after."
     }
   ],
   "done": [
+    {
+      "date": "2026-11-16",
+      "what": "9397 Logging Truck and 42022 Hot Rod: the piston is a part that moves and the cylinder stays (\"Sign piston lists\"). The 42022's function 2 now works; the 9397's function 8 is being checked with its whole set."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the small gear inside the turned rear differential (\"Sign 42070 spider\"). The drive (function 1) now works; 702 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster: the roll bar's two bracing axles (\"Sign 8832\"). The correction is made in Kinebrick's own copy of the file; function 2 now works. 703 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "You moved main to 24366c8f: 701 of 1,226 functions work on main, where 685 did."
+    },
     {
       "date": "2026-11-16",
       "what": "8832 Roadster, function 2: the function should work, so if the file does not allow it the file is wrong; you believe the shock absorber's top sits on the seat. The worker makes the correction and it comes back to you to sign."
