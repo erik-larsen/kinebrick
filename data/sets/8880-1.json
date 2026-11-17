@@ -224,15 +224,14 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 134,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 149,
     "counts": {
-      "works": 8,
+      "works": 9,
       "no": 2,
       "not back": 2,
       "free-turned": 1,
-      "partly": 1,
       "torn": 1,
       "skipped": 2
     },
@@ -454,7 +453,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 29.8
+        "seconds": 32.1
       },
       {
         "result": "works",
@@ -678,7 +677,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 42.5
+        "seconds": 37.3
       },
       {
         "result": "no",
@@ -734,7 +733,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 6539",
-        "seconds": 8.2
+        "seconds": 7.7
       },
       {
         "result": "works",
@@ -800,7 +799,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 8.7
       },
       {
         "result": "works",
@@ -859,7 +858,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 8.7
       },
       {
         "result": "works",
@@ -922,7 +921,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -1002,14 +1001,14 @@
           [],
           []
         ],
-        "seconds": 7
+        "seconds": 7.6
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.07,
-            -0.07
+            0.1,
+            -0.13
           ],
           [
             0.1,
@@ -1023,12 +1022,12 @@
         "back": [
           [
             [
-              9.26,
-              3.17
+              11.36,
+              4.97
             ],
             [
-              9.13,
-              3.18
+              13.77,
+              3.81
             ]
           ],
           [
@@ -1045,12 +1044,12 @@
         "torn": [
           [
             [
-              7.33,
-              4.29
+              9.61,
+              5.62
             ],
             [
-              7.34,
-              4.29
+              9.88,
+              5.77
             ]
           ],
           [
@@ -1065,14 +1064,15 @@
           ]
         ],
         "strayed": [
-          "p1360 2430",
+          "p397 2907",
+          "p1222 3933",
           "p617 3666",
           "p937 3041p01"
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "limit",
+            "limit"
           ],
           [
             "limit",
@@ -1083,12 +1083,8 @@
           [],
           []
         ],
-        "judged": [
-          1,
-          1
-        ],
-        "cause": "stopped-early",
-        "seconds": 7.6
+        "onPlay": 0.3,
+        "seconds": 10.8
       },
       {
         "result": "skipped",
@@ -1107,22 +1103,57 @@
           "p1252 3895"
         ],
         "rates": [
-          {}
+          {
+            "p1238 3702": [
+              0,
+              0
+            ],
+            "p1252 3895": [
+              0,
+              0
+            ],
+            "p750 2853": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "torn": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p1240 4477 is part of the frame"
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
         ],
+        "freed": 2,
         "judged": [
           0
         ],
-        "cause": "control-fixed",
-        "seconds": 0.1
+        "cause": "control-jammed",
+        "seconds": 15.5
       },
       {
         "result": "skipped",
@@ -1193,7 +1224,7 @@
           [],
           []
         ],
-        "seconds": 10.9
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -1253,7 +1284,7 @@
             ]
           ]
         ],
-        "seconds": 6.8
+        "seconds": 7.3
       }
     ]
   }

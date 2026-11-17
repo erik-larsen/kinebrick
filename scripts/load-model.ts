@@ -8,7 +8,9 @@ import { applyErrata, type Errata, setOfFile } from '../src/errata.ts';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
 import { modelSettings, parseModel, PlacedPart } from '../src/ldr.ts';
+import { keptFileName } from '../src/collisions.ts';
 import { inferMechanism } from '../src/mechanism.ts';
+import { pivotsKey } from '../src/pivotsKey.ts';
 import { drawnDirectly } from '../src/pack.ts';
 
 export function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}) {
@@ -17,11 +19,12 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
   const name = file.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd)$/i, '');
   const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
   status('working out its mechanism');
+  const kept = keptPivots(file, parts, table, roles);
   // The mechanism of the parts placed as given, ready to move: the model's own, or worked out
   // afresh after a shift moved some of them, as the viewer does; with the friction pins `freed`
   // left to turn (see pinsToFree).
   const read = (placed: PlacedPart[], freed = new Set<number>()) => {
-    const mech = inferMechanism(placed, table, roles, paths, freed);
+    const mech = inferMechanism(placed, table, roles, paths, freed, false, placed === parts ? kept : null);
     const kin = new Kinematics(mech);
     kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
     return { parts: placed, mech, kin };
@@ -29,6 +32,16 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
   // The mechanism with every friction pin free, for pinsToFree.
   const allFree = (placed: PlacedPart[]) => inferMechanism(placed, table, roles, paths, new Set(), true);
   return { name, table, errata, slides: modelSettings(text).slides, ...read(parts), read, allFree };
+}
+
+// The pins the rule for stuck actuators frees in the model, as kept for it (see keptPivots.ts in
+// src/, and npm run pivots), if its kept file's key matches; null if not, and the rule is
+// worked out as the model is read. KINEBRICK_KEPT_PIVOTS=0 always works it out, for comparing.
+export function keptPivots(file: string, parts: PlacedPart[], table: ConnectionTable, roles: Record<string, string>): number[] | null {
+  const kept = `data/pivots/${keptFileName(file)}.json`;
+  if (process.env.KINEBRICK_KEPT_PIVOTS === '0' || !existsSync(kept)) return null;
+  const { key, pins } = JSON.parse(readFileSync(kept, 'utf-8'));
+  return key === pivotsKey(parts, table, roles) ? pins : null;
 }
 
 // A model's parts, in the order the scripts number them ("p483 3736"), with its connection table:

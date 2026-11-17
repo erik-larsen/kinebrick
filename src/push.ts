@@ -29,7 +29,9 @@ export function pointDirections(kin: Kinematics, body: number, g: Vector3): numb
 export function wayOnJoint(kin: Kinematics, body: number, g: Vector3): Vector3 | null {
   const link = kin.parentLink(body);
   if (!link) return null;
-  const motion = kin.jointMotion(link.joint);
+  // An exact motion only: a play motion (see Kinematics.loopPlay) is a drag's last resort, not a
+  // way to aim one, and on a big model each takes seconds to find.
+  const motion = kin.jointMotion(link.joint, false);
   if (!motion) return null;
   const v = kin.pointVelocity(motion, body, g).sub(kin.pointVelocity(motion, 0, g));
   return v.length() < 1e-6 ? null : v.normalize();

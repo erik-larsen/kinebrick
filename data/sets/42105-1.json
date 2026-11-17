@@ -101,9 +101,9 @@
     ]
   },
   "generated": {
-    "commit": "01139e16",
-    "date": "2026-11-15",
-    "seconds": 1,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 2,
     "counts": {
       "partly": 1,
       "works": 2,
@@ -185,7 +185,7 @@
         ],
         "cause": "not-driven",
         "detail": "p60 40490",
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -252,7 +252,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -315,7 +315,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "no",
@@ -375,15 +375,15 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0
+        "seconds": 0.2
       },
       {
         "result": "skipped",

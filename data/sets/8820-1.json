@@ -52,11 +52,10 @@
           "p127 3482"
         ],
         "stays": [
-          "p31 3706",
           "p47 2717",
           "p129 3482"
         ],
-        "note": "how far the arm can swing is set by the shock absorber's travel; its cylinder swings a little on its top axle as the arm moves. lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
+        "note": "how far the arm can swing is set by the shock absorber's travel; its cylinder swings a little on its top axle as the arm moves, and that axle (p31), in round holes, is free to turn with it, so it is not among the parts that stay (Erik signed it, \"Sign 8820 list\", 2026-11-16). lifted: the text has the wheel or arm moved (\"so the rear wheels rise and fall together\"), so it is worked with the model held in the hand, the frame still and no tyre on the ground, its own shock absorber giving through its travel"
       },
       {
         "does": "The shock absorber's spring pushes the rear wheels back down.",
@@ -87,13 +86,12 @@
     ]
   },
   "generated": {
-    "commit": "01139e16",
-    "date": "2026-11-15",
+    "commit": "93a580aa",
+    "date": "2026-11-17",
     "seconds": 1,
     "counts": {
-      "works": 2,
+      "works": 3,
       "pivoted": 1,
-      "partly": 1,
       "skipped": 1
     },
     "loose": [
@@ -185,18 +183,15 @@
           "rise": 0.92,
           "tyre": "p130 2346"
         },
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             0,
             -0.35
           ]
-        ],
-        "moved": [
-          "p31 3706"
         ],
         "rates": [
           {
@@ -219,10 +214,6 @@
             "p127 3482": [
               1,
               60
-            ],
-            "p31 3706": [
-              0.28,
-              5.98e-50
             ],
             "p47 2717": [
               0,
@@ -267,12 +258,7 @@
         "pushed": [
           true
         ],
-        "judged": [
-          1
-        ],
-        "cause": "stay-chosen",
-        "detail": "p31 3706",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -302,25 +288,25 @@
           {
             "p102 3894": [
               0,
-              2.7e-14
+              2.33e-14
             ]
           },
           {
             "p102 3894": [
               0,
-              1.86e-14
+              2.74e-14
             ]
           },
           {
             "p102 3894": [
               0,
-              1.18e-14
+              3.01e-14
             ]
           },
           {
             "p102 3894": [
               0,
-              2.39e-14
+              2.07e-14
             ]
           }
         ],
@@ -414,7 +400,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.7
       }
     ]
   }

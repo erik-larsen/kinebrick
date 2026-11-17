@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 62 works, 9 partly, 5 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 66 works, 7 partly, 3 no.
 
 ## By decade
 
@@ -223,7 +223,7 @@ Each detail by the set it first appears in.
 
 **2015, [42037 Formula Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42037-1)**
 
-- The black gear on top of the roll cage behind the seat steers the front wheels (hand of god steering): its vertical shaft turns, through bevel gears, a long shaft running forward under the car to a 12 tooth gear on the front steering rack, and the rack's links turn both front hubs. (partly)
+- The black gear on top of the roll cage behind the seat steers the front wheels (hand of god steering): its vertical shaft turns, through bevel gears, a long shaft running forward under the car to a 12 tooth gear on the front steering rack, and the rack's links turn both front hubs. (works)
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
@@ -259,7 +259,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (no)
+- The M motor steers the front wheels: through a 16 and 20 tooth gear, a 16 tooth clutch gear, an 8 tooth gear and a 24 tooth clutch gear it turns a shaft forward to a 12 tooth bevel gear on the steering rack, which turns both front portal hubs. It's worked from the remote's right lever, with the drive/crane lever set to drive. (works)
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
@@ -275,7 +275,7 @@ Each detail by the set it first appears in.
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
-- The small handwheel at the very back of the chassis steers all four wheels: a shaft along the chassis turns a pinion on the rear steering rack and, through idler gears, one on the front rack, so the front and rear wheels steer opposite ways. (no)
+- The small handwheel at the very back of the chassis steers all four wheels: a shaft along the chassis turns a pinion on the rear steering rack and, through idler gears, one on the front rack, so the front and rear wheels steer opposite ways. (partly)
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
@@ -299,7 +299,7 @@ Each detail by the set it first appears in.
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
-- The L motor at the front steers: a 12 tooth gear on its shaft slides the steering rack, which turns both front steering knuckles. (partly)
+- The L motor at the front steers: a 12 tooth gear on its shaft slides the steering rack, which turns both front steering knuckles. (works)
 
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 
@@ -315,7 +315,7 @@ Each detail by the set it first appears in.
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 
-- The steering wheel steers the front wheels: its column runs forward through two universal joints to a pair of 16 tooth gears, then a pair of 8 tooth gears to a 12 tooth gear that slides the steering rack across, turning both front hubs. (partly)
+- The steering wheel steers the front wheels: its column runs forward through two universal joints to a pair of 16 tooth gears, then a pair of 8 tooth gears to a 12 tooth gear that slides the steering rack across, turning both front hubs. (works)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 

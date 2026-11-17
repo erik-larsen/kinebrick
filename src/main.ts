@@ -31,6 +31,8 @@ import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
 import { collisionGeometry, Collisions, connectedPairs, INSET, LAYOUT_INSET, LAYOUT_NEAR, NEAR, pairNumber, PartMesh } from './collisions.ts';
 import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
+import { keptPivots } from './keptPivots.ts';
+import { pivotsKey } from './pivotsKey.ts';
 import { ConnectionTable, libraryConnections, normalizePartName } from './connections.ts';
 import { DEFAULT_RPM, InteractionSetup, setUpInteraction } from './interaction.ts';
 import { makeJointAxes } from './jointAxes.ts';
@@ -422,7 +424,10 @@ async function start() {
   // needn't build the pieces of a string's shape that won't be shown (see showStrings).
   summary.textContent = 'Working out how it moves…';
   await shown();
-  let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)));
+  // The pins the rule for stuck actuators frees, as kept for this model (see keptPivots.ts), if
+  // its kept file's key matches: else the rule is worked out as the model is read.
+  const keptPins = await keptPivots(FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL, pivotsKey(startParts, table, roles));
+  let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)), false, keptPins);
   // The paths as the file drew them, for Reset: working the mechanism out afresh moves them with
   // the parts they run round (see movePaths).
   const copyPoint = (p: PathPoint) => ({ ...p, center: p.center.clone(), axis: p.axis.clone() });
@@ -525,13 +530,13 @@ async function start() {
     };
     pinWorker.postMessage({ model: { text: modelText, primitives: [...primitives], pieces: packed?.pieces ?? {}, table, roles } });
   }
-  const pinsToFree = (part: number) =>
+  const pinsToFree = (part: number, search = true) =>
     new Promise<number[]>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve([]);
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
-      pinWorker.postMessage({ ask: asked, part });
+      pinWorker.postMessage({ ask: asked, part, freed: [...freed], search });
     });
   // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
   // does (see readAsBuilt), so everything stays where it now is.
@@ -604,12 +609,12 @@ async function start() {
   // partObjects already there.
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
-    mech = known ?? inferMechanism(parts, table, roles, paths, freed);
+    mech = known ?? inferMechanism(parts, table, roles, paths, freed, false, placed === startParts ? keptPins : null);
     kin = new Kinematics(mech, { lifted });
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
-    catches = findCatches(parts, sliders);
+    catches = findCatches(parts, sliders, mech.roles, catches);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     // Where each chain's or track's links go as it moves round (see paths.ts).
@@ -641,6 +646,10 @@ async function start() {
     }
 
     const connected = connectedPairs(mech);
+    // Nor a changeover catch and the driving ring its fork sits in: the fork is in the ring's
+    // groove, and the ring slides only when the drag ends (see meshAfresh), so in between the
+    // fork presses into it. Tested, the pair stopped the 42112's selector lever 2 degrees out.
+    for (const c of catches) for (const ring of c.ring.riders ?? [c.ring.part]) connected.add(c.part < ring ? `${c.part},${ring}` : `${ring},${c.part}`);
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
     else {
       // The pairs of parts that already touch as built are found beside the page (see
@@ -1529,6 +1538,9 @@ start()
     if (params.has('thumb')) (window as unknown as { kinebrickThumbnail: Promise<string> }).kinebrickThumbnail = thumbnail(renderer.domElement, camera, ldrawSpace);
   })
   .catch((err) => {
-    document.getElementById('summary')!.textContent = 'Error: ' + err.message;
+    // With a way to try again: a fetch may fail only for a moment (see libraryReader).
+    const summary = document.getElementById('summary')!;
+    summary.textContent = 'Error: ' + err.message + ' ';
+    summary.append(Object.assign(document.createElement('button'), { textContent: 'Try again', onclick: () => window.location.reload() }));
     console.error(err);
   });

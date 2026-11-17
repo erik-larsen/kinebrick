@@ -155,13 +155,13 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 153,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 369,
     "counts": {
       "no": 1,
-      "partly": 3,
-      "works": 4,
+      "partly": 2,
+      "works": 5,
       "skipped": 1
     },
     "loose": [
@@ -272,76 +272,74 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "control-jammed",
-        "seconds": 1.2
+        "seconds": 6.8
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.17,
-            -0.17
+            1.5,
+            -1.5
           ],
           [
-            0.17,
-            -0.17
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p464 32271 against p0 64179",
-          "p442 62274c01 against p441 62271c01",
-          "p1136 15265 against p0 64179"
+          "p442 62274c01 against p441 62271c01"
         ],
         "rates": [
           {
             "p464 32271 against p0 64179": [
-              0.000265,
-              0.0764
+              0.00691,
+              1.99
             ],
             "p442 62274c01 against p441 62271c01": [
-              0.0312,
-              0.551
+              1.4e-7,
+              0.594
             ],
             "p1136 15265 against p0 64179": [
-              0.000599,
-              0.165
+              0.00691,
+              3.99
             ],
             "p621 18940 against p0 64179": [
               0,
-              1.42e-12
+              7.42e-10
             ],
             "p506 62274c01 against p505 62271c01": [
-              0.000456,
-              0.0831
+              2.81e-8,
+              5.35e-13
             ]
           },
           {
             "p464 32271 against p0 64179": [
-              0.000265,
-              0.0764
+              0.00691,
+              1.99
             ],
             "p442 62274c01 against p441 62271c01": [
-              0.0312,
-              0.551
+              1.4e-7,
+              0.594
             ],
             "p1136 15265 against p0 64179": [
-              0.000599,
-              0.165
+              0.00691,
+              3.99
             ],
             "p621 18940 against p0 64179": [
               0,
-              1.42e-12
+              7.42e-10
             ],
             "p506 62274c01 against p505 62271c01": [
-              0.000456,
-              0.0831
+              2.81e-8,
+              5.35e-13
             ]
           }
         ],
@@ -389,69 +387,63 @@
             ]
           ]
         ],
-        "stop": [
+        "movedBy": [
           [
-            "dead point",
-            "dead point"
+            "p464 32271 against p0 64179",
+            "p1136 15265 against p0 64179"
           ],
           [
-            "dead point",
-            "dead point"
+            "p464 32271 against p0 64179",
+            "p1136 15265 against p0 64179"
           ]
-        ],
-        "movedBy": [
-          [],
-          []
         ],
         "judged": [
           0,
           0
         ],
-        "cause": "control-jammed",
-        "seconds": 8.1
+        "cause": "too-little",
+        "detail": "p442 62274c01 against p441 62271c01",
+        "seconds": 101.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.37,
-            -0.37
+            1.5,
+            -1.5
           ],
           [
-            0.37,
-            -0.37
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p506 62274c01 against p505 62271c01"
         ],
         "rates": [
           {
             "p1136 15265 against p464 32271": [
-              0.06,
-              2.4
+              0.0354,
+              1.41
             ],
             "p506 62274c01 against p505 62271c01": [
-              0.033,
-              1.65
+              8.43e-8,
+              0.99
             ],
             "p464 32271 against p0 64179": [
-              0.00152,
-              0.437
+              0,
+              1.14e-13
             ]
           },
           {
             "p1136 15265 against p464 32271": [
-              0.06,
-              2.4
+              0.0354,
+              1.41
             ],
             "p506 62274c01 against p505 62271c01": [
-              0.033,
-              1.65
+              8.43e-8,
+              0.99
             ],
             "p464 32271 against p0 64179": [
-              0.00152,
-              0.437
+              0,
+              1.14e-13
             ]
           }
         ],
@@ -499,41 +491,28 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "dead point",
-            "dead point"
-          ],
-          [
-            "dead point",
-            "dead point"
-          ]
-        ],
         "movedBy": [
           [
-            "p1136 15265 against p464 32271"
+            "p1136 15265 against p464 32271",
+            "p506 62274c01 against p505 62271c01"
           ],
           [
-            "p1136 15265 against p464 32271"
+            "p1136 15265 against p464 32271",
+            "p506 62274c01 against p505 62271c01"
           ]
         ],
-        "judged": [
-          0,
-          0
-        ],
-        "cause": "control-jammed",
-        "seconds": 15.9
+        "seconds": 102.5
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.13,
+            -1.13
           ],
           [
-            1.5,
-            -1.5
+            1.13,
+            -1.13
           ]
         ],
         "still": [
@@ -543,7 +522,7 @@
           {
             "p315 64179 against p0 64179": [
               0,
-              4.77e-38
+              9.2e-35
             ],
             "p243 62274c01 against p242 62271c01": [
               0.0493,
@@ -551,13 +530,13 @@
             ],
             "p464 32271 against p0 64179": [
               0,
-              3.79e-14
+              2.51e-14
             ]
           },
           {
             "p315 64179 against p0 64179": [
               0,
-              4.77e-38
+              9.2e-35
             ],
             "p243 62274c01 against p242 62271c01": [
               0.0493,
@@ -565,7 +544,7 @@
             ],
             "p464 32271 against p0 64179": [
               0,
-              3.79e-14
+              2.51e-14
             ]
           }
         ],
@@ -613,6 +592,16 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ],
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
         "movedBy": [
           [
             "p243 62274c01 against p242 62271c01"
@@ -626,7 +615,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 59
+        "onPlay": 9.07,
+        "seconds": 63.5
       },
       {
         "result": "works",
@@ -644,7 +634,7 @@
             ],
             "p610 18942 against p0 64179": [
               0,
-              7.14e-33
+              4.73e-33
             ],
             "p464 32271 against p0 64179": [
               0,
@@ -676,7 +666,7 @@
             ]
           ]
         ],
-        "seconds": 6.7
+        "seconds": 9
       },
       {
         "result": "works",
@@ -794,7 +784,7 @@
           [],
           []
         ],
-        "seconds": 23.1
+        "seconds": 31.5
       },
       {
         "result": "works",
@@ -912,7 +902,7 @@
           [],
           []
         ],
-        "seconds": 25
+        "seconds": 31.8
       },
       {
         "result": "works",
@@ -978,11 +968,10 @@
           [],
           []
         ],
-        "seconds": 13
+        "seconds": 18.3
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       }
     ]
   }

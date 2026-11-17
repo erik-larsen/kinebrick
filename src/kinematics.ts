@@ -94,6 +94,8 @@ const DEAD_POINT_SAMPLE = (10 * Math.PI) / 180;
 const DEAD_POINT_GAP = 1e-3;
 // Largest turn per step in turnJoint, in radians (about 2 degrees).
 const MAX_TURN_STEP = 0.035;
+// The smallest step a turn is cut down to, a step at a time, to leave a jam ahead (see turnJoint).
+const LEAST_TURN_STEP = MAX_TURN_STEP / 16;
 // How many times as fast as the joint being turned another joint may turn, if gears don't tie it
 // to that joint, before the motion counts as a dead point (see turnJoint). Linkages turn their
 // joints a few times as fast at most; past this, the mechanism is near singular as read (the
@@ -104,6 +106,9 @@ const WILD_RATE = 50;
 // How much faster the joints may turn in a drag's motion without the car moving on its
 // suspension than with it, for the motion without to be taken all the same (see jointMotion).
 const SUSPENSION_GAIN = 2;
+// A joint whose axis lies this near level (the sine of its angle to the level) rocks or tips
+// what it carries rather than turning it round (see leastTiers' keepSteering).
+const LEVEL_AXIS = 0.1;
 // Play. Real parts have a little of it, and a loop of rigid parts built to fit only as the model
 // was built (an upright on two towballs a hair further apart than the arms it hangs from) turns
 // on it. When nothing turns a joint exactly, a motion that opens the loops at most PLAY_RATE (LDU
@@ -112,6 +117,14 @@ const SUSPENSION_GAIN = 2;
 // compares with the rest.
 const PLAY_RATE = 1;
 const PLAY = 0.1;
+// With loopPlay, the clearances of real parts, in LDU (estimates, 2026-11-16, not measured; see
+// loopBudgets): a pin or axle turning in a round hole, across it (RADIAL) and along it (AXIAL),
+// and a towball in its socket (BALL). KINEBRICK_PLAY_SCALE multiplies them all, to see how much
+// a result hangs on them.
+const PLAY_SCALE = Number((typeof process !== 'undefined' ? process.env?.KINEBRICK_PLAY_SCALE : undefined) ?? 1);
+const RADIAL = 0.1 * PLAY_SCALE;
+const AXIAL = 0.25 * PLAY_SCALE;
+const BALL = 0.05 * PLAY_SCALE;
 // How much the joints' turning counts against the loops' opening in choosing a motion that takes
 // up play: only enough to choose between motions that open them alike.
 const TIE_BREAK = 0.1;
@@ -168,6 +181,16 @@ export interface Options {
   // motions joined, those in which tyres travel are kept only if they scrub no more than rolling
   // allows. Off by default, for now; KINEBRICK_SCRUB_JOINED=1 turns it on.
   scrubJoined: boolean;
+  // Play as an amount, not a rate (see loopBudgets): a pose is allowed while every loop closes
+  // within the clearances of its joints, and pushes take play as turns do. Play is the last
+  // resort (see jointMotion), and a step on play must still turn the dragged joint as asked (see
+  // turnJoint). On by default (decision 121 of 2026-11-16); KINEBRICK_LOOP_PLAY=0 turns it off,
+  // and KINEBRICK_PLAY_SCALE scales the clearances.
+  loopPlay: boolean;
+  // Least motion: a push step that would turn a joint gears don't tie to the pushed part wildly
+  // fast stops there as stuck (see pushStepByTiers). On by default; KINEBRICK_PUSH_WILD=0 turns it
+  // off.
+  pushWild: boolean;
   // The model lifted off the ground, as held in the hand: no tyre touches the ground, and the
   // frame (the first body) is kept still instead, as for a model with no tyres (see findGround).
   // Its wheels then turn freely, and a differential worked with its drive held turns one wheel
@@ -194,6 +217,8 @@ export const experiments: Options = {
   leastPush: setting('KINEBRICK_LEAST_PUSH') !== '0',
   freeClutch: setting('KINEBRICK_FREE_CLUTCH') === '1',
   scrubJoined: setting('KINEBRICK_SCRUB_JOINED') === '1',
+  loopPlay: setting('KINEBRICK_LOOP_PLAY') !== '0',
+  pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
   lifted: false,
 };
 
@@ -328,7 +353,7 @@ export class Kinematics {
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
   private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
   private built = false; // the constructor done: reset() may then set a layout's cars on the rails (see setOnRails)
-  private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
+  private lastStep: { joint: number; way: number; angles: number[]; ratio: number; played: boolean } | null = null; // the last step a turn took (see turnJoint)
   private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
   private pins: Set<number> | null = null; // bodies free to spin on their one axis (see findPins), once worked out
   private framed: Set<number> | null = null; // the bodies that can't move against the frame (see fixedToFrame), once worked out
@@ -343,6 +368,7 @@ export class Kinematics {
   spinners: number[] = [];
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private played = false;
+  private closingFirmOnly = false; // whether only the rows that take no play are being closed (see closeLoops)
   private turningJointsOf: number[][] | null = null; // each body's turning joints (see onAxis), found when first needed
   traceNames: string[] | null = null; // with TRACE, each row's kind of connection, as buildEquations adds it (see traceJam in trace.ts)
   private traceName = ''; // with TRACE, the kind of connection whose rows buildEquations is adding
@@ -1011,6 +1037,11 @@ export class Kinematics {
   // for each radian of the dragged joint, and the tyre. The function check stores it with the
   // function's result and sets it back to null, so a result that leaned on the pivot shows it.
   pivoted: { slide: number; rise: number; tread: number } | null = null;
+  // How far drags have gone on play (radians, or LDU for a push) since this was last set to 0: a
+  // record for the check, as pivoted is.
+  onPlay = 0;
+  // With loopPlay: each joint that closes a loop, and how far it may open (see loopBudgets).
+  private budgets: Map<number, number> | null = null;
 
   private notePivots(motion: number[]) {
     const joint = this.drag.turning?.joint;
@@ -1391,9 +1422,11 @@ export class Kinematics {
   // The bodies that steer a car: those that turn when, and only when, its wheels turn about
   // upright axes (a steering wheel, and the gears and shafts down to its rack). Found with the
   // tyres it stands on lifted off the ground and not turning on their axles, so that steering
-  // doesn't roll them.
+  // doesn't roll them. A model lifted (see Options.lifted) stands on none: its steering is what
+  // turns any of its tyres so, as held in the hand.
   private steeringBodies(): Set<number> {
-    const treads = this.contactTreads.map((i) => this.mech.treads[i].body);
+    const standing = this.options.lifted ? this.mech.treads.map((_, i) => i) : this.contactTreads;
+    const treads = [...new Set(standing.map((i) => this.mech.treads[i].body))];
     const [contact, held, toFrame] = [this.contactTreads, this.drag.held, this.drag.heldToFrame];
     // What working out the free motions sets, as it was (this works them out for a car that isn't there).
     const [scrubNeeded, leastScrub, slipRows] = [this.scrubNeeded, this.leastScrub, this.slipRows];
@@ -1433,6 +1466,26 @@ export class Kinematics {
         for (let i = 0; i < left.length; i++) left[i] -= d * h[i];
       }
       if (Math.hypot(...left) < 1e-6 * size) steering.add(body);
+    }
+    // Not a gear that only idles on the steering: riding on a steering body and carrying none of
+    // its own, it turns against its shaft just as the steering does, with the tyres held, but
+    // it doesn't steer. Counted, its spin was kept as small as the steering's, so a drive
+    // running through it turned the steering shaft along (the 8285 Tow Truck's 16 tooth gear
+    // idling on its steering shaft, in the drive to its engine: rolling the truck steered it;
+    // decision 90 of 2026-11-15). Only if no tyre's heading depends on it: held still against the
+    // frame, such a gear stops no motion, since its mesh already holds it. A gear that is itself
+    // the steering turns against the frame as the tyres do, and stays in, though the tyres it
+    // steers hang on a linkage rather than under it (the 42080 Forest Machine's turntable).
+    for (const body of [...steering]) {
+      const link = this.parentLink(body);
+      const carries = [...steering].some((c) => this.parentLink(c)?.parent === body);
+      if (!link || !steering.has(link.parent) || carries || !this.mech.gears.some((g) => g.body === body)) continue;
+      const j = link.joint;
+      const d = axes[j];
+      const f = this.frameOf[body];
+      const own = motions.map((w) => this.rateIn(w, axes, j));
+      const against = motions.map((w) => d.x * (w[3 * body] - w[3 * f]) + d.y * (w[3 * body + 1] - w[3 * f + 1]) + d.z * (w[3 * body + 2] - w[3 * f + 2]));
+      if (Math.hypot(...against) < 1e-6 * Math.hypot(...own)) steering.delete(body);
     }
     return steering;
   }
@@ -1902,9 +1955,18 @@ export class Kinematics {
     let plain = false;
     let opened = Infinity; // how far apart the step left them
     for (let round = 0; round < 12; round++) {
-      const gaps: number[] = [];
-      const weights: number[] = [];
-      const rows = this.buildEquations(gaps, null, true, weights);
+      let gaps: number[] = [];
+      let weights: number[] = [];
+      const play: number[] = [];
+      let rows = this.buildEquations(gaps, null, true, weights, play);
+      // The second closing after a step on play (see turnJoint): only the rows that take no play
+      // (gears, universal joints, tyres, holds), the loops left as the first closing left them.
+      if (this.closingFirmOnly) {
+        const firm = play.map((p) => !p);
+        rows = rows.filter((_, i) => firm[i]);
+        gaps = gaps.filter((_, i) => firm[i]);
+        weights = weights.filter((_, i) => firm[i]);
+      }
       const biggest = gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
       last = biggest;
       if (round === 0) opened = biggest;
@@ -2347,9 +2409,17 @@ export class Kinematics {
     const geared = this.gearedTo(turnedBody, true);
     const steps = Math.ceil(Math.abs(angle) / maxStep);
     const full = angle / steps;
+    // The motion found where the last step ended (see below), for the next step to take.
+    let ahead: number[] | null = null;
+    // How big a step may be: halved for each step undone (see below), down to LEAST_TURN_STEP.
+    let most = Math.abs(full);
     while (Math.abs(angle - turned) > 1e-12) {
-      this.gripped = false;
-      let motion = this.jointMotion(joint);
+      let motion = ahead;
+      ahead = null;
+      if (!motion) {
+        this.gripped = false;
+        motion = this.jointMotion(joint);
+      }
       // Holds chosen where a drag started may not suit it further on (as a steered car's
       // wheels turn, they turn by more and more different angles, and its differential has to
       // turn a little too): stuck, the drag chooses them afresh where it now is.
@@ -2363,7 +2433,7 @@ export class Kinematics {
       }
       const played = this.played;
       const before = this.snapshot();
-      const step = Math.abs(angle - turned) < Math.abs(full) ? angle - turned : full;
+      const step = Math.abs(angle - turned) < most ? angle - turned : Math.sign(angle) * most;
       // How far each joint should turn in the step, and how far it has. Not a resting body's
       // (see Rest): what it rests on may change in the step (a pin coming round under a push
       // rod), and with it how fast it goes, as a dead point wouldn't.
@@ -2397,15 +2467,35 @@ export class Kinematics {
         if (TRACE) trace({ event: 'stopped', joint, turned, why: 'wild' });
         return stop(turned);
       }
+      // Not where this step or the last is on play (with loopPlay): a play motion is the one that
+      // opens the loops least, and its rates, which change as the loops open, tell nothing of a
+      // dead point (the 42079 Heavy Duty Forklift's mast tilt, stopped after one step).
       const last = this.lastStep;
-      if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) {
+      const onPlay = this.options.loopPlay && (played || last?.played === true);
+      if (last && !onPlay && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) {
         if (TRACE) trace({ event: 'stopped', joint, turned, why: 'rate' });
         return stop(turned);
       }
       const gap = this.advance(motion, step, joint);
+      if (this.options.loopPlay && played) this.closeFirmRows(joint);
       const strayed = this.mech.joints.flatMap((j, k) => (checked(j, k) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-      if (gap > (played ? PLAY : DEAD_POINT_GAP) || strayed.length) {
-        if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length });
+      // With loopPlay, a step taken on play is judged by the budgets, and other joints may stray:
+      // its motion keeps the loops only to first order by design, so closing them always turns
+      // some joints off where it had them going, and a linkage that flips opens its loops far past
+      // any budget. But the dragged joint itself must turn at least half the step the way it's
+      // turned: closing the loops may undo its turn, and then nothing turned (the 8272
+      // Snowmobile's ski, whose joint turned 1e-14 radians a step while the loops closed exactly
+      // and six other joints moved). Turned further than asked, it went, as near a dead point (a
+      // parallelogram with a link too long, coming back from as far as its play took it).
+      // So too a step from where the last step on play left the loops open: closing them turns
+      // joints off where it had them going too (the 956 Auto Chassis's steering, taken a step
+      // past its dead point on play, couldn't come back).
+      const ownTurnLost = checked(this.mech.joints[joint], joint) && (this.jointAngles[joint] - before.jointAngles[joint]) * Math.sign(step) < Math.abs(step) / 2;
+      // The last step counts only where it ended where this one starts: a drag before this one,
+      // ended on play, says nothing of the loops here.
+      const fromPlay = this.options.loopPlay && (played || (last?.played === true && last.angles.every((x, k) => x === before.jointAngles[k])));
+      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(fromPlay && !ownTurnLost))) {
+        if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length, ownTurnLost });
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
         // held only to first order (the 42037 Formula Off-Roader's front tyre, neither rolling
@@ -2424,7 +2514,9 @@ export class Kinematics {
           const carried = (k: number) => (this.parentJoint[this.mech.joints[k].bodyB] === k ? this.mech.joints[k].bodyB : this.mech.joints[k].bodyA);
           const bodies = strayed.filter((k) => k !== joint && this.inTree(k)).map(carried).filter((b) => !this.drag.held.has(b) && b !== this.drag.turning!.grabbed);
           for (const b of bodies) this.drag.held.add(b);
-          if (bodies.length && this.jointMotion(joint)) continue;
+          // An exact motion only: else play took the turn on past the dead point (the 956 Auto
+          // Chassis's steering, a step past where its linkage nearly locks, then couldn't come back).
+          if (bodies.length && this.jointMotion(joint, false)) continue;
           for (const b of bodies) this.drag.held.delete(b);
         }
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
@@ -2445,8 +2537,37 @@ export class Kinematics {
         break;
       }
       if (TRACE && played) trace({ event: 'played', joint });
+      if (played) this.onPlay += Math.abs(step);
       turned += step;
-      this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
+      const lastStep = this.lastStep;
+      this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio, played };
+      // A step after which the joint has no motion, or another joint would turn wild, has gone
+      // into a jam that no step can leave, back the way it came or on: those stops are the same
+      // both ways. It is undone, and the drag stops before it, as a hand on the real model never
+      // ends in a pose it can't leave (the 8826 ATX Sport Cycle's steering went one step, then
+      // couldn't be turned back; decision 84 of 2026-11-15). The motion found is the next step's.
+      this.gripped = false;
+      ahead = this.jointMotion(joint);
+      if (!ahead && this.drag.turning?.joint === joint) {
+        this.holdWhatTheDragDoesntNeed(this.drag.turning.grabbed, () => this.jointMotion(joint) !== null, joint);
+        this.gripped = false;
+        ahead = this.jointMotion(joint);
+      }
+      const wild = (m: number[]) => this.mech.joints.some((j, k) => k !== joint && checked(j, k) && !geared.has(j.bodyA) && !geared.has(j.bodyB) && Math.abs(this.jointRate(m, k)) > WILD_RATE);
+      if (!ahead || wild(ahead)) {
+        if (TRACE) trace({ event: 'undone', joint, turned, why: ahead ? 'wild ahead' : 'no motion ahead' });
+        this.restore(before);
+        this.lastStep = lastStep;
+        turned -= step;
+        ahead = null;
+        // A smaller step may leave it a way to go on (the 42082's steering, whose first whole
+        // step from where it was built jammed).
+        if (most / 2 >= LEAST_TURN_STEP) {
+          most /= 2;
+          continue;
+        }
+        return stop(turned);
+      }
     }
     return turned;
   }
@@ -2497,6 +2618,7 @@ export class Kinematics {
   pushStepByTiers(body: number, grab: Vector3, dir: Vector3, step: number, allowed: () => boolean = () => true): 'moved' | 'stuck' | 'blocked' {
     const joint = this.drag.turning!.joint;
     const g = grab.clone().applyMatrix4(this.poses[body]);
+    let played = false;
     const motion = this.nearOrigin((toModel) => {
       const basis = this.treeBasis();
       const [usual, suspension] = this.freeMotionsApart();
@@ -2528,6 +2650,11 @@ export class Kinematics {
       // the tiers choose from every motion.
       const off = (m: number[] | null) => !m || velocity(m).length() < 1e-9 || velocity(m).normalize().dot(dir) < 0.5;
       if (off(z)) z = leastTurning(orthonormalize([...usual, ...suspension]), along, tiers) ?? z;
+      // With loopPlay, a push takes play where nothing else goes, as a turn does (see jointMotion).
+      if (!z && this.options.loopPlay) {
+        z = this.playMotion(along, size);
+        played = z !== null;
+      }
       if (!z) {
         if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'no motion' });
         return null;
@@ -2551,9 +2678,30 @@ export class Kinematics {
     const checked = (j: Joint) => j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) && !pins.has(j.bodyA) && !pins.has(j.bodyB) && !couplings.has(j.bodyA) && !couplings.has(j.bodyB);
     const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) ? this.jointRate(motion, k) * step : 0));
     const largest = Math.max(...predicted.map(Math.abs));
+    // A joint that gears don't tie to the part pushed, turning more than WILD_RATE drag steps for
+    // each LDU of the push: the point pushed hardly moves in the motion chosen (the mechanism is
+    // near singular as read), so it stops there, as a drag's step does (see turnJoint). Taken in
+    // pieces small enough for a drag's step instead, a push of the 42125 Ferrari 488 GTE's rear
+    // wheels, with its suspension's friction pins free, cut one step into 256,000.
+    const geared = this.gearedTo(body, true);
+    if (this.options.pushWild && this.mech.joints.some((j, k) => k !== joint && checked(j) && !geared.has(j.bodyA) && !geared.has(j.bodyB) && Math.abs(predicted[k]) > WILD_RATE * MAX_TURN_STEP * Math.abs(step))) {
+      if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'wild' });
+      return 'stuck';
+    }
+    // With loopPlay, an exact push step from where the loops are closed is judged as without play:
+    // closed again as tightly. Judged by the budgets, the 42032 Front Loader's levers, pushed,
+    // let an axle slide 130 LDU out of place. Only a step on play, or one from where play left
+    // the loops open, is judged by the budgets.
+    const openBefore = this.options.loopPlay && !played && this.loopsOpen();
     const gap = this.advance(motion, step, joint);
+    if (this.options.loopPlay && played) this.closeFirmRows(joint);
     const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-    if (gap > DEAD_POINT_GAP || strayed.length) {
+    // A step on play must still move the point pushed at least half the step the way pushed, as a
+    // turn's must turn its joint (see turnJoint): closing the loops can undo it, and then nothing
+    // the hand pushed moved (the 42055 Bucket Wheel Excavator's battery switch, whose pushes on
+    // play left it where it was and moved the model round it 254 LDU).
+    const pushLost = played && grab.clone().applyMatrix4(this.poses[body]).sub(g).dot(dir) * Math.sign(step) < Math.abs(step) / 2;
+    if ((this.options.loopPlay && (played || openBefore) ? !this.withinPlay() : gap > DEAD_POINT_GAP) || (strayed.length && !played) || pushLost) {
       if (TRACE) trace({ event: 'push refused', body, gap, strayed: strayed.length });
       this.restore(before);
       // A step that turned a joint more than a drag's step does (MAX_TURN_STEP: a short lever
@@ -2578,6 +2726,7 @@ export class Kinematics {
     }
     const now = grab.clone().applyMatrix4(this.poses[body]).sub(g);
     if (now.length() > 1e-9) dir.copy(now.normalize());
+    if (played) this.onPlay += Math.abs(step);
     return 'moved';
   }
 
@@ -2601,9 +2750,11 @@ export class Kinematics {
   // anything else (a steering rack in its round guide, its tie rods on their ball joints) would
   // cost nothing, and could be mixed in any amount, wrecking the loops over a step (the 8448
   // Super Car's steering, once its tyres stood on the ground). Null if the joint can't turn.
-  jointMotion(joint: number): number[] | null {
+  // With `play` false, and with loopPlay, only an exact motion: for a test of whether a control
+  // can move at all, before friction pins are freed for it (see playMotion).
+  jointMotion(joint: number, play = true): number[] | null {
     return this.nearOrigin((toModel) => {
-      const motion = this.jointMotionNearOrigin(joint);
+      const motion = this.jointMotionNearOrigin(joint, play);
       return motion && toModel(motion);
     });
   }
@@ -2647,7 +2798,7 @@ export class Kinematics {
     return { turning, rateOf, rate, size };
   }
 
-  private jointMotionNearOrigin(joint: number): number[] | null {
+  private jointMotionNearOrigin(joint: number, play: boolean): number[] | null {
     // Chosen in the tree basis's coordinates (see freeMotionsInBasis), each motion's bodies'
     // turning read off the basis's rows as they're needed, and only the motion chosen turned
     // back into a motion vector: a big model has many free motions, most of them left out.
@@ -2684,11 +2835,96 @@ export class Kinematics {
     // left the drag only play would be kept, and the drag would turn a joint it needn't (the
     // 42112 Concrete Mixer Truck's wheels, which stopped partway round).
     if (this.drag.choosingHolds) return null;
+    // With loopPlay, play is the last resort (decision 121 of 2026-11-16): an exact motion first,
+    // then friction pins freed for a control with none, and play only where neither gives a
+    // motion. So only a drag of this very joint takes play, never a test of whether it can move
+    // at all: a play motion found there would keep the pins (the 8081 Extreme Cruiser's bonnet,
+    // which then went 5 radians on play and never lifted, where freeing two pins lifts it).
+    if (this.options.loopPlay && (!play || this.drag.turning?.joint !== joint)) return null;
     if (TRACE) traceJam(this, joint, rate);
     const played = this.playMotion(rate, size);
     if (TRACE) trace({ event: 'play', joint, found: played !== null });
     this.played = played !== null;
     return played ? fromBasis(played, basis) : null;
+  }
+
+  // With loopPlay: how far each joint that closes a loop may open, in LDU. A loop may open as far
+  // as its joints' clearances add up to, all round it: the joint that closes it and the tree's
+  // joints between its two bodies. A turning joint (a pin or axle in a round hole) gives RADIAL
+  // and AXIAL, a slide RADIAL, a ball BALL; gears, tyres, universal joints and holds none (they
+  // aren't joints, or stay firm). Worked out once: the tree doesn't change.
+  private loopBudgets(): Map<number, number> {
+    if (this.budgets) return this.budgets;
+    const clearance = (j: number) => {
+      const kind = this.mech.joints[j].kind;
+      return kind === 'revolute' ? RADIAL + AXIAL : kind === 'slide' ? RADIAL : kind === 'ball' ? BALL : 0;
+    };
+    // The joints from a body up the tree to the root, in order.
+    const up = (body: number) => {
+      const path: number[] = [];
+      for (let link = this.parentLink(body); link; link = this.parentLink(link.parent)) path.push(link.joint);
+      return path;
+    };
+    this.budgets = new Map();
+    this.mech.joints.forEach((joint, j) => {
+      if (this.inTree(j) || clearance(j) === 0) return;
+      const a = up(joint.bodyA);
+      const b = new Set(up(joint.bodyB));
+      // The joints on one path and not the other: those between the two bodies.
+      const between = [...a.filter((k) => !b.has(k)), ...[...b].filter((k) => !a.includes(k))];
+      this.budgets!.set(j, clearance(j) + between.reduce((sum, k) => sum + clearance(k), 0));
+    });
+    return this.budgets;
+  }
+
+  // With loopPlay, after a step on play and the loops closed as far as they go: the rows that take
+  // no play closed again on their own, the loops left as they are. Closed only with the loops,
+  // which a step on play leaves open by design, what the loops can't close was shared out into
+  // those rows, step after step (the 42079 Heavy Duty Forklift's mast drive, whose universal
+  // joints came 0.0004 LDU further apart with each step on play, until the drive stopped).
+  // Closing those rows alone, without closing the loops first, left the loops past their budgets
+  // within a step (the 42037 Formula Off-Roader's rear suspension, which then never moved).
+  private closeFirmRows(keep: number) {
+    this.closingFirmOnly = true;
+    try {
+      this.closeLoops(keep);
+    } finally {
+      this.closingFirmOnly = false;
+    }
+  }
+
+  // Whether any equation is further apart than DEAD_POINT_GAP where the bodies are now: the loops
+  // a step on play left open.
+  private loopsOpen(): boolean {
+    const gaps: number[] = [];
+    this.buildEquations(gaps, null, true);
+    return gaps.some((g) => Math.abs(g) > DEAD_POINT_GAP);
+  }
+
+  // With loopPlay: whether every loop is closed within its budget (see loopBudgets), and every
+  // other equation (gears, tyres, holds) as closely as without play (DEAD_POINT_GAP). How far a
+  // joint has opened: how far apart its two halves are at its point (a slide's across its axis
+  // only), and how far it's turned out of line, counted at a stud away.
+  private withinPlay(): boolean {
+    const budgets = this.loopBudgets();
+    const gaps: number[] = [];
+    const play: number[] = [];
+    this.buildEquations(gaps, null, true, null, play);
+    if (gaps.some((g, i) => !play[i] && Math.abs(g) > DEAD_POINT_GAP)) return false;
+    for (const [j, budget] of budgets) {
+      const joint = this.mech.joints[j];
+      const pA = joint.from.clone().applyMatrix4(this.poses[joint.bodyA]);
+      const apart = joint.from.clone().applyMatrix4(this.poses[joint.bodyB]).sub(pA);
+      const d = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyA]);
+      if (joint.kind === 'slide') apart.sub(d.clone().multiplyScalar(apart.dot(d)));
+      let out = 0;
+      if (joint.kind === 'revolute' || joint.kind === 'slide') {
+        const dB = axisOf(joint.from, joint.to).transformDirection(this.poses[joint.bodyB]);
+        out = new Vector3().crossVectors(dB, d).length() * STUD;
+      }
+      if (apart.length() + out > budget) return false;
+    }
+    return true;
   }
 
   // A motion that turns the joint (at rate 1, by `rate`) when none does exactly, taking up play
@@ -2724,7 +2960,9 @@ export class Kinematics {
     const turns = mix.reduce((sum, a, k) => sum + a * rates[k], 0);
     if (Math.abs(turns) < EPSILON) return null;
     const z = combine(motions, mix.map((a) => a / turns));
-    return Math.hypot(...apply(z)) <= PLAY_RATE * Math.abs(rate(z)) ? z : null;
+    // With loopPlay, at any rate: how far the loops may open is the budgets' to say (see
+    // withinPlay), a step at a time.
+    return this.options.loopPlay || Math.hypot(...apply(z)) <= PLAY_RATE * Math.abs(rate(z)) ? z : null;
   }
 
   // The motion jointMotion chooses from these (orthonormal, in the tree basis's coordinates), by
@@ -2809,11 +3047,21 @@ export class Kinematics {
     };
     const mounts = [...this.mounts].filter(([b]) => b !== grabbed && !this.frozen.has(b) && !this.drag.held.has(b));
     const mounted = (z: number[]) => mounts.flatMap(([b, m]) => [0, 1, 2, 3, 4, 5].map((k) => dot(basis[6 * b + k], z) - dot(basis[6 * m + k], z)));
-    if (this.contactTreads.length > 0 && !this.drag.steering) this.drag.steering = this.steeringBodies();
+    // The steering is kept still on a car on its tyres, and lifted too: in the hand, nothing turns a
+    // knuckle against its chassis but friction in the steering, which holds it there (the 42053
+    // Volvo EW160E, slewed in the hand, steered its front wheels; decision 90 of 2026-11-15).
+    const steers = this.contactTreads.length > 0 || (this.options.lifted && this.mech.treads.length > 0);
+    if (steers && !this.drag.steering) this.drag.steering = this.steeringBodies();
     // A drag that drives the steering through its gears (a steering knob) is meant to steer, so
     // the steering isn't kept still for it: kept still, the 8837 Pneumatic Excavator's knob,
-    // whose gear crosses the turntable, slewed the excavator round instead.
-    const keepSteering = this.contactTreads.length > 0 && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
+    // whose gear crosses the turntable, slewed the excavator round instead. Nor, lifted, for a
+    // drag that rocks a body counted as steering, about a level axis: the 8849 Tractor's front
+    // axle, rocking on its steering shaft, turns the steering gear in it a little, so it counts;
+    // with the steering kept still, its steering shaft turned as the axle rocked, where the
+    // function has it stay. A drag about the upright (the 42053's slewing, which turns all its
+    // tyres round together) still keeps it.
+    const rocks = steers && this.options.lifted && this.drag.steering!.has(grabbed) && Math.abs(axisOf(this.mech.joints[joint].from, this.mech.joints[joint].to).transformDirection(this.poses[this.mech.joints[joint].bodyA]).dot(DOWN)) < LEVEL_AXIS;
+    const keepSteering = steers && !rocks && ![...this.gearedTo(grabbed, true)].some((b) => b !== grabbed && this.drag.steering!.has(b));
     const steering = keepSteering ? [...this.drag.steering!].filter((b) => b !== grabbed && this.parentJoint[b] >= 0).map((b) => this.parentJoint[b]) : [];
     const steered = (z: number[]) => steering.map((j) => rateOf(z, j));
     // Friction pins, and motors' outputs, which their gearboxes hold (see chooseHolds).

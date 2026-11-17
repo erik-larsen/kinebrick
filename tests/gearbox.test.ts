@@ -112,7 +112,7 @@ describe('a changeover catch', () => {
   );
   const mech = inferMechanism(parts, library, roles);
   const sliders = findSliders(parts, mech, library);
-  const catches = findCatches(parts, sliders);
+  const catches = findCatches(parts, sliders, mech.roles);
   // The parts with the catch turned by `angle` about its pin, which runs along x, 20 LDU below it.
   const turned = (angle: number) => {
     const turn = new Matrix4().makeTranslation(0, 20, 0).multiply(new Matrix4().makeRotationX(angle)).multiply(new Matrix4().makeTranslation(0, -20, 0));
@@ -133,6 +133,21 @@ describe('a changeover catch', () => {
     const ways = [0.25, -0.25].map((angle) => catchShifts(turned(angle), library, catches).get(2));
     expect(ways.map((x) => Math.abs(x!))).toEqual([10, 10]);
     expect(ways[0]).toBe(-ways[1]!);
+  });
+
+  it('brings the ring back as the catch comes back, read again as built after a shift', () => {
+    // After a shift the viewer reads the model as built with the ring slid (readAsBuilt): the
+    // catch at its built angle, the ring 10 LDU along. The catch keeps the fork it had.
+    const to = catchShifts(turned(0.25), library, catches).get(2)!;
+    const slid = parts.map((p) => ({ ...p }));
+    slid[2] = { ...slid[2], matrix: sliderMovedTo(slid, library, sliders[0], to) };
+    const again = findCatches(slid, findSliders(slid, inferMechanism(slid, library, roles), library), mech.roles, catches);
+    expect(again[0].fork.toArray()).toEqual(catches[0].fork.toArray());
+    // The catch back at its middle: the ring goes back to its middle.
+    expect(catchShifts(slid, library, again).get(2)).toBe(0);
+    // Measured afresh, the fork would be the ring's new place, and the ring would stay.
+    const afresh = findCatches(slid, findSliders(slid, inferMechanism(slid, library, roles), library), mech.roles);
+    expect(catchShifts(slid, library, afresh).size).toBe(0);
   });
 
   it('and so locks one clutch gear or the other to the axle joiner', () => {

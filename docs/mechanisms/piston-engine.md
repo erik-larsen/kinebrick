@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 44 works, 24 partly, 2 no, 1 skipped.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 55 works, 13 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -79,7 +79,7 @@ Each detail by the set it first appears in.
 
 **1990, [8840 Rally Shock n' Roll Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8840-1)**
 
-- *V2:* The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls. (partly)
+- *V2:* The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls. (works)
 
 **1990, [8850 Rally Support Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8850-1)**
 
@@ -124,7 +124,7 @@ Each detail by the set it first appears in.
 
 **2006, [8285 Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8285-1)**
 
-- *V6:* Pushing the truck along turns the V6 engine: the first pair of rear wheels drives a differential, whose bevel gears turn a long shaft forward under the deck; at the front a row of three 16-tooth gears (the middle one idling on the steering shaft) turns the crankshaft, so the six pistons go up and down. (partly)
+- *V6:* Pushing the truck along turns the V6 engine: the first pair of rear wheels drives a differential, whose bevel gears turn a long shaft forward under the deck; at the front a row of three 16-tooth gears (the middle one idling on the steering shaft) turns the crankshaft, so the six pistons go up and down. (works)
 
 **2007, [8275 Motorized Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8275-1)**
 
@@ -152,8 +152,8 @@ Each detail by the set it first appears in.
 
 **2012, [9392 Quad Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9392-1)**
 
-- *1 cylinder:* Rolling the quad works the engine: the rear axle's sprocket drives a chain forward to a cross shaft, whose gear turns the crankshaft, and the yellow piston pumps up and down in its cylinder. (partly)
-- The engine can also be turned from its crankshaft, turning the rear wheels through the gears and chain. (partly)
+- *1 cylinder:* Rolling the quad works the engine: the rear axle's sprocket drives a chain forward to a cross shaft, whose gear turns the crankshaft, and the yellow piston pumps up and down in its cylinder. (works)
+- The engine can also be turned from its crankshaft, turning the rear wheels through the gears and chain. (works)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 
@@ -161,7 +161,7 @@ Each detail by the set it first appears in.
 
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 
-- *4 cylinders:* Rolling the truck turns the engine: the two rear axles' differential drives a shaft forward to the crankshaft under the bonnet, so the four pistons go up and down. (partly)
+- *4 cylinders:* Rolling the truck turns the engine: the two rear axles' differential drives a shaft forward to the crankshaft under the bonnet, so the four pistons go up and down. (works)
 
 **2013, [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1)**
 
@@ -169,7 +169,7 @@ Each detail by the set it first appears in.
 
 **2014, [42022 Hot Rod](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42022-1)**
 
-- *V6:* Rolling the car turns the V6 engine: one rear wheel's axle drives, through bevel gears and a shaft forward to an 8-tooth gear pair, the crankshaft, and the six pistons go up and down in their cylinders. (partly)
+- *V6:* Rolling the car turns the V6 engine: one rear wheel's axle drives, through bevel gears and a shaft forward to an 8-tooth gear pair, the crankshaft, and the six pistons go up and down in their cylinders. (works)
 
 **2014, [42029 Customized Pick up Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42029-1)**
 
@@ -202,7 +202,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *6 cylinders:* Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (partly)
+- *6 cylinders:* Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (works)
 
 **2016, [42045 Hydroplane Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42045-1)**
 
@@ -246,11 +246,11 @@ Each detail by the set it first appears in.
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
-- *2 cylinders:* Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders. (partly)
+- *2 cylinders:* Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders. (works)
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
-- *V6:* Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (partly)
+- *V6:* Pushed along, the rear wheels drive the V6 engine behind the seats: the rear differential's ring gear turns a 20 tooth gear that drives the crankshaft through a 12 tooth gear, and the six pistons run up and down; the half shafts reach the sprung rear wheels through constant velocity joints. (works)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
@@ -274,7 +274,7 @@ Each detail by the set it first appears in.
 
 **2019, [42096 Porsche 911 RSR](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42096-1)**
 
-- *flat 6:* Pushed along, the rear wheels drive the flat six through a differential: half shafts with constant velocity joints run from the differential to the wheels, and the differential's ring gear turns a 20 tooth gear, which drives a 12 tooth gear on the crankshaft, so the six pistons run in and out of their cylinders in the two flat banks. (partly)
+- *flat 6:* Pushed along, the rear wheels drive the flat six through a differential: half shafts with constant velocity joints run from the differential to the wheels, and the differential's ring gear turns a 20 tooth gear, which drives a 12 tooth gear on the crankshaft, so the six pistons run in and out of their cylinders in the two flat banks. (works)
 
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
@@ -306,7 +306,7 @@ Each detail by the set it first appears in.
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 
-- *V12:* The V12 engine's pistons pump as the bulldozer drives: the two drive motors' inner shafts meet in a differential between them, whose case turns a 20 tooth gear and a shaft running forward under the gearbox, up through an idler to the crankshaft. (partly)
+- *V12:* The V12 engine's pistons pump as the bulldozer drives: the two drive motors' inner shafts meet in a differential between them, whose case turns a 20 tooth gear and a shaft running forward under the gearbox, up through an idler to the crankshaft. (works)
 
 ---
 

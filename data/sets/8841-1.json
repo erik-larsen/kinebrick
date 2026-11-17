@@ -90,8 +90,8 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
+    "commit": "93a580aa",
+    "date": "2026-11-17",
     "seconds": 2,
     "counts": {
       "works": 4,
@@ -718,10 +718,10 @@
           {
             "p20 3648a": [
               1,
-              6.86e-14
+              4.74e-14
             ],
             "p25 3652": [
-              5.62e-8,
+              2.81e-8,
               12.6
             ]
           }
@@ -821,7 +821,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -887,7 +887,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "not checked",

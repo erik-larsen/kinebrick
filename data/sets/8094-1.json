@@ -98,12 +98,12 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 2,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 3,
     "counts": {
-      "partly": 2,
-      "works": 1,
+      "works": 2,
+      "partly": 1,
       "not checked": 2,
       "skipped": 1
     },
@@ -116,32 +116,32 @@
     ],
     "functions": [
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            8.8,
+            -8.8
           ]
-        ],
-        "still": [
-          "p161 2855 against p102 3709b",
-          "p259 3703 against p102 3709b",
-          "p281 3709b against p102 3709b"
         ],
         "rates": [
           {
             "p161 2855 against p102 3709b": [
-              0,
+              0.00198,
               0
             ],
             "p259 3703 against p102 3709b": [
-              0,
-              0
+              0.00198,
+              0.188
             ],
             "p281 3709b against p102 3709b": [
-              0,
-              0
+              0.00198,
+              0.931
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p161 2855 against p102 3709b": 0.00198
           }
         ],
         "back": [
@@ -168,12 +168,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p161 2855 against p102 3709b",
-        "seconds": 0.3
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -192,11 +187,11 @@
           {
             "p297 2825 against p281 3709b": [
               2.81e-8,
-              3.7e-13
+              3.71e-13
             ],
             "p305 2825 against p281 3709b": [
               2.81e-8,
-              3.7e-13
+              3.71e-13
             ],
             "p316 3708 against p281 3709b": [
               0,
@@ -233,7 +228,7 @@
         ],
         "cause": "not-driven",
         "detail": "p297 2825 against p281 3709b",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",

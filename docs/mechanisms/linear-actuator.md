@@ -4,7 +4,7 @@ A screw drives a piston out and in. (Moving and lifting.)
 
 First appears in 2009, in [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) and [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1): Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.
 
-Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 10 works, 36 partly, 4 no.
+Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 15 works, 34 partly, 1 no.
 
 ## By decade
 
@@ -56,7 +56,7 @@ Each detail by the set it first appears in.
 
 **2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1)**
 
-- *lower boom:* The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (partly)
+- *lower boom:* The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (works)
 - *upper boom:* The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
 
 **2012, [9396 Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9396-1)**
@@ -82,7 +82,7 @@ Each detail by the set it first appears in.
 
 **2014, [42023 Construction Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42023-1)**
 
-- *dump body:* Turning the cross axle under the front of the dump body (by either end) tips the body: a 20-tooth bevel gear on it turns the 12-tooth bevel on a linear actuator, which pushes up under the body so it tips back on its hinge at the rear. (partly)
+- *dump body:* Turning the cross axle under the front of the dump body (by either end) tips the body: a 20-tooth bevel gear on it turns the 12-tooth bevel on a linear actuator, which pushes up under the body so it tips back on its hinge at the rear. (works)
 
 **2014, [42024 Container Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42024-1)**
 
@@ -95,8 +95,8 @@ Each detail by the set it first appears in.
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- *bed:* With the red selector lever in position 1, the knob on top of the frame (a black axle joiner on a vertical shaft) tips the bed at the back: a 20 tooth bevel gear at the shaft's foot turns the selector shaft through a 12 tooth bevel gear, the driving ring couples one clutch gear, and through a 16 tooth idler, a shaft and two universal joints it runs the linear actuator that lifts the bed. (partly)
-- *boom:* With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom. (partly)
+- *bed:* With the red selector lever in position 1, the knob on top of the frame (a black axle joiner on a vertical shaft) tips the bed at the back: a 20 tooth bevel gear at the shaft's foot turns the selector shaft through a 12 tooth bevel gear, the driving ring couples one clutch gear, and through a 16 tooth idler, a shaft and two universal joints it runs the linear actuator that lifts the bed. (works)
+- *boom:* With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom. (works)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
@@ -129,7 +129,7 @@ Each detail by the set it first appears in.
 
 **2017, [42070 6x6 All Terrain Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42070-1)**
 
-- *outriggers:* In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks. (no)
+- *outriggers:* In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks. (partly)
 - *boom:* In crane mode, the M motor raises and lowers the boom: its crane shaft drives an upright shaft through the turntable's centre to bevel gears that turn the large linear actuator under the boom. (partly)
 
 **2018, [42076 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42076-1)**
@@ -144,7 +144,7 @@ Each detail by the set it first appears in.
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 
 - *arm:* Either of the middle pair of knobs low on the chassis sides, just behind the front wheels, raises and lowers the loader arm: the knob turns the screw of a linear actuator lying along the chassis, which pushes the arm up about its pivot, carrying the bucket with it. (partly)
-- *bucket:* Either of the upper pair of knobs, high on the sides by the arm's pivot, tilts the bucket: a shaft with universal joints runs up the arm to a second linear actuator, which works the bucket through a pair of links at the arm's tip. (partly)
+- *bucket:* Either of the upper pair of knobs, high on the sides by the arm's pivot, tilts the bucket: a shaft with universal joints runs up the arm to a second linear actuator, which works the bucket through a pair of links at the arm's tip. (works)
 - *rear end:* Either of the lowest pair of knobs, under the chassis sides just behind the front wheels, raises and lowers the back of the loader: a linear actuator lying under the chassis swings the arms that carry the rear axle, so the rear end rises or sinks over the rear wheels. (partly)
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
@@ -160,8 +160,8 @@ Each detail by the set it first appears in.
 
 - *boom:* The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot. (works)
 - *stick:* Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step. (works)
-- *bucket:* An L motor on top of the boom tilts the bucket: a 12 tooth gear on its axle drives a 20 tooth gear and a 16 tooth gear, a row of five 16 tooth gears across the boom, and 12 tooth bevel gears into the two big linear actuators that run from the boom's tip down to the bucket's mount at the end of the stick. (no)
-- *bucket mount:* A shaft runs down the stick from bevel gears at the boom's tip to two small linear actuators on the bucket's mount, turning them through 12 tooth bevel gears; its top bevel gear meshes one held by the boom, so the shaft turns as the stick swings. (no)
+- *bucket:* An L motor on top of the boom tilts the bucket: a 12 tooth gear on its axle drives a 20 tooth gear and a 16 tooth gear, a row of five 16 tooth gears across the boom, and 12 tooth bevel gears into the two big linear actuators that run from the boom's tip down to the bucket's mount at the end of the stick. (partly)
+- *bucket mount:* A shaft runs down the stick from bevel gears at the boom's tip to two small linear actuators on the bucket's mount, turning them through 12 tooth bevel gears; its top bevel gear meshes one held by the boom, so the shaft turns as the stick swings. (partly)
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 

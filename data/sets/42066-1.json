@@ -150,12 +150,12 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 62,
+    "commit": "f20682cb",
+    "date": "2026-11-17",
+    "seconds": 76,
     "counts": {
-      "works": 2,
-      "partly": 3,
+      "works": 3,
+      "partly": 2,
       "not back": 1,
       "torn": 1,
       "no": 2
@@ -315,14 +315,14 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 4.4
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.23,
-            -1.83
+            0.29,
+            -1.81
           ]
         ],
         "still": [
@@ -332,27 +332,27 @@
           {
             "p158 3648b": [
               0.0417,
-              5.02e-13
+              3.62e-13
             ],
             "p244 3706": [
               0.0484,
-              4.51e-13
+              5.8e-13
             ],
             "p400 40490": [
-              0.0161,
+              0.016,
               1.28
             ],
             "p411 40490": [
-              0.0161,
+              0.016,
               1.28
             ],
             "p499 11478": [
-              0.00345,
-              0.138
+              0.00339,
+              0.136
             ],
             "p1117 4716": [
-              1.15e-7,
-              5.56e-13
+              1.4e-7,
+              5.98e-13
             ]
           }
         ],
@@ -364,29 +364,29 @@
         "back": [
           [
             [
-              65.13,
-              122.74
+              193.22,
+              71.31
             ],
             [
-              180.39,
-              140.38
+              306.18,
+              143.51
             ]
           ]
         ],
         "torn": [
           [
             [
-              2.57,
-              93.9
+              1.82,
+              71.25
             ],
             [
-              8.13,
-              140.06
+              5.33,
+              91.99
             ]
           ]
         ],
         "strayed": [
-          "p525 4519",
+          "p527 42066 - 18977",
           "p507 6628"
         ],
         "stop": [
@@ -400,7 +400,7 @@
         ],
         "cause": "too-little",
         "detail": "p499 11478",
-        "seconds": 35.1
+        "seconds": 44.3
       },
       {
         "result": "partly",
@@ -477,10 +477,10 @@
         ],
         "cause": "not-driven",
         "detail": "p669 60483",
-        "seconds": 4.5
+        "seconds": 5
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             0.37,
@@ -533,14 +533,10 @@
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "end of travel",
+            "end of travel"
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "stopped-early",
         "seconds": 3.9
       },
       {
@@ -610,7 +606,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.9
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -702,7 +698,7 @@
           [],
           []
         ],
-        "seconds": 12.4
+        "seconds": 15.1
       },
       {
         "result": "no",
@@ -765,7 +761,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.4
+        "seconds": 1.4
       }
     ]
   }

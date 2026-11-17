@@ -1,13 +1,13 @@
 {
   "state": {
     "main": {
-      "works": 685,
-      "moved": "2026-11-15"
+      "works": 701,
+      "moved": "2026-11-16"
     },
     "preview": {
-      "works": 687,
-      "partly": 248,
-      "no": 112,
+      "works": 737,
+      "partly": 227,
+      "no": 83,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
@@ -15,15 +15,71 @@
   "waiting": [],
   "coming": [
     {
-      "title": "The next offer of main",
-      "what": "Preview is ahead of main by the telescopic fork rule, the 858 model mend, the 8851’s function checked lifted and your 42052 sign-off (687 functions work). Full check 30, with two mends for models that do not come back to their start, is running. The next offer comes after it is in and the slow 8110 check has passed on that commit."
-    },
-    {
-      "title": "A second worker?",
-      "what": "Of the 362 functions that do not work in full, most are faults in how we read the models, and one worker mends them. A fleet is your call. Claude will ask with numbers once the largest group (a part that nothing ties to its control, about 140 functions) is sorted by what would mend it."
+      "title": "A second worker, asked again at mid-week",
+      "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
     }
   ],
   "done": [
+    {
+      "date": "2026-11-17",
+      "what": "8840 Rally Shock n' Roll Racer: the engine's rods and pistons (\"Sign all seven\"). Function 2 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "8258 Crane Truck: the joint under the lower boom's actuator, with the lever set first (\"Sign all seven\"). Function 3 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42077 Rally Car: a rear half shaft's inner ball (\"Sign all seven\"). Function 2 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42096 Porsche 911 RSR: the rear half shafts into their hubs (\"Sign all seven\"). Function 1 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42078 Mack Anthem: the rear crane's actuator axle (\"Sign all seven\"). No score change yet; the legs' rack housings are the next fault."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42112 Concrete Mixer Truck: the drive shaft's gear moved onto its shaft (\"Sign all seven\"). Function 6 now works; function 5 still waits on another fault."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42112 Concrete Mixer Truck, function 4: the white connector is the lever (\"Sign all seven\"). Merged with the mend for the newer catch; function 4 now works."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "9397 Logging Truck and 42022 Hot Rod: the piston is a part that moves and the cylinder stays (\"Sign piston lists\"). The 42022's function 2 and the 9397's function 8 now work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the small gear inside the turned rear differential (\"Sign 42070 spider\"). The drive (function 1) now works; 702 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster: the roll bar's two bracing axles (\"Sign 8832\"). The correction is made in Kinebrick's own copy of the file; function 2 now works. 703 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "You moved main to 24366c8f: 701 of 1,226 functions work on main, where 685 did."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8832 Roadster, function 2: the function should work, so if the file does not allow it the file is wrong; you believe the shock absorber's top sits on the seat. The worker makes the correction and it comes back to you to sign."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "42070 6x6 All Terrain Tow Truck: the rear differential is turned round (\"Sign 42070\"). No score changes; its drive is still jammed for another reason, which the worker traces."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "8820 Mountain Rambler, function 2: the shock absorber's top axle is off the parts that must stay (\"Sign 8820 list\"). The function now works in full; 701 functions work."
+    },
+    {
+      "date": "2026-11-16",
+      "what": "No second worker yet (\"Second worker: not yet\"). The solver owner takes faults of reading when its three solver tasks are done, and the worker takes the recurring part types first. Claude asks again at mid-week."
+    },
     {
       "date": "2026-11-16",
       "what": "You looked at the monorail with the FPS card (\"The monorail is smooth now\")."

@@ -133,9 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "6b12e9c4",
-    "date": "2026-11-15",
-    "seconds": 33,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 36,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -243,7 +243,7 @@
         ],
         "cause": "loose-part",
         "detail": "p467 3736",
-        "seconds": 0.9
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -311,7 +311,7 @@
             ]
           ]
         ],
-        "seconds": 6.3
+        "seconds": 6.6
       },
       {
         "result": "works",
@@ -377,14 +377,14 @@
           [],
           []
         ],
-        "seconds": 12.1
+        "seconds": 12.7
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.6,
-            -0.23
+            0.93,
+            -0.53
           ]
         ],
         "still": [
@@ -403,14 +403,14 @@
             ],
             "p109 3647": [
               3,
-              4.74e-14
+              1.91e-13
             ],
             "p283 3743": [
-              0.0145,
+              0.029,
               30
             ],
             "p284 3743": [
-              0.0145,
+              0.029,
               30
             ],
             "p340 3706": [
@@ -431,7 +431,7 @@
             ],
             "p595 3740": [
               0,
-              7e-26
+              6.58e-26
             ]
           }
         ],
@@ -443,41 +443,42 @@
         "back": [
           [
             [
-              66.8,
-              103.13
+              3.91,
+              1.98
             ],
             [
-              26.31,
-              40.11
+              0.06,
+              0.02
             ]
           ]
         ],
         "torn": [
           [
             [
-              66.8,
-              103.13
+              3.91,
+              1.98
             ],
             [
-              26.31,
-              40.11
+              0.06,
+              0.02
             ]
           ]
         ],
         "strayed": [
-          "p108 3708"
+          "p404 3069b"
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "end of travel",
+            "end of travel"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.8
+        "onPlay": 2.9,
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -543,7 +544,7 @@
           [],
           []
         ],
-        "seconds": 12.2
+        "seconds": 12.7
       },
       {
         "result": "skipped",
