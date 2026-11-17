@@ -1016,6 +1016,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const l = line(mech, (x) => kin.parentLink(x), c)!.joints;
         return l.reduce((sum, j) => sum + kin.jointAngles[j.joint] * Math.sign(j.axis.dot(l[0].axis)), 0);
       };
+      // The listed rings a rotary catch (35188) holds. A ring moves only by a shift, after a turn,
+      // so it has no rate of its own; turned at a rate, its catch moves it slowly all the same: the
+      // 42129 Mercedes-Benz Zetros's catches turn 0.27 radians for each radian of the motor, and
+      // must turn 0.91 to shift their rings. Such a ring left still is a slow part (see
+      // slowPartsRule), and the longer turn counts it as moved once its catch would shift it.
+      const rotaryRings = new Set(catches.filter((c) => c.rotary && moves.some((m) => m.part === c.ring.part)).map((c) => c.ring.part));
+      // How fast, for each radian of the control, a rotary catch that holds the ring turned
+      // against it, from the start to now (the fastest, if several hold it): 0 for any other part.
+      const catchRate = (ring: number, turned: number) => {
+        if (!rotaryRings.has(ring) || turned < 1e-6) return 0;
+        const against = mech.bodyOf[ring];
+        return Math.max(0, ...catches.filter((c) => c.rotary && c.ring.part === ring).map((c) => angle(relative(c.part, against, startPoses), relative(c.part, against, kin.poses)) / turned));
+      };
       const bothWays = () => [1, -1].map((way) => {
         kin.restore(start);
         // How far each piston should slide, piece by piece, as its crank turns.
@@ -1030,9 +1043,12 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // function 6 took over an hour.
         const enough = (turned: number) => {
           if (reach !== LONG_REACH || Math.abs(turned) < REACH) return false;
-          const done = moves.filter((m) => moved(m, startPoses, new Map())).length;
+          // A ring a rotary catch holds counts as moved once the catch has turned far enough to
+          // shift it (see rotaryRings).
+          const shiftedNow = rotaryRings.size ? new Map([...catchShifts(placedNow(), table, catches)].filter(([ring]) => rotaryRings.has(ring))) : new Map<number, number>();
+          const done = moves.filter((m) => moved(m, startPoses, shiftedNow)).length;
           if (!shared) return done === moves.length;
-          const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
+          const stirred = moves.filter((m) => moved(m, startPoses, shiftedNow, STIRRED)).length;
           return done > 0 && done === stirred;
         };
         const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : ballOf(b) >= 0 ? ballMeasuring(b, control, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
@@ -1081,7 +1097,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // Whether every part left still moves with the control, slowly (see slowPartsRule).
         const slow = still.length > 0 && still.every((ref) => {
           const m = listed.find((l) => l.ref === ref);
-          return m !== undefined && Math.abs(rateOf(m)) > SLOW_RATE;
+          return m !== undefined && (Math.abs(rateOf(m)) > SLOW_RATE || catchRate(m.part, Math.abs(turned)) > SLOW_RATE);
         });
         // Whether the control itself moved (see controlMovedRule).
         const controlMoved = Math.abs(turned) >= 0.01 || (measured.pushed !== null && Math.abs(went[listed.length][1]) >= 0.01);

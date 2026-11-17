@@ -149,13 +149,12 @@
     ]
   },
   "generated": {
-    "commit": "8f7dec26",
-    "uncommitted": true,
+    "commit": "7111adf4",
     "date": "2026-11-17",
-    "seconds": 208,
+    "seconds": 237,
     "counts": {
-      "partly": 3,
-      "works": 4,
+      "partly": 2,
+      "works": 5,
       "not back": 1,
       "torn": 1,
       "skipped": 1
@@ -340,7 +339,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 63.7
+        "seconds": 56.7
       },
       {
         "result": "works",
@@ -382,7 +381,7 @@
             ]
           ]
         ],
-        "seconds": 31.4
+        "seconds": 25.3
       },
       {
         "result": "works",
@@ -470,19 +469,15 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 24.8
+        "seconds": 19
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            3.5,
+            -3.5
           ]
-        ],
-        "still": [
-          "p513 18947 against p468 6573",
-          "p1030 18947 against p1032 65414c01"
         ],
         "rates": [
           {
@@ -496,7 +491,7 @@
             ],
             "p513 18947 against p468 6573": [
               0,
-              4.26e-35
+              3.11e-34
             ],
             "p1030 18947 against p1032 65414c01": [
               0,
@@ -536,12 +531,7 @@
         "why": [
           "p1030 18947 against p1032 65414c01 is held by friction pins the control doesn't reach"
         ],
-        "judged": [
-          0
-        ],
-        "cause": "part-fixed",
-        "detail": "p1030 18947 against p1032 65414c01",
-        "seconds": 32.9
+        "seconds": 81.7
       },
       {
         "result": "works",
@@ -591,7 +581,7 @@
             ]
           ]
         ],
-        "seconds": 18.3
+        "seconds": 25
       },
       {
         "result": "partly",
@@ -716,7 +706,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.47,
-        "seconds": 16.6
+        "seconds": 13.6
       },
       {
         "result": "skipped",
@@ -762,7 +752,7 @@
             ]
           ]
         ],
-        "seconds": 18.6
+        "seconds": 14.4
       }
     ]
   }

@@ -4,7 +4,7 @@ A clutch gear or band slips when the part it drives can go no further, at the en
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The rubber bands slip when the wheels are held, so the motor can't stall.
 
-Used in 11 of the 186 surveyed sets, by 15 functions. Kinebrick: 5 works, 6 partly, 4 skipped.
+Used in 11 of the 186 surveyed sets, by 15 functions. Kinebrick: 6 works, 5 partly, 4 skipped.
 
 ## By decade
 
@@ -69,7 +69,7 @@ Each detail by the set it first appears in.
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
-- The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (partly)
+- The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (works)
 
 ---
 
