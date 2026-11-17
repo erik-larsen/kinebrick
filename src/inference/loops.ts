@@ -7,8 +7,9 @@ import { type Joint, libraryName, type Loop, type LoopWheel } from '../mechanism
 import { AXIS_TOLERANCE } from './shared.ts';
 
 // How far the middle of a circle a chain placed link by link goes round may be from its wheel's
-// axis, in LDU (see findLoops): the 8835 Forklift's chain is 0.7 LDU off its sprockets.
-const CHAIN_REACH = 2;
+// axis, in LDU (see findLoops): the 8835 Forklift's chain is 0.7 LDU off its sprockets, the 9392
+// Quad Bike's 2.2 and 3.0 off its two 16 tooth gears. A fifth of a stud.
+const CHAIN_REACH = 4;
 
 // The chains, tracks and rubber bands looped round wheels: each looped path, with the wheels
 // it goes round. A circle of the path is on a wheel if a turning joint's axis runs along the
@@ -22,7 +23,18 @@ export function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[]
   return paths
     .filter((path) => path.looped)
     .map((path) => {
-      const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints, path.byHand ? CHAIN_REACH : AXIS_TOLERANCE) ?? []);
+      // A chain placed link by link runs on toothed wheels: a circle of it is on a wheel only if
+      // that wheel has a gear within the circle, in its plane, not on whatever turns near there
+      // (the 9392 Quad Bike's chain bends round its swinging arm's pivot, which it doesn't turn).
+      const toothed = (w: LoopWheel) => {
+        const point = path.points[w.point];
+        return parts.some((p, i) => {
+          if (bodyOf[i] !== w.body || roles[i] !== 'gear') return false;
+          const offset = new Vector3().setFromMatrixPosition(p.matrix).sub(point.center);
+          return Math.abs(offset.dot(point.axis)) <= CHAIN_REACH && offset.addScaledVector(point.axis, -offset.dot(point.axis)).length() <= CHAIN_REACH;
+        });
+      };
+      const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints, path.byHand ? CHAIN_REACH : AXIS_TOLERANCE) ?? []).filter((w) => !path.byHand || toothed(w));
       if (path.byHand) {
         for (const w of wheels) {
           const { from, to } = joints[w.joint];
