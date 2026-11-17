@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 48 works, 20 partly, 2 no, 1 skipped.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 50 works, 18 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -152,8 +152,8 @@ Each detail by the set it first appears in.
 
 **2012, [9392 Quad Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9392-1)**
 
-- *1 cylinder:* Rolling the quad works the engine: the rear axle's sprocket drives a chain forward to a cross shaft, whose gear turns the crankshaft, and the yellow piston pumps up and down in its cylinder. (partly)
-- The engine can also be turned from its crankshaft, turning the rear wheels through the gears and chain. (partly)
+- *1 cylinder:* Rolling the quad works the engine: the rear axle's sprocket drives a chain forward to a cross shaft, whose gear turns the crankshaft, and the yellow piston pumps up and down in its cylinder. (works)
+- The engine can also be turned from its crankshaft, turning the rear wheels through the gears and chain. (works)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 

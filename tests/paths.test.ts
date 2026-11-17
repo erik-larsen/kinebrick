@@ -291,11 +291,11 @@ describe('chains placed link by link', () => {
     expect(turned(b) / turned(a)).toBeCloseTo(1, 6);
   });
 
-  it("the 8844 Helicopter's landing gear chain is found, on the front axle's sprocket; its other end goes round a gear the model places twice (see docs/ldraw-errata.md)", () => {
+  it("the 8844 Helicopter's landing gear chain is found, on the front axle's sprocket and, 5 LDU off, on the rear leg's own 24 tooth gear: its other end goes round a gear the model places twice (see docs/ldraw-errata.md), within a tooth's depth of the real one", () => {
     const { mech } = model('8844-Helicopter');
     expect(mech.loops).toHaveLength(1);
     expect(mech.loops[0].links).toHaveLength(25);
-    // The front axle (p8, with its 16 tooth gear p10).
-    expect(mech.loops[0].wheels.map((w) => w.body)).toEqual([mech.bodyOf[8]]);
+    // The rear leg's axle (p15, with its 24 tooth gear p17) and the front axle (p8, with its 16 tooth gear p10).
+    expect(mech.loops[0].wheels.map((w) => w.body)).toEqual([mech.bodyOf[15], mech.bodyOf[8]]);
   });
 });
