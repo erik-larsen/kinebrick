@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "f20682cb",
     "date": "2026-11-17",
-    "seconds": 847,
+    "seconds": 736,
     "counts": {
       "works": 12,
       "partly": 1,
@@ -307,7 +307,7 @@
             ]
           ]
         ],
-        "seconds": 108.3
+        "seconds": 93.8
       },
       {
         "result": "works",
@@ -349,7 +349,7 @@
             ]
           ]
         ],
-        "seconds": 107.6
+        "seconds": 94
       },
       {
         "result": "partly",
@@ -408,7 +408,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 45.3
+        "seconds": 39.1
       },
       {
         "result": "works",
@@ -458,7 +458,7 @@
             ]
           ]
         ],
-        "seconds": 12.4
+        "seconds": 11
       },
       {
         "result": "works",
@@ -514,7 +514,7 @@
             ]
           ]
         ],
-        "seconds": 17.8
+        "seconds": 15.1
       },
       {
         "result": "works",
@@ -556,7 +556,7 @@
             ]
           ]
         ],
-        "seconds": 17.1
+        "seconds": 14.8
       },
       {
         "result": "works",
@@ -598,7 +598,7 @@
             ]
           ]
         ],
-        "seconds": 17.3
+        "seconds": 14.7
       },
       {
         "result": "works",
@@ -640,7 +640,7 @@
             ]
           ]
         ],
-        "seconds": 17.3
+        "seconds": 14.9
       },
       {
         "result": "skipped"
@@ -714,7 +714,7 @@
           [],
           []
         ],
-        "seconds": 404.3
+        "seconds": 350.9
       },
       {
         "result": "works",
@@ -751,7 +751,7 @@
             ]
           ]
         ],
-        "seconds": 18.1
+        "seconds": 15.6
       },
       {
         "result": "works",
@@ -796,7 +796,7 @@
         "pushed": [
           true
         ],
-        "seconds": 10.5
+        "seconds": 9
       },
       {
         "result": "works",
@@ -834,7 +834,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 24.7
+        "seconds": 21.2
       },
       {
         "result": "works",
@@ -872,7 +872,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 25.4
+        "seconds": 22.1
       },
       {
         "result": "skipped"

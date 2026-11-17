@@ -611,7 +611,7 @@ async function start() {
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
-    catches = findCatches(parts, sliders, mech.roles);
+    catches = findCatches(parts, sliders, mech.roles, catches);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     // Where each chain's or track's links go as it moves round (see paths.ts).
@@ -643,6 +643,10 @@ async function start() {
     }
 
     const connected = connectedPairs(mech);
+    // Nor a changeover catch and the driving ring its fork sits in: the fork is in the ring's
+    // groove, and the ring slides only when the drag ends (see meshAfresh), so in between the
+    // fork presses into it. Tested, the pair stopped the 42112's selector lever 2 degrees out.
+    for (const c of catches) for (const ring of c.ring.riders ?? [c.ring.part]) connected.add(c.part < ring ? `${c.part},${ring}` : `${ring},${c.part}`);
     if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
     else {
       // The pairs of parts that already touch as built are found beside the page (see
