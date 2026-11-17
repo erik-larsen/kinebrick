@@ -7,9 +7,13 @@ import { type Joint, libraryName, type Loop, type LoopWheel } from '../mechanism
 import { AXIS_TOLERANCE } from './shared.ts';
 
 // How far the middle of a circle a chain placed link by link goes round may be from its wheel's
-// axis, in LDU (see findLoops): the 8835 Forklift's chain is 0.7 LDU off its sprockets, the 9392
-// Quad Bike's 2.2 and 3.0 off its two 16 tooth gears. A fifth of a stud.
-const CHAIN_REACH = 4;
+// axis, in LDU (see findLoops): a chain sits on its gear's teeth, so the middle of its circle can
+// be off the gear's axis by no more than a tooth's whole depth, or its links wouldn't be on the
+// teeth at all. LEGO's gears have a module of 1 mm, 2.5 LDU (an 8 tooth gear's pitch radius is
+// 10 LDU, 8 x 2.5 / 2), and a tooth's whole depth is 2.25 modules: 5.6 LDU. The 8835 Forklift's
+// chain is 0.7 LDU off its sprockets, the 9392 Quad Bike's 2.2 and 3.0 off its two 16 tooth gears.
+const MODULE = 2.5;
+const CHAIN_REACH = 2.25 * MODULE;
 
 // The chains, tracks and rubber bands looped round wheels: each looped path, with the wheels
 // it goes round. A circle of the path is on a wheel if a turning joint's axis runs along the

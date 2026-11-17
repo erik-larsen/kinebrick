@@ -176,7 +176,7 @@ Lines 41 and 42, in `8844 - model.ldr`:
 1 7 0 -66 175 0 0 1 0 1 0 -1 0 0 3648a.dat
 ```
 
-A correction would take out both lines and lay the chain's rear end round the rear leg's own 24 tooth gear, 5 LDU from where it goes round now. Kinebrick hasn't, since taking out two parts would renumber the parts its notes on the set's functions name.
+A correction would take out both lines and lay the chain's rear end round the rear leg's own 24 tooth gear, 5 LDU from where it goes round now. Kinebrick hasn't, since taking out two parts would renumber the parts its notes on the set's functions name. It doesn't need to: a chain placed link by link may be off its gear's axis by a tooth's whole depth (5.6 LDU, see CHAIN_REACH in src/inference/loops.ts), so Kinebrick reads the chain's rear end on the rear leg's own gear, and the landing gear works.
 
 ## 8848-1 Power Truck
 
