@@ -451,7 +451,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Signed off by Erik, 2026-11-14 |
 | [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
-| [8258-1](#8258-1-boom-actuator-u-joint-on-the-turntable-axle) | boom-actuator-u-joint-on-the-turntable-axle | moves `62520.dat` (in `8258 - m-1g''''.ldr`) to 0 0 -50, turned | Proposed, not applied until signed off |
+| [8258-1](#8258-1-boom-actuator-u-joint-on-the-turntable-axle) | boom-actuator-u-joint-on-the-turntable-axle | moves `62520.dat` (in `8258 - m-1g''''.ldr`) to 0 0 -50, turned | Signed off by Erik, 2026-11-17 |
 | [8832-1](#8832-1-roll-bar-brace-right-axle-through-its-toggles) | roll-bar-brace-right-axle-through-its-toggles | moves `3706.dat` to 70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
 | [8832-1](#8832-1-roll-bar-brace-left-axle-through-its-toggles) | roll-bar-brace-left-axle-through-its-toggles | moves `3706.dat` to -70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
@@ -538,7 +538,7 @@ is read with its part at 20 -20 0.
 
 ### 8258-1: boom-actuator-u-joint-on-the-turntable-axle
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-17.
 
 The lower boom's linear actuator (p2096 62271c01, submodel m-1g'''') takes its drive from the turntable's upright axle 10 (p244 3737) through a universal joint at its foot. Book 2 page 82 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=82) builds the actuator with the joint on an axle 3; page 83, step 156 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=83), sets it upright and drops the joint's free end straight onto the axle that stands up from the turntable. The boom tilts the actuator later, and the joint bends, its free end staying on that axle. The file draws the joint straight in its submodel, both ends on the actuator's line, and places the submodel tilted 25° with the actuator, so the free end p2103 points 25° off p244, whose tip stops 10 LDU from the joint's centre, where the end's axle hole begins. Nothing is in the end's hole, and the actuator isn't driven (function 3). Turned 25.0° on the cross's arm it pins on, the end lines up with p244; the cross and the actuator's side don't move.
 
