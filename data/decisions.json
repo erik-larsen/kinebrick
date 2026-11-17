@@ -76,6 +76,10 @@
   ],
   "coming": [
     {
+      "title": "The next offer of main",
+      "what": "preview has 738 working functions and main 701, but Claude does not offer main yet. Three gaps between what the check counts and what the viewer shows must be mended first: (1) a click on a motor pushes the motor’s body where the check turns the motor’s output (47 functions have a motor as their control, 19 of them count as working; the worker mends this now); (2) gear rings do not shift while a motor runs, only when a drag ends (the same mend); (3) up to eight functions that work by freeing a pin do not show in a drag yet (this waits behind the solver owner’s session). After those, a slow check of the 8110 on the commit offered."
+    },
+    {
       "title": "A second worker, asked again at mid-week",
       "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
     }
