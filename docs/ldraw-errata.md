@@ -480,10 +480,16 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Signed off by Erik, 2026-11-15 |
 | [42112-1](#42112-1-drive-shaft-bevel-on-the-shaft) | drive-shaft-bevel-on-the-shaft | moves `18575.dat` to 20 0 184 | Signed off by Erik, 2026-11-17 |
-| [42131-1](#42131-1-left-blade-lift-rod-in-line-with-its-cylinder) | left-blade-lift-rod-in-line-with-its-cylinder | moves `62274c01.dat` (in `42131 - bladelift1.ldr`) to -0.439 0 -239.432, turned | Proposed, not applied until signed off |
-| [42131-1](#42131-1-left-blade-lift-cylinder-in-line-with-its-holder) | left-blade-lift-cylinder-in-line-with-its-holder | moves `42131 - u9559c01.dat` (in `42131 - bladelift1.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
-| [42131-1](#42131-1-right-blade-lift-rod-in-line-with-its-cylinder) | right-blade-lift-rod-in-line-with-its-cylinder | moves `62274c01.dat` (in `42131 - bladelift2.ldr`) to 0.439 0 -239.432, turned | Proposed, not applied until signed off |
-| [42131-1](#42131-1-right-blade-lift-cylinder-in-line-with-its-holder) | right-blade-lift-cylinder-in-line-with-its-holder | moves `42131 - u9559c01.dat` (in `42131 - bladelift2.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-left-blade-lift-rod-in-line-with-its-cylinder) | left-blade-lift-rod-in-line-with-its-cylinder | moves `62274c01.dat` (in `42131 - bladelift1.ldr`) to 0 -6.225 -239.432, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-left-blade-lift-input-leaning-with-its-cylinder) | left-blade-lift-input-leaning-with-its-cylinder | moves `47157.dat` (in `42131 - bladelift1.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-left-blade-lift-holder-leaning-with-its-cylinder) | left-blade-lift-holder-leaning-with-its-cylinder | moves `61904.dat` (in `42131 - bladelift1.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-left-blade-lift-input-axle-leaning-with-its-cylinder) | left-blade-lift-input-axle-leaning-with-its-cylinder | moves `4519.dat` (in `42131 - bladelift1.ldr`) to 0 0.26 10, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-left-blade-lift-input-gear-leaning-with-its-cylinder) | left-blade-lift-input-gear-leaning-with-its-cylinder | moves `32270.dat` (in `42131 - bladelift1.ldr`) to 0 0.78 30, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-right-blade-lift-rod-in-line-with-its-cylinder) | right-blade-lift-rod-in-line-with-its-cylinder | moves `62274c01.dat` (in `42131 - bladelift2.ldr`) to 0 6.225 -239.432, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-right-blade-lift-input-leaning-with-its-cylinder) | right-blade-lift-input-leaning-with-its-cylinder | moves `47157.dat` (in `42131 - bladelift2.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-right-blade-lift-holder-leaning-with-its-cylinder) | right-blade-lift-holder-leaning-with-its-cylinder | moves `61904.dat` (in `42131 - bladelift2.ldr`) to 0 0 0, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-right-blade-lift-input-axle-leaning-with-its-cylinder) | right-blade-lift-input-axle-leaning-with-its-cylinder | moves `4519.dat` (in `42131 - bladelift2.ldr`) to 0 -0.26 10, turned | Proposed, not applied until signed off |
+| [42131-1](#42131-1-right-blade-lift-input-gear-leaning-with-its-cylinder) | right-blade-lift-input-gear-leaning-with-its-cylinder | moves `32270.dat` (in `42131 - bladelift2.ldr`) to 0 -0.78 30, turned | Proposed, not applied until signed off |
 
 ### 850-1: handwheel-down
 
@@ -977,21 +983,63 @@ In `42131 - bladelift1.ldr` (p4122 62274c01), the line
 1 72 -0.439 -7 -239.432 0 -1 0 -0.999 0 -0.035 0.035 0 -0.999 62274c01.dat
 ```
 
-is read with its part at -0.439 0 -239.432, turned to 0 -1 0 -1 0 0 0 0 -1.
+is read with its part at 0 -6.225 -239.432, turned to 0 -1 0 -1 0 -0.026 0.026 0 -1.
 
-### 42131-1: left-blade-lift-cylinder-in-line-with-its-holder
+### 42131-1: left-blade-lift-input-leaning-with-its-cylinder
 
 Proposed, not applied until signed off.
 
-The actuator’s input (47157 p4120) turns on an axle (4519 p4124) that runs back through the actuator holder (61904 p4123), the holder on its trunnion at the actuator’s back end (step 410, book 1 page 305, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=305). In the file the cylinder leans 1.5 degrees (0.026) on that trunnion, while the holder doesn’t: the input’s axis in the cylinder and the axle’s in the holder then cross at 1.5 degrees, so the input can’t turn in both, and the reading makes the input one body with the cylinder. No screw is read, and the motor can’t drive the actuator (function 7). Drawn without the lean, as its holder is, the input turns on one axis in both.
 
-In `42131 - bladelift1.ldr` (p4121 u9559c01), the line
+
+In `42131 - bladelift1.ldr` (p4120 47157), the line
 
 ```
-1 0 0 0 0 -1 0 0 0 1 -0.026 0 -0.026 -1 42131 - u9559c01.dat
+1 4 0 0 0 0 -1 0 -1 0 0 0 0 -1 47157.dat
 ```
 
-is read with its part at 0 0 0, turned to -1 0 0 0 1 0 0 0 -1.
+is read with its part at 0 0 0, turned to 0 -1 0 -1 0 -0.026 0.026 0 -1.
+
+### 42131-1: left-blade-lift-holder-leaning-with-its-cylinder
+
+Proposed, not applied until signed off.
+
+
+
+In `42131 - bladelift1.ldr` (p4123 61904), the line
+
+```
+1 72 0 0 0 -1 0 0 0 1 0 0 0 -1 61904.dat
+```
+
+is read with its part at 0 0 0, turned to -1 0 0 0 1 -0.026 0 -0.026 -1.
+
+### 42131-1: left-blade-lift-input-axle-leaning-with-its-cylinder
+
+Proposed, not applied until signed off.
+
+
+
+In `42131 - bladelift1.ldr` (p4124 4519), the line
+
+```
+1 71 0 0 10 0 0 -1 0 1 0 1 0 0 4519.dat
+```
+
+is read with its part at 0 0.26 10, turned to 0 0 -1 0.026 1 0 1 -0.026 0.
+
+### 42131-1: left-blade-lift-input-gear-leaning-with-its-cylinder
+
+Proposed, not applied until signed off.
+
+
+
+In `42131 - bladelift1.ldr` (p4125 32270), the line
+
+```
+1 0 0 0 30 1 0 0 0 1 0 0 0 1 32270.dat
+```
+
+is read with its part at 0 0.78 30, turned to 1 0 0 0 1 0.026 0 -0.026 1.
 
 ### 42131-1: right-blade-lift-rod-in-line-with-its-cylinder
 
@@ -1005,20 +1053,62 @@ In `42131 - bladelift2.ldr` (p4197 62274c01), the line
 1 72 0.439 7 -239.432 0 1 0 0.999 0 0.035 0.035 0 -0.999 62274c01.dat
 ```
 
-is read with its part at 0.439 0 -239.432, turned to 0 1 0 1 0 0 0 0 -1.
+is read with its part at 0 6.225 -239.432, turned to 0 1 0 1 0 0.026 0.026 0 -1.
 
-### 42131-1: right-blade-lift-cylinder-in-line-with-its-holder
+### 42131-1: right-blade-lift-input-leaning-with-its-cylinder
 
 Proposed, not applied until signed off.
 
-The mirror of the left cylinder: it leans 1.5 degrees (0.026) on its holder’s trunnion, so its input can’t turn and no screw is read. Step 410, book 1 page 305, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=305.
 
-In `42131 - bladelift2.ldr` (p4196 u9559c01), the line
+
+In `42131 - bladelift2.ldr`, the line
 
 ```
-1 0 0 0 0 -1 0 0 0 1 0.026 0 0.026 -1 42131 - u9559c01.dat
+1 4 0 0 0 0 1 0 1 0 0 0 0 -1 47157.dat
 ```
 
-is read with its part at 0 0 0, turned to -1 0 0 0 1 0 0 0 -1.
+is read with its part at 0 0 0, turned to 0 1 0 1 0 0.026 0.026 0 -1.
+
+### 42131-1: right-blade-lift-holder-leaning-with-its-cylinder
+
+Proposed, not applied until signed off.
+
+
+
+In `42131 - bladelift2.ldr`, the line
+
+```
+1 72 0 0 0 -1 0 0 0 1 0 0 0 -1 61904.dat
+```
+
+is read with its part at 0 0 0, turned to -1 0 0 0 1 0.026 0 0.026 -1.
+
+### 42131-1: right-blade-lift-input-axle-leaning-with-its-cylinder
+
+Proposed, not applied until signed off.
+
+
+
+In `42131 - bladelift2.ldr`, the line
+
+```
+1 71 0 0 10 0 0 1 0 1 0 -1 0 0 4519.dat
+```
+
+is read with its part at 0 -0.26 10, turned to 0 0 1 0.026 1 0 -1 0.026 0.
+
+### 42131-1: right-blade-lift-input-gear-leaning-with-its-cylinder
+
+Proposed, not applied until signed off.
+
+
+
+In `42131 - bladelift2.ldr`, the line
+
+```
+1 0 0 0 30 1 0 0 0 1 0 0 0 1 32270.dat
+```
+
+is read with its part at 0 -0.78 30, turned to 1 0 0 0 1 -0.026 0 0.026 1.
 
 <!-- errata: end -->
