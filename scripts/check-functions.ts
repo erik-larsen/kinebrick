@@ -328,7 +328,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.scrub = scrub;
     }
     sliders = findSliders(parts, mech, table, slides);
-    catches = findCatches(parts, sliders, mech.roles);
+    catches = findCatches(parts, sliders, mech.roles, catches);
     at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
   };
   const asLoaded = { parts, mech, kin };

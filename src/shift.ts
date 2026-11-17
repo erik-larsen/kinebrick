@@ -126,8 +126,13 @@ export function camAt(degrees: number): number {
   return CAM[CAM.length - 1][1];
 }
 
-// The catches in a model, each with the driving ring its fork sits in.
-export function findCatches(parts: PlacedPart[], sliders: Slider[], roles: string[]): Catch[] {
+// The catches in a model, each with the driving ring its fork sits in. A catch in `known` (the
+// catches as found before) keeps the fork found then: the fork is a place on the catch, measured
+// once from the ring as the model was built. Measured afresh after a shift, from the ring slid to
+// another click-in place while the catch is read at its built angle, it would be off by the shift,
+// and the ring would come back only when the lever went that far past its middle (the 42112's
+// selector: slid at -11 degrees, back only at +9).
+export function findCatches(parts: PlacedPart[], sliders: Slider[], roles: string[], known: Catch[] = []): Catch[] {
   const catches: Catch[] = [];
   parts.forEach((p, i) => {
     if (p.name.replace(/^.* - /, '') === '35188.dat') {
@@ -145,7 +150,8 @@ export function findCatches(parts: PlacedPart[], sliders: Slider[], roles: strin
     const at = new Vector3().setFromMatrixPosition(p.matrix);
     const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - CATCH_REACH) < 1);
     if (!ring) return;
-    const fork = new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
+    const before = known.find((c) => c.part === i && c.ring.part === ring.part && !c.rotary);
+    const fork = before ? before.fork.clone() : new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
     catches.push({ part: i, ring, fork });
   });
   return catches;
