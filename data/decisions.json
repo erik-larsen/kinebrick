@@ -5,9 +5,9 @@
       "moved": "2026-11-16"
     },
     "preview": {
-      "works": 737,
+      "works": 738,
       "partly": 227,
-      "no": 83,
+      "no": 82,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
@@ -19,7 +19,7 @@
       "title": "The solver owner's session waits for your answer",
       "since": "2026-11-17",
       "what": "The session “Solver owner: phase 2 structure” stopped on a request that only you can answer, and has not worked since about 15:00 UTC on 17 November. Claude (the orchestrator) has not read or answered the request and does not work around it: that is your call. Open the session and answer there.",
-      "effect": "Three pieces of work wait behind it. (1) The viewer mend for the pin search: the check counts up to eight functions as working that the viewer does not show yet (41999 function 7, 42080 functions 2 and 3, 8272 functions 2 and 3, 42040 functions 6 and 7, 42036 function 5). (2) A measurement, over all sets, of how often the viewer's collision stop ends a motion that the check passes. (3) The result of the run that tries the friction role of pin 43093 on 110 sets. The next offer of main waits for (1) and (2): preview has 737 working functions, main 701.",
+      "effect": "Three pieces of work wait behind it. (1) The viewer mend for the pin search: the check counts up to eight functions as working that the viewer does not show yet (41999 function 7, 42080 functions 2 and 3, 8272 functions 2 and 3, 42040 functions 6 and 7, 42036 function 5). (2) A measurement, over all sets, of how often the viewer's collision stop ends a motion that the check passes. (3) The result of the run that tries the friction role of pin 43093 on 110 sets. The next offer of main waits for (1) and (2): preview has 738 working functions, main 701.",
       "confidence": "Not applicable: Claude does not know what the request asks.",
       "links": [
         {
