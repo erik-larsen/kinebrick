@@ -380,6 +380,23 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const b = mech.bodyOf[control];
     return mech.roles[control] === 'motor' ? motorOutput(mech, control) : b;
   };
+  // Whether a drag of the control, with its holds chosen as the viewer's are, has a motion: an
+  // exact one, or with `play`, one on play too (see Kinematics.loopPlay). The check's first test of
+  // a control holds nothing and asks for an exact motion; the trial search frees pins only for a
+  // part that can't move even on play (decision 139 of 2026-11-17: the 42062 Container Yard's
+  // wheels, which roll on play as a drag holds them, had a friction pin freed by it, and a part
+  // that hangs on the pin swung 157 LDU away).
+  const dragGoes = (control: number, play = false) => {
+    const b = worked(control);
+    const link = kin.parentLink(b);
+    if (kin.frames.includes(b) || !link) return false;
+    const before = kin.snapshot();
+    kin.holdWhatTheDragDoesntNeed(b, () => kin.jointMotion(link.joint, false) !== null, link.joint);
+    const goes = kin.jointMotion(link.joint, play) !== null;
+    kin.letGoAfterDrag();
+    kin.restore(before);
+    return goes;
+  };
   // The bodies turned with the one worked, for a function whose controls are worked together.
   let together: number[] = [];
   // Works a body's joint as a drag does, as far as it goes up to `amount`; how far it went.
@@ -820,7 +837,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
-          if (pinTrial && !(freed.size && withFreed(new Set(), controlGoes))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
+          // A push with no point to push can't start, on play or not (see grabOf).
+          if (pinTrial && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
         }
         // So too a part the function lists to move that friction pins hold fast to what it's
         // measured against, but only where the control doesn't go (it jams, or a push has no
@@ -840,7 +858,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             kin.restore(before);
             return Math.abs(went) > 1e-6;
           };
-          if (goes()) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
+          // Where the control goes only on play (no exact motion as its drag holds it), a part held
+          // fast gets its pins all the same (decision 139: the 41999 Crawler's and the 42040 Fire
+          // Plane's, whose controls go on play while the parts they should move stay fast).
+          if (goes() && !(pinTrial && !dragGoes(c))) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
           else {
             allFree ??= loaded.allFree(asLoaded.parts);
             for (const m of held) for (const pin of pinsToFree(allFree, m.part)) freed.add(pin);
@@ -890,7 +911,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           const link = kin.parentLink(worked(c));
           return !(kin.frames.includes(worked(c)) || !link || kin.jointMotion(link.joint, false) === null);
         };
-        if (!goes()) {
+        if (!goes() && !dragGoes(c, true)) {
           const now = placedNow();
           const current = { parts, mech, kin };
           const pins = pinsByTrial(heldPins(mech, c, freed), (more) => {

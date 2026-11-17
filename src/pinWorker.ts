@@ -45,7 +45,7 @@ self.onmessage = (event: MessageEvent) => {
   } else if (message.ask !== undefined) {
     const freed = new Set<number>(message.freed ?? []);
     let pins = allFree ? pinsToFree(allFree, message.part).filter((p) => !freed.has(p)) : [];
-    if (model && !(pins.length && moves(message.part, new Set([...freed, ...pins])))) {
+    if (model && message.search !== false && !(pins.length && moves(message.part, new Set([...freed, ...pins])))) {
       const read = inferMechanism(model.parts, model.table, model.roles, model.paths, freed);
       pins = pinsByTrial(heldPins(read, message.part, freed), (more) => moves(message.part, new Set([...freed, ...more])));
     }
