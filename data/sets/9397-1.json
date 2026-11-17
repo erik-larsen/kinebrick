@@ -178,9 +178,9 @@
     ]
   },
   "generated": {
-    "commit": "bb95c64e",
+    "commit": "93a580aa",
     "date": "2026-11-17",
-    "seconds": 6064,
+    "seconds": 7133,
     "counts": {
       "works": 5,
       "not back": 2,
@@ -251,7 +251,7 @@
         "strayed": [
           "p184 6542b"
         ],
-        "seconds": 126.4
+        "seconds": 135.8
       },
       {
         "result": "partly",
@@ -301,7 +301,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p464 92695 against p463 92693c01",
-        "seconds": 939.5
+        "seconds": 1068.7
       },
       {
         "result": "partly",
@@ -356,13 +356,13 @@
         ],
         "cause": "part-fixed",
         "detail": "p528 32140",
-        "seconds": 543.9
+        "seconds": 607.2
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.03,
+            0.07,
             -0.07
           ]
         ],
@@ -372,16 +372,16 @@
         "rates": [
           {
             "p624 62274c01 against p623 62271c01": [
-              0,
-              3.43e-11
+              6.32e-7,
+              1.66e-11
             ]
           }
         ],
         "back": [
           [
             [
-              0.33,
-              0.55
+              0.07,
+              0.36
             ],
             [
               0.09,
@@ -392,8 +392,8 @@
         "torn": [
           [
             [
-              0.33,
-              0.55
+              0.02,
+              0.36
             ],
             [
               0.02,
@@ -402,20 +402,20 @@
           ]
         ],
         "strayed": [
-          "p163 3749",
           "p186 6542b"
         ],
         "stop": [
           [
-            "dead point",
+            "limit",
             "limit"
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "control-jammed",
-        "seconds": 445.6
+        "onPlay": 0.2,
+        "seconds": 509.9
       },
       {
         "result": "works",
@@ -452,7 +452,7 @@
             ]
           ]
         ],
-        "seconds": 556.3
+        "seconds": 605.4
       },
       {
         "result": "not checked"
@@ -513,7 +513,7 @@
             ]
           ]
         ],
-        "seconds": 128.9
+        "seconds": 136.5
       },
       {
         "result": "works",
@@ -639,7 +639,7 @@
             "p790 2851 against p775 2850a"
           ]
         ],
-        "seconds": 942.4
+        "seconds": 1247.7
       },
       {
         "result": "works",
@@ -809,7 +809,7 @@
           [],
           []
         ],
-        "seconds": 2374.2
+        "seconds": 2811.4
       }
     ]
   }

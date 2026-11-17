@@ -153,7 +153,7 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
     "seconds": 10,
     "counts": {
@@ -315,7 +315,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3 87082 against p230 32278",
-        "seconds": 0.1
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -399,7 +399,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p404 48452",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -815,7 +815,7 @@
           [],
           []
         ],
-        "seconds": 6.1
+        "seconds": 6
       }
     ]
   }

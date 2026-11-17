@@ -121,7 +121,7 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
     "seconds": 22,
     "counts": {
@@ -215,7 +215,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -300,7 +300,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 2.2
       },
       {
         "result": "no",
@@ -388,7 +388,7 @@
         ],
         "cause": "not-driven",
         "detail": "p329 32316",
-        "seconds": 0.1
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -661,7 +661,7 @@
           [],
           []
         ],
-        "seconds": 11.6
+        "seconds": 11.2
       }
     ]
   }
