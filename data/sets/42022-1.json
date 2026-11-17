@@ -47,10 +47,11 @@
           "p340 10928",
           "p297 10928",
           "p299 2852",
-          "p303 2852"
+          "p303 2852",
+          "p314 2851 against p306 2850"
         ],
         "stays": [
-          "p314 2851 against p0 99008"
+          "p306 2850 against p0 99008"
         ],
         "note": "the pistons slide straight up and down in fixed cylinders; only one rear wheel is geared to the engine, the other rolls on its own axle"
       },
@@ -88,12 +89,12 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
-    "date": "2026-11-16",
-    "seconds": 5,
+    "commit": "9a4a7516",
+    "uncommitted": true,
+    "date": "2026-11-17",
+    "seconds": 8,
     "counts": {
-      "works": 3,
-      "partly": 1
+      "works": 4
     },
     "loose": [
       "p101 6141"
@@ -169,18 +170,15 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 2.1
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "moved": [
-          "p314 2851 against p0 99008"
         ],
         "rates": [
           {
@@ -204,9 +202,13 @@
               0.0928,
               10
             ],
-            "p314 2851 against p0 99008": [
+            "p314 2851 against p306 2850": [
               0,
               9.21
+            ],
+            "p306 2850 against p0 99008": [
+              0,
+              0
             ]
           }
         ],
@@ -214,7 +216,8 @@
           {
             "p231 32270": 1,
             "p340 10928": 1,
-            "p297 10928": 1
+            "p297 10928": 1,
+            "p314 2851 against p306 2850": 9.21
           }
         ],
         "back": [
@@ -241,12 +244,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "stay-forced",
-        "detail": "p314 2851 against p0 99008",
-        "seconds": 1.4
+        "seconds": 2
       },
       {
         "result": "works",
@@ -338,7 +336,7 @@
           [],
           []
         ],
-        "seconds": 1.5
+        "seconds": 2
       },
       {
         "result": "works",
@@ -398,7 +396,7 @@
             null
           ]
         ],
-        "seconds": 0.7
+        "seconds": 1.1
       }
     ]
   }
