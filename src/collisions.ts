@@ -341,6 +341,14 @@ export class Collisions {
     return null;
   }
 
+  // Whether a part's shape, placed as `matrix` says, meets the ground (LDraw y `ground`): reaches
+  // to within NEAR of it, as belowGround leaves out the parts that do at the start.
+  meetsGround(part: number, matrix: Matrix4, ground: number): boolean {
+    const box = this.shapes[part].box;
+    if (box.isEmpty() || box.clone().applyMatrix4(matrix).max.y <= ground - NEAR) return false;
+    return this.lowest(part, matrix) > ground - NEAR;
+  }
+
   // How low a part's shape reaches (its greatest LDraw y), placed as `matrix` says.
   private lowest(part: number, matrix: Matrix4): number {
     let low = -Infinity;
