@@ -73,7 +73,8 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
     "seconds": 0,
     "counts": {
@@ -200,7 +201,7 @@
         ],
         "cause": "not-driven",
         "detail": "p45 3708 against p0 2825",
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",
@@ -237,7 +238,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "not checked",

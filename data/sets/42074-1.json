@@ -85,9 +85,10 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "works": 3,
       "skipped": 1
@@ -291,7 +292,7 @@
             "p275 32278"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.6
       },
       {
         "result": "works",
@@ -409,7 +410,7 @@
           [],
           []
         ],
-        "seconds": 1.4
+        "seconds": 1.9
       },
       {
         "result": "skipped",

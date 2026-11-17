@@ -204,10 +204,10 @@
     ]
   },
   "generated": {
-    "commit": "78e0e715",
+    "commit": "2effcfbb",
     "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 2086,
+    "seconds": 3257,
     "counts": {
       "works": 8,
       "partly": 4,
@@ -310,7 +310,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 72.7
+        "seconds": 135.7
       },
       {
         "result": "partly",
@@ -392,7 +392,7 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 109.3
+        "seconds": 153.4
       },
       {
         "result": "works",
@@ -462,7 +462,7 @@
           [],
           []
         ],
-        "seconds": 266.1
+        "seconds": 419.8
       },
       {
         "result": "works",
@@ -521,7 +521,7 @@
         "pushed": [
           true
         ],
-        "seconds": 155.6
+        "seconds": 244.3
       },
       {
         "result": "works",
@@ -588,7 +588,7 @@
           [],
           []
         ],
-        "seconds": 87
+        "seconds": 177.9
       },
       {
         "result": "partly",
@@ -636,7 +636,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 9.5
+        "seconds": 15.7
       },
       {
         "result": "works",
@@ -682,7 +682,7 @@
             ]
           ]
         ],
-        "seconds": 51.8
+        "seconds": 74.6
       },
       {
         "result": "works",
@@ -728,7 +728,7 @@
             ]
           ]
         ],
-        "seconds": 52.4
+        "seconds": 74.2
       },
       {
         "result": "partly",
@@ -801,7 +801,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2048 18940",
-        "seconds": 15.5
+        "seconds": 24.2
       },
       {
         "result": "partly",
@@ -874,7 +874,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 15.7
+        "seconds": 25.8
       },
       {
         "result": "works",
@@ -955,7 +955,7 @@
           [],
           []
         ],
-        "seconds": 498.4
+        "seconds": 820.8
       },
       {
         "result": "no",
@@ -981,7 +981,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 6.5
+        "seconds": 214.7
       },
       {
         "result": "works",
@@ -1103,7 +1103,7 @@
           [],
           []
         ],
-        "seconds": 487.8
+        "seconds": 754.2
       }
     ]
   }

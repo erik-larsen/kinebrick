@@ -155,7 +155,8 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
     "seconds": 9,
     "counts": {
@@ -240,7 +241,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1
       },
       {
         "result": "partly",
@@ -333,7 +334,7 @@
         ],
         "cause": "not-driven",
         "detail": "p185 2854",
-        "seconds": 2.5
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -459,7 +460,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1
+        "seconds": 1.1
       },
       {
         "result": "no",
@@ -539,7 +540,7 @@
             ]
           ]
         ],
-        "seconds": 2.1
+        "seconds": 2.3
       },
       {
         "result": "no",
