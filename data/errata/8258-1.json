@@ -9,6 +9,16 @@
       "position": [20, -20, 0],
       "evidence": "The front outriggers' drive gear p586 4019, on its axle pin p587 3749 (submodel m-1k'ka), is drawn 4 LDU off its hole's axis in the beam p583, so it is loose and nothing drives the front outriggers' pinion. Book 2 page 42 step 78.21 shows the gear meshing the next one (8258-1-5.pdf; docs/audits/function-lists-batch-2.md, \"Model file checks the orchestrator asked for\"). Confidence high (the audit). Moved 4 LDU, y -24 to -20.",
       "signedOff": { "by": "Erik", "date": "2026-11-14", "words": "Sign all three" }
+    },
+    {
+      "id": "boom-actuator-u-joint-on-the-turntable-axle",
+      "what": "move",
+      "file": "8258 - m-1g''''.ldr",
+      "line": "1 71 0 0 -50 -1 0 0 0 1 0 0 0 -1 62520.dat",
+      "part": "p2103 62520",
+      "position": [0, 0, -50],
+      "orientation": [-1, 0, 0, 0, 0.906106, 0.42305, 0, 0.42305, -0.906106],
+      "evidence": "The lower boom's linear actuator (p2096 62271c01, submodel m-1g'''') takes its drive from the turntable's upright axle 10 (p244 3737) through a universal joint at its foot. Book 2 page 82 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=82) builds the actuator with the joint on an axle 3; page 83, step 156 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=83), sets it upright and drops the joint's free end straight onto the axle that stands up from the turntable. The boom tilts the actuator later, and the joint bends, its free end staying on that axle. The file draws the joint straight in its submodel, both ends on the actuator's line, and places the submodel tilted 25° with the actuator, so the free end p2103 points 25° off p244, whose tip stops 10 LDU from the joint's centre, where the end's axle hole begins. Nothing is in the end's hole, and the actuator isn't driven (function 3). Turned 25.0° on the cross's arm it pins on, the end lines up with p244; the cross and the actuator's side don't move."
     }
   ]
 }

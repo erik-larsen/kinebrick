@@ -232,9 +232,10 @@
     ]
   },
   "generated": {
-    "commit": "0a8b59b6",
+    "commit": "b0355f9c",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 1022,
+    "seconds": 1150,
     "counts": {
       "works": 5,
       "partly": 5,
@@ -259,12 +260,6 @@
       "p4117 43898",
       "p4118 42131 - 65473",
       "p4119 42131 - 65473",
-      "p6005 62520",
-      "p6006 62519",
-      "p6007 32062",
-      "p6011 59443",
-      "p6012 23948",
-      "p6013 42131 - 77590",
       "p6015 42131 - 32523",
       "p6016 42131 - 42924",
       "p6017 42131 - 42924",
@@ -387,7 +382,7 @@
             ]
           ]
         ],
-        "seconds": 120.7
+        "seconds": 130.4
       },
       {
         "result": "works",
@@ -442,7 +437,7 @@
             ]
           ]
         ],
-        "seconds": 120.6
+        "seconds": 130.6
       },
       {
         "result": "works",
@@ -538,7 +533,7 @@
             "p3613 42529"
           ]
         ],
-        "seconds": 243.5
+        "seconds": 275.9
       },
       {
         "result": "works",
@@ -556,7 +551,7 @@
           {
             "p5 62821": [
               0.5,
-              4.95e-13
+              5.19e-13
             ],
             "p3661 2853": [
               1.17,
@@ -574,7 +569,7 @@
           {
             "p5 62821": [
               0.5,
-              6.1e-13
+              7.41e-13
             ],
             "p3661 2853": [
               1.17,
@@ -658,7 +653,7 @@
             "p3670 2851"
           ]
         ],
-        "seconds": 245
+        "seconds": 274
       },
       {
         "result": "partly",
@@ -713,7 +708,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3297 18947",
-        "seconds": 42.8
+        "seconds": 54.5
       },
       {
         "result": "partly",
@@ -740,7 +735,7 @@
             ],
             "p5917 32524": [
               0,
-              2.92e-66
+              1.85e-65
             ],
             "p6010 62274c01 against p6009 42131 - u9559c01": [
               0,
@@ -784,7 +779,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3399 62274c01 against p3398 42131 - u9559c01",
-        "seconds": 42.9
+        "seconds": 51.7
       },
       {
         "result": "partly",
@@ -853,7 +848,7 @@
         ],
         "cause": "not-driven",
         "detail": "p4122 62274c01 against p4121 42131 - u9559c01",
-        "seconds": 41.8
+        "seconds": 47
       },
       {
         "result": "partly",
@@ -921,7 +916,7 @@
         ],
         "cause": "loose-part",
         "detail": "p6078 62274c01",
-        "seconds": 41.4
+        "seconds": 46
       },
       {
         "result": "partly",
@@ -984,7 +979,7 @@
         ],
         "cause": "not-driven",
         "detail": "p5717 42131 - 71710",
-        "seconds": 42.4
+        "seconds": 53.3
       },
       {
         "result": "works",
@@ -1026,7 +1021,7 @@
             ]
           ]
         ],
-        "seconds": 52
+        "seconds": 57
       },
       {
         "result": "not checked"

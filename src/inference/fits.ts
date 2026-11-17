@@ -12,7 +12,7 @@ const RIM_FLANGE = 16;
 // How far a ball's middle may be from its socket's, in LDU. Some sockets are deeper than the
 // shadow library's sphere for them says (a wheel hub's, 2999's, is a bore an official model
 // seats its driveshaft's ball 1 LDU further into).
-const BALL_TOLERANCE = 2.5;
+export const BALL_TOLERANCE = 2.5;
 // The same for a steering link or connecting rod that would otherwise hang by one end (see
 // looseFits): the 42037's left steering link is built 3 LDU behind its mirror image, its
 // end 3.8 LDU from the rack's towball.
