@@ -41,7 +41,7 @@ import { modelSettings, parseModel, PathPoint, PlacedPart } from './ldr.ts';
 import { inferMechanism, Joint, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
-import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
+import { Catch, catchShiftDue, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { applyErrata, type Errata, setOfFile } from './errata.ts';
 import { drawnDirectly, packModel, shapeName } from './pack.ts';
@@ -1030,6 +1030,11 @@ async function start() {
       if (sense !== null) keepTurn(part, angle * sense);
     },
     onDragEnded: () => meshAfresh(),
+    // Asked after each step of a part kept turning, with the parts placed as partsNow places them.
+    shiftDue: () => {
+      const back = kin.poses[0].clone().invert();
+      return catchShiftDue(parts, (i) => back.clone().multiply(kin.poses[mech.bodyOf[i]]).multiply(parts[i].matrix), table, catches);
+    },
     onMotionStarted: () => startFocus(),
     // A motion the tyres' scrub rules out (a car that can't roll with its steering turned so
     // far) has the Tyre scrub option raised to what it needs and SCRUB_MARGIN over, whole
