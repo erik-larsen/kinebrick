@@ -527,13 +527,13 @@ async function start() {
     };
     pinWorker.postMessage({ model: { text: modelText, primitives: [...primitives], pieces: packed?.pieces ?? {}, table, roles } });
   }
-  const pinsToFree = (part: number, search = true) =>
+  const pinsToFree = (part: number, search = true, at?: Vector3) =>
     new Promise<number[]>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve([]);
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
-      pinWorker.postMessage({ ask: asked, part, freed: [...freed], search });
+      pinWorker.postMessage({ ask: asked, part, freed: [...freed], search, lifted, at: at ? [at.x, at.y, at.z] : undefined });
     });
   // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
   // does (see readAsBuilt), so everything stays where it now is.

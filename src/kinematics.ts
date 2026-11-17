@@ -1138,6 +1138,34 @@ export class Kinematics {
   // shaft held in several places (a crane's winch drum, whose axle also passes through bricks
   // pinned to the cab; the axle at the top of its boom, which drives the boom's luffing), not a
   // link pinned at two (a connecting rod).
+  // Whether a body that a drag would push (it hangs on a hinge, but doesn't turn like a knob) can't
+  // start a push by any of `points` (on the body as built): its hinge has no exact motion, nothing
+  // held (play is a drag's last resort, after friction pins), or turns only by swinging the rest of
+  // the model round it, moving none of the points. The check and the viewer both ask this, so that
+  // they free pins for the same pushes (decision 141 of 2026-11-17: the 41999 Crawler's body
+  // shell, whose hinge swings the model round it until friction pins are freed, and which the
+  // viewer pushed nowhere instead).
+  hingeStuck(body: number, points: Vector3[]): boolean {
+    const link = this.parentLink(body);
+    if (link === null || this.mech.joints[link.joint].kind !== 'revolute' || this.turnsLikeAKnob(body)) return false;
+    const motion = this.jointMotion(link.joint, false);
+    return motion === null || points.every((p) => this.pointVelocity(motion, body, p.clone().applyMatrix4(this.poses[body])).length() < 1e-6);
+  }
+
+  // Whether a drag of `body` on its joint, with its holds chosen as a drag's are (see
+  // holdWhatTheDragDoesntNeed), has a motion: an exact one, or with `play`, one on play too (see
+  // Options.loopPlay). The check and the viewer both ask this, so that they free pins for the same
+  // drags (decision 139 of 2026-11-17). The holds are let go after, unless `keep` (the viewer's
+  // drag goes on with them).
+  dragMoves(body: number, play: boolean, keep = false): boolean {
+    const link = this.parentLink(body);
+    if (this.frames.includes(body) || !link) return false;
+    this.holdWhatTheDragDoesntNeed(body, () => this.jointMotion(link.joint, false) !== null, link.joint);
+    const moves = this.jointMotion(link.joint, play) !== null;
+    if (!keep) this.letGoAfterDrag();
+    return moves;
+  }
+
   turnsLikeAKnob(body: number): boolean {
     const link = this.parentLink(body);
     if (!link) return false;
