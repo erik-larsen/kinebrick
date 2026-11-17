@@ -1154,14 +1154,33 @@ export class Kinematics {
 
   // Whether a drag of `body` on its joint, with its holds chosen as a drag's are (see
   // holdWhatTheDragDoesntNeed), has a motion: an exact one, or with `play`, one on play too (see
-  // Options.loopPlay). The check and the viewer both ask this, so that they free pins for the same
+  // Options.loopPlay) that a step can be taken on. The check and the viewer both ask this, so that they free pins for the same
   // drags (decision 139 of 2026-11-17). The holds are let go after, unless `keep` (the viewer's
   // drag goes on with them).
   dragMoves(body: number, play: boolean, keep = false): boolean {
     const link = this.parentLink(body);
     if (this.frames.includes(body) || !link) return false;
     this.holdWhatTheDragDoesntNeed(body, () => this.jointMotion(link.joint, false) !== null, link.joint);
-    const moves = this.jointMotion(link.joint, play) !== null;
+    let moves = this.jointMotion(link.joint, false) !== null;
+    // A motion on play counts only where a step can be taken on it, one way or the other: a play
+    // motion that no step can follow moves nothing (decision 155 of 2026-11-17: the 8272
+    // Snowmobile's ski, lifted, had one, and a drag of it went nowhere). The step is undone, and
+    // with it what a turn leaves behind (where it last stopped at a dead point, its last step).
+    if (!moves && play && this.jointMotion(link.joint, true) !== null) {
+      const before = this.snapshot();
+      const [deadPoint, lastStep, onPlay] = [this.deadPoint, this.lastStep, this.onPlay];
+      for (const way of [1, -1]) {
+        const went = this.turnJoint(link.joint, way * MAX_TURN_STEP);
+        this.restore(before);
+        if (Math.abs(went) > 1e-9) moves = true;
+        if (moves) break;
+      }
+      [this.deadPoint, this.lastStep, this.onPlay] = [deadPoint, lastStep, onPlay];
+      // The step may have chosen the holds afresh: chosen again as at the start, for a drag that
+      // goes on with them.
+      this.letGoAfterDrag();
+      this.holdWhatTheDragDoesntNeed(body, () => this.jointMotion(link.joint, false) !== null, link.joint);
+    }
     if (!keep) this.letGoAfterDrag();
     return moves;
   }
@@ -2206,6 +2225,20 @@ export class Kinematics {
   // at all, but a step further on it does, the more the further: counted against how far the
   // tyres roll, next to nothing, its suspension locked after one step (the 42000 Grand Prix
   // Racer's wishbones).
+  // Of `motions` (see freeMotions), those in which the frame of `body`'s model stays still: the
+  // body's own motions against the model, not the whole model's. None if no such motion moves
+  // `point` (on the body, where it is now), or if the body is that frame. A hand on a door opens
+  // the door; the model rolls only where the part has no motion of its own (decision 155 of
+  // 2026-11-17). A wheel of a car on the ground has none: its tyre can't turn in place while the
+  // car stands still, so pushing it rolls the car.
+  ownMotions(motions: number[][], body: number, point: Vector3): number[][] {
+    const frame = this.frameOf[body];
+    if (frame === body || motions.length === 0) return [];
+    const rows = [0, 1, 2, 3, 4, 5].map((k) => motions.map((m) => m[6 * frame + k]));
+    const own = nullSpace(rows, motions.length).map((amounts) => combine(motions, amounts));
+    return own.some((m) => this.pointVelocity(m, body, point).length() > 1e-9) ? own : [];
+  }
+
   freeMotions(): number[][] {
     return this.nearOrigin((toModel) => {
       const basis = this.treeBasis();

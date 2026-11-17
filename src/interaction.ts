@@ -361,11 +361,14 @@ export function setUpInteraction(s: InteractionSetup) {
 
   // Points the arrow along the way the grabbed point moves fastest, of the motions the
   // mechanism allows (pushing a car's frame rolls it, rather than steering, which leaves the
-  // frame where it is). Returns false if the point can't move.
+  // frame where it is): the part's own motions, if it has any (see Kinematics.ownMotions).
+  // Returns false if the point can't move.
   function updateArrow(d: Drag): boolean {
     const g = grabPoint(d);
     let direction = new Vector3();
-    for (const m of s.kin.freeMotions()) {
+    const free = s.kin.freeMotions();
+    const own = s.kin.ownMotions(free, d.body, g);
+    for (const m of own.length ? own : free) {
       const v = s.kin.pointVelocity(m, d.body, g);
       if (v.length() > direction.length()) direction = v;
     }
@@ -380,16 +383,21 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // Moves the mechanism, in small steps, so the grabbed point gets as close as it can to the
-  // pointer on screen. Each step works out, for every allowed motion, how far the grabbed
+  // pointer on screen, by the part's own motions if it has any, else the whole model's. Each step works out, for every allowed motion, how far the grabbed
   // point would move on screen, and picks the mix of motions that best closes the gap
   // (least squares). Returns false if it ran out of time (`deadline`, from performance.now())
   // before getting there, else true (there, or as near as it can get).
   function pushTowards(d: Drag, target: Vector2, deadline: number): boolean {
     for (; d.pushSteps < MAX_STEPS; d.pushSteps++) {
       if (performance.now() > deadline) return false;
-      const motions = s.kin.freeMotions();
-      if (motions.length === 0) return true;
       const g = grabPoint(d);
+      // The part's own motions first (see Kinematics.ownMotions); the whole model only if none.
+      const free = s.kin.freeMotions();
+      const own = s.kin.ownMotions(free, d.body, g);
+      // Only those that move the grabbed point: one that doesn't has no speed on screen to weigh,
+      // and many of a part's own motions are other parts' (a model's every free hinge).
+      const motions = (own.length ? own : free).filter((m) => s.kin.pointVelocity(m, d.body, g).length() > 1e-9);
+      if (motions.length === 0) return true;
       const gScreen = toScreen(g);
       const gap = target.clone().sub(gScreen);
       if (gap.length() < 0.5) return true;
