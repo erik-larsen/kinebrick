@@ -1520,6 +1520,9 @@ start()
     if (params.has('thumb')) (window as unknown as { kinebrickThumbnail: Promise<string> }).kinebrickThumbnail = thumbnail(renderer.domElement, camera, ldrawSpace);
   })
   .catch((err) => {
-    document.getElementById('summary')!.textContent = 'Error: ' + err.message;
+    // With a way to try again: a fetch may fail only for a moment (see libraryReader).
+    const summary = document.getElementById('summary')!;
+    summary.textContent = 'Error: ' + err.message + ' ';
+    summary.append(Object.assign(document.createElement('button'), { textContent: 'Try again', onclick: () => window.location.reload() }));
     console.error(err);
   });
