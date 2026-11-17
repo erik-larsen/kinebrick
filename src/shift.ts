@@ -92,8 +92,9 @@ export interface Catch {
   rotary?: boolean; // a rotary catch (35188), whose cam moves the ring along its own axis (see camAt)
 }
 
-// How far each catch's fork is from its middle, in LDU.
-const CATCH_REACH: Record<string, number> = { '6641.dat': 60 };
+// How far each catch's fork is from its middle, in LDU, by its part's name (one a model file embeds,
+// "42112 - 51149.dat", by the library's). The 51149 is the 6641 with an axle hole along its arm.
+const CATCH_REACH: Record<string, number> = { '6641.dat': 60, '51149.dat': 60 };
 
 // A rotary changeover catch (35188 Technic Changeover Rotary Catch): a disc, turning on an axle
 // parallel to a driving ring's shaft, the ring's middle 40 LDU across from its own (ROTARY_REACH).
@@ -139,7 +140,7 @@ export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
       }
       return;
     }
-    const reach = CATCH_REACH[p.name];
+    const reach = CATCH_REACH[p.name.replace(/^.* - /, '')];
     if (!reach) return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
     const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - reach) < 1);
