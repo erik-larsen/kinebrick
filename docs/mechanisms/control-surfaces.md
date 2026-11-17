@@ -4,7 +4,7 @@ A stick or pedals work the ailerons, elevators or rudder through rods and links.
 
 First appears in 1988, in [8855 Prop Plane](https://erik-larsen.github.io/kinebrick/?model=8855-Prop%20Plane): Tipping the control stick forward and back tilts the tail's elevators: under the cockpit floor a link from the stick's gimbal pushes a rod back to a bellcrank of two small rotors, which pushes a long rod up the tail to the elevators' cross axle.
 
-Used in 6 of the 186 surveyed sets, by 8 functions. Kinebrick: 1 works, 5 partly, 2 no.
+Used in 6 of the 186 surveyed sets, by 8 functions. Kinebrick: 2 works, 4 partly, 2 no.
 
 ## By decade
 
@@ -52,7 +52,7 @@ Each detail by the set it first appears in.
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
-- *rudders:* The black knob on top of the fuselage between the tail fins turns both red rudders together: it turns a cross block whose two steering links push the rudders' arms. (partly)
+- *rudders:* The black knob on top of the fuselage between the tail fins turns both red rudders together: it turns a cross block whose two steering links push the rudders' arms. (works)
 
 ---
 

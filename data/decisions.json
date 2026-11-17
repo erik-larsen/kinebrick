@@ -5,14 +5,39 @@
       "moved": "2026-11-16"
     },
     "preview": {
-      "works": 704,
-      "partly": 237,
+      "works": 709,
+      "partly": 232,
       "no": 106,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "8840-rods",
+      "kind": "Sign-off",
+      "title": "8840 Rally Shock n' Roll Racer: the engine's rods and pistons",
+      "since": "2026-11-16",
+      "what": "A correction to the published file, for the V2 engine (function 2: the left rear wheel runs the engine). Each of the two connecting rods should hold its piston by the ball at its end. The file draws each rod’s ball 2 LDU beside its cylinder’s line and each piston about 3.5 LDU above the ball, so neither rod is read as holding its piston: the crankshaft and rods turn, but the pistons stay still. The correction turns each rod a few degrees on the crankshaft’s pin, so its ball lies on its cylinder’s line, and slides each piston down its cylinder onto the ball. Four parts move, by a few LDU each.",
+      "effect": "Function 2 goes from partly working to working: the pistons pump as the wheel turns. The set’s other functions are as before.",
+      "confidence": "High. A rod’s ball always sits in its piston; the correction keeps each rod on the crankshaft’s pin and each piston in its cylinder, and only closes the gap. The booklet’s step 9 builds the engine so.",
+      "links": [
+        {
+          "label": "Booklet scans",
+          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8840"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F8840-1+Rally+Shock+n%27+Roll+Racer.mpd&show=117,118,120,121"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F8840-1+Rally+Shock+n%27+Roll+Racer.mpd&option=proposed&show=117,118,120,121"
+        }
+      ],
+      "reply": "Sign 8840"
+    }
+  ],
   "coming": [
     {
       "title": "A second worker, asked again at mid-week",

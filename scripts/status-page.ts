@@ -47,8 +47,10 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
     year: Number(row.year) || 0,
     pieces: Number(row.parts) || Number(row.omr_parts) || 1,
     loose: (set.generated.loose ?? []).length,
-    // Its model's name in the viewer, if the viewer has it, and its page in the OMR.
+    // Its model's name in the viewer on the preview site, if that has it, and its page in the OMR.
     viewer: viewerModels.has(modelName(set.curated?.model)) ? modelName(set.curated?.model) : '',
+    // Its model file, for the viewer on this computer to open where the preview site doesn't have the set.
+    file: set.curated?.model ?? '',
     omr: row.omr_url ?? '',
     // Each function: what it does, its result, and if it doesn't work, why (see causes.ts) and the part that's about.
     functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? '').slice(0, 160), r.result, r.cause ?? '', r.detail ?? '']),

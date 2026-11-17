@@ -70,9 +70,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "works": 2
@@ -151,7 +151,7 @@
         ],
         "cause": "not-driven",
         "detail": "p83 32068",
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -397,7 +397,7 @@
           [],
           []
         ],
-        "seconds": 2
+        "seconds": 1.9
       }
     ]
   }
