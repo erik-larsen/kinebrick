@@ -114,7 +114,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Pushrod suspension](pushrod-suspension.md) | 3 | 2013 |  |  |  |  | 2 | 1 | 3 works, 1 partly |
 | [Pendular axle](pendular-axle.md) | 7 | 1986 |  | 1 |  |  | 5 | 1 | 3 works, 2 partly, 1 no, 2 skipped |
 | [Oscillating chassis](oscillating-chassis.md) | 2 | 2019 |  |  |  |  | 1 | 1 | 1 works, 1 not checked |
-| [Sprung live axle](sprung-axle.md) | 6 | 2011 |  |  |  |  | 4 | 2 | 1 works, 3 no, 2 skipped |
+| [Sprung live axle](sprung-axle.md) | 6 | 2011 |  |  |  |  | 4 | 2 | 1 works, 1 partly, 2 no, 2 skipped |
 | [Telescopic fork](telescopic-fork.md) | 3 | 1991 |  |  | 1 |  | 1 | 1 | 1 works, 1 partly, 1 no |
 | [Telelever](telelever.md) | 1 | 2017 |  |  |  |  | 1 |  | 1 works |
 | [Bogie](bogie.md) | 5 | 2007 |  |  |  | 2 | 1 | 2 | 3 works, 2 skipped |
@@ -151,7 +151,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 20 works, 6 partly, 4 no |
-| [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 14 works, 33 partly, 3 no |
+| [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 14 works, 35 partly, 1 no |
 | [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 4 works, 8 partly, 11 no, 6 skipped |
 | [Crank and link](crank-and-link.md) | 56 | 1979 | 1 | 6 | 6 | 9 | 27 | 7 | 44 works, 28 partly, 5 no, 1 not checked |
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
@@ -181,7 +181,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 38 works, 44 partly, 2 no, 5 not checked |
+| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 38 works, 45 partly, 1 no, 5 not checked |
 | [Remote control](remote-control.md) | 11 | 2007 |  |  |  | 1 | 6 | 4 | 10 works, 9 partly, 2 not checked |
 | [Pneumatic pump](pneumatic-pump.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 3 works, 3 partly, 7 skipped |
 | [Pull-back motor](pull-back-motor.md) | 11 | 1998 |  |  | 1 |  | 9 | 1 | 11 works, 11 skipped |

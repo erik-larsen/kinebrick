@@ -6,8 +6,8 @@
     },
     "preview": {
       "works": 726,
-      "partly": 226,
-      "no": 95,
+      "partly": 229,
+      "no": 92,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
