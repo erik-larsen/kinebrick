@@ -14,6 +14,22 @@
   },
   "waiting": [
     {
+      "id": "solver-owner-waits",
+      "kind": "Answer in the session",
+      "title": "The solver owner's session waits for your answer again",
+      "since": "2026-11-17",
+      "what": "The session “Solver owner: phase 2 structure” has stopped on a request that only you can answer. Claude (the orchestrator) has not read or answered the request and does not work around it. Open the session and answer there. Earlier today it needed the browser pane shown, to try its drags by hand; it may be that again.",
+      "effect": "Behind it wait the full check of its two changes to the drag, the eight functions dragged by hand again, and with them the next offer of main.",
+      "confidence": "Not applicable: Claude does not know what the request asks.",
+      "links": [
+        {
+          "label": "Open the session",
+          "url": "claude://claude.ai/epitaxy/local_fb03a16d-5c3f-42d4-88bd-913b918e738a"
+        }
+      ],
+      "reply": "Answer in the session itself"
+    },
+    {
       "id": "42043-fn11-list",
       "kind": "Sign-off",
       "title": "42043 Mercedes-Benz Arocs 3245, function 11: the wheels move and the differential's case stays",
