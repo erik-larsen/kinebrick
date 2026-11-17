@@ -72,6 +72,26 @@
         }
       ],
       "reply": "No answer needed unless you want something else"
+    },
+    {
+      "id": "9397-download",
+      "kind": "Your yes to a download",
+      "title": "9397: download LEGO’s two instruction files for the snowplough",
+      "since": "2026-11-17",
+      "what": "The worker found LEGO’s instructions for the 9397’s second model on LEGO’s own building-instructions page for the set. They are two PDF files on lego.com: “9397_X_9397 Container Truck with Snowplow #1.pdf” (19.3 MB) and “9397_X_9397 Container Truck with Snowplow #2.pdf” (19.7 MB). A session may not download a file without your word, so the worker stopped there. With your yes, the worker adds both addresses to the set’s list of booklets and fetches them with the same script that fetched the other booklets, into omr/instructions/ (not committed to the repository).",
+      "effect": "With the files, the snowplough’s function list is written from LEGO’s own pages, with a page link for each function. Without them, the list is written from the parts alone and each function’s source says “inferred: from the parts”.",
+      "confidence": "The files exist: LEGO’s server answers for both with the sizes above. Claude has not opened them.",
+      "links": [
+        {
+          "label": "Snowplough instructions, file 1 (opens or saves the PDF)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf"
+        },
+        {
+          "label": "Snowplough instructions, file 2 (opens or saves the PDF)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf"
+        }
+      ],
+      "reply": "Download 9397 snowplough"
     }
   ],
   "coming": [
