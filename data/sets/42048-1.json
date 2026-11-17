@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
-    "seconds": 7,
+    "seconds": 6,
     "counts": {
       "partly": 1,
       "works": 3
@@ -234,10 +234,10 @@
         "stop": [
           [
             null,
-            "dead point"
+            "end of travel"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -371,7 +371,7 @@
             "p233 2851"
           ]
         ],
-        "seconds": 2.8
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -489,7 +489,7 @@
           [],
           []
         ],
-        "seconds": 2.1
+        "seconds": 1.7
       }
     ]
   }

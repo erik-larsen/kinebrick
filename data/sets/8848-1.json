@@ -137,7 +137,7 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
     "seconds": 5,
     "counts": {
@@ -405,7 +405,7 @@
             "p86 3705 against p8 3895"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -551,7 +551,7 @@
         ],
         "cause": "not-driven",
         "detail": "p191 3705",
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "partly",

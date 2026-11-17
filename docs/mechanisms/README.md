@@ -95,8 +95,8 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Rack and pinion steering](rack-steering.md) | 74 | 1977 | 6 | 13 | 11 | 8 | 29 | 7 | 64 works, 9 partly, 3 no |
-| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 13 works, 10 partly, 6 no |
-| [Swivelling axle steering](swivel-axle-steering.md) | 4 | 1993 |  |  | 1 |  | 3 |  | 3 partly, 1 no |
+| [Linkage steering](linkage-steering.md) | 28 | 2006 |  |  |  | 4 | 18 | 6 | 14 works, 9 partly, 6 no |
+| [Swivelling axle steering](swivel-axle-steering.md) | 4 | 1993 |  |  | 1 |  | 3 |  | 1 works, 2 partly, 1 no |
 | [Articulated steering](articulated-steering.md) | 6 | 2001 |  |  |  | 1 | 4 | 1 | 4 works, 3 partly |
 | [Multi-axle steering](multi-axle-steering.md) | 12 | 1990 |  |  | 2 | 1 | 7 | 2 | 10 works, 3 partly, 1 no |
 | [Steering mode selector](steering-mode-selector.md) | 1 | 2016 |  |  |  |  | 1 |  | 1 works |
@@ -124,7 +124,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 51 works, 25 partly, 1 no, 1 skipped |
+| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 53 works, 23 partly, 1 no, 1 skipped |
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 partly |
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 4 works, 1 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 2 works, 3 partly, 1 no |
@@ -169,11 +169,11 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 46 works, 22 partly, 2 no, 1 skipped |
+| [Piston engine](piston-engine.md) | 65 | 1978 | 2 | 6 | 9 | 7 | 34 | 7 | 48 works, 20 partly, 2 no, 1 skipped |
 | [Valve train](valve-train.md) | 1 | 1980 |  | 1 |  |  |  |  | 3 works |
 | [Driven rotor](driven-rotor.md) | 20 | 1977 | 1 | 1 | 6 |  | 10 | 2 | 15 works, 10 partly |
 | [Rotor blade pitch](rotor-pitch.md) | 2 | 1977 | 1 |  | 1 |  |  |  | 2 partly, 1 no |
-| [Control surfaces](control-surfaces.md) | 6 | 1988 |  | 1 | 1 |  | 4 |  | 1 works, 5 partly, 2 no |
+| [Control surfaces](control-surfaces.md) | 6 | 1988 |  | 1 | 1 |  | 4 |  | 2 works, 4 partly, 2 no |
 | [Retractable landing gear](retractable-landing-gear.md) | 4 | 1981 |  | 1 | 1 |  | 2 |  | 2 works, 2 partly |
 | [Swing wings](swing-wing.md) | 1 | 2012 |  |  |  |  | 1 |  | 1 works |
 

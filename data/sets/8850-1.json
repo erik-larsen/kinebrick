@@ -127,7 +127,7 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
     "seconds": 4,
     "counts": {
@@ -356,7 +356,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -401,7 +401,7 @@
         "strayed": [
           "p92 3647"
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -615,7 +615,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "not checked",
