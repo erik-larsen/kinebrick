@@ -3,6 +3,7 @@
 // user grabs, with no motion at all, the pins that hold it are freed: the fewest of those that
 // turn in the motions that move it in a build of the model with every friction pin free.
 
+import type { Vector3 } from 'three';
 import { Kinematics } from '../kinematics.ts';
 import { combine, nullSpace } from '../linalg.ts';
 import type { Mechanism } from '../mechanism.ts';
@@ -31,8 +32,26 @@ export function pinsToFree(allFree: Mechanism, part: number): number[] {
   }
   const link = kin.parentLink(body);
   if (body === 0 || !link) return [];
-  const apart = (m: number[], a: number, b: number) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * a + k] - m[6 * b + k]) > TOGETHER);
-  const movesPart = (m: number[]) => apart(m, body, link.parent);
+  return pinsFor(allFree, kin, body, (m) => apart(m, body, link.parent));
+}
+
+// The friction pins to free so that a slide can slide: a linear actuator's piston in its
+// housing, a shock absorber's rod in its cylinder (see inferMechanism). As pinsToFree, but the
+// motions wanted are those in which the two parts slide apart along the slide's axis (`axis`, at
+// `at`), not any in which the part moves.
+export function pinsToSlide(allFree: Mechanism, partA: number, partB: number, at: Vector3, axis: Vector3): number[] {
+  const kin = new Kinematics(allFree);
+  const [a, b] = [allFree.bodyOf[partA], allFree.bodyOf[partB]];
+  if (a === b) return [];
+  return pinsFor(allFree, kin, a, (m) => Math.abs(kin.pointVelocity(m, a, at).sub(kin.pointVelocity(m, b, at)).dot(axis)) > TOGETHER);
+}
+
+const apart = (m: number[], a: number, b: number) => [0, 1, 2, 3, 4, 5].some((k) => Math.abs(m[6 * a + k] - m[6 * b + k]) > TOGETHER);
+
+// The fewest friction pins, among those turning in the motions in which `moves` holds, without
+// which it holds in none; `body` is where the motion is wanted, from which pins are counted near
+// or far (see pinsToFree).
+function pinsFor(allFree: Mechanism, kin: Kinematics, body: number, movesPart: (m: number[]) => boolean): number[] {
   const scaled = (m: number[]) => {
     const most = Math.max(...m.map(Math.abs));
     return most > 0 ? m.map((x) => x / most) : m;
