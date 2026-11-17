@@ -210,9 +210,9 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 108,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 93,
     "counts": {
       "partly": 7,
       "not checked": 1,
@@ -324,7 +324,7 @@
         ],
         "cause": "not-driven",
         "detail": "p718 3647",
-        "seconds": 7.8
+        "seconds": 6.5
       },
       {
         "result": "partly",
@@ -402,7 +402,7 @@
         ],
         "cause": "not-driven",
         "detail": "p705 6592",
-        "seconds": 7.7
+        "seconds": 6.3
       },
       {
         "result": "partly",
@@ -494,7 +494,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 8.2
+        "seconds": 6.9
       },
       {
         "result": "not checked",
@@ -565,7 +565,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 5
+        "seconds": 4.2
       },
       {
         "result": "partly",
@@ -633,7 +633,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1067 22969",
-        "seconds": 5.7
+        "seconds": 4.8
       },
       {
         "result": "partly",
@@ -696,7 +696,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 5.2
+        "seconds": 4.8
       },
       {
         "result": "partly",
@@ -710,12 +710,12 @@
             -0.63
           ],
           [
-            0.02,
-            -0.02
+            0.07,
+            -0.07
           ],
           [
-            0.02,
-            -0.02
+            0.1,
+            -0.1
           ]
         ],
         "rates": [
@@ -747,22 +747,22 @@
           ],
           [
             [
-              0.2,
-              0.09
+              8.41,
+              7.63
             ],
             [
-              0.1,
-              0.04
+              5.18,
+              2.4
             ]
           ],
           [
             [
-              0.25,
-              0.12
+              0.62,
+              0.27
             ],
             [
-              0.26,
-              0.12
+              0.85,
+              0.31
             ]
           ]
         ],
@@ -789,22 +789,22 @@
           ],
           [
             [
-              0.15,
-              0.09
+              8.75,
+              7.38
             ],
             [
-              0.06,
-              0.04
+              4.09,
+              2.35
             ]
           ],
           [
             [
-              0.19,
-              0.11
+              0.44,
+              0.27
             ],
             [
-              0.2,
-              0.12
+              0.51,
+              0.3
             ]
           ]
         ],
@@ -812,7 +812,8 @@
           "p1161 32016",
           "p789 2739a",
           "p698 32449",
-          "p696 32449"
+          "p696 32449",
+          "p1183 32016"
         ],
         "stop": [
           [
@@ -841,11 +842,12 @@
         "judged": [
           0,
           1,
-          1,
-          1
+          0,
+          0
         ],
         "cause": "stopped-early",
-        "seconds": 28.1
+        "onPlay": 0.67,
+        "seconds": 24.2
       },
       {
         "result": "skipped",
@@ -947,7 +949,7 @@
             "p274 32189"
           ]
         ],
-        "seconds": 37.1
+        "seconds": 28.9
       },
       {
         "result": "skipped",
@@ -1015,12 +1017,12 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ],
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "movedBy": [
@@ -1032,7 +1034,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 2
+        "seconds": 5.6
       }
     ]
   }

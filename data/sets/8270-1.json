@@ -145,8 +145,8 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
+    "commit": "93a580aa",
+    "date": "2026-11-17",
     "seconds": 1,
     "counts": {
       "no": 2,
@@ -267,7 +267,7 @@
         ],
         "cause": "not-driven",
         "detail": "p30 57779 against p0 2905",
-        "seconds": 0.2
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -508,6 +508,7 @@
           true,
           true
         ],
+        "freed": 1,
         "movedBy": [
           [],
           []
@@ -516,7 +517,8 @@
           0,
           0
         ],
-        "cause": "control-jammed",
+        "cause": "part-fixed",
+        "detail": "p76 32140 against p61 32184",
         "seconds": 0
       },
       {
@@ -639,7 +641,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",

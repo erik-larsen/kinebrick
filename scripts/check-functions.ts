@@ -72,7 +72,7 @@ import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
-import { Joint, Mechanism, meshesChanged } from '../src/mechanism.ts';
+import { Joint, Mechanism, meshesChanged, motorOutput } from '../src/mechanism.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts';
@@ -81,7 +81,7 @@ import { gearRates, line } from './gear-rates.ts';
 import { turnOffAxis } from './back.ts';
 import { loadModel } from './load-model.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
-import { FREE_PINS, pinsToFree } from '../src/inference/friction.ts';
+import { FREE_PINS, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
 import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
@@ -142,6 +142,23 @@ const LOCK = 4 * Math.PI;
 const LEVEL = Math.PI / 6;
 const STEERING = ['rack-steering', 'linkage-steering', 'multi-axle-steering', 'fork-steering', 'articulated-steering', 'swivel-axle-steering'];
 const locks = process.env.KINEBRICK_CHECK_LOCK === '1';
+// Where the friction pins pinsToFree names (from the build with every pin free) don't let a
+// control move, or a listed part held fast come loose, the pins are found by trying them in the
+// build as read (see pinsByTrial; decision 126 of 2026-11-16). On by default;
+// KINEBRICK_PIN_TRIAL=0 turns it off.
+const pinTrial = process.env.KINEBRICK_PIN_TRIAL !== '0';
+// A way counts toward a result only if its control moved: turned at least 0.01 (radians, or LDU
+// for a slide), or, pushed, went 0.01 LDU. A listed part's motion with the control at rest counts
+// for nothing (decision 121 of 2026-11-16: the 8272 Snowmobile's ski came out partly on parts
+// that moved while its control stood still). On by default; KINEBRICK_CONTROL_MOVED=0 turns it off.
+const controlMovedRule = process.env.KINEBRICK_CONTROL_MOVED !== '0';
+// A part left still that the control does move, at a rate that isn't zero (more than SLOW_RATE:
+// below it, a rate is rounding), has moved too little, not been held fast: its cause is too-little, not part-fixed,
+// and the longer turn is tried (decision 121 of 2026-11-16: the 42052 Heavy Lift Helicopter's
+// doors, which a worm and a toggle move 0.001 radians for each radian of the control, read as
+// fixed). On by default; KINEBRICK_SLOW_PARTS=0 turns it off.
+const slowPartsRule = process.env.KINEBRICK_SLOW_PARTS !== '0';
+const SLOW_RATE = 1e-6;
 // With --lock, each model's part shapes (see partShapes), read before it's checked.
 const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
 // The quick sets: between them, every kind of mechanism the check can work (in the mechanism
@@ -199,6 +216,7 @@ interface Checked {
   wrongBy?: string[][]; // for a function with several controls not worked together, if any moved a part in `stays`: for each control, those it moved
   judged?: number[]; // for a function that doesn't work: for each control, which way (0 or 1, as in `turned`) its cause was judged from, so that --causes judges it so too
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
+  onPlay?: number; // how far its drags went on play, all ways together (radians, or LDU for a push; see Kinematics.onPlay): a record, read beside `turned`
   pivoted?: { slide: number; rise: number; tyre: string }; // a steered tyre on the ground pivoted about its steering axis, sliding and rising this much at most (LDU for each radian of the control; see Kinematics.pivoted): used, not needed, so read beside the result
   cause?: Cause; // for a function that doesn't work: why (see causes.ts)
   detail?: string; // the part the cause is about
@@ -310,7 +328,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.scrub = scrub;
     }
     sliders = findSliders(parts, mech, table, slides);
-    catches = findCatches(parts, sliders);
+    catches = findCatches(parts, sliders, mech.roles);
     at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
   };
   const asLoaded = { parts, mech, kin };
@@ -360,9 +378,24 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // (its output's axle), as the motor would turn it.
   const worked = (control: number) => {
     const b = mech.bodyOf[control];
-    if (mech.roles[control] !== 'motor') return b;
-    const j = mech.joints.find((x) => x.motor && (x.bodyA === b || x.bodyB === b));
-    return j ? (j.bodyA === b ? j.bodyB : j.bodyA) : b;
+    return mech.roles[control] === 'motor' ? motorOutput(mech, control) : b;
+  };
+  // Whether a drag of the control, with its holds chosen as the viewer's are, has a motion: an
+  // exact one, or with `play`, one on play too (see Kinematics.loopPlay). The check's first test of
+  // a control holds nothing and asks for an exact motion; the trial search frees pins only for a
+  // part that can't move even on play (decision 139 of 2026-11-17: the 42062 Container Yard's
+  // wheels, which roll on play as a drag holds them, had a friction pin freed by it, and a part
+  // that hangs on the pin swung 157 LDU away).
+  const dragGoes = (control: number, play = false) => {
+    const b = worked(control);
+    const link = kin.parentLink(b);
+    if (kin.frames.includes(b) || !link) return false;
+    const before = kin.snapshot();
+    kin.holdWhatTheDragDoesntNeed(b, () => kin.jointMotion(link.joint, false) !== null, link.joint);
+    const goes = kin.jointMotion(link.joint, play) !== null;
+    kin.letGoAfterDrag();
+    kin.restore(before);
+    return goes;
   };
   // The bodies turned with the one worked, for a function whose controls are worked together.
   let together: number[] = [];
@@ -414,7 +447,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       });
       was = is;
       if (Math.abs(step) < Math.abs(piece) - 1e-9) {
-        halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
+        halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint, false) === null ? 'no motion' : 'stuck';
         break;
       }
       if (enough(turned)) break;
@@ -638,7 +671,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     // A control whose joint can't turn, with what the push holds held, could only be carried by
     // what it turns in (the whole 42055 Bucket Wheel Excavator rolling, pushed by its battery
     // switch), step after step until it ran into something: it goes nowhere.
-    if (!('back' in to) && kin.jointMotion(joint) === null) halt = 'no motion';
+    if (!('back' in to) && kin.jointMotion(joint, false) === null) halt = 'no motion';
     while (!halt && going()) {
       if (dir.length() < 0.5) {
         halt = 'no motion';
@@ -652,7 +685,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const angleWas = kin.jointAngles[joint];
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
-        halt = how === 'blocked' ? 'limit' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
+        halt = how === 'blocked' ? 'limit' : kin.jointMotion(joint, false) === null ? 'no motion' : 'stuck';
         break;
       }
       length += step;
@@ -777,7 +810,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       use(asLoaded);
       kin.reset();
       freed = new Set();
-      // A control with no motion at the start, held by friction pins: those pins are freed, and
+      // A control with no exact motion at the start (play is the last resort: see
+      // Kinematics.jointMotion), held by friction pins: those pins are freed, and
       // the model worked out again, for this control only (see pinsToFree). So too a control
       // the viewer would push whose joint turns only by swinging the rest of the model round it,
       // so that no point of it moves and the push couldn't start (see grabOf): the 8865's seat
@@ -786,9 +820,25 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const c = part(ref);
         const l = kin.parentLink(worked(c));
         const noGrab = () => !fn.together && isPushed(worked(c)) && grabOf(worked(c), c) === null;
-        if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) {
+        // Whether the control can move, in the model as it's now worked out.
+        const controlGoes = () => {
+          const link = kin.parentLink(worked(c));
+          return !(kin.frames.includes(worked(c)) || !link || kin.jointMotion(link.joint, false) === null || noGrab());
+        };
+        // Whether `ok` holds with `pins` freed too: the model worked out again so, then as it was.
+        const withFreed = (pins: Set<number>, ok: () => boolean) => {
+          use(loaded.read(asLoaded.parts, new Set([...freed, ...pins])));
+          const holds = ok();
+          use(asLoaded);
+          return holds;
+        };
+        // The pins to free besides those freed already, found by trying them (see pinTrial).
+        const byTrial = (forPart: number, ok: () => boolean) => pinsByTrial(heldPins(asLoaded.mech, forPart, freed), (pins) => withFreed(pins, ok));
+        if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
+          // A push with no point to push can't start, on play or not (see grabOf).
+          if (pinTrial && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
         }
         // So too a part the function lists to move that friction pins hold fast to what it's
         // measured against, but only where the control doesn't go (it jams, or a push has no
@@ -800,7 +850,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (held.length) {
           // Whether the control goes a hair, holding what a drag of it holds.
           const goes = () => {
-            if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint) === null || noGrab()) return false;
+            if (kin.frames.includes(worked(c)) || !l || kin.jointMotion(l.joint, false) === null || noGrab()) return false;
             const before = kin.snapshot();
             kin.holdWhatTheDragDoesntNeed(worked(c), () => kin.jointMotion(l.joint) !== null, l.joint);
             const went = kin.turnJoint(l.joint, 0.01, () => true);
@@ -808,10 +858,21 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             kin.restore(before);
             return Math.abs(went) > 1e-6;
           };
-          if (goes()) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
+          // Where the control goes only on play (no exact motion as its drag holds it), a part held
+          // fast gets its pins all the same (decision 139: the 41999 Crawler's and the 42040 Fire
+          // Plane's, whose controls go on play while the parts they should move stay fast).
+          if (goes() && !(pinTrial && !dragGoes(c))) for (const m of held) why.push(`${m.ref} is held by friction pins the control doesn't reach`);
           else {
             allFree ??= loaded.allFree(asLoaded.parts);
             for (const m of held) for (const pin of pinsToFree(allFree, m.part)) freed.add(pin);
+            // Whether the part has come loose from what it's measured against.
+            for (const m of held) {
+              const loose = () => {
+                const a = against(m.ref);
+                return mech.bodyOf[a.part] !== a.body;
+              };
+              if (pinTrial && !withFreed(new Set(), loose)) for (const pin of byTrial(m.part, loose)) freed.add(pin);
+            }
           }
         }
         if (freed.size) {
@@ -840,6 +901,31 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // Otherwise, if it brought gears together or apart (the 952's harrow lowered onto its
         // power take-off), the mechanism is worked out afresh from where everything now is.
         else if (meshesChanged(mech, kin.poses)) use(loaded.read(placedNow(), freed));
+      }
+      // A control the controls worked first left with no motion (a gearbox's lever shifted, so
+      // that the control now drives what friction pins hold: the 42039 Race Car's engine cover):
+      // its pins are found by trying them in the model as it now is (see pinTrial).
+      if (FREE_PINS && pinTrial && (fn.first ?? []).length) {
+        const c = part(ref);
+        const goes = () => {
+          const link = kin.parentLink(worked(c));
+          return !(kin.frames.includes(worked(c)) || !link || kin.jointMotion(link.joint, false) === null);
+        };
+        if (!goes() && !dragGoes(c, true)) {
+          const now = placedNow();
+          const current = { parts, mech, kin };
+          const pins = pinsByTrial(heldPins(mech, c, freed), (more) => {
+            use(loaded.read(now, new Set([...freed, ...more])));
+            const went = goes();
+            use(current);
+            return went;
+          });
+          if (pins.length) {
+            for (const pin of pins) freed.add(pin);
+            use(loaded.read(now, freed));
+            freedPins = Math.max(freedPins, freed.size);
+          }
+        }
       }
       // Measured on the model as it is now, after any shift.
       const moves = (fn.moves ?? []).map(against);
@@ -992,6 +1078,13 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           return rate * Math.abs(turned) < least && Math.abs(rateOf(m) - rate) <= RATE_OFF * rate;
         };
         const still = moves.filter((m, k) => !moved(m, startPoses, shifted) && !slowGeared(m) && !gotThere[k]).map((m) => m.ref);
+        // Whether every part left still moves with the control, slowly (see slowPartsRule).
+        const slow = still.length > 0 && still.every((ref) => {
+          const m = listed.find((l) => l.ref === ref);
+          return m !== undefined && Math.abs(rateOf(m)) > SLOW_RATE;
+        });
+        // Whether the control itself moved (see controlMovedRule).
+        const controlMoved = Math.abs(turned) >= 0.01 || (measured.pushed !== null && Math.abs(went[listed.length][1]) >= 0.01);
         const wrong = stays.filter((s) => moved(s, startPoses, shifted)).map((s) => s.ref);
         const off = listed.filter((m) => m.ref in expected && Math.abs(turned) >= 0.01 && Math.abs(rateOf(m) - expected[m.ref]) > RATE_OFF * expected[m.ref]).map((m) => m.ref);
         // Each piston's slide in its cylinder, against what its crank's turn says, both for
@@ -1038,14 +1131,17 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const halt: Halt | null = endOfTravel ? 'end of travel' : measured.halt;
         const farEnough = Math.abs(turned) >= half || endOfTravel || (measured.halt === 'limit' && Math.abs(turned) > 1e-3);
         const share = farEnough && !wrong.length && (!moves.length || still.length < moves.length);
-        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt, works: shared ? share : farEnough && !still.length && !wrong.length };
+        return { turned, still, moved: wrong, rates, expected: { ...expected, ...strokes }, off, back, torn, free, strayed, halt, slow, controlMoved, works: shared ? share : farEnough && !still.length && !wrong.length };
       });
       // The better way: one that works, or else the one with fewer wrong parts that went further.
       const bestOf = (both: ReturnType<typeof bothWays>) => [...both].sort((x, y) => Number(y.works) - Number(x.works) || x.still.length + x.moved.length - (y.still.length + y.moved.length) || Math.abs(y.turned) - Math.abs(x.turned))[0];
       let each = bothWays();
       kin.restore(start);
       let best = bestOf(each);
-      let explained = best.works ? null : explain(best.still, best.moved, best.turned);
+      // Parts the control moves too slowly to see over the usual reach are too-little, not
+      // part-fixed (see slowPartsRule).
+      const slowly = (e: Explained | null): Explained | null => (slowPartsRule && e?.cause === 'part-fixed' && best.slow ? { ...e, cause: 'too-little' } : e);
+      let explained = best.works ? null : slowly(explain(best.still, best.moved, best.turned));
       // Parts geared so far down that the usual reach moves them too little: worked again, up
       // to LONG_REACH each way, a limit met on the way ending the turn as usual. Not a slide's
       // control, whose reach is in LDU.
@@ -1054,11 +1150,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         each = bothWays();
         kin.restore(start);
         best = bestOf(each);
-        explained = best.works ? null : explain(best.still, best.moved, best.turned);
+        explained = best.works ? null : slowly(explain(best.still, best.moved, best.turned));
       }
       kin.frozen = new Set();
       together = [];
-      const something = each.some((w) => Math.abs(w.turned) >= 0.01 || w.still.length < moves.length);
+      const something = each.some((w) => (!controlMovedRule || w.controlMoved) && (Math.abs(w.turned) >= 0.01 || w.still.length < moves.length));
       // A function that names a loose part can't work, whatever the drag did (see loosePart).
       const works = best.works && loosePart === undefined;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
@@ -1140,8 +1236,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const started = Date.now();
     let found: Checked;
     kin.pivoted = null;
+    kin.onPlay = 0;
     try {
       found = checkOne(fn, priors[i]);
+      if (kin.onPlay > 0 && found.result !== 'skipped' && found.result !== 'not checked') found = { ...found, onPlay: round(kin.onPlay) };
       const p = kin.pivoted as { slide: number; rise: number; tread: number } | null;
       if (p && found.result !== 'skipped' && found.result !== 'not checked') found = { ...found, pivoted: { slide: round(p.slide), rise: round(p.rise), tyre: name(mech.treads[p.tread].part) } };
     } catch (err) {

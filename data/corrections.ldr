@@ -266,6 +266,14 @@
 0 // shapes: the ring's teeth fill its last 8 LDU at each end; a gear's clutch face is the outer
 0 // 4 LDU of each side.
 
+0 FILE 26287.dat
+0 // Technic Axle Joiner 3L (Rebrickable: Driving Ring Connector Smooth): from 2016 on, a 3L driving ring (18947) slides on this smooth connector, as on the ridged 18948, and turns with it; the ring is held in its places by what shifts it, not by ridges. The same outer fit as the 18948's, from its shadow line: our reading has no detents, the ring's places come from its own SLIDE line
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 9 23   A 10 4   A 9 6   A 10 4   A 9 23] [center=true] [ori=0.70710678 0 -0.70710678 -0.70710678 0 -0.70710678 0 1 0]
+
+0 FILE 42195.dat
+0 // Technic Axle Joiner 3L with Two Flat Sides (Rebrickable: Driving Ring Connector Smooth, 2 rounded and 2 flat side walls): the same as the 26287
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 9 23   A 10 4   A 9 6   A 10 4   A 9 23] [center=true] [ori=0.70710678 0 -0.70710678 -0.70710678 0 -0.70710678 0 1 0]
+
 0 FILE 18947.dat
 0 // Technic Transmission Driving Ring 3L: clutch teeth at both ends, and its three places
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 28] [ori=1 0 0 0 0 -1 0 1 0]
@@ -743,3 +751,16 @@
 0 FILE 35189.dat
 0 // Steering Wheel Hub with Brake Disc and 3 Pegholes: the socket at the inner end of its spindle, on its axis 30 LDU in, that a wheel spindle axle driver's ball (32494) seats in, its lugs in the socket's slots, so that the hub turns with the driver's shaft at any angle (a constant velocity joint, see groovedBalls), as the portal axle's hub (92909) has it in the shadow library; it had none, so the 42083's and the 42115's driven wheels spun free of their half shafts
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=O 6 12] [center=true] [pos=0 0 30] [ori=0 0 1 0 1 0 -1 0 0]
+
+0 // A slip clutch: the outer half (46834) and the inner half (46835) of a Technic clutch with axle connector, seated together, share their origin and axis (as in all 8 pairs in the sets), the outer's axle hole running from z -7 to -30, the inner's from 6 to 30, their faces meeting between. Each half had only its own axle hole, so each was a body of its own and the clutch passed no turning (the 42129's differential locks). Here the outer half's face turns in the inner's, a round fit; both halves have the role "slip clutch" (data/roles.json), so the fit is held, as a friction pin is, and slips (turns, stiffly) only where it must for the model to move (see slipClutches in src/inference/pins.ts)
+0 FILE 46834.dat
+0 // Technic Clutch with Axle Connector Outer Side: a round peg at its face, which turns in the inner half's
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 6 6] [center=true] [pos=0 0 0] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 46835.dat
+0 // Technic Clutch with Axle Connector Inner Side: the socket at its face for the outer half's peg
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 6] [center=true] [pos=0 0 0] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 51149.dat
+0 // Technic Transmission Changeover Catch with Two-toothed Axlehole: the newer changeover catch, the 6641's shape with an axle hole along its arm at the end away from its fork (z -11 to 6, its shape's axle hole primitive, which the table had), and the 6641's cross axle hole at z -20 (its shape's axl4hole primitive, from x -10 to 10), which the table lacked. It turns with the axle through that cross hole (the 42112's selector lever, booklet 1 pages 28 and 29), as a 6641 turns on its pin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 20] [center=true] [slide=true] [pos=0 0 -20] [ori=0 -1 0 -1 0 0 0 0 -1]

@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 34 works, 55 partly, 4 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 39 works, 54 partly, 4 not checked.
 
 ## By decade
 
@@ -40,7 +40,7 @@ Each detail by the set it first appears in.
 
 - *4 functions:* The Power Functions XL motor drives the crane's four functions one at a time: the battery box's switch turns it on, the red lever with a towball handle (on the polarity switch) sets its direction, and two yellow levers on the right of the gearbox choose which function it drives (each lever up or down, or both in the middle for none). (not checked)
 - The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (works)
-- The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (partly)
+- The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (works)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
 - The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 
-- *2 functions:* The red lever beside the seats is a gear selector: it slides a driving ring on the gearbox shaft to engage one of two clutch gears, so the side gear works either the winch or the boom. (no)
+- *2 functions:* The red lever beside the seats is a gear selector: it slides a driving ring on the gearbox shaft to engage one of two clutch gears, so the side gear works either the winch or the boom. (partly)
 - With the selector set for the winch, the black gear on the side behind the cab winds the winch: knob gears carry the turn to the gearbox shaft, its clutch gear drives a 16-tooth gear, bevel gears turn the 24-tooth gear on the reel, and the string over the boom tip raises or lowers the hook. (works)
 - With the selector set for the boom, the same side gear raises or lowers the boom with its towing fork: the other clutch gear drives a 16-tooth gear on a worm, which turns a 24-tooth gear on the boom's pivot. (partly)
 
@@ -86,7 +86,7 @@ Each detail by the set it first appears in.
 
 **2014, [42024 Container Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42024-1)**
 
-- *2 functions:* The yellow handle low on the left side, behind the front wheel, works a gearbox in the middle of the chassis: through a crank and a link it slides the driving ring between two clutch gears, choosing whether the black side gear works the container arms or the rear stabiliser legs. (no)
+- *2 functions:* The yellow handle low on the left side, behind the front wheel, works a gearbox in the middle of the chassis: through a crank and a link it slides the driving ring between two clutch gears, choosing whether the black side gear works the container arms or the rear stabiliser legs. (partly)
 - With the arms chosen, turning the black gear on the right side behind the front wheel swings the big red container arms back over the rear of the truck, lifting the container on its chains and setting it down behind (or picking it up): the gear's turn goes through two 16-tooth gears, bevels and a lengthwise shaft to the gearbox, then through 24-tooth gears, bevels and universal joints to the two big linear actuators that push the arms. (partly)
 - With the stabilisers chosen, turning the same black gear lowers or raises the two stabiliser legs at the rear: the gearbox's other clutch gear drives a shaft and universal joint to a small linear actuator, which pushes the legs down onto their feet. (partly)
 
@@ -98,8 +98,8 @@ Each detail by the set it first appears in.
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- With the red selector lever in position 1, the knob on top of the frame (a black axle joiner on a vertical shaft) tips the bed at the back: a 20 tooth bevel gear at the shaft's foot turns the selector shaft through a 12 tooth bevel gear, the driving ring couples one clutch gear, and through a 16 tooth idler, a shaft and two universal joints it runs the linear actuator that lifts the bed. (partly)
-- With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom. (partly)
+- With the red selector lever in position 1, the knob on top of the frame (a black axle joiner on a vertical shaft) tips the bed at the back: a 20 tooth bevel gear at the shaft's foot turns the selector shaft through a 12 tooth bevel gear, the driving ring couples one clutch gear, and through a 16 tooth idler, a shaft and two universal joints it runs the linear actuator that lifts the bed. (works)
+- With the lever in position 2, the same knob raises and lowers the crane's boom: the other clutch gear drives, through a 20 tooth idler and a 16 tooth gear, a shaft forward to a 12 tooth bevel gear and a 20 tooth bevel gear on a vertical shaft up through the turntable's centre, and through a universal joint it runs the linear actuator that luffs the boom. (works)
 - *2 functions:* The red selector lever beside the knob slides the driving ring between the two clutch gears: position 1 for the bed, position 2 for the crane. (works)
 - With the Power Functions motor fitted (sold separately, 8293), the motor turns the knob's shaft, and the lever chooses bed or crane as before. (not checked)
 
@@ -165,7 +165,7 @@ Each detail by the set it first appears in.
 - *drive or crane:* The drive/crane lever on the side of the cab switches both motors at once, from driving and steering to working the crane. (works)
 - *crane functions:* The crane-function lever behind the cab chooses which two crane functions the motors work: in one position the left remote lever slews the crane and the right one works the winch; in the other the left lever works the outriggers and the right one raises and lowers the boom. (works)
 - In crane mode, the XL motor slews the crane round: its crane shaft drives through a 24 tooth clutch gear to a worm, which turns a 24 tooth gear and an upright shaft whose 20 tooth gear turns the 60 tooth turntable. (works)
-- In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks. (no)
+- In crane mode, the XL motor lowers and raises the outriggers: its crane shaft drives a row of 16 tooth gears to three linear actuators, two at the front and one at the back, which push the four outrigger legs down on their racks. (partly)
 - In crane mode, the M motor winds the winch: its crane shaft drives up through the turntable's centre, over bevel gears in the boom's foot, to the winch reel's 24 tooth clutch gear, raising or lowering the hook. (works)
 - In crane mode, the M motor raises and lowers the boom: its crane shaft drives an upright shaft through the turntable's centre to bevel gears that turn the large linear actuator under the boom. (partly)
 
@@ -179,8 +179,8 @@ Each detail by the set it first appears in.
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
-- *drum:* The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank. (no)
-- With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft. (partly)
+- *drum:* The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank. (works)
+- With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft. (works)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**
 

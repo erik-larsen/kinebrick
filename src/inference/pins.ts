@@ -32,3 +32,16 @@ export function fixPins(connections: Connection[], roles: string[], frictionRigi
     }
   });
 }
+
+// A slip clutch's two halves (role "slip clutch": 46834 and 46835) turn on each other at their
+// faces, a round fit (data/corrections.ldr). The clutch turns as one until what it drives can go
+// no further, then slips: so the fit is held, as a friction pin's other joints are (rigid, marked
+// `held`, if `frictionRigid`, else stiff), and turns stiffly where the model can't move otherwise,
+// or where the outer half is in `freed` (see pinsToFree). The 42129's differential locks.
+export function slipClutches(connections: Connection[], roles: string[], frictionRigid: boolean, freed: Set<number>) {
+  for (const c of connections) {
+    if (c.kind !== 'revolute' || roles[c.male] !== 'slip clutch' || roles[c.female] !== 'slip clutch') continue;
+    if (frictionRigid && !freed.has(c.male)) [c.kind, c.held] = ['rigid', true];
+    else c.stiff = true;
+  }
+}

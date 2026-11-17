@@ -148,13 +148,13 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 48,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 82,
     "counts": {
-      "works": 3,
+      "works": 4,
       "partly": 1,
-      "no": 2,
+      "no": 1,
       "skipped": 2
     },
     "loose": [
@@ -319,7 +319,7 @@
             "p1545 44772"
           ]
         ],
-        "seconds": 16.6
+        "seconds": 15.4
       },
       {
         "result": "partly",
@@ -394,7 +394,7 @@
         ],
         "cause": "not-driven",
         "detail": "p299 87761",
-        "seconds": 7.3
+        "seconds": 6.9
       },
       {
         "result": "no",
@@ -479,7 +479,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 1.6
+        "seconds": 1.4
       },
       {
         "result": "skipped",
@@ -535,7 +535,7 @@
             ]
           ]
         ],
-        "seconds": 7.1
+        "seconds": 6.9
       },
       {
         "result": "works",
@@ -623,66 +623,59 @@
             "p1216 11954"
           ]
         ],
-        "seconds": 13.9
+        "seconds": 13.4
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -0.01
           ]
-        ],
-        "still": [
-          "p50 32524"
         ],
         "rates": [
           {
             "p50 32524": [
-              0,
-              0
+              1,
+              60
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.03,
+              0.01
             ],
             [
-              0,
-              0
+              0.23,
+              0.06
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              0.03,
+              0.01
             ],
             [
-              0,
-              0
+              0.23,
+              0.06
             ]
           ]
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            null,
+            "stuck"
           ]
         ],
         "pushed": [
           true
         ],
-        "judged": [
-          0
-        ],
-        "cause": "part-fixed",
-        "detail": "p50 32524",
-        "seconds": 1.1
+        "freed": 4,
+        "seconds": 37.3
       },
       {
         "result": "skipped",

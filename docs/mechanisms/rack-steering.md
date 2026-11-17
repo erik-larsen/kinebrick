@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 64 works, 9 partly, 3 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 66 works, 7 partly, 3 no.
 
 ## By decade
 
@@ -299,7 +299,7 @@ Each detail by the set it first appears in.
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
-- The L motor at the front steers: a 12 tooth gear on its shaft slides the steering rack, which turns both front steering knuckles. (partly)
+- The L motor at the front steers: a 12 tooth gear on its shaft slides the steering rack, which turns both front steering knuckles. (works)
 
 **2020, [42111 Dom's Dodge Charger](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42111-1)**
 
@@ -315,7 +315,7 @@ Each detail by the set it first appears in.
 
 **2021, [42125 Ferrari 488 GTE AF CORSE #51](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42125-1)**
 
-- The steering wheel steers the front wheels: its column runs forward through two universal joints to a pair of 16 tooth gears, then a pair of 8 tooth gears to a 12 tooth gear that slides the steering rack across, turning both front hubs. (partly)
+- The steering wheel steers the front wheels: its column runs forward through two universal joints to a pair of 16 tooth gears, then a pair of 8 tooth gears to a 12 tooth gear that slides the steering rack across, turning both front hubs. (works)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 

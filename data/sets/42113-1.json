@@ -134,9 +134,10 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 122,
+    "commit": "7a8e1b79",
+    "uncommitted": true,
+    "date": "2026-11-17",
+    "seconds": 124,
     "counts": {
       "works": 2,
       "partly": 4,
@@ -145,19 +146,9 @@
       "no": 2
     },
     "loose": [
-      "p591 42113 - 51149",
-      "p592 32062",
       "p593 3713",
-      "p594 42113 - 51149",
-      "p595 32062",
       "p596 3713",
       "p770 23816c02",
-      "p944 42113 - 51149",
-      "p945 32062",
-      "p946 3713",
-      "p955 42113 - 51149",
-      "p956 32062",
-      "p957 3713",
       "p1807 86500",
       "p1808 86500"
     ],
@@ -197,7 +188,7 @@
             ]
           ]
         ],
-        "seconds": 9.1
+        "seconds": 9
       },
       {
         "result": "partly",
@@ -248,11 +239,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "not-driven",
         "detail": "p1729 57585",
-        "seconds": 8.7
+        "seconds": 9.1
       },
       {
         "result": "partly",
@@ -313,11 +304,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "part-fixed",
         "detail": "p1469 99010",
-        "seconds": 8.7
+        "seconds": 8.9
       },
       {
         "result": "partly",
@@ -381,11 +372,11 @@
           "p882 92693c01 is held by friction pins the control doesn't reach"
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "part-fixed",
         "detail": "p882 92693c01",
-        "seconds": 9
+        "seconds": 9.6
       },
       {
         "result": "partly",
@@ -408,7 +399,7 @@
             ],
             "p223 64782": [
               0,
-              8.35e-81
+              2.16e-80
             ],
             "p244 32524": [
               0,
@@ -441,11 +432,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "not-driven",
         "detail": "p974 92693c01",
-        "seconds": 8.7
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -619,7 +610,7 @@
           [],
           []
         ],
-        "seconds": 73.1
+        "seconds": 65.3
       },
       {
         "result": "no",
@@ -704,7 +695,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 2
+        "seconds": 11.1
       },
       {
         "result": "no",
@@ -754,7 +745,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 1.6
+        "seconds": 1.3
       }
     ]
   }

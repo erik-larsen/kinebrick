@@ -133,9 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 4,
+    "commit": "93a580aa",
+    "date": "2026-11-17",
+    "seconds": 3,
     "counts": {
       "works": 7,
       "pivoted": 1
@@ -203,7 +203,7 @@
           "rise": 0,
           "tyre": "p250 3634"
         },
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -313,7 +313,7 @@
             "p27 3650a"
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -397,7 +397,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -461,7 +461,7 @@
             "end of travel"
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -561,7 +561,7 @@
             "p310 3649 against p256 3709b"
           ]
         ],
-        "seconds": 1
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -681,7 +681,7 @@
           [],
           []
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       }
     ]
   }

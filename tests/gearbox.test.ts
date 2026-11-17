@@ -112,7 +112,7 @@ describe('a changeover catch', () => {
   );
   const mech = inferMechanism(parts, library, roles);
   const sliders = findSliders(parts, mech, library);
-  const catches = findCatches(parts, sliders);
+  const catches = findCatches(parts, sliders, mech.roles);
   // The parts with the catch turned by `angle` about its pin, which runs along x, 20 LDU below it.
   const turned = (angle: number) => {
     const turn = new Matrix4().makeTranslation(0, 20, 0).multiply(new Matrix4().makeRotationX(angle)).multiply(new Matrix4().makeTranslation(0, -20, 0));

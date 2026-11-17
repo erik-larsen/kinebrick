@@ -9,6 +9,7 @@
     "connections": "tsx scripts/build-connections.ts",
     "pack": "tsx scripts/pack-models.ts",
     "collisions": "node --max-old-space-size=12288 --import tsx scripts/collision-pairs.ts",
+    "pivots": "tsx scripts/kept-pivots.ts",
     "import": "tsx scripts/import-sets.ts",
     "omr": "tsx scripts/download-omr.ts",
     "instructions": "tsx scripts/download-instructions.ts",

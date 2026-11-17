@@ -110,10 +110,9 @@
     ]
   },
   "generated": {
-    "commit": "3b5f1a4d",
-    "uncommitted": true,
+    "commit": "93a580aa",
     "date": "2026-11-17",
-    "seconds": 13,
+    "seconds": 9,
     "counts": {
       "works": 4,
       "not back": 4,
@@ -196,7 +195,7 @@
           "p283 3749",
           "p238 4274"
         ],
-        "seconds": 2.2
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -258,7 +257,7 @@
         "strayed": [
           "p123 3737"
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -322,7 +321,7 @@
         ],
         "cause": "not-driven",
         "detail": "p134 3650b against p65 3673",
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -418,7 +417,7 @@
           [],
           []
         ],
-        "seconds": 7.1
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -484,7 +483,7 @@
           [],
           []
         ],
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "not checked",

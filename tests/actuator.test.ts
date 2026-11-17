@@ -60,7 +60,9 @@ describe('linear actuator: a large linear actuator raising an arm', () => {
     expect(kin.jointMotion(inputJoint)).not.toBeNull();
     kin.letGoAfterDrag();
     expect(kin.holdWhatTheDragDoesntNeed(arm, () => kin.jointMotion(armJoint) !== null, armJoint)).toBe(true);
-    expect(kin.jointMotion(armJoint)).toBeNull();
+    // No exact motion; on play (see Kinematics.loopPlay), a step's worth of give, and no further.
+    expect(kin.jointMotion(armJoint, false)).toBeNull();
+    expect(Math.abs(kin.turnJoint(armJoint, 0.5))).toBeLessThan(0.1);
     expect(kin.lockedBy(arm)).toBe('actuator');
     kin.letGoAfterDrag();
   });
