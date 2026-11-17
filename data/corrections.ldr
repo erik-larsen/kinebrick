@@ -309,6 +309,12 @@
 0 // Technic Steering Constant Velocity 8mm Joint Female with 3L Axle: the socket at its origin that a 52731's ball turns in, its axle running on from it
 0 !LDCAD SNAP_GEN [gender=F] [bounding=sph 8]
 
+0 FILE 77590.dat
+0 // Technic Steering Constant Velocity 8mm Joint Male with Sliding Axle Hole 3.5L: the newer 52731, its ball at its origin turning in a 52730's socket and driving through it (see groovedBalls). The shadow library gives its ball as 10 across a group of its own (nudge2), so it met no 52730 (8, see above) and the 42129's rear diff lock lost its drive; given here as the 52731's ball, with the shadow library's axle hole (z 90 to 20)
+0 !LDCAD SNAP_CLEAR
+0 !LDCAD SNAP_GEN [gender=M] [bounding=sph 8]
+0 !LDCAD SNAP_CYL [gender=F] [caps=one] [secs=A 6 70] [pos=0 0 90] [ori=1 0 0 0 0 -1 0 1 0]
+
 0 FILE 46490c01.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction, read as its pieces (role "split"): the bearing body 46490c02, which steers with the upright; the driving shaft u9477, turning in it, which a constant velocity joint's ball drives; and the wheel hub 46434, turning in it too, driven by the shaft through planetary gears the LDraw part doesn't draw. The hub turns once for every `ratio` turns of the shaft, the same way round (the ring fixed in the body, the planet carrier the hub): ratio = 1 + ring teeth / sun teeth = 1 + 44/10 = 5.4: sun 10, ring 44, ring fixed, carrier out, counted from X-ray pictures (Eurobricks, "Planetary hub internals") and given as 5.4:1 by Rebrickable; the LDraw shapes carry no teeth
 0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat] [against=46490c02.dat] [ratio=5.4]
