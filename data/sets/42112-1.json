@@ -193,10 +193,10 @@
     ]
   },
   "generated": {
-    "commit": "088d5768",
+    "commit": "6a64c93f",
     "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 36,
+    "seconds": 41,
     "counts": {
       "works": 4,
       "partly": 3,
@@ -409,7 +409,7 @@
             ]
           ]
         ],
-        "seconds": 2.3
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -631,7 +631,7 @@
           [],
           []
         ],
-        "seconds": 20.1
+        "seconds": 23.4
       },
       {
         "result": "partly",
@@ -714,7 +714,7 @@
         ],
         "cause": "not-driven",
         "detail": "p17 60485",
-        "seconds": 2.6
+        "seconds": 2.7
       },
       {
         "result": "no",
@@ -943,7 +943,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p17 60485",
-        "seconds": 2.4
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -989,7 +989,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -1039,7 +1039,7 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 2.8
       }
     ]
   }
