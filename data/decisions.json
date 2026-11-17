@@ -88,6 +88,30 @@
         }
       ],
       "reply": "Sign 42077"
+    },
+    {
+      "id": "42096-half-shafts",
+      "kind": "Sign-off",
+      "title": "42096 Porsche 911 RSR: the rear half shafts' outer ends",
+      "since": "2026-11-16",
+      "what": "A correction to the published file, for the flat six (function 1: pushing the car runs the engine). Each rear wheel is driven from the differential by a half shaft: two ball joints on a short axle. In the file each shaft's outer ball is drawn 20 LDU short of its wheel hub, with the axle half pulled out of it, so the wheels turn nothing. The correction slides each outer ball 20 LDU along its shaft into the hub, the axle fully in it, as step 11 builds it. Two parts move, one on each side.",
+      "effect": "Function 1 goes from partly working to working: the differential and the engine turn as the car rolls. The set's other functions are as before.",
+      "confidence": "High. With the axle fully in both balls, the shaft is exactly as long as the space from the differential to the hub, and points straight at the hub's socket.",
+      "links": [
+        {
+          "label": "Booklet, page 7 (step 11)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=7"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42096-1+Porsche+911+RSR.mpd&show=46,47,33,34"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42096-1+Porsche+911+RSR.mpd&option=proposed&show=46,47,33,34"
+        }
+      ],
+      "reply": "Sign 42096"
     }
   ],
   "coming": [
