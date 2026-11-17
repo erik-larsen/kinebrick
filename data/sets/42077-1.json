@@ -124,15 +124,15 @@
     ]
   },
   "generated": {
-    "commit": "78e0e715",
-    "uncommitted": true,
+    "commit": "08cf0289",
     "date": "2026-11-17",
-    "seconds": 72,
+    "seconds": 49,
     "counts": {
-      "works": 6,
-      "not back": 1,
+      "works": 5,
+      "not back": 2,
       "free-turned": 1,
-      "partly": 1
+      "partly": 2,
+      "torn": 1
     },
     "loose": [
       "p212 4519",
@@ -188,7 +188,7 @@
             ],
             "p59 62821": [
               0,
-              1.61e-12
+              0
             ]
           }
         ],
@@ -216,7 +216,7 @@
             ]
           ]
         ],
-        "seconds": 11.1
+        "seconds": 7.9
       },
       {
         "result": "works",
@@ -230,11 +230,11 @@
           {
             "p59 62821": [
               1,
-              2.63e-11
+              6.06e-13
             ],
             "p139 2853": [
               2.33,
-              1.74e-11
+              4.91e-13
             ],
             "p142 2851": [
               0,
@@ -246,16 +246,18 @@
             ],
             "p838 18575": [
               0,
-              3.01e-11
+              9.7e-15
             ],
             "p561 87761": [
               0,
-              3.84e-11
+              1.36e-12
             ]
           }
         ],
         "expected": [
           {
+            "p59 62821": 1,
+            "p139 2853": 2.33,
             "p142 2851": 14,
             "p143 2851": 14.2
           }
@@ -284,7 +286,7 @@
             ]
           ]
         ],
-        "seconds": 11.6
+        "seconds": 9.5
       },
       {
         "result": "works",
@@ -360,7 +362,7 @@
           [],
           []
         ],
-        "seconds": 5.2
+        "seconds": 4.9
       },
       {
         "result": "works",
@@ -488,7 +490,7 @@
           [],
           []
         ],
-        "seconds": 11.8
+        "seconds": 9.6
       },
       {
         "result": "partly",
@@ -537,11 +539,11 @@
           "p808 18944 is held by friction pins the control doesn't reach"
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "part-fixed",
         "detail": "p808 18944",
-        "seconds": 5.6
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -608,14 +610,14 @@
           [],
           []
         ],
-        "seconds": 11.9
+        "seconds": 8.9
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.13,
+            -0.13
           ]
         ],
         "rates": [
@@ -629,41 +631,55 @@
               278
             ],
             "p139 2853": [
-              0,
-              5.6e-14
+              0.000196,
+              5.15e-13
             ],
             "p59 62821": [
-              0,
-              5.68e-14
+              0.0000839,
+              1.03e-12
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0.32
+              4,
+              0.66
             ],
             [
-              0,
-              0.31
+              0.12,
+              0.04
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0.32
+              4.01,
+              0.65
             ],
             [
               0,
-              0.31
+              0.04
             ]
           ]
         ],
+        "strayed": [
+          "p999 74695"
+        ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
         "freed": 6,
-        "seconds": 13.9
+        "judged": [
+          0
+        ],
+        "cause": "one-link-too-many",
+        "onPlay": 0.47,
+        "seconds": 4.6
       }
     ]
   }

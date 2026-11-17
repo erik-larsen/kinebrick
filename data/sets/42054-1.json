@@ -216,12 +216,13 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "08cf0289",
     "date": "2026-11-17",
-    "seconds": 505,
+    "seconds": 340,
     "counts": {
       "works": 9,
-      "partly": 5
+      "partly": 3,
+      "no": 2
     },
     "loose": [
       "p592 44294",
@@ -298,7 +299,7 @@
             ]
           ]
         ],
-        "seconds": 14.5
+        "seconds": 8.4
       },
       {
         "result": "partly",
@@ -346,7 +347,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 22.9
+        "seconds": 2.9
       },
       {
         "result": "partly",
@@ -409,17 +410,18 @@
         ],
         "cause": "not-driven",
         "detail": "p692 42054 - 18938",
-        "seconds": 14.1
+        "seconds": 11.6
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p1627 18947",
           "p1820 92696 against p1818 92693c01",
           "p1841 40490 against p1659 42054 - 18938"
         ],
@@ -431,7 +433,7 @@
             ],
             "p1820 92696 against p1818 92693c01": [
               0,
-              7.13e-59
+              0
             ],
             "p1841 40490 against p1659 42054 - 18938": [
               0,
@@ -467,22 +469,32 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p1820 92696 against p1818 92693c01",
-        "seconds": 16.7
+        "seconds": 0.5
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
         ],
         "still": [
+          "p1620 18947",
           "p1659 42054 - 18938 against p1660 18939"
         ],
         "rates": [
@@ -525,12 +537,21 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "no motion",
+            "no motion"
+          ]
+        ],
+        "pushed": [
+          true
+        ],
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p1659 42054 - 18938 against p1660 18939",
-        "seconds": 16.8
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -572,7 +593,8 @@
             ]
           ]
         ],
-        "seconds": 14
+        "freed": 1,
+        "seconds": 15.3
       },
       {
         "result": "works",
@@ -586,19 +608,19 @@
           {
             "p1943 4716": [
               1,
-              2.05e-13
+              2.61e-13
             ],
             "p1924 3648b": [
               0.0417,
-              1.88e-14
+              1.14e-14
             ],
             "p1929 32348": [
               0.0417,
-              7.58e-14
+              4.74e-14
             ],
             "p1933 32348": [
               0.0417,
-              7.58e-14
+              9.98e-14
             ]
           }
         ],
@@ -626,7 +648,7 @@
             ]
           ]
         ],
-        "seconds": 14.5
+        "seconds": 8.8
       },
       {
         "result": "works",
@@ -639,7 +661,7 @@
         "rates": [
           {
             "p1924 3648b": [
-              0,
+              2.81e-8,
               40
             ]
           }
@@ -668,7 +690,7 @@
             ]
           ]
         ],
-        "seconds": 14.6
+        "seconds": 8.5
       },
       {
         "result": "works",
@@ -685,14 +707,14 @@
         "rates": [
           {
             "p1660 18939": [
-              8.43e-8,
-              0.684
+              2.81e-8,
+              0.678
             ]
           },
           {
             "p1660 18939": [
-              8.43e-8,
-              0.684
+              2.81e-8,
+              0.678
             ]
           }
         ],
@@ -748,7 +770,7 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 47.2
+        "seconds": 30
       },
       {
         "result": "works",
@@ -770,13 +792,13 @@
             ],
             "p1779 6558": [
               0,
-              5.36e-12
+              3.54e-12
             ]
           },
           {
             "p1768 6558": [
               0,
-              3.88e-12
+              3.78e-12
             ],
             "p1779 6558": [
               0.451,
@@ -841,7 +863,7 @@
             "p1779 6558"
           ]
         ],
-        "seconds": 211.7
+        "seconds": 141.5
       },
       {
         "result": "partly",
@@ -873,11 +895,11 @@
             ],
             "p480 42054 - 23801": [
               0,
-              3.79e-14
+              0
             ],
             "p484 42054 - 23801": [
               0,
-              3.79e-14
+              0
             ],
             "p692 42054 - 18938": [
               1,
@@ -913,12 +935,17 @@
             ]
           ]
         ],
+        "why": [
+          "p200 3648b is held by friction pins the control doesn't reach",
+          "p480 42054 - 23801 is held by friction pins the control doesn't reach",
+          "p484 42054 - 23801 is held by friction pins the control doesn't reach"
+        ],
         "judged": [
           1
         ],
         "cause": "part-fixed",
         "detail": "p12 87083",
-        "seconds": 15
+        "seconds": 9
       },
       {
         "result": "works",
@@ -955,7 +982,7 @@
             ]
           ]
         ],
-        "seconds": 15.5
+        "seconds": 13.3
       },
       {
         "result": "works",
@@ -1073,7 +1100,7 @@
           [],
           []
         ],
-        "seconds": 61.6
+        "seconds": 34.6
       },
       {
         "result": "works",
@@ -1110,7 +1137,7 @@
             ]
           ]
         ],
-        "seconds": 16.7
+        "seconds": 11.6
       }
     ]
   }

@@ -84,7 +84,7 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "08cf0289",
     "date": "2026-11-17",
     "seconds": 2,
     "counts": {
@@ -131,29 +131,28 @@
         "back": [
           [
             [
-              23.38,
-              16.46
+              28.48,
+              12.14
             ],
             [
-              44.8,
-              16.38
+              11.41,
+              7.31
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.31,
-              0.44
+              0.01,
+              0.02
             ],
             [
-              0.03,
-              0.04
+              0.32,
+              0.45
             ]
           ]
         ],
         "strayed": [
-          "p174 15100",
           "p175 15100"
         ],
         "stop": [
@@ -167,7 +166,7 @@
         ],
         "cause": "one-link-too-many",
         "onPlay": 0.79,
-        "seconds": 0.3
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -236,7 +235,8 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "freed": 1,
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -354,7 +354,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 0.9
       },
       {
         "result": "not checked",

@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 80 works, 14 partly, 30 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 79 works, 15 partly, 30 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -196,12 +196,12 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet, with the grille and front wings, tilts forward to show the engine. (works)
 - *wheel-lift arm:* The wheel-lift arm hinges at the back of the deck, so it swings up and down as the cylinder works it, carrying the grey wheel forks. (no)
-- *wheel forks:* The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back. (no)
+- *wheel forks:* The wheel forks hang from the end of the wheel-lift arm on a hinge, sprung by a shock absorber, so they tilt and spring back. (works)
 - *locker doors:* The two side lockers behind the cab open: each door, with a handle, hinges up at its top edge. (no)
 
 **2007, [8270 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8270-1)**
 
-- *outrigger legs:* The two pairs of black outrigger legs, one at each end of the chassis, fold down to stand the crane on, each pair turning together on its own axle. (no)
+- *outrigger legs:* The two pairs of black outrigger legs, one at each end of the chassis, fold down to stand the crane on, each pair turning together on its own axle. (partly)
 
 **2007, [8272 Snowmobile](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8272-1)**
 
@@ -214,7 +214,7 @@ Each detail by the set it first appears in.
 
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 
-- *unloading auger:* The white unloading auger swings out from the grain tank to the side and back in along the body. (partly)
+- *unloading auger:* The white unloading auger swings out from the grain tank to the side and back in along the body. (no)
 - *hitch:* For road travel the header comes off the front and is hitched behind the combine, where it rolls on its two small wheels at one end. (not checked)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
@@ -334,7 +334,7 @@ Each detail by the set it first appears in.
 
 **2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1)**
 
-- *canopy:* The canopy lifts by hand. (no)
+- *canopy:* The canopy lifts by hand. (works)
 
 **2017, [42068 Airport Rescue Vehicle](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42068-1)**
 
@@ -356,13 +356,13 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet lifts up at its back edge, hinged at the front. (partly)
 - *doors:* The two doors swing open. (works)
-- *rear body:* The rear of the body, with the rear roof, rear wings and spoiler, tilts up from the back to show the engine and rear suspension; the engine and rear axle stay on the chassis. (works)
+- *rear body:* The rear of the body, with the rear roof, rear wings and spoiler, tilts up from the back to show the engine and rear suspension; the engine and rear axle stay on the chassis. (partly)
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
+- *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (partly)
 - *doors:* The cab doors swing open. (works)
-- *king pin:* The trailer swings on its king pin behind the tractor. (works)
+- *king pin:* The trailer swings on its king pin behind the tractor. (no)
 - *container doors:* The container's two end doors swing open. (no)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
@@ -449,7 +449,7 @@ Each detail by the set it first appears in.
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 
-- *scissor doors:* The two scissor doors swing up and forward on hinges at their front edges. (partly)
+- *scissor doors:* The two scissor doors swing up and forward on hinges at their front edges. (no)
 - *hood:* The front hood lifts, showing the luggage space and the set's bag. (works)
 - *engine cover:* The engine cover behind the cabin lifts to show the V12. (no)
 - *seat backs:* The seats' backs tilt. (no)

@@ -203,10 +203,9 @@
     ]
   },
   "generated": {
-    "commit": "78e0e715",
-    "uncommitted": true,
+    "commit": "08cf0289",
     "date": "2026-11-17",
-    "seconds": 167,
+    "seconds": 163,
     "counts": {
       "not checked": 3,
       "works": 4,
@@ -398,7 +397,7 @@
             ],
             "p2046 40490": [
               0,
-              1.22e-11
+              3.02e-11
             ],
             "p524 32524": [
               0,
@@ -436,7 +435,7 @@
             null
           ]
         ],
-        "seconds": 108.5
+        "seconds": 93.3
       },
       {
         "result": "partly",
@@ -459,7 +458,7 @@
             ],
             "p2046 40490": [
               0,
-              2.03e-42
+              4.73e-71
             ],
             "p2123 32526": [
               0,
@@ -508,7 +507,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2027 48168",
-        "seconds": 6.8
+        "seconds": 8
       },
       {
         "result": "partly",
@@ -525,16 +524,16 @@
         "rates": [
           {
             "p2167 62274c01 against p2166 62271c01": [
-              8.43e-8,
+              1.69e-7,
               0.198
             ],
             "p2180 32524 against p2123 32526": [
-              0.00423,
-              0.254
+              0.00416,
+              0.25
             ],
             "p2123 32526 against p2046 40490": [
               0,
-              3.79e-14
+              0
             ]
           }
         ],
@@ -563,11 +562,11 @@
           ]
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p2167 62274c01 against p2166 62271c01",
-        "seconds": 13.2
+        "seconds": 16.4
       },
       {
         "result": "works",
@@ -646,7 +645,7 @@
             ]
           ]
         ],
-        "seconds": 5.6
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -660,7 +659,7 @@
           {
             "p682 62821": [
               1,
-              5.68e-14
+              3.79e-14
             ],
             "p6 3708": [
               1.4,
@@ -718,7 +717,7 @@
             ]
           ]
         ],
-        "seconds": 15.6
+        "seconds": 20.6
       },
       {
         "result": "not checked",

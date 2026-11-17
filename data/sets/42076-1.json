@@ -158,9 +158,9 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "08cf0289",
     "date": "2026-11-17",
-    "seconds": 51,
+    "seconds": 63,
     "counts": {
       "works": 4,
       "not back": 1,
@@ -347,21 +347,21 @@
           {
             "p615 15790": [
               2.78,
-              1.19e-12
+              9.11e-13
             ],
             "p647 15790": [
               2.78,
-              1.19e-12
+              1.09e-12
             ]
           },
           {
             "p615 15790": [
               2.78,
-              1.19e-12
+              9.11e-13
             ],
             "p647 15790": [
               2.78,
-              1.19e-12
+              1.09e-12
             ]
           }
         ],
@@ -419,7 +419,7 @@
             "p647 15790"
           ]
         ],
-        "seconds": 5.3
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -478,7 +478,6 @@
           ]
         ],
         "strayed": [
-          "p639 4519",
           "p607 4519"
         ],
         "stop": [
@@ -487,7 +486,7 @@
             "end of travel"
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -510,7 +509,7 @@
           {
             "p544 64782": [
               0,
-              5.04e-108
+              3.02e-108
             ],
             "p568 92696": [
               0,
@@ -528,7 +527,7 @@
           {
             "p544 64782": [
               0,
-              1.71e-107
+              2.71e-108
             ],
             "p568 92696": [
               0,
@@ -594,11 +593,11 @@
         ],
         "judged": [
           0,
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p544 64782",
-        "seconds": 5.1
+        "seconds": 4.8
       },
       {
         "result": "no",
@@ -658,13 +657,13 @@
             "no motion"
           ]
         ],
-        "freed": 1,
+        "freed": 5,
         "judged": [
           0
         ],
         "cause": "loose-part",
         "detail": "p700 32270",
-        "seconds": 9.9
+        "seconds": 17
       },
       {
         "result": "no",
@@ -724,13 +723,13 @@
             "dead point"
           ]
         ],
-        "freed": 1,
+        "freed": 5,
         "judged": [
           0
         ],
         "cause": "loose-part",
         "detail": "p676 14720",
-        "seconds": 9.5
+        "seconds": 16.5
       },
       {
         "result": "no",
@@ -797,7 +796,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -882,7 +881,7 @@
         ],
         "cause": "not-driven",
         "detail": "p883 4254",
-        "seconds": 3.2
+        "seconds": 3.3
       },
       {
         "result": "works",
@@ -1000,7 +999,7 @@
           [],
           []
         ],
-        "seconds": 10.4
+        "seconds": 9.3
       },
       {
         "result": "works",
@@ -1066,7 +1065,7 @@
           [],
           []
         ],
-        "seconds": 5.1
+        "seconds": 4.9
       }
     ]
   }

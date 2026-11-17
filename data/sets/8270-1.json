@@ -145,15 +145,15 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "08cf0289",
     "date": "2026-11-17",
     "seconds": 1,
     "counts": {
-      "no": 2,
-      "partly": 3,
-      "works": 1,
+      "no": 1,
+      "partly": 4,
       "not back": 1,
-      "moved whole": 1,
+      "torn": 1,
+      "works": 1,
       "skipped": 1,
       "not checked": 1
     },
@@ -187,11 +187,12 @@
         "why": [
           "p0 2905 is part of the frame"
         ],
+        "freed": 1,
         "judged": [
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "partly",
@@ -224,7 +225,7 @@
             ],
             "p0 2905 against p61 32184": [
               0,
-              9.51e-124
+              0
             ],
             "p34 2585 against p0 2905": [
               0,
@@ -320,15 +321,13 @@
             ]
           ]
         ],
-        "why": [
-          "p57 30395 against p30 57779 is held by friction pins the control doesn't reach"
-        ],
+        "freed": 1,
         "judged": [
           0
         ],
         "cause": "loose-part",
         "detail": "p57 30395",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -397,78 +396,78 @@
         "seconds": 0.1
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.03,
+            -0.03
           ],
           [
-            0,
-            0
+            0.03,
+            -0.03
           ]
         ],
-        "still": [
-          "p77 32140 against p61 32184",
-          "p76 32140 against p61 32184"
+        "moved": [
+          "p64 32523 against p61 32184",
+          "p65 32523 against p61 32184"
         ],
         "rates": [
           {
             "p77 32140 against p61 32184": [
-              0,
-              0
+              1.85,
+              102
             ],
             "p76 32140 against p61 32184": [
-              0,
-              0
+              0.0000079,
+              0.000456
             ],
             "p64 32523 against p61 32184": [
-              0,
-              0
+              0.85,
+              17
             ],
             "p65 32523 against p61 32184": [
-              0,
-              0
+              0.00000379,
+              0.000076
             ]
           },
           {
             "p77 32140 against p61 32184": [
-              0,
-              0
+              0.0000079,
+              0.000456
             ],
             "p76 32140 against p61 32184": [
-              0,
-              0
+              1.85,
+              102
             ],
             "p64 32523 against p61 32184": [
-              0,
-              0
+              0.00000379,
+              0.000076
             ],
             "p65 32523 against p61 32184": [
-              0,
-              0
+              0.85,
+              17
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.59,
+              73.05
             ],
             [
-              0,
-              0
+              3.4,
+              3.53
             ]
           ],
           [
             [
-              0,
-              0
+              3.4,
+              3.53
             ],
             [
-              0,
-              0
+              0.59,
+              73.05
             ]
           ]
         ],
@@ -479,14 +478,14 @@
               0
             ],
             [
-              0,
-              0
+              3.4,
+              3.53
             ]
           ],
           [
             [
-              0,
-              0
+              3.4,
+              3.53
             ],
             [
               0,
@@ -494,32 +493,45 @@
             ]
           ]
         ],
+        "strayed": [
+          "p88 32556",
+          "p72 3707",
+          "p74 3707",
+          "p90 32556"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ],
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
-        "pushed": [
-          true,
-          true
-        ],
-        "freed": 1,
         "movedBy": [
-          [],
-          []
+          [
+            "p77 32140 against p61 32184"
+          ],
+          [
+            "p76 32140 against p61 32184"
+          ]
+        ],
+        "wrongBy": [
+          [
+            "p64 32523 against p61 32184"
+          ],
+          [
+            "p65 32523 against p61 32184"
+          ]
         ],
         "judged": [
           0,
           0
         ],
-        "cause": "part-fixed",
-        "detail": "p76 32140 against p61 32184",
-        "seconds": 0
+        "cause": "control-jammed",
+        "onPlay": 0.13,
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -550,41 +562,41 @@
         "back": [
           [
             [
-              0.81,
+              0,
               0
             ],
             [
-              0.64,
+              0,
               0
             ]
           ],
           [
             [
-              0.81,
+              0,
               0
             ],
             [
-              0.64,
+              0,
               0
             ]
           ],
           [
             [
-              0.64,
+              0,
               0
             ],
             [
-              0.81,
+              0,
               0
             ]
           ],
           [
             [
-              0.64,
+              0,
               0
             ],
             [
-              0.81,
+              0,
               0
             ]
           ]
@@ -630,10 +642,6 @@
               0
             ]
           ]
-        ],
-        "strayed": [
-          "p102 2432",
-          "p39 32270"
         ],
         "movedBy": [
           [],

@@ -134,9 +134,9 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "08cf0289",
     "date": "2026-11-17",
-    "seconds": 113,
+    "seconds": 85,
     "counts": {
       "works": 2,
       "partly": 4,
@@ -197,7 +197,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 4.8
       },
       {
         "result": "partly",
@@ -252,7 +252,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1729 57585",
-        "seconds": 7.9
+        "seconds": 4.7
       },
       {
         "result": "partly",
@@ -317,7 +317,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1469 99010",
-        "seconds": 7.8
+        "seconds": 4.7
       },
       {
         "result": "partly",
@@ -385,7 +385,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p882 92693c01",
-        "seconds": 7.9
+        "seconds": 4.9
       },
       {
         "result": "partly",
@@ -408,7 +408,7 @@
             ],
             "p223 64782": [
               0,
-              2.16e-80
+              3.4e-80
             ],
             "p244 32524": [
               0,
@@ -445,7 +445,7 @@
         ],
         "cause": "not-driven",
         "detail": "p974 92693c01",
-        "seconds": 7.7
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -506,22 +506,22 @@
           ],
           [
             [
-              8.73,
-              22.87
+              8.99,
+              23.55
             ],
             [
-              23.68,
-              61.64
+              22.12,
+              57.58
             ]
           ],
           [
             [
-              8.73,
-              22.87
+              8.99,
+              23.55
             ],
             [
-              23.68,
-              61.64
+              22.12,
+              57.58
             ]
           ],
           [
@@ -568,22 +568,22 @@
           ],
           [
             [
-              9.06,
-              22.99
+              9.34,
+              23.68
             ],
             [
-              25.5,
-              62.74
+              23.7,
+              58.59
             ]
           ],
           [
             [
-              9.06,
-              22.99
+              9.34,
+              23.68
             ],
             [
-              25.5,
-              62.74
+              23.7,
+              58.59
             ]
           ],
           [
@@ -619,7 +619,7 @@
           [],
           []
         ],
-        "seconds": 62.2
+        "seconds": 39.5
       },
       {
         "result": "no",
@@ -704,7 +704,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 10.1
+        "seconds": 19.4
       },
       {
         "result": "no",
@@ -754,7 +754,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 1.2
+        "seconds": 0.7
       }
     ]
   }

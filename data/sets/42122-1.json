@@ -140,9 +140,9 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "08cf0289",
     "date": "2026-11-17",
-    "seconds": 12,
+    "seconds": 9,
     "counts": {
       "no": 1,
       "works": 6,
@@ -271,7 +271,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -291,16 +291,16 @@
               20
             ],
             "p193 4254 against p194 4255": [
-              2.11e-7,
+              1.05e-7,
               44.6
             ],
             "p200 4254 against p198 4255": [
-              1.05e-7,
+              0,
               2.36
             ],
             "p122 32524": [
               0,
-              4.7e-36
+              8.2e-36
             ]
           }
         ],
@@ -343,7 +343,7 @@
         ],
         "cause": "not-driven",
         "detail": "p200 4254 against p198 4255",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "skipped",
@@ -389,7 +389,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -440,7 +440,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -507,14 +507,14 @@
           [],
           []
         ],
-        "seconds": 2.1
+        "seconds": 1.8
       },
       {
         "result": "works",
         "turned": [
           [
-            1.52,
-            -1.52
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -549,10 +549,7 @@
             ]
           ]
         ],
-        "pushed": [
-          true
-        ],
-        "seconds": 2.3
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -670,7 +667,7 @@
           [],
           []
         ],
-        "seconds": 4.1
+        "seconds": 3.4
       }
     ]
   }

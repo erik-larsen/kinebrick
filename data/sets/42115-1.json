@@ -177,14 +177,14 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "08cf0289",
     "date": "2026-11-17",
-    "seconds": 906,
+    "seconds": 706,
     "counts": {
-      "partly": 4,
+      "partly": 3,
       "works": 4,
       "skipped": 1,
-      "no": 2
+      "no": 3
     },
     "loose": [
       "p186 87994",
@@ -261,19 +261,19 @@
           {
             "p38 62821": [
               0,
-              4.97e-14
+              5.68e-14
             ],
             "p797 62821": [
               0,
-              2.23e-29
+              4.44e-28
             ],
             "p681 2854": [
               0,
-              6.99e-29
+              4.2e-28
             ],
             "p702 2851": [
               0,
-              1.25e-13
+              1.14e-13
             ],
             "p708 2851": [
               0,
@@ -312,11 +312,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 46.1
+        "seconds": 32
       },
       {
         "result": "partly",
@@ -386,7 +386,7 @@
         ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 44.5
+        "seconds": 31.1
       },
       {
         "result": "works",
@@ -404,7 +404,7 @@
             ],
             "p549 18947": [
               0,
-              1.55e-122
+              9.13e-123
             ]
           }
         ],
@@ -432,7 +432,7 @@
             ]
           ]
         ],
-        "seconds": 43.9
+        "seconds": 31
       },
       {
         "result": "works",
@@ -458,11 +458,11 @@
             ],
             "p97 35189": [
               0,
-              2.93e-14
+              4.38e-14
             ],
             "p105 35189": [
               0,
-              2.9e-14
+              2.37e-14
             ]
           }
         ],
@@ -490,7 +490,7 @@
             ]
           ]
         ],
-        "seconds": 212.9
+        "seconds": 151.7
       },
       {
         "result": "works",
@@ -608,7 +608,7 @@
           [],
           []
         ],
-        "seconds": 185.9
+        "seconds": 131.5
       },
       {
         "result": "skipped"
@@ -661,34 +661,35 @@
             ]
           ]
         ],
-        "why": [
-          "p2673 11946 is held by friction pins the control doesn't reach",
-          "p2678 11947 is held by friction pins the control doesn't reach"
-        ],
+        "freed": 7,
         "judged": [
           0
         ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 45.9
+        "seconds": 107.5
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            0.03,
-            -0.03
+            0,
+            0
           ],
           [
-            0.03,
-            -0.03
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p3452 64394",
+          "p3544 64680"
         ],
         "rates": [
           {
             "p3452 64394": [
-              1,
-              151
+              0,
+              0
             ],
             "p3544 64680": [
               0,
@@ -701,8 +702,8 @@
               0
             ],
             "p3544 64680": [
-              1,
-              151
+              0,
+              0
             ]
           }
         ],
@@ -761,20 +762,15 @@
           ]
         ],
         "movedBy": [
-          [
-            "p3452 64394"
-          ],
-          [
-            "p3544 64680"
-          ]
+          [],
+          []
         ],
         "judged": [
           0,
           0
         ],
         "cause": "control-jammed",
-        "onPlay": 0.27,
-        "seconds": 68.3
+        "seconds": 12.4
       },
       {
         "result": "works",
@@ -816,8 +812,8 @@
             ]
           ]
         ],
-        "freed": 2,
-        "seconds": 127.2
+        "freed": 6,
+        "seconds": 114.3
       },
       {
         "result": "no",
@@ -876,7 +872,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 29.7
+        "seconds": 25.7
       },
       {
         "result": "no",
@@ -948,6 +944,7 @@
             "dead point"
           ]
         ],
+        "freed": 1,
         "movedBy": [
           [],
           []
@@ -957,7 +954,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 73.7
+        "seconds": 42
       }
     ]
   }

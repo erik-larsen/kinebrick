@@ -4,7 +4,7 @@ A loose item that comes with the model. (Not mechanisms.)
 
 First appears in 2000, in [8001 Battle Droid](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8001-1): The blaster is stored on the backpack; the magnet on the right wrist picks it up when the arm swings back (function 5).
 
-Used in 12 of the 186 surveyed sets, by 12 functions. Kinebrick: 1 works, 2 no, 1 skipped, 8 not checked.
+Used in 12 of the 186 surveyed sets, by 12 functions. Kinebrick: 1 works, 1 partly, 1 no, 1 skipped, 8 not checked.
 
 ## By decade
 
@@ -80,7 +80,7 @@ Each detail by the set it first appears in.
 
 **2020, [42107 Ducati Panigale V4 R](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42107-1)**
 
-- *paddock stand:* The red paddock stand lifts the rear: pushing its handle down rocks it on its small wheels, and its front arms raise the rear wheel off the ground by pins under the swing arm. (no)
+- *paddock stand:* The red paddock stand lifts the rear: pushing its handle down rocks it on its small wheels, and its front arms raise the rear wheel off the ground by pins under the swing arm. (partly)
 
 ---
 
