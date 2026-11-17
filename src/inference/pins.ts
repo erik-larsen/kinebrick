@@ -20,9 +20,12 @@ export function fixPins(connections: Connection[], roles: string[], frictionRigi
     const length = (c: Connection) => c.from.distanceTo(c.to);
     const swings = (c: Connection) => swinging.has(c.female);
     turning.sort((a, b) => Number(swings(a)) - Number(swings(b)) || length(b) - length(a) || a.female - b.female);
-    turning[0].kind = 'rigid';
+    // A pin already fixed to a part by a rigid connection (an axle pin's axle end, in an axle
+    // hole: the 43093) turns in every part its pin end joins: none is locked to it.
+    const fixed = connections.some((c) => c.male === pin && c.kind === 'rigid');
+    if (!fixed) turning[0].kind = 'rigid';
     if (role !== 'friction pin') return;
-    for (const c of turning.slice(1)) {
+    for (const c of turning.slice(fixed ? 0 : 1)) {
       if (frictionRigid && !freed.has(pin) && !swings(c)) {
         c.kind = 'rigid';
         c.held = true;
