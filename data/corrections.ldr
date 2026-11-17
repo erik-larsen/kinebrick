@@ -756,3 +756,7 @@
 0 FILE 46835.dat
 0 // Technic Clutch with Axle Connector Inner Side: the socket at its face for the outer half's peg
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 6] [center=true] [pos=0 0 0] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 51149.dat
+0 // Technic Transmission Changeover Catch with Two-toothed Axlehole: the newer changeover catch, the 6641's shape with an axle hole along its arm at the end away from its fork (z -11 to 6, its shape's axle hole primitive, which the table had), and the 6641's cross axle hole at z -20 (its shape's axl4hole primitive, from x -10 to 10), which the table lacked. It turns with the axle through that cross hole (the 42112's selector lever, booklet 1 pages 28 and 29), as a 6641 turns on its pin
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=A 6 20] [center=true] [slide=true] [pos=0 0 -20] [ori=0 -1 0 -1 0 0 0 0 -1]

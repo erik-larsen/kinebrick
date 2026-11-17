@@ -92,8 +92,10 @@ export interface Catch {
   rotary?: boolean; // a rotary catch (35188), whose cam moves the ring along its own axis (see camAt)
 }
 
-// How far each catch's fork is from its middle, in LDU.
-const CATCH_REACH: Record<string, number> = { '6641.dat': 60 };
+// How far a changeover catch's fork is from its middle, in LDU: the same for the two parts with the
+// role "changeover catch" (data/roles.json), the 6641 and the 51149, which is the 6641's shape
+// with an axle hole along its arm (its LDraw file is built from the 6641's own subpart).
+const CATCH_REACH = 60;
 
 // A rotary changeover catch (35188 Technic Changeover Rotary Catch): a disc, turning on an axle
 // parallel to a driving ring's shaft, the ring's middle 40 LDU across from its own (ROTARY_REACH).
@@ -125,7 +127,7 @@ export function camAt(degrees: number): number {
 }
 
 // The catches in a model, each with the driving ring its fork sits in.
-export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
+export function findCatches(parts: PlacedPart[], sliders: Slider[], roles: string[]): Catch[] {
   const catches: Catch[] = [];
   parts.forEach((p, i) => {
     if (p.name.replace(/^.* - /, '') === '35188.dat') {
@@ -139,10 +141,9 @@ export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
       }
       return;
     }
-    const reach = CATCH_REACH[p.name];
-    if (!reach) return;
+    if (roles[i] !== 'changeover catch') return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
-    const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - reach) < 1);
+    const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - CATCH_REACH) < 1);
     if (!ring) return;
     const fork = new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
     catches.push({ part: i, ring, fork });
