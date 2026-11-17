@@ -601,6 +601,34 @@ async function start() {
   }
   const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
   let collisions: Collisions | null = null;
+  // Loose parts that stay where they stand, each with where that is (decision 156 of 2026-11-17):
+  // a loose group that touches nothing of the model as built and meets the ground lies beside the
+  // model (the 42083's start key, which rode on a rear wheel), so it rides on nothing that moves.
+  // Found once the pairs that touch as built are all known (a kept file; see keptPairs.ts).
+  const standing = new Map<number, Matrix4>();
+
+  // The loose groups that touch nothing (no pair of `near` joins one to a part outside it) and
+  // meet the ground, as the model now stands: their parts, each where it now is.
+  function findStanding(near: [number, number][]) {
+    standing.clear();
+    if (!collisions || kin.groundY === null || !mech.loose.length) return;
+    const loose = new Set(mech.loose);
+    const leader = new Map(mech.loose.map((i) => [i, i]));
+    const find = (i: number): number => {
+      while (leader.get(i) !== i) i = leader.get(i)!;
+      return i;
+    };
+    for (const c of mech.connections) if (loose.has(c.male) && loose.has(c.female)) leader.set(find(c.male), find(c.female));
+    const groups = new Map<number, number[]>();
+    for (const i of mech.loose) groups.set(find(i), [...(groups.get(find(i)) ?? []), i]);
+    const touching = new Set<number>();
+    for (const [a, b] of near) if (loose.has(a) !== loose.has(b) || (loose.has(a) && find(a) !== find(b))) for (const i of [a, b]) if (loose.has(i)) touching.add(find(i));
+    const now = partMatrices();
+    for (const [g, members] of groups) {
+      if (touching.has(g) || !members.some((i) => collisions!.meetsGround(i, now[i], kin.groundY!))) continue;
+      for (const i of members) standing.set(i, now[i]);
+    }
+  }
 
   // Works out the mechanism from parts placed as given (unless it's known already), with
   // partObjects already there.
@@ -703,6 +731,8 @@ async function start() {
         const found = await testBeside(untested);
         if (OPTIONS.includes('debug')) console.log(`collision pass: ${known ? (known.all ? 'kept file' : 'this browser\u2019s store') : 'nothing kept'}, ${tested.length - untested.length} pairs known, ${untested.length} tested`);
         done([...tested.filter((p) => covered(p) && nearKnown.has(pairNumber(p[0], p[1], n))), ...found]);
+        // Every pair that touches as built, whatever bodies it's on, is known only from a kept file.
+        if (known?.all) findStanding(known.near);
         if (untested.length && !known?.all) storePairs(key, { all: false, tested: [...(known?.tested ?? []), ...untested], near: [...(known?.near ?? []), ...found] });
       })();
     }
@@ -723,7 +753,9 @@ async function start() {
       const near = obj.userData.nearPart;
       const body =
         obj.userData.partIndex !== undefined ? mech.bodyOf[obj.userData.partIndex] : near !== undefined ? (near >= 0 ? mech.bodyOf[near] : 0) : obj.userData.body;
-      obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
+      const stands = obj.userData.partIndex !== undefined ? standing.get(obj.userData.partIndex) : undefined;
+      if (stands) obj.matrix.copy(stands);
+      else obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     }
     // A chain's or track's links go round it as far as it has moved, carried by what its first
