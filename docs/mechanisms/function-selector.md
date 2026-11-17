@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 37 works, 54 partly, 2 no, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 36 works, 56 partly, 1 no, 4 not checked.
 
 ## By decade
 
@@ -54,7 +54,7 @@ Each detail by the set it first appears in.
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 
-- *2 functions:* The red lever beside the seats is a gear selector: it slides a driving ring on the gearbox shaft to engage one of two clutch gears, so the side gear works either the winch or the boom. (no)
+- *2 functions:* The red lever beside the seats is a gear selector: it slides a driving ring on the gearbox shaft to engage one of two clutch gears, so the side gear works either the winch or the boom. (partly)
 - With the selector set for the winch, the black gear on the side behind the cab winds the winch: knob gears carry the turn to the gearbox shaft, its clutch gear drives a 16-tooth gear, bevel gears turn the 24-tooth gear on the reel, and the string over the boom tip raises or lowers the hook. (works)
 - With the selector set for the boom, the same side gear raises or lowers the boom with its towing fork: the other clutch gear drives a 16-tooth gear on a worm, which turns a 24-tooth gear on the boom's pivot. (partly)
 
@@ -86,7 +86,7 @@ Each detail by the set it first appears in.
 
 **2014, [42024 Container Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42024-1)**
 
-- *2 functions:* The yellow handle low on the left side, behind the front wheel, works a gearbox in the middle of the chassis: through a crank and a link it slides the driving ring between two clutch gears, choosing whether the black side gear works the container arms or the rear stabiliser legs. (no)
+- *2 functions:* The yellow handle low on the left side, behind the front wheel, works a gearbox in the middle of the chassis: through a crank and a link it slides the driving ring between two clutch gears, choosing whether the black side gear works the container arms or the rear stabiliser legs. (partly)
 - With the arms chosen, turning the black gear on the right side behind the front wheel swings the big red container arms back over the rear of the truck, lifting the container on its chains and setting it down behind (or picking it up): the gear's turn goes through two 16-tooth gears, bevels and a lengthwise shaft to the gearbox, then through 24-tooth gears, bevels and universal joints to the two big linear actuators that push the arms. (partly)
 - With the stabilisers chosen, turning the same black gear lowers or raises the two stabiliser legs at the rear: the gearbox's other clutch gear drives a shaft and universal joint to a small linear actuator, which pushes the legs down onto their feet. (partly)
 
@@ -179,7 +179,7 @@ Each detail by the set it first appears in.
 
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
-- *drum:* The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank. (works)
+- *drum:* The white selector lever under the chassis picks how the drum is turned: in one position rolling the truck turns the drum, in the middle (N) nothing does, and in the other the crank on the chassis side turns it. It slides a driving ring along the drum drive shaft between two clutch gears, one driven from the drive shaft, the other from the crank. (no)
 - With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft. (partly)
 
 **2020, [42113 Bell-Boeing V-22 Osprey](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42113-1)**

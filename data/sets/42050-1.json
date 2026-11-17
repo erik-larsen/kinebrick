@@ -112,9 +112,9 @@
     ]
   },
   "generated": {
-    "commit": "9158acbb",
+    "commit": "a60fcd2b",
     "date": "2026-11-17",
-    "seconds": 84,
+    "seconds": 82,
     "counts": {
       "works": 3,
       "pivoted": 1,
@@ -348,7 +348,7 @@
             "p111 2851"
           ]
         ],
-        "seconds": 35.1
+        "seconds": 27.7
       },
       {
         "result": "works",
@@ -435,7 +435,7 @@
           "rise": 1.02,
           "tyre": "p865 15413"
         },
-        "seconds": 2.3
+        "seconds": 1.7
       },
       {
         "result": "partly",
@@ -502,7 +502,7 @@
         ],
         "cause": "not-driven",
         "detail": "p804 64782",
-        "seconds": 6.8
+        "seconds": 4.9
       },
       {
         "result": "partly",
@@ -674,7 +674,7 @@
           [],
           []
         ],
-        "seconds": 36.9
+        "seconds": 45.3
       }
     ]
   }

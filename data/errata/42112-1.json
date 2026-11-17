@@ -1,0 +1,14 @@
+{
+  "set": "42112-1",
+  "entries": [
+    {
+      "id": "drive-shaft-bevel-on-the-shaft",
+      "what": "move",
+      "file": "",
+      "line": "1 19 20 0 204 1 0 0 0 1 0 0 0 1 18575.dat",
+      "part": "p326 18575",
+      "position": [20, 0, 184],
+      "evidence": "The drive shaft along the chassis ends in a tan 20 tooth double bevel gear that meshes the front rear axle's differential ring, so rolling the truck turns the shaft and, through the selector, the drum (function 5). Step 81 (book 1 page 56, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=56) puts the gear into the rear axles' frame and shows the shaft's red axle going through a beam into it. The file places the gear (p326, in the main model) at z 204, while the shaft's axle 6 (p15) ends at z 194, so the gear is on no axle and meshes nothing. The gear that links the two differentials (p246, at z 264) meshes the same ring from its other side; mirrored about the ring's axis (z 224), the drive gear belongs at z 184, where the axle's last 20 LDU fill its hole and it meshes the ring. Moved 20 LDU, nothing else moves."
+    }
+  ]
+}
