@@ -96,6 +96,30 @@
         }
       ],
       "reply": "Sign 42114 list"
+    },
+    {
+      "id": "42054-lists",
+      "kind": "Sign-off",
+      "title": "42054 CLAAS Xerion 5000, functions 3, 4 and 5: the motor is the control, with the lever set first",
+      "since": "2026-11-17",
+      "what": "A change to three function lists. Lever A turns the cab, lever B raises the crane’s boom, lever C slews the crane (booklet pages 332 and 333). Each list names its lever as the control. But a lever only selects: it slides a driving ring. The motor does the driving, and each function’s own note says “needs the motor running”. So with the lever alone nothing but the ring moves. The change names the motor (p543) as the control of all three, with the function’s lever set first (turned half a radian), and takes the ring out of the parts that must move while the motor runs.",
+      "effect": "Functions 3, 4 and 5 go from partly working to working, so the set gains three. The worker checked this on its branch with the whole set; preview keeps the old lists and results until you sign.",
+      "confidence": "High that a lever only selects: the booklet shows it and the notes say it. In the viewer, with the collision pass ready: Claude set lever A and ran the motor, and the cab turned; set lever C and ran the motor, and the crane slewed. The worker set lever B and ran the motor, and the boom rose, slowly (0.8 LDU in 114 motor steps). One thing Claude saw that is not right yet and is being traced: after lever A was put back to its middle, its ring stayed engaged, so the cab went on turning.",
+      "links": [
+        {
+          "label": "42054 in the viewer: lever A, lever C and the motor, ready to run",
+          "url": "http://localhost:5174/?file=omr/42054-1+CLAAS+XERION+5000+TRAC+VC.mpd&show=825,1714,1715,543&autospin=543,paused"
+        },
+        {
+          "label": "Booklet page 332: functions A, B and C",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6202123.pdf#page=332"
+        },
+        {
+          "label": "Booklet page 333",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6202123.pdf#page=333"
+        }
+      ],
+      "reply": "Sign 42054 lists"
     }
   ],
   "coming": [
