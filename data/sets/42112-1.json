@@ -193,19 +193,15 @@
     ]
   },
   "generated": {
-    "commit": "6a64c93f",
+    "commit": "36f4143b",
     "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 41,
+    "seconds": 29,
     "counts": {
-      "works": 4,
-      "partly": 3,
-      "no": 1
+      "works": 5,
+      "partly": 3
     },
     "loose": [
-      "p381 42112 - 51149",
-      "p383 4519",
-      "p384 32013",
       "p548 98138",
       "p549 98138",
       "p550 98138",
@@ -409,7 +405,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -631,7 +627,7 @@
           [],
           []
         ],
-        "seconds": 23.4
+        "seconds": 15.5
       },
       {
         "result": "partly",
@@ -714,18 +710,15 @@
         ],
         "cause": "not-driven",
         "detail": "p17 60485",
-        "seconds": 2.7
+        "seconds": 1.9
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p354 18947"
         ],
         "rates": [
           {
@@ -759,21 +752,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p354 18947",
-        "seconds": 0.5
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -857,7 +836,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 94925",
-        "seconds": 2.6
+        "seconds": 1.9
       },
       {
         "result": "partly",
@@ -943,7 +922,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p17 60485",
-        "seconds": 2.5
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -989,7 +968,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 2
       },
       {
         "result": "works",
@@ -1039,7 +1018,7 @@
             ]
           ]
         ],
-        "seconds": 2.8
+        "seconds": 2
       }
     ]
   }
