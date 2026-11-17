@@ -347,7 +347,7 @@ export class Kinematics {
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
   private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
   private built = false; // the constructor done: reset() may then set a layout's cars on the rails (see setOnRails)
-  private lastStep: { joint: number; way: number; angles: number[]; ratio: number } | null = null; // the last step a turn took (see turnJoint)
+  private lastStep: { joint: number; way: number; angles: number[]; ratio: number; played: boolean } | null = null; // the last step a turn took (see turnJoint)
   private loopJoints: Set<number> | null = null; // the joints in closed loops of joints (see inLoop), once worked out
   private pins: Set<number> | null = null; // bodies free to spin on their one axis (see findPins), once worked out
   private framed: Set<number> | null = null; // the bodies that can't move against the frame (see fixedToFrame), once worked out
@@ -360,6 +360,7 @@ export class Kinematics {
   spinners: number[] = [];
   private leastScrub = 0; // the least scrub rolling needed, the last time the free motions were worked out (see freeMotionsApart)
   private played = false;
+  private closingFirmOnly = false; // whether only the rows that take no play are being closed (see closeLoops)
   private turningJointsOf: number[][] | null = null; // each body's turning joints (see onAxis), found when first needed
   traceNames: string[] | null = null; // with TRACE, each row's kind of connection, as buildEquations adds it (see traceJam in trace.ts)
   private traceName = ''; // with TRACE, the kind of connection whose rows buildEquations is adding
@@ -1908,9 +1909,18 @@ export class Kinematics {
     let plain = false;
     let opened = Infinity; // how far apart the step left them
     for (let round = 0; round < 12; round++) {
-      const gaps: number[] = [];
-      const weights: number[] = [];
-      const rows = this.buildEquations(gaps, null, true, weights);
+      let gaps: number[] = [];
+      let weights: number[] = [];
+      const play: number[] = [];
+      let rows = this.buildEquations(gaps, null, true, weights, play);
+      // The second closing after a step on play (see turnJoint): only the rows that take no play
+      // (gears, universal joints, tyres, holds), the loops left as the first closing left them.
+      if (this.closingFirmOnly) {
+        const firm = play.map((p) => !p);
+        rows = rows.filter((_, i) => firm[i]);
+        gaps = gaps.filter((_, i) => firm[i]);
+        weights = weights.filter((_, i) => firm[i]);
+      }
       const biggest = gaps.reduce((max, g) => Math.max(max, Math.abs(g)), 0);
       last = biggest;
       if (round === 0) opened = biggest;
@@ -2402,22 +2412,33 @@ export class Kinematics {
         if (TRACE) trace({ event: 'stopped', joint, turned, why: 'wild' });
         return stop(turned);
       }
+      // Not where this step or the last is on play (with loopPlay): a play motion is the one that
+      // opens the loops least, and its rates, which change as the loops open, tell nothing of a
+      // dead point (the 42079 Heavy Duty Forklift's mast tilt, stopped after one step).
       const last = this.lastStep;
-      if (last && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) {
+      const onPlay = this.options.loopPlay && (played || last?.played === true);
+      if (last && !onPlay && last.joint === joint && last.way === Math.sign(angle) && ratio > DEAD_POINT_RATE * last.ratio && last.ratio * Math.abs(step) <= DEAD_POINT_SAMPLE && this.jointAngles.every((a, k) => a === last.angles[k])) {
         if (TRACE) trace({ event: 'stopped', joint, turned, why: 'rate' });
         return stop(turned);
       }
       const gap = this.advance(motion, step, joint);
+      if (this.options.loopPlay && played) this.closeFirmRows(joint);
       const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
       // With loopPlay, a step taken on play is judged by the budgets, and other joints may stray:
       // its motion keeps the loops only to first order by design, so closing them always turns
       // some joints off where it had them going, and a linkage that flips opens its loops far past
-      // any budget. But not the dragged joint itself: closing the loops may undo its turn, and
-      // then nothing turned (the 8272 Snowmobile's ski, whose joint turned 1e-14 radians a step
-      // while the loops closed exactly and six other joints moved).
-      const ownTurnLost = strayed.includes(joint);
-      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(this.options.loopPlay && played && !ownTurnLost))) {
-        if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length });
+      // any budget. But the dragged joint itself must turn at least half the step the way it's
+      // turned: closing the loops may undo its turn, and then nothing turned (the 8272
+      // Snowmobile's ski, whose joint turned 1e-14 radians a step while the loops closed exactly
+      // and six other joints moved). Turned further than asked, it went, as near a dead point (a
+      // parallelogram with a link too long, coming back from as far as its play took it).
+      // So too a step from where the last step on play left the loops open: closing them turns
+      // joints off where it had them going too (the 956 Auto Chassis's steering, taken a step
+      // past its dead point on play, couldn't come back).
+      const ownTurnLost = checked(this.mech.joints[joint]) && (this.jointAngles[joint] - before.jointAngles[joint]) * Math.sign(step) < Math.abs(step) / 2;
+      const fromPlay = this.options.loopPlay && (played || last?.played === true);
+      if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(fromPlay && !ownTurnLost))) {
+        if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length, ownTurnLost });
         this.restore(before);
         // Least motion: a step that kept the tyres from scrubbing (see chooseMotion) may have
         // held only to first order (the 42037 Formula Off-Roader's front tyre, neither rolling
@@ -2436,7 +2457,9 @@ export class Kinematics {
           const carried = (k: number) => (this.parentJoint[this.mech.joints[k].bodyB] === k ? this.mech.joints[k].bodyB : this.mech.joints[k].bodyA);
           const bodies = strayed.filter((k) => k !== joint && this.inTree(k)).map(carried).filter((b) => !this.drag.held.has(b) && b !== this.drag.turning!.grabbed);
           for (const b of bodies) this.drag.held.add(b);
-          if (bodies.length && this.jointMotion(joint)) continue;
+          // An exact motion only: else play took the turn on past the dead point (the 956 Auto
+          // Chassis's steering, a step past where its linkage nearly locks, then couldn't come back).
+          if (bodies.length && this.jointMotion(joint, false)) continue;
           for (const b of bodies) this.drag.held.delete(b);
         }
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
@@ -2456,7 +2479,7 @@ export class Kinematics {
       if (played) this.onPlay += Math.abs(step);
       turned += step;
       const lastStep = this.lastStep;
-      this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio };
+      this.lastStep = { joint, way: Math.sign(angle), angles: this.jointAngles.slice(), ratio, played };
       // A step after which the joint has no motion, or another joint would turn wild, has gone
       // into a jam that no step can leave, back the way it came or on: those stops are the same
       // both ways. It is undone, and the drag stops before it, as a hand on the real model never
@@ -2590,6 +2613,7 @@ export class Kinematics {
     const predicted = this.mech.joints.map((j, k) => (j.kind === 'revolute' && !resting.has(j.bodyA) && !resting.has(j.bodyB) ? this.jointRate(motion, k) * step : 0));
     const largest = Math.max(...predicted.map(Math.abs));
     const gap = this.advance(motion, step, joint);
+    if (this.options.loopPlay && played) this.closeFirmRows(joint);
     const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
     if ((this.options.loopPlay ? !this.withinPlay() : gap > DEAD_POINT_GAP) || (strayed.length && !played)) {
       if (TRACE) trace({ event: 'push refused', body, gap, strayed: strayed.length });
@@ -2765,6 +2789,22 @@ export class Kinematics {
       this.budgets!.set(j, clearance(j) + between.reduce((sum, k) => sum + clearance(k), 0));
     });
     return this.budgets;
+  }
+
+  // With loopPlay, after a step on play and the loops closed as far as they go: the rows that take
+  // no play closed again on their own, the loops left as they are. Closed only with the loops,
+  // which a step on play leaves open by design, what the loops can't close was shared out into
+  // those rows, step after step (the 42079 Heavy Duty Forklift's mast drive, whose universal
+  // joints came 0.0004 LDU further apart with each step on play, until the drive stopped).
+  // Closing those rows alone, without closing the loops first, left the loops past their budgets
+  // within a step (the 42037 Formula Off-Roader's rear suspension, which then never moved).
+  private closeFirmRows(keep: number) {
+    this.closingFirmOnly = true;
+    try {
+      this.closeLoops(keep);
+    } finally {
+      this.closingFirmOnly = false;
+    }
   }
 
   // With loopPlay: whether every loop is closed within its budget (see loopBudgets), and every
