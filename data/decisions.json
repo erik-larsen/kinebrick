@@ -188,6 +188,30 @@
         }
       ],
       "reply": "Sign 42112 lever"
+    },
+    {
+      "id": "42050-bevel",
+      "kind": "Sign-off",
+      "title": "42050 Drag Racer: the wheelie actuator's gear",
+      "since": "2026-11-17",
+      "what": "A correction to the published file, for the wheelie (function 4: the knob in front of the right rear wheel works the small actuator under the car). The actuator swings on the knob's axle and is turned through two small bevel gears, one on that axle and one on the actuator's input. The file draws the actuator's gear a fraction of an LDU off the actuator's own line and slightly turned, so the two gears don't line up and the knob drives nothing. The correction sets that one gear on the actuator's line, turned as the actuator is. Nothing else moves.",
+      "effect": "Function 4 goes from partly working to working: the knob raises the car into its wheelie. The set's other functions are as before.",
+      "confidence": "High for the geometry: the actuator, its input and the axle it swings on all line up, and only this gear is off; no other pair of bevel gears in the sets is drawn so. The booklet page that builds this part wasn't found; page 119 shows the function.",
+      "links": [
+        {
+          "label": "Booklet, page 119 (the functions)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=119"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42050-1+Drag+Racer.mpd&show=244,246,240"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42050-1+Drag+Racer.mpd&option=proposed&show=244,246,240"
+        }
+      ],
+      "reply": "Sign 42050"
     }
   ],
   "coming": [

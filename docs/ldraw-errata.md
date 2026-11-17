@@ -462,6 +462,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
+| [42050-1](#42050-1-wheelie-actuator-bevel-on-its-axis) | wheelie-actuator-bevel-on-its-axis | moves `32270.dat` (in `42050 - linact.ldr`) to -280.431 -6.163 0, turned | Proposed, not applied until signed off |
 | [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
@@ -700,6 +701,20 @@ In the main model, the line
 ```
 
 is read with its part at -160 -211.6552 -70.6371.
+
+### 42050-1: wheelie-actuator-bevel-on-its-axis
+
+Proposed, not applied until signed off.
+
+Function B (booklet page 119, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=119): the knob in front of the right rear wheel works the small linear actuator under the car, which puts the dragster into a wheelie. In the submodel 42050 - linact.ldr the actuator (92693c01) swings on the knob's axle 7 (44294), which carries a 12 tooth bevel (6589), and the actuator's input (92695) lies on the actuator's axis through that axle, as it must for its bevel to stay in mesh as the actuator swings. The input's 12 tooth double bevel (p244 32270) is drawn 0.7 LDU off that axis and turned 15.0 degrees where the actuator is at 14.6, so its axis passes the knob's axle 0.84 LDU off, and it is read as meshing nothing: the knob doesn't drive the actuator (function 4). It is the only pair of bevel gears in the sets drawn so (all sets scanned). Placed on the actuator's axis, 20 LDU from the axle, turned as the actuator is, it meshes the knob's bevel; nothing else moves. The booklet step that builds the actuator's frame was not found.
+
+In `42050 - linact.ldr` (p244 32270), the line
+
+```
+1 0 -280.258 -6.837 0 0 0.259 0.966 0 -0.966 0.259 1 0 0 32270.dat
+```
+
+is read with its part at -280.431 -6.163 0, turned to 0 0.252 0.968 0 -0.968 0.252 1 0 0.
 
 ### 42052-1: no-third-link-pin-p586
 
