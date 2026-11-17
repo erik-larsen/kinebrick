@@ -23,7 +23,12 @@
         0,
         0
       ],
-      "evidence": "The rear differential takes a half shaft on each side: a constant velocity ball (32494) in each of its CV sockets (step 18, page 11, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6261603.pdf#page=11), an axle 4 into it and a ball at the wheel's end (step 19). In the file's submodel 42077 - rearaxle.ldr both half shafts slope down 13.6 degrees to the sprung wheels: on one side the inner ball, the axle 4 and the outer ball all slope (its lines at x 60, 118.3 and 176.6); on the other the axle 4 and the outer ball slope (x -118.3 and -176.6) but the inner ball p78 at x -60 is drawn level, so the axle misses its hole and the half shaft is joined to nothing at the differential. Turned 13.6 degrees about its own centre, in its socket, the ball takes the axle as on the other side; nothing else moves."
+      "evidence": "The rear differential takes a half shaft on each side: a constant velocity ball (32494) in each of its CV sockets (step 18, page 11, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6261603.pdf#page=11), an axle 4 into it and a ball at the wheel's end (step 19). In the file's submodel 42077 - rearaxle.ldr both half shafts slope down 13.6 degrees to the sprung wheels: on one side the inner ball, the axle 4 and the outer ball all slope (its lines at x 60, 118.3 and 176.6); on the other the axle 4 and the outer ball slope (x -118.3 and -176.6) but the inner ball p78 at x -60 is drawn level, so the axle misses its hole and the half shaft is joined to nothing at the differential. Turned 13.6 degrees about its own centre, in its socket, the ball takes the axle as on the other side; nothing else moves.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-17",
+        "words": "Sign all seven (42077)"
+      }
     }
   ]
 }

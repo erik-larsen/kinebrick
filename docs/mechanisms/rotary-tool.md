@@ -4,7 +4,7 @@ The drive spins a working tool: a bucket wheel, drill, saw, auger, brush or mixe
 
 First appears in 2016, in [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1): The XL motor, beside the gearbox on the counterweight boom, drives a gearbox whose three red knobs, on top, choose what it works; with the middle knob pulled back (towards the knob's lower arrow) it turns the bucket wheel and runs the conveyor belts: the boom's belt carrying the spoil from the wheel to the middle, and the discharge belt carrying it out over the back.
 
-Used in 2 of the 186 surveyed sets, by 3 functions. Kinebrick: 3 partly.
+Used in 2 of the 186 surveyed sets, by 3 functions. Kinebrick: 1 works, 2 partly.
 
 ## By decade
 
@@ -31,7 +31,7 @@ Each detail by the set it first appears in.
 **2020, [42112 Concrete Mixer Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42112-1)**
 
 - *mixer drum:* With the selector set for driving, rolling the truck turns the drum to mix: the drive shaft's 16 tooth gear turns the 20 tooth clutch gear on the drum drive shaft, which runs back to a 24 tooth gear, a shaft through the drum's support, and a universal joint to a 36 tooth gear that turns the drum on the turntable at its front end. (partly)
-- *mixer drum:* With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft. (partly)
+- *mixer drum:* With the selector set for the crank, the crank on the side of the chassis turns the drum the other way, to pour: its 12 tooth gear drives a bevel gear on a short shaft whose 16 tooth gear turns the 16 tooth clutch gear on the drum drive shaft. (works)
 
 ---
 
