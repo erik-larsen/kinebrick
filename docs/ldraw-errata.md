@@ -479,6 +479,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Signed off by Erik, 2026-11-15 |
+| [42112-1](#42112-1-drive-shaft-bevel-on-the-shaft) | drive-shaft-bevel-on-the-shaft | moves `18575.dat` to 20 0 184 | Proposed, not applied until signed off |
 
 ### 850-1: handwheel-down
 
@@ -945,5 +946,19 @@ In `42111 - rear-shock-assy.ldr` (p101 4255 and p105 4255), the line
 ```
 
 is read with its part at 0 9.819 0.
+
+### 42112-1: drive-shaft-bevel-on-the-shaft
+
+Proposed, not applied until signed off.
+
+The drive shaft along the chassis ends in a tan 20 tooth double bevel gear that meshes the front rear axle's differential ring, so rolling the truck turns the shaft and, through the selector, the drum (function 5). Step 81 (book 1 page 56, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=56) puts the gear into the rear axles' frame and shows the shaft's red axle going through a beam into it. The file places the gear (p326, in the main model) at z 204, while the shaft's axle 6 (p15) ends at z 194, so the gear is on no axle and meshes nothing. The gear that links the two differentials (p246, at z 264) meshes the same ring from its other side; mirrored about the ring's axis (z 224), the drive gear belongs at z 184, where the axle's last 20 LDU fill its hole and it meshes the ring. Moved 20 LDU, nothing else moves.
+
+In the main model (p326 18575), the line
+
+```
+1 19 20 0 204 1 0 0 0 1 0 0 0 1 18575.dat
+```
+
+is read with its part at 20 0 184.
 
 <!-- errata: end -->

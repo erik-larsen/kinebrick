@@ -140,6 +140,54 @@
         }
       ],
       "reply": "Sign 42096"
+    },
+    {
+      "id": "42112-drive-gear",
+      "kind": "Sign-off",
+      "title": "42112 Concrete Mixer Truck: the drive shaft's gear at the rear axles",
+      "since": "2026-11-16",
+      "what": "A correction to the published file, for the drum (function 5: rolling the truck turns the drum). The shaft along the chassis is turned by the rear axles through a tan gear at its end, which meshes the differential's ring. The file places that gear 20 LDU past the end of the shaft, so it sits on nothing and meshes nothing. The correction moves the gear 20 LDU onto the shaft's end, where it meshes the ring, as step 81 shows. Nothing else moves.",
+      "effect": "The drive then reaches the drum's shaft. Function 5 still doesn't fully work, for another reason: a part the list says stays still (p1039) turns with it. The set's other functions are as before.",
+      "confidence": "High. The gear that links the two differentials meshes the same ring from the other side, at the mirror place; the corrected gear fits the shaft's end exactly.",
+      "links": [
+        {
+          "label": "Booklet 1, page 56 (step 81)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=56"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42112-1+Concrete+Mixer+Truck.mpd&show=326,15,255"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42112-1+Concrete+Mixer+Truck.mpd&option=proposed&show=326,15,255"
+        }
+      ],
+      "reply": "Sign 42112"
+    },
+    {
+      "id": "42112-lever",
+      "kind": "Sign-off",
+      "title": "42112 Concrete Mixer Truck, function 4: which part is the lever",
+      "since": "2026-11-16",
+      "what": "A change to a function list. Function 4 is the white lever under the chassis that slides a driving ring between two clutch gears. Our list names a grey 3-long beam (p374) as the control, and that beam is pinned to the frame. The booklet builds the lever as a white angle connector (p384) on a yellow 3-long axle in the changeover catch (steps 38 to 43). The change makes that white connector the control.",
+      "effect": "Function 4 goes from not working to working, together with a mend that is ready on the worker's branch: the catch in this set is a newer mould (51149) that our catch code did not know. Both are merged on your word; the set and the 42113, which has the same catch, are checked with them.",
+      "confidence": "High. The booklet's steps show the white connector on the catch's axle, and the grey beam cannot move.",
+      "links": [
+        {
+          "label": "Booklet 1, page 28 (steps 38 to 40)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=28"
+        },
+        {
+          "label": "Booklet 1, page 29 (steps 41 to 43)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=29"
+        },
+        {
+          "label": "Viewer: the white connector, the grey beam and the catch",
+          "url": "http://localhost:5174/?file=omr%2F42112-1+Concrete+Mixer+Truck.mpd&show=384,374,381"
+        }
+      ],
+      "reply": "Sign 42112 lever"
     }
   ],
   "coming": [
