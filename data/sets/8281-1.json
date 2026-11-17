@@ -83,8 +83,8 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
+    "commit": "a60fcd2b",
+    "date": "2026-11-17",
     "seconds": 1,
     "counts": {
       "partly": 2,
@@ -153,7 +153,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p25 32063 against p5 32271",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",

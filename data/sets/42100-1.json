@@ -176,13 +176,15 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 2553,
+    "commit": "a60fcd2b",
+    "date": "2026-11-17",
+    "seconds": 2432,
     "counts": {
-      "partly": 4,
+      "partly": 6,
       "works": 3,
-      "no": 2
+      "not back": 2,
+      "torn": 1,
+      "moved whole": 1
     },
     "loose": [
       "p128 42100 - 23816c02",
@@ -372,7 +374,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 36
+        "seconds": 30.6
       },
       {
         "result": "partly",
@@ -435,7 +437,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 39
+        "seconds": 30.3
       },
       {
         "result": "partly",
@@ -529,7 +531,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 84.4
+        "seconds": 61.4
       },
       {
         "result": "partly",
@@ -588,7 +590,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1927 42003 against p87 42003",
-        "seconds": 44.7
+        "seconds": 31
       },
       {
         "result": "works",
@@ -642,7 +644,7 @@
             ]
           ]
         ],
-        "seconds": 1375.3
+        "seconds": 1255.9
       },
       {
         "result": "works",
@@ -750,14 +752,14 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 912.6
+        "seconds": 753.1
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            1.45,
+            -1.46
           ]
         ],
         "still": [
@@ -768,66 +770,64 @@
         "rates": [
           {
             "p3600 15458 against p3322 42003": [
-              0,
-              0
+              0.00173,
+              0.0978
             ],
             "p3784 42100 - 62274c02 against p3783 42100 - u9487c01": [
-              0,
-              0
+              0.0086,
+              0.177
             ],
             "p3801 42100 - 62274c02 against p3800 42100 - u9487c01": [
-              0,
-              0
+              0.00887,
+              0.18
             ],
             "p3322 42003 against p2971 42003": [
-              0,
-              0
+              0.0000147,
+              0.00265
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.82,
+              4.85
             ],
             [
-              0,
-              0
+              0.82,
+              4.84
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              0.82,
+              4.85
             ],
             [
-              0,
-              0
+              0.82,
+              4.84
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
+        "strayed": [
+          "p2946 60485"
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
-        "seconds": 2
+        "onPlay": 6,
+        "seconds": 207.1
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.11,
+            -0.03
           ]
         ],
         "still": [
@@ -836,46 +836,50 @@
         "rates": [
           {
             "p3322 42003 against p2971 42003": [
-              0,
-              0
+              0.00027,
+              0.049
             ]
           }
         ],
         "back": [
           [
             [
-              0,
-              0
+              0.39,
+              1.97
             ],
             [
-              0,
-              0
+              0.07,
+              0.17
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              0.39,
+              1.97
             ],
             [
-              0,
-              0
+              0.07,
+              0.17
             ]
           ]
         ],
+        "strayed": [
+          "p3695 92695"
+        ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "limit"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "stopped-early",
-        "seconds": 2.8
+        "onPlay": 0.33,
+        "seconds": 15.3
       },
       {
         "result": "works",
@@ -918,7 +922,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 29.6
+        "seconds": 28.9
       }
     ]
   }

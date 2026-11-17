@@ -4,7 +4,7 @@ A part slides by hand, or under its own weight. (Simple motions.)
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The four outriggers slide out on tiles and stand on their feet.
 
-Used in 9 of the 186 surveyed sets, by 10 functions. Kinebrick: 3 works, 2 partly, 3 no, 1 skipped, 1 not checked.
+Used in 9 of the 186 surveyed sets, by 10 functions. Kinebrick: 3 works, 3 partly, 2 no, 1 skipped, 1 not checked.
 
 ## By decade
 
@@ -66,7 +66,7 @@ Each detail by the set it first appears in.
 
 **2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1)**
 
-- *fifth wheel:* The fifth wheel at the back of the tractor slides forward and back. (no)
+- *fifth wheel:* The fifth wheel at the back of the tractor slides forward and back. (partly)
 - *crane legs:* Each crane leg is a rack in a housing that telescopes, so the leg can reach the ground as it swings out. (works)
 
 ---

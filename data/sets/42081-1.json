@@ -155,9 +155,9 @@
     ]
   },
   "generated": {
-    "commit": "9158acbb",
+    "commit": "a60fcd2b",
     "date": "2026-11-17",
-    "seconds": 484,
+    "seconds": 436,
     "counts": {
       "no": 1,
       "partly": 2,
@@ -272,15 +272,15 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "judged": [
           0
         ],
         "cause": "control-jammed",
-        "seconds": 1.7
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -403,7 +403,7 @@
         ],
         "cause": "too-little",
         "detail": "p442 62274c01 against p441 62271c01",
-        "seconds": 143.7
+        "seconds": 129.2
       },
       {
         "result": "works",
@@ -501,18 +501,18 @@
             "p506 62274c01 against p505 62271c01"
           ]
         ],
-        "seconds": 136
+        "seconds": 134
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.13,
+            -1.13
           ],
           [
-            1.5,
-            -1.5
+            1.13,
+            -1.13
           ]
         ],
         "still": [
@@ -522,7 +522,7 @@
           {
             "p315 64179 against p0 64179": [
               0,
-              1.39e-34
+              9.2e-35
             ],
             "p243 62274c01 against p242 62271c01": [
               0.0493,
@@ -530,13 +530,13 @@
             ],
             "p464 32271 against p0 64179": [
               0,
-              1.89e-14
+              2.51e-14
             ]
           },
           {
             "p315 64179 against p0 64179": [
               0,
-              1.39e-34
+              9.2e-35
             ],
             "p243 62274c01 against p242 62271c01": [
               0.0493,
@@ -544,7 +544,7 @@
             ],
             "p464 32271 against p0 64179": [
               0,
-              1.89e-14
+              2.51e-14
             ]
           }
         ],
@@ -592,6 +592,16 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ],
+          [
+            "dead point",
+            "dead point"
+          ]
+        ],
         "movedBy": [
           [
             "p243 62274c01 against p242 62271c01"
@@ -605,7 +615,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 95.8
+        "onPlay": 9.07,
+        "seconds": 63.6
       },
       {
         "result": "works",
@@ -655,7 +666,7 @@
             ]
           ]
         ],
-        "seconds": 10.9
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -773,7 +784,7 @@
           [],
           []
         ],
-        "seconds": 39.5
+        "seconds": 35.1
       },
       {
         "result": "works",
@@ -891,7 +902,7 @@
           [],
           []
         ],
-        "seconds": 35.8
+        "seconds": 36
       },
       {
         "result": "works",
@@ -957,11 +968,10 @@
           [],
           []
         ],
-        "seconds": 19.8
+        "seconds": 20.3
       },
       {
-        "result": "skipped",
-        "seconds": 0
+        "result": "skipped"
       }
     ]
   }
