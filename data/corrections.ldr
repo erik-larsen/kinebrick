@@ -739,3 +739,7 @@
 0 FILE 47508.dat
 0 // Excavator Bucket 8 x 4 with Click Hinge 2-Finger: its fingers are the click hinge primitive clh11, which the shadow library gives nothing. The slot between its two fingers, along x through its origin, takes a 1-finger click hinge (47973's, an H section of radius 4 and length 8), so it is given here as that finger's female, 8 long.
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=H 4 8] [center=true] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 FILE 35189.dat
+0 // Steering Wheel Hub with Brake Disc and 3 Pegholes: the socket at the inner end of its spindle, on its axis 30 LDU in, that a wheel spindle axle driver's ball (32494) seats in, its lugs in the socket's slots, so that the hub turns with the driver's shaft at any angle (a constant velocity joint, see groovedBalls), as the portal axle's hub (92909) has it in the shadow library; it had none, so the 42083's and the 42115's driven wheels spun free of their half shafts
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=O 6 12] [center=true] [pos=0 0 30] [ori=0 0 1 0 1 0 -1 0 0]
