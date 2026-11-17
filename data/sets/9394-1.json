@@ -117,9 +117,9 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
-    "seconds": 49,
+    "seconds": 45,
     "counts": {
       "works": 4,
       "partly": 1,
@@ -242,7 +242,7 @@
             ]
           ]
         ],
-        "seconds": 7
+        "seconds": 6.2
       },
       {
         "result": "works",
@@ -316,7 +316,7 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 3.9
       },
       {
         "result": "partly",
@@ -390,7 +390,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p72 32278",
-        "seconds": 12.9
+        "seconds": 11.5
       },
       {
         "result": "works",
@@ -465,7 +465,7 @@
         "pushed": [
           true
         ],
-        "seconds": 12
+        "seconds": 11.5
       },
       {
         "result": "works",
@@ -557,7 +557,7 @@
           [],
           []
         ],
-        "seconds": 11.8
+        "seconds": 11.1
       }
     ]
   }

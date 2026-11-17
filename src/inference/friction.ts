@@ -95,3 +95,70 @@ function pinsFor(allFree: Mechanism, kin: Kinematics, body: number, movesPart: (
   }
   return turning.filter((p) => motions.some((m) => movesPart(m) && turns(m, p))).sort((x, y) => x - y);
 }
+
+// How many held pins the search tries at most, the nearest (see pinsByTrial): with 1, 2, 4 and so
+// on to 64 tried in turn, at most seven builds to find a set that lets the part move. The pins
+// that hold a mast to the frame lie 32 to 64 pins from the knob that tilts it, counted along
+// the connections (the 42079 Heavy Duty Forklift's); 16 missed them.
+const NEAREST = 64;
+
+// The friction pins held in a build as read (`read`), nearest `part` first: those a connection
+// marks held (see fixPins), by how many connections apart they are from the part. First come
+// those that join the part's own body (`own` says how many), then the rest, NEAREST in all; none
+// of those in `freed`.
+export function heldPins(read: Mechanism, part: number, freed: Set<number> = new Set()): { pins: number[]; own: number } {
+  const held = new Set(read.connections.filter((c) => c.held && !freed.has(c.male)).map((c) => c.male));
+  const next = new Map<number, number[]>();
+  const link = (a: number, b: number) => next.set(a, [...(next.get(a) ?? []), b]);
+  for (const c of read.connections) {
+    link(c.male, c.female);
+    link(c.female, c.male);
+  }
+  const hops = new Map<number, number>([[part, 0]]);
+  for (let front = [part]; front.length; ) {
+    const ahead: number[] = [];
+    for (const p of front) for (const q of next.get(p) ?? []) if (!hops.has(q)) hops.set(q, hops.get(p)! + 1), ahead.push(q);
+    front = ahead;
+  }
+  const body = read.bodyOf[part];
+  const touches = (pin: number) => read.connections.some((c) => c.held && c.male === pin && (read.bodyOf[c.female] === body || read.bodyOf[c.male] === body));
+  const sorted = [...held].sort((x, y) => Number(touches(y)) - Number(touches(x)) || (hops.get(x) ?? Infinity) - (hops.get(y) ?? Infinity) || x - y);
+  return { pins: sorted.slice(0, NEAREST), own: Math.min(NEAREST, sorted.filter(touches).length) };
+}
+
+// The friction pins to free so that a part can move, found by trying them (decision 126 of
+// 2026-11-16), where pinsToFree's reading of the build with every pin free names none that help:
+// that build may differ from the one as read in more than the pins it frees (a held axle pin
+// joins a motor's axle to the frame as read, and with every pin free that axle is still jammed,
+// the 42080 Mobile Crane MK II's). `candidates` are the pins that may be freed, nearest the part
+// first (see heldPins); `moves` says whether the part can move with a set of pins freed, building
+// the model with them freed (each try is a build). Freeing more pins can jam a part that fewer
+// let move (as with every pin free), so the pins are taken nearest first, 1, 2, 4 and so on, until
+// the part can move; none if it can't with all of them. Then that set is cut down: of its two
+// halves, one alone if it will do, else what each needs with the other freed.
+export function pinsByTrial({ pins: candidates, own }: { pins: number[]; own: number }, moves: (freed: Set<number>) => boolean): number[] {
+  let found: number[] | null = null;
+  // The pins on the part's own body first, in one build: most often they're the ones.
+  if (own > 0 && moves(new Set(candidates.slice(0, own)))) found = candidates.slice(0, own);
+  for (let n = 1; !found && candidates.length; n = Math.min(2 * n, candidates.length)) {
+    const nearest = candidates.slice(0, n);
+    if (moves(new Set(nearest))) {
+      found = nearest;
+      break;
+    }
+    if (n === candidates.length) break;
+  }
+  if (!found) return [];
+  // The fewest of `pins` that, with `kept` freed too, let the part move (`kept` alone doesn't).
+  const fewest = (kept: number[], pins: number[]): number[] => {
+    if (pins.length <= 1) return pins;
+    const half = Math.ceil(pins.length / 2);
+    const near = pins.slice(0, half);
+    const far = pins.slice(half);
+    if (moves(new Set([...kept, ...near]))) return fewest(kept, near);
+    if (moves(new Set([...kept, ...far]))) return fewest(kept, far);
+    const fromNear = fewest([...kept, ...far], near);
+    return [...fromNear, ...(moves(new Set([...kept, ...fromNear])) ? [] : fewest([...kept, ...fromNear], far))];
+  };
+  return fewest([], found).sort((x, y) => x - y);
+}

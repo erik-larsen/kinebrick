@@ -172,9 +172,9 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
-    "seconds": 21,
+    "seconds": 23,
     "counts": {
       "works": 7,
       "no": 1,
@@ -270,7 +270,7 @@
             ]
           ]
         ],
-        "seconds": 6.4
+        "seconds": 6.2
       },
       {
         "result": "works",
@@ -438,7 +438,7 @@
             "p164 2851"
           ]
         ],
-        "seconds": 4.7
+        "seconds": 4.6
       },
       {
         "result": "works",
@@ -480,7 +480,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -527,7 +527,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1.3
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -636,22 +636,65 @@
           "p412 87080"
         ],
         "rates": [
-          {}
+          {
+            "p455 41239": [
+              0,
+              0
+            ],
+            "p411 87086": [
+              0,
+              0
+            ],
+            "p412 87080": [
+              0,
+              0
+            ],
+            "p432 41239": [
+              0,
+              0
+            ],
+            "p448 41239": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "torn": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p415 32278 is part of the frame"
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
         ],
+        "freed": 4,
         "judged": [
           0
         ],
-        "cause": "control-fixed",
-        "seconds": 0
+        "cause": "control-jammed",
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -756,7 +799,7 @@
             "p213 6571"
           ]
         ],
-        "seconds": 3.7
+        "seconds": 3.5
       },
       {
         "result": "skipped",
@@ -802,7 +845,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.1
       }
     ]
   }

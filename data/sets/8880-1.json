@@ -224,9 +224,9 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
-    "seconds": 176,
+    "seconds": 149,
     "counts": {
       "works": 9,
       "no": 2,
@@ -453,7 +453,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 42.4
+        "seconds": 32.1
       },
       {
         "result": "works",
@@ -677,7 +677,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 56.7
+        "seconds": 37.3
       },
       {
         "result": "no",
@@ -733,7 +733,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 6539",
-        "seconds": 2.8
+        "seconds": 7.7
       },
       {
         "result": "works",
@@ -799,7 +799,7 @@
             ]
           ]
         ],
-        "seconds": 9.3
+        "seconds": 8.7
       },
       {
         "result": "works",
@@ -858,7 +858,7 @@
             ]
           ]
         ],
-        "seconds": 9
+        "seconds": 8.7
       },
       {
         "result": "works",
@@ -921,7 +921,7 @@
             ]
           ]
         ],
-        "seconds": 3.7
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -1001,7 +1001,7 @@
           [],
           []
         ],
-        "seconds": 8.8
+        "seconds": 7.6
       },
       {
         "result": "works",
@@ -1084,7 +1084,7 @@
           []
         ],
         "onPlay": 0.3,
-        "seconds": 12.3
+        "seconds": 10.8
       },
       {
         "result": "skipped",
@@ -1103,22 +1103,57 @@
           "p1252 3895"
         ],
         "rates": [
-          {}
+          {
+            "p1238 3702": [
+              0,
+              0
+            ],
+            "p1252 3895": [
+              0,
+              0
+            ],
+            "p750 2853": [
+              0,
+              0
+            ]
+          }
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "torn": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p1240 4477 is part of the frame"
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
         ],
+        "freed": 2,
         "judged": [
           0
         ],
-        "cause": "control-fixed",
-        "seconds": 0.1
+        "cause": "control-jammed",
+        "seconds": 15.5
       },
       {
         "result": "skipped",
@@ -1189,7 +1224,7 @@
           [],
           []
         ],
-        "seconds": 11.6
+        "seconds": 9.4
       },
       {
         "result": "works",
@@ -1249,7 +1284,7 @@
             ]
           ]
         ],
-        "seconds": 17.7
+        "seconds": 7.3
       }
     ]
   }
