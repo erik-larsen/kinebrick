@@ -15,7 +15,7 @@
   "waiting": [
     {
       "id": "42043-fn11-list",
-      "kind": "Sign-off",
+      "kind": "Signed, being checked",
       "title": "42043 Mercedes-Benz Arocs 3245, function 11: the wheels move and the differential's case stays",
       "since": "2026-11-17",
       "what": "A change to a function list. Function 11 (the rear axles’ differentials) holds the drive shaft still and turns one wheel of the third axle; its note says the other wheel then turns the opposite way. But the list names the differential’s case (p2036) as the part that moves. With the drive shaft held the case cannot turn: the shaft holds it. The change names the two wheels (p2219, p2227) as the parts that move and the case as the part that stays.",
@@ -27,7 +27,7 @@
           "url": "http://localhost:5174/?file=omr/42043-1+Mercedes-Benz+Arocs+3245.mpd&lifted=1&show=2219,2227,2036"
         }
       ],
-      "reply": "Sign 42043 list"
+      "reply": "None: you signed it on 17 November; Claude records it with the solver owner’s merge, which is being checked"
     },
     {
       "id": "9397-b-model",
@@ -58,28 +58,8 @@
       "reply": "No answer needed unless you want something else"
     },
     {
-      "id": "9397-download",
-      "kind": "Your yes to a download",
-      "title": "9397: download LEGO’s two instruction files for the snowplough",
-      "since": "2026-11-17",
-      "what": "The worker found LEGO’s instructions for the 9397’s second model on LEGO’s own building-instructions page for the set. They are two PDF files on lego.com: “9397_X_9397 Container Truck with Snowplow #1.pdf” (19.3 MB) and “9397_X_9397 Container Truck with Snowplow #2.pdf” (19.7 MB). A session may not download a file without your word, so the worker stopped there. With your yes, the worker adds both addresses to the set’s list of booklets and fetches them with the same script that fetched the other booklets, into omr/instructions/ (not committed to the repository).",
-      "effect": "With the files, the snowplough’s function list is written from LEGO’s own pages, with a page link for each function. Without them, the list is written from the parts alone and each function’s source says “inferred: from the parts”.",
-      "confidence": "The files exist: LEGO’s server answers for both with the sizes above. Claude has not opened them.",
-      "links": [
-        {
-          "label": "Snowplough instructions, file 1 (opens or saves the PDF)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf"
-        },
-        {
-          "label": "Snowplough instructions, file 2 (opens or saves the PDF)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf"
-        }
-      ],
-      "reply": "Download 9397 snowplough"
-    },
-    {
       "id": "42114-fn2-list",
-      "kind": "Sign-off",
+      "kind": "Signed, being checked",
       "title": "42114 6x6 Volvo Articulated Hauler, function 2: the ring extension does not slide when the gearbox shifts",
       "since": "2026-11-17",
       "what": "A change to a function list. Function 2 says the L motor shifts the gearbox by turning a catch that slides the driving rings. Its list names the catch, the three rings and also the yellow ring extension (p53) as parts that move. But the extension does not slide: it sits on the axle against its gear, and only the rings slide to it (booklet step 17). The change takes p53 out of the list; the catch and the three rings stay.",
@@ -95,11 +75,11 @@
           "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=13"
         }
       ],
-      "reply": "Sign 42114 list"
+      "reply": "None: you signed it on 17 November; Claude records it with the solver owner’s merge, which is being checked"
     },
     {
       "id": "42050-bevel",
-      "kind": "Sign-off",
+      "kind": "Signed, being checked",
       "title": "42050 Drag Racer, function 4 (the wheelie): the actuator’s input gear drawn off its axis",
       "since": "2026-11-17",
       "what": "A correction to the published file. The knob in front of the right rear wheel works a small linear actuator through two bevel gears. In the file the 12-tooth double bevel on the actuator’s input is drawn 0.7 LDU off the actuator’s axis and turned 15.0 degrees where the actuator is at 14.6, so it meshes with nothing and the knob drives nothing. The booklet’s step 64 builds the two bevels meshing at the actuator’s end, on its own axis. The correction puts the double bevel on the axis, turned as the actuator is.",
@@ -123,7 +103,7 @@
           "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=38"
         }
       ],
-      "reply": "Sign 42050"
+      "reply": "None: you signed it on 17 November; Claude records it with the solver owner’s merge, which is being checked"
     }
   ],
   "coming": [
@@ -300,6 +280,10 @@
     {
       "date": "2026-11-17",
       "what": "You said “Install Playwright”. The headless browser is installed (600 MB on disk, more than the 150 to 300 MB Claude had guessed). A first test from the shell worked: the viewer draws, animates and answers a pointer drag with no window shown."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “Download 9397 snowplough”. Both instruction files for the 9397’s second model are downloaded from lego.com (19.3 and 19.7 MB, 160 and 148 pages) and listed with the set’s booklets. The worker now drafts the snowplough’s function list from them; it comes to you to sign."
     }
   ]
 }
