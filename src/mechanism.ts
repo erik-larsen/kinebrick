@@ -21,6 +21,7 @@ import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
 import { findLoops } from './inference/loops.ts';
 import { looseFits, onAxleTips } from './inference/looseFits.ts';
 import { fixPins, slipClutches } from './inference/pins.ts';
+import { throughOutputs } from './inference/motors.ts';
 import { guidedPistons, shockAbsorbers, squareRodsInBores } from './inference/pistons.ts';
 import { hungOnSliders } from './inference/guides.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
@@ -477,6 +478,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
 
   // 1. Connections. First the connection points that fit (fits.ts).
   const connections = findConnections(cyls, frictionRigid, freed);
+  connections.push(...throughOutputs(connections));
   // A train track's pieces hold together end to end (nothing else joins them), and the track,
   // the trains' wheels and what's built on them are assemblies of their own, standing apart
   // from each other, never loose (see findLooseParts).
