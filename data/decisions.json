@@ -5,191 +5,14 @@
       "moved": "2026-11-16"
     },
     "preview": {
-      "works": 726,
-      "partly": 229,
-      "no": 92,
+      "works": 737,
+      "partly": 227,
+      "no": 83,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [
-    {
-      "id": "8840-rods",
-      "kind": "Sign-off",
-      "title": "8840 Rally Shock n' Roll Racer: the engine's rods and pistons",
-      "since": "2026-11-16",
-      "what": "A correction to the published file, for the V2 engine (function 2: the left rear wheel runs the engine). Each of the two connecting rods should hold its piston by the ball at its end. The file draws each rod’s ball 2 LDU beside its cylinder’s line and each piston about 3.5 LDU above the ball, so neither rod is read as holding its piston: the crankshaft and rods turn, but the pistons stay still. The correction turns each rod a few degrees on the crankshaft’s pin, so its ball lies on its cylinder’s line, and slides each piston down its cylinder onto the ball. Four parts move, by a few LDU each.",
-      "effect": "Function 2 goes from partly working to working: the pistons pump as the wheel turns. The set’s other functions are as before.",
-      "confidence": "High. A rod’s ball always sits in its piston; the correction keeps each rod on the crankshaft’s pin and each piston in its cylinder, and only closes the gap. The booklet’s step 9 builds the engine so.",
-      "links": [
-        {
-          "label": "Booklet scans",
-          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8840"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F8840-1+Rally+Shock+n%27+Roll+Racer.mpd&show=117,118,120,121"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F8840-1+Rally+Shock+n%27+Roll+Racer.mpd&option=proposed&show=117,118,120,121"
-        }
-      ],
-      "reply": "Sign 8840"
-    },
-    {
-      "id": "8258-boom-joint",
-      "kind": "Sign-off",
-      "title": "8258 Crane Truck: the joint under the lower boom's actuator",
-      "since": "2026-11-16",
-      "what": "A correction to the published file, for the lower boom (function 3). The boom's actuator takes its drive from the upright axle in the middle of the turntable through a universal joint at its foot. The booklet builds the actuator upright and drops the joint's free end straight onto that axle (step 156); the boom tilts the actuator later and the joint bends. The file draws the joint straight along the tilted actuator, so its free end points 25° away from the axle and nothing is in it. The correction turns that one part, the joint's free end, 25° on the pin it swings on, so the axle goes into it. Nothing else moves.",
-      "effect": "The upright axle then drives the joint, the actuator's input and its screw. Function 3 works once its entry also sets the first yellow lever (catch p166 moved +0.4, the other way from function 5's), which the drive to that axle needs: with both, the actuator slides 0.61 LDU and the boom 4.0 LDU a radian of the motor. With either alone it stays partly working. Nothing else in the set changes. The lever set first is a change to our function list; your sign-off of this item covers both the correction to the file and that list change.",
-      "confidence": "High. A universal joint's end always sits on its axle; the axle's tip ends where the end's hole starts. Step 156 shows the end going onto the axle.",
-      "links": [
-        {
-          "label": "Booklet, page 82 (the actuator and its joint)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=82"
-        },
-        {
-          "label": "Booklet, page 83 (step 156)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=83"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F8258-1+Crane+Truck.mpd&show=2103,2102,244,2096"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F8258-1+Crane+Truck.mpd&option=proposed&show=2103,2102,244,2096"
-        }
-      ],
-      "reply": "Sign 8258 joint"
-    },
-    {
-      "id": "42077-half-shaft",
-      "kind": "Sign-off",
-      "title": "42077 Rally Car: a rear half shaft's inner ball",
-      "since": "2026-11-16",
-      "what": "A correction to the published file, for the V6 engine (function 2: pushing the car runs the engine). Each rear wheel is driven from the differential by a half shaft with a ball joint at each end. Both half shafts slope down to the wheels. On one side the file draws the inner ball level while its axle slopes, so the axle misses the ball's hole and that half shaft isn't joined to the differential. The correction tilts that one ball to the same slope as the rest of its half shaft, in its socket. Nothing else moves.",
-      "effect": "Function 2 goes from partly working to working: the differential and the engine turn as the car rolls. The set's other functions are as before.",
-      "confidence": "High. The ball is the same part as on the other side, which the file draws sloped; step 19 builds each half shaft straight.",
-      "links": [
-        {
-          "label": "Booklet, page 11 (steps 18 and 19)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6261603.pdf#page=11"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42077-1+Rally+Car.mpd&show=78,59"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42077-1+Rally+Car.mpd&option=proposed&show=78,59"
-        }
-      ],
-      "reply": "Sign 42077"
-    },
-    {
-      "id": "42078-crane-axle",
-      "kind": "Sign-off",
-      "title": "42078 Mack Anthem: the rear crane's actuator axle",
-      "since": "2026-11-16",
-      "what": "A correction to the published file, for the cranes' legs (function 9: one gear at the trailer's rear works both cranes' big actuators). The drive runs from the rear crane along the trailer to the front crane. The two cranes are mirror images, but both use one copy of the actuator's sub-assembly, not mirrored. In the front crane its long axle sits right, held at both ends. In the rear crane the same axle sits 40 LDU too far back, so it misses the connector that passes the drive on to the front crane. The correction moves that axle 40 LDU along itself, in the rear crane only. Nothing else moves, and the front crane is as before. Kinebrick's corrections can now change one use of a sub-assembly that a file places more than once.",
-      "effect": "The front crane's actuator is then driven, as the rear one is (each slides 1.6 LDU a turn of the gear, in radians). Function 9 still stays partly working, for another reason: the legs' rack housings don't move as the actuators push. The set's other functions are as before.",
-      "confidence": "High. The front crane, built the same way, shows where the axle goes, and steps 142 and 143 put a connector on each end of it.",
-      "links": [
-        {
-          "label": "Booklet, page 336 (steps 142 and 143)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=336"
-        },
-        {
-          "label": "Booklet, page 342 (step 155)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=342"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42078-1+Mack+Anthem.mpd&show=1968,2108,1986,2196"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42078-1+Mack+Anthem.mpd&option=proposed&show=1968,2108,1986,2196"
-        }
-      ],
-      "reply": "Sign 42078"
-    },
-    {
-      "id": "42096-half-shafts",
-      "kind": "Sign-off",
-      "title": "42096 Porsche 911 RSR: the rear half shafts' outer ends",
-      "since": "2026-11-16",
-      "what": "A correction to the published file, for the flat six (function 1: pushing the car runs the engine). Each rear wheel is driven from the differential by a half shaft: two ball joints on a short axle. In the file each shaft's outer ball is drawn 20 LDU short of its wheel hub, with the axle half pulled out of it, so the wheels turn nothing. The correction slides each outer ball 20 LDU along its shaft into the hub, the axle fully in it, as step 11 builds it. Two parts move, one on each side.",
-      "effect": "Function 1 goes from partly working to working: the differential and the engine turn as the car rolls. The set's other functions are as before.",
-      "confidence": "High. With the axle fully in both balls, the shaft is exactly as long as the space from the differential to the hub, and points straight at the hub's socket.",
-      "links": [
-        {
-          "label": "Booklet, page 7 (step 11)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=7"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42096-1+Porsche+911+RSR.mpd&show=46,47,33,34"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42096-1+Porsche+911+RSR.mpd&option=proposed&show=46,47,33,34"
-        }
-      ],
-      "reply": "Sign 42096"
-    },
-    {
-      "id": "42112-drive-gear",
-      "kind": "Sign-off",
-      "title": "42112 Concrete Mixer Truck: the drive shaft's gear at the rear axles",
-      "since": "2026-11-16",
-      "what": "A correction to the published file, for the drum (function 5: rolling the truck turns the drum). The shaft along the chassis is turned by the rear axles through a tan gear at its end, which meshes the differential's ring. The file places that gear 20 LDU past the end of the shaft, so it sits on nothing and meshes nothing. The correction moves the gear 20 LDU onto the shaft's end, where it meshes the ring, as step 81 shows. Nothing else moves.",
-      "effect": "The drive then reaches the drum's shaft. Function 5 still doesn't fully work, for another reason: a part the list says stays still (p1039) turns with it. The set's other functions are as before.",
-      "confidence": "High. The gear that links the two differentials meshes the same ring from the other side, at the mirror place; the corrected gear fits the shaft's end exactly.",
-      "links": [
-        {
-          "label": "Booklet 1, page 56 (step 81)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=56"
-        },
-        {
-          "label": "Viewer, before",
-          "url": "http://localhost:5174/?file=omr%2F42112-1+Concrete+Mixer+Truck.mpd&show=326,15,255"
-        },
-        {
-          "label": "Viewer, after",
-          "url": "http://localhost:5174/?file=omr%2F42112-1+Concrete+Mixer+Truck.mpd&option=proposed&show=326,15,255"
-        }
-      ],
-      "reply": "Sign 42112"
-    },
-    {
-      "id": "42112-lever",
-      "kind": "Sign-off",
-      "title": "42112 Concrete Mixer Truck, function 4: which part is the lever",
-      "since": "2026-11-16",
-      "what": "A change to a function list. Function 4 is the white lever under the chassis that slides a driving ring between two clutch gears. Our list names a grey 3-long beam (p374) as the control, and that beam is pinned to the frame. The booklet builds the lever as a white angle connector (p384) on a yellow 3-long axle in the changeover catch (steps 38 to 43). The change makes that white connector the control.",
-      "effect": "Function 4 goes from not working to working, together with a mend that is ready on the worker's branch: the catch in this set is a newer mould (51149) that our catch code did not know. Both are merged on your word; the set and the 42113, which has the same catch, are checked with them.",
-      "confidence": "High. The booklet's steps show the white connector on the catch's axle, and the grey beam cannot move.",
-      "links": [
-        {
-          "label": "Booklet 1, page 28 (steps 38 to 40)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=28"
-        },
-        {
-          "label": "Booklet 1, page 29 (steps 41 to 43)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6356979.pdf#page=29"
-        },
-        {
-          "label": "Viewer: the white connector, the grey beam and the catch",
-          "url": "http://localhost:5174/?file=omr%2F42112-1+Concrete+Mixer+Truck.mpd&show=384,374,381"
-        }
-      ],
-      "reply": "Sign 42112 lever"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "A second worker, asked again at mid-week",
@@ -197,6 +20,34 @@
     }
   ],
   "done": [
+    {
+      "date": "2026-11-17",
+      "what": "8840 Rally Shock n' Roll Racer: the engine's rods and pistons (\"Sign all seven\"). Function 2 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "8258 Crane Truck: the joint under the lower boom's actuator, with the lever set first (\"Sign all seven\"). Function 3 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42077 Rally Car: a rear half shaft's inner ball (\"Sign all seven\"). Function 2 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42096 Porsche 911 RSR: the rear half shafts into their hubs (\"Sign all seven\"). Function 1 now works."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42078 Mack Anthem: the rear crane's actuator axle (\"Sign all seven\"). No score change yet; the legs' rack housings are the next fault."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42112 Concrete Mixer Truck: the drive shaft's gear moved onto its shaft (\"Sign all seven\"). Function 6 now works; function 5 still waits on another fault."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "42112 Concrete Mixer Truck, function 4: the white connector is the lever (\"Sign all seven\"). Merged with the mend for the newer catch; function 4 now works."
+    },
     {
       "date": "2026-11-16",
       "what": "9397 Logging Truck and 42022 Hot Rod: the piston is a part that moves and the cylinder stays (\"Sign piston lists\"). The 42022's function 2 and the 9397's function 8 now work."

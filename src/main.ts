@@ -527,13 +527,13 @@ async function start() {
     };
     pinWorker.postMessage({ model: { text: modelText, primitives: [...primitives], pieces: packed?.pieces ?? {}, table, roles } });
   }
-  const pinsToFree = (part: number) =>
+  const pinsToFree = (part: number, search = true) =>
     new Promise<number[]>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve([]);
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
-      pinWorker.postMessage({ ask: asked, part });
+      pinWorker.postMessage({ ask: asked, part, freed: [...freed], search });
     });
   // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
   // does (see readAsBuilt), so everything stays where it now is.
@@ -611,7 +611,7 @@ async function start() {
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
-    catches = findCatches(parts, sliders);
+    catches = findCatches(parts, sliders, mech.roles);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     // Where each chain's or track's links go as it moves round (see paths.ts).
@@ -1520,6 +1520,9 @@ start()
     if (params.has('thumb')) (window as unknown as { kinebrickThumbnail: Promise<string> }).kinebrickThumbnail = thumbnail(renderer.domElement, camera, ldrawSpace);
   })
   .catch((err) => {
-    document.getElementById('summary')!.textContent = 'Error: ' + err.message;
+    // With a way to try again: a fetch may fail only for a moment (see libraryReader).
+    const summary = document.getElementById('summary')!;
+    summary.textContent = 'Error: ' + err.message + ' ';
+    summary.append(Object.assign(document.createElement('button'), { textContent: 'Try again', onclick: () => window.location.reload() }));
     console.error(err);
   });
