@@ -36,6 +36,30 @@
         }
       ],
       "reply": "Sign 8840"
+    },
+    {
+      "id": "42077-half-shaft",
+      "kind": "Sign-off",
+      "title": "42077 Rally Car: a rear half shaft's inner ball",
+      "since": "2026-11-16",
+      "what": "A correction to the published file, for the V6 engine (function 2: pushing the car runs the engine). Each rear wheel is driven from the differential by a half shaft with a ball joint at each end. Both half shafts slope down to the wheels. On one side the file draws the inner ball level while its axle slopes, so the axle misses the ball's hole and that half shaft isn't joined to the differential. The correction tilts that one ball to the same slope as the rest of its half shaft, in its socket. Nothing else moves.",
+      "effect": "Function 2 goes from partly working to working: the differential and the engine turn as the car rolls. The set's other functions are as before.",
+      "confidence": "High. The ball is the same part as on the other side, which the file draws sloped; step 19 builds each half shaft straight.",
+      "links": [
+        {
+          "label": "Booklet, page 11 (steps 18 and 19)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6261603.pdf#page=11"
+        },
+        {
+          "label": "Viewer, before",
+          "url": "http://localhost:5174/?file=omr%2F42077-1+Rally+Car.mpd&show=78,59"
+        },
+        {
+          "label": "Viewer, after",
+          "url": "http://localhost:5174/?file=omr%2F42077-1+Rally+Car.mpd&option=proposed&show=78,59"
+        }
+      ],
+      "reply": "Sign 42077"
     }
   ],
   "coming": [
