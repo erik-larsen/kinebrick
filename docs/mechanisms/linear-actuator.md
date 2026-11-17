@@ -4,7 +4,7 @@ A screw drives a piston out and in. (Moving and lifting.)
 
 First appears in 2009, in [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) and [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1): Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.
 
-Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 15 works, 34 partly, 1 no.
+Used in 29 of the 186 surveyed sets, by 50 functions. Kinebrick: 16 works, 33 partly, 1 no.
 
 ## By decade
 
@@ -112,7 +112,7 @@ Each detail by the set it first appears in.
 
 **2016, [42054 CLAAS XERION 5000 TRAC VC](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42054-1)**
 
-- *boom:* Lever B, the left of the two red levers at the back of the crane's base, pushed up or down, raises or lowers the crane's boom: it slides a driving ring between two clutch gears turning opposite ways, and a shaft up through the crane's turntable, with a universal joint, turns a linear actuator that pushes the boom. (partly)
+- *boom:* Lever B, the left of the two red levers at the back of the crane's base, pushed up or down, raises or lowers the crane's boom: it slides a driving ring between two clutch gears turning opposite ways, and a shaft up through the crane's turntable, with a universal joint, turns a linear actuator that pushes the boom. (works)
 - *crane lift:* The whole crane rises and falls on the back of the tractor: the 12 tooth gears at both sides of the back, used as knobs, turn a cross shaft that lifts it. (works)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**

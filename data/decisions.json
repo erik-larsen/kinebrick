@@ -5,8 +5,8 @@
       "moved": "2026-11-16"
     },
     "preview": {
-      "works": 739,
-      "partly": 226,
+      "works": 742,
+      "partly": 223,
       "no": 82,
       "functions": 1226
     },
@@ -98,30 +98,6 @@
       "reply": "Sign 42114 list"
     },
     {
-      "id": "42054-lists",
-      "kind": "Sign-off",
-      "title": "42054 CLAAS Xerion 5000, functions 3, 4 and 5: the motor is the control, with the lever set first",
-      "since": "2026-11-17",
-      "what": "A change to three function lists. Lever A turns the cab, lever B raises the crane’s boom, lever C slews the crane (booklet pages 332 and 333). Each list names its lever as the control. But a lever only selects: it slides a driving ring. The motor does the driving, and each function’s own note says “needs the motor running”. So with the lever alone nothing but the ring moves. The change names the motor (p543) as the control of all three, with the function’s lever set first (turned half a radian), and takes the ring out of the parts that must move while the motor runs.",
-      "effect": "Functions 3, 4 and 5 go from partly working to working, so the set gains three. The worker checked this on its branch with the whole set; preview keeps the old lists and results until you sign.",
-      "confidence": "High that a lever only selects: the booklet shows it and the notes say it. In the viewer, with the collision pass ready: Claude set lever A and ran the motor, and the cab turned; set lever C and ran the motor, and the crane slewed. The worker set lever B and ran the motor, and the boom rose, slowly (0.8 LDU in 114 motor steps). One thing Claude saw that is not right yet and is being traced: after lever A was put back to its middle, its ring stayed engaged, so the cab went on turning.",
-      "links": [
-        {
-          "label": "42054 in the viewer: lever A, lever C and the motor, ready to run",
-          "url": "http://localhost:5174/?file=omr/42054-1+CLAAS+XERION+5000+TRAC+VC.mpd&show=825,1714,1715,543&autospin=543,paused"
-        },
-        {
-          "label": "Booklet page 332: functions A, B and C",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6202123.pdf#page=332"
-        },
-        {
-          "label": "Booklet page 333",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6202123.pdf#page=333"
-        }
-      ],
-      "reply": "Sign 42054 lists"
-    },
-    {
       "id": "42050-bevel",
       "kind": "Sign-off",
       "title": "42050 Drag Racer, function 4 (the wheelie): the actuator’s input gear drawn off its axis",
@@ -153,7 +129,7 @@
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 739 working functions and main 701, but Claude does not offer main yet. One gap between what the check counts and what the viewer shows is still open: of eight functions that work by freeing a pin, the solver owner’s drags by hand showed two in full and one in part; it has built two more changes to the drag and runs a full check of them; any of the eight that still does not show after that is taken back out of the count. (The motor gaps are mended on 17 November: a click on a motor now runs the motor’s output, and gear rings shift while a motor runs.) After that, a slow check of the 8110 on the commit offered."
+      "what": "preview has 742 working functions and main 701, but Claude does not offer main yet. One gap between what the check counts and what the viewer shows is still open: of eight functions that work by freeing a pin, the solver owner’s drags by hand showed two in full and one in part; it has built two more changes to the drag and runs a full check of them; any of the eight that still does not show after that is taken back out of the count. (The motor gaps are mended on 17 November: a click on a motor now runs the motor’s output, and gear rings shift while a motor runs.) After that, a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, asked again at mid-week",
@@ -308,6 +284,10 @@
     {
       "date": "2026-11-17",
       "what": "You answered the request in the solver owner’s session and showed the browser pane, so it could try its drags by hand. It is working again."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You signed the 42054’s lists (“Sign 42054 lists”): functions 3, 4 and 5 name the motor as their control with the lever set first. All three work now; the set has 12 of 14 working."
     }
   ]
 }
