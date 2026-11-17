@@ -84,9 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
-    "seconds": 5,
+    "seconds": 4,
     "counts": {
       "works": 3,
       "partly": 1,
@@ -238,7 +238,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 42032 - 33299b against p120 32278",
-        "seconds": 1.9
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -371,7 +371,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.6
       }
     ]
   }

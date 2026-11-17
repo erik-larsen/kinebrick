@@ -224,9 +224,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
-    "seconds": 126,
+    "seconds": 171,
     "counts": {
       "works": 8,
       "no": 2,
@@ -454,7 +454,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 32.6
+        "seconds": 43.3
       },
       {
         "result": "works",
@@ -678,7 +678,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 36.6
+        "seconds": 51.8
       },
       {
         "result": "no",
@@ -734,7 +734,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 6539",
-        "seconds": 2.5
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -800,7 +800,7 @@
             ]
           ]
         ],
-        "seconds": 7.9
+        "seconds": 11.8
       },
       {
         "result": "works",
@@ -859,7 +859,7 @@
             ]
           ]
         ],
-        "seconds": 8.1
+        "seconds": 10.2
       },
       {
         "result": "works",
@@ -922,7 +922,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -1002,7 +1002,7 @@
           [],
           []
         ],
-        "seconds": 7
+        "seconds": 9.5
       },
       {
         "result": "partly",
@@ -1088,7 +1088,7 @@
           1
         ],
         "cause": "stopped-early",
-        "seconds": 11.4
+        "seconds": 16.7
       },
       {
         "result": "skipped",
@@ -1193,7 +1193,7 @@
           [],
           []
         ],
-        "seconds": 7.9
+        "seconds": 9.8
       },
       {
         "result": "works",
@@ -1253,7 +1253,7 @@
             ]
           ]
         ],
-        "seconds": 7.7
+        "seconds": 8.3
       }
     ]
   }

@@ -98,9 +98,9 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "works": 2,
       "partly": 1,
@@ -168,7 +168,7 @@
             ]
           ]
         ],
-        "seconds": 2
+        "seconds": 1.8
       },
       {
         "result": "partly",
@@ -228,7 +228,7 @@
         ],
         "cause": "not-driven",
         "detail": "p297 2825 against p281 3709b",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",

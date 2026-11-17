@@ -189,7 +189,7 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
     "seconds": 45,
     "counts": {
@@ -317,7 +317,7 @@
         ],
         "cause": "stay-chosen",
         "detail": "p596 3702 against p580 3895",
-        "seconds": 3.1
+        "seconds": 3
       },
       {
         "result": "works",
@@ -367,7 +367,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -417,7 +417,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -483,7 +483,7 @@
           [],
           []
         ],
-        "seconds": 3.2
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -580,7 +580,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -678,7 +678,7 @@
         "pushed": [
           true
         ],
-        "seconds": 2.6
+        "seconds": 2.5
       },
       {
         "result": "skipped",
@@ -837,7 +837,7 @@
           [],
           []
         ],
-        "seconds": 7.3
+        "seconds": 6.9
       }
     ]
   }

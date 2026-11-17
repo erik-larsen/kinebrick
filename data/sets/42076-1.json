@@ -158,14 +158,14 @@
     ]
   },
   "generated": {
-    "commit": "a3fd19c1",
+    "commit": "33f60781",
     "date": "2026-11-16",
-    "seconds": 39,
+    "seconds": 34,
     "counts": {
-      "works": 3,
-      "partly": 3,
+      "works": 4,
       "not back": 1,
       "torn": 1,
+      "partly": 2,
       "no": 3
     },
     "loose": [
@@ -419,10 +419,10 @@
             "p647 15790"
           ]
         ],
-        "seconds": 6.4
+        "seconds": 5.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             0.7,
@@ -483,15 +483,11 @@
         ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "end of travel",
+            "end of travel"
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "stopped-early",
-        "seconds": 1.7
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -602,7 +598,7 @@
         ],
         "cause": "not-driven",
         "detail": "p544 64782",
-        "seconds": 6.1
+        "seconds": 5.6
       },
       {
         "result": "no",
@@ -667,7 +663,7 @@
         ],
         "cause": "loose-part",
         "detail": "p700 32270",
-        "seconds": 1
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -765,7 +761,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -850,7 +846,7 @@
         ],
         "cause": "not-driven",
         "detail": "p883 4254",
-        "seconds": 3.9
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -968,7 +964,7 @@
           [],
           []
         ],
-        "seconds": 12.2
+        "seconds": 10.8
       },
       {
         "result": "works",
@@ -1034,7 +1030,7 @@
           [],
           []
         ],
-        "seconds": 5.9
+        "seconds": 5.4
       }
     ]
   }
