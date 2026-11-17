@@ -133,7 +133,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 21 works, 8 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
 | [Worm drive](worm-drive.md) | 54 | 1986 |  | 4 | 4 | 13 | 30 | 3 | 51 works, 31 partly, 2 skipped, 1 not checked |
-| [Slip clutch](slip-clutch.md) | 11 | 1989 |  | 1 |  | 1 | 8 | 1 | 3 works, 8 partly, 4 skipped |
+| [Slip clutch](slip-clutch.md) | 11 | 1989 |  | 1 |  | 1 | 8 | 1 | 4 works, 7 partly, 4 skipped |
 | [Swinging idler clutch](swinging-idler-clutch.md) | 1 | 1998 |  |  | 1 |  |  |  | 1 skipped |
 | [Power take-off](power-take-off.md) | 11 | 1977 | 2 | 2 | 1 | 3 | 1 | 2 | 11 works, 3 partly |
 
@@ -157,7 +157,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
 | [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 21 works, 8 partly |
-| [Turntable](turntable.md) | 36 | 1978 | 1 | 3 | 4 | 5 | 20 | 3 | 18 works, 16 partly, 5 no, 1 not checked |
+| [Turntable](turntable.md) | 36 | 1978 | 1 | 3 | 4 | 5 | 20 | 3 | 19 works, 15 partly, 5 no, 1 not checked |
 | [Three-point hitch](three-point-hitch.md) | 7 | 1977 | 2 | 2 |  | 1 | 2 |  | 5 works, 2 partly, 1 not checked |
 | [Telescopic mast](telescopic-mast.md) | 2 | 2005 |  |  |  | 1 | 1 |  | 2 partly |
 | [Hook lift](hook-lift.md) | 1 | 2018 |  |  |  |  | 1 |  | 1 works |
@@ -181,7 +181,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 35 works, 47 partly, 2 no, 5 not checked |
+| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 36 works, 46 partly, 2 no, 5 not checked |
 | [Remote control](remote-control.md) | 11 | 2007 |  |  |  | 1 | 6 | 4 | 9 works, 10 partly, 2 not checked |
 | [Pneumatic pump](pneumatic-pump.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 3 works, 3 partly, 7 skipped |
 | [Pull-back motor](pull-back-motor.md) | 11 | 1998 |  |  | 1 |  | 9 | 1 | 11 works, 11 skipped |

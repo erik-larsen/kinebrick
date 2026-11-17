@@ -149,10 +149,10 @@
     ]
   },
   "generated": {
-    "commit": "6850ca85",
+    "commit": "088d5768",
     "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 202,
+    "seconds": 143,
     "counts": {
       "partly": 2,
       "works": 4,
@@ -231,11 +231,11 @@
           {
             "p468 6573": [
               1,
-              4.74e-14
+              9.47e-14
             ],
             "p1309 65414c01": [
               0,
-              6.17e-46
+              6.66e-46
             ],
             "p1032 65414c01": [
               0,
@@ -253,11 +253,11 @@
           {
             "p468 6573": [
               1,
-              4.74e-14
+              9.47e-14
             ],
             "p1309 65414c01": [
               0,
-              6.17e-46
+              6.66e-46
             ],
             "p1032 65414c01": [
               0,
@@ -339,7 +339,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1309 65414c01",
-        "seconds": 53.9
+        "seconds": 37
       },
       {
         "result": "works",
@@ -381,7 +381,7 @@
             ]
           ]
         ],
-        "seconds": 26
+        "seconds": 18.7
       },
       {
         "result": "works",
@@ -469,7 +469,7 @@
             "p2934 42129 - 69912 against p1032 65414c01"
           ]
         ],
-        "seconds": 40.4
+        "seconds": 29
       },
       {
         "result": "partly",
@@ -496,8 +496,8 @@
               0
             ],
             "p513 18947 against p468 6573": [
-              0,
-              1.93e-13
+              2.81e-8,
+              2.57e-13
             ],
             "p1030 18947 against p1032 65414c01": [
               0,
@@ -537,7 +537,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1030 18947 against p1032 65414c01",
-        "seconds": 24.6
+        "seconds": 18.9
       },
       {
         "result": "works",
@@ -587,7 +587,7 @@
             ]
           ]
         ],
-        "seconds": 25.7
+        "seconds": 16.2
       },
       {
         "result": "no",
@@ -708,7 +708,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 4.8
+        "seconds": 3.5
       },
       {
         "result": "skipped",
@@ -726,7 +726,7 @@
           {
             "p1402 87761": [
               0,
-              9.69e-84
+              1.11e-83
             ]
           }
         ],
@@ -754,7 +754,7 @@
             ]
           ]
         ],
-        "seconds": 25.1
+        "seconds": 18.2
       }
     ]
   }
