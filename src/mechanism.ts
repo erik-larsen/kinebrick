@@ -20,7 +20,7 @@ import { findJoints, withoutSlidesOnCouplers } from './inference/joints.ts';
 import { lineUpAxles, lineUpBalls } from './inference/lineUp.ts';
 import { findLoops } from './inference/loops.ts';
 import { looseFits, onAxleTips } from './inference/looseFits.ts';
-import { fixPins } from './inference/pins.ts';
+import { fixPins, slipClutches } from './inference/pins.ts';
 import { guidedPistons, shockAbsorbers, squareRodsInBores } from './inference/pistons.ts';
 import { hungOnSliders } from './inference/guides.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
@@ -489,6 +489,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const shockNames = new Set(Object.entries(table.shocks ?? {}).flatMap(([cylinder, list]) => [cylinder, ...list.map((s) => s.rod)]));
   fixPins(connections, roles, frictionRigid, freed, new Set(parts.flatMap((p, i) => (shockNames.has(p.name) ? [i] : []))));
   stiffMagnetHinges(connections, roles, frictionRigid, freed);
+  slipClutches(connections, roles, frictionRigid, freed);
   // Parts held by more than their connection points say.
   connections.push(...platesOnEdge(cyls));
   connections.push(...onFourStuds(cyls));

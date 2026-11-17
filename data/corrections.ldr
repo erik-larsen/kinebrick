@@ -747,3 +747,12 @@
 0 FILE 47508.dat
 0 // Excavator Bucket 8 x 4 with Click Hinge 2-Finger: its fingers are the click hinge primitive clh11, which the shadow library gives nothing. The slot between its two fingers, along x through its origin, takes a 1-finger click hinge (47973's, an H section of radius 4 and length 8), so it is given here as that finger's female, 8 long.
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=H 4 8] [center=true] [ori=0 -1 0 1 0 0 0 0 1]
+
+0 // A slip clutch: the outer half (46834) and the inner half (46835) of a Technic clutch with axle connector, seated together, share their origin and axis (as in all 8 pairs in the sets), the outer's axle hole running from z -7 to -30, the inner's from 6 to 30, their faces meeting between. Each half had only its own axle hole, so each was a body of its own and the clutch passed no turning (the 42129's differential locks). Here the outer half's face turns in the inner's, a round fit; both halves have the role "slip clutch" (data/roles.json), so the fit is held, as a friction pin is, and slips (turns, stiffly) only where it must for the model to move (see slipClutches in src/inference/pins.ts)
+0 FILE 46834.dat
+0 // Technic Clutch with Axle Connector Outer Side: a round peg at its face, which turns in the inner half's
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 6 6] [center=true] [pos=0 0 0] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE 46835.dat
+0 // Technic Clutch with Axle Connector Inner Side: the socket at its face for the outer half's peg
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=R 6 6] [center=true] [pos=0 0 0] [ori=1 0 0 0 0 1 0 -1 0]
