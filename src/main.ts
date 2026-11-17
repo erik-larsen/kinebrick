@@ -647,13 +647,17 @@ async function start() {
     // groove, and the ring slides only when the drag ends (see meshAfresh), so in between the
     // fork presses into it. Tested, the pair stopped the 42112's selector lever 2 degrees out.
     for (const c of catches) for (const ring of c.ring.riders ?? [c.ring.part]) connected.add(c.part < ring ? `${c.part},${ring}` : `${ring},${c.part}`);
-    if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
-    else {
+    if (collisions) {
+      collisions.ignored = new Set(mech.loose);
+      collisions.watch(mech.bodyOf, connected, partMatrices());
+    } else {
       // The pairs of parts that already touch as built are found beside the page (see
       // collisionWorker.ts), so the model can be turned at once; a drag goes without the collision
       // stop until they're known.
       const placedAt = partMatrices();
       collisions = new Collisions(shapes, mech.bodyOf, connected, placedAt, true);
+      // A loose part never stops a motion (see Collisions.ignored).
+      collisions.ignored = new Set(mech.loose);
       const tested = collisions.candidates(mech.bodyOf, connected, placedAt);
       const n = shapes.length;
       const done = (near: [number, number][]) => {
