@@ -297,6 +297,11 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 13 5] [pos=0 0 9] [ori=1 0 0 0 0 -1 0 1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 13 8] [pos=0 0 -20] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 35186.dat
+0 // Technic Transmission Driving Ring Extension with Eight Clutch Teeth: the 3L driving ring system's extension (2019 on), as the 32187 is the 2L system's. A sleeve that spins on its axle; its wide end takes a 3L driving ring's clutch teeth, 4 LDU deep, as a clutch gear's face does; its eight clutch teeth run along it and stand out 8 LDU at its narrow end, which models seat in the next clutch gear's face, so the gear turns with it. Measured from the LDraw shapes and the 42114's gearbox (the ring p122 shifted half a stud reaches it; its narrow end sits 4 LDU into the 18946 p52's face).
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 -18] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 30663.dat
 0 // Car Steering Wheel 2L (and 16091, built on it): its centre is the round hole the shadow library gives, a stud or a half pin turning in it, as the wheel spins on its half pin in the 42101; the stud tube primitive (stud4od) under it is not an anti-stud that holds
 0 !LDCAD SNAP_CLEAR [id=aStud]

@@ -28,6 +28,22 @@
         }
       ],
       "reply": "Answer in the session itself"
+    },
+    {
+      "id": "42043-fn11-list",
+      "kind": "Sign-off",
+      "title": "42043 Mercedes-Benz Arocs 3245, function 11: the wheels move and the differential's case stays",
+      "since": "2026-11-17",
+      "what": "A change to a function list. Function 11 (the rear axles’ differentials) holds the drive shaft still and turns one wheel of the third axle; its note says the other wheel then turns the opposite way. But the list names the differential’s case (p2036) as the part that moves. With the drive shaft held the case cannot turn: the shaft holds it. The change names the two wheels (p2219, p2227) as the parts that move and the case as the part that stays.",
+      "effect": "Function 11 goes from partly working to working. The worker checked this on its branch with the whole set; preview keeps the old list and the old result until you sign.",
+      "confidence": "High: it is what a differential does with its drive held, and what the function’s own note says. The worker tried it in the viewer (the model lifted, the drive shaft’s universal joint p2029 frozen, the collision pass ready): a turn of one wheel by half a radian turns the other by half a radian the opposite way, and the case stays still.",
+      "links": [
+        {
+          "label": "42043 in the viewer: the two wheels and the case",
+          "url": "http://localhost:5174/?file=omr/42043-1+Mercedes-Benz+Arocs+3245.mpd&lifted=1&show=2219,2227,2036"
+        }
+      ],
+      "reply": "Sign 42043 list"
     }
   ],
   "coming": [
