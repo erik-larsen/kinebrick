@@ -37,7 +37,7 @@ import {
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
-import { Mechanism } from './mechanism.ts';
+import { Mechanism, motorRunPart } from './mechanism.ts';
 import { leastSquares, pointDirections as directionsOf, pushStep, wayOnJoint } from './push.ts';
 import { knobTurn } from './turn.ts';
 
@@ -111,6 +111,7 @@ export interface InteractionSetup {
   onMotorChanged: () => void; // called after a part starts or stops being kept turning
   onTurned: (part: number, angle: number) => void; // called after a drag turns a part like a knob, by `angle` radians about its joint
   onDragEnded: () => void; // called after any drag
+  shiftDue?: () => boolean; // whether a changeover catch now holds its driving ring at another click-in place than the one it's in (then onDragEnded shifts it)
   onMotionStarted: () => void; // called as a drag that moves the mechanism, or a part kept turning or moving, starts
   allowScrub: (needed: number) => number | null; // lets the tyres scrub `needed` (a fraction of how far they roll) and a little over, if that's within the Tyre scrub option's limit: the new allowance in percent, or null if it isn't
   scrubLimit: number; // the most the Tyre scrub option allows, in percent
@@ -599,6 +600,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // Ctrl-click: starts the part turning; on a part already turning, turns it the other way;
   // on one already turned round, stops it.
   function cycleMotor(part: number, clientX: number, clientY: number) {
+    part = runBy(part);
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
@@ -631,7 +633,11 @@ export function setUpInteraction(s: InteractionSetup) {
     return s.kin.lockedBy(body) === 'actuator' ? 'a linear actuator can only be worked from its input' : 'a worm gear can only be turned from the worm';
   }
 
+  // The part a spin of `part` keeps turning: an electric motor's output (see motorRunPart).
+  const runBy = (part: number) => motorRunPart(s.mech, part);
+
   function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
+    part = runBy(part);
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
     if (s.slideOf(part) || s.stickOf(part)) return "A part that clicks into set positions can't be kept moving: drag it";
@@ -822,6 +828,10 @@ export function setUpInteraction(s: InteractionSetup) {
         }
       }
     }
+    // A catch the motor has turned past its shift angle shifts its ring now, as a drag's end
+    // would, and the motor goes on (decision 152): its holds are worked out afresh on the next
+    // step, the mechanism having been worked out afresh with the ring slid.
+    if (Math.abs(turned) > 1e-9 && s.shiftDue?.()) s.onDragEnded();
     s.onMoved();
   }
 
