@@ -5,15 +5,84 @@
       "moved": "2026-11-16"
     },
     "preview": {
-      "works": 736,
+      "works": 738,
       "partly": 227,
-      "no": 84,
+      "no": 82,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "42043-fn11-list",
+      "kind": "Sign-off",
+      "title": "42043 Mercedes-Benz Arocs 3245, function 11: the wheels move and the differential's case stays",
+      "since": "2026-11-17",
+      "what": "A change to a function list. Function 11 (the rear axles’ differentials) holds the drive shaft still and turns one wheel of the third axle; its note says the other wheel then turns the opposite way. But the list names the differential’s case (p2036) as the part that moves. With the drive shaft held the case cannot turn: the shaft holds it. The change names the two wheels (p2219, p2227) as the parts that move and the case as the part that stays.",
+      "effect": "Function 11 goes from partly working to working. The worker checked this on its branch with the whole set; preview keeps the old list and the old result until you sign.",
+      "confidence": "High: it is what a differential does with its drive held, and what the function’s own note says. The worker tried it in the viewer (the model lifted, the drive shaft’s universal joint p2029 frozen, the collision pass ready): a turn of one wheel by half a radian turns the other by half a radian the opposite way, and the case stays still.",
+      "links": [
+        {
+          "label": "42043 in the viewer: the two wheels and the case",
+          "url": "http://localhost:5174/?file=omr/42043-1+Mercedes-Benz+Arocs+3245.mpd&lifted=1&show=2219,2227,2036"
+        }
+      ],
+      "reply": "Sign 42043 list"
+    },
+    {
+      "id": "9397-b-model",
+      "kind": "For your look",
+      "title": "9397 Logging Truck: the published file is the set's second model, the snowplough",
+      "since": "2026-11-17",
+      "what": "The OMR has one file for this set, and it is the alternate model (the OMR page names it “Snowplow”): a truck with a yellow blade in front, no crane and no outrigger legs. Our function list was written from the booklets, which build the logging truck with its crane. So functions 2 to 6 (outriggers, crane slewing, boom, jib, log grab) name parts the file does not have. Functions 1, 7, 8 and 9 (motor and gearbox, steering, engine, wheels) hold for both models. Claude’s decision: the list is rewritten for the snowplough, because the goal is the models the OMR publishes. The worker finds LEGO’s instructions for the second model and drafts the list; the new list then comes to you to sign. Tell Claude if you want something else, for example to leave the crane’s functions as “not in the file”.",
+      "effect": "Today the set counts 5 functions as working, 3 as partly working and 1 as not checked. Function 5 (the jib) counts as working although the file has no jib, so that count is not to be trusted until the list is rewritten. No correction to the file can mend this.",
+      "confidence": "High that the file is the second model: the OMR’s own page for the set lists only “Snowplow”, the file’s one model is named 9397B, and the booklet’s outrigger legs (book 3, page 7) are not in it.",
+      "links": [
+        {
+          "label": "9397 in the viewer: the blade’s actuator and L-beams",
+          "url": "http://localhost:5174/?file=omr/9397-1+Logging+Truck.mpd&show=463,486,496"
+        },
+        {
+          "label": "The OMR’s page for the set",
+          "url": "https://library.ldraw.org/omr/sets/863"
+        },
+        {
+          "label": "Booklet 3, page 7: the outrigger legs",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6010324.pdf#page=7"
+        },
+        {
+          "label": "Booklet 3, page 58: the functions photo",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6010324.pdf#page=58"
+        }
+      ],
+      "reply": "No answer needed unless you want something else"
+    },
+    {
+      "id": "9397-download",
+      "kind": "Your yes to a download",
+      "title": "9397: download LEGO’s two instruction files for the snowplough",
+      "since": "2026-11-17",
+      "what": "The worker found LEGO’s instructions for the 9397’s second model on LEGO’s own building-instructions page for the set. They are two PDF files on lego.com: “9397_X_9397 Container Truck with Snowplow #1.pdf” (19.3 MB) and “9397_X_9397 Container Truck with Snowplow #2.pdf” (19.7 MB). A session may not download a file without your word, so the worker stopped there. With your yes, the worker adds both addresses to the set’s list of booklets and fetches them with the same script that fetched the other booklets, into omr/instructions/ (not committed to the repository).",
+      "effect": "With the files, the snowplough’s function list is written from LEGO’s own pages, with a page link for each function. Without them, the list is written from the parts alone and each function’s source says “inferred: from the parts”.",
+      "confidence": "The files exist: LEGO’s server answers for both with the sizes above. Claude has not opened them.",
+      "links": [
+        {
+          "label": "Snowplough instructions, file 1 (opens or saves the PDF)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf"
+        },
+        {
+          "label": "Snowplough instructions, file 2 (opens or saves the PDF)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf"
+        }
+      ],
+      "reply": "Download 9397 snowplough"
+    }
+  ],
   "coming": [
+    {
+      "title": "The next offer of main",
+      "what": "preview has 738 working functions and main 701, but Claude does not offer main yet. Gaps between what the check counts and what the viewer shows must be mended first: (1) a click on a motor pushes the motor’s body where the check turns the motor’s output (47 functions have a motor as their control, 19 of them count as working; the worker mends this); (2) gear rings do not shift while a motor runs, only when a drag ends (the same mend); (3) of eight functions that work by freeing a pin, the solver owner’s drags by hand showed two in full and one in part; it now builds two more changes to the drag, and any of the eight that still does not show after that is taken back out of the count. After those, a full check and a slow check of the 8110 on the commit offered."
+    },
     {
       "title": "A second worker, asked again at mid-week",
       "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
@@ -46,7 +115,7 @@
     },
     {
       "date": "2026-11-17",
-      "what": "42112 Concrete Mixer Truck, function 4: the white connector is the lever (\"Sign all seven\"). It comes in with the worker's branch for the newer catch, when its two sets are checked."
+      "what": "42112 Concrete Mixer Truck, function 4: the white connector is the lever (\"Sign all seven\"). Merged with the mend for the newer catch; function 4 now works."
     },
     {
       "date": "2026-11-16",
@@ -163,6 +232,10 @@
     {
       "date": "2026-11-14",
       "what": "You moved main to ca95bf02."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You answered the request in the solver owner’s session and showed the browser pane, so it could try its drags by hand. It is working again."
     }
   ]
 }

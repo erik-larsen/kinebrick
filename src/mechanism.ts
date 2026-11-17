@@ -467,8 +467,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // structure they were read as before they were given the role "axle", and the axles that
   // had it already don't. It is not principled: it is there only so that naming an axle does
   // not move a model's frame (the 42099's is a near tie, 132 structure parts against 127),
-  // and it goes when the frame rule is mended.
-  const frameRoles = roles.map((r, i) => (r === 'axle' && AXLES_COUNTED_AS_STRUCTURE.has(plain(parts[i].name).replace(/^.* - /, '')) ? 'structure' : r));
+  // and it goes when the frame rule is mended. A changeover catch counts as structure too, for
+  // the same reason: the 6641 was structure before it had a role, and the 8002 builds its shell
+  // of ten of them, so the role alone moved its frame.
+  const frameRoles = roles.map((r, i) => ((r === 'axle' && AXLES_COUNTED_AS_STRUCTURE.has(plain(parts[i].name).replace(/^.* - /, ''))) || r === 'changeover catch' ? 'structure' : r));
   // A part an erratum removed isn't there: no connection points, and never loose.
   const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path' && !parts[c.part].removed);
   // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle

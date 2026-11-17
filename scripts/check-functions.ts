@@ -328,7 +328,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.scrub = scrub;
     }
     sliders = findSliders(parts, mech, table, slides);
-    catches = findCatches(parts, sliders);
+    catches = findCatches(parts, sliders, mech.roles, catches);
     at = parts.map((p) => new Vector3().setFromMatrixPosition(p.matrix));
   };
   const asLoaded = { parts, mech, kin };
@@ -1185,6 +1185,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             const known = shapesOf.get(model);
             const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => known[i].name === p.name);
             const collisions = matches ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
+            if (collisions) collisions.ignored = new Set(mech.loose);
             let met = false;
             const allowed = () => {
               if (kin.atLimit() !== null) return false;

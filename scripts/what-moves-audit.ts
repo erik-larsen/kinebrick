@@ -191,7 +191,7 @@ function setFirst(loaded: ReturnType<typeof loadModel>, steps: { control: string
     if (!link) return { why: `its first step's part (${step.control}) can't move` };
     const went = kin.turnJoint(link.joint, step.by);
     if (Math.abs(went) < 0.9 * Math.abs(step.by)) return { why: `its first step (${step.control}) went ${went.toFixed(2)} of ${step.by}` };
-    const shifts = catchShifts(placedNow(), table, findCatches(parts, sliders));
+    const shifts = catchShifts(placedNow(), table, findCatches(parts, sliders, mech.roles));
     if (shifts.size) shiftTo(shifts);
     else ({ parts, mech, kin } = loaded.read(placedNow()));
   }
