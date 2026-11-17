@@ -124,22 +124,6 @@
         }
       ],
       "reply": "Sign 42050"
-    },
-    {
-      "id": "playwright",
-      "kind": "Your yes to a download",
-      "title": "A browser that runs without a window, so the sessions can try drags by themselves",
-      "since": "2026-11-17",
-      "what": "To try a drag as you would, a session moves the pointer in the browser pane. The page animates only while the pane is shown, so twice today the solver owner had to stop and wait for you to show it. A headless browser (Playwright, with its own copy of Chromium) runs from the shell with no window at all. Adding it means installing a development package and downloading that browser, about 150 to 300 MB, from Playwright’s servers; Claude has not checked the exact size. It is used only for tests on this Mac and is not part of the viewer you publish.",
-      "effect": "With it, the sessions try pointer drags without you, at any hour, and a drag test can become part of the tests that run before a merge. Without it, a session that needs a pointer drag waits for you to show the pane, or uses console calls, which miss what a real pointer does.",
-      "confidence": "High that it removes the waiting. Not checked: how well it draws the 3D view on this Mac without a screen.",
-      "links": [
-        {
-          "label": "Playwright’s own site",
-          "url": "https://playwright.dev/"
-        }
-      ],
-      "reply": "Install Playwright"
     }
   ],
   "coming": [
@@ -312,6 +296,10 @@
     {
       "date": "2026-11-17",
       "what": "You answered the solver owner’s session again and showed the pane; it dragged the eight pin-search functions by hand and reported."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “Install Playwright”. The headless browser is installed (600 MB on disk, more than the 150 to 300 MB Claude had guessed). A first test from the shell worked: the viewer draws, animates and answers a pointer drag with no window shown."
     }
   ]
 }
