@@ -18,7 +18,7 @@
           "pneumatic-pump: hand"
         ],
         "source": "book: page 218, function 2 (the pump pushed down)",
-        "control": "p1973 42053 - 19482-f1",
+        "control": "p1973 2943bc01",
         "skip": "pneumatic: air pressure and the pump's spring aren't modelled"
       },
       {
@@ -162,9 +162,10 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "8eafb1d8",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 36,
+    "seconds": 45,
     "counts": {
       "skipped": 4,
       "works": 4,
@@ -226,6 +227,8 @@
       "p1013 166",
       "p2003 42053 - 2947-v2",
       "p2004 2941",
+      "p2068 165",
+      "p2131 166",
       "p2460 77",
       "p2472 77",
       "p2473 77",
@@ -306,7 +309,7 @@
             ],
             "p285 42053 - 18938": [
               0,
-              1.32e-118
+              1.19e-118
             ],
             "p756 2730": [
               0,
@@ -345,7 +348,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 5.3
+        "seconds": 7.2
       },
       {
         "result": "works",
@@ -362,7 +365,7 @@
               4.74e-15
             ],
             "p66 87761": [
-              5.62e-8,
+              2.81e-8,
               15.9
             ],
             "p55 59426": [
@@ -383,7 +386,7 @@
             ],
             "p284 18939": [
               0,
-              2.63e-31
+              3.29e-32
             ]
           }
         ],
@@ -411,7 +414,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 5.1
       },
       {
         "result": "works",
@@ -461,7 +464,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 3.5
       },
       {
         "result": "no",
@@ -546,7 +549,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 4.5
+        "seconds": 5.4
       },
       {
         "result": "works",
@@ -668,7 +671,7 @@
           [],
           []
         ],
-        "seconds": 18.6
+        "seconds": 22.8
       }
     ]
   }
