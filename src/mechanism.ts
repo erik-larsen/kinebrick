@@ -424,6 +424,17 @@ function pivotsOfStuckSlides(mech: Mechanism, parts: PlacedPart[], table: Connec
   return { pins: [...pins].sort((a, b) => a - b), mech: [...candidates].every((p) => pins.has(p)) ? tried : null };
 }
 
+// The body a motor turns: its output's axle, through the motor's own connection to it, not the
+// first motor joint on its case's body, which is another motor's when two motors' cases sit on
+// one body (the 42114's L and XL motors). The case's body if the motor turns nothing.
+export function motorOutput(mech: Mechanism, motor: number): number {
+  const c = mech.connections.find((x) => x.motor && (x.male === motor || x.female === motor) && mech.bodyOf[x.male] !== mech.bodyOf[x.female]);
+  if (c) return mech.bodyOf[c.male === motor ? c.female : c.male];
+  const b = mech.bodyOf[motor];
+  const j = mech.joints.find((x) => x.motor && (x.bodyA === b || x.bodyB === b));
+  return j ? (j.bodyA === b ? j.bodyB : j.bodyA) : b;
+}
+
 // The OMR embeds parts that weren't in the LDraw library yet in the model's file, named
 // "<set> - <part>.dat" (42116 - 42924.dat). Most are in the library now: such a part is read as
 // the library's, if Kinebrick knows nothing of its own name.

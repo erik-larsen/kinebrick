@@ -6,7 +6,7 @@
 import type { Vector3 } from 'three';
 import { Kinematics } from '../kinematics.ts';
 import { combine, nullSpace } from '../linalg.ts';
-import type { Mechanism } from '../mechanism.ts';
+import { type Mechanism, motorOutput } from '../mechanism.ts';
 
 // Whether the check frees the friction pins of controls with no motion (on; off with
 // KINEBRICK_FREE_PINS=0, for measuring).
@@ -26,10 +26,7 @@ const TOGETHER = 1e-6;
 export function pinsToFree(allFree: Mechanism, part: number): number[] {
   const kin = new Kinematics(allFree);
   let body = allFree.bodyOf[part];
-  if (allFree.roles[part] === 'motor') {
-    const j = allFree.joints.find((x) => x.motor && (x.bodyA === body || x.bodyB === body));
-    if (j) body = j.bodyA === body ? j.bodyB : j.bodyA;
-  }
+  if (allFree.roles[part] === 'motor') body = motorOutput(allFree, part);
   const link = kin.parentLink(body);
   if (body === 0 || !link) return [];
   return pinsFor(allFree, kin, body, (m) => apart(m, body, link.parent));

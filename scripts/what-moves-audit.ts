@@ -22,7 +22,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { Kinematics } from '../src/kinematics.ts';
 import type { PlacedPart } from '../src/ldr.ts';
 import { catchShifts, findCatches, findSliders, nearestPosition, sliderMovedTo, sliderPosition } from '../src/shift.ts';
-import type { Mechanism } from '../src/mechanism.ts';
+import { type Mechanism, motorOutput } from '../src/mechanism.ts';
 import { loadModel } from './load-model.ts';
 
 const AUDIT = 'docs/audits/for-erik.md';
@@ -107,10 +107,7 @@ function judgeOn(fn: Fn, parts: { name: string }[], mech: Mechanism, kin: Kinema
   // Each control's motion; a part moves if any control moves it.
   const motions = controls.flatMap((p) => {
     let body = mech.bodyOf[p];
-    if (mech.roles[p] === 'motor') {
-      const j = mech.joints.find((x) => x.motor && (x.bodyA === body || x.bodyB === body));
-      if (j) body = j.bodyA === body ? j.bodyB : j.bodyA;
-    }
+    if (mech.roles[p] === 'motor') body = motorOutput(mech, p);
     const link = kin.parentLink(body);
     let motion: number[] | null = null;
     try {
