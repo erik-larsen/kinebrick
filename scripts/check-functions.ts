@@ -427,7 +427,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       });
       was = is;
       if (Math.abs(step) < Math.abs(piece) - 1e-9) {
-        halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
+        halt = limited ? 'limit' : kin.atDeadPoint(joint) ? 'dead point' : kin.jointMotion(joint, false) === null ? 'no motion' : 'stuck';
         break;
       }
       if (enough(turned)) break;
@@ -651,7 +651,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     // A control whose joint can't turn, with what the push holds held, could only be carried by
     // what it turns in (the whole 42055 Bucket Wheel Excavator rolling, pushed by its battery
     // switch), step after step until it ran into something: it goes nowhere.
-    if (!('back' in to) && kin.jointMotion(joint) === null) halt = 'no motion';
+    if (!('back' in to) && kin.jointMotion(joint, false) === null) halt = 'no motion';
     while (!halt && going()) {
       if (dir.length() < 0.5) {
         halt = 'no motion';
@@ -665,7 +665,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const angleWas = kin.jointAngles[joint];
       const how = pushStep(kin, body, grab, dir, step, () => kin.atLimit() === null);
       if (how !== 'moved') {
-        halt = how === 'blocked' ? 'limit' : kin.jointMotion(joint) === null ? 'no motion' : 'stuck';
+        halt = how === 'blocked' ? 'limit' : kin.jointMotion(joint, false) === null ? 'no motion' : 'stuck';
         break;
       }
       length += step;

@@ -2441,7 +2441,9 @@ export class Kinematics {
       // joints off where it had them going too (the 956 Auto Chassis's steering, taken a step
       // past its dead point on play, couldn't come back).
       const ownTurnLost = checked(this.mech.joints[joint]) && (this.jointAngles[joint] - before.jointAngles[joint]) * Math.sign(step) < Math.abs(step) / 2;
-      const fromPlay = this.options.loopPlay && (played || last?.played === true);
+      // The last step counts only where it ended where this one starts: a drag before this one,
+      // ended on play, says nothing of the loops here.
+      const fromPlay = this.options.loopPlay && (played || (last?.played === true && last.angles.every((x, k) => x === before.jointAngles[k])));
       if ((this.options.loopPlay ? !this.withinPlay() : gap > (played ? PLAY : DEAD_POINT_GAP)) || (strayed.length && !(fromPlay && !ownTurnLost))) {
         if (TRACE) trace({ event: 'refused', joint, turned, played, gap, strayed: strayed.length, ownTurnLost });
         this.restore(before);
@@ -2627,10 +2629,20 @@ export class Kinematics {
       if (TRACE) trace({ event: 'push stuck', body, byTiers: true, why: 'wild' });
       return 'stuck';
     }
+    // With loopPlay, an exact push step from where the loops are closed is judged as without play:
+    // closed again as tightly. Judged by the budgets, the 42032 Front Loader's levers, pushed,
+    // let an axle slide 130 LDU out of place. Only a step on play, or one from where play left
+    // the loops open, is judged by the budgets.
+    const openBefore = this.options.loopPlay && !played && this.loopsOpen();
     const gap = this.advance(motion, step, joint);
     if (this.options.loopPlay && played) this.closeFirmRows(joint);
     const strayed = this.mech.joints.flatMap((j, k) => (checked(j) && Math.abs(this.jointAngles[k] - before.jointAngles[k] - predicted[k]) > DEAD_POINT * largest ? [k] : []));
-    if ((this.options.loopPlay ? !this.withinPlay() : gap > DEAD_POINT_GAP) || (strayed.length && !played)) {
+    // A step on play must still move the point pushed at least half the step the way pushed, as a
+    // turn's must turn its joint (see turnJoint): closing the loops can undo it, and then nothing
+    // the hand pushed moved (the 42055 Bucket Wheel Excavator's battery switch, whose pushes on
+    // play left it where it was and moved the model round it 254 LDU).
+    const pushLost = played && grab.clone().applyMatrix4(this.poses[body]).sub(g).dot(dir) * Math.sign(step) < Math.abs(step) / 2;
+    if ((this.options.loopPlay && (played || openBefore) ? !this.withinPlay() : gap > DEAD_POINT_GAP) || (strayed.length && !played) || pushLost) {
       if (TRACE) trace({ event: 'push refused', body, gap, strayed: strayed.length });
       this.restore(before);
       // A step that turned a joint more than a drag's step does (MAX_TURN_STEP: a short lever
@@ -2820,6 +2832,14 @@ export class Kinematics {
     } finally {
       this.closingFirmOnly = false;
     }
+  }
+
+  // Whether any equation is further apart than DEAD_POINT_GAP where the bodies are now: the loops
+  // a step on play left open.
+  private loopsOpen(): boolean {
+    const gaps: number[] = [];
+    this.buildEquations(gaps, null, true);
+    return gaps.some((g) => Math.abs(g) > DEAD_POINT_GAP);
   }
 
   // With loopPlay: whether every loop is closed within its budget (see loopBudgets), and every
