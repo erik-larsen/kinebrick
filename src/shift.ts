@@ -148,7 +148,12 @@ export function findCatches(parts: PlacedPart[], sliders: Slider[], roles: strin
     }
     if (roles[i] !== 'changeover catch') return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
-    const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - CATCH_REACH) < 1);
+    // A catch found before keeps its ring, wherever the ring has slid since: measured afresh, a
+    // ring slid half a stud may no longer be CATCH_REACH from the catch to within 1 LDU (the
+    // 42054's lever A, its fork drawn 2 LDU off the ring's middle: slid one way the ring stood
+    // 61.2 LDU off, the catch was lost, and the ring never came back).
+    const kept = known.find((c) => c.part === i && !c.rotary);
+    const ring = (kept && sliders.find((s) => s.part === kept.ring.part)) ?? sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - CATCH_REACH) < 1);
     if (!ring) return;
     const before = known.find((c) => c.part === i && c.ring.part === ring.part && !c.rotary);
     const fork = before ? before.fork.clone() : new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
