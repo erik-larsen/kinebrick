@@ -101,7 +101,7 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
     "seconds": 2,
     "counts": {
@@ -383,7 +383,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",

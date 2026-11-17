@@ -36,19 +36,51 @@ export async function keptFile(name: string): Promise<string | null> {
 // Reads files from the LDraw library at `url`: a primitive (one of `primitives`, as models name
 // them) from its p/ folder, anything else from parts/. Gives null for a file the library hasn't
 // got. `onFetched` is told how many files it has read so far.
-export function libraryReader(url: string, primitives: Set<string>, onFetched: (count: number) => void): (name: string) => Promise<string | null> {
+//
+// A fetch that fails (a network slip, which the browser may report as a CORS error) or that the
+// server answers with an error of its own (5xx, or 429 for too many at once) is tried again after
+// each of `waits` (milliseconds); if it still fails, the read throws, naming the file. After that
+// `onFetched` is told nothing more: the packer reads a round of files all at once, and the reads
+// still under way would otherwise write their count over the error. `fetchFile` is the fetch to
+// use (a test gives its own).
+export function libraryReader(
+  url: string,
+  primitives: Set<string>,
+  onFetched: (count: number) => void,
+  fetchFile: (address: string) => Promise<Response> = (address) => fetch(address),
+  waits: number[] = [500, 1500],
+): (name: string) => Promise<string | null> {
   let count = 0;
-  const parts = 'caches' in window ? caches.open(PARTS_CACHE) : null;
+  let failed = false;
+  const parts = typeof window !== 'undefined' && 'caches' in window ? caches.open(PARTS_CACHE) : null;
+  const retried = (status: number) => status >= 500 || status === 429;
+  const fetchTrying = async (name: string, address: string): Promise<Response> => {
+    for (let attempt = 0; ; attempt++) {
+      let why: string;
+      try {
+        const response = await fetchFile(address);
+        if (!retried(response.status)) return response;
+        why = `the library answered ${response.status}`;
+      } catch (err) {
+        why = (err as Error).message;
+      }
+      if (attempt >= waits.length) {
+        failed = true;
+        throw new Error(`couldn't fetch ${name} from the LDraw library after ${attempt + 1} tries (${why})`);
+      }
+      await new Promise((resolve) => setTimeout(resolve, waits[attempt]));
+    }
+  };
   return async (name) => {
     const address = url + (primitives.has(name) ? 'p/' : 'parts/') + name.split('/').map(encodeURIComponent).join('/');
     const cache = await parts;
     let response = await cache?.match(address);
     if (!response) {
-      response = await fetch(address);
+      response = await fetchTrying(name, address);
       if (!response.ok) return null;
       await cache?.put(address, response.clone());
     }
-    onFetched(++count);
+    if (!failed) onFetched(++count);
     return response.text();
   };
 }

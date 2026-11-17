@@ -108,16 +108,28 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "78e0e715",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 2,
+    "seconds": 5,
     "counts": {
-      "partly": 2,
-      "works": 2,
+      "partly": 1,
+      "works": 3,
+      "not back": 2,
+      "free-turned": 2,
       "skipped": 1,
       "not checked": 1
     },
     "loose": [],
+    "errata": {
+      "applied": [
+        "v2-rod-p118-to-its-piston",
+        "v2-piston-p120-on-its-rod",
+        "v2-rod-p117-to-its-piston",
+        "v2-piston-p121-on-its-rod"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "partly",
@@ -188,71 +200,67 @@
         "seconds": 0.3
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p120 2851 against p86 3701",
-          "p121 2851 against p86 3701"
-        ],
         "rates": [
           {
             "p101 3648a against p86 3701": [
               1,
-              2.75e-13
+              3.85e-13
             ],
             "p116 2853 against p86 3701": [
               3,
-              3.07e-13
+              2.42e-13
             ],
             "p117 2852 against p86 3701": [
-              3,
+              0.51,
               29.9
             ],
             "p120 2851 against p86 3701": [
-              0,
-              5.23e-14
+              1.05,
+              21.3
             ],
             "p121 2851 against p86 3701": [
-              0,
-              5.68e-14
+              0.889,
+              18
             ]
           }
         ],
         "back": [
           [
             [
-              0.02,
-              0
+              0.05,
+              0.06
             ],
             [
-              0.02,
-              0
+              1.12,
+              1.59
             ]
           ]
         ],
         "torn": [
           [
             [
-              0,
-              0
+              0.04,
+              0.06
             ],
             [
-              0,
-              0
+              1.11,
+              1.59
             ]
           ]
         ],
-        "judged": [
-          0
+        "freeTurned": true,
+        "strayed": [
+          "p120 2851"
         ],
-        "cause": "not-driven",
-        "detail": "p120 2851 against p86 3701",
-        "seconds": 0.2
+        "freed": 5,
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -298,7 +306,7 @@
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
@@ -310,7 +318,7 @@
             ],
             [
               0,
-              0.01
+              0
             ]
           ]
         ],
@@ -323,7 +331,7 @@
         "pushed": [
           true
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "skipped",
@@ -378,17 +386,17 @@
           ],
           [
             [
-              0.02,
-              0
+              0.05,
+              0.06
             ],
             [
-              0.02,
-              0
+              1.12,
+              1.59
             ]
           ],
           [
             [
-              0.02,
+              0.03,
               0
             ],
             [
@@ -420,12 +428,12 @@
           ],
           [
             [
-              0,
-              0
+              0.04,
+              0.06
             ],
             [
-              0,
-              0
+              1.11,
+              1.59
             ]
           ],
           [
@@ -439,13 +447,18 @@
             ]
           ]
         ],
+        "freeTurned": true,
+        "strayed": [
+          "p120 2851"
+        ],
+        "freed": 5,
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 2.1
       },
       {
         "result": "not checked",

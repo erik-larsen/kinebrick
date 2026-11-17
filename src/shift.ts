@@ -92,8 +92,10 @@ export interface Catch {
   rotary?: boolean; // a rotary catch (35188), whose cam moves the ring along its own axis (see camAt)
 }
 
-// How far each catch's fork is from its middle, in LDU.
-const CATCH_REACH: Record<string, number> = { '6641.dat': 60 };
+// How far a changeover catch's fork is from its middle, in LDU: the same for the two parts with the
+// role "changeover catch" (data/roles.json), the 6641 and the 51149, which is the 6641's shape
+// with an axle hole along its arm (its LDraw file is built from the 6641's own subpart).
+const CATCH_REACH = 60;
 
 // A rotary changeover catch (35188 Technic Changeover Rotary Catch): a disc, turning on an axle
 // parallel to a driving ring's shaft, the ring's middle 40 LDU across from its own (ROTARY_REACH).
@@ -124,8 +126,13 @@ export function camAt(degrees: number): number {
   return CAM[CAM.length - 1][1];
 }
 
-// The catches in a model, each with the driving ring its fork sits in.
-export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
+// The catches in a model, each with the driving ring its fork sits in. A catch in `known` (the
+// catches as found before) keeps the fork found then: the fork is a place on the catch, measured
+// once from the ring as the model was built. Measured afresh after a shift, from the ring slid to
+// another click-in place while the catch is read at its built angle, it would be off by the shift,
+// and the ring would come back only when the lever went that far past its middle (the 42112's
+// selector: slid at -11 degrees, back only at +9).
+export function findCatches(parts: PlacedPart[], sliders: Slider[], roles: string[], known: Catch[] = []): Catch[] {
   const catches: Catch[] = [];
   parts.forEach((p, i) => {
     if (p.name.replace(/^.* - /, '') === '35188.dat') {
@@ -139,15 +146,25 @@ export function findCatches(parts: PlacedPart[], sliders: Slider[]): Catch[] {
       }
       return;
     }
-    const reach = CATCH_REACH[p.name];
-    if (!reach) return;
+    if (roles[i] !== 'changeover catch') return;
     const at = new Vector3().setFromMatrixPosition(p.matrix);
-    const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - reach) < 1);
+    const ring = sliders.find((s) => Math.abs(new Vector3().setFromMatrixPosition(parts[s.part].matrix).distanceTo(at) - CATCH_REACH) < 1);
     if (!ring) return;
-    const fork = new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
+    const before = known.find((c) => c.part === i && c.ring.part === ring.part && !c.rotary);
+    const fork = before ? before.fork.clone() : new Vector3().setFromMatrixPosition(parts[ring.part].matrix).applyMatrix4(p.matrix.clone().invert());
     catches.push({ part: i, ring, fork });
   });
   return catches;
+}
+
+// Whether any catch now holds its ring at another click-in place than the one it's in, the parts
+// placed by `placeOf` (a part as built, moved to where it now is): asked after each step of a
+// motor (decision 152 of 2026-11-17), so only the parts catchShifts looks at are placed.
+export function catchShiftDue(parts: PlacedPart[], placeOf: (i: number) => Matrix4, table: ConnectionTable, catches: Catch[]): boolean {
+  if (!catches.length) return false;
+  const now = parts.slice();
+  for (const c of catches) for (const i of [c.part, c.ring.part, c.ring.base]) if (i >= 0) now[i] = { ...parts[i], matrix: placeOf(i) };
+  return catchShifts(now, table, catches).size > 0;
 }
 
 // Where the catches have swung their rings' forks to: for each ring whose fork is now nearer

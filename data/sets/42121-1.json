@@ -89,7 +89,7 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
     "seconds": 9,
     "counts": {
@@ -216,7 +216,7 @@
         "cause": "too-little",
         "detail": "p84 32271",
         "onPlay": 10,
-        "seconds": 5.1
+        "seconds": 4.9
       },
       {
         "result": "no",
@@ -247,7 +247,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0.1
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -415,7 +415,7 @@
           [],
           []
         ],
-        "seconds": 2.8
+        "seconds": 2.6
       },
       {
         "result": "not checked",

@@ -150,9 +150,9 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
-    "seconds": 11,
+    "seconds": 5,
     "counts": {
       "works": 8,
       "not back": 1,
@@ -224,7 +224,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -278,7 +278,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -331,7 +331,7 @@
         "pushed": [
           true
         ],
-        "seconds": 0.7
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -382,7 +382,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 1.8
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -429,7 +429,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 1.4
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -472,7 +472,7 @@
           ]
         ],
         "freed": 1,
-        "seconds": 0.6
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -594,7 +594,7 @@
           [],
           []
         ],
-        "seconds": 3.1
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -631,7 +631,7 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.3
       },
       {
         "result": "no",
@@ -700,7 +700,7 @@
         ],
         "cause": "not-driven",
         "detail": "p150 42003",
-        "seconds": 0.1
+        "seconds": 0
       }
     ]
   }

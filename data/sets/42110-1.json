@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "7111adf4",
     "date": "2026-11-17",
-    "seconds": 1113,
+    "seconds": 707,
     "counts": {
       "works": 12,
       "partly": 1,
@@ -275,11 +275,11 @@
             ],
             "p509 42110 - 23801": [
               0,
-              1.9e-13
+              1.63e-13
             ],
             "p516 42110 - 23801": [
               0,
-              1.43e-13
+              2.37e-13
             ]
           }
         ],
@@ -307,7 +307,7 @@
             ]
           ]
         ],
-        "seconds": 145.5
+        "seconds": 94.8
       },
       {
         "result": "works",
@@ -349,7 +349,7 @@
             ]
           ]
         ],
-        "seconds": 145.7
+        "seconds": 95
       },
       {
         "result": "partly",
@@ -371,11 +371,11 @@
             ],
             "p211 4519": [
               0,
-              4.2e-26
+              4.95e-26
             ],
             "p223 4519": [
               0,
-              4.72e-26
+              4.32e-26
             ]
           }
         ],
@@ -408,7 +408,7 @@
         ],
         "cause": "not-driven",
         "detail": "p211 4519",
-        "seconds": 61
+        "seconds": 38.9
       },
       {
         "result": "works",
@@ -426,11 +426,11 @@
             ],
             "p38 62821": [
               0.489,
-              5.3e-13
+              4.92e-13
             ],
             "p242 3708": [
               0,
-              1.17e-46
+              4.09e-46
             ]
           }
         ],
@@ -458,7 +458,7 @@
             ]
           ]
         ],
-        "seconds": 16.1
+        "seconds": 10.9
       },
       {
         "result": "works",
@@ -514,7 +514,7 @@
             ]
           ]
         ],
-        "seconds": 23.3
+        "seconds": 14.9
       },
       {
         "result": "works",
@@ -556,7 +556,7 @@
             ]
           ]
         ],
-        "seconds": 22.3
+        "seconds": 15.1
       },
       {
         "result": "works",
@@ -598,7 +598,7 @@
             ]
           ]
         ],
-        "seconds": 21.8
+        "seconds": 15.1
       },
       {
         "result": "works",
@@ -612,7 +612,7 @@
           {
             "p958 32012": [
               1,
-              8.53e-14
+              1.61e-13
             ]
           }
         ],
@@ -640,7 +640,7 @@
             ]
           ]
         ],
-        "seconds": 22.2
+        "seconds": 14.8
       },
       {
         "result": "skipped"
@@ -714,7 +714,7 @@
           [],
           []
         ],
-        "seconds": 531.8
+        "seconds": 320.9
       },
       {
         "result": "works",
@@ -751,7 +751,7 @@
             ]
           ]
         ],
-        "seconds": 24.1
+        "seconds": 15.7
       },
       {
         "result": "works",
@@ -796,7 +796,7 @@
         "pushed": [
           true
         ],
-        "seconds": 13.4
+        "seconds": 9.1
       },
       {
         "result": "works",
@@ -834,7 +834,7 @@
           ]
         ],
         "freed": 4,
-        "seconds": 30
+        "seconds": 21.8
       },
       {
         "result": "works",
@@ -872,7 +872,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 30.2
+        "seconds": 21.5
       },
       {
         "result": "skipped"

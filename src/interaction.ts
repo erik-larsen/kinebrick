@@ -37,7 +37,7 @@ import {
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Appearance } from './appearance.ts';
 import { Kinematics } from './kinematics.ts';
-import { Mechanism } from './mechanism.ts';
+import { Mechanism, motorRunPart } from './mechanism.ts';
 import { leastSquares, pointDirections as directionsOf, pushStep, wayOnJoint } from './push.ts';
 import { knobTurn } from './turn.ts';
 
@@ -111,6 +111,7 @@ export interface InteractionSetup {
   onMotorChanged: () => void; // called after a part starts or stops being kept turning
   onTurned: (part: number, angle: number) => void; // called after a drag turns a part like a knob, by `angle` radians about its joint
   onDragEnded: () => void; // called after any drag
+  shiftDue?: () => boolean; // whether a changeover catch now holds its driving ring at another click-in place than the one it's in (then onDragEnded shifts it)
   onMotionStarted: () => void; // called as a drag that moves the mechanism, or a part kept turning or moving, starts
   allowScrub: (needed: number) => number | null; // lets the tyres scrub `needed` (a fraction of how far they roll) and a little over, if that's within the Tyre scrub option's limit: the new allowance in percent, or null if it isn't
   scrubLimit: number; // the most the Tyre scrub option allows, in percent
@@ -119,7 +120,7 @@ export interface InteractionSetup {
   stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
   shiftStick: (part: number, position: number) => void; // clicks a gear lever into one of its gate positions
   shift: (part: number, position: number) => void; // slides a part to one of its positions
-  pinsToFree: (part: number) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found)
+  pinsToFree: (part: number, search?: boolean) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
 }
 
@@ -591,6 +592,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // Ctrl-click: starts the part turning; on a part already turning, turns it the other way;
   // on one already turned round, stops it.
   function cycleMotor(part: number, clientX: number, clientY: number) {
+    part = runBy(part);
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
     if (motorPart >= 0 && s.mech.bodyOf[motorPart] === body) {
@@ -623,7 +625,11 @@ export function setUpInteraction(s: InteractionSetup) {
     return s.kin.lockedBy(body) === 'actuator' ? 'a linear actuator can only be worked from its input' : 'a worm gear can only be turned from the worm';
   }
 
+  // The part a spin of `part` keeps turning: an electric motor's output (see motorRunPart).
+  const runBy = (part: number) => motorRunPart(s.mech, part);
+
   function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
+    part = runBy(part);
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
     if (s.slideOf(part) || s.stickOf(part)) return "A part that clicks into set positions can't be kept moving: drag it";
@@ -814,6 +820,10 @@ export function setUpInteraction(s: InteractionSetup) {
         }
       }
     }
+    // A catch the motor has turned past its shift angle shifts its ring now, as a drag's end
+    // would, and the motor goes on (decision 152): its holds are worked out afresh on the next
+    // step, the mechanism having been worked out afresh with the ring slid.
+    if (Math.abs(turned) > 1e-9 && s.shiftDue?.()) s.onDragEnded();
     s.onMoved();
   }
 
@@ -920,8 +930,10 @@ export function setUpInteraction(s: InteractionSetup) {
   // shows `why`.
   // With `otherwise`, which says whether the part can go some other way after all, that is
   // tried first where no pins hold it.
-  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean) {
-    s.pinsToFree(part).then((pins) => {
+  // `search` false: only the pins pinsToFree names, not the trial search (see pinWorker.ts), for a
+  // part that moves on play (decision 139 of 2026-11-17).
+  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true) {
+    s.pinsToFree(part, search).then((pins) => {
       if (!pins.length) return otherwise?.() ? undefined : showMessage(why, x, y);
       endDrag();
       s.freePins(pins);
@@ -1031,13 +1043,16 @@ export function setUpInteraction(s: InteractionSetup) {
             : `This part can't move: ${s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck()}`;
         showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
         const onPlay = () => d.joint >= 0 && drag === d && s.kin.jointMotion(d.joint) !== null;
+        // The trial search for pins only for a part that can't move even on play: where play moves
+        // it, freeing a pin elsewhere could let a part swing away (decision 139 of 2026-11-17).
+        const movesOnPlay = onPlay();
         freeIfHeld(hit.part, e.clientX, e.clientY, why, () => {
           if (!onPlay()) return false;
           showingMessage = false;
           hideLabel();
           showArc();
           return true;
-        });
+        }, !movesOnPlay);
       } else if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {

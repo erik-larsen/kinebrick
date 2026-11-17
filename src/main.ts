@@ -41,7 +41,7 @@ import { modelSettings, parseModel, PathPoint, PlacedPart } from './ldr.ts';
 import { inferMechanism, Joint, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
-import { Catch, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
+import { Catch, catchShiftDue, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { applyErrata, type Errata, setOfFile } from './errata.ts';
 import { drawnDirectly, packModel, shapeName } from './pack.ts';
@@ -527,13 +527,13 @@ async function start() {
     };
     pinWorker.postMessage({ model: { text: modelText, primitives: [...primitives], pieces: packed?.pieces ?? {}, table, roles } });
   }
-  const pinsToFree = (part: number) =>
+  const pinsToFree = (part: number, search = true) =>
     new Promise<number[]>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve([]);
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
-      pinWorker.postMessage({ ask: asked, part });
+      pinWorker.postMessage({ ask: asked, part, freed: [...freed], search });
     });
   // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
   // does (see readAsBuilt), so everything stays where it now is.
@@ -601,6 +601,34 @@ async function start() {
   }
   const partMatrices = () => partObjects.map((obj, i) => kin.poses[mech.bodyOf[i]].clone().multiply(obj.userData.startMatrix));
   let collisions: Collisions | null = null;
+  // Loose parts that stay where they stand, each with where that is (decision 156 of 2026-11-17):
+  // a loose group that touches nothing of the model as built and meets the ground lies beside the
+  // model (the 42083's start key, which rode on a rear wheel), so it rides on nothing that moves.
+  // Found once the pairs that touch as built are all known (a kept file; see keptPairs.ts).
+  const standing = new Map<number, Matrix4>();
+
+  // The loose groups that touch nothing (no pair of `near` joins one to a part outside it) and
+  // meet the ground, as the model now stands: their parts, each where it now is.
+  function findStanding(near: [number, number][]) {
+    standing.clear();
+    if (!collisions || kin.groundY === null || !mech.loose.length) return;
+    const loose = new Set(mech.loose);
+    const leader = new Map(mech.loose.map((i) => [i, i]));
+    const find = (i: number): number => {
+      while (leader.get(i) !== i) i = leader.get(i)!;
+      return i;
+    };
+    for (const c of mech.connections) if (loose.has(c.male) && loose.has(c.female)) leader.set(find(c.male), find(c.female));
+    const groups = new Map<number, number[]>();
+    for (const i of mech.loose) groups.set(find(i), [...(groups.get(find(i)) ?? []), i]);
+    const touching = new Set<number>();
+    for (const [a, b] of near) if (loose.has(a) !== loose.has(b) || (loose.has(a) && find(a) !== find(b))) for (const i of [a, b]) if (loose.has(i)) touching.add(find(i));
+    const now = partMatrices();
+    for (const [g, members] of groups) {
+      if (touching.has(g) || !members.some((i) => collisions!.meetsGround(i, now[i], kin.groundY!))) continue;
+      for (const i of members) standing.set(i, now[i]);
+    }
+  }
 
   // Works out the mechanism from parts placed as given (unless it's known already), with
   // partObjects already there.
@@ -611,7 +639,7 @@ async function start() {
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
     sticks = findSticks(parts, roles, sliders);
-    catches = findCatches(parts, sliders);
+    catches = findCatches(parts, sliders, mech.roles, catches);
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     // Where each chain's or track's links go as it moves round (see paths.ts).
@@ -643,13 +671,21 @@ async function start() {
     }
 
     const connected = connectedPairs(mech);
-    if (collisions) collisions.watch(mech.bodyOf, connected, partMatrices());
-    else {
+    // Nor a changeover catch and the driving ring its fork sits in: the fork is in the ring's
+    // groove, and the ring slides only when the drag ends (see meshAfresh), so in between the
+    // fork presses into it. Tested, the pair stopped the 42112's selector lever 2 degrees out.
+    for (const c of catches) for (const ring of c.ring.riders ?? [c.ring.part]) connected.add(c.part < ring ? `${c.part},${ring}` : `${ring},${c.part}`);
+    if (collisions) {
+      collisions.ignored = new Set(mech.loose);
+      collisions.watch(mech.bodyOf, connected, partMatrices());
+    } else {
       // The pairs of parts that already touch as built are found beside the page (see
       // collisionWorker.ts), so the model can be turned at once; a drag goes without the collision
       // stop until they're known.
       const placedAt = partMatrices();
       collisions = new Collisions(shapes, mech.bodyOf, connected, placedAt, true);
+      // A loose part never stops a motion (see Collisions.ignored).
+      collisions.ignored = new Set(mech.loose);
       const tested = collisions.candidates(mech.bodyOf, connected, placedAt);
       const n = shapes.length;
       const done = (near: [number, number][]) => {
@@ -695,6 +731,8 @@ async function start() {
         const found = await testBeside(untested);
         if (OPTIONS.includes('debug')) console.log(`collision pass: ${known ? (known.all ? 'kept file' : 'this browser\u2019s store') : 'nothing kept'}, ${tested.length - untested.length} pairs known, ${untested.length} tested`);
         done([...tested.filter((p) => covered(p) && nearKnown.has(pairNumber(p[0], p[1], n))), ...found]);
+        // Every pair that touches as built, whatever bodies it's on, is known only from a kept file.
+        if (known?.all) findStanding(known.near);
         if (untested.length && !known?.all) storePairs(key, { all: false, tested: [...(known?.tested ?? []), ...untested], near: [...(known?.near ?? []), ...found] });
       })();
     }
@@ -715,7 +753,9 @@ async function start() {
       const near = obj.userData.nearPart;
       const body =
         obj.userData.partIndex !== undefined ? mech.bodyOf[obj.userData.partIndex] : near !== undefined ? (near >= 0 ? mech.bodyOf[near] : 0) : obj.userData.body;
-      obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
+      const stands = obj.userData.partIndex !== undefined ? standing.get(obj.userData.partIndex) : undefined;
+      if (stands) obj.matrix.copy(stands);
+      else obj.matrix.multiplyMatrices(kin.poses[body], obj.userData.startMatrix);
       obj.matrix.decompose(obj.position, obj.quaternion, obj.scale);
     }
     // A chain's or track's links go round it as far as it has moved, carried by what its first
@@ -1022,6 +1062,11 @@ async function start() {
       if (sense !== null) keepTurn(part, angle * sense);
     },
     onDragEnded: () => meshAfresh(),
+    // Asked after each step of a part kept turning, with the parts placed as partsNow places them.
+    shiftDue: () => {
+      const back = kin.poses[0].clone().invert();
+      return catchShiftDue(parts, (i) => back.clone().multiply(kin.poses[mech.bodyOf[i]]).multiply(parts[i].matrix), table, catches);
+    },
     onMotionStarted: () => startFocus(),
     // A motion the tyres' scrub rules out (a car that can't roll with its steering turned so
     // far) has the Tyre scrub option raised to what it needs and SCRUB_MARGIN over, whole
@@ -1520,6 +1565,9 @@ start()
     if (params.has('thumb')) (window as unknown as { kinebrickThumbnail: Promise<string> }).kinebrickThumbnail = thumbnail(renderer.domElement, camera, ldrawSpace);
   })
   .catch((err) => {
-    document.getElementById('summary')!.textContent = 'Error: ' + err.message;
+    // With a way to try again: a fetch may fail only for a moment (see libraryReader).
+    const summary = document.getElementById('summary')!;
+    summary.textContent = 'Error: ' + err.message + ' ';
+    summary.append(Object.assign(document.createElement('button'), { textContent: 'Try again', onclick: () => window.location.reload() }));
     console.error(err);
   });

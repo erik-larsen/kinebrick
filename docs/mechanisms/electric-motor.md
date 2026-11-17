@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 38 works, 45 partly, 1 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 40 works, 43 partly, 1 no, 5 not checked.
 
 ## By decade
 
@@ -61,7 +61,7 @@ Each detail by the set it first appears in.
 
 - *PF XL:* The Power Functions XL motor drives the crane's four functions one at a time: the battery box's switch turns it on, the red lever with a towball handle (on the polarity switch) sets its direction, and two yellow levers on the right of the gearbox choose which function it drives (each lever up or down, or both in the middle for none). (not checked)
 - The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (works)
-- The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (partly)
+- The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (works)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
 - The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
 
@@ -205,7 +205,7 @@ Each detail by the set it first appears in.
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**
 
 - *L:* The two L drive motors drive all four wheels: their 24 tooth gears both turn the centre differential, which sends drive forward and back along shafts with CV joints to a differential in each axle, and each wheel turns through a planetary portal hub that gears it down. (partly)
-- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (partly)
+- *medium:* The medium motor locks the differentials: through gears and two slip clutches it turns two orange changeover catches, which slide driving rings to lock the centre differential and the rear axle's differential, so the wheels can't spin freely on a trial course. (works)
 - *L:* The L motor on the front axle steers the front wheels: its 12 tooth gear slides the steering rack across, and links from the rack turn both front portal hubs. (works)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

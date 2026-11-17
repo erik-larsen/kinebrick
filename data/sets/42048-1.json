@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "f20682cb",
     "date": "2026-11-17",
-    "seconds": 12,
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "works": 3
@@ -173,7 +173,7 @@
         ],
         "cause": "not-driven",
         "detail": "p132 40490",
-        "seconds": 1
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -237,7 +237,7 @@
             "end of travel"
           ]
         ],
-        "seconds": 1.9
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -371,7 +371,7 @@
             "p233 2851"
           ]
         ],
-        "seconds": 4.5
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -489,7 +489,7 @@
           [],
           []
         ],
-        "seconds": 3.7
+        "seconds": 1.5
       }
     ]
   }

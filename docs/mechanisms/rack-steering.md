@@ -4,7 +4,7 @@ A pinion slides a toothed rack across, and the rack pushes the steering arms. (S
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The steering wheel steers the back wheels: its upright axle turns a crown gear, which drives a 24-tooth gear on a lengthwise axle, whose 8-tooth gear at the back slides the steering rack between the two wheel turntables.
 
-Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 66 works, 7 partly, 3 no.
+Used in 74 of the 186 surveyed sets, by 76 functions. Kinebrick: 67 works, 7 partly, 2 no.
 
 ## By decade
 
@@ -187,7 +187,7 @@ Each detail by the set it first appears in.
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (no)
+- The gear on the cab roof steers the front wheels: its long upright axle comes down through the cab to a knob gear, and a shaft with universal joints carries the turn to the front axle, where a small gear slides the steering rack and the portal hubs steer. (works)
 
 **2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1)**
 

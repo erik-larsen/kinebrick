@@ -8,7 +8,12 @@
       "line": "1 71 -174.135 37.057 0 0 -0.309 0.951 0 -0.951 -0.309 1 0 0 32494.dat",
       "part": "p46 32494",
       "position": [-155.112, 30.881, 0],
-      "evidence": "Each rear half shaft is two constant velocity balls (32494) on an axle 3, between a ball socket on the differential's side and the portal hub's socket (step 11, page 7, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=7; the hubs at step 8, page 6, #page=6). A ball's axle hole runs from 20 to 50 LDU behind its centre, so with the axle 3 seated in both the two centres are 100 LDU apart: exactly the distance from the inner ball to the hub's socket (the 92909's, 30 LDU inside it), along the shaft's slope. The file draws each outer ball 120 LDU from the inner one, the axle half out of it, so the ball sits 20 LDU short of the hub's socket and turns nothing: the rear wheels don't drive the differential or the engine (function 1). Moved 20 LDU along the shaft into the socket, the ball takes the axle fully; the inner ball and the axle stay as drawn. This entry is the left shaft's; the next, the right's."
+      "evidence": "Each rear half shaft is two constant velocity balls (32494) on an axle 3, between a ball socket on the differential's side and the portal hub's socket (step 11, page 7, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=7; the hubs at step 8, page 6, #page=6). A ball's axle hole runs from 20 to 50 LDU behind its centre, so with the axle 3 seated in both the two centres are 100 LDU apart: exactly the distance from the inner ball to the hub's socket (the 92909's, 30 LDU inside it), along the shaft's slope. The file draws each outer ball 120 LDU from the inner one, the axle half out of it, so the ball sits 20 LDU short of the hub's socket and turns nothing: the rear wheels don't drive the differential or the engine (function 1). Moved 20 LDU along the shaft into the socket, the ball takes the axle fully; the inner ball and the axle stay as drawn. This entry is the left shaft's; the next, the right's.",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-17",
+        "words": "Sign all seven (42096)"
+      }
     },
     {
       "id": "rear-half-shafts-outer-balls-in-their-hubs-right",
@@ -17,7 +22,12 @@
       "line": "1 71 174.135 37.057 0 0 -0.309 -0.951 0 0.951 -0.309 1 0 0 32494.dat",
       "part": "p47 32494",
       "position": [155.112, 30.881, 0],
-      "evidence": "The right rear half shaft's outer ball, as the left's (the entry before)."
+      "evidence": "The right rear half shaft's outer ball, as the left's (the entry before).",
+      "signedOff": {
+        "by": "Erik",
+        "date": "2026-11-17",
+        "words": "Sign all seven (42096)"
+      }
     }
   ]
 }

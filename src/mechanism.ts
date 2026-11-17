@@ -428,6 +428,19 @@ function pivotsOfStuckSlides(mech: Mechanism, parts: PlacedPart[], table: Connec
 // The body a motor turns: its output's axle, through the motor's own connection to it, not the
 // first motor joint on its case's body, which is another motor's when two motors' cases sit on
 // one body (the 42114's L and XL motors). The case's body if the motor turns nothing.
+// The part the viewer keeps turning when a part is spun: for an electric motor (role "motor"), a
+// part of its output (see motorOutput), the one its connection names, as the function check works
+// a motor, so that the two can't differ (decision 152 of 2026-11-17: the 42114's L motor, spun,
+// pushed the body it's built into, and the whole truck went back and forth). Any other part, or a
+// motor whose output isn't found (motorOutput gives its own body), is itself.
+export function motorRunPart(mech: Mechanism, part: number): number {
+  if (mech.roles[part] !== 'motor') return part;
+  const out = motorOutput(mech, part);
+  if (out === mech.bodyOf[part]) return part;
+  const c = mech.connections.find((x) => x.motor && (x.male === part || x.female === part) && mech.bodyOf[x.male] !== mech.bodyOf[x.female]);
+  return c ? (c.male === part ? c.female : c.male) : mech.bodies[out].parts[0];
+}
+
 export function motorOutput(mech: Mechanism, motor: number): number {
   const c = mech.connections.find((x) => x.motor && (x.male === motor || x.female === motor) && mech.bodyOf[x.male] !== mech.bodyOf[x.female]);
   if (c) return mech.bodyOf[c.male === motor ? c.female : c.male];
@@ -467,8 +480,10 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // structure they were read as before they were given the role "axle", and the axles that
   // had it already don't. It is not principled: it is there only so that naming an axle does
   // not move a model's frame (the 42099's is a near tie, 132 structure parts against 127),
-  // and it goes when the frame rule is mended.
-  const frameRoles = roles.map((r, i) => (r === 'axle' && AXLES_COUNTED_AS_STRUCTURE.has(plain(parts[i].name).replace(/^.* - /, '')) ? 'structure' : r));
+  // and it goes when the frame rule is mended. A changeover catch counts as structure too, for
+  // the same reason: the 6641 was structure before it had a role, and the 8002 builds its shell
+  // of ten of them, so the role alone moved its frame.
+  const frameRoles = roles.map((r, i) => ((r === 'axle' && AXLES_COUNTED_AS_STRUCTURE.has(plain(parts[i].name).replace(/^.* - /, ''))) || r === 'changeover catch' ? 'structure' : r));
   // A part an erratum removed isn't there: no connection points, and never loose.
   const cyls = worldCylinders(parts, table).filter((c) => roles[c.part] !== 'path' && !parts[c.part].removed);
   // A motor's output, its axle hole or (on the old motors) axle stub, turns in the motor: an axle
