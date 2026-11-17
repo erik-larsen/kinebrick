@@ -4,7 +4,7 @@ An arm, crank or gear at the foot of the steering column pushes the tie rods or 
 
 First appears in 2006, in [8283 Telehandler (Front End Loader)](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8283-1): The yellow knob on the cab roof steers the front wheels: its column runs down through the cab to an 8-tooth gear driving a 24-tooth gear, which swings the steering arms.
 
-Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 14 works, 9 partly, 6 no.
+Used in 28 of the 186 surveyed sets, by 29 functions. Kinebrick: 14 works, 13 partly, 2 no.
 
 ## By decade
 
@@ -59,7 +59,7 @@ Each detail by the set it first appears in.
 
 **2014, [42023 Construction Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42023-1)**
 
-- The black knob on the cab roof steers the front wheels: its upright axle turns a short crank under the cab, which pushes a link to the two steering hubs. (no)
+- The black knob on the cab roof steers the front wheels: its upright axle turns a short crank under the cab, which pushes a link to the two steering hubs. (partly)
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
@@ -75,7 +75,7 @@ Each detail by the set it first appears in.
 
 **2017, [42060 Roadwork Crew](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42060-1)**
 
-- The black gear on the cab roof steers the truck's front wheels: its shaft runs down through the cab to a 12 tooth gear, which turns a 20 tooth gear on an upright shaft whose crank arm pushes the track rod between the two steering knuckles. (no)
+- The black gear on the cab roof steers the truck's front wheels: its shaft runs down through the cab to a 12 tooth gear, which turns a 20 tooth gear on an upright shaft whose crank arm pushes the track rod between the two steering knuckles. (partly)
 
 **2017, [42061 Telehandler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42061-1)**
 
@@ -108,7 +108,7 @@ Each detail by the set it first appears in.
 
 **2018, [42084 Hook Loader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42084-1)**
 
-- The gear on top of the cab, behind the roof, steers the front wheels: its upright axle runs down through the cab to a lever under the front axle, which pushes both wheels' pivoting hubs round. (no)
+- The gear on top of the cab, behind the roof, steers the front wheels: its upright axle runs down through the cab to a lever under the front axle, which pushes both wheels' pivoting hubs round. (partly)
 
 **2019, [42093 Chevrolet Corvette ZR1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42093-1)**
 
@@ -116,7 +116,7 @@ Each detail by the set it first appears in.
 
 **2020, [42101 Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42101-1)**
 
-- The 12 tooth gear on top of the upright axle behind the seat steers the front wheels: turning it swings a white 2-long arm at the axle's foot, which pulls a link to the tie-rod beam joining the two steering knuckles. (no)
+- The 12 tooth gear on top of the upright axle behind the seat steers the front wheels: turning it swings a white 2-long arm at the axle's foot, which pulls a link to the tie-rod beam joining the two steering knuckles. (partly)
 
 **2020, [42102 Mini CLAAS XERION](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42102-1)**
 

@@ -153,9 +153,9 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 11,
+    "commit": "a60fcd2b",
+    "date": "2026-11-17",
+    "seconds": 10,
     "counts": {
       "works": 3,
       "pivoted": 1,
@@ -458,7 +458,7 @@
         ],
         "cause": "not-driven",
         "detail": "p424 32278 against p417 32009",
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -517,7 +517,7 @@
         ],
         "cause": "not-driven",
         "detail": "p455 32278 against p424 32278",
-        "seconds": 0.9
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -815,7 +815,7 @@
           [],
           []
         ],
-        "seconds": 6.9
+        "seconds": 6.1
       }
     ]
   }

@@ -4,7 +4,7 @@ A pinion drives a toothed rack in a straight line, for anything but steering: fo
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1): The handwheel on the mast's left side raises and lowers the forks: the axle across the top of the mast carries two small gears that run up and down the carriage's two long racks.
 
-Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 19 works, 6 partly, 5 no.
+Used in 25 of the 186 surveyed sets, by 30 functions. Kinebrick: 20 works, 6 partly, 4 no.
 
 ## By decade
 
@@ -65,7 +65,7 @@ Each detail by the set it first appears in.
 
 **1981, [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck)**
 
-- *tipping body:* The yellow lever on the right of the steering wheel tips the body: a link from it turns a 24 tooth gear like a crank, whose axle's other 24 tooth gear turns the 8 tooth gears on the cross axle under the body, and they push two racks that lift the body on struts about its hinge at the back. (no)
+- *tipping body:* The yellow lever on the right of the steering wheel tips the body: a link from it turns a 24 tooth gear like a crank, whose axle's other 24 tooth gear turns the 8 tooth gears on the cross axle under the body, and they push two racks that lift the body on struts about its hinge at the back. (works)
 
 **1981, [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor)**
 

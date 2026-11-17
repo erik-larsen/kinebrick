@@ -136,8 +136,7 @@
     ]
   },
   "generated": {
-    "commit": "35e318bc",
-    "uncommitted": true,
+    "commit": "a60fcd2b",
     "date": "2026-11-17",
     "seconds": 19,
     "counts": {
@@ -220,7 +219,7 @@
         "pushed": [
           true
         ],
-        "seconds": 10.8
+        "seconds": 11
       },
       {
         "result": "works",
@@ -371,7 +370,7 @@
             "p856 6536 against p0 32009"
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -473,7 +472,7 @@
         ],
         "cause": "not-driven",
         "detail": "p619 6536 against p238 6632",
-        "seconds": 1.4
+        "seconds": 1.3
       },
       {
         "result": "works",
