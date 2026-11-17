@@ -288,6 +288,10 @@
     {
       "date": "2026-11-17",
       "what": "You signed the 42054’s lists (“Sign 42054 lists”): functions 3, 4 and 5 name the motor as their control with the lever set first. All three work now; the set has 12 of 14 working."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “delete merged branches and make that part of the daily tasks”. 102 branches that were fully merged into preview are deleted on GitHub; 20 are left (main, preview, preview-train and 17 with work that is not merged). From now on a branch is deleted when it is merged, and the rest is checked each day."
     }
   ]
 }
