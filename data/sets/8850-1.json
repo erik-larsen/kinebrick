@@ -127,7 +127,7 @@
     ]
   },
   "generated": {
-    "commit": "a60fcd2b",
+    "commit": "93a580aa",
     "date": "2026-11-17",
     "seconds": 4,
     "counts": {
@@ -202,7 +202,7 @@
           "rise": 0,
           "tyre": "p349 4267"
         },
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -285,7 +285,7 @@
             "p76 73071 against p0 3702"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "partly",
@@ -356,7 +356,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -401,7 +401,7 @@
         "strayed": [
           "p92 3647"
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -470,7 +470,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "no",
@@ -578,7 +578,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 2825 against p0 3702",
-        "seconds": 0.1
+        "seconds": 1
       },
       {
         "result": "works",
@@ -615,7 +615,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "not checked",
