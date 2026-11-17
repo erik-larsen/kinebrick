@@ -207,6 +207,12 @@ export class Collisions {
   // nothing. `last` is the mechanism to watch for once they come.
   waiting = false;
   private last: { bodyOf: number[]; connected: Set<string>; partMatrices: Matrix4[] } | null = null;
+  // Parts that never stop a motion: the model's loose parts (Mechanism.loose). Where a loose part
+  // sits against the mechanism is a guess (it rides along with what's nearest), so its meeting
+  // another part, or the ground, is never evidence of a stop (decision 151 of 2026-11-17: the
+  // 42083 Bugatti Chiron's start key, lying beside the car, rode on a rear wheel and stopped the
+  // car rolling by going below the ground). Set by whoever reads the mechanism.
+  ignored = new Set<number>();
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
@@ -326,7 +332,7 @@ export class Collisions {
   belowGround(partMatrices: Matrix4[], ground: number, start: Matrix4[]): [number, number] | null {
     for (let i = 0; i < this.shapes.length; i++) {
       const box = this.shapes[i].box;
-      if (box.isEmpty() || box.clone().applyMatrix4(start[i]).max.y > ground - NEAR) continue;
+      if (this.ignored.has(i) || box.isEmpty() || box.clone().applyMatrix4(start[i]).max.y > ground - NEAR) continue;
       // A box turned with its part reaches further than the part (a big wheel's rim, turned an
       // eighth of a turn, would reach below its tyre): so where it does, the part's own shape
       // is looked at.
@@ -364,6 +370,7 @@ export class Collisions {
       for (const b of group.onB) sideB.union(boxOf(b));
       if (sideA.intersectsBox(sideB)) {
         for (const [a, b] of group.pairs) {
+          if (this.ignored.has(a) || this.ignored.has(b)) continue;
           if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
         }
       }
