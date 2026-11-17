@@ -1,0 +1,101 @@
+{
+  "set": "42131-1",
+  "entries": [
+    {
+      "id": "left-blade-lift-rod-in-line-with-its-cylinder",
+      "what": "move",
+      "file": "42131 - bladelift1.ldr",
+      "line": "1 72 -0.439 -7 -239.432 0 -1 0 -0.999 0 -0.035 0.035 0 -0.999 62274c01.dat",
+      "part": "p4122 62274c01",
+      "position": [
+        -0.439,
+        0,
+        -239.432
+      ],
+      "orientation": [
+        0,
+        -1,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "evidence": "Each blade lift actuator’s rod ends in an eye that a red long pin with stop bush (65304) takes, joining it to the blade (step 1137, book 2 page 342, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403276.pdf#page=342; the actuator built with its rod and eye at step 408, book 1 page 305, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=305). In the file the rod leans 2.0 degrees (0.035) in its submodel, so its eye is turned 2.01 degrees off the pin (p4271), past what the reading takes as one axis (2 degrees): the pin doesn’t go through the eye, and the rod hangs on nothing. Drawn straight along its cylinder, at the same distance out and the same side offset, the eye lies along the pin; it is then 7.7 LDU further along the pin, which the eye may slide along, and still on it."
+    },
+    {
+      "id": "left-blade-lift-cylinder-in-line-with-its-holder",
+      "what": "move",
+      "file": "42131 - bladelift1.ldr",
+      "line": "1 0 0 0 0 -1 0 0 0 1 -0.026 0 -0.026 -1 42131 - u9559c01.dat",
+      "part": "p4121 u9559c01",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "orientation": [
+        -1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "evidence": "The actuator’s input (47157 p4120) turns on an axle (4519 p4124) that runs back through the actuator holder (61904 p4123), the holder on its trunnion at the actuator’s back end (step 410, book 1 page 305, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=305). In the file the cylinder leans 1.5 degrees (0.026) on that trunnion, while the holder doesn’t: the input’s axis in the cylinder and the axle’s in the holder then cross at 1.5 degrees, so the input can’t turn in both, and the reading makes the input one body with the cylinder. No screw is read, and the motor can’t drive the actuator (function 7). Drawn without the lean, as its holder is, the input turns on one axis in both."
+    },
+    {
+      "id": "right-blade-lift-rod-in-line-with-its-cylinder",
+      "what": "move",
+      "file": "42131 - bladelift2.ldr",
+      "line": "1 72 0.439 7 -239.432 0 1 0 0.999 0 0.035 0.035 0 -0.999 62274c01.dat",
+      "part": "p4197 62274c01",
+      "position": [
+        0.439,
+        0,
+        -239.432
+      ],
+      "orientation": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "evidence": "The mirror of the left rod (bladelift2 is bladelift1 mirrored): the rod leans 2.0 degrees (0.035), and its eye misses its pin (p4270) by 2.01 degrees. Step 1137, book 2 page 342, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403276.pdf#page=342."
+    },
+    {
+      "id": "right-blade-lift-cylinder-in-line-with-its-holder",
+      "what": "move",
+      "file": "42131 - bladelift2.ldr",
+      "line": "1 0 0 0 0 -1 0 0 0 1 0.026 0 0.026 -1 42131 - u9559c01.dat",
+      "part": "p4196 u9559c01",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "orientation": [
+        -1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "evidence": "The mirror of the left cylinder: it leans 1.5 degrees (0.026) on its holder’s trunnion, so its input can’t turn and no screw is read. Step 410, book 1 page 305, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6403271.pdf#page=305."
+    }
+  ]
+}

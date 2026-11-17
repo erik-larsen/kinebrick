@@ -124,7 +124,7 @@ export function applyErrata(text: string, errata: Errata | null | undefined, pro
     const number = /^p(\d+)\s+(\S+)/.exec(e.part ?? '');
     if (number && partAt) {
       const now = partAt(Number(number[1]));
-      if (!now || now.toLowerCase().replace(/\.dat$/, '') !== number[2].toLowerCase().replace(/\.dat$/, '')) {
+      if (!now || now.toLowerCase().replace(/^.* - /, '').replace(/\.dat$/, '') !== number[2].toLowerCase().replace(/\.dat$/, '')) {
         refused.push(`${e.id}: p${number[1]} is ${now ?? 'no part'}, not ${number[2]}`);
         continue;
       }
