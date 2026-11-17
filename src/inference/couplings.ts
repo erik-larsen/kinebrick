@@ -5,6 +5,7 @@ import { Vector3 } from 'three';
 import type { ConnectionTable } from '../connections.ts';
 import { PlacedPart } from '../ldr.ts';
 import type { Connection, Coupling, Joint } from '../mechanism.ts';
+import { BALL_TOLERANCE } from './fits.ts';
 import { BALL_LINE, rigidGroups, type WorldCylinder } from './shared.ts';
 
 // A nudged ball (see groovedBalls) keeps its ball joint only where it's needed: where its shaft,
@@ -39,17 +40,30 @@ export function dropBallsInBearings(joints: Joint[], joined: { partA: number; pa
 export function universalJoints(parts: PlacedPart[], roles: string[], cyls: WorldCylinder[], connections: Connection[]) {
   const joined: { partA: number; partB: number; center: Vector3; axisA: Vector3; axisB: Vector3 }[] = [];
   const axisOfEnd = (end: number) => cyls.find((c) => c.part === end && c.secs.some((s) => s.shape === 'A'))?.dir.clone() ?? new Vector3(0, 0, 1);
+  const base = (name: string) => name.replace(/^.* - /, '');
   roles.forEach((role, cross) => {
     if (role !== 'universal joint') return;
+    const center = new Vector3().setFromMatrixPosition(parts[cross].matrix);
     const arms = connections.filter((c) => c.kind === 'revolute' && (c.male === cross || c.female === cross));
-    const ends = [...new Set(arms.map((c) => (c.male === cross ? c.female : c.male)))];
+    let ends = [...new Set(arms.map((c) => (c.male === cross ? c.female : c.male)))];
+    // A 62519 cross between two 62520 ends is a universal joint when each end's fork centre
+    // (its origin) lies at the cross's centre, within BALL_TOLERANCE as a ball in its socket:
+    // three such parts can be nothing else, so it doesn't matter how far an arm is drawn off its
+    // end's pin hole (a joint a file bends by eye: the 42131's blade tilt 3.9 degrees, the 9397's
+    // crane 28). In all 286 such ends in the sets the origin is within 0.75 LDU of the centre.
+    // Only where the arms didn't already give two ends, which read as before.
+    if (base(parts[cross].name) === '62519.dat' && ends.length !== 2) {
+      const atCentre = parts.flatMap((p, i) => (base(p.name) === '62520.dat' && new Vector3().setFromMatrixPosition(p.matrix).distanceTo(center) <= BALL_TOLERANCE ? [i] : []));
+      if (atCentre.length === 2) ends = atCentre.sort((a, b) => Number(!arms.some((c) => c.male === b || c.female === b)) - Number(!arms.some((c) => c.male === a || c.female === a)) || a - b);
+    }
     if (ends.length !== 2) return;
     for (const c of arms) {
       const end = c.male === cross ? c.female : c.male;
       if (end === ends[0]) c.kind = 'rigid';
       else connections.splice(connections.indexOf(c), 1);
     }
-    const center = new Vector3().setFromMatrixPosition(parts[cross].matrix);
+    // The cross fixed to its first end, if no arm of it was read in that end's pin hole.
+    if (!connections.some((c) => c.kind === 'rigid' && ((c.male === cross && c.female === ends[0]) || (c.female === cross && c.male === ends[0])))) connections.push({ male: cross, female: ends[0], kind: 'rigid', from: center.clone(), to: center.clone() });
     connections.push({ male: ends[0], female: ends[1], kind: 'coupling', from: center, to: center.clone() });
     joined.push({ partA: ends[0], partB: ends[1], center, axisA: axisOfEnd(ends[0]), axisB: axisOfEnd(ends[1]) });
   });
