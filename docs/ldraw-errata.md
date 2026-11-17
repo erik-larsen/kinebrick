@@ -467,6 +467,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
 | [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Signed off by Erik, 2026-11-16 |
 | [42077-1](#42077-1-rear-half-shaft-inner-ball-level) | rear-half-shaft-inner-ball-level | moves `32494.dat` (in `42077 - rearaxle.ldr`) to -60 0 0, turned | Proposed, not applied until signed off |
+| [42078-1](#42078-1-rear-crane-actuator-axle-to-its-connectors) | rear-crane-actuator-axle-to-its-connectors | moves `60485.dat` (in `42078 - craneactu.ldr` as placed in `42078 - crane1.ldr` only) to -0.012 -20 49.983 | Proposed, not applied until signed off |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Signed off by Erik, 2026-11-15 |
@@ -768,6 +769,28 @@ In `42077 - rearaxle.ldr` (p78 32494), the line
 ```
 
 is read with its part at -60 0 0, turned to 0 0.235 -0.972 0 0.972 0.235 1 0 0.
+
+### 42078-1: rear-crane-actuator-axle-to-its-connectors
+
+Proposed, not applied until signed off.
+
+The two cranes are mirror images, and both place one actuator submodel (42078 - craneactu.ldr), unmirrored. Its axle 9 runs from the actuator's bevel gear to the crane's back, where a connector holds each end and a red axle 6 plugs the crane onto the trailer's shaft (steps 142 and 143, page 336, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=336; step 154, page 341, #page=341; step 155, page 342, #page=342). In the front crane the axle 9 (p2196) has its connectors p2206 and p2320 over its two ends, 20 LDU of it in each. In the rear crane the same axle (p1968) lies 40 LDU too far back: it stops 20 LDU short of the connector p2108 that should hold it, and runs into the second half of the connector p1986, where the red axle p2078 is. So the front crane's drive stops at the rear crane, and its actuator isn't driven (function 9). Moved 40 LDU along itself toward the trailer, in the rear crane only, it fills both connectors' halves as in the front crane.
+
+Only where `42078 - crane1.ldr` places `42078 - craneactu.ldr` by the line
+
+```
+1 19 0 -24.131 116.209 0 -1 0 0.876 0 0.483 -0.483 0 0.876 42078 - craneactu.ldr
+```
+
+which is pointed at a copy of the submodel with the change; its other uses are as the file has them.
+
+In `42078 - craneactu.ldr` (p1968 60485), the line
+
+```
+1 14 -0.012 20 49.983 0 0.483 0.876 -1 0 0 0 -0.876 0.482 60485.dat
+```
+
+is read with its part at -0.012 -20 49.983.
 
 ### 42083-1: speed-key-in-its-hole
 

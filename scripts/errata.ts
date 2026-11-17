@@ -18,7 +18,7 @@ function what(e: Erratum): string {
   if (e.what === 'add') return `adds ${e.lines?.length ?? 0} line${e.lines?.length === 1 ? '' : 's'} to the main model`;
   const placed = (e.line ?? '').trim().split(/\s+/).slice(14).join(' ');
   if (e.what === 'remove') return `removes \`${placed}\`${e.file ? ` (in \`${e.file}\`)` : ''}`;
-  return `moves \`${placed}\`${e.file ? ` (in \`${e.file}\`)` : ''} to ${e.position?.join(' ') ?? 'where it was'}${e.orientation ? ', turned' : ''}`;
+  return `moves \`${placed}\`${e.file ? ` (in \`${e.file}\`${e.within ? ` as placed in \`${e.within.file || 'the main model'}\` only` : ''})` : ''} to ${e.position?.join(' ') ?? 'where it was'}${e.orientation ? ', turned' : ''}`;
 }
 
 // The section, as the entries make it.
@@ -33,6 +33,7 @@ export function errataSection(): string {
   for (const set of all) {
     for (const e of set.entries) {
       out.push('', `### ${set.set}: ${e.id}`, '', `${status(e)}.`, '', e.evidence);
+      if (e.within) out.push('', `Only where ${e.within.file ? `\`${e.within.file}\`` : 'the main model'} places \`${e.file}\` by the line`, '', '```', e.within.line, '```', '', 'which is pointed at a copy of the submodel with the change; its other uses are as the file has them.');
       if (e.what === 'move') out.push('', `In ${e.file ? `\`${e.file}\`` : 'the main model'}${e.part ? ` (${e.part})` : ''}, the line`, '', '```', e.line ?? '', '```', '', `is read with its part at ${e.position?.join(' ')}${e.orientation ? `, turned to ${e.orientation.join(' ')}` : ''}.`);
       if (e.what === 'remove') out.push('', `In ${e.file ? `\`${e.file}\`` : 'the main model'}${e.part ? ` (${e.part})` : ''}, the line`, '', '```', e.line ?? '', '```', '', 'is read as not there. The part keeps its number.');
       if (e.what === 'add') out.push('', 'Added to the main model:', '', '```', ...(e.lines ?? []), '```');
