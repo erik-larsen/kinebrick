@@ -143,7 +143,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Sliding-gear gearbox](sliding-gear-gearbox.md) | 2 | 1978 | 1 | 1 |  |  |  |  | 2 works, 2 partly |
 | [Driving-ring gearbox](driving-ring-gearbox.md) | 8 | 1994 |  |  | 2 | 1 | 4 | 1 | 9 works, 2 partly, 1 no, 1 not checked |
-| [Sequential gearbox](sequential-gearbox.md) | 6 | 2016 |  |  |  |  | 3 | 3 | 1 works, 10 partly |
+| [Sequential gearbox](sequential-gearbox.md) | 6 | 2016 |  |  |  |  | 3 | 3 | 2 works, 9 partly |
 | [Function selector](function-selector.md) | 25 | 1992 |  |  | 1 | 1 | 19 | 4 | 34 works, 56 partly, 3 no, 4 not checked |
 
 ### Moving and lifting
