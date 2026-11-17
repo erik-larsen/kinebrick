@@ -152,7 +152,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 20 works, 6 partly, 4 no |
 | [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 15 works, 34 partly, 1 no |
-| [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 6 works, 8 partly, 9 no, 6 skipped |
+| [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 4 works, 8 partly, 11 no, 6 skipped |
 | [Crank and link](crank-and-link.md) | 56 | 1979 | 1 | 6 | 6 | 9 | 27 | 7 | 44 works, 28 partly, 5 no, 1 not checked |
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
@@ -201,7 +201,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 149 works, 1 partly, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 80 works, 14 partly, 30 no, 2 skipped, 5 not checked |
+| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 79 works, 14 partly, 31 no, 2 skipped, 5 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 3 works, 3 partly, 2 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 9 works, 1 no, 1 skipped |
 | [Hangs free](hangs-free.md) | 18 | 1978 | 1 | 1 | 2 | 4 | 10 |  | 5 works, 1 partly, 6 skipped, 6 not checked |

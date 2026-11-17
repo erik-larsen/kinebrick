@@ -153,9 +153,9 @@
     "date": "2026-11-17",
     "seconds": 84,
     "counts": {
-      "works": 4,
+      "works": 3,
       "partly": 1,
-      "no": 1,
+      "no": 2,
       "skipped": 2
     },
     "loose": [
@@ -627,56 +627,63 @@
         "seconds": 13.8
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -0.01
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p50 32524"
         ],
         "rates": [
           {
             "p50 32524": [
-              1,
-              60
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              0.03,
-              0.01
+              0,
+              0
             ],
             [
-              0.23,
-              0.06
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.03,
-              0.01
+              0,
+              0
             ],
             [
-              0.23,
-              0.06
+              0,
+              0
             ]
           ]
         ],
         "stop": [
           [
-            null,
-            "stuck"
+            "no motion",
+            "no motion"
           ]
         ],
         "pushed": [
           true
         ],
-        "freed": 4,
-        "seconds": 38.9
+        "judged": [
+          0
+        ],
+        "cause": "part-fixed",
+        "detail": "p50 32524",
+        "seconds": 1
       },
       {
         "result": "skipped",
