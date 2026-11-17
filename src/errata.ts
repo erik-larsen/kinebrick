@@ -14,6 +14,15 @@
 // (see REMOVED in ldr.ts), the parts it placed keeping their numbers, marked removed: drawn as
 // nothing, with no connection points, never loose.
 //
+// A submodel placed more than once is one file, so a change to its line changes every use of it.
+// An entry with `within` changes only one: it names the placement of its submodel (`file`) in a
+// parent, by the parent file and the placement's line, as `file` and `line` name a part. That
+// placement is pointed at a copy of the submodel, added at the end of the model under its own name
+// (COPY_NAME), and the entry changes the copy's line. Entries with the same `within` share the copy.
+// No part number moves: the placement stays where it is, and parts are numbered in the order the
+// model places them. (The 42078's two cranes are mirror images that place one actuator submodel
+// unmirrored; its axle is right in the front crane and 40 LDU off in the rear one.)
+//
 // An entry applies only once Erik has signed it off (`signedOff`); with `proposed` (the check's
 // --proposed, the viewer's option=proposed) entries not yet signed off apply too, so a set can be
 // seen before and after.
@@ -29,6 +38,7 @@ export interface Erratum {
   position?: [number, number, number]; // move: where the line places its part now
   orientation?: number[]; // move: its orientation's nine numbers, if that changes too
   lines?: string[]; // add: the lines added to the main model
+  within?: { file: string; line: string }; // move, remove: only `file` as placed by this line of this parent file ("" for the main model)
   evidence: string; // the booklet's page and step, or the probe's numbers
   signedOff?: { by: string; date: string; words?: string } | null;
   note?: string;
@@ -46,6 +56,9 @@ export function setOfFile(path: string): string | null {
 }
 
 const even = (line: string) => line.trim().split(/\s+/).join(' ');
+
+// The name of the copy of submodel `file` that one placement in `parent` is pointed at.
+export const COPY_NAME = (file: string, parent: string) => `${file.replace(/\.(ldr|dat)$/i, '')} [as placed in ${parent || 'the main model'}].ldr`;
 
 // The model's text with the entries applied, which entries were applied and which refused, and
 // why. `partAt` gives the name of the part at a number in the model as the OMR file has it (for
@@ -66,6 +79,8 @@ export function applyErrata(text: string, errata: Errata | null | undefined, pro
     fileOf.push(file);
   }
   const added: string[] = [];
+  // The submodels copied for one placement each (see `within`), by the placement.
+  const copies = new Map<string, string[]>();
   for (const e of errata.entries) {
     if (!e.signedOff && !proposed) continue;
     if (e.what === 'add') {
@@ -79,9 +94,31 @@ export function applyErrata(text: string, errata: Errata | null | undefined, pro
     }
     const want = even(e.line ?? '');
     const where = (e.file ?? '').toLowerCase();
-    const found = lines.flatMap((line, i) => (fileOf[i] === where && even(line) === want ? [i] : []));
+    // The lines the entry's line is looked for in: the model's, or a copy of its submodel.
+    let target = lines;
+    let inFile = (i: number) => fileOf[i] === where;
+    if (e.within) {
+      const key = `${e.within.file.toLowerCase()}\n${even(e.within.line)}`;
+      if (!copies.has(key)) {
+        const parent = e.within.file.toLowerCase();
+        const placed = lines.flatMap((line, i) => (fileOf[i] === parent && even(line) === even(e.within!.line) ? [i] : []));
+        const tokens = placed.length === 1 ? lines[placed[0]].trim().split(/\s+/) : [];
+        if (placed.length !== 1 || tokens[0] !== '1' || tokens.slice(14).join(' ').toLowerCase() !== where) {
+          refused.push(`${e.id}: its placement of ${e.file} is found ${placed.length} times in ${e.within.file || 'the main model'}${placed.length === 1 ? ', placing something else' : ''}`);
+          continue;
+        }
+        const name = COPY_NAME(e.file ?? '', e.within.file);
+        const block = lines.flatMap((line, i) => (fileOf[i] === where ? [line] : []));
+        block[0] = `0 FILE ${name}`;
+        copies.set(key, block);
+        lines[placed[0]] = [...tokens.slice(0, 14), name].join(' ');
+      }
+      target = copies.get(key)!;
+      inFile = () => true;
+    }
+    const found = target.flatMap((line, i) => (inFile(i) && even(line) === want ? [i] : []));
     if (found.length !== 1) {
-      refused.push(`${e.id}: its line is found ${found.length} times in ${e.file || 'the main model'}`);
+      refused.push(`${e.id}: its line is found ${found.length} times in ${e.file || 'the main model'}${e.within ? ` as placed in ${e.within.file || 'the main model'}` : ''}`);
       continue;
     }
     const number = /^p(\d+)\s+(\S+)/.exec(e.part ?? '');
@@ -93,14 +130,14 @@ export function applyErrata(text: string, errata: Errata | null | undefined, pro
       }
     }
     if (e.what === 'remove') {
-      lines[found[0]] = `${REMOVED} ${lines[found[0]].trim()}`;
+      target[found[0]] = `${REMOVED} ${target[found[0]].trim()}`;
       applied.push(e.id);
       continue;
     }
-    const tokens = lines[found[0]].trim().split(/\s+/);
+    const tokens = target[found[0]].trim().split(/\s+/);
     if (e.position) [tokens[2], tokens[3], tokens[4]] = e.position.map(String);
     if (e.orientation) tokens.splice(5, 9, ...e.orientation.map(String));
-    lines[found[0]] = tokens.join(' ');
+    target[found[0]] = tokens.join(' ');
     applied.push(e.id);
   }
   if (added.length) {
@@ -109,5 +146,6 @@ export function applyErrata(text: string, errata: Errata | null | undefined, pro
     const at = end < 0 ? lines.length : end;
     lines.splice(at, 0, ADDED, ...added);
   }
+  for (const block of copies.values()) lines.push('', ...block);
   return { text: lines.join('\n'), applied, refused };
 }
