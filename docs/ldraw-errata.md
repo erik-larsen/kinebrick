@@ -451,6 +451,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [850-1](#850-1-handwheel-pin-down) | handwheel-pin-down | moves `3673.dat` to -100 -198 -130 | Signed off by Erik, 2026-11-14 |
 | [850-1](#850-1-lower-axle-and-gear) | lower-axle-and-gear | adds 2 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [8258-1](#8258-1-front-drive-gear-4-high) | front-drive-gear-4-high | moves `8258 - m-1k'ka.ldr` (in `8258 - m-1k'k.ldr`) to 20 -20 0 | Signed off by Erik, 2026-11-14 |
+| [8258-1](#8258-1-boom-actuator-u-joint-on-the-turntable-axle) | boom-actuator-u-joint-on-the-turntable-axle | moves `62520.dat` (in `8258 - m-1g''''.ldr`) to 0 0 -50, turned | Proposed, not applied until signed off |
 | [8832-1](#8832-1-roll-bar-brace-right-axle-through-its-toggles) | roll-bar-brace-right-axle-through-its-toggles | moves `3706.dat` to 70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
 | [8832-1](#8832-1-roll-bar-brace-left-axle-through-its-toggles) | roll-bar-brace-left-axle-through-its-toggles | moves `3706.dat` to -70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
@@ -465,9 +466,13 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
 | [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Signed off by Erik, 2026-11-16 |
+| [42077-1](#42077-1-rear-half-shaft-inner-ball-level) | rear-half-shaft-inner-ball-level | moves `32494.dat` (in `42077 - rearaxle.ldr`) to -60 0 0, turned | Proposed, not applied until signed off |
+| [42078-1](#42078-1-rear-crane-actuator-axle-to-its-connectors) | rear-crane-actuator-axle-to-its-connectors | moves `60485.dat` (in `42078 - craneactu.ldr` as placed in `42078 - crane1.ldr` only) to -0.012 -20 49.983 | Proposed, not applied until signed off |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Signed off by Erik, 2026-11-15 |
+| [42096-1](#42096-1-rear-half-shafts-outer-balls-in-their-hubs-left) | rear-half-shafts-outer-balls-in-their-hubs-left | moves `32494.dat` (in `42096 - porsche.ldr`) to -155.112 30.881 0 | Proposed, not applied until signed off |
+| [42096-1](#42096-1-rear-half-shafts-outer-balls-in-their-hubs-right) | rear-half-shafts-outer-balls-in-their-hubs-right | moves `32494.dat` (in `42096 - porsche.ldr`) to 155.112 30.881 0 | Proposed, not applied until signed off |
 | [42099-1](#42099-1-rear-side-gear-p45-in-line) | rear-side-gear-p45-in-line | moves `6589.dat` (in `42099 - rearaxle.ldr`) to 17 -40 0 | Signed off by Erik, 2026-11-15 |
 | [42099-1](#42099-1-rear-side-gear-p46-in-line) | rear-side-gear-p46-in-line | moves `6589.dat` (in `42099 - rearaxle.ldr`) to -17 -40 0 | Signed off by Erik, 2026-11-15 |
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
@@ -529,6 +534,20 @@ In `8258 - m-1k'k.ldr`, the line
 ```
 
 is read with its part at 20 -20 0.
+
+### 8258-1: boom-actuator-u-joint-on-the-turntable-axle
+
+Proposed, not applied until signed off.
+
+The lower boom's linear actuator (p2096 62271c01, submodel m-1g'''') takes its drive from the turntable's upright axle 10 (p244 3737) through a universal joint at its foot. Book 2 page 82 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=82) builds the actuator with the joint on an axle 3; page 83, step 156 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4561899.pdf#page=83), sets it upright and drops the joint's free end straight onto the axle that stands up from the turntable. The boom tilts the actuator later, and the joint bends, its free end staying on that axle. The file draws the joint straight in its submodel, both ends on the actuator's line, and places the submodel tilted 25° with the actuator, so the free end p2103 points 25° off p244, whose tip stops 10 LDU from the joint's centre, where the end's axle hole begins. Nothing is in the end's hole, and the actuator isn't driven (function 3). Turned 25.0° on the cross's arm it pins on, the end lines up with p244; the cross and the actuator's side don't move.
+
+In `8258 - m-1g''''.ldr` (p2103 62520), the line
+
+```
+1 71 0 0 -50 -1 0 0 0 1 0 0 0 -1 62520.dat
+```
+
+is read with its part at 0 0 -50, turned to -1 0 0 0 0.906106 0.42305 0 0.42305 -0.906106.
 
 ### 8832-1: roll-bar-brace-right-axle-through-its-toggles
 
@@ -739,6 +758,42 @@ In `42070 - axle3.ldr` (p848 6589), the line
 
 is read with its part at 0 0 -17, turned to -0.259 0.966 0 -0.966 -0.259 0 0 0 1.
 
+### 42077-1: rear-half-shaft-inner-ball-level
+
+Proposed, not applied until signed off.
+
+The rear differential takes a half shaft on each side: a constant velocity ball (32494) in each of its CV sockets (step 18, page 11, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6261603.pdf#page=11), an axle 4 into it and a ball at the wheel's end (step 19). In the file's submodel 42077 - rearaxle.ldr both half shafts slope down 13.6 degrees to the sprung wheels: on one side the inner ball, the axle 4 and the outer ball all slope (its lines at x 60, 118.3 and 176.6); on the other the axle 4 and the outer ball slope (x -118.3 and -176.6) but the inner ball p78 at x -60 is drawn level, so the axle misses its hole and the half shaft is joined to nothing at the differential. Turned 13.6 degrees about its own centre, in its socket, the ball takes the axle as on the other side; nothing else moves.
+
+In `42077 - rearaxle.ldr` (p78 32494), the line
+
+```
+1 71 -60 0 0 0 0 -1 0 1 0 1 0 0 32494.dat
+```
+
+is read with its part at -60 0 0, turned to 0 0.235 -0.972 0 0.972 0.235 1 0 0.
+
+### 42078-1: rear-crane-actuator-axle-to-its-connectors
+
+Proposed, not applied until signed off.
+
+The two cranes are mirror images, and both place one actuator submodel (42078 - craneactu.ldr), unmirrored. Its axle 9 runs from the actuator's bevel gear to the crane's back, where a connector holds each end and a red axle 6 plugs the crane onto the trailer's shaft (steps 142 and 143, page 336, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=336; step 154, page 341, #page=341; step 155, page 342, #page=342). In the front crane the axle 9 (p2196) has its connectors p2206 and p2320 over its two ends, 20 LDU of it in each. In the rear crane the same axle (p1968) lies 40 LDU too far back: it stops 20 LDU short of the connector p2108 that should hold it, and runs into the second half of the connector p1986, where the red axle p2078 is. So the front crane's drive stops at the rear crane, and its actuator isn't driven (function 9). Moved 40 LDU along itself toward the trailer, in the rear crane only, it fills both connectors' halves as in the front crane.
+
+Only where `42078 - crane1.ldr` places `42078 - craneactu.ldr` by the line
+
+```
+1 19 0 -24.131 116.209 0 -1 0 0.876 0 0.483 -0.483 0 0.876 42078 - craneactu.ldr
+```
+
+which is pointed at a copy of the submodel with the change; its other uses are as the file has them.
+
+In `42078 - craneactu.ldr` (p1968 60485), the line
+
+```
+1 14 -0.012 20 49.983 0 0.483 0.876 -1 0 0 0 -0.876 0.482 60485.dat
+```
+
+is read with its part at -0.012 -20 49.983.
+
 ### 42083-1: speed-key-in-its-hole
 
 Proposed, not applied until signed off.
@@ -778,6 +833,34 @@ Added to the main model:
 ```
 1 72 0 -55 80 0 1 0 1 0 0 0 0 -1 10928.dat
 ```
+
+### 42096-1: rear-half-shafts-outer-balls-in-their-hubs-left
+
+Proposed, not applied until signed off.
+
+Each rear half shaft is two constant velocity balls (32494) on an axle 3, between a ball socket on the differential's side and the portal hub's socket (step 11, page 7, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6314566.pdf#page=7; the hubs at step 8, page 6, #page=6). A ball's axle hole runs from 20 to 50 LDU behind its centre, so with the axle 3 seated in both the two centres are 100 LDU apart: exactly the distance from the inner ball to the hub's socket (the 92909's, 30 LDU inside it), along the shaft's slope. The file draws each outer ball 120 LDU from the inner one, the axle half out of it, so the ball sits 20 LDU short of the hub's socket and turns nothing: the rear wheels don't drive the differential or the engine (function 1). Moved 20 LDU along the shaft into the socket, the ball takes the axle fully; the inner ball and the axle stay as drawn. This entry is the left shaft's; the next, the right's.
+
+In `42096 - porsche.ldr` (p46 32494), the line
+
+```
+1 71 -174.135 37.057 0 0 -0.309 0.951 0 -0.951 -0.309 1 0 0 32494.dat
+```
+
+is read with its part at -155.112 30.881 0.
+
+### 42096-1: rear-half-shafts-outer-balls-in-their-hubs-right
+
+Proposed, not applied until signed off.
+
+The right rear half shaft's outer ball, as the left's (the entry before).
+
+In `42096 - porsche.ldr` (p47 32494), the line
+
+```
+1 71 174.135 37.057 0 0 -0.309 -0.951 0 0.951 -0.309 1 0 0 32494.dat
+```
+
+is read with its part at 155.112 30.881 0.
 
 ### 42099-1: rear-side-gear-p45-in-line
 

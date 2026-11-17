@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 79 works, 13 partly, 32 no, 2 skipped, 5 not checked.
+Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 79 works, 14 partly, 31 no, 2 skipped, 5 not checked.
 
 ## By decade
 
@@ -449,7 +449,7 @@ Each detail by the set it first appears in.
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 
-- *scissor doors:* The two scissor doors swing up and forward on hinges at their front edges. (no)
+- *scissor doors:* The two scissor doors swing up and forward on hinges at their front edges. (partly)
 - *hood:* The front hood lifts, showing the luggage space and the set's bag. (works)
 - *engine cover:* The engine cover behind the cabin lifts to show the V12. (no)
 - *seat backs:* The seats' backs tilt. (no)

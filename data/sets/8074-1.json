@@ -114,13 +114,11 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 5,
+    "commit": "a60fcd2b",
+    "date": "2026-11-17",
+    "seconds": 7,
     "counts": {
       "partly": 4,
-      "not back": 1,
-      "torn": 1,
       "skipped": 1
     },
     "loose": [
@@ -146,8 +144,8 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.53,
+            -0.37
           ]
         ],
         "still": [
@@ -155,67 +153,68 @@
           "p233 70496"
         ],
         "moved": [
-          "p0 3710",
-          "p201 3703"
+          "p0 3710"
         ],
         "rates": [
           {
             "p32 3708": [
-              1.13,
-              36
+              1.4,
+              101
             ],
             "p231 8074 - 4185a": [
               0,
-              2.35e-13
+              4.3e-15
             ],
             "p233 70496": [
               0,
-              2.35e-13
+              3.98e-15
             ],
             "p0 3710": [
-              0.344,
-              46.8
+              0.967,
+              131
             ],
             "p201 3703": [
-              0.0401,
-              5.63
+              7.9e-8,
+              0.00000856
             ]
           }
         ],
         "back": [
           [
             [
-              56.9,
-              154.42
+              0,
+              0.04
             ],
             [
-              74.7,
-              178.04
+              0,
+              0.02
             ]
           ]
         ],
         "torn": [
           [
             [
-              56.9,
-              154.42
+              0,
+              0.04
             ],
             [
-              74.7,
-              178.04
+              0,
+              0.02
             ]
           ]
         ],
-        "strayed": [
-          "p54 3705",
-          "p47 3706"
+        "stop": [
+          [
+            "dead point",
+            "dead point"
+          ]
         ],
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p231 8074 - 4185a",
-        "seconds": 3.2
+        "seconds": 2
       },
       {
         "result": "skipped",
@@ -310,7 +309,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p96 3738",
-        "seconds": 1.2
+        "seconds": 2.3
       },
       {
         "result": "partly",
@@ -401,7 +400,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p177 3708",
-        "seconds": 0.4
+        "seconds": 0.8
       },
       {
         "result": "partly",
@@ -492,7 +491,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p223 3705",
-        "seconds": 0.3
+        "seconds": 0.8
       }
     ]
   }

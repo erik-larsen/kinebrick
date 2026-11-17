@@ -918,9 +918,11 @@ export function setUpInteraction(s: InteractionSetup) {
   // Frees the friction pins that hold a part still, if freeing them lets it move (see
   // pinsToFree): the drag going on ends, and the mechanism is worked out afresh. If none would,
   // shows `why`.
-  function freeIfHeld(part: number, x: number, y: number, why: string) {
+  // With `otherwise`, which says whether the part can go some other way after all, that is
+  // tried first where no pins hold it.
+  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean) {
     s.pinsToFree(part).then((pins) => {
-      if (!pins.length) return showMessage(why, x, y);
+      if (!pins.length) return otherwise?.() ? undefined : showMessage(why, x, y);
       endDrag();
       s.freePins(pins);
       showMessage(`${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it can now turn: drag it again`, x, y);
@@ -1002,31 +1004,44 @@ export function setUpInteraction(s: InteractionSetup) {
             const directions = grabDirections(d);
             if (directions > 0) wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => grabDirections(d) === directions);
           }
-          return wormLocked || (d.joint >= 0 ? s.kin.jointMotion(d.joint) !== null : grabDirections(d) > 0);
+          // An exact motion only: play is the last resort, after friction pins (see below).
+          return wormLocked || (d.joint >= 0 ? s.kin.jointMotion(d.joint, false) !== null : grabDirections(d) > 0);
         },
         e.clientX,
         e.clientY,
       );
 
+      // The arc a turning drag shows, from the hub to where the part was grabbed.
+      const showArc = () => {
+        const { hub } = turnAxis(d);
+        const radius = Math.max(hit.point.distanceTo(hub), MIN_ARC_RADIUS);
+        d.arc = makeArc(radius);
+        s.ldrawSpace.add(d.arc);
+        updateArc(d);
+      };
       if (!canMove && wormLocked) {
         showMessage(`This part can't move: ${lockedWhy(body)}`, e.clientX, e.clientY);
       } else if (!canMove) {
         // Held still, perhaps by friction pins (a door on its hinges): ask which pins to free so
-        // it can move. If none would, it can't move.
+        // it can move. If none would, a turning drag may still go on play (see Kinematics.loopPlay),
+        // as the check's does: play is the last resort, after the pins. Else it can't move.
         const why =
           s.kin.freeMotions().length === 0
             ? "Can't move: the mechanism is jammed"
             : `This part can't move: ${s.kin.frameFixed() && body === 0 ? 'the model has no means of locomotion' : whyStuck()}`;
         showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
-        freeIfHeld(hit.part, e.clientX, e.clientY, why);
+        const onPlay = () => d.joint >= 0 && drag === d && s.kin.jointMotion(d.joint) !== null;
+        freeIfHeld(hit.part, e.clientX, e.clientY, why, () => {
+          if (!onPlay()) return false;
+          showingMessage = false;
+          hideLabel();
+          showArc();
+          return true;
+        });
       } else if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {
-        const { hub } = turnAxis(drag);
-        const radius = Math.max(hit.point.distanceTo(hub), MIN_ARC_RADIUS);
-        drag.arc = makeArc(radius);
-        s.ldrawSpace.add(drag.arc);
-        updateArc(drag);
+        showArc();
       } else if (!updateArrow(drag)) {
         const why = s.kin.frameFixed() ? 'the model has no means of locomotion' : whyStuck();
         showMessage(`This part can't move: ${why}`, e.clientX, e.clientY);
@@ -1067,7 +1082,9 @@ export function setUpInteraction(s: InteractionSetup) {
     }
     if (e.pointerId !== drag.pointerId) return; // another finger or pointer
     if (drag.joint >= 0) {
-      turnTowards(drag, e.clientX, e.clientY);
+      // A turning drag with no arc can't turn, or waits to hear whether pins hold it (see
+      // freeIfHeld): it doesn't go on play in the meantime.
+      if (drag.arc) turnTowards(drag, e.clientX, e.clientY);
       drag.lastX = e.clientX;
       drag.lastY = e.clientY;
     } else {

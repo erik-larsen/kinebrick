@@ -111,8 +111,8 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
+    "commit": "a60fcd2b",
+    "date": "2026-11-17",
     "seconds": 2,
     "counts": {
       "works": 4,
@@ -375,7 +375,7 @@
             "p3083 6538b against p3462 41681"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "not checked",
@@ -558,7 +558,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.3
       },
       {
         "result": "not checked",

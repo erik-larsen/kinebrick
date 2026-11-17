@@ -14,7 +14,7 @@
 // waits until it is.
 
 import { parseModel } from './ldr.ts';
-import { inferMechanism, Mechanism, pinsToFree } from './mechanism.ts';
+import { inferMechanism, Mechanism, motorOutput, pinsToFree } from './mechanism.ts';
 import { heldPins, pinsByTrial } from './inference/friction.ts';
 import { Kinematics } from './kinematics.ts';
 import type { PlacedPart } from './ldr.ts';
@@ -28,9 +28,10 @@ let model: { parts: PlacedPart[]; table: any; roles: Record<string, string>; pat
 function moves(part: number, freed: Set<number>): boolean {
   const mech = inferMechanism(model!.parts, model!.table, model!.roles, model!.paths, freed);
   const kin = new Kinematics(mech);
-  const body = mech.bodyOf[part];
+  // A motor is taken by its output, as pinsToFree takes it.
+  const body = mech.roles[part] === 'motor' ? motorOutput(mech, part) : mech.bodyOf[part];
   const link = kin.parentLink(body);
-  return !kin.frames.includes(body) && link !== null && kin.jointMotion(link.joint) !== null;
+  return !kin.frames.includes(body) && link !== null && kin.jointMotion(link.joint, false) !== null;
 }
 
 self.onmessage = (event: MessageEvent) => {

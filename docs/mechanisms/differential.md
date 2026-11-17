@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 54 works, 22 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 55 works, 21 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -244,7 +244,7 @@ Each detail by the set it first appears in.
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**
 
-- The V12 engine's pistons pump as the bulldozer drives: the two drive motors' inner shafts meet in a differential between them, whose case turns a 20 tooth gear and a shaft running forward under the gearbox, up through an idler to the crankshaft. (partly)
+- The V12 engine's pistons pump as the bulldozer drives: the two drive motors' inner shafts meet in a differential between them, whose case turns a 20 tooth gear and a shaft running forward under the gearbox, up through an idler to the crankshaft. (works)
 
 ---
 

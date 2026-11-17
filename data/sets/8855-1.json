@@ -92,9 +92,9 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 30,
+    "commit": "a60fcd2b",
+    "date": "2026-11-17",
+    "seconds": 26,
     "counts": {
       "no": 1,
       "partly": 2,
@@ -325,7 +325,7 @@
         ],
         "cause": "not-driven",
         "detail": "p154 3706",
-        "seconds": 1.7
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -447,7 +447,8 @@
           [],
           []
         ],
-        "seconds": 26.1
+        "onPlay": 6.14,
+        "seconds": 22.7
       }
     ]
   }

@@ -4,7 +4,7 @@ A part slews round on a turntable or an upright pivot, geared or by hand. (Movin
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane): The cab slews round on its turntable, carrying the boom with it.
 
-Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 18 works, 16 partly, 5 no, 1 not checked.
+Used in 36 of the 186 surveyed sets, by 40 functions. Kinebrick: 19 works, 15 partly, 5 no, 1 not checked.
 
 ## By decade
 
@@ -170,7 +170,7 @@ Each detail by the set it first appears in.
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
 
-- *superstructure:* The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth. (partly)
+- *superstructure:* The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth. (works)
 
 **2020, [42108 Mobile Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42108-1)**
 

@@ -134,9 +134,10 @@
     ]
   },
   "generated": {
-    "commit": "33f60781",
-    "date": "2026-11-16",
-    "seconds": 122,
+    "commit": "6a64c93f",
+    "uncommitted": true,
+    "date": "2026-11-17",
+    "seconds": 104,
     "counts": {
       "works": 2,
       "partly": 4,
@@ -197,7 +198,7 @@
             ]
           ]
         ],
-        "seconds": 9.1
+        "seconds": 6.9
       },
       {
         "result": "partly",
@@ -248,11 +249,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "not-driven",
         "detail": "p1729 57585",
-        "seconds": 8.7
+        "seconds": 6.7
       },
       {
         "result": "partly",
@@ -313,11 +314,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "part-fixed",
         "detail": "p1469 99010",
-        "seconds": 8.7
+        "seconds": 6.7
       },
       {
         "result": "partly",
@@ -381,11 +382,11 @@
           "p882 92693c01 is held by friction pins the control doesn't reach"
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "part-fixed",
         "detail": "p882 92693c01",
-        "seconds": 9
+        "seconds": 6.8
       },
       {
         "result": "partly",
@@ -408,7 +409,7 @@
             ],
             "p223 64782": [
               0,
-              8.35e-81
+              2.16e-80
             ],
             "p244 32524": [
               0,
@@ -441,11 +442,11 @@
           ]
         ],
         "judged": [
-          1
+          0
         ],
         "cause": "not-driven",
         "detail": "p974 92693c01",
-        "seconds": 8.7
+        "seconds": 6.4
       },
       {
         "result": "works",
@@ -619,7 +620,7 @@
           [],
           []
         ],
-        "seconds": 73.1
+        "seconds": 67.3
       },
       {
         "result": "no",
@@ -704,7 +705,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 2
+        "seconds": 1.7
       },
       {
         "result": "no",
@@ -754,7 +755,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 1.6
+        "seconds": 1.2
       }
     ]
   }

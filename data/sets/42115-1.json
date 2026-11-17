@@ -177,15 +177,14 @@
     ]
   },
   "generated": {
-    "commit": "6850ca85",
-    "uncommitted": true,
+    "commit": "a60fcd2b",
     "date": "2026-11-17",
-    "seconds": 1448,
+    "seconds": 979,
     "counts": {
-      "partly": 3,
+      "partly": 4,
       "works": 4,
       "skipped": 1,
-      "no": 3
+      "no": 2
     },
     "loose": [
       "p186 87994",
@@ -317,7 +316,7 @@
         ],
         "cause": "not-driven",
         "detail": "p38 62821",
-        "seconds": 81.8
+        "seconds": 55.9
       },
       {
         "result": "partly",
@@ -387,7 +386,7 @@
         ],
         "cause": "not-driven",
         "detail": "p579 32072",
-        "seconds": 78.8
+        "seconds": 54.5
       },
       {
         "result": "works",
@@ -433,7 +432,7 @@
             ]
           ]
         ],
-        "seconds": 78.7
+        "seconds": 54.3
       },
       {
         "result": "works",
@@ -491,7 +490,7 @@
             ]
           ]
         ],
-        "seconds": 402.7
+        "seconds": 265.3
       },
       {
         "result": "works",
@@ -609,7 +608,7 @@
           [],
           []
         ],
-        "seconds": 345.8
+        "seconds": 229.1
       },
       {
         "result": "skipped"
@@ -671,29 +670,25 @@
         ],
         "cause": "part-fixed",
         "detail": "p2673 11946",
-        "seconds": 83
+        "seconds": 58.3
       },
       {
-        "result": "no",
+        "result": "partly",
         "turned": [
           [
-            0,
-            0
+            0.03,
+            -0.03
           ],
           [
-            0,
-            0
+            0.03,
+            -0.03
           ]
-        ],
-        "still": [
-          "p3452 64394",
-          "p3544 64680"
         ],
         "rates": [
           {
             "p3452 64394": [
-              0,
-              0
+              1,
+              151
             ],
             "p3544 64680": [
               0,
@@ -706,8 +701,8 @@
               0
             ],
             "p3544 64680": [
-              0,
-              0
+              1,
+              151
             ]
           }
         ],
@@ -757,24 +752,29 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ],
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "movedBy": [
-          [],
-          []
+          [
+            "p3452 64394"
+          ],
+          [
+            "p3544 64680"
+          ]
         ],
         "judged": [
           0,
           0
         ],
         "cause": "control-jammed",
-        "seconds": 27.8
+        "onPlay": 0.27,
+        "seconds": 32.8
       },
       {
         "result": "works",
@@ -817,7 +817,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 235.4
+        "seconds": 157.3
       },
       {
         "result": "no",
@@ -876,7 +876,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 11.9
+        "seconds": 7.7
       },
       {
         "result": "no",
@@ -940,12 +940,12 @@
         ],
         "stop": [
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ],
           [
-            "no motion",
-            "no motion"
+            "dead point",
+            "dead point"
           ]
         ],
         "movedBy": [
@@ -957,7 +957,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 52.3
+        "seconds": 31.7
       }
     ]
   }

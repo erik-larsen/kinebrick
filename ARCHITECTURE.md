@@ -545,12 +545,18 @@ The equations depend on where things are: tyre contact points and axles move as 
 
 Gears keep that rate steady, and linkages change it gently, except near a dead point. Without this, an official car's steering, turned past its dead point, flipped its front wheels over and let its rack slip against its gear.
 
-**Play.** Real parts have a little play, and some loops of rigid parts are built to fit only where the model was built. An official race car hangs each front upright on two towballs 81 LDU apart from arms 80 apart; a step on, the loop is a hair out, so to the solver it can't move at all. So where nothing turns a joint exactly, the solver tries again letting the loops' joints come a little apart:
+**Play.** Real parts have a little play, and some loops of rigid parts are built to fit only where the model was built. An official race car hangs each front upright on two towballs 81 LDU apart from arms 80 apart; a step on, the loop is a hair out, so to the solver it can't move at all. So where nothing turns a joint exactly, the solver lets the loops' joints come a little apart. Play is an amount, not a rate (decision 121 of 2026-11-16):
 
-- **Which motion:** of the motions that keep every other rule (gears, holds, universal joints, and tyres rolling without scrubbing or lifting at all, so this never stands in for scrubbing more than allowed), the one that opens the loops least.
-- **How far apart:** at most 1 LDU for each radian the joint turns. A beam on two pins half a stud apart would open 10 times that, so it stays put. Steps taken on it may leave the loops up to 0.1 LDU apart, rather than a thousandth.
-- **What it gives:** the race car's suspension then turns half a radian, and an official hovercraft's rudder, tied to its other rudder twice over, a quarter. A loop opening faster than that, or a dead point, still stops a turn where it did.
+- **The budget:** each joint that closes a loop may open by the clearances of the joints round its loop, added up. The clearances are estimates: a pin or axle in a round hole 0.1 LDU across and 0.25 along, a slide 0.1, a towball 0.05. Gears, tyres, universal joints and holds take none. `KINEBRICK_PLAY_SCALE` multiplies them all.
+- **Which motion:** of the motions that keep every rule that takes no play (gears, holds, universal joints, and tyres rolling without scrubbing or lifting at all, so this never stands in for scrubbing more than allowed), the one that opens the loops least.
+- **When a step goes:** while every loop is within its budget, and every other row is closed as tightly as without play. After a step on play, the loops are closed as far as they go, and then those other rows again on their own, the loops left as they are. Closed only together, the loops' misfit was shared out into the universal joints, step after step, until an official forklift's mast drive stopped. Closed only on their own, with the loops left as the step opened them, the loops of an official off-roader's rear suspension passed their budgets within its first step. Other joints may stray from where the step had them going, as closing the loops turns them, on a step on play and on the step after it, but the dragged joint must turn at least half the step the way asked: else closing the loops can undo its turn, and a ski counted 6 radians of play while its joint never turned.
+- **The last resort:** an exact motion first, then friction pins freed for a control with none, and play only where neither gives a motion. So only a drag of that very joint takes play, never a test of whether a control can move at all. The check and the viewer's drag both ask first for an exact motion. Otherwise a play motion found there kept the pins, and an official off-roader's bonnet went 5 radians on play and never lifted.
 - **Not while choosing holds:** play counts only when a drag turns, not when its holds are chosen. Counting it there kept holds a drag needed to let go of: an official concrete mixer truck's drivetrain, so that turning a wheel steered the truck instead of rolling it, and stopped partway round.
+- **Not past a dead point:** where an exact step was refused at a dead point, the drag's retry that holds the joints that strayed asks for an exact motion only. Play took an official auto chassis's steering a step past where its linkage nearly locks, and it couldn't come back.
+- **No dead point by rate:** a step on play doesn't stop the turn for its rates changing, as an exact step near a dead point does. A play motion's rates change as the loops open, and tell nothing of a dead point.
+- **What the check records:** how far each function's drags went on play (`onPlay`), as a record beside `turned`. It doesn't change the result.
+
+`KINEBRICK_LOOP_PLAY=0` turns play as an amount off. Play is then a rate, as before: at most 1 LDU of opening for each radian the joint turns, and steps on it may leave the loops up to 0.1 LDU apart.
 
 ### 8. Place the bodies
 
@@ -1162,7 +1168,7 @@ The joints probe can tell that a control moved, but not whether it moved the rig
 | Result | |
 |---|---|
 | `works` | For each of its controls, one way went at least half as far as it was worked, with every part doing what it should |
-| `partly` | Something moved, but not all it should, or something that should have stayed moved |
+| `partly` | The control moved, and something moved, but not all it should, or something that should have stayed moved. A listed part's motion with the control at rest counts for nothing: the control must have turned 0.01 radians (or slid 0.01 LDU), or, pushed, gone 0.01 LDU (decision 121 of 2026-11-16; `KINEBRICK_CONTROL_MOVED=0` turns this off) |
 | `no` | Nothing moved: the control is part of the frame, or has no joint to work |
 | `skipped` | Marked `skip`: it only matters under gravity or force |
 | `not checked` | Nothing is worked by hand |
@@ -1199,7 +1205,7 @@ Every function that comes out `partly` or `no` gets one cause from a fixed list 
 | `control-fixed` | The control is part of the frame, or has no joint to work | The inference |
 | `first-failed` | A control that has to be worked first didn't go | The check |
 | `control-jammed` | The control has a joint, but nothing lets it move | The inference |
-| `part-fixed` | A part that should move can't move at all against what it's measured against | The inference |
+| `part-fixed` | A part that should move can't move at all against what it's measured against. Not where every part left still moves with the control at a rate that isn't zero (over a millionth): that is `too-little`, and the longer turn is tried (decision 121 of 2026-11-16; `KINEBRICK_SLOW_PARTS=0` turns this off). An official heavy lift helicopter's doors, which a worm and a toggle move a thousandth of a radian for each radian of the control, read as fixed | The inference |
 | `not-driven` | A part that should move can move, but the control can move without it, and no gears tie the two | The inference |
 | `other-motion` | Gears tie a part to the control, but the control can also move without it, and did (a differential's other side) | The solver |
 | `stopped-early` | The part must move with the control, but the drag stopped before half way | The solver |
