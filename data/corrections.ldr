@@ -266,6 +266,14 @@
 0 // shapes: the ring's teeth fill its last 8 LDU at each end; a gear's clutch face is the outer
 0 // 4 LDU of each side.
 
+0 FILE 26287.dat
+0 // Technic Axle Joiner 3L (Rebrickable: Driving Ring Connector Smooth): from 2016 on, a 3L driving ring (18947) slides on this smooth connector, as on the ridged 18948, and turns with it; the ring is held in its places by what shifts it, not by ridges. The same outer fit as the 18948's, from its shadow line: our reading has no detents, the ring's places come from its own SLIDE line
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 9 23   A 10 4   A 9 6   A 10 4   A 9 23] [center=true] [ori=0.70710678 0 -0.70710678 -0.70710678 0 -0.70710678 0 1 0]
+
+0 FILE 42195.dat
+0 // Technic Axle Joiner 3L with Two Flat Sides (Rebrickable: Driving Ring Connector Smooth, 2 rounded and 2 flat side walls): the same as the 26287
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=A 9 23   A 10 4   A 9 6   A 10 4   A 9 23] [center=true] [ori=0.70710678 0 -0.70710678 -0.70710678 0 -0.70710678 0 1 0]
+
 0 FILE 18947.dat
 0 // Technic Transmission Driving Ring 3L: clutch teeth at both ends, and its three places
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 28] [ori=1 0 0 0 0 -1 0 1 0]
