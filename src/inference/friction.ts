@@ -96,10 +96,18 @@ function pinsFor(allFree: Mechanism, kin: Kinematics, body: number, movesPart: (
   return turning.filter((p) => motions.some((m) => movesPart(m) && turns(m, p))).sort((x, y) => x - y);
 }
 
+// How many held pins the search tries at most, the nearest (see pinsByTrial): with 1, 2, 4 and so
+// on to 64 tried in turn, at most seven builds to find a set that lets the part move. The pins
+// that hold a mast to the frame lie 32 to 64 pins from the knob that tilts it, counted along
+// the connections (the 42079 Heavy Duty Forklift's); 16 missed them.
+const NEAREST = 64;
+
 // The friction pins held in a build as read (`read`), nearest `part` first: those a connection
-// marks held (see fixPins), by how many connections apart they are from the part.
-export function heldPins(read: Mechanism, part: number): number[] {
-  const held = new Set(read.connections.filter((c) => c.held).map((c) => c.male));
+// marks held (see fixPins), by how many connections apart they are from the part. First come
+// those that join the part's own body (`own` says how many), then the rest, NEAREST in all; none
+// of those in `freed`.
+export function heldPins(read: Mechanism, part: number, freed: Set<number> = new Set()): { pins: number[]; own: number } {
+  const held = new Set(read.connections.filter((c) => c.held && !freed.has(c.male)).map((c) => c.male));
   const next = new Map<number, number[]>();
   const link = (a: number, b: number) => next.set(a, [...(next.get(a) ?? []), b]);
   for (const c of read.connections) {
@@ -112,7 +120,10 @@ export function heldPins(read: Mechanism, part: number): number[] {
     for (const p of front) for (const q of next.get(p) ?? []) if (!hops.has(q)) hops.set(q, hops.get(p)! + 1), ahead.push(q);
     front = ahead;
   }
-  return [...held].sort((x, y) => (hops.get(x) ?? Infinity) - (hops.get(y) ?? Infinity) || x - y);
+  const body = read.bodyOf[part];
+  const touches = (pin: number) => read.connections.some((c) => c.held && c.male === pin && (read.bodyOf[c.female] === body || read.bodyOf[c.male] === body));
+  const sorted = [...held].sort((x, y) => Number(touches(y)) - Number(touches(x)) || (hops.get(x) ?? Infinity) - (hops.get(y) ?? Infinity) || x - y);
+  return { pins: sorted.slice(0, NEAREST), own: Math.min(NEAREST, sorted.filter(touches).length) };
 }
 
 // The friction pins to free so that a part can move, found by trying them (decision 126 of
@@ -125,9 +136,11 @@ export function heldPins(read: Mechanism, part: number): number[] {
 // let move (as with every pin free), so the pins are taken nearest first, 1, 2, 4 and so on, until
 // the part can move; none if it can't with all of them. Then that set is cut down: of its two
 // halves, one alone if it will do, else what each needs with the other freed.
-export function pinsByTrial(candidates: number[], moves: (freed: Set<number>) => boolean): number[] {
+export function pinsByTrial({ pins: candidates, own }: { pins: number[]; own: number }, moves: (freed: Set<number>) => boolean): number[] {
   let found: number[] | null = null;
-  for (let n = 1; candidates.length; n = Math.min(2 * n, candidates.length)) {
+  // The pins on the part's own body first, in one build: most often they're the ones.
+  if (own > 0 && moves(new Set(candidates.slice(0, own)))) found = candidates.slice(0, own);
+  for (let n = 1; !found && candidates.length; n = Math.min(2 * n, candidates.length)) {
     const nearest = candidates.slice(0, n);
     if (moves(new Set(nearest))) {
       found = nearest;
