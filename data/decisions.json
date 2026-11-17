@@ -14,22 +14,6 @@
   },
   "waiting": [
     {
-      "id": "solver-owner-waits",
-      "kind": "Answer in the session",
-      "title": "The solver owner's session waits for your answer",
-      "since": "2026-11-17",
-      "what": "The session “Solver owner: phase 2 structure” stopped on a request that only you can answer, and has not worked since about 15:00 UTC on 17 November. Claude (the orchestrator) has not read or answered the request and does not work around it: that is your call. Open the session and answer there.",
-      "effect": "Three pieces of work wait behind it. (1) The viewer mend for the pin search: the check counts up to eight functions as working that the viewer does not show yet (41999 function 7, 42080 functions 2 and 3, 8272 functions 2 and 3, 42040 functions 6 and 7, 42036 function 5). (2) A measurement, over all sets, of how often the viewer's collision stop ends a motion that the check passes. (3) The result of the run that tries the friction role of pin 43093 on 110 sets. The next offer of main waits for (1) and (2): preview has 738 working functions, main 701.",
-      "confidence": "Not applicable: Claude does not know what the request asks.",
-      "links": [
-        {
-          "label": "Open the session",
-          "url": "claude://claude.ai/epitaxy/local_fb03a16d-5c3f-42d4-88bd-913b918e738a"
-        }
-      ],
-      "reply": "Answer in the session itself"
-    },
-    {
       "id": "42043-fn11-list",
       "kind": "Sign-off",
       "title": "42043 Mercedes-Benz Arocs 3245, function 11: the wheels move and the differential's case stays",
@@ -97,7 +81,7 @@
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 738 working functions and main 701, but Claude does not offer main yet. Three gaps between what the check counts and what the viewer shows must be mended first: (1) a click on a motor pushes the motor’s body where the check turns the motor’s output (47 functions have a motor as their control, 19 of them count as working; the worker mends this now); (2) gear rings do not shift while a motor runs, only when a drag ends (the same mend); (3) up to eight functions that work by freeing a pin do not show in a drag yet (this waits behind the solver owner’s session). After those, a slow check of the 8110 on the commit offered."
+      "what": "preview has 738 working functions and main 701, but Claude does not offer main yet. Gaps between what the check counts and what the viewer shows must be mended first: (1) a click on a motor pushes the motor’s body where the check turns the motor’s output (47 functions have a motor as their control, 19 of them count as working; the worker mends this); (2) gear rings do not shift while a motor runs, only when a drag ends (the same mend); (3) of eight functions that work by freeing a pin, the solver owner’s drags by hand showed two in full and one in part; it now builds two more changes to the drag, and any of the eight that still does not show after that is taken back out of the count. After those, a full check and a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, asked again at mid-week",
@@ -248,6 +232,10 @@
     {
       "date": "2026-11-14",
       "what": "You moved main to ca95bf02."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You answered the request in the solver owner’s session and showed the browser pane, so it could try its drags by hand. It is working again."
     }
   ]
 }
