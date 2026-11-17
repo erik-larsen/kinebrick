@@ -454,6 +454,10 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8832-1](#8832-1-roll-bar-brace-right-axle-through-its-toggles) | roll-bar-brace-right-axle-through-its-toggles | moves `3706.dat` to 70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
 | [8832-1](#8832-1-roll-bar-brace-left-axle-through-its-toggles) | roll-bar-brace-left-axle-through-its-toggles | moves `3706.dat` to -70 -51.125 105.603, turned | Signed off by Erik, 2026-11-16 |
 | [8838-1](#8838-1-axle-with-gears) | axle-with-gears | adds 1 line to the main model | Signed off by Erik, 2026-11-14 |
+| [8840-1](#8840-1-v2-rod-p118-to-its-piston) | v2-rod-p118-to-its-piston | moves `2852.dat` (in `8840 - step4b.ldr`) to 0 10 0, turned | Proposed, not applied until signed off |
+| [8840-1](#8840-1-v2-piston-p120-on-its-rod) | v2-piston-p120-on-its-rod | moves `2851.dat` (in `8840 - step4b.ldr`) to 0 -7.586 35.907, turned | Proposed, not applied until signed off |
+| [8840-1](#8840-1-v2-rod-p117-to-its-piston) | v2-rod-p117-to-its-piston | moves `2852.dat` (in `8840 - step4b.ldr`) to 0 10 0, turned | Proposed, not applied until signed off |
+| [8840-1](#8840-1-v2-piston-p121-on-its-rod) | v2-piston-p121-on-its-rod | moves `2851.dat` (in `8840 - step4b.ldr`) to 0 -8.044 -35.711, turned | Proposed, not applied until signed off |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
@@ -565,6 +569,62 @@ Added to the main model:
 ```
 1 0 0 17.19 58.37 1 0 0 0 0.993 0.121 0 -0.121 0.993 8838 - Axle-with-Gears.ldr
 ```
+
+### 8840-1: v2-rod-p118-to-its-piston
+
+Proposed, not applied until signed off.
+
+The V2 engine (sub-model 8840 - step4b.ldr, built at the book's step 9) has two connecting rods p117 and p118 2852 on the crankshaft's pin, and two pistons p120 and p121 2851 in their cylinders. The file draws each rod's ball 2.0 and 2.2 LDU off its cylinder's axis and each piston 3.4 and 3.7 LDU above its rod's ball, 4.3 and 4.6 LDU apart in all, so no rod is read as holding its piston: the crank and rods turn, and the pistons stay still (function 2). A rod's ball sits in its piston, as built: turned a few degrees on the crankshaft's pin, in its own plane, each rod's ball lies on its cylinder's axis, and each piston, slid down its cylinder, seats on it.
+
+In `8840 - step4b.ldr` (p118 2852), the line
+
+```
+1 7 0 10 0 0 0 1 -0.875 0.485 0 -0.485 -0.875 0 2852.dat
+```
+
+is read with its part at 0 10 0, turned to 0 0 1 -0.898 0.44 0 -0.44 -0.898 0.
+
+### 8840-1: v2-piston-p120-on-its-rod
+
+Proposed, not applied until signed off.
+
+The V2 engine (sub-model 8840 - step4b.ldr, built at the book's step 9) has two connecting rods p117 and p118 2852 on the crankshaft's pin, and two pistons p120 and p121 2851 in their cylinders. The file draws each rod's ball 2.0 and 2.2 LDU off its cylinder's axis and each piston 3.4 and 3.7 LDU above its rod's ball, 4.3 and 4.6 LDU apart in all, so no rod is read as holding its piston: the crank and rods turn, and the pistons stay still (function 2). A rod's ball sits in its piston, as built: turned a few degrees on the crankshaft's pin, in its own plane, each rod's ball lies on its cylinder's axis, and each piston, slid down its cylinder, seats on it.
+
+In `8840 - step4b.ldr` (p120 2851), the line
+
+```
+1 8 0 -5.434 33.248 0 0 1 -0.777 0.629 0 -0.629 -0.777 0 2851.dat
+```
+
+is read with its part at 0 -7.586 35.907, turned to 0 0 1 -0.777 0.629 0 -0.629 -0.777 0.
+
+### 8840-1: v2-rod-p117-to-its-piston
+
+Proposed, not applied until signed off.
+
+The V2 engine (sub-model 8840 - step4b.ldr, built at the book's step 9) has two connecting rods p117 and p118 2852 on the crankshaft's pin, and two pistons p120 and p121 2851 in their cylinders. The file draws each rod's ball 2.0 and 2.2 LDU off its cylinder's axis and each piston 3.4 and 3.7 LDU above its rod's ball, 4.3 and 4.6 LDU apart in all, so no rod is read as holding its piston: the crank and rods turn, and the pistons stay still (function 2). A rod's ball sits in its piston, as built: turned a few degrees on the crankshaft's pin, in its own plane, each rod's ball lies on its cylinder's axis, and each piston, slid down its cylinder, seats on it.
+
+In `8840 - step4b.ldr` (p117 2852), the line
+
+```
+1 7 0 10 0 0 0 -1 -0.866 0.5 0 0.5 0.866 0 2852.dat
+```
+
+is read with its part at 0 10 0, turned to 0 0 -1 -0.892 0.451 0 0.451 0.893 0.
+
+### 8840-1: v2-piston-p121-on-its-rod
+
+Proposed, not applied until signed off.
+
+The V2 engine (sub-model 8840 - step4b.ldr, built at the book's step 9) has two connecting rods p117 and p118 2852 on the crankshaft's pin, and two pistons p120 and p121 2851 in their cylinders. The file draws each rod's ball 2.0 and 2.2 LDU off its cylinder's axis and each piston 3.4 and 3.7 LDU above its rod's ball, 4.3 and 4.6 LDU apart in all, so no rod is read as holding its piston: the crank and rods turn, and the pistons stay still (function 2). A rod's ball sits in its piston, as built: turned a few degrees on the crankshaft's pin, in its own plane, each rod's ball lies on its cylinder's axis, and each piston, slid down its cylinder, seats on it.
+
+In `8840 - step4b.ldr` (p121 2851), the line
+
+```
+1 8 0 -5.719 -32.839 0 0 -1 -0.777 0.629 0 0.629 0.777 0 2851.dat
+```
+
+is read with its part at 0 -8.044 -35.711, turned to 0 0 -1 -0.777 0.629 0 0.629 0.777 0.
 
 ### 9396-1: left-inner-main-wheel
 
