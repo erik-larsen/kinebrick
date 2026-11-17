@@ -804,7 +804,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           return holds;
         };
         // The pins to free besides those freed already, found by trying them (see pinTrial).
-        const byTrial = (forPart: number, ok: () => boolean) => pinsByTrial(heldPins(asLoaded.mech, forPart).filter((p) => !freed.has(p)), (pins) => withFreed(pins, ok));
+        const byTrial = (forPart: number, ok: () => boolean) => pinsByTrial(heldPins(asLoaded.mech, forPart, freed), (pins) => withFreed(pins, ok));
         if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
@@ -881,7 +881,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (!goes()) {
           const now = placedNow();
           const current = { parts, mech, kin };
-          const pins = pinsByTrial(heldPins(mech, c).filter((p) => !freed.has(p)), (more) => {
+          const pins = pinsByTrial(heldPins(mech, c, freed), (more) => {
             use(loaded.read(now, new Set([...freed, ...more])));
             const went = goes();
             use(current);
