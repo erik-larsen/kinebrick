@@ -202,7 +202,7 @@ Each detail by the set it first appears in.
 
 **2015, [42043 Mercedes-Benz Arocs 3245](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42043-1)**
 
-- *6 cylinders:* Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (partly)
+- *6 cylinders:* Pushing the truck along runs the six-cylinder engine under the cab: both rear axles are driven through their differentials and the shaft between them, and a drive shaft running forward with universal joints turns, through bevel gears, a shaft whose 24-tooth gear turns the 8-tooth gear on the crankshaft, so the six pistons go up and down. (works)
 
 **2016, [42045 Hydroplane Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42045-1)**
 
@@ -246,7 +246,7 @@ Each detail by the set it first appears in.
 
 **2018, [42075 First Responder](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42075-1)**
 
-- *2 cylinders:* Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders. (partly)
+- *2 cylinders:* Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders. (works)
 
 **2018, [42077 Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42077-1)**
 
