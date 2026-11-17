@@ -12,7 +12,24 @@
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "42043-fn11-list",
+      "kind": "Sign-off",
+      "title": "42043 Mercedes-Benz Arocs 3245, function 11: the wheels named as the parts that move, and the differential case as the part that stays",
+      "since": "2026-11-17",
+      "what": "A change to a function list. Function 11 (the rear axles’ differentials) holds the drive shaft still and turns one wheel of the third axle; its note says the other wheel then turns the opposite way. But the list names the differential’s case (p2036) as the part that moves, and with the drive shaft held the case can’t turn: it is held by the shaft. The change names the two wheels (p2219, p2227) as the parts that move and the case as the part that stays.",
+      "effect": "Function 11 goes from partly working to working, checked on its own and with the whole set.",
+      "confidence": "High: it is what a differential does with its drive held, and what the note says. In the viewer (the model lifted, the drive shaft’s universal joint p2029 frozen), a half turn of one wheel turns the other a half turn the opposite way, and the case stays still.",
+      "links": [
+        {
+          "label": "42043, the wheels and the case",
+          "url": "http://localhost:5174/?file=omr%2F42043-1+Mercedes-Benz+Arocs+3245.mpd&lifted=1&show=2219,2227,2036"
+        }
+      ],
+      "reply": "Sign 42043 list"
+    }
+  ],
   "coming": [
     {
       "title": "A second worker, asked again at mid-week",
