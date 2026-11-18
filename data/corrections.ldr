@@ -322,7 +322,7 @@
 
 0 FILE 46490c01.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction, read as its pieces (role "split"): the bearing body 46490c02, which steers with the upright; the driving shaft u9477, turning in it, which a constant velocity joint's ball drives; and the wheel hub 46434, turning in it too, driven by the shaft through planetary gears the LDraw part doesn't draw. The hub turns once for every `ratio` turns of the shaft, the same way round (the ring fixed in the body, the planet carrier the hub): ratio = 1 + ring teeth / sun teeth = 1 + 44/10 = 5.4: sun 10, ring 44, ring fixed, carrier out, counted from X-ray pictures (Eurobricks, "Planetary hub internals") and given as 5.4:1 by Rebrickable; the LDraw shapes carry no teeth
-0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat] [against=46490c02.dat] [ratio=5.4]
+0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat u9475.dat] [against=46490c02.dat] [ratio=5.4]
 
 0 FILE u9477.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Driving Shaft (a piece of 46490c01): the constant velocity socket at its origin that a 52731's ball turns in and drives it through, and a round bearing on the hub's axis (z) there, turning in the bearing body
@@ -336,6 +336,13 @@
 
 0 FILE 46434.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Wheel Hub (a piece of 46490c01): a round bearing on its axis (z), turning in the bearing body
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE u9475.dat
+0 // The wheel hub 46434 under its earlier unofficial number, as the OMR's 42099 embeds it ("42099 - u9475.dat", in its own "42099 - 46490c01.dat", placed at 0 0 -30 with u9477 and 46490c02, where the library's 46490c01 places 46434). The LDraw library has no u9475 and no record of it moving; the two drawings are the same part: both by Philippe Hurbain, 86 lines each, 83 of them the same (the other three are ring primitives, which 46434's history says were updated on 2024-03-23), with the same three pin primitives (connect8) at the same places. So it has 46434's connection data: its three pins, as connect8 gives them (included the way 46434.dat references them), and the round bearing turning in the bearing body, as for 46434 below; and the reduction above names it with 46434
+0 !LDCAD SNAP_INCL [ref=connect8.dat] [pos=0 -20 -10] [ori=0 0 1 1 0 0 0 1 0]
+0 !LDCAD SNAP_INCL [ref=connect8.dat] [pos=17.3205 10 -10] [ori=-0.86603 0 -0.5 -0.5 0 0.86603 0 1 0]
+0 !LDCAD SNAP_INCL [ref=connect8.dat] [pos=-17.3205 10 -10] [ori=0.86603 0 -0.5 -0.5 0 -0.86603 0 1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 2996.dat

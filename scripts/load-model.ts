@@ -7,11 +7,11 @@ import { existsSync, readFileSync } from 'node:fs';
 import { applyErrata, type Errata, setOfFile } from '../src/errata.ts';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { DEFAULT_SCRUB, Kinematics } from '../src/kinematics.ts';
-import { modelSettings, parseModel, PlacedPart } from '../src/ldr.ts';
+import { embeddedParts, modelSettings, parseModel, PlacedPart } from '../src/ldr.ts';
 import { keptFileName } from '../src/collisions.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 import { pivotsKey } from '../src/pivotsKey.ts';
-import { drawnDirectly } from '../src/pack.ts';
+import { drawnDirectly, piecesLines, piecesRole } from '../src/pack.ts';
 
 export function loadModel(file: string, omr: boolean, status: (now: string) => void = () => {}) {
   status('reading it');
@@ -53,15 +53,28 @@ export function readParts(file: string, omr: boolean) {
   let table: ConnectionTable;
   let isPrimitive: (n: string) => boolean;
   let piecesOf: (n: string) => string[] | null;
+  // A model's text's parts read as their pieces, given that text (see piecesFor below).
+  let piecesFor: (text: string) => (n: string) => string[] | null = () => (n) => piecesOf(n);
   if (omr) {
     table = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
     const primitives = new Set<string>(JSON.parse(readFileSync('packed/primitives.json', 'utf-8')));
     // The parts read as their pieces: every such part in the library.
     const pieces: Record<string, string[]> = JSON.parse(readFileSync('packed/pieces.json', 'utf-8'));
     isPrimitive = (n) => drawnDirectly(n, primitives);
+    piecesOf = (n) => pieces[n] ?? null;
     // A part the OMR embeds in the model's file ("42108 - 40918-f1.dat") is read as its pieces if
-    // the library's part of that name is (see libraryName in src/mechanism.ts).
-    piecesOf = (n) => pieces[n] ?? (table.parts[n] ? null : pieces[/ - ([^/]+)$/.exec(n)?.[1] ?? '']) ?? null;
+    // the library's part of that name is, and as the model file's own text has them, as the viewer
+    // reads it (piecesRole and piecesLines in src/pack.ts): the 42099 embeds its 46490c01 hubs
+    // built of "42099 - u9475", where the library's have 46434.
+    const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
+    piecesFor = (text) => {
+      const embedded = embeddedParts(text);
+      return (n) => {
+        if (!embedded.has(n)) return pieces[n] ?? null;
+        const role = piecesRole(n, roles, embedded);
+        return role ? piecesLines(role, embedded.get(n)!) : null;
+      };
+    };
   } else {
     table = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
     const packed = packedModels[name];
@@ -73,9 +86,9 @@ export function readParts(file: string, omr: boolean) {
   // check's --proposed), those not yet signed off too.
   const errata = readErrata(file);
   let asIs: PlacedPart[] | null = null;
-  const partAt = (n: number) => (asIs ??= parseModel(original, isPrimitive, piecesOf).parts)[n]?.name;
+  const partAt = (n: number) => (asIs ??= parseModel(original, isPrimitive, piecesFor(original)).parts)[n]?.name;
   const { text, applied, refused } = applyErrata(original, errata, process.env.KINEBRICK_PROPOSED === '1', partAt);
-  const { parts, paths } = parseModel(text, isPrimitive, piecesOf);
+  const { parts, paths } = parseModel(text, isPrimitive, piecesFor(text));
   return { text, table, parts, paths, errata: { applied, refused } };
 }
 
