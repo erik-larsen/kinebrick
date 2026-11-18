@@ -128,6 +128,9 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   axes         each joint's axis
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
+//   status       the warnings on the model, in red: a loose part's outline, and for a moment the
+//                outlines of two parts a drag stopped at. Off otherwise: no warning is drawn
+//                on the model (a part kept turning keeps its green outline either way)
 //   symbols      the symbols pinned to parts (📌 frozen, ⚠ loose), which are hidden otherwise
 //   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
 //                to drive from the browser's console
@@ -568,6 +571,7 @@ async function start() {
   const appearance = new Appearance(partObjects, mech, outlines);
   appearance.shownParts = new Set(SHOW);
   appearance.showBodyColours = OPTIONS.includes('bodycolours');
+  appearance.showStatus = OPTIONS.includes('status');
   // Drivetrain focus (see OPTIONS): the bodies the motion going on (a drag, or a part kept
   // turning or moving) has moved against the frame, and where each was against the frame as it
   // started. Until it's moved one, the last motion's stay in focus.
@@ -994,6 +998,7 @@ async function start() {
     axes: axes.visible,
     contacts: contacts.visible,
     focus: focusOn,
+    status: appearance.showStatus,
     symbols: !badgeRenderer.domElement.hidden,
     scrub,
     lifted,
@@ -1024,6 +1029,11 @@ async function start() {
     focusOn = on;
     if (!on) clearFocus();
     keepOption('focus', on);
+  });
+  gui.add(settings, 'status').name('Status').onChange((on: boolean) => {
+    appearance.showStatus = on;
+    appearance.update();
+    keepOption('status', on);
   });
   gui.add(settings, 'symbols').name('Symbols').onChange((on: boolean) => {
     badgeRenderer.domElement.hidden = !on;
@@ -1308,8 +1318,8 @@ function unconnected(parts: PlacedPart[], table: ConnectionTable, roles: Record<
   return [...names].filter((name) => !table.parts[name]?.length && roles[name] !== 'decoration' && !table.stickers?.includes(name));
 }
 
-// Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red,
-// marked ⚠), the parts Kinebrick can't connect, the moving parts it can't move yet (from
+// Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red
+// with the Status option on, marked ⚠ with Symbols on), the parts Kinebrick can't connect, the moving parts it can't move yet (from
 // data/not-moving-yet.json, each with what it doesn't do), and the files that couldn't be found,
 // so aren't drawn: under Warnings, which counts each kind, and opens to the list.
 async function showWarnings(names: string[], loose: number[], unconnected: string[], stuck: string[], missing: string[]) {

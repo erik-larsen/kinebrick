@@ -1,7 +1,9 @@
 // How parts look. Each kind of information gets its own channel, so they never fight:
 //   fill colour  which body a part belongs to (body colours), or its own LEGO colours
 //   yellow glow  what the pointer is on: the hovered part, and faintly the rest of its body
-//   outline      status: frozen (cyan), the part kept turning (green) and loose (red)
+//   outline      status: frozen (cyan), the part kept turning (green); and, only with Status
+//                on (showStatus), the warnings in red: a loose part all the time, and for a
+//                moment the two parts that would have run into each other
 //   badge        status, as an icon pinned to the part: 📌 frozen, ⚠ loose (a part kept
 //                turning has no badge: its turning shows it)
 //   see-through  with drivetrain focus, the parts the last drag or spin didn't move
@@ -22,6 +24,9 @@ const FADED_OPACITY = 0.12;
 
 export class Appearance {
   showBodyColours = true;
+  // Whether the warnings are drawn on the model (the Status option, off unless chosen): the red
+  // outline of a loose part, and of two parts a drag stopped at.
+  showStatus = false;
   hoveredPart = -1;
   frozenBodies = new Set<number>();
   looseParts = new Set<number>();
@@ -93,7 +98,7 @@ export class Appearance {
     // Outlines
     const partsOf = (test: (part: number) => boolean) => this.partObjects.filter((_, part) => test(part));
     this.outlines.set('frozen', partsOf((p) => this.frozenBodies.has(this.mech.bodyOf[p])));
-    this.outlines.set('loose', partsOf((p) => this.looseParts.has(p)));
+    this.outlines.set('loose', this.showStatus ? partsOf((p) => this.looseParts.has(p)) : []);
     // Only the part that was Ctrl-clicked, not the rest of its body.
     this.outlines.set('driven', partsOf((p) => p === this.drivenPart));
     this.outlines.set('shown', partsOf((p) => this.shownParts.has(p)));
@@ -109,6 +114,7 @@ export class Appearance {
   flashBlocked(parts: number[]) {
     // Named in the browser's console too, for anyone asking what a model ran into.
     console.debug('blocked by', parts.map((p) => `p${p} ${this.partObjects[p]?.userData?.fileName ?? ''}`).join(' and '));
+    if (!this.showStatus) return;
     this.outlines.set('blocked', parts.map((p) => this.partObjects[p]));
     clearTimeout(this.blockedTimer);
     this.blockedTimer = setTimeout(() => this.outlines.set('blocked', []), 700);
