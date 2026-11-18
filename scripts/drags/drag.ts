@@ -182,7 +182,8 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
       const ref = against >= 0 ? against : framePart;
       const now = await viewer.where([...parts, ref]);
       const refBefore = against >= 0 ? (await viewerBefore(before, parts, against)) : before[before.length - 1];
-      const refNow = now[now.length - 1];
+      // (where() puts a part of the frame last: the reference is the one after `parts`.)
+      const refNow = now[parts.length];
       return parts.map((part, i) => {
         // The part's place in its reference's frame, before and now.
         const a = relative(refBefore, before[i]);
