@@ -110,12 +110,112 @@
         }
       ],
       "reply": "Sign 8272 list"
+    },
+    {
+      "id": "42000-drivers",
+      "kind": "Sign-off",
+      "title": "42000 Grand Prix Racer: both rear axle drivers are drawn 5 LDU short of their hubs",
+      "since": "2026-11-18",
+      "what": "A correction to the published file. At each rear wheel, the axle driver (the ball-ended piece on the half shaft, part 32494) should sit with its ball in the socket in the middle of the wheel hub. In the file both drivers are drawn 5 LDU short of the socket, so the model’s reading joins the half shaft to nothing at the wheel, and the driver hits the hub’s bearing as soon as the suspension moves. In the seven other sets with these two parts, every driver sits in the socket. The booklet pushes the driver into the hub’s middle (step 18). The correction moves each driver 5 LDU along the hub’s axis into the socket.",
+      "effect": "Function 5 (the rear pushrod suspension) goes from not working to working, and the count goes up by 1. It went to not working today, when the check began to stop where the viewer stops. Function 4 (the front suspension) stays not working: its fault is another one, still being looked up.",
+      "confidence": "High. Claude looked at the booklet page and dragged the rear suspension arm in the viewer both ways. As drawn it turns 0.7° and stops at the driver. With the correction it turns 5.3°, the half shaft swings with it, the hub rises with the wheel, and it stops where the shock absorber’s rod reaches the end of its cylinder. The worker checked the set with the correction: function 5 works.",
+      "links": [
+        {
+          "label": "42000 in the viewer with the correction, the two drivers marked",
+          "url": "http://localhost:5174/?file=omr/42000-1+Grand+Prix+Racer.mpd&option=proposed&show=351,356&lifted=1"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/42000-1+Grand+Prix+Racer.mpd&show=351,356&lifted=1"
+        },
+        {
+          "label": "Booklet 1, page 64, step 18: the driver goes into the hub",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64"
+        }
+      ],
+      "reply": "Sign 42000"
+    },
+    {
+      "id": "42110-drivers",
+      "kind": "Sign-off",
+      "title": "42110 Land Rover Defender: both front axle drivers are drawn 2 LDU off their hubs’ axis",
+      "since": "2026-11-18",
+      "what": "A correction to the published file. At each front wheel, the axle driver (the ball-ended piece on the half shaft, part 32494) sits in the wheel hub and should be on the hub’s axis. In the file both front drivers are drawn 2 LDU below it. When a front wheel turns, the off-centre driver is carried round into the hub’s bearing and the wheel stops. The booklet pushes each driver in along the hub’s axis (steps 149 and 150). The correction moves both drivers 2 LDU up onto the axis, with their tilt kept.",
+      "effect": "Function 4 (the three differentials let every wheel turn at its own speed) goes from partly working to working, and the count goes up by 1. It went to partly today, when the check began to stop where the viewer stops.",
+      "confidence": "High. Claude looked at both booklet pages and dragged the front wheel’s control in the viewer with the correction: it turns 159° with no stop, and the driver and the hub turn with it in place. As drawn, by the worker’s drag, it turns 26° and stops at the driver and its bearing. The worker checked the set with the correction: function 4 works.",
+      "links": [
+        {
+          "label": "42110 in the viewer with the correction, the two drivers marked",
+          "url": "http://localhost:5174/?file=omr/42110-1+Land+Rover+Defender.mpd&option=proposed&show=83,88&lifted=1"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/42110-1+Land+Rover+Defender.mpd&show=83,88&lifted=1"
+        },
+        {
+          "label": "Booklet page 93, step 149: the driver goes into the hub",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=93"
+        },
+        {
+          "label": "Booklet page 94, step 150: the same on the other side",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=94"
+        }
+      ],
+      "reply": "Sign 42110"
+    },
+    {
+      "id": "8868-rods",
+      "kind": "Sign-off",
+      "title": "8868 Air Tech Claw Rig: four of the engine’s six connecting rods are drawn off their pistons",
+      "since": "2026-11-18",
+      "what": "A correction to the published file. The six-cylinder engine has six connecting rods, each with a ball that sits in its piston. Two rods are drawn with the ball in the piston. The other four are drawn at a slightly wrong angle, with the ball 3 to 4.6 LDU beside the piston. So the model’s reading joins those four rods to no piston: the four pistons are driven by nothing, and each rod swings into its cylinder’s wall as soon as the crankshaft turns. The correction turns each of the four rods 1° to 4° about its crank pin and moves its piston 2.6 to 4.6 LDU along its cylinder, so the ball sits in the piston. The crankshaft’s angle is kept.",
+      "effect": "Functions 3 (the front wheels roll freely) and 4 (rolling the truck runs the six-piston engine) go from not working to working, and the count goes up by 2. Both went to not working today, when the check began to stop where the viewer stops. Before that the check passed them although four of the six pistons did not move.",
+      "confidence": "High. Claude looked at the booklet step and ran the engine in the viewer with the correction: the crankshaft turns freely and all six pistons slide 12 to 20 LDU, with no stop. As drawn, by the worker’s run, the crankshaft rocks between 0° and 24° and four pistons never move. The worker checked the set with the correction: both functions work, nothing else changes. The booklet for this set is a scan, not a LEGO PDF: step 27 puts the rods on the crank pins, presses a piston onto each rod’s ball and puts the cylinders over them.",
+      "links": [
+        {
+          "label": "8868 in the viewer with the correction, the engine running, rods and pistons marked",
+          "url": "http://localhost:5174/?file=omr/8868-1+Air+Tech+Claw+Rig.mpd&option=proposed&lifted=1&autospin=2898&rpm=20&show=2900,2903,2904,2908,2911,2913,2914,2915"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/8868-1+Air+Tech+Claw+Rig.mpd&lifted=1&autospin=2898&rpm=20&show=2900,2903,2904,2908,2911,2913,2914,2915"
+        },
+        {
+          "label": "The booklet’s scans (step 27 is the 28th picture)",
+          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8868"
+        }
+      ],
+      "reply": "Sign 8868"
+    },
+    {
+      "id": "42082-door",
+      "kind": "Sign-off",
+      "title": "42082 Rough Terrain Crane: the cab door slides open on two links; the list says it swings on a hinge",
+      "since": "2026-11-18",
+      "what": "A change to the function list, not to the model. Function 9 says: “The cab door on the superstructure swings open on its hinge.” The booklet builds the door on two parallel links at the foot of the doorway, each turning on its own upright pin, so the real door moves out from the doorway and along the cab’s side without turning. The model has it the same way. The new words: “The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab’s side without turning.” The control and the part watched stay the same.",
+      "effect": "Function 9 goes from partly working (held there by hand) to working, and the count goes up by 1. In the viewer the door must first be pressed with Shift, which frees its two stiff pins; then it slides out 18 LDU. It stops there at two parts that rub. The real door most likely goes further; that rub is one of the stops still to be looked at.",
+      "confidence": "High for the words: Claude looked at the two booklet pages. High for what the viewer does: Claude pushed the door in the viewer, and it went out 18.4 LDU without turning, as the check has it.",
+      "links": [
+        {
+          "label": "42082 in the viewer, the door marked",
+          "url": "http://localhost:5174/?file=omr/42082-1+Rough+Terrain+Crane.mpd&show=3789"
+        },
+        {
+          "label": "Booklet page 271, steps 1112 and 1113: the door goes onto its two links",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245460.pdf#page=271"
+        },
+        {
+          "label": "Booklet page 322, top-right picture: the door open beside the cab",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245460.pdf#page=322"
+        }
+      ],
+      "reply": "Sign 42082 list"
     }
   ],
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 726 working functions and main 701, but Claude does not offer main yet. Since 18 November the check stops a motion where two parts meet, as the viewer does; that took the count from 739 to 726. The 13 lost were never right in the viewer: most stop at once because a connection is missing in the model’s reading (the 42000’s and the 8880’s suspension, mended by the worker now), because the solver takes a wrong motion, or because the published file is drawn wrong (the 8868’s piston rods: a correction will come to you to sign). A rule to pass small overlaps was measured and dropped: the overlaps are not small. Before the offer: one full check of two solver changes together (about four hours, running), the mends above, and a slow check of the 8110 on the commit offered."
+      "what": "preview has 726 working functions and main 701, but Claude does not offer main yet. Since 18 November the check stops a motion where two parts meet, as the viewer does; that took the count from 739 to 726. The 13 lost were never right in the viewer: most stop at once because a connection is missing in the model’s reading (the 42000’s and the 8880’s suspension, mended by the worker now), because the solver takes a wrong motion, or because the published file is drawn wrong (the 8868’s piston rods and the 42000’s and 42110’s axle drivers: corrections wait for you above). A rule to pass small overlaps was measured and dropped: the overlaps are not small. Before the offer: one full check of two solver changes together (about four hours, running), the mends above, and a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, asked again at mid-week",

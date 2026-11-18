@@ -40,7 +40,9 @@
 //   npm run functions                 every set with functions, but for the slowest (SLOW_OVER)
 //   npm run functions -- --slow       only the slowest sets, left out of the plain run: hours,
 //                                     before a merge to main
-//   npm run functions -- 855 8880     only sets whose number has one of these in it
+//   npm run functions -- 855 8880-1   only these sets: a name with a "-" is a set's whole name
+//                                     (855-1, not 8855-1), one without is a set's number in full
+//                                     (855: 855-1, 855-2, …)
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
 //   npm run functions -- --limit 20   stop a process (a set, or one function of a slow set) that
 //                                     takes more than this many minutes (default 60), marking
@@ -53,6 +55,9 @@
 //                                     already written, and writes each one's `cause`
 //   npm run functions -- --quick      only the quick sets (QUICK): a couple of minutes, for every
 //                                     change; the whole check takes about an hour
+//
+// A set whose process fails (it runs out of memory, say) keeps its file as it was, and the run
+// names it at the end and exits with 1: a file with no results must not be committed.
 //
 // Each set's results are compared with what it had before, and each function that comes out
 // better or worse is listed as the run goes.
@@ -69,7 +74,7 @@
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { availableParallelism } from 'node:os';
+import { availableParallelism, totalmem } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
@@ -1538,8 +1543,10 @@ async function main() {
   const slowOnly = args.includes('--slow');
   const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : slowOnly ? SLOW_LIMIT_MINUTES : LIMIT_MINUTES;
   const named = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
-  // A set's number, followed by "-" so that 855 doesn't also pick the 8855.
-  const filters = args.includes('--quick') ? QUICK.map((n) => `${n}-`) : named;
+  const filters = args.includes('--quick') ? QUICK : named;
+  // Whether a set's file is one of those named: by its whole name if the name has a "-" (855-1,
+  // not 8855-1), else by its number in full (855: 855-1 and 855-2, not 8855-1).
+  const isNamed = (f: string) => filters.some((x) => (x.includes('-') ? f === `${x}.json` : f.split('-')[0] === x));
   if (args.includes('--lock')) process.env.KINEBRICK_CHECK_LOCK = '1';
   if (args.includes('--stops')) process.env.KINEBRICK_CHECK_STOPS = '1';
   const causes = args.includes('--causes');
@@ -1562,7 +1569,7 @@ async function main() {
   // model's size, biggest first.
   const took = (s: { data: { generated?: { seconds?: number; timedOut?: number } } }) => (s.data.generated?.timedOut ? Infinity : (s.data.generated?.seconds ?? -1));
   const withFunctions = readdirSync(SETS_DIR)
-    .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
+    .filter((f) => f.endsWith('.json') && (filters.length === 0 || isNamed(f)))
     .map((f) => ({ file: join(SETS_DIR, f), data: JSON.parse(readFileSync(join(SETS_DIR, f), 'utf-8')) }))
     .filter((s) => s.data.curated.functions?.length);
   // The slowest sets are for the slow check (see SLOW_OVER), unless named. Finding the causes
@@ -1582,12 +1589,19 @@ async function main() {
   const caused: Partial<Record<Cause, number>> = {};
   const notBack = { torn: 0, 'free-turned': 0, 'moved whole': 0 };
   type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
+  // The sets whose process failed: their files are left as they were.
+  const failedSets: string[] = [];
+  // Each process may take as much memory as the machine has. V8's own limit is about 4 GB on a
+  // 32 GB machine, less than the 42082's function 9 takes with the collision stop on (7.6 GB at
+  // its peak; 0.5 GB with it off): run with no limit of its own, it died 11 seconds in. Given
+  // here, every run has the same limit, by name or whole, whatever NODE_OPTIONS says.
+  const heap = `--max-old-space-size=${Math.floor(totalmem() / 2 ** 20)}`;
   // Checks a set in a process of its own, or with `only`, one of its functions: what it found,
   // and how long it took.
   const inProcess = (s: (typeof files)[number], only: number | null, way: number | null = null) =>
     new Promise<{ found: Found; seconds: number }>((resolve) => {
       const started = Date.now();
-      const child = spawn(process.execPath, [...process.execArgv, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)]), ...(way === null ? [] : ['--way', String(way)])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      const child = spawn(process.execPath, [...process.execArgv, heap, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)]), ...(way === null ? [] : ['--way', String(way)])], { stdio: ['ignore', 'pipe', 'inherit'] });
       let out = '';
       let timedOut = false;
       const timer = setTimeout(() => {
@@ -1613,6 +1627,13 @@ async function main() {
     });
   // Writes what a set's check found into its file, and says it.
   const finish = (s: (typeof files)[number], found: Found, seconds: number) => {
+    if ('failed' in found) {
+      console.log(`${s.data.set}: failed: ${found.failed}; its file is left as it was (${seconds} s)`);
+      failedSets.push(s.data.set);
+      checking.delete(s.data.set);
+      done++;
+      return;
+    }
     // Read afresh, so only generated changes, whatever else changed meanwhile.
     const data = JSON.parse(readFileSync(s.file, 'utf-8'));
     if (causes) {
@@ -1628,7 +1649,7 @@ async function main() {
     if (!proposed) writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
     if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
     if ('functions' in found) for (const c of found.functions) if (c && notBackAs(c)) notBack[notBackAs(c)!]++;
-    const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : 'timedOut' in found ? `timed out after ${limit} minutes` : `failed: ${found.failed}`;
+    const summary = causes && 'functions' in found ? found.functions.flatMap((c) => (c.cause ? [c.cause] : [])).join(', ') || 'nothing to explain' : 'counts' in found ? Object.entries(found.counts).map(([k, n]) => `${n} ${k}`).join(', ') : `timed out after ${limit} minutes`;
     console.log(`${data.set}: ${summary} (${seconds} s)`);
     checking.delete(s.data.set);
     done++;
@@ -1756,4 +1777,8 @@ async function main() {
   if (byCount.length) console.log('Causes:\n' + byCount.map(([c, n]) => `  ${String(n).padStart(4)}  ${c} (${CAUSES[c].owner}): ${CAUSES[c].says}`).join('\n'));
   // The mechanism catalog quotes each function's result: written afresh with them.
   if (!causes && !proposed) execFileSync('npx', ['tsx', 'scripts/mechanisms.ts'], { stdio: 'inherit' });
+  if (failedSets.length) {
+    console.log(`Failed, their files left as they were: ${failedSets.join(', ')}`);
+    process.exitCode = 1;
+  }
 }

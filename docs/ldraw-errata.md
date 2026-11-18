@@ -459,10 +459,20 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8840-1](#8840-1-v2-piston-p120-on-its-rod) | v2-piston-p120-on-its-rod | moves `2851.dat` (in `8840 - step4b.ldr`) to 0 -7.586 35.907, turned | Signed off by Erik, 2026-11-17 |
 | [8840-1](#8840-1-v2-rod-p117-to-its-piston) | v2-rod-p117-to-its-piston | moves `2852.dat` (in `8840 - step4b.ldr`) to 0 10 0, turned | Signed off by Erik, 2026-11-17 |
 | [8840-1](#8840-1-v2-piston-p121-on-its-rod) | v2-piston-p121-on-its-rod | moves `2851.dat` (in `8840 - step4b.ldr`) to 0 -8.044 -35.711, turned | Signed off by Erik, 2026-11-17 |
+| [8868-1](#8868-1-rod-line-1368-on-its-piston) | rod-line-1368-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to 10 10 30, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1384-on-its-rod) | piston-line-1384-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to -25.908 -7.624 30 | Proposed, not applied until signed off |
+| [8868-1](#8868-1-rod-line-1372-on-its-piston) | rod-line-1372-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to -10 10 70, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1382-on-its-rod) | piston-line-1382-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to 25.908 -7.624 70 | Proposed, not applied until signed off |
+| [8868-1](#8868-1-rod-line-1373-on-its-piston) | rod-line-1373-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to -10 10 70, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1385-on-its-rod) | piston-line-1385-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to -37.413 -19.129 70 | Proposed, not applied until signed off |
+| [8868-1](#8868-1-rod-line-1378-on-its-piston) | rod-line-1378-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to 10 10 110, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1386-on-its-rod) | piston-line-1386-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to -25.908 -7.624 110 | Proposed, not applied until signed off |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [9397-1](#9397-1-plough-link-beam-level) | plough-link-beam-level | moves `32316.dat` (in `9397 - 9397B.ldr`) to 0 -83.3547 -529.8725, turned | Proposed, not applied until signed off |
 | [9397-1](#9397-1-plough-link-pin-in-its-hole) | plough-link-pin-in-its-hole | moves `32556.dat` (in `9397 - 9397B.ldr`) to 0 -43.3514 -529.886 | Proposed, not applied until signed off |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
+| [42000-1](#42000-1-right-rear-driver-in-its-hub) | right-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to 220 -60 640 | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-rear-driver-in-its-hub) | left-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to -220 -60 640 | Proposed, not applied until signed off |
 | [42038-1](#42038-1-rear-left-tread-on-its-unit) | rear-left-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to -165 161.666 300.4165 | Proposed, not applied until signed off |
 | [42038-1](#42038-1-rear-right-tread-on-its-unit) | rear-right-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to 165 161.666 300.4155 | Proposed, not applied until signed off |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
@@ -484,6 +494,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42110-1](#42110-1-front-driver-at-z-minus-177-on-its-hub-axis) | front-driver-at-z-minus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 -177.81 | Proposed, not applied until signed off |
+| [42110-1](#42110-1-front-driver-at-z-plus-177-on-its-hub-axis) | front-driver-at-z-plus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 177.81 | Proposed, not applied until signed off |
 | [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Signed off by Erik, 2026-11-15 |
 | [42112-1](#42112-1-drive-shaft-bevel-on-the-shaft) | drive-shaft-bevel-on-the-shaft | moves `18575.dat` to 20 0 184 | Signed off by Erik, 2026-11-17 |
 
@@ -652,6 +664,118 @@ In `8840 - step4b.ldr` (p121 2851), the line
 
 is read with its part at 0 -8.044 -35.711, turned to 0 0 -1 -0.777 0.629 0 0.629 0.777 0.
 
+### 8868-1: rod-line-1368-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.12 degrees about its crank pin, with the piston at line 1384 moved 2.64 LDU along its cylinder, to -25.908 -7.624 30, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 10 10 30 -0.423 0.906 0 0.906 0.423 0 0 0 -1 2852.dat
+```
+
+is read with its part at 10 10 30, turned to -0.4406 0.8977 0 0.8977 0.4406 0 0 0 -1.
+
+### 8868-1: piston-line-1384-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1368-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 -27.778 -9.494 30 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at -25.908 -7.624 30.
+
+### 8868-1: rod-line-1372-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 3.86 degrees about its crank pin, with the piston at line 1382 moved 4.64 LDU along its cylinder, to 25.908 -7.624 70, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 -10 10 70 0.5 -0.866 0 0.866 0.5 0 0 0 1 2852.dat
+```
+
+is read with its part at -10 10 70, turned to 0.4406 -0.8977 0 0.8977 0.4406 0 0 0 1.
+
+### 8868-1: piston-line-1382-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1372-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 29.192 -10.908 70 0.707 -0.707 0 0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at 25.908 -7.624 70.
+
+### 8868-1: rod-line-1373-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.74 degrees about its crank pin, with the piston at line 1385 moved 4.37 LDU along its cylinder, to -37.413 -19.129 70, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 -10 10 70 -0.707 0.707 0 0.707 0.707 0 0 0 -1 2852.dat
+```
+
+is read with its part at -10 10 70, turned to -0.7282 0.6853 0 0.6853 0.7282 0 0 0 -1.
+
+### 8868-1: piston-line-1385-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1373-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 -40.506 -22.222 70 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at -37.413 -19.129 70.
+
+### 8868-1: rod-line-1378-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.12 degrees about its crank pin, with the piston at line 1386 moved 2.64 LDU along its cylinder, to -25.908 -7.624 110, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 10 10 110 -0.423 0.906 0 0.906 0.423 0 0 0 -1 2852.dat
+```
+
+is read with its part at 10 10 110, turned to -0.4406 0.8977 0 0.8977 0.4406 0 0 0 -1.
+
+### 8868-1: piston-line-1386-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1378-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 -27.778 -9.494 110 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at -25.908 -7.624 110.
+
 ### 9396-1: left-inner-main-wheel
 
 Signed off by Erik, 2026-11-14.
@@ -720,6 +844,34 @@ Added to the main model:
 1 0 -60 -0.155 261.282 1 0 0 0 1 -0.008 0 0.008 1 2910.dat
 1 0 -60 -0.235 271.282 0 0 1 0.008 1 0 -1 0.008 0 2780.dat
 ```
+
+### 42000-1: right-rear-driver-in-its-hub
+
+Proposed, not applied until signed off.
+
+The right rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn.
+
+In `42000 - 42000.L3B.ldr` (p351 32494), the line
+
+```
+1 72 225 -60 640 0 0 -1 -1 0 0 0 1 0 32494.dat
+```
+
+is read with its part at 220 -60 640.
+
+### 42000-1: left-rear-driver-in-its-hub
+
+Proposed, not applied until signed off.
+
+The left rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn; with right-rear-driver-in-its-hub.
+
+In `42000 - 42000.L3B.ldr` (p356 32494), the line
+
+```
+1 72 -225 -60 640 0 0 1 -1 0 0 0 -1 0 32494.dat
+```
+
+is read with its part at -220 -60 640.
 
 ### 42038-1: rear-left-tread-on-its-unit
 
@@ -1022,6 +1174,34 @@ In `42109 - car.ldr` (p383 32526), the line
 ```
 
 is read as not there. The part keeps its number.
+
+### 42110-1: front-driver-at-z-minus-177-on-its-hub-axis
+
+Proposed, not applied until signed off.
+
+One front hub: step 149 (page 93, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=93) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn.
+
+In `42110 - frontaxle.ldr`, the line
+
+```
+1 71 -40 -19.188 -177.81 1 0 0 0 0.978 -0.208 0 0.208 0.978 32494.dat
+```
+
+is read with its part at -40 -17.188 -177.81.
+
+### 42110-1: front-driver-at-z-plus-177-on-its-hub-axis
+
+Proposed, not applied until signed off.
+
+The other front hub: step 150 (page 94, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=94) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn; with front-driver-at-z-minus-177-on-its-hub-axis.
+
+In `42110 - frontaxle.ldr`, the line
+
+```
+1 71 -40 -19.188 177.81 -1 0 0 0 0.978 -0.208 0 -0.208 -0.978 32494.dat
+```
+
+is read with its part at -40 -17.188 177.81.
 
 ### 42111-1: rear-shock-cylinder-on-the-rods-axis
 
