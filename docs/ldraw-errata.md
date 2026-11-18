@@ -460,6 +460,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8840-1](#8840-1-v2-rod-p117-to-its-piston) | v2-rod-p117-to-its-piston | moves `2852.dat` (in `8840 - step4b.ldr`) to 0 10 0, turned | Signed off by Erik, 2026-11-17 |
 | [8840-1](#8840-1-v2-piston-p121-on-its-rod) | v2-piston-p121-on-its-rod | moves `2851.dat` (in `8840 - step4b.ldr`) to 0 -8.044 -35.711, turned | Signed off by Erik, 2026-11-17 |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
+| [9397-1](#9397-1-plough-link-beam-level) | plough-link-beam-level | moves `32316.dat` (in `9397 - 9397B.ldr`) to 0 -83.3547 -529.8725, turned | Proposed, not applied until signed off |
+| [9397-1](#9397-1-plough-link-pin-in-its-hole) | plough-link-pin-in-its-hole | moves `32556.dat` (in `9397 - 9397B.ldr`) to 0 -43.3514 -529.886 | Proposed, not applied until signed off |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
 | [42050-1](#42050-1-wheelie-actuator-bevel-on-its-axis) | wheelie-actuator-bevel-on-its-axis | moves `32270.dat` (in `42050 - linact.ldr`) to -280.431 -6.163 0, turned | Signed off by Erik, 2026-11-17 |
@@ -660,6 +662,34 @@ Added to the main model:
 1 71 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 42610.dat
 1 256 -140 18.2504 398.793 0 0 1 0.0214272 1 0 -1 0.0214272 0 51011.dat
 ```
+
+### 9397-1: plough-link-beam-level
+
+Proposed, not applied until signed off.
+
+Book #1 builds the plough lift as a double parallelogram, steps 36 to 40 (pages 73 to 77; step 37, page 74, https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=74): two yellow L-beams (p486, p496 32526) turn on a pin (p487) in the frame beam p493 32524, two yellow 5L beams (p491, p495 32316) turn on the axle p461 in the same frame beam two holes away (80 LDU), and in step 37 a grey 5L beam (p489 32316) joins the middle hole of each, with a blue pin at each end (p490, p492). The plough hangs from the L-beams’ corners and the 5L beams’ ends (p488 and p716). With every pin in a hole the frame beam, the two arms and the grey link are a parallelogram, so the link lies parallel to the frame beam. In the file the grey link is tipped 0.09 degrees and its pin p490 is drawn 0.10 LDU from the L-beam’s middle hole, so the L-beam reads 40.1 LDU from its pivot to the link and the 5L beam 40.0: the two loops disagree and lock each other, the small actuator’s rod and the plough’s drive shaft (body 52) with them. The motor reaches the plough only on play, and play’s cheapest motion slides the drive shaft p134 3705 and the axle p95 3708 a hair along their axes, each at the end of its slide as built, so the control stops at 0.07 radians on that limit (function 3, control-jammed). Placed in the hole, with the link parallel, the drive shaft turns exactly: function 3 works, the control turns 1.5 radians each way.
+
+In `9397 - 9397B.ldr` (p489 32316), the line
+
+```
+1 71 0 -83.3579 -529.921 0 -1 0 -0.00154135 0 1 -1 0 -0.00154135 32316.dat
+```
+
+is read with its part at 0 -83.3547 -529.8725, turned to 0 -1 0 -0.000337 0 1 -1 0 -0.000337.
+
+### 9397-1: plough-link-pin-in-its-hole
+
+Proposed, not applied until signed off.
+
+With plough-link-beam-level: the pin p490 placed in the L-beam p486’s middle hole, 40 LDU from its pivot p487 along the beam (page 74, https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=74), where the grey link’s end then is.
+
+In `9397 - 9397B.ldr` (p490 32556), the line
+
+```
+1 1 0 -43.3579 -529.982 -1 0 0 0 0.497122 0.867869 0 0.867869 -0.497122 32556.dat
+```
+
+is read with its part at 0 -43.3514 -529.886.
 
 ### 41999-1: shock-absorbers-the-file-lacks
 

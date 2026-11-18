@@ -185,7 +185,7 @@
               0
             ],
             "p249 87761 against p0 4519": [
-              5.62e-8,
+              5.62e-08,
               15.9
             ],
             "p223 48989 against p0 4519": [
@@ -332,7 +332,7 @@
               1.52e-13
             ],
             "p547 6542b against p0 4519": [
-              2.81e-8,
+              2.81e-08,
               5.18e-14
             ],
             "p570 3648b against p0 4519": [
@@ -399,7 +399,8 @@
           0
         ],
         "cause": "first-failed",
-        "seconds": 9.7
+        "onPlay": 0.23,
+        "seconds": 10.3
       },
       {
         "result": "partly",
@@ -483,7 +484,8 @@
           0
         ],
         "cause": "first-failed",
-        "seconds": 3.5
+        "onPlay": 0.27,
+        "seconds": 4
       },
       {
         "result": "works",
@@ -653,8 +655,7 @@
           [],
           []
         ],
-        "onPlay": 0.5,
-        "seconds": 22.7
+        "seconds": 21
       },
       {
         "result": "not checked",

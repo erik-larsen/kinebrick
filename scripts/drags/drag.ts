@@ -1,7 +1,7 @@
 // Drags in the viewer, as a user's pointer makes them, in a browser with no window (Playwright),
 // for the scripts beside this one: one per function, each ending in yes or no on what moved.
-// The viewer must be running (npm run dev); its address is the first argument, or
-// http://localhost:5173. Not part of `npx vitest run`.
+// The viewer must be running; its address is the first argument, or preview's,
+// http://localhost:5174. Not part of `npx vitest run`: all of them, with scripts/drags/all.ts.
 //
 // A part is found on the screen by where it is drawn: the pointer goes to the middle of it, and
 // round it in rings, until the viewer marks that part as the one under it; where it was found on
@@ -42,7 +42,7 @@ export type Viewer = {
 };
 
 export async function open(file: string, settings = ''): Promise<Viewer> {
-  const base = process.argv[2] ?? 'http://localhost:5173';
+  const base = process.argv[2] ?? 'http://localhost:5174';
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
   await page.goto(`${base}/?file=${encodeURIComponent(file)}&option=debug${settings ? '&' + settings : ''}`);
@@ -182,7 +182,8 @@ export async function open(file: string, settings = ''): Promise<Viewer> {
       const ref = against >= 0 ? against : framePart;
       const now = await viewer.where([...parts, ref]);
       const refBefore = against >= 0 ? (await viewerBefore(before, parts, against)) : before[before.length - 1];
-      const refNow = now[now.length - 1];
+      // (where() puts a part of the frame last: the reference is the one after `parts`.)
+      const refNow = now[parts.length];
       return parts.map((part, i) => {
         // The part's place in its reference's frame, before and now.
         const a = relative(refBefore, before[i]);

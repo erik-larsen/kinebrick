@@ -1,0 +1,42 @@
+{
+  "set": "9397-1",
+  "entries": [
+    {
+      "id": "plough-link-beam-level",
+      "what": "move",
+      "file": "9397 - 9397B.ldr",
+      "line": "1 71 0 -83.3579 -529.921 0 -1 0 -0.00154135 0 1 -1 0 -0.00154135 32316.dat",
+      "part": "p489 32316",
+      "position": [
+        0,
+        -83.3547,
+        -529.8725
+      ],
+      "orientation": [
+        0,
+        -1,
+        0,
+        -0.000337,
+        0,
+        1,
+        -1,
+        0,
+        -0.000337
+      ],
+      "evidence": "Book #1 builds the plough lift as a double parallelogram, steps 36 to 40 (pages 73 to 77; step 37, page 74, https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=74): two yellow L-beams (p486, p496 32526) turn on a pin (p487) in the frame beam p493 32524, two yellow 5L beams (p491, p495 32316) turn on the axle p461 in the same frame beam two holes away (80 LDU), and in step 37 a grey 5L beam (p489 32316) joins the middle hole of each, with a blue pin at each end (p490, p492). The plough hangs from the L-beams’ corners and the 5L beams’ ends (p488 and p716). With every pin in a hole the frame beam, the two arms and the grey link are a parallelogram, so the link lies parallel to the frame beam. In the file the grey link is tipped 0.09 degrees and its pin p490 is drawn 0.10 LDU from the L-beam’s middle hole, so the L-beam reads 40.1 LDU from its pivot to the link and the 5L beam 40.0: the two loops disagree and lock each other, the small actuator’s rod and the plough’s drive shaft (body 52) with them. The motor reaches the plough only on play, and play’s cheapest motion slides the drive shaft p134 3705 and the axle p95 3708 a hair along their axes, each at the end of its slide as built, so the control stops at 0.07 radians on that limit (function 3, control-jammed). Placed in the hole, with the link parallel, the drive shaft turns exactly: function 3 works, the control turns 1.5 radians each way."
+    },
+    {
+      "id": "plough-link-pin-in-its-hole",
+      "what": "move",
+      "file": "9397 - 9397B.ldr",
+      "line": "1 1 0 -43.3579 -529.982 -1 0 0 0 0.497122 0.867869 0 0.867869 -0.497122 32556.dat",
+      "part": "p490 32556",
+      "position": [
+        0,
+        -43.3514,
+        -529.886
+      ],
+      "evidence": "With plough-link-beam-level: the pin p490 placed in the L-beam p486’s middle hole, 40 LDU from its pivot p487 along the beam (page 74, https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=74), where the grey link’s end then is."
+    }
+  ]
+}

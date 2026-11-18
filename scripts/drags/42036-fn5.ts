@@ -1,5 +1,5 @@
 // The 42036 Street Motorcycle's function 5: the handlebars p268 steer the front wheel. They are part of the frame as read; a press with Shift frees the pin that holds them, p257; then they are turned one way and the other. The check has it as partly: yes if the pins freed are the check's (257) and the viewer shows at least that.
-// Run with the viewer's address: npx tsx scripts/drags/42036-fn5.ts http://localhost:5173
+// Run with preview's viewer up (http://localhost:5174), or another's address after it: npx tsx scripts/drags/42036-fn5.ts
 import { answer, atLeast, open, resultOf } from './drag.ts';
 
 const started = Date.now();

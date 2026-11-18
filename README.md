@@ -115,9 +115,9 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 742 | 61% |
+| Works | 743 | 61% |
 | Partly | 218 | 18% |
-| Doesn't work | 85 | 7% |
+| Doesn't work | 84 | 7% |
 | Skipped or not checked | 178 | 15% |
 
 Of the functions checked, 71% work in full. Only 27 of the 186 sets have every function working.
@@ -180,6 +180,7 @@ Everything happens in the 3D view: drag parts with the mouse or a finger. A part
 | Ctrl-click any other part (a frame, a rack, a piston) | It keeps moving the way a drag would push it, starting away from you, at a tenth of the model's size that way each second, and turns back where it can go no further, so a rack runs to and fro and a car keeps rolling. Ctrl-click it again to reverse, a third time to stop, as for a part that spins. |
 | Drag a part that can't move at all (a door on friction hinges) | If friction pins hold it, Kinebrick lets the fewest of them turn that the part needs to move, and says how many; then drag it again. Those pins can turn until **Reset**. Kinebrick reads a model with every friction pin holding its parts rigid, as glue would, since most of them are there to hold the model together; it reads them all as able to turn only if nothing could move otherwise. |
 | Hold Shift and drag a part fixed to a frame that can roll (a car's door) | A plain drag pushes the car; with Shift held, Kinebrick lets the friction pins turn that hold the part to the frame, as above. If more than friction pins hold it, it says so. A touch screen has no Shift, so there such parts stay held. |
+| Hold Shift and press a part that a drag turns along with more (a crane's cab door, which turns the cab) | Friction pins may hold it in that bigger body. With Shift held, Kinebrick lets turn those that hold it there; drag it again and it moves on its own. If more than friction pins hold it, or nothing but its joints, it says so. A plain drag is as before. |
 | Alt-click (Option-click on a Mac) a part | Its body is frozen until you Alt-click it again, or click **Unfreeze all** in the Options panel. Useful where a mechanism can move more than one way: freeze a differential's input, and turning one output turns the other the opposite way. A frozen part that turns on an axle doesn't turn against what that axle turns in: a gear on an axle that turns in another part, frozen, stops the axle too, and a frozen wheel on a steered knuckle stops rolling but still steers. |
 | Click **Reset**, the last button on the title card | The model goes back as it was loaded, any motor stops, every friction pin holds again, and the camera goes back to where it started. |
 
