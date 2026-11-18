@@ -39,7 +39,10 @@
           "p1088 32270",
           "p1337 55013"
         ],
-        "note": "selector levers: p1425 6553 (handle on one side, catch p1426 6641, ring p1051 6539) and p1428 6553 (other side, catch p1427 6641, ring p1050 6539); which lever, and which way, selects which function is inferred from the inset icons, not certain"
+        "note": "selector levers: p1425 6553 (handle on one side, catch p1426 6641, ring p1051 6539) and p1428 6553 (other side, catch p1427 6641, ring p1050 6539); which lever, and which way, selects which function is inferred from the inset icons, not certain",
+        "stays": [
+          "p570 32073"
+        ]
       },
       {
         "does": "With the same lever the other way (toward the landing-gear symbol), the knob retracts and lowers the landing gear: two small linear actuators fold the main wheels' struts up into the sponsons, and the nose wheels fold too.",
@@ -58,11 +61,15 @@
         ],
         "moves": [
           "p449 92695 against p448 92693c01",
-          "p437 92695 against p436 92693c01",
+          "p36 42610",
+          "p37 42610",
           "p1198 42610",
-          "p36 42610"
+          "p1200 42610"
         ],
-        "note": "inferred: which parts fold the nose gear"
+        "note": "the right actuator p449 alone folds all the landing gear: the nose wheels p36 and p37 and the main wheels (p1198, p1224 on the right, p1200, p1515 on the left); the left actuator p437 works the ramp (function 4)",
+        "stays": [
+          "p570 32073"
+        ]
       },
       {
         "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
@@ -75,13 +82,14 @@
         "first": [
           {
             "control": "p1428 6553",
-            "by": 0.3
+            "by": -0.3
           }
         ],
         "moves": [
           "p570 32073",
           "p575 30395"
-        ]
+        ],
+        "note": "the left ring reaches the front clutch gear p1067 through the driving-ring extension p1049 (book 2 step 7, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6015592.pdf#page=15)"
       },
       {
         "does": "With the other lever toward the helicopter symbol, the knob opens and closes the rear loading ramp under the tail.",
@@ -94,14 +102,17 @@
         "first": [
           {
             "control": "p1428 6553",
-            "by": -0.3
+            "by": 0.3
           }
         ],
         "moves": [
-          "p1278 41239",
-          "p1399 41239"
+          "p437 92695 against p436 92693c01",
+          "p1256 64782"
         ],
-        "note": "inferred: the ramp's own parts; the two long side beams p1278 and p1399 look like its hinge arms"
+        "note": "the left actuator p437 pushes the ramp: the grey 5x11 panel p1256 on its red L-arms p1261 and p1262 (32526), built at book 2 steps 103 to 105 (https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6015592.pdf#page=52 to #page=54); the side beams p1278 and p1399 are held fast",
+        "stays": [
+          "p570 32073"
+        ]
       },
       {
         "does": "The main rotor's four blades fold back on their hinges for parking, released by a blue lever in the cockpit.",
@@ -139,10 +150,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 1970,
+    "commit": "b85a4ad1",
+    "date": "2026-11-18",
+    "seconds": 1238,
     "counts": {
       "partly": 3,
       "not back": 4,
@@ -172,6 +182,9 @@
           "p1088 32270",
           "p1337 55013"
         ],
+        "moved": [
+          "p570 32073"
+        ],
         "rates": [
           {
             "p1510 99013p01": [
@@ -185,6 +198,10 @@
             "p1337 55013": [
               0,
               4.97e-13
+            ],
+            "p570 32073": [
+              1.23,
+              9.47e-15
             ]
           }
         ],
@@ -221,7 +238,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p1088 32270",
-        "seconds": 180
+        "seconds": 118.8
       },
       {
         "result": "partly",
@@ -231,8 +248,8 @@
             -1.5
           ]
         ],
-        "still": [
-          "p437 92695 against p436 92693c01"
+        "moved": [
+          "p570 32073"
         ],
         "rates": [
           {
@@ -240,17 +257,25 @@
               1.67,
               4.42e-13
             ],
-            "p437 92695 against p436 92693c01": [
-              0,
-              0
+            "p36 42610": [
+              0.0321,
+              2.57
+            ],
+            "p37 42610": [
+              0.0321,
+              2.57
             ],
             "p1198 42610": [
               0.0342,
               2.74
             ],
-            "p36 42610": [
-              0.0321,
-              2.57
+            "p1200 42610": [
+              0.0342,
+              2.74
+            ],
+            "p570 32073": [
+              1.11,
+              8.53e-14
             ]
           }
         ],
@@ -286,9 +311,9 @@
         "judged": [
           0
         ],
-        "cause": "not-driven",
-        "detail": "p437 92695 against p436 92693c01",
-        "seconds": 426.8
+        "cause": "stay-chosen",
+        "detail": "p570 32073",
+        "seconds": 269.2
       },
       {
         "result": "works",
@@ -301,12 +326,12 @@
         "rates": [
           {
             "p570 32073": [
-              1.11,
-              9.47e-15
+              1.67,
+              6.63e-14
             ],
             "p575 30395": [
               0,
-              12.7
+              19.1
             ]
           }
         ],
@@ -339,7 +364,7 @@
           "p1040 6542b",
           "p1042 3749"
         ],
-        "seconds": 189.7
+        "seconds": 172.4
       },
       {
         "result": "partly",
@@ -349,19 +374,22 @@
             -1.5
           ]
         ],
-        "still": [
-          "p1278 41239",
-          "p1399 41239"
+        "moved": [
+          "p570 32073"
         ],
         "rates": [
           {
-            "p1278 41239": [
-              0,
-              0
+            "p437 92695 against p436 92693c01": [
+              1.67,
+              2.65e-13
             ],
-            "p1399 41239": [
-              0,
-              0
+            "p1256 64782": [
+              0.0274,
+              2.74
+            ],
+            "p570 32073": [
+              1.11,
+              9.47e-15
             ]
           }
         ],
@@ -397,9 +425,9 @@
         "judged": [
           0
         ],
-        "cause": "part-fixed",
-        "detail": "p1278 41239",
-        "seconds": 259.7
+        "cause": "stay-chosen",
+        "detail": "p570 32073",
+        "seconds": 118.9
       },
       {
         "result": "no",
@@ -548,7 +576,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 29.1
+        "seconds": 20.7
       },
       {
         "result": "works",
@@ -666,7 +694,7 @@
           [],
           []
         ],
-        "seconds": 878.1
+        "seconds": 534.5
       }
     ]
   }
