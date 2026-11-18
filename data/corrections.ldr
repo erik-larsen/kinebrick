@@ -739,9 +739,6 @@
 0 // Technic Pneumatic Cylinder 1 x 1 Cap: on the top of the pump's cylinder 99799 (local y 8)
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 6 8] [center=true] [pos=0 8 0]
 
-0 FILE 2943bc01.dat
-0 // Technic Pneumatic Pump 1 x 1 with Stepped Outlet, with its piston 2944c02: as its shortcuts 19482-f1 (retracted) and 19482-f2 (extended) place it, read as its pieces; the piston 100 above the body fully in, 140 fully out, as the 2943a's.
-0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=100] [to=140]
 
 0 FILE u9413.dat
 0 // Technic Pneumatic Pump 1 x 1 Base Reinforced, with its piston 2944c02: as its shortcuts 26674-f1 (retracted) and 26674-f2 (extended) place it, read as its pieces (its cylinder u9415 and cap u9414 on the base); the piston 100 above the base fully in, 140 fully out, as the 2943a's.
