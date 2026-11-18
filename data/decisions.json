@@ -12,36 +12,7 @@
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [
-    {
-      "id": "9397-b-model",
-      "kind": "For your look",
-      "title": "9397 Logging Truck: the published file is the set's second model, the snowplough",
-      "since": "2026-11-17",
-      "what": "The OMR has one file for this set, and it is the alternate model (the OMR page names it “Snowplow”): a truck with a yellow blade in front, no crane and no outrigger legs. Our function list was written from the booklets, which build the logging truck with its crane. So functions 2 to 6 (outriggers, crane slewing, boom, jib, log grab) name parts the file does not have. Functions 1, 7, 8 and 9 (motor and gearbox, steering, engine, wheels) hold for both models. Claude’s decision: the list is rewritten for the snowplough, because the goal is the models the OMR publishes. The worker finds LEGO’s instructions for the second model and drafts the list; the new list then comes to you to sign. Tell Claude if you want something else, for example to leave the crane’s functions as “not in the file”.",
-      "effect": "Today the set counts 5 functions as working, 3 as partly working and 1 as not checked. Function 5 (the jib) counts as working although the file has no jib, so that count is not to be trusted until the list is rewritten. No correction to the file can mend this.",
-      "confidence": "High that the file is the second model: the OMR’s own page for the set lists only “Snowplow”, the file’s one model is named 9397B, and the booklet’s outrigger legs (book 3, page 7) are not in it.",
-      "links": [
-        {
-          "label": "9397 in the viewer: the blade’s actuator and L-beams",
-          "url": "http://localhost:5174/?file=omr/9397-1+Logging+Truck.mpd&show=463,486,496"
-        },
-        {
-          "label": "The OMR’s page for the set",
-          "url": "https://library.ldraw.org/omr/sets/863"
-        },
-        {
-          "label": "Booklet 3, page 7: the outrigger legs",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6010324.pdf#page=7"
-        },
-        {
-          "label": "Booklet 3, page 58: the functions photo",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6010324.pdf#page=58"
-        }
-      ],
-      "reply": "No answer needed unless you want something else"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "The next offer of main",
@@ -224,6 +195,10 @@
     {
       "date": "2026-11-17",
       "what": "You signed three items (“Sign 42050”, “Sign 42114 list”, “Sign 42043 list”). Each brings one function to working: the 42050’s wheelie (function 4), the 42114’s gear shift (function 2) and the 42043’s rear differentials (function 11)."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You said “9397 - go with the snowplow”: the set’s function list is rewritten for the snowplough, the model the OMR publishes. The worker drafts it from LEGO’s two instruction files; the new list comes to you to sign."
     }
   ]
 }
