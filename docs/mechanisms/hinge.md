@@ -4,14 +4,14 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 77 of the 186 surveyed sets, by 131 functions. Kinebrick: 79 works, 14 partly, 31 no, 2 skipped, 5 not checked.
+Used in 76 of the 186 surveyed sets, by 130 functions. Kinebrick: 79 works, 14 partly, 31 no, 2 skipped, 4 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 41 of 83 | 12 of 21 |
-| Functions | 2 | 1 | 15 | 25 | 67 | 21 |
+| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 40 of 83 | 12 of 21 |
+| Functions | 2 | 1 | 15 | 25 | 66 | 21 |
 
 ## Details
 
@@ -59,7 +59,6 @@ Each detail by the set it first appears in.
 | stabiliser legs | 2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1) | 1 |
 | tedder arms | 2012, [9393 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9393-1) | 1 |
 | rotor blades | 2012, [9396 Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9396-1) | 2 |
-| grab claws | 2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1) | 1 |
 | body | 2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1) | 2 |
 | stick | 2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1) | 1 |
 | backhoe swing | 2013, [42004 Mini Backhoe](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42004-1) | 1 |
@@ -243,10 +242,6 @@ Each detail by the set it first appears in.
 **2012, [9396 Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9396-1)**
 
 - *rotor blades:* The main rotor's four blades fold back on their hinges for parking, released by a blue lever in the cockpit. (no)
-
-**2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
-
-- *grab claws:* The log grab at the jib tip opens and closes by hand, by turning a gear on top of it, and hangs free so it swings level. (not checked)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 

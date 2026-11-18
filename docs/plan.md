@@ -17,8 +17,8 @@ The goal has two milestones, because some functions need forces.
 
 | Milestone | Functions | What it needs |
 |---|---|---|
-| A. Kinematic 100% | 1,104 of 1,226: the 1,047 checked today, and the 57 not checked | Kinematics only. No forces. |
-| B. Full 100% | All 1,226: the 122 skipped today too | Gravity, springs, air pressure, ratchets, brakes. |
+| A. Kinematic 100% | 1,101 of 1,223: the 1,045 checked today, and the 56 not checked | Kinematics only. No forces. |
+| B. Full 100% | All 1,223: the 122 skipped today too | Gravity, springs, air pressure, ratchets, brakes. |
 
 ## Where we stand
 
@@ -27,10 +27,10 @@ The function check on all 186 sets, run in full on this Mac on 2026-11-14 (the 8
 | Result | Functions |
 |---|---|
 | Works | 742 |
-| Partly | 220 |
+| Partly | 218 |
 | Doesn't work | 85 |
 | Skipped (needs force) | 122 |
-| Not checked (nothing worked by hand) | 57 |
+| Not checked (nothing worked by hand) | 56 |
 
 In 58 sets, every checked function works. In 27 of those, no function is skipped or unchecked either. 81 more sets are one or two checked functions short.
 
@@ -560,6 +560,7 @@ A branch is merged into `preview` only when all are true. The orchestrator runs 
 175. **A motor that cannot start frees the friction pins that hold its output, once, as it starts.** claude/motor-pins 180c7730 (agreed after decision 155; built on the motor mend of decision 157). In `startMotor`, after the motor's output is found: if the output cannot turn, the viewer asks once for the friction pins that hold it, by the drag's rule and order, frees them if there are any, and the motor starts; never while it runs, never the motor's own stiff output joint, and nothing for a part that merely does not follow. It changes nothing a user sees today: of the 62 motors in the 36 sets that have one, 58 turn as read and the other four (42047, 42066, 42070, 42080) start as before, none with a friction pin holding its output; and the check frees pins for none of the 49 functions whose control is a motor. So the path where pins are freed could not be tried on any set; it is there for the day a friction role (the 32054's, the 43093's) puts a held pin in a motor's drive. A test on the 42070's motor; 1,020 tests pass; 742 work, 0 better, 0 worse. In the viewer by the orchestrator on the merged code: the 42114's L motor still runs and its ring slides at the same step as before, the truck staying.
 176. **The check's collision test reads part shapes with the set's signed errata.** claude/shapes-errata (only scripts/check-functions.ts, in the `--lock` path, which is reported and decides no result). The check packed the shapes from the model's text without its errata, and matched shapes to parts without skipping a part an erratum removed; in a set where the two then did not match (41999, 42093, 850, 8838, 9396) the steering functions ran with no collision test at all. Now the shapes come from the text with the signed errata, as the viewer reads it, and a removed part is skipped as src/main.ts skips it. One recorded stop changes: the 850's function 2 stops where parts meet, at about 38 degrees of steering, where it went to 87 and stuck; the 41999's, the 42093's and the 8838's are the same. No result changes: 742 work; 1,020 tests pass. The stops measurement in progress has the errata reading but not the skip, so sets with a removed part (42052, 42109, 42093 and perhaps others) got no stop test in it; the solver owner checks those by name afterwards.
 177. **The 9397's list for the snowplough is drafted: for Erik.** claude/9397-snowplough e6729fc3 (one commit on preview 0220d43e; not merged until signed). From LEGO's two instruction files for the second model (9397-1-4.pdf and 9397-1-5.pdf, a container truck with a snowplough): six functions in place of nine. Kept with sources in these books: the motor and gearbox with two levers, the steering knob, the engine turned by the rear axles, the six wheels. New: with lever p217 set the motor tips the container frame p894 by the big actuator p623/p624 (book 2 steps 110 to 113, pages 34 to 37); with lever p221 set the motor raises and lowers the plough p1340 by the small actuator p463/p464 (book 1 step 84, page 143; book 2 steps 152 to 160). Dropped: the crane's four functions and the outriggers. Neither booklet has a functions page, so the levers' sides come from the worker's trial of each setting, and the item says so. The orchestrator looked at the cited pages (book 2 pages 34 to 37 and 145 to 148, book 1 pages 143 to 146): they show what the list says. Checked by name: functions 1, 2, 4, 5 and 6 work; function 3 (the plough) is partly, control-jammed: its control reaches a limit after 0.07 each way. In the viewer by the worker: the tipper's rod moves 0.41 LDU and the frame tips 0.15 degrees in five motor steps (the right way, slowly); the plough moves 0.2 to 0.3 LDU, jerkily, and drops back. With the list the total is 1,223 functions and 742 work as now (the set had 5 working of 9, and has 5 of 6). Two things for the worker before the merge: the list's "instructions" line still names only the logging truck's three books, and the commit's message has no blank lines.
+178. **Erik signed the 9397's list for the snowplough: 1,223 functions in all, 742 work.** In his words, 2026-11-17: "Sign 9397 list". claude/9397-snowplough e6729fc3 merged (decision 177): six functions in place of nine, written from LEGO's two instruction files for the set's second model. The list's line on its booklets now names those two files and the sign-off (changed by the orchestrator at the merge). Function 1 keeps no listed parts, as signed. The 9397 was checked by name by the worker on the same code: functions 1, 2, 4, 5 and 6 work, function 3 (the plough) is partly and one of its ways does not come back; the worker traces it. Gate: 742 work where 742 did; 218 partly, 85 don't, 122 skipped, 56 not checked; 1,020 tests pass. The total of functions falls from 1,226 to 1,223.
 
 
 ## First steps
