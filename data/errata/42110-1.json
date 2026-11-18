@@ -1,0 +1,29 @@
+{
+  "set": "42110-1",
+  "entries": [
+    {
+      "id": "front-driver-at-z-minus-177-on-its-hub-axis",
+      "what": "move",
+      "file": "42110 - frontaxle.ldr",
+      "line": "1 71 -40 -19.188 -177.81 1 0 0 0 0.978 -0.208 0 0.208 0.978 32494.dat",
+      "position": [
+        -40,
+        -17.188,
+        -177.81
+      ],
+      "evidence": "One front hub: step 149 (page 93, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=93) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn."
+    },
+    {
+      "id": "front-driver-at-z-plus-177-on-its-hub-axis",
+      "what": "move",
+      "file": "42110 - frontaxle.ldr",
+      "line": "1 71 -40 -19.188 177.81 -1 0 0 0 0.978 -0.208 0 -0.208 -0.978 32494.dat",
+      "position": [
+        -40,
+        -17.188,
+        177.81
+      ],
+      "evidence": "The other front hub: step 150 (page 94, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=94) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn; with front-driver-at-z-minus-177-on-its-hub-axis."
+    }
+  ]
+}
