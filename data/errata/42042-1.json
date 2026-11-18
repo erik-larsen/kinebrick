@@ -1,0 +1,17 @@
+{
+  "set": "42042-1",
+  "entries": [
+    {
+      "id": "left-tread-on-its-wheels",
+      "what": "move",
+      "file": "",
+      "line": "1 72 -210 -70 70 0 0 -1 0 1 0 1 0 0 42042 - technicChainTread38Closed-1.ldr",
+      "position": [
+        -210,
+        -70,
+        60
+      ],
+      "evidence": "The two treads are one submodel (42042 - technicChainTread38Closed-1.ldr, 45 links of 57518 round six circles), placed twice in the main model, at x 210 and x -210. The one at x 210 is at z 60, and each of its six circles is on its wheel's axle (the two sprockets 57519 and the four rollers). The one at x -210 is at z 70, so each of its circles lies 10 LDU along the crawler from its axle, and it is read round no wheel (functions 2 and 9 fail as track-not-read). The booklet fits both treads the same way, each centred on its sprockets (page 54, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6151636.pdf#page=54: 90 links, 2 × 45). Placed at z 60, as the other one is, its six circles are on their axles."
+    }
+  ]
+}

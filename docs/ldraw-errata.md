@@ -463,7 +463,10 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [9397-1](#9397-1-plough-link-beam-level) | plough-link-beam-level | moves `32316.dat` (in `9397 - 9397B.ldr`) to 0 -83.3547 -529.8725, turned | Proposed, not applied until signed off |
 | [9397-1](#9397-1-plough-link-pin-in-its-hole) | plough-link-pin-in-its-hole | moves `32556.dat` (in `9397 - 9397B.ldr`) to 0 -43.3514 -529.886 | Proposed, not applied until signed off |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
+| [42038-1](#42038-1-rear-left-tread-on-its-unit) | rear-left-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to -165 161.666 300.4165 | Proposed, not applied until signed off |
+| [42038-1](#42038-1-rear-right-tread-on-its-unit) | rear-right-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to 165 161.666 300.4155 | Proposed, not applied until signed off |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
+| [42042-1](#42042-1-left-tread-on-its-wheels) | left-tread-on-its-wheels | moves `42042 - technicChainTread38Closed-1.ldr` to -210 -70 60 | Proposed, not applied until signed off |
 | [42050-1](#42050-1-wheelie-actuator-bevel-on-its-axis) | wheelie-actuator-bevel-on-its-axis | moves `32270.dat` (in `42050 - linact.ldr`) to -280.431 -6.163 0, turned | Signed off by Erik, 2026-11-17 |
 | [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
@@ -718,6 +721,34 @@ Added to the main model:
 1 0 -60 -0.235 271.282 0 0 1 0.008 1 0 -1 0.008 0 2780.dat
 ```
 
+### 42038-1: rear-left-tread-on-its-unit
+
+Proposed, not applied until signed off.
+
+Each of the four track units (42038 - track1.ldr on the left, track2.ldr on the right) has a tread of 24 links of 57518 (42038 - technicChainTread38Closed-1.ldr) round its three wheels. The front treads are placed where their units are, in y and z (163.772, -259.3185), at x 165 and -165, and each circle is on its wheel's axle. The rear units are at y 161.666, z 300.4165 (left, x -165) and z 300.4155 (right, x 175), but their treads are at y 163.772, z 290.6815 and x -175 and 155: every circle lies 9.96 LDU from its axle, the treads are read round no wheel, and function 9 fails as track-not-read. Book 2, step 101 (page 47, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112278.pdf#page=47) wraps each 24-link tread round its unit's wheels, the rear ones as the front. Placed as the front treads are against their units, at the unit's y and z and x -165, its circles are on their axles.
+
+In the main model, the line
+
+```
+1 0 -175 163.772 290.6815 0 0 1 0 1 0 -1 0 0 42038 - technicChainTread38Closed-1.ldr
+```
+
+is read with its part at -165 161.666 300.4165.
+
+### 42038-1: rear-right-tread-on-its-unit
+
+Proposed, not applied until signed off.
+
+With rear-left-tread-on-its-unit: the right rear tread, placed as the right front tread is against its unit (track2.ldr at x 175, its tread at x 165), at the unit's y and z (161.666, 300.4155). Book 2, step 101 (page 47, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112278.pdf#page=47).
+
+In the main model, the line
+
+```
+1 0 155 163.772 290.6815 0 0 1 0 1 0 -1 0 0 42038 - technicChainTread38Closed-1.ldr
+```
+
+is read with its part at 165 161.666 300.4155.
+
 ### 42040-1: seats-on-their-pins
 
 Signed off by Erik, 2026-11-15.
@@ -731,6 +762,20 @@ In the main model, the line
 ```
 
 is read with its part at -160 -211.6552 -70.6371.
+
+### 42042-1: left-tread-on-its-wheels
+
+Proposed, not applied until signed off.
+
+The two treads are one submodel (42042 - technicChainTread38Closed-1.ldr, 45 links of 57518 round six circles), placed twice in the main model, at x 210 and x -210. The one at x 210 is at z 60, and each of its six circles is on its wheel's axle (the two sprockets 57519 and the four rollers). The one at x -210 is at z 70, so each of its circles lies 10 LDU along the crawler from its axle, and it is read round no wheel (functions 2 and 9 fail as track-not-read). The booklet fits both treads the same way, each centred on its sprockets (page 54, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6151636.pdf#page=54: 90 links, 2 × 45). Placed at z 60, as the other one is, its six circles are on their axles.
+
+In the main model, the line
+
+```
+1 72 -210 -70 70 0 0 -1 0 1 0 1 0 0 42042 - technicChainTread38Closed-1.ldr
+```
+
+is read with its part at -210 -70 60.
 
 ### 42050-1: wheelie-actuator-bevel-on-its-axis
 

@@ -22,6 +22,9 @@ interface Piece {
   dir?: Vector2;
 }
 
+// How far (LDU) two circles of a loop may overlap and still be taken as touching (see LoopPath).
+const TOUCH = 2;
+
 export class LoopPath {
   readonly length: number;
   private pieces: Piece[];
@@ -54,10 +57,16 @@ export class LoopPath {
       const k = a.turn * a.r - b.turn * b.r;
       const theta = Math.atan2(d.y, d.x);
       const spread = Math.acos(Math.max(-1, Math.min(1, k / d.length())));
+      // Two circles the path crosses between that touch (or overlap by up to TOUCH) have a run of
+      // no length, square to the line between their middles: the path goes straight from one onto
+      // the other. The circles that fit a track placed by hand can (the 8275 Bulldozer's: its
+      // rollers' circles overlap the wide circle between them by 1.16 LDU, which rounding let
+      // through in node and not in the viewer, so the viewer drew its links on their bodies).
+      const touching = Math.abs(k) >= d.length() && Math.abs(k) - d.length() <= TOUCH;
       for (const phi of [theta + spread, theta - spread]) {
         const m = new Vector2(Math.cos(phi), Math.sin(phi));
         const t = new Vector2(-m.y, m.x);
-        if (d.dot(t) > 0) return { from: a.c.clone().addScaledVector(m, a.turn * a.r), to: b.c.clone().addScaledVector(m, b.turn * b.r), t };
+        if (d.dot(t) > 0 || touching) return { from: a.c.clone().addScaledVector(m, a.turn * a.r), to: b.c.clone().addScaledVector(m, b.turn * b.r), t };
       }
       throw new Error('No straight run between two circles of a loop');
     });
@@ -135,7 +144,13 @@ export class LoopPath {
 // A loop's links, and where each goes as the loop moves round: placeLinks(travel) gives each
 // link's placement (link -> model coordinates, as the model was loaded) once the loop has moved
 // `travel` LDU along its path.
-export function loopLinks(points: PathPoint[], links: Matrix4[]): ((travel: number) => Matrix4[]) | null {
+//
+// With `evenly` (a track placed link by link, see PlacedPath's byHand), the links are laid on the
+// path a share of its length apart, in their order round it from the first, each turned on the
+// path as it was where it was placed: a track placed by hand isn't quite on the path its circles
+// make once they are on their wheels, and each link kept where it was against the path would
+// open gaps as the links go round (the 9391 Crawler Crane's, nearly 8 LDU).
+export function loopLinks(points: PathPoint[], links: Matrix4[], evenly = false): ((travel: number) => Matrix4[]) | null {
   let path: LoopPath;
   try {
     path = new LoopPath(points);
@@ -143,6 +158,13 @@ export function loopLinks(points: PathPoint[], links: Matrix4[]): ((travel: numb
     return null;
   }
   const along = links.map((m) => path.nearest(new Vector3().setFromMatrixPosition(m)));
+  if (evenly) {
+    const order = links.map((_, i) => i).sort((a, b) => along[a] - along[b]);
+    const turned = links.map((m, i) => path.frameAt(along[i]).invert().multiply(m).setPosition(0, 0, 0));
+    const start = along[order[0]];
+    order.forEach((i, k) => (along[i] = start + (k * path.length) / links.length));
+    return (travel) => turned.map((rel, i) => path.frameAt(along[i] + travel).multiply(rel));
+  }
   // Each link relative to the path where it starts.
   const relative = links.map((m, i) => path.frameAt(along[i]).invert().multiply(m));
   return (travel) => relative.map((rel, i) => path.frameAt(along[i] + travel).multiply(rel));
