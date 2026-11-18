@@ -166,10 +166,7 @@
     "seconds": 50,
     "counts": {
       "works": 6,
-      "not back": 3,
-      "torn": 2,
       "partly": 2,
-      "free-turned": 1,
       "skipped": 2
     },
     "loose": [
@@ -795,7 +792,7 @@
         "cause": "loose-part",
         "detail": "p184 2698",
         "onPlay": 3,
-        "seconds": 5.7
+        "seconds": 5.4
       },
       {
         "result": "works",

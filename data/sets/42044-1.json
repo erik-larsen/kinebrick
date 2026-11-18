@@ -69,9 +69,7 @@
     "date": "2026-11-17",
     "seconds": 1,
     "counts": {
-      "works": 3,
-      "not back": 1,
-      "moved whole": 1
+      "works": 3
     },
     "loose": [],
     "functions": [
@@ -95,7 +93,7 @@
             ],
             "p25 32073": [
               0.463,
-              1.91e-13
+              1.33e-13
             ],
             "p104 42610": [
               0.463,

@@ -137,10 +137,7 @@
     "seconds": 4,
     "counts": {
       "partly": 1,
-      "not back": 1,
-      "torn": 1,
-      "works": 6,
-      "no": 1
+      "works": 7
     },
     "loose": [
       "p192 3837",
@@ -643,11 +640,11 @@
         "seconds": 0.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            1.5,
+            -1.5
           ]
         ],
         "rates": [
@@ -677,20 +674,11 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "no motion",
-            "no motion"
-          ]
+        "freed": 1,
+        "shiftPressed": [
+          293
         ],
-        "pushed": [
-          true
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "stopped-early",
-        "seconds": 0
+        "seconds": 0.4
       }
     ]
   }
