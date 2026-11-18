@@ -12,36 +12,7 @@
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
-  "waiting": [
-    {
-      "id": "9396-lists",
-      "kind": "Sign-off",
-      "title": "9396 Helicopter, functions 1 to 4: which actuator and which lever setting works what",
-      "since": "2026-11-17",
-      "what": "A change to four function lists. The file is right as drawn; our lists were wrong in three places. (1) Function 2, the landing gear: the list named both small actuators. The right actuator alone folds the whole landing gear (the nose wheels and all four main wheels); the left actuator is not part of it and is dropped. (2) Functions 3 and 4, the winch and the ramp: the list had the left lever’s two directions swapped. The winch is the lever one way, the ramp the other, as the booklet’s functions page shows. (3) Function 4, the ramp: the list named two side beams that are pinned at two places and cannot move. The ramp is the grey panel under the tail on its two red arms, pushed by the left actuator; the list now names the left actuator and the panel. Also new in functions 1, 2 and 4: the winch must stay still, so that a winch that turns in every setting cannot pass unnoticed.",
-      "effect": "No change in the count today. Function 3 (the winch) keeps its “works”, now for the right reason. Functions 2 and 4 now move every part they list, but stay “partly working” because the winch still turns a little in every setting: that is a fault of the solver (a gear that is free on a turning axle gets carried along), and it is with the solver owner. Function 1 (the rotors) stays partly working: something holds the rotor’s shaft, not found yet.",
-      "confidence": "High for the lists: the booklet’s functions page shows the four lever settings, and the worker’s trial moved every part, lever setting by lever setting. Tried in the viewer by the worker with the collision pass ready: the left lever set and the knob turned moves the ramp’s panel 2.9 LDU with the left actuator turning and the right one still; the right lever set and the knob turned moves the nose wheel and the main wheels with the right actuator turning and the left one still. One fault seen and not explained yet: after the first turn the knob would not turn again.",
-      "links": [
-        {
-          "label": "9396 in the viewer: the knob, the two levers, the two actuators and the ramp’s panel",
-          "url": "http://localhost:5174/?file=omr/9396-1+Helicopter.mpd&show=367,1425,1428,1256,437,449"
-        },
-        {
-          "label": "Booklet 3, page 45: the functions page",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6015592.pdf#page=45"
-        },
-        {
-          "label": "Booklet 2, page 52: the ramp’s panel and arms (steps 103 to 105)",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6053059.pdf#page=52"
-        },
-        {
-          "label": "Booklet 2, page 15: the gearbox’s two halves",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6053059.pdf#page=15"
-        }
-      ],
-      "reply": "Sign 9396 lists"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "The next offer of main",
@@ -232,6 +203,10 @@
     {
       "date": "2026-11-17",
       "what": "You signed the 9397’s list for the snowplough (“Sign 9397 list”): six functions in place of nine. Five work and one, the plough, partly works. The total is now 1,223 functions; 742 work."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You signed the 9396’s lists (“Sign 9396 lists”): the right actuator alone folds the landing gear, the left one pushes the ramp, and the second lever’s directions are put right. The count stays at 742: the winch works for the right reason now; the landing gear and the ramp move every listed part and stay partly working until the solver stops carrying the winch along."
     }
   ]
 }
