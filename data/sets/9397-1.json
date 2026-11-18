@@ -36,7 +36,11 @@
         ],
         "source": "book 4 (the snowplough): the gearbox sub-build, pages 37 to 61 (https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=37 to #page=61), the motor at page 59; book 5: the battery box, step 142 (page 103, https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=103)",
         "control": "p240 58120",
-        "note": "levers: p217 3749 (catch p216 6641, ring p171 6539) and p221 3749 (catch p220 6641, ring p162 6539); of their four settings two drive something (functions 2 and 3); p217 at -20 and p221 at +20 reach nothing that moves; inferred: the snowplough booklets have no functions page"
+        "moves": [
+          "p157 6538a",
+          "p160 6538a"
+        ],
+        "note": "the two ring shafts turn whenever the motor runs: p157 6538a on axle p170 3737 (ring p171) and p160 6538a on axle p161 44294 (ring p162); levers: p217 3749 (catch p216 6641, ring p171 6539) and p221 3749 (catch p220 6641, ring p162 6539); of their four settings two drive something (functions 2 and 3); p217 at -20 and p221 at +20 reach nothing that moves; inferred: the snowplough booklets have no functions page"
       },
       {
         "does": "With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it.",
