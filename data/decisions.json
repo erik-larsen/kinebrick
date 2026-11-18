@@ -162,12 +162,36 @@
         }
       ],
       "reply": "Sign 42110"
+    },
+    {
+      "id": "8868-rods",
+      "kind": "Sign-off",
+      "title": "8868 Air Tech Claw Rig: four of the engine’s six connecting rods are drawn off their pistons",
+      "since": "2026-11-18",
+      "what": "A correction to the published file. The six-cylinder engine has six connecting rods, each with a ball that sits in its piston. Two rods are drawn with the ball in the piston. The other four are drawn at a slightly wrong angle, with the ball 3 to 4.6 LDU beside the piston. So the model’s reading joins those four rods to no piston: the four pistons are driven by nothing, and each rod swings into its cylinder’s wall as soon as the crankshaft turns. The correction turns each of the four rods 1° to 4° about its crank pin and moves its piston 2.6 to 4.6 LDU along its cylinder, so the ball sits in the piston. The crankshaft’s angle is kept.",
+      "effect": "Functions 3 (the front wheels roll freely) and 4 (rolling the truck runs the six-piston engine) go from not working to working, and the count goes up by 2. Both went to not working today, when the check began to stop where the viewer stops. Before that the check passed them although four of the six pistons did not move.",
+      "confidence": "High. Claude looked at the booklet step and ran the engine in the viewer with the correction: the crankshaft turns freely and all six pistons slide 12 to 20 LDU, with no stop. As drawn, by the worker’s run, the crankshaft rocks between 0° and 24° and four pistons never move. The worker checked the set with the correction: both functions work, nothing else changes. The booklet for this set is a scan, not a LEGO PDF: step 27 puts the rods on the crank pins, presses a piston onto each rod’s ball and puts the cylinders over them.",
+      "links": [
+        {
+          "label": "8868 in the viewer with the correction, the engine running, rods and pistons marked",
+          "url": "http://localhost:5174/?file=omr/8868-1+Air+Tech+Claw+Rig.mpd&option=proposed&lifted=1&autospin=2898&rpm=20&show=2900,2903,2904,2908,2911,2913,2914,2915"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/8868-1+Air+Tech+Claw+Rig.mpd&lifted=1&autospin=2898&rpm=20&show=2900,2903,2904,2908,2911,2913,2914,2915"
+        },
+        {
+          "label": "The booklet’s scans (step 27 is the 28th picture)",
+          "url": "https://lego.brickinstructions.com/en/lego_instructions/set/8868"
+        }
+      ],
+      "reply": "Sign 8868"
     }
   ],
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 726 working functions and main 701, but Claude does not offer main yet. Since 18 November the check stops a motion where two parts meet, as the viewer does; that took the count from 739 to 726. The 13 lost were never right in the viewer: most stop at once because a connection is missing in the model’s reading (the 42000’s and the 8880’s suspension, mended by the worker now), because the solver takes a wrong motion, or because the published file is drawn wrong (the 8868’s piston rods: a correction will come to you to sign). A rule to pass small overlaps was measured and dropped: the overlaps are not small. Before the offer: one full check of two solver changes together (about four hours, running), the mends above, and a slow check of the 8110 on the commit offered."
+      "what": "preview has 726 working functions and main 701, but Claude does not offer main yet. Since 18 November the check stops a motion where two parts meet, as the viewer does; that took the count from 739 to 726. The 13 lost were never right in the viewer: most stop at once because a connection is missing in the model’s reading (the 42000’s and the 8880’s suspension, mended by the worker now), because the solver takes a wrong motion, or because the published file is drawn wrong (the 8868’s piston rods and the 42000’s and 42110’s axle drivers: corrections wait for you above). A rule to pass small overlaps was measured and dropped: the overlaps are not small. Before the offer: one full check of two solver changes together (about four hours, running), the mends above, and a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, asked again at mid-week",
