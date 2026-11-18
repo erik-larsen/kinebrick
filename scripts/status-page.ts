@@ -84,7 +84,9 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
 }
 if (!trains && points[points.length - 1].slice(2).join() !== now.join()) points.push([Math.floor(Date.now() / 1000), 'not committed', ...now]);
 const data = { commit, date: new Date().toISOString().slice(0, 10), causes: CAUSES, sets, history: points, ...(trains ? { title: 'Every OMR set with train track, by how much of it works' } : {}) };
-const page = readFileSync(join('scripts', 'status-page.html'), 'utf-8').replace('/*DATA*/null', () => JSON.stringify(data).replaceAll('</', '<\\/'));
+const page = readFileSync(join('scripts', 'status-page.html'), 'utf-8').replace('/*DATA*/null', () => JSON.stringify(data).replaceAll('</', '<\\/'))
+// The train sets' page has its own name, so that it and the Technic page aren't two pages with one name.
+const named = trains ? page.replace('<title>Kinebrick Set Status</title>', '<title>Kinebrick Train Status</title>') : page;
 mkdirSync(dirname(out), { recursive: true });
-writeFileSync(out, page);
+writeFileSync(out, named);
 console.log(`${sets.length} sets written to ${out}`);
