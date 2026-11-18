@@ -5,9 +5,9 @@
       "moved": "2026-11-16"
     },
     "preview": {
-      "works": 726,
-      "partly": 222,
-      "no": 97,
+      "works": 736,
+      "partly": 216,
+      "no": 93,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -47,7 +47,7 @@
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 726 working functions and main 701, but Claude does not offer main yet. Since 18 November the check stops a motion where two parts meet, as the viewer does; that took the count from 739 to 726. The 13 lost were never right in the viewer: most stop at once because a connection is missing in the model’s reading (the 42000’s and the 8880’s suspension, mended by the worker now), because the solver takes a wrong motion, or because the published file is drawn wrong (the 8868’s piston rods and the 42000’s and 42110’s axle drivers: corrections wait for you above). A rule to pass small overlaps was measured and dropped: the overlaps are not small. Before the offer: one full check of two solver changes together (about four hours, running), the mends above, and a slow check of the 8110 on the commit offered."
+      "what": "preview has 736 working functions and main 701, but Claude does not offer main yet (apart from the one-file mend for the web sites, above). Since 18 November the check stops a motion where two parts meet, as the viewer does. The early stops are being sorted by cause, one function at a time: missing connections and file faults are mended as they are found (eight sign-offs on 18 November), and a rule that lets a contact guide a motion is being measured. Before the offer: the two solver changes told apart (their full check lost 10 functions and gained none, so neither is merged as it is), a full check of preview, and a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, asked again at mid-week",
@@ -249,7 +249,7 @@
     },
     {
       "date": "2026-11-18",
-      "what": "You signed all eight items (\"Sign all 8\"): the 9397’s plough, the 42042’s tread, the 42038’s treads and list, the 8272’s list, the 42000’s rear drivers and front rockers, the 42110’s front drivers, the 8868’s piston rods, and the 42082’s cab door. 37 corrections are marked signed and four list changes are in. The eight sets are being checked by name; the new count follows here when that check ends (expected: 726 to 736)."
+      "what": "You signed all eight items (\"Sign all 8\"): the 9397’s plough, the 42042’s tread, the 42038’s treads and list, the 8272’s list, the 42000’s rear drivers and front rockers, the 42110’s front drivers, the 8868’s piston rods, and the 42082’s cab door. 37 corrections are marked signed and four list changes are in. The eight sets were checked by name: preview goes from 726 to 736 working functions, as expected. Ten results are better. One note: the 42000’s rear suspension works, but two of its ways come back a little off their start; the solver owner looks at it."
     }
   ]
 }

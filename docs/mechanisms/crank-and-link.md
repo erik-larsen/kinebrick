@@ -4,14 +4,14 @@ A crank or lever moves a part through links: a toggle, bellcrank, push rod or fo
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.
 
-Used in 56 of the 186 surveyed sets, by 78 functions. Kinebrick: 44 works, 28 partly, 5 no, 1 not checked.
+Used in 57 of the 186 surveyed sets, by 79 functions. Kinebrick: 45 works, 28 partly, 5 no, 1 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 1 of 9 | 6 of 18 | 6 of 32 | 9 of 23 | 27 of 83 | 7 of 21 |
-| Functions | 2 | 10 | 9 | 14 | 34 | 9 |
+| Sets | 1 of 9 | 6 of 18 | 6 of 32 | 9 of 23 | 28 of 83 | 7 of 21 |
+| Functions | 2 | 10 | 9 | 14 | 35 | 9 |
 
 ## Details
 
@@ -54,6 +54,7 @@ Each detail by the set it first appears in.
 | canopy, air brake and exhaust | 2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1) | 1 |
 | side steps | 2017, [42069 Extreme Adventure](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42069-1) | 1 |
 | bonnet flick | 2018, [42072 WHACK!](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42072-1) | 2 |
+| cab door | 2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1) | 1 |
 | rear wing | 2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1) | 1 |
 | sails | 2020, [42105 Catamaran](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42105-1) | 1 |
 | legs | 2020, [42106 Stunt Show Truck & Bike](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42106-1) | 1 |
@@ -274,6 +275,10 @@ Each detail by the set it first appears in.
 **2018, [42081 Volvo Concept Wheel Loader ZEUX](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42081-1)**
 
 - *bucket:* Either of the upper pair of knobs, high on the sides by the arm's pivot, tilts the bucket: a shaft with universal joints runs up the arm to a second linear actuator, which works the bucket through a pair of links at the arm's tip. (works)
+
+**2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
+
+- *cab door:* The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab's side without turning. (works)
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 

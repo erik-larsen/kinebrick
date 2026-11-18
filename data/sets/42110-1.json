@@ -204,13 +204,13 @@
     ]
   },
   "generated": {
-    "commit": "8c1d2ba3",
+    "commit": "1650ed23",
     "uncommitted": true,
     "date": "2026-11-18",
-    "seconds": 1045,
+    "seconds": 760,
     "counts": {
-      "works": 11,
-      "partly": 2,
+      "works": 12,
+      "partly": 1,
       "skipped": 2,
       "not back": 1,
       "torn": 1
@@ -253,6 +253,13 @@
       "p2630 22977",
       "p2632 22977"
     ],
+    "errata": {
+      "applied": [
+        "front-driver-at-z-minus-177-on-its-hub-axis",
+        "front-driver-at-z-plus-177-on-its-hub-axis"
+      ],
+      "refused": []
+    },
     "functions": [
       {
         "result": "works",
@@ -310,7 +317,7 @@
             ]
           ]
         ],
-        "seconds": 162.4
+        "seconds": 100.8
       },
       {
         "result": "works",
@@ -352,18 +359,17 @@
             ]
           ]
         ],
-        "seconds": 140.4
+        "seconds": 104.7
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.43,
-            -0.43
+            1.5,
+            -1.5
           ]
         ],
         "still": [
-          "p242 3708",
           "p211 4519",
           "p223 4519"
         ],
@@ -371,15 +377,15 @@
           {
             "p242 3708": [
               0.0178,
-              2.63e-13
+              3.14e-13
             ],
             "p211 4519": [
               0,
-              1.45e-26
+              5.1e-26
             ],
             "p223 4519": [
               0,
-              2.55e-26
+              4.74e-26
             ]
           }
         ],
@@ -407,47 +413,20 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
         "judged": [
           0
         ],
         "cause": "not-driven",
-        "detail": "p242 3708",
-        "collisionStops": [
-          [
-            0,
-            1,
-            81,
-            83,
-            0.43,
-            0.43
-          ],
-          [
-            0,
-            -1,
-            81,
-            83,
-            0.43,
-            0.43
-          ]
-        ],
-        "seconds": 27.5
+        "detail": "p211 4519",
+        "seconds": 50.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.43,
-            -0.43
+            1.5,
+            -1.5
           ]
-        ],
-        "still": [
-          "p2613 42110 - 49294"
         ],
         "rates": [
           {
@@ -457,11 +436,11 @@
             ],
             "p38 62821": [
               0.489,
-              4.9e-13
+              4.92e-13
             ],
             "p242 3708": [
               0,
-              9.6e-46
+              4.09e-46
             ]
           }
         ],
@@ -489,36 +468,7 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            "limit"
-          ]
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p2613 42110 - 49294",
-        "collisionStops": [
-          [
-            0,
-            1,
-            81,
-            83,
-            0.43,
-            0.43
-          ],
-          [
-            0,
-            -1,
-            81,
-            83,
-            0.43,
-            0.43
-          ]
-        ],
-        "seconds": 10.9
+        "seconds": 17.2
       },
       {
         "result": "works",
@@ -598,7 +548,7 @@
             0.17
           ]
         ],
-        "seconds": 5.6
+        "seconds": 7.3
       },
       {
         "result": "works",
@@ -664,7 +614,7 @@
             0.5
           ]
         ],
-        "seconds": 10.6
+        "seconds": 10.8
       },
       {
         "result": "works",
@@ -730,7 +680,7 @@
             0.5
           ]
         ],
-        "seconds": 11.7
+        "seconds": 11.1
       },
       {
         "result": "works",
@@ -772,7 +722,7 @@
             ]
           ]
         ],
-        "seconds": 24.2
+        "seconds": 19.1
       },
       {
         "result": "skipped"
@@ -893,7 +843,7 @@
             1.04
           ]
         ],
-        "seconds": 197.1
+        "seconds": 140.3
       },
       {
         "result": "works",
@@ -946,7 +896,7 @@
             0
           ]
         ],
-        "seconds": 12.8
+        "seconds": 13
       },
       {
         "result": "works",
@@ -1015,7 +965,7 @@
             0.1
           ]
         ],
-        "seconds": 6.5
+        "seconds": 8.1
       },
       {
         "result": "works",
@@ -1069,7 +1019,7 @@
             0.03
           ]
         ],
-        "seconds": 22.9
+        "seconds": 19.9
       },
       {
         "result": "works",
@@ -1123,7 +1073,7 @@
             0.07
           ]
         ],
-        "seconds": 22.4
+        "seconds": 19.9
       },
       {
         "result": "skipped"

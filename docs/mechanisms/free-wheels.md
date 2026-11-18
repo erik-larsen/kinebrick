@@ -4,7 +4,7 @@ Wheels, rollers, a propeller or another part roll or spin freely, driven by noth
 
 First appears in 1977, in [850 Fork Lift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=850-1) and [851 Tractor](https://www.bricklink.com/v2/catalog/catalogitem.page?S=851-1): The four wheels roll freely; the front pair are on short axles of their own.
 
-Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 147 works, 2 partly, 1 no, 2 skipped, 2 not checked.
+Used in 132 of the 186 surveyed sets, by 154 functions. Kinebrick: 148 works, 2 partly, 2 skipped, 2 not checked.
 
 ## By decade
 
@@ -181,7 +181,7 @@ Each detail by the set it first appears in.
 
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
-- The two front wheels roll freely on the steering arms. (no)
+- The two front wheels roll freely on the steering arms. (works)
 
 **1993, [8824 Hovercraft](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8824-1)**
 
