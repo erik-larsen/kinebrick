@@ -129,9 +129,9 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
 //   warnings     the warnings on the model: in red, a loose part's outline, and for a moment the
-//                outlines of two parts a drag stopped at; and the symbols pinned to parts
-//                (⚠ loose, 📌 frozen). Off otherwise: none of these is drawn (a part kept
-//                turning keeps its green outline, and a frozen part its blue one, either way).
+//                outlines of two parts a drag stopped at; and a ⚠ pinned to each loose part.
+//                Off otherwise: none of these is drawn (a part kept turning keeps its green
+//                outline, and a frozen part its blue one, either way).
 //                An address written before the options were joined still works: `symbols`
 //                and `status` both mean `warnings`
 //   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
@@ -1038,7 +1038,7 @@ async function start() {
     keepOption('warnings', on);
   });
 
-  // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" (in the options panel,
+  // Frozen parts get a cyan outline, and "Unfreeze all" (in the options panel,
   // added below) shows while any are frozen.
   let unfreezeButton: Controller | undefined;
   let showMotor = () => {}; // shows the motor's buttons, once they're made (below)
