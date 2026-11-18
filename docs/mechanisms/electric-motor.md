@@ -4,14 +4,14 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 89 functions. Kinebrick: 41 works, 42 partly, 1 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 41 works, 40 partly, 1 no, 5 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 1 of 18 | 2 of 32 | 2 of 23 | 20 of 83 | 6 of 21 |
-| Functions | 0 | 1 | 4 | 9 | 52 | 23 |
+| Functions | 0 | 1 | 4 | 9 | 50 | 23 |
 
 ## Details
 
@@ -75,11 +75,9 @@ Each detail by the set it first appears in.
 
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 
-- *PF M:* A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with four driving rings; two blue-handled change-over levers, one on each side of the chassis behind the cab, choose which of the crane's four functions it works. (works)
-- With one lever to one side, the motor lowers and raises the outrigger legs behind the cab, which stand the truck firm for craning. (partly)
-- With the same lever the other way, the motor slews the crane round on its mast through a worm. (partly)
-- With the other lever to one side, the motor raises and lowers the crane's main boom by spinning the big linear actuator under it. (partly)
-- With the other lever the other way, the motor folds the crane's outer arm (the yellow jib) in and out with a second linear actuator. (works)
+- *PF M:* A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with two driving rings; two change-over levers, one on each side of the chassis behind the cab, choose what it works: the container tipper or the plough lift. (works)
+- With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it. (works)
+- With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator. (partly)
 
 **2013, [41999 4 x 4 Crawler Exclusive Edition](https://www.bricklink.com/v2/catalog/catalogitem.page?S=41999-1)**
 

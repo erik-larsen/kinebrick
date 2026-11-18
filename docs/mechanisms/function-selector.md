@@ -4,14 +4,14 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 43 works, 50 partly, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 95 functions. Kinebrick: 43 works, 48 partly, 4 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
 | Sets | 0 of 9 | 0 of 18 | 1 of 32 | 1 of 23 | 19 of 83 | 4 of 21 |
-| Functions | 0 | 0 | 2 | 5 | 76 | 14 |
+| Functions | 0 | 0 | 2 | 5 | 74 | 14 |
 
 ## Details
 
@@ -20,7 +20,7 @@ Each detail by the set it first appears in.
 | Detail | First in | Sets |
 |---|---|---|
 | 2 functions | 1992, [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1) | 8 |
-| 4 functions | 2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1) | 9 |
+| 4 functions | 2009, [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1) | 8 |
 | 3 functions | 2013, [42006 Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42006-1) | 2 |
 | 4 functions, two H gates | 2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1) | 1 |
 | 2 functions, forwards or backwards | 2017, [42066 Air Race Jet](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42066-1) | 1 |
@@ -67,11 +67,9 @@ Each detail by the set it first appears in.
 
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 
-- *4 functions:* A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with four driving rings; two blue-handled change-over levers, one on each side of the chassis behind the cab, choose which of the crane's four functions it works. (works)
-- With one lever to one side, the motor lowers and raises the outrigger legs behind the cab, which stand the truck firm for craning. (partly)
-- With the same lever the other way, the motor slews the crane round on its mast through a worm. (partly)
-- With the other lever to one side, the motor raises and lowers the crane's main boom by spinning the big linear actuator under it. (partly)
-- With the other lever the other way, the motor folds the crane's outer arm (the yellow jib) in and out with a second linear actuator. (works)
+- A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with two driving rings; two change-over levers, one on each side of the chassis behind the cab, choose what it works: the container tipper or the plough lift. (works)
+- With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it. (works)
+- With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator. (partly)
 
 **2013, [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1)**
 
