@@ -78,6 +78,7 @@ export interface ConnectionTable {
   // Reductions inside a part read as its pieces (a planetary wheel hub, 46490c01): by the whole
   // part, the piece that drives (`from`), the piece driven (`to`), the piece both turn in
   // (`against`), and how many turns of `from` make one of `to`, the same way round.
+  // `to` may name the hub under several numbers, separated by spaces.
   reductions?: Record<string, { from: string; to: string; against: string; ratio: number }>;
   // Shock absorbers in two parts, by cylinder: each rod that slides in it, and how far the rod's
   // origin lies from the cylinder's along `dir` (in the cylinder's own coordinates, the rod
