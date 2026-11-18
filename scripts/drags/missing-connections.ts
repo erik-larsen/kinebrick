@@ -20,7 +20,7 @@
 import { answer, open } from './drag.ts';
 
 const CASES: Record<string, { file: string; settings: string; controls: number[]; pairs: [number, number][]; watch?: number[] }> = {
-  '42000': { file: 'omr/42000-1 Grand Prix Racer.mpd', settings: 'lifted=1&option=proposed', controls: [591, 600, 278, 291], pairs: [[356, 357], [351, 349], [571, 588], [536, 580]], watch: [355, 356, 358, 352, 351, 350] },
+  '42000': { file: 'omr/42000-1 Grand Prix Racer.mpd', settings: 'lifted=1&option=proposed', controls: [591, 600, 278, 291], pairs: [[356, 357], [351, 349], [571, 588], [536, 580]], watch: [571, 559, 566, 565, 580, 573, 355, 356, 358, 352, 351, 350] },
   '8880': {
     file: 'models/8880-Super Car.mpd',
     settings: 'lifted=1',
