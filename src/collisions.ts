@@ -217,6 +217,9 @@ export class Collisions {
   // 42083 Bugatti Chiron's start key, lying beside the car, rode on a rear wheel and stopped the
   // car rolling by going below the ground). Set by whoever reads the mechanism.
   ignored = new Set<number>();
+  // The pairs found overlapping that only slid along each other (see pushesIn), as "a,b": for
+  // reporting how many contacts the sliding test lets through (the check's collisionSlid).
+  slid = new Set<string>();
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
@@ -390,7 +393,10 @@ export class Collisions {
       if (sideA.intersectsBox(sideB)) {
         for (const [a, b] of group.pairs) {
           if (this.ignored.has(a) || this.ignored.has(b)) continue;
-          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices) && this.pushesIn(a, b, partMatrices, group)) return [a, b];
+          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) {
+            if (this.pushesIn(a, b, partMatrices, group)) return [a, b];
+            this.slid.add(`${a},${b}`);
+          }
         }
       }
       // Clear, or only sliding: where the next step starts from.
@@ -441,11 +447,9 @@ export class Collisions {
             segment.getCenter(p).applyMatrix4(ma.matrix);
             d.subVectors(p, was.copy(p).applyMatrix4(backAgain));
             if (d.length() <= p.length() * TOO_SMALL) return false;
-            const s1 = sliding(normal(t1, ma.matrix, n1)), s2 = sliding(normal(t2, ma.matrix, n2));
-            if (process.env.DEBUG_MEET) console.error('MEET', a, b, 'd', d.toArray().map((x) => +x.toFixed(4)), '|d|', +d.length().toFixed(4), 'angle1', +(Math.asin(Math.min(1, Math.abs(d.dot(n1)) / d.length())) * 180 / Math.PI).toFixed(1), 'angle2', +(Math.asin(Math.min(1, Math.abs(d.dot(n2)) / d.length())) * 180 / Math.PI).toFixed(1), 'n1', n1.toArray().map((x) => +x.toFixed(2)), 'n2', n2.toArray().map((x) => +x.toFixed(2)), 'p', p.toArray().map((x) => +x.toFixed(1)));
-            if (s1 && s2) return false;
+            if (sliding(normal(t1, ma.matrix, n1)) && sliding(normal(t2, ma.matrix, n2))) return false;
             pushes = true;
-            return !process.env.DEBUG_MEET;
+            return true;
           },
         });
         if (pushes) return true;
