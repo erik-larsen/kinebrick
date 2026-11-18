@@ -110,6 +110,30 @@
         }
       ],
       "reply": "Sign 8272 list"
+    },
+    {
+      "id": "42000-drivers",
+      "kind": "Sign-off",
+      "title": "42000 Grand Prix Racer: both rear axle drivers are drawn 5 LDU short of their hubs",
+      "since": "2026-11-18",
+      "what": "A correction to the published file. At each rear wheel, the axle driver (the ball-ended piece on the half shaft, part 32494) should sit with its ball in the socket in the middle of the wheel hub. In the file both drivers are drawn 5 LDU short of the socket, so the model’s reading joins the half shaft to nothing at the wheel, and the driver hits the hub’s bearing as soon as the suspension moves. In the seven other sets with these two parts, every driver sits in the socket. The booklet pushes the driver into the hub’s middle (step 18). The correction moves each driver 5 LDU along the hub’s axis into the socket.",
+      "effect": "Function 5 (the rear pushrod suspension) goes from not working to working, and the count goes up by 1. It went to not working today, when the check began to stop where the viewer stops. Function 4 (the front suspension) stays not working: its fault is another one, still being looked up.",
+      "confidence": "High. Claude looked at the booklet page and dragged the rear suspension arm in the viewer both ways. As drawn it turns 0.7° and stops at the driver. With the correction it turns 5.3°, the half shaft swings with it, the hub rises with the wheel, and it stops where the shock absorber’s rod reaches the end of its cylinder. The worker checked the set with the correction: function 5 works.",
+      "links": [
+        {
+          "label": "42000 in the viewer with the correction, the two drivers marked",
+          "url": "http://localhost:5174/?file=omr/42000-1+Grand+Prix+Racer.mpd&option=proposed&show=351,356&lifted=1"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/42000-1+Grand+Prix+Racer.mpd&show=351,356&lifted=1"
+        },
+        {
+          "label": "Booklet 1, page 64, step 18: the driver goes into the hub",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64"
+        }
+      ],
+      "reply": "Sign 42000"
     }
   ],
   "coming": [
