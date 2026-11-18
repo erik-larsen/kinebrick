@@ -26,6 +26,36 @@ const TIER_TOLERANCE = 1e-10;
 const NOISE = 1e-16;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
 const SPARSE_ROUNDS = 30;
+// Where rounding stops deciding a tier's motion (decision 191 of 2026-11-18), each derived from
+// double precision's 2⁻⁵², as a fraction of the tier's scale:
+// - RIDGE: a sparse tier's least sum of sizes is often not one point but many (two friction
+//   joints that could each slip as much), and reweighting picked one by its path, so by rounding.
+//   Each round's least squares gets a least-norm term of RIDGE of its scale, which makes its answer
+//   one point: it moves the answer by about RIDGE and lets rounding through at most about
+//   2⁻⁵² ÷ RIDGE, and the sum of the two is least where they're equal, at 2⁻²⁶.
+// - GAP: a tier's free directions (those costing nothing) are found from the eigenvectors of its
+//   Gram matrix, whose eigenvalues are costs squared. Rounding of about 2⁻⁵² of the scale turns
+//   them by about 2⁻⁵² ÷ the gap between the free eigenvalues and the rest, g (as a fraction of
+//   the scale); and taking as free the eigenvalues within g of the free ones leaves free motions
+//   that cost up to √g of the scale. The sum √g + 2⁻⁵²/g is least at g = (2 × 2⁻⁵²)^(2/3) = 2⁻³⁴.
+//   (Measured in costs squared, as 2⁻²⁶ of the scale, it left motions costing 2⁻¹³ free: the 8880's
+//   gear ratio of 2.25 came out 2.251.)
+const RIDGE = 2 ** -26;
+const GAP = 2 ** -34;
+
+// Of eigenvalues of a tier's problem (`unit` its scale), the most that counts as free: every one
+// at most `tiny`, and every one above them but nearer than GAP × unit to the largest so far, so
+// that the free ones are set apart from the rest by at least that much.
+function freeCut(values: number[], tiny: number, unit: number): number {
+  let cut = tiny;
+  let largest = 0;
+  for (const x of [...values].sort((a, b) => a - b)) {
+    if (x <= tiny) largest = Math.max(largest, x);
+    else if (x - largest < GAP * unit) cut = largest = x;
+    else break;
+  }
+  return cut;
+}
 
 // Of orthonormal motions, the smallest mix that turns at rate 1 (by `rate`), or null if none
 // of them turns at all, its size measured by the length of `size` of it: the mix a minimizing
@@ -116,7 +146,7 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       const unit = Math.max(...matrix.map((row, i) => row[i]));
       if (!(unit > 0)) return null;
       const scaled = symmetricEigen(matrix.map((row) => row.map((x) => x / unit)));
-      return { values: scaled.values.map((x) => x * unit), vectors: scaled.vectors };
+      return { values: scaled.values.map((x) => x * unit), vectors: scaled.vectors, unit };
     };
     if (!tier.sparse && c < m) {
       // Fewer components than free directions (most tiers on a big model): C N has rank at most
@@ -132,8 +162,9 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       if (!solved) return;
       const y = new Array(m).fill(0);
       const costly: number[][] = [];
+      const cut = freeCut(solved.values, tiny, solved.unit);
       solved.vectors.forEach((u, e) => {
-        if (solved.values[e] <= tiny) return;
+        if (solved.values[e] <= cut) return;
         const s = Math.sqrt(solved.values[e]);
         const v = columns.map((col) => dot(col, u) / s);
         const amount = -dot(u, b) / s;
@@ -167,6 +198,11 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
         const weighed = w ? columns.map((x) => x.map((xi, j) => w[j] * xi)) : columns;
         gram = gramOf(weighed, columns);
         g = weighed.map((x) => dot(x, b));
+        // Reweighted: the least-norm term (see RIDGE), so that the round has one answer.
+        if (w) {
+          const ridge = RIDGE * Math.max(0, ...gram.map((row, i) => row[i]));
+          gram.forEach((row, i) => (row[i] += ridge));
+        }
       }
       const solved = eigen(gram);
       if (!solved) return { y: new Array(m).fill(0), left: w ? [] : free.slice() };
@@ -174,8 +210,9 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       const top = Math.max(0, ...values);
       const y = new Array(m).fill(0);
       const left: number[][] = [];
+      const cut = w ? 1e-12 * top : freeCut(values, tiny, solved.unit);
       vectors.forEach((v, e) => {
-        if (values[e] <= (w ? 1e-12 * top : tiny)) {
+        if (values[e] <= cut) {
           if (!w) left.push(combine(free, v));
           return;
         }
