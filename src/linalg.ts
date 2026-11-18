@@ -15,8 +15,15 @@ export const EPSILON = 1e-9;
 // independent, jamming it.
 export const RANK_TOLERANCE = 1e-6;
 // A tier's motions count as costing nothing (see leastTurning) below this, as a fraction of the
-// most a free motion of unit size costs there.
-const TIER_TOLERANCE = 1e-10;
+// most a free motion of unit size costs there, both squared (the eigenvalues of the tier's Gram
+// matrix); and the free ones must be set apart from the rest by at least as much (see freeCut).
+// Derived from double precision's 2⁻⁵², in cost units (decision 191 of 2026-11-18): a cut or gap g
+// leaves free motions that cost up to √g of the scale, and lets rounding (about 2⁻⁵² of the
+// scale) through at up to 2⁻⁵²/g, turning the free directions or scaling a costly one's share.
+// The sum √g + 2⁻⁵²/g is least at g = (2 × 2⁻⁵²)^(2/3) = 2⁻³⁴. (It was 10⁻¹⁰, picked. Taken as 2⁻²⁶,
+// in costs squared, it left motions costing 2⁻¹³ free: the 8880's gear ratio of 2.25 came out
+// 2.251.)
+const TIER_TOLERANCE = 2 ** -34;
 // A tier counts as costing nothing at all (see leastTurning) if its costs are at most this, as a
 // fraction of the most a motion of unit size turns the joints (both squared): a hundred-millionth
 // of a radian for each unit of motion is what's left of rounding, not a motion of the tier. At a
@@ -26,32 +33,23 @@ const TIER_TOLERANCE = 1e-10;
 const NOISE = 1e-16;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
 const SPARSE_ROUNDS = 30;
-// Where rounding stops deciding a tier's motion (decision 191 of 2026-11-18), each derived from
-// double precision's 2⁻⁵², as a fraction of the tier's scale:
-// - RIDGE: a sparse tier's least sum of sizes is often not one point but many (two friction
-//   joints that could each slip as much), and reweighting picked one by its path, so by rounding.
-//   Each round's least squares gets a least-norm term of RIDGE of its scale, which makes its answer
-//   one point: it moves the answer by about RIDGE and lets rounding through at most about
-//   2⁻⁵² ÷ RIDGE, and the sum of the two is least where they're equal, at 2⁻²⁶.
-// - GAP: a tier's free directions (those costing nothing) are found from the eigenvectors of its
-//   Gram matrix, whose eigenvalues are costs squared. Rounding of about 2⁻⁵² of the scale turns
-//   them by about 2⁻⁵² ÷ the gap between the free eigenvalues and the rest, g (as a fraction of
-//   the scale); and taking as free the eigenvalues within g of the free ones leaves free motions
-//   that cost up to √g of the scale. The sum √g + 2⁻⁵²/g is least at g = (2 × 2⁻⁵²)^(2/3) = 2⁻³⁴.
-//   (Measured in costs squared, as 2⁻²⁶ of the scale, it left motions costing 2⁻¹³ free: the 8880's
-//   gear ratio of 2.25 came out 2.251.)
+// A sparse tier's least sum of sizes is often not one point but many (two friction joints that
+// could each slip as much), and reweighting picked one by its path, so by rounding. Each round's
+// least squares gets a least-norm term of RIDGE of its scale (decision 191 of 2026-11-18), which
+// makes its answer one point: it moves the answer by about RIDGE and lets rounding through at
+// most about 2⁻⁵² ÷ RIDGE, both measured on the same Gram matrix, and the sum of the two is least
+// where they're equal, at 2⁻²⁶.
 const RIDGE = 2 ** -26;
-const GAP = 2 ** -34;
 
 // Of eigenvalues of a tier's problem (`unit` its scale), the most that counts as free: every one
-// at most `tiny`, and every one above them but nearer than GAP × unit to the largest so far, so
-// that the free ones are set apart from the rest by at least that much.
+// at most `tiny`, and every one above them but nearer than TIER_TOLERANCE × unit to the largest so
+// far, so that rounding can't move a direction from one side to the other (see TIER_TOLERANCE).
 function freeCut(values: number[], tiny: number, unit: number): number {
   let cut = tiny;
   let largest = 0;
   for (const x of [...values].sort((a, b) => a - b)) {
     if (x <= tiny) largest = Math.max(largest, x);
-    else if (x - largest < GAP * unit) cut = largest = x;
+    else if (x - largest < TIER_TOLERANCE * unit) cut = largest = x;
     else break;
   }
   return cut;
