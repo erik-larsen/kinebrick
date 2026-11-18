@@ -1927,10 +1927,19 @@ export class Kinematics {
       all = connection === holds || held.size === 0;
       connection(this, eq);
     }
-    // A slide held at an end of its travel slides no further (see endHeld).
+    // A slide held at an end of its travel slides no further (see endHeld). Closing the loops, one
+    // past its end is brought back to it: a step's second-order drift may push it on (the 9397's
+    // plough, 3.5×10⁻⁴ LDU). One within LIMIT_TOLERANCE of its end is left where it is.
     all = true;
     if (this.traceNames) this.traceName = 'slide ends';
-    for (const j of this.endHeld) eq.add(this.slideRow(this.mech.joints[j]));
+    for (const j of this.endHeld) {
+      const joint = this.mech.joints[j];
+      const offset = this.slideOffset(j);
+      let gap = 0;
+      if (gaps && joint.range && offset > joint.range[1] + LIMIT_TOLERANCE) gap = joint.range[1] - offset;
+      if (gaps && joint.range && offset < joint.range[0] - LIMIT_TOLERANCE) gap = joint.range[0] - offset;
+      eq.add(this.slideRow(joint), gap);
+    }
     return rows;
   }
 
