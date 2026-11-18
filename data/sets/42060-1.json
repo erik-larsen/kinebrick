@@ -131,12 +131,13 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 4,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 7,
     "counts": {
       "partly": 1,
+      "not back": 1,
+      "torn": 1,
       "works": 7
     },
     "loose": [
@@ -220,14 +221,14 @@
         ],
         "cause": "one-link-too-many",
         "onPlay": 0.33,
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -0.07
+            0
           ]
         ],
         "rates": [
@@ -277,10 +278,20 @@
         "stop": [
           [
             null,
-            "dead point"
+            "limit"
           ]
         ],
         "freed": 1,
+        "collisionStops": [
+          [
+            0,
+            -1,
+            26,
+            172,
+            0,
+            0
+          ]
+        ],
         "seconds": 0.5
       },
       {
@@ -399,14 +410,14 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 1.3
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.3,
+            -0.3
           ]
         ],
         "rates": [
@@ -441,29 +452,53 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            173,
+            294,
+            0.3,
+            0.3
+          ],
+          [
+            0,
+            -1,
+            159,
+            294,
+            0.3,
+            0.3
+          ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -1.5
+            -1
           ]
         ],
         "rates": [
           {
             "p244 42060 - 18575": [
               0.05,
-              4.01e-12
+              2.13e-12
             ],
             "p277 32316": [
-              0.122,
-              4.89
+              0.11,
+              4.41
             ],
             "p228 11214": [
               0,
-              2.92e-12
+              1.54e-12
             ]
           }
         ],
@@ -489,6 +524,22 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            -1,
+            259,
+            277,
+            1,
+            1
           ]
         ],
         "seconds": 0.5
@@ -497,15 +548,15 @@
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.1,
+            -0.2
           ]
         ],
         "rates": [
           {
             "p288 42060 - 33299b": [
               1,
-              2.29e-13
+              0
             ],
             "p295 32524 against p277 32316": [
               1,
@@ -513,7 +564,7 @@
             ],
             "p277 32316": [
               0,
-              7.58e-14
+              0
             ]
           }
         ],
@@ -541,18 +592,42 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "pushed": [
           true
         ],
         "freed": 1,
-        "seconds": 0.3
+        "collisionStops": [
+          [
+            0,
+            1,
+            280,
+            297,
+            0.1,
+            0.1
+          ],
+          [
+            0,
+            -1,
+            159,
+            294,
+            0.2,
+            0.2
+          ]
+        ],
+        "seconds": 0.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.93,
+            0
           ],
           [
             1.5,
@@ -630,6 +705,20 @@
               0,
               0
             ]
+          ]
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            null
           ]
         ],
         "movedBy": [
@@ -637,14 +726,32 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "collisionStops": [
+          [
+            0,
+            1,
+            202,
+            233,
+            0.93,
+            0.93
+          ],
+          [
+            0,
+            -1,
+            202,
+            304,
+            0,
+            0
+          ]
+        ],
+        "seconds": 0.6
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.57,
+            -0.23
           ]
         ],
         "rates": [
@@ -674,11 +781,35 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 1,
         "shiftPressed": [
           293
         ],
-        "seconds": 0.4
+        "collisionStops": [
+          [
+            0,
+            1,
+            159,
+            294,
+            0.57,
+            0.57
+          ],
+          [
+            0,
+            -1,
+            294,
+            308,
+            0.23,
+            0.23
+          ]
+        ],
+        "seconds": 0.2
       }
     ]
   }

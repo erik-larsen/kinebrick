@@ -4,7 +4,7 @@ A rubber band or belt runs round pulleys. (Drivetrain.)
 
 First appears in 1980, in [858 Auto Engines](https://erik-larsen.github.io/kinebrick/?model=858-Auto%20Engines-2-Cycle%20Engine): Inline engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the distributor's axle.
 
-Used in 7 of the 186 surveyed sets, by 12 functions. Kinebrick: 9 works, 3 partly.
+Used in 7 of the 186 surveyed sets, by 12 functions. Kinebrick: 8 works, 3 partly, 1 no.
 
 ## By decade
 
@@ -47,7 +47,7 @@ Each detail by the set it first appears in.
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
 - The 9V motor, switched at the battery box on the cab roof, runs the compressor: a rubber band from the motor turns a pulley on a crank, and the crank works a small pump on its pivot, feeding air to the four valves. (works)
-- Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (works)
+- Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (no)
 
 **1998, [8204 Sky Flyer 1](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8204-1)**
 

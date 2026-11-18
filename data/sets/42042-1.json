@@ -222,10 +222,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 208,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 189,
     "counts": {
       "works": 6,
       "partly": 2,
@@ -322,7 +321,7 @@
             ]
           ]
         ],
-        "seconds": 11.3
+        "seconds": 12.2
       },
       {
         "result": "works",
@@ -409,7 +408,7 @@
             ]
           ]
         ],
-        "seconds": 14
+        "seconds": 14.2
       },
       {
         "result": "works",
@@ -495,7 +494,7 @@
             ]
           ]
         ],
-        "seconds": 13.1
+        "seconds": 14.2
       },
       {
         "result": "partly",
@@ -589,7 +588,7 @@
         ],
         "cause": "not-driven",
         "detail": "p906 44294",
-        "seconds": 46.7
+        "seconds": 26.3
       },
       {
         "result": "works",
@@ -673,18 +672,18 @@
             ]
           ]
         ],
-        "seconds": 38.3
+        "seconds": 30.5
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.1,
+            -0.1
           ],
           [
-            1.5,
-            -1.5
+            0.1,
+            -0.1
           ]
         ],
         "still": [
@@ -775,6 +774,16 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "movedBy": [
           [],
           []
@@ -785,7 +794,41 @@
         ],
         "cause": "not-driven",
         "detail": "p575 18947",
-        "seconds": 20.4
+        "collisionStops": [
+          [
+            0,
+            1,
+            819,
+            830,
+            0.1,
+            0.1
+          ],
+          [
+            0,
+            -1,
+            818,
+            830,
+            0.1,
+            0.1
+          ],
+          [
+            1,
+            1,
+            846,
+            858,
+            0.1,
+            0.1
+          ],
+          [
+            1,
+            -1,
+            843,
+            858,
+            0.1,
+            0.1
+          ]
+        ],
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -851,7 +894,7 @@
             ]
           ]
         ],
-        "seconds": 25
+        "seconds": 23.8
       },
       {
         "result": "no",
@@ -898,7 +941,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 15.5
+        "seconds": 14.5
       },
       {
         "result": "works",
@@ -964,7 +1007,7 @@
           [],
           []
         ],
-        "seconds": 22.5
+        "seconds": 24.7
       },
       {
         "result": "not checked",

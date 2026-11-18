@@ -134,10 +134,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 70,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 79,
     "counts": {
       "works": 2,
       "partly": 3,
@@ -273,7 +272,7 @@
             ]
           ]
         ],
-        "seconds": 5.5
+        "seconds": 6.5
       },
       {
         "result": "partly",
@@ -337,13 +336,13 @@
         ],
         "cause": "not-driven",
         "detail": "p206 60485",
-        "seconds": 6.3
+        "seconds": 7
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
+            1.27,
             -1.5
           ]
         ],
@@ -358,20 +357,20 @@
         "rates": [
           {
             "p250 55013": [
-              0.00716,
+              0.00718,
               0
             ],
             "p458 62274c01 against p457 62271c01": [
               2.81e-8,
-              4.29e-13
+              2.14e-13
             ],
             "p486 32209 against p389 32278": [
               2.81e-8,
-              4.29e-13
+              2.14e-13
             ],
             "p389 32278": [
-              0.00745,
-              1.81
+              0.00748,
+              1.82
             ]
           }
         ],
@@ -399,12 +398,28 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p250 55013",
-        "seconds": 13.3
+        "collisionStops": [
+          [
+            0,
+            1,
+            395,
+            403,
+            1.27,
+            1.27
+          ]
+        ],
+        "seconds": 13.7
       },
       {
         "result": "partly",
@@ -492,7 +507,7 @@
         ],
         "cause": "not-driven",
         "detail": "p253 99008",
-        "seconds": 6.1
+        "seconds": 6.5
       },
       {
         "result": "not checked",
@@ -614,7 +629,7 @@
           [],
           []
         ],
-        "seconds": 38.4
+        "seconds": 37
       }
     ],
     "unreadTracks": {

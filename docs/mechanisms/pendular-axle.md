@@ -4,7 +4,7 @@ A rigid axle swings side to side on a central pivot or turntable. (Suspension.)
 
 First appears in 1986, in [8849 Tractor](https://erik-larsen.github.io/kinebrick/?model=8849-Tractor): The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.
 
-Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 works, 2 partly, 1 no, 2 skipped.
+Used in 7 of the 186 surveyed sets, by 8 functions. Kinebrick: 3 works, 1 partly, 2 no, 2 skipped.
 
 ## By decade
 
@@ -53,7 +53,7 @@ Each detail by the set it first appears in.
 **2021, [42122 Jeep Wrangler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42122-1)**
 
 - *front:* The front axle swings side to side on a turntable under the chassis, so the front wheels follow rough ground (pendular suspension). (works)
-- *rear:* The rear axle swings side to side on its own turntable under the back of the chassis (pendular suspension), between two shock absorbers that telescope as it swings. (partly)
+- *rear:* The rear axle swings side to side on its own turntable under the back of the chassis (pendular suspension), between two shock absorbers that telescope as it swings. (no)
 
 ---
 

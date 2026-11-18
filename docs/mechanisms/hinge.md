@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 130 functions. Kinebrick: 80 works, 13 partly, 31 no, 2 skipped, 4 not checked.
+Used in 76 of the 186 surveyed sets, by 130 functions. Kinebrick: 80 works, 9 partly, 35 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -154,8 +154,8 @@ Each detail by the set it first appears in.
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
-- *seat:* The purple striker's seat sits on a lever pivoted at the top of its handle: a black cage with purple hoses that holds the driver. The seat flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (partly)
-- *seat:* The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (partly)
+- *seat:* The purple striker's seat sits on a lever pivoted at the top of its handle: a black cage with purple hoses that holds the driver. The seat flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (no)
+- *seat:* The teal striker's seat is a cage of grey angle connectors and axles round the driver, with a screen tile, on a lever pivoted at the top of its handle. It flips forward and throws the driver off. Pushed back down, it clicks into the catch at the top of the target lever. (no)
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
@@ -213,7 +213,7 @@ Each detail by the set it first appears in.
 
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 
-- *unloading auger:* The white unloading auger swings out from the grain tank to the side and back in along the body. (partly)
+- *unloading auger:* The white unloading auger swings out from the grain tank to the side and back in along the body. (works)
 - *hitch:* For road travel the header comes off the front and is hitched behind the combine, where it rolls on its two small wheels at one end. (not checked)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
@@ -357,7 +357,7 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
 - *doors:* The cab doors swing open. (works)
-- *king pin:* The trailer swings on its king pin behind the tractor. (works)
+- *king pin:* The trailer swings on its king pin behind the tractor. (no)
 - *container doors:* The container's two end doors swing open. (no)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
@@ -440,7 +440,7 @@ Each detail by the set it first appears in.
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
-- *hood:* The black hood over the hub tilts forward once the long axle pin at the front bumper is pulled out, giving access to the hub's batteries. (partly)
+- *hood:* The black hood over the hub tilts forward once the long axle pin at the front bumper is pulled out, giving access to the hub's batteries. (no)
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 
