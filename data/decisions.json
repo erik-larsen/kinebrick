@@ -6,29 +6,13 @@
     },
     "preview": {
       "works": 742,
-      "partly": 223,
-      "no": 82,
+      "partly": 220,
+      "no": 85,
       "functions": 1226
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
   },
   "waiting": [
-    {
-      "id": "42043-fn11-list",
-      "kind": "Signed, being checked",
-      "title": "42043 Mercedes-Benz Arocs 3245, function 11: the wheels move and the differential's case stays",
-      "since": "2026-11-17",
-      "what": "A change to a function list. Function 11 (the rear axles’ differentials) holds the drive shaft still and turns one wheel of the third axle; its note says the other wheel then turns the opposite way. But the list names the differential’s case (p2036) as the part that moves. With the drive shaft held the case cannot turn: the shaft holds it. The change names the two wheels (p2219, p2227) as the parts that move and the case as the part that stays.",
-      "effect": "Function 11 goes from partly working to working. The worker checked this on its branch with the whole set; preview keeps the old list and the old result until you sign.",
-      "confidence": "High: it is what a differential does with its drive held, and what the function’s own note says. The worker tried it in the viewer (the model lifted, the drive shaft’s universal joint p2029 frozen, the collision pass ready): a turn of one wheel by half a radian turns the other by half a radian the opposite way, and the case stays still.",
-      "links": [
-        {
-          "label": "42043 in the viewer: the two wheels and the case",
-          "url": "http://localhost:5174/?file=omr/42043-1+Mercedes-Benz+Arocs+3245.mpd&lifted=1&show=2219,2227,2036"
-        }
-      ],
-      "reply": "None: you signed it on 17 November; Claude records it with the solver owner’s merge, which is being checked"
-    },
     {
       "id": "9397-b-model",
       "kind": "For your look",
@@ -56,60 +40,12 @@
         }
       ],
       "reply": "No answer needed unless you want something else"
-    },
-    {
-      "id": "42114-fn2-list",
-      "kind": "Signed, being checked",
-      "title": "42114 6x6 Volvo Articulated Hauler, function 2: the ring extension does not slide when the gearbox shifts",
-      "since": "2026-11-17",
-      "what": "A change to a function list. Function 2 says the L motor shifts the gearbox by turning a catch that slides the driving rings. Its list names the catch, the three rings and also the yellow ring extension (p53) as parts that move. But the extension does not slide: it sits on the axle against its gear, and only the rings slide to it (booklet step 17). The change takes p53 out of the list; the catch and the three rings stay.",
-      "effect": "Function 2 goes from partly working to working. The worker checked it on its branch with the whole set; preview keeps the old list and result until you sign.",
-      "confidence": "High. The booklet shows the extension put on the axle against the red gear, and Claude ran the L motor in the viewer with the collision pass ready: the catch turns, the three rings slide in turn and come back, the extension stays, and the truck stays where it is.",
-      "links": [
-        {
-          "label": "42114 in the viewer: the catch, the rings and the extension, with the L motor ready to run",
-          "url": "http://localhost:5174/?file=omr/42114-1+6x6+Volvo+Articulated+Hauler.mpd&show=129,120,121,122,53&autospin=602,paused"
-        },
-        {
-          "label": "Booklet page 13, step 17: the extension against its gear",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=13"
-        }
-      ],
-      "reply": "None: you signed it on 17 November; Claude records it with the solver owner’s merge, which is being checked"
-    },
-    {
-      "id": "42050-bevel",
-      "kind": "Signed, being checked",
-      "title": "42050 Drag Racer, function 4 (the wheelie): the actuator’s input gear drawn off its axis",
-      "since": "2026-11-17",
-      "what": "A correction to the published file. The knob in front of the right rear wheel works a small linear actuator through two bevel gears. In the file the 12-tooth double bevel on the actuator’s input is drawn 0.7 LDU off the actuator’s axis and turned 15.0 degrees where the actuator is at 14.6, so it meshes with nothing and the knob drives nothing. The booklet’s step 64 builds the two bevels meshing at the actuator’s end, on its own axis. The correction puts the double bevel on the axis, turned as the actuator is.",
-      "effect": "Function 4 goes from partly working to working: the knob turns the bevels and the actuator’s rod slides. Nothing else in the set changes. A limit you should know: in the viewer the rod slides 0.73 LDU for a quarter turn of its input and the car’s nose does not visibly rise in so short a stroke; the list counts the bevel and the rod, not the nose.",
-      "confidence": "High: step 64 shows both bevels and where they sit, and step 69 shows the pair from below. Claude tried it in the viewer with the correction switched on and the collision pass ready: the knob turned 1.5 radians turns the bevel 86 degrees and slides the rod 0.73 LDU, with no stop; the worker saw the same.",
-      "links": [
-        {
-          "label": "42050 in the viewer with the correction: the knob, the two bevels and the rod",
-          "url": "http://localhost:5174/?file=omr/42050-1+Drag+Racer.mpd&option=proposed&show=257,244,246,242"
-        },
-        {
-          "label": "The same without the correction",
-          "url": "http://localhost:5174/?file=omr/42050-1+Drag+Racer.mpd&show=257,244,246,242"
-        },
-        {
-          "label": "Booklet page 35, step 64: the two bevels",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=35"
-        },
-        {
-          "label": "Booklet page 38, step 69: the pair from below",
-          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=38"
-        }
-      ],
-      "reply": "None: you signed it on 17 November; Claude records it with the solver owner’s merge, which is being checked"
     }
   ],
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 742 working functions and main 701, but Claude does not offer main yet. The solver owner’s drag changes are being merged now. Of the eight functions that work by freeing a pin, five show by hand in the viewer and three do not (41999 function 7, 42080 functions 2 and 3); those three go back out of the count with the merge, which gives 739. Two rules must follow so that the check itself refuses what the viewer cannot show, and the check must be measured against the viewer’s collision stops. After those, a full check and a slow check of the 8110 on the commit offered."
+      "what": "preview has 742 working functions and main 701, but Claude does not offer main yet. The solver owner’s drag changes are in. Three pin-search functions that the viewer does not show (41999 function 7, 42080 functions 2 and 3) are out of the count, but only by a result set by hand: the check’s own code would still pass them. Two things must follow first: a rule so that the check refuses a freed pin that only lets a larger body swing, and a measurement of the check against the viewer’s collision stops. After those, a full check and a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, asked again at mid-week",
@@ -284,6 +220,10 @@
     {
       "date": "2026-11-17",
       "what": "You said “Download 9397 snowplough”. Both instruction files for the 9397’s second model are downloaded from lego.com (19.3 and 19.7 MB, 160 and 148 pages) and listed with the set’s booklets. The worker now drafts the snowplough’s function list from them; it comes to you to sign."
+    },
+    {
+      "date": "2026-11-17",
+      "what": "You signed three items (“Sign 42050”, “Sign 42114 list”, “Sign 42043 list”). Each brings one function to working: the 42050’s wheelie (function 4), the 42114’s gear shift (function 2) and the 42043’s rear differentials (function 11)."
     }
   ]
 }

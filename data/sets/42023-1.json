@@ -84,7 +84,8 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
     "seconds": 4,
     "counts": {
@@ -279,7 +280,7 @@
             "p213 64782 against p300 32278"
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1.2
       },
       {
         "result": "works",

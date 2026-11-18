@@ -55,10 +55,9 @@
           "p129 35188",
           "p120 18947",
           "p121 18947",
-          "p122 18947",
-          "p53 35186"
+          "p122 18947"
         ],
-        "note": "which ring each position slides, and the order of the positions, are inferred: the owner should check"
+        "note": "which ring each position slides, and the order of the positions, are inferred: the owner should check; the ring extension p53 (35186) sits against its gear and does not slide (booklet step 17, page 13), so it is not among the parts that move (Erik signed it, \"Sign 42114 list\", 2026-11-17)"
       },
       {
         "does": "With the gearbox in its tipping position, the XL motor raises and lowers the dump body: a shaft out of the gearbox turns a pair of bevel gears to two cross shafts, each driving one of the two linear actuators on either side, which push the body up about its pivot at the back.",
@@ -153,12 +152,13 @@
     ]
   },
   "generated": {
-    "commit": "7111adf4",
+    "commit": "ff7f4bd1",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 60,
+    "seconds": 75,
     "counts": {
-      "partly": 5,
-      "works": 2,
+      "partly": 4,
+      "works": 3,
       "not back": 1,
       "moved whole": 1
     },
@@ -276,18 +276,15 @@
         ],
         "cause": "not-driven",
         "detail": "p84 65414c01",
-        "seconds": 10.4
+        "seconds": 14.1
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
-        ],
-        "still": [
-          "p53 35186"
         ],
         "rates": [
           {
@@ -304,10 +301,6 @@
               0
             ],
             "p122 18947": [
-              0,
-              2.04e-46
-            ],
-            "p53 35186": [
               0,
               2.04e-46
             ]
@@ -337,12 +330,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p53 35186",
-        "seconds": 7.9
+        "seconds": 10.5
       },
       {
         "result": "partly",
@@ -425,7 +413,7 @@
         ],
         "cause": "not-driven",
         "detail": "p779 32198",
-        "seconds": 10.6
+        "seconds": 13.1
       },
       {
         "result": "partly",
@@ -494,7 +482,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p2038 32140",
-        "seconds": 7
+        "seconds": 8.9
       },
       {
         "result": "works",
@@ -540,7 +528,7 @@
           "p4506 32278",
           "p4143 2825"
         ],
-        "seconds": 7.4
+        "seconds": 9.1
       },
       {
         "result": "works",
@@ -582,7 +570,7 @@
             ]
           ]
         ],
-        "seconds": 7.5
+        "seconds": 8.9
       },
       {
         "result": "partly",
@@ -632,7 +620,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2766 32525",
-        "seconds": 8
+        "seconds": 9.6
       }
     ]
   }

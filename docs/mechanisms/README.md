@@ -124,7 +124,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 57 works, 19 partly, 1 no, 1 skipped |
+| [Differential](differential.md) | 47 | 1981 |  | 3 | 4 | 6 | 25 | 9 | 58 works, 18 partly, 1 no, 1 skipped |
 | [Differential lock](differential-lock.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 works |
 | [Planetary hub](planetary-hub.md) | 3 | 2019 |  |  |  |  | 1 | 2 | 4 works, 1 partly |
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 3 works, 3 partly |
@@ -143,16 +143,16 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 |---|---|---|---|---|---|---|---|---|---|
 | [Sliding-gear gearbox](sliding-gear-gearbox.md) | 2 | 1978 | 1 | 1 |  |  |  |  | 2 works, 2 partly |
 | [Driving-ring gearbox](driving-ring-gearbox.md) | 8 | 1994 |  |  | 2 | 1 | 4 | 1 | 9 works, 2 partly, 1 no, 1 not checked |
-| [Sequential gearbox](sequential-gearbox.md) | 6 | 2016 |  |  |  |  | 3 | 3 | 2 works, 9 partly |
-| [Function selector](function-selector.md) | 25 | 1992 |  |  | 1 | 1 | 19 | 4 | 42 works, 51 partly, 4 not checked |
+| [Sequential gearbox](sequential-gearbox.md) | 6 | 2016 |  |  |  |  | 3 | 3 | 3 works, 8 partly |
+| [Function selector](function-selector.md) | 25 | 1992 |  |  | 1 | 1 | 19 | 4 | 43 works, 50 partly, 4 not checked |
 
 ### Moving and lifting
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Rack and pinion](rack-and-pinion.md) | 25 | 1977 | 5 | 4 | 1 | 4 | 9 | 2 | 20 works, 6 partly, 4 no |
-| [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 16 works, 33 partly, 1 no |
-| [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 6 works, 8 partly, 9 no, 6 skipped |
+| [Linear actuator](linear-actuator.md) | 29 | 2009 |  |  |  | 2 | 22 | 5 | 17 works, 32 partly, 1 no |
+| [Pneumatic cylinder](pneumatic-cylinder.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 4 works, 8 partly, 11 no, 6 skipped |
 | [Crank and link](crank-and-link.md) | 56 | 1979 | 1 | 6 | 6 | 9 | 27 | 7 | 44 works, 28 partly, 5 no, 1 not checked |
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
@@ -181,7 +181,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
-| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 40 works, 43 partly, 1 no, 5 not checked |
+| [Electric motor](electric-motor.md) | 31 | 1989 |  | 1 | 2 | 2 | 20 | 6 | 41 works, 42 partly, 1 no, 5 not checked |
 | [Remote control](remote-control.md) | 11 | 2007 |  |  |  | 1 | 6 | 4 | 10 works, 9 partly, 2 not checked |
 | [Pneumatic pump](pneumatic-pump.md) | 12 | 1984 |  | 3 | 2 | 2 | 5 |  | 3 works, 3 partly, 7 skipped |
 | [Pull-back motor](pull-back-motor.md) | 11 | 1998 |  |  | 1 |  | 9 | 1 | 11 works, 11 skipped |
@@ -201,7 +201,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 149 works, 1 partly, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 80 works, 14 partly, 30 no, 2 skipped, 5 not checked |
+| [Hinge](hinge.md) | 77 | 1978 | 2 | 1 | 10 | 11 | 41 | 12 | 79 works, 14 partly, 31 no, 2 skipped, 5 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 3 works, 3 partly, 2 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 9 works, 1 no, 1 skipped |
 | [Hangs free](hangs-free.md) | 18 | 1978 | 1 | 1 | 2 | 4 | 10 |  | 5 works, 1 partly, 6 skipped, 6 not checked |

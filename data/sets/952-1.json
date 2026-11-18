@@ -133,9 +133,10 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 3,
+    "seconds": 4,
     "counts": {
       "works": 7,
       "pivoted": 1
@@ -561,7 +562,7 @@
             "p310 3649 against p256 3709b"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -681,7 +682,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       }
     ]
   }

@@ -180,9 +180,10 @@
     ]
   },
   "generated": {
-    "commit": "f20682cb",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 166,
+    "seconds": 227,
     "counts": {
       "works": 6,
       "partly": 2,
@@ -253,7 +254,7 @@
             ]
           ]
         ],
-        "seconds": 44.9
+        "seconds": 57.3
       },
       {
         "result": "works",
@@ -295,7 +296,7 @@
             ]
           ]
         ],
-        "seconds": 9.7
+        "seconds": 12
       },
       {
         "result": "works",
@@ -371,7 +372,7 @@
             ]
           ]
         ],
-        "seconds": 19.5
+        "seconds": 24.8
       },
       {
         "result": "works",
@@ -408,7 +409,7 @@
             ]
           ]
         ],
-        "seconds": 46.7
+        "seconds": 60.8
       },
       {
         "result": "works",
@@ -461,7 +462,7 @@
         "why": [
           "p48 6539 against p47 3705 is held by friction pins the control doesn't reach"
         ],
-        "seconds": 10.2
+        "seconds": 12.1
       },
       {
         "result": "partly",
@@ -553,7 +554,7 @@
         ],
         "cause": "not-driven",
         "detail": "p64 6542b against p0 32278",
-        "seconds": 15
+        "seconds": 25.4
       },
       {
         "result": "partly",
@@ -625,7 +626,7 @@
         ],
         "cause": "not-driven",
         "detail": "p49 6542b against p0 32278",
-        "seconds": 10.1
+        "seconds": 21.1
       },
       {
         "result": "works",
@@ -667,7 +668,7 @@
             ]
           ]
         ],
-        "seconds": 9.6
+        "seconds": 12.4
       },
       {
         "result": "skipped",
