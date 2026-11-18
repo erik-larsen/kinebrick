@@ -222,12 +222,12 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
+    "commit": "7d69aeed",
     "date": "2026-11-18",
-    "seconds": 189,
+    "seconds": 216,
     "counts": {
-      "works": 6,
-      "partly": 2,
+      "works": 4,
+      "partly": 4,
       "no": 1,
       "not checked": 1
     },
@@ -321,10 +321,10 @@
             ]
           ]
         ],
-        "seconds": 12.2
+        "seconds": 13
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -408,7 +408,14 @@
             ]
           ]
         ],
-        "seconds": 14.2
+        "why": [
+          "1 of the 2 tracks run round no wheel"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "track-not-read",
+        "seconds": 17.3
       },
       {
         "result": "works",
@@ -494,7 +501,7 @@
             ]
           ]
         ],
-        "seconds": 14.2
+        "seconds": 16.4
       },
       {
         "result": "partly",
@@ -588,7 +595,7 @@
         ],
         "cause": "not-driven",
         "detail": "p906 44294",
-        "seconds": 26.3
+        "seconds": 34.2
       },
       {
         "result": "works",
@@ -672,7 +679,7 @@
             ]
           ]
         ],
-        "seconds": 30.5
+        "seconds": 39.2
       },
       {
         "result": "partly",
@@ -828,7 +835,7 @@
             0.1
           ]
         ],
-        "seconds": 2.5
+        "seconds": 2.9
       },
       {
         "result": "works",
@@ -894,7 +901,7 @@
             ]
           ]
         ],
-        "seconds": 23.8
+        "seconds": 26.4
       },
       {
         "result": "no",
@@ -941,10 +948,10 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 14.5
+        "seconds": 16.5
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -1003,11 +1010,19 @@
             ]
           ]
         ],
+        "why": [
+          "1 of the 2 tracks run round no wheel"
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 24.7
+        "judged": [
+          1,
+          0
+        ],
+        "cause": "track-not-read",
+        "seconds": 26.6
       },
       {
         "result": "not checked",

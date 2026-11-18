@@ -104,12 +104,14 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
+    "commit": "7d69aeed",
     "date": "2026-11-18",
-    "seconds": 20,
+    "seconds": 25,
     "counts": {
       "works": 4,
       "pivoted": 1,
+      "not back": 1,
+      "torn": 1,
       "no": 1
     },
     "loose": [],
@@ -118,7 +120,7 @@
         "result": "works",
         "turned": [
           [
-            1.5,
+            0.63,
             -1.5
           ],
           [
@@ -261,7 +263,7 @@
         "back": [
           [
             [
-              0.01,
+              0,
               0
             ],
             [
@@ -302,6 +304,16 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            null
+          ],
+          [
+            null,
+            null
+          ]
+        ],
         "movedBy": [
           [
             "p153 62821",
@@ -334,10 +346,17 @@
             "p112 2851"
           ]
         ],
-        "collisionSlid": [
-          "91,116"
+        "collisionStops": [
+          [
+            0,
+            1,
+            91,
+            116,
+            0.63,
+            0.63
+          ]
         ],
-        "seconds": 5.9
+        "seconds": 6.9
       },
       {
         "result": "works",
@@ -383,7 +402,7 @@
             ]
           ]
         ],
-        "seconds": 0.9
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -476,7 +495,7 @@
           "rise": 0.75,
           "tyre": "p646 41897"
         },
-        "seconds": 0.9
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -501,8 +520,8 @@
               0.01
             ],
             [
-              0,
-              0.01
+              66.57,
+              121.1
             ]
           ],
           [
@@ -523,8 +542,8 @@
               0.01
             ],
             [
-              0,
-              0.01
+              17.7,
+              121.1
             ]
           ],
           [
@@ -538,14 +557,14 @@
             ]
           ]
         ],
+        "strayed": [
+          "p91 2853"
+        ],
         "movedBy": [
           [],
           []
         ],
-        "collisionSlid": [
-          "91,116"
-        ],
-        "seconds": 5.6
+        "seconds": 7
       },
       {
         "result": "no",

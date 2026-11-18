@@ -204,13 +204,15 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
+    "commit": "7d69aeed",
     "date": "2026-11-18",
-    "seconds": 926,
+    "seconds": 986,
     "counts": {
       "works": 11,
       "partly": 2,
-      "skipped": 2
+      "skipped": 2,
+      "not back": 1,
+      "torn": 1
     },
     "loose": [
       "p850 3068b",
@@ -307,7 +309,7 @@
             ]
           ]
         ],
-        "seconds": 118
+        "seconds": 142.6
       },
       {
         "result": "works",
@@ -349,7 +351,7 @@
             ]
           ]
         ],
-        "seconds": 118.6
+        "seconds": 145.6
       },
       {
         "result": "partly",
@@ -433,7 +435,7 @@
             0.43
           ]
         ],
-        "seconds": 21.1
+        "seconds": 25.8
       },
       {
         "result": "partly",
@@ -515,7 +517,7 @@
             0.43
           ]
         ],
-        "seconds": 8.5
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -595,7 +597,7 @@
             0.17
           ]
         ],
-        "seconds": 5.2
+        "seconds": 6
       },
       {
         "result": "works",
@@ -661,7 +663,7 @@
             0.5
           ]
         ],
-        "seconds": 9.5
+        "seconds": 10.7
       },
       {
         "result": "works",
@@ -727,7 +729,7 @@
             0.5
           ]
         ],
-        "seconds": 8.8
+        "seconds": 10.6
       },
       {
         "result": "works",
@@ -769,7 +771,7 @@
             ]
           ]
         ],
-        "seconds": 19.4
+        "seconds": 24.1
       },
       {
         "result": "skipped"
@@ -778,12 +780,12 @@
         "result": "works",
         "turned": [
           [
-            1.5,
+            0.91,
             0
           ],
           [
             0,
-            -1.5
+            -1.04
           ]
         ],
         "rates": [
@@ -793,8 +795,8 @@
         "back": [
           [
             [
-              0,
-              0
+              149.38,
+              36.7
             ],
             [
               0,
@@ -815,8 +817,8 @@
         "torn": [
           [
             [
-              0,
-              0
+              149.38,
+              36.7
             ],
             [
               0,
@@ -834,14 +836,17 @@
             ]
           ]
         ],
+        "strayed": [
+          "p1870 59443"
+        ],
         "stop": [
           [
-            null,
+            "limit",
             "limit"
           ],
           [
             "limit",
-            null
+            "limit"
           ]
         ],
         "pushed": [
@@ -854,6 +859,14 @@
           []
         ],
         "collisionStops": [
+          [
+            0,
+            1,
+            1819,
+            1890,
+            0.91,
+            0.91
+          ],
           [
             0,
             -1,
@@ -869,13 +882,17 @@
             1906,
             0,
             0
+          ],
+          [
+            1,
+            -1,
+            1905,
+            1976,
+            1.04,
+            1.04
           ]
         ],
-        "collisionSlid": [
-          "1819,1890",
-          "1905,1976"
-        ],
-        "seconds": 277.8
+        "seconds": 198.1
       },
       {
         "result": "works",
@@ -928,7 +945,7 @@
             0
           ]
         ],
-        "seconds": 11.5
+        "seconds": 13.7
       },
       {
         "result": "works",
@@ -997,7 +1014,7 @@
             0.1
           ]
         ],
-        "seconds": 5.6
+        "seconds": 6.7
       },
       {
         "result": "works",
@@ -1051,7 +1068,7 @@
             0.03
           ]
         ],
-        "seconds": 19.4
+        "seconds": 22.9
       },
       {
         "result": "works",
@@ -1105,7 +1122,7 @@
             0.07
           ]
         ],
-        "seconds": 19.4
+        "seconds": 24.1
       },
       {
         "result": "skipped"
