@@ -128,10 +128,15 @@ const LIBRARY = params.get('library') ?? LDRAW_LIBRARY;
 //   axes         each joint's axis
 //   contacts     a dot where each pair of gears' teeth meet
 //   focus        drivetrain focus: only the parts the last drag or spin moved drawn solid
-//   symbols      the symbols pinned to parts (📌 frozen, ⚠ loose), which are hidden otherwise
+//   warnings     the warnings on the model: in red, a loose part's outline, and for a moment the
+//                outlines of two parts a drag stopped at; and a ⚠ pinned to each loose part.
+//                Off otherwise: none of these is drawn (a part kept turning keeps its green
+//                outline, and a frozen part its blue one, either way).
+//                An address written before the options were joined still works: `symbols`
+//                and `status` both mean `warnings`
 //   debug        the mechanism, its kinematics and the interaction's setup on window.kinebrick,
 //                to drive from the browser's console
-const OPTIONS = params.getAll('option').join(',').split(',');
+const OPTIONS = params.getAll('option').join(',').split(',').map((o) => (o === 'symbols' || o === 'status' ? 'warnings' : o));
 // ?holds has a drag that turns a joint choose its motion by holds, as before least motion (see
 // leastTurning in kinematics.ts).
 if (params.has('holds')) experiments.leastMotion = false;
@@ -564,10 +569,11 @@ async function start() {
   const contacts = new Group();
   contacts.visible = OPTIONS.includes('contacts');
   ldrawSpace.add(contacts);
-  badgeRenderer.domElement.hidden = !OPTIONS.includes('symbols');
+  badgeRenderer.domElement.hidden = !OPTIONS.includes('warnings');
   const appearance = new Appearance(partObjects, mech, outlines);
   appearance.shownParts = new Set(SHOW);
   appearance.showBodyColours = OPTIONS.includes('bodycolours');
+  appearance.drawWarnings = OPTIONS.includes('warnings');
   // Drivetrain focus (see OPTIONS): the bodies the motion going on (a drag, or a part kept
   // turning or moving) has moved against the frame, and where each was against the frame as it
   // started. Until it's moved one, the last motion's stay in focus.
@@ -994,7 +1000,7 @@ async function start() {
     axes: axes.visible,
     contacts: contacts.visible,
     focus: focusOn,
-    symbols: !badgeRenderer.domElement.hidden,
+    warnings: appearance.drawWarnings,
     scrub,
     lifted,
   };
@@ -1025,12 +1031,14 @@ async function start() {
     if (!on) clearFocus();
     keepOption('focus', on);
   });
-  gui.add(settings, 'symbols').name('Symbols').onChange((on: boolean) => {
+  gui.add(settings, 'warnings').name('Warnings').onChange((on: boolean) => {
+    appearance.drawWarnings = on;
     badgeRenderer.domElement.hidden = !on;
-    keepOption('symbols', on);
+    appearance.update();
+    keepOption('warnings', on);
   });
 
-  // Frozen parts get a cyan outline and a pin badge, and "Unfreeze all" (in the options panel,
+  // Frozen parts get a cyan outline, and "Unfreeze all" (in the options panel,
   // added below) shows while any are frozen.
   let unfreezeButton: Controller | undefined;
   let showMotor = () => {}; // shows the motor's buttons, once they're made (below)
@@ -1308,8 +1316,8 @@ function unconnected(parts: PlacedPart[], table: ConnectionTable, roles: Record<
   return [...names].filter((name) => !table.parts[name]?.length && roles[name] !== 'decoration' && !table.stickers?.includes(name));
 }
 
-// Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red,
-// marked ⚠), the parts Kinebrick can't connect, the moving parts it can't move yet (from
+// Lists, if there are any, the parts that aren't attached to the rest of the model (outlined red
+// and marked ⚠ with the Warnings option on), the parts Kinebrick can't connect, the moving parts it can't move yet (from
 // data/not-moving-yet.json, each with what it doesn't do), and the files that couldn't be found,
 // so aren't drawn: under Warnings, which counts each kind, and opens to the list.
 async function showWarnings(names: string[], loose: number[], unconnected: string[], stuck: string[], missing: string[]) {

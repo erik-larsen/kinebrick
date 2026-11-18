@@ -10,7 +10,17 @@
       "no": 85,
       "functions": 1223
     },
-    "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains)."
+    "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
+    "pages": [
+      {
+        "label": "Technic status page",
+        "url": "https://claude.ai/artifact/8NVghVnAY8hsbqA81yw3XV"
+      },
+      {
+        "label": "Train status page",
+        "url": "https://claude.ai/artifact/2uSHMoA9rN4Hf7a75LVWNq"
+      }
+    ]
   },
   "waiting": [],
   "coming": [

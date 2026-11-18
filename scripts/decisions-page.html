@@ -50,6 +50,7 @@ button.copy:hover { border-color: var(--fg); }
   <header>
     <h1>Kinebrick Decisions</h1>
     <p class="muted small" id="updated"></p>
+    <p class="links small" id="pages"></p>
     <p class="count" id="count"></p>
     <p class="state" id="state"></p>
     <p class="muted small" id="viewer"></p>
@@ -76,6 +77,8 @@ function links(list, parent) {
 
 const mustAnswer = DATA.waiting.filter((w) => !/look/i.test(w.kind)).length;
 document.getElementById('updated').textContent = 'Updated ' + DATA.updated + '. Claude keeps this page current; answer in the chat.';
+// The status pages, and the web servers that ran on this computer when the page was written.
+for (const l of [...(DATA.state.pages || []), ...(DATA.servers || [])]) { const a = el('a', '', l.label, document.getElementById('pages')); a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; }
 const count = document.getElementById('count');
 count.classList.toggle('none', mustAnswer === 0);
 el('b', '', String(mustAnswer), count);
