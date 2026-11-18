@@ -30,3 +30,26 @@ export function pinsForDrag(build: (freed: Set<number>) => Mechanism, allFree: M
   if (!search || (pins.length && canMove(build(new Set([...freed, ...pins])), part, at, lifted))) return pins;
   return pinsByTrial(heldPins(build(freed), part, freed), (more) => canMove(build(new Set([...freed, ...more])), part, at, lifted));
 }
+
+// The friction pins a press with Shift frees (decision 173 of 2026-11-17): those that hold `part`
+// in its body as read (`read`), where that body comes apart with every friction pin free
+// (`allFree`): pinsToFree's, from that build. The 42082 Rough Terrain Crane's cab door: friction
+// pins fuse it to the cab, so a drag of it slews the whole superstructure; with every pin free it's
+// a body of its own on its hinge, and its two hinge pins are named. With `why`, and no pins, what
+// holds it instead: 'more' if it sits in the frame even with every pin free, or no pin would let it
+// move (see freeWithEveryPin); 'joints' if nothing but its joints holds it in its body (the body is
+// the same with every pin free). A motor is taken by its output, as pinsToFree takes it.
+export function pinsForShift(read: Mechanism, allFree: Mechanism, part: number): { pins: number[]; why: 'more' | 'joints' | null } {
+  if (!freeWithEveryPin(allFree, part)) return { pins: [], why: 'more' };
+  if (!heldInBodyByPins(read, allFree, part)) return { pins: [], why: 'joints' };
+  const pins = pinsToFree(allFree, part);
+  return { pins, why: pins.length ? null : 'more' };
+}
+
+// Whether friction pins hold `part` in its body as read: some part of that body is on another body
+// with every friction pin free (see pinsForShift).
+export function heldInBodyByPins(read: Mechanism, allFree: Mechanism, part: number): boolean {
+  const body = read.roles[part] === 'motor' ? motorOutput(read, part) : read.bodyOf[part];
+  const free = allFree.roles[part] === 'motor' ? motorOutput(allFree, part) : allFree.bodyOf[part];
+  return read.bodyOf.some((b, i) => b === body && allFree.bodyOf[i] !== free);
+}
