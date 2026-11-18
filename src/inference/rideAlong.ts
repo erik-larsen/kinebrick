@@ -29,6 +29,13 @@ export function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCyl
 // with a lever arm that happens to pass close by). They're still listed as loose, but the model can move: left where they were, they'd
 // stand in the way of everything moving past them (an official bulldozer's bucket plates,
 // which slot into grooves no connection data describes, stopped its tracks).
+//
+// A group may ride on another loose group, as a container stands on a trailer that is itself a
+// second model (the 42078 Mack Anthem's; it rode with the tractor, 290 LDU away, the trailer
+// under it being loose too). So the groups are welded outward from the parts that aren't loose:
+// at each turn the group whose nearest anchor is the nearest of all is welded to it, and its
+// parts become anchors for the groups after it. Each group rides on what it stands on once
+// that is itself carried, and no two groups ride on each other.
 export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>): Connection[] {
   if (loose.length === 0) return [];
   const isLoose = new Set(loose);
@@ -38,22 +45,42 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
     return i;
   };
   for (const c of connections) if (isLoose.has(c.male) && isLoose.has(c.female)) leader.set(find(c.male), find(c.female));
-  // Only the parts given (`among`), if any: scenery rides with a train track's rails.
-  const anchors = cyls.filter((c) => !isLoose.has(c.part) && (!among || among.has(c.part)));
-  const nearest = new Map<number, { part: number; anchor: number; distance: number }>(); // for each group
-  for (const i of loose) {
-    const at = new Vector3().setFromMatrixPosition(parts[i].matrix);
-    for (const c of anchors) {
-      // Another submodel's part counts as much further away.
-      const distance = c.start.distanceTo(at) + (parts[c.part].submodel === parts[i].submodel ? 0 : 1e6);
-      const best = nearest.get(find(i));
-      if (!best || distance < best.distance) nearest.set(find(i), { part: i, anchor: c.part, distance });
+  const groups = new Map<number, number[]>();
+  for (const i of loose) groups.set(find(i), [...(groups.get(find(i)) ?? []), i]);
+  const at = new Map(loose.map((i) => [i, new Vector3().setFromMatrixPosition(parts[i].matrix)]));
+  // Each remaining group's nearest anchor so far; only the parts given (`among`), if any, are
+  // anchors at first: scenery rides with a train track's rails.
+  type Best = { part: number; anchor: number; distance: number };
+  const best = new Map<number, Best>();
+  const offer = (anchorCyls: WorldCylinder[]) => {
+    for (const [g, members] of groups) {
+      for (const i of members) {
+        for (const c of anchorCyls) {
+          // Another submodel's part counts as much further away.
+          const distance = c.start.distanceTo(at.get(i)!) + (parts[c.part].submodel === parts[i].submodel ? 0 : 1e6);
+          const b = best.get(g);
+          if (!b || distance < b.distance) best.set(g, { part: i, anchor: c.part, distance });
+        }
+      }
     }
+  };
+  const cylsOf = new Map<number, WorldCylinder[]>();
+  for (const c of cyls) if (isLoose.has(c.part)) cylsOf.set(c.part, [...(cylsOf.get(c.part) ?? []), c]);
+  offer(cyls.filter((c) => !isLoose.has(c.part) && (!among || among.has(c.part))));
+  const welds: Connection[] = [];
+  while (groups.size) {
+    let next: number | null = null;
+    for (const [g, b] of best) if (groups.has(g) && (next === null || b.distance < best.get(next)!.distance)) next = g;
+    if (next === null) break; // no anchor at all
+    const { part, anchor } = best.get(next)!;
+    const members = groups.get(next)!;
+    groups.delete(next);
+    best.delete(next);
+    welds.push({ male: part, female: anchor, kind: 'rigid' as ConnectionKind, from: at.get(part)!.clone(), to: at.get(part)!.clone() });
+    // Its parts are anchors now for the groups still loose.
+    offer(members.flatMap((i) => cylsOf.get(i) ?? []));
   }
-  return [...nearest.values()].map(({ part, anchor }) => {
-    const at = new Vector3().setFromMatrixPosition(parts[part].matrix);
-    return { male: part, female: anchor, kind: 'rigid' as ConnectionKind, from: at, to: at.clone() };
-  });
+  return welds;
 }
 
 // The submodels that are a figure's own: what a figure holds or stands with (a porter's hand
