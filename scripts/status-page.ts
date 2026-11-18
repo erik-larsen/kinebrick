@@ -53,6 +53,8 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
     year: Number(row.year) || 0,
     pieces: Number(row.parts) || Number(row.omr_parts) || 1,
     loose: (set.generated.loose ?? []).length,
+    // Its track links that are on no path, if its track isn't read as a track (see unread-tracks.ts).
+    unreadTracks: set.generated.unreadTracks ?? null,
     // Its model's name in the viewer on the preview site, if that has it, and its page in the OMR.
     viewer: viewerModels.has(modelName(set.curated?.model)) ? modelName(set.curated?.model) : '',
     // Its model file, for the viewer on this computer to open where the preview site doesn't have the set.

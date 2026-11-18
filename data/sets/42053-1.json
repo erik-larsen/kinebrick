@@ -162,9 +162,9 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
-    "date": "2026-11-17",
-    "seconds": 36,
+    "commit": "f1b6c081",
+    "date": "2026-11-18",
+    "seconds": 29,
     "counts": {
       "skipped": 4,
       "works": 4,
@@ -226,6 +226,8 @@
       "p1013 166",
       "p2003 42053 - 2947-v2",
       "p2004 2941",
+      "p2068 165",
+      "p2131 166",
       "p2460 77",
       "p2472 77",
       "p2473 77",
@@ -345,7 +347,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 5.3
+        "seconds": 4.7
       },
       {
         "result": "works",
@@ -411,7 +413,7 @@
             ]
           ]
         ],
-        "seconds": 3.8
+        "seconds": 3
       },
       {
         "result": "works",
@@ -461,7 +463,7 @@
             ]
           ]
         ],
-        "seconds": 3
+        "seconds": 2.4
       },
       {
         "result": "no",
@@ -546,7 +548,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 4.5
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -668,7 +670,7 @@
           [],
           []
         ],
-        "seconds": 18.6
+        "seconds": 14.2
       }
     ]
   }

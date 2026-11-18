@@ -127,7 +127,8 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
     "seconds": 4,
     "counts": {
@@ -202,7 +203,7 @@
           "rise": 0,
           "tyre": "p349 4267"
         },
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -356,7 +357,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",

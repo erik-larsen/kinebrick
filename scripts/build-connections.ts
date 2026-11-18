@@ -601,7 +601,9 @@ function reductionsFromCorrections(): Record<string, { from: string; to: string;
       const meta = parseMeta(line);
       if (meta && meta.kind === 'REDUCTION') {
         const piece = (key: string) => normalizePartName(meta.params.get(key) ?? '');
-        reductions[name] = { from: piece('from'), to: piece('to'), against: piece('against'), ratio: Number(meta.params.get('ratio')) };
+        // `to` may name several parts, the same hub under its numbers (46434 and its earlier u9475).
+        const to = (meta.params.get('to') ?? '').split(/\s+/).filter(Boolean).map(normalizePartName).join(' ');
+        reductions[name] = { from: piece('from'), to, against: piece('against'), ratio: Number(meta.params.get('ratio')) };
       }
     }
   }
@@ -701,7 +703,9 @@ console.log(`Wrote ${OUTPUT_FILE}`);
 // parts share their connection points with others (a part's printed versions all have the
 // same), so each cylinder is written once, in "cylinders", and each part lists its cylinders
 // by their place there. Parts with no connection points are left out.
-const libraryParts = [...new Set([...readdirSync(join(LDRAW_DIR, 'parts')).filter((f) => f.endsWith('.dat')).map(normalizePartName), ...embedded.keys(), ...partsInModels()])].sort();
+// A part only the corrections give data, under a number the library hasn't got (u9475, the
+// 46434 as the OMR's 42099 embeds it), is in it too.
+const libraryParts = [...new Set([...readdirSync(join(LDRAW_DIR, 'parts')).filter((f) => f.endsWith('.dat')).map(normalizePartName), ...embedded.keys(), ...partsInModels(), ...[...corrections.keys()].filter((name) => readLdrawFile(name) === null)])].sort();
 const cylinderIndex = new Map<string, number>();
 const libraryStickers: string[] = [];
 let partLines = '';

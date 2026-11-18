@@ -105,7 +105,8 @@ const sets = (DATA ? DATA.sets : []).map((s) => {
   const works = count(s, 'works'), partly = count(s, 'partly'), no = count(s, 'no');
   const checked = works + partly + no;
   const share = checked ? works / checked : null;
-  const bucket = share === null ? 5 : share >= 1 ? 4 : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
+  // A set whose track isn't read as a track is never green, whatever its functions' results.
+  const bucket = share === null ? 5 : share >= 1 ? (s.unreadTracks ? 3 : 4) : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
   return { ...s, works, partly, no, checked, share, bucket, number: s.set.replace(/-1$/, '') };
 }).sort((a, b) => b.pieces - a.pieces);
 
@@ -158,6 +159,7 @@ function show(s) {
   const pieces = `${s.pieces.toLocaleString('en')} pieces`;
   sub.append(s.omr ? link(pieces, s.omr) : pieces, ` · ${s.works} of ${s.checked} checked functions work (${pct(s)})` + (s.loose ? ` · ${s.loose.toLocaleString('en')} loose parts` : '') + (s.link || s.viewer ? '' : ' · opens in the viewer on this computer (port 5174)'));
   d.replaceChildren(title, sub);
+  if (s.unreadTracks) d.append(el('p', 'why', `Not green: its track is not read as a track. The file draws ${s.unreadTracks.links} track links (${s.unreadTracks.parts.join(', ')}) one by one, with no path, so they do not run round their wheels: turning a sprocket moves a few links and leaves the rest.`));
   const list = el('ul');
   const order = { no: 0, partly: 1, works: 2 };
   for (const [does, result, cause, about] of [...s.functions].sort((a, b) => (order[a[1]] ?? 3) - (order[b[1]] ?? 3))) {

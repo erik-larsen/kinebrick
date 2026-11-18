@@ -43,16 +43,21 @@
           "turntable: cab"
         ],
         "source": "book: pages 332-333, function A (the lever, and the cab turned round); step 236 (page 153, the fuel tank); inferred from the model: the gear train",
-        "control": "p825 41669",
+        "control": "p543 58120",
         "moves": [
-          "p303 18947",
           "p692 42054 - 18938",
           "p1176 64782"
         ],
         "stays": [
           "p1659 42054 - 18938 against p1660 18939"
         ],
-        "note": "needs the motor running: with the motor still, working the lever only slides the ring; the cab's turn comes from the motor"
+        "note": "needs the motor running: with the motor still, working the lever only slides the ring; the cab's turn comes from the motor; the motor is the control and the lever is set first (Erik signed it, \"Sign 42054 lists\", 2026-11-17)",
+        "first": [
+          {
+            "control": "p825 41669",
+            "by": 0.5
+          }
+        ]
       },
       {
         "does": "Lever B, the left of the two red levers at the back of the crane's base, pushed up or down, raises or lowers the crane's boom: it slides a driving ring between two clutch gears turning opposite ways, and a shaft up through the crane's turntable, with a universal joint, turns a linear actuator that pushes the boom.",
@@ -61,16 +66,21 @@
           "linear-actuator: boom"
         ],
         "source": "book: pages 332-333, function B; inferred from the model: the gear train, and that the left lever seen from behind is p1714's",
-        "control": "p1714 43093",
+        "control": "p543 58120",
         "moves": [
-          "p1627 18947",
           "p1820 92696 against p1818 92693c01",
           "p1841 40490 against p1659 42054 - 18938"
         ],
         "stays": [
           "p1659 42054 - 18938 against p1660 18939"
         ],
-        "note": "needs the motor running"
+        "note": "needs the motor running; the motor is the control and the lever is set first (Erik signed it, \"Sign 42054 lists\", 2026-11-17)",
+        "first": [
+          {
+            "control": "p1714 43093",
+            "by": 0.5
+          }
+        ]
       },
       {
         "does": "Lever C, the right red lever, pushed up or down, slews the crane round one way or the other: its driving ring picks a clutch gear, and a 24 and two 12 tooth gears turn a gear on the crane's turntable.",
@@ -79,15 +89,20 @@
           "turntable: crane"
         ],
         "source": "book: pages 332-333, function C; inferred from the model: the gear train",
-        "control": "p1715 43093",
+        "control": "p543 58120",
         "moves": [
-          "p1620 18947",
           "p1659 42054 - 18938 against p1660 18939"
         ],
         "stays": [
           "p1841 40490 against p1659 42054 - 18938"
         ],
-        "note": "needs the motor running"
+        "note": "needs the motor running; the motor is the control and the lever is set first (Erik signed it, \"Sign 42054 lists\", 2026-11-17)",
+        "first": [
+          {
+            "control": "p1715 43093",
+            "by": 0.5
+          }
+        ]
       },
       {
         "does": "The small gear on top of the boom's end slides the jib in and out: it runs on the rack along the jib.",
@@ -216,12 +231,13 @@
     ]
   },
   "generated": {
-    "commit": "f20682cb",
+    "commit": "ff7f4bd1",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 430,
+    "seconds": 875,
     "counts": {
-      "works": 9,
-      "partly": 5
+      "works": 12,
+      "partly": 2
     },
     "loose": [
       "p592 44294",
@@ -298,7 +314,7 @@
             ]
           ]
         ],
-        "seconds": 13
+        "seconds": 18.1
       },
       {
         "result": "partly",
@@ -346,38 +362,35 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 3.2
+        "seconds": 5.4
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
             1.5,
             -1.5
           ]
         ],
-        "still": [
-          "p692 42054 - 18938",
-          "p1176 64782"
-        ],
         "rates": [
           {
-            "p303 18947": [
-              0,
-              0
-            ],
             "p692 42054 - 18938": [
-              0,
+              0.008,
               0
             ],
             "p1176 64782": [
-              0,
-              0
+              0.008,
+              1.07
             ],
             "p1659 42054 - 18938 against p1660 18939": [
               0,
               0
             ]
+          }
+        ],
+        "expected": [
+          {
+            "p692 42054 - 18938": 0.008
           }
         ],
         "back": [
@@ -404,38 +417,25 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p692 42054 - 18938",
-        "seconds": 12.5
+        "seconds": 23.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            10.5,
+            -10.5
           ]
-        ],
-        "still": [
-          "p1820 92696 against p1818 92693c01",
-          "p1841 40490 against p1659 42054 - 18938"
         ],
         "rates": [
           {
-            "p1627 18947": [
-              0,
-              0
-            ],
             "p1820 92696 against p1818 92693c01": [
-              0,
-              7.13e-59
+              1.24e-7,
+              0.096
             ],
             "p1841 40490 against p1659 42054 - 18938": [
-              0,
-              0
+              0.00165,
+              0.132
             ],
             "p1659 42054 - 18938 against p1660 18939": [
               0,
@@ -467,37 +467,25 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p1820 92696 against p1818 92693c01",
-        "seconds": 14.9
+        "seconds": 241.8
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            2.2,
+            -2.2
           ]
-        ],
-        "still": [
-          "p1659 42054 - 18938 against p1660 18939"
         ],
         "rates": [
           {
-            "p1620 18947": [
-              0,
-              0
-            ],
             "p1659 42054 - 18938 against p1660 18939": [
-              0,
+              0.008,
               0
             ],
             "p1841 40490 against p1659 42054 - 18938": [
-              0,
-              0
+              5.75e-8,
+              3.11e-13
             ]
           }
         ],
@@ -525,12 +513,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p1659 42054 - 18938 against p1660 18939",
-        "seconds": 14.9
+        "seconds": 50.1
       },
       {
         "result": "works",
@@ -572,7 +555,7 @@
             ]
           ]
         ],
-        "seconds": 12.3
+        "seconds": 18
       },
       {
         "result": "works",
@@ -626,7 +609,7 @@
             ]
           ]
         ],
-        "seconds": 13.1
+        "seconds": 18.5
       },
       {
         "result": "works",
@@ -668,7 +651,7 @@
             ]
           ]
         ],
-        "seconds": 12.7
+        "seconds": 18.5
       },
       {
         "result": "works",
@@ -748,7 +731,7 @@
             "p1660 18939"
           ]
         ],
-        "seconds": 41.6
+        "seconds": 60.5
       },
       {
         "result": "works",
@@ -841,7 +824,7 @@
             "p1779 6558"
           ]
         ],
-        "seconds": 186.7
+        "seconds": 269.2
       },
       {
         "result": "partly",
@@ -918,7 +901,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p12 87083",
-        "seconds": 13.1
+        "seconds": 18.9
       },
       {
         "result": "works",
@@ -955,7 +938,7 @@
             ]
           ]
         ],
-        "seconds": 13.8
+        "seconds": 19.7
       },
       {
         "result": "works",
@@ -1073,7 +1056,7 @@
           [],
           []
         ],
-        "seconds": 54.5
+        "seconds": 78.7
       },
       {
         "result": "works",
@@ -1110,7 +1093,7 @@
             ]
           ]
         ],
-        "seconds": 14.7
+        "seconds": 21.3
       }
     ]
   }

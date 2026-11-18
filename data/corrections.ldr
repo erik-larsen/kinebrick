@@ -297,6 +297,11 @@
 0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 13 5] [pos=0 0 9] [ori=1 0 0 0 0 -1 0 1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 13 8] [pos=0 0 -20] [ori=1 0 0 0 0 1 0 -1 0]
 
+0 FILE 35186.dat
+0 // Technic Transmission Driving Ring Extension with Eight Clutch Teeth: the 3L driving ring system's extension (2019 on), as the 32187 is the 2L system's. A sleeve that spins on its axle; its wide end takes a 3L driving ring's clutch teeth, 4 LDU deep, as a clutch gear's face does; its eight clutch teeth run along it and stand out 8 LDU at its narrow end, which models seat in the next clutch gear's face, so the gear turns with it. Measured from the LDraw shapes and the 42114's gearbox (the ring p122 shifted half a stud reaches it; its narrow end sits 4 LDU into the 18946 p52's face).
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=K 12 4] [pos=0 0 10] [ori=1 0 0 0 0 -1 0 1 0]
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=K 12 8] [pos=0 0 -18] [ori=1 0 0 0 0 1 0 -1 0]
+
 0 FILE 30663.dat
 0 // Car Steering Wheel 2L (and 16091, built on it): its centre is the round hole the shadow library gives, a stud or a half pin turning in it, as the wheel spins on its half pin in the 42101; the stud tube primitive (stud4od) under it is not an anti-stud that holds
 0 !LDCAD SNAP_CLEAR [id=aStud]
@@ -317,7 +322,7 @@
 
 0 FILE 46490c01.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction, read as its pieces (role "split"): the bearing body 46490c02, which steers with the upright; the driving shaft u9477, turning in it, which a constant velocity joint's ball drives; and the wheel hub 46434, turning in it too, driven by the shaft through planetary gears the LDraw part doesn't draw. The hub turns once for every `ratio` turns of the shaft, the same way round (the ring fixed in the body, the planet carrier the hub): ratio = 1 + ring teeth / sun teeth = 1 + 44/10 = 5.4: sun 10, ring 44, ring fixed, carrier out, counted from X-ray pictures (Eurobricks, "Planetary hub internals") and given as 5.4:1 by Rebrickable; the LDraw shapes carry no teeth
-0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat] [against=46490c02.dat] [ratio=5.4]
+0 !KINEBRICK REDUCTION [from=u9477.dat] [to=46434.dat u9475.dat] [against=46490c02.dat] [ratio=5.4]
 
 0 FILE u9477.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Driving Shaft (a piece of 46490c01): the constant velocity socket at its origin that a 52731's ball turns in and drives it through, and a round bearing on the hub's axis (z) there, turning in the bearing body
@@ -331,6 +336,13 @@
 
 0 FILE 46434.dat
 0 // Technic Steering Wheel Bearing with Planetary Gear Reduction Wheel Hub (a piece of 46490c01): a round bearing on its axis (z), turning in the bearing body
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
+
+0 FILE u9475.dat
+0 // The wheel hub 46434 under its earlier unofficial number, as the OMR's 42099 embeds it ("42099 - u9475.dat", in its own "42099 - 46490c01.dat", placed at 0 0 -30 with u9477 and 46490c02, where the library's 46490c01 places 46434). The LDraw library has no u9475 and no record of it moving; the two drawings are the same part: both by Philippe Hurbain, 86 lines each, 83 of them the same (the other three are ring primitives, which 46434's history says were updated on 2024-03-23), with the same three pin primitives (connect8) at the same places. So it has 46434's connection data: its three pins, as connect8 gives them (included the way 46434.dat references them), and the round bearing turning in the bearing body, as for 46434 below; and the reduction above names it with 46434
+0 !LDCAD SNAP_INCL [ref=connect8.dat] [pos=0 -20 -10] [ori=0 0 1 1 0 0 0 1 0]
+0 !LDCAD SNAP_INCL [ref=connect8.dat] [pos=17.3205 10 -10] [ori=-0.86603 0 -0.5 -0.5 0 0.86603 0 1 0]
+0 !LDCAD SNAP_INCL [ref=connect8.dat] [pos=-17.3205 10 -10] [ori=0.86603 0 -0.5 -0.5 0 -0.86603 0 1 0]
 0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=R 30 6] [center=true] [ori=1 0 0 0 0 1 0 -1 0]
 
 0 FILE 2996.dat
@@ -883,6 +895,37 @@
 0 FILE 2943ac01.dat
 0 // Technic Pneumatic Pump 1 x 1 x 5.5 Body, with its piston 2944c02, which a spring pushes out again: the small pump, as its shortcuts 74982-f1 (retracted) and 74982-f2 (extended) place it, read as its pieces. 74982-f1 places the piston 90 above the body, 74982-f2 130 above it, so it slides from 90 (fully in) to 130 (fully out).
 0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=90] [to=130]
+
+0 FILE 2943a.dat
+0 // Technic Pneumatic Pump 1 x 1 Base, with its piston 2944c02: the 1 x 1 x 6 pump, as its shortcuts 99798-f1 (retracted) and 99798-f2 (extended) place it, read as its pieces (its cylinder 99799 and cap 2941 on the base). 99798-f1 places the piston 100 above the base, 99798-f2 140 above it, so it slides from 100 (fully in) to 140 (fully out): a 40 LDU stroke. The 8110's compressor.
+0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=100] [to=140]
+0 // Its cylinder sits on it: a seat (shape N, read as fixed, as a window's glass in its frame) where the cylinder's foot meets it, so the cylinder and its cap stay on the base, which the shortcut splits them from; they touch nothing else, and rode with the part nearest them (the 8110's crank beam).
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 5 8] [center=true] [pos=0 -20 0]
+
+0 FILE 99799.dat
+0 // Technic Pneumatic Cylinder 1 x 1 for Pump 6L: its foot on the pump base 2943a (local y 68, the base's top at -20 in the pump), its top in its cap 2941 (local y 6)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 5 8] [center=true] [pos=0 68 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 6 8] [center=true] [pos=0 6 0]
+
+0 FILE 2941.dat
+0 // Technic Pneumatic Cylinder 1 x 1 Cap: on the top of the pump's cylinder 99799 (local y 8)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 6 8] [center=true] [pos=0 8 0]
+
+
+0 FILE u9413.dat
+0 // Technic Pneumatic Pump 1 x 1 Base Reinforced, with its piston 2944c02: as its shortcuts 26674-f1 (retracted) and 26674-f2 (extended) place it, read as its pieces (its cylinder u9415 and cap u9414 on the base); the piston 100 above the base fully in, 140 fully out, as the 2943a's.
+0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=100] [to=140]
+0 // Its cylinder sits on it: a seat (shape N, read as fixed, as a window's glass in its frame) where the cylinder's foot meets it, so the cylinder and its cap stay on the base, which the shortcut splits them from; they touch nothing else, and rode with the part nearest them (the 42080's beam 98585).
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 7 8] [center=true] [pos=0 -22 0]
+
+0 FILE u9415.dat
+0 // Technic Pneumatic Cylinder 1 x 1 for Pump 6L with Reinforced Base: its foot on the base u9413 (local y 66, the base's top at -22 in the pump), its top in its cap u9414 (local y 6)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 7 8] [center=true] [pos=0 66 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 8 8] [center=true] [pos=0 6 0]
+
+0 FILE u9414.dat
+0 // Technic Pneumatic Pump 1 x 1 with Reinforced Base Cap: on the top of the pump's cylinder u9415 (local y 8)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 8 8] [center=true] [pos=0 8 0]
 
 0 FILE 32181c05.dat
 0 // Technic Shock Absorber 10L Damped with Black Cap Body Assembly, with its rod 32183c02: 63144-f1 and 76320-f1 (extended) place the rod 180 from the body, -f2 (compressed) 120. (The obsolete cylinders 32181c01 to c04 place the cylinder elsewhere and aren't given; no set has them.)

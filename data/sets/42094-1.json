@@ -140,9 +140,10 @@
     ]
   },
   "generated": {
-    "commit": "f20682cb",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 37,
+    "seconds": 42,
     "counts": {
       "works": 6,
       "partly": 1,
@@ -332,7 +333,7 @@
             ]
           ]
         ],
-        "seconds": 5.9
+        "seconds": 7
       },
       {
         "result": "partly",
@@ -395,7 +396,7 @@
         ],
         "cause": "loose-part",
         "detail": "p926 26603",
-        "seconds": 2.6
+        "seconds": 3
       },
       {
         "result": "works",
@@ -449,7 +450,7 @@
             ]
           ]
         ],
-        "seconds": 2.7
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -495,7 +496,7 @@
             ]
           ]
         ],
-        "seconds": 2.6
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -545,7 +546,7 @@
           true
         ],
         "freed": 1,
-        "seconds": 13.2
+        "seconds": 15.2
       },
       {
         "result": "works",
@@ -641,7 +642,7 @@
             "p979 11947"
           ]
         ],
-        "seconds": 5.1
+        "seconds": 5.8
       },
       {
         "result": "works",
@@ -707,7 +708,7 @@
           [],
           []
         ],
-        "seconds": 3.9
+        "seconds": 4.6
       },
       {
         "result": "skipped",

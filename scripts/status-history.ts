@@ -34,8 +34,11 @@ const git = (args: string, input?: string) => execSync(`git ${args}`, { input: i
 // A set file's state, as the page works it out; null for a file with no results.
 export function setState(text: string): SetState {
   let results: { result?: string }[];
+  let unreadTracks = false;
   try {
-    results = JSON.parse(text).generated?.functions ?? [];
+    const generated = JSON.parse(text).generated;
+    results = generated?.functions ?? [];
+    unreadTracks = Boolean(generated?.unreadTracks);
   } catch {
     return null;
   }
@@ -44,7 +47,8 @@ export function setState(text: string): SetState {
   const functions = [count('works'), count('partly'), count('no')];
   const checked = functions[0] + functions[1] + functions[2];
   const share = checked ? functions[0] / checked : null;
-  const bucket = share === null ? 5 : share >= 1 ? 4 : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
+  // A set with a track that isn't read as a track is never in the "all work" bucket (see unread-tracks.ts).
+  const bucket = share === null ? 5 : share >= 1 ? (unreadTracks ? 3 : 4) : share >= 0.75 ? 3 : share >= 0.5 ? 2 : share > 0 ? 1 : 0;
   return { bucket, functions };
 }
 

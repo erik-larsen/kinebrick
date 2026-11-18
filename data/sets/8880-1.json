@@ -224,9 +224,10 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 149,
+    "seconds": 199,
     "counts": {
       "works": 9,
       "no": 2,
@@ -453,7 +454,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 32.1
+        "seconds": 51.2
       },
       {
         "result": "works",
@@ -677,7 +678,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 37.3
+        "seconds": 38.1
       },
       {
         "result": "no",
@@ -799,7 +800,7 @@
             ]
           ]
         ],
-        "seconds": 8.7
+        "seconds": 15.5
       },
       {
         "result": "works",
@@ -858,7 +859,7 @@
             ]
           ]
         ],
-        "seconds": 8.7
+        "seconds": 19.4
       },
       {
         "result": "works",
@@ -921,7 +922,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 4.8
       },
       {
         "result": "works",
@@ -1001,7 +1002,7 @@
           [],
           []
         ],
-        "seconds": 7.6
+        "seconds": 9.7
       },
       {
         "result": "works",
@@ -1084,7 +1085,7 @@
           []
         ],
         "onPlay": 0.3,
-        "seconds": 10.8
+        "seconds": 13.5
       },
       {
         "result": "skipped",
@@ -1153,7 +1154,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 15.5
+        "seconds": 18
       },
       {
         "result": "skipped",
@@ -1224,7 +1225,7 @@
           [],
           []
         ],
-        "seconds": 9.4
+        "seconds": 11.2
       },
       {
         "result": "works",
@@ -1284,7 +1285,7 @@
             ]
           ]
         ],
-        "seconds": 7.3
+        "seconds": 8.8
       }
     ]
   }

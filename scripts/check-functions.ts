@@ -80,10 +80,11 @@ import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts'
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
 import { turnOffAxis } from './back.ts';
-import { loadModel } from './load-model.ts';
+import { loadModel, readParts } from './load-model.ts';
 import { checkTrainSet } from './train-checks.ts';
+import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
-import { FREE_PINS, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
+import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
 import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
@@ -389,13 +390,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // wheels, which roll on play as a drag holds them, had a friction pin freed by it, and a part
   // that hangs on the pin swung 157 LDU away).
   const dragGoes = (control: number, play = false) => {
-    const b = worked(control);
-    const link = kin.parentLink(b);
-    if (kin.frames.includes(b) || !link) return false;
     const before = kin.snapshot();
-    kin.holdWhatTheDragDoesntNeed(b, () => kin.jointMotion(link.joint, false) !== null, link.joint);
-    const goes = kin.jointMotion(link.joint, play) !== null;
-    kin.letGoAfterDrag();
+    const goes = kin.dragMoves(worked(control), play);
     kin.restore(before);
     return goes;
   };
@@ -472,11 +468,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // point goes as the joint turns, as someone opening a door pushes it round its hinge, not along
   // the car (which would roll it). Null if the joint can't turn, or moves none of the points.
   const grabOf = (body: number, control: number) => {
-    const motion = kin.jointMotion(kin.parentLink(body)!.joint);
-    if (!motion) return null;
     const m = parts[control].matrix;
     const points = [at[control].clone()];
     for (const k of [0, 1, 2]) for (const way of [1, -1]) points.push(at[control].clone().addScaledVector(new Vector3().setFromMatrixColumn(m, k).normalize(), way * GRAB));
+    if (kin.hingeStuck(body, points)) return null;
+    const motion = kin.jointMotion(kin.parentLink(body)!.joint, false)!;
     const speeds = points.map((point) => kin.pointVelocity(motion, body, point.clone().applyMatrix4(kin.poses[body])));
     const fastest = Math.max(...speeds.map((v) => v.length()));
     if (fastest < 1e-6) return null;
@@ -839,8 +835,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
-          // A push with no point to push can't start, on play or not (see grabOf).
-          if (pinTrial && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
+          // A push with no point to push can't start, on play or not (see grabOf). No pins are
+          // tried for a control that sits in the frame even with every pin free (see
+          // freeWithEveryPin), as the viewer tries none.
+          if (pinTrial && freeWithEveryPin(allFree, c) && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
         }
         // So too a part the function lists to move that friction pins hold fast to what it's
         // measured against, but only where the control doesn't go (it jams, or a push has no
@@ -1018,6 +1016,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const l = line(mech, (x) => kin.parentLink(x), c)!.joints;
         return l.reduce((sum, j) => sum + kin.jointAngles[j.joint] * Math.sign(j.axis.dot(l[0].axis)), 0);
       };
+      // The listed rings a rotary catch (35188) holds. A ring moves only by a shift, after a turn,
+      // so it has no rate of its own; turned at a rate, its catch moves it slowly all the same: the
+      // 42129 Mercedes-Benz Zetros's catches turn 0.27 radians for each radian of the motor, and
+      // must turn 0.91 to shift their rings. Such a ring left still is a slow part (see
+      // slowPartsRule), and the longer turn counts it as moved once its catch would shift it.
+      const rotaryRings = new Set(catches.filter((c) => c.rotary && moves.some((m) => m.part === c.ring.part)).map((c) => c.ring.part));
+      // How fast, for each radian of the control, a rotary catch that holds the ring turned
+      // against it, from the start to now (the fastest, if several hold it): 0 for any other part.
+      const catchRate = (ring: number, turned: number) => {
+        if (!rotaryRings.has(ring) || turned < 1e-6) return 0;
+        const against = mech.bodyOf[ring];
+        return Math.max(0, ...catches.filter((c) => c.rotary && c.ring.part === ring).map((c) => angle(relative(c.part, against, startPoses), relative(c.part, against, kin.poses)) / turned));
+      };
       const bothWays = () => [1, -1].map((way) => {
         kin.restore(start);
         // How far each piston should slide, piece by piece, as its crank turns.
@@ -1032,9 +1043,12 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // function 6 took over an hour.
         const enough = (turned: number) => {
           if (reach !== LONG_REACH || Math.abs(turned) < REACH) return false;
-          const done = moves.filter((m) => moved(m, startPoses, new Map())).length;
+          // A ring a rotary catch holds counts as moved once the catch has turned far enough to
+          // shift it (see rotaryRings).
+          const shiftedNow = rotaryRings.size ? new Map([...catchShifts(placedNow(), table, catches)].filter(([ring]) => rotaryRings.has(ring))) : new Map<number, number>();
+          const done = moves.filter((m) => moved(m, startPoses, shiftedNow)).length;
           if (!shared) return done === moves.length;
-          const stirred = moves.filter((m) => moved(m, startPoses, new Map(), STIRRED)).length;
+          const stirred = moves.filter((m) => moved(m, startPoses, shiftedNow, STIRRED)).length;
           return done > 0 && done === stirred;
         };
         const measure = (amount: number, parts: { part: number; body: number }[], after = () => {}) => (pushed ? pushMeasuring(b, control, { reach: amount }, parts, after) : slideOf(b) >= 0 ? slideMeasuring(b, amount, parts, after) : ballOf(b) >= 0 ? ballMeasuring(b, control, amount, parts, after) : { ...turnMeasuring(b, amount, parts, after, enough), pushed: null });
@@ -1083,7 +1097,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // Whether every part left still moves with the control, slowly (see slowPartsRule).
         const slow = still.length > 0 && still.every((ref) => {
           const m = listed.find((l) => l.ref === ref);
-          return m !== undefined && Math.abs(rateOf(m)) > SLOW_RATE;
+          return m !== undefined && (Math.abs(rateOf(m)) > SLOW_RATE || catchRate(m.part, Math.abs(turned)) > SLOW_RATE);
         });
         // Whether the control itself moved (see controlMovedRule).
         const controlMoved = Math.abs(turned) >= 0.01 || (measured.pushed !== null && Math.abs(went[listed.length][1]) >= 0.01);
@@ -1190,8 +1204,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             // The parts' shapes, if they match the model's parts (but a path's, a chain's links,
             // which only show where it runs, as in the viewer).
             const known = shapesOf.get(model);
-            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => known[i].name === p.name);
+            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => p.removed || known[i].name === p.name);
             const collisions = matches ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
+            if (collisions) collisions.ignored = new Set(mech.loose);
             let met = false;
             const allowed = () => {
               if (kin.atLimit() !== null) return false;
@@ -1363,7 +1379,8 @@ const wayAt = args.indexOf('--way'); // (internal) with --only, only this contro
 const onlyWay = wayAt >= 0 ? Number(args[wayAt + 1]) : null;
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
-  if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
+  // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
+  if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m, readParts(m, m.startsWith('omr/')).text));
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
   const found = args[one + 1].startsWith(join('data', 'trains')) ? await checkTrainSet(set) : check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // Let the output drain before the process ends: a pipe takes it in pieces.
@@ -1461,7 +1478,9 @@ async function main() {
     } else {
       if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${proposed ? 'with proposed errata: ' : ''}${line}`);
       if ('errata' in found && found.errata) console.log(`${data.set}: errata applied: ${found.errata.applied.join(', ') || 'none'}${found.errata.refused.length ? `; refused: ${found.errata.refused.join('; ')}` : ''}`);
-      data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
+      // A track drawn link by link isn't read as a track: the set's results say so (see unread-tracks.ts).
+      const unread = unreadTracks(modelsOf(data.curated));
+      data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found, ...(unread ? { unreadTracks: unread } : {}) };
     }
     if (!proposed) writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
     if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;

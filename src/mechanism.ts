@@ -430,6 +430,19 @@ function pivotsOfStuckSlides(mech: Mechanism, parts: PlacedPart[], table: Connec
 // The body a motor turns: its output's axle, through the motor's own connection to it, not the
 // first motor joint on its case's body, which is another motor's when two motors' cases sit on
 // one body (the 42114's L and XL motors). The case's body if the motor turns nothing.
+// The part the viewer keeps turning when a part is spun: for an electric motor (role "motor"), a
+// part of its output (see motorOutput), the one its connection names, as the function check works
+// a motor, so that the two can't differ (decision 152 of 2026-11-17: the 42114's L motor, spun,
+// pushed the body it's built into, and the whole truck went back and forth). Any other part, or a
+// motor whose output isn't found (motorOutput gives its own body), is itself.
+export function motorRunPart(mech: Mechanism, part: number): number {
+  if (mech.roles[part] !== 'motor') return part;
+  const out = motorOutput(mech, part);
+  if (out === mech.bodyOf[part]) return part;
+  const c = mech.connections.find((x) => x.motor && (x.male === part || x.female === part) && mech.bodyOf[x.male] !== mech.bodyOf[x.female]);
+  return c ? (c.male === part ? c.female : c.male) : mech.bodies[out].parts[0];
+}
+
 export function motorOutput(mech: Mechanism, motor: number): number {
   const c = mech.connections.find((x) => x.motor && (x.male === motor || x.female === motor) && mech.bodyOf[x.male] !== mech.bodyOf[x.female]);
   if (c) return mech.bodyOf[c.male === motor ? c.female : c.male];

@@ -66,6 +66,22 @@ function smallS(text: string): string {
 // The file a removed part is drawn as (see packModel).
 export const REMOVED_FILE = 'kinebrick-removed.ldr';
 
+// Whether a file is read as its pieces, and how: its role ("pieces" or "split"), or undefined.
+// A part the model file embeds ("42108 - 40918-f1.dat", as the OMR names them) has the role of
+// the library's part of that name. The viewer (packModel) and the scripts (readParts in
+// scripts/load-model.ts) both ask this, so that they read a model's parts alike.
+export function piecesRole(file: string, roles: Record<string, string>, embedded: Map<string, string>): string | undefined {
+  const role = roles[file] ?? (embedded.has(file) ? roles[file.replace(/^.* - /, '')] : undefined);
+  return role === 'pieces' || role === 'split' ? role : undefined;
+}
+
+// The lines a file read as its pieces is read as: the part lines of its text, its own (the model
+// file's, if it embeds the file) or the library's; role "pieces" numbers them after the model's
+// other parts (see PIECES_AFTER in ldr.ts).
+export function piecesLines(role: string, text: string): string[] {
+  return [...(role === 'pieces' ? [PIECES_AFTER] : []), ...text.split(/\r?\n/).filter((line) => /^\s*1\s/.test(line))];
+}
+
 export async function packModel(
   name: string,
   source: string,
@@ -86,16 +102,12 @@ export async function packModel(
   // their pieces read as theirs in turn (a linear actuator's old name, moved to its shortcut).
   const placed = [...new Set([...modelFiles(source).values()].flat().flatMap((line) => references(line)))].sort();
   const pieces: Record<string, string[]> = {};
-  // A part the model file embeds ("42108 - 40918-f1.dat", as the OMR names them) is read as its
-  // pieces if the library's part of that name is (as scripts/load-model.ts reads it).
-  // Role "pieces" is read as its pieces too, numbered after the model's other parts (see
-  // PIECES_AFTER in ldr.ts).
-  const roleOf = (file: string) => roles[file] ?? (embedded.has(file) ? roles[file.replace(/^.* - /, '')] : undefined);
-  const isSplit = (file: string) => roleOf(file) === 'split' || roleOf(file) === 'pieces';
+  // Read with the model file's own text where it embeds the file (see piecesRole, piecesLines).
+  const isSplit = (file: string) => piecesRole(file, roles, embedded) !== undefined;
   const split = placed.filter(isSplit);
   for (const file of split) {
     if (pieces[file]) continue;
-    pieces[file] = [...(roleOf(file) === 'pieces' ? [PIECES_AFTER] : []), ...(await read(file)).split(/\r?\n/).filter((line) => /^\s*1\s/.test(line))];
+    pieces[file] = piecesLines(piecesRole(file, roles, embedded)!, await read(file));
     split.push(...pieces[file].flatMap((line) => references(line)).filter(isSplit));
   }
   const { parts, shapes, paths } = parseModel(source, isPrimitive, (file) => pieces[file] ?? null);
