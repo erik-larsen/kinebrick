@@ -79,7 +79,7 @@ import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts'
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
 import { turnOffAxis } from './back.ts';
-import { loadModel } from './load-model.ts';
+import { loadModel, readParts } from './load-model.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
 import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
@@ -1201,7 +1201,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             // The parts' shapes, if they match the model's parts (but a path's, a chain's links,
             // which only show where it runs, as in the viewer).
             const known = shapesOf.get(model);
-            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => known[i].name === p.name);
+            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => p.removed || known[i].name === p.name);
             const collisions = matches ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
             // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
             if (collisions) collisions.ignored = new Set(mech.loose);
@@ -1376,7 +1376,8 @@ const wayAt = args.indexOf('--way'); // (internal) with --only, only this contro
 const onlyWay = wayAt >= 0 ? Number(args[wayAt + 1]) : null;
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
-  if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m));
+  // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
+  if (locks) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m, readParts(m, m.startsWith('omr/')).text));
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
   const found = check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // Let the output drain before the process ends: a pipe takes it in pieces.
