@@ -329,7 +329,7 @@ A looped path (a chain, a track, a rubber band) goes round wheels:
 
 Every part should be attached to the rest of the model through some chain of connections.
 
-- **Parts that aren't** get a red outline (with the Status option on) and a ⚠ badge (with Symbols on), and are listed in the viewer. They're usually in the wrong place: a brick half a stud off, sitting between the studs instead of on them, or floating above the plate.
+- **Parts that aren't** get a red outline and a ⚠ badge (both with the Warnings option on), and are listed in the viewer. They're usually in the wrong place: a brick half a stud off, sitting between the studs instead of on them, or floating above the plate.
 - **Loose parts still ride along with the model.** Each group of them attached to each other is fixed to the part with the connection point nearest to one of them, preferring a part of the same submodel.
 - **Why ride along:** left where they were, they'd stand in the way of everything moving past them. (An official bulldozer's bucket plates, before Kinebrick knew its tipper ends' grooves, stopped its tracks.)
 
