@@ -4,7 +4,7 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 130 functions. Kinebrick: 80 works, 9 partly, 35 no, 2 skipped, 4 not checked.
+Used in 76 of the 186 surveyed sets, by 130 functions. Kinebrick: 78 works, 11 partly, 35 no, 2 skipped, 4 not checked.
 
 ## By decade
 
@@ -213,7 +213,7 @@ Each detail by the set it first appears in.
 
 **2007, [8274 Combine Harvester](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8274-1)**
 
-- *unloading auger:* The white unloading auger swings out from the grain tank to the side and back in along the body. (works)
+- *unloading auger:* The white unloading auger swings out from the grain tank to the side and back in along the body. (partly)
 - *hitch:* For road travel the header comes off the front and is hitched behind the combine, where it rolls on its two small wheels at one end. (not checked)
 
 **2009, [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1)**
@@ -366,7 +366,7 @@ Each detail by the set it first appears in.
 
 **2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
 
-- *cab door:* The cab door on the superstructure swings open on its hinge. (works)
+- *cab door:* The cab door on the superstructure swings open on its hinge. (partly)
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 
