@@ -1,12 +1,13 @@
 // The train check (scripts/train-checks.ts) on Kinebrick's test layout: the 4563's train on an
 // oval with a switch and a crossing added (made by scripts/train-layouts.ts).
 
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { checkTrainSet } from '../scripts/train-checks.ts';
 
 describe('trains on track', () => {
-  it('runs the test layout\'s train a full lap through a switch and a crossing, and the switch, flipped, sends it onto its branch', async () => {
+  // It reads the LDraw parts library, which GitHub's checkout doesn't have: skipped there.
+  it.skipIf(!existsSync('ldraw/LDConfig.ldr'))('runs the test layout\'s train a full lap through a switch and a crossing, and the switch, flipped, sends it onto its branch', async () => {
     const set = JSON.parse(readFileSync('data/trains/test-1.json', 'utf-8'));
     const found = await checkTrainSet(set);
     expect(found.functions.map((f) => f.result)).toEqual(['works', 'works', 'works']);
