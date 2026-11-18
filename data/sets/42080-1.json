@@ -22,7 +22,7 @@
         "control": "p820 44294",
         "moves": [
           "p821 6632",
-          "p653 u9413"
+          "p653 42080 - u9413"
         ],
         "note": "the motor (p654 99499) is the control; the axle named is its output. Unsure which parts make up the pump"
       },
@@ -129,17 +129,16 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 192,
+    "commit": "376d3c06",
+    "date": "2026-11-18",
+    "seconds": 166,
     "counts": {
       "works": 5,
       "not back": 2,
       "torn": 1,
       "pivoted": 1,
-      "free-turned": 1,
-      "no": 3
+      "no": 3,
+      "free-turned": 1
     },
     "loose": [
       "p403 165",
@@ -381,7 +380,7 @@
               1,
               183
             ],
-            "p653 u9413": [
+            "p653 42080 - u9413": [
               1,
               161
             ]
@@ -425,11 +424,11 @@
           true
         ],
         "pivoted": {
-          "slide": 415.94,
-          "rise": 270.32,
+          "slide": 452.03,
+          "rise": 291.15,
           "tyre": "p1074 55976"
         },
-        "seconds": 62.7
+        "seconds": 70
       },
       {
         "result": "no",
@@ -460,7 +459,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0.4
+        "seconds": 0.1
       },
       {
         "result": "no",
@@ -533,7 +532,7 @@
             ]
           ]
         ],
-        "seconds": 4.4
+        "seconds": 5.6
       },
       {
         "result": "works",
@@ -587,7 +586,7 @@
         "strayed": [
           "p2056 6117"
         ],
-        "seconds": 10.6
+        "seconds": 19
       },
       {
         "result": "no",
@@ -650,7 +649,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.7
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -687,7 +686,7 @@
             ]
           ]
         ],
-        "seconds": 6
+        "seconds": 9
       },
       {
         "result": "works",
@@ -909,7 +908,7 @@
           [],
           []
         ],
-        "seconds": 43.6
+        "seconds": 60.7
       }
     ]
   }

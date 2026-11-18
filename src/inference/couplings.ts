@@ -180,7 +180,8 @@ export function reductions(parts: PlacedPart[], table: ConnectionTable, bodyOf: 
   for (const r of Object.values(table.reductions ?? {})) {
     const named = (name: string) => parts.flatMap((p, i) => (nameOf(p.name) === name ? [i] : []));
     const bodies = named(r.against);
-    const hubs = named(r.to);
+    // `to` may name the hub under more than one number (46434, and u9475 as the 42099 embeds it).
+    const hubs = r.to.split(' ').flatMap(named);
     for (const from of named(r.from)) {
       const against = bodies.find((b) => at(b).distanceTo(at(from)) < 1);
       if (against === undefined) continue;
