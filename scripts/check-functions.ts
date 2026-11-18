@@ -40,7 +40,9 @@
 //   npm run functions                 every set with functions, but for the slowest (SLOW_OVER)
 //   npm run functions -- --slow       only the slowest sets, left out of the plain run: hours,
 //                                     before a merge to main
-//   npm run functions -- 855 8880     only sets whose number has one of these in it
+//   npm run functions -- 855 8880-1   only these sets: a name with a "-" is a set's whole name
+//                                     (855-1, not 8855-1), one without is a set's number in full
+//                                     (855: 855-1, 855-2, …)
 //   npm run functions -- --jobs 4     how many sets to check at once (default: half the cores)
 //   npm run functions -- --limit 20   stop a process (a set, or one function of a slow set) that
 //                                     takes more than this many minutes (default 60), marking
@@ -1541,8 +1543,10 @@ async function main() {
   const slowOnly = args.includes('--slow');
   const limit = limitAt >= 0 ? Number(args[limitAt + 1]) : slowOnly ? SLOW_LIMIT_MINUTES : LIMIT_MINUTES;
   const named = args.filter((a, i) => !a.startsWith('--') && !['--jobs', '--limit'].includes(args[i - 1]));
-  // A set's number, followed by "-" so that 855 doesn't also pick the 8855.
-  const filters = args.includes('--quick') ? QUICK.map((n) => `${n}-`) : named;
+  const filters = args.includes('--quick') ? QUICK : named;
+  // Whether a set's file is one of those named: by its whole name if the name has a "-" (855-1,
+  // not 8855-1), else by its number in full (855: 855-1 and 855-2, not 8855-1).
+  const isNamed = (f: string) => filters.some((x) => (x.includes('-') ? f === `${x}.json` : f.split('-')[0] === x));
   if (args.includes('--lock')) process.env.KINEBRICK_CHECK_LOCK = '1';
   if (args.includes('--stops')) process.env.KINEBRICK_CHECK_STOPS = '1';
   const causes = args.includes('--causes');
@@ -1565,7 +1569,7 @@ async function main() {
   // model's size, biggest first.
   const took = (s: { data: { generated?: { seconds?: number; timedOut?: number } } }) => (s.data.generated?.timedOut ? Infinity : (s.data.generated?.seconds ?? -1));
   const withFunctions = readdirSync(SETS_DIR)
-    .filter((f) => f.endsWith('.json') && (filters.length === 0 || filters.some((x) => f.includes(x))))
+    .filter((f) => f.endsWith('.json') && (filters.length === 0 || isNamed(f)))
     .map((f) => ({ file: join(SETS_DIR, f), data: JSON.parse(readFileSync(join(SETS_DIR, f), 'utf-8')) }))
     .filter((s) => s.data.curated.functions?.length);
   // The slowest sets are for the slow check (see SLOW_OVER), unless named. Finding the causes
