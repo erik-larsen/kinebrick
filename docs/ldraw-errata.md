@@ -473,6 +473,26 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42000-1](#42000-1-right-rear-driver-in-its-hub) | right-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to 220 -60 640 | Proposed, not applied until signed off |
 | [42000-1](#42000-1-left-rear-driver-in-its-hub) | left-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to -220 -60 640 | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p559) | left-front-rocker-p559 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to -60 -85 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p560) | left-front-rocker-p560 | moves `2736.dat` (in `42000 - 42000.L3B.ldr`) to -53.8116 -90 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p561) | left-front-rocker-p561 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to -60 -75 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p562) | left-front-rocker-p562 | moves `2780.dat` (in `42000 - 42000.L3B.ldr`) to -40.2408 -90 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p563) | left-front-rocker-p563 | moves `32523.dat` (in `42000 - 42000.L3B.ldr`) to -40.2408 -100 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p564) | left-front-rocker-p564 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to -20.4816 -90 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p568) | left-front-rocker-p568 | moves `3713.dat` (in `42000 - 42000.L3B.ldr`) to -20.4816 -60 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p569) | left-front-rocker-p569 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to -60 -90 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-pushrod-p571) | left-front-pushrod-p571 | moves `32293.dat` (in `42000 - 42000.L3B.ldr`) to -53.8116 -102 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-shock-cylinder-p566) | left-front-shock-cylinder-p566 | moves `4255.dat` (in `42000 - 42000.L3B.ldr`) to -20.4816 -120 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p573) | right-front-rocker-p573 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to 60 -85 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p574) | right-front-rocker-p574 | moves `2736.dat` (in `42000 - 42000.L3B.ldr`) to 53.8116 -90 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p575) | right-front-rocker-p575 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to 60 -75 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p576) | right-front-rocker-p576 | moves `2780.dat` (in `42000 - 42000.L3B.ldr`) to 40.2408 -90 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p577) | right-front-rocker-p577 | moves `3713.dat` (in `42000 - 42000.L3B.ldr`) to 20.4816 -60 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p578) | right-front-rocker-p578 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to 20.4816 -90 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p579) | right-front-rocker-p579 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to 60 -90 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p581) | right-front-rocker-p581 | moves `32523.dat` (in `42000 - 42000.L3B.ldr`) to 40.2408 -100 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-pushrod-p580) | right-front-pushrod-p580 | moves `32293.dat` (in `42000 - 42000.L3B.ldr`) to 53.8116 -102 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-shock-cylinder-p582) | right-front-shock-cylinder-p582 | moves `4255.dat` (in `42000 - 42000.L3B.ldr`) to 20.4816 -120 -253.8116, turned | Proposed, not applied until signed off |
 | [42038-1](#42038-1-rear-left-tread-on-its-unit) | rear-left-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to -165 161.666 300.4165 | Proposed, not applied until signed off |
 | [42038-1](#42038-1-rear-right-tread-on-its-unit) | rear-right-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to 165 161.666 300.4155 | Proposed, not applied until signed off |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
@@ -872,6 +892,286 @@ In `42000 - 42000.L3B.ldr` (p356 32494), the line
 ```
 
 is read with its part at -220 -60 640.
+
+### 42000-1: left-front-rocker-p559
+
+Proposed, not applied until signed off.
+
+The file draws each front pushrod in a pose its parts cannot take. The pushrod is a 9L steering link 32293, rigid, 160 LDU between its two ball sockets. Its first socket is on the rocker's axle towball 2736, and its other should be on the towball pin 6628 in the wishbone's cross block. Those two balls are drawn 154.4 LDU apart, so the far socket lies 6.8 LDU off its ball, nothing joins it, and the rod swings into the parts beside it at once (function 4). The wishbone and its towball sit on the grid, as built. The rocker, which turns on its upright axle and carries the shock absorber's cylinder, is drawn at a chosen angle. Turned 8.9 degrees about that axle, its ball lies 160 LDU from the towball, and the shock (rod 4254 in cylinder 4255, travel 90 to 110 LDU by its part data) shortens from 100 to 93.8, inside its travel. The rear shocks are drawn at 100. Book 2, steps 17 and 18 (pages 15 and 16, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037212.pdf#page=15) show the pushrods on both balls. Moved: the rocker's eight parts turned about its axle, the pushrod set on the turned ball and aimed at the towball, and the shock's cylinder set on its eye on the rocker and aimed at the rod's eye.
+
+In `42000 - 42000.L3B.ldr` (p559 32056.dat), the line
+
+```
+1 0 -60 -85 -260 0 0 1 0 1 0 -1 0 0 32056.dat
+```
+
+is read with its part at -60 -85 -260, turned to 0.1547 0 0.988 0 1 0 -0.988 0 0.1547.
+
+### 42000-1: left-front-rocker-p560
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p560 2736.dat), the line
+
+```
+1 71 -60 -90 -300 0 0 1 1 0 0 0 1 0 2736.dat
+```
+
+is read with its part at -53.8116 -90 -299.5184, turned to 0 -0.1547 0.988 1 0 0 0 0.988 0.1547.
+
+### 42000-1: left-front-rocker-p561
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p561 32056.dat), the line
+
+```
+1 0 -60 -75 -260 0 0 1 0 1 0 -1 0 0 32056.dat
+```
+
+is read with its part at -60 -75 -260, turned to 0.1547 0 0.988 0 1 0 -0.988 0 0.1547.
+
+### 42000-1: left-front-rocker-p562
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p562 2780.dat), the line
+
+```
+1 0 -40 -90 -260 0 0 1 -1 0 0 0 -1 0 2780.dat
+```
+
+is read with its part at -40.2408 -90 -256.9058, turned to 0 0.1547 0.988 -1 0 0 0 -0.988 0.1547.
+
+### 42000-1: left-front-rocker-p563
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p563 32523.dat), the line
+
+```
+1 15 -40 -100 -260 0 0 1 0 1 0 -1 0 0 32523.dat
+```
+
+is read with its part at -40.2408 -100 -256.9058, turned to 0.1547 0 0.988 0 1 0 -0.988 0 0.1547.
+
+### 42000-1: left-front-rocker-p564
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p564 87083.dat), the line
+
+```
+1 72 -20 -90 -260 0 0 1 -1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at -20.4816 -90 -253.8116, turned to 0 0.1547 0.988 -1 0 0 0 -0.988 0.1547.
+
+### 42000-1: left-front-rocker-p568
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p568 3713.dat), the line
+
+```
+1 71 -20 -60 -260 -1 0 0 0 0 -1 0 -1 0 3713.dat
+```
+
+is read with its part at -20.4816 -60 -253.8116, turned to -0.988 0.1547 0 0 0 -1 -0.1547 -0.988 0.
+
+### 42000-1: left-front-rocker-p569
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p569 87083.dat), the line
+
+```
+1 72 -60 -90 -260 0 0 -1 1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at -60 -90 -260, turned to 0 0.1547 -0.988 1 0 0 0 -0.988 -0.1547.
+
+### 42000-1: left-front-pushrod-p571
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: the left pushrod, its first socket on the turned rocker's ball, aimed at the towball 160 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p571 32293.dat), the line
+
+```
+1 0 -60 -102 -300 0.112646 0.382683 -0.916993 -0.0466595 0.923878 0.379831 0.993152 0 0.121869 32293.dat
+```
+
+is read with its part at -53.8116 -102 -299.5184, turned to 0.1127 0.3903 -0.9137 -0.0467 0.9207 0.3875 0.9925 -0.001 0.122.
+
+### 42000-1: left-front-shock-cylinder-p566
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: the left shock's cylinder, its eye on the turned rocker, aimed at its rod's eye, 93.8 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p566 4255.dat), the line
+
+```
+1 14 -20 -120 -260 1 0 0 0 0 -1 0 1 0 4255.dat
+```
+
+is read with its part at -20.4816 -120 -253.8116, turned to 1 0.0051 0 0 0 -1 -0.0051 1 0.
+
+### 42000-1: right-front-rocker-p573
+
+Proposed, not applied until signed off.
+
+The file draws each front pushrod in a pose its parts cannot take. The pushrod is a 9L steering link 32293, rigid, 160 LDU between its two ball sockets. Its first socket is on the rocker's axle towball 2736, and its other should be on the towball pin 6628 in the wishbone's cross block. Those two balls are drawn 154.4 LDU apart, so the far socket lies 6.8 LDU off its ball, nothing joins it, and the rod swings into the parts beside it at once (function 4). The wishbone and its towball sit on the grid, as built. The rocker, which turns on its upright axle and carries the shock absorber's cylinder, is drawn at a chosen angle. Turned 8.9 degrees about that axle, its ball lies 160 LDU from the towball, and the shock (rod 4254 in cylinder 4255, travel 90 to 110 LDU by its part data) shortens from 100 to 93.8, inside its travel. The rear shocks are drawn at 100. Book 2, steps 17 and 18 (pages 15 and 16, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037212.pdf#page=15) show the pushrods on both balls. Moved: the rocker's eight parts turned about its axle, the pushrod set on the turned ball and aimed at the towball, and the shock's cylinder set on its eye on the rocker and aimed at the rod's eye.
+
+In `42000 - 42000.L3B.ldr` (p573 32056.dat), the line
+
+```
+1 0 60 -85 -260 0 0 -1 0 -1 0 -1 0 0 32056.dat
+```
+
+is read with its part at 60 -85 -260, turned to -0.1547 0 -0.988 0 -1 0 -0.988 0 0.1547.
+
+### 42000-1: right-front-rocker-p574
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p574 2736.dat), the line
+
+```
+1 71 60 -90 -300 0 0 1 1 0 0 0 1 0 2736.dat
+```
+
+is read with its part at 53.8116 -90 -299.5184, turned to 0 0.1547 0.988 1 0 0 0 0.988 -0.1547.
+
+### 42000-1: right-front-rocker-p575
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p575 32056.dat), the line
+
+```
+1 0 60 -75 -260 0 0 -1 0 -1 0 -1 0 0 32056.dat
+```
+
+is read with its part at 60 -75 -260, turned to -0.1547 0 -0.988 0 -1 0 -0.988 0 0.1547.
+
+### 42000-1: right-front-rocker-p576
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p576 2780.dat), the line
+
+```
+1 0 40 -90 -260 0 1 0 -1 0 0 0 0 1 2780.dat
+```
+
+is read with its part at 40.2408 -90 -256.9058, turned to 0 0.988 0.1547 -1 0 0 0 -0.1547 0.988.
+
+### 42000-1: right-front-rocker-p577
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p577 3713.dat), the line
+
+```
+1 71 20 -60 -260 -1 0 0 0 0 -1 0 -1 0 3713.dat
+```
+
+is read with its part at 20.4816 -60 -253.8116, turned to -0.988 -0.1547 0 0 0 -1 0.1547 -0.988 0.
+
+### 42000-1: right-front-rocker-p578
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p578 87083.dat), the line
+
+```
+1 72 20 -90 -260 0 0 1 -1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at 20.4816 -90 -253.8116, turned to 0 -0.1547 0.988 -1 0 0 0 -0.988 -0.1547.
+
+### 42000-1: right-front-rocker-p579
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p579 87083.dat), the line
+
+```
+1 72 60 -90 -260 0 0 -1 1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at 60 -90 -260, turned to 0 -0.1547 -0.988 1 0 0 0 -0.988 0.1547.
+
+### 42000-1: right-front-rocker-p581
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p581 32523.dat), the line
+
+```
+1 15 40 -100 -260 0 0 -1 0 1 0 1 0 0 32523.dat
+```
+
+is read with its part at 40.2408 -100 -256.9058, turned to 0.1547 0 -0.988 0 1 0 0.988 0 0.1547.
+
+### 42000-1: right-front-pushrod-p580
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: the right pushrod, its first socket on the turned rocker's ball, aimed at the towball 160 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p580 32293.dat), the line
+
+```
+1 0 60 -102 -300 0.104635 -0.382683 0.917941 0.0433411 0.923879 0.380223 -0.994178 0 0.113203 32293.dat
+```
+
+is read with its part at 53.8116 -102 -299.5184, turned to 0.1127 -0.3903 0.9137 0.0467 0.9207 0.3875 -0.9925 -0.001 0.122.
+
+### 42000-1: right-front-shock-cylinder-p582
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: the right shock's cylinder, its eye on the turned rocker, aimed at its rod's eye, 93.8 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p582 4255.dat), the line
+
+```
+1 14 20 -120 -260 1 0 0 0 0 -1 0 1 0 4255.dat
+```
+
+is read with its part at 20.4816 -120 -253.8116, turned to 1 -0.0051 0 0 0 -1 0.0051 1 0.
 
 ### 42038-1: rear-left-tread-on-its-unit
 
