@@ -28,4 +28,12 @@ describe('loose parts riding along', () => {
     expect(welds[1]).toMatchObject({ male: 3, female: 2 });
     expect(welds).toHaveLength(2);
   });
+
+  it('lets a single loose part ride on the main group only, even beside a loose group', () => {
+    // Part 5, alone, at x 65: 5 from the container, 65 from the main group.
+    const more = [...parts, part(65)];
+    const moreCyls = more.map((_, i) => point(i, [0, 30, 40, 50, 60, 65][i]));
+    const all = rideAlong(more, moreCyls, joined, [1, 2, 3, 4, 5]);
+    expect(all.find((w) => w.male === 5)).toMatchObject({ female: 0 });
+  });
 });

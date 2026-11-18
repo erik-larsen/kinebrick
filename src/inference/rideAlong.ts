@@ -30,12 +30,19 @@ export function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCyl
 // stand in the way of everything moving past them (an official bulldozer's bucket plates,
 // which slot into grooves no connection data describes, stopped its tracks).
 //
-// A group may ride on another loose group, as a container stands on a trailer that is itself a
-// second model (the 42078 Mack Anthem's; it rode with the tractor, 290 LDU away, the trailer
-// under it being loose too). So the groups are welded outward from the parts that aren't loose:
-// at each turn the group whose nearest anchor is the nearest of all is welded to it, and its
-// parts become anchors for the groups after it. Each group rides on what it stands on once
-// that is itself carried, and no two groups ride on each other.
+// A group of more than one part may ride on another loose group, as a container stands on a
+// trailer that is itself a second model (the 42078 Mack Anthem's; it rode with the tractor,
+// 290 LDU away, the trailer under it being loose too). So those groups are welded outward from
+// the parts that aren't loose: at each turn the group whose nearest anchor is the nearest of all
+// is welded to it, and its parts become anchors for the groups after it. Each rides on what it
+// stands on once that is itself carried, and no two groups ride on each other.
+//
+// A single loose part rides as before, on the parts that aren't loose only, and after the
+// groups, so it is never an anchor for one. A group of joined parts is a thing that stands on
+// something; a single part with no connection is most often a connection the reading missed,
+// and what it should ride on is that missed connection's question, not its nearest neighbour's.
+// (Letting single parts ride on each other too changed the bodies of 33 sets, among them the
+// 9391's frame: see the branch's history, claude/ride-on-loose df978eec.)
 export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>): Connection[] {
   if (loose.length === 0) return [];
   const isLoose = new Set(loose);
@@ -67,19 +74,24 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
   const cylsOf = new Map<number, WorldCylinder[]>();
   for (const c of cyls) if (isLoose.has(c.part)) cylsOf.set(c.part, [...(cylsOf.get(c.part) ?? []), c]);
   offer(cyls.filter((c) => !isLoose.has(c.part) && (!among || among.has(c.part))));
+  // The single parts' nearest anchor is fixed now: they ride on the parts that aren't loose.
+  const singles = [...groups].filter(([, members]) => members.length === 1).map(([g]) => g);
+  const fixed = new Map(singles.flatMap((g) => (best.has(g) ? [[g, best.get(g)!] as const] : [])));
+  for (const g of singles) groups.delete(g);
   const welds: Connection[] = [];
+  const weld = ({ part, anchor }: Best) => welds.push({ male: part, female: anchor, kind: 'rigid' as ConnectionKind, from: at.get(part)!.clone(), to: at.get(part)!.clone() });
   while (groups.size) {
     let next: number | null = null;
     for (const [g, b] of best) if (groups.has(g) && (next === null || b.distance < best.get(next)!.distance)) next = g;
     if (next === null) break; // no anchor at all
-    const { part, anchor } = best.get(next)!;
     const members = groups.get(next)!;
+    weld(best.get(next)!);
     groups.delete(next);
     best.delete(next);
-    welds.push({ male: part, female: anchor, kind: 'rigid' as ConnectionKind, from: at.get(part)!.clone(), to: at.get(part)!.clone() });
     // Its parts are anchors now for the groups still loose.
     offer(members.flatMap((i) => cylsOf.get(i) ?? []));
   }
+  for (const b of fixed.values()) weld(b);
   return welds;
 }
 
