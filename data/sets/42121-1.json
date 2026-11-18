@@ -89,10 +89,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 10,
+    "commit": "85c9d0d1",
+    "date": "2026-11-18",
+    "seconds": 12,
     "counts": {
       "partly": 1,
       "no": 1,
@@ -217,7 +216,7 @@
         "cause": "too-little",
         "detail": "p84 32271",
         "onPlay": 10,
-        "seconds": 6.1
+        "seconds": 7.6
       },
       {
         "result": "no",
@@ -416,7 +415,7 @@
           [],
           []
         ],
-        "seconds": 3.4
+        "seconds": 3.3
       },
       {
         "result": "not checked",

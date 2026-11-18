@@ -123,16 +123,14 @@
     ]
   },
   "generated": {
-    "commit": "06dfe180",
-    "uncommitted": true,
+    "commit": "a796b224",
     "date": "2026-11-18",
-    "seconds": 18,
+    "seconds": 5,
     "counts": {
       "works": 5,
-      "not back": 2,
+      "not back": 1,
       "free-turned": 1,
-      "skipped": 1,
-      "torn": 1
+      "skipped": 1
     },
     "loose": [
       "p330 8272 - ls40",
@@ -190,7 +188,7 @@
             ],
             "p152 57520": [
               0,
-              1.03e-44
+              2.56e-44
             ]
           }
         ],
@@ -223,7 +221,7 @@
           "p621 32449",
           "p83 32054"
         ],
-        "seconds": 7.5
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -301,7 +299,7 @@
         ],
         "freed": 1,
         "onPlay": 0.6,
-        "seconds": 3
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -379,7 +377,7 @@
         ],
         "freed": 1,
         "onPlay": 0.6,
-        "seconds": 2.1
+        "seconds": 0.9
       },
       {
         "result": "skipped",
@@ -389,68 +387,55 @@
         "result": "works",
         "turned": [
           [
-            1.1,
+            1.5,
             -1.5
           ]
         ],
         "rates": [
           {
             "p142 57520": [
-              0.931,
-              3.25e-12
+              0.93,
+              1.64e-13
             ],
             "p150 57520": [
-              0.958,
-              2.96e-12
+              0.903,
+              3.22e-13
             ],
             "p166 57518": [
-              0.219,
+              1,
               30
             ],
             "p180 57518": [
-              0.0656,
-              28.6
+              0.903,
+              39.6
             ]
           }
         ],
         "back": [
           [
             [
-              31.9,
-              63.03
+              0,
+              0
             ],
             [
-              11.14,
-              10.51
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              31.9,
-              63.03
+              0,
+              0
             ],
             [
-              11.14,
-              10.51
+              0,
+              0
             ]
           ]
         ],
-        "strayed": [
-          "p191 57518",
-          "p184 57518"
-        ],
-        "stop": [
-          [
-            "stuck",
-            null
-          ]
-        ],
-        "pushed": [
-          true
-        ],
-        "seconds": 2.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -534,14 +519,8 @@
           [],
           []
         ],
-        "seconds": 2.8
+        "seconds": 0.6
       }
-    ],
-    "unreadTracks": {
-      "links": 27,
-      "parts": [
-        "57518"
-      ]
-    }
+    ]
   }
 }
