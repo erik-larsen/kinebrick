@@ -75,6 +75,7 @@ import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Joint, Mechanism, meshesChanged, motorOutput } from '../src/mechanism.ts';
+import { heldInBodyByPins, pinsForShift } from '../src/pinSearch.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
 import { collisionKey, Collisions, connectedPairs, keptFileName, pairNumber, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts';
@@ -233,6 +234,7 @@ interface Checked {
   movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
   collisionSlid?: string[]; // the pairs of parts that met but only slid along each other, so stopped nothing (see Collisions.slid), as "a,b"
   collisionStops?: [number, number, number, number, number, number][]; // with --stops: for each way a collision would have stopped, its control (by place), way (1 or -1), the two parts that met, how far the control had turned then, and how far in all (see stopsReport)
+  shiftPressed?: number[]; // the friction pins a press with Shift freed for the control, where the function came out better so than as read (see pinsForShift)
   wrongBy?: string[][]; // for a function with several controls not worked together, if any moved a part in `stays`: for each control, those it moved
   judged?: number[]; // for a function that doesn't work: for each control, which way (0 or 1, as in `turned`) its cause was judged from, so that --causes judges it so too
   freed?: number; // how many friction pins were freed for its control, which had no motion (see pinsToFree)
@@ -845,6 +847,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     }
   };
 
+  // The pins a press with Shift frees for the controls of the function being checked again (see
+  // pinsForShift, and shiftPressed in checkOne): freed for each way, besides any it frees itself.
+  let shiftFreed = new Set<number>();
   const checkOne = (fn: Fn, prior?: Checked): Checked => {
     stopWatch?.slid.clear();
     const known = withoutChecking(fn);
@@ -866,7 +871,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       together = [];
       use(asLoaded);
       kin.reset();
-      freed = new Set();
+      freed = new Set(shiftFreed);
       // A control with no exact motion at the start (play is the last resort: see
       // Kinematics.jointMotion), held by friction pins: those pins are freed, and
       // the model worked out again, for this control only (see pinsToFree). So too a control
@@ -893,7 +898,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         const byTrial = (forPart: number, ok: () => boolean) => pinsByTrial(heldPins(asLoaded.mech, forPart, freed), (pins) => withFreed(pins, ok));
         if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
-          freed = new Set(pinsToFree(allFree, c));
+          freed = new Set([...shiftFreed, ...pinsToFree(allFree, c)]);
           // A push with no point to push can't start, on play or not (see grabOf). No pins are
           // tried for a control that sits in the frame even with every pin free (see
           // freeWithEveryPin), as the viewer tries none.
@@ -1325,8 +1330,49 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     }
     const ways = all.map(workWay);
     const combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still), causesOnly ? prior : undefined)!;
-    const collisionSlid = [...(stopWatch?.slid ?? [])];
-    return combined ? { ...combined, ...(collisionStops.length ? { collisionStops } : {}), ...(collisionSlid.length ? { collisionSlid } : {}) } : combined;
+    // The collisions that stopped a way (collisionStops) and the pairs that met and only slid
+    // (collisionSlid), beside the result.
+    const withCollisions = <T extends object>(r: T) => {
+      const collisionSlid = [...(stopWatch?.slid ?? [])];
+      return { ...r, ...(collisionStops.length ? { collisionStops } : {}), ...(collisionSlid.length ? { collisionSlid } : {}) };
+    };
+    // A function that doesn't work as read, whose control moves only together with a bigger body
+    // that friction pins hold it in (the 42082's cab door, fused to the cab, so that its drag slews
+    // the cab): worked again with those pins freed, as a user who sees that would press it with
+    // Shift (see pinsForShift; decision 173 of 2026-11-17). Kept only if it comes out better, and
+    // then it says so (`shiftPressed`). A function that works as read is never tried.
+    if (combined && !causesOnly && shiftFreed.size === 0 && combined.result !== 'works' && combined.result !== 'error') {
+      use(asLoaded);
+      kin.reset();
+      allFree ??= loaded.allFree(asLoaded.parts);
+      const pins = new Set<number>();
+      for (const ref of all) {
+        const c = part(ref);
+        const body = mech.roles[c] === 'motor' ? motorOutput(mech, c) : mech.bodyOf[c];
+        const link = kin.parentLink(body);
+        const moves = !kin.frames.includes(body) && link !== null && kin.jointMotion(link.joint, false) !== null;
+        if (moves && heldInBodyByPins(mech, allFree, c)) for (const pin of pinsForShift(mech, allFree, c).pins) pins.add(pin);
+      }
+      if (pins.size) {
+        const [whyBefore, freedBefore] = [why.length, freedPins];
+        // The collisions met and slid past are the try's whose result is kept.
+        const [stopsBefore, slidBefore] = [collisionStops.length, [...(stopWatch?.slid ?? [])]];
+        stopWatch?.slid.clear();
+        shiftFreed = pins;
+        const again = combineWays(fn, all.map(workWay), why, freedPins, null);
+        shiftFreed = new Set();
+        if (again && RANK[again.result] < RANK[combined.result]) {
+          collisionStops.splice(0, stopsBefore);
+          return withCollisions({ ...again, shiftPressed: [...pins].sort((a, b) => a - b) });
+        }
+        why.length = whyBefore;
+        freedPins = freedBefore;
+        collisionStops.length = stopsBefore;
+        stopWatch?.slid.clear();
+        for (const pair of slidBefore) stopWatch?.slid.add(pair);
+      }
+    }
+    return combined ? withCollisions(combined) : combined;
   };
 
   // Each function's entry says how long it took (`seconds`), so a slow set shows which function

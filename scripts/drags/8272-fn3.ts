@@ -1,5 +1,5 @@
 // The 8272 Snowmobile's function 3: the right ski's steering. No part is pointed at, so the camera starts where it does for any user, and is turned round the model if the control p9 can't be seen. Pressing p9 frees its ski's hinge pin p24; then three quarter turns turn it to its limit. The check has it as works: yes if the pins freed are the check's (24) and the viewer shows at least that.
-// Run with the viewer's address: npx tsx scripts/drags/8272-fn3.ts http://localhost:5173
+// Run with preview's viewer up (http://localhost:5174), or another's address after it: npx tsx scripts/drags/8272-fn3.ts
 import { answer, atLeast, open, resultOf } from './drag.ts';
 
 const started = Date.now();

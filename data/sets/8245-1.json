@@ -150,11 +150,8 @@
     "seconds": 12,
     "counts": {
       "partly": 1,
-      "not back": 2,
-      "torn": 1,
       "works": 6,
-      "skipped": 3,
-      "free-turned": 1
+      "skipped": 3
     },
     "loose": [
       "p70 32080",
@@ -532,13 +529,14 @@
         ],
         "freeTurned": true,
         "strayed": [
-          "p131 2699"
+          "p131 2699",
+          "p39 32062"
         ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 2.6
+        "seconds": 2.8
       },
       {
         "result": "works",
