@@ -594,7 +594,20 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // 3. Bodies, from every connection above: first, a part riding on parallel axles that a
   // linkage slides along them, which two hinges would otherwise hold fast.
   slidingOnParallelAxles(roles, frameRoles, cyls, connections, parts.length);
-  const bodyOf = groupIntoBodies(parts.length, frameRoles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]));
+  // The links of a track placed link by link (see chainPaths in ldr.ts) were structure, joined to
+  // what they lie on, before they were read as a track, and the frame was chosen with them. So that
+  // reading the track does not move a model's frame (the 9391 Crawler Crane's would go from its
+  // undercarriage, whose structure is mostly its links, to its upper works, whose turntable then
+  // can't turn against it), the frame is chosen as it was: from the bodies the model makes with its
+  // links read as parts, by a part of it that isn't a link. As for the axles above, it goes when the
+  // frame rule is mended.
+  let framePart = -1;
+  if (parts.some((p) => p.path?.byHand && p.path.halfWidth)) {
+    const asParts = parts.map((p) => (p.path?.byHand && p.path.halfWidth ? { ...p, path: undefined } : p));
+    const before = buildMechanism(asParts, table, roleList, frictionRigid, guide, paths.filter((p) => !(p.byHand && p.halfWidth)), freed);
+    framePart = before.bodyOf.findIndex((b, i) => b === 0 && roles[i] !== 'path' && !parts[i].removed);
+  }
+  const bodyOf = groupIntoBodies(parts.length, frameRoles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]), framePart);
   // slidingOnAxles and restingParts read the bodies, and turn connections into slides, so they
   // come before the joints are found.
   connections.push(...slidingOnAxles(roles, cyls, connections, bodyOf));

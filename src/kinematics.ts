@@ -198,6 +198,11 @@ export interface Options {
   // nothing. Off unless asked for: the viewer's "Lift off the ground" option (?lifted=1), or a
   // function's `lifted` in the function check.
   lifted: boolean;
+  // A turn keeps the motion it found for the step after its last (see turnJoint) for the next turn
+  // of the same joint the same way, where nothing has changed since: the viewer turns a step at a
+  // time, and would otherwise work out that motion again. On; KINEBRICK_KEEP_AHEAD=0 turns it off,
+  // for comparing (decision 174 of 2026-11-17).
+  keepAhead: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
@@ -220,6 +225,7 @@ export const experiments: Options = {
   loopPlay: setting('KINEBRICK_LOOP_PLAY') !== '0',
   pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
   lifted: false,
+  keepAhead: setting('KINEBRICK_KEEP_AHEAD') !== '0',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -375,6 +381,9 @@ export class Kinematics {
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
   private gripped = false; // whether the motion last chosen was one of those
+  // The motion the last turn found for the step after its last, kept for the next turn (see
+  // turnJoint): in model coordinates, with what it was found with and where everything was.
+  private aheadKept: { joint: number; way: number; motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean; state: KinematicsState; drag: Drag; frozen: string; fixedBody: number; scrub: number } | null = null;
   private slipRows: number[][] = []; // the tyres' scrubbing and lifting rows, in the tree basis, as freeMotionsApart last found them
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
@@ -2453,10 +2462,28 @@ export class Kinematics {
   // smaller steps, it would slip across; and stopped right at the dead point, it couldn't turn
   // back.)
   turnJoint(joint: number, angle: number, allowed?: () => boolean, maxStep = MAX_TURN_STEP): number {
-    return this.nearOrigin(() => this.turnJointNearOrigin(joint, angle, allowed, maxStep));
+    // The motion the last turn found for its next step, if this turn takes that step: the same
+    // joint the same way, with everything where that turn left it, and the same holds, frozen
+    // bodies and scrub. Anything else (a hold changed, a pin freed, a shift, the model read again)
+    // and it's worked out afresh. A motion is kept in model coordinates (see nearOrigin).
+    const k = this.aheadKept;
+    this.aheadKept = null;
+    const same = (a: KinematicsState, b: KinematicsState) =>
+      a.jointAngles.length === b.jointAngles.length && a.jointAngles.every((x, i) => x === b.jointAngles[i]) && a.treadTravel.every((x, i) => x === b.treadTravel[i]) && a.treadScrub.every((x, i) => x === b.treadScrub[i]) && a.roots.size === b.roots.size && [...a.roots].every(([root, pose]) => b.roots.get(root)?.equals(pose) === true);
+    const kept = k && k.joint === joint && k.way === Math.sign(angle) && k.drag === this.drag && k.frozen === [...this.frozen].join() && k.fixedBody === this.fixedBody && k.scrub === this.scrub && same(k.state, this.snapshot()) ? k : null;
+    const found: { ahead: { motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean } | null } = { ahead: null };
+    const turned = this.nearOrigin((toModel, fromModel) =>
+      this.turnJointNearOrigin(joint, angle, allowed, maxStep, kept ? { ...kept, motion: fromModel(kept.motion) } : null, (ahead) => {
+        found.ahead = { motion: toModel(ahead), played: this.played, stepByTiers: this.stepByTiers, gripped: this.gripped };
+      }),
+    );
+    if (found.ahead && this.options.keepAhead) this.aheadKept = { ...found.ahead, joint, way: Math.sign(angle), state: this.snapshot(), drag: this.drag, frozen: [...this.frozen].join(), fixedBody: this.fixedBody, scrub: this.scrub };
+    return turned;
   }
 
-  private turnJointNearOrigin(joint: number, angle: number, allowed: (() => boolean) | undefined, maxStep: number): number {
+  // `kept`: the motion the last turn found for this one's first step (see turnJoint); `keep` hears
+  // the motion found for the step after this turn's last, if it ends with one.
+  private turnJointNearOrigin(joint: number, angle: number, allowed: (() => boolean) | undefined, maxStep: number, kept: { motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean } | null = null, keep: (ahead: number[]) => void = () => {}): number {
     // Stopped at a dead point already, and nothing has moved since: no further that way.
     const dead = this.deadPoint;
     if (dead && dead.joint === joint && dead.way === Math.sign(angle) && this.jointAngles.every((a, k) => a === dead.angles[k])) return 0;
@@ -2470,8 +2497,10 @@ export class Kinematics {
     const geared = this.gearedTo(turnedBody, true);
     const steps = Math.ceil(Math.abs(angle) / maxStep);
     const full = angle / steps;
-    // The motion found where the last step ended (see below), for the next step to take.
-    let ahead: number[] | null = null;
+    // The motion found where the last step ended (see below), for the next step to take: for the
+    // first step, the one the last turn found, if kept (see turnJoint), with what finding it set.
+    let ahead: number[] | null = kept?.motion ?? null;
+    if (kept) [this.played, this.stepByTiers, this.gripped] = [kept.played, kept.stepByTiers, kept.gripped];
     // How big a step may be: halved for each step undone (see below), down to LEAST_TURN_STEP.
     let most = Math.abs(full);
     while (Math.abs(angle - turned) > 1e-12) {
@@ -2630,6 +2659,7 @@ export class Kinematics {
         return stop(turned);
       }
     }
+    if (ahead) keep(ahead);
     return turned;
   }
 

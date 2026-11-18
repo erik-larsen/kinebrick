@@ -157,10 +157,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 40,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 58,
     "counts": {
       "partly": 4,
       "works": 4,
@@ -250,7 +249,7 @@
         ],
         "cause": "not-driven",
         "detail": "p214 4716",
-        "seconds": 3
+        "seconds": 4.9
       },
       {
         "result": "partly",
@@ -322,14 +321,14 @@
         ],
         "cause": "not-driven",
         "detail": "p224 99010",
-        "seconds": 3.2
+        "seconds": 4.1
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.03,
+            -0.03
           ]
         ],
         "still": [
@@ -394,12 +393,36 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "judged": [
           0
         ],
         "cause": "not-driven",
         "detail": "p17 11946",
-        "seconds": 3.1
+        "collisionStops": [
+          [
+            0,
+            1,
+            12,
+            24,
+            0.03,
+            0.03
+          ],
+          [
+            0,
+            -1,
+            13,
+            24,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -543,7 +566,7 @@
           [],
           []
         ],
-        "seconds": 17
+        "seconds": 19.9
       },
       {
         "result": "partly",
@@ -605,7 +628,7 @@
         ],
         "cause": "stay-forced",
         "detail": "p1253 6536",
-        "seconds": 3.1
+        "seconds": 4.3
       },
       {
         "result": "works",
@@ -666,7 +689,7 @@
             ]
           ]
         ],
-        "seconds": 3.2
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -731,13 +754,13 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 4.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
+            0.47,
             -1.5
           ]
         ],
@@ -768,7 +791,23 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            1114,
+            1123,
+            0.47,
+            0.47
+          ]
+        ],
+        "seconds": 2.5
       },
       {
         "result": "skipped",

@@ -176,10 +176,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 2911,
+    "commit": "7d69aeed",
+    "date": "2026-11-18",
+    "seconds": 4084,
     "counts": {
       "partly": 5,
       "works": 4,
@@ -375,7 +374,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 46.2
+        "seconds": 50.5
       },
       {
         "result": "partly",
@@ -438,7 +437,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 56.4
+        "seconds": 50.7
       },
       {
         "result": "partly",
@@ -532,7 +531,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 67.5
+        "seconds": 100.1
       },
       {
         "result": "works",
@@ -582,7 +581,7 @@
             ]
           ]
         ],
-        "seconds": 39.9
+        "seconds": 50.9
       },
       {
         "result": "works",
@@ -636,7 +635,7 @@
             ]
           ]
         ],
-        "seconds": 1445.8
+        "seconds": 1757.3
       },
       {
         "result": "works",
@@ -744,7 +743,7 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 921.4
+        "seconds": 1020.1
       },
       {
         "result": "partly",
@@ -812,7 +811,7 @@
         "cause": "not-driven",
         "detail": "p3600 15458 against p3322 42003",
         "onPlay": 6,
-        "seconds": 242.5
+        "seconds": 321.4
       },
       {
         "result": "partly",
@@ -871,14 +870,14 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.33,
-        "seconds": 26
+        "seconds": 33.1
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.07,
+            0
           ]
         ],
         "rates": [
@@ -913,8 +912,32 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 1,
-        "seconds": 39.6
+        "collisionStops": [
+          [
+            0,
+            1,
+            4242,
+            4676,
+            0.07,
+            0.07
+          ],
+          [
+            0,
+            -1,
+            4678,
+            4743,
+            0,
+            0
+          ]
+        ],
+        "seconds": 18.7
       }
     ]
   }

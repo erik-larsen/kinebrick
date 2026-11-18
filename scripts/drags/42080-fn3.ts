@@ -3,7 +3,7 @@
 // a press with Shift says it's held by more than friction pins. (A plain drag of it pushes the
 // whole machine, which isn't the function.) The check has it as no: yes if the viewer agrees, no
 // pin freed.
-// Run with the viewer's address: npx tsx scripts/drags/42080-fn3.ts http://localhost:5173
+// Run with preview's viewer up (http://localhost:5174), or another's address after it: npx tsx scripts/drags/42080-fn3.ts
 import { answer, open } from './drag.ts';
 
 const started = Date.now();

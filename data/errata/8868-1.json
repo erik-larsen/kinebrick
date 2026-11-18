@@ -1,0 +1,145 @@
+{
+  "set": "8868-1",
+  "entries": [
+    {
+      "id": "rod-line-1368-on-its-piston",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 7 10 10 30 -0.423 0.906 0 0.906 0.423 0 0 0 -1 2852.dat",
+      "position": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "orientation": [
+        -0.4406,
+        0.8977,
+        0,
+        0.8977,
+        0.4406,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "evidence": "The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.12 degrees about its crank pin, with the piston at line 1384 moved 2.64 LDU along its cylinder, to -25.908 -7.624 30, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6)."
+    },
+    {
+      "id": "piston-line-1384-on-its-rod",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 8 -27.778 -9.494 30 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat",
+      "position": [
+        -25.908,
+        -7.624,
+        30
+      ],
+      "evidence": "With rod-line-1368-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is."
+    },
+    {
+      "id": "rod-line-1372-on-its-piston",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 7 -10 10 70 0.5 -0.866 0 0.866 0.5 0 0 0 1 2852.dat",
+      "position": [
+        -10.0,
+        10.0,
+        70.0
+      ],
+      "orientation": [
+        0.4406,
+        -0.8977,
+        0,
+        0.8977,
+        0.4406,
+        0,
+        0,
+        0,
+        1
+      ],
+      "evidence": "The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 3.86 degrees about its crank pin, with the piston at line 1382 moved 4.64 LDU along its cylinder, to 25.908 -7.624 70, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6)."
+    },
+    {
+      "id": "piston-line-1382-on-its-rod",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 8 29.192 -10.908 70 0.707 -0.707 0 0.707 0.707 0 0 0 1 2851.dat",
+      "position": [
+        25.908,
+        -7.624,
+        70
+      ],
+      "evidence": "With rod-line-1372-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is."
+    },
+    {
+      "id": "rod-line-1373-on-its-piston",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 7 -10 10 70 -0.707 0.707 0 0.707 0.707 0 0 0 -1 2852.dat",
+      "position": [
+        -10.0,
+        10.0,
+        70.0
+      ],
+      "orientation": [
+        -0.7282,
+        0.6853,
+        0,
+        0.6853,
+        0.7282,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "evidence": "The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.74 degrees about its crank pin, with the piston at line 1385 moved 4.37 LDU along its cylinder, to -37.413 -19.129 70, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6)."
+    },
+    {
+      "id": "piston-line-1385-on-its-rod",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 8 -40.506 -22.222 70 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat",
+      "position": [
+        -37.413,
+        -19.129,
+        70
+      ],
+      "evidence": "With rod-line-1373-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is."
+    },
+    {
+      "id": "rod-line-1378-on-its-piston",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 7 10 10 110 -0.423 0.906 0 0.906 0.423 0 0 0 -1 2852.dat",
+      "position": [
+        10.0,
+        10.0,
+        110.0
+      ],
+      "orientation": [
+        -0.4406,
+        0.8977,
+        0,
+        0.8977,
+        0.4406,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "evidence": "The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.12 degrees about its crank pin, with the piston at line 1386 moved 2.64 LDU along its cylinder, to -25.908 -7.624 110, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6)."
+    },
+    {
+      "id": "piston-line-1386-on-its-rod",
+      "what": "move",
+      "file": "8868-1 - Motorblock.ldr",
+      "line": "1 8 -27.778 -9.494 110 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat",
+      "position": [
+        -25.908,
+        -7.624,
+        110
+      ],
+      "evidence": "With rod-line-1378-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is."
+    }
+  ]
+}

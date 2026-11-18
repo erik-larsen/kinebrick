@@ -208,14 +208,14 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 20,
+    "commit": "7d69aeed",
+    "date": "2026-11-18",
+    "seconds": 39,
     "counts": {
-      "works": 8,
+      "works": 7,
       "no": 1,
       "skipped": 1,
+      "partly": 1,
       "not checked": 2
     },
     "loose": [
@@ -288,14 +288,14 @@
           ]
         ],
         "freed": 2,
-        "seconds": 2
+        "seconds": 4
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -1.5
+            -0.8
           ]
         ],
         "rates": [
@@ -362,7 +362,23 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            -1,
+            102,
+            323,
+            0.8,
+            0.8
+          ]
+        ],
+        "seconds": 4
       },
       {
         "result": "works",
@@ -446,14 +462,14 @@
             "limit"
           ]
         ],
-        "seconds": 1.5
+        "seconds": 2.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.97,
+            -0.5
           ]
         ],
         "rates": [
@@ -488,7 +504,31 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            62,
+            82,
+            0.97,
+            0.97
+          ],
+          [
+            0,
+            -1,
+            62,
+            82,
+            0.5,
+            0.5
+          ]
+        ],
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -538,7 +578,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -584,7 +624,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.9
       },
       {
         "result": "no",
@@ -700,14 +740,14 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 2.3
+        "seconds": 3.1
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -715,15 +755,15 @@
           ],
           [
             1.5,
-            -1.5
+            -1.23
           ],
           [
-            1.5,
-            -1.5
+            0.27,
+            -0.03
           ],
           [
-            1.5,
-            -1.5
+            0.17,
+            -0.03
           ]
         ],
         "rates": [
@@ -816,13 +856,83 @@
             ]
           ]
         ],
+        "why": [
+          "2 of the 4 tracks run round no wheel"
+        ],
+        "stop": [
+          [
+            null,
+            null
+          ],
+          [
+            null,
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 5.1
+        "judged": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "cause": "track-not-read",
+        "collisionStops": [
+          [
+            1,
+            -1,
+            604,
+            677,
+            1.23,
+            1.23
+          ],
+          [
+            2,
+            1,
+            238,
+            716,
+            0.27,
+            0.27
+          ],
+          [
+            2,
+            -1,
+            238,
+            716,
+            0.03,
+            0.03
+          ],
+          [
+            3,
+            1,
+            284,
+            741,
+            0.17,
+            0.17
+          ],
+          [
+            3,
+            -1,
+            284,
+            741,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 5.3
       },
       {
         "result": "not checked",
@@ -863,7 +973,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 2.4
       },
       {
         "result": "not checked",

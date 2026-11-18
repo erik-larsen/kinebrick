@@ -1,0 +1,511 @@
+{
+  "set": "42000-1",
+  "entries": [
+    {
+      "id": "right-rear-driver-in-its-hub",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 225 -60 640 0 0 -1 -1 0 0 0 1 0 32494.dat",
+      "part": "p351 32494",
+      "position": [
+        220,
+        -60,
+        640
+      ],
+      "evidence": "The right rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn."
+    },
+    {
+      "id": "left-rear-driver-in-its-hub",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 -225 -60 640 0 0 1 -1 0 0 0 -1 0 32494.dat",
+      "part": "p356 32494",
+      "position": [
+        -220,
+        -60,
+        640
+      ],
+      "evidence": "The left rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn; with right-rear-driver-in-its-hub."
+    },
+    {
+      "id": "left-front-rocker-p559",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 -60 -85 -260 0 0 1 0 1 0 -1 0 0 32056.dat",
+      "part": "p559 32056.dat",
+      "position": [
+        -60,
+        -85,
+        -260
+      ],
+      "orientation": [
+        0.1547,
+        0,
+        0.988,
+        0,
+        1,
+        0,
+        -0.988,
+        0,
+        0.1547
+      ],
+      "evidence": "The file draws each front pushrod in a pose its parts cannot take. The pushrod is a 9L steering link 32293, rigid, 160 LDU between its two ball sockets. Its first socket is on the rocker's axle towball 2736, and its other should be on the towball pin 6628 in the wishbone's cross block. Those two balls are drawn 154.4 LDU apart, so the far socket lies 6.8 LDU off its ball, nothing joins it, and the rod swings into the parts beside it at once (function 4). The wishbone and its towball sit on the grid, as built. The rocker, which turns on its upright axle and carries the shock absorber's cylinder, is drawn at a chosen angle. Turned 8.9 degrees about that axle, its ball lies 160 LDU from the towball, and the shock (rod 4254 in cylinder 4255, travel 90 to 110 LDU by its part data) shortens from 100 to 93.8, inside its travel. The rear shocks are drawn at 100. Book 2, steps 17 and 18 (pages 15 and 16, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037212.pdf#page=15) show the pushrods on both balls. Moved: the rocker's eight parts turned about its axle, the pushrod set on the turned ball and aimed at the towball, and the shock's cylinder set on its eye on the rocker and aimed at the rod's eye."
+    },
+    {
+      "id": "left-front-rocker-p560",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 71 -60 -90 -300 0 0 1 1 0 0 0 1 0 2736.dat",
+      "part": "p560 2736.dat",
+      "position": [
+        -53.8116,
+        -90,
+        -299.5184
+      ],
+      "orientation": [
+        0,
+        -0.1547,
+        0.988,
+        1,
+        0,
+        0,
+        0,
+        0.988,
+        0.1547
+      ],
+      "evidence": "With left-front-rocker-p559: another of the left rocker's parts, turned with it."
+    },
+    {
+      "id": "left-front-rocker-p561",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 -60 -75 -260 0 0 1 0 1 0 -1 0 0 32056.dat",
+      "part": "p561 32056.dat",
+      "position": [
+        -60,
+        -75,
+        -260
+      ],
+      "orientation": [
+        0.1547,
+        0,
+        0.988,
+        0,
+        1,
+        0,
+        -0.988,
+        0,
+        0.1547
+      ],
+      "evidence": "With left-front-rocker-p559: another of the left rocker's parts, turned with it."
+    },
+    {
+      "id": "left-front-rocker-p562",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 -40 -90 -260 0 0 1 -1 0 0 0 -1 0 2780.dat",
+      "part": "p562 2780.dat",
+      "position": [
+        -40.2408,
+        -90,
+        -256.9058
+      ],
+      "orientation": [
+        0,
+        0.1547,
+        0.988,
+        -1,
+        0,
+        0,
+        0,
+        -0.988,
+        0.1547
+      ],
+      "evidence": "With left-front-rocker-p559: another of the left rocker's parts, turned with it."
+    },
+    {
+      "id": "left-front-rocker-p563",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 15 -40 -100 -260 0 0 1 0 1 0 -1 0 0 32523.dat",
+      "part": "p563 32523.dat",
+      "position": [
+        -40.2408,
+        -100,
+        -256.9058
+      ],
+      "orientation": [
+        0.1547,
+        0,
+        0.988,
+        0,
+        1,
+        0,
+        -0.988,
+        0,
+        0.1547
+      ],
+      "evidence": "With left-front-rocker-p559: another of the left rocker's parts, turned with it."
+    },
+    {
+      "id": "left-front-rocker-p564",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 -20 -90 -260 0 0 1 -1 0 0 0 -1 0 87083.dat",
+      "part": "p564 87083.dat",
+      "position": [
+        -20.4816,
+        -90,
+        -253.8116
+      ],
+      "orientation": [
+        0,
+        0.1547,
+        0.988,
+        -1,
+        0,
+        0,
+        0,
+        -0.988,
+        0.1547
+      ],
+      "evidence": "With left-front-rocker-p559: another of the left rocker's parts, turned with it."
+    },
+    {
+      "id": "left-front-rocker-p568",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 71 -20 -60 -260 -1 0 0 0 0 -1 0 -1 0 3713.dat",
+      "part": "p568 3713.dat",
+      "position": [
+        -20.4816,
+        -60,
+        -253.8116
+      ],
+      "orientation": [
+        -0.988,
+        0.1547,
+        0,
+        0,
+        0,
+        -1,
+        -0.1547,
+        -0.988,
+        0
+      ],
+      "evidence": "With left-front-rocker-p559: another of the left rocker's parts, turned with it."
+    },
+    {
+      "id": "left-front-rocker-p569",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 -60 -90 -260 0 0 -1 1 0 0 0 -1 0 87083.dat",
+      "part": "p569 87083.dat",
+      "position": [
+        -60,
+        -90,
+        -260
+      ],
+      "orientation": [
+        0,
+        0.1547,
+        -0.988,
+        1,
+        0,
+        0,
+        0,
+        -0.988,
+        -0.1547
+      ],
+      "evidence": "With left-front-rocker-p559: another of the left rocker's parts, turned with it."
+    },
+    {
+      "id": "left-front-pushrod-p571",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 -60 -102 -300 0.112646 0.382683 -0.916993 -0.0466595 0.923878 0.379831 0.993152 0 0.121869 32293.dat",
+      "part": "p571 32293.dat",
+      "position": [
+        -53.8116,
+        -102,
+        -299.5184
+      ],
+      "orientation": [
+        0.1127,
+        0.3903,
+        -0.9137,
+        -0.0467,
+        0.9207,
+        0.3875,
+        0.9925,
+        -0.001,
+        0.122
+      ],
+      "evidence": "With left-front-rocker-p559: the left pushrod, its first socket on the turned rocker's ball, aimed at the towball 160 LDU away."
+    },
+    {
+      "id": "left-front-shock-cylinder-p566",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 14 -20 -120 -260 1 0 0 0 0 -1 0 1 0 4255.dat",
+      "part": "p566 4255.dat",
+      "position": [
+        -20.4816,
+        -120,
+        -253.8116
+      ],
+      "orientation": [
+        1,
+        0.0051,
+        0,
+        0,
+        0,
+        -1,
+        -0.0051,
+        1,
+        0
+      ],
+      "evidence": "With left-front-rocker-p559: the left shock's cylinder, its eye on the turned rocker, aimed at its rod's eye, 93.8 LDU away."
+    },
+    {
+      "id": "right-front-rocker-p573",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 60 -85 -260 0 0 -1 0 -1 0 -1 0 0 32056.dat",
+      "part": "p573 32056.dat",
+      "position": [
+        60,
+        -85,
+        -260
+      ],
+      "orientation": [
+        -0.1547,
+        0,
+        -0.988,
+        0,
+        -1,
+        0,
+        -0.988,
+        0,
+        0.1547
+      ],
+      "evidence": "The file draws each front pushrod in a pose its parts cannot take. The pushrod is a 9L steering link 32293, rigid, 160 LDU between its two ball sockets. Its first socket is on the rocker's axle towball 2736, and its other should be on the towball pin 6628 in the wishbone's cross block. Those two balls are drawn 154.4 LDU apart, so the far socket lies 6.8 LDU off its ball, nothing joins it, and the rod swings into the parts beside it at once (function 4). The wishbone and its towball sit on the grid, as built. The rocker, which turns on its upright axle and carries the shock absorber's cylinder, is drawn at a chosen angle. Turned 8.9 degrees about that axle, its ball lies 160 LDU from the towball, and the shock (rod 4254 in cylinder 4255, travel 90 to 110 LDU by its part data) shortens from 100 to 93.8, inside its travel. The rear shocks are drawn at 100. Book 2, steps 17 and 18 (pages 15 and 16, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037212.pdf#page=15) show the pushrods on both balls. Moved: the rocker's eight parts turned about its axle, the pushrod set on the turned ball and aimed at the towball, and the shock's cylinder set on its eye on the rocker and aimed at the rod's eye."
+    },
+    {
+      "id": "right-front-rocker-p574",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 71 60 -90 -300 0 0 1 1 0 0 0 1 0 2736.dat",
+      "part": "p574 2736.dat",
+      "position": [
+        53.8116,
+        -90,
+        -299.5184
+      ],
+      "orientation": [
+        0,
+        0.1547,
+        0.988,
+        1,
+        0,
+        0,
+        0,
+        0.988,
+        -0.1547
+      ],
+      "evidence": "With right-front-rocker-p573: another of the right rocker's parts, turned with it."
+    },
+    {
+      "id": "right-front-rocker-p575",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 60 -75 -260 0 0 -1 0 -1 0 -1 0 0 32056.dat",
+      "part": "p575 32056.dat",
+      "position": [
+        60,
+        -75,
+        -260
+      ],
+      "orientation": [
+        -0.1547,
+        0,
+        -0.988,
+        0,
+        -1,
+        0,
+        -0.988,
+        0,
+        0.1547
+      ],
+      "evidence": "With right-front-rocker-p573: another of the right rocker's parts, turned with it."
+    },
+    {
+      "id": "right-front-rocker-p576",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 40 -90 -260 0 1 0 -1 0 0 0 0 1 2780.dat",
+      "part": "p576 2780.dat",
+      "position": [
+        40.2408,
+        -90,
+        -256.9058
+      ],
+      "orientation": [
+        0,
+        0.988,
+        0.1547,
+        -1,
+        0,
+        0,
+        0,
+        -0.1547,
+        0.988
+      ],
+      "evidence": "With right-front-rocker-p573: another of the right rocker's parts, turned with it."
+    },
+    {
+      "id": "right-front-rocker-p577",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 71 20 -60 -260 -1 0 0 0 0 -1 0 -1 0 3713.dat",
+      "part": "p577 3713.dat",
+      "position": [
+        20.4816,
+        -60,
+        -253.8116
+      ],
+      "orientation": [
+        -0.988,
+        -0.1547,
+        0,
+        0,
+        0,
+        -1,
+        0.1547,
+        -0.988,
+        0
+      ],
+      "evidence": "With right-front-rocker-p573: another of the right rocker's parts, turned with it."
+    },
+    {
+      "id": "right-front-rocker-p578",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 20 -90 -260 0 0 1 -1 0 0 0 -1 0 87083.dat",
+      "part": "p578 87083.dat",
+      "position": [
+        20.4816,
+        -90,
+        -253.8116
+      ],
+      "orientation": [
+        0,
+        -0.1547,
+        0.988,
+        -1,
+        0,
+        0,
+        0,
+        -0.988,
+        -0.1547
+      ],
+      "evidence": "With right-front-rocker-p573: another of the right rocker's parts, turned with it."
+    },
+    {
+      "id": "right-front-rocker-p579",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 60 -90 -260 0 0 -1 1 0 0 0 -1 0 87083.dat",
+      "part": "p579 87083.dat",
+      "position": [
+        60,
+        -90,
+        -260
+      ],
+      "orientation": [
+        0,
+        -0.1547,
+        -0.988,
+        1,
+        0,
+        0,
+        0,
+        -0.988,
+        0.1547
+      ],
+      "evidence": "With right-front-rocker-p573: another of the right rocker's parts, turned with it."
+    },
+    {
+      "id": "right-front-rocker-p581",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 15 40 -100 -260 0 0 -1 0 1 0 1 0 0 32523.dat",
+      "part": "p581 32523.dat",
+      "position": [
+        40.2408,
+        -100,
+        -256.9058
+      ],
+      "orientation": [
+        0.1547,
+        0,
+        -0.988,
+        0,
+        1,
+        0,
+        0.988,
+        0,
+        0.1547
+      ],
+      "evidence": "With right-front-rocker-p573: another of the right rocker's parts, turned with it."
+    },
+    {
+      "id": "right-front-pushrod-p580",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 0 60 -102 -300 0.104635 -0.382683 0.917941 0.0433411 0.923879 0.380223 -0.994178 0 0.113203 32293.dat",
+      "part": "p580 32293.dat",
+      "position": [
+        53.8116,
+        -102,
+        -299.5184
+      ],
+      "orientation": [
+        0.1127,
+        -0.3903,
+        0.9137,
+        0.0467,
+        0.9207,
+        0.3875,
+        -0.9925,
+        -0.001,
+        0.122
+      ],
+      "evidence": "With right-front-rocker-p573: the right pushrod, its first socket on the turned rocker's ball, aimed at the towball 160 LDU away."
+    },
+    {
+      "id": "right-front-shock-cylinder-p582",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 14 20 -120 -260 1 0 0 0 0 -1 0 1 0 4255.dat",
+      "part": "p582 4255.dat",
+      "position": [
+        20.4816,
+        -120,
+        -253.8116
+      ],
+      "orientation": [
+        1,
+        -0.0051,
+        0,
+        0,
+        0,
+        -1,
+        0.0051,
+        1,
+        0
+      ],
+      "evidence": "With right-front-rocker-p573: the right shock's cylinder, its eye on the turned rocker, aimed at its rod's eye, 93.8 LDU away."
+    }
+  ]
+}

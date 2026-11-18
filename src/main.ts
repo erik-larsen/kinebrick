@@ -517,7 +517,7 @@ async function start() {
   };
   let pinWorker: Worker | null = null;
   let asked = 0;
-  const answers = new Map<number, (pins: number[]) => void>();
+  const answers = new Map<number, (pins: number[], why?: 'more' | 'joints' | null) => void>();
   // Started once the first collision pass has its answer (see read), so the two helpers don't
   // share the machine (on the 42114, each made the other's work twice as slow), or at once if a
   // drag asks for pins before then.
@@ -529,7 +529,7 @@ async function start() {
       return;
     }
     pinWorker.onmessage = (e: MessageEvent) => {
-      answers.get(e.data.ask)?.(e.data.pins);
+      answers.get(e.data.ask)?.(e.data.pins, e.data.why);
       answers.delete(e.data.ask);
     };
     pinWorker.onerror = () => {
@@ -546,6 +546,15 @@ async function start() {
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
       pinWorker.postMessage({ ask: asked, part, freed: [...freed], search, lifted, at: at ? [at.x, at.y, at.z] : undefined });
+    });
+  // The pins a press with Shift frees (see pinsForShift), and if none, why.
+  const pinsToShift = (part: number) =>
+    new Promise<{ pins: number[]; why: 'more' | 'joints' | null }>((resolve) => {
+      startPinWorker();
+      if (!pinWorker) return resolve({ pins: [], why: 'more' });
+      asked++;
+      answers.set(asked, (pins, why) => resolve({ pins: pins.filter((pin) => !freed.has(pin)), why: why ?? null }));
+      pinWorker.postMessage({ ask: asked, part, freed: [...freed], shift: true });
     });
   // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
   // does (see readAsBuilt), so everything stays where it now is.
@@ -656,7 +665,7 @@ async function start() {
     partObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     shapeObjects.forEach((obj) => (obj.userData.startMatrix = obj.matrix.clone()));
     // Where each chain's or track's links go as it moves round (see paths.ts).
-    placeLinks = mech.loops.map((loop) => (loop.wheels.length ? loopLinks(loop.path.points, loop.links.map((i) => partObjects[i].userData.startMatrix)) : null));
+    placeLinks = mech.loops.map((loop) => (loop.wheels.length ? loopLinks(loop.path.points, loop.links.map((i) => partObjects[i].userData.startMatrix), loop.path.byHand && loop.path.halfWidth !== undefined) : null));
 
     appearance.setMechanism(mech);
     focusStart = null; // the bodies have changed
@@ -1120,6 +1129,7 @@ async function start() {
     shiftStick,
     shift,
     pinsToFree,
+    pinsToShift,
     freePins,
   };
   summary.textContent = 'Setting up…';
@@ -1164,7 +1174,7 @@ async function start() {
   ldrawSpace.add(marks);
   setup.flipSwitch = (part) => flipSwitch(mech, marks, part);
   const interaction = setUpInteraction(setup);
-  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, setup, interaction, collisions: () => collisions, views };
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, drawn: () => partObjects.map((obj) => obj.matrix.clone()), setup, interaction, collisions: () => collisions, views };
   // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
   // on the title card: a box to type it in, and a button either side that changes it by 10,
   // never below 1 or above MAX_RPM.

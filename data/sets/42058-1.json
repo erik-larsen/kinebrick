@@ -53,10 +53,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 1,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 2,
     "counts": {
       "works": 2,
       "skipped": 1,
@@ -89,15 +88,15 @@
           {
             "p18 94925": [
               1,
-              0
+              7.58e-14
             ],
             "p21 18946": [
               1,
-              1.51e-12
+              1.13e-12
             ],
             "p17 94925": [
               1,
-              4.07e-13
+              3.78e-13
             ]
           }
         ],
@@ -131,7 +130,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",

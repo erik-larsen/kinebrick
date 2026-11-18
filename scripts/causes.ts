@@ -22,6 +22,11 @@ export const CAUSES = {
   // loose parts are, so its functions can't count as working either (see Mechanism.frames).
   'control-fixed': { owner: 'inference', says: 'The control is part of the frame, or has no joint to work' },
   'first-failed': { owner: 'check', says: "A control that has to be worked first didn't go" },
+  // A function that runs a track (crawler-tracks) whose track isn't read as a loop round the wheel
+  // it turns, or a track of the model read round no wheel: its links don't run round with it,
+  // whatever the wheel does (the 9391 Crawler Crane's, its links placed by hand, before they were
+  // read as a track).
+  'track-not-read': { owner: 'inference', says: 'The function runs a track, but no track is read round a wheel it turns, or a track is read round no wheel' },
   'control-jammed': { owner: 'inference', says: "The control has a joint, but nothing lets it move" },
   'part-fixed': { owner: 'inference', says: "A part that should move can't move at all against what it's measured against" },
   'not-driven': { owner: 'inference', says: 'A part that should move can move, but nothing ties it to the control' },

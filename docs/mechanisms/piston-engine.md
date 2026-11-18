@@ -4,7 +4,7 @@ A crankshaft runs pistons up and down in their cylinders, a model engine. (Engin
 
 First appears in 1978, in [854 Go-Kart](https://erik-larsen.github.io/kinebrick/?model=854-Go%20Kart) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.
 
-Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 55 works, 13 partly, 2 no, 1 skipped.
+Used in 65 of the 186 surveyed sets, by 71 functions. Kinebrick: 54 works, 13 partly, 3 no, 1 skipped.
 
 ## By decade
 
@@ -99,7 +99,7 @@ Each detail by the set it first appears in.
 
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
-- *6 cylinders:* Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (works)
+- *6 cylinders:* Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (no)
 
 **1994, [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car)**
 

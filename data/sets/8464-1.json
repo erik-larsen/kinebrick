@@ -159,10 +159,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 7,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 12,
     "counts": {
       "partly": 5,
       "works": 2,
@@ -237,7 +236,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p268 3647",
-        "seconds": 0.8
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -305,7 +304,7 @@
         ],
         "cause": "not-driven",
         "detail": "p291 2819",
-        "seconds": 0.9
+        "seconds": 1.5
       },
       {
         "result": "partly",
@@ -324,27 +323,27 @@
           {
             "p569 2995": [
               1,
-              4.93e-13
+              4.55e-13
             ],
             "p8 4019": [
               1,
-              7.58e-14
+              3.59e-13
             ],
             "p31 3650a": [
               0.667,
-              9.47e-14
+              0
             ],
             "p69 3712": [
               0.667,
-              3.79e-14
+              2.84e-14
             ],
             "p132 3650a": [
               0.667,
-              3.79e-14
+              2.84e-14
             ],
             "p126 4019": [
               1,
-              5.87e-13
+              3.98e-13
             ],
             "p427 2854": [
               0,
@@ -352,11 +351,11 @@
             ],
             "p437 2851": [
               0,
-              9.47e-15
+              2.84e-14
             ],
             "p449 2851": [
               0,
-              0
+              1.89e-14
             ]
           }
         ],
@@ -395,7 +394,7 @@
         ],
         "cause": "not-driven",
         "detail": "p427 2854",
-        "seconds": 0.7
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -449,7 +448,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -503,7 +502,7 @@
             ]
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "skipped",
@@ -513,8 +512,8 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.33,
+            0
           ]
         ],
         "still": [
@@ -580,20 +579,44 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 3,
         "judged": [
           0
         ],
         "cause": "part-fixed",
         "detail": "p234 3702",
-        "seconds": 1.6
+        "collisionStops": [
+          [
+            0,
+            1,
+            256,
+            470,
+            1.33,
+            1.33
+          ],
+          [
+            0,
+            -1,
+            431,
+            470,
+            0,
+            0
+          ]
+        ],
+        "seconds": 1.5
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.17,
+            -1.43
           ]
         ],
         "still": [
@@ -644,13 +667,37 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 1,
         "judged": [
-          0
+          1
         ],
         "cause": "not-driven",
         "detail": "p558 32030 against p234 3702",
-        "seconds": 0.8
+        "collisionStops": [
+          [
+            0,
+            1,
+            374,
+            400,
+            0.17,
+            0.17
+          ],
+          [
+            0,
+            -1,
+            277,
+            515,
+            1.43,
+            1.43
+          ]
+        ],
+        "seconds": 0.7
       }
     ]
   }

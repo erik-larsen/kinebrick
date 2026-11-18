@@ -459,11 +459,44 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [8840-1](#8840-1-v2-piston-p120-on-its-rod) | v2-piston-p120-on-its-rod | moves `2851.dat` (in `8840 - step4b.ldr`) to 0 -7.586 35.907, turned | Signed off by Erik, 2026-11-17 |
 | [8840-1](#8840-1-v2-rod-p117-to-its-piston) | v2-rod-p117-to-its-piston | moves `2852.dat` (in `8840 - step4b.ldr`) to 0 10 0, turned | Signed off by Erik, 2026-11-17 |
 | [8840-1](#8840-1-v2-piston-p121-on-its-rod) | v2-piston-p121-on-its-rod | moves `2851.dat` (in `8840 - step4b.ldr`) to 0 -8.044 -35.711, turned | Signed off by Erik, 2026-11-17 |
+| [8868-1](#8868-1-rod-line-1368-on-its-piston) | rod-line-1368-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to 10 10 30, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1384-on-its-rod) | piston-line-1384-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to -25.908 -7.624 30 | Proposed, not applied until signed off |
+| [8868-1](#8868-1-rod-line-1372-on-its-piston) | rod-line-1372-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to -10 10 70, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1382-on-its-rod) | piston-line-1382-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to 25.908 -7.624 70 | Proposed, not applied until signed off |
+| [8868-1](#8868-1-rod-line-1373-on-its-piston) | rod-line-1373-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to -10 10 70, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1385-on-its-rod) | piston-line-1385-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to -37.413 -19.129 70 | Proposed, not applied until signed off |
+| [8868-1](#8868-1-rod-line-1378-on-its-piston) | rod-line-1378-on-its-piston | moves `2852.dat` (in `8868-1 - Motorblock.ldr`) to 10 10 110, turned | Proposed, not applied until signed off |
+| [8868-1](#8868-1-piston-line-1386-on-its-rod) | piston-line-1386-on-its-rod | moves `2851.dat` (in `8868-1 - Motorblock.ldr`) to -25.908 -7.624 110 | Proposed, not applied until signed off |
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [9397-1](#9397-1-plough-link-beam-level) | plough-link-beam-level | moves `32316.dat` (in `9397 - 9397B.ldr`) to 0 -83.3547 -529.8725, turned | Proposed, not applied until signed off |
 | [9397-1](#9397-1-plough-link-pin-in-its-hole) | plough-link-pin-in-its-hole | moves `32556.dat` (in `9397 - 9397B.ldr`) to 0 -43.3514 -529.886 | Proposed, not applied until signed off |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
+| [42000-1](#42000-1-right-rear-driver-in-its-hub) | right-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to 220 -60 640 | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-rear-driver-in-its-hub) | left-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to -220 -60 640 | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p559) | left-front-rocker-p559 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to -60 -85 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p560) | left-front-rocker-p560 | moves `2736.dat` (in `42000 - 42000.L3B.ldr`) to -53.8116 -90 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p561) | left-front-rocker-p561 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to -60 -75 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p562) | left-front-rocker-p562 | moves `2780.dat` (in `42000 - 42000.L3B.ldr`) to -40.2408 -90 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p563) | left-front-rocker-p563 | moves `32523.dat` (in `42000 - 42000.L3B.ldr`) to -40.2408 -100 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p564) | left-front-rocker-p564 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to -20.4816 -90 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p568) | left-front-rocker-p568 | moves `3713.dat` (in `42000 - 42000.L3B.ldr`) to -20.4816 -60 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-rocker-p569) | left-front-rocker-p569 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to -60 -90 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-pushrod-p571) | left-front-pushrod-p571 | moves `32293.dat` (in `42000 - 42000.L3B.ldr`) to -53.8116 -102 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-front-shock-cylinder-p566) | left-front-shock-cylinder-p566 | moves `4255.dat` (in `42000 - 42000.L3B.ldr`) to -20.4816 -120 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p573) | right-front-rocker-p573 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to 60 -85 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p574) | right-front-rocker-p574 | moves `2736.dat` (in `42000 - 42000.L3B.ldr`) to 53.8116 -90 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p575) | right-front-rocker-p575 | moves `32056.dat` (in `42000 - 42000.L3B.ldr`) to 60 -75 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p576) | right-front-rocker-p576 | moves `2780.dat` (in `42000 - 42000.L3B.ldr`) to 40.2408 -90 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p577) | right-front-rocker-p577 | moves `3713.dat` (in `42000 - 42000.L3B.ldr`) to 20.4816 -60 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p578) | right-front-rocker-p578 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to 20.4816 -90 -253.8116, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p579) | right-front-rocker-p579 | moves `87083.dat` (in `42000 - 42000.L3B.ldr`) to 60 -90 -260, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-rocker-p581) | right-front-rocker-p581 | moves `32523.dat` (in `42000 - 42000.L3B.ldr`) to 40.2408 -100 -256.9058, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-pushrod-p580) | right-front-pushrod-p580 | moves `32293.dat` (in `42000 - 42000.L3B.ldr`) to 53.8116 -102 -299.5184, turned | Proposed, not applied until signed off |
+| [42000-1](#42000-1-right-front-shock-cylinder-p582) | right-front-shock-cylinder-p582 | moves `4255.dat` (in `42000 - 42000.L3B.ldr`) to 20.4816 -120 -253.8116, turned | Proposed, not applied until signed off |
+| [42038-1](#42038-1-rear-left-tread-on-its-unit) | rear-left-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to -165 161.666 300.4165 | Proposed, not applied until signed off |
+| [42038-1](#42038-1-rear-right-tread-on-its-unit) | rear-right-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to 165 161.666 300.4155 | Proposed, not applied until signed off |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
+| [42042-1](#42042-1-left-tread-on-its-wheels) | left-tread-on-its-wheels | moves `42042 - technicChainTread38Closed-1.ldr` to -210 -70 60 | Proposed, not applied until signed off |
 | [42050-1](#42050-1-wheelie-actuator-bevel-on-its-axis) | wheelie-actuator-bevel-on-its-axis | moves `32270.dat` (in `42050 - linact.ldr`) to -280.431 -6.163 0, turned | Signed off by Erik, 2026-11-17 |
 | [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
@@ -481,6 +514,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42110-1](#42110-1-front-driver-at-z-minus-177-on-its-hub-axis) | front-driver-at-z-minus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 -177.81 | Proposed, not applied until signed off |
+| [42110-1](#42110-1-front-driver-at-z-plus-177-on-its-hub-axis) | front-driver-at-z-plus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 177.81 | Proposed, not applied until signed off |
 | [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Signed off by Erik, 2026-11-15 |
 | [42112-1](#42112-1-drive-shaft-bevel-on-the-shaft) | drive-shaft-bevel-on-the-shaft | moves `18575.dat` to 20 0 184 | Signed off by Erik, 2026-11-17 |
 
@@ -649,6 +684,118 @@ In `8840 - step4b.ldr` (p121 2851), the line
 
 is read with its part at 0 -8.044 -35.711, turned to 0 0 -1 -0.777 0.629 0 0.629 0.777 0.
 
+### 8868-1: rod-line-1368-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.12 degrees about its crank pin, with the piston at line 1384 moved 2.64 LDU along its cylinder, to -25.908 -7.624 30, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 10 10 30 -0.423 0.906 0 0.906 0.423 0 0 0 -1 2852.dat
+```
+
+is read with its part at 10 10 30, turned to -0.4406 0.8977 0 0.8977 0.4406 0 0 0 -1.
+
+### 8868-1: piston-line-1384-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1368-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 -27.778 -9.494 30 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at -25.908 -7.624 30.
+
+### 8868-1: rod-line-1372-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 3.86 degrees about its crank pin, with the piston at line 1382 moved 4.64 LDU along its cylinder, to 25.908 -7.624 70, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 -10 10 70 0.5 -0.866 0 0.866 0.5 0 0 0 1 2852.dat
+```
+
+is read with its part at -10 10 70, turned to 0.4406 -0.8977 0 0.8977 0.4406 0 0 0 1.
+
+### 8868-1: piston-line-1382-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1372-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 29.192 -10.908 70 0.707 -0.707 0 0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at 25.908 -7.624 70.
+
+### 8868-1: rod-line-1373-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.74 degrees about its crank pin, with the piston at line 1385 moved 4.37 LDU along its cylinder, to -37.413 -19.129 70, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 -10 10 70 -0.707 0.707 0 0.707 0.707 0 0 0 -1 2852.dat
+```
+
+is read with its part at -10 10 70, turned to -0.7282 0.6853 0 0.6853 0.7282 0 0 0 -1.
+
+### 8868-1: piston-line-1385-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1373-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 -40.506 -22.222 70 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at -37.413 -19.129 70.
+
+### 8868-1: rod-line-1378-on-its-piston
+
+Proposed, not applied until signed off.
+
+The engine's six connecting rods 2852 turn on the crankshaft's pins and each ends in a ball, 40 LDU from its pin (the shape's 8-8sphe at 0 -40 0, as the shadow library has it), that sits in a piston 2851's socket, the piston's middle; each piston slides in its cylinder 2850a along the cylinder's axis. In the file two rods have their ball within 2.04 LDU of the piston's middle and are read in it; the other four miss by 3.0 (lines 1368 and 1378, the rods at z 30 and z 110 on the left bank), 4.6 (line 1372) and 4.5 LDU (line 1373), not along the cylinders' axes, so they aren't read in their pistons, the four pistons are driven by nothing, and each rod swings into its cylinder's wall at the first step: function 4 stops at once. Each crank pin is 1.21 LDU from its cylinder's axis, so a rod 40 long reaches it: this rod turned 1.12 degrees about its crank pin, with the piston at line 1386 moved 2.64 LDU along its cylinder, to -25.908 -7.624 110, so that its ball sits at the piston's middle and the crank's angle stays as drawn. The booklet's step 27 (its 28th scanned page, omr/instructions/8868-1/028.jpg, from https://lego.brickinstructions.com/en/lego_instructions/set/8868) puts the six rods on the crank pins (sub-steps 1 to 3), presses a piston onto each rod's ball (4), and puts the cylinders over the pistons (5 and 6).
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 7 10 10 110 -0.423 0.906 0 0.906 0.423 0 0 0 -1 2852.dat
+```
+
+is read with its part at 10 10 110, turned to -0.4406 0.8977 0 0.8977 0.4406 0 0 0 -1.
+
+### 8868-1: piston-line-1386-on-its-rod
+
+Proposed, not applied until signed off.
+
+With rod-line-1378-on-its-piston: the piston moved along its cylinder's axis to where that rod's ball now is.
+
+In `8868-1 - Motorblock.ldr`, the line
+
+```
+1 8 -27.778 -9.494 110 0.707 0.707 0 -0.707 0.707 0 0 0 1 2851.dat
+```
+
+is read with its part at -25.908 -7.624 110.
+
 ### 9396-1: left-inner-main-wheel
 
 Signed off by Erik, 2026-11-14.
@@ -718,6 +865,342 @@ Added to the main model:
 1 0 -60 -0.235 271.282 0 0 1 0.008 1 0 -1 0.008 0 2780.dat
 ```
 
+### 42000-1: right-rear-driver-in-its-hub
+
+Proposed, not applied until signed off.
+
+The right rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn.
+
+In `42000 - 42000.L3B.ldr` (p351 32494), the line
+
+```
+1 72 225 -60 640 0 0 -1 -1 0 0 0 1 0 32494.dat
+```
+
+is read with its part at 220 -60 640.
+
+### 42000-1: left-rear-driver-in-its-hub
+
+Proposed, not applied until signed off.
+
+The left rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn; with right-rear-driver-in-its-hub.
+
+In `42000 - 42000.L3B.ldr` (p356 32494), the line
+
+```
+1 72 -225 -60 640 0 0 1 -1 0 0 0 -1 0 32494.dat
+```
+
+is read with its part at -220 -60 640.
+
+### 42000-1: left-front-rocker-p559
+
+Proposed, not applied until signed off.
+
+The file draws each front pushrod in a pose its parts cannot take. The pushrod is a 9L steering link 32293, rigid, 160 LDU between its two ball sockets. Its first socket is on the rocker's axle towball 2736, and its other should be on the towball pin 6628 in the wishbone's cross block. Those two balls are drawn 154.4 LDU apart, so the far socket lies 6.8 LDU off its ball, nothing joins it, and the rod swings into the parts beside it at once (function 4). The wishbone and its towball sit on the grid, as built. The rocker, which turns on its upright axle and carries the shock absorber's cylinder, is drawn at a chosen angle. Turned 8.9 degrees about that axle, its ball lies 160 LDU from the towball, and the shock (rod 4254 in cylinder 4255, travel 90 to 110 LDU by its part data) shortens from 100 to 93.8, inside its travel. The rear shocks are drawn at 100. Book 2, steps 17 and 18 (pages 15 and 16, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037212.pdf#page=15) show the pushrods on both balls. Moved: the rocker's eight parts turned about its axle, the pushrod set on the turned ball and aimed at the towball, and the shock's cylinder set on its eye on the rocker and aimed at the rod's eye.
+
+In `42000 - 42000.L3B.ldr` (p559 32056.dat), the line
+
+```
+1 0 -60 -85 -260 0 0 1 0 1 0 -1 0 0 32056.dat
+```
+
+is read with its part at -60 -85 -260, turned to 0.1547 0 0.988 0 1 0 -0.988 0 0.1547.
+
+### 42000-1: left-front-rocker-p560
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p560 2736.dat), the line
+
+```
+1 71 -60 -90 -300 0 0 1 1 0 0 0 1 0 2736.dat
+```
+
+is read with its part at -53.8116 -90 -299.5184, turned to 0 -0.1547 0.988 1 0 0 0 0.988 0.1547.
+
+### 42000-1: left-front-rocker-p561
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p561 32056.dat), the line
+
+```
+1 0 -60 -75 -260 0 0 1 0 1 0 -1 0 0 32056.dat
+```
+
+is read with its part at -60 -75 -260, turned to 0.1547 0 0.988 0 1 0 -0.988 0 0.1547.
+
+### 42000-1: left-front-rocker-p562
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p562 2780.dat), the line
+
+```
+1 0 -40 -90 -260 0 0 1 -1 0 0 0 -1 0 2780.dat
+```
+
+is read with its part at -40.2408 -90 -256.9058, turned to 0 0.1547 0.988 -1 0 0 0 -0.988 0.1547.
+
+### 42000-1: left-front-rocker-p563
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p563 32523.dat), the line
+
+```
+1 15 -40 -100 -260 0 0 1 0 1 0 -1 0 0 32523.dat
+```
+
+is read with its part at -40.2408 -100 -256.9058, turned to 0.1547 0 0.988 0 1 0 -0.988 0 0.1547.
+
+### 42000-1: left-front-rocker-p564
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p564 87083.dat), the line
+
+```
+1 72 -20 -90 -260 0 0 1 -1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at -20.4816 -90 -253.8116, turned to 0 0.1547 0.988 -1 0 0 0 -0.988 0.1547.
+
+### 42000-1: left-front-rocker-p568
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p568 3713.dat), the line
+
+```
+1 71 -20 -60 -260 -1 0 0 0 0 -1 0 -1 0 3713.dat
+```
+
+is read with its part at -20.4816 -60 -253.8116, turned to -0.988 0.1547 0 0 0 -1 -0.1547 -0.988 0.
+
+### 42000-1: left-front-rocker-p569
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: another of the left rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p569 87083.dat), the line
+
+```
+1 72 -60 -90 -260 0 0 -1 1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at -60 -90 -260, turned to 0 0.1547 -0.988 1 0 0 0 -0.988 -0.1547.
+
+### 42000-1: left-front-pushrod-p571
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: the left pushrod, its first socket on the turned rocker's ball, aimed at the towball 160 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p571 32293.dat), the line
+
+```
+1 0 -60 -102 -300 0.112646 0.382683 -0.916993 -0.0466595 0.923878 0.379831 0.993152 0 0.121869 32293.dat
+```
+
+is read with its part at -53.8116 -102 -299.5184, turned to 0.1127 0.3903 -0.9137 -0.0467 0.9207 0.3875 0.9925 -0.001 0.122.
+
+### 42000-1: left-front-shock-cylinder-p566
+
+Proposed, not applied until signed off.
+
+With left-front-rocker-p559: the left shock's cylinder, its eye on the turned rocker, aimed at its rod's eye, 93.8 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p566 4255.dat), the line
+
+```
+1 14 -20 -120 -260 1 0 0 0 0 -1 0 1 0 4255.dat
+```
+
+is read with its part at -20.4816 -120 -253.8116, turned to 1 0.0051 0 0 0 -1 -0.0051 1 0.
+
+### 42000-1: right-front-rocker-p573
+
+Proposed, not applied until signed off.
+
+The file draws each front pushrod in a pose its parts cannot take. The pushrod is a 9L steering link 32293, rigid, 160 LDU between its two ball sockets. Its first socket is on the rocker's axle towball 2736, and its other should be on the towball pin 6628 in the wishbone's cross block. Those two balls are drawn 154.4 LDU apart, so the far socket lies 6.8 LDU off its ball, nothing joins it, and the rod swings into the parts beside it at once (function 4). The wishbone and its towball sit on the grid, as built. The rocker, which turns on its upright axle and carries the shock absorber's cylinder, is drawn at a chosen angle. Turned 8.9 degrees about that axle, its ball lies 160 LDU from the towball, and the shock (rod 4254 in cylinder 4255, travel 90 to 110 LDU by its part data) shortens from 100 to 93.8, inside its travel. The rear shocks are drawn at 100. Book 2, steps 17 and 18 (pages 15 and 16, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037212.pdf#page=15) show the pushrods on both balls. Moved: the rocker's eight parts turned about its axle, the pushrod set on the turned ball and aimed at the towball, and the shock's cylinder set on its eye on the rocker and aimed at the rod's eye.
+
+In `42000 - 42000.L3B.ldr` (p573 32056.dat), the line
+
+```
+1 0 60 -85 -260 0 0 -1 0 -1 0 -1 0 0 32056.dat
+```
+
+is read with its part at 60 -85 -260, turned to -0.1547 0 -0.988 0 -1 0 -0.988 0 0.1547.
+
+### 42000-1: right-front-rocker-p574
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p574 2736.dat), the line
+
+```
+1 71 60 -90 -300 0 0 1 1 0 0 0 1 0 2736.dat
+```
+
+is read with its part at 53.8116 -90 -299.5184, turned to 0 0.1547 0.988 1 0 0 0 0.988 -0.1547.
+
+### 42000-1: right-front-rocker-p575
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p575 32056.dat), the line
+
+```
+1 0 60 -75 -260 0 0 -1 0 -1 0 -1 0 0 32056.dat
+```
+
+is read with its part at 60 -75 -260, turned to -0.1547 0 -0.988 0 -1 0 -0.988 0 0.1547.
+
+### 42000-1: right-front-rocker-p576
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p576 2780.dat), the line
+
+```
+1 0 40 -90 -260 0 1 0 -1 0 0 0 0 1 2780.dat
+```
+
+is read with its part at 40.2408 -90 -256.9058, turned to 0 0.988 0.1547 -1 0 0 0 -0.1547 0.988.
+
+### 42000-1: right-front-rocker-p577
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p577 3713.dat), the line
+
+```
+1 71 20 -60 -260 -1 0 0 0 0 -1 0 -1 0 3713.dat
+```
+
+is read with its part at 20.4816 -60 -253.8116, turned to -0.988 -0.1547 0 0 0 -1 0.1547 -0.988 0.
+
+### 42000-1: right-front-rocker-p578
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p578 87083.dat), the line
+
+```
+1 72 20 -90 -260 0 0 1 -1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at 20.4816 -90 -253.8116, turned to 0 -0.1547 0.988 -1 0 0 0 -0.988 -0.1547.
+
+### 42000-1: right-front-rocker-p579
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p579 87083.dat), the line
+
+```
+1 72 60 -90 -260 0 0 -1 1 0 0 0 -1 0 87083.dat
+```
+
+is read with its part at 60 -90 -260, turned to 0 -0.1547 -0.988 1 0 0 0 -0.988 0.1547.
+
+### 42000-1: right-front-rocker-p581
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: another of the right rocker's parts, turned with it.
+
+In `42000 - 42000.L3B.ldr` (p581 32523.dat), the line
+
+```
+1 15 40 -100 -260 0 0 -1 0 1 0 1 0 0 32523.dat
+```
+
+is read with its part at 40.2408 -100 -256.9058, turned to 0.1547 0 -0.988 0 1 0 0.988 0 0.1547.
+
+### 42000-1: right-front-pushrod-p580
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: the right pushrod, its first socket on the turned rocker's ball, aimed at the towball 160 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p580 32293.dat), the line
+
+```
+1 0 60 -102 -300 0.104635 -0.382683 0.917941 0.0433411 0.923879 0.380223 -0.994178 0 0.113203 32293.dat
+```
+
+is read with its part at 53.8116 -102 -299.5184, turned to 0.1127 -0.3903 0.9137 0.0467 0.9207 0.3875 -0.9925 -0.001 0.122.
+
+### 42000-1: right-front-shock-cylinder-p582
+
+Proposed, not applied until signed off.
+
+With right-front-rocker-p573: the right shock's cylinder, its eye on the turned rocker, aimed at its rod's eye, 93.8 LDU away.
+
+In `42000 - 42000.L3B.ldr` (p582 4255.dat), the line
+
+```
+1 14 20 -120 -260 1 0 0 0 0 -1 0 1 0 4255.dat
+```
+
+is read with its part at 20.4816 -120 -253.8116, turned to 1 -0.0051 0 0 0 -1 0.0051 1 0.
+
+### 42038-1: rear-left-tread-on-its-unit
+
+Proposed, not applied until signed off.
+
+Each of the four track units (42038 - track1.ldr on the left, track2.ldr on the right) has a tread of 24 links of 57518 (42038 - technicChainTread38Closed-1.ldr) round its three wheels. The front treads are placed where their units are, in y and z (163.772, -259.3185), at x 165 and -165, and each circle is on its wheel's axle. The rear units are at y 161.666, z 300.4165 (left, x -165) and z 300.4155 (right, x 175), but their treads are at y 163.772, z 290.6815 and x -175 and 155: every circle lies 9.96 LDU from its axle, the treads are read round no wheel, and function 9 fails as track-not-read. Book 2, step 101 (page 47, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112278.pdf#page=47) wraps each 24-link tread round its unit's wheels, the rear ones as the front. Placed as the front treads are against their units, at the unit's y and z and x -165, its circles are on their axles.
+
+In the main model, the line
+
+```
+1 0 -175 163.772 290.6815 0 0 1 0 1 0 -1 0 0 42038 - technicChainTread38Closed-1.ldr
+```
+
+is read with its part at -165 161.666 300.4165.
+
+### 42038-1: rear-right-tread-on-its-unit
+
+Proposed, not applied until signed off.
+
+With rear-left-tread-on-its-unit: the right rear tread, placed as the right front tread is against its unit (track2.ldr at x 175, its tread at x 165), at the unit's y and z (161.666, 300.4155). Book 2, step 101 (page 47, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112278.pdf#page=47).
+
+In the main model, the line
+
+```
+1 0 155 163.772 290.6815 0 0 1 0 1 0 -1 0 0 42038 - technicChainTread38Closed-1.ldr
+```
+
+is read with its part at 165 161.666 300.4155.
+
 ### 42040-1: seats-on-their-pins
 
 Signed off by Erik, 2026-11-15.
@@ -731,6 +1214,20 @@ In the main model, the line
 ```
 
 is read with its part at -160 -211.6552 -70.6371.
+
+### 42042-1: left-tread-on-its-wheels
+
+Proposed, not applied until signed off.
+
+The two treads are one submodel (42042 - technicChainTread38Closed-1.ldr, 45 links of 57518 round six circles), placed twice in the main model, at x 210 and x -210. The one at x 210 is at z 60, and each of its six circles is on its wheel's axle (the two sprockets 57519 and the four rollers). The one at x -210 is at z 70, so each of its circles lies 10 LDU along the crawler from its axle, and it is read round no wheel (functions 2 and 9 fail as track-not-read). The booklet fits both treads the same way, each centred on its sprockets (page 54, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6151636.pdf#page=54: 90 links, 2 × 45). Placed at z 60, as the other one is, its six circles are on their axles.
+
+In the main model, the line
+
+```
+1 72 -210 -70 70 0 0 -1 0 1 0 1 0 0 42042 - technicChainTread38Closed-1.ldr
+```
+
+is read with its part at -210 -70 60.
 
 ### 42050-1: wheelie-actuator-bevel-on-its-axis
 
@@ -977,6 +1474,34 @@ In `42109 - car.ldr` (p383 32526), the line
 ```
 
 is read as not there. The part keeps its number.
+
+### 42110-1: front-driver-at-z-minus-177-on-its-hub-axis
+
+Proposed, not applied until signed off.
+
+One front hub: step 149 (page 93, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=93) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn.
+
+In `42110 - frontaxle.ldr`, the line
+
+```
+1 71 -40 -19.188 -177.81 1 0 0 0 0.978 -0.208 0 0.208 0.978 32494.dat
+```
+
+is read with its part at -40 -17.188 -177.81.
+
+### 42110-1: front-driver-at-z-plus-177-on-its-hub-axis
+
+Proposed, not applied until signed off.
+
+The other front hub: step 150 (page 94, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=94) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn; with front-driver-at-z-minus-177-on-its-hub-axis.
+
+In `42110 - frontaxle.ldr`, the line
+
+```
+1 71 -40 -19.188 177.81 -1 0 0 0 0.978 -0.208 0 -0.208 -0.978 32494.dat
+```
+
+is read with its part at -40 -17.188 177.81.
 
 ### 42111-1: rear-shock-cylinder-on-the-rods-axis
 

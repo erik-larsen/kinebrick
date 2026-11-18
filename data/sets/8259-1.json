@@ -62,10 +62,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 4,
+    "commit": "7d69aeed",
+    "date": "2026-11-18",
+    "seconds": 6,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -165,7 +164,7 @@
         ],
         "cause": "too-little",
         "detail": "p39 3647 against p0 32523",
-        "seconds": 3.1
+        "seconds": 4.8
       },
       {
         "result": "works",

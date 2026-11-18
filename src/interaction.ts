@@ -122,6 +122,7 @@ export interface InteractionSetup {
   shift: (part: number, position: number) => void; // slides a part to one of its positions
   flipSwitch?: (part: number) => string | null; // flips a train track's switch, saying so, if the part is one (see trains.ts)
   pinsToFree: (part: number, search?: boolean, at?: Vector3) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search
+  pinsToShift: (part: number) => Promise<{ pins: number[]; why: 'more' | 'joints' | null }>; // the friction pins a press with Shift frees (see pinsForShift), and if none, why
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
   inView?: () => boolean; // true in a view of the Views card other than Default (see views.ts): parts aren't hovered, picked or dragged then
 }
@@ -1011,6 +1012,21 @@ export function setUpInteraction(s: InteractionSetup) {
         e.stopImmediatePropagation();
         showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
         freeIfHeld(hit.part, e.clientX, e.clientY, 'This part is held by more than friction pins');
+        return;
+      }
+      if (e.shiftKey) {
+        // Shift held on any other part: friction pins may hold it in a bigger body, which a drag
+        // turns whole (the 42082's cab door, fused to the cab, so a drag of it slews the cab):
+        // free those that hold it in its body, so it can move on its own (decision 173 of
+        // 2026-11-17). A plain drag is as it was.
+        e.stopImmediatePropagation();
+        const [x, y] = [e.clientX, e.clientY];
+        showMessage('Finding the pins that hold it…', x, y);
+        s.pinsToShift(hit.part).then(({ pins, why }) => {
+          if (!pins.length) return showMessage(why === 'joints' ? 'No friction pins hold this part: drag it' : 'This part is held by more than friction pins', x, y);
+          s.freePins(pins);
+          showMessage(`${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it can now turn: drag it again`, x, y);
+        });
         return;
       }
       s.controls.enabled = false;
