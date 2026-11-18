@@ -186,6 +186,30 @@
         }
       ],
       "reply": "Sign 8868"
+    },
+    {
+      "id": "42082-door",
+      "kind": "Sign-off",
+      "title": "42082 Rough Terrain Crane: the cab door slides open on two links; the list says it swings on a hinge",
+      "since": "2026-11-18",
+      "what": "A change to the function list, not to the model. Function 9 says: “The cab door on the superstructure swings open on its hinge.” The booklet builds the door on two parallel links at the foot of the doorway, each turning on its own upright pin, so the real door moves out from the doorway and along the cab’s side without turning. The model has it the same way. The new words: “The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab’s side without turning.” The control and the part watched stay the same.",
+      "effect": "Function 9 goes from partly working (held there by hand) to working, and the count goes up by 1. In the viewer the door must first be pressed with Shift, which frees its two stiff pins; then it slides out 18 LDU. It stops there at two parts that rub. The real door most likely goes further; that rub is one of the stops still to be looked at.",
+      "confidence": "High for the words: Claude looked at the two booklet pages. High for what the viewer does: Claude pushed the door in the viewer, and it went out 18.4 LDU without turning, as the check has it.",
+      "links": [
+        {
+          "label": "42082 in the viewer, the door marked",
+          "url": "http://localhost:5174/?file=omr/42082-1+Rough+Terrain+Crane.mpd&show=3789"
+        },
+        {
+          "label": "Booklet page 271, steps 1112 and 1113: the door goes onto its two links",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245460.pdf#page=271"
+        },
+        {
+          "label": "Booklet page 322, top-right picture: the door open beside the cab",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6245460.pdf#page=322"
+        }
+      ],
+      "reply": "Sign 42082 list"
     }
   ],
   "coming": [
