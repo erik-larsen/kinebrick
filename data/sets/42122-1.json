@@ -140,16 +140,12 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 12,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 18,
     "counts": {
-      "no": 1,
+      "no": 2,
       "works": 6,
-      "partly": 1,
-      "not back": 1,
-      "torn": 1,
       "skipped": 1
     },
     "loose": [
@@ -226,14 +222,14 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 0.2
+        "seconds": 0.6
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.13,
+            -0.13
           ]
         ],
         "rates": [
@@ -272,66 +268,88 @@
             ]
           ]
         ],
-        "seconds": 0.7
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            150,
+            254,
+            0.13,
+            0.13
+          ],
+          [
+            0,
+            -1,
+            151,
+            248,
+            0.13,
+            0.13
+          ]
+        ],
+        "seconds": 0.3
       },
       {
-        "result": "partly",
+        "result": "no",
         "turned": [
           [
-            0.4,
-            -0.4
+            0,
+            0
           ]
         ],
         "still": [
+          "p157 32524",
+          "p193 4254 against p194 4255",
           "p200 4254 against p198 4255"
         ],
         "rates": [
           {
             "p157 32524": [
-              1,
-              20
+              0,
+              0
             ],
             "p193 4254 against p194 4255": [
-              2.11e-7,
-              44.6
+              0,
+              0
             ],
             "p200 4254 against p198 4255": [
-              1.05e-7,
-              2.36
+              0,
+              0
             ],
             "p122 32524": [
               0,
-              4.7e-36
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              56.19,
-              76.5
+              0,
+              0
             ],
             [
-              56.19,
-              76.5
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              56.19,
-              76.5
+              0,
+              0
             ],
             [
-              56.19,
-              76.5
+              0,
+              0
             ]
           ]
-        ],
-        "strayed": [
-          "p186 41677",
-          "p190 41677"
         ],
         "stop": [
           [
@@ -343,8 +361,26 @@
           0
         ],
         "cause": "not-driven",
-        "detail": "p200 4254 against p198 4255",
-        "seconds": 0.4
+        "detail": "p193 4254 against p194 4255",
+        "collisionStops": [
+          [
+            0,
+            1,
+            5,
+            190,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            5,
+            186,
+            0,
+            0
+          ]
+        ],
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -390,14 +426,14 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 1.2
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.17,
+            0
           ]
         ],
         "rates": [
@@ -440,18 +476,42 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 2,
-        "seconds": 1.2
+        "collisionStops": [
+          [
+            0,
+            1,
+            323,
+            458,
+            0.17,
+            0.17
+          ],
+          [
+            0,
+            -1,
+            269,
+            472,
+            0,
+            0
+          ]
+        ],
+        "seconds": 0.5
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -1.5
+            0
           ],
           [
-            1.5,
+            0,
             -1.5
           ]
         ],
@@ -503,18 +563,46 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ],
+          [
+            "limit",
+            null
+          ]
+        ],
         "freed": 2,
         "movedBy": [
           [],
           []
         ],
-        "seconds": 2.2
+        "collisionStops": [
+          [
+            0,
+            -1,
+            121,
+            378,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            120,
+            421,
+            0,
+            0
+          ]
+        ],
+        "seconds": 1.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.52,
+            0.12,
             -1.52
           ]
         ],
@@ -550,10 +638,26 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
         "pushed": [
           true
         ],
-        "seconds": 2.4
+        "collisionStops": [
+          [
+            0,
+            1,
+            361,
+            404,
+            0.12,
+            0.12
+          ]
+        ],
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -671,7 +775,7 @@
           [],
           []
         ],
-        "seconds": 4
+        "seconds": 6.3
       }
     ]
   }
