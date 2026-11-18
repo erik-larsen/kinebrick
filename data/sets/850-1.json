@@ -84,10 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 1,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 3,
     "counts": {
       "works": 4
     },
@@ -105,7 +104,7 @@
         "result": "works",
         "turned": [
           [
-            1.5,
+            1.33,
             -1.5
           ]
         ],
@@ -157,7 +156,23 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            184,
+            189,
+            1.33,
+            1.33
+          ]
+        ],
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -215,7 +230,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -333,18 +348,18 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.6,
+            -0.07
           ],
           [
-            1.5,
-            -1.5
+            0.07,
+            -0.6
           ]
         ],
         "rates": [
@@ -413,11 +428,55 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 0.2
+        "collisionStops": [
+          [
+            0,
+            1,
+            127,
+            152,
+            0.6,
+            0.6
+          ],
+          [
+            0,
+            -1,
+            127,
+            152,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            1,
+            127,
+            155,
+            0.07,
+            0.07
+          ],
+          [
+            1,
+            -1,
+            127,
+            155,
+            0.6,
+            0.6
+          ]
+        ],
+        "seconds": 0.1
       }
     ]
   }

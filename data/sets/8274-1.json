@@ -149,13 +149,14 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 27,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 41,
     "counts": {
       "works": 3,
       "partly": 3,
+      "not back": 1,
+      "torn": 1,
       "not checked": 1
     },
     "loose": [
@@ -415,13 +416,13 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 3.6
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.8,
+            0.53,
             -1.5
           ]
         ],
@@ -460,8 +461,8 @@
         "back": [
           [
             [
-              1287.88,
-              159.6
+              1247.97,
+              119.05
             ],
             [
               890.41,
@@ -472,8 +473,8 @@
         "torn": [
           [
             [
-              61.61,
-              45.84
+              4.25,
+              30.56
             ],
             [
               0.08,
@@ -482,12 +483,12 @@
           ]
         ],
         "strayed": [
-          "p673 3023",
+          "p677 3023",
           "p496 32009"
         ],
         "stop": [
           [
-            "end of travel",
+            "limit",
             null
           ]
         ],
@@ -497,7 +498,17 @@
         ],
         "cause": "loose-part",
         "detail": "p1045 3708",
-        "seconds": 7
+        "collisionStops": [
+          [
+            0,
+            1,
+            0,
+            153,
+            0.53,
+            0.53
+          ]
+        ],
+        "seconds": 6.6
       },
       {
         "result": "partly",
@@ -583,7 +594,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 2.2
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -633,7 +644,7 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 2.9
       },
       {
         "result": "partly",
@@ -811,7 +822,7 @@
           [],
           []
         ],
-        "seconds": 9
+        "seconds": 13.5
       },
       {
         "result": "not checked",

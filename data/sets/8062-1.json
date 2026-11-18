@@ -44,10 +44,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 0,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 2,
     "counts": {
       "partly": 1,
       "not checked": 1
@@ -91,8 +90,8 @@
         "result": "partly",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.83,
+            -0.83
           ]
         ],
         "moved": [
@@ -103,7 +102,7 @@
           {
             "p55 3705": [
               1,
-              5.92e-14
+              3.84e-14
             ],
             "p115 4442": [
               1,
@@ -156,11 +155,35 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "judged": [
           0
         ],
         "cause": "loose-part",
         "detail": "p30 4282",
+        "collisionStops": [
+          [
+            0,
+            1,
+            43,
+            53,
+            0.83,
+            0.83
+          ],
+          [
+            0,
+            -1,
+            42,
+            53,
+            0.83,
+            0.83
+          ]
+        ],
         "seconds": 0.1
       },
       {

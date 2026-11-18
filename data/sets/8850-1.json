@@ -127,12 +127,14 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 4,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 9,
     "counts": {
       "works": 5,
+      "pivoted": 1,
+      "not back": 4,
+      "moved whole": 4,
       "partly": 1,
       "no": 1,
       "not checked": 1
@@ -144,21 +146,21 @@
         "turned": [
           [
             1.5,
-            -1.5
+            -1.47
           ]
         ],
         "rates": [
           {
             "p33 4261 against p0 3702": [
               0.256,
-              2.37e-15
+              6.41e-32
             ],
             "p29 4261 against p0 3702": [
               0.256,
-              2.28e-32
+              8.29e-15
             ],
             "p54 3743 against p0 3702": [
-              0,
+              2.81e-8,
               10.2
             ],
             "p346 4266 against p0 3702": [
@@ -178,7 +180,7 @@
               0.04
             ],
             [
-              0.04,
+              0.03,
               0.04
             ]
           ]
@@ -190,9 +192,25 @@
               0.04
             ],
             [
-              0.04,
+              0.03,
               0.04
             ]
+          ]
+        ],
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            -1,
+            5,
+            29,
+            1.47,
+            1.47
           ]
         ],
         "pivoted": {
@@ -200,7 +218,7 @@
           "rise": 0,
           "tyre": "p349 4267"
         },
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -283,7 +301,7 @@
             "p76 73071 against p0 3702"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 1.1
       },
       {
         "result": "partly",
@@ -309,15 +327,15 @@
               1.28e-13
             ],
             "p240 2853 against p0 3702": [
-              2.81e-08,
+              2.81e-8,
               9.26e-14
             ],
             "p252 2851 against p0 3702": [
-              2.81e-08,
+              2.81e-8,
               1.4e-10
             ],
             "p255 2851 against p0 3702": [
-              2.81e-08,
+              2.81e-8,
               1.4e-10
             ]
           }
@@ -354,7 +372,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -399,7 +417,7 @@
         "strayed": [
           "p92 3647"
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -468,7 +486,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 1
       },
       {
         "result": "no",
@@ -613,7 +631,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "not checked",

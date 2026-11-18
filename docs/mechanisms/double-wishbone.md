@@ -4,7 +4,7 @@ Each wheel's hub rides between an upper and a lower arm. (Suspension.)
 
 First appears in 1988, in [8865 Test Car](https://erik-larsen.github.io/kinebrick/?model=8865-Test%20Car): The front wheels have independent suspension: each rides on two grey suspension arms, upper and lower, with a shock absorber, and moves up and down.
 
-Used in 18 of the 186 surveyed sets, by 27 functions. Kinebrick: 18 works, 3 partly, 5 no, 1 skipped.
+Used in 18 of the 186 surveyed sets, by 27 functions. Kinebrick: 16 works, 3 partly, 7 no, 1 skipped.
 
 ## By decade
 
@@ -31,8 +31,8 @@ Each detail by the set it first appears in.
 
 **1994, [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car)**
 
-- *front:* The front wheels each have independent suspension: the steering arm rides between a lower and an upper suspension arm, and a shock absorber from the lower arm lets the wheel rise and fall. (works)
-- *rear:* The rear wheels have the same independent suspension as the front ones. (works)
+- *front:* The front wheels each have independent suspension: the steering arm rides between a lower and an upper suspension arm, and a shock absorber from the lower arm lets the wheel rise and fall. (no)
+- *rear:* The rear wheels have the same independent suspension as the front ones. (no)
 
 **1999, [8448 Super Street Sensation](https://erik-larsen.github.io/kinebrick/?model=8448-Super%20Car-V8%20engine)**
 
