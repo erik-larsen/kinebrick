@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 42 works, 51 partly, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 97 functions. Kinebrick: 43 works, 50 partly, 4 not checked.
 
 ## By decade
 
@@ -192,7 +192,7 @@ Each detail by the set it first appears in.
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
-- *dump body:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (partly)
+- *dump body:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (works)
 - With the gearbox in its tipping position, the XL motor raises and lowers the dump body: a shaft out of the gearbox turns a pair of bevel gears to two cross shafts, each driving one of the two linear actuators on either side, which push the body up about its pivot at the back. (partly)
 
 **2021, [42131 Cat D11 Bulldozer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42131-1)**

@@ -104,7 +104,8 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
     "seconds": 8,
     "counts": {
@@ -473,7 +474,7 @@
           "rise": 0.75,
           "tyre": "p646 41897"
         },
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -539,7 +540,7 @@
           [],
           []
         ],
-        "seconds": 2.8
+        "seconds": 3.1
       },
       {
         "result": "no",

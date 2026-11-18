@@ -4,7 +4,7 @@ A rotary catch, turned a step at a time, slides the driving rings through the ge
 
 First appears in 2016, in [42056 Porsche 911 GT3 RS](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42056-1): The paddle shifters behind the steering wheel shift the sequential gearbox up and down: each paddle swings a lever that steps a knob gear round, and a shaft with constant velocity joints takes the turn back to the gearbox, where a selector moves the driving rings through the gears one by one.
 
-Used in 6 of the 186 surveyed sets, by 11 functions. Kinebrick: 2 works, 9 partly.
+Used in 6 of the 186 surveyed sets, by 11 functions. Kinebrick: 3 works, 8 partly.
 
 ## By decade
 
@@ -48,7 +48,7 @@ Each detail by the set it first appears in.
 
 **2020, [42114 6x6 Volvo Articulated Hauler](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42114-1)**
 
-- *3 speeds and reverse:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (partly)
+- *3 speeds and reverse:* The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels. (works)
 
 **2020, [42115 Lamborghini Sián (Sian) FKP 37](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42115-1)**
 

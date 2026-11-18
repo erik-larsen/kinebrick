@@ -133,9 +133,10 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 36,
+    "seconds": 37,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -311,7 +312,7 @@
             ]
           ]
         ],
-        "seconds": 6.6
+        "seconds": 6.5
       },
       {
         "result": "works",
@@ -377,7 +378,7 @@
           [],
           []
         ],
-        "seconds": 12.7
+        "seconds": 12.8
       },
       {
         "result": "partly",
@@ -478,7 +479,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 2.9,
-        "seconds": 2.9
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -544,7 +545,7 @@
           [],
           []
         ],
-        "seconds": 12.7
+        "seconds": 12.9
       },
       {
         "result": "skipped",

@@ -387,13 +387,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // wheels, which roll on play as a drag holds them, had a friction pin freed by it, and a part
   // that hangs on the pin swung 157 LDU away).
   const dragGoes = (control: number, play = false) => {
-    const b = worked(control);
-    const link = kin.parentLink(b);
-    if (kin.frames.includes(b) || !link) return false;
     const before = kin.snapshot();
-    kin.holdWhatTheDragDoesntNeed(b, () => kin.jointMotion(link.joint, false) !== null, link.joint);
-    const goes = kin.jointMotion(link.joint, play) !== null;
-    kin.letGoAfterDrag();
+    const goes = kin.dragMoves(worked(control), play);
     kin.restore(before);
     return goes;
   };
@@ -470,11 +465,11 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // point goes as the joint turns, as someone opening a door pushes it round its hinge, not along
   // the car (which would roll it). Null if the joint can't turn, or moves none of the points.
   const grabOf = (body: number, control: number) => {
-    const motion = kin.jointMotion(kin.parentLink(body)!.joint);
-    if (!motion) return null;
     const m = parts[control].matrix;
     const points = [at[control].clone()];
     for (const k of [0, 1, 2]) for (const way of [1, -1]) points.push(at[control].clone().addScaledVector(new Vector3().setFromMatrixColumn(m, k).normalize(), way * GRAB));
+    if (kin.hingeStuck(body, points)) return null;
+    const motion = kin.jointMotion(kin.parentLink(body)!.joint, false)!;
     const speeds = points.map((point) => kin.pointVelocity(motion, body, point.clone().applyMatrix4(kin.poses[body])));
     const fastest = Math.max(...speeds.map((v) => v.length()));
     if (fastest < 1e-6) return null;

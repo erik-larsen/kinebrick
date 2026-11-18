@@ -84,7 +84,8 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
     "seconds": 1,
     "counts": {
@@ -190,7 +191,7 @@
             "p120 56145 against p12 12799"
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -325,7 +326,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0
       },
       {
         "result": "works",

@@ -462,7 +462,7 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [9396-1](#9396-1-left-inner-main-wheel) | left-inner-main-wheel | adds 3 lines to the main model | Signed off by Erik, 2026-11-14 |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
-| [42050-1](#42050-1-wheelie-actuator-bevel-on-its-axis) | wheelie-actuator-bevel-on-its-axis | moves `32270.dat` (in `42050 - linact.ldr`) to -280.431 -6.163 0, turned | Proposed, not applied until signed off |
+| [42050-1](#42050-1-wheelie-actuator-bevel-on-its-axis) | wheelie-actuator-bevel-on-its-axis | moves `32270.dat` (in `42050 - linact.ldr`) to -280.431 -6.163 0, turned | Signed off by Erik, 2026-11-17 |
 | [42052-1](#42052-1-no-third-link-pin-p586) | no-third-link-pin-p586 | removes `3673.dat` | Signed off by Erik, 2026-11-15 |
 | [42064-1](#42064-1-hatch-20-high) | hatch-20-high | moves `42064 - hatch.ldr` (in `42064 - ship.ldr`) to 0 -110 -380 | Signed off by Erik, 2026-11-14 |
 | [42070-1](#42070-1-rear-differential-ring-faces-back) | rear-differential-ring-faces-back | moves `62821.dat` (in `42070 - axle3.ldr`) to 0 0 0, turned | Signed off by Erik, 2026-11-16 |
@@ -704,7 +704,7 @@ is read with its part at -160 -211.6552 -70.6371.
 
 ### 42050-1: wheelie-actuator-bevel-on-its-axis
 
-Proposed, not applied until signed off.
+Signed off by Erik, 2026-11-17.
 
 Step 64 (page 35, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=35) builds the wheelie actuator (92693c01): its input (92695) takes a 12 tooth double bevel (32270, sub-step 1), and the yellow axle 7 (44294) through the actuator’s top eye takes a 12 tooth bevel (6589, sub-step 2), so the two bevels mesh at the actuator’s end, on its own axis, and stay in mesh as it swings on that axle. Step 69 (page 38, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=38) shows the pair from below, and the functions page (page 119, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6153719.pdf#page=119, function B) the knob working it. In the submodel 42050 - linact.ldr the double bevel (p244) is drawn 0.7 LDU off the actuator’s axis and turned 15.0 degrees where the actuator is at 14.6, so its axis passes the knob’s axle 0.84 LDU off, and it is read as meshing nothing: the knob doesn’t drive the actuator (function 4). Placed on the actuator’s axis, 20 LDU from the axle, turned as the actuator is, it meshes the knob’s bevel; nothing else moves.
 

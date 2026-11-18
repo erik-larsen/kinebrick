@@ -257,9 +257,10 @@
     ]
   },
   "generated": {
-    "commit": "f20682cb",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 1636,
+    "seconds": 2870,
     "counts": {
       "partly": 7,
       "not back": 1,
@@ -596,7 +597,7 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.1,
-        "seconds": 87.2
+        "seconds": 144.3
       },
       {
         "result": "works",
@@ -868,7 +869,7 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 616.3
+        "seconds": 1102
       },
       {
         "result": "works",
@@ -914,7 +915,7 @@
             ]
           ]
         ],
-        "seconds": 47.6
+        "seconds": 74.7
       },
       {
         "result": "partly",
@@ -1008,7 +1009,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 155.3
+        "seconds": 282.3
       },
       {
         "result": "partly",
@@ -1071,7 +1072,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 114.7
+        "seconds": 201.7
       },
       {
         "result": "partly",
@@ -1139,7 +1140,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 114
+        "seconds": 182.5
       },
       {
         "result": "partly",
@@ -1202,7 +1203,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 112
+        "seconds": 173.1
       },
       {
         "result": "partly",
@@ -1268,7 +1269,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 117.3
+        "seconds": 208.2
       },
       {
         "result": "partly",
@@ -1321,7 +1322,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p3789 32524 against p2649 64179",
-        "seconds": 169.4
+        "seconds": 311.9
       },
       {
         "result": "not checked"

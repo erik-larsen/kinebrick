@@ -13,6 +13,14 @@
       {
         "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6010324.pdf",
         "file": "omr/instructions/9397-1-3.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf",
+        "file": "omr/instructions/9397-1-4.pdf"
+      },
+      {
+        "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf",
+        "file": "omr/instructions/9397-1-5.pdf"
       }
     ]
   },
@@ -178,9 +186,10 @@
     ]
   },
   "generated": {
-    "commit": "f20682cb",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
-    "seconds": 4978,
+    "seconds": 8254,
     "counts": {
       "works": 5,
       "not back": 2,
@@ -251,7 +260,7 @@
         "strayed": [
           "p184 6542b"
         ],
-        "seconds": 97.2
+        "seconds": 142.9
       },
       {
         "result": "partly",
@@ -301,7 +310,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p464 92695 against p463 92693c01",
-        "seconds": 743.6
+        "seconds": 1197.3
       },
       {
         "result": "partly",
@@ -356,7 +365,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p528 32140",
-        "seconds": 424.6
+        "seconds": 683.5
       },
       {
         "result": "partly",
@@ -415,7 +424,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.2,
-        "seconds": 356.5
+        "seconds": 579.5
       },
       {
         "result": "works",
@@ -452,7 +461,7 @@
             ]
           ]
         ],
-        "seconds": 425.4
+        "seconds": 681.7
       },
       {
         "result": "not checked"
@@ -513,7 +522,7 @@
             ]
           ]
         ],
-        "seconds": 96.9
+        "seconds": 141.3
       },
       {
         "result": "works",
@@ -639,7 +648,7 @@
             "p790 2851 against p775 2850a"
           ]
         ],
-        "seconds": 860.9
+        "seconds": 1407.6
       },
       {
         "result": "works",
@@ -809,7 +818,7 @@
           [],
           []
         ],
-        "seconds": 1967.5
+        "seconds": 3408.6
       }
     ]
   }

@@ -120,7 +120,7 @@ export interface InteractionSetup {
   stickOf: (part: number) => { ends: Vector3[]; position: number } | null; // where a gear lever's stick ends in each of its gate positions (LDraw coordinates), and which it's in, if it's one
   shiftStick: (part: number, position: number) => void; // clicks a gear lever into one of its gate positions
   shift: (part: number, position: number) => void; // slides a part to one of its positions
-  pinsToFree: (part: number, search?: boolean) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search
+  pinsToFree: (part: number, search?: boolean, at?: Vector3) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
 }
 
@@ -362,11 +362,14 @@ export function setUpInteraction(s: InteractionSetup) {
 
   // Points the arrow along the way the grabbed point moves fastest, of the motions the
   // mechanism allows (pushing a car's frame rolls it, rather than steering, which leaves the
-  // frame where it is). Returns false if the point can't move.
+  // frame where it is): the part's own motions, if it has any (see Kinematics.ownMotions).
+  // Returns false if the point can't move.
   function updateArrow(d: Drag): boolean {
     const g = grabPoint(d);
     let direction = new Vector3();
-    for (const m of s.kin.freeMotions()) {
+    const free = s.kin.freeMotions();
+    const own = s.kin.ownMotions(free, d.body, g);
+    for (const m of own.length ? own : free) {
       const v = s.kin.pointVelocity(m, d.body, g);
       if (v.length() > direction.length()) direction = v;
     }
@@ -381,16 +384,21 @@ export function setUpInteraction(s: InteractionSetup) {
   }
 
   // Moves the mechanism, in small steps, so the grabbed point gets as close as it can to the
-  // pointer on screen. Each step works out, for every allowed motion, how far the grabbed
+  // pointer on screen, by the part's own motions if it has any, else the whole model's. Each step works out, for every allowed motion, how far the grabbed
   // point would move on screen, and picks the mix of motions that best closes the gap
   // (least squares). Returns false if it ran out of time (`deadline`, from performance.now())
   // before getting there, else true (there, or as near as it can get).
   function pushTowards(d: Drag, target: Vector2, deadline: number): boolean {
     for (; d.pushSteps < MAX_STEPS; d.pushSteps++) {
       if (performance.now() > deadline) return false;
-      const motions = s.kin.freeMotions();
-      if (motions.length === 0) return true;
       const g = grabPoint(d);
+      // The part's own motions first (see Kinematics.ownMotions); the whole model only if none.
+      const free = s.kin.freeMotions();
+      const own = s.kin.ownMotions(free, d.body, g);
+      // Only those that move the grabbed point: one that doesn't has no speed on screen to weigh,
+      // and many of a part's own motions are other parts' (a model's every free hinge).
+      const motions = (own.length ? own : free).filter((m) => s.kin.pointVelocity(m, d.body, g).length() > 1e-9);
+      if (motions.length === 0) return true;
       const gScreen = toScreen(g);
       const gap = target.clone().sub(gScreen);
       if (gap.length() < 0.5) return true;
@@ -932,8 +940,11 @@ export function setUpInteraction(s: InteractionSetup) {
   // tried first where no pins hold it.
   // `search` false: only the pins pinsToFree names, not the trial search (see pinWorker.ts), for a
   // part that moves on play (decision 139 of 2026-11-17).
-  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true) {
-    s.pinsToFree(part, search).then((pins) => {
+  // The drag that waits to hear which pins hold its part (see freeIfHeld), if one does.
+  let waitingForPins: Drag | null = null;
+  function freeIfHeld(part: number, x: number, y: number, why: string, otherwise?: () => boolean, search = true, at?: Vector3) {
+    s.pinsToFree(part, search, at).then((pins) => {
+      waitingForPins = null;
       if (!pins.length) return otherwise?.() ? undefined : showMessage(why, x, y);
       endDrag();
       s.freePins(pins);
@@ -1008,7 +1019,10 @@ export function setUpInteraction(s: InteractionSetup) {
       // gets more (see raiseScrub) if it can.
       const d = drag;
       let wormLocked = false;
-      const canMove = possibleWithScrub(
+      // A part that hangs on a hinge whose hinge has no exact motion can't start a push where it
+      // hangs: it's held, perhaps by friction pins, as the check has it (see Kinematics.hingeStuck).
+      const hingeStuck = d.joint < 0 && s.kin.hingeStuck(body, [grabStart]);
+      const canMove = !hingeStuck && possibleWithScrub(
         () => {
           if (d.joint >= 0) {
             wormLocked = s.kin.holdWhatTheDragDoesntNeed(body, () => s.kin.jointMotion(d.joint) !== null, d.joint);
@@ -1044,15 +1058,25 @@ export function setUpInteraction(s: InteractionSetup) {
         showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
         const onPlay = () => d.joint >= 0 && drag === d && s.kin.jointMotion(d.joint) !== null;
         // The trial search for pins only for a part that can't move even on play: where play moves
-        // it, freeing a pin elsewhere could let a part swing away (decision 139 of 2026-11-17).
-        const movesOnPlay = onPlay();
+        // it, freeing a pin elsewhere could let a part swing away (decision 139 of 2026-11-17). The
+        // same test as the check's (see Kinematics.dragMoves); the drag keeps its holds.
+        const movesOnPlay = d.joint >= 0 && s.kin.dragMoves(body, true, true);
+        waitingForPins = d;
         freeIfHeld(hit.part, e.clientX, e.clientY, why, () => {
+          waitingForPins = null;
+          // A push whose hinge is stuck, where no pins would free it: pushed as before, which may
+          // carry the model (see updateArrow).
+          if (hingeStuck && drag === d && grabDirections(d) > 0) {
+            showingMessage = false;
+            hideLabel();
+            return updateArrow(d);
+          }
           if (!onPlay()) return false;
           showingMessage = false;
           hideLabel();
           showArc();
           return true;
-        }, !movesOnPlay);
+        }, !movesOnPlay, grabStart);
       } else if (s.kin.freeMotions().length === 0) {
         showMessage("Can't move: the mechanism is jammed", e.clientX, e.clientY);
       } else if (drag.joint >= 0) {
@@ -1102,7 +1126,8 @@ export function setUpInteraction(s: InteractionSetup) {
       if (drag.arc) turnTowards(drag, e.clientX, e.clientY);
       drag.lastX = e.clientX;
       drag.lastY = e.clientY;
-    } else {
+    } else if (drag !== waitingForPins) {
+      // A push waiting to hear whether pins hold it (see freeIfHeld) doesn't go meanwhile.
       drag.target = new Vector2(e.clientX, e.clientY);
       drag.pushSteps = 0;
     }

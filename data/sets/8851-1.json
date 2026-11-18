@@ -119,7 +119,8 @@
     ]
   },
   "generated": {
-    "commit": "93a580aa",
+    "commit": "2effcfbb",
+    "uncommitted": true,
     "date": "2026-11-17",
     "seconds": 3,
     "counts": {
@@ -177,7 +178,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "no",
