@@ -15,6 +15,19 @@ import { AXIS_TOLERANCE } from './shared.ts';
 const MODULE = 2.5;
 const CHAIN_REACH = 2.25 * MODULE;
 
+// A track's sprockets, measured from their LDraw shapes (every edge of every polygon, about the
+// part's axle, z): how many teeth they have and how deep a tooth is, from its tip to the root
+// between two teeth. 57519 (Technic Sprocket Wheel 40.4): 10 teeth, tips 51.0 LDU out, roots 44.5,
+// 6.6 deep. 57520 (25.4): 6 teeth, 32.0 and 26.1, 5.9 deep. 32007 (Tread Sprocket Wheel): 10
+// teeth, 30.0 and 26.8, 3.2 deep. A track's pins sit between the teeth, on the circle where a
+// pitch (see PlacedPath's pitch) spans one tooth: of radius pitch / (2 sin(180 / teeth)), 48.5 for
+// the 57519 and 30.0 for the 57520 with the 5 wide links (pitch 30), 25.9 for the 32007 with the
+// 3873 (pitch 16), each between the roots and the tips.
+const SPROCKETS: Record<string, { teeth: number; depth: number }> = {
+  '57519.dat': { teeth: 10, depth: 6.6 },
+  '57520.dat': { teeth: 6, depth: 5.9 },
+  '32007.dat': { teeth: 10, depth: 3.2 },
+};
 // The chains, tracks and rubber bands looped round wheels: each looped path, with the wheels
 // it goes round. A circle of the path is on a wheel if a turning joint's axis runs along the
 // circle's axis, through its middle (within AXIS_TOLERANCE); of the joint's two bodies, the
@@ -22,23 +35,53 @@ const CHAIN_REACH = 2.25 * MODULE;
 // round, say), and the other is what it turns in. A circle on nothing that turns (a peg a
 // rubber band is hooked round) is left out: the band slides round it. A chain placed link by
 // link (see PlacedPath's byHand) is only roughly round its wheels: each of its circles is on the
-// wheel whose axis is within CHAIN_REACH of its middle, and is moved onto that axis.
+// wheel whose axis is within CHAIN_REACH of its middle, and is moved onto that axis. A track
+// placed link by link is on its sprockets (see SPROCKETS): its pins sit on a sprocket's pin
+// circle within a tooth's depth, but the circle that best fits its links takes in the links
+// running on and off the sprocket too, and where few links wrap a sprocket it comes out larger
+// (the 42069 Extreme Adventure's, 56 LDU round a sprocket whose pins are at 48.5, its middle 7.1
+// off the axle). So a circle of a track is on a sprocket whose axle is within the difference of
+// the two radii and a tooth's depth of its middle, and under it: within its links' half width
+// (see PlacedPath's halfWidth) of its middle along the axle, as a gear a track runs on is (two
+// gears side by side on one pin under the 42021 Excavator's).
 export function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], table: ConnectionTable, paths: PlacedPath[]): Loop[] {
   return paths
     .filter((path) => path.looped)
     .map((path) => {
+      // The sprockets a circle of a track placed by hand may be on, and how far from its middle
+      // each one's axle may be.
+      const sprockets = (point: PathPoint) =>
+        !path.byHand || !path.pitch
+          ? []
+          : parts.flatMap((p, i) => {
+              const s = SPROCKETS[libraryName(p.name, table)];
+              if (!s) return [];
+              const axis = new Vector3(0, 0, 1).transformDirection(p.matrix);
+              if (Math.abs(Math.abs(axis.dot(point.axis)) - 1) > 0.01) return [];
+              const offset = new Vector3().setFromMatrixPosition(p.matrix).sub(point.center);
+              const along = offset.dot(point.axis);
+              const reach = Math.abs(point.radius - path.pitch! / (2 * Math.sin(Math.PI / s.teeth))) + s.depth;
+              if (Math.abs(along) > (path.halfWidth ?? 0) || offset.addScaledVector(point.axis, -along).length() > reach) return [];
+              return [{ part: i, reach }];
+            });
       // A chain placed link by link runs on toothed wheels: a circle of it is on a wheel only if
       // that wheel has a gear within the circle, in its plane, not on whatever turns near there
-      // (the 9392 Quad Bike's chain bends round its swinging arm's pivot, which it doesn't turn).
-      const toothed = (w: LoopWheel) => {
-        const point = path.points[w.point];
-        return parts.some((p, i) => {
-          if (bodyOf[i] !== w.body || roles[i] !== 'gear') return false;
-          const offset = new Vector3().setFromMatrixPosition(p.matrix).sub(point.center);
-          return Math.abs(offset.dot(point.axis)) <= CHAIN_REACH && offset.addScaledVector(point.axis, -offset.dot(point.axis)).length() <= CHAIN_REACH;
-        });
+      // (the 9392 Quad Bike's chain bends round its swinging arm's pivot, which it doesn't turn),
+      // or a sprocket a track's circle may be on.
+      // (Only such a wheel is looked for: where two gears turn side by side on one pin, the pin
+      // is nearest the circle's middle, and the 42021 Excavator's track runs on the gears.)
+      const toothed = (body: number, point: PathPoint) => {
+        return (
+          sprockets(point).some((s) => bodyOf[s.part] === body) ||
+          parts.some((p, i) => {
+            if (bodyOf[i] !== body || roles[i] !== 'gear') return false;
+            const offset = new Vector3().setFromMatrixPosition(p.matrix).sub(point.center);
+            return Math.abs(offset.dot(point.axis)) <= (path.halfWidth ?? CHAIN_REACH) && offset.addScaledVector(point.axis, -offset.dot(point.axis)).length() <= CHAIN_REACH;
+          })
+        );
       };
-      const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints, path.byHand ? CHAIN_REACH : AXIS_TOLERANCE) ?? []).filter((w) => !path.byHand || toothed(w));
+      const reach = (point: PathPoint) => (path.byHand ? Math.max(CHAIN_REACH, ...sprockets(point).map((s) => s.reach)) : AXIS_TOLERANCE);
+      const wheels = path.points.flatMap((point, index) => findWheel(point, index, parts, roles, bodyOf, joints, reach(point), path.byHand ? (body) => toothed(body, point) : undefined) ?? []);
       if (path.byHand) {
         for (const w of wheels) {
           const { from, to } = joints[w.joint];
@@ -69,7 +112,7 @@ function nearestPart(point: Vector3, parts: PlacedPart[], roles: string[]): numb
 // axis runs along the circle's, through its middle, with a part on that axis (within the
 // circle's radius of it) nearest the middle along it. (A drum is often just an axle, its
 // middle well along from where the string is wound.)
-export function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], reach = AXIS_TOLERANCE): LoopWheel | null {
+export function findWheel(point: PathPoint, index: number, parts: PlacedPart[], roles: string[], bodyOf: number[], joints: Joint[], reach = AXIS_TOLERANCE, accept?: (body: number) => boolean): LoopWheel | null {
   if (!point.circle) return null;
   let best: LoopWheel | null = null;
   let bestDistance = Infinity;
@@ -80,7 +123,7 @@ export function findWheel(point: PathPoint, index: number, parts: PlacedPart[], 
     const off = new Vector3().subVectors(point.center, joint.from);
     if (off.addScaledVector(d, -off.dot(d)).length() > reach) return;
     parts.forEach((part, i) => {
-      if (roles[i] === 'path' || (bodyOf[i] !== joint.bodyA && bodyOf[i] !== joint.bodyB)) return;
+      if (roles[i] === 'path' || (bodyOf[i] !== joint.bodyA && bodyOf[i] !== joint.bodyB) || (accept && !accept(bodyOf[i]))) return;
       const offset = new Vector3().setFromMatrixPosition(part.matrix).sub(point.center);
       const distance = Math.abs(offset.dot(point.axis));
       if (offset.addScaledVector(point.axis, -offset.dot(point.axis)).length() > point.radius || distance >= bestDistance) return;

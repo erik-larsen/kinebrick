@@ -14,9 +14,10 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { readParts } from './load-model.ts';
 
-// The parts that are links of a track (LDraw's "Technic Chain Tread" parts). A track is made of
+// The parts that are links of a track (LDraw's "Technic Chain Tread" parts, and 15379, LDraw's
+// alias of 3873). A track is made of
 // many of them, so one alone (the 8835 Forklift has one 3873 as a step) is not a track.
-const TRACK_LINK = /^(3873|57518(c\d+)?|88323(c\d+)?|69900|69910)\.dat$/;
+const TRACK_LINK = /^(3873|15379|57518(c\d+)?|88323(c\d+)?|69900|69910)\.dat$/;
 
 export interface UnreadTracks {
   links: number; // how many track links are on no path
@@ -30,7 +31,7 @@ export function unreadTracks(models: string[]): UnreadTracks | null {
   for (const model of new Set(models)) {
     if (!existsSync(model)) continue;
     // Most models have no track link at all: don't read those.
-    if (!/\b(3873|57518|88323|69900|69910)(c\d+)?\.dat/i.test(readFileSync(model, 'utf-8'))) continue;
+    if (!/\b(3873|15379|57518|88323|69900|69910)(c\d+)?\.dat/i.test(readFileSync(model, 'utf-8'))) continue;
     for (const part of readParts(model, model.startsWith('omr/')).parts) {
       const name = part.name.replace(/^.* - /, '');
       if (!TRACK_LINK.test(name) || part.path) continue;

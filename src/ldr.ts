@@ -28,6 +28,8 @@ export interface PlacedPath {
   skin: string; // the part it's made of, e.g. "3873.dat"
   points: PathPoint[]; // in order along the path
   byHand?: boolean; // its links placed one by one, not along a path (see chainPaths): its circles are only roughly where its wheels are
+  pitch?: number; // placed by hand: how far apart its links' pins are, in LDU (see BY_HAND_LINKS)
+  halfWidth?: number; // a track placed by hand: how far each side of its middle its links reach along their pins, in LDU (see BY_HAND_LINKS)
   ends?: [Vector3, Vector3]; // a chain placed by hand that doesn't close up: its last link's pin and its first link's end, either side of the gap
 }
 
@@ -93,32 +95,72 @@ function lsynthPaths(parts: PlacedPart[]) {
 
 const throughPoint = (center: Vector3): PathPoint => ({ circle: false, center, axis: new Vector3(0, 0, 1), radius: 0, turn: 1 });
 
-// The chains placed link by link, as older models place them, with no path to say where they
-// run: each run of more than 8 Technic chain links (3711), one's pin in the next's end, becomes a looped
-// path its links are links of, if it closes up, or if its ends are within CHAIN_GAP of each
-// other (a forklift's chain, both ends hooked to the carriage it lifts, which closes it). Its
-// circles are where it goes round a wheel: each stretch where it keeps turning the same way, at
-// least CHAIN_STRAIGHT at each link (a chain placed by hand bends a little along its straight
-// runs), through at least MIN_TURN, as the circle that best fits the links turning at least a
-// CHAIN_BEND share of its tightest turn. Each circle's radius is how far the chain moves as the
-// wheel turns a radian, so the wheels it wraps turn at the ratio of their teeth. Placed by hand,
-// its circles are only roughly where its wheels are (see PlacedPath's byHand).
-const CHAIN_LINK = '3711.dat';
-const CHAIN_PITCH = 16; // LDU from a link's end to its pin
-const CHAIN_FIT = 4; // LDU: how far a link's end may be from the pin it's on
-const CHAIN_GAP = 2 * CHAIN_PITCH;
-const CHAIN_BEND = 1 / 1.5;
-const CHAIN_STRAIGHT = Math.PI / 18;
+// The chains and tracks placed link by link, as older models place them, with no path to say
+// where they run: each run of more than 8 links of one kind (see BY_HAND_LINKS), one's pin in the
+// next's end, becomes a looped path its links are links of, if it closes up, or if its ends are
+// within two pitches of each other (a forklift's chain, both ends hooked to the carriage it
+// lifts, which closes it). Its circles are where it goes round a wheel: each stretch where it
+// keeps turning the same way, at least LINK_STRAIGHT at each link (a chain placed by hand bends a
+// little along its straight runs), through at least MIN_TURN, as the circle that best fits the
+// links turning at least a LINK_BEND share of its tightest turn. Each circle's radius is how far
+// the chain moves as the wheel turns a radian, so the wheels it wraps turn at the ratio of their
+// teeth. Placed by hand, its circles are only roughly where its wheels are (see PlacedPath's
+// byHand).
+//
+// Each kind of link, by where the next link's end sits on it, in its own coordinates (its pin):
+// the link's pitch is that point's distance from its own end (its origin). Measured from the
+// parts' shapes:
+// - 3711 (Technic Chain Link): the pin is the cylinder at (5, 0, 16) along -x in its shape
+//   (4-4cylo, radius 2.13, the next link's hole goes round it): a pitch of 16.
+// - 3873 (Technic Chain Tread 2.5 Wide): the same cylinder at (5, 0, 16), and LDCad's shadow
+//   library gives it 3711's snap points (SNAP_INCL 3711): a pitch of 16.
+// - 15379: LDraw's alias of 3873 ("=Technic Chain Tread 2.5 Wide"), drawn as it: its pin.
+// - 57518 (Technic Chain Tread 5 Wide) and 88323 (the same, reinforced): both are drawn round the
+//   subpart s/57518s01, whose shadow puts the link's own pin across its origin (SNAP_CYL, male,
+//   28 long, along x) and the two clips that take the next link's pin at (-8, 0, -30) and
+//   (14, 0, -30) (SNAP_CLP): a pitch of 30, the next link's end at z -30.
+// - 69900 (2 Wide with Central Divider): two s/57518s02, the half link s/57518s01 is made of,
+//   placed as s/57518s01 places them: the same pin and clips, a pitch of 30.
+// - 69910 (7 Wide with Cleat): its shadow puts its pin across its origin and its clip at
+//   (-14, 0, -30) (s/69910s01's SNAP_CLP): a pitch of 30.
+// - A link with feet (57518c01, 88323c01 to 88323c06) places its plain link at its own origin,
+//   unturned: the plain link's pin.
+// A track's links, unlike a chain's, are wide (halfWidth: how far each side of its middle a link
+// reaches along its pin, from its shape: 3873 26 LDU, 57518 and 88323 48, 69900 18, 69910 68), and
+// the wheels it runs on may be anywhere across it (see findLoops). Placed in a set's file as its
+// own part ("42069 - 88323.dat"), a link is read by its library name.
+const BY_HAND_LINKS: Record<string, { pin: Vector3; halfWidth?: number }> = {
+  '3711.dat': { pin: new Vector3(0, 0, 16) },
+  '3873.dat': { pin: new Vector3(0, 0, 16), halfWidth: 26 },
+  '15379.dat': { pin: new Vector3(0, 0, 16), halfWidth: 26 },
+  '57518.dat': { pin: new Vector3(0, 0, -30), halfWidth: 48 },
+  '88323.dat': { pin: new Vector3(0, 0, -30), halfWidth: 48 },
+  '69900.dat': { pin: new Vector3(0, 0, -30), halfWidth: 18 },
+  '69910.dat': { pin: new Vector3(0, 0, -30), halfWidth: 68 },
+};
+const LINK_FIT = 4; // LDU: how far a link's end may be from the pin it's on
+const LINK_BEND = 1 / 1.5;
+const LINK_STRAIGHT = Math.PI / 18;
+// A link's kind (see BY_HAND_LINKS), from its name, or null if it isn't a link.
+function linkKind(name: string): { kind: string; pin: Vector3; halfWidth?: number } | null {
+  const plain = name.replace(/^.* - /, '').replace(/^(57518|88323)c\d+\.dat$/, '$1.dat');
+  const link = BY_HAND_LINKS[plain];
+  return link ? { kind: plain === '15379.dat' ? '3873.dat' : plain, ...link } : null;
+}
 function chainPaths(parts: PlacedPart[]) {
-  const links = parts.flatMap((p, i) => (p.name === CHAIN_LINK && !p.path ? [i] : []));
+  const kinds = parts.map((p) => (p.path ? null : linkKind(p.name)));
+  const pins = kinds.map((k) => k?.pin ?? null);
+  const links = parts.flatMap((_, i) => (pins[i] ? [i] : []));
+  const pitch = (i: number) => pins[i]!.length();
   const end = (i: number) => new Vector3().setFromMatrixPosition(parts[i].matrix);
-  const pin = (i: number) => new Vector3(0, 0, CHAIN_PITCH).applyMatrix4(parts[i].matrix);
-  // The link on each link's pin, and the link whose pin it's on.
+  const pin = (i: number) => pins[i]!.clone().applyMatrix4(parts[i].matrix);
+  // The link on each link's pin (of the same kind: the 8835 Forklift's one 3873, a step, sits on
+  // its chain), and the link whose pin it's on.
   const next = new Map<number, number>();
   const before = new Map<number, number>();
   for (const i of links) {
     for (const j of links) {
-      if (j === i || before.has(j) || end(j).distanceTo(pin(i)) > CHAIN_FIT) continue;
+      if (j === i || before.has(j) || kinds[j]!.kind !== kinds[i]!.kind || end(j).distanceTo(pin(i)) > LINK_FIT) continue;
       next.set(i, j);
       before.set(j, i);
       break;
@@ -135,18 +177,19 @@ function chainPaths(parts: PlacedPart[]) {
     while (next.has(chain[chain.length - 1]) && next.get(chain[chain.length - 1]) !== start) chain.push(next.get(chain[chain.length - 1])!);
     for (const i of chain) done.add(i);
     const points = chain.map(end);
-    if (chain.length <= 8 || points[0].distanceTo(pin(chain[chain.length - 1])) > CHAIN_GAP) continue;
-    const circles = chainCircles(points);
+    if (chain.length <= 8 || points[0].distanceTo(pin(chain[chain.length - 1])) > 2 * pitch(start)) continue;
+    const circles = chainCircles(points, pitch(start));
     if (!circles.length) continue;
-    const path: PlacedPath = { looped: true, skin: CHAIN_LINK, points: circles, byHand: true };
+    const path: PlacedPath = { looped: true, skin: parts[start].name, points: circles, byHand: true, pitch: pitch(start) };
+    if (kinds[start]!.halfWidth) path.halfWidth = kinds[start]!.halfWidth;
     const last = pin(chain[chain.length - 1]);
-    if (last.distanceTo(points[0]) > CHAIN_FIT) path.ends = [last, points[0]];
+    if (last.distanceTo(points[0]) > LINK_FIT) path.ends = [last, points[0]];
     for (const i of chain) parts[i].path = path;
   }
 }
 
 // The circles a looped chain goes round (see chainPaths), from where its links are, in order.
-function chainCircles(points: Vector3[]): PathPoint[] {
+function chainCircles(points: Vector3[], pitch: number): PathPoint[] {
   const n = points.length;
   const dirs = points.map((p, i) => points[(i + 1) % n].clone().sub(p).normalize());
   // Its axis: the way it turns, all the way round.
@@ -163,7 +206,7 @@ function chainCircles(points: Vector3[]): PathPoint[] {
   let from = 0;
   turns.forEach((t, i) => Math.abs(t) < Math.abs(turns[from]) && (from = i));
   const order = turns.map((_, k) => (from + k) % n);
-  const bends = (k: number, sign: number) => k < n && Math.abs(turns[order[k]]) >= CHAIN_STRAIGHT && Math.sign(turns[order[k]]) === sign;
+  const bends = (k: number, sign: number) => k < n && Math.abs(turns[order[k]]) >= LINK_STRAIGHT && Math.sign(turns[order[k]]) === sign;
   const result: PathPoint[] = [];
   let k = 0;
   while (k < n) {
@@ -179,13 +222,13 @@ function chainCircles(points: Vector3[]): PathPoint[] {
     k = j;
     if (angle < MIN_TURN) continue;
     const tightest = Math.max(...stretch.map((i) => Math.abs(turns[i])));
-    const core = stretch.filter((i) => Math.abs(turns[i]) >= tightest * CHAIN_BEND);
+    const core = stretch.filter((i) => Math.abs(turns[i]) >= tightest * LINK_BEND);
     // The links' ends where it turns are on the circle; where it runs straight, they aren't.
     const near = (core.length >= 3 ? core : [...new Set(core.flatMap((i) => [i - 1, i, i + 1]))]).map((i) => points[(i + n) % n]);
     const circle = fitCircle(near, axis.clone().multiplyScalar(sign));
     // Each link turns it 2 asin(pitch / 2 r) and moves it a pitch on.
-    const step = 2 * Math.asin(Math.min(1, CHAIN_PITCH / (2 * circle.radius)));
-    result.push({ ...circle, axis: axis.clone(), radius: CHAIN_PITCH / step, turn: sign });
+    const step = 2 * Math.asin(Math.min(1, pitch / (2 * circle.radius)));
+    result.push({ ...circle, axis: axis.clone(), radius: pitch / step, turn: sign });
   }
   return result;
 }
