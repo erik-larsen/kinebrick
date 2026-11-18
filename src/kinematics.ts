@@ -1955,7 +1955,12 @@ export class Kinematics {
   // coordinates are as big as its extent (the furthest joint from the origin, where turnJoint works:
   // see nearOrigin). A gap is the difference of two points, each placed by a chain of pose products
   // down the tree, each product rounding by about that much: so at most the tree's depth of them.
-  // The rows' roundings, independent, add as the square root of how many there are.
+  // The rows' roundings, independent, add as the square root of how many there are. The bound was
+  // first ordered without the depth (decision 174's follow-up, 2026-11-17): on the 42083 Bugatti
+  // Chiron it came to 4.6e-12 LDU (7.5e-12 with a drag's rows), where its gaps sat at 1 to 2e-11,
+  // so it never stopped a round. The depth was added after that was seen, on the argument above
+  // (4 on the 42083, so about 3e-11 there; 37 on the 8110 Unimog). It stops only far below any gap
+  // that decides whether a step goes (DEAD_POINT_GAP, or play).
   private roundingFloor(rows: number): number {
     if (this.extent === null) {
       let extent = 0;
