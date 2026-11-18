@@ -68,7 +68,7 @@
 // but didn't move; "moved": in `stays` but did).
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
@@ -76,7 +76,7 @@ import { experiments, Kinematics } from '../src/kinematics.ts';
 import { PlacedPart } from '../src/ldr.ts';
 import { Joint, Mechanism, meshesChanged, motorOutput } from '../src/mechanism.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
-import { Collisions, connectedPairs, PartMesh } from '../src/collisions.ts';
+import { collisionKey, Collisions, connectedPairs, keptFileName, pairNumber, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
 import { gearRates, line } from './gear-rates.ts';
@@ -169,6 +169,9 @@ const slowPartsRule = process.env.KINEBRICK_SLOW_PARTS !== '0';
 const SLOW_RATE = 1e-6;
 // With --lock, each model's part shapes (see partShapes), read before it's checked.
 const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
+// With --stops, the pairs of each model's parts that touch as built, from its kept file (see
+// collision-pairs.ts), as the viewer takes them; null where the kept file's key doesn't match.
+const keptNearOf = new Map<string, [number, number][] | null>();
 // The quick sets: between them, every kind of mechanism the check can work (in the mechanism
 // catalog), but two only the slow 42054 and 42055 have, chosen for the least time the check
 // takes: about 6 minutes of one core's time in all, at 0.850.
@@ -356,8 +359,19 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const known = shapesOf.get(model);
     if (!known || known.length < parts.length || !parts.every((p, i) => known[i].name === p.name)) return null;
     const matrices = placedNow().map((p) => p.matrix);
-    if (!stopWatch) stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), matrices);
-    else stopWatch.watch(mech.bodyOf, connectedPairs(mech), matrices);
+    // As the viewer: parts connected aren't tested, nor a changeover catch and the driving ring its
+    // fork sits in (see main.ts).
+    const connected = connectedPairs(mech);
+    for (const c of catches) for (const ring of c.ring.riders ?? [c.ring.part]) connected.add(c.part < ring ? `${c.part},${ring}` : `${ring},${c.part}`);
+    const near = keptNearOf.get(model);
+    if (!stopWatch && near) {
+      // The pairs that touch as built, from the kept file, as the viewer has them.
+      const built = loaded.parts.map((p) => p.matrix);
+      stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connected, built, true);
+      const n = parts.length;
+      stopWatch.setNear(stopWatch.candidates(mech.bodyOf, connected, built), new Set(near.map(([a, b]) => pairNumber(a, b, n))), built, matrices);
+    } else if (!stopWatch) stopWatch = new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connected, matrices);
+    else stopWatch.watch(mech.bodyOf, connected, matrices);
     // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
     stopWatch.ignored = new Set(mech.loose);
     return stopWatch;
@@ -1413,7 +1427,16 @@ const onlyWay = wayAt >= 0 ? Number(args[wayAt + 1]) : null;
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
-  if (locks || stopsReport) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) shapesOf.set(m, await partShapes(m, readParts(m, m.startsWith('omr/')).text));
+  if (locks || stopsReport) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) {
+    const read = readParts(m, m.startsWith('omr/'));
+    shapesOf.set(m, await partShapes(m, read.text));
+    if (stopsReport) {
+      const file = `data/collisions/${keptFileName(m)}.json`;
+      const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;
+      const release = JSON.parse(readFileSync('data/collisions/library.json', 'utf-8')).release;
+      keptNearOf.set(m, kept && kept.key === (await collisionKey(read.parts, release)) ? kept.near : null);
+    }
+  }
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
   const found = check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // Let the output drain before the process ends: a pipe takes it in pieces.
