@@ -578,21 +578,6 @@
 0 // beyond the line through its pins (its -y), measured from its shape.
 0 !KINEBRICK TRACK [depth=22]
 
-0 FILE 57518.dat
-0 // Technic Chain Tread 5 Wide (and 88323, the same link): its grousers reach 14 LDU out beyond
-0 // the line through its pins (its -y), measured from its shape. Its c-numbered versions (a link
-0 // with a part on it) are read as it.
-0 !KINEBRICK TRACK [depth=14]
-
-0 FILE 88323.dat
-0 // Technic Link Tread Wide: as 57518, 14 LDU, measured from its shape.
-0 !KINEBRICK TRACK [depth=14]
-
-0 FILE 69900.dat
-0 // Technic Link Tread 3 Wide with Cleat: its cleat reaches 29.8 LDU out beyond the line
-0 // through its pins (its -y), measured from its shape.
-0 !KINEBRICK TRACK [depth=29.8]
-
 0 // Grooves.
 
 0 FILE 3145.dat

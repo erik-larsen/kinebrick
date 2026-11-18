@@ -138,7 +138,7 @@ const BY_HAND_LINKS: Record<string, { pin: Vector3; halfWidth?: number }> = {
   '69900.dat': { pin: new Vector3(0, 0, -30), halfWidth: 18 },
   '69910.dat': { pin: new Vector3(0, 0, -30), halfWidth: 68 },
 };
-const LINK_FIT = 4; // LDU: how far a link's end may be from the pin it's on
+export const LINK_FIT = 4; // LDU: how far a link's end may be from the pin it's on
 const LINK_BEND = 1 / 1.5;
 const LINK_STRAIGHT = Math.PI / 18;
 // A link's kind (see BY_HAND_LINKS), from its name, or null if it isn't a link.

@@ -2,7 +2,7 @@
 
 import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable } from '../connections.ts';
-import { linkKind, PathPoint, PlacedPart, PlacedPath } from '../ldr.ts';
+import { PathPoint, PlacedPart, PlacedPath } from '../ldr.ts';
 import { type Joint, libraryName, type Loop, type LoopWheel } from '../mechanism.ts';
 import { AXIS_TOLERANCE } from './shared.ts';
 
@@ -23,7 +23,7 @@ const CHAIN_REACH = 2.25 * MODULE;
 // pitch (see PlacedPath's pitch) spans one tooth: of radius pitch / (2 sin(180 / teeth)), 48.5 for
 // the 57519 and 30.0 for the 57520 with the 5 wide links (pitch 30), 25.9 for the 32007 with the
 // 3873 (pitch 16), each between the roots and the tips.
-const SPROCKETS: Record<string, { teeth: number; depth: number }> = {
+export const SPROCKETS: Record<string, { teeth: number; depth: number }> = {
   '57519.dat': { teeth: 10, depth: 6.6 },
   '57520.dat': { teeth: 6, depth: 5.9 },
   '32007.dat': { teeth: 10, depth: 3.2 },
@@ -92,7 +92,7 @@ export function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[]
       }
       const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
       const carriers = path.points.map((point, index) => wheels.find((w) => w.point === index)?.body ?? bodyOf[nearestPart(point.center, parts, roles)]);
-      return { path, wheels, links, depth: trackDepth(path.skin, table), carriers };
+      return { path, wheels, links, depth: table.tracks?.[libraryName(path.skin, table)]?.depth ?? null, carriers };
     });
 }
 
@@ -182,12 +182,4 @@ export function movePaths(paths: PlacedPath[], parts: PlacedPart[], bodyOf: numb
     }),
   );
   paths.forEach((path, i) => path.points.forEach((point, k) => Object.assign(point, moved[i][k])));
-}
-
-// How far a track's links reach out beyond its path (see TRACK in data/corrections.ldr), by the
-// kind of link: a 57518c01 or 88323c02 (a link with a part on it) is read as its plain link, a
-// 15379 as the 3873 it is drawn as.
-function trackDepth(skin: string, table: ConnectionTable): number | null {
-  const name = libraryName(skin, table);
-  return table.tracks?.[name]?.depth ?? table.tracks?.[linkKind(name)?.kind ?? '']?.depth ?? null;
 }
