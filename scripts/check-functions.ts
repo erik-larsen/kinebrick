@@ -142,6 +142,9 @@ const FREE_BACK_GAP = 1e-3;
 // a limit.
 const LOCK = 4 * Math.PI;
 const LEVEL = Math.PI / 6;
+// A track's links (LDraw's Technic Chain Tread parts), by a path's skin (see trackRead), placed in
+// a set's file as their own part ("42069 - 88323.dat") too.
+const TRACK_SKIN = /(^|[ \/])(3873|15379|57518(c\d+)?|88323(c\d+)?|69900|69910)\.dat$/;
 const STEERING = ['rack-steering', 'linkage-steering', 'multi-axle-steering', 'fork-steering', 'articulated-steering', 'swivel-axle-steering'];
 const locks = process.env.KINEBRICK_CHECK_LOCK === '1';
 // Where the friction pins pinsToFree names (from the build with every pin free) don't let a
@@ -944,7 +947,18 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // function that names one can't work, whatever the drag does: at most partly (the 8285's
       // wheels "rolling freely" on rims that sit on nothing).
       const loosePart = [control, ...moves.map((m) => m.part), ...stays.map((m) => m.part)].find((p) => mech.loose.includes(p));
-      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : null;
+      // A function that runs tracks must have them: looped paths of track links (see TRACK_SKIN),
+      // one with a wheel that is a control of the function or a part it lists to move, and none
+      // with no wheel at all. Read so, the links run round with the wheel, as the solver turns the
+      // loop with it; without it they ride with whatever they touch, and the wheel turns alone
+      // (decision 185: the 9391 Crawler Crane's tracks, placed link by link, were read as no
+      // track, and its function passed), and a track with no wheel stays where it is.
+      const runsTrack = (fn.mechanisms ?? []).some((m) => m.split(':')[0] === 'crawler-tracks');
+      const tracks = mech.loops.filter((l) => TRACK_SKIN.test(l.path.skin));
+      const wheelsHere = new Set([...controls.map((r) => mech.bodyOf[part(r)]), ...moves.map((m) => mech.bodyOf[m.part])]);
+      const trackRead = !runsTrack || (tracks.some((l) => l.wheels.some((w) => wheelsHere.has(w.body))) && tracks.every((l) => l.wheels.length > 0));
+      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : !trackRead ? { cause: 'track-not-read' } : null;
+      if (!trackRead) why.push(tracks.length && tracks.every((l) => l.wheels.length > 0) ? 'no track is read round a control or a part the function lists' : tracks.length ? `${tracks.filter((l) => !l.wheels.length).length} of the ${tracks.length} tracks run round no wheel` : 'no track is read');
       const nothing = (explained: Explained) => ({ works: false, pushed: false, judged: 0, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], free: [] as boolean[], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (kin.frames.includes(b) || !link) {
         why.push(`${ref} ${kin.frames.includes(b) ? 'is part of the frame' : 'has no joint to work'}`);
@@ -1174,8 +1188,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.frozen = new Set();
       together = [];
       const something = each.some((w) => (!controlMovedRule || w.controlMoved) && (Math.abs(w.turned) >= 0.01 || w.still.length < moves.length));
-      // A function that names a loose part can't work, whatever the drag did (see loosePart).
-      const works = best.works && loosePart === undefined;
+      // A function that names a loose part can't work, whatever the drag did (see loosePart), nor
+      // one that runs a track not read round its wheel (see trackRead).
+      const works = best.works && loosePart === undefined && trackRead;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.

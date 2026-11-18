@@ -130,7 +130,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Portal axle](portal-axle.md) | 5 | 2011 |  |  |  |  | 3 | 2 | 3 works, 3 partly |
 | [Chain drive](chain-drive.md) | 10 | 1981 |  | 2 | 2 |  | 4 | 2 | 10 works, 1 partly |
 | [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 9 works, 3 partly |
-| [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 21 works, 8 partly |
+| [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 17 works, 12 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
 | [Worm drive](worm-drive.md) | 53 | 1986 |  | 4 | 4 | 13 | 29 | 3 | 52 works, 29 partly, 2 skipped |
 | [Slip clutch](slip-clutch.md) | 10 | 1989 |  | 1 |  | 1 | 7 | 1 | 6 works, 4 partly, 4 skipped |
@@ -144,7 +144,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Sliding-gear gearbox](sliding-gear-gearbox.md) | 2 | 1978 | 1 | 1 |  |  |  |  | 2 works, 2 partly |
 | [Driving-ring gearbox](driving-ring-gearbox.md) | 8 | 1994 |  |  | 2 | 1 | 4 | 1 | 9 works, 2 partly, 1 no, 1 not checked |
 | [Sequential gearbox](sequential-gearbox.md) | 6 | 2016 |  |  |  |  | 3 | 3 | 3 works, 8 partly |
-| [Function selector](function-selector.md) | 25 | 1992 |  |  | 1 | 1 | 19 | 4 | 43 works, 48 partly, 4 not checked |
+| [Function selector](function-selector.md) | 25 | 1992 |  |  | 1 | 1 | 19 | 4 | 42 works, 49 partly, 4 not checked |
 
 ### Moving and lifting
 
@@ -201,7 +201,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | Kind | Sets | First | 1970s (9) | 1980s (18) | 1990s (32) | 2000s (23) | 2010s (83) | 2020s (21) | Kinebrick |
 |---|---|---|---|---|---|---|---|---|---|
 | [Free wheels](free-wheels.md) | 132 | 1977 | 7 | 15 | 25 | 15 | 56 | 14 | 149 works, 1 partly, 2 skipped, 2 not checked |
-| [Hinge](hinge.md) | 76 | 1978 | 2 | 1 | 10 | 11 | 40 | 12 | 80 works, 13 partly, 31 no, 2 skipped, 4 not checked |
+| [Hinge](hinge.md) | 76 | 1978 | 2 | 1 | 10 | 11 | 40 | 12 | 79 works, 14 partly, 31 no, 2 skipped, 4 not checked |
 | [Slide](slide.md) | 9 | 1978 | 1 |  | 1 | 2 | 5 |  | 3 works, 3 partly, 2 no, 1 skipped, 1 not checked |
 | [Posable joint](posable-joint.md) | 10 | 1988 |  | 3 |  | 4 | 3 |  | 10 works, 1 skipped |
 | [Hangs free](hangs-free.md) | 17 | 1978 | 1 | 1 | 2 | 4 | 9 |  | 5 works, 1 partly, 6 skipped, 5 not checked |

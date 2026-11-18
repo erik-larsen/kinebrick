@@ -262,8 +262,10 @@
     "date": "2026-11-17",
     "seconds": 2870,
     "counts": {
-      "partly": 6,
-      "works": 3,
+      "partly": 7,
+      "not back": 1,
+      "torn": 1,
+      "works": 2,
       "not checked": 1
     },
     "loose": [
@@ -1270,18 +1272,21 @@
         "seconds": 208.2
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
-            -0.91,
-            0.91
+            1.5,
+            -1.5
           ]
+        ],
+        "still": [
+          "p3789 32524 against p2649 64179"
         ],
         "rates": [
           {
             "p3789 32524 against p2649 64179": [
-              2.33e-07,
-              44.7
+              0,
+              3.91e-14
             ]
           }
         ],
@@ -1289,11 +1294,11 @@
           [
             [
               0,
-              0
+              0.02
             ],
             [
               0,
-              0
+              0.02
             ]
           ]
         ],
@@ -1301,32 +1306,23 @@
           [
             [
               0,
-              0
+              0.02
             ],
             [
               0,
-              0
+              0.02
             ]
           ]
         ],
         "why": [
           "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
         ],
-        "stop": [
-          [
-            "stuck",
-            "stuck"
-          ]
+        "judged": [
+          0
         ],
-        "pushed": [
-          true
-        ],
-        "freed": 2,
-        "shiftPressed": [
-          3792,
-          3793
-        ],
-        "seconds": 1233.4
+        "cause": "part-fixed",
+        "detail": "p3789 32524 against p2649 64179",
+        "seconds": 311.9
       },
       {
         "result": "not checked"

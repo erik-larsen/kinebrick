@@ -222,13 +222,12 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 208,
+    "commit": "a796b224",
+    "date": "2026-11-18",
+    "seconds": 181,
     "counts": {
-      "works": 6,
-      "partly": 2,
+      "works": 4,
+      "partly": 4,
       "no": 1,
       "not checked": 1
     },
@@ -322,10 +321,10 @@
             ]
           ]
         ],
-        "seconds": 11.3
+        "seconds": 10.4
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -409,7 +408,14 @@
             ]
           ]
         ],
-        "seconds": 14
+        "why": [
+          "1 of the 2 tracks run round no wheel"
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "track-not-read",
+        "seconds": 12.7
       },
       {
         "result": "works",
@@ -495,7 +501,7 @@
             ]
           ]
         ],
-        "seconds": 13.1
+        "seconds": 13
       },
       {
         "result": "partly",
@@ -589,7 +595,7 @@
         ],
         "cause": "not-driven",
         "detail": "p906 44294",
-        "seconds": 46.7
+        "seconds": 29.3
       },
       {
         "result": "works",
@@ -673,7 +679,7 @@
             ]
           ]
         ],
-        "seconds": 38.3
+        "seconds": 34.1
       },
       {
         "result": "partly",
@@ -785,7 +791,7 @@
         ],
         "cause": "not-driven",
         "detail": "p575 18947",
-        "seconds": 20.4
+        "seconds": 18.1
       },
       {
         "result": "works",
@@ -851,7 +857,7 @@
             ]
           ]
         ],
-        "seconds": 25
+        "seconds": 24.8
       },
       {
         "result": "no",
@@ -898,10 +904,10 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 15.5
+        "seconds": 16.1
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -960,11 +966,19 @@
             ]
           ]
         ],
+        "why": [
+          "1 of the 2 tracks run round no wheel"
+        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 22.5
+        "judged": [
+          1,
+          0
+        ],
+        "cause": "track-not-read",
+        "seconds": 22.1
       },
       {
         "result": "not checked",

@@ -208,14 +208,14 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 20,
+    "commit": "a796b224",
+    "date": "2026-11-18",
+    "seconds": 22,
     "counts": {
-      "works": 8,
+      "works": 7,
       "no": 1,
       "skipped": 1,
+      "partly": 1,
       "not checked": 2
     },
     "loose": [
@@ -288,7 +288,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 2
+        "seconds": 2.2
       },
       {
         "result": "works",
@@ -362,7 +362,7 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -446,7 +446,7 @@
             "limit"
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.9
       },
       {
         "result": "works",
@@ -488,7 +488,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.1
       },
       {
         "result": "works",
@@ -538,7 +538,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -584,7 +584,7 @@
             ]
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.3
       },
       {
         "result": "no",
@@ -700,14 +700,14 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 2.3
+        "seconds": 2.4
       },
       {
         "result": "skipped",
         "seconds": 0
       },
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -816,13 +816,23 @@
             ]
           ]
         ],
+        "why": [
+          "2 of the 4 tracks run round no wheel"
+        ],
         "movedBy": [
           [],
           [],
           [],
           []
         ],
-        "seconds": 5.1
+        "judged": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "cause": "track-not-read",
+        "seconds": 5.5
       },
       {
         "result": "not checked",
@@ -863,7 +873,7 @@
             ]
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.9
       },
       {
         "result": "not checked",
