@@ -378,9 +378,15 @@ export class Kinematics {
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
   private gripped = false; // whether the motion last chosen was one of those
+  // The slides held at an end of their travel for the step under way, which the motion chosen
+  // would otherwise push past it (see jointMotion; decision 192 of 2026-11-18). Each holds as a
+  // row: it slides no further (see buildEquations).
+  private endHeld = new Set<number>();
+  // The way the turn under way turns its joint (1 or -1), or 0 outside a turn (see jointMotion).
+  private turnWay = 0;
   // The motion the last turn found for the step after its last, kept for the next turn (see
   // turnJoint): in model coordinates, with what it was found with and where everything was.
-  private aheadKept: { joint: number; way: number; motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean; state: KinematicsState; drag: Drag; frozen: string; fixedBody: number; scrub: number } | null = null;
+  private aheadKept: { joint: number; way: number; motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean; endHeld: number[]; state: KinematicsState; drag: Drag; frozen: string; fixedBody: number; scrub: number } | null = null;
   private slipRows: number[][] = []; // the tyres' scrubbing and lifting rows, in the tree basis, as freeMotionsApart last found them
   // Universal joints: for each shaft, the joint it turns on (whose axis runs through the joint's
   // middle), which way along that axis points away from the middle (+1 or -1), and the point
@@ -1918,6 +1924,10 @@ export class Kinematics {
       all = connection === holds || held.size === 0;
       connection(this, eq);
     }
+    // A slide held at an end of its travel slides no further (see endHeld).
+    all = true;
+    if (this.traceNames) this.traceName = 'slide ends';
+    for (const j of this.endHeld) eq.add(this.slideRow(this.mech.joints[j]));
     return rows;
   }
 
@@ -2266,17 +2276,19 @@ export class Kinematics {
   // Each slide that a spring holds at rest (see Joint.springHeld) as a row: how fast it slides,
   // in LDU.
   springRows(): number[][] {
-    return this.mech.joints.flatMap((j) => {
-      if (!j.springHeld || j.kind !== 'slide') return [];
-      const p = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
-      const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
-      const row = new Array(6 * this.bodyCount).fill(0);
-      for (let k = 0; k < 3; k++) {
-        addPointVelocity(row, j.bodyB, p, k, d.getComponent(k));
-        addPointVelocity(row, j.bodyA, p, k, -d.getComponent(k));
-      }
-      return [row];
-    });
+    return this.mech.joints.flatMap((j) => (j.springHeld && j.kind === 'slide' ? [this.slideRow(j)] : []));
+  }
+
+  // How fast a slide slides (LDU), as a row.
+  private slideRow(j: Joint): number[] {
+    const p = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
+    const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
+    const row = new Array(6 * this.bodyCount).fill(0);
+    for (let k = 0; k < 3; k++) {
+      addPointVelocity(row, j.bodyB, p, k, d.getComponent(k));
+      addPointVelocity(row, j.bodyA, p, k, -d.getComponent(k));
+    }
+    return row;
   }
 
   // The free motions (see freeMotionsInBasis) in two lots: the car moving on its suspension,
@@ -2428,12 +2440,21 @@ export class Kinematics {
     const same = (a: KinematicsState, b: KinematicsState) =>
       a.jointAngles.length === b.jointAngles.length && a.jointAngles.every((x, i) => x === b.jointAngles[i]) && a.treadTravel.every((x, i) => x === b.treadTravel[i]) && a.treadScrub.every((x, i) => x === b.treadScrub[i]) && a.roots.size === b.roots.size && [...a.roots].every(([root, pose]) => b.roots.get(root)?.equals(pose) === true);
     const kept = k && k.joint === joint && k.way === Math.sign(angle) && k.drag === this.drag && k.frozen === [...this.frozen].join() && k.fixedBody === this.fixedBody && k.scrub === this.scrub && same(k.state, this.snapshot()) ? k : null;
-    const found: { ahead: { motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean } | null } = { ahead: null };
-    const turned = this.nearOrigin((toModel, fromModel) =>
-      this.turnJointNearOrigin(joint, angle, allowed, maxStep, kept ? { ...kept, motion: fromModel(kept.motion) } : null, (ahead) => {
-        found.ahead = { motion: toModel(ahead), played: this.played, stepByTiers: this.stepByTiers, gripped: this.gripped };
-      }),
-    );
+    const found: { ahead: { motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean; endHeld: number[] } | null } = { ahead: null };
+    this.turnWay = Math.sign(angle);
+    // A kept motion was chosen with the slides it held at their ends: they hold for its step too.
+    this.endHeld = new Set(kept?.endHeld ?? []);
+    let turned: number;
+    try {
+      turned = this.nearOrigin((toModel, fromModel) =>
+        this.turnJointNearOrigin(joint, angle, allowed, maxStep, kept ? { ...kept, motion: fromModel(kept.motion) } : null, (ahead) => {
+          found.ahead = { motion: toModel(ahead), played: this.played, stepByTiers: this.stepByTiers, gripped: this.gripped, endHeld: [...this.endHeld] };
+        }),
+      );
+    } finally {
+      this.turnWay = 0;
+      this.endHeld = new Set();
+    }
     if (found.ahead && this.options.keepAhead) this.aheadKept = { ...found.ahead, joint, way: Math.sign(angle), state: this.snapshot(), drag: this.drag, frozen: [...this.frozen].join(), fixedBody: this.fixedBody, scrub: this.scrub };
     return turned;
   }
@@ -2786,9 +2807,41 @@ export class Kinematics {
   // can move at all, before friction pins are freed for it (see playMotion).
   jointMotion(joint: number, play = true): number[] | null {
     return this.nearOrigin((toModel) => {
-      const motion = this.jointMotionNearOrigin(joint, play);
+      this.endHeld = new Set();
+      let motion = this.jointMotionNearOrigin(joint, play);
+      // In a turn: a slide standing at an end of its travel, which the motion would push past it,
+      // is held there and the motion chosen again, until none is pushed out (an active set; decision
+      // 192 of 2026-11-18). Without it, the step went past the end and was undone (see atLimit), and
+      // the turn stopped, though another motion would have turned the joint and left the slide at its
+      // end (the 9397's plough, whose play pushed a slide on). A slide pulled back from its end isn't
+      // held: the holds are found afresh for each motion. If the joint can't turn with them, that is
+      // the end of the turn's travel.
+      while (motion && this.turnWay !== 0) {
+        const out = this.pushedPastEnds(motion, this.turnWay).filter((j) => !this.endHeld.has(j));
+        if (out.length === 0) break;
+        for (const j of out) this.endHeld.add(j);
+        motion = this.jointMotionNearOrigin(joint, play);
+      }
       return motion && toModel(motion);
     });
+  }
+
+  // The slides with an end of their travel that `motion`, turning its joint `way`, would push them
+  // past in the smallest step a turn takes (LEAST_TURN_STEP; see turnJoint): those it can't move at
+  // all without passing the end. Further from the end than that, a step that passes it is undone
+  // and taken smaller, as for any other stop, until the slide is that close.
+  private pushedPastEnds(motion: number[], way: number): number[] {
+    const out: number[] = [];
+    this.mech.joints.forEach((j, i) => {
+      if (j.kind !== 'slide' || !j.range || !j.sliding) return;
+      const row = this.slideRow(j);
+      let rate = 0;
+      for (let c = 0; c < row.length; c++) if (row[c] !== 0) rate += row[c] * motion[c];
+      rate *= way;
+      const offset = this.slideOffset(i);
+      if ((rate > EPSILON && offset + LEAST_TURN_STEP * rate > j.range[1] + LIMIT_TOLERANCE) || (rate < -EPSILON && offset + LEAST_TURN_STEP * rate < j.range[0] - LIMIT_TOLERANCE)) out.push(i);
+    });
+    return out;
   }
 
   // What a motion does, in the tree basis's coordinates (see freeMotionsInBasis), for choosing
