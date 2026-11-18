@@ -17,7 +17,7 @@
 // little towards its middle (by INSET at each face of its box), so parts that only touch,
 // face to face, don't count.
 
-import { Box3, BufferAttribute, BufferGeometry, Line3, Matrix4, Vector3 } from 'three';
+import { Box3, BufferAttribute, BufferGeometry, Matrix4, Vector3 } from 'three';
 import type { Mechanism } from './mechanism.ts';
 
 // How far each part's shape is pulled in at each face of its box for collision checks, in
@@ -110,10 +110,6 @@ interface Group {
   a: number;
   b: number;
   lastClear: Matrix4 | null;
-  // Where those two parts were then, in model coordinates: the place a step started from, for
-  // telling a pair that slides along each other from one that pushes in (see pushesIn).
-  clearA: Matrix4 | null;
-  clearB: Matrix4 | null;
 }
 
 // A pair of parts as one number, the lower first (see Collisions).
@@ -217,9 +213,6 @@ export class Collisions {
   // 42083 Bugatti Chiron's start key, lying beside the car, rode on a rear wheel and stopped the
   // car rolling by going below the ground). Set by whoever reads the mechanism.
   ignored = new Set<number>();
-  // The pairs found overlapping that only slid along each other (see pushesIn), as "a,b": for
-  // reporting how many contacts the sliding test lets through (the check's collisionSlid).
-  slid = new Set<string>();
 
   // `meshes[i]` are part i's meshes; `bodyOf[i]` its body; `connected` holds "i,j" (i < j)
   // for parts that are directly connected; `partMatrices` gives each part's current
@@ -316,7 +309,7 @@ export class Collisions {
         if (bodyOf[a] === bodyOf[b] || near.has(a * n + b) || joined.has(a * n + b)) continue;
         const key = bodyOf[a] * bodies + bodyOf[b];
         let group = groups.get(key);
-        if (!group) groups.set(key, (group = { pairs: [], onA: [], onB: [], a, b, lastClear: null, clearA: null, clearB: null }));
+        if (!group) groups.set(key, (group = { pairs: [], onA: [], onB: [], a, b, lastClear: null }));
         group.pairs.push([a, b]);
       }
     }
@@ -324,10 +317,6 @@ export class Collisions {
     for (const g of this.groups) {
       g.onA = [...new Set(g.pairs.map(([a]) => a))];
       g.onB = [...new Set(g.pairs.map(([, b]) => b))];
-      // Where the pairs are worked out is clear (pairs that touch there aren't watched): the first
-      // step starts from here (see pushesIn).
-      g.clearA = partMatrices[g.a].clone();
-      g.clearB = partMatrices[g.b].clone();
     }
   }
 
@@ -374,10 +363,7 @@ export class Collisions {
     return low;
   }
 
-  // The first pair of watched parts that now overlap, one pushing into the other, or null if none
-  // do. Parts that overlap only sliding along each other where they meet (a piston in its
-  // cylinder, a bush turning against a beam's face, an axle pin turning in a hole it passes) are
-  // designed to touch, and stop nothing (see pushesIn; decision 188 of 2026-11-18).
+  // The first pair of watched parts that now overlap, or null if none do.
   check(partMatrices: Matrix4[]): [number, number] | null {
     // Each part's box in model coordinates, worked out when first needed.
     const boxes: (Box3 | undefined)[] = [];
@@ -393,69 +379,12 @@ export class Collisions {
       if (sideA.intersectsBox(sideB)) {
         for (const [a, b] of group.pairs) {
           if (this.ignored.has(a) || this.ignored.has(b)) continue;
-          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) {
-            if (this.pushesIn(a, b, partMatrices, group)) return [a, b];
-            this.slid.add(`${a},${b}`);
-          }
+          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
         }
       }
-      // Clear, or only sliding: where the next step starts from.
       group.lastClear = relative;
-      group.clearA = partMatrices[group.a].clone();
-      group.clearB = partMatrices[group.b].clone();
     }
     return null;
-  }
-
-  // Whether overlapping parts a and b push into each other where they meet, rather than slide along
-  // each other: at each place a triangle of one meets a triangle of the other, the two parts'
-  // motion against each other in the step that brought them together (from where the group was
-  // last clear, see Group) is checked against both triangles' planes. It slides if it lies in
-  // both planes, to within ROUND_FACE: one pair of triangles where it doesn't is a push. Where it
-  // is too small to have a direction (no motion against each other there, to double precision),
-  // that pair of triangles slides: no stop comes from it. Where the step's start isn't known (the
-  // first test after the pairs to watch were worked out), it pushes, as every overlap did before.
-  private pushesIn(a: number, b: number, partMatrices: Matrix4[], group: Group): boolean {
-    if (!group.clearA || !group.clearB) return true;
-    // Each part's place at the step's start: its body's place then (the group's parts on a's and
-    // b's bodies were where clearA and clearB say) times where it sits on its body.
-    const before = (part: number, side: number, clear: Matrix4) => clear.clone().multiply(partMatrices[side].clone().invert().multiply(partMatrices[part]));
-    const aBefore = before(a, group.a, group.clearA);
-    const bBefore = before(b, group.b, group.clearB);
-    // b's coordinates -> a's, now and at the step's start.
-    const now = partMatrices[a].clone().invert().multiply(partMatrices[b]);
-    const then = aBefore.invert().multiply(bBefore);
-    // Where a point of b that is at p (in a's coordinates) now was at the step's start.
-    const backAgain = then.multiply(now.clone().invert());
-    const segment = new Line3();
-    const [p, was, d, n1, n2, e1, e2] = [0, 1, 2, 3, 4, 5, 6].map(() => new Vector3());
-    const normal = (tri: { a: Vector3; b: Vector3; c: Vector3 }, toPart: Matrix4, n: Vector3) => {
-      const [x, y, z] = [tri.a, tri.b, tri.c].map((v) => v.clone().applyMatrix4(toPart));
-      return n.crossVectors(e1.subVectors(y, x), e2.subVectors(z, x)).normalize();
-    };
-    const sliding = (n: Vector3) => n.lengthSq() === 0 || Math.abs(d.dot(n)) <= d.length() * Math.sin(ROUND_FACE);
-    for (const ma of this.shapes[a].meshes) {
-      const aMeshInverse = ma.matrix.clone().invert();
-      for (const mb of this.shapes[b].meshes) {
-        const toA = aMeshInverse.clone().multiply(now).multiply(mb.matrix);
-        let pushes = false;
-        ma.bvh.bvhcast(mb.bvh, toA, {
-          intersectsTriangles: (t1, t2) => {
-            if (!t1.intersectsTriangle(t2, segment)) return false;
-            // The meeting place, and the triangles' planes, in a's coordinates (the meshes'
-            // coordinates may be scaled: a part's coordinates are not).
-            segment.getCenter(p).applyMatrix4(ma.matrix);
-            d.subVectors(p, was.copy(p).applyMatrix4(backAgain));
-            if (d.length() <= p.length() * TOO_SMALL) return false;
-            if (sliding(normal(t1, ma.matrix, n1)) && sliding(normal(t2, ma.matrix, n2))) return false;
-            pushes = true;
-            return true;
-          },
-        });
-        if (pushes) return true;
-      }
-    }
-    return false;
   }
 
   // Whether two parts' meshes overlap, placed as `partMatrices` says.
@@ -474,17 +403,6 @@ export class Collisions {
     return false;
   }
 }
-
-// How far from a meeting triangle's plane two parts' motion against each other may point and still
-// slide along it (radians). LDraw draws a round as a 16-sided polygon, so a face of it is off the
-// true round's tangent by up to half a side, 2π/32. The high-detail primitives have 48 sides (a
-// 48th of a turn), but a shape's meshes don't say which primitive drew them, so the 16 sides'
-// bound is used everywhere: it is the larger, and holds for both.
-const ROUND_FACE = Math.PI / 16;
-// A motion against each other smaller than this share of the meeting place's distance from the
-// part's origin is none: what double precision leaves of a still pose after a few products of
-// matrices (2^-52 each, 16 of them at most).
-const TOO_SMALL = 16 * 2 ** -52;
 
 function sameMatrix(a: Matrix4, b: Matrix4): boolean {
   for (let i = 0; i < 16; i++) if (Math.abs(a.elements[i] - b.elements[i]) > 1e-9) return false;

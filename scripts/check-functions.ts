@@ -235,7 +235,6 @@ interface Checked {
   stop?: (Halt | null)[][]; // for each control, each way: what stopped it short of its reach, if anything did
   pushed?: boolean[]; // for each control: whether it was worked by a push, as the viewer would, not a turn (see isPushed)
   movedBy?: string[][]; // for a function with several controls not worked together: for each control, the parts in `moves` it moved
-  collisionSlid?: string[]; // the pairs of parts that met but only slid along each other, so stopped nothing (see Collisions.slid), as "a,b"
   collisionStops?: [number, number, number, number, number, number][]; // with --stops: for each way a collision would have stopped, its control (by place), way (1 or -1), the two parts that met, how far the control had turned then, and how far in all (see stopsReport)
   shiftPressed?: number[]; // the friction pins a press with Shift freed for the control, where the function came out better so than as read (see pinsForShift)
   wrongBy?: string[][]; // for a function with several controls not worked together, if any moved a part in `stays`: for each control, those it moved
@@ -854,7 +853,6 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // pinsForShift, and shiftPressed in checkOne): freed for each way, besides any it frees itself.
   let shiftFreed = new Set<number>();
   const checkOne = (fn: Fn, prior?: Checked): Checked => {
-    stopWatch?.slid.clear();
     const known = withoutChecking(fn);
     if (known) return known;
     lifted = fn.lifted === true;
@@ -1340,17 +1338,12 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     // put it to work, to put together with the others'.
     if (onlyWay !== null) {
       const { explainStill, ...share } = workWay(all[onlyWay], onlyWay);
-      const slidWay = [...(stopWatch?.slid ?? [])];
-      return { result: 'error', way: { ...share, why, freed: freedPins }, ...(collisionStops.length ? { collisionStops } : {}), ...(slidWay.length ? { collisionSlid: slidWay } : {}) };
+      return { result: 'error', way: { ...share, why, freed: freedPins }, ...(collisionStops.length ? { collisionStops } : {}) };
     }
     const ways = all.map(workWay);
     const combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still), causesOnly ? prior : undefined)!;
-    // The collisions that stopped a way (collisionStops) and the pairs that met and only slid
-    // (collisionSlid), beside the result.
-    const withCollisions = <T extends object>(r: T) => {
-      const collisionSlid = [...(stopWatch?.slid ?? [])];
-      return { ...r, ...(collisionStops.length ? { collisionStops } : {}), ...(collisionSlid.length ? { collisionSlid } : {}) };
-    };
+    // The collisions that stopped a way (collisionStops), beside the result.
+    const withCollisions = <T extends object>(r: T) => ({ ...r, ...(collisionStops.length ? { collisionStops } : {}) });
     // A function that doesn't work as read, whose control moves only together with a bigger body
     // that friction pins hold it in (the 42082's cab door, fused to the cab, so that its drag slews
     // the cab): worked again with those pins freed, as a user who sees that would press it with
@@ -1370,9 +1363,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       }
       if (pins.size) {
         const [whyBefore, freedBefore] = [why.length, freedPins];
-        // The collisions met and slid past are the try's whose result is kept.
-        const [stopsBefore, slidBefore] = [collisionStops.length, [...(stopWatch?.slid ?? [])]];
-        stopWatch?.slid.clear();
+        // The collisions that stopped a way are the try's whose result is kept.
+        const stopsBefore = collisionStops.length;
         shiftFreed = pins;
         const again = combineWays(fn, all.map(workWay), why, freedPins, null);
         shiftFreed = new Set();
@@ -1383,8 +1375,6 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         why.length = whyBefore;
         freedPins = freedBefore;
         collisionStops.length = stopsBefore;
-        stopWatch?.slid.clear();
-        for (const pair of slidBefore) stopWatch?.slid.add(pair);
       }
     }
     return combined ? withCollisions(combined) : combined;
@@ -1727,8 +1717,7 @@ async function main() {
             const pivoted = shares.reduce<Checked['pivoted']>((most, c) => (c!.pivoted && (!most || Math.max(c!.pivoted.slide, c!.pivoted.rise) > Math.max(most.slide, most.rise)) ? c!.pivoted : most), undefined);
             const seconds = Math.round(shares.reduce((sum, c) => sum + (c!.seconds ?? 0), 0) * 10) / 10;
             const collisionStops = shares.flatMap((c) => c!.collisionStops ?? []);
-            const collisionSlid = [...new Set(shares.flatMap((c) => c!.collisionSlid ?? []))];
-            checked[i] = combined ? { ...combined, ...(pivoted ? { pivoted } : {}), ...(collisionStops.length ? { collisionStops } : {}), ...(collisionSlid.length ? { collisionSlid } : {}), seconds } : ((await run(i)) ?? checked[i]);
+            checked[i] = combined ? { ...combined, ...(pivoted ? { pivoted } : {}), ...(collisionStops.length ? { collisionStops } : {}), seconds } : ((await run(i)) ?? checked[i]);
           } else {
             // A control that failed as one process would have failed the function there too.
             const error = shares.find((c) => c && !c.way);
