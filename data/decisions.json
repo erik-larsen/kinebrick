@@ -134,6 +134,34 @@
         }
       ],
       "reply": "Sign 42000"
+    },
+    {
+      "id": "42110-drivers",
+      "kind": "Sign-off",
+      "title": "42110 Land Rover Defender: both front axle drivers are drawn 2 LDU off their hubs’ axis",
+      "since": "2026-11-18",
+      "what": "A correction to the published file. At each front wheel, the axle driver (the ball-ended piece on the half shaft, part 32494) sits in the wheel hub and should be on the hub’s axis. In the file both front drivers are drawn 2 LDU below it. When a front wheel turns, the off-centre driver is carried round into the hub’s bearing and the wheel stops. The booklet pushes each driver in along the hub’s axis (steps 149 and 150). The correction moves both drivers 2 LDU up onto the axis, with their tilt kept.",
+      "effect": "Function 4 (the three differentials let every wheel turn at its own speed) goes from partly working to working, and the count goes up by 1. It went to partly today, when the check began to stop where the viewer stops.",
+      "confidence": "High. Claude looked at both booklet pages and dragged the front wheel’s control in the viewer with the correction: it turns 159° with no stop, and the driver and the hub turn with it in place. As drawn, by the worker’s drag, it turns 26° and stops at the driver and its bearing. The worker checked the set with the correction: function 4 works.",
+      "links": [
+        {
+          "label": "42110 in the viewer with the correction, the two drivers marked",
+          "url": "http://localhost:5174/?file=omr/42110-1+Land+Rover+Defender.mpd&option=proposed&show=83,88&lifted=1"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/42110-1+Land+Rover+Defender.mpd&show=83,88&lifted=1"
+        },
+        {
+          "label": "Booklet page 93, step 149: the driver goes into the hub",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=93"
+        },
+        {
+          "label": "Booklet page 94, step 150: the same on the other side",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=94"
+        }
+      ],
+      "reply": "Sign 42110"
     }
   ],
   "coming": [

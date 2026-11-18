@@ -9,6 +9,8 @@
 //   the front steering links p571 32293 / p588 92909, p536 42003 / p580 32293.
 //   8880 functions 7 and 8 (the front and rear suspension): p399 2907 / p429 6540b and the three
 //   other balls in their steering arms, and p106 6536 / p314 6538a and the three other pairs.
+//   42110 function 4 (the differentials), with the erratum that puts its front drivers on their hubs'
+//   axes (option=proposed): p81 23801 / p83 32494, p86 23801 / p88 32494.
 //   8466 function 8 (the suspension): p627 3713 / p1151 2910, p626 3713 / p1147 2910, p1048 32494 /
 //   p1134 2910.
 //
@@ -25,6 +27,7 @@ const CASES: Record<string, { file: string; settings: string; controls: number[]
     controls: [105, 121, 113, 129],
     pairs: [[399, 429], [400, 438], [397, 432], [398, 435], [106, 314], [122, 315], [114, 333], [130, 332]],
   },
+  '42110': { file: 'omr/42110-1 Land Rover Defender.mpd', settings: 'lifted=1&option=proposed', controls: [2606], pairs: [[81, 83], [86, 88]], watch: [83, 88, 89, 90] },
   '8466': { file: 'omr/8466-1 4 X 4 Off-Roader.mpd', settings: 'lifted=1', controls: [648, 666, 1039, 1057], pairs: [[627, 1151], [626, 1147], [1048, 1134]] },
 };
 const [set, only] = process.argv.slice(3);

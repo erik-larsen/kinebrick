@@ -486,6 +486,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42109-1](#42109-1-no-pin-p381) | no-pin-p381 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-pin-p382) | no-pin-p382 | removes `2780.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
 | [42109-1](#42109-1-no-beam-p383) | no-beam-p383 | removes `32526.dat` (in `42109 - car.ldr`) | Signed off by Erik, 2026-11-14 |
+| [42110-1](#42110-1-front-driver-at-z-minus-177-on-its-hub-axis) | front-driver-at-z-minus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 -177.81 | Proposed, not applied until signed off |
+| [42110-1](#42110-1-front-driver-at-z-plus-177-on-its-hub-axis) | front-driver-at-z-plus-177-on-its-hub-axis | moves `32494.dat` (in `42110 - frontaxle.ldr`) to -40 -17.188 177.81 | Proposed, not applied until signed off |
 | [42111-1](#42111-1-rear-shock-cylinder-on-the-rods-axis) | rear-shock-cylinder-on-the-rods-axis | moves `4255.dat` (in `42111 - rear-shock-assy.ldr`) to 0 9.819 0 | Signed off by Erik, 2026-11-15 |
 | [42112-1](#42112-1-drive-shaft-bevel-on-the-shaft) | drive-shaft-bevel-on-the-shaft | moves `18575.dat` to 20 0 184 | Signed off by Erik, 2026-11-17 |
 
@@ -1052,6 +1054,34 @@ In `42109 - car.ldr` (p383 32526), the line
 ```
 
 is read as not there. The part keeps its number.
+
+### 42110-1: front-driver-at-z-minus-177-on-its-hub-axis
+
+Proposed, not applied until signed off.
+
+One front hub: step 149 (page 93, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=93) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn.
+
+In `42110 - frontaxle.ldr`, the line
+
+```
+1 71 -40 -19.188 -177.81 1 0 0 0 0.978 -0.208 0 0.208 0.978 32494.dat
+```
+
+is read with its part at -40 -17.188 -177.81.
+
+### 42110-1: front-driver-at-z-plus-177-on-its-hub-axis
+
+Proposed, not applied until signed off.
+
+The other front hub: step 150 (page 94, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6323003.pdf#page=94) puts the portal hub 92909 into the steering bearing 23801 and pushes the wheel spindle axle driver 32494 into the hub's middle along its axis, its ball in the hub's socket. The file draws the driver's ball 2 LDU below the hub's axis (at the socket's depth, 30 LDU in), its shaft tilted 12 degrees down to the differential as built. Turning the wheel then carries the off-centre driver round into the bearing, which stops function 4 at 0.43 radians. Moved 2 LDU up onto the hub's axis, its tilt as drawn; with front-driver-at-z-minus-177-on-its-hub-axis.
+
+In `42110 - frontaxle.ldr`, the line
+
+```
+1 71 -40 -19.188 177.81 -1 0 0 0 0.978 -0.208 0 -0.208 -0.978 32494.dat
+```
+
+is read with its part at -40 -17.188 177.81.
 
 ### 42111-1: rear-shock-cylinder-on-the-rods-axis
 
