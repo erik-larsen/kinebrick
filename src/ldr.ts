@@ -142,7 +142,7 @@ const LINK_FIT = 4; // LDU: how far a link's end may be from the pin it's on
 const LINK_BEND = 1 / 1.5;
 const LINK_STRAIGHT = Math.PI / 18;
 // A link's kind (see BY_HAND_LINKS), from its name, or null if it isn't a link.
-function linkKind(name: string): { kind: string; pin: Vector3; halfWidth?: number } | null {
+export function linkKind(name: string): { kind: string; pin: Vector3; halfWidth?: number } | null {
   const plain = name.replace(/^.* - /, '').replace(/^(57518|88323)c\d+\.dat$/, '$1.dat');
   const link = BY_HAND_LINKS[plain];
   return link ? { kind: plain === '15379.dat' ? '3873.dat' : plain, ...link } : null;

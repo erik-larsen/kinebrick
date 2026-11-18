@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 95 functions. Kinebrick: 43 works, 48 partly, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 95 functions. Kinebrick: 41 works, 50 partly, 4 not checked.
 
 ## By decade
 
@@ -111,8 +111,8 @@ Each detail by the set it first appears in.
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
 - *4 functions:* The Power Functions L motor at the back of the superstructure runs the gearbox: a 24 tooth clutch gear on its shaft drives a 24 tooth gear, and rows of 16 tooth clutch gears carry the turn across the gearbox, one pair (one turning each way) beside each of the four driving rings. (works)
-- Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets. (works)
-- Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth. (works)
+- Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets. (partly)
+- Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth. (partly)
 - Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (partly)
 - Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab. (works)
 - *4 functions, two H gates:* Two levers on the superstructure, each in an H gate, choose and work the four crane functions: the left lever goes left for A or right for B, the right lever left for C or right for D, and pushed forward or back in its slot it slides that function’s driving ring between its two clutch gears, driving the function one way or the other; in the middle it is in neutral. (partly)

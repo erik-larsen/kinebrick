@@ -2,7 +2,7 @@
 
 import { Matrix4, Vector3 } from 'three';
 import { ConnectionTable } from '../connections.ts';
-import { PathPoint, PlacedPart, PlacedPath } from '../ldr.ts';
+import { linkKind, PathPoint, PlacedPart, PlacedPath } from '../ldr.ts';
 import { type Joint, libraryName, type Loop, type LoopWheel } from '../mechanism.ts';
 import { AXIS_TOLERANCE } from './shared.ts';
 
@@ -92,7 +92,7 @@ export function findLoops(parts: PlacedPart[], roles: string[], bodyOf: number[]
       }
       const links = parts.flatMap((p, i) => (p.path === path ? [i] : []));
       const carriers = path.points.map((point, index) => wheels.find((w) => w.point === index)?.body ?? bodyOf[nearestPart(point.center, parts, roles)]);
-      return { path, wheels, links, depth: table.tracks?.[libraryName(path.skin, table)]?.depth ?? null, carriers };
+      return { path, wheels, links, depth: trackDepth(path.skin, table), carriers };
     });
 }
 
@@ -182,4 +182,12 @@ export function movePaths(paths: PlacedPath[], parts: PlacedPart[], bodyOf: numb
     }),
   );
   paths.forEach((path, i) => path.points.forEach((point, k) => Object.assign(point, moved[i][k])));
+}
+
+// How far a track's links reach out beyond its path (see TRACK in data/corrections.ldr), by the
+// kind of link: a 57518c01 or 88323c02 (a link with a part on it) is read as its plain link, a
+// 15379 as the 3873 it is drawn as.
+function trackDepth(skin: string, table: ConnectionTable): number | null {
+  const name = libraryName(skin, table);
+  return table.tracks?.[name]?.depth ?? table.tracks?.[linkKind(name)?.kind ?? '']?.depth ?? null;
 }

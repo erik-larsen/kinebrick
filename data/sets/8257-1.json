@@ -160,15 +160,14 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 50,
+    "commit": "edc72a08",
+    "date": "2026-11-18",
+    "seconds": 61,
     "counts": {
-      "works": 6,
+      "partly": 3,
+      "works": 5,
       "not back": 3,
       "torn": 2,
-      "partly": 2,
       "free-turned": 1,
       "skipped": 2
     },
@@ -231,7 +230,7 @@
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "partly",
         "turned": [
           [
             1.5,
@@ -390,6 +389,9 @@
             ]
           ]
         ],
+        "why": [
+          "no track is read"
+        ],
         "movedBy": [
           [],
           [],
@@ -398,7 +400,16 @@
           [],
           []
         ],
-        "seconds": 14.5
+        "judged": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cause": "track-not-read",
+        "seconds": 17.7
       },
       {
         "result": "works",
@@ -461,7 +472,7 @@
             "dead point"
           ]
         ],
-        "seconds": 5.4
+        "seconds": 6.6
       },
       {
         "result": "partly",
@@ -525,7 +536,7 @@
         ],
         "cause": "loose-part",
         "detail": "p620 2698",
-        "seconds": 3.1
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -571,7 +582,7 @@
             ]
           ]
         ],
-        "seconds": 3.3
+        "seconds": 3.8
       },
       {
         "result": "works",
@@ -663,7 +674,7 @@
           [],
           []
         ],
-        "seconds": 9.2
+        "seconds": 11
       },
       {
         "result": "works",
@@ -726,7 +737,7 @@
             "dead point"
           ]
         ],
-        "seconds": 5.5
+        "seconds": 6.7
       },
       {
         "result": "partly",
@@ -795,7 +806,7 @@
         "cause": "loose-part",
         "detail": "p184 2698",
         "onPlay": 3,
-        "seconds": 5.7
+        "seconds": 7.4
       },
       {
         "result": "works",
@@ -841,7 +852,7 @@
             ]
           ]
         ],
-        "seconds": 2.5
+        "seconds": 3.2
       },
       {
         "result": "skipped",
