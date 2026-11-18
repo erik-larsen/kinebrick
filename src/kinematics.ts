@@ -1929,7 +1929,9 @@ export class Kinematics {
     }
     // A slide held at an end of its travel slides no further (see endHeld). Closing the loops, one
     // past its end is brought back to it: a step's second-order drift may push it on (the 9397's
-    // plough, 3.5×10⁻⁴ LDU). One within LIMIT_TOLERANCE of its end is left where it is.
+    // plough, 3.5×10⁻⁴ LDU). One within LIMIT_TOLERANCE of its end is left where it is: brought
+    // back too, it pulled the 42079 Heavy Duty Forklift's mast off what its play allows, and the
+    // mast tilted only 0.07 radians on play.
     all = true;
     if (this.traceNames) this.traceName = 'slide ends';
     for (const j of this.endHeld) {
