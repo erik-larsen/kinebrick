@@ -106,8 +106,7 @@
     ]
   },
   "generated": {
-    "commit": "edc72a08",
-    "uncommitted": true,
+    "commit": "85c9d0d1",
     "date": "2026-11-18",
     "seconds": 3,
     "counts": {
@@ -322,7 +321,7 @@
         ],
         "cause": "not-driven",
         "detail": "p11 15459 against p8 15459",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -392,7 +391,7 @@
           [],
           []
         ],
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -423,11 +422,11 @@
         "back": [
           [
             [
-              2.11,
+              2.19,
               0
             ],
             [
-              2.11,
+              2.19,
               0
             ]
           ],
@@ -505,8 +504,8 @@
           ]
         ],
         "strayed": [
-          "p128 15379",
-          "p178 92907"
+          "p97 87407",
+          "p173 32062"
         ],
         "movedBy": [
           [],
@@ -514,7 +513,7 @@
           [],
           []
         ],
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "not checked",

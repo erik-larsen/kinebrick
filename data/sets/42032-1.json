@@ -84,12 +84,14 @@
     ]
   },
   "generated": {
-    "commit": "edc72a08",
+    "commit": "85c9d0d1",
     "date": "2026-11-18",
-    "seconds": 5,
+    "seconds": 7,
     "counts": {
       "works": 3,
-      "partly": 1
+      "partly": 1,
+      "not back": 1,
+      "moved whole": 1
     },
     "loose": [
       "p113 40620",
@@ -236,7 +238,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p114 42032 - 33299b against p120 32278",
-        "seconds": 1.9
+        "seconds": 4.1
       },
       {
         "result": "works",
@@ -369,7 +371,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.5
       }
     ]
   }

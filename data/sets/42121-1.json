@@ -89,9 +89,9 @@
     ]
   },
   "generated": {
-    "commit": "edc72a08",
+    "commit": "85c9d0d1",
     "date": "2026-11-18",
-    "seconds": 13,
+    "seconds": 12,
     "counts": {
       "partly": 1,
       "no": 1,
@@ -216,7 +216,7 @@
         "cause": "too-little",
         "detail": "p84 32271",
         "onPlay": 10,
-        "seconds": 7.5
+        "seconds": 7.6
       },
       {
         "result": "no",
@@ -247,7 +247,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0.5
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -297,7 +297,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -328,41 +328,41 @@
         "back": [
           [
             [
-              0.32,
+              0.34,
               0
             ],
             [
-              0.32,
+              0.33,
               0
             ]
           ],
           [
             [
-              0.32,
+              0.34,
               0
             ],
             [
-              0.32,
+              0.33,
               0
             ]
           ],
           [
             [
-              0.32,
+              0.33,
               0
             ],
             [
-              0.32,
+              0.34,
               0
             ]
           ],
           [
             [
-              0.32,
+              0.33,
               0
             ],
             [
-              0.32,
+              0.34,
               0
             ]
           ]
@@ -415,7 +415,7 @@
           [],
           []
         ],
-        "seconds": 3.7
+        "seconds": 3.3
       },
       {
         "result": "not checked",

@@ -208,10 +208,9 @@
     ]
   },
   "generated": {
-    "commit": "edc72a08",
-    "uncommitted": true,
+    "commit": "85c9d0d1",
     "date": "2026-11-18",
-    "seconds": 24,
+    "seconds": 21,
     "counts": {
       "no": 2,
       "works": 6,
@@ -307,7 +306,7 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 1.3
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -381,7 +380,7 @@
             ]
           ]
         ],
-        "seconds": 3.7
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -465,7 +464,7 @@
             "limit"
           ]
         ],
-        "seconds": 2.1
+        "seconds": 2
       },
       {
         "result": "works",
@@ -507,7 +506,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -557,7 +556,7 @@
             ]
           ]
         ],
-        "seconds": 1.5
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -603,7 +602,7 @@
             ]
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.2
       },
       {
         "result": "no",
@@ -719,7 +718,7 @@
         ],
         "cause": "not-driven",
         "detail": "p284 92909",
-        "seconds": 3.1
+        "seconds": 2.9
       },
       {
         "result": "skipped",
@@ -855,7 +854,7 @@
           1
         ],
         "cause": "track-not-read",
-        "seconds": 6.9
+        "seconds": 5.9
       },
       {
         "result": "not checked",
@@ -896,7 +895,7 @@
             ]
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.4
       },
       {
         "result": "not checked",
