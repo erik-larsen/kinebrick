@@ -1,0 +1,29 @@
+{
+  "set": "42038-1",
+  "entries": [
+    {
+      "id": "rear-left-tread-on-its-unit",
+      "what": "move",
+      "file": "",
+      "line": "1 0 -175 163.772 290.6815 0 0 1 0 1 0 -1 0 0 42038 - technicChainTread38Closed-1.ldr",
+      "position": [
+        -165,
+        161.666,
+        300.4165
+      ],
+      "evidence": "Each of the four track units (42038 - track1.ldr on the left, track2.ldr on the right) has a tread of 24 links of 57518 (42038 - technicChainTread38Closed-1.ldr) round its three wheels. The front treads are placed where their units are, in y and z (163.772, -259.3185), at x 165 and -165, and each circle is on its wheel's axle. The rear units are at y 161.666, z 300.4165 (left, x -165) and z 300.4155 (right, x 175), but their treads are at y 163.772, z 290.6815 and x -175 and 155: every circle lies 9.96 LDU from its axle, the treads are read round no wheel, and function 9 fails as track-not-read. Book 2, step 101 (page 47, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112278.pdf#page=47) wraps each 24-link tread round its unit's wheels, the rear ones as the front. Placed as the front treads are against their units, at the unit's y and z and x -165, its circles are on their axles."
+    },
+    {
+      "id": "rear-right-tread-on-its-unit",
+      "what": "move",
+      "file": "",
+      "line": "1 0 155 163.772 290.6815 0 0 1 0 1 0 -1 0 0 42038 - technicChainTread38Closed-1.ldr",
+      "position": [
+        165,
+        161.666,
+        300.4155
+      ],
+      "evidence": "With rear-left-tread-on-its-unit: the right rear tread, placed as the right front tread is against its unit (track2.ldr at x 175, its tread at x 165), at the unit's y and z (161.666, 300.4155). Book 2, step 101 (page 47, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112278.pdf#page=47)."
+    }
+  ]
+}

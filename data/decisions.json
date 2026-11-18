@@ -46,16 +46,76 @@
         }
       ],
       "reply": "Sign 9397 plough"
+    },
+    {
+      "id": "42042-tread",
+      "kind": "Sign-off",
+      "title": "42042 Crawler Crane: the left tread is drawn 10 LDU beside its wheels",
+      "since": "2026-11-18",
+      "what": "A correction to the published file. The crane’s two treads are the same 45-link loop, placed twice. The right one sits on its two sprockets and four rollers. The left one is placed 10 LDU further along the crawler, so every one of its circles is 10 LDU from its axle and it runs round no wheel. The booklet builds both treads the same way, each centred on its sprockets (step 32: 90 links, 2 × 45). The correction moves the left tread to where the right one is along the crawler.",
+      "effect": "Functions 2 (lever B drives the tracks) and 9 (the tracks run round) go from partly working to working. They went to partly today, when the check began to fail a track function whose track does not run. The count goes up by 2.",
+      "confidence": "High. Claude looked at the booklet page and loaded the model in the viewer both ways: as drawn, the left tread is read round 0 wheels and the right one round 6; with the correction, both are read round 6. The worker checked the set with the correction: both functions work.",
+      "links": [
+        {
+          "label": "42042 in the viewer with the correction, the left tread’s first link marked",
+          "url": "http://localhost:5174/?file=omr/42042-1+Crawler+Crane.mpd&option=proposed&show=419"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/42042-1+Crawler+Crane.mpd&show=419"
+        },
+        {
+          "label": "Booklet page 54, step 32: both treads on their sprockets",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6151636.pdf#page=54"
+        }
+      ],
+      "reply": "Sign 42042"
+    },
+    {
+      "id": "42038-treads",
+      "kind": "Sign-off",
+      "title": "42038 Arctic Truck: the two rear treads are drawn 10 LDU off their track units, and function 9 gets the sprockets as controls",
+      "since": "2026-11-18",
+      "what": "Two things for the 42038, one item. (a) A correction to the published file. Each of the four track units has a tread of 24 links round its three wheels. The front treads sit on their units. The two rear treads are drawn about 10 LDU off their units (up and along the truck, and 10 LDU sideways), so they run round no wheel. The booklet wraps each tread round its own unit, the rear ones as the front (book 2, step 101). The correction places each rear tread on its unit as the front ones are. (b) A change to the list. Function 9 says each track unit rocks on its hub and its track runs round. Its controls are only the four rocking beams, and rocking a unit does not run its track. The change adds the four units’ sprockets as controls beside the beams.",
+      "effect": "Function 9 goes from partly working to working: all eight controls turn both ways and come back. It went to partly today, when the check began to fail a track function whose track does not run. The count goes up by 1.",
+      "confidence": "High for the correction: Claude looked at the booklet page and loaded the model in the viewer both ways. As drawn, the front treads are read round 3 wheels each and the rear ones round 0; with the correction, all four round 3. The list change is your call: it adds controls and takes nothing away.",
+      "links": [
+        {
+          "label": "42038 in the viewer with the correction, the rear treads’ first links marked",
+          "url": "http://localhost:5174/?file=omr/42038-1+Arctic+Truck.mpd&option=proposed&show=794,818"
+        },
+        {
+          "label": "The same as drawn",
+          "url": "http://localhost:5174/?file=omr/42038-1+Arctic+Truck.mpd&show=794,818"
+        },
+        {
+          "label": "Book 2, page 47, step 101: a tread of 24 links round each unit",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6112278.pdf#page=47"
+        }
+      ],
+      "reply": "Sign 42038"
+    },
+    {
+      "id": "8272-list",
+      "kind": "Sign-off",
+      "title": "8272 Snowmobile: function 5 without its two listed track links",
+      "since": "2026-11-18",
+      "what": "A change to the list. Function 5 (the track runs round its sprockets) lists four parts to watch: the two sprockets (p142, p150) and two single links of the track (p166, p180). The two links were listed to catch a track that does not run. The check now tests that itself, for the whole track, and a single link only shows where that one link went. The change drops the two links and keeps the two sprockets.",
+      "effect": "None on the result: function 5 works before and after. The list then says what the function is about.",
+      "confidence": "High. The worker checked the function with the shorter list: it works, both sprockets turning. In the viewer all 27 links of the track run round.",
+      "links": [
+        {
+          "label": "8272 in the viewer, the two sprockets and the two links marked",
+          "url": "http://localhost:5174/?file=omr/8272-1+Snowmobile.mpd&show=142,150,166,180"
+        }
+      ],
+      "reply": "Sign 8272 list"
     }
   ],
   "coming": [
     {
       "title": "The next offer of main",
       "what": "preview has 739 working functions and main 701, but Claude does not offer main yet. A measurement on 18 November showed how far the check and the viewer differ: in the viewer a collision between parts stops 694 motions in 330 working or partly working functions before the check’s turn ends. In 205 working functions every stopped motion stops before half way; by a first estimate about 84 of those would still count as working when judged at the stop, and about 121 would not. So the true number of functions that the viewer shows today may be nearer 620 than 739. The mend is running now: the check is made to stop where the viewer stops, and a full check of that step is under way on its own branch. Every result it changes is then sorted into four kinds: a real end of travel, a connection the model’s reading misses, shapes drawn with no clearance, and the rest. After that come a full check and a slow check of the 8110 on the commit offered."
-    },
-    {
-      "title": "Three track questions, being prepared for you",
-      "what": "The worker is preparing three proposals for your signature: a file correction for the 42042 (its treads are drawn beside their sprockets), one for the 42038 (its rear treads are drawn 10 LDU off their track units), and a list change for the 8272’s function 5 (without its two listed track links, since the check now tests the whole track). Each will come with a viewer link and the booklet page."
     },
     {
       "title": "A second worker, asked again at mid-week",
