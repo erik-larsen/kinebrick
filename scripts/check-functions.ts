@@ -80,6 +80,7 @@ import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, 
 import { gearRates, line } from './gear-rates.ts';
 import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
+import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
 import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
@@ -1475,7 +1476,9 @@ async function main() {
     } else {
       if ('functions' in found) for (const line of changes(data.curated.functions, data.generated?.functions ?? [], found.functions)) console.log(`${data.set}: ${proposed ? 'with proposed errata: ' : ''}${line}`);
       if ('errata' in found && found.errata) console.log(`${data.set}: errata applied: ${found.errata.applied.join(', ') || 'none'}${found.errata.refused.length ? `; refused: ${found.errata.refused.join('; ')}` : ''}`);
-      data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found };
+      // A track drawn link by link isn't read as a track: the set's results say so (see unread-tracks.ts).
+      const unread = unreadTracks(modelsOf(data.curated));
+      data.generated = { commit, ...(uncommitted ? { uncommitted } : {}), ...(holds ? { holds } : {}), date, seconds, ...found, ...(unread ? { unreadTracks: unread } : {}) };
     }
     if (!proposed) writeFileSync(s.file, JSON.stringify(data, null, 2) + '\n');
     if ('functions' in found) for (const c of found.functions) if (c.cause) caused[c.cause] = (caused[c.cause] ?? 0) + 1;
