@@ -144,10 +144,9 @@
     ]
   },
   "generated": {
-    "commit": "0220d43e",
-    "uncommitted": true,
+    "commit": "cf74f389",
     "date": "2026-11-18",
-    "seconds": 16,
+    "seconds": 15,
     "counts": {
       "partly": 1,
       "not back": 2,
@@ -532,13 +531,14 @@
         ],
         "freeTurned": true,
         "strayed": [
-          "p131 2699"
+          "p131 2699",
+          "p39 32062"
         ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 3.2
+        "seconds": 3
       },
       {
         "result": "works",
@@ -592,7 +592,7 @@
             ]
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.7
       },
       {
         "result": "skipped",

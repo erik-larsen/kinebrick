@@ -137,10 +137,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 5,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 6,
     "counts": {
       "works": 5,
       "not back": 1,
@@ -213,7 +212,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -231,7 +230,7 @@
           {
             "p0 73071": [
               1,
-              1.29e-13
+              9.89e-14
             ],
             "p221 3736": [
               0,
@@ -249,7 +248,7 @@
           {
             "p0 73071": [
               1,
-              3.61e-14
+              6.27e-14
             ],
             "p221 3736": [
               0,
@@ -317,7 +316,7 @@
             "p0 73071"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -335,21 +334,21 @@
           {
             "p40 3708 against p8 3895": [
               2,
-              3.28e-14
+              2.11e-13
             ],
             "p86 3705 against p8 3895": [
               2,
-              4.66e-14
+              8.28e-14
             ]
           },
           {
             "p40 3708 against p8 3895": [
               2,
-              1.78e-13
+              1.42e-13
             ],
             "p86 3705 against p8 3895": [
               2,
-              5.73e-14
+              7.5e-14
             ]
           }
         ],
@@ -407,7 +406,7 @@
             "p86 3705 against p8 3895"
           ]
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -486,7 +485,7 @@
           ]
         ],
         "onPlay": 0.7,
-        "seconds": 0.5
+        "seconds": 0.6
       },
       {
         "result": "partly",
@@ -554,7 +553,7 @@
         ],
         "cause": "not-driven",
         "detail": "p191 3705",
-        "seconds": 1.1
+        "seconds": 1.4
       },
       {
         "result": "partly",
@@ -682,7 +681,7 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 0.9
       }
     ]
   }

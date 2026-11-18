@@ -133,9 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "087fb766",
+    "commit": "cf74f389",
     "date": "2026-11-18",
-    "seconds": 2,
+    "seconds": 3,
     "counts": {
       "partly": 3,
       "not checked": 1,
@@ -229,7 +229,7 @@
         ],
         "cause": "not-driven",
         "detail": "p174 3895",
-        "seconds": 0.2
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -302,7 +302,7 @@
         ],
         "cause": "not-driven",
         "detail": "p212 2950 against p183 3895",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "not checked",
@@ -368,7 +368,7 @@
             ]
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -435,7 +435,7 @@
         ],
         "cause": "not-driven",
         "detail": "p54 3703 against p0 3738",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -466,41 +466,41 @@
         "back": [
           [
             [
-              0.92,
+              0.96,
               0
             ],
             [
-              64.17,
+              64.21,
               27.35
             ]
           ],
           [
             [
-              0.92,
+              0.96,
               0
             ],
             [
-              58.58,
+              58.62,
               24.87
             ]
           ],
           [
             [
-              1,
+              1.05,
               0
             ],
             [
-              67.49,
+              67.54,
               29
             ]
           ],
           [
             [
-              0.99,
+              1.04,
               0
             ],
             [
-              72.07,
+              72.11,
               31.07
             ]
           ]
@@ -550,8 +550,8 @@
         "strayed": [
           "p146 3701",
           "p191 6577",
-          "p192 6577",
-          "p147 3701"
+          "p147 3701",
+          "p192 6577"
         ],
         "movedBy": [
           [],
@@ -559,7 +559,7 @@
           [],
           []
         ],
-        "seconds": 0.9
+        "seconds": 1.5
       },
       {
         "result": "skipped",

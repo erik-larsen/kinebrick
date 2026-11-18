@@ -108,10 +108,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 4,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "works": 3,
@@ -197,7 +196,7 @@
         ],
         "cause": "not-driven",
         "detail": "p51 4261 against p0 3703",
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -211,23 +210,23 @@
           {
             "p101 3648a against p86 3701": [
               1,
-              3.85e-13
+              3.76e-13
             ],
             "p116 2853 against p86 3701": [
               3,
-              2.42e-13
+              3.08e-13
             ],
             "p117 2852 against p86 3701": [
-              0.51,
+              0.425,
               29.9
             ],
             "p120 2851 against p86 3701": [
-              1.05,
-              21.3
+              0.901,
+              17.9
             ],
             "p121 2851 against p86 3701": [
-              0.889,
-              18
+              1.05,
+              21.5
             ]
           }
         ],
@@ -260,7 +259,7 @@
           "p120 2851"
         ],
         "freed": 5,
-        "seconds": 1.4
+        "seconds": 1.8
       },
       {
         "result": "works",
@@ -458,7 +457,7 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 2.3
       },
       {
         "result": "not checked",

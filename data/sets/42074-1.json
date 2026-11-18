@@ -85,9 +85,8 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
+    "commit": "cf74f389",
+    "date": "2026-11-18",
     "seconds": 4,
     "counts": {
       "works": 3,
@@ -162,7 +161,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -292,7 +291,7 @@
             "p275 32278"
           ]
         ],
-        "seconds": 1.6
+        "seconds": 1.5
       },
       {
         "result": "works",
@@ -410,7 +409,7 @@
           [],
           []
         ],
-        "seconds": 1.9
+        "seconds": 1.6
       },
       {
         "result": "skipped",

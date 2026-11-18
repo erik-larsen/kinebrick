@@ -283,10 +283,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 1318,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 1081,
     "counts": {
       "works": 7,
       "partly": 3,
@@ -354,39 +353,39 @@
           {
             "p405 18946": [
               1,
-              1.18e-13
+              1.45e-13
             ],
             "p448 94925": [
               1,
-              8.05e-14
+              1.8e-13
             ],
             "p381 6573": [
               1,
-              2.65e-13
+              2.26e-13
             ],
             "p471 62821": [
               0.714,
-              8.34e-13
+              1.21e-12
             ],
             "p755 62821": [
               0.714,
-              3.72e-13
+              3.08e-13
             ],
             "p845 62821": [
               0.714,
-              8.37e-13
+              7.11e-13
             ],
             "p2367 15038": [
               0.238,
-              4.05e-13
+              4.64e-13
             ],
             "p2369 15038": [
               0.238,
-              1.59e-11
+              7.85e-12
             ],
             "p2371 15038": [
               0.238,
-              1.63e-11
+              7.82e-12
             ]
           }
         ],
@@ -420,7 +419,7 @@
             ]
           ]
         ],
-        "seconds": 87.1
+        "seconds": 70.9
       },
       {
         "result": "partly",
@@ -480,7 +479,7 @@
         ],
         "cause": "not-driven",
         "detail": "p592 18946",
-        "seconds": 34.1
+        "seconds": 28.2
       },
       {
         "result": "works",
@@ -550,7 +549,7 @@
             ]
           ]
         ],
-        "seconds": 46.5
+        "seconds": 38.5
       },
       {
         "result": "works",
@@ -610,7 +609,7 @@
             "dead point"
           ]
         ],
-        "seconds": 58.1
+        "seconds": 50.7
       },
       {
         "result": "works",
@@ -670,7 +669,7 @@
             "end of travel"
           ]
         ],
-        "seconds": 64.3
+        "seconds": 51
       },
       {
         "result": "works",
@@ -748,7 +747,7 @@
             ]
           ]
         ],
-        "seconds": 103.4
+        "seconds": 83.4
       },
       {
         "result": "partly",
@@ -840,7 +839,7 @@
         ],
         "cause": "too-little",
         "detail": "p1880 92693c01",
-        "seconds": 655
+        "seconds": 531.9
       },
       {
         "result": "works",
@@ -910,7 +909,7 @@
             ]
           ]
         ],
-        "seconds": 54.5
+        "seconds": 46.2
       },
       {
         "result": "partly",
@@ -997,7 +996,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2086 40490",
-        "seconds": 81.6
+        "seconds": 67.5
       },
       {
         "result": "works",
@@ -1063,7 +1062,7 @@
           [],
           []
         ],
-        "seconds": 119.3
+        "seconds": 100.7
       },
       {
         "result": "skipped"

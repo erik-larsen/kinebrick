@@ -149,10 +149,9 @@
     ]
   },
   "generated": {
-    "commit": "0220d43e",
-    "uncommitted": true,
+    "commit": "cf74f389",
     "date": "2026-11-18",
-    "seconds": 40,
+    "seconds": 36,
     "counts": {
       "works": 3,
       "partly": 3,
@@ -417,7 +416,7 @@
             ]
           ]
         ],
-        "seconds": 3.1
+        "seconds": 3.3
       },
       {
         "result": "partly",
@@ -431,43 +430,43 @@
           {
             "p141 32072": [
               1,
-              1.14e-12
+              6.71e-13
             ],
             "p31 32072": [
               1,
-              9.73e-13
+              8.1e-13
             ],
             "p34 4716": [
               1,
-              9.86e-13
+              8.09e-13
             ],
             "p45 3648b": [
               0.0417,
-              8.74e-13
+              7.42e-13
             ],
             "p1045 3708": [
-              0.0384,
+              0.0385,
               8.21
             ],
             "p968 41896": [
-              2.81e-8,
-              7.52e-13
+              0,
+              7.35e-13
             ],
             "p970 41896": [
-              5.62e-8,
-              6.64e-13
+              2.81e-8,
+              7.99e-13
             ]
           }
         ],
         "back": [
           [
             [
-              1289.46,
-              159.75
+              1287.88,
+              159.6
             ],
             [
-              801.82,
-              41.6
+              890.41,
+              59.42
             ]
           ]
         ],
@@ -487,13 +486,19 @@
           "p673 3023",
           "p496 32009"
         ],
+        "stop": [
+          [
+            "end of travel",
+            null
+          ]
+        ],
         "freed": 4,
         "judged": [
           1
         ],
         "cause": "loose-part",
         "detail": "p1045 3708",
-        "seconds": 9.5
+        "seconds": 9.8
       },
       {
         "result": "partly",
@@ -579,7 +584,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 3.4
+        "seconds": 2.8
       },
       {
         "result": "works",
@@ -629,7 +634,7 @@
             ]
           ]
         ],
-        "seconds": 3.4
+        "seconds": 2.6
       },
       {
         "result": "partly",
@@ -689,7 +694,7 @@
         ],
         "cause": "stopped-early",
         "onPlay": 1.07,
-        "seconds": 5.6
+        "seconds": 5
       },
       {
         "result": "works",
@@ -807,7 +812,7 @@
           [],
           []
         ],
-        "seconds": 14
+        "seconds": 11.5
       },
       {
         "result": "not checked",

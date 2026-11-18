@@ -108,10 +108,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 3,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 4,
     "counts": {
       "partly": 1,
       "works": 4,
@@ -197,7 +196,7 @@
         ],
         "cause": "not-driven",
         "detail": "p16 42109 - 65414c01",
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -335,7 +334,7 @@
           "rise": 0.36,
           "tyre": "p968 44309"
         },
-        "seconds": 0.8
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -401,7 +400,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.8
       },
       {
         "result": "not checked",
@@ -452,7 +451,7 @@
           ]
         ],
         "freed": 2,
-        "seconds": 0.7
+        "seconds": 0.8
       }
     ]
   }

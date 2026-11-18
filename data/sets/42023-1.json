@@ -84,10 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 4,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "works": 3
@@ -161,8 +160,7 @@
           0
         ],
         "cause": "one-link-too-many",
-        "onPlay": 0.47,
-        "seconds": 0.4
+        "seconds": 0.6
       },
       {
         "result": "works",
@@ -280,7 +278,7 @@
             "p213 64782 against p300 32278"
           ]
         ],
-        "seconds": 1.2
+        "seconds": 1.7
       },
       {
         "result": "works",
@@ -322,7 +320,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -440,7 +438,7 @@
           [],
           []
         ],
-        "seconds": 1.4
+        "seconds": 2.1
       }
     ]
   }

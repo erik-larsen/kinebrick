@@ -84,9 +84,8 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
+    "commit": "cf74f389",
+    "date": "2026-11-18",
     "seconds": 2,
     "counts": {
       "partly": 1,
@@ -168,7 +167,7 @@
         ],
         "cause": "one-link-too-many",
         "onPlay": 0.79,
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",

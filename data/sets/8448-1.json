@@ -211,10 +211,9 @@
     ]
   },
   "generated": {
-    "commit": "06dfe180",
-    "uncommitted": true,
+    "commit": "cf74f389",
     "date": "2026-11-18",
-    "seconds": 49,
+    "seconds": 36,
     "counts": {
       "partly": 3,
       "works": 4,
@@ -315,7 +314,7 @@
         ],
         "cause": "not-driven",
         "detail": "p415 3647",
-        "seconds": 6.5
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -329,31 +328,31 @@
           {
             "p236 6573": [
               1,
-              4.1e-13
+              5.18e-13
             ],
             "p31 3706": [
               1.5,
-              2.05e-13
+              4.2e-13
             ],
             "p100 3737": [
               1.5,
-              1.89e-14
+              3.14e-14
             ],
             "p577 32073": [
               3.75,
-              1.98e-13
+              2e-13
             ],
             "p692 32125": [
               3.75,
-              8.81e-14
+              1.35e-13
             ],
             "p594 2851": [
               0,
-              25.7
+              23.3
             ],
             "p598 2851": [
               0,
-              24.2
+              26.2
             ]
           }
         ],
@@ -364,8 +363,8 @@
             "p100 3737": 1.5,
             "p577 32073": 3.75,
             "p692 32125": 3.75,
-            "p594 2851": 25.7,
-            "p598 2851": 24.2
+            "p594 2851": 23.3,
+            "p598 2851": 26.2
           }
         ],
         "back": [
@@ -392,7 +391,7 @@
             ]
           ]
         ],
-        "seconds": 16.6
+        "seconds": 11.2
       },
       {
         "result": "works",
@@ -446,7 +445,7 @@
             ]
           ]
         ],
-        "seconds": 4.1
+        "seconds": 3.2
       },
       {
         "result": "works",
@@ -500,7 +499,7 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -623,7 +622,7 @@
             "p484 32196"
           ]
         ],
-        "seconds": 3.1
+        "seconds": 2.8
       },
       {
         "result": "no",
@@ -669,7 +668,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 2.9
+        "seconds": 2.4
       },
       {
         "result": "skipped",
@@ -789,7 +788,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1016 32015",
-        "seconds": 7.6
+        "seconds": 6.1
       },
       {
         "result": "partly",
@@ -851,7 +850,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1147 32181c01",
-        "seconds": 3.7
+        "seconds": 2.9
       },
       {
         "result": "skipped",

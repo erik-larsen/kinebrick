@@ -73,10 +73,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 0,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 1,
     "counts": {
       "works": 2,
       "partly": 1,
@@ -201,7 +200,7 @@
         ],
         "cause": "not-driven",
         "detail": "p45 3708 against p0 2825",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -238,7 +237,7 @@
             ]
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "not checked",

@@ -127,10 +127,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 4,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 5,
     "counts": {
       "works": 5,
       "pivoted": 1,
@@ -221,13 +220,13 @@
           {
             "p76 73071 against p0 3702": [
               1,
-              7.63e-13
+              7.96e-13
             ]
           },
           {
             "p76 73071 against p0 3702": [
               1,
-              6.99e-13
+              8.65e-13
             ]
           }
         ],
@@ -286,7 +285,7 @@
             "p76 73071 against p0 3702"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -305,23 +304,23 @@
           {
             "p21 3708 against p0 3702": [
               2,
-              1.34e-13
+              1.33e-13
             ],
             "p264 4019 against p0 3702": [
               2,
-              2.16e-13
+              1.28e-13
             ],
             "p240 2853 against p0 3702": [
-              0,
-              8.05e-14
+              2.81e-8,
+              9.26e-14
             ],
             "p252 2851 against p0 3702": [
-              0,
-              1.3e-10
+              2.81e-8,
+              1.4e-10
             ],
             "p255 2851 against p0 3702": [
-              0,
-              1.3e-10
+              2.81e-8,
+              1.4e-10
             ]
           }
         ],
@@ -357,7 +356,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 2853 against p0 3702",
-        "seconds": 0.4
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -371,7 +370,7 @@
           {
             "p94 3737 against p0 3702": [
               6.03,
-              2.07e-13
+              2.97e-13
             ]
           }
         ],
@@ -402,7 +401,7 @@
         "strayed": [
           "p92 3647"
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -471,7 +470,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "no",
@@ -579,7 +578,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p139 2825 against p0 3702",
-        "seconds": 1
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -616,7 +615,7 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "not checked",

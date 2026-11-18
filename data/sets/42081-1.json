@@ -155,10 +155,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 671,
+    "commit": "cf74f389",
+    "date": "2026-11-18",
+    "seconds": 420,
     "counts": {
       "no": 1,
       "partly": 2,
@@ -281,7 +280,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 13.7
+        "seconds": 9.6
       },
       {
         "result": "partly",
@@ -404,7 +403,7 @@
         ],
         "cause": "too-little",
         "detail": "p442 62274c01 against p441 62271c01",
-        "seconds": 190.8
+        "seconds": 119.1
       },
       {
         "result": "works",
@@ -425,7 +424,7 @@
               1.41
             ],
             "p506 62274c01 against p505 62271c01": [
-              8.43e-8,
+              1.4e-7,
               0.99
             ],
             "p464 32271 against p0 64179": [
@@ -439,7 +438,7 @@
               1.41
             ],
             "p506 62274c01 against p505 62271c01": [
-              8.43e-8,
+              1.4e-7,
               0.99
             ],
             "p464 32271 against p0 64179": [
@@ -502,7 +501,7 @@
             "p506 62274c01 against p505 62271c01"
           ]
         ],
-        "seconds": 185.7
+        "seconds": 118.9
       },
       {
         "result": "partly",
@@ -617,7 +616,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 9.07,
-        "seconds": 106.5
+        "seconds": 66.9
       },
       {
         "result": "works",
@@ -635,7 +634,7 @@
             ],
             "p610 18942 against p0 64179": [
               0,
-              4.73e-33
+              2.34e-33
             ],
             "p464 32271 against p0 64179": [
               0,
@@ -667,7 +666,7 @@
             ]
           ]
         ],
-        "seconds": 16.4
+        "seconds": 9.8
       },
       {
         "result": "works",
@@ -785,7 +784,7 @@
           [],
           []
         ],
-        "seconds": 57.6
+        "seconds": 34.1
       },
       {
         "result": "works",
@@ -903,7 +902,7 @@
           [],
           []
         ],
-        "seconds": 57.9
+        "seconds": 35.5
       },
       {
         "result": "works",
@@ -969,7 +968,7 @@
           [],
           []
         ],
-        "seconds": 33.2
+        "seconds": 19.6
       },
       {
         "result": "skipped"
