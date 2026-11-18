@@ -724,6 +724,37 @@
 0 // Technic Pneumatic Pump 1 x 1 x 5.5 Body, with its piston 2944c02, which a spring pushes out again: the small pump, as its shortcuts 74982-f1 (retracted) and 74982-f2 (extended) place it, read as its pieces. 74982-f1 places the piston 90 above the body, 74982-f2 130 above it, so it slides from 90 (fully in) to 130 (fully out).
 0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=90] [to=130]
 
+0 FILE 2943a.dat
+0 // Technic Pneumatic Pump 1 x 1 Base, with its piston 2944c02: the 1 x 1 x 6 pump, as its shortcuts 99798-f1 (retracted) and 99798-f2 (extended) place it, read as its pieces (its cylinder 99799 and cap 2941 on the base). 99798-f1 places the piston 100 above the base, 99798-f2 140 above it, so it slides from 100 (fully in) to 140 (fully out): a 40 LDU stroke. The 8110's compressor.
+0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=100] [to=140]
+0 // Its cylinder sits on it: a seat (shape N, read as fixed, as a window's glass in its frame) where the cylinder's foot meets it, so the cylinder and its cap stay on the base, which the shortcut splits them from; they touch nothing else, and rode with the part nearest them (the 8110's crank beam).
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 5 8] [center=true] [pos=0 -20 0]
+
+0 FILE 99799.dat
+0 // Technic Pneumatic Cylinder 1 x 1 for Pump 6L: its foot on the pump base 2943a (local y 68, the base's top at -20 in the pump), its top in its cap 2941 (local y 6)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 5 8] [center=true] [pos=0 68 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 6 8] [center=true] [pos=0 6 0]
+
+0 FILE 2941.dat
+0 // Technic Pneumatic Cylinder 1 x 1 Cap: on the top of the pump's cylinder 99799 (local y 8)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 6 8] [center=true] [pos=0 8 0]
+
+
+0 FILE u9413.dat
+0 // Technic Pneumatic Pump 1 x 1 Base Reinforced, with its piston 2944c02: as its shortcuts 26674-f1 (retracted) and 26674-f2 (extended) place it, read as its pieces (its cylinder u9415 and cap u9414 on the base); the piston 100 above the base fully in, 140 fully out, as the 2943a's.
+0 !KINEBRICK SHOCK [rod=2944c02] [dir=0 -1 0] [from=100] [to=140]
+0 // Its cylinder sits on it: a seat (shape N, read as fixed, as a window's glass in its frame) where the cylinder's foot meets it, so the cylinder and its cap stay on the base, which the shortcut splits them from; they touch nothing else, and rode with the part nearest them (the 42080's beam 98585).
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 7 8] [center=true] [pos=0 -22 0]
+
+0 FILE u9415.dat
+0 // Technic Pneumatic Cylinder 1 x 1 for Pump 6L with Reinforced Base: its foot on the base u9413 (local y 66, the base's top at -22 in the pump), its top in its cap u9414 (local y 6)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 7 8] [center=true] [pos=0 66 0]
+0 !LDCAD SNAP_CYL [gender=F] [caps=none] [secs=N 8 8] [center=true] [pos=0 6 0]
+
+0 FILE u9414.dat
+0 // Technic Pneumatic Pump 1 x 1 with Reinforced Base Cap: on the top of the pump's cylinder u9415 (local y 8)
+0 !LDCAD SNAP_CYL [gender=M] [caps=none] [secs=N 8 8] [center=true] [pos=0 8 0]
+
 0 FILE 32181c05.dat
 0 // Technic Shock Absorber 10L Damped with Black Cap Body Assembly, with its rod 32183c02: 63144-f1 and 76320-f1 (extended) place the rod 180 from the body, -f2 (compressed) 120. (The obsolete cylinders 32181c01 to c04 place the cylinder elsewhere and aren't given; no set has them.)
 0 !KINEBRICK SHOCK [rod=32183c02] [dir=0 1 0] [from=120] [to=180]
