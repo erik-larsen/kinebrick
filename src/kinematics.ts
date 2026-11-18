@@ -197,12 +197,17 @@ export interface Options {
   // nothing. Off unless asked for: the viewer's "Lift off the ground" option (?lifted=1), or a
   // function's `lifted` in the function check.
   lifted: boolean;
+  // Closing a step's loops (see closeLoops) ends at a round that fails to halve the gaps once they
+  // are as small as double precision can hold them (see roundingFloor), rather than trying a fresh
+  // basis round after round until the rounds run out. Off (KINEBRICK_ROUNDING_STOP=0), for
+  // comparing.
+  roundingStop: boolean;
 }
 
 // The switches a new Kinematics starts with, unless it's given others. The viewer sets them from
 // its address (?holds, ?passes, see main.ts), and the tests and scripts from KINEBRICK_LEAST=0,
 // KINEBRICK_ONE=0, KINEBRICK_CLOSE_STILL, KINEBRICK_BALANCED=0, KINEBRICK_STILLNESS,
-// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0, KINEBRICK_FREE_CLUTCH=1 and
+// KINEBRICK_REACH=0, KINEBRICK_CENTRES=1, KINEBRICK_LEAST_PUSH=0, KINEBRICK_FREE_CLUTCH=1, KINEBRICK_ROUNDING_STOP=0 and
 // KINEBRICK_SCRUB_JOINED=1.
 const setting = (name: string) => (typeof process !== 'undefined' ? process.env?.[name] : undefined);
 export const experiments: Options = {
@@ -219,6 +224,7 @@ export const experiments: Options = {
   loopPlay: setting('KINEBRICK_LOOP_PLAY') !== '0',
   pushWild: setting('KINEBRICK_PUSH_WILD') !== '0',
   lifted: false,
+  roundingStop: setting('KINEBRICK_ROUNDING_STOP') !== '0',
 };
 
 // How much a tyre's scrubbing (LDU) counts against joints' turning (radians) in least motion's
@@ -1944,6 +1950,28 @@ export class Kinematics {
   // bigger.
   // Returns how far apart the joints still are (the largest gap, as at the start of the
   // last round): next to nothing, unless they can't come together (see turnJoint).
+  // How small a gap rounding alone leaves, in LDU, for equations of `rows` rows: no closing gets
+  // a gap below it for certain. A double holds a coordinate to 2^-52 of its size, and the model's
+  // coordinates are as big as its extent (the furthest joint from the origin, where turnJoint works:
+  // see nearOrigin). A gap is the difference of two points, each placed by a chain of pose products
+  // down the tree, each product rounding by about that much: so at most the tree's depth of them.
+  // The rows' roundings, independent, add as the square root of how many there are.
+  private roundingFloor(rows: number): number {
+    if (this.extent === null) {
+      let extent = 0;
+      for (const j of this.mech.joints) extent = Math.max(extent, j.from.length(), j.to.length());
+      let depth = 1;
+      for (let b = 0; b < this.bodyCount; b++) {
+        let d = 0;
+        for (let x = b; this.parentLink(x) && d <= this.bodyCount; x = this.parentLink(x)!.parent) d++;
+        depth = Math.max(depth, d);
+      }
+      this.extent = extent * depth;
+    }
+    return this.extent * 2 ** -52 * Math.sqrt(rows);
+  }
+  private extent: number | null = null; // the model's extent times its tree's depth (see roundingFloor)
+
   private closeLoops(keep: number): number {
     if (this.mech.joints.every((_, j) => this.inTree(j)) && !this.mech.rests?.length && !this.mech.riders?.length) return 0;
     let last = 0;
@@ -2005,7 +2033,10 @@ export class Kinematics {
             continue;
           }
         }
-        if (fresh) return last;
+        // Nor once the gaps are within what double precision can hold (see roundingFloor): there no
+        // basis closes them further, and every round would take a fresh one until the rounds ran
+        // out (the 42083 Bugatti Chiron's sat at 1 to 2e-11 LDU for ten rounds a step; 2026-11-17).
+        if (fresh || (this.options.roundingStop && last <= this.roundingFloor(gaps.length))) return last;
         basis = this.treeBasis();
         fresh = true;
         previous = Infinity;
