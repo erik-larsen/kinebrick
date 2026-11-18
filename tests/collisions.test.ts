@@ -1,4 +1,4 @@
-import { BoxGeometry, BufferGeometry, Matrix4 } from 'three';
+import { BoxGeometry, BufferGeometry, CylinderGeometry, Matrix4 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { Box3, Vector3 } from 'three';
 import { Collisions, meetingPairs, pairNumber, PartMesh } from '../src/collisions.ts';
@@ -13,6 +13,18 @@ function cube(): PartMesh[] {
 }
 
 const at = (x: number) => new Matrix4().makeTranslation(x, 0, 0);
+
+// A tube's wall, 20 LDU long along y, drawn with 16 sides as LDraw draws a round, and no ends.
+function tube(radius: number): PartMesh[] {
+  const wall = new CylinderGeometry(radius, radius, 20, 16, 1, true);
+  const geometry = new BufferGeometry();
+  geometry.setAttribute('position', wall.getAttribute('position').clone());
+  geometry.setIndex(wall.getIndex()!.clone());
+  return [{ geometry, matrix: new Matrix4() }];
+}
+const up = (y: number) => new Matrix4().makeTranslation(0, y, 0);
+// The same, turned half a side about its length: its corners stand out past the first one's flat sides.
+const turned = (m: Matrix4) => m.clone().multiply(new Matrix4().makeRotationY(Math.PI / 16));
 
 describe('collisions', () => {
   it('lets apart parts move freely, and catches them when they start to overlap', () => {
@@ -61,5 +73,18 @@ describe('collisions', () => {
     later.setNear(tested, new Set(), placed, dragged);
     expect(later.check(dragged)).toBeNull(); // not stuck where it is
     expect(later.check([at(0), at(40)])).toBeNull(); // and free to come back out
+  });
+
+  it('lets a part slide along another where they meet, and stops one pushed into it (decision 188)', () => {
+    // A rod in a hole of the same round, its sides turned half a side, so its corners cross the
+    // hole's flat sides as LDraw's shapes cross where a real axle fits its hole: slid in along the
+    // hole, the walls meet with the motion along both, and it goes on; moved in sideways, it
+    // pushes into the wall, and stops.
+    const along = new Collisions([tube(10), tube(10)], [0, 1], new Set(), [up(0), turned(up(30))]);
+    expect(along.check([up(0), turned(up(5))])).toBeNull();
+    expect([...along.slid]).toEqual(['0,1']);
+    const sideways = new Collisions([tube(10), tube(10)], [0, 1], new Set(), [up(0), turned(at(40))]);
+    expect(sideways.check([up(0), turned(at(5))])).toEqual([0, 1]);
+    expect(sideways.slid.size).toBe(0);
   });
 });
