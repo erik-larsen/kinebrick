@@ -44,7 +44,7 @@ const RIDGE = 2 ** -26;
 // Of eigenvalues of a tier's problem (`unit` its scale), the most that counts as free: every one
 // at most `tiny`, and every one above them but nearer than TIER_TOLERANCE × unit to the largest so
 // far, so that rounding can't move a direction from one side to the other (see TIER_TOLERANCE).
-function freeCut(values: number[], tiny: number, unit: number): number {
+export function freeCut(values: number[], tiny: number, unit: number): number {
   let cut = tiny;
   let largest = 0;
   for (const x of [...values].sort((a, b) => a - b)) {
@@ -205,10 +205,11 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       const solved = eigen(gram);
       if (!solved) return { y: new Array(m).fill(0), left: w ? [] : free.slice() };
       const { values, vectors } = solved;
-      const top = Math.max(0, ...values);
       const y = new Array(m).fill(0);
       const left: number[][] = [];
-      const cut = w ? 1e-12 * top : freeCut(values, tiny, solved.unit);
+      // A reweighted round's least-norm term (see RIDGE) leaves no eigenvalue below it, so every
+      // direction counts there (it was cut at 10⁻¹² of the largest, picked).
+      const cut = w ? -Infinity : freeCut(values, tiny, solved.unit);
       vectors.forEach((v, e) => {
         if (values[e] <= cut) {
           if (!w) left.push(combine(free, v));
