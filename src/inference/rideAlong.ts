@@ -30,20 +30,22 @@ export function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCyl
 // stand in the way of everything moving past them (an official bulldozer's bucket plates,
 // which slot into grooves no connection data describes, stopped its tracks).
 //
-// A group of more than one part may ride on another loose group, as a container stands on a
+// A second model in the file (see secondModels) may ride on another, as a container stands on a
 // trailer that is itself a second model (the 42078 Mack Anthem's; it rode with the tractor,
-// 290 LDU away, the trailer under it being loose too). So those groups are welded outward from
-// the parts that aren't loose: at each turn the group whose nearest anchor is the nearest of all
-// is welded to it, and its parts become anchors for the groups after it. Each rides on what it
-// stands on once that is itself carried, and no two groups ride on each other.
+// 290 LDU away, the trailer under it being loose too). So the second models (`carried`) are
+// welded outward from the parts that aren't loose: at each turn the one whose nearest anchor is
+// the nearest of all is welded to it, and its parts become anchors for those after it. Each
+// rides on what it stands on once that is itself carried, and no two ride on each other.
 //
-// A single loose part rides as before, on the parts that aren't loose only, and after the
-// groups, so it is never an anchor for one. A group of joined parts is a thing that stands on
-// something; a single part with no connection is most often a connection the reading missed,
-// and what it should ride on is that missed connection's question, not its nearest neighbour's.
-// (Letting single parts ride on each other too changed the bodies of 33 sets, among them the
-// 9391's frame: see the branch's history, claude/ride-on-loose df978eec.)
-export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>): Connection[] {
+// Every other loose group, and every single loose part, rides as before, on the parts that
+// aren't loose only, and after the second models, so it is never an anchor for one. A second
+// model is a model in its own right that the file's author placed on or beside another, so what
+// it stands on is known to be a thing that carries; a loose group inside one model is most often
+// a reading gap, and what it should ride on is that gap's question. (Letting loose groups of
+// more than one part ride on each other changed the bodies of 19 sets, and letting single loose
+// parts do so too, 33, the 9391's frame among them: see the branch's history,
+// claude/ride-on-loose df978eec and adc91b2f.)
+export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>, carried: number[][] = []): Connection[] {
   if (loose.length === 0) return [];
   const isLoose = new Set(loose);
   const leader = new Map(loose.map((i) => [i, i]));
@@ -74,8 +76,9 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
   const cylsOf = new Map<number, WorldCylinder[]>();
   for (const c of cyls) if (isLoose.has(c.part)) cylsOf.set(c.part, [...(cylsOf.get(c.part) ?? []), c]);
   offer(cyls.filter((c) => !isLoose.has(c.part) && (!among || among.has(c.part))));
-  // The single parts' nearest anchor is fixed now: they ride on the parts that aren't loose.
-  const singles = [...groups].filter(([, members]) => members.length === 1).map(([g]) => g);
+  // The other groups' nearest anchor is fixed now: they ride on the parts that aren't loose.
+  const ofSecondModel = new Set(carried.flat());
+  const singles = [...groups].filter(([, members]) => !members.some((i) => ofSecondModel.has(i))).map(([g]) => g);
   const fixed = new Map(singles.flatMap((g) => (best.has(g) ? [[g, best.get(g)!] as const] : [])));
   for (const g of singles) groups.delete(g);
   const welds: Connection[] = [];

@@ -549,7 +549,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // Nor is what a figure holds or stands with (see figureSubmodels).
   const loose = (rails.length ? smallGroups(parts.length, connections, riding) : riding).filter((i) => !figures.has(parts[i].submodel ?? ''));
   const scenery = new Set(riding.filter((i) => !loose.includes(i)));
-  const welds = rideAlong(parts, cyls, connections, loose);
+  const welds = rideAlong(parts, cyls, connections, loose, undefined, carriedGroups);
   connections.push(...welds);
   // A carried model rides along as loose parts do, but isn't loose: where it is welded.
   const carried = carriedGroups.map((group) => {
