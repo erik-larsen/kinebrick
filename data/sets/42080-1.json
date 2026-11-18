@@ -22,7 +22,7 @@
         "control": "p820 44294",
         "moves": [
           "p821 6632",
-          "p653 42080 - 26674-f1"
+          "p653 u9413"
         ],
         "note": "the motor (p654 99499) is the control; the axle named is its output. Unsure which parts make up the pump"
       },
@@ -381,7 +381,7 @@
               1,
               183
             ],
-            "p653 42080 - 26674-f1": [
+            "p653 u9413": [
               1,
               161
             ]
