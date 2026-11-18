@@ -81,7 +81,7 @@ import { gearRates, line } from './gear-rates.ts';
 import { turnOffAxis } from './back.ts';
 import { loadModel } from './load-model.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
-import { FREE_PINS, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
+import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
 import { pistonAt, sliderCranks } from './slider-cranks.ts';
 
@@ -832,8 +832,10 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (!controlGoes()) {
           allFree ??= loaded.allFree(asLoaded.parts);
           freed = new Set(pinsToFree(allFree, c));
-          // A push with no point to push can't start, on play or not (see grabOf).
-          if (pinTrial && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
+          // A push with no point to push can't start, on play or not (see grabOf). No pins are
+          // tried for a control that sits in the frame even with every pin free (see
+          // freeWithEveryPin), as the viewer tries none.
+          if (pinTrial && freeWithEveryPin(allFree, c) && !(freed.size && withFreed(new Set(), controlGoes)) && (noGrab() || !dragGoes(c, true))) for (const pin of byTrial(c, controlGoes)) freed.add(pin);
         }
         // So too a part the function lists to move that friction pins hold fast to what it's
         // measured against, but only where the control doesn't go (it jams, or a push has no

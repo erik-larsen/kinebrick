@@ -1123,7 +1123,7 @@ async function start() {
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
-  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions };
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, setup, interaction, collisions: () => collisions };
   // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
   // on the title card: a box to type it in, and a button either side that changes it by 10,
   // never below 1 or above MAX_RPM.
