@@ -384,6 +384,9 @@ export class Kinematics {
   private endHeld = new Set<number>();
   // The way the turn under way turns its joint (1 or -1), or 0 outside a turn (see jointMotion).
   private turnWay = 0;
+  // The slides a step of the turn under way left past an end, though the motion didn't push them
+  // there (closing the loops did, to second order): held for the rest of the turn (see turnJoint).
+  private turnHeld = new Set<number>();
   // The motion the last turn found for the step after its last, kept for the next turn (see
   // turnJoint): in model coordinates, with what it was found with and where everything was.
   private aheadKept: { joint: number; way: number; motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean; endHeld: number[]; state: KinematicsState; drag: Drag; frozen: string; fixedBody: number; scrub: number } | null = null;
@@ -2442,6 +2445,7 @@ export class Kinematics {
     const kept = k && k.joint === joint && k.way === Math.sign(angle) && k.drag === this.drag && k.frozen === [...this.frozen].join() && k.fixedBody === this.fixedBody && k.scrub === this.scrub && same(k.state, this.snapshot()) ? k : null;
     const found: { ahead: { motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean; endHeld: number[] } | null } = { ahead: null };
     this.turnWay = Math.sign(angle);
+    this.turnHeld = new Set();
     // A kept motion was chosen with the slides it held at their ends: they hold for its step too.
     this.endHeld = new Set(kept?.endHeld ?? []);
     let turned: number;
@@ -2454,6 +2458,7 @@ export class Kinematics {
     } finally {
       this.turnWay = 0;
       this.endHeld = new Set();
+      this.turnHeld = new Set();
     }
     if (found.ahead && this.options.keepAhead) this.aheadKept = { ...found.ahead, joint, way: Math.sign(angle), state: this.snapshot(), drag: this.drag, frozen: [...this.frozen].join(), fixedBody: this.fixedBody, scrub: this.scrub };
     return turned;
@@ -2586,6 +2591,18 @@ export class Kinematics {
         const done = this.turnJoint(joint, step, allowed, MAX_TURN_STEP);
         turned += done;
         if (Math.abs(done - step) > 1e-12) return turned;
+        continue;
+      }
+      // A step that left a slide past an end of its travel that its motion didn't push past it
+      // (closing the loops did, to second order: the 9397's plough, 3.5×10⁻⁴ LDU): undone, the
+      // slide held for the rest of the turn, and the step taken again (decision 192). A slide held
+      // and still past its end stops the turn, as any end of travel does.
+      const past = this.slidesPastEnds().filter((j) => !this.endHeld.has(j));
+      if (past.length) {
+        if (TRACE) trace({ event: 'undone', joint, turned, why: 'slide past its end' });
+        this.restore(before);
+        for (const j of past) this.turnHeld.add(j);
+        ahead = null;
         continue;
       }
       if (allowed && !allowed()) {
@@ -2807,7 +2824,7 @@ export class Kinematics {
   // can move at all, before friction pins are freed for it (see playMotion).
   jointMotion(joint: number, play = true): number[] | null {
     return this.nearOrigin((toModel) => {
-      this.endHeld = new Set();
+      this.endHeld = new Set(this.turnHeld);
       let motion = this.jointMotionNearOrigin(joint, play);
       // In a turn: a slide standing at an end of its travel, which the motion would push past it,
       // is held there and the motion chosen again, until none is pushed out (an active set; decision
@@ -2826,10 +2843,22 @@ export class Kinematics {
     });
   }
 
+  // The slides past an end of their travel (see atLimit).
+  private slidesPastEnds(): number[] {
+    const out: number[] = [];
+    this.mech.joints.forEach((j, i) => {
+      if (j.kind !== 'slide' || !j.range || !j.sliding) return;
+      const offset = this.slideOffset(i);
+      if (offset < j.range[0] - LIMIT_TOLERANCE || offset > j.range[1] + LIMIT_TOLERANCE) out.push(i);
+    });
+    return out;
+  }
+
   // The slides with an end of their travel that `motion`, turning its joint `way`, would push them
   // past in the smallest step a turn takes (LEAST_TURN_STEP; see turnJoint): those it can't move at
   // all without passing the end. Further from the end than that, a step that passes it is undone
-  // and taken smaller, as for any other stop, until the slide is that close.
+  // and taken smaller, as for any other stop, until the slide is that close. And those standing at
+  // an end that the motion doesn't pull back from it.
   private pushedPastEnds(motion: number[], way: number): number[] {
     const out: number[] = [];
     this.mech.joints.forEach((j, i) => {
@@ -2839,7 +2868,13 @@ export class Kinematics {
       for (let c = 0; c < row.length; c++) if (row[c] !== 0) rate += row[c] * motion[c];
       rate *= way;
       const offset = this.slideOffset(i);
-      if ((rate > EPSILON && offset + LEAST_TURN_STEP * rate > j.range[1] + LIMIT_TOLERANCE) || (rate < -EPSILON && offset + LEAST_TURN_STEP * rate < j.range[0] - LIMIT_TOLERANCE)) out.push(i);
+      // Past the end within the smallest step; or standing at the end (within LIMIT_TOLERANCE) and not
+      // pulled back from it, as closing the loops after a step may push it on to second order (the
+      // 9397's plough: play left its slides 6×10⁻⁶ LDU past their ends, with no first-order rate).
+      const atTop = offset >= j.range[1] - LIMIT_TOLERANCE;
+      const atBottom = offset <= j.range[0] + LIMIT_TOLERANCE;
+      if ((rate > EPSILON && offset + LEAST_TURN_STEP * rate > j.range[1] + LIMIT_TOLERANCE) || (atTop && rate > -EPSILON)) out.push(i);
+      else if ((rate < -EPSILON && offset + LEAST_TURN_STEP * rate < j.range[0] - LIMIT_TOLERANCE) || (atBottom && rate < EPSILON)) out.push(i);
     });
     return out;
   }
