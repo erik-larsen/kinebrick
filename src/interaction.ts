@@ -600,6 +600,7 @@ export function setUpInteraction(s: InteractionSetup) {
   // Ctrl-click: starts the part turning; on a part already turning, turns it the other way;
   // on one already turned round, stops it.
   function cycleMotor(part: number, clientX: number, clientY: number) {
+    const pressed = part; // an electric motor, or the part it runs (see runBy)
     part = runBy(part);
     const body = s.mech.bodyOf[part];
     const name = s.mech.bodies[body].name;
@@ -619,13 +620,14 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     const scrubBefore = s.kin.scrub;
-    const why = startMotor(part, s.camera.position, false);
+    const why = startMotor(pressed, s.camera.position, false, (text) => showMessage(text, clientX, clientY));
     const raised = s.kin.scrub > scrubBefore ? ` · Tyre scrub raised to ${asPercent(s.kin.scrub)}` : '';
     showMessage(why ?? `${motorPush ? 'Moving' : 'Turning'} ${name} · Ctrl-click again to reverse${raised}`, clientX, clientY);
   }
 
   // Keeps a part turning, counter-clockwise (or clockwise) as seen from `seenFrom` (world
-  // coordinates). Returns why it can't, if it can't.
+  // coordinates). Returns why it can't, if it can't. Where friction pins hold an electric motor's
+  // output still, they're freed once, as it starts, and it starts then: `tell` hears how that went.
   // A part that doesn't spin on an axle is kept moving instead (see startPush), away from
   // `seenFrom`, or with `clockwise`, towards it.
   // Why a drag of `body` can't drive what it would drive from the wrong end (see lockedBy).
@@ -636,7 +638,8 @@ export function setUpInteraction(s: InteractionSetup) {
   // The part a spin of `part` keeps turning: an electric motor's output (see motorRunPart).
   const runBy = (part: number) => motorRunPart(s.mech, part);
 
-  function startMotor(part: number, seenFrom: Vector3, clockwise: boolean): string | null {
+  function startMotor(part: number, seenFrom: Vector3, clockwise: boolean, tell?: (text: string) => void, pinsAsked = false): string | null {
+    const motor = s.mech.roles[part] === 'motor';
     part = runBy(part);
     const body = s.mech.bodyOf[part];
     const link = s.kin.parentLink(body);
@@ -654,7 +657,23 @@ export function setUpInteraction(s: InteractionSetup) {
       at.x,
       at.y,
     );
-    if (!canTurn) return `This part can't turn: ${wormLocked ? lockedWhy(body) : whyStuck()}`;
+    if (!canTurn) {
+      const why = `This part can't turn: ${wormLocked ? lockedWhy(body) : whyStuck()}`;
+      // An electric motor's output held still, perhaps by friction pins: the motor's drive forces
+      // them as a hand would, so they're freed (see freeIfHeld), once, as the motor starts, and
+      // the motor starts then (decision 155 of 2026-11-17). Never the motor's own output joint: it
+      // turns stiffly in the motor's gearbox, not on a pin (see pinsToFree). Nor any pin for a
+      // part that only fails to follow the output: nothing forces it.
+      if (!motor || wormLocked || pinsAsked) return why;
+      s.pinsToFree(part).then((pins) => {
+        if (!pins.length) return tell?.(why);
+        s.freePins(pins);
+        const again = startMotor(part, seenFrom, clockwise, tell, true); // `part` is the output now
+        const name = s.mech.bodies[s.mech.bodyOf[part]].name;
+        tell?.(again ?? `${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it freed · Turning ${name} · Ctrl-click again to reverse`);
+      });
+      return "Finding the pins that hold the motor's output…";
+    }
     motorDirection = counterClockwiseFrom(part, seenFrom) * (clockwise ? -1 : 1);
     motorReversed = false;
     motorMoved = false;
