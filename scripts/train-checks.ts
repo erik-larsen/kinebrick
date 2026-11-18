@@ -19,6 +19,7 @@
 import type { Matrix4 } from 'three';
 import { Collisions, connectedPairs, LAYOUT_INSET, LAYOUT_NEAR, PartMesh } from '../src/collisions.ts';
 import { railLift } from '../src/constraints/tyres.ts';
+import { trainsOf } from '../src/inference/trains.ts';
 import type { Mechanism } from '../src/mechanism.ts';
 import type { Track } from '../src/track.ts';
 import { loadModel } from './load-model.ts';
@@ -38,9 +39,6 @@ const BACK = 10;
 // stands well past its wheelset (167's wagon meets the ramp 122 LDU short of the line's end).
 const AT_END = 40;
 const STOPPED_AT_END = 150;
-// Wheelsets this close together (LDU, middle to middle) are of one train: a train's cars stand
-// closed up, their wheelsets less far apart across a coupling than this.
-const CLOSE = 300;
 // The train goes as far as its wheel's rim turns, within this share.
 const ROLL_OFF = 0.05;
 
@@ -109,7 +107,7 @@ export function trainFunctions(file: string): TrainFunction[] {
   const functions: TrainFunction[] = [{ kind: 'track', does: "The track's pieces join end to end into one layout" }];
   // One run for each train: its first wheelset that rolls, turned by one of its wheels.
   const seen = new Set<number>();
-  for (const train of trains(mech)) {
+  for (const { riders: train } of trainsOf(mech)) {
     const rider = train.find((r) => r.rolls && !seen.has(r.body));
     if (!rider) continue;
     train.forEach((r) => seen.add(r.body));
@@ -123,20 +121,6 @@ export function trainFunctions(file: string): TrainFunction[] {
   if (!functions.some((f) => f.kind === 'run')) functions.push({ kind: 'run', does: 'Turning a wheel of the train runs it the full length of the track (no train found on the track yet)' });
   for (const s of track.switches) functions.push({ kind: 'switch', does: 'The switch flips, and a train taking it from its shared end goes the other way', control: name(s.part) });
   return functions;
-}
-
-// The trains: wheelsets whose bodies are joined (couplings and all, as the solver keeps them),
-// and those standing close together, as scripts/train-layouts.ts sets a train's cars on the track,
-// closed up, whether or not their couplings hold.
-function trains(mech: Mechanism) {
-  const lead = mech.bodies.map((_, i) => i);
-  const find = (i: number): number => (lead[i] === i ? i : (lead[i] = find(lead[i])));
-  for (const j of mech.joints) lead[find(j.bodyA)] = find(j.bodyB);
-  const riders = mech.riders ?? [];
-  for (const a of riders) for (const b of riders) if (a.center.distanceTo(b.center) < CLOSE) lead[find(a.body)] = find(b.body);
-  const groups = new Map<number, NonNullable<Mechanism['riders']>>();
-  for (const r of mech.riders ?? []) groups.set(find(r.body), [...(groups.get(find(r.body)) ?? []), r]);
-  return [...groups.values()];
 }
 
 export async function checkTrainSet(set: { curated: { model: string; functions: TrainFunction[] } }) {

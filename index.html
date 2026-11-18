@@ -42,10 +42,10 @@
          window is too narrow for both. */
       #row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px 12px; }
       #motor { display: flex; gap: 4px; margin: 2px 0 4px auto; }
-      #motor button, #reset { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; padding: 0; color: #1d2430; background: #fff; border: 1px solid #b9c0cc; border-radius: 6px; cursor: pointer; }
-      #motor button:hover:not(:disabled), #motor button:focus-visible, #reset:hover, #reset:focus-visible { background: #e8edf5; outline: none; }
+      #motor button, #reset, #views button { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; padding: 0; color: #1d2430; background: #fff; border: 1px solid #b9c0cc; border-radius: 6px; cursor: pointer; }
+      #motor button:hover:not(:disabled), #motor button:focus-visible, #reset:hover, #reset:focus-visible, #views button:hover, #views button:focus-visible { background: #e8edf5; outline: none; }
       #motor button:disabled { color: #b9c0cc; border-color: #dde1e8; cursor: default; }
-      #motor svg, #reset svg { width: 14px; height: 14px; fill: currentColor; }
+      #motor svg, #reset svg, #views svg { width: 14px; height: 14px; fill: currentColor; }
       /* The reset button sits close to the model menu, on its line. */
       #reset { margin: 2px 0 4px -8px; }
       /* The speed of a part kept moving, in rpm: a box to type it in, between a button that
@@ -98,7 +98,14 @@
       .lil-gui.root.fps > .title { font-variant-numeric: tabular-nums; }
       #fps { padding: 6px 8px 8px; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-variant-numeric: tabular-nums; }
       #fps span { color: #5a6475; }
+      /* The Views card's row: home, previous and next, and the dropdown of views (see src/views.ts). */
+      #views { padding: 6px 8px 8px; display: flex; align-items: center; gap: 4px; }
+      #views button { flex: none; }
+      #view-menu { flex: 1; min-width: 0; height: 26px; font: inherit; color: #1d2430; background: #fff; border: 1px solid #b9c0cc; border-radius: 6px; padding: 0 4px; }
       #fps p { grid-column: 1 / -1; margin: 4px 0 0; color: #5a6475; }
+      /* What goes in the FPS, Views and Stats cards waits hidden in the page until src/main.ts
+         moves it into its card, once the model has loaded. */
+      body > #fps, body > #views, body > #stats { display: none; }
       .lil-gui {
         --background-color: rgba(255, 255, 255, 0.9);
         --text-color: #1d2430;
@@ -163,12 +170,27 @@
       <div id="collision-note"></div>
     </div>
     <!-- The cards at the upper right, each closed until it's clicked: FPS, Options, and under it Stats
-         (see src/main.ts, which makes them and puts #fps in the first and #stats in the last). -->
+         (see src/main.ts, which makes them and puts #fps in the first and #stats in the last). Views,
+         under Stats, shows only for a model with a minifig or a train, and starts open. -->
     <div id="cards"></div>
     <div id="fps">
       <span>Average FPS:</span><b id="fps-average">–</b>
       <span>Minimum 1% FPS:</span><b id="fps-low">–</b>
       <p>Over the last 10 seconds</p>
+    </div>
+    <!-- The Views card's row: home (the viewer's own camera), the previous and the next view, and the
+         dropdown of views, Default at its top (see src/views.ts, which fills it). -->
+    <div id="views">
+      <button id="view-home" type="button" title="Home: the default view" aria-label="Home: the default view">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2l6 5.2-.98 1.13L12 7.65V13.5H9.5V10h-3v3.5H4V7.65l-1.02.88L2 7.4z" /></svg>
+      </button>
+      <button id="view-previous" type="button" title="Previous view" aria-label="Previous view">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.3 2.6l1.1 1.1L7.1 8l4.3 4.3-1.1 1.1L4.9 8z" /></svg>
+      </button>
+      <button id="view-next" type="button" title="Next view" aria-label="Next view">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.7 2.6L4.6 3.7 8.9 8l-4.3 4.3 1.1 1.1L11.1 8z" /></svg>
+      </button>
+      <select id="view-menu" title="View" aria-label="View"></select>
     </div>
     <div id="stats">
       <div id="counts"></div>

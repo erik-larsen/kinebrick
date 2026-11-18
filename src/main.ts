@@ -57,6 +57,7 @@ import titlesUrl from '../packed/titles.json?url';
 import packedModels from '../packed/models.json';
 import notMovingYet from '../data/not-moving-yet.json';
 import wipModels from '../data/wip-models.json';
+import { viewKey, Views } from './views.ts';
 // Each set's errata (src/errata.ts), by file name.
 const errataFiles = import.meta.glob('../data/errata/*.json', { eager: true, import: 'default' }) as Record<string, Errata>;
 
@@ -159,6 +160,9 @@ const SCRUB_MARGIN = 2;
 // keeps it up to date, so the address shares the animation. With ",paused" last it is chosen
 // and outlined but waits, as after the pause button: ?autospin=271,paused.
 const AUTOSPIN = /^(\d+)(,cw)?(,paused)?$/.exec(params.get('autospin') ?? '');
+// The view the camera starts in, as the Views card names it, in lower case without spaces:
+// ?view=train, ?view=train2 or ?view=minifig3 (see views.ts). Choosing a view keeps it up to date.
+const VIEW = params.get('view') ?? '';
 // Parts to point at, outlined in magenta whether they can move or not, by their places in the
 // model file: ?show=182,183. For a link that says "this part".
 const SHOW = (params.get('show') ?? '').split(',').filter((p) => /^\d+$/.test(p)).map(Number);
@@ -960,6 +964,17 @@ async function start() {
   statsCard.$children.append(document.getElementById('stats')!);
   statsCard.close();
   statsCard.onOpenClose(showReadoutFade);
+  // Under Stats, the Views card, where a model has a minifig or a train: the camera at a minifig's
+  // eyes, or at the front of a train, or the viewer's own (Default). See views.ts.
+  const views = new Views(mech, partObjects, await Promise.all(startParts.map((p) => partTitle(p.name))), camera, controls);
+  const viewsCard = new GUI({ title: 'Views', container: cards });
+  viewsCard.$children.append(document.getElementById('views')!);
+  viewsCard.hide(); // shown with the model, in its first view (below)
+  views.onChange = (name) => {
+    if (name) params.set('view', viewKey(name));
+    else params.delete('view');
+    history.replaceState(null, '', address());
+  };
   const settings = {
     bodyColours: appearance.showBodyColours,
     axes: axes.visible,
@@ -1028,6 +1043,7 @@ async function start() {
     onMoved: showPoses,
     onFreezeChanged: showFrozen,
     onMotorChanged: () => showMotor(),
+    inView: () => views.inView(),
     onTurned: (part, angle) => {
       const sense = interaction.turnSense(part, startCamera.position);
       if (sense !== null) keepTurn(part, angle * sense);
@@ -1090,12 +1106,16 @@ async function start() {
   model.visible = true;
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
+  // The view the address asks for (?view=), where the model has it.
+  const startView = views.names.find((name) => viewKey(name) === VIEW);
+  if (startView) views.choose(startView);
+  viewsCard.show(views.names.length > 0);
   // A train set's switches: which way each is set, and a click flips it.
   const marks = switchMarks(mech);
   ldrawSpace.add(marks);
   setup.flipSwitch = (part) => flipSwitch(mech, marks, part);
   const interaction = setUpInteraction(setup);
-  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions };
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, setup, interaction, collisions: () => collisions, views };
   // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
   // on the title card: a box to type it in, and a button either side that changes it by 10,
   // never below 1 or above MAX_RPM.
@@ -1150,12 +1170,14 @@ async function start() {
   const frameMiddle = ldrawSpace.worldToLocal(new Box3().setFromObject(model).getCenter(new Vector3())); // LDraw coordinates
   const frameMiddleNow = () => ldrawSpace.localToWorld(frameMiddle.clone().applyMatrix4(kin.poses[0]));
   onFrame = (seconds) => {
-    if (!interaction.motorRunning()) return;
+    // The camera to the chosen view (see the Views card), after the parts have moved.
+    if (!interaction.motorRunning()) return views.update();
     const before = frameMiddleNow();
     interaction.runMotor(seconds);
     const moved = frameMiddleNow().sub(before);
     camera.position.add(moved);
     controls.target.add(moved);
+    views.update();
     // Keep the grid under the model, moving it in whole grid squares so it looks endless and
     // its lines still slide past.
     const { cell, home } = grid.userData;
@@ -1167,6 +1189,7 @@ async function start() {
   // Back to the model as loaded, shifted back too, with nothing turning, and the camera and
   // grid back where they started.
   const reset = () => {
+    views.choose('');
     interaction.stopMotor();
     clearFocus();
     turns.length = 0;
@@ -1401,10 +1424,10 @@ document.getElementById('model')!.addEventListener('keydown', (e) => {
 });
 const filePicker = document.getElementById('file') as HTMLInputElement;
 
-// Switching model keeps the options, except tyre scrub, turned parts, spinning and spin speed:
-// the next model has its own.
+// Switching model keeps the options, except tyre scrub, turned parts, spinning, spin speed and
+// the view: the next model has its own.
 function openModel(set: (params: URLSearchParams) => void) {
-  for (const name of ['model', 'file', 'train', 'scrub', 'turn', 'free', 'autospin', 'show', 'rpm']) params.delete(name);
+  for (const name of ['model', 'file', 'train', 'scrub', 'turn', 'free', 'autospin', 'show', 'rpm', 'view']) params.delete(name);
   set(params);
   window.location.search = address();
 }

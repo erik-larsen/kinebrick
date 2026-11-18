@@ -2,7 +2,7 @@
 
 import { Vector3 } from 'three';
 import { PlacedPart } from '../ldr.ts';
-import type { Connection, Rail, Rider, Tread } from '../mechanism.ts';
+import type { Connection, Mechanism, Rail, Rider, Tread } from '../mechanism.ts';
 import { ANGLE_TOLERANCE, AXIS_TOLERANCE, type WorldCylinder } from './shared.ts';
 
 // How close the ends of two pieces of track must come to join (LDU): half a stud, since a
@@ -228,4 +228,22 @@ export function stiffMagnetHinges(connections: Connection[], roles: string[], fr
     if (frictionRigid && !freed.has(c.male)) [c.kind, c.held] = ['rigid', true];
     else c.stiff = true;
   }
+}
+
+// Wheelsets this close together (LDU, middle to middle) are of one train: a train's cars stand
+// closed up, their wheelsets less far apart across a coupling than this.
+const CLOSE = 300;
+
+// The trains: wheelsets whose bodies are joined (couplings and all, as the solver keeps them),
+// and those standing close together, as scripts/train-layouts.ts sets a train's cars on the track,
+// closed up, whether or not their couplings hold. Each with its wheelsets and all its bodies.
+export function trainsOf(mech: Mechanism): { riders: Rider[]; bodies: number[] }[] {
+  const lead = mech.bodies.map((_, i) => i);
+  const find = (i: number): number => (lead[i] === i ? i : (lead[i] = find(lead[i])));
+  for (const j of mech.joints) lead[find(j.bodyA)] = find(j.bodyB);
+  const riders = mech.riders ?? [];
+  for (const a of riders) for (const b of riders) if (a.center.distanceTo(b.center) < CLOSE) lead[find(a.body)] = find(b.body);
+  const groups = new Map<number, Rider[]>();
+  for (const r of riders) groups.set(find(r.body), [...(groups.get(find(r.body)) ?? []), r]);
+  return [...groups].map(([root, riders]) => ({ riders, bodies: mech.bodies.flatMap((_, b) => (find(b) === root ? [b] : [])) }));
 }

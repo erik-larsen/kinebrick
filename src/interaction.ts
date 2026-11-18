@@ -122,6 +122,7 @@ export interface InteractionSetup {
   flipSwitch?: (part: number) => string | null; // flips a train track's switch, saying so, if the part is one (see trains.ts)
   pinsToFree: (part: number, search?: boolean) => Promise<number[]>; // the friction pins not yet free that hold a part still, if freeing them lets it move (none if they wouldn't, or can't be found); with `search` false, not by the trial search
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
+  inView?: () => boolean; // true in a view of the Views card other than Default (see views.ts): parts aren't hovered, picked or dragged then
 }
 
 // A part that slides into set positions, as it is now (LDraw coordinates, LDU).
@@ -938,6 +939,7 @@ export function setUpInteraction(s: InteractionSetup) {
     'pointerdown',
     (e) => {
       if (drag || shifting) return; // already dragging with another finger or pointer
+      if (s.inView?.()) return; // in a view, a drag looks round (see views.ts)
       ctrlClickHandled = false;
       hover(e.clientX, e.clientY);
       const hit = hitAt(e.clientX, e.clientY);
@@ -1075,6 +1077,7 @@ export function setUpInteraction(s: InteractionSetup) {
   window.addEventListener('blur', () => (ctrlHeld = false));
   canvas.addEventListener('contextmenu', (e) => {
     e.preventDefault();
+    if (s.inView?.()) return;
     if (ctrlClickHandled || !(e.ctrlKey || ctrlHeld)) {
       ctrlClickHandled = false;
       return;
@@ -1089,6 +1092,15 @@ export function setUpInteraction(s: InteractionSetup) {
       return;
     }
     if (!drag) {
+      // In a view, nothing is hovered: what was, isn't any more.
+      if (s.inView?.()) {
+        if (s.appearance.hoveredPart !== -1) {
+          s.appearance.hoveredPart = -1;
+          s.appearance.update();
+          hideLabel();
+        }
+        return;
+      }
       hover(e.clientX, e.clientY);
       return;
     }
