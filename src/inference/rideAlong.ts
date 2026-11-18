@@ -61,12 +61,16 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
   // anchors at first: scenery rides with a train track's rails.
   type Best = { part: number; anchor: number; distance: number };
   const best = new Map<number, Best>();
-  const offer = (anchorCyls: WorldCylinder[]) => {
+  // `ofAnotherModel`: the anchors are another second model's parts, which count as another
+  // submodel's even where they are a copy of the same one: two containers of one design are two
+  // things (the 42062 Container Yard's, the one standing apart rode on the one held in the
+  // spreader, as a part "of its own submodel").
+  const offer = (anchorCyls: WorldCylinder[], ofAnotherModel = false) => {
     for (const [g, members] of groups) {
       for (const i of members) {
         for (const c of anchorCyls) {
           // Another submodel's part counts as much further away.
-          const distance = c.start.distanceTo(at.get(i)!) + (parts[c.part].submodel === parts[i].submodel ? 0 : 1e6);
+          const distance = c.start.distanceTo(at.get(i)!) + (!ofAnotherModel && parts[c.part].submodel === parts[i].submodel ? 0 : 1e6);
           const b = best.get(g);
           if (!b || distance < b.distance) best.set(g, { part: i, anchor: c.part, distance });
         }
@@ -92,7 +96,7 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
     groups.delete(next);
     best.delete(next);
     // Its parts are anchors now for the groups still loose.
-    offer(members.flatMap((i) => cylsOf.get(i) ?? []));
+    offer(members.flatMap((i) => cylsOf.get(i) ?? []), true);
   }
   for (const b of fixed.values()) weld(b);
   return welds;
