@@ -26,7 +26,7 @@
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 742 working functions and main 701, but Claude does not offer main yet. The solver owner’s drag changes are in. Three pin-search functions that the viewer does not show (41999 function 7, 42080 functions 2 and 3) are out of the count, but only by a result set by hand: the check’s own code would still pass them. Two things must follow first: a rule so that the check refuses a freed pin that only lets a larger body swing, and a measurement of the check against the viewer’s collision stops. After those, a full check and a slow check of the 8110 on the commit offered."
+      "what": "preview has 742 working functions and main 701, but Claude does not offer main yet. A measurement on 18 November showed how far the check and the viewer differ: in the viewer a collision between parts stops 694 motions in 330 working or partly working functions before the check’s turn ends, and in 205 working functions every stopped motion stops before half way. Many of these are real ends of travel; some are parts that are designed to touch. Two steps come first: the viewer and the check tell the designed contacts apart by where the parts meet, and the check then makes the viewer’s stop. The count of working functions may change a good deal with that. Then a full check and a slow check of the 8110 on the commit offered. Also still out of the count by a hand-set result: the 41999’s function 7."
     },
     {
       "title": "A second worker, asked again at mid-week",
