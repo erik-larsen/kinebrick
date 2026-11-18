@@ -12,15 +12,41 @@
 
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { Vector3 } from 'three';
+import { SPROCKETS } from '../src/inference/loops.ts';
+import { LINK_FIT, linkKind, type PlacedPart } from '../src/ldr.ts';
 import { readParts } from './load-model.ts';
 
-// The parts that are links of a track (LDraw's "Technic Chain Tread" parts). A track is made of
+// The parts that are links of a track (LDraw's "Technic Chain Tread" parts, and 15379, LDraw's
+// alias of 3873). A track is made of
 // many of them, so one alone (the 8835 Forklift has one 3873 as a step) is not a track.
-const TRACK_LINK = /^(3873|57518(c\d+)?|88323(c\d+)?|69900|69910)\.dat$/;
+const TRACK_LINK = /^(3873|15379|57518(c\d+)?|88323(c\d+)?|69900|69910)\.dat$/;
 
 export interface UnreadTracks {
   links: number; // how many track links are on no path
   parts: string[]; // which parts they are, e.g. ["3873"]
+}
+
+// A closed ring of links shorter than the fewest teeth a sprocket has can't go round a wheel: it
+// is no track (the 42069 Extreme Adventure's two squares of four links, high on its body).
+const FEWEST_TEETH = Math.min(...Object.values(SPROCKETS).map((s) => s.teeth));
+
+// Of these links (parts of the same model), those in a closed ring of fewer than FEWEST_TEETH:
+// each link's pin is on the next one's end, the next being of the same kind, round to the first.
+function inShortRings(links: PlacedPart[]): Set<PlacedPart> {
+  const end = (p: PlacedPart) => new Vector3().setFromMatrixPosition(p.matrix);
+  const next = links.map((p) => {
+    const kind = linkKind(p.name)!;
+    const pin = kind.pin.clone().applyMatrix4(p.matrix);
+    return links.findIndex((q) => q !== p && linkKind(q.name)!.kind === kind.kind && end(q).distanceTo(pin) <= LINK_FIT);
+  });
+  const short = new Set<PlacedPart>();
+  links.forEach((_, first) => {
+    const ring = [first];
+    for (let i = next[first]; i >= 0 && i !== first && ring.length < FEWEST_TEETH; i = next[i]) ring.push(i);
+    if (ring.length < FEWEST_TEETH && next[ring[ring.length - 1]] === first) ring.forEach((i) => short.add(links[i]));
+  });
+  return short;
 }
 
 // The track links of these models that are on no path, or null if there are none (or one).
@@ -30,12 +56,13 @@ export function unreadTracks(models: string[]): UnreadTracks | null {
   for (const model of new Set(models)) {
     if (!existsSync(model)) continue;
     // Most models have no track link at all: don't read those.
-    if (!/\b(3873|57518|88323|69900|69910)(c\d+)?\.dat/i.test(readFileSync(model, 'utf-8'))) continue;
-    for (const part of readParts(model, model.startsWith('omr/')).parts) {
-      const name = part.name.replace(/^.* - /, '');
-      if (!TRACK_LINK.test(name) || part.path) continue;
+    if (!/\b(3873|15379|57518|88323|69900|69910)(c\d+)?\.dat/i.test(readFileSync(model, 'utf-8'))) continue;
+    const unread = readParts(model, model.startsWith('omr/')).parts.filter((part) => TRACK_LINK.test(part.name.replace(/^.* - /, '')) && !part.path);
+    const short = inShortRings(unread);
+    for (const part of unread) {
+      if (short.has(part)) continue;
       links++;
-      kinds.add(name.replace(/\.dat$/, ''));
+      kinds.add(part.name.replace(/^.* - /, '').replace(/\.dat$/, ''));
     }
   }
   return links > 1 ? { links, parts: [...kinds].sort() } : null;

@@ -4,7 +4,7 @@ Tracks run round sprockets and idlers. (Drivetrain.)
 
 First appears in 1979, in [856 Bulldozer](https://erik-larsen.github.io/kinebrick/?model=856-Bulldozer): The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.
 
-Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 partly.
+Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 17 works, 12 partly.
 
 ## By decade
 
@@ -25,7 +25,7 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 par
 
 **1998, [8257 Cyber Strikers](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8257-1)**
 
-- The purple striker runs on two rubber tracks, each round three yellow sprocket wheels that turn freely on their axles. Nothing drives them: it's pushed along the floor by its handle. (works)
+- The purple striker runs on two rubber tracks, each round three yellow sprocket wheels that turn freely on their axles. Nothing drives them: it's pushed along the floor by its handle. (partly)
 
 **2005, [8419 Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8419-1)**
 
@@ -62,12 +62,12 @@ Used in 22 of the 186 surveyed sets, by 29 functions. Kinebrick: 21 works, 8 par
 
 **2015, [42038 Arctic Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42038-1)**
 
-- Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks. (works)
+- Each of the four track units rocks on its hub, and its track runs freely round its sprocket and wheels when the truck is pushed along; nothing drives the tracks. (partly)
 
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
-- Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets. (works)
-- The tracks run round their sprockets and rollers when driven. (works)
+- Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets. (partly)
+- The tracks run round their sprockets and rollers when driven. (partly)
 
 **2016, [42055 Bucket Wheel Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42055-1)**
 
