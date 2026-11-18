@@ -1,5 +1,5 @@
 // The 8272 Snowmobile's function 2, lifted: the left ski's steering. Pressing the ski's wishbone p43 frees its hinge pin p20; then three quarter turns of the control p12 turn it to its limit. The check has it as works: yes if the pins freed are the check's (20) and the viewer shows at least that.
-// Run with the viewer's address: npx tsx scripts/drags/8272-fn2.ts http://localhost:5173
+// Run with preview's viewer up (http://localhost:5174), or another's address after it: npx tsx scripts/drags/8272-fn2.ts
 import { answer, atLeast, open, resultOf } from './drag.ts';
 
 const started = Date.now();

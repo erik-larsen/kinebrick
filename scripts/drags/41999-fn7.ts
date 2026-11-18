@@ -1,5 +1,5 @@
 // The 41999 Crawler's function 7: the body shell p50 tilts up on its hinge. Pressing it frees its four pins; then it is pushed up and down. The check's code has it working, but its stored result was taken back to no (decision 155), as the viewer's collisions stop it. The check has it as works: yes if the pins freed are the check's (587, 588, 1434, 1462) and the viewer shows at least that.
-// Run with the viewer's address: npx tsx scripts/drags/41999-fn7.ts http://localhost:5173
+// Run with preview's viewer up (http://localhost:5174), or another's address after it: npx tsx scripts/drags/41999-fn7.ts
 import { answer, atLeast, open, resultOf } from './drag.ts';
 
 const started = Date.now();

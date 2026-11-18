@@ -6,6 +6,8 @@
 // The page sends two kinds of message:
 //   { model: { text, primitives, pieces, table, roles } }  the model as the page read it: this
 //       builds it with every friction pin free, once, which on a big model takes seconds
+//   { ask: number, part: number, freed: number[], shift: true }  which pins a press with Shift
+//       frees (see pinsForShift): the answer is { ask, pins, why }
 //   { ask: number, part: number, freed: number[], search?, lifted?, at? }  which pins to free so
 //       that part can move (grabbed at `at`, on it as built, else at its middle),
 //       besides those freed already: the answer is { ask, pins }, pins being part numbers (none
@@ -16,7 +18,7 @@
 
 import { parseModel } from './ldr.ts';
 import { inferMechanism, Mechanism } from './mechanism.ts';
-import { pinsForDrag } from './pinSearch.ts';
+import { pinsForDrag, pinsForShift } from './pinSearch.ts';
 import { Vector3 } from 'three';
 import type { PlacedPart } from './ldr.ts';
 
@@ -34,6 +36,11 @@ self.onmessage = (event: MessageEvent) => {
     model = { parts, table, roles, paths };
   } else if (message.ask !== undefined) {
     const m = model;
+    if (message.shift) {
+      const answer = allFree && m ? pinsForShift(inferMechanism(m.parts, m.table, m.roles, m.paths, new Set<number>(message.freed ?? [])), allFree, message.part) : { pins: [], why: 'more' };
+      self.postMessage({ ask: message.ask, ...answer });
+      return;
+    }
     // Grabbed where the page says (on the part as built), or else at the part's middle.
     const at = m && message.at ? new Vector3(...(message.at as [number, number, number])) : m ? new Vector3().setFromMatrixPosition(m.parts[message.part].matrix) : new Vector3();
     const pins = allFree && m ? pinsForDrag((freed) => inferMechanism(m.parts, m.table, m.roles, m.paths, freed), allFree, message.part, at, new Set<number>(message.freed ?? []), message.search !== false, message.lifted === true) : [];

@@ -505,7 +505,7 @@ async function start() {
   };
   let pinWorker: Worker | null = null;
   let asked = 0;
-  const answers = new Map<number, (pins: number[]) => void>();
+  const answers = new Map<number, (pins: number[], why?: 'more' | 'joints' | null) => void>();
   // Started once the first collision pass has its answer (see read), so the two helpers don't
   // share the machine (on the 42114, each made the other's work twice as slow), or at once if a
   // drag asks for pins before then.
@@ -517,7 +517,7 @@ async function start() {
       return;
     }
     pinWorker.onmessage = (e: MessageEvent) => {
-      answers.get(e.data.ask)?.(e.data.pins);
+      answers.get(e.data.ask)?.(e.data.pins, e.data.why);
       answers.delete(e.data.ask);
     };
     pinWorker.onerror = () => {
@@ -534,6 +534,15 @@ async function start() {
       asked++;
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
       pinWorker.postMessage({ ask: asked, part, freed: [...freed], search, lifted, at: at ? [at.x, at.y, at.z] : undefined });
+    });
+  // The pins a press with Shift frees (see pinsForShift), and if none, why.
+  const pinsToShift = (part: number) =>
+    new Promise<{ pins: number[]; why: 'more' | 'joints' | null }>((resolve) => {
+      startPinWorker();
+      if (!pinWorker) return resolve({ pins: [], why: 'more' });
+      asked++;
+      answers.set(asked, (pins, why) => resolve({ pins: pins.filter((pin) => !freed.has(pin)), why: why ?? null }));
+      pinWorker.postMessage({ ask: asked, part, freed: [...freed], shift: true });
     });
   // Frees friction pins, working the mechanism out afresh from the parts as built, as a shift
   // does (see readAsBuilt), so everything stays where it now is.
@@ -1087,6 +1096,7 @@ async function start() {
     shiftStick,
     shift,
     pinsToFree,
+    pinsToShift,
     freePins,
   };
   summary.textContent = 'Setting up…';
