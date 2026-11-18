@@ -321,6 +321,10 @@ export class Collisions {
     for (const g of this.groups) {
       g.onA = [...new Set(g.pairs.map(([a]) => a))];
       g.onB = [...new Set(g.pairs.map(([, b]) => b))];
+      // Where the pairs are worked out is clear (pairs that touch there aren't watched): the first
+      // step starts from here (see pushesIn).
+      g.clearA = partMatrices[g.a].clone();
+      g.clearB = partMatrices[g.b].clone();
     }
   }
 
@@ -437,9 +441,11 @@ export class Collisions {
             segment.getCenter(p).applyMatrix4(ma.matrix);
             d.subVectors(p, was.copy(p).applyMatrix4(backAgain));
             if (d.length() <= p.length() * TOO_SMALL) return false;
-            if (sliding(normal(t1, ma.matrix, n1)) && sliding(normal(t2, ma.matrix, n2))) return false;
+            const s1 = sliding(normal(t1, ma.matrix, n1)), s2 = sliding(normal(t2, ma.matrix, n2));
+            if (process.env.DEBUG_MEET) console.error('MEET', a, b, 'd', d.toArray().map((x) => +x.toFixed(4)), '|d|', +d.length().toFixed(4), 'angle1', +(Math.asin(Math.min(1, Math.abs(d.dot(n1)) / d.length())) * 180 / Math.PI).toFixed(1), 'angle2', +(Math.asin(Math.min(1, Math.abs(d.dot(n2)) / d.length())) * 180 / Math.PI).toFixed(1), 'n1', n1.toArray().map((x) => +x.toFixed(2)), 'n2', n2.toArray().map((x) => +x.toFixed(2)), 'p', p.toArray().map((x) => +x.toFixed(1)));
+            if (s1 && s2) return false;
             pushes = true;
-            return true;
+            return !process.env.DEBUG_MEET;
           },
         });
         if (pushes) return true;
