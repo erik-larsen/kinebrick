@@ -40,6 +40,38 @@
         }
       ],
       "reply": "Sign 9396 lists"
+    },
+    {
+      "id": "9397-snowplough-list",
+      "kind": "Sign-off",
+      "title": "9397: the function list for the snowplough (a container truck with a plough)",
+      "since": "2026-11-17",
+      "what": "The new function list for the model the OMR publishes, as you chose (“9397 - go with the snowplow”), written from LEGO’s two instruction files for it. Six functions in place of nine. Kept, each now with a source in the snowplough’s own booklets: (1) the motor and the gearbox with its two levers; (4) steering from the knob on the cab; (5) the engine turned by the rear axles; (6) the six wheels. New: (2) with one lever set, the motor tips the container frame with the big actuator; (3) with the other lever set, the motor raises and lowers the plough with the small actuator. Dropped: the crane’s slewing, boom, jib and log grab, and the outriggers, none of which this model has. Not listed: a worm at the plough that is set by hand.",
+      "effect": "The set goes from 5 working, 3 partly and 1 not checked (of 9) to 5 working and 1 partly (of 6). So the total falls from 1,226 functions to 1,223 and the number that work stays 742. Function 3, the plough, only partly works: its control reaches a limit after a small turn each way, and in the viewer the plough moves a little and jerkily. That is a fault to trace, not a fault of the list.",
+      "confidence": "High that these are the model’s functions: the build steps show the tipping frame on its big actuator and the plough on its small one, and Claude looked at the cited pages. Less sure: which way each lever goes for which function, because neither booklet has a functions page; the lever sides come from trying each setting. Tried in the viewer by the worker with the collision pass ready: one lever set and the motor run, the big actuator’s rod moves 0.41 LDU and the container frame tips a little (0.15 degrees in five motor steps: the right way, slowly); the other lever set, the plough moves 0.2 to 0.3 LDU, jerkily.",
+      "links": [
+        {
+          "label": "9397 in the viewer: the two levers, the motor, the container frame and the plough",
+          "url": "http://localhost:5174/?file=omr/9397-1+Logging+Truck.mpd&show=217,221,240,894,1340,624,464&autospin=240,paused"
+        },
+        {
+          "label": "Booklet 2 of the snowplough, page 34: the tipping frame on its big actuator (steps 110 to 113)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=34"
+        },
+        {
+          "label": "Booklet 1, page 143: the small actuator for the plough (step 84)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=143"
+        },
+        {
+          "label": "Booklet 2, page 148: the finished model (step 163)",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%232.pdf#page=148"
+        },
+        {
+          "label": "Booklet 1, page 37: the gearbox and its two levers",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.additional.extra.pdf/9397_X_9397%20Container%20Truck%20with%20Snowplow%20%231.pdf#page=37"
+        }
+      ],
+      "reply": "Sign 9397 list"
     }
   ],
   "coming": [
