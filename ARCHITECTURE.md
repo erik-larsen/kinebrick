@@ -879,6 +879,11 @@ For the length of a push (or, with `?holds`, a turn), Kinebrick holds still ever
 
 A sliding joint that reaches either end of its travel, or a gear that reaches the end of a rack's teeth, stops a drag like a collision does, and the two parts flash red. (Collisions can't do it: the two parts are connected, so they may touch.)
 
+**A slide held at its end** (decision 192 of 2026-11-18; `pushedPastEnds`, `endHeld` in `src/kinematics.ts`). In a turn, a slide that stands at an end of its travel, or would pass it in the smallest step a turn takes, is held there if the step's motion pushes it on, and the motion is chosen again with it held, until no slide is pushed out: an active set. Without it, the step passed the end, was undone, and the turn stopped, where another motion would have turned the joint and left the slide at its end (the 9397's plough, whose play pushed a slide on). Only a joint that can't turn at all with its slides held has reached the end of its travel. A slide the motion pulls back from its end is not held: the holds are found afresh for each motion.
+
+- Closing the loops after a step can push a held slide on to second order (the 9397's plough, 3.5 × 10⁻⁴ LDU). A held slide past its end is brought back to it as the loops close. One within the limit's tolerance of its end (10⁻⁶ LDU) is left where it is: brought back as well, the 42079's mast, tilted on play, stopped at 0.07 radians of the 0.21 asked (`tests/keep-ahead.test.ts`). Why is not traced.
+- A step that leaves a slide past its end that wasn't held is undone, the slide is held for the rest of the turn, and the step is taken again.
+
 So does a dead point (see [the solver](#7-small-steps)), though nothing flashes.
 
 ### Shift
