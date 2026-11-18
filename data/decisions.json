@@ -5,9 +5,9 @@
       "moved": "2026-11-16"
     },
     "preview": {
-      "works": 739,
+      "works": 726,
       "partly": 222,
-      "no": 84,
+      "no": 97,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -29,7 +29,7 @@
       "title": "9397 snowplough: two corrections to the plough’s lift, and two parts for function 1",
       "since": "2026-11-18",
       "what": "Two things for the 9397, one item. (a) A correction to the published file. The plough hangs on a double parallelogram: a grey 5-long link joins the middle hole of one yellow arm to the middle hole of the other, and both arms pivot on one frame beam two holes apart, so the link lies parallel to that beam (booklet step 37). In the file the link is tipped 0.09 degrees and its pin is drawn 0.10 LDU off its hole. The two loops then disagree, and the plough’s drive locks after a hair’s turn. The correction makes the link level and puts the pin in its hole. (b) A change to the list you signed. Function 1, the motor and gearbox, was signed with no parts to watch. It now names the two ring shafts that turn whenever the motor runs (p157 and p160).",
-      "effect": "Function 3, the plough, goes from partly working to working, and its motion comes back to its start. The set then has all six functions working, and the count goes from 739 to 740. Function 1 still works, now with something to watch.",
+      "effect": "Function 3, the plough, goes from partly working to working, and its motion comes back to its start. The set then has all six functions working, and the count goes from 726 to 727. Function 1 still works, now with something to watch.",
       "confidence": "High. The parallelogram follows from the hole spacing the booklet shows. Claude ran it in the viewer with the correction switched on and the collision pass ready: with the plough’s lever set, the motor raises the plough evenly, 0.21 LDU a step for six steps, and the tipping frame and the truck stay. Without the correction the plough moves 0.4 LDU and the motor stops. The worker saw the same, and the plough come back.",
       "links": [
         {
@@ -115,7 +115,7 @@
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 739 working functions and main 701, but Claude does not offer main yet. The check does not yet stop where the viewer stops for a collision between parts. That mend has now had its full check on its own branch: with it, 732 functions work where 744 did on the same code. The first estimate of 18 November, that about 120 working functions would be lost, was far too dark: 10 of those 205 are lost. The stops that remain are sorted: about 13 functions stop at a real end of travel; about 7 stop because the model’s reading misses a connection (the worker mends those now, the 42000’s and the 8880’s steering among them); about 25 stop because two shapes are drawn with no clearance at a hinge or on a shared pin. For that last kind the next rule is being measured: an overlap that the play in the joints can take up is not a stop. The mend is merged into preview after three more checks by the solver owner. Then come a slow check of the 8110 on the commit offered, and the offer of main."
+      "what": "preview has 726 working functions and main 701, but Claude does not offer main yet. Since 18 November the check stops a motion where two parts meet, as the viewer does; that took the count from 739 to 726. The 13 lost were never right in the viewer: most stop at once because a connection is missing in the model’s reading (the 42000’s and the 8880’s suspension, mended by the worker now), because the solver takes a wrong motion, or because the published file is drawn wrong (the 8868’s piston rods: a correction will come to you to sign). A rule to pass small overlaps was measured and dropped: the overlaps are not small. Before the offer: one full check of two solver changes together (about four hours, running), the mends above, and a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, asked again at mid-week",
@@ -310,6 +310,10 @@
     {
       "date": "2026-11-18",
       "what": "Tracks drawn link by link now run round their wheels in the viewer (your report on the 9391 Crawler Crane): the 9391, 42006, 42055, 8272, 8275 and 42021. No set is held back from green for an unread track any more. A function about tracks now fails in the check unless its track runs, so four functions went from working to partly working: the 42038’s function 9, the 42042’s functions 2 and 9 (their tracks are drawn off their wheels in the files) and the 8257’s function 1 (a one-piece rubber tread, which stands still while its wheels turn). 739 functions work. Still to come, as a second part: the 42006, 8275 and 8272 run their tracks but do not yet roll along the ground."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "The check now stops where the viewer stops when two parts meet. 726 functions work on preview where 739 did; the 13 lost did not move right in the viewer either. Two results that got better in the check alone are held at partly by hand: the 42082’s cab door and the 8274’s unloading auger. Each early stop now gets its cause, one function at a time: of the first 100 looked at, 49 are real (doors, bonnets and tippers built closed), 6 are missing connections, 2 a fault in the 8868’s file, 6 a wrong motion of the solver, and 34 are not settled yet."
     }
   ]
 }

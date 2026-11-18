@@ -180,10 +180,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 227,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 241,
     "counts": {
       "works": 6,
       "partly": 2,
@@ -198,35 +197,35 @@
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            1.2,
+            -1.2
           ]
         ],
         "rates": [
           {
             "p437 6589 against p674 2850a": [
               1,
-              7.95e-13
+              4.93e-13
             ],
             "p415 32270 against p674 2850a": [
               1,
-              4.82e-12
+              3.64e-12
             ],
             "p405 87761 against p674 2850a": [
               0,
               15
             ],
             "p800 11949 against p674 2850a": [
-              0.393,
-              0.000236
+              0.387,
+              0.000232
             ],
             "p804 11949 against p674 2850a": [
-              0.404,
-              0.000242
+              0.391,
+              0.000235
             ],
             "p1143 45982 against p674 2850a": [
               0,
-              2.28e-12
+              2.49e-12
             ]
           }
         ],
@@ -254,7 +253,31 @@
             ]
           ]
         ],
-        "seconds": 57.3
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            800,
+            822,
+            1.2,
+            1.2
+          ],
+          [
+            0,
+            -1,
+            804,
+            821,
+            1.2,
+            1.2
+          ]
+        ],
+        "seconds": 75.5
       },
       {
         "result": "works",
@@ -296,7 +319,7 @@
             ]
           ]
         ],
-        "seconds": 12
+        "seconds": 13.4
       },
       {
         "result": "works",
@@ -372,7 +395,7 @@
             ]
           ]
         ],
-        "seconds": 22
+        "seconds": 24.7
       },
       {
         "result": "works",
@@ -409,14 +432,14 @@
             ]
           ]
         ],
-        "seconds": 60.8
+        "seconds": 56.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0.6,
+            -0.6
           ]
         ],
         "rates": [
@@ -427,11 +450,11 @@
             ],
             "p48 6539 against p47 3705": [
               0,
-              8.25e-100
+              2.06e-99
             ],
             "p47 3705 against p0 32278": [
               0,
-              1.43e-50
+              3.56e-50
             ]
           }
         ],
@@ -462,14 +485,38 @@
         "why": [
           "p48 6539 against p47 3705 is held by friction pins the control doesn't reach"
         ],
-        "seconds": 12.1
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            104,
+            111,
+            0.6,
+            0.6
+          ],
+          [
+            0,
+            -1,
+            105,
+            111,
+            0.6,
+            0.6
+          ]
+        ],
+        "seconds": 5.5
       },
       {
         "result": "partly",
         "turned": [
           [
             1.5,
-            -1.4
+            -0.33
           ]
         ],
         "still": [
@@ -489,7 +536,7 @@
               4.64e-14
             ],
             "p64 6542b against p0 32278": [
-              1.12e-07,
+              1.12e-7,
               1.68e-13
             ],
             "p55 94925 against p0 32278": [
@@ -554,7 +601,17 @@
         ],
         "cause": "not-driven",
         "detail": "p64 6542b against p0 32278",
-        "seconds": 25.4
+        "collisionStops": [
+          [
+            0,
+            -1,
+            550,
+            1015,
+            0.33,
+            0.33
+          ]
+        ],
+        "seconds": 12.7
       },
       {
         "result": "partly",
@@ -576,7 +633,7 @@
         "rates": [
           {
             "p49 6542b against p0 32278": [
-              5.62e-08,
+              5.62e-8,
               1.2e-13
             ],
             "p62 94925 against p0 32278": [
@@ -626,14 +683,14 @@
         ],
         "cause": "not-driven",
         "detail": "p49 6542b against p0 32278",
-        "seconds": 21.1
+        "seconds": 27.5
       },
       {
         "result": "works",
         "turned": [
           [
             1.5,
-            -1.5
+            0
           ]
         ],
         "rates": [
@@ -668,7 +725,23 @@
             ]
           ]
         ],
-        "seconds": 12.4
+        "stop": [
+          [
+            null,
+            "limit"
+          ]
+        ],
+        "collisionStops": [
+          [
+            0,
+            -1,
+            187,
+            886,
+            0,
+            0
+          ]
+        ],
+        "seconds": 13.1
       },
       {
         "result": "skipped",

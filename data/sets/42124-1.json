@@ -125,13 +125,13 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 6,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 10,
     "counts": {
-      "works": 4,
+      "no": 1,
       "partly": 2,
+      "works": 3,
       "skipped": 2
     },
     "loose": [
@@ -144,65 +144,88 @@
     ],
     "functions": [
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1,
-            -1
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p318 32524",
+          "p343 15460",
+          "p345 15460"
         ],
         "rates": [
           {
             "p318 32524": [
-              0.343,
-              20
+              0,
+              0
             ],
             "p343 15460": [
-              0.393,
-              5.8e-12
+              0,
+              0
             ],
             "p345 15460": [
-              1.22,
-              3.41e-12
+              0,
+              0
             ]
           }
         ],
         "back": [
           [
             [
-              54.92,
-              85.37
+              0,
+              0
             ],
             [
-              55.63,
-              89
+              0,
+              0
             ]
           ]
         ],
         "torn": [
           [
             [
-              41.27,
-              87.09
+              0,
+              0
             ],
             [
-              42.71,
-              90.93
+              0,
+              0
             ]
           ]
         ],
-        "freeTurned": true,
-        "strayed": [
-          "p344 87083",
-          "p346 87083"
-        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "seconds": 1.7
+        "judged": [
+          0
+        ],
+        "cause": "not-driven",
+        "detail": "p343 15460",
+        "collisionStops": [
+          [
+            0,
+            1,
+            265,
+            318,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            265,
+            318,
+            0,
+            0
+          ]
+        ],
+        "seconds": 0.4
       },
       {
         "result": "partly",
@@ -266,7 +289,7 @@
         ],
         "cause": "not-driven",
         "detail": "p464 65414c01",
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "partly",
@@ -319,7 +342,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p974 56908 against p464 65414c01",
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -417,7 +440,7 @@
             "p343 15460"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 1.2
       },
       {
         "result": "skipped",
@@ -473,7 +496,7 @@
             "limit"
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -543,7 +566,7 @@
           [],
           []
         ],
-        "seconds": 1.5
+        "seconds": 2.6
       }
     ]
   }

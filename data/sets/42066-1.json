@@ -150,13 +150,14 @@
     ]
   },
   "generated": {
-    "commit": "ff7f4bd1",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 104,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 117,
     "counts": {
       "works": 3,
       "partly": 2,
+      "not back": 1,
+      "free-turned": 1,
       "no": 2
     },
     "loose": [
@@ -314,7 +315,7 @@
             ]
           ]
         ],
-        "seconds": 6.2
+        "seconds": 6.5
       },
       {
         "result": "partly",
@@ -350,7 +351,7 @@
               0.136
             ],
             "p1117 4716": [
-              1.17e-07,
+              1.17e-7,
               5.96e-13
             ]
           }
@@ -400,7 +401,7 @@
         ],
         "cause": "too-little",
         "detail": "p499 11478",
-        "seconds": 57.8
+        "seconds": 62.8
       },
       {
         "result": "partly",
@@ -477,33 +478,33 @@
         ],
         "cause": "not-driven",
         "detail": "p669 60483",
-        "seconds": 6.8
+        "seconds": 7.6
       },
       {
         "result": "works",
         "turned": [
           [
-            0.37,
-            -0.37
+            0.23,
+            -0.23
           ]
         ],
         "rates": [
           {
             "p1157 2739a": [
-              0.775,
+              0.465,
               72.8
             ],
             "p1193 40490": [
-              2.5,
-              49.8
+              1.98,
+              39.5
             ],
             "p1227 40490": [
-              1.88,
-              37.5
+              1.84,
+              36.8
             ],
             "p1166 32524": [
               0,
-              9.99e-43
+              7.94e-45
             ]
           }
         ],
@@ -511,11 +512,11 @@
           [
             [
               0,
-              0.11
+              0.04
             ],
             [
               0,
-              0.11
+              0.04
             ]
           ]
         ],
@@ -523,21 +524,39 @@
           [
             [
               0,
-              0.11
+              0.04
             ],
             [
               0,
-              0.11
+              0.04
             ]
           ]
         ],
         "stop": [
           [
-            "end of travel",
-            "end of travel"
+            "limit",
+            "limit"
           ]
         ],
-        "seconds": 5.2
+        "collisionStops": [
+          [
+            0,
+            1,
+            1184,
+            1192,
+            0.23,
+            0.23
+          ],
+          [
+            0,
+            -1,
+            1218,
+            1226,
+            0.23,
+            0.23
+          ]
+        ],
+        "seconds": 3.4
       },
       {
         "result": "no",
@@ -606,7 +625,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 2.4
+        "seconds": 2.3
       },
       {
         "result": "works",
@@ -698,7 +717,7 @@
           [],
           []
         ],
-        "seconds": 18.3
+        "seconds": 18.8
       },
       {
         "result": "no",
@@ -761,7 +780,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 1.7
+        "seconds": 1.9
       }
     ]
   }
