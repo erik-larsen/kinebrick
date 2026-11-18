@@ -2,7 +2,7 @@
 // pinWorker.ts), in a function of its own so that a test can ask it as the viewer does.
 
 import { motorOutput, pinsToFree, type Mechanism } from './mechanism.ts';
-import { heldPins, pinsByTrial } from './inference/friction.ts';
+import { freeWithEveryPin, heldPins, pinsByTrial } from './inference/friction.ts';
 import { Kinematics } from './kinematics.ts';
 import { Vector3 } from 'three';
 
@@ -22,8 +22,10 @@ export function canMove(mech: Mechanism, part: number, at: Vector3, lifted = fal
 // The pins to free, besides `freed`, so that `part` can move, grabbed at `at` (on it as built): those pinsToFree names in `allFree`
 // (the model built with every friction pin free), or where they don't let it move, and `search`
 // says so, those the trial search finds (see pinsByTrial) in the model as read. `build` builds
-// the model as read with a set of pins freed. None if freeing pins wouldn't let it move.
+// the model as read with a set of pins freed. None if freeing pins wouldn't let it move, or if the
+// part sits in the frame even with every pin free (see freeWithEveryPin).
 export function pinsForDrag(build: (freed: Set<number>) => Mechanism, allFree: Mechanism, part: number, at: Vector3, freed: Set<number>, search: boolean, lifted = false): number[] {
+  if (!freeWithEveryPin(allFree, part)) return [];
   const pins = pinsToFree(allFree, part).filter((p) => !freed.has(p));
   if (!search || (pins.length && canMove(build(new Set([...freed, ...pins])), part, at, lifted))) return pins;
   return pinsByTrial(heldPins(build(freed), part, freed), (more) => canMove(build(new Set([...freed, ...more])), part, at, lifted));

@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { loadModel } from '../scripts/load-model.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { canMove, pinsForDrag } from '../src/pinSearch.ts';
+import { freeWithEveryPin } from '../src/inference/friction.ts';
 
 // The viewer's answer to a drag of a part held by friction pins (pinsForDrag, which its pin
 // helper runs), asked as the viewer asks it: the part grabbed at its middle as built, and the pins
@@ -33,4 +34,14 @@ describe("the viewer's friction pins for a drag", () => {
     expect(pins).toEqual([20]);
     expect(after).toBe(true);
   });
+  // Its knobs sit in the frame even with every friction pin free. The trial search would free
+  // p348, which joins the machine's two halves, so that each knob swings a half (decision 166).
+  const forest = 'omr/42080-1 Forest Machine.mpd';
+  it.skipIf(!existsSync(forest))("frees no pin for the 42080 Forest Machine's boom knob, which sits in the frame with every pin free", () => {
+    const loaded = loadModel(forest, true);
+    expect(freeWithEveryPin(loaded.allFree(loaded.parts), 1893)).toBe(false);
+    const { before, pins } = ask(forest, 1893, false);
+    expect(before).toBe(false);
+    expect(pins).toEqual([]);
+  }, 120_000);
 });

@@ -25,12 +25,25 @@ const TOGETHER = 1e-6;
 // them (a connection's male part); none if no motion moves the part even with every pin free.
 export function pinsToFree(allFree: Mechanism, part: number): number[] {
   const kin = new Kinematics(allFree);
-  let body = allFree.bodyOf[part];
-  if (allFree.roles[part] === 'motor') body = motorOutput(allFree, part);
+  const body = bodyToMove(allFree, part);
   const link = kin.parentLink(body);
-  if (body === 0 || !link) return [];
+  if (!freeWithEveryPin(allFree, part) || !link) return [];
   return pinsFor(allFree, kin, body, (m) => apart(m, body, link.parent));
 }
+
+// Whether `part` has a joint to turn on in `allFree` (the model built with every friction pin
+// free): it isn't in the frame there. Where it has none, no friction pin is freed for it, by
+// pinsToFree or by trying pins in the model as read (see pinsByTrial): with every pin free it
+// still sits in the frame, so a pin that let it move could only let a larger body, with the part
+// in it, swing on that pin, and the part would never move against what it sits in (the 42080
+// Forest Machine's two knobs: the pin found, p348, joins the machine's two halves). Decision 166
+// of 2026-11-17. A motor is taken by its output, as pinsToFree takes it.
+export function freeWithEveryPin(allFree: Mechanism, part: number): boolean {
+  const body = bodyToMove(allFree, part);
+  return body !== 0 && new Kinematics(allFree).parentLink(body) !== null;
+}
+
+const bodyToMove = (mech: Mechanism, part: number) => (mech.roles[part] === 'motor' ? motorOutput(mech, part) : mech.bodyOf[part]);
 
 // The friction pins to free so that a slide can slide: a linear actuator's piston in its
 // housing, a shock absorber's rod in its cylinder (see inferMechanism). As pinsToFree, but the
