@@ -1,5 +1,5 @@
 // The 42040 Fire Plane's function 7: the joystick p358 works the rudder. Pressing it frees its pin p331; then it is pushed four ways. The check has it as partly: yes if the pins freed are the check's (331) and the viewer shows at least that.
-// Run with the viewer's address: npx tsx scripts/drags/42040-fn7.ts http://localhost:5173
+// Run with preview's viewer up (http://localhost:5174), or another's address after it: npx tsx scripts/drags/42040-fn7.ts
 import { answer, atLeast, open, resultOf } from './drag.ts';
 
 const started = Date.now();
