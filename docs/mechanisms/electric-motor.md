@@ -4,7 +4,7 @@ An electric motor drives the function. (Power.)
 
 First appears in 1989, in [8054 Universal Motor Set](https://erik-larsen.github.io/kinebrick/?model=8054-Universal%20Motor%20Set): The motor at the back drives the four rear wheels through two rubber-band stages: a band from a half bush on the motor's shaft runs to the big wedge-belt wheel on the left, whose axle carries two half bushes, and two more bands run from those to the two wedge-belt wheels on the rear axle.
 
-Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 41 works, 40 partly, 1 no, 5 not checked.
+Used in 31 of the 186 surveyed sets, by 87 functions. Kinebrick: 38 works, 42 partly, 2 no, 5 not checked.
 
 ## By decade
 
@@ -161,9 +161,9 @@ Each detail by the set it first appears in.
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
-- *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
+- *Control+ XL:* The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (partly)
 - *Control+ XL:* The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (works)
-- *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (works)
+- *Control+ XL:* With both XL motors driven together the off-roader has four-wheel drive, forwards or back. (partly)
 - *Control+ L:* The L motor steers the front wheels: a 12 tooth gear on its shaft drives a toothed rack across the front axle, which pushes the steering links on ball joints to swing both front hubs; a tie rod behind the axle joins the two hubs. (works)
 
 **2019, [42100 Liebherr R 9800](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42100-1)**
@@ -197,7 +197,7 @@ Each detail by the set it first appears in.
 
 **2021, [42124 Off-Road Buggy](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42124-1)**
 
-- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (works)
+- The front motor steers the front wheels: it turns a crank across the front of the chassis, and two ball-jointed links from the crank's ends push the steering arms of both front hubs. (no)
 - The rear motor drives the rear wheels: a 36 tooth gear on its shaft drives the differential's 28 tooth ring gear, and the differential turns both rear half-axles, letting them turn at different speeds in a corner. (partly)
 
 **2021, [42129 4x4 Mercedes-Benz Zetros Trial Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42129-1)**

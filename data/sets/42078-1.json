@@ -204,14 +204,15 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 3257,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 2315,
     "counts": {
-      "works": 8,
+      "works": 7,
       "partly": 4,
-      "no": 1
+      "not back": 3,
+      "moved whole": 3,
+      "no": 2
     },
     "loose": [
       "p1258 3710",
@@ -254,7 +255,7 @@
         "result": "works",
         "turned": [
           [
-            1.5,
+            1.27,
             -1.5
           ]
         ],
@@ -307,8 +308,24 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
         "freed": 1,
-        "seconds": 135.7
+        "collisionStops": [
+          [
+            0,
+            1,
+            455,
+            483,
+            1.27,
+            1.27
+          ]
+        ],
+        "seconds": 106
       },
       {
         "result": "partly",
@@ -390,7 +407,7 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 106
+        "seconds": 131.9
       },
       {
         "result": "works",
@@ -460,14 +477,14 @@
           [],
           []
         ],
-        "seconds": 234.7
+        "seconds": 305.6
       },
       {
         "result": "works",
         "turned": [
           [
-            1.03,
-            -1.03
+            0.02,
+            -0.03
           ]
         ],
         "rates": [
@@ -477,7 +494,7 @@
               113
             ],
             "p1423 40490": [
-              1.23e-07,
+              0.00000136,
               108
             ],
             "p324 3708": [
@@ -512,25 +529,43 @@
         ],
         "stop": [
           [
-            "stuck",
-            "stuck"
+            "limit",
+            "limit"
           ]
         ],
         "pushed": [
           true
         ],
-        "seconds": 244.3
+        "collisionStops": [
+          [
+            0,
+            1,
+            362,
+            1383,
+            0.02,
+            0.02
+          ],
+          [
+            0,
+            -1,
+            1423,
+            1467,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 8.7
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            -1.13
           ],
           [
-            1.5,
-            -1.5
+            1.13,
+            0
           ]
         ],
         "rates": [
@@ -581,12 +616,56 @@
             ]
           ]
         ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
         "freed": 1,
         "movedBy": [
           [],
           []
         ],
-        "seconds": 177.9
+        "collisionStops": [
+          [
+            0,
+            1,
+            481,
+            851,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            856,
+            1491,
+            1.13,
+            1.13
+          ],
+          [
+            1,
+            1,
+            894,
+            1472,
+            1.13,
+            1.13
+          ],
+          [
+            1,
+            -1,
+            481,
+            889,
+            0,
+            0
+          ]
+        ],
+        "seconds": 125.1
       },
       {
         "result": "partly",
@@ -634,21 +713,24 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 15.7
+        "seconds": 17
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
-            1.5,
-            -1.5
+            0,
+            0
           ]
+        ],
+        "still": [
+          "p1890 56145"
         ],
         "rates": [
           {
             "p1890 56145": [
-              2.32,
-              869
+              0,
+              0
             ],
             "p199 56145": [
               0,
@@ -680,25 +762,54 @@
             ]
           ]
         ],
-        "seconds": 74.6
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "judged": [
+          0
+        ],
+        "cause": "not-driven",
+        "detail": "p1890 56145",
+        "collisionStops": [
+          [
+            0,
+            1,
+            1886,
+            2454,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            1887,
+            2455,
+            0,
+            0
+          ]
+        ],
+        "seconds": 13.6
       },
       {
         "result": "works",
         "turned": [
           [
-            1.5,
+            0.4,
             -1.5
           ]
         ],
         "rates": [
           {
             "p1723 42610": [
-              1,
-              342
+              0.836,
+              66.8
             ],
             "p1724 42610": [
-              1,
-              342
+              0.836,
+              66.8
             ]
           }
         ],
@@ -726,7 +837,32 @@
             ]
           ]
         ],
-        "seconds": 74.2
+        "stop": [
+          [
+            "limit",
+            null
+          ]
+        ],
+        "pushed": [
+          true
+        ],
+        "freed": 3,
+        "shiftPressed": [
+          1686,
+          1688,
+          1707
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            1687,
+            1693,
+            0.4,
+            0.4
+          ]
+        ],
+        "seconds": 58
       },
       {
         "result": "partly",
@@ -799,7 +935,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2048 18940",
-        "seconds": 24.2
+        "seconds": 32.8
       },
       {
         "result": "partly",
@@ -872,18 +1008,18 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 25.8
+        "seconds": 30.7
       },
       {
         "result": "works",
         "turned": [
           [
-            0.65,
+            0.01,
             -1.05
           ],
           [
             1.05,
-            -0.65
+            -0.01
           ]
         ],
         "rates": [
@@ -936,12 +1072,12 @@
         ],
         "stop": [
           [
-            "stuck",
+            "limit",
             "stuck"
           ],
           [
             "stuck",
-            "stuck"
+            "limit"
           ]
         ],
         "pushed": [
@@ -953,7 +1089,25 @@
           [],
           []
         ],
-        "seconds": 820.8
+        "collisionStops": [
+          [
+            0,
+            1,
+            2060,
+            2061,
+            0.01,
+            0.01
+          ],
+          [
+            1,
+            -1,
+            2279,
+            2280,
+            0.01,
+            0.01
+          ]
+        ],
+        "seconds": 423.4
       },
       {
         "result": "no",
@@ -979,7 +1133,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 214.7
+        "seconds": 7
       },
       {
         "result": "works",
@@ -1101,7 +1255,7 @@
           [],
           []
         ],
-        "seconds": 472.6
+        "seconds": 571.7
       }
     ]
   }

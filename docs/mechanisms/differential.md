@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 58 works, 18 partly, 1 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 55 works, 20 partly, 2 no, 1 skipped.
 
 ## By decade
 
@@ -49,7 +49,7 @@ Each detail by the set it first appears in.
 
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
-- Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (works)
+- Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (no)
 
 **1994, [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car)**
 
@@ -193,7 +193,7 @@ Each detail by the set it first appears in.
 
 **2019, [42099 4x4 X-treme Off-Roader](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42099-1)**
 
-- The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (works)
+- The front XL motor drives the front wheels: the 20 tooth gear on its shaft drives a 12 tooth gear on a long shaft running forward to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the front differential; constant velocity joints take the drive out to the planetary reduction hubs. (partly)
 - The rear XL motor drives the rear wheels the same way: the 20 tooth gear on its shaft drives a 12 tooth gear on a shaft running back to another 20 tooth gear, which drives a 12 tooth gear whose shaft carries the 20 tooth gear that turns the rear differential, then constant velocity joints and the planetary reduction hubs. (works)
 - *front:* The front axle has an open differential: with the front motor still, turning one front wheel turns the other the opposite way. (works)
 - *rear:* The rear axle has an open differential too: with the rear motor still, turning one rear wheel turns the other the opposite way. (works)
@@ -201,7 +201,7 @@ Each detail by the set it first appears in.
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
 - *front, rear and centre:* All four wheels are driven: pushing the car along turns the wheels, which through the front and rear differentials, a centre differential, the gearbox and the range and D-N-R selectors turn the engine's crankshaft, so the six pistons of the straight-six engine pump up and down. (partly)
-- *front, rear and centre:* Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way. (works)
+- *front, rear and centre:* Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way. (partly)
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 

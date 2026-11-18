@@ -50,12 +50,14 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
+    "commit": "3556d301",
+    "date": "2026-11-18",
     "seconds": 1,
     "counts": {
-      "works": 2
+      "works": 2,
+      "wrong amount": 1,
+      "not back": 1,
+      "moved whole": 1
     },
     "loose": [],
     "functions": [
@@ -82,7 +84,7 @@
               1.07
             ],
             "p22 3743": [
-              2.81e-08,
+              2.81e-8,
               11.7
             ],
             "p11 4261": [
@@ -136,7 +138,7 @@
             ]
           ]
         ],
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",

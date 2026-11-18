@@ -98,10 +98,9 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 3,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 10,
     "counts": {
       "works": 2,
       "partly": 1,
@@ -169,7 +168,7 @@
             ]
           ]
         ],
-        "seconds": 1.8
+        "seconds": 3
       },
       {
         "result": "partly",
@@ -229,7 +228,7 @@
         ],
         "cause": "not-driven",
         "detail": "p297 2825 against p281 3709b",
-        "seconds": 0.5
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -275,7 +274,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.8
       },
       {
         "result": "not checked",

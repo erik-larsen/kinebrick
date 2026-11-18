@@ -149,13 +149,14 @@
     ]
   },
   "generated": {
-    "commit": "2effcfbb",
-    "uncommitted": true,
-    "date": "2026-11-17",
-    "seconds": 27,
+    "commit": "3556d301",
+    "date": "2026-11-18",
+    "seconds": 41,
     "counts": {
-      "works": 3,
-      "partly": 3,
+      "works": 4,
+      "partly": 2,
+      "not back": 1,
+      "torn": 1,
       "not checked": 1
     },
     "loose": [
@@ -364,7 +365,7 @@
               9.47e-15
             ],
             "p237 3743": [
-              2.81e-08,
+              2.81e-8,
               10.2
             ],
             "p964 56145": [
@@ -415,13 +416,13 @@
             ]
           ]
         ],
-        "seconds": 2.4
+        "seconds": 3.6
       },
       {
         "result": "partly",
         "turned": [
           [
-            0.8,
+            0.53,
             -1.5
           ]
         ],
@@ -452,7 +453,7 @@
               7.35e-13
             ],
             "p970 41896": [
-              2.81e-08,
+              2.81e-8,
               7.99e-13
             ]
           }
@@ -460,8 +461,8 @@
         "back": [
           [
             [
-              1287.88,
-              159.6
+              1247.97,
+              119.05
             ],
             [
               890.41,
@@ -472,8 +473,8 @@
         "torn": [
           [
             [
-              61.61,
-              45.84
+              4.25,
+              30.56
             ],
             [
               0.08,
@@ -482,12 +483,12 @@
           ]
         ],
         "strayed": [
-          "p673 3023",
+          "p677 3023",
           "p496 32009"
         ],
         "stop": [
           [
-            "end of travel",
+            "limit",
             null
           ]
         ],
@@ -497,7 +498,17 @@
         ],
         "cause": "loose-part",
         "detail": "p1045 3708",
-        "seconds": 7
+        "collisionStops": [
+          [
+            0,
+            1,
+            0,
+            153,
+            0.53,
+            0.53
+          ]
+        ],
+        "seconds": 6.6
       },
       {
         "result": "partly",
@@ -583,7 +594,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 2.2
+        "seconds": 3.5
       },
       {
         "result": "works",
@@ -633,14 +644,14 @@
             ]
           ]
         ],
-        "seconds": 1.9
+        "seconds": 2.9
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.47,
-            -0.33
+            0,
+            -0.1
           ]
         ],
         "rates": [
@@ -650,50 +661,61 @@
               528
             ],
             "p964 56145": [
-              0.0433,
-              0.00222
+              0.0446,
+              0.00282
             ]
           }
         ],
         "back": [
           [
             [
-              180.81,
-              19.13
+              0,
+              0
             ],
             [
-              108.74,
-              11.48
+              0.1,
+              0.01
             ]
           ]
         ],
         "torn": [
           [
             [
-              179.21,
-              19.1
+              0,
+              0
             ],
             [
-              107.85,
-              11.46
+              0.01,
+              0.01
             ]
           ]
         ],
-        "strayed": [
-          "p926 3673"
-        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "judged": [
-          1
+        "collisionStops": [
+          [
+            0,
+            1,
+            395,
+            694,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            397,
+            701,
+            0.1,
+            0.1
+          ]
         ],
-        "cause": "stopped-early",
-        "onPlay": 1.07,
-        "seconds": 3.5
+        "onPlay": 0.2,
+        "seconds": 1.2
       },
       {
         "result": "works",
@@ -811,7 +833,7 @@
           [],
           []
         ],
-        "seconds": 9
+        "seconds": 13.5
       },
       {
         "result": "not checked",
