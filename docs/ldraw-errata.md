@@ -463,6 +463,8 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [9397-1](#9397-1-plough-link-beam-level) | plough-link-beam-level | moves `32316.dat` (in `9397 - 9397B.ldr`) to 0 -83.3547 -529.8725, turned | Proposed, not applied until signed off |
 | [9397-1](#9397-1-plough-link-pin-in-its-hole) | plough-link-pin-in-its-hole | moves `32556.dat` (in `9397 - 9397B.ldr`) to 0 -43.3514 -529.886 | Proposed, not applied until signed off |
 | [41999-1](#41999-1-shock-absorbers-the-file-lacks) | shock-absorbers-the-file-lacks | adds 16 lines to the main model | Signed off by Erik, 2026-11-15 |
+| [42000-1](#42000-1-right-rear-driver-in-its-hub) | right-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to 220 -60 640 | Proposed, not applied until signed off |
+| [42000-1](#42000-1-left-rear-driver-in-its-hub) | left-rear-driver-in-its-hub | moves `32494.dat` (in `42000 - 42000.L3B.ldr`) to -220 -60 640 | Proposed, not applied until signed off |
 | [42038-1](#42038-1-rear-left-tread-on-its-unit) | rear-left-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to -165 161.666 300.4165 | Proposed, not applied until signed off |
 | [42038-1](#42038-1-rear-right-tread-on-its-unit) | rear-right-tread-on-its-unit | moves `42038 - technicChainTread38Closed-1.ldr` to 165 161.666 300.4155 | Proposed, not applied until signed off |
 | [42040-1](#42040-1-seats-on-their-pins) | seats-on-their-pins | moves `42040 - seats.ldr` to -160 -211.6552 -70.6371 | Signed off by Erik, 2026-11-15 |
@@ -720,6 +722,34 @@ Added to the main model:
 1 0 -60 -0.155 261.282 1 0 0 0 1 -0.008 0 0.008 1 2910.dat
 1 0 -60 -0.235 271.282 0 0 1 0.008 1 0 -1 0.008 0 2780.dat
 ```
+
+### 42000-1: right-rear-driver-in-its-hub
+
+Proposed, not applied until signed off.
+
+The right rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn.
+
+In `42000 - 42000.L3B.ldr` (p351 32494), the line
+
+```
+1 72 225 -60 640 0 0 -1 -1 0 0 0 1 0 32494.dat
+```
+
+is read with its part at 220 -60 640.
+
+### 42000-1: left-rear-driver-in-its-hub
+
+Proposed, not applied until signed off.
+
+The left rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn; with right-rear-driver-in-its-hub.
+
+In `42000 - 42000.L3B.ldr` (p356 32494), the line
+
+```
+1 72 -225 -60 640 0 0 1 -1 0 0 0 -1 0 32494.dat
+```
+
+is read with its part at -220 -60 640.
 
 ### 42038-1: rear-left-tread-on-its-unit
 

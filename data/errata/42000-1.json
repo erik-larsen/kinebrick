@@ -1,0 +1,31 @@
+{
+  "set": "42000-1",
+  "entries": [
+    {
+      "id": "right-rear-driver-in-its-hub",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 225 -60 640 0 0 -1 -1 0 0 0 1 0 32494.dat",
+      "part": "p351 32494",
+      "position": [
+        220,
+        -60,
+        640
+      ],
+      "evidence": "The right rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn."
+    },
+    {
+      "id": "left-rear-driver-in-its-hub",
+      "what": "move",
+      "file": "42000 - 42000.L3B.ldr",
+      "line": "1 72 -225 -60 640 0 0 1 -1 0 0 0 -1 0 32494.dat",
+      "part": "p356 32494",
+      "position": [
+        -220,
+        -60,
+        640
+      ],
+      "evidence": "The left rear hub: the booklet clicks the steering wheel bearing 11950 onto the portal hub 92909 and puts the wheel spindle axle driver 32494 into the hub's middle, its ball in the hub's socket, and an axle 6 into the driver, for both rear wheels (book 1, page 64, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6037210.pdf#page=64). The socket's middle is 30 LDU in along the hub's axis (the shadow library's 92909); in the seven other sets with this pair (42029, 42037, 42039, 42056, 42077, 42096, 42125) every driver's ball is there, and here both are 5 LDU short of it, so the ball isn't read in its socket: the driver and its half shaft are joined to nothing at the wheel, the wheel isn't driven by them, and they meet the bearing at the first step of a turn (functions 4 and 5). Moved 5 LDU along the hub's axis into the socket, with its turn as drawn; with right-rear-driver-in-its-hub."
+    }
+  ]
+}
