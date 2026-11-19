@@ -354,6 +354,11 @@ export class Kinematics {
   springsHeld = false; // slides that springs hold at rest held still (see steeringBodies)
   drag = new Drag(); // the drag going on, or an empty one between drags (see Drag)
   private stepByTiers = false; // one problem: whether the last step's motion was chosen by least motion's tiers (see jointMotion)
+  // Whether the last motion asked for in a turn was blocked by the slides held at their ends: none
+  // with them held, one without (see jointMotion). And whether the last turn ended so, at an end
+  // of its travel (see turnJoint), which the check names a limit.
+  private blockedByEnds = false;
+  endReached = false;
   private deadPoint: { joint: number; way: number; angles: number[] } | null = null; // where a turn last stopped at one (see turnJoint)
   private couplingBodies: Set<number> | null = null; // the bodies of train couplings' holders (see turnJoint, leastTiers)
   private ringBodies: Set<number> | null = null; // the bodies that carry a driving ring (see leastTiers)
@@ -2457,6 +2462,7 @@ export class Kinematics {
     const found: { ahead: { motion: number[]; played: boolean; stepByTiers: boolean; gripped: boolean; endHeld: number[] } | null } = { ahead: null };
     this.turnWay = Math.sign(angle);
     this.turnHeld = new Set();
+    this.endReached = false;
     // A kept motion was chosen with the slides it held at their ends: they hold for its step too.
     this.endHeld = new Set(kept?.endHeld ?? []);
     let turned: number;
@@ -2503,6 +2509,13 @@ export class Kinematics {
       if (!motion) {
         this.gripped = false;
         motion = this.jointMotion(joint);
+      }
+      // Held at the end of its travel by its slides: the turn ends there. Not with holds chosen
+      // afresh, which let the joint go on by moving something else (the 42108 Mobile Crane's
+      // knob, stopped at once before decision 192, turned 2.5 radians so and didn't come back).
+      if (!motion && this.blockedByEnds) {
+        this.endReached = true;
+        break;
       }
       // Holds chosen where a drag started may not suit it further on (as a steered car's
       // wheels turn, they turn by more and more different angles, and its differential has to
@@ -2598,6 +2611,19 @@ export class Kinematics {
         }
         // A bigger step than usual (a motor's) may just be too big to follow: taken in the
         // usual steps, it may go. Only those can tell a dead point.
+        // A step on play refused with slides held at their ends, where without them the joint
+        // has an exact motion: they hold it at the end of its travel, not at a dead point (the
+        // 42124 Off-Road Buggy's front suspension, its shock absorber at an end).
+        if (played && this.endHeld.size) {
+          const held = this.endHeld;
+          this.endHeld = new Set();
+          const free = this.jointMotionNearOrigin(joint, false) !== null;
+          this.endHeld = held;
+          if (free) {
+            this.endReached = true;
+            break;
+          }
+        }
         if (Math.abs(step) <= MAX_TURN_STEP + 1e-12) return stop(turned);
         const done = this.turnJoint(joint, step, allowed, MAX_TURN_STEP);
         turned += done;
@@ -2608,7 +2634,21 @@ export class Kinematics {
       // (closing the loops did, to second order: the 9397's plough, 3.5×10⁻⁴ LDU): undone, the
       // slide held for the rest of the turn, and the step taken again (decision 192). A slide held
       // and still past its end stops the turn, as any end of travel does.
-      const past = this.slidesPastEnds().filter((j) => !this.endHeld.has(j));
+      // Only slides the step's own motion didn't push out: a slide it pushes past an end has
+      // reached the end of its travel, and the step is refused below as any end is (atLimit, by
+      // `allowed`). Held instead, the step was taken again with it held, and the joint went on by
+      // another motion: eight suspensions whose shock absorbers had stopped them at an end turned
+      // on to a dead point or a jam, and the 42037 Formula Off-Roader's came back 62 LDU off.
+      const pushedOut = (j: number) => {
+        const { range } = this.mech.joints[j];
+        const row = this.slideRow(this.mech.joints[j]);
+        let rate = 0;
+        for (let c = 0; c < row.length; c++) if (row[c] !== 0) rate += row[c] * motion[c];
+        rate *= Math.sign(step);
+        const offset = this.slideOffset(j);
+        return (offset > range![1] && rate > EPSILON) || (offset < range![0] && rate < -EPSILON);
+      };
+      const past = this.slidesPastEnds().filter((j) => !this.endHeld.has(j) && !pushedOut(j));
       if (past.length) {
         if (TRACE) trace({ event: 'undone', joint, turned, why: 'slide past its end' });
         this.restore(before);
@@ -2633,6 +2673,12 @@ export class Kinematics {
       // couldn't be turned back; decision 84 of 2026-11-15). The motion found is the next step's.
       this.gripped = false;
       ahead = this.jointMotion(joint);
+      // The step reached the end of the joint's travel (see blockedByEnds): it stands, and the
+      // turn ends there.
+      if (!ahead && this.blockedByEnds) {
+        this.endReached = true;
+        break;
+      }
       if (!ahead && this.drag.turning?.joint === joint) {
         this.holdWhatTheDragDoesntNeed(this.drag.turning.grabbed, () => this.jointMotion(joint) !== null, joint);
         this.gripped = false;
@@ -2836,6 +2882,7 @@ export class Kinematics {
   jointMotion(joint: number, play = true): number[] | null {
     return this.nearOrigin((toModel) => {
       this.endHeld = new Set(this.turnHeld);
+      this.blockedByEnds = false;
       let motion = this.jointMotionNearOrigin(joint, play);
       // In a turn: a slide standing at an end of its travel, which the motion would push past it,
       // is held there and the motion chosen again, until none is pushed out (an active set; decision
@@ -2849,6 +2896,14 @@ export class Kinematics {
         if (out.length === 0) break;
         for (const j of out) this.endHeld.add(j);
         motion = this.jointMotionNearOrigin(joint, play);
+      }
+      // No motion with the slides held, but one without them: they hold the joint at the end of
+      // its travel (an end, not a jam).
+      if (!motion && this.turnWay !== 0 && this.endHeld.size) {
+        const held = this.endHeld;
+        this.endHeld = new Set();
+        this.blockedByEnds = this.jointMotionNearOrigin(joint, play) !== null;
+        this.endHeld = held;
       }
       return motion && toModel(motion);
     });
@@ -2879,13 +2934,16 @@ export class Kinematics {
       for (let c = 0; c < row.length; c++) if (row[c] !== 0) rate += row[c] * motion[c];
       rate *= way;
       const offset = this.slideOffset(i);
-      // Past the end within the smallest step; or standing at the end (within LIMIT_TOLERANCE) and not
-      // pulled back from it, as closing the loops after a step may push it on to second order (the
-      // 9397's plough: play left its slides 6×10⁻⁶ LDU past their ends, with no first-order rate).
+      // Pushed out: past the end within the smallest step, or standing at the end (within
+      // LIMIT_TOLERANCE). Only by the motion's own rate: a slide it doesn't move isn't held, though it
+      // stands at an end (an axle built against its stop, in a connector it may slide in); held, it
+      // changed which of two near-equal motions was chosen (the 9397's plough came back 68 degrees
+      // off). A slide that closing the loops pushes on to second order, with no first-order rate (the
+      // 9397's plough, on play), is caught after the step and held for the turn (see turnHeld).
       const atTop = offset >= j.range[1] - LIMIT_TOLERANCE;
       const atBottom = offset <= j.range[0] + LIMIT_TOLERANCE;
-      if ((rate > EPSILON && offset + LEAST_TURN_STEP * rate > j.range[1] + LIMIT_TOLERANCE) || (atTop && rate > -EPSILON)) out.push(i);
-      else if ((rate < -EPSILON && offset + LEAST_TURN_STEP * rate < j.range[0] - LIMIT_TOLERANCE) || (atBottom && rate < EPSILON)) out.push(i);
+      if (rate > EPSILON && (atTop || offset + LEAST_TURN_STEP * rate > j.range[1] + LIMIT_TOLERANCE)) out.push(i);
+      else if (rate < -EPSILON && (atBottom || offset + LEAST_TURN_STEP * rate < j.range[0] - LIMIT_TOLERANCE)) out.push(i);
     });
     return out;
   }
