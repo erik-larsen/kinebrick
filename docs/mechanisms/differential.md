@@ -4,7 +4,7 @@ Lets two shafts driven by one turn at different speeds, as the wheels on an axle
 
 First appears in 1981, in [8848 Power Truck](https://erik-larsen.github.io/kinebrick/?model=8848-Power%20Truck) and [8859 Tractor](https://erik-larsen.github.io/kinebrick/?model=8859-Tractor): The rear axle has a differential, so as it rolls round a bend each rear wheel can turn at its own speed.
 
-Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 55 works, 20 partly, 2 no, 1 skipped.
+Used in 47 of the 186 surveyed sets, by 78 functions. Kinebrick: 57 works, 19 partly, 1 no, 1 skipped.
 
 ## By decade
 
@@ -49,7 +49,7 @@ Each detail by the set it first appears in.
 
 **1992, [8868 Air Tech Claw Rig](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8868-1)**
 
-- Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (no)
+- Rolling the truck runs the six-piston engine in the nose: both rear axles have differentials, joined by a short shaft, and a propeller shaft with two universal joints runs forward to gears under the cab (8, 24 and 8 teeth), whose wedge-belt wheel drives the engine's crankshaft by a rubber band. (works)
 
 **1994, [8880 Super Car](https://erik-larsen.github.io/kinebrick/?model=8880-Super%20Car)**
 
@@ -201,7 +201,7 @@ Each detail by the set it first appears in.
 **2019, [42110 Land Rover Defender](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42110-1)**
 
 - *front, rear and centre:* All four wheels are driven: pushing the car along turns the wheels, which through the front and rear differentials, a centre differential, the gearbox and the range and D-N-R selectors turn the engine's crankshaft, so the six pistons of the straight-six engine pump up and down. (partly)
-- *front, rear and centre:* Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way. (partly)
+- *front, rear and centre:* Open differentials in the front and rear axles and a centre differential between them let every wheel turn at its own speed: with the engine held, turning one front wheel turns the other the opposite way. (works)
 
 **2020, [42109 App-Controlled Top Gear Rally Car](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42109-1)**
 
