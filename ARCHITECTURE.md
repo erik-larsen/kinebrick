@@ -1161,6 +1161,8 @@ Not the pins, axles and small gears inside, nor each link of a track: in seven o
 
 The joints probe can tell that a control moved, but not whether it moved the right thing. `npm run functions` (`scripts/check-functions.ts`) checks each set's functions, what its controls are supposed to do (`curated.functions` in `data/sets/<set>.json`), against what Kinebrick does with its model, and writes what it found into the set's `generated`, afresh each time.
 
+**Held results.** `data/holds.json`, the orchestrator's to edit, names functions whose gain the viewer does not show, each with the result to hold it at, the reason and the date. Such a function that comes out better is stored at its held result, with what the check found kept in `found` and the hold in `hold`, so the ratchet, the status page and the counts count the held result. One that comes out as good or worse is stored as found, and the run says that its hold is no longer needed (`scripts/holds.ts`).
+
 **What it does.** For each function with a control, from where the model was loaded:
 
 - works the function's `first` controls, in order;
