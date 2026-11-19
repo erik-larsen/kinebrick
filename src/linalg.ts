@@ -15,8 +15,15 @@ export const EPSILON = 1e-9;
 // independent, jamming it.
 export const RANK_TOLERANCE = 1e-6;
 // A tier's motions count as costing nothing (see leastTurning) below this, as a fraction of the
-// most a free motion of unit size costs there.
-const TIER_TOLERANCE = 1e-10;
+// most a free motion of unit size costs there, both squared (the eigenvalues of the tier's Gram
+// matrix); and the free ones must be set apart from the rest by at least as much (see freeCut).
+// Derived from double precision's 2⁻⁵², in cost units (decision 191 of 2026-11-18): a cut or gap g
+// leaves free motions that cost up to √g of the scale, and lets rounding (about 2⁻⁵² of the
+// scale) through at up to 2⁻⁵²/g, turning the free directions or scaling a costly one's share.
+// The sum √g + 2⁻⁵²/g is least at g = (2 × 2⁻⁵²)^(2/3) = 2⁻³⁴. (It was 10⁻¹⁰, picked. Taken as 2⁻²⁶,
+// in costs squared, it left motions costing 2⁻¹³ free: the 8880's gear ratio of 2.25 came out
+// 2.251.)
+const TIER_TOLERANCE = 2 ** -34;
 // A tier counts as costing nothing at all (see leastTurning) if its costs are at most this, as a
 // fraction of the most a motion of unit size turns the joints (both squared): a hundred-millionth
 // of a radian for each unit of motion is what's left of rounding, not a motion of the tier. At a
@@ -26,6 +33,27 @@ const TIER_TOLERANCE = 1e-10;
 const NOISE = 1e-16;
 // How many rounds of reweighting a sparse tier gets (see leastTurning).
 const SPARSE_ROUNDS = 30;
+// A sparse tier's least sum of sizes is often not one point but many (two friction joints that
+// could each slip as much), and reweighting picked one by its path, so by rounding. Each round's
+// least squares gets a least-norm term of RIDGE of its scale (decision 191 of 2026-11-18), which
+// makes its answer one point: it moves the answer by about RIDGE and lets rounding through at
+// most about 2⁻⁵² ÷ RIDGE, both measured on the same Gram matrix, and the sum of the two is least
+// where they're equal, at 2⁻²⁶.
+const RIDGE = 2 ** -26;
+
+// Of eigenvalues of a tier's problem (`unit` its scale), the most that counts as free: every one
+// at most `tiny`, and every one above them but nearer than TIER_TOLERANCE × unit to the largest so
+// far, so that rounding can't move a direction from one side to the other (see TIER_TOLERANCE).
+export function freeCut(values: number[], tiny: number, unit: number): number {
+  let cut = tiny;
+  let largest = 0;
+  for (const x of [...values].sort((a, b) => a - b)) {
+    if (x <= tiny) largest = Math.max(largest, x);
+    else if (x - largest < TIER_TOLERANCE * unit) cut = largest = x;
+    else break;
+  }
+  return cut;
+}
 
 // Of orthonormal motions, the smallest mix that turns at rate 1 (by `rate`), or null if none
 // of them turns at all, its size measured by the length of `size` of it: the mix a minimizing
@@ -116,7 +144,7 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       const unit = Math.max(...matrix.map((row, i) => row[i]));
       if (!(unit > 0)) return null;
       const scaled = symmetricEigen(matrix.map((row) => row.map((x) => x / unit)));
-      return { values: scaled.values.map((x) => x * unit), vectors: scaled.vectors };
+      return { values: scaled.values.map((x) => x * unit), vectors: scaled.vectors, unit };
     };
     if (!tier.sparse && c < m) {
       // Fewer components than free directions (most tiers on a big model): C N has rank at most
@@ -132,8 +160,9 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
       if (!solved) return;
       const y = new Array(m).fill(0);
       const costly: number[][] = [];
+      const cut = freeCut(solved.values, tiny, solved.unit);
       solved.vectors.forEach((u, e) => {
-        if (solved.values[e] <= tiny) return;
+        if (solved.values[e] <= cut) return;
         const s = Math.sqrt(solved.values[e]);
         const v = columns.map((col) => dot(col, u) / s);
         const amount = -dot(u, b) / s;
@@ -167,15 +196,22 @@ export function leastTurning(motions: number[][], rate: (m: number[]) => number,
         const weighed = w ? columns.map((x) => x.map((xi, j) => w[j] * xi)) : columns;
         gram = gramOf(weighed, columns);
         g = weighed.map((x) => dot(x, b));
+        // Reweighted: the least-norm term (see RIDGE), so that the round has one answer.
+        if (w) {
+          const ridge = RIDGE * Math.max(0, ...gram.map((row, i) => row[i]));
+          gram.forEach((row, i) => (row[i] += ridge));
+        }
       }
       const solved = eigen(gram);
       if (!solved) return { y: new Array(m).fill(0), left: w ? [] : free.slice() };
       const { values, vectors } = solved;
-      const top = Math.max(0, ...values);
       const y = new Array(m).fill(0);
       const left: number[][] = [];
+      // A reweighted round's least-norm term (see RIDGE) leaves no eigenvalue below it, so every
+      // direction counts there (it was cut at 10⁻¹² of the largest, picked).
+      const cut = w ? -Infinity : freeCut(values, tiny, solved.unit);
       vectors.forEach((v, e) => {
-        if (values[e] <= (w ? 1e-12 * top : tiny)) {
+        if (values[e] <= cut) {
           if (!w) left.push(combine(free, v));
           return;
         }

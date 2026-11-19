@@ -54,8 +54,8 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
     // Its model file, for the viewer on this computer to open where the preview site doesn't have the set.
     file: set.curated?.model ?? '',
     omr: row.omr_url ?? '',
-    // Each function: what it does, its result, and if it doesn't work, why (see causes.ts) and the part that's about.
-    functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? '').slice(0, 160), r.result, r.cause ?? '', r.detail ?? '']),
+    // Each function: what it does (in full: a set's card wraps the text), its result, and if it doesn't work, why (see causes.ts) and the part that's about.
+    functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? ''), r.result, r.cause ?? '', r.detail ?? '']),
   });
 }
 

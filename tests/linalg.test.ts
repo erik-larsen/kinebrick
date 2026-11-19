@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { dampedSolution, dot, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, symmetricEigen, Tier, withoutDirections } from '../src/linalg.ts';
+import { dampedSolution, dot, freeCut, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, symmetricEigen, Tier, withoutDirections } from '../src/linalg.ts';
 
 // The rows times a vector.
 const times = (rows: number[][], x: number[]) => rows.map((row) => dot(row, x));
@@ -190,5 +190,22 @@ describe('the damped solution', () => {
 
   it('gives null with no rows', () => {
     expect(dampedSolution([], [])).toBeNull();
+  });
+});
+
+// The cut between a tier's free motions and its costly ones (decision 191 of 2026-11-18): an
+// eigenvalue counts as free if it is at most `tiny`, or nearer than 2⁻³⁴ of the scale to the
+// largest free one, so that rounding can't put a direction on one side or the other of a near tie.
+describe('freeCut', () => {
+  it('cuts at tiny where the next eigenvalue is well clear of it', () => {
+    expect(freeCut([1, 1e-12, 0.5], 1e-11, 1)).toBe(1e-11);
+  });
+  it('takes in an eigenvalue just above the cut, and one just above that, as free', () => {
+    const near = 1e-11 + 2 ** -36;
+    const nearer = near + 2 ** -36;
+    expect(freeCut([1, 1e-12, near, nearer], 1e-11, 1)).toBe(nearer);
+  });
+  it('stops at the first gap of 2⁻³⁴ of the scale or more', () => {
+    expect(freeCut([1, 1e-12, 1e-12 + 2 ** -33, 0.5], 1e-11, 1)).toBe(1e-11);
   });
 });

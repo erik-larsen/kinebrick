@@ -2,7 +2,7 @@
   "state": {
     "main": {
       "works": 701,
-      "moved": "2026-11-16"
+      "moved": "2026-11-18"
     },
     "preview": {
       "works": 737,
@@ -22,28 +22,7 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "ci-main",
-      "kind": "Move main",
-      "title": "The three web sites have not been rebuilt since 15 November: one small mend for main",
-      "since": "2026-11-18",
-      "what": "The whole site (main, preview and preview-train) is built by main’s workflow, which first runs main’s tests. Since you moved main on 16 November, one test on main reads LDraw OMR files that only your Mac has, so it fails on GitHub and nothing is published. The mend is one file: that test is skipped where the files are absent, as the other tests that need them are. It is on the branch claude/ci-main, one commit ahead of main (82176b45). Run these three commands in the main checkout: git fetch origin — git merge --ff-only origin/claude/ci-main — git push origin main",
-      "effect": "GitHub publishes all three sites again, at once: main as it is today (701 working functions), preview and preview-train at their newest commits. Nothing else on main changes.",
-      "confidence": "High. Claude ran main’s tests with the mend in a bare checkout that has no OMR files and no LDraw library, as GitHub has it: type check, 63 test files pass, 3 skipped, none fail, and the build runs. The same mend on preview already passes on GitHub.",
-      "links": [
-        {
-          "label": "The failing runs on GitHub",
-          "url": "https://github.com/erik-larsen/kinebrick/actions/workflows/pages.yml"
-        },
-        {
-          "label": "The mend: one commit on claude/ci-main",
-          "url": "https://github.com/erik-larsen/kinebrick/commit/82176b45"
-        }
-      ],
-      "reply": "Main is moved"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "The next offer of main",
@@ -254,6 +233,10 @@
     {
       "date": "2026-11-18",
       "what": "The 42078 Mack Anthem’s trailer now swings on its king pin with the container riding on it (function 7 works; 737 on preview). The container stands loose on the trailer and was read as part of the tractor. A second model in a file now rides on the second model it stands on. The container’s doors (function 12) do not open yet; the worker looks at them."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "You merged the one-file mend into main (\"Main is moved\"). GitHub published the three sites again: main as before (701 working functions), preview and preview-train at their newest commits. The sites had been stale since 15 November because a test on main read files that only your Mac has. Claude now looks at GitHub’s runs for the three sites every day and after every push."
     }
   ]
 }
