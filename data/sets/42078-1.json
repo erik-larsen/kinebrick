@@ -204,15 +204,14 @@
     ]
   },
   "generated": {
-    "commit": "1d09ec17",
-    "date": "2026-11-18",
-    "seconds": 1681,
+    "commit": "38c70beb",
+    "date": "2026-11-19",
+    "seconds": 2444,
     "counts": {
-      "works": 8,
+      "works": 9,
       "partly": 4,
       "not back": 3,
-      "moved whole": 3,
-      "no": 1
+      "moved whole": 3
     },
     "loose": [
       "p1258 3710",
@@ -325,7 +324,7 @@
             1.27
           ]
         ],
-        "seconds": 53.4
+        "seconds": 79.4
       },
       {
         "result": "partly",
@@ -407,7 +406,7 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 103.5
+        "seconds": 152.3
       },
       {
         "result": "works",
@@ -477,7 +476,7 @@
           [],
           []
         ],
-        "seconds": 244.6
+        "seconds": 355.3
       },
       {
         "result": "works",
@@ -554,7 +553,7 @@
             0.03
           ]
         ],
-        "seconds": 9.6
+        "seconds": 12.2
       },
       {
         "result": "works",
@@ -665,7 +664,7 @@
             0
           ]
         ],
-        "seconds": 38.4
+        "seconds": 57.4
       },
       {
         "result": "partly",
@@ -713,7 +712,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 11.3
+        "seconds": 14.2
       },
       {
         "result": "works",
@@ -783,7 +782,7 @@
             0.6
           ]
         ],
-        "seconds": 25.1
+        "seconds": 39.4
       },
       {
         "result": "works",
@@ -853,7 +852,7 @@
             0.6
           ]
         ],
-        "seconds": 25.4
+        "seconds": 38.9
       },
       {
         "result": "partly",
@@ -926,7 +925,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2048 18940",
-        "seconds": 29.4
+        "seconds": 30.5
       },
       {
         "result": "partly",
@@ -999,7 +998,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 26.5
+        "seconds": 31.1
       },
       {
         "result": "works",
@@ -1098,33 +1097,68 @@
             0.01
           ]
         ],
-        "seconds": 255.8
+        "seconds": 395.7
       },
       {
-        "result": "no",
+        "result": "works",
         "turned": [
           [
-            0,
-            0
+            0.6,
+            -0.6
           ]
         ],
         "rates": [
           {}
         ],
         "back": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
         "torn": [
-          []
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         ],
-        "why": [
-          "p2631 64782 is part of the frame"
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
-        "judged": [
-          0
+        "collisionStops": [
+          [
+            0,
+            1,
+            186,
+            1680,
+            0.6,
+            0.6
+          ],
+          [
+            0,
+            -1,
+            185,
+            1685,
+            0.6,
+            0.6
+          ]
         ],
-        "cause": "control-fixed",
-        "seconds": 7
+        "seconds": 46.2
       },
       {
         "result": "works",
@@ -1246,7 +1280,7 @@
           [],
           []
         ],
-        "seconds": 467.8
+        "seconds": 698.6
       }
     ]
   }

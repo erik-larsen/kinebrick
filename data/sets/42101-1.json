@@ -97,8 +97,8 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
+    "commit": "38c70beb",
+    "date": "2026-11-19",
     "seconds": 2,
     "counts": {
       "partly": 1,
@@ -201,7 +201,7 @@
           "rise": 1.81,
           "tyre": "p69 42101 - 92402"
         },
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -277,7 +277,7 @@
             "limit"
           ]
         ],
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "skipped",
@@ -399,7 +399,7 @@
           [],
           []
         ],
-        "seconds": 0.6
+        "seconds": 0.7
       },
       {
         "result": "works",

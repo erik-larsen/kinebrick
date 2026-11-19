@@ -145,9 +145,9 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 2,
+    "commit": "38c70beb",
+    "date": "2026-11-19",
+    "seconds": 3,
     "counts": {
       "no": 2,
       "partly": 3,
@@ -291,7 +291,7 @@
             1.2
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "partly",
@@ -352,7 +352,7 @@
         ],
         "cause": "loose-part",
         "detail": "p57 30395",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "partly",
@@ -559,7 +559,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p76 32140 against p61 32184",
-        "seconds": 0
+        "seconds": 0.1
       },
       {
         "result": "works",
@@ -681,7 +681,7 @@
           [],
           []
         ],
-        "seconds": 0.7
+        "seconds": 0.9
       },
       {
         "result": "skipped",

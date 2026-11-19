@@ -155,9 +155,9 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 540,
+    "commit": "38c70beb",
+    "date": "2026-11-19",
+    "seconds": 554,
     "counts": {
       "no": 1,
       "partly": 2,
@@ -280,7 +280,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 9.7
+        "seconds": 11.8
       },
       {
         "result": "partly",
@@ -403,7 +403,7 @@
         ],
         "cause": "too-little",
         "detail": "p442 62274c01 against p441 62271c01",
-        "seconds": 127.2
+        "seconds": 125.6
       },
       {
         "result": "works",
@@ -501,7 +501,7 @@
             "p506 62274c01 against p505 62271c01"
           ]
         ],
-        "seconds": 128.8
+        "seconds": 125.1
       },
       {
         "result": "partly",
@@ -616,7 +616,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 9.07,
-        "seconds": 84.1
+        "seconds": 68.1
       },
       {
         "result": "works",
@@ -666,7 +666,7 @@
             ]
           ]
         ],
-        "seconds": 13
+        "seconds": 13.8
       },
       {
         "result": "works",
@@ -784,7 +784,7 @@
           [],
           []
         ],
-        "seconds": 40.4
+        "seconds": 45.5
       },
       {
         "result": "works",
@@ -902,7 +902,7 @@
           [],
           []
         ],
-        "seconds": 33.3
+        "seconds": 41.7
       },
       {
         "result": "works",
@@ -1012,7 +1012,7 @@
             0.3
           ]
         ],
-        "seconds": 6.4
+        "seconds": 8.7
       },
       {
         "result": "skipped"

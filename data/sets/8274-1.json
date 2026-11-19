@@ -149,12 +149,12 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
+    "commit": "38c70beb",
+    "date": "2026-11-19",
     "seconds": 41,
     "counts": {
-      "works": 3,
-      "partly": 3,
+      "works": 4,
+      "partly": 2,
       "not back": 1,
       "torn": 1,
       "not checked": 1
@@ -416,7 +416,7 @@
             ]
           ]
         ],
-        "seconds": 3.6
+        "seconds": 3.9
       },
       {
         "result": "partly",
@@ -508,7 +508,7 @@
             0.53
           ]
         ],
-        "seconds": 6.6
+        "seconds": 5.9
       },
       {
         "result": "partly",
@@ -594,7 +594,7 @@
         ],
         "cause": "loose-part",
         "detail": "p1002 32072",
-        "seconds": 3.5
+        "seconds": 3.7
       },
       {
         "result": "works",
@@ -644,14 +644,14 @@
             ]
           ]
         ],
-        "seconds": 2.9
+        "seconds": 3.1
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            0.47,
-            -0.33
+            0,
+            -0.1
           ]
         ],
         "rates": [
@@ -661,50 +661,61 @@
               528
             ],
             "p964 56145": [
-              0.0433,
-              0.00222
+              0.0446,
+              0.00282
             ]
           }
         ],
         "back": [
           [
             [
-              180.81,
-              19.13
+              0,
+              0
             ],
             [
-              108.74,
-              11.48
+              0.1,
+              0.01
             ]
           ]
         ],
         "torn": [
           [
             [
-              179.21,
-              19.1
+              0,
+              0
             ],
             [
-              107.85,
-              11.46
+              0.01,
+              0.01
             ]
           ]
         ],
-        "strayed": [
-          "p926 3673"
-        ],
         "stop": [
           [
-            "dead point",
-            "dead point"
+            "limit",
+            "limit"
           ]
         ],
-        "judged": [
-          1
+        "collisionStops": [
+          [
+            0,
+            1,
+            395,
+            694,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            397,
+            701,
+            0.1,
+            0.1
+          ]
         ],
-        "cause": "stopped-early",
-        "onPlay": 1.07,
-        "seconds": 3.5
+        "onPlay": 0.2,
+        "seconds": 1.3
       },
       {
         "result": "works",
@@ -822,7 +833,7 @@
           [],
           []
         ],
-        "seconds": 13.5
+        "seconds": 13.7
       },
       {
         "result": "not checked",
