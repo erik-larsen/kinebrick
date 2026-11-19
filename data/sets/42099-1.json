@@ -165,9 +165,9 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 79,
+    "commit": "7ba97d44",
+    "date": "2026-11-19",
+    "seconds": 76,
     "counts": {
       "partly": 2,
       "works": 5,
@@ -376,7 +376,7 @@
         "judged": [
           0
         ],
-        "cause": "not-driven",
+        "cause": "too-little",
         "detail": "p1862 23798",
         "collisionStops": [
           [
@@ -394,9 +394,25 @@
             604,
             0.03,
             0.03
+          ],
+          [
+            0,
+            1,
+            605,
+            620,
+            0.03,
+            0.03
+          ],
+          [
+            0,
+            -1,
+            458,
+            604,
+            0.03,
+            0.03
           ]
         ],
-        "seconds": 2.8
+        "seconds": 4.5
       },
       {
         "result": "works",
@@ -466,7 +482,7 @@
             ]
           ]
         ],
-        "seconds": 16.7
+        "seconds": 15.5
       },
       {
         "result": "partly",
@@ -622,7 +638,7 @@
             0
           ]
         ],
-        "seconds": 2.9
+        "seconds": 3.1
       },
       {
         "result": "works",
@@ -704,7 +720,7 @@
             0.5
           ]
         ],
-        "seconds": 8
+        "seconds": 7.6
       },
       {
         "result": "works",
@@ -754,7 +770,7 @@
             ]
           ]
         ],
-        "seconds": 13.4
+        "seconds": 12.3
       },
       {
         "result": "works",
@@ -804,7 +820,7 @@
             ]
           ]
         ],
-        "seconds": 15.8
+        "seconds": 14.6
       },
       {
         "result": "not checked",
@@ -873,7 +889,7 @@
             1.47
           ]
         ],
-        "seconds": 8.3
+        "seconds": 7.9
       }
     ]
   }

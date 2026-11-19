@@ -176,9 +176,9 @@
     ]
   },
   "generated": {
-    "commit": "7d69aeed",
-    "date": "2026-11-18",
-    "seconds": 4084,
+    "commit": "7ba97d44",
+    "date": "2026-11-19",
+    "seconds": 3203,
     "counts": {
       "partly": 5,
       "works": 4,
@@ -374,7 +374,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 50.5
+        "seconds": 38.3
       },
       {
         "result": "partly",
@@ -437,7 +437,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 50.7
+        "seconds": 39.9
       },
       {
         "result": "partly",
@@ -531,7 +531,7 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 100.1
+        "seconds": 74.4
       },
       {
         "result": "works",
@@ -581,7 +581,7 @@
             ]
           ]
         ],
-        "seconds": 50.9
+        "seconds": 38.7
       },
       {
         "result": "works",
@@ -635,7 +635,7 @@
             ]
           ]
         ],
-        "seconds": 1757.3
+        "seconds": 1224.2
       },
       {
         "result": "works",
@@ -743,75 +743,80 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 1020.1
+        "seconds": 692.9
       },
       {
         "result": "partly",
         "turned": [
           [
-            1.45,
-            -1.46
+            4.42,
+            -5.39
           ]
         ],
         "still": [
-          "p3600 15458 against p3322 42003",
-          "p3784 42100 - 62274c02 against p3783 42100 - u9487c01",
-          "p3801 42100 - 62274c02 against p3800 42100 - u9487c01"
+          "p3600 15458 against p3322 42003"
         ],
         "rates": [
           {
             "p3600 15458 against p3322 42003": [
-              0.00173,
-              0.0978
+              0.00162,
+              0.0919
             ],
             "p3784 42100 - 62274c02 against p3783 42100 - u9487c01": [
-              0.0086,
-              0.177
+              0.00823,
+              0.189
             ],
             "p3801 42100 - 62274c02 against p3800 42100 - u9487c01": [
-              0.00887,
-              0.18
+              0.0092,
+              0.176
             ],
             "p3322 42003 against p2971 42003": [
-              0.0000147,
-              0.00265
+              0.0000156,
+              0.00282
             ]
           }
         ],
         "back": [
           [
             [
-              0.82,
-              4.85
+              38.55,
+              151.96
             ],
             [
-              0.82,
-              4.84
+              44.54,
+              174.9
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.82,
-              4.85
+              38.55,
+              151.96
             ],
             [
-              0.82,
-              4.84
+              44.54,
+              174.9
             ]
           ]
         ],
         "strayed": [
-          "p2946 60485"
+          "p3084 59426",
+          "p3799 47157"
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
         "judged": [
           1
         ],
-        "cause": "not-driven",
+        "cause": "too-little",
         "detail": "p3600 15458 against p3322 42003",
-        "onPlay": 6,
-        "seconds": 321.4
+        "onPlay": 17.63,
+        "seconds": 630.8
       },
       {
         "result": "partly",
@@ -870,7 +875,7 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.33,
-        "seconds": 33.1
+        "seconds": 27.3
       },
       {
         "result": "works",
@@ -937,7 +942,7 @@
             0
           ]
         ],
-        "seconds": 18.7
+        "seconds": 19.3
       }
     ]
   }

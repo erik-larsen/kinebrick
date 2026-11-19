@@ -181,7 +181,12 @@ const controlMovedRule = process.env.KINEBRICK_CONTROL_MOVED !== '0';
 // below it, a rate is rounding), has moved too little, not been held fast: its cause is too-little, not part-fixed,
 // and the longer turn is tried (decision 121 of 2026-11-16: the 42052 Heavy Lift Helicopter's
 // doors, which a worm and a toggle move 0.001 radians for each radian of the control, read as
-// fixed). On by default; KINEBRICK_SLOW_PARTS=0 turns it off.
+// fixed). So too where its cause is not-driven: a part the control moves at a rate is driven,
+// however slowly (the 8258 Crane Truck's function 5, whose linear actuator's piston slides 0.2 LDU
+// for each radian of the control). And for a function whose controls share out its parts, the
+// longer turn is tried when the cause the controls come to together is too-little (the 42081
+// Volvo Concept Wheel Loader's function 2, whose piston slides 0.6 LDU for each radian). On by
+// default; KINEBRICK_SLOW_PARTS=0 turns it off.
 const slowPartsRule = process.env.KINEBRICK_SLOW_PARTS !== '0';
 const SLOW_RATE = 1e-6;
 // With --lock, each model's part shapes (see partShapes), read before it's checked.
@@ -905,6 +910,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     const controls = [fn.control!].flat();
     // Several controls not worked together: each drives its own share of the parts.
     const shared = controls.length > 1 && !fn.together;
+    // Whether each control is worked the longer turn from the start (see slowPartsRule): for a
+    // function whose controls share out its parts, their cause together too-little.
+    let longShared = false;
     const workWay = (ref: string, wi: number) => {
       // The collision test is set for each way (see mayGo): none before, as the mechanism may be
       // worked out afresh (pins freed, a shift) before the way starts.
@@ -1074,6 +1082,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       // still counts as having gone far enough at half its usual reach.
       let reach = mech.joints[link.joint].kind === 'slide' ? PUSH : REACH;
       const half = reach / 2;
+      if (longShared && mech.joints[link.joint].kind !== 'slide') reach = LONG_REACH;
       if (fn.together) together = controls.map((r) => worked(part(r)));
       // What the function's text says is held is frozen, as a user would freeze it in the viewer
       // (Alt-click) before working the control.
@@ -1239,7 +1248,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         // Whether every part left still moves with the control, slowly (see slowPartsRule).
         const slow = still.length > 0 && still.every((ref) => {
           const m = listed.find((l) => l.ref === ref);
-          return m !== undefined && (Math.abs(rateOf(m)) > SLOW_RATE || catchRate(m.part, Math.abs(turned)) > SLOW_RATE);
+          // Turning or sliding, whichever it does: a piston against its cylinder slides, whatever
+          // its own joint in the tree (the 8258's p2167, 0.2 LDU for each radian).
+          return m !== undefined && (Math.max(...rates[ref].map(Math.abs)) > SLOW_RATE || catchRate(m.part, Math.abs(turned)) > SLOW_RATE);
         });
         // Whether the control itself moved (see controlMovedRule).
         const controlMoved = Math.abs(turned) >= 0.01 || (measured.pushed !== null && Math.abs(went[listed.length][1]) >= 0.01);
@@ -1297,8 +1308,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       kin.restore(start);
       let best = bestOf(each);
       // Parts the control moves too slowly to see over the usual reach are too-little, not
-      // part-fixed (see slowPartsRule).
-      const slowly = (e: Explained | null): Explained | null => (slowPartsRule && e?.cause === 'part-fixed' && best.slow ? { ...e, cause: 'too-little' } : e);
+      // part-fixed or not-driven (see slowPartsRule).
+      const slowly = (e: Explained | null): Explained | null => (slowPartsRule && (e?.cause === 'part-fixed' || e?.cause === 'not-driven') && best.slow ? { ...e, cause: 'too-little' } : e);
       let explained = best.works ? null : slowly(explain(best.still, best.moved, best.turned));
       // Parts geared so far down that the usual reach moves them too little: worked again, up
       // to LONG_REACH each way, a limit met on the way ending the turn as usual. Not a slide's
@@ -1386,8 +1397,16 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const { explainStill, ...share } = workWay(all[onlyWay], onlyWay);
       return { result: 'error', way: { ...share, why, freed: freedPins }, ...(collisionStops.length ? { collisionStops } : {}) };
     }
-    const ways = all.map(workWay);
-    const combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still), causesOnly ? prior : undefined)!;
+    let ways = all.map(workWay);
+    let combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still), causesOnly ? prior : undefined)!;
+    // Controls that share out the parts, whose cause together is too-little: each worked the
+    // longer turn, and judged then, as one control is (see slowPartsRule).
+    if (slowPartsRule && shared && !causesOnly && combined?.cause === 'too-little') {
+      longShared = true;
+      ways = all.map(workWay);
+      longShared = false;
+      combined = combineWays(fn, ways, why, freedPins, (still) => ways[0].explainStill(still))!;
+    }
     // The collisions that stopped a way (collisionStops), beside the result.
     const withCollisions = <T extends object>(r: T) => ({ ...r, ...(collisionStops.length ? { collisionStops } : {}) });
     // A function that doesn't work as read, whose control moves only together with a bigger body
