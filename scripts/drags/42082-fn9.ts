@@ -1,11 +1,14 @@
-// The 42082 Rough Terrain Crane's function 9: the cab door p3789 swings open on its hinge. As read,
-// friction pins fuse the door to the cab, so a plain drag of it slews the superstructure. A press
-// with Shift frees its two hinge pins (3792, 3793: see pinsForShift); then the door is pushed one
-// way and the other, and measured against the cab (p2649). The check has it working, by the
-// Shift-press (its `shiftPressed`), the door turning 0.91 rad: yes if the pins freed are those and
-// the door goes at least half that against the cab.
+// The 42082 Rough Terrain Crane's function 9: the cab door p3789 slides open on two parallel links
+// (book 2, pages 269 to 271), so it goes out without turning. As read, friction pins fuse the door to
+// the cab, so a plain drag of it slews the superstructure. A press with Shift frees its two pins
+// (3792, 3793: see pinsForShift); then the door is pushed one way and the other, and measured against
+// the cab (p2649), the push that takes it furthest kept. The check's record has the control turned
+// -0.42 and 0.03 rad, the door going 44.7 LDU for each radian: 18.8 LDU its larger way. Yes if the
+// pins freed are those two and the door goes out at least half that, 9.4 LDU, against the cab.
 // Run with preview's viewer up (http://localhost:5174), or another's address after it: npx tsx scripts/drags/42082-fn9.ts
-import { answer, atLeast, open, resultOf } from './drag.ts';
+import { answer, open } from './drag.ts';
+
+const CHECK_LDU = 0.42 * 44.7;
 
 const started = Date.now();
 const v = await open('omr/42082-1 Rough Terrain Crane.mpd', 'show=3789');
@@ -21,11 +24,9 @@ for (const [dx, dy] of [[120, 0], [-120, 0], [0, 120], [0, -120]]) {
   await v.press();
   await v.push(dx, dy);
   const [door] = await v.moved([3789, 2649], before, 2649);
-  if (door.degrees > best.degrees) best = door;
+  if (door.ldu > best.ldu) best = door;
 }
 seen.push(`p3789, the door, against the cab: at most ${best.degrees} degrees, ${best.ldu} LDU`);
-const result = resultOf(best, [best], 0.91);
 seen.push(`stops: ${(await v.stops()).join(', ') || 'none'}`);
-seen.push(`the viewer: ${result}; the check: works`);
 await v.close();
-answer(pressed.freed.includes(3792) && pressed.freed.includes(3793) && atLeast(result, 'works'), seen, started);
+answer(pressed.freed.includes(3792) && pressed.freed.includes(3793) && best.ldu >= CHECK_LDU / 2, seen, started);

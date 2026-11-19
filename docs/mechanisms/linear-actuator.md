@@ -4,7 +4,7 @@ A screw drives a piston out and in. (Moving and lifting.)
 
 First appears in 2009, in [8063 Tractor with Trailer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8063-1) and [8258 Crane Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8258-1): Either of the two gears at the front of the trailer, one on each side, tips the trailer's bed: a cross axle with a 20 tooth bevel gear turns a 12 tooth bevel gear on the linear actuator, whose piston pushes the front of the bed up while it pivots at the back.
 
-Used in 29 of the 186 surveyed sets, by 49 functions. Kinebrick: 17 works, 31 partly, 1 no.
+Used in 29 of the 186 surveyed sets, by 49 functions. Kinebrick: 18 works, 30 partly, 1 no.
 
 ## By decade
 
@@ -67,7 +67,7 @@ Each detail by the set it first appears in.
 **2012, [9397 Logging Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9397-1)**
 
 - *container tipper:* With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it. (works)
-- *plough:* With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator. (partly)
+- *plough:* With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator. (works)
 
 **2013, [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1)**
 

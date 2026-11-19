@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { applyErrata, type Errata, setOfFile } from '../src/errata.ts';
 import { parseModel } from '../src/ldr.ts';
@@ -75,7 +75,8 @@ describe('errata', () => {
     expect(applyErrata(MODEL, entry, true, null).applied).toEqual(['p']);
   });
 
-  it("apply each set's entries to its own OMR file: each line found once, each number naming its part", () => {
+  // The OMR files are not in the repository: a checkout on GitHub has none, and skips this.
+  it.skipIf(!existsSync('omr'))("apply each set's entries to its own OMR file: each line found once, each number naming its part", () => {
     for (const [set, file] of [['42064-1', 'omr/42064-1 Ocean Explorer.mpd'], ['8258-1', 'omr/8258-1 Crane Truck.mpd'], ['9396-1', 'omr/9396-1 Helicopter.mpd'], ['8838-1', 'omr/8838-1 Shock Cycle.mpd'], ['42083-1', 'omr/42083-1 Bugatti Chiron.mpd'], ['42109-1', 'omr/42109-1 App-Controlled Top Gear Rally Car.mpd'], ['850-1', 'omr/850-1 Fork Lift.mpd'], ['42078-1', 'omr/42078-1 Mack Anthem.mpd']]) {
       const original = readFileSync(file, 'utf-8');
       const found = readErrata(file);
