@@ -39,6 +39,7 @@ import { makeJointAxes } from './jointAxes.ts';
 import { DEFAULT_SCRUB, experiments, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PathPoint, PlacedPart } from './ldr.ts';
 import { inferMechanism, Joint, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
+import { pinsForShift } from './pinSearch.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShiftDue, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
@@ -543,9 +544,14 @@ async function start() {
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
       pinWorker.postMessage({ ask: asked, part, freed: [...freed], search, lifted, at: at ? [at.x, at.y, at.z] : undefined });
     });
-  // The pins a press with Shift frees (see pinsForShift), and if none, why.
+  // The pins a press with Shift frees (see pinsForShift), and if none, why. Once a part asked to
+  // slide has moved (see afterSlide), the helper's model, as loaded, is not the one in view: the
+  // 42078's door, which its lock bar held, is free of it only now. Then they are found here,
+  // from the model with every friction pin free as the parts now are.
   const pinsToShift = (part: number) =>
-    new Promise<{ pins: number[]; why: 'more' | 'joints' | null }>((resolve) => {
+    slidMoved
+      ? Promise.resolve(((answer) => ({ pins: answer.pins.filter((pin) => !freed.has(pin)), why: answer.why }))(pinsForShift(mech, inferMechanism(parts, table, roles, paths, new Set(), true), part)))
+      : new Promise<{ pins: number[]; why: 'more' | 'joints' | null }>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve({ pins: [], why: 'more' });
       asked++;
@@ -562,6 +568,8 @@ async function start() {
   // The parts asked to slide on their axles (decision 206 of 2026-11-18; see slidesAsked), until
   // Reset; the address keeps them (see SLIDE).
   const slid = new Set(SLIDE.filter((p) => p < startParts.length));
+  // Whether a part asked to slide has moved along its slide since the model was loaded.
+  let slidMoved = false;
   const showSlid = () => {
     if (slid.size) params.set('slide', [...slid].sort((a, b) => a - b).join(','));
     else params.delete('slide');
@@ -602,7 +610,9 @@ async function start() {
         }
       }
     }
-    if (moves.size) readAsBuilt(moves, posedAs);
+    if (!moves.size) return;
+    slidMoved = true;
+    readAsBuilt(moves, posedAs);
   };
 
   // The mechanism, and everything worked out from it. read() sets these, at the start and
@@ -1286,6 +1296,7 @@ async function start() {
     freed.clear();
     showFreed();
     slid.clear();
+    slidMoved = false;
     showSlid();
     read(startParts);
     showPoses();
