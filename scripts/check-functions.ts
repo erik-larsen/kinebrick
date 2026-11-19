@@ -1399,13 +1399,22 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       use(asLoaded);
       kin.reset();
       allFree ??= loaded.allFree(asLoaded.parts);
+      // A function whose first steps slide a part (decision 206 of 2026-11-18) is pressed as it
+      // stands after them: the 42078's container doors are free of their lock bars only then.
+      let pressed = allFree;
+      if ((fn.first ?? []).some((f) => f.slide)) {
+        freed = new Set();
+        slid = new Set();
+        for (const f of fn.first!) if (f.slide) slideFirst(part(f.control), f.by);
+        pressed = loaded.allFree(placedNow());
+      }
       const pins = new Set<number>();
       for (const ref of all) {
         const c = part(ref);
         const body = mech.roles[c] === 'motor' ? motorOutput(mech, c) : mech.bodyOf[c];
         const link = kin.parentLink(body);
         const moves = !kin.frames.includes(body) && link !== null && kin.jointMotion(link.joint, false) !== null;
-        if (moves && heldInBodyByPins(mech, allFree, c)) for (const pin of pinsForShift(mech, allFree, c).pins) pins.add(pin);
+        if (moves && heldInBodyByPins(mech, pressed, c)) for (const pin of pinsForShift(mech, pressed, c).pins) pins.add(pin);
       }
       if (pins.size) {
         const [whyBefore, freedBefore] = [why.length, freedPins];
