@@ -381,6 +381,7 @@ export class Kinematics {
   traceNames: string[] | null = null; // with TRACE, each row's kind of connection, as buildEquations adds it (see traceJam in trace.ts)
   private traceName = ''; // with TRACE, the kind of connection whose rows buildEquations is adding
   private nearOriginDepth = 0; // how deep in calls that have moved the model to near the origin (see nearOrigin)
+  private originShift = new Vector3(); // how far across the ground the model has been moved, to put its frame at the origin (see nearOrigin)
   private closingStill: number[] = []; // least motion: the bodies a step left still, kept so as the loops close (see advance)
   private gripped = false; // whether the motion last chosen was one of those
   // The slides held at an end of their travel for the step under way, which the motion chosen
@@ -919,31 +920,56 @@ export class Kinematics {
   private nearOrigin<T>(work: (toModel: (motion: number[]) => number[], fromModel: (motion: number[]) => number[]) => T): T {
     const at = new Vector3().setFromMatrixPosition(this.poses[0]).setY(0);
     if (this.nearOriginDepth > 0 || at.lengthSq() < EPSILON) return work((m) => m, (m) => m);
-    const moveBy = (by: Vector3) => {
-      const t = new Matrix4().makeTranslation(by.x, 0, by.z);
-      for (const pose of this.rootPoses.values()) pose.premultiply(t);
-      this.updatePoses();
-    };
-    // The velocity of the point at the origin, from that of the point `at`, there: v − w × at.
-    const shifted = (motion: number[], sign: number) => {
-      const out = motion.slice();
-      for (let b = 0; b < this.bodyCount; b++) {
-        const w = new Vector3(motion[6 * b], motion[6 * b + 1], motion[6 * b + 2]);
-        const d = new Vector3().crossVectors(w, at).multiplyScalar(sign);
-        out[6 * b + 3] -= d.x;
-        out[6 * b + 4] -= d.y;
-        out[6 * b + 5] -= d.z;
-      }
-      return out;
-    };
-    moveBy(at.clone().negate());
+    this.moveAcross(at.clone().negate());
+    this.originShift.copy(at);
     this.nearOriginDepth++;
     try {
-      return work((m) => shifted(m, 1), (m) => shifted(m, -1));
+      // The model may be moved again within (see recenter): a motion is turned by how far it has
+      // been moved in all at the time.
+      return work((m) => this.motionShifted(m, this.originShift.clone().negate()), (m) => this.motionShifted(m, this.originShift));
     } finally {
       this.nearOriginDepth--;
-      moveBy(at);
+      this.moveAcross(this.originShift);
+      this.originShift.set(0, 0, 0);
     }
+  }
+
+  // Within nearOrigin, moves the model across the ground again so that its frame is at the
+  // origin, as a turn does before each of its steps: the motion a step picks then depends on the
+  // pose alone, not on where the turn began. Set once for a whole turn, the origin was the start
+  // for its first steps and far behind for its last, so a long turn there and back picked
+  // different motions each way (the 42006's tracks, a sprocket turned 1.5 rad and back in one
+  // call, left the frame 24.63 LDU off; in calls of 0.01 rad, 0.01; decision 224 of 2026-11-19).
+  // Returns how far it was moved (the frame's place before), or null if it wasn't.
+  private recenter(): Vector3 | null {
+    if (this.nearOriginDepth === 0) return null;
+    const at = new Vector3().setFromMatrixPosition(this.poses[0]).setY(0);
+    if (at.lengthSq() < EPSILON) return null;
+    this.moveAcross(at.clone().negate());
+    this.originShift.add(at);
+    return at;
+  }
+
+  // Moves every root across the ground by `by` (its y is left out).
+  private moveAcross(by: Vector3) {
+    const t = new Matrix4().makeTranslation(by.x, 0, by.z);
+    for (const pose of this.rootPoses.values()) pose.premultiply(t);
+    this.updatePoses();
+  }
+
+  // A motion, written as each body's turning and the velocity of the point at the origin, as it
+  // is written once the model has been moved across by −`by`: the point now at the origin was at
+  // `by`, and goes at v + w × by.
+  private motionShifted(motion: number[], by: Vector3): number[] {
+    const out = motion.slice();
+    for (let b = 0; b < this.bodyCount; b++) {
+      const w = new Vector3(motion[6 * b], motion[6 * b + 1], motion[6 * b + 2]);
+      const d = new Vector3().crossVectors(w, by);
+      out[6 * b + 3] += d.x;
+      out[6 * b + 4] += d.y;
+      out[6 * b + 5] += d.z;
+    }
+    return out;
   }
 
   // Rebuilds every body's pose from the root poses and joint angles.
@@ -2504,6 +2530,10 @@ export class Kinematics {
     // How big a step may be: halved for each step undone (see below), down to LEAST_TURN_STEP.
     let most = Math.abs(full);
     while (Math.abs(angle - turned) > 1e-12) {
+      // The frame at the origin again for each step (see recenter), and the motion found for it
+      // where the last step ended written as it is from there.
+      const moved = this.recenter();
+      if (moved && ahead) ahead = this.motionShifted(ahead, moved);
       let motion = ahead;
       ahead = null;
       if (!motion) {
@@ -2670,8 +2700,11 @@ export class Kinematics {
       // into a jam that no step can leave, back the way it came or on: those stops are the same
       // both ways. It is undone, and the drag stops before it, as a hand on the real model never
       // ends in a pose it can't leave (the 8826 ATX Sport Cycle's steering went one step, then
-      // couldn't be turned back; decision 84 of 2026-11-15). The motion found is the next step's.
+      // couldn't be turned back; decision 84 of 2026-11-15). The motion found is the next step's,
+      // found with the frame at the origin where the step ended (see recenter), as a fresh solve
+      // there would find it.
       this.gripped = false;
+      const recentered = this.recenter();
       ahead = this.jointMotion(joint);
       // The step reached the end of the joint's travel (see blockedByEnds): it stands, and the
       // turn ends there.
@@ -2688,6 +2721,8 @@ export class Kinematics {
       if (!ahead || wild(ahead)) {
         if (TRACE) trace({ event: 'undone', joint, turned, why: ahead ? 'wild ahead' : 'no motion ahead' });
         this.restore(before);
+        // Back where it was before the step: so as far across as then, too.
+        if (recentered) this.originShift.sub(recentered);
         this.lastStep = lastStep;
         turned -= step;
         ahead = null;
