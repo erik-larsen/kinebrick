@@ -2891,15 +2891,27 @@ export class Kinematics {
       // end (the 9397's plough, whose play pushed a slide on). A slide pulled back from its end isn't
       // held: the holds are found afresh for each motion. If the joint can't turn with them, that is
       // the end of the turn's travel.
+      // One exception (decision 208): a screw's own slide (a linear actuator's piston in its body)
+      // that its screw pushes on, turning, is the end of the turn's travel. A real actuator's clutch
+      // slips there and nothing else moves; the solver has no clutch, and with the piston held it
+      // found another motion the real model can't make (the 42055's crank turned 3.1 radians with
+      // the boom still, the 42108's boom rose on play in the actuator's mounts).
+      let screwEnd = false;
       while (motion && this.turnWay !== 0) {
         const out = this.pushedPastEnds(motion, this.turnWay).filter((j) => !this.endHeld.has(j));
         if (out.length === 0) break;
+        if (out.some((j) => this.screwTurns(j, motion!))) {
+          screwEnd = true;
+          motion = null;
+          break;
+        }
         for (const j of out) this.endHeld.add(j);
         motion = this.jointMotionNearOrigin(joint, play);
       }
+      if (screwEnd) this.blockedByEnds = true;
       // No motion with the slides held, but one without them: they hold the joint at the end of
       // its travel (an end, not a jam).
-      if (!motion && this.turnWay !== 0 && this.endHeld.size) {
+      else if (!motion && this.turnWay !== 0 && this.endHeld.size) {
         const held = this.endHeld;
         this.endHeld = new Set();
         this.blockedByEnds = this.jointMotionNearOrigin(joint, play) !== null;
@@ -2925,6 +2937,20 @@ export class Kinematics {
   // all without passing the end. Further from the end than that, a step that passes it is undone
   // and taken smaller, as for any other stop, until the slide is that close. And those standing at
   // an end that the motion doesn't pull back from it.
+  // Whether `joint` is a screw's own slide (its piston's, see Mechanism.screws) and `motion` turns
+  // that screw's input against its piston (see jointMotion, decision 208).
+  private screwTurns(joint: number, motion: number[]): boolean {
+    const { bodyA, bodyB, kind } = this.mech.joints[joint];
+    if (kind !== 'slide') return false;
+    return (this.mech.screws ?? []).some((screw) => {
+      if (screw.piston !== bodyA && screw.piston !== bodyB) return false;
+      const axis = screw.axis.clone().transformDirection(this.poses[screw.input]);
+      let rate = 0;
+      for (let k = 0; k < 3; k++) rate += (motion[6 * screw.input + k] - motion[6 * screw.piston + k]) * axis.getComponent(k);
+      return Math.abs(rate) > EPSILON;
+    });
+  }
+
   private pushedPastEnds(motion: number[], way: number): number[] {
     const out: number[] = [];
     this.mech.joints.forEach((j, i) => {
