@@ -44,6 +44,10 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
   for (const a of mech.connections) {
     for (const b of mech.connections) {
+      // But on an axle asked to slide (see slidesAsked), what the axle carries and the holes it
+      // slides in are watched: there a slide stops (the 42078's lock bar, lifted until its
+      // connector meets the door's pin it slides in).
+      if (a.asked || b.asked) continue;
       if (a.male === b.male && a.female !== b.female && a.kind !== 'stud' && b.kind !== 'stud') connected.add(pairKey(a.female, b.female));
     }
   }

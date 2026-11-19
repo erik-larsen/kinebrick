@@ -82,6 +82,7 @@ import { PlacedPart } from '../src/ldr.ts';
 import { Joint, Mechanism, meshesChanged, motorOutput } from '../src/mechanism.ts';
 import { heldInBodyByPins, pinsForShift } from '../src/pinSearch.ts';
 import { pointDirections, pushStep, wayOnJoint } from '../src/push.ts';
+import { slidePart } from '../src/slide.ts';
 import { collisionKey, Collisions, connectedPairs, keptFileName, pairNumber, PartMesh } from '../src/collisions.ts';
 import { Cause, causeOf, CAUSES, Explained, Listed, onALoop } from './causes.ts';
 import { Catch, catchShifts, findCatches, findSliders, nearestPosition, Slider, sliderMovedTo, sliderPosition } from '../src/shift.ts';
@@ -256,7 +257,11 @@ interface Fn {
   mechanisms?: string[];
   moves?: string[];
   stays?: string[];
-  first?: { control: string; by: number }[];
+  // Worked before the control, in order: a driving ring slid `by` LDU to its nearest click-in
+  // place; with `slide`, a part slid along its axle `by` LDU, the sign along the part's own axis
+  // that runs that way, as far as it goes before something stops it (see slideFirst); else the
+  // control's joint turned `by`.
+  first?: { control: string; by: number; slide?: boolean }[];
   together?: boolean; // the controls are worked as one, turning together (see turnTogether)
   // Parts whose bodies are frozen while the control is worked, as the viewer's Alt-click freezes
   // them: what the function's text says is held (the 8464's drive, for its differentials). Or,
@@ -365,6 +370,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   // The friction pins freed for the control being checked (see pinsToFree), and the model with
   // every pin free, worked out the first time a control needs it.
   let freed = new Set<number>();
+  // The parts a function's first steps ask to slide on their axles (see slidesAsked).
+  let slid = new Set<number>();
   let allFree: Mechanism | null = null;
   // Where everything is now, as parts placed in the model.
   const placedNow = () => parts.map((p, i) => ({ ...p, matrix: kin.poses[mech.bodyOf[i]].clone().multiply(p.matrix) }));
@@ -414,7 +421,35 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const by = sliderMovedTo(now, table, slider, to).multiply(now[ring].matrix.clone().invert());
       for (const i of slider.riders ?? [ring]) now[i] = { ...now[i], matrix: by.clone().multiply(now[i].matrix) };
     }
-    use(loaded.read(now, freed));
+    use(loaded.read(now, freed, slid));
+  };
+  // A function's first step that slides a part on its axle (decision 206 of 2026-11-18): the
+  // mechanism is worked out afresh from where everything now is, with the part asked to slide (see
+  // slidesAsked), and the part is pushed along its slide `by` LDU as the viewer pushes it (see
+  // slidePart), until it has gone that far or the viewer's collision test stops it; then the
+  // mechanism is worked out afresh again, from where it now is (a pin it lifted out of a hole no
+  // longer holds what it held). What went short or wrong, if anything, else ''.
+  const slideFirst = (p: number, by: number): string => {
+    slid.add(p);
+    const reread = () => {
+      use(loaded.read(placedNow(), freed, slid));
+      [stopping, stoppedBy] = [collide ? collisionsNow() : null, null];
+    };
+    reread();
+    if (!mech.slid?.includes(p)) {
+      stopping = null;
+      return `can't slide: ${mech.slideWhy?.[p] ?? 'no slide'}`;
+    }
+    const place = (i: number) => {
+      const m = kin.poses[mech.bodyOf[i]].clone().multiply(parts[i].matrix);
+      return { position: new Vector3().setFromMatrixPosition(m), axes: [0, 1, 2].map((k) => new Vector3().setFromMatrixColumn(m, k).normalize()) };
+    };
+    const { went, halt } = slidePart(() => ({ kin, mech, place }), reread, p, by, mayGo);
+    const met = stoppedBy;
+    stopping = null;
+    use(loaded.read(placedNow(), freed, slid));
+    if (went >= 0.9 * Math.abs(by)) return '';
+    return `went ${round(went)} of ${Math.abs(by)} LDU, ${halt === 'met' && met ? `stopped where p${met[0]} meets p${met[1]}` : halt || 'stuck'}`;
   };
   // A part named as the joints probe names it: "p483 3736".
   const part = (ref: string) => {
@@ -878,6 +913,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       use(asLoaded);
       kin.reset();
       freed = new Set(shiftFreed);
+      slid = new Set();
       // A control with no exact motion at the start (play is the last resort: see
       // Kinematics.jointMotion), held by friction pins: those pins are freed, and
       // the model worked out again, for this control only (see pinsToFree). So too a control
@@ -895,7 +931,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         };
         // Whether `ok` holds with `pins` freed too: the model worked out again so, then as it was.
         const withFreed = (pins: Set<number>, ok: () => boolean) => {
-          use(loaded.read(asLoaded.parts, new Set([...freed, ...pins])));
+          use(loaded.read(asLoaded.parts, new Set([...freed, ...pins]), slid));
           const holds = ok();
           use(asLoaded);
           return holds;
@@ -946,13 +982,18 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           }
         }
         if (freed.size) {
-          use(loaded.read(asLoaded.parts, freed));
+          use(loaded.read(asLoaded.parts, freed, slid));
           freedPins = Math.max(freedPins, freed.size);
         }
       }
       const whyBefore = why.length;
       for (const first of fn.first ?? []) {
         const p = part(first.control);
+        if (first.slide) {
+          const how = slideFirst(p, first.by);
+          if (how) why.push(`${first.control}, slid first, ${how}`);
+          continue;
+        }
         // A driving ring is slid by hand, `by` LDU, to the click-in position nearest that.
         const slider = sliders.find((s) => s.part === p);
         if (slider) {
@@ -970,7 +1011,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
         if (shifts.size) shiftTo(shifts);
         // Otherwise, if it brought gears together or apart (the 952's harrow lowered onto its
         // power take-off), the mechanism is worked out afresh from where everything now is.
-        else if (meshesChanged(mech, kin.poses)) use(loaded.read(placedNow(), freed));
+        else if (meshesChanged(mech, kin.poses)) use(loaded.read(placedNow(), freed, slid));
       }
       // A control the controls worked first left with no motion (a gearbox's lever shifted, so
       // that the control now drives what friction pins hold: the 42039 Race Car's engine cover):
@@ -985,14 +1026,14 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
           const now = placedNow();
           const current = { parts, mech, kin };
           const pins = pinsByTrial(heldPins(mech, c, freed), (more) => {
-            use(loaded.read(now, new Set([...freed, ...more])));
+            use(loaded.read(now, new Set([...freed, ...more]), slid));
             const went = goes();
             use(current);
             return went;
           });
           if (pins.length) {
             for (const pin of pins) freed.add(pin);
-            use(loaded.read(now, freed));
+            use(loaded.read(now, freed, slid));
             freedPins = Math.max(freedPins, freed.size);
           }
         }
