@@ -39,6 +39,7 @@ import { makeJointAxes } from './jointAxes.ts';
 import { DEFAULT_SCRUB, experiments, Kinematics } from './kinematics.ts';
 import { modelSettings, parseModel, PathPoint, PlacedPart } from './ldr.ts';
 import { inferMechanism, Joint, libraryName, Mechanism, meshesChanged, movePaths } from './mechanism.ts';
+import { pinsForShift } from './pinSearch.ts';
 import { Outlines } from './outlines.ts';
 import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShiftDue, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
@@ -178,6 +179,9 @@ const TURNS = params.getAll('turn').flatMap((t) => {
 // they held freed them (see freePins): e.g. ?free=1086,1087. Kept in the address so that a link
 // plays its turns back as they were made.
 const FREE = (params.get('free') ?? '').split(',').filter((p) => /^\d+$/.test(p)).map(Number);
+// The parts asked to slide on their axles, by their places in the model file, as a press with
+// Shift asked for them (see slideOnAxle): e.g. ?slide=2643. Kept in the address as FREE is.
+const SLIDE = (params.get('slide') ?? '').split(',').filter((p) => /^\d+$/.test(p)).map(Number);
 
 // The address's query, from params, with commas left as they are (option=bodycolours,axes),
 // rather than written %2C.
@@ -540,9 +544,14 @@ async function start() {
       answers.set(asked, (pins) => resolve(pins.filter((pin) => !freed.has(pin))));
       pinWorker.postMessage({ ask: asked, part, freed: [...freed], search, lifted, at: at ? [at.x, at.y, at.z] : undefined });
     });
-  // The pins a press with Shift frees (see pinsForShift), and if none, why.
+  // The pins a press with Shift frees (see pinsForShift), and if none, why. Once a part asked to
+  // slide has moved (see afterSlide), the helper's model, as loaded, is not the one in view: the
+  // 42078's door, which its lock bar held, is free of it only now. Then they are found here,
+  // from the model with every friction pin free as the parts now are.
   const pinsToShift = (part: number) =>
-    new Promise<{ pins: number[]; why: 'more' | 'joints' | null }>((resolve) => {
+    slidMoved
+      ? Promise.resolve(((answer) => ({ pins: answer.pins.filter((pin) => !freed.has(pin)), why: answer.why }))(pinsForShift(mech, inferMechanism(parts, table, roles, paths, new Set(), true), part)))
+      : new Promise<{ pins: number[]; why: 'more' | 'joints' | null }>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve({ pins: [], why: 'more' });
       asked++;
@@ -555,6 +564,64 @@ async function start() {
     for (const pin of pins) freed.add(pin);
     showFreed();
     readAsBuilt(new Map());
+  };
+  // The parts asked to slide on their axles (decision 206 of 2026-11-18; see slidesAsked), until
+  // Reset; the address keeps them (see SLIDE).
+  const slid = new Set(SLIDE.filter((p) => p < startParts.length));
+  // Whether a part asked to slide has moved along its slide since the model was loaded.
+  let slidMoved = false;
+  const showSlid = () => {
+    if (slid.size) params.set('slide', [...slid].sort((a, b) => a - b).join(','));
+    else params.delete('slide');
+    history.replaceState(null, '', address());
+  };
+  // Asks for a part to slide on its axle, working the mechanism out afresh as built: whether it
+  // can (else it stays as it was).
+  const slideOnAxle = (part: number) => {
+    if (mech.slid?.includes(part)) return true;
+    slid.add(part);
+    readAsBuilt(new Map());
+    if (mech.slid?.includes(part)) {
+      showSlid();
+      return true;
+    }
+    slid.delete(part);
+    readAsBuilt(new Map());
+    return false;
+  };
+  // After a drag, a part asked to slide that has moved along its slide is read where it now is
+  // against the body it slides on (see readAsBuilt), so that an axle it took out of a hole no
+  // longer holds what the hole is in (the 42078's door, once its lock bar is lifted).
+  const afterSlide = () => {
+    const moves = new Map<number, Matrix4>();
+    const posedAs = new Map<number, number>();
+    const back = kin.poses[0].clone().invert();
+    // The bodies of the parts asked to slide, and those that turn with one (the 42078's tan pin,
+    // on its lock bar), as slidePart lets them go.
+    const sliding = new Set((mech.slid ?? []).map((p) => mech.bodyOf[p]));
+    for (const j of mech.joints) {
+      if (j.asked) continue;
+      for (const [body, next] of [[j.bodyA, j.bodyB], [j.bodyB, j.bodyA]]) {
+        if (sliding.has(body) && mech.joints.some((k) => k.asked && (k.bodyA === next || k.bodyB === next))) sliding.add(next);
+      }
+    }
+    for (const j of mech.joints) {
+      if (j.kind !== 'slide' || !j.asked) continue;
+      for (const [body, other] of [[j.bodyA, j.bodyB], [j.bodyB, j.bodyA]]) {
+        if (!sliding.has(body) || sliding.has(other)) continue;
+        const against = kin.poses[other].clone().invert().multiply(kin.poses[body]);
+        if (new Vector3().setFromMatrixPosition(against).length() < 0.5) continue;
+        // The move as the frame sees it that puts the body's parts where they now are on `other`.
+        const onFrame = back.clone().multiply(kin.poses[body]);
+        for (const i of mech.bodies[body].parts) {
+          moves.set(i, onFrame.clone().multiply(against).multiply(onFrame.clone().invert()));
+          posedAs.set(i, other);
+        }
+      }
+    }
+    if (!moves.size) return;
+    slidMoved = true;
+    readAsBuilt(moves, posedAs);
   };
 
   // The mechanism, and everything worked out from it. read() sets these, at the start and
@@ -649,7 +716,7 @@ async function start() {
   // partObjects already there.
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
-    mech = known ?? inferMechanism(parts, table, roles, paths, freed, false, placed === startParts ? keptPins : null);
+    mech = known ?? inferMechanism(parts, table, roles, paths, freed, false, placed === startParts ? keptPins : null, slid);
     kin = new Kinematics(mech, { lifted });
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);
@@ -879,7 +946,8 @@ async function start() {
   // see partsNow), then poses it as the one it replaces: so everything else stays where it now
   // is, and is read as it was built. Read where it now was, the 956 Auto Chassis's steering
   // column, steered, came apart at its universal joints, whose crosses turn with one shaft only.
-  function readAsBuilt(moves: Map<number, Matrix4>) {
+  // `posedAs`: parts whose bodies are posed as another body was, by that body (see afterSlide).
+  function readAsBuilt(moves: Map<number, Matrix4>, posedAs = new Map<number, number>()) {
     const back = kin.poses[0].clone().invert();
     // A move as the frame sees it, made to a part as it was built: the same move, as the part's
     // body sees it.
@@ -901,7 +969,7 @@ async function start() {
     const old = (body: number) => was.bodyOf[mech.bodies[body].parts[0]];
     const near = mech.joints.map((j) => angles.get(key(old(j.bodyA), old(j.bodyB), j)) ?? -(angles.get(key(old(j.bodyB), old(j.bodyA), j)) ?? NaN));
     kin.poseAs(
-      mech.bodies.map((_, body) => wasKin.poses[old(body)]),
+      mech.bodies.map((_, body) => wasKin.poses[posedAs.get(mech.bodies[body].parts[0]) ?? old(body)]),
       near.map((a) => (Number.isNaN(a) ? undefined : a)),
     );
     showPoses();
@@ -1078,7 +1146,10 @@ async function start() {
       const sense = interaction.turnSense(part, startCamera.position);
       if (sense !== null) keepTurn(part, angle * sense);
     },
-    onDragEnded: () => meshAfresh(),
+    onDragEnded: () => {
+      meshAfresh();
+      if (slid.size) afterSlide();
+    },
     // Asked after each step of a part kept turning, with the parts placed as partsNow places them.
     shiftDue: () => {
       const back = kin.poses[0].clone().invert();
@@ -1106,6 +1177,7 @@ async function start() {
     pinsToFree,
     pinsToShift,
     freePins,
+    slideOnAxle,
   };
   summary.textContent = 'Setting up…';
   await shown();
@@ -1232,6 +1304,9 @@ async function start() {
     paths.forEach((path, i) => (path.points = startPaths[i].map(copyPoint)));
     freed.clear();
     showFreed();
+    slid.clear();
+    slidMoved = false;
+    showSlid();
     read(startParts);
     showPoses();
   };

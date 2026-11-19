@@ -15,6 +15,39 @@
         "date": "2026-11-17",
         "words": "Sign all seven (42078)"
       }
+    },
+    {
+      "id": "door-2-has-no-13L-beam",
+      "what": "remove",
+      "file": "42078 - containerdoor2.ldr",
+      "line": "1 15 140 0 -20 0 -1 0 0 0 1 -1 0 0 41239.dat",
+      "part": "p2672 41239",
+      "evidence": "The container's two end doors are built differently. Door 1 (step 43, page 409, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=409), ends in an 11L beam and a 13L beam held to the panel by two blue 3L pins; door 2 (steps 58 and 59, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415) ends in an 11L beam only, on two of the six black pins, and has no 13L beam and no blue pins. The file's door 2 (42078 - containerdoor2.ldr) is door 1 mirrored, so it has door 1's 13L beam and blue pins too: its 13L beam p2672 lies in the same place as door 1's 13L beam p2638 (80, -340, 800), and its blue pins p2669 and p2670 run on into door 1's 13L. As read, the two doors are one body with the trailer, and neither swings on its hinge (function 12). Removed: door 2's 13L beam and blue pins; added: two black pins 2780 in their place, each through door 2's 11L beam and 20 LDU into its panel, as door 1's blue pins go into its panel."
+    },
+    {
+      "id": "door-2-has-no-blue-pin-at-y-minus-280",
+      "what": "remove",
+      "file": "42078 - containerdoor2.ldr",
+      "line": "1 1 120 60 -20 -1 0 0 0 -1 0 0 0 1 6558.dat",
+      "part": "p2669 6558",
+      "evidence": "With door-2-has-no-13L-beam: one of door 2's two blue 3L pins, which the booklet doesn't give it (step 58, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415)."
+    },
+    {
+      "id": "door-2-has-no-blue-pin-at-y-minus-400",
+      "what": "remove",
+      "file": "42078 - containerdoor2.ldr",
+      "line": "1 1 120 -60 -20 -1 0 0 0 -1 0 0 0 1 6558.dat",
+      "part": "p2670 6558",
+      "evidence": "With door-2-has-no-13L-beam: the other blue 3L pin."
+    },
+    {
+      "id": "door-2-black-pins-for-its-11L-beam",
+      "what": "add",
+      "lines": [
+        "1 0 50 -280 800 -1 0 0 0 -1 0 0 0 1 2780.dat",
+        "1 0 50 -400 800 -1 0 0 0 -1 0 0 0 1 2780.dat"
+      ],
+      "evidence": "With door-2-has-no-13L-beam: the two black pins 2780 that hold door 2's 11L beam p2671 to its panel p2665 (step 58, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415, where two of the six black pins go into the panel's end; step 59 puts the 11L beam on them), in the main model's coordinates, 10 LDU nearer the panel than the blue pins they replace, so they don't reach door 1."
     }
   ]
 }

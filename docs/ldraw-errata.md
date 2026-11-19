@@ -504,6 +504,10 @@ The OMR's model files aren't Kinebrick's to edit, so Kinebrick reads a set's fil
 | [42070-1](#42070-1-rear-differential-spider-gear-with-its-casing) | rear-differential-spider-gear-with-its-casing | moves `6589.dat` (in `42070 - axle3.ldr`) to 0 0 -17, turned | Signed off by Erik, 2026-11-16 |
 | [42077-1](#42077-1-rear-half-shaft-inner-ball-level) | rear-half-shaft-inner-ball-level | moves `32494.dat` (in `42077 - rearaxle.ldr`) to -60 0 0, turned | Signed off by Erik, 2026-11-17 |
 | [42078-1](#42078-1-rear-crane-actuator-axle-to-its-connectors) | rear-crane-actuator-axle-to-its-connectors | moves `60485.dat` (in `42078 - craneactu.ldr` as placed in `42078 - crane1.ldr` only) to -0.012 -20 49.983 | Signed off by Erik, 2026-11-17 |
+| [42078-1](#42078-1-door-2-has-no-13L-beam) | door-2-has-no-13L-beam | removes `41239.dat` (in `42078 - containerdoor2.ldr`) | Proposed, not applied until signed off |
+| [42078-1](#42078-1-door-2-has-no-blue-pin-at-y-minus-280) | door-2-has-no-blue-pin-at-y-minus-280 | removes `6558.dat` (in `42078 - containerdoor2.ldr`) | Proposed, not applied until signed off |
+| [42078-1](#42078-1-door-2-has-no-blue-pin-at-y-minus-400) | door-2-has-no-blue-pin-at-y-minus-400 | removes `6558.dat` (in `42078 - containerdoor2.ldr`) | Proposed, not applied until signed off |
+| [42078-1](#42078-1-door-2-black-pins-for-its-11L-beam) | door-2-black-pins-for-its-11L-beam | adds 2 lines to the main model | Proposed, not applied until signed off |
 | [42083-1](#42083-1-speed-key-in-its-hole) | speed-key-in-its-hole | moves `42083 - startkey.ldr` to 250 -123 420, turned | Proposed, not applied until signed off |
 | [42093-1](#42093-1-no-12-tooth-on-the-engine-shaft) | no-12-tooth-on-the-engine-shaft | removes `32270.dat` (in `42093 - corvette.ldr`) | Signed off by Erik, 2026-11-15 |
 | [42093-1](#42093-1-8-tooth-on-the-engine-shaft) | 8-tooth-on-the-engine-shaft | adds 1 line to the main model | Signed off by Erik, 2026-11-15 |
@@ -1336,6 +1340,61 @@ In `42078 - craneactu.ldr` (p1968 60485), the line
 ```
 
 is read with its part at -0.012 -20 49.983.
+
+### 42078-1: door-2-has-no-13L-beam
+
+Proposed, not applied until signed off.
+
+The container's two end doors are built differently. Door 1 (step 43, page 409, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=409), ends in an 11L beam and a 13L beam held to the panel by two blue 3L pins; door 2 (steps 58 and 59, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415) ends in an 11L beam only, on two of the six black pins, and has no 13L beam and no blue pins. The file's door 2 (42078 - containerdoor2.ldr) is door 1 mirrored, so it has door 1's 13L beam and blue pins too: its 13L beam p2672 lies in the same place as door 1's 13L beam p2638 (80, -340, 800), and its blue pins p2669 and p2670 run on into door 1's 13L. As read, the two doors are one body with the trailer, and neither swings on its hinge (function 12). Removed: door 2's 13L beam and blue pins; added: two black pins 2780 in their place, each through door 2's 11L beam and 20 LDU into its panel, as door 1's blue pins go into its panel.
+
+In `42078 - containerdoor2.ldr` (p2672 41239), the line
+
+```
+1 15 140 0 -20 0 -1 0 0 0 1 -1 0 0 41239.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42078-1: door-2-has-no-blue-pin-at-y-minus-280
+
+Proposed, not applied until signed off.
+
+With door-2-has-no-13L-beam: one of door 2's two blue 3L pins, which the booklet doesn't give it (step 58, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415).
+
+In `42078 - containerdoor2.ldr` (p2669 6558), the line
+
+```
+1 1 120 60 -20 -1 0 0 0 -1 0 0 0 1 6558.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42078-1: door-2-has-no-blue-pin-at-y-minus-400
+
+Proposed, not applied until signed off.
+
+With door-2-has-no-13L-beam: the other blue 3L pin.
+
+In `42078 - containerdoor2.ldr` (p2670 6558), the line
+
+```
+1 1 120 -60 -20 -1 0 0 0 -1 0 0 0 1 6558.dat
+```
+
+is read as not there. The part keeps its number.
+
+### 42078-1: door-2-black-pins-for-its-11L-beam
+
+Proposed, not applied until signed off.
+
+With door-2-has-no-13L-beam: the two black pins 2780 that hold door 2's 11L beam p2671 to its panel p2665 (step 58, page 415, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415, where two of the six black pins go into the panel's end; step 59 puts the 11L beam on them), in the main model's coordinates, 10 LDU nearer the panel than the blue pins they replace, so they don't reach door 1.
+
+Added to the main model:
+
+```
+1 0 50 -280 800 -1 0 0 0 -1 0 0 0 1 2780.dat
+1 0 50 -400 800 -1 0 0 0 -1 0 0 0 1 2780.dat
+```
 
 ### 42083-1: speed-key-in-its-hole
 

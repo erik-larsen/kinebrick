@@ -22,7 +22,40 @@
       }
     ]
   },
-  "waiting": [],
+  "waiting": [
+    {
+      "id": "42078-doors",
+      "kind": "Sign a correction and a list change",
+      "title": "42078 Mack Anthem: the container's second door has parts the booklet does not give it, and the doors need their lock bars lifted first",
+      "since": "2026-11-19",
+      "what": "Two things, signed together. (1) A correction to the model file. The booklet builds the container's two end doors differently: door 1 gets an 11L beam and a 13L beam on two blue pins (page 409, step 43); door 2 gets black pins, an 11L beam and a 7L beam, and no 13L beam or blue pins (page 415, steps 58 and 59). In the file, door 2 is door 1 mirrored, so it has door 1's 13L beam and blue pins too. That beam lies in the same place as door 1's, and the blue pins run into door 1, so the two doors are tied to each other and neither can swing. The correction takes those three parts out of door 2 and puts in the two black pins that hold its 11L beam. (2) A change to function 12's list. Today it reads: The container's two end doors swing open. New: The container's two end doors swing open, each once its lock bar is lifted. Each door has a lock bar whose pin stands in the container (page 418, step 69). The check now lifts each bar first, then works both doors.",
+      "effect": "Function 12 of the 42078 goes from doesn't work to works: 738 working functions. In the viewer: Shift-press a lock bar and drag it up, then Shift-press the door and drag it. Each door opens about 13 degrees and then meets the rear crane, which stands just in front of the doors while the container is on the trailer.",
+      "confidence": "High for the correction: Claude read pages 409, 415 and 418 itself, and they show the two doors built differently. High for the function: the check gives works with both in, and a drag in the viewer lifted each bar 20 LDU and swung the doors 12.7 and 12.8 degrees. One thing to know: the booklet's functions pages (420 and 421) do not show the doors open, so the function's wording is ours, from the building steps.",
+      "links": [
+        {
+          "label": "The model in the viewer, with the correction, the bars and doors marked",
+          "url": "http://localhost:5174/?file=omr/42078-1+Mack+Anthem.mpd&option=proposed&lifted=1&show=2641,2675,2631,2665"
+        },
+        {
+          "label": "Booklet page 409: door 1, with the 13L beam and blue pins",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=409"
+        },
+        {
+          "label": "Booklet page 415: door 2, without them",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=415"
+        },
+        {
+          "label": "Booklet page 418: the lock bars' pins in the container",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=418"
+        },
+        {
+          "label": "Booklet pages 420 and 421: the functions pages",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6230125.pdf#page=420"
+        }
+      ],
+      "reply": "Sign 42078 doors"
+    }
+  ],
   "coming": [
     {
       "title": "The next offer of main",
@@ -237,6 +270,14 @@
     {
       "date": "2026-11-18",
       "what": "You merged the one-file mend into main (\"Main is moved\"). GitHub published the three sites again: main as before (701 working functions), preview and preview-train at their newest commits. The sites had been stale since 15 November because a test on main read files that only your Mac has. Claude now looks at GitHub’s runs for the three sites every day and after every push."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude decided (208): a linear actuator at the end of its travel, pushed further by its own screw, is an end of travel; other slides at their ends stay held. The 42055's boom crank and the 42108's boom knob keep their results. The change is not merged yet."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude merged slides on demand (209): a part on an axle slides only where a function's first step or a Shift-press in the viewer asks. No result changes: 737 working functions. The 42078's doors wait for your sign-off."
     }
   ]
 }
