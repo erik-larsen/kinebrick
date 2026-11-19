@@ -1549,8 +1549,9 @@ function changes(functions: { does: string }[], was: Checked[], now: Checked[]):
     if (!before) return;
     if (RANK[c.result] < RANK[before.result]) lines.push(`better: ${what} ${before.result} → ${c.result}`);
     if (RANK[c.result] > RANK[before.result]) lines.push(`worse: ${what} ${before.result} → ${c.result}`);
-    // Only once both were measured for amounts.
-    if (before.rates) {
+    // Only once both were measured for amounts, and neither is held (a held record keeps its
+    // amounts in `found`; see holds.ts).
+    if (before.rates && !('hold' in c) && !('hold' in before)) {
       const [wrongBefore, wrongNow] = [before.wrong?.length ?? 0, c.wrong?.length ?? 0];
       if (wrongNow !== wrongBefore) lines.push(`${wrongNow < wrongBefore ? 'better' : 'worse'}: ${what} ${wrongNow} parts by the wrong amount, had ${wrongBefore}`);
       // (By the ways worked that leave a part out of place, not the parts named: see ratchet.ts.)

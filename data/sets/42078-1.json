@@ -204,9 +204,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
+    "commit": "26dab794",
     "date": "2026-11-19",
-    "seconds": 2444,
+    "seconds": 7788,
     "counts": {
       "works": 8,
       "partly": 4,
@@ -325,7 +325,7 @@
             1.27
           ]
         ],
-        "seconds": 79.4
+        "seconds": 218.4
       },
       {
         "result": "partly",
@@ -407,7 +407,7 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 152.3
+        "seconds": 413.9
       },
       {
         "result": "works",
@@ -477,7 +477,7 @@
           [],
           []
         ],
-        "seconds": 355.3
+        "seconds": 653.3
       },
       {
         "result": "works",
@@ -554,7 +554,7 @@
             0.03
           ]
         ],
-        "seconds": 12.2
+        "seconds": 18.3
       },
       {
         "result": "works",
@@ -665,7 +665,7 @@
             0
           ]
         ],
-        "seconds": 57.4
+        "seconds": 183.3
       },
       {
         "result": "partly",
@@ -713,7 +713,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 14.2
+        "seconds": 19.3
       },
       {
         "result": "works",
@@ -783,7 +783,7 @@
             0.6
           ]
         ],
-        "seconds": 39.4
+        "seconds": 64.6
       },
       {
         "result": "works",
@@ -853,7 +853,7 @@
             0.6
           ]
         ],
-        "seconds": 38.9
+        "seconds": 67.6
       },
       {
         "result": "partly",
@@ -926,7 +926,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2048 18940",
-        "seconds": 30.5
+        "seconds": 47.9
       },
       {
         "result": "partly",
@@ -999,7 +999,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 31.1
+        "seconds": 54.7
       },
       {
         "result": "works",
@@ -1098,33 +1098,75 @@
             0.01
           ]
         ],
-        "seconds": 395.7
+        "seconds": 651.8
       },
       {
         "result": "no",
-        "turned": [
-          [
-            0,
-            0
-          ]
-        ],
-        "rates": [
-          {}
-        ],
-        "back": [
-          []
-        ],
-        "torn": [
-          []
-        ],
-        "why": [
-          "p2631 64782 is part of the frame"
-        ],
-        "judged": [
-          0
-        ],
-        "cause": "control-fixed",
-        "seconds": 7
+        "hold": {
+          "reason": "The container's end doors open only with the erratum signed and the lift step in the function's list; both wait for Erik's sign-off.",
+          "date": "2026-11-19"
+        },
+        "found": {
+          "result": "works",
+          "turned": [
+            [
+              0.6,
+              -0.6
+            ]
+          ],
+          "rates": [
+            {}
+          ],
+          "back": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "torn": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "stop": [
+            [
+              "limit",
+              "limit"
+            ]
+          ],
+          "collisionStops": [
+            [
+              0,
+              1,
+              186,
+              1680,
+              0.6,
+              0.6
+            ],
+            [
+              0,
+              -1,
+              185,
+              1685,
+              0.6,
+              0.6
+            ]
+          ],
+          "seconds": 47.4
+        }
       },
       {
         "result": "works",
@@ -1246,7 +1288,7 @@
           [],
           []
         ],
-        "seconds": 698.6
+        "seconds": 915.8
       }
     ]
   }
