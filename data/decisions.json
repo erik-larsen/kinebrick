@@ -54,6 +54,34 @@
         }
       ],
       "reply": "Sign 42078 doors"
+    },
+    {
+      "id": "8110-crane",
+      "kind": "Sign two corrections and a list change",
+      "title": "8110 Unimog: the crane's drive shaft is drawn broken in two places, and our list had the wrong lever settings",
+      "since": "2026-11-19",
+      "what": "Three things, signed together. (1) A correction: the universal joint at the gearbox's rear output is drawn as one end only, with no cross and no second end, so the shaft to the crane is joined to nothing. The booklet puts an axle 8 into a whole universal joint there (book 2, page 3, step 65). The correction adds the cross and the second end. (2) A correction: at the shaft's other end, the ball is drawn 6.2 LDU short of the cup it drives (book 2, page 24, step 77). The correction moves it into the cup. (3) A change to our list's lever settings, read from the file and matched to the functions page (book 5, page 43). Red lever down and yellow up: the winch (function 7, unchanged). Both levers up: the crane slews (function 8; our list had the winch's setting here). Yellow lever down: the compressor (function 9; our list moved the red lever instead). Function 10, the page's fourth picture, is the compressor again: the red knob on the side is the lever of a pneumatic valve, so it switches the air, not the drive. Function 6's words change from four outputs to three.",
+      "effect": "Function 8 (the crane slews) goes from partly to works. Function 10 goes from works to partly: its works was hollow, because it listed nothing to move, and it now lists the compressor's crank, which stops after a small turn (as function 9 does; the solver owner traces that next). So the count stays 737 until the compressor is mended.",
+      "confidence": "High. Claude read the three booklet pages itself. The worker traced all four lever settings through the gearbox, and each agrees with the functions page. In preview's viewer, with the corrections: both levers dragged up, the motor run for a minute, the turntable's gear turned at the check's rate and the winch stayed still.",
+      "links": [
+        {
+          "label": "The model in the viewer, with the corrections; the two lever arms, the motor and the turntable's gear marked",
+          "url": "http://localhost:5174/?file=omr/8110-1+Mercedes-Benz+Unimog+U+400.mpd&option=proposed&show=559,556,60,2216"
+        },
+        {
+          "label": "Book 5, page 43: the functions page with the lever settings",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/4660503.pdf#page=43"
+        },
+        {
+          "label": "Book 2, page 3: step 65, the whole universal joint",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6013912.pdf#page=3"
+        },
+        {
+          "label": "Book 2, page 24: step 77, the cup at the crane's end of the shaft",
+          "url": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6013912.pdf#page=24"
+        }
+      ],
+      "reply": "Sign 8110 crane"
     }
   ],
   "coming": [
