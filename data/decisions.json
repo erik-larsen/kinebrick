@@ -59,7 +59,7 @@
   "coming": [
     {
       "title": "The next offer of main",
-      "what": "preview has 737 working functions and main 701. Claude does not offer main yet. Two solver changes are still out: slides held at their ends (mended on 19 November; a linear actuator at its end is now a limit, decision 208) and a rule that lets a contact guide a motion (being measured). Before the offer: one full check of the two together if the contact rule is built, a full check of preview, and a slow check of the 8110 on the commit offered."
+      "what": "preview has 737 working functions and main 701. Claude does not offer main yet. One solver change is having its full check now: slides held at their ends (with decision 208, a linear actuator at its end is an end of travel). A second, a rule that lets a contact guide a motion, was measured on 108 functions and is not built yet: it is measured once more in its true one-way form. Before the offer: the slide ends merged, a full check of preview, and a slow check of the 8110 on the commit offered."
     },
     {
       "title": "A second worker, looked at again after 23 November",
