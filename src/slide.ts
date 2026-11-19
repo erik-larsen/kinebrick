@@ -41,6 +41,17 @@ export function slidePart(state: () => SlideState, reread: () => void, part: num
       way = axis.clone().multiplyScalar(Math.sign(own[k].dot(axis)) * Math.sign(by));
     }
     const dir = axis.clone().multiplyScalar(Math.sign(axis.dot(way)));
+    // The part's own slides, and those of what turns with it (the 42078's tan pin, on its lock
+    // bar), are let go while it is pushed: held where they are, as friction holds them (see
+    // Joint.springHeld), they'd only slide where nothing else could go. Others' stay held.
+    const bodies = new Set([body]);
+    for (const j of mech.joints) {
+      if (j.asked || (j.bodyA !== body && j.bodyB !== body)) continue;
+      const next = j.bodyA === body ? j.bodyB : j.bodyA;
+      if (mech.joints.some((k) => k.asked && (k.bodyA === next || k.bodyB === next))) bodies.add(next);
+    }
+    const own = mech.joints.filter((j) => j.asked && j.springHeld && (bodies.has(j.bodyA) || bodies.has(j.bodyB)));
+    for (const j of own) j.springHeld = false;
     // The part's middle, on its body as built.
     const grab = place(part).position.clone().applyMatrix4(kin.poses[body].clone().invert());
     const now = () => grab.clone().applyMatrix4(kin.poses[body]);
@@ -65,6 +76,7 @@ export function slidePart(state: () => SlideState, reread: () => void, part: num
     // end to say no.
     const atEnd = refused === 'blocked' && endOfSlide(kin, body, grab, dir);
     kin.letGoAfterDrag();
+    for (const j of own) j.springHeld = true;
     if (!refused) return { went, halt: '' };
     if (refused === 'stuck') return { went, halt: 'stuck' };
     if (!atEnd) return { went, halt: 'met' };
