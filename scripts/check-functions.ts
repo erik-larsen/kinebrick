@@ -90,6 +90,7 @@ import { gearRates, line } from './gear-rates.ts';
 import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
+import { applyHolds, foundOf, readHolds } from './holds.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
 import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
@@ -283,8 +284,8 @@ interface Fn {
 // (see SPLIT_OVER).
 function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
   const { model, functions } = set.curated;
-  // What each function came to the last time, for --causes.
-  const priors = set.generated?.functions ?? [];
+  // What each function came to the last time, for --causes: for a held one, what was found (see holds.ts).
+  const priors = (set.generated?.functions ?? []).map(foundOf);
   const modelOf = (fn: Fn) => fn.model ?? model;
   const checked: Checked[] = [];
   const loose: string[] = [];
@@ -1612,6 +1613,8 @@ async function main() {
   const date = new Date().toISOString().slice(0, 10);
   // Checked with holds rather than least motion (KINEBRICK_LEAST=0; see docs/least-motion.md).
   const holds = !experiments.leastMotion;
+  // The results held by hand (see holds.ts).
+  const heldResults = readHolds();
 
   // The sets with functions, slowest first, by how long each took the last time (a set that timed
   // out before any), so that the longest set starts at once rather than last, on its own: then
@@ -1686,6 +1689,14 @@ async function main() {
     }
     // Read afresh, so only generated changes, whatever else changed meanwhile.
     const data = JSON.parse(readFileSync(s.file, 'utf-8'));
+    // The functions data/holds.json holds that came out better are stored at their held result,
+    // with what was found beside it, and counted so; for the other holds, the run says that they
+    // are no longer needed (see holds.ts).
+    if ('functions' in found) {
+      const held = applyHolds(data.set, found.functions, heldResults);
+      found = { ...found, functions: held.functions as Checked[], ...('counts' in found ? { counts: countsOf(held.functions as Checked[]) } : {}) };
+      for (const note of held.notes) console.log(`${data.set}: ${note}`);
+    }
     if (causes) {
       // Only the causes change: the results stay those of the commit they were checked at.
       if ('functions' in found && data.generated) data.generated = { ...data.generated, causes: commit, functions: found.functions };
@@ -1735,7 +1746,7 @@ async function main() {
       });
       continue;
     }
-    const last: Checked[] = s.data.generated?.functions ?? [];
+    const last: Checked[] = (s.data.generated?.functions ?? []).map(foundOf);
     const checked: Checked[] = functions.map((fn) => withoutChecking(fn) ?? { result: 'error' });
     const todo = functions.flatMap((fn, i) => (withoutChecking(fn) ? [] : [i])).sort((i, j) => (last[j]?.seconds ?? Infinity) - (last[i]?.seconds ?? Infinity));
     let left = todo.length;
