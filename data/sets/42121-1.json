@@ -89,8 +89,8 @@
     ]
   },
   "generated": {
-    "commit": "7d69aeed",
-    "date": "2026-11-18",
+    "commit": "38c70beb",
+    "date": "2026-11-19",
     "seconds": 13,
     "counts": {
       "partly": 1,
@@ -264,7 +264,7 @@
           0
         ],
         "cause": "control-fixed",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -314,7 +314,7 @@
             ]
           ]
         ],
-        "seconds": 1
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -432,7 +432,7 @@
           [],
           []
         ],
-        "seconds": 4.2
+        "seconds": 4.4
       },
       {
         "result": "not checked",

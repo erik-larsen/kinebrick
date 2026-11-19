@@ -96,9 +96,9 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 11,
+    "commit": "38c70beb",
+    "date": "2026-11-19",
+    "seconds": 13,
     "counts": {
       "partly": 1,
       "works": 3
@@ -279,7 +279,7 @@
             0.63
           ]
         ],
-        "seconds": 0.6
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -413,7 +413,7 @@
             "p233 2851"
           ]
         ],
-        "seconds": 3.5
+        "seconds": 4.4
       },
       {
         "result": "works",
@@ -531,7 +531,7 @@
           [],
           []
         ],
-        "seconds": 3.7
+        "seconds": 4.3
       }
     ]
   }

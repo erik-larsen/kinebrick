@@ -87,9 +87,9 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 3,
+    "commit": "38c70beb",
+    "date": "2026-11-19",
+    "seconds": 4,
     "counts": {
       "partly": 1,
       "works": 3,
@@ -159,7 +159,7 @@
         ],
         "cause": "not-driven",
         "detail": "p124 11478",
-        "seconds": 0.3
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -381,7 +381,7 @@
           [],
           []
         ],
-        "seconds": 1.1
+        "seconds": 1.3
       }
     ]
   }
