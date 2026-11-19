@@ -596,10 +596,19 @@ async function start() {
     const moves = new Map<number, Matrix4>();
     const posedAs = new Map<number, number>();
     const back = kin.poses[0].clone().invert();
+    // The bodies of the parts asked to slide, and those that turn with one (the 42078's tan pin,
+    // on its lock bar), as slidePart lets them go.
+    const sliding = new Set((mech.slid ?? []).map((p) => mech.bodyOf[p]));
+    for (const j of mech.joints) {
+      if (j.asked) continue;
+      for (const [body, next] of [[j.bodyA, j.bodyB], [j.bodyB, j.bodyA]]) {
+        if (sliding.has(body) && mech.joints.some((k) => k.asked && (k.bodyA === next || k.bodyB === next))) sliding.add(next);
+      }
+    }
     for (const j of mech.joints) {
       if (j.kind !== 'slide' || !j.asked) continue;
       for (const [body, other] of [[j.bodyA, j.bodyB], [j.bodyB, j.bodyA]]) {
-        if (!mech.slid?.some((p) => mech.bodyOf[p] === body)) continue;
+        if (!sliding.has(body) || sliding.has(other)) continue;
         const against = kin.poses[other].clone().invert().multiply(kin.poses[body]);
         if (new Vector3().setFromMatrixPosition(against).length() < 0.5) continue;
         // The move as the frame sees it that puts the body's parts where they now are on `other`.
