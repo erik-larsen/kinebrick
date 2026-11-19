@@ -65,8 +65,8 @@
       "confidence": "High. Claude read the three booklet pages itself. The worker traced all four lever settings through the gearbox, and each agrees with the functions page. In preview's viewer, with the corrections: both levers dragged up, the motor run for a minute, the turntable's gear turned at the check's rate and the winch stayed still.",
       "links": [
         {
-          "label": "The model in the viewer, with the corrections; the two lever arms marked. Drag the red arm and the yellow arm up, then Ctrl-click the grey motor under the bed",
-          "url": "http://localhost:5174/?file=omr/8110-1+Mercedes-Benz+Unimog+U+400.mpd&option=proposed&show=559,556"
+          "label": "The model in the viewer, with the corrections; the two lever arms, the motor and the turntable's gear marked. Drag the red arm and the yellow arm up, then Ctrl-click the motor",
+          "url": "http://localhost:5174/?file=omr/8110-1+Mercedes-Benz+Unimog+U+400.mpd&option=proposed&show=559,556,60,2216"
         },
         {
           "label": "Book 5, page 43: the functions page with the lever settings",
