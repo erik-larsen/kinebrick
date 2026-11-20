@@ -35,6 +35,11 @@
 //      function after which a restore can't be trusted (the mechanism rebuilt by a shift, a new
 //      Kinematics, the tyres' scrub raised) has the model opened afresh for the next, and its
 //      record says why ("reopened"). Its records say part "A".
+//   … --quiet  the quiet pass (decision 261): every function whose msOneCall is QUIET_OVER ms or more
+//      timed again alone, one set at a time, each set's browser holding the whole pool (16,000 MB),
+//      part A's way. It adds msOneCallQuiet, msPerStepQuiet, loadQuiet (the load average as the
+//      set's timing starts) and commitQuiet to the function's line in the set's record, and changes
+//      nothing else there.
 // Each set's browser claims 1,000 MB and 0.85 MB a part from the pool (decision 255), as open-all.ts.
 import { execSync, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -81,6 +86,10 @@ const outFile = (set: string) => `data/viewer/${set}.json`;
 const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => g?.result === 'works').length;
 
 const oneAt = args.indexOf('--one');
+const quiet = args.includes('--quiet');
+const QUIET_OVER = 250;
+// The functions a set's quiet pass times: those whose msOneCall is QUIET_OVER or more.
+const quietFunctions = (set: string): number[] => (existsSync(outFile(set)) ? (JSON.parse(readFileSync(outFile(set), 'utf-8')).functions as any[]).filter((f) => f.msOneCall != null && f.msOneCall >= QUIET_OVER).map((f) => f.function) : []);
 if (args[0] === '--judge') {
   // The records judged again (after a change to judge() or to judged.json), with no browser.
   for (const f of readdirSync('data/viewer').filter((f) => /^\d.*\.json$/.test(f))) {
@@ -105,16 +114,32 @@ if (args[0] === '--judge') {
     for (const line of rec.functions) {
       const slowest = (line.A ?? []).filter((a: any) => a.msOneCall != null).sort((a: any, b: any) => b.msOneCall - a.msOneCall)[0];
       const stop = line.stop ? `${line.stop.control} way ${line.stop.way > 0 ? '+' : '-'}: went ${line.stop.went} of ${line.stop.asked}, ${line.stop.by.join(' ')}` : '';
-      rows.push([rec.set, line.function, slowest?.control ?? [...new Set((line.A ?? []).map((a: any) => a.control))].join(' / '), rec.parts ?? counts.get(rec.set) ?? null, line.msOneCall ?? null, line.msPerStep ?? null, line.verdict, line.why ?? '', stop, rec.part ?? 'A and B', rec.commit]);
+      rows.push([rec.set, line.function, slowest?.control ?? [...new Set((line.A ?? []).map((a: any) => a.control))].join(' / '), rec.parts ?? counts.get(rec.set) ?? null, line.msOneCall ?? null, line.msPerStep ?? null, line.verdict, line.why ?? '', stop, rec.part ?? 'A and B', rec.commit, rec.load ?? null, line.msOneCallQuiet ?? null, line.msPerStepQuiet ?? null, line.loadQuiet ?? null, line.commitQuiet ?? null]);
     }
   }
   rows.sort((a, b) => Number(b[4] ?? -1) - Number(a[4] ?? -1) || Number(b[5] ?? -1) - Number(a[5] ?? -1));
   const cell = (x: string | number | null) => (x === null ? '' : /[",\n]/.test(String(x)) ? `"${String(x).replace(/"/g, '""')}"` : String(x));
-  const head = ['set', 'function', 'control', 'parts', 'msOneCall', 'msPerStep', 'verdict', 'why', 'collision stop', 'part', 'commit'];
+  const head = ['set', 'function', 'control', 'parts', 'msOneCall', 'msPerStep', 'verdict', 'why', 'collision stop', 'part', 'commit', 'load', 'msOneCallQuiet', 'msPerStepQuiet', 'loadQuiet', 'commitQuiet'];
   writeFileSync('data/viewer/table.csv', [head, ...rows].map((r) => r.map(cell).join(',')).join('\n') + '\n');
   console.log(`${rows.length} functions in data/viewer/table.csv`);
 } else if (oneAt >= 0) {
   await sweepSet(args[oneAt + 1]);
+} else if (quiet) {
+  // One set at a time, slowest first, each holding the whole pool.
+  const named = args.slice(1).filter((a) => !a.startsWith('--'));
+  const sets = (named.length ? named : readdirSync('data/viewer').filter((f) => /^\d.*\.json$/.test(f)).map((f) => f.replace(/\.json$/, '')))
+    .filter((s) => quietFunctions(s).length && (force || (JSON.parse(readFileSync(outFile(s), 'utf-8')).functions as any[]).some((f) => quietFunctions(s).includes(f.function) && f.commitQuiet !== commit)));
+  const slowest = (s: string) => Math.max(...(JSON.parse(readFileSync(outFile(s), 'utf-8')).functions as any[]).map((f) => f.msOneCall ?? 0));
+  sets.sort((a, b) => slowest(b) - slowest(a));
+  console.log(`${sets.length} sets, ${sets.reduce((n, s) => n + quietFunctions(s).length, 0)} functions, for the quiet pass`);
+  for (const set of sets) {
+    const started = Date.now();
+    const code = await new Promise<number>((done) => {
+      const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', '16000', '--what', `quiet pass ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set, '--a', '--quiet'], { stdio: ['ignore', 'inherit', 'inherit'] });
+      child.on('close', (c) => done(c ?? 1));
+    });
+    console.log(`${set}: ${code === 0 ? 'done' : `failed (${code})`} in ${Math.round((Date.now() - started) / 1000)} s`);
+  }
 } else {
   const named = args.slice(1).filter((a, i, all) => !a.startsWith('--') && all[i - 1] !== '--jobs');
   const jobsAt = args.indexOf('--jobs');
@@ -200,9 +225,11 @@ async function sweepSet(set: string) {
   // A model that the viewer can't open: every working function recorded so, and the sweep goes on.
   // (Asked only once a function's sweep fails, since a load costs as much as a function.)
   const fails = new Map<string, string | null>();
+  const onlyQuiet = quiet ? new Set(quietFunctions(set)) : null;
   for (const [i, fn] of (data.curated.functions as any[]).entries()) {
     const g = data.generated.functions[i];
     if (g?.result !== 'works') continue;
+    if (onlyQuiet && !onlyQuiet.has(i + 1)) continue;
     const fnStarted = Date.now();
     let line: Record<string, any>;
     const file: string = fn.model ?? model;
@@ -227,6 +254,16 @@ async function sweepSet(set: string) {
     console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msOneCall as number | undefined) ?? '-'} ms one call, ${(line.msPerStep as number | undefined) ?? '-'} ms a step${line.time ? `; s: ${Object.entries(line.time as Record<string, number>).map(([k, n]) => `${k} ${n}`).join(', ')}` : ''}`);
   }
   for (const v of viewers.values()) await v.close();
+  if (quiet) {
+    // The quiet times beside part A's, in the record as it is.
+    const rec = JSON.parse(readFileSync(outFile(set), 'utf-8'));
+    for (const q of out.functions as any[]) {
+      const f = rec.functions.find((x: any) => x.function === q.function);
+      if (f) Object.assign(f, { msOneCallQuiet: q.msOneCall ?? null, msPerStepQuiet: q.msPerStep ?? null, loadQuiet: out.load, commitQuiet: commit, ...(q.verdict !== f.verdict ? { verdictQuiet: q.verdict } : {}) });
+    }
+    writeFileSync(outFile(set), JSON.stringify(rec, null, 2) + '\n');
+    return;
+  }
   out.seconds = Math.round((Date.now() - started) / 1000);
   mkdirSync('data/viewer', { recursive: true });
   writeFileSync(outFile(set), JSON.stringify(out, null, 2) + '\n');
