@@ -77,7 +77,6 @@ h1 { font-family: var(--display); font-size: 30px; font-weight: 700; line-height
 #times th:nth-child(-n+2), #times td:nth-child(-n+2) { text-align: left; }
 #times td:nth-child(2) { white-space: normal; min-width: 260px; max-width: 520px; }
 #times a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-#times .slow { color: var(--few); font-weight: 600; }
 #times .none { color: var(--muted); }
 @media (max-width: 640px) { #map { height: 150vw; } h1 { font-size: 24px; } }
 </style>
@@ -161,8 +160,6 @@ function treemap(items, W, H) {
 const pct = (s) => (s.share === null ? 'nothing checked' : Math.round(s.share * 100) + '%');
 // A time in the viewer, in ms, as the page writes it.
 const ms = (n) => (n === null || n === undefined ? 'not timed' : Math.round(n).toLocaleString('en') + ' ms');
-// Erik could not tell whether the 9397's steering worked at this time for one small turn or more (decision 258).
-const TOO_SLOW = 1360;
 // Where a set opens in Kinebrick: on the preview site where it has the set, else in the viewer on this computer.
 const plus = (text) => encodeURIComponent(text).replace(/%20/g, '+');
 const opens = (s) => (s.viewer ? PREVIEW + '?model=' + plus(s.viewer) : LOCAL + '?file=' + s.file.split('/').map(plus).join('/'));
@@ -226,9 +223,8 @@ function times() {
   document.getElementById('times').hidden = false;
   const working = sets.reduce((t, s) => t + s.works, 0);
   const timedSets = new Set(rows.map((r) => r.s.set)).size;
-  const slow = rows.filter((r) => r.one !== null && r.one >= TOO_SLOW).length;
   const noOne = rows.filter((r) => r.one === null).length;
-  document.getElementById('times-sub').textContent = `${rows.length.toLocaleString('en')} of the ${working.toLocaleString('en')} working functions timed so far, in ${timedSets} sets` + (rows.length < working ? '; the sweep is still running' : '') + `. One small turn is one move of a drag: the control turned by one solver step (0.035 radian). A step in a long turn is the same step inside one turn of many steps, which costs less. ${slow} are too slow to tell whether they work (${TOO_SLOW.toLocaleString('en')} ms or more for one small turn, decision 258).` + (noOne ? ` ${noOne} were timed before the sweep measured one small turn.` : '') + ' A set opens in the viewer from its number.';
+  document.getElementById('times-sub').textContent = `${rows.length.toLocaleString('en')} of the ${working.toLocaleString('en')} working functions timed so far, in ${timedSets} sets` + (rows.length < working ? '; the sweep is still running' : '') + `. One small turn is one move of a drag: the control turned by one solver step (0.035 radian). A step in a long turn is the same step inside one turn of many steps, which costs less. All of these were measured while checks ran on the same computer, so they are higher than on a quiet one, by a factor not known; the slowest are timed again on a quiet computer when the run is through (decision 261).` + (noOne ? ` ${noOne} were timed before the sweep measured one small turn.` : '') + ' A set opens in the viewer from its number.';
   const cols = [
     ['Set', (r) => r.s.set.replace(/-1$/, '').padStart(6, '0') + String(r.n).padStart(3, '0')],
     ['Function', (r) => r.does],
@@ -259,7 +255,7 @@ function times() {
     const set = el('td');
     const a = el('a', '', r.s.number); a.href = opens(r.s); a.target = '_blank'; a.rel = 'noopener'; a.title = r.s.name;
     set.append(a, ` fn ${r.n}`);
-    const one = el('td', r.one === null ? 'none' : r.one >= TOO_SLOW ? 'slow' : '', ms(r.one) + (r.one !== null && r.one >= TOO_SLOW ? ' · too slow to tell' : ''));
+    const one = el('td', r.one === null ? 'none' : '', ms(r.one));
     tr.append(set, el('td', '', r.does), one, el('td', r.step === null ? 'none' : '', ms(r.step)), el('td', '', r.s.pieces.toLocaleString('en')), el('td', '', said[r.verdict] ?? r.verdict));
     table.append(tr);
   }
