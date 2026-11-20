@@ -1,0 +1,22 @@
+{
+  "set": "8032-1",
+  "commit": "e9c41a88",
+  "date": "2026-11-20T02:25:31.175Z",
+  "seconds": 9,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel works the saw: a pin in the 24 tooth gear on the handwheel's axle is a crank that pushes the toothed blade back and forth, and a link from the blade's far end rocks the tilted frame with the crown gear on top.",
+      "verdict": "not shown",
+      "why": "the sweep failed: Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:370:30), <anonymous>:1:437)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymo",
+      "seconds": 5
+    },
+    {
+      "function": 2,
+      "does": "The crown gear on top of the tilted frame turns freely on its axle, like a saw blade.",
+      "verdict": "not shown",
+      "why": "the sweep failed: Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:370:30), <anonymous>:1:437)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymo",
+      "seconds": 4
+    }
+  ]
+}
