@@ -10,7 +10,7 @@ import { readdirSync } from 'node:fs';
 const args = process.argv.slice(2);
 const address = args[0]?.startsWith('http') ? args.shift()! : 'http://localhost:5174';
 const scripts = readdirSync('scripts/drags')
-  .filter((f) => f.endsWith('.ts') && f !== 'drag.ts' && f !== 'all.ts')
+  .filter((f) => f.endsWith('.ts') && !['drag.ts', 'all.ts', 'open-all.ts', 'sweep.ts'].includes(f))
   .filter((f) => !args.length || args.some((a) => f.startsWith(a)))
   .sort();
 let no = 0;

@@ -45,7 +45,8 @@ import { LoopPath, loopLinks } from './paths.ts';
 import { Catch, catchShiftDue, catchShifts, findCatches, findSliders, findSticks, Slider, sliderMovedTo, sliderPosition, slideDirection, Stick, stickEnd, leverAt, stickPositionNow, stickPositions } from './shift.ts';
 import { keepFile, keptFile, LDRAW_LIBRARY, libraryReader } from './library.ts';
 import { applyErrata, type Errata, setOfFile } from './errata.ts';
-import { drawnDirectly, packModel, shapeName } from './pack.ts';
+import { drawnDirectly, packModel, REMOVED_FILE, shapeName } from './pack.ts';
+import { loadedLines } from './loadedLines.ts';
 import { studioModel, studioParts } from './studio.ts';
 import { thumbnail } from './thumbnail.ts';
 import connectionsUrl from '../data/connections.json?url';
@@ -461,16 +462,15 @@ async function start() {
   model.visible = false;
   ldrawSpace.add(model);
 
-  // The loader makes one child group per line of the packed model, in file order: the parts,
-  // then the shapes submodels draw without parts (see scripts/pack-models.ts). A shape moves
+  // The packed model's lines are the parts, then the shapes submodels draw without parts (see
+  // scripts/pack-models.ts); a part an erratum removed is drawn as REMOVED_FILE. A shape moves
   // with the body of a part from the same submodel, or else the frame; but a rubber band's, kept
   // as drawn where it can't be drawn afresh (see showBands), with the first thing it's hooked
   // round (the 855 Mobile Crane's, on its cab, slews with it).
-  const partObjects: Object3D[] = model.children.slice(0, startParts.length);
-  const shapeObjects: Object3D[] = model.children.slice(startParts.length);
-  if (model.children.length !== startParts.length + drawnShapes.length) {
-    throw new Error(`Loader made ${model.children.length} parts and shapes, model has ${startParts.length} and ${drawnShapes.length}`);
-  }
+  const lines = [...startParts.map((p) => ({ name: p.removed ? REMOVED_FILE : p.name, color: p.color, matrix: p.matrix })), ...drawnShapes.map((s) => ({ name: shapeName(s.submodel), color: s.color, matrix: s.matrix }))];
+  const lineObjects = loadedLines(model, lines, loader);
+  const partObjects: Object3D[] = lineObjects.slice(0, startParts.length);
+  const shapeObjects: Object3D[] = lineObjects.slice(startParts.length);
   // A shape lies flat on the part it's drawn on (a sticker, a quarter of an LDU above the
   // surface), where the depth buffer can't tell the two apart: its faces are pulled a hair
   // towards the camera, so it's drawn on top rather than flickering.
@@ -1223,7 +1223,7 @@ async function start() {
   // Where the camera starts, for Reset (the camera follows the model while a part turns).
   const startCamera = { position: camera.position.clone(), target: controls.target.clone() };
   const interaction = setUpInteraction(setup);
-  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, drawn: () => partObjects.map((obj) => obj.matrix.clone()), setup, interaction, collisions: () => collisions };
+  if (OPTIONS.includes('debug')) (window as unknown as { kinebrick: unknown }).kinebrick = { get mech() { return mech; }, get kin() { return kin; }, get parts() { return startParts; }, matrices: partMatrices, drawn: () => partObjects.map((obj) => obj.matrix.clone()), noChild: () => partObjects.flatMap((obj, i) => (obj.userData.noChild ? [{ part: i, name: obj.name, why: obj.userData.noChild }] : [])), setup, interaction, collisions: () => collisions };
   // The speed of a part kept moving (Ctrl-click), in whole rpm, kept in the address too. It is
   // on the title card: a box to type it in, and a button either side that changes it by 10,
   // never below 1 or above MAX_RPM.
