@@ -115,8 +115,8 @@ Every [milestone](#milestones) of version 1.0, the kinematics, is done but M7.
 
 | Result | Functions | Share |
 |---|---|---|
-| Works | 737 | 60% |
-| Partly | 216 | 18% |
+| Works | 739 | 60% |
+| Partly | 214 | 17% |
 | Doesn't work | 92 | 8% |
 | Skipped or not checked | 178 | 15% |
 
