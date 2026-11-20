@@ -2312,31 +2312,65 @@ export class Kinematics {
 
   // The free motions (see freeMotionsInBasis) in two lots: the car moving on its suspension,
   // and all the others, orthogonal to those.
+  // Worked out on the coordinates some row ties (decision 241 of 2026-11-19): a coordinate of the
+  // tree basis that no row ties, every row's entry for it below RANK_TOLERANCE as the null space
+  // has it, is free on its own whatever the rest do. Every lot below keeps it whole, as its own
+  // motion, the rows (the equations, the tyres' slip, the springs, the frame kept still) being
+  // nothing there, so the work is done without it and it is put back after, unchanged. On the
+  // 9397 Logging Truck, 192 of 451 coordinates are such (free-spinning hubs, pins, hinges): the
+  // work on the rest is a fraction, and the motions are the same, in another orthonormal basis of
+  // the same space.
   private freeMotionsApart(): [number[][], number[][]] {
     const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
     const n = 6 * this.bodyCount;
     const basis = this.treeBasis();
     const q = basis[0].length;
     const rows = inBasis(this.buildEquations(null, slip, true), basis);
-    const motions = orthonormalize(nullSpace(rows, q));
     this.scrubNeeded = null;
     this.leastScrub = 0;
     this.slipRows = [];
-    if (slip.sideways.length === 0 || motions.length === 0) return [motions, []];
     const [sideways, travel, lift, rise] = [slip.sideways, slip.travel, slip.lift, slip.rise].map((r) => inBasis(r, basis));
-    this.slipRows = [...sideways, ...lift];
-    const frameStill = Array.from({ length: 6 }, (_, k) => {
-      const row = new Array(n).fill(0);
-      row[k] = 1;
-      return row;
+    if (sideways.length) this.slipRows = [...sideways, ...lift];
+    const frameStill = inBasis(
+      Array.from({ length: 6 }, (_, k) => {
+        const row = new Array(n).fill(0);
+        row[k] = 1;
+        return row;
+      }),
+      basis,
+    );
+    const springs = sideways.length ? inBasis(this.springRows(), basis) : [];
+    const every = sideways.length ? [...rows, ...sideways, ...travel, ...lift, ...rise, ...springs, ...frameStill] : rows;
+    const tied: number[] = [];
+    const free: number[] = [];
+    for (let c = 0; c < q; c++) (every.some((row) => Math.abs(row[c]) >= RANK_TOLERANCE) ? tied : free).push(c);
+    if (free.length === 0) return this.freeMotionsOf(rows, sideways, travel, lift, rise, springs, frameStill, q);
+    const on = (list: number[][]) => list.map((row) => tied.map((c) => row[c]));
+    const [usual, suspension] = this.freeMotionsOf(on(rows), on(sideways), on(travel), on(lift), on(rise), on(springs), on(frameStill), tied.length);
+    const back = (z: number[]) => {
+      const out = new Array(q).fill(0);
+      tied.forEach((c, i) => (out[c] = z[i]));
+      return out;
+    };
+    const units = free.map((c) => {
+      const u = new Array(q).fill(0);
+      u[c] = 1;
+      return u;
     });
+    return [[...usual.map(back), ...units], suspension.map(back)];
+  }
+
+  // freeMotionsApart's work, on the coordinates given (`q` of them): the rows, the tyres' slip,
+  // the springs and the frame kept still, in those coordinates.
+  private freeMotionsOf(rows: number[][], sideways: number[][], travel: number[][], lift: number[][], rise: number[][], springs: number[][], frameStill: number[][], q: number): [number[][], number[][]] {
+    const motions = orthonormalize(nullSpace(rows, q));
+    if (sideways.length === 0 || motions.length === 0) return [motions, []];
     // Parked and rolling, the car is on its springs (see Joint.springHeld): rolling is chosen as
     // the motion that scrubs least, and with its suspension free it mixed in the car sinking and
     // tipping to scrub a hair less (the 8880 Super Car, pushed along on sliding shock absorbers,
     // didn't come back). Moving on its suspension is left to the suspension's own motions, below.
-    const springs = inBasis(this.springRows(), basis);
     const onSprings = springs.length ? orthonormalize(nullSpace([...rows, ...springs], q)) : motions;
-    const parked = orthonormalize(nullSpace([...rows, ...springs, ...inBasis(frameStill, basis)], q));
+    const parked = orthonormalize(nullSpace([...rows, ...springs, ...frameStill], q));
     const keptParked = parked.length ? orthonormalize(leastScrub(parked, { sideways: lift, travel: [...travel, ...sideways], lift: [], rise: [] }, LIFT)) : [];
     // The rest of the motions, with the parked ones taken out, judged as rolling. Taking them
     // out first keeps the two sets apart: joined afterwards, a rolling motion that's nearly a

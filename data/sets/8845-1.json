@@ -93,9 +93,9 @@
     ]
   },
   "generated": {
-    "commit": "335ef375",
+    "commit": "bef93a60",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 7,
     "counts": {
       "no": 1,
       "works": 2,
@@ -160,7 +160,7 @@
               0
             ],
             "p105 4255 against p106 4254": [
-              4.83e-7,
+              6.44e-7,
               28.5
             ],
             "p103 4255 against p104 4254": [
@@ -271,7 +271,7 @@
             "p103 4255 against p104 4254"
           ]
         ],
-        "seconds": 1.3
+        "seconds": 2
       },
       {
         "result": "skipped",
@@ -393,13 +393,13 @@
           [],
           []
         ],
-        "seconds": 1.5
+        "seconds": 2.7
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 257
+    "peak": 244
   }
 }
