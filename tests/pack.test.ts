@@ -84,8 +84,8 @@ describe('a model whose file embeds a part read as its pieces', () => {
     };
     const opened = await packModel('42108', readFileSync(file, 'utf-8'), colours, readFile, (name) => drawnDirectly(name, primitives), roles);
     const viewer = inferMechanism(opened.parts, library, roles, opened.paths);
-    const scripts = loadModel(file, true).mech;
-    expect(opened.parts.length).toBe(loadModel(file, true).parts.length);
+    const scripts = (await loadModel(file, true)).mech;
+    expect(opened.parts.length).toBe((await loadModel(file, true)).parts.length);
     expect(viewer.bodyOf).toEqual(scripts.bodyOf);
     expect(viewer.joints.length).toBe(scripts.joints.length);
     expect(viewer.meshes).toEqual(scripts.meshes);

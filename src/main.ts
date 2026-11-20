@@ -29,7 +29,7 @@ import { LDrawLoader } from 'three/addons/loaders/LDrawLoader.js';
 import { LDrawConditionalLineMaterial } from 'three/addons/materials/LDrawConditionalLineMaterial.js';
 import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 import { Appearance } from './appearance.ts';
-import { collisionGeometry, Collisions, connectedPairs, pairNumber, PartMesh } from './collisions.ts';
+import { collisionGeometry, Collisions, connectedPairs, pairNumber, PartMesh, touchingFrom } from './collisions.ts';
 import { keptPairs, keyFor, storedPairs, storePairs } from './keptPairs.ts';
 import { keptPivots } from './keptPivots.ts';
 import { pivotsKey } from './pivotsKey.ts';
@@ -438,23 +438,26 @@ async function start() {
   }
   const primitives = new Set(packed?.primitives ?? []);
   const { parts: startParts, shapes: drawnShapes, paths } = parseModel(modelText, (name) => primitives.has(name), (name) => packed?.pieces[name] ?? null);
-  // The mechanism, worked out from the parts as placed (it needs no shapes). Here, so the loader
-  // needn't build the pieces of a string's shape that won't be shown (see showStrings).
-  summary.textContent = 'Working out how it moves…';
-  await shown();
   // The pins the rule for stuck actuators frees, as kept for this model (see keptPivots.ts), if
   // its kept file's key matches: else the rule is worked out as the model is read.
   const keptPins = await keptPivots(FILE ? FILE.replace(/^.*[\\/]/, '').replace(/\.(ldr|mpd|io)$/i, '') : MODEL, pivotsKey(startParts, table, roles));
-  let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)), false, keptPins);
-  // The paths as the file drew them, for Reset: working the mechanism out afresh moves them with
-  // the parts they run round (see movePaths).
+  // The mechanism is worked out once the parts' shapes are loaded (below), for what its loose
+  // parts touch as built (see touchingFrom, decision 259 of 2026-11-20). A model with a string
+  // (a path that isn't looped, with circles: a crane's rope) is also worked out here, before
+  // loading, as it was, for its strings alone: so the loader needn't build the pieces of a
+  // string's shape that won't be shown (see showStrings).
+  const ropes = paths.some((path) => !path.looped && path.points.some((p) => p.circle));
+  if (ropes) {
+    summary.textContent = 'Working out how it moves…';
+    await shown();
+  }
   const copyPoint = (p: PathPoint) => ({ ...p, center: p.center.clone(), axis: p.axis.clone() });
-  const startPaths = paths.map((path) => path.points.map(copyPoint));
+  const stringPaths = ropes ? inferMechanism(startParts.map((p) => ({ ...p })), table, roles, paths.map((path) => ({ ...path, points: path.points.map(copyPoint) })), new Set(FREE.filter((p) => p < startParts.length)), false, keptPins).strings.map((s) => s.path.points[0].center.toArray().join()) : [];
 
   // Loading, with how far the download has got.
   const megabytes = (bytes: number) => (bytes / 1e6).toFixed(1);
   buildEachPartOnce(loader);
-  firstPieceOnly(loader, drawnShapes.filter((shape) => mech.strings.some((s) => s.path === shape.path)).map((shape) => shapeName(shape.submodel)));
+  firstPieceOnly(loader, drawnShapes.filter((shape) => shape.path && stringPaths.includes(shape.path.points[0].center.toArray().join())).map((shape) => shapeName(shape.submodel)));
   summary.textContent = 'Loading…';
   const model = await load((e) => (summary.textContent = `Loading… ${megabytes(e.loaded)}${e.lengthComputable ? ` of ${megabytes(e.total)}` : ''} MB`));
   // Hidden until the camera is pointed at it (frameCamera, below): the page shows how loading is
@@ -481,11 +484,7 @@ async function start() {
       o.material = Array.isArray(o.material) ? o.material.map(offset) : offset(o.material);
     });
   }
-  shapeObjects.forEach((obj, i) => {
-    const band = mech.loops.find((loop) => !loop.links.length && loop.path === drawnShapes[i].path);
-    obj.userData.nearPart = band ? mech.bodies[band.carriers[0]].parts[0] : drawnShapes[i].nearPart;
-    obj.updateMatrix();
-  });
+  shapeObjects.forEach((obj) => obj.updateMatrix());
   const loadedShapeMatrices = shapeObjects.map((obj) => obj.matrix.clone());
   partObjects.forEach((obj, i) => {
     if (!startParts[i].removed && normalizePartName(obj.name) !== startParts[i].name) {
@@ -509,6 +508,23 @@ async function start() {
       list.push({ geometry: collisionGeometry(mesh.geometry), matrix: toPart.clone().multiply(mesh.matrixWorld) });
     });
     return list;
+  });
+
+  // The mechanism, worked out from the parts as placed and what its loose parts touch as built.
+  summary.textContent = 'Working out how it moves…';
+  await shown();
+  const touching = touchingFrom(shapes);
+  let mech = inferMechanism(startParts, table, roles, paths, new Set(FREE.filter((p) => p < startParts.length)), false, keptPins, new Set(), touching);
+  // The strings the loader was told of are the mechanism's (see stringPaths): else a rope's shape
+  // would be drawn in part, or built whole for nothing.
+  const strung = mech.strings.map((s) => s.path.points[0].center.toArray().join());
+  if (strung.length !== stringPaths.length || strung.some((k) => !stringPaths.includes(k))) console.warn('The strings found before loading are not the mechanism\'s: a rope may be drawn wrong.');
+  // The paths as the file drew them, for Reset: working the mechanism out afresh moves them with
+  // the parts they run round (see movePaths).
+  const startPaths = paths.map((path) => path.points.map(copyPoint));
+  shapeObjects.forEach((obj, i) => {
+    const band = mech.loops.find((loop) => !loop.links.length && loop.path === drawnShapes[i].path);
+    obj.userData.nearPart = band ? mech.bodies[band.carriers[0]].parts[0] : drawnShapes[i].nearPart;
   });
 
   // The friction pins freed so far, so that a part they held can move (see pinsToFree), until
@@ -536,6 +552,12 @@ async function start() {
       return;
     }
     pinWorker.onmessage = (e: MessageEvent) => {
+      // The helper asks what loose parts touch as built (see pinWorker.ts): from the shapes here.
+      if (e.data.need) {
+        const said = touching(startParts.map((p) => p.matrix), e.data.need);
+        pinWorker?.postMessage({ touches: [...said], retry: e.data.retry });
+        return;
+      }
       answers.get(e.data.ask)?.(e.data.pins, e.data.why);
       answers.delete(e.data.ask);
     };
@@ -560,7 +582,7 @@ async function start() {
   // from the model with every friction pin free as the parts now are.
   const pinsToShift = (part: number) =>
     slidMoved
-      ? Promise.resolve(((answer) => ({ pins: answer.pins.filter((pin) => !freed.has(pin)), why: answer.why }))(pinsForShift(mech, inferMechanism(parts, table, roles, paths, new Set(), true), part)))
+      ? Promise.resolve(((answer) => ({ pins: answer.pins.filter((pin) => !freed.has(pin)), why: answer.why }))(pinsForShift(mech, inferMechanism(parts, table, roles, paths, new Set(), true, null, new Set(), touching), part)))
       : new Promise<{ pins: number[]; why: 'more' | 'joints' | null }>((resolve) => {
       startPinWorker();
       if (!pinWorker) return resolve({ pins: [], why: 'more' });
@@ -726,7 +748,7 @@ async function start() {
   // partObjects already there.
   function read(placed: PlacedPart[], known?: Mechanism) {
     parts = placed;
-    mech = known ?? inferMechanism(parts, table, roles, paths, freed, false, placed === startParts ? keptPins : null, slid);
+    mech = known ?? inferMechanism(parts, table, roles, paths, freed, false, placed === startParts ? keptPins : null, slid, touching);
     kin = new Kinematics(mech, { lifted });
     kin.scrub = scrub / 100;
     sliders = findSliders(parts, mech, table, modelSettings(modelText).slides);

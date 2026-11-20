@@ -11,8 +11,8 @@ describe.skipIf(!existsSync(file))('42099 4x4 X-treme Off-Roader', () => {
   // end, in its differential's socket and its hub's. Tied by their turning only, the shafts
   // turned about the model's origin, 240 LDU away, as the motor drove them. Each is held at its
   // differential's end, and on its hub socket's axis at the other (decision 74).
-  it("the front motor turns each front drive shaft with both its balls in their sockets", () => {
-    const { parts, mech, kin } = loadModel(file, true);
+  it("the front motor turns each front drive shaft with both its balls in their sockets", async () => {
+    const { parts, mech, kin } = await loadModel(file, true);
     expect(parts[878].name).toBe('42099 - 18575.dat');
     const joint = kin.parentLink(mech.bodyOf[878])!.joint;
     const hanging = kin.couplings.flatMap((c, i) => (c.hangs ? [i] : []));

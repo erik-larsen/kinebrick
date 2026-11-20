@@ -1,7 +1,9 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { loopLinks } from '../../src/paths.ts';
-import { load } from './load.ts';
+import { load, readShapes } from './load.ts';
+
+await readShapes('models/856-Bulldozer.mpd');
 
 describe('856 Bulldozer', () => {
   const { parts, mech, kin, bodyOf } = load('models/856-Bulldozer.mpd');

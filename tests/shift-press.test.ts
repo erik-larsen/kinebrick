@@ -8,8 +8,8 @@ import { pinsForShift } from '../src/pinSearch.ts';
 // check both ask pinsForShift.
 describe('the pins a press with Shift frees', () => {
   const crane = 'omr/42082-1 Rough Terrain Crane.mpd';
-  it.skipIf(!existsSync(crane))("frees the hinge pins of the 42082 Rough Terrain Crane's cab door, which friction pins fuse to the cab", () => {
-    const loaded = loadModel(crane, true);
+  it.skipIf(!existsSync(crane))("frees the hinge pins of the 42082 Rough Terrain Crane's cab door, which friction pins fuse to the cab", async () => {
+    const loaded = await loadModel(crane, true);
     const allFree = loaded.allFree(loaded.parts);
     expect(pinsForShift(loaded.mech, allFree, 3789)).toEqual({ pins: [3792, 3793], why: null });
     // The cab itself (p2649, measured against in function 9): nothing but its joints holds it in
@@ -17,8 +17,8 @@ describe('the pins a press with Shift frees', () => {
     expect(pinsForShift(loaded.mech, allFree, 2649).why).not.toBeNull();
   }, 180_000);
   const forest = 'omr/42080-1 Forest Machine.mpd';
-  it.skipIf(!existsSync(forest))("frees none for the 42080 Forest Machine's boom knob, in the frame even with every pin free", () => {
-    const loaded = loadModel(forest, true);
+  it.skipIf(!existsSync(forest))("frees none for the 42080 Forest Machine's boom knob, in the frame even with every pin free", async () => {
+    const loaded = await loadModel(forest, true);
     expect(pinsForShift(loaded.mech, loaded.allFree(loaded.parts), 1893)).toEqual({ pins: [], why: 'more' });
   }, 180_000);
 });

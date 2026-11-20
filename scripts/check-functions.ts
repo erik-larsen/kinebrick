@@ -290,7 +290,7 @@ interface Fn {
 // Given `only`, just that function (by its place in the list) is checked, and only its model is
 // loaded: the others' entries are left out (null), for a set checked a function to a process
 // (see SPLIT_OVER).
-function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
+async function check(set: { curated: { model: string; functions: Fn[] }; generated?: { functions?: Checked[] } }, only: number | null = null) {
   const { model, functions } = set.curated;
   // What each function came to the last time, for --causes: for a held one, what was found (see holds.ts).
   const priors = (set.generated?.functions ?? []).map(foundOf);
@@ -303,7 +303,7 @@ function check(set: { curated: { model: string; functions: Fn[] }; generated?: {
   for (const m of new Set(functions.map(modelOf))) {
     const mine = functions.flatMap((fn, i) => (modelOf(fn) === m && wanted(i) ? [i] : []));
     if (mine.length === 0) continue;
-    const found = checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
+    const found = await checkModel(m, mine.map((i) => functions[i]), mine.map((i) => priors[i]));
     mine.forEach((i, at) => (checked[i] = found.checked[at]));
     loose.push(...found.loose.map((p) => (m === model ? p : `${p} in ${m}`)));
     errata.applied.push(...found.errata.applied);
@@ -350,10 +350,10 @@ function withoutChecking(fn: Fn): Checked | null {
 }
 
 // Checks functions on one model: each one's result, and the model's loose parts.
-function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
+async function checkModel(model: string, functions: Fn[], priors: (Checked | undefined)[]) {
   // A model from the OMR, or a changed copy of one (see invariance.ts), is read with the library's
   // connections.
-  const loaded = loadModel(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1');
+  const loaded = await loadModel(model, model.startsWith('omr/') || process.env.KINEBRICK_AS_OMR === '1', undefined, shapesOf.get(model));
   const { table, slides } = loaded;
   // The model as it's being worked: as loaded, or worked out afresh after a shift (see shiftTo).
   let { parts, mech, kin } = loaded;
@@ -1637,7 +1637,7 @@ if (one >= 0) {
     }
   }
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
-  const found = check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
+  const found = await check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
   // With the most memory it took (see check-pool.ts), for the next run to expect. Let the output
   // drain before the process ends: a pipe takes it in pieces.
   process.stdout.write(JSON.stringify({ ...found, peak: peakMb() }), () => process.exit(0));
@@ -1699,7 +1699,7 @@ async function main() {
   // How many functions have each cause, of the sets checked.
   const caused: Partial<Record<Cause, number>> = {};
   const notBack = { torn: 0, 'free-turned': 0, 'moved whole': 0 };
-  type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
+  type Found = Awaited<ReturnType<typeof check>> | { timedOut: number } | { failed: string };
   // The sets whose process failed: their files are left as they were.
   const failedSets: string[] = [];
   // Each process may take as much memory as the pool's whole budget (see check-pool.ts), half the

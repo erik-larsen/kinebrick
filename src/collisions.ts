@@ -245,6 +245,62 @@ export function libraryRelease(ldconfig: string): string {
   return /^0 !LDRAW_ORG .*$/m.exec(ldconfig)?.[0].trim() ?? '';
 }
 
+// A part's shape for collision tests, from its meshes: shrunk (see shrink), each mesh with its
+// tree, and the box round them all, in the part's own coordinates. A list several parts share
+// (see part-shapes.ts) makes one shape, its tree built once; a tree built before is kept.
+const shapesMade = new WeakMap<PartMesh[], Shape>();
+function shapeOf(list: PartMesh[]): Shape {
+  const known = shapesMade.get(list);
+  if (known) return known;
+  const box = boxOf(list);
+  const built = list.map((m) => {
+    const bvh = m.geometry.boundsTree instanceof MeshBVH ? m.geometry.boundsTree : new MeshBVH(m.geometry);
+    m.geometry.boundsTree = bvh;
+    return { geometry: m.geometry, bvh, matrix: m.matrix };
+  });
+  const shape = { meshes: built, box };
+  shapesMade.set(list, shape);
+  return shape;
+}
+
+// The box round a part's shrunk meshes, in its own coordinates (the box of shapeOf), without
+// building their trees.
+const boxesMade = new WeakMap<PartMesh[], Box3>();
+function boxOf(list: PartMesh[]): Box3 {
+  const known = boxesMade.get(list);
+  if (known) return known;
+  shrink(list);
+  const box = new Box3();
+  for (const m of list) {
+    m.geometry.computeBoundingBox();
+    box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
+  }
+  boxesMade.set(list, box);
+  return box;
+}
+
+// What each of some parts touches, placed as `partMatrices` says, by the first pass's own test
+// (see nearPairsOf): their boxes within NEAR of each other, then their shrunk shapes within NEAR
+// (shapesNear). For the inference, which asks it for its loose parts (decision 259 of
+// 2026-11-20: a loose part rides with a part it touches as built; see rideAlong). Only the parts
+// whose boxes meet one of those asked about have their trees built. `meshes` are each part's, as
+// the collision pass is given them (the viewer's from its loader, the scripts' from partShapes).
+export type Touching = (partMatrices: Matrix4[], which: number[]) => Map<number, number[]>;
+export function touchingFrom(meshes: PartMesh[][]): Touching {
+  return (partMatrices, which) => {
+    const wanted = new Set(which);
+    const out = new Map(which.map((i) => [i, [] as number[]]));
+    // The parts only: a script's list of meshes goes on with the shapes submodels draw.
+    const pairs = meetingPairs(partMatrices.map((_, i) => boxOf(meshes[i] ?? [])), partMatrices, (a, b) => wanted.has(a) || wanted.has(b));
+    for (const [a, b] of pairs) {
+      if (!shapesNear(shapeOf(meshes[a]), shapeOf(meshes[b]), partMatrices[a].clone().invert().multiply(partMatrices[b]))) continue;
+      if (wanted.has(a)) out.get(a)!.push(b);
+      if (wanted.has(b)) out.get(b)!.push(a);
+    }
+    return out;
+  };
+}
+
 // The first pass's whole result, kept per model (see data/collisions/): every pair of parts
 // whose boxes meet as built, whatever bodies they're on, and which of them are near. It doesn't
 // depend on how the model is read, so a change to the inference never makes it stale.
@@ -282,25 +338,7 @@ export class Collisions {
   // found here: `nearPairs` then says which they are (see setNear), and the page goes on
   // meanwhile.
   constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false) {
-    // A list several parts share (see part-shapes.ts) makes one shape, its tree built once.
-    const made = new Map<PartMesh[], Shape>();
-    this.shapes = meshes.map((list) => {
-      const known = made.get(list);
-      if (known) return known;
-      shrink(list);
-      const box = new Box3();
-      const built = list.map((m) => {
-        // A tree built before (by a Collisions given this list earlier) is kept.
-        const bvh = m.geometry.boundsTree instanceof MeshBVH ? m.geometry.boundsTree : new MeshBVH(m.geometry);
-        m.geometry.boundsTree = bvh;
-        m.geometry.computeBoundingBox();
-        box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
-        return { geometry: m.geometry, bvh, matrix: m.matrix };
-      });
-      const shape = { meshes: built, box };
-      made.set(list, shape);
-      return shape;
-    });
+    this.shapes = meshes.map(shapeOf);
     this.waiting = later;
     this.watch(bodyOf, connected, partMatrices);
   }
