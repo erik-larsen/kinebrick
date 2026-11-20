@@ -114,9 +114,9 @@
     ]
   },
   "generated": {
-    "commit": "335ef375",
+    "commit": "bef93a60",
     "date": "2026-11-20",
-    "seconds": 8,
+    "seconds": 6,
     "counts": {
       "partly": 4,
       "skipped": 1
@@ -163,11 +163,11 @@
             ],
             "p231 8074 - 4185a": [
               0,
-              4.3e-15
+              1.09e-13
             ],
             "p233 70496": [
               0,
-              3.98e-15
+              1.09e-13
             ],
             "p0 3710": [
               0.967,
@@ -175,7 +175,7 @@
             ],
             "p201 3703": [
               7.9e-8,
-              0.00000856
+              0.00000843
             ]
           }
         ],
@@ -214,7 +214,7 @@
         ],
         "cause": "not-driven",
         "detail": "p231 8074 - 4185a",
-        "seconds": 1.7
+        "seconds": 1.1
       },
       {
         "result": "skipped",
@@ -257,11 +257,11 @@
             ],
             "p96 3738": [
               0,
-              3.93e-35
+              1.65e-36
             ],
             "p201 3703": [
               0,
-              4.89e-7
+              1.62e-7
             ],
             "p134 8074 - 4185a": [
               0,
@@ -305,11 +305,11 @@
           "p96 3738 is held by friction pins the control doesn't reach"
         ],
         "judged": [
-          0
+          1
         ],
         "cause": "part-fixed",
         "detail": "p96 3738",
-        "seconds": 1.6
+        "seconds": 1.2
       },
       {
         "result": "partly",
@@ -400,7 +400,7 @@
         ],
         "cause": "part-fixed",
         "detail": "p177 3708",
-        "seconds": 0.6
+        "seconds": 0.5
       },
       {
         "result": "partly",
@@ -491,9 +491,9 @@
         ],
         "cause": "part-fixed",
         "detail": "p223 3705",
-        "seconds": 0.6
+        "seconds": 0.5
       }
     ],
-    "peak": 359
+    "peak": 360
   }
 }
