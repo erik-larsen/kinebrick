@@ -26,7 +26,7 @@
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. Claude measured it: the steering does steer, but each solver step takes about half a second in that 1,460-part model, on main as on preview. So works in the check does not yet mean a user can do it. The worker builds a sweep that tries every working function in the viewer, by turning its control and by taking it with the pointer, and records shown or not shown and the time per step. The 57 sets where every checked function works go first. The solver owner measures and mends the time per step. On 20 November the stored records showed a second kind: of the 740 working functions, 24 have parts that should turn without end (wheels, tracks, engines, rotors) but are stopped by a collision after a small turn, and 33 more have every control stopped within 0.2 radian. Example: on the 42123 McLaren Senna the rear wheel that turns the V8 stops after 6 degrees, because Kinebrick does not yet let the crank push the pistons. The sweep takes these 57 first and judges each in the viewer; those the viewer does not show are marked down to partly. Claude expects the 740 to lose 20 to 40 by this. Also found: the viewer could not open the 42120 Rescue Hovercraft at all; the solver owner mends that first, and from now a script opens every model in the viewer before a change to its loading is merged."
+      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. Claude measured it: the steering does steer, but each solver step takes about half a second in that 1,460-part model, on main as on preview. So works in the check does not yet mean a user can do it. The worker builds a sweep that tries every working function in the viewer, by turning its control and by taking it with the pointer, and records shown or not shown and the time per step. The 57 sets where every checked function works go first. The solver owner measures and mends the time per step. On 20 November the stored records showed a second kind: of the 740 working functions, 24 have parts that should turn without end (wheels, tracks, engines, rotors) but are stopped by a collision after a small turn, and 33 more have every control stopped within 0.2 radian. Example: on the 42123 McLaren Senna the rear wheel that turns the V8 stops after 6 degrees, because Kinebrick does not yet let the crank push the pistons. The sweep takes these 57 first and judges each in the viewer; those the viewer does not show are marked down to partly. Claude expects the 740 to lose 20 to 40 by this."
     },
     {
       "title": "The next offer of main",
@@ -273,6 +273,10 @@
     {
       "date": "2026-11-20",
       "what": "Claude merged three mends to how the check reads parts' shapes (242, 247, 248) and a guard against a fault in the collision library, which took two faces lying in one plane for a crossing (249). Five false collision stops are gone; no result changes: 740 working functions. Every such change is now gated with a scan of all 190 models."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Claude merged a mend to the viewer's loading (253): two models had never opened in the viewer, the 42120 Rescue Hovercraft and the 42106 Stunt Show Truck & Bike. All 190 models now open, and a script that opens every one of them gates each change to the loading. The memory pool now serves the oldest waiter first (254)."
     }
   ]
 }
