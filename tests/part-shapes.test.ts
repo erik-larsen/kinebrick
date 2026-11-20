@@ -24,12 +24,18 @@ describe('part shapes', () => {
           '',
         ].join('\n'),
       );
-      const shapes = await partShapes(file);
+      // As the loader makes parts: the subpart is drawn into the model, and every part after it
+      // keeps its own shape.
+      const made = await partShapes(file);
+      expect(made.map((s) => s.name)).toEqual(['3001.dat', '3003.dat', '3001.dat']);
+      expect(made.every((s) => s.shape.length > 0)).toBe(true);
+      // The two red 3001s share one list.
+      expect(made[2]).toBe(made[0]);
+      // One for each part as the model's reading has them: the subpart, read as a part, has none.
+      const shapes = await partShapes(file, undefined, ['3001.dat', 's\\4865p01b.dat', '3003.dat', '3001.dat']);
       expect(shapes.map((s) => s.name)).toEqual(['3001.dat', 's/4865p01b.dat', '3003.dat', '3001.dat']);
       expect(shapes[1].shape).toEqual([]);
-      expect(shapes[2].shape.length).toBeGreaterThan(0);
-      expect(shapes[0].shape.length).toBeGreaterThan(0);
-      // The two red 3001s share one list.
+      expect(shapes[2].shape.length).toBe(made[1].shape.length);
       expect(shapes[3]).toBe(shapes[0]);
     } finally {
       rmSync(dir, { recursive: true, force: true });

@@ -91,6 +91,7 @@ import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { applyHolds, foundOf, readHolds } from './holds.ts';
+import { normalizePartName } from '../src/connections.ts';
 import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
 import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
@@ -406,7 +407,7 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
   const shapesHere = () => {
     const known = shapesOf.get(model);
     if (!known) return null;
-    const wrong = parts.findIndex((p, i) => !p.removed && (!known[i] || known[i].name !== p.name));
+    const wrong = parts.findIndex((p, i) => !p.removed && (!known[i] || known[i].name !== normalizePartName(p.name)));
     if (wrong >= 0) throw new Error(`the parts' shapes don't match the model's parts: part ${wrong} is ${parts[wrong].name}, its shape ${known[wrong]?.name ?? 'missing'}`);
     return known;
   };
@@ -1605,7 +1606,7 @@ if (one >= 0) {
   // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
   if (locks || stopsReport || collide) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) {
     const read = readParts(m, m.startsWith('omr/'));
-    shapesOf.set(m, await partShapes(m, read.text));
+    shapesOf.set(m, await partShapes(m, read.text, read.parts.map((p) => p.name)));
     if (stopsReport || collide) {
       const file = `data/collisions/${keptFileName(m)}.json`;
       const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;
