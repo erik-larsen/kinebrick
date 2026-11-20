@@ -1,0 +1,356 @@
+{
+  "set": "42074-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:30:52.647Z",
+  "load": 23.7,
+  "part": "A",
+  "parts": 325,
+  "seconds": 55,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The helm, a small steering wheel on the deck, turns the rudder at the stern: its 16 tooth gear drives, through a 16 tooth idler, a 16 tooth gear on the long shaft down the hull, whose 12 tooth bevel gear at the stern turns the 20 tooth bevel gear on the rudder's upright axle.",
+      "verdict": "shown",
+      "msOneCall": 25,
+      "msPerStep": 2,
+      "time": {
+        "open": 12,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p40 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 94,
+          "msOneCall": 25,
+          "stops": [],
+          "moved": {
+            "p37 94925": [
+              0,
+              85.94
+            ],
+            "p33 94925": [
+              0,
+              85.94
+            ],
+            "p90 6589": [
+              0,
+              85.94
+            ],
+            "p93 42074 - 32198": [
+              0,
+              51.57
+            ],
+            "p95 32316": [
+              34.8,
+              51.57
+            ],
+            "p34 32316": [
+              0,
+              0
+            ],
+            "p150 3648b": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p40 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 69,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p37 94925": [
+              0,
+              85.94
+            ],
+            "p33 94925": [
+              0,
+              85.94
+            ],
+            "p90 6589": [
+              0,
+              85.94
+            ],
+            "p93 42074 - 32198": [
+              0,
+              51.57
+            ],
+            "p95 32316": [
+              34.8,
+              51.57
+            ],
+            "p34 32316": [
+              0,
+              0
+            ],
+            "p150 3648b": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    },
+    {
+      "function": 2,
+      "does": "Either of the two winch cranks on the deck swings the boom and mainsail from side to side: a rubber band loop runs from each crank's reel to a reel in the middle, whose 8 tooth gear turns the 24 tooth gear at the foot of the boom.",
+      "verdict": "shown",
+      "msOneCall": 18,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p161 60483",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 118,
+          "msOneCall": 18,
+          "stops": [],
+          "moved": {
+            "p123 61510": [
+              0,
+              85.94
+            ],
+            "p124 10928": [
+              0,
+              85.94
+            ],
+            "p150 3648b": [
+              0,
+              28.65
+            ],
+            "p275 32278": [
+              20.73,
+              8.49
+            ],
+            "p40 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p161 60483",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 129,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p123 61510": [
+              0,
+              85.94
+            ],
+            "p124 10928": [
+              0,
+              85.94
+            ],
+            "p150 3648b": [
+              0,
+              28.65
+            ],
+            "p275 32278": [
+              20.73,
+              8.49
+            ],
+            "p40 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p160 60483",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 123,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p123 61510": [
+              0,
+              85.94
+            ],
+            "p124 10928": [
+              0,
+              85.94
+            ],
+            "p150 3648b": [
+              0,
+              28.65
+            ],
+            "p275 32278": [
+              20.73,
+              8.49
+            ],
+            "p40 2819": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p160 60483",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 113,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p123 61510": [
+              0,
+              85.94
+            ],
+            "p124 10928": [
+              0,
+              85.94
+            ],
+            "p150 3648b": [
+              0,
+              28.65
+            ],
+            "p275 32278": [
+              20.73,
+              8.49
+            ],
+            "p40 2819": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    },
+    {
+      "function": 3,
+      "does": "The yacht stands on four small wheels under its hull, which roll freely so it can be pushed along a table.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 20,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p43 42074 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 64,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p43 42074 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 61,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p45 42074 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 83,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p45 42074 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 87,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p47 42074 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p47 42074 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 85,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p54 42074 - 13971",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p54 42074 - 13971",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 60,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 24
+    }
+  ]
+}

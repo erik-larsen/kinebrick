@@ -1,0 +1,303 @@
+{
+  "set": "8832-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:10:11.262Z",
+  "load": 15,
+  "part": "A",
+  "parts": 83,
+  "seconds": 15,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: an 8-tooth gear at the foot of the slanted steering column slides the steering rack across, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p51 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 55,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p39 2790a": [
+              14.53,
+              0
+            ],
+            "p12 4261": [
+              0,
+              21.47
+            ],
+            "p13 4261": [
+              0,
+              21.47
+            ],
+            "p14 3749": [
+              3.72,
+              21.47
+            ],
+            "p15 3749": [
+              3.74,
+              21.47
+            ],
+            "p58 3894": [
+              0,
+              0
+            ],
+            "p59 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p51 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p39 2790a": [
+              14.53,
+              0
+            ],
+            "p12 4261": [
+              0,
+              21.47
+            ],
+            "p13 4261": [
+              0,
+              21.47
+            ],
+            "p14 3749": [
+              3.72,
+              21.47
+            ],
+            "p15 3749": [
+              3.74,
+              21.47
+            ],
+            "p58 3894": [
+              0,
+              0
+            ],
+            "p59 3894": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 2,
+      "does": "The rear wheels ride on a swinging arm: two 1x6 bricks pivot on the long axle under the seat and are joined at the back by an axle that pushes the shock absorber up against the roll bar, so the back wheels can rise and fall together.",
+      "verdict": "not shown",
+      "why": "A: p59 3894, p42 3707, p61 3749, p60 3749 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p58 3894",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 3894": [
+              0,
+              0
+            ],
+            "p42 3707": [
+              0,
+              0
+            ],
+            "p61 3749": [
+              0,
+              0
+            ],
+            "p60 3749": [
+              0,
+              0
+            ],
+            "p9 2738": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p58 3894",
+          "way": -1,
+          "asked": 0.27,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p59 3894": [
+              0,
+              0
+            ],
+            "p42 3707": [
+              0,
+              0
+            ],
+            "p61 3749": [
+              0,
+              0
+            ],
+            "p60 3749": [
+              0,
+              0
+            ],
+            "p9 2738": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 4,
+      "does": "The four wheels roll freely, each on its own axle pin; there's no drive.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p73 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 23,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p73 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 22,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p81 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 21,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p81 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 21,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p75 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 28,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p75 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 28,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p78 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p78 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 28,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

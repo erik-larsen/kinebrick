@@ -1,0 +1,468 @@
+{
+  "set": "42061-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:28:52.039Z",
+  "load": 37.8,
+  "part": "A",
+  "parts": 256,
+  "seconds": 49,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The gear on the cab roof steers all four wheels: its upright shaft runs down through the cab, and arms on it push links to the front and rear axles' steering knuckles, so the front wheels turn one way and the rear wheels the other.",
+      "verdict": "shown",
+      "msOneCall": 28,
+      "msPerStep": 6,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": {
+        "control": "p252 32270",
+        "way": 1,
+        "went": 0.436,
+        "asked": 0.47,
+        "by": [
+          "55/78"
+        ]
+      },
+      "stops": [
+        "55/78"
+      ],
+      "A": [
+        {
+          "control": "p252 32270",
+          "way": 1,
+          "asked": 0.47,
+          "went": 0.436,
+          "ms": 81,
+          "msOneCall": 28,
+          "stops": [
+            "55/78"
+          ],
+          "moved": {
+            "p28 48989": [
+              9.43,
+              27.29
+            ],
+            "p31 48989": [
+              9.43,
+              27.29
+            ],
+            "p40 48989": [
+              6.41,
+              18.45
+            ],
+            "p43 48989": [
+              6.41,
+              18.45
+            ],
+            "p85 32348": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p252 32270",
+          "way": -1,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 76,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p28 48989": [
+              6.77,
+              19.51
+            ],
+            "p31 48989": [
+              6.77,
+              19.51
+            ],
+            "p40 48989": [
+              10.46,
+              30.34
+            ],
+            "p43 48989": [
+              10.46,
+              30.34
+            ],
+            "p85 32348": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p252 32270",
+          "judged": "stands",
+          "why": "stopped at +0.436 rad (55/78); kinds multi-axle-steering, linkage-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 15
+    },
+    {
+      "function": 2,
+      "does": "The gear on the side of the chassis, between the wheels, raises and lowers the boom: its axle turns a bevel gear pair that drives a small linear actuator, which pushes the boom up about its pivot at the back.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p142 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 143,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p85 32348": [
+              2.64,
+              1.2
+            ],
+            "p90 18940": [
+              4.4,
+              1.2
+            ],
+            "p178 42061 - 28216": [
+              8.93,
+              1.2
+            ],
+            "p252 32270": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p142 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 142,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p85 32348": [
+              2.66,
+              1.22
+            ],
+            "p90 18940": [
+              4.44,
+              1.22
+            ],
+            "p178 42061 - 28216": [
+              9.02,
+              1.22
+            ],
+            "p252 32270": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 3,
+      "does": "Turning the axle end at the back of the boom extends and retracts the boom's inner section: a shaft runs along the outer section to a worm at its front, which drives the rack under the inner section like a lead screw.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p199 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p170 18942 against p90 18940": [
+              1.88,
+              0
+            ],
+            "p178 42061 - 28216 against p90 18940": [
+              1.88,
+              0
+            ],
+            "p90 18940": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p199 59443",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 48,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p170 18942 against p90 18940": [
+              1.88,
+              0
+            ],
+            "p178 42061 - 28216 against p90 18940": [
+              1.88,
+              0
+            ],
+            "p90 18940": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 4,
+      "does": "The axle end on top of the boom's head tilts the bucket: it turns a worm, which turns an 8 tooth gear, whose two crank arms swing the bucket on its pivot.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p181 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 99,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p184 10928": [
+              0,
+              10.74
+            ],
+            "p178 42061 - 28216 against p170 18942": [
+              4.19,
+              12.01
+            ],
+            "p170 18942 against p90 18940": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p181 59443",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 101,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p184 10928": [
+              0,
+              10.74
+            ],
+            "p178 42061 - 28216 against p170 18942": [
+              4.51,
+              12.95
+            ],
+            "p170 18942 against p90 18940": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 5,
+      "does": "The four wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p253 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 72,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p253 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 67,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p255 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 69,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p255 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 70,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p257 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 65,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p257 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 66,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p259 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 65,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p259 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 72,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    },
+    {
+      "function": 6,
+      "does": "The steering wheel in the cab turns on its own; it isn't linked to the steering.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p222 42061 - 16091",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 42,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p222 42061 - 16091",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

@@ -1,0 +1,654 @@
+{
+  "set": "858-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:27:12.958Z",
+  "load": 18.4,
+  "part": "A",
+  "parts": 242,
+  "seconds": 77,
+  "functions": [
+    {
+      "function": 1,
+      "does": "2-cycle engine: turning the hand wheel, the 24 tooth gear beside the engine with a pin for a handle, turns the crankshaft through a rubber band, about 2.9 times as fast, so its one piston runs up and down.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 0,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p20 3648a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p7 3705": [
+              0,
+              110.35
+            ],
+            "p15 3652": [
+              23.47,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p20 3648a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 13,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p7 3705": [
+              0,
+              110.35
+            ],
+            "p15 3652": [
+              23.47,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 2,
+      "does": "Boxer engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its six pistons run in and out, three each side.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p91 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p67 3652": [
+              11.08,
+              0
+            ],
+            "p71 3652": [
+              18.66,
+              0
+            ],
+            "p75 3652": [
+              15.47,
+              0
+            ],
+            "p79 3652": [
+              14.27,
+              0
+            ],
+            "p83 3652": [
+              11.08,
+              0
+            ],
+            "p87 3652": [
+              18.66,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p91 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p67 3652": [
+              14.27,
+              0
+            ],
+            "p71 3652": [
+              15.47,
+              0
+            ],
+            "p75 3652": [
+              18.66,
+              0
+            ],
+            "p79 3652": [
+              11.08,
+              0
+            ],
+            "p83 3652": [
+              14.27,
+              0
+            ],
+            "p87 3652": [
+              15.47,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 3,
+      "does": "Inline engine: pins on the camshaft's gears lift the three push rods in turn, and each rod tips its valve's rocker on the axle across the top of the cylinders; between pins, each rod drops back onto the plate it stands through, and its rocker onto the rod, or the studs below.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p91 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 35,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p138 3706": [
+              0,
+              110.35
+            ],
+            "p157 3706": [
+              0,
+              110.35
+            ]
+          }
+        },
+        {
+          "control": "p91 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p138 3706": [
+              0,
+              110.35
+            ],
+            "p157 3706": [
+              0,
+              110.35
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 4,
+      "does": "Inline engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its three pistons run up and down.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 4,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p43 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 154,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p23 3652": [
+              12.71,
+              0
+            ],
+            "p27 3652": [
+              17.03,
+              0
+            ],
+            "p31 3652": [
+              12.71,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p43 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 128,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p23 3652": [
+              12.71,
+              0
+            ],
+            "p27 3652": [
+              17.03,
+              0
+            ],
+            "p31 3652": [
+              12.71,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    },
+    {
+      "function": 5,
+      "does": "Inline engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the distributor's axle.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p43 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 121,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p110 3749": [
+              0,
+              110.35
+            ],
+            "p52 3706": [
+              0,
+              110.35
+            ]
+          }
+        },
+        {
+          "control": "p43 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 121,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p110 3749": [
+              0,
+              110.35
+            ],
+            "p52 3706": [
+              0,
+              110.35
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 6,
+      "does": "Inline engine: the crankshaft's four 24 tooth gears turn the camshaft's four beside them, at the same speed.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p43 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 126,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p32 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p43 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 124,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p32 3708": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 7,
+      "does": "Inline engine: pins on the camshaft's gears lift the three push rods in turn, and each rod tips its valve's rocker on the axle across the top of the cylinders; between pins, each rod drops back onto the plate it stands through, and its rocker onto the rod, or the studs below.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 3,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p43 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 121,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p157 3706": [
+              9.52,
+              0
+            ],
+            "p160 3706": [
+              10.25,
+              0
+            ],
+            "p163 3706": [
+              9.52,
+              0
+            ],
+            "p179 3700": [
+              2.44,
+              13.99
+            ],
+            "p181 3700": [
+              2.44,
+              13.99
+            ],
+            "p183 3700": [
+              1.8,
+              10.32
+            ]
+          }
+        },
+        {
+          "control": "p43 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 119,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p157 3706": [
+              10.93,
+              0
+            ],
+            "p160 3706": [
+              10.25,
+              0
+            ],
+            "p163 3706": [
+              10.93,
+              0
+            ],
+            "p179 3700": [
+              2.79,
+              16.07
+            ],
+            "p181 3700": [
+              2.79,
+              16.07
+            ],
+            "p183 3700": [
+              1.8,
+              10.32
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 8,
+      "does": "V-6 engine: turning the crank, the 40 tooth gear on the end of the crankshaft, with a pin for a handle, turns the crankshaft, so its six pistons run in and out of the two cylinder banks, which stay where they are: an axle across their tops and the engine block hold them in a V.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p133 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 63,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p16 3652": [
+              21.84,
+              0
+            ],
+            "p20 3652": [
+              2,
+              0
+            ],
+            "p24 3652": [
+              21.8,
+              0
+            ],
+            "p28 3652": [
+              2.57,
+              0
+            ],
+            "p32 3652": [
+              21.84,
+              0
+            ],
+            "p36 3652": [
+              2,
+              0
+            ],
+            "p0 3702": [
+              0,
+              0
+            ],
+            "p38 3701": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p133 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 52,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p16 3652": [
+              2.57,
+              0
+            ],
+            "p20 3652": [
+              21.8,
+              0
+            ],
+            "p24 3652": [
+              2,
+              0
+            ],
+            "p28 3652": [
+              21.84,
+              0
+            ],
+            "p32 3652": [
+              2.57,
+              0
+            ],
+            "p36 3652": [
+              21.8,
+              0
+            ],
+            "p0 3702": [
+              0,
+              0
+            ],
+            "p38 3701": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    },
+    {
+      "function": 9,
+      "does": "V-6 engine: as the crankshaft turns, rubber bands from its belt wheels turn the fan and the long axle along the engine's side.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p133 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 44,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p158 3749": [
+              0,
+              110.35
+            ],
+            "p114 3708": [
+              0,
+              110.35
+            ]
+          }
+        },
+        {
+          "control": "p133 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p158 3749": [
+              0,
+              110.35
+            ],
+            "p114 3708": [
+              0,
+              110.35
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    }
+  ]
+}

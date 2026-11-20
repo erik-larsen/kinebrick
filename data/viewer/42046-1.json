@@ -1,0 +1,221 @@
+{
+  "set": "42046-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:19:54.753Z",
+  "load": 22.6,
+  "part": "A",
+  "parts": 168,
+  "seconds": 26,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The rear wheels' 12-long axle runs through the pull-back motor under the back of the car, so the rear wheels roll, turning the motor's axle with them.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p157 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 59,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p93 3708": [
+              0,
+              85.94
+            ],
+            "p158 55978": [
+              0,
+              85.94
+            ],
+            "p164 55978": [
+              0,
+              85.94
+            ],
+            "p20 12799": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p157 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 52,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p93 3708": [
+              0,
+              85.94
+            ],
+            "p158 55978": [
+              0,
+              85.94
+            ],
+            "p164 55978": [
+              0,
+              85.94
+            ],
+            "p20 12799": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p163 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 43,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p93 3708": [
+              0,
+              85.94
+            ],
+            "p158 55978": [
+              0,
+              85.94
+            ],
+            "p164 55978": [
+              0,
+              85.94
+            ],
+            "p20 12799": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p163 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 56,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p93 3708": [
+              0,
+              85.94
+            ],
+            "p158 55978": [
+              0,
+              85.94
+            ],
+            "p164 55978": [
+              0,
+              85.94
+            ],
+            "p20 12799": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    },
+    {
+      "function": 2,
+      "does": "The front wheels roll freely on their own 12-long axle; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p159 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 42,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p56 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p159 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 41,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p56 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p161 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 47,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p56 3708": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p161 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p56 3708": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    }
+  ]
+}

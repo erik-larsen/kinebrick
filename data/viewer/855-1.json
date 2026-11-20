@@ -1,0 +1,574 @@
+{
+  "set": "855-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:35:35.931Z",
+  "load": 26.3,
+  "part": "A",
+  "parts": 512,
+  "seconds": 105,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The cab slews round on its turntable, carrying the boom with it.",
+      "verdict": "shown",
+      "msOneCall": 29,
+      "msPerStep": 10,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p162 3404",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 415,
+          "msOneCall": 29,
+          "stops": [],
+          "moved": {
+            "p315 3029": [
+              270.91,
+              85.94
+            ],
+            "p402 3703 against p315 3029": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p162 3404",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 378,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p315 3029": [
+              270.91,
+              85.94
+            ],
+            "p402 3703 against p315 3029": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 21
+    },
+    {
+      "function": 2,
+      "does": "The crank at the front of the cab's left side raises and lowers the boom: two racks slide under the cab and push the boom up on two struts.",
+      "verdict": "shown",
+      "msOneCall": 13,
+      "msPerStep": 5,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p272 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 202,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p315 3029 against p162 3404": [
+              6.73,
+              0.77
+            ],
+            "p245 3743 against p162 3404": [
+              1.67,
+              0
+            ],
+            "p402 3703 against p315 3029": [
+              0.02,
+              0
+            ],
+            "p483 3736 against p162 3404": [
+              0,
+              0.44
+            ]
+          }
+        },
+        {
+          "control": "p272 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 215,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p315 3029 against p162 3404": [
+              6.8,
+              0.78
+            ],
+            "p245 3743 against p162 3404": [
+              1.67,
+              0
+            ],
+            "p402 3703 against p315 3029": [
+              0.02,
+              0
+            ],
+            "p483 3736 against p162 3404": [
+              0,
+              0.45
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 3,
+      "does": "The crank at the back of the cab's left side winds the winch, raising or lowering the hook, which hangs on its string over a pulley at the boom tip and round its own pulley.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 3,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p313 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 121,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p497 3651 against p315 3029": [
+              5.62,
+              0
+            ],
+            "p315 3029 against p162 3404": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p313 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 126,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p497 3651 against p315 3029": [
+              5.62,
+              0
+            ],
+            "p315 3029 against p162 3404": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 4,
+      "does": "The crank high on the cab's right side, on the boom's pivot axle, extends the boom's blue inner section: a crown gear and a shaft with two universal joints inside the boom drive a gear at the boom tip, which drives the rack under the blue section.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 3,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p483 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 145,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p402 3703 against p315 3029": [
+              5,
+              0
+            ],
+            "p315 3029 against p162 3404": [
+              0,
+              0
+            ],
+            "p272 3736 against p162 3404": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p483 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 143,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p402 3703 against p315 3029": [
+              5,
+              0
+            ],
+            "p315 3029 against p162 3404": [
+              0,
+              0
+            ],
+            "p272 3736 against p162 3404": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 5,
+      "does": "The four outriggers slide out on tiles and stand on their feet.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 18,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p99 3008",
+          "way": 1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p99 3008",
+          "way": -1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 3008",
+          "way": 1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p106 3008",
+          "way": -1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p113 3008",
+          "way": 1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p113 3008",
+          "way": -1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p120 3008",
+          "way": 1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p120 3008",
+          "way": -1,
+          "asked": 20,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 22
+    },
+    {
+      "function": 6,
+      "does": "The four road wheels roll freely; there's no steering.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 2,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 15,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p185 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p185 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 92,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p187 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 91,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p187 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 90,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p189 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 92,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p189 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 90,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p190 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 99,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p190 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 88,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 18
+    },
+    {
+      "function": 7,
+      "does": "The four black window shutters on the chassis sides swing open.",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 14,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p157 3582",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p157 3582",
+          "way": -1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p158 3582",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p158 3582",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p159 3582",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p159 3582",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p160 3582",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p160 3582",
+          "way": -1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 17
+    }
+  ]
+}

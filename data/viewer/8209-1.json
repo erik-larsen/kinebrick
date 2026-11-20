@@ -1,0 +1,112 @@
+{
+  "set": "8209-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:48:21.785Z",
+  "load": 26,
+  "part": "A",
+  "parts": 47,
+  "seconds": 7,
+  "functions": [
+    {
+      "function": 3,
+      "does": "Pushed along, all four wheels roll freely: each rear wheel on its own axle pin in the dark side beams, the front ones together on one long axle through the nose.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 0,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p46 32193",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 10,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p46 32193",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 7,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p45 32193",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 7,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p45 32193",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 7,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p47 32193",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 7,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p47 32193",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 6,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p48 32193",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 6,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p48 32193",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 10,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    }
+  ]
+}

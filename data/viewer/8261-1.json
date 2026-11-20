@@ -1,0 +1,396 @@
+{
+  "set": "8261-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:22:50.293Z",
+  "load": 17,
+  "part": "A",
+  "parts": 191,
+  "seconds": 30,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 12 tooth gear on the roof steers the front wheels: it turns a vertical shaft down through the cab, whose 12 tooth bevel gear at the foot turns the 20 tooth gear on a shaft running forward under the truck; a knob gear at that shaft's front end turns the knob gear on the front axle's steering post, swinging its steering arm, which pushes the tie rod that turns both front wheels.",
+      "verdict": "not decided",
+      "msOneCall": 12,
+      "msPerStep": 3,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p131 32270",
+        "way": 1,
+        "went": 0.105,
+        "asked": 1.47,
+        "by": [
+          "193/193"
+        ]
+      },
+      "stops": [
+        "193/193",
+        "191/191"
+      ],
+      "A": [
+        {
+          "control": "p131 32270",
+          "way": 1,
+          "asked": 1.47,
+          "went": 0.105,
+          "ms": 9,
+          "msOneCall": 12,
+          "stops": [
+            "193/193"
+          ],
+          "moved": {
+            "p33 6589": [
+              0,
+              6.02
+            ],
+            "p18 32269": [
+              0,
+              3.61
+            ],
+            "p93 32072": [
+              0,
+              3.61
+            ],
+            "p82 32072": [
+              0.56,
+              2.57
+            ],
+            "p75 33299": [
+              1.68,
+              2.57
+            ],
+            "p76 32524": [
+              0.28,
+              1.6
+            ],
+            "p66 48989": [
+              1.94,
+              2.57
+            ],
+            "p67 48989": [
+              1.95,
+              2.57
+            ],
+            "p0 32526": [
+              0,
+              0
+            ],
+            "p194 56145": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p131 32270",
+          "way": -1,
+          "asked": 1.47,
+          "went": -0.105,
+          "ms": 7,
+          "msOneCall": 5,
+          "stops": [
+            "191/191"
+          ],
+          "moved": {
+            "p33 6589": [
+              0,
+              6.02
+            ],
+            "p18 32269": [
+              0,
+              3.61
+            ],
+            "p93 32072": [
+              0,
+              3.61
+            ],
+            "p82 32072": [
+              0.56,
+              2.57
+            ],
+            "p75 33299": [
+              1.68,
+              2.57
+            ],
+            "p76 32524": [
+              0.28,
+              1.6
+            ],
+            "p66 48989": [
+              1.95,
+              2.57
+            ],
+            "p67 48989": [
+              1.94,
+              2.57
+            ],
+            "p0 32526": [
+              0,
+              0
+            ],
+            "p194 56145": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p131 32270",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.105 rad (193/193); -0.105 rad (191/191)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p131 32270: a travel of 0.2 rad or less each way, stopped at +0.105 rad (193/193); -0.105 rad (191/191)",
+      "seconds": 12
+    },
+    {
+      "function": 2,
+      "does": "The rear wheels ride on a trailing arm: two bent beams pivot on a 7-long axle under the middle of the truck and carry the rear wheels' stub axles at the back, so the rear wheels rise and fall together, the shock absorber squeezing.",
+      "verdict": "not decided",
+      "msOneCall": 9,
+      "msPerStep": 7,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p45 32271",
+        "way": 1,
+        "went": 0.034,
+        "asked": 0.27,
+        "by": [
+          "191/191"
+        ]
+      },
+      "stops": [
+        "191/191",
+        "3/198"
+      ],
+      "A": [
+        {
+          "control": "p45 32271",
+          "way": 1,
+          "asked": 0.27,
+          "went": 0.034,
+          "ms": 7,
+          "msOneCall": 9,
+          "stops": [
+            "191/191"
+          ],
+          "moved": {
+            "p45 32271": [
+              0,
+              1.93
+            ],
+            "p51 32271": [
+              0,
+              1.93
+            ],
+            "p43 59426": [
+              4.49,
+              1.93
+            ],
+            "p52 59426": [
+              4.49,
+              1.93
+            ],
+            "p194 56145": [
+              4.49,
+              1.93
+            ],
+            "p196 56145": [
+              4.49,
+              1.93
+            ],
+            "p55 44294": [
+              0,
+              1.93
+            ],
+            "p0 32526": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p45 32271",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 4,
+          "msOneCall": 5,
+          "stops": [
+            "3/198"
+          ],
+          "moved": {
+            "p45 32271": [
+              0,
+              0
+            ],
+            "p51 32271": [
+              0,
+              0
+            ],
+            "p43 59426": [
+              0,
+              0
+            ],
+            "p52 59426": [
+              0,
+              0
+            ],
+            "p194 56145": [
+              0,
+              0
+            ],
+            "p196 56145": [
+              0,
+              0
+            ],
+            "p55 44294": [
+              0,
+              0
+            ],
+            "p0 32526": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p45 32271",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.034 rad (191/191); -0 rad (3/198)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p45 32271: a travel of 0.2 rad or less each way, stopped at +0.034 rad (191/191); -0 rad (3/198)",
+      "seconds": 4
+    },
+    {
+      "function": 4,
+      "does": "The four wheels roll freely; there's no drive.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p190 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 35,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p190 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p192 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 29,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p192 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 26,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p194 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 34,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p194 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p196 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 34,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p196 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    }
+  ]
+}

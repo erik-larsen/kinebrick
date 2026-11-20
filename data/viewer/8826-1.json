@@ -1,0 +1,152 @@
+{
+  "set": "8826-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:49:22.912Z",
+  "load": 24.8,
+  "part": "A",
+  "parts": 89,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The four wheels roll freely, each on its own axle pin; there's no drive.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 0,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p85 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 19,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p85 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p89 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 11,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p89 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 15,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p87 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p87 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 15,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p91 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 13,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p91 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p26 3021": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    }
+  ]
+}

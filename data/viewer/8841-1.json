@@ -1,0 +1,283 @@
+{
+  "set": "8841-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:21:50.147Z",
+  "load": 18,
+  "part": "A",
+  "parts": 185,
+  "seconds": 22,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column runs down through a universal joint to an 8-tooth pinion on a toothed rack, and the rack pushes both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p683 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 54,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p677 3647": [
+              0,
+              85.94
+            ],
+            "p646 3743": [
+              15.27,
+              0
+            ],
+            "p42 4261": [
+              0,
+              22
+            ],
+            "p43 4261": [
+              0,
+              22
+            ],
+            "p14 3707": [
+              0,
+              0
+            ],
+            "p15 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p683 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p677 3647": [
+              0,
+              85.94
+            ],
+            "p646 3743": [
+              15.27,
+              0
+            ],
+            "p42 4261": [
+              0,
+              22
+            ],
+            "p43 4261": [
+              0,
+              22
+            ],
+            "p14 3707": [
+              0,
+              0
+            ],
+            "p15 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 2,
+      "does": "Rolling the buggy works the engine's piston: a pin in the 24-tooth gear on the left rear axle is a crank, and a connecting rod pushes the piston up and down in its block behind the seat.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p700 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 78,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p20 3648a": [
+              0,
+              85.94
+            ],
+            "p25 3652": [
+              13.05,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p700 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 76,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p20 3648a": [
+              0,
+              85.94
+            ],
+            "p25 3652": [
+              18.87,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 3,
+      "does": "The front wheels turn freely on pins in the steering arms.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p698 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 73,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p698 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 78,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p701 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 71,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p701 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 68,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 4,
+      "does": "The rear wheels are on two separate axles; only the left one turns the engine.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p699 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 71,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p699 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 68,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p700 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 66,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p700 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 63,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}
