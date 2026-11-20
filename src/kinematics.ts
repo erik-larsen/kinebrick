@@ -253,7 +253,7 @@ export interface KinematicsState {
 // For each tyre on the ground, a row for how fast it scrubs sideways, and one for how fast it
 // travels (see Kinematics.freeMotions).
 // One shaft of a universal joint (see findCouplings).
-interface Shaft {
+export interface Shaft {
   body: number;
   joint: number; // the joint it turns on, or -1 for a shaft that floats between two joints
   mount: number; // the body it turns in (the frame, for a floating shaft)
@@ -401,7 +401,7 @@ export class Kinematics {
   // on that axis nearest the middle (model coordinates, at the start).
   // `hangs`, for a grooved ball on a shaft that hangs on nothing else (see hangingBalls): held at
   // its place in its socket ('point'), or on its socket's axis ('axis').
-  couplings: { shafts: Shaft[]; turningOnly: boolean; hangs?: 'point' | 'axis' }[] = [];
+  couplings: { shafts: Shaft[]; turningOnly: boolean; hangs?: 'point' | 'axis'; plunges?: number }[] = []; // plunges: for a universal joint on a plunging shaft, the coupling of the shaft's ball at the wheel (see plungingShafts)
   // For each string (see Mechanism.strings): its free length at the start, and where its hook
   // hung then, relative to the middle of the two pulleys it hangs from (model coordinates).
   strings: { length: number; hookOffset: Vector3 | null }[] = [];
@@ -647,6 +647,7 @@ export class Kinematics {
       this.couplings.push({ shafts, turningOnly: c.turningOnly === true });
     }
     this.hangingBalls();
+    this.plungingShafts();
   }
 
   // A shaft that hangs on nothing but grooved balls in sockets (a constant velocity joint's ball,
@@ -674,6 +675,29 @@ export class Kinematics {
         return d < e || (d === e && lowest(couplings[i].bodyB) < lowest(couplings[best].bodyB)) ? i : best;
       });
       for (const i of balls) this.couplings[i].hangs = i === held ? 'point' : 'axis';
+    }
+  }
+
+  // A half shaft between a universal joint and a grooved ball in the wheel's hub, with no joint of
+  // its own (the 8880 Super Car's four): its ball tied the turning only, so nothing held where it
+  // was, and the wheel moved off it (each suspension stopped at once, the ball against the hub).
+  // The rule (decision 108 (3) of the plan): the ball at the wheel holds the shaft's place, held at
+  // its place in the hub; at the universal joint, the shaft's line goes through the joint's middle,
+  // and the shaft may slide along itself, as a real one slides in the joint's axle hole, no further
+  // than the hole's depth from where it was built (see PLUNGE). As the 8880's wheels rise and
+  // fall, the shaft from the joint's middle to the ball would have to be up to 0.54 LDU shorter
+  // than built: held rigid at both ends, it locked the suspension.
+  private plungingShafts() {
+    const couplings = this.mech.couplings ?? [];
+    for (let body = 1; body < this.bodyCount; body++) {
+      if (this.parentLink(body) || this.mech.joints.some((j) => j.bodyA === body || j.bodyB === body)) continue;
+      const own = couplings.flatMap((c, i) => (c.bodyA === body || c.bodyB === body ? [i] : []));
+      if (own.length !== 2 || own.some((i) => couplings[i].ratio !== undefined)) continue;
+      const joint = own.find((i) => !couplings[i].turningOnly);
+      const ball = own.find((i) => couplings[i].turningOnly && couplings[i].bodyA === body);
+      if (joint === undefined || ball === undefined || this.couplings[ball].hangs) continue;
+      this.couplings[ball].hangs = 'point';
+      this.couplings[joint].plunges = ball;
     }
   }
 

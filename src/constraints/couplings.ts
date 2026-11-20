@@ -1,8 +1,13 @@
 // Universal joints, and the like that tie two shafts' turning (see Kinematics.findCouplings).
 
-import type { Kinematics } from '../kinematics.ts';
+import type { Kinematics, Shaft } from '../kinematics.ts';
 import { Vector3 } from 'three';
 import { addPointVelocity, DRIVE_WEIGHT, type Equations } from './equations.ts';
+
+// How far a plunging shaft may slide in its universal joint's axle hole, either way from where it
+// was built (LDU): the depth of the universal joint's axle hole (3712, 20 LDU in
+// data/connections.json). See Kinematics.plungingShafts.
+export const PLUNGE = 20;
 
 export function couplings(solver: Kinematics, eq: Equations) {
   const { n, add } = eq;
@@ -18,8 +23,12 @@ export function couplings(solver: Kinematics, eq: Equations) {
   solver.couplings.forEach(({ hangs }, i) => {
     if (hangs) hanging(solver, eq, i, hangs);
   });
-  for (const { shafts, turningOnly } of solver.couplings) {
+  for (const { shafts, turningOnly, plunges } of solver.couplings) {
     if (turningOnly) continue;
+    if (plunges !== undefined) {
+      plunging(solver, eq, shafts, plunges);
+      continue;
+    }
     if (shafts.every((sh) => sh.joint >= 0 && sh.mount === shafts[0].mount)) continue;
     const [a, b] = shafts.map((sh) => ({ body: sh.body, at: sh.near.clone().applyMatrix4(solver.poses[sh.body]) }));
     // How far the two ends have come apart, closed as a loop's joint is (see closeLoops): a
@@ -55,6 +64,36 @@ export function couplings(solver: Kinematics, eq: Equations) {
     });
     add(row, 0, DRIVE_WEIGHT);
   });
+}
+
+// A universal joint on a plunging shaft (see Kinematics.plungingShafts): the joint's middle, on the
+// body the shaft turns against, stays on the shaft's line (two rows, across it); along the line it
+// is free, as far as PLUNGE either way from where it was built, and held there beyond it. Gaps
+// closed as a loop's joint is (see closeLoops).
+function plunging(solver: Kinematics, eq: Equations, shafts: Shaft[], ball: number) {
+  const { n, add } = eq;
+  const shaft = shafts.find((sh) => sh.joint < 0)!;
+  const other = shafts.find((sh) => sh !== shaft)!;
+  // The shaft's line now: from its end at the joint to its ball's middle, both on the shaft.
+  const end = shaft.near.clone().applyMatrix4(solver.poses[shaft.body]);
+  const ballAt = solver.mech.couplings[ball].center.clone().applyMatrix4(solver.poses[shaft.body]);
+  const line = ballAt.clone().sub(end).normalize();
+  const middle = other.near.clone().applyMatrix4(solver.poses[other.body]);
+  // How far the joint's middle is from the shaft's end, which were one point as built.
+  const apart = middle.clone().sub(end);
+  const along = apart.dot(line);
+  const rows = acrossOf(line).map((d) => [d, eq.gaps ? -apart.dot(d) : 0] as const);
+  if (Math.abs(along) > PLUNGE) rows.push([line, eq.gaps ? -(along - Math.sign(along) * PLUNGE) : 0]);
+  for (const [d, gap] of rows) {
+    const row = new Array(n).fill(0);
+    for (let k = 0; k < 3; k++) {
+      const w = d.getComponent(k);
+      if (w === 0) continue;
+      addPointVelocity(row, other.body, middle, k, w);
+      addPointVelocity(row, shaft.body, middle, k, -w);
+    }
+    add(row, gap);
+  }
 }
 
 // A grooved ball on a shaft that hangs on nothing else (see Kinematics.hangingBalls): held at its
