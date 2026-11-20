@@ -4,14 +4,14 @@ A part swings on a hinge or pivot, by hand or turned straight at its pivot: a do
 
 First appears in 1978, in [855 Mobile Crane](https://erik-larsen.github.io/kinebrick/?model=855-Mobile%20Crane) and [956 Auto Chassis](https://erik-larsen.github.io/kinebrick/?model=956-Auto%20Chassis): The four black window shutters on the chassis sides swing open.
 
-Used in 76 of the 186 surveyed sets, by 130 functions. Kinebrick: 78 works, 11 partly, 35 no, 2 skipped, 4 not checked.
+Used in 75 of the 186 surveyed sets, by 129 functions. Kinebrick: 80 works, 10 partly, 33 no, 2 skipped, 4 not checked.
 
 ## By decade
 
 | | 1970s | 1980s | 1990s | 2000s | 2010s | 2020s |
 |---|---|---|---|---|---|---|
-| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 40 of 83 | 12 of 21 |
-| Functions | 2 | 1 | 15 | 25 | 66 | 21 |
+| Sets | 2 of 9 | 1 of 18 | 10 of 32 | 11 of 23 | 39 of 83 | 12 of 21 |
+| Functions | 2 | 1 | 15 | 25 | 65 | 21 |
 
 ## Details
 
@@ -83,7 +83,6 @@ Each detail by the set it first appears in.
 | king pin | 2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1) | 1 |
 | container doors | 2018, [42078 Mack Anthem](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42078-1) | 1 |
 | wheel arches | 2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1) | 1 |
-| cab door | 2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1) | 1 |
 | bucket | 2019, [42088 Cherry Picker](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42088-1) | 1 |
 | winch arm | 2019, [42092 Rescue Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42092-1) | 1 |
 | rear doors | 2019, [42092 Rescue Helicopter](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42092-1) | 1 |
@@ -357,16 +356,12 @@ Each detail by the set it first appears in.
 
 - *bonnet:* The bonnet, with the grille, headlights and front wings, tips forward to show the engine. (works)
 - *doors:* The cab doors swing open. (works)
-- *king pin:* The trailer swings on its king pin behind the tractor. (no)
-- *container doors:* The container's two end doors swing open. (no)
+- *king pin:* The trailer swings on its king pin behind the tractor. (works)
+- *container doors:* The container's two end doors swing open, each once its lock bar is lifted. (works)
 
 **2018, [42079 Heavy Duty Forklift](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42079-1)**
 
 - *wheel arches:* The two front wheel arches, with the mirrors, swing out. (no)
-
-**2018, [42082 Rough Terrain Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42082-1)**
-
-- *cab door:* The cab door on the superstructure swings open on its hinge. (partly)
 
 **2018, [42083 Bugatti Chiron](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42083-1)**
 

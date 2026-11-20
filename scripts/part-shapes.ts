@@ -3,6 +3,13 @@
 // name, in the packed model's order (its parts, then the shapes its submodels draw). One of
 // Kinebrick's own models is read from its packed file; a set from the OMR is packed here and
 // now, from the LDraw library in ldraw/, as pack-models.ts does.
+//
+// Each part placed in one colour is read once, and every copy of it shares that one list of
+// meshes (decision 235 of 2026-11-19): the loader is given each colour and part once, where it
+// stands, and without the lines it draws (edges and conditional lines, LDraw's types 2 and 5),
+// which no collision uses. Read copy by copy, the 42100's 7,283 parts took the loader 8.5 GB and
+// 42 s; read so, its 229 colours and parts take 0.75 GB and 4 s, and every mesh's triangles are
+// the same to the bit (the mesh's place in the part differs by rounding only, 5e-13 at most).
 
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -37,17 +44,41 @@ export async function partShapes(file: string, modelText?: string): Promise<{ na
     const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
     text = (await packModel(base, modelText ?? readFileSync(file, 'utf-8'), colours, readLdrawFile, isPrimitive, roles)).text;
   }
+  // The model's own file is the first; what it places, each on a line of type 1, are the parts
+  // and shapes in order. Each colour and file is placed once, where it stands.
+  const lines = text.split(/\r?\n/);
+  let end = lines.findIndex((line, i) => i > 0 && /^\s*0\s+FILE\s/.test(line));
+  if (end < 0) end = lines.length;
+  const keyOf: string[] = [];
+  const firsts: string[] = [];
+  const placed: string[] = [];
+  for (const line of lines.slice(0, end)) {
+    const f = line.trim().split(/\s+/);
+    if (f[0] !== '1') {
+      if (f[0] !== '2' && f[0] !== '5') placed.push(line);
+      continue;
+    }
+    const key = `${f[1]} ${f.slice(14).join(' ')}`;
+    keyOf.push(key);
+    if (firsts.includes(key)) continue;
+    firsts.push(key);
+    placed.push(`1 ${f[1]} 0 0 0 1 0 0 0 1 0 0 0 1 ${f.slice(14).join(' ')}`);
+  }
+  const rest = lines.slice(end).filter((line) => !/^\s*[25]\s/.test(line));
   const loader = new LDrawLoader();
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);
-  const model = await new Promise<Object3D>((resolve, reject) => loader.parse(text, resolve, reject));
+  const model = await new Promise<Object3D>((resolve, reject) => loader.parse([...placed, ...rest].join('\n'), resolve, reject));
   model.updateMatrixWorld(true);
-  return model.children.map((obj) => {
+  const byKey = new Map<string, { name: string; shape: PartMesh[] }>();
+  model.children.forEach((obj, i) => {
     const toPart = obj.matrixWorld.clone().invert();
     const shape: PartMesh[] = [];
     obj.traverse((child) => {
       const mesh = child as Mesh;
       if (mesh.isMesh) shape.push({ geometry: collisionGeometry(mesh.geometry), matrix: toPart.clone().multiply(mesh.matrixWorld) });
     });
-    return { name: normalizePartName(obj.name), shape };
+    byKey.set(firsts[i], { name: normalizePartName(obj.name), shape });
   });
+  // Every copy shares its colour and part's list (see Collisions, which shrinks a list once).
+  return keyOf.map((key) => byKey.get(key)!);
 }

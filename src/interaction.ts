@@ -125,6 +125,7 @@ export interface InteractionSetup {
   pinsToShift: (part: number) => Promise<{ pins: number[]; why: 'more' | 'joints' | null }>; // the friction pins a press with Shift frees (see pinsForShift), and if none, why
   freePins: (pins: number[]) => void; // frees those pins, working the mechanism out afresh as a shift does
   inView?: () => boolean; // true in a view of the Views card other than Default (see views.ts): parts aren't hovered, picked or dragged then
+  slideOnAxle?: (part: number) => boolean; // asks for a part to slide on its axle (decision 206 of 2026-11-18, see slidesAsked): whether it can
 }
 
 // A part that slides into set positions, as it is now (LDraw coordinates, LDU).
@@ -974,6 +975,14 @@ export function setUpInteraction(s: InteractionSetup) {
     });
   }
 
+  // Where no friction pins hold a part pressed with Shift, it may slide on its axle (a lock bar,
+  // a pin to pull): asks for that, and says so if it can.
+  function slidesOnAxle(part: number, x: number, y: number) {
+    if (!s.slideOnAxle?.(part)) return false;
+    showMessage('It can slide along its axle: drag it', x, y);
+    return true;
+  }
+
   // Runs before the camera controls see the press (capture phase), so a press on a part
   // can switch the camera off before it starts turning.
   canvas.addEventListener(
@@ -1011,7 +1020,8 @@ export function setUpInteraction(s: InteractionSetup) {
         // camera from moving.
         e.stopImmediatePropagation();
         showMessage('Finding the pins that hold it…', e.clientX, e.clientY);
-        freeIfHeld(hit.part, e.clientX, e.clientY, 'This part is held by more than friction pins');
+        const [x, y] = [e.clientX, e.clientY];
+        freeIfHeld(hit.part, x, y, 'This part is held by more than friction pins', () => slidesOnAxle(hit.part, x, y));
         return;
       }
       if (e.shiftKey) {
@@ -1023,7 +1033,7 @@ export function setUpInteraction(s: InteractionSetup) {
         const [x, y] = [e.clientX, e.clientY];
         showMessage('Finding the pins that hold it…', x, y);
         s.pinsToShift(hit.part).then(({ pins, why }) => {
-          if (!pins.length) return showMessage(why === 'joints' ? 'No friction pins hold this part: drag it' : 'This part is held by more than friction pins', x, y);
+          if (!pins.length) return slidesOnAxle(hit.part, x, y) ? undefined : showMessage(why === 'joints' ? 'No friction pins hold this part: drag it' : 'This part is held by more than friction pins', x, y);
           s.freePins(pins);
           showMessage(`${pins.length} friction pin${pins.length === 1 ? '' : 's'} that held it can now turn: drag it again`, x, y);
         });

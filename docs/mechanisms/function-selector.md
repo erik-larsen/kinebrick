@@ -4,7 +4,7 @@ A driving ring, sliding gear or lever chooses which function one motor or knob d
 
 First appears in 1992, in [8837 Pneumatic Excavator](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8837-1): The yellow round knob on top of the turntable, pushed down and turned, steers the wheels under the boom end: its axle's bottom 8-tooth gear drives the crown gear in the chassis, which turns a lengthwise shaft whose 16-tooth gear moves the steering rack.
 
-Used in 25 of the 186 surveyed sets, by 95 functions. Kinebrick: 42 works, 49 partly, 4 not checked.
+Used in 25 of the 186 surveyed sets, by 95 functions. Kinebrick: 45 works, 46 partly, 4 not checked.
 
 ## By decade
 
@@ -42,15 +42,15 @@ Each detail by the set it first appears in.
 - The four outriggers slide out sideways and back in, driven by the motor through gear racks under them, when the second yellow lever (the one with p169 and p172) is set. (works)
 - The lower boom rises and lowers, pushed by the linear actuator under it, driven by the motor when the first yellow lever is pulled up. (works)
 - The crane slews round on its turntable behind the cab, carrying both booms, driven by the motor when the second yellow lever (the one with p169 and p172) is pulled up. (partly)
-- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (partly)
+- The upper boom folds up and down at the lower boom's tip, pushed by the second linear actuator, driven by the motor when the first yellow lever (the one with p164 and p167) is set. (works)
 
 **2011, [8110 Mercedes-Benz Unimog U 400](https://www.bricklink.com/v2/catalog/catalogitem.page?S=8110-1)**
 
-- *4 functions:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of four outputs: the front winch, the crane's slewing, the compressor, or a fourth output. (works)
+- *4 functions:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor. (works)
 - With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
 - With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (partly)
 - With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
-- With the yellow lever down and the red knob pushed in, the motor works a fourth output. (works)
+- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (works)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 
@@ -69,7 +69,7 @@ Each detail by the set it first appears in.
 
 - A Power Functions M motor in the chassis, switched on and reversed with the orange switch on the battery box, drives a gearbox with two driving rings; two change-over levers, one on each side of the chassis behind the cab, choose what it works: the container tipper or the plough lift. (works)
 - With one lever to one side, the motor tips the container frame up and down with the big linear actuator under it. (works)
-- With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator. (partly)
+- With the other lever to one side, the motor raises and lowers the plough at the front with the small linear actuator. (works)
 
 **2013, [42000 Grand Prix Racer](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42000-1)**
 
@@ -111,7 +111,7 @@ Each detail by the set it first appears in.
 **2015, [42042 Crawler Crane](https://www.bricklink.com/v2/catalog/catalogitem.page?S=42042-1)**
 
 - *4 functions:* The Power Functions L motor at the back of the superstructure runs the gearbox: a 24 tooth clutch gear on its shaft drives a 24 tooth gear, and rows of 16 tooth clutch gears carry the turn across the gearbox, one pair (one turning each way) beside each of the four driving rings. (works)
-- Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets. (partly)
+- Lever B: with its driving ring pushed one way or the other, the motor drives both tracks together, forward or back: the shaft runs forward through two universal joints to a 12 tooth bevel gear on a vertical shaft down through the turntable's centre, then back under the crawler to an 8 tooth gear on a cross axle that turns the 24 tooth gears on both rear sprockets. (works)
 - Lever C: the motor slews the superstructure round on the crawler: the driving ring's shaft turns an 8 tooth gear, a 24 tooth clutch gear and a shaft forward to an 8 tooth gear, a 24 tooth gear and a 20 tooth bevel gear, and a 12 tooth gear at the front meshes the turntable's teeth. (works)
 - Lever A: the motor raises and lowers the boom: the driving ring's shaft turns a 20 tooth bevel gear that drives a 12 tooth bevel gear on the worm's shaft, the worm turns the boom winch's drum, and its cables pull the boom up through the pulleys on the A-frame. (partly)
 - Lever D: the motor raises and lowers the grab: the driving ring's shaft turns a 20 tooth bevel gear, a 12 tooth bevel gear and a worm, which winds the hoist winch's drum; the string runs up the boom over the pulley at its tip and down to the grab. (works)

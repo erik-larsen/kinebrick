@@ -597,5 +597,14 @@ export function partLine(p: PlacedPart): string {
     return s === '-0' ? '0' : s;
   };
   const numbers = [m[12], m[13], m[14], m[0], m[4], m[8], m[1], m[5], m[9], m[2], m[6], m[10]];
-  return `1 ${p.color} ${numbers.map(n).join(' ')} ${p.name}`;
+  return `1 ${colourCode(p.color)} ${numbers.map(n).join(' ')} ${p.name}`;
+}
+
+// A colour code as a line writes it: a direct colour (an RGB value, LDraw's 0x2RRGGBB) in hex,
+// the only form three's LDrawLoader knows. Written in decimal, as one line of the OMR's 8110
+// Unimog has it (its axle p1365, 44278436: 0x2A3A2A4), the loader finds no colour of that code,
+// and the part's conditional edges get no material at all (null): every frame that sees them
+// throws, and nothing is drawn. Read back, both forms give the same number.
+export function colourCode(color: number): string {
+  return color >= 0x2000000 && color < 0x3000000 ? `0x${color.toString(16).toUpperCase()}` : String(color);
 }

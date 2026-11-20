@@ -22,9 +22,10 @@ export function loadModel(file: string, omr: boolean, status: (now: string) => v
   const kept = keptPivots(file, parts, table, roles);
   // The mechanism of the parts placed as given, ready to move: the model's own, or worked out
   // afresh after a shift moved some of them, as the viewer does; with the friction pins `freed`
-  // left to turn (see pinsToFree).
-  const read = (placed: PlacedPart[], freed = new Set<number>()) => {
-    const mech = inferMechanism(placed, table, roles, paths, freed, false, placed === parts ? kept : null);
+  // left to turn (see pinsToFree), and the parts `slid` asked to slide on their axles (see
+  // slidesAsked).
+  const read = (placed: PlacedPart[], freed = new Set<number>(), slid = new Set<number>()) => {
+    const mech = inferMechanism(placed, table, roles, paths, freed, false, placed === parts ? kept : null, slid);
     const kin = new Kinematics(mech);
     kin.scrub = (modelSettings(text).scrub ?? DEFAULT_SCRUB * 100) / 100;
     return { parts: placed, mech, kin };

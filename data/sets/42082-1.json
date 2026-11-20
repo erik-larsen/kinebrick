@@ -231,11 +231,11 @@
         "note": "the gate knob must first be slid across into the winch column, which a turn can't say; the drum's 24-tooth clutch gear (p2749 76244) slips at the ends of the rope"
       },
       {
-        "does": "The cab door on the superstructure swings open on its hinge.",
+        "does": "The cab door on the superstructure slides open: it hangs on two parallel links, each turning on its own upright pin in the cab, so it moves out from the doorway and back along the cab's side without turning.",
         "mechanisms": [
-          "hinge: cab door"
+          "crank-and-link: cab door"
         ],
-        "source": "book: book 2 page 322 (top-right inset: arrow on the opening door)",
+        "source": "book: book 2 (42082-1-1.pdf) page 269 (step 1107, the two links), pages 270 and 271 (steps 1108 to 1113, the door on them), and page 322 (top-right inset: the door out beside the cab, the arrow out and back along it)",
         "control": "p3789 32524",
         "moves": [
           "p3789 32524 against p2649 64179"
@@ -257,14 +257,14 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 3184,
+    "commit": "38c70beb",
+    "date": "2026-11-19",
+    "seconds": 3399,
     "counts": {
-      "partly": 7,
+      "partly": 6,
       "not back": 1,
       "torn": 1,
-      "works": 2,
+      "works": 3,
       "not checked": 1
     },
     "loose": [
@@ -530,7 +530,7 @@
         "rates": [
           {
             "p743 87761": [
-              1.68e-06,
+              0.00000168,
               8.87
             ],
             "p569 87761": [
@@ -596,7 +596,7 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.1,
-        "seconds": 130.4
+        "seconds": 148.9
       },
       {
         "result": "works",
@@ -625,19 +625,19 @@
               8.7e-13
             ],
             "p1235 2851": [
-              1.12e-07,
+              1.12e-7,
               45.9
             ],
             "p1236 2851": [
-              1.12e-07,
+              1.12e-7,
               41.3
             ],
             "p1237 2851": [
-              1.12e-07,
+              1.12e-7,
               40.5
             ],
             "p1238 2851": [
-              8.43e-08,
+              8.43e-8,
               44.2
             ],
             "p1286 41530": [
@@ -651,19 +651,19 @@
               7.68e-13
             ],
             "p1235 2851": [
-              1.12e-07,
+              1.12e-7,
               45.9
             ],
             "p1236 2851": [
-              1.12e-07,
+              1.12e-7,
               41.3
             ],
             "p1237 2851": [
-              1.12e-07,
+              1.12e-7,
               40.5
             ],
             "p1238 2851": [
-              1.12e-07,
+              1.12e-7,
               44.2
             ],
             "p1286 41530": [
@@ -677,19 +677,19 @@
               8.76e-13
             ],
             "p1235 2851": [
-              1.12e-07,
+              1.12e-7,
               40.5
             ],
             "p1236 2851": [
-              1.12e-07,
+              1.12e-7,
               44.2
             ],
             "p1237 2851": [
-              8.43e-08,
+              8.43e-8,
               45.9
             ],
             "p1238 2851": [
-              1.12e-07,
+              1.12e-7,
               41.3
             ],
             "p1286 41530": [
@@ -703,19 +703,19 @@
               7.57e-13
             ],
             "p1235 2851": [
-              1.12e-07,
+              1.12e-7,
               45.9
             ],
             "p1236 2851": [
-              1.12e-07,
+              1.12e-7,
               41.3
             ],
             "p1237 2851": [
-              1.12e-07,
+              1.12e-7,
               40.5
             ],
             "p1238 2851": [
-              8.43e-08,
+              8.43e-8,
               44.2
             ],
             "p1286 41530": [
@@ -868,7 +868,7 @@
             "p1286 41530"
           ]
         ],
-        "seconds": 962.5
+        "seconds": 1046.7
       },
       {
         "result": "works",
@@ -914,7 +914,7 @@
             ]
           ]
         ],
-        "seconds": 69.9
+        "seconds": 80.1
       },
       {
         "result": "partly",
@@ -954,23 +954,23 @@
               0
             ],
             "p824 92696 against p822 92693c01": [
-              5.62e-08,
+              5.62e-8,
               0.0648
             ],
             "p856 92696 against p854 92693c01": [
-              8.43e-08,
+              8.43e-8,
               0.065
             ],
             "p989 92696 against p987 92693c01": [
-              1.4e-07,
+              1.4e-7,
               0.0648
             ],
             "p1021 92696 against p1019 92693c01": [
-              1.12e-07,
+              1.12e-7,
               0.065
             ],
             "p3886 3958 against p0 64179": [
-              5.62e-08,
+              5.62e-8,
               0.0963
             ],
             "p2649 64179 against p0 64179": [
@@ -1008,7 +1008,7 @@
         ],
         "cause": "loose-part",
         "detail": "p3886 3958",
-        "seconds": 248.2
+        "seconds": 231.1
       },
       {
         "result": "partly",
@@ -1071,7 +1071,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2649 64179 against p0 64179",
-        "seconds": 158.5
+        "seconds": 174.9
       },
       {
         "result": "partly",
@@ -1139,7 +1139,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2941 41239 against p2649 64179",
-        "seconds": 152
+        "seconds": 165.9
       },
       {
         "result": "partly",
@@ -1202,7 +1202,7 @@
         ],
         "cause": "not-driven",
         "detail": "p3076 3703 against p2941 41239",
-        "seconds": 155
+        "seconds": 161.8
       },
       {
         "result": "partly",
@@ -1268,24 +1268,21 @@
         ],
         "cause": "loose-part",
         "detail": "p3371 2736",
-        "seconds": 187.2
+        "seconds": 164.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            -0.42,
+            0.03
           ]
-        ],
-        "still": [
-          "p3789 32524 against p2649 64179"
         ],
         "rates": [
           {
             "p3789 32524 against p2649 64179": [
-              0,
-              3.91e-14
+              0.00000111,
+              44.7
             ]
           }
         ],
@@ -1293,11 +1290,11 @@
           [
             [
               0,
-              0.02
+              0
             ],
             [
               0,
-              0.02
+              0
             ]
           ]
         ],
@@ -1305,23 +1302,50 @@
           [
             [
               0,
-              0.02
+              0
             ],
             [
               0,
-              0.02
+              0
             ]
           ]
         ],
         "why": [
           "p3789 32524 against p2649 64179 is held by friction pins the control doesn't reach"
         ],
-        "judged": [
-          0
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ]
         ],
-        "cause": "part-fixed",
-        "detail": "p3789 32524 against p2649 64179",
-        "seconds": 311.9
+        "pushed": [
+          true
+        ],
+        "freed": 2,
+        "shiftPressed": [
+          3792,
+          3793
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            3802,
+            3838,
+            0.42,
+            0.42
+          ],
+          [
+            0,
+            -1,
+            3725,
+            3789,
+            0.03,
+            0.03
+          ]
+        ],
+        "seconds": 502.1
       },
       {
         "result": "not checked"

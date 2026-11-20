@@ -203,13 +203,13 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 294,
+    "commit": "4fa15e08",
+    "date": "2026-11-20",
+    "seconds": 246,
     "counts": {
       "not checked": 3,
-      "works": 4,
-      "partly": 2
+      "works": 5,
+      "partly": 1
     },
     "loose": [
       "p285 8258 - ls70",
@@ -371,7 +371,7 @@
             ]
           ]
         ],
-        "seconds": 34
+        "seconds": 18.4
       },
       {
         "result": "works",
@@ -435,7 +435,7 @@
             null
           ]
         ],
-        "seconds": 141.6
+        "seconds": 100.4
       },
       {
         "result": "partly",
@@ -507,33 +507,29 @@
         ],
         "cause": "part-fixed",
         "detail": "p2027 48168",
-        "seconds": 10.7
+        "seconds": 10.2
       },
       {
-        "result": "partly",
+        "result": "works",
         "turned": [
           [
-            1.5,
-            -1.5
+            5.1,
+            -5.1
           ]
-        ],
-        "still": [
-          "p2167 62274c01 against p2166 62271c01",
-          "p2180 32524 against p2123 32526"
         ],
         "rates": [
           {
             "p2167 62274c01 against p2166 62271c01": [
-              8.43e-8,
+              9.09e-8,
               0.198
             ],
             "p2180 32524 against p2123 32526": [
-              0.00423,
-              0.254
+              0.00408,
+              0.245
             ],
             "p2123 32526 against p2046 40490": [
               0,
-              3.79e-14
+              0
             ]
           }
         ],
@@ -561,12 +557,7 @@
             ]
           ]
         ],
-        "judged": [
-          0
-        ],
-        "cause": "not-driven",
-        "detail": "p2167 62274c01 against p2166 62271c01",
-        "seconds": 32.3
+        "seconds": 80.2
       },
       {
         "result": "works",
@@ -645,7 +636,7 @@
             ]
           ]
         ],
-        "seconds": 22.5
+        "seconds": 9.1
       },
       {
         "result": "works",
@@ -717,7 +708,7 @@
             ]
           ]
         ],
-        "seconds": 32.5
+        "seconds": 24.1
       },
       {
         "result": "not checked",
@@ -727,6 +718,7 @@
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 1593
   }
 }

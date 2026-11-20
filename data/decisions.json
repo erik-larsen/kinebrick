@@ -2,12 +2,12 @@
   "state": {
     "main": {
       "works": 701,
-      "moved": "2026-11-16"
+      "moved": "2026-11-18"
     },
     "preview": {
-      "works": 726,
-      "partly": 222,
-      "no": 97,
+      "works": 740,
+      "partly": 214,
+      "no": 91,
       "functions": 1223
     },
     "viewer": "The viewer links need the local servers, which Claude keeps running in two Terminal tabs: port 5174 (preview) and port 5183 (preview-train, the trains).",
@@ -22,36 +22,19 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "ci-main",
-      "kind": "Move main",
-      "title": "The three web sites have not been rebuilt since 15 November: one small mend for main",
-      "since": "2026-11-18",
-      "what": "The whole site (main, preview and preview-train) is built by main’s workflow, which first runs main’s tests. Since you moved main on 16 November, one test on main reads LDraw OMR files that only your Mac has, so it fails on GitHub and nothing is published. The mend is one file: that test is skipped where the files are absent, as the other tests that need them are. It is on the branch claude/ci-main, one commit ahead of main (82176b45). Run these three commands in the main checkout: git fetch origin — git merge --ff-only origin/claude/ci-main — git push origin main",
-      "effect": "GitHub publishes all three sites again, at once: main as it is today (701 working functions), preview and preview-train at their newest commits. Nothing else on main changes.",
-      "confidence": "High. Claude ran main’s tests with the mend in a bare checkout that has no OMR files and no LDraw library, as GitHub has it: type check, 63 test files pass, 3 skipped, none fail, and the build runs. The same mend on preview already passes on GitHub.",
-      "links": [
-        {
-          "label": "The failing runs on GitHub",
-          "url": "https://github.com/erik-larsen/kinebrick/actions/workflows/pages.yml"
-        },
-        {
-          "label": "The mend: one commit on claude/ci-main",
-          "url": "https://github.com/erik-larsen/kinebrick/commit/82176b45"
-        }
-      ],
-      "reply": "Main is moved"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
-      "title": "The next offer of main",
-      "what": "preview has 726 working functions and main 701, but Claude does not offer main yet. Since 18 November the check stops a motion where two parts meet, as the viewer does; that took the count from 739 to 726. The 13 lost were never right in the viewer: most stop at once because a connection is missing in the model’s reading (the 42000’s and the 8880’s suspension, mended by the worker now), because the solver takes a wrong motion, or because the published file is drawn wrong (the 8868’s piston rods and the 42000’s and 42110’s axle drivers: corrections wait for you above). A rule to pass small overlaps was measured and dropped: the overlaps are not small. Before the offer: one full check of two solver changes together (about four hours, running), the mends above, and a slow check of the 8110 on the commit offered."
+      "title": "A sanity check of every working function in the viewer",
+      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. Claude measured it: the steering does steer, but each solver step takes about half a second in that 1,460-part model, on main as on preview. So works in the check does not yet mean a user can do it. The worker builds a sweep that tries every working function in the viewer, by turning its control and by taking it with the pointer, and records shown or not shown and the time per step. The 57 sets where every checked function works go first. The solver owner measures and mends the time per step."
     },
     {
-      "title": "A second worker, asked again at mid-week",
-      "what": "You said not yet on 16 November. Claude asks again about 19 November with the usage and the rate of working functions measured over those days."
+      "title": "The next offer of main",
+      "what": "preview has 740 working functions and main 701. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed: the slow check of the 8110, whose stored results are stale since you signed its lists."
+    },
+    {
+      "title": "A second worker, looked at again after 23 November",
+      "what": "You said not yet on 16 November, and Claude was to ask again about 19 November. Claude does not ask: the account's week stands at 48% used with 39% of the week gone, so the three sessions alone are on course to reach the weekly limit about a day before it resets on 23 November. A fourth session would bring that forward. Working functions went from 701 to 737 in three days, 12 a day. Claude looks again after the reset with a full week measured. If the week reaches 80% by 21 November, the worker pauses first."
     }
   ],
   "done": [
@@ -249,7 +232,43 @@
     },
     {
       "date": "2026-11-18",
-      "what": "You signed all eight items (\"Sign all 8\"): the 9397’s plough, the 42042’s tread, the 42038’s treads and list, the 8272’s list, the 42000’s rear drivers and front rockers, the 42110’s front drivers, the 8868’s piston rods, and the 42082’s cab door. 37 corrections are marked signed and four list changes are in. The eight sets are being checked by name; the new count follows here when that check ends (expected: 726 to 736)."
+      "what": "You signed all eight items (\"Sign all 8\"): the 9397’s plough, the 42042’s tread, the 42038’s treads and list, the 8272’s list, the 42000’s rear drivers and front rockers, the 42110’s front drivers, the 8868’s piston rods, and the 42082’s cab door. 37 corrections are marked signed and four list changes are in. The eight sets were checked by name: preview goes from 726 to 736 working functions, as expected. Ten results are better. One note: the 42000’s rear suspension works, but two of its ways come back a little off their start; the solver owner looks at it."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "The 42078 Mack Anthem’s trailer now swings on its king pin with the container riding on it (function 7 works; 737 on preview). The container stands loose on the trailer and was read as part of the tractor. A second model in a file now rides on the second model it stands on. The container’s doors (function 12) do not open yet; the worker looks at them."
+    },
+    {
+      "date": "2026-11-18",
+      "what": "You merged the one-file mend into main (\"Main is moved\"). GitHub published the three sites again: main as before (701 working functions), preview and preview-train at their newest commits. The sites had been stale since 15 November because a test on main read files that only your Mac has. Claude now looks at GitHub’s runs for the three sites every day and after every push."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude decided (208): a linear actuator at the end of its travel, pushed further by its own screw, is an end of travel; other slides at their ends stay held. The 42055's boom crank and the 42108's boom knob keep their results. The change is not merged yet."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude merged slides on demand (209): a part on an axle slides only where a function's first step or a Shift-press in the viewer asks. No result changes: 737 working functions. The 42078's doors wait for your sign-off."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude merged the slides held at their ends after their full check (220): no result changes, 737 working functions. Two results the check gives as works but the viewer does not show stay held (the 42078's doors until you sign them; the 8274's auger)."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "Claude merged the longer turn for slow parts (228): the 8258's function 5 and the 42081's function 2 now work, 739 working functions. Claude dropped the contact rule (227) after its second measurement: 33 results worse, none better."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "You signed the 42078's doors (\"Sign 42078 doors\"): the correction for door 2 and function 12's list with its lift step. Function 12 now works: 740 working functions."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "You signed the 8110's crane (\"Sign 8110 crane\"): two corrections for the crane's shaft and the lever settings of functions 6 to 10. Its stored results are rewritten by the slow check."
+    },
+    {
+      "date": "2026-11-19",
+      "what": "The Mac ran out of memory twice (16 check processes, 82 GB on 32 GB). Claude set a machine-wide limit: 16 GB and, in your words, \"10 max\" processes. You approved sharing shapes per part type, which takes most of a check's memory away."
     }
   ]
 }

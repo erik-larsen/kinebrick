@@ -28,6 +28,7 @@ import { hungOnSliders } from './inference/guides.ts';
 import { guidedRacks, racksToGuide } from './inference/racks.ts';
 import { restingParts } from './inference/rests.ts';
 import { decorations, figureSubmodels, rideAlong } from './inference/rideAlong.ts';
+import { slidesAsked } from './inference/slideOnDemand.ts';
 import { findLooseParts, worldCylinders } from './inference/shared.ts';
 import { findStrings, hangingParts } from './inference/strings.ts';
 import { bushesOnFourStuds, onFourStuds, platesOnEdge } from './inference/studs.ts';
@@ -66,6 +67,7 @@ export interface Connection {
   extents?: { male: [number, number]; female: [number, number]; overlap: number };
   turns?: boolean; // a slide along which the parts may turn too (see slidingOnAxles)
   springHeld?: boolean; // a slide that a spring holds at rest, as a shock absorber's, or friction holds, as a part's on an axle it turns on (see Joint.springHeld)
+  asked?: boolean; // a slide asked for: a part slid on its axle by a function's first step or the viewer's user (see slidesAsked)
 }
 
 export interface Body {
@@ -94,6 +96,7 @@ export interface Joint {
   // steering, choosing how it parks and rolls, and in least motion's friction-pin tier. Until
   // springs push (v2.0), nothing pushes it back.
   springHeld?: boolean;
+  asked?: boolean; // a slide asked for (see slidesAsked)
 }
 
 // A tyre's tread: the part of a tyre that can touch the ground.
@@ -212,6 +215,8 @@ export interface Mechanism {
   // secondModels): its parts, and the parts it is welded to where it rests (as loose parts ride
   // along), so that a user might lift it off one day. Its parts aren't loose.
   frames?: number[]; // always set by inferMechanism; left out of hand-built mechanisms (tests): just the frame
+  slid?: number[]; // the parts asked to slide whose slides were made (see slidesAsked); only when some were asked
+  slideWhy?: Record<number, string>; // why each other part asked can't slide
   // The parts of each further frame's model (each second model's group), in the order of frames.
   frameParts?: number[][];
   carried?: { parts: number[]; weldedTo: number[] }[];
@@ -309,8 +314,10 @@ const SHOCK_PIVOTS = typeof process !== 'undefined' && process.env?.KINEBRICK_SH
 // `kept`: the pins the rule for stuck actuators frees in this model, kept for it (see
 // pivotsOfStuckSlides, keptPivots.ts and npm run pivots), so the rule isn't worked out again.
 // Used only with no pins `freed`, as the kept result was found; else the rule is worked out.
-export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], freed = new Set<number>(), allFree = false, kept: number[] | null = null): Mechanism {
-  return infer(parts, table, roleList, paths, freed, allFree, kept).mech;
+// `slid`: parts asked to slide on their axles (see slidesAsked): a function's first step, or the
+// viewer's user, names them; none, and the reading is as it was.
+export function inferMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[] = [], freed = new Set<number>(), allFree = false, kept: number[] | null = null, slid = new Set<number>()): Mechanism {
+  return infer(parts, table, roleList, paths, freed, allFree, kept, slid).mech;
 }
 
 // The pins the rule for stuck actuators frees in a model as read, an empty list if none: what
@@ -319,7 +326,7 @@ export function actuatorPivots(parts: PlacedPart[], table: ConnectionTable, role
   return infer(parts, table, roleList, paths, new Set(), false, null).pivots;
 }
 
-function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[], freed: Set<number>, allFree: boolean, kept: number[] | null): { mech: Mechanism; pivots: number[] } {
+function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, paths: PlacedPath[], freed: Set<number>, allFree: boolean, kept: number[] | null, slid = new Set<number>()): { mech: Mechanism; pivots: number[] } {
   parts = parts.map((p) => ({ ...p, name: libraryName(p.name, table) }));
   // Friction pins hold what they join in place, unless they're the only way the model can
   // move (a linkage built on friction pins). So first try them as rigid: if the model can
@@ -329,10 +336,10 @@ function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<str
     // KINEBRICK_FRICTION_RIGID=0 skips that first try: friction pins are always stiff joints.
     // For measuring what the rule does; unset, nothing changes.
     if (FRICTION_RIGID && !allFree) {
-      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths, free);
+      const rigid = buildMechanism(parts, table, roleList, true, guide, allPaths, free, slid);
       if (!rigid.connections.some((c) => c.held) || new Kinematics(rigid).freeMotions().length > 0) return rigid;
     }
-    return buildMechanism(parts, table, roleList, false, guide, allPaths, free);
+    return buildMechanism(parts, table, roleList, false, guide, allPaths, free, slid);
   };
   const useKept = kept !== null && !freed.size && FRICTION_RIGID && !allFree;
   let pivots: number[] = useKept ? kept : [];
@@ -344,7 +351,7 @@ function infer(parts: PlacedPart[], table: ConnectionTable, roleList: Record<str
   // model couldn't move otherwise. Once per reading, with only the friction pins near the
   // actuator freed to find them (see pivotsOfStuckSlides).
   if (!useKept && FRICTION_RIGID && !allFree && mech.connections.some((c) => c.held)) {
-    const found = pivotsOfStuckSlides(mech, parts, table, (pins) => buildMechanism(parts, table, roleList, true, new Set(), allPaths, new Set([...freed, ...pins])));
+    const found = pivotsOfStuckSlides(mech, parts, table, (pins) => buildMechanism(parts, table, roleList, true, new Set(), allPaths, new Set([...freed, ...pins]), slid));
     if (found) {
       pivots = found.pins;
       freed = new Set([...freed, ...found.pins]);
@@ -472,7 +479,7 @@ export function libraryName(name: string, table: ConnectionTable): string {
 // were structure (see frameRoles in buildMechanism).
 const AXLES_COUNTED_AS_STRUCTURE = new Set(['3737.dat', '23948.dat', '50450.dat', '50451.dat', '60485.dat', '44294.dat', '24316.dat', '87083.dat', '15462.dat', '55013.dat', '59426.dat', '6587.dat']);
 
-function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[], freed: Set<number>): Mechanism {
+function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: Record<string, string>, frictionRigid: boolean, guide: Set<number>, paths: PlacedPath[], freed: Set<number>, slid = new Set<number>()): Mechanism {
   // A path's parts (a chain's links) only show where it runs: they connect to nothing, and
   // move with what's nearest (see decorations), or round their loop (see findLoops).
   // A printed part (3626bp01, 973p19) has its plain part's role (3626b, 973).
@@ -579,7 +586,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
     for (const i of before) if (!loadable.has(i)) scenery.delete(i);
     loose = loose.filter((i) => !before.has(i) || loadable.has(i));
   }
-  const welds = rideAlong(parts, cyls, uncoupled, loose);
+  const welds = rideAlong(parts, cyls, uncoupled, loose, undefined, carriedGroups);
   connections.push(...welds);
   // A carried model rides along as loose parts do, but isn't loose: where it is welded.
   const carried = carriedGroups.map((group) => {
@@ -594,6 +601,8 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   // 3. Bodies, from every connection above: first, a part riding on parallel axles that a
   // linkage slides along them, which two hinges would otherwise hold fast.
   slidingOnParallelAxles(roles, frameRoles, cyls, connections, parts.length);
+  // Then the slides asked for (see slidesAsked), for the same reason.
+  const asked = slidesAsked(parts.map((p) => p.name), roles, cyls, connections, slid);
   // The links of a track placed link by link (see chainPaths in ldr.ts) were structure, joined to
   // what they lie on, before they were read as a track, and the frame was chosen with them. So that
   // reading the track does not move a model's frame (the 9391 Crawler Crane's would go from its
@@ -604,7 +613,7 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   let framePart = -1;
   if (parts.some((p) => p.path?.byHand && p.path.halfWidth)) {
     const asParts = parts.map((p) => (p.path?.byHand && p.path.halfWidth ? { ...p, path: undefined } : p));
-    const before = buildMechanism(asParts, table, roleList, frictionRigid, guide, paths.filter((p) => !(p.byHand && p.halfWidth)), freed);
+    const before = buildMechanism(asParts, table, roleList, frictionRigid, guide, paths.filter((p) => !(p.byHand && p.halfWidth)), freed, slid);
     framePart = before.bodyOf.findIndex((b, i) => b === 0 && roles[i] !== 'path' && !parts[i].removed);
   }
   const bodyOf = groupIntoBodies(parts.length, frameRoles, connections, new Set(models.flat()), parts.map((p) => p.matrix.elements[13]), framePart);
@@ -648,5 +657,5 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
     return [...count].reduce((a, b) => (b[1] > a[1] ? b : a))[0];
   };
   const frames = [0, ...models.map(biggest)];
-  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, frames, frameParts: models, carried, accessories, missedJoints, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}), ...(track ? { track } : {}) };
+  return { roles, bodyOf, bodies, joints, connections, treads, gears, meshes, loose, frames, frameParts: models, carried, accessories, missedJoints, couplings, loops, strings, screws, rests, centers, ...(rails.length ? { rails, riders } : {}), ...(track ? { track } : {}), ...(slid.size ? { slid: asked.slid, slideWhy: Object.fromEntries(asked.why) } : {}) };
 }

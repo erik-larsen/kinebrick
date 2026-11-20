@@ -125,9 +125,9 @@
     ]
   },
   "generated": {
-    "commit": "3556d301",
-    "date": "2026-11-18",
-    "seconds": 21,
+    "commit": "38c70beb",
+    "date": "2026-11-19",
+    "seconds": 25,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -359,7 +359,7 @@
             0.17
           ]
         ],
-        "seconds": 1.4
+        "seconds": 1.6
       },
       {
         "result": "partly",
@@ -457,7 +457,7 @@
             0.03
           ]
         ],
-        "seconds": 2.5
+        "seconds": 3.4
       },
       {
         "result": "works",
@@ -574,7 +574,7 @@
           "rise": 0,
           "tyre": "p710 41893"
         },
-        "seconds": 1.2
+        "seconds": 1.4
       },
       {
         "result": "works",
@@ -692,7 +692,7 @@
           [],
           []
         ],
-        "seconds": 7.6
+        "seconds": 8.7
       },
       {
         "result": "works",

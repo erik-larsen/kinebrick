@@ -57,6 +57,10 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   for (const c of mech.connections) connected.add(pairKey(c.male, c.female));
   for (const a of mech.connections) {
     for (const b of mech.connections) {
+      // But on an axle asked to slide (see slidesAsked), what the axle carries and the holes it
+      // slides in are watched: there a slide stops (the 42078's lock bar, lifted until its
+      // connector meets the door's pin it slides in).
+      if (a.asked || b.asked) continue;
       if (a.male === b.male && a.female !== b.female && a.kind !== 'stud' && b.kind !== 'stud') connected.add(pairKey(a.female, b.female));
     }
   }
@@ -103,8 +107,15 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   return connected;
 }
 
-// Pulls a part's meshes in towards the middle of their box, by `inset` at each face.
+// The lists of meshes shrunk already (see shrink): a list several parts share (every copy of one
+// part, see part-shapes.ts), or one a second Collisions is given, is shrunk once only.
+const shrunk = new WeakSet<PartMesh[]>();
+
+// Pulls a part's meshes in towards the middle of their box, by `inset` at each face. It depends on
+// the part's own meshes alone, not on where the part is, so copies of a part may share one list.
 function shrink(list: PartMesh[], inset: number) {
+  if (shrunk.has(list)) return;
+  shrunk.add(list);
   const box = new Box3();
   for (const m of list) {
     m.geometry.computeBoundingBox();
@@ -139,11 +150,14 @@ interface Shape {
   box: Box3; // in the part's own coordinates
 }
 
-// The watched pairs of parts on two bodies.
+// The watched pairs of parts on two bodies: every part in `onA` with every part in `onB` that comes
+// after it, but those near at the start or connected (see Collisions.skip). They aren't listed one
+// by one: on the 42100, with 7,283 parts, 22 million pairs are watched, and as a list they took
+// 1.6 GB, made afresh each time the mechanism was (decision 235 of 2026-11-19).
 interface Group {
-  pairs: [number, number][];
-  onA: number[]; // the parts in those pairs on each body
+  onA: number[]; // the parts in those pairs on each body, each in order
   onB: number[];
+  count: number; // how many pairs
   // A part on each body, and how the second sat relative to the first when the group was last
   // found clear. If that hasn't changed, no pair in the group can have started to overlap.
   a: number;
@@ -238,6 +252,9 @@ export function nearPairsOf(meshes: PartMesh[][], partMatrices: Matrix4[]): { te
 export class Collisions {
   private shapes: Shape[];
   private groups: Group[] = [];
+  // The pairs, by number (see pairNumber), not watched though on two bodies: near at the start, or
+  // connected (see watch).
+  private skip = new Set<number>();
   // For each pair tested for nearness, whether it was near, and how the second part sat relative
   // to the first when tested: a pair that hasn't moved against itself needn't be tested again
   // (after a shift, only the parts the shift moved are).
@@ -264,17 +281,24 @@ export class Collisions {
   // be as built and not be watched.
   constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false, inset = INSET, near = NEAR) {
     this.near = near;
+    // A list several parts share (see part-shapes.ts) makes one shape, its tree built once.
+    const made = new Map<PartMesh[], Shape>();
     this.shapes = meshes.map((list) => {
+      const known = made.get(list);
+      if (known) return known;
       shrink(list, inset);
       const box = new Box3();
       const built = list.map((m) => {
-        const bvh = new MeshBVH(m.geometry);
+        // A tree built before (by a Collisions given this list earlier) is kept.
+        const bvh = m.geometry.boundsTree instanceof MeshBVH ? m.geometry.boundsTree : new MeshBVH(m.geometry);
         m.geometry.boundsTree = bvh;
         m.geometry.computeBoundingBox();
         box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
         return { geometry: m.geometry, bvh, matrix: m.matrix };
       });
-      return { meshes: built, box };
+      const shape = { meshes: built, box };
+      made.set(list, shape);
+      return shape;
     });
     this.waiting = later;
     this.watch(bodyOf, connected, partMatrices);
@@ -347,27 +371,26 @@ export class Collisions {
     const n = this.shapes.length;
     const joined = new Set([...connected].map((key) => key.split(',').map(Number)).map(([a, b]) => pairNumber(a, b, n)));
     const near = new Set(this.candidates(bodyOf, connected, partMatrices).filter(([a, b]) => this.isNear(a, b, partMatrices)).map(([a, b]) => pairNumber(a, b, n)));
-    const groups = new Map<number, Group>();
+    this.skip = new Set([...near, ...joined]);
+    const groups = new Map<number, Group & { inA: Set<number>; inB: Set<number> }>();
     const bodies = Math.max(0, ...bodyOf) + 1;
     for (let a = 0; a < n; a++) {
       for (let b = a + 1; b < n; b++) {
-        if (bodyOf[a] === bodyOf[b] || near.has(a * n + b) || joined.has(a * n + b)) continue;
+        if (bodyOf[a] === bodyOf[b] || this.skip.has(a * n + b)) continue;
         const key = bodyOf[a] * bodies + bodyOf[b];
         let group = groups.get(key);
-        if (!group) groups.set(key, (group = { pairs: [], onA: [], onB: [], a, b, lastClear: null }));
-        group.pairs.push([a, b]);
+        if (!group) groups.set(key, (group = { onA: [], onB: [], count: 0, a, b, lastClear: null, inA: new Set(), inB: new Set() }));
+        group.count++;
+        group.inA.add(a);
+        group.inB.add(b);
       }
     }
-    this.groups = [...groups.values()];
-    for (const g of this.groups) {
-      g.onA = [...new Set(g.pairs.map(([a]) => a))];
-      g.onB = [...new Set(g.pairs.map(([, b]) => b))];
-    }
+    this.groups = [...groups.values()].map(({ inA, inB, ...g }) => ({ ...g, onA: [...inA].sort((x, y) => x - y), onB: [...inB].sort((x, y) => x - y) }));
   }
 
   // How many pairs of parts are being watched.
   get watchedPairs(): number {
-    return this.groups.reduce((sum, g) => sum + g.pairs.length, 0);
+    return this.groups.reduce((sum, g) => sum + g.count, 0);
   }
 
   // A part that has gone below the ground (LDraw y `ground`, which points down), as a pair of
@@ -430,9 +453,14 @@ export class Collisions {
       for (const a of group.onA) sideA.union(boxOf(a));
       for (const b of group.onB) sideB.union(boxOf(b));
       if (sideA.intersectsBox(sideB)) {
-        for (const [a, b] of group.pairs) {
-          if (this.ignored.has(a) || this.ignored.has(b)) continue;
-          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
+        // Its pairs in the order they were made: by the first part, then the second.
+        const n = this.shapes.length;
+        for (const a of group.onA) {
+          if (this.ignored.has(a)) continue;
+          for (const b of group.onB) {
+            if (b <= a || this.skip.has(a * n + b) || this.ignored.has(b)) continue;
+            if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
+          }
         }
       }
       group.lastClear = relative;
