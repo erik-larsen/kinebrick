@@ -133,7 +133,7 @@ async function sweepSet(set: string) {
     }
     const record: Record<string, any> = { function: i + 1, does: fn.does, ...line, seconds: Math.round((Date.now() - fnStarted) / 1000) };
     out.functions.push(record);
-    console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msPerStep as number | undefined) ?? '-'} ms a step`);
+    console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msPerStep as number | undefined) ?? '-'} ms a step${line.time ? `; s: ${Object.entries(line.time as Record<string, number>).map(([k, n]) => `${k} ${n}`).join(', ')}` : ''}`);
   }
   out.seconds = Math.round((Date.now() - started) / 1000);
   mkdirSync('data/viewer', { recursive: true });
@@ -146,6 +146,13 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
   const moves = (fn.moves ?? []).map(refOf);
   const stays = (fn.stays ?? []).map(refOf);
   const limits: string[] = [];
+  // Where the function's time goes, in seconds: opening the model, the wait for the collision test,
+  // the list's first steps, the camera's reach, A's turns and B's presses and pushes.
+  const time: Record<string, number> = { open: 0, collisions: 0, first: 0, reach: 0, A: 0, B: 0 };
+  const timed = async <T>(key: string, job: Promise<T>): Promise<T> => {
+    const t0 = Date.now();
+    try { return await job; } finally { time[key] += (Date.now() - t0) / 1000; }
+  };
 
   // A, the turn.
   const A: unknown[] = [];
@@ -154,9 +161,10 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
   const stopsA = new Set<string>();
   const msA: number[] = [];
   {
-    const v = await open(file);
-    await collisionsReady(v);
-    limits.push(...(await firstSteps(v, fn.first ?? [])));
+    const v = await timed('open', open(file));
+    await timed('collisions', collisionsReady(v));
+    limits.push(...(await timed('first', firstSteps(v, fn.first ?? []))));
+    const tA = Date.now();
     for (const [ci, ref] of controls.entries()) {
       const control = refOf(ref).part;
       for (const [wi, way] of [1, -1].entries()) {
@@ -201,6 +209,7 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
         A.push({ control: ref, way, asked: round(asked), went: round(went), ms: Math.round(ms), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
     }
+    time.A += (Date.now() - tA) / 1000;
     await v.close();
   }
 
@@ -209,12 +218,14 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
   const movedByB = new Set<string>();
   for (const ref of controls) {
     const control = refOf(ref).part;
-    const v = await open(file);
-    await collisionsReady(v);
-    await firstSteps(v, fn.first ?? []);
-    const turns = await v.reach(control);
+    const v = await timed('open', open(file));
+    await timed('collisions', collisionsReady(v));
+    await timed('first', firstSteps(v, fn.first ?? []));
+    const turns = await timed('reach', v.reach(control));
+    const tB = Date.now();
     if (turns < 0) {
       B.push({ control: ref, seen: false });
+      time.B += (Date.now() - tB) / 1000;
       await v.close();
       continue;
     }
@@ -244,6 +255,7 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
     }
     moved.forEach((m) => movedByB.add(m));
     B.push({ control: ref, seen: true, cameraTurns: turns, motor: isMotor, shift, moved, stops: await v.stops() });
+    time.B += (Date.now() - tB) / 1000;
     await v.close();
   }
 
@@ -257,7 +269,7 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
   // The farthest the control turned in a way that a collision stopped, and the pair that stopped it.
   const stopped = (A as any[]).filter((a) => a.stops.length).sort((a, b) => Math.abs(b.went) - Math.abs(a.went))[0];
   const stop = stopped ? { control: stopped.control, way: stopped.way, went: stopped.went, asked: stopped.asked, by: stopped.stops } : null;
-  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, stop, stops: [...stopsA], A, B };
+  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, time: Object.fromEntries(Object.entries(time).map(([k, s]) => [k, Math.round(s)])), stop, stops: [...stopsA], A, B };
 }
 
 // The list's first steps, as a user does them: a catch or lever turned by its joint's angle (turned
