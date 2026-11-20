@@ -3,7 +3,7 @@
 import { Vector3 } from 'three';
 import { axesCrossing, closestPoints, type Gear, type Mesh } from '../mechanism.ts';
 import type { Kinematics } from '../kinematics.ts';
-import { addPointVelocity, axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
+import { BodyRow, addPointVelocity, axisOf, DRIVE_WEIGHT, type Equations } from './equations.ts';
 
 export function gears(solver: Kinematics, eq: Equations) {
   const { n, add, gaps } = eq;
@@ -15,13 +15,15 @@ export function gears(solver: Kinematics, eq: Equations) {
     const contact = meshContact(solver, mesh);
     if (!contact) continue;
     const { a, b, pitchPoint, across } = contact;
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     for (let k = 0; k < 3; k++) {
-      const ra = new Array(n).fill(0);
-      const rb = new Array(n).fill(0);
+      const ra = new BodyRow(n);
+      const rb = new BodyRow(n);
       addPointVelocity(ra, a.body, pitchPoint, k, 1);
       addPointVelocity(rb, b.body, pitchPoint, k, -1);
-      for (let i = 0; i < n; i++) row[i] += across.getComponent(k) * (ra[i] + rb[i]);
+      // Over the places either has (elsewhere both are 0, and so is what would be added).
+      const places = new Set([...ra.entries(), ...rb.entries()].map(([i]) => i));
+      for (const i of [...places].sort((x, y) => x - y)) row.add(i, across.getComponent(k) * (ra.get(i) + rb.get(i)));
     }
     add(row, gaps && mesh.kind === 'rack' ? -rackSlip(solver, contact) : 0, DRIVE_WEIGHT);
   }

@@ -431,7 +431,7 @@ From those six, the speed of any point on the body follows. With three bodies, t
 
 ### 3. Connections become equations
 
-Each connection is a rule about those numbers, written as "this combination of numbers must equal zero". Each kind of connection writes its rules in a file of its own in `src/constraints/`, each rule with its gap (how far the connection has come apart, for [step 9](#9-close-the-loops)) and its weight there: `joints.ts`, `gears.ts`, `tyres.ts` and so on, called in a fixed order by `buildEquations` (the order of the rules decides which step 4 takes first, and so the motions to the last bit):
+Each connection is a rule about those numbers, written as "this combination of numbers must equal zero". Each kind of connection writes its rules in a file of its own in `src/constraints/`, each rule with its gap (how far the connection has come apart, for [step 9](#9-close-the-loops)) and its weight there: `joints.ts`, `gears.ts`, `tyres.ts` and so on, called in a fixed order by `buildEquations` (the order of the rules decides which step 4 takes first, and so the motions to the last bit): A rule is kept as its places and their values (`BodyRow` in `src/linalg.ts`), not as a list of every number: a rule is about two bodies or so of hundreds, and on a big model the lists, 2,500 numbers nearly all 0, were made and gone over in every round of a step (decision 265 of 2026-11-20). What reads a rule goes over its places in order and passes 0s, as it went over a list, so it gets the same numbers to the last bit; a test (`tests/kernels.test.ts`) and a hash of every rule on three big models, old against new, show it.
 
 | Connection | Rule | Equations |
 |---|---|---|

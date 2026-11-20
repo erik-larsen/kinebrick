@@ -750,12 +750,75 @@ export function leastSquares(a: number[][], b: number[], damping: number, order:
   return x;
 }
 
+// A row of the equations on the bodies' motions (6 numbers for each body), kept as its places and
+// values rather than as a list of every number: a row is about two bodies or so, of hundreds (a
+// big model's rows were lists of 2,500 numbers, nearly all 0, made and gone over in every round
+// of a step). It is written as a list was: add, sub and set do what row[i] += v, row[i] -= v and
+// row[i] = v did, starting from 0. A place not written reads 0. Those reading it (inBasis, and
+// buildEquations' rows on held bodies only) go over its places in order and pass 0s, as they
+// passed them in a list: so they see the same numbers, to the last bit. (A place that comes to
+// 0, of either sign, is passed either way; and a 0, of either sign, added to a number that is not
+// 0 changes nothing, so where a list started at +0 and this starts at nothing makes no difference
+// to any number that is not 0.)
+export class BodyRow {
+  private readonly at = new Map<number, number>();
+  constructor(readonly n: number) {}
+  add(i: number, v: number) {
+    this.at.set(i, (this.at.get(i) ?? 0) + v);
+  }
+  sub(i: number, v: number) {
+    this.at.set(i, (this.at.get(i) ?? 0) - v);
+  }
+  set(i: number, v: number) {
+    this.at.set(i, v);
+  }
+  get(i: number): number {
+    return this.at.get(i) ?? 0;
+  }
+  // The places written, in order, and their values.
+  entries(): [number, number][] {
+    return [...this.at].sort((x, y) => x[0] - y[0]);
+  }
+  // A row made entry by entry from rows (a list's rows.map((x, k) => x - other[k]) and the like):
+  // f of their values at each place any of them has, in order, with 0 where one has none. Where
+  // none has a place, a list got f of 0s, which for the sums and differences these are is 0.
+  static elementwise(n: number, rows: BodyRow[], f: (values: number[]) => number): BodyRow {
+    const places = new Set<number>();
+    for (const row of rows) for (const i of row.at.keys()) places.add(i);
+    const out = new BodyRow(n);
+    for (const i of [...places].sort((x, y) => x - y)) out.set(i, f(rows.map((row) => row.get(i))));
+    return out;
+  }
+  // Its dot product with a motion vector, over its places in order, passing 0s, as
+  // for (c...) if (row[c] !== 0) rate += row[c] * motion[c] went over a list: the same sum.
+  dotDense(z: number[]): number {
+    let sum = 0;
+    for (const [i, v] of this.entries()) if (v !== 0) sum += v * z[i];
+    return sum;
+  }
+  // As a list of every number (for what still wants one).
+  dense(): number[] {
+    const out = new Array<number>(this.n).fill(0);
+    for (const [i, v] of this.at) out[i] = v;
+    return out;
+  }
+}
+
 // Equation rows (on motion vectors) as rows on coordinates in a basis (see treeBasis).
-export function inBasis(rows: Row[], basis: number[][]): Row[] {
+export function inBasis(rows: (Row | BodyRow)[], basis: number[][]): Row[] {
   const q = basis[0]?.length ?? 0;
   const support = supportOf(basis);
   return rows.map((row) => {
     const out = new Array(q).fill(0);
+    if (row instanceof BodyRow) {
+      // Its places in order, as the list's were gone over: the same sums.
+      for (const [i, x] of row.entries()) {
+        if (x === 0) continue;
+        const b = basis[i];
+        for (const c of support[i]) out[c] += x * b[c];
+      }
+      return out;
+    }
     for (let i = 0; i < row.length; i++) {
       const x = row[i];
       if (x === 0) continue;

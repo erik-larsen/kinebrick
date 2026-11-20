@@ -36,7 +36,7 @@ import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
 import { TRACE, trace, traceJam } from './trace.ts';
-import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, nullSpace, orthonormalize, rowsTimes, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
+import { BodyRow, combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, dotsWith, nullSpace, orthonormalize, rowsTimes, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
 // The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
 
@@ -269,11 +269,12 @@ interface Shaft {
   near: Vector3; // the point on its axis nearest the joint's middle, at the start
 }
 
-export interface Slip {
-  sideways: Row[]; // how fast each tyre scrubs sideways
-  travel: Row[]; // how fast each tyre's hub travels along the way it rolls
-  lift: Row[]; // how fast each tyre's contact point rises or sinks
-  rise: Row[]; // how fast the frame rises or sinks over each tyre's hub, on its suspension
+// Rows on the bodies' motions as the tyres write them (BodyRow), or on the tree's coordinates.
+export interface Slip<R = Row> {
+  sideways: R[]; // how fast each tyre scrubs sideways
+  travel: R[]; // how fast each tyre's hub travels along the way it rolls
+  lift: R[]; // how fast each tyre's contact point rises or sinks
+  rise: R[]; // how fast the frame rises or sinks over each tyre's hub, on its suspension
 }
 
 // A drag's state: what it holds still and what it has found out, made when the drag starts
@@ -512,9 +513,9 @@ export class Kinematics {
   // Rows saying how fast a length worked out from a string's layout (by `measure`) changes as
   // the bodies carrying its circles move: for each circle, the change of the length with its
   // middle (by finite differences), times how fast that middle moves.
-  stringRate(s: StringLine, measure: (layout: ReturnType<typeof stringLayout>) => number, n: number): Row {
+  stringRate(s: StringLine, measure: (layout: ReturnType<typeof stringLayout>) => number, n: number): BodyRow {
     const { circles, axis, bodies } = this.stringNow(s);
-    const row = new Array(n).fill(0);
+    const row = new BodyRow(n);
     const base = measure(stringLayout(circles, axis));
     const h = 1e-3;
     circles.forEach((circle, i) => {
@@ -526,8 +527,8 @@ export class Kinematics {
       // The middle moves at v + ω × c, so the length changes at g · v + (c × g) · ω.
       const turn = new Vector3().crossVectors(circle.center, g);
       for (let k = 0; k < 3; k++) {
-        row[6 * bodies[i] + k] += turn.getComponent(k);
-        row[6 * bodies[i] + 3 + k] += g.getComponent(k);
+        row.add(6 * bodies[i] + k, turn.getComponent(k));
+        row.add(6 * bodies[i] + 3 + k, g.getComponent(k));
       }
     });
     return row;
@@ -535,12 +536,12 @@ export class Kinematics {
 
   // A row for how fast a wheel's rim turns relative to what it turns in, about a circle's axis,
   // the way the string goes round it.
-  rimRate(body: number, mount: number, point: { axis: Vector3; radius: number; turn: number }, n: number): Row {
-    const row = new Array(n).fill(0);
+  rimRate(body: number, mount: number, point: { axis: Vector3; radius: number; turn: number }, n: number): BodyRow {
+    const row = new BodyRow(n);
     const z = point.axis.clone().transformDirection(this.poses[mount]).multiplyScalar(point.turn * point.radius);
     for (let k = 0; k < 3; k++) {
-      row[6 * body + k] += z.getComponent(k);
-      row[6 * mount + k] -= z.getComponent(k);
+      row.add(6 * body + k, z.getComponent(k));
+      row.sub(6 * mount + k, z.getComponent(k));
     }
     return row;
   }
@@ -1158,7 +1159,7 @@ export class Kinematics {
     this.drag.heldToFrame = new Set();
     this.fixedBody = -1;
     const basis = this.treeBasis();
-    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] }; // tyre rows go here, not into the equations
+    const slip: Slip<BodyRow> = { sideways: [], travel: [], lift: [], rise: [] }; // tyre rows go here, not into the equations
     const motions = nullSpace(inBasis(this.buildEquations(null, slip, true), basis), basis[0].length).map((z) => fromBasis(z, basis));
     Object.assign(this, holds);
     Object.assign(this.drag, drag);
@@ -1635,14 +1636,14 @@ export class Kinematics {
       for (let i = 0; i < a.length; i++) sum += a[i] * b[i];
       return sum;
     };
-    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
+    const slip: Slip<BodyRow> = { sideways: [], travel: [], lift: [], rise: [] };
     const free = orthonormalize(nullSpace(inBasis(this.buildEquations(null, slip, true), basis), basis[0].length));
     // How fast each free motion turns the joint (see jointRate).
     const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
-    const row = new Array(6 * this.bodyCount).fill(0);
+    const row = new BodyRow(6 * this.bodyCount);
     for (let k = 0; k < 3; k++) {
-      row[6 * j.bodyB + k] += d.getComponent(k);
-      row[6 * j.bodyA + k] -= d.getComponent(k);
+      row.add(6 * j.bodyB + k, d.getComponent(k));
+      row.sub(6 * j.bodyA + k, d.getComponent(k));
     }
     const rate = inBasis([row], basis)[0];
     const rates = free.map((z) => dot(z, rate));
@@ -1894,7 +1895,7 @@ export class Kinematics {
   // ---------------------------------------------------------------------------
   // The equations
 
-  private equations(): Row[] {
+  private equations(): BodyRow[] {
     return this.buildEquations(null, null);
   }
 
@@ -1908,8 +1909,8 @@ export class Kinematics {
   // `weights`, if given, gets how much each row counts in closing loops (see DRIVE_WEIGHT).
   // `play`, if given, gets for each row of a joint that closes a loop how much it counts in
   // taking up play (1, or STUD for a turning row), and 0 for every other row (see playMotion).
-  private buildEquations(gaps: number[] | null, slip: Slip | null, skipTree = false, weights: number[] | null = null, play: number[] | null = null): Row[] {
-    const rows: Row[] = [];
+  private buildEquations(gaps: number[] | null, slip: Slip<BodyRow> | null, skipTree = false, weights: number[] | null = null, play: number[] | null = null): BodyRow[] {
+    const rows: BodyRow[] = [];
     // What a drag can't reach is held where it is on the frame (see holds), so a row on nothing
     // but those bodies and the frame has nothing left to say, but its rounding: left out, so that
     // can't hold back what the drag moves. (The 855 Mobile Crane's hook block hangs from the boom
@@ -1918,14 +1919,14 @@ export class Kinematics {
     // tyres touch the ground, and they're always in reach.
     const held = this.drag.outOfReach;
     let all = true; // whether every row is kept: the holds' own always are
-    const onlyHeld = (row: Row) => {
+    // (Over the row's places in order, passing 0s and the frame's, as it went over every number.)
+    const onlyHeld = (row: BodyRow) => {
       let touches = false;
-      for (let b = 1; b < this.bodyCount; b++) {
-        for (let k = 0; k < 6; k++) {
-          if (row[6 * b + k] === 0) continue;
-          if (!held.has(b)) return false;
-          touches = true;
-        }
+      for (const [i, x] of row.entries()) {
+        const b = Math.floor(i / 6);
+        if (b < 1 || x === 0) continue;
+        if (!held.has(b)) return false;
+        touches = true;
       }
       return touches;
     };
@@ -1934,7 +1935,7 @@ export class Kinematics {
       gaps: gaps !== null,
       skipTree,
       slip,
-      add: (row: Row, gap = 0, weight = 1, playScale = 0) => {
+      add: (row: BodyRow, gap = 0, weight = 1, playScale = 0) => {
         if (!all && onlyHeld(row)) return;
         rows.push(row);
         this.traceNames?.push(this.traceName);
@@ -2073,9 +2074,9 @@ export class Kinematics {
       // equation, and the dragged joint where it is) the tiers choose, rather than with what the
       // step left still weighted to stay so.
       const one = this.options.oneProblem && keep >= 0 && this.drag.turning?.joint === keep && this.stepByTiers;
-      let keepRow: Row | null = null;
+      let keepRow: BodyRow | null = null;
       if (keep >= 0) {
-        const row = new Array(6 * this.bodyCount).fill(0);
+        const row = new BodyRow(6 * this.bodyCount);
         keepRow = row;
         const j = this.mech.joints[keep];
         const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
@@ -2086,8 +2087,8 @@ export class Kinematics {
         const grabbed = this.drag.turning?.grabbed ?? -1;
         const [on, under] = one && grabbed >= 0 && this.parentJoint[grabbed] === keep ? [grabbed, this.housing(grabbed)] : [j.bodyB, j.bodyA];
         for (let k = 0; k < 3; k++) {
-          row[6 * on + k] += d.getComponent(k);
-          row[6 * under + k] -= d.getComponent(k);
+          row.add(6 * on + k, d.getComponent(k));
+          row.sub(6 * under + k, d.getComponent(k));
         }
         rows.push(row);
         gaps.push(0);
@@ -2095,9 +2096,9 @@ export class Kinematics {
       }
       if (!one) for (const b of this.closingStill) {
         for (let k = 0; k < 6; k++) {
-          const row = new Array(6 * this.bodyCount).fill(0);
-          row[6 * b + k] = 1;
-          row[k] -= 1;
+          const row = new BodyRow(6 * this.bodyCount);
+          row.set(6 * b + k, 1);
+          row.sub(k, 1);
           rows.push(row);
           gaps.push(0);
           weights.push(this.options.closeStill);
@@ -2115,7 +2116,7 @@ export class Kinematics {
         // lift a hair, as in choosing the step (see freeMotionsApart): kept on the ground
         // exactly, they couldn't steer back what closing the loops turned (the 956 Auto Chassis,
         // driven round a circle, drifting off it).
-        const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
+        const slip: Slip<BodyRow> = { sideways: [], travel: [], lift: [], rise: [] };
         const firm = this.buildEquations(null, slip, true);
         if (keepRow) firm.push(keepRow);
         const motions = orthonormalize(nullSpace(inBasis(firm, basis), basis[0].length));
@@ -2312,15 +2313,15 @@ export class Kinematics {
 
   // Each slide that a spring holds at rest (see Joint.springHeld) as a row: how fast it slides,
   // in LDU.
-  springRows(): number[][] {
+  springRows(): BodyRow[] {
     return this.mech.joints.flatMap((j) => (j.springHeld && j.kind === 'slide' ? [this.slideRow(j)] : []));
   }
 
   // How fast a slide slides (LDU), as a row.
-  private slideRow(j: Joint): number[] {
+  private slideRow(j: Joint): BodyRow {
     const p = j.from.clone().applyMatrix4(this.poses[j.bodyA]);
     const d = axisOf(j.from, j.to).transformDirection(this.poses[j.bodyA]);
-    const row = new Array(6 * this.bodyCount).fill(0);
+    const row = new BodyRow(6 * this.bodyCount);
     for (let k = 0; k < 3; k++) {
       addPointVelocity(row, j.bodyB, p, k, d.getComponent(k));
       addPointVelocity(row, j.bodyA, p, k, -d.getComponent(k));
@@ -2339,7 +2340,7 @@ export class Kinematics {
   // work on the rest is a fraction, and the motions are the same, in another orthonormal basis of
   // the same space.
   private freeMotionsApart(): [number[][], number[][]] {
-    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
+    const slip: Slip<BodyRow> = { sideways: [], travel: [], lift: [], rise: [] };
     const n = 6 * this.bodyCount;
     const basis = this.treeBasis();
     const q = basis[0].length;
@@ -2351,8 +2352,8 @@ export class Kinematics {
     if (sideways.length) this.slipRows = [...sideways, ...lift];
     const frameStill = inBasis(
       Array.from({ length: 6 }, (_, k) => {
-        const row = new Array(n).fill(0);
-        row[k] = 1;
+        const row = new BodyRow(n);
+        row.set(k, 1);
         return row;
       }),
       basis,
@@ -2689,8 +2690,7 @@ export class Kinematics {
       const pushedOut = (j: number) => {
         const { range } = this.mech.joints[j];
         const row = this.slideRow(this.mech.joints[j]);
-        let rate = 0;
-        for (let c = 0; c < row.length; c++) if (row[c] !== 0) rate += row[c] * motion[c];
+        let rate = row.dotDense(motion);
         rate *= Math.sign(step);
         const offset = this.slideOffset(j);
         return (offset > range![1] && rate > EPSILON) || (offset < range![0] && rate < -EPSILON);
@@ -2802,7 +2802,7 @@ export class Kinematics {
       const n = 6 * this.bodyCount;
       const speed = inBasis(
         [0, 1, 2].map((k) => {
-          const row = new Array(n).fill(0);
+          const row = new BodyRow(n);
           addPointVelocity(row, body, here, k, 1);
           return row;
         }),
@@ -3003,8 +3003,7 @@ export class Kinematics {
     this.mech.joints.forEach((j, i) => {
       if (j.kind !== 'slide' || !j.range || !j.sliding) return;
       const row = this.slideRow(j);
-      let rate = 0;
-      for (let c = 0; c < row.length; c++) if (row[c] !== 0) rate += row[c] * motion[c];
+      let rate = row.dotDense(motion);
       rate *= way;
       const offset = this.slideOffset(i);
       // Pushed out: past the end within the smallest step, or standing at the end (within
@@ -3197,7 +3196,7 @@ export class Kinematics {
   // step, to first order, and not after: its rows, which repeat each other there, don't a hair
   // further on.)
   private playMotion(rate: (z: number[]) => number, size: (z: number[]) => number[]): number[] | null {
-    const slip: Slip = { sideways: [], travel: [], lift: [], rise: [] };
+    const slip: Slip<BodyRow> = { sideways: [], travel: [], lift: [], rise: [] };
     const play: number[] = [];
     const basis = this.treeBasis();
     const rows = inBasis(this.buildEquations(null, slip, true, null, play), basis);

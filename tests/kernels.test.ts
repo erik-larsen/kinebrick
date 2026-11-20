@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { loadModel } from '../scripts/load-model.ts';
-import { combine, dotsWith, EPSILON, gramOf, kernelSpy, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row, rowsTimes, supportOf } from '../src/linalg.ts';
+import { BodyRow, combine, dotsWith, EPSILON, inBasis, gramOf, kernelSpy, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row, rowsTimes, supportOf } from '../src/linalg.ts';
 
 // The solver's kernels made cheaper with the same arithmetic (decision 263 of 2026-11-20): each new
 // kernel gives the very numbers the old one gave, to the last bit (Object.is, so +0 and −0 differ
@@ -239,6 +239,46 @@ describe('the solver kernels, made cheaper, give the same numbers', () => {
     calls.push({ kernel: 'gramOf', args: [odd, odd.map((r) => r.slice())] }, { kernel: 'combine', args: [odd, [0, 0, 1, 0]] }, { kernel: 'mixes', args: [odd, [[0, 0, 1, 0], [1, -0, 0, 2]]] }, { kernel: 'mixes', args: [vectors(3, 5), [[Infinity, 0, 1], [NaN, 0, 0]]] });
     expect(firstDifference(gramOf(odd, odd), oldGramOf(odd, odd))).toBeNull();
     sameOnAll(calls);
+  });
+
+  it('a row kept as its places (BodyRow) reads as the list it was written as, and inBasis gives the same numbers', () => {
+    // Rows written as the connections write them: adds, subtractions and settings at places,
+    // some of them again, with −0, tiny and huge numbers; the same done to a list of every number.
+    let seed = 777;
+    const random = () => ((seed = (seed * 1103515245 + 12345) % 2 ** 31) / 2 ** 31);
+    const value = () => { const r = random(); return r < 0.1 ? 0 : r < 0.2 ? -0 : r < 0.25 ? 5e-324 : r < 0.3 ? -1e300 : random() * 2 - 1; };
+    for (let t2 = 0; t2 < 60; t2++) {
+      const n = 6 * (1 + Math.floor(random() * 8));
+      const rows: BodyRow[] = [];
+      const lists: number[][] = [];
+      for (let r = 0; r < 5; r++) {
+        const row = new BodyRow(n);
+        const list = new Array(n).fill(0);
+        for (let w = 0; w < 12; w++) {
+          const i = Math.floor(random() * n);
+          const v = value();
+          const how = random();
+          if (how < 0.45) { row.add(i, v); list[i] += v; } else if (how < 0.9) { row.sub(i, v); list[i] -= v; } else { row.set(i, v); list[i] = v; }
+        }
+        // Every number not 0 the same; a 0 of either sign is read as 0 (inBasis passes it).
+        for (let i = 0; i < n; i++) if (list[i] !== 0 || row.get(i) !== 0) expect(Object.is(row.get(i), list[i]), `place ${i}`).toBe(true);
+        rows.push(row);
+        lists.push(list);
+      }
+      // Made entry by entry from two rows, as the chains and strings make theirs.
+      const both = BodyRow.elementwise(n, [rows[0], rows[1]], ([x, y]) => x - y);
+      const bothList = lists[0].map((x, k) => x - lists[1][k]);
+      for (let i = 0; i < n; i++) if (bothList[i] !== 0 || both.get(i) !== 0) expect(Object.is(both.get(i), bothList[i])).toBe(true);
+      // A basis mostly 0 (as a tree's is): inBasis of the rows and of the lists.
+      const q = 1 + Math.floor(random() * 10);
+      const basis = Array.from({ length: n }, () => Array.from({ length: q }, () => (random() < 0.7 ? 0 : random() * 2 - 1)));
+      expect(firstDifference(inBasis(rows, basis), inBasis(lists, basis))).toBeNull();
+      // A motion's dot product, as the slides' rates are read.
+      const z = Array.from({ length: n }, () => random() * 2 - 1);
+      let old = 0;
+      for (let c = 0; c < n; c++) if (lists[2][c] !== 0) old += lists[2][c] * z[c];
+      expect(Object.is(rows[2].dotDense(z), old)).toBe(true);
+    }
   });
 
   const models: [string, string, number][] = [
