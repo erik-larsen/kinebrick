@@ -64,6 +64,45 @@ describe('the check pool', () => {
     expect(pool.tryReserve(5000, 'big')).toBeNull();
   });
 
+  // The oldest waiter goes first: a request that waits holds back every younger one, though the
+  // younger would fit, until it has its room; a waiter whose process is gone holds back no one.
+  it('lets an older large waiter go before a younger small one', () => {
+    const pool = fresh(1000);
+    const a = pool.tryReserve(800, 'a')!;
+    const big = pool.enqueue(500, 'big');
+    // 800 + 100 would fit, but the older waiter comes first.
+    expect(pool.tryReserve(100, 'small')).toBeNull();
+    const small = pool.enqueue(100, 'small');
+    expect(pool.tryReserve(100, 'small', small)).toBeNull();
+    expect(pool.tryReserve(500, 'big', big)).toBeNull();
+    pool.release(a);
+    expect(pool.tryReserve(100, 'small', small)).toBeNull();
+    expect(pool.tryReserve(500, 'big', big)).not.toBeNull();
+    expect(pool.waiters().map(([name]) => name)).toEqual([small]);
+    expect(pool.tryReserve(100, 'small', small)).not.toBeNull();
+    expect(pool.waiters()).toEqual([]);
+    expect(pool.used()).toBe(600);
+  });
+
+  it('lets no dead waiter hold anyone back', () => {
+    const pool = fresh(1000);
+    writeFileSync(join(pool.dir, 'wait-1-0.json'), JSON.stringify({ owner: dead(), mb: 900, what: 'gone', since: 0 }));
+    expect(pool.tryReserve(100, 'after')).not.toBeNull();
+    expect(readdirSync(pool.dir)).not.toContain('wait-1-0.json');
+  });
+
+  it('waits in turn, and drops its waiting entry once it has room', async () => {
+    const pool = fresh(1000);
+    const a = pool.tryReserve(900, 'a')!;
+    const waiting = pool.reserve(500, 'later');
+    expect(pool.waiters().length).toBe(1);
+    pool.release(a);
+    const got = await waiting;
+    expect(got).toMatch(/\.json$/);
+    expect(pool.waiters()).toEqual([]);
+    expect(pool.used()).toBe(500);
+  });
+
   it('takes a lock left by a process that is gone', () => {
     const pool = fresh(1000);
     mkdirSync(join(pool.dir, 'lock'));

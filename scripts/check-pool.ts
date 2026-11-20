@@ -10,6 +10,12 @@
 // counted and one is added. An entry belongs to a child process once it has started, and before
 // that to the check that reserved it; an entry whose process is gone is dropped.
 //
+// The oldest waiter goes first (the orchestrator's order of 2026-11-20). A request that must wait
+// writes a waiting entry (wait-….json) with its time and size, and no request, of a check or of
+// the wrapper, takes room while an older one still waits; a waiter whose process is gone is
+// dropped. Before, a check started its next child the moment one ended, so a larger request (a
+// gate's tests, 4,600 MB) never found room until the whole check had ended.
+//
 // Any other heavy command (reading all the models, `npm run collisions`, `npm run pivots`, a probe
 // that loads a large model) goes through the pool too, by this file's wrapper (decision 231):
 //
@@ -66,6 +72,15 @@ interface Entry {
   what: string; // the set (and function), for anyone reading the folder
 }
 
+// A request waiting for room (see the top of this file).
+interface Waiter {
+  owner: number; // the process waiting
+  mb: number;
+  what: string;
+  since: number; // when it began to wait (ms)
+}
+const WAITING = 'wait-';
+
 const sleep = (ms: number) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
 export class Pool {
@@ -113,7 +128,7 @@ export class Pool {
   entries(): Map<string, Entry> {
     const out = new Map<string, Entry>();
     for (const name of readdirSync(this.dir)) {
-      if (!name.endsWith('.json')) continue;
+      if (!name.endsWith('.json') || name.startsWith(WAITING)) continue;
       let e: Entry;
       try {
         e = JSON.parse(readFileSync(join(this.dir, name), 'utf-8'));
@@ -126,6 +141,33 @@ export class Pool {
     return out;
   }
 
+  // The live waiters, oldest first (by when they began to wait, then by name); the files of dead
+  // ones are removed.
+  waiters(): [string, Waiter][] {
+    const out: [string, Waiter][] = [];
+    for (const name of readdirSync(this.dir)) {
+      if (!name.startsWith(WAITING) || !name.endsWith('.json')) continue;
+      let w: Waiter;
+      try {
+        w = JSON.parse(readFileSync(join(this.dir, name), 'utf-8'));
+      } catch {
+        continue; // being written
+      }
+      if (alive(w.owner)) out.push([name, w]);
+      else rmSync(join(this.dir, name), { force: true });
+    }
+    return out.sort(([a, x], [b, y]) => x.since - y.since || (a < b ? -1 : a > b ? 1 : 0));
+  }
+
+  // Enters this process as waiting for `mb` (see tryReserve's `ticket`): the waiting entry's name.
+  enqueue(mb: number, what: string): string {
+    return this.locked(() => {
+      const name = `${WAITING}${process.pid}-${this.n++}.json`;
+      this.writeFile(name, { owner: process.pid, mb, what, since: Date.now() });
+      return name;
+    });
+  }
+
   // The memory the live entries are expected to take, in MB.
   used(): number {
     let sum = 0;
@@ -135,26 +177,48 @@ export class Pool {
 
   // Enters `mb` for this check if it fits in the budget with everything live, or if nothing is
   // live (a child expected to take more than the whole budget runs alone), and fewer than `most`
-  // entries are live: the entry's name, or null if there is no room yet.
-  tryReserve(mb: number, what: string): string | null {
+  // entries are live, and no older request waits: the entry's name, or null if there is no room
+  // yet. With `ticket` (its waiting entry, from enqueue), only the waiters older than it count, and
+  // the waiting entry is dropped once there is room; without, it is younger than every waiter.
+  tryReserve(mb: number, what: string, ticket?: string): string | null {
     return this.locked(() => {
+      const waiters = this.waiters();
+      const mine = ticket === undefined ? -1 : waiters.findIndex(([name]) => name === ticket);
+      if (mine < 0 ? waiters.length > 0 : mine > 0) return null;
       const live = [...this.entries().values()];
       const used = live.reduce((sum, e) => sum + e.mb, 0);
       if (live.length >= this.most) return null;
       if (used > 0 && used + mb > this.budget) return null;
       const name = `${process.pid}-${this.n++}.json`;
       this.write(name, { owner: process.pid, child: null, mb, what });
+      if (ticket !== undefined) rmSync(join(this.dir, ticket), { force: true });
       return name;
     });
   }
 
-  // As tryReserve, waiting until there is room.
+  // As tryReserve, waiting until there is room, in turn: oldest first.
   async reserve(mb: number, what: string): Promise<string> {
-    for (;;) {
-      const name = this.tryReserve(mb, what);
-      if (name) return name;
-      await new Promise((r) => setTimeout(r, WAIT));
+    const name = this.tryReserve(mb, what);
+    if (name) return name;
+    const ticket = this.enqueue(mb, what);
+    this.waiting.add(ticket);
+    try {
+      for (;;) {
+        const got = this.tryReserve(mb, what, ticket);
+        if (got) return got;
+        await new Promise((r) => setTimeout(r, WAIT));
+      }
+    } finally {
+      this.waiting.delete(ticket);
     }
+  }
+
+  // This process's waiting entries, for stop() to drop.
+  private waiting = new Set<string>();
+  // Drops this process's waiting entries (a wrapper stopped while it waits).
+  stop() {
+    for (const ticket of this.waiting) rmSync(join(this.dir, ticket), { force: true });
+    this.waiting.clear();
   }
 
   // The entry `name` belongs to the child `pid` from now on.
@@ -174,6 +238,9 @@ export class Pool {
 
   // Written whole, so that no one reads half an entry.
   private write(name: string, e: Entry) {
+    this.writeFile(name, e);
+  }
+  private writeFile(name: string, e: Entry | Waiter) {
     const tmp = join(this.dir, `${name}.tmp`);
     writeFileSync(tmp, JSON.stringify(e));
     renameSync(tmp, join(this.dir, name));
@@ -260,6 +327,7 @@ async function run(args: string[]) {
         }
       }
       if (entry) pool.release(entry);
+      pool.stop();
       process.exit(128 + ({ SIGINT: 2, SIGTERM: 15, SIGHUP: 1 } as const)[signal]);
     });
   }
@@ -268,7 +336,8 @@ async function run(args: string[]) {
   if (!entry) {
     const live = pool.entries();
     const used = [...live.values()].reduce((sum, e) => sum + e.mb, 0);
-    console.error(`check-pool: waiting for room: ${live.size >= pool.most ? `${live.size} of ${pool.most} processes running` : `${mb} MB asked, ${used} of ${pool.budget} MB in use`}`);
+    const ahead = pool.waiters().length;
+    console.error(`check-pool: waiting for room: ${live.size >= pool.most ? `${live.size} of ${pool.most} processes running` : `${mb} MB asked, ${used} of ${pool.budget} MB in use`}${ahead ? `, ${ahead} waiting before it` : ''}`);
     entry = await pool.reserve(mb, what);
   }
   // In a process group of its own, so that its own children are measured and stopped with it.
