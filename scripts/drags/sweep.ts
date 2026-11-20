@@ -15,6 +15,11 @@
 // The verdict per function: shown (A moves every listed part, in some way of some control, and none
 // listed to stay; and B moves a listed part), else not shown, with which of A or B failed and how.
 // No threshold for slow: the ms per step is reported beside it.
+// A collision stop is then judged (decision 252, see judge()): where the real part turns without
+// end (a wheel that rolls, a track, an engine, a rotor), a stop makes the function not shown, however
+// far its parts moved first; where it has an end and a travel of 0.2 rad or less each way, the
+// booklet's picture decides, by hand, in data/viewer/judged.json, and until then it is "not decided".
+// A model the viewer can't open is recorded "does not open", and the sweep goes on.
 //
 // One record per set in data/viewer/<set>.json, with the commit and the date; a set already swept
 // at this commit is skipped unless --force. Each set runs in a process of its own, through the
@@ -22,14 +27,27 @@
 // is given (your own server, not 5174's).
 //   npx tsx scripts/drags/sweep.ts http://localhost:5208 [set …] [--force] [--jobs 3]
 //   npx tsx scripts/drags/sweep.ts http://localhost:5208 --one 9397-1      (one set, in this process)
+//   npx tsx scripts/drags/sweep.ts --judge      (the records judged again, with no browser)
 import { execSync, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { chromium } from 'playwright';
 import { open, type Viewer } from './drag.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
 const MAX_STEP = 0.035; // radians: the solver's largest turn step (MAX_TURN_STEP in kinematics.ts)
 const MOTOR_MOST_MS = 60_000;
 const PUSHES: [number, number][] = [[120, 0], [-120, 0], [0, 120], [0, -120]];
+// How a collision stop is judged (decision 252 of 2026-11-20). A stop is right where the real part
+// has an end (a door against its frame, steering at its lock), and wrong where it turns without
+// end. The kinds that turn without end are a first sieve (a function with one of them and no kind
+// with an end); the words of the function's text that say so are recorded beside them.
+const ENDLESS = new Set(['belt-drive', 'chain-drive', 'conveyor', 'crawler-tracks', 'differential', 'driven-detail', 'driven-rotor', 'free-wheels', 'piston-engine', 'planetary-hub', 'portal-axle', 'power-take-off', 'pull-back-motor', 'rotary-tool', 'valve-train']);
+const ENDLESS_WORDS = /\b(rolls?|rolling|spins?|spinning|rotors?|fans?|engine|pistons?|tracks?|power take-off|turns? freely|runs? freely|drive shaft|propellers?|wheels?)\b/gi;
+const SHORT = 0.2; // radians each way: a travel this short is compared with the booklet's picture
+// Judgements made by hand where the sweep can't tell (a short travel against the booklet's
+// picture): data/viewer/judged.json, {"<set> <function>": {stop, why, page}}, stop "shown",
+// "not shown" or "not decided".
+const judged: Record<string, { stop: string; why: string; page?: string }> = existsSync('data/viewer/judged.json') ? JSON.parse(readFileSync('data/viewer/judged.json', 'utf-8')) : {};
 
 type Ref = { ref: string; part: number; against: number };
 const refOf = (ref: string): Ref => {
@@ -47,7 +65,21 @@ const outFile = (set: string) => `data/viewer/${set}.json`;
 const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => g?.result === 'works').length;
 
 const oneAt = args.indexOf('--one');
-if (oneAt >= 0) {
+if (args[0] === '--judge') {
+  // The records judged again (after a change to judge() or to judged.json), with no browser.
+  for (const f of readdirSync('data/viewer').filter((f) => /^\d.*\.json$/.test(f))) {
+    const rec = JSON.parse(readFileSync(`data/viewer/${f}`, 'utf-8'));
+    const fns = JSON.parse(readFileSync(setFile(rec.set), 'utf-8')).curated.functions;
+    rec.functions = rec.functions.map((line: any) => {
+      if (!line.A) return line;
+      const { stopsJudged, stopVerdict, byHand, moved, ...rest } = line;
+      const base = moved ? { ...rest, verdict: moved.verdict, why: moved.why } : rest;
+      if (!base.why) delete base.why;
+      return judge(`${rec.set} ${line.function}`, fns[line.function - 1], base);
+    });
+    writeFileSync(`data/viewer/${f}`, JSON.stringify(rec, null, 2) + '\n');
+  }
+} else if (oneAt >= 0) {
   await sweepSet(args[oneAt + 1]);
 } else {
   const named = args.slice(1).filter((a, i, all) => !a.startsWith('--') && all[i - 1] !== '--jobs');
@@ -82,15 +114,22 @@ async function sweepSet(set: string) {
   const model: string = data.curated.model;
   const out: { set: string; commit: string; date: string; seconds: number; functions: unknown[] } = { set, commit, date: new Date().toISOString(), seconds: 0, functions: [] };
   const started = Date.now();
+  // A model that the viewer can't open: every working function recorded so, and the sweep goes on.
+  // (Asked only once a function's sweep fails, since a load costs as much as a function.)
+  const fails = new Map<string, string | null>();
   for (const [i, fn] of (data.curated.functions as any[]).entries()) {
     const g = data.generated.functions[i];
     if (g?.result !== 'works') continue;
     const fnStarted = Date.now();
     let line: Record<string, any>;
+    const file: string = fn.model ?? model;
     try {
-      line = await sweepFunction(fn.model ?? model, fn, g);
+      if (fails.get(file)) throw new Error('known');
+      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g));
     } catch (e) {
-      line = { verdict: 'not shown', why: `the sweep failed: ${String(e).slice(0, 200)}` };
+      if (!fails.has(file)) fails.set(file, await opens(file));
+      const fail = fails.get(file);
+      line = fail ? { verdict: 'does not open', why: fail } : { verdict: 'not shown', why: `the sweep failed: ${String(e).slice(0, 200)}` };
     }
     const record: Record<string, any> = { function: i + 1, does: fn.does, ...line, seconds: Math.round((Date.now() - fnStarted) / 1000) };
     out.functions.push(record);
@@ -309,4 +348,57 @@ async function pick(_v: Viewer, before: number[][], parts: number[], want: numbe
 
 function round(x: number) {
   return Math.round(x * 1000) / 1000;
+}
+
+// Whether the viewer opens the model: null if it does, else what the page said (an error thrown
+// while loading, or that it never got ready).
+async function opens(file: string): Promise<string | null> {
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
+    let error: string | null = null;
+    page.on('pageerror', (e) => { error ??= e.message; });
+    await page.goto(`${base}/?file=${encodeURIComponent(file)}&option=debug`);
+    for (let t = 0; t < 300; t++) {
+      if (error) return `does not open in the viewer: ${String(error).slice(0, 200)}`;
+      if (await page.evaluate(() => { const k = (window as any).kinebrick; return !!(k && k.kin && k.kin.poses.length > 0); })) return null;
+      await page.waitForTimeout(1000);
+    }
+    return 'does not open in the viewer: not ready after 300 s';
+  } finally {
+    await browser.close();
+  }
+}
+
+// The collision stops judged (decision 252): for each control a collision stopped, whether the real
+// part turns without end (then the function is not shown, however far its parts moved first), or
+// has an end with a travel of SHORT or less both ways (then the booklet decides, by hand, in
+// judged.json), or neither (the stop stands).
+function judge(key: string, fn: any, line: Record<string, any>): Record<string, any> {
+  const A = line.A as any[];
+  const stopped = [...new Set(A.filter((a) => a.stops.length).map((a) => a.control as string))];
+  if (!stopped.length) return line;
+  const kinds: string[] = fn.mechanisms ?? [];
+  const endlessKinds = kinds.filter((k) => ENDLESS.has(k));
+  const endless = endlessKinds.length > 0 && endlessKinds.length === kinds.length;
+  const words = [...new Set(((fn.does as string).match(ENDLESS_WORDS) ?? []).map((w) => w.toLowerCase()))];
+  const stopsJudged = stopped.map((control) => {
+    const ways = A.filter((a) => a.control === control);
+    const at = ways.filter((a) => a.stops.length).map((a) => `${a.way > 0 ? '+' : '-'}${Math.abs(a.went)} rad (${a.stops.join(', ')})`).join('; ');
+    const short = ways.every((a) => Math.abs(a.went) <= SHORT);
+    if (endless) return { control, judged: 'not shown', why: `turns without end (kinds ${endlessKinds.join(', ')}; the text says: ${words.join(', ') || 'nothing more'}), but a collision stops it at ${at}` };
+    if (short) return { control, judged: 'to compare with the booklet', why: `a travel of ${SHORT} rad or less each way, stopped at ${at}` };
+    return { control, judged: 'stands', why: `stopped at ${at}; kinds ${kinds.join(', ') || 'none'}` };
+  });
+  const byHand = judged[key];
+  let stopVerdict = stopsJudged.some((s) => s.judged === 'not shown') ? 'not shown' : stopsJudged.some((s) => s.judged === 'to compare with the booklet') ? 'not decided' : 'shown';
+  if (byHand && stopVerdict === 'not decided') stopVerdict = byHand.stop;
+  const out: Record<string, any> = { ...line, stopsJudged, stopVerdict, ...(byHand ? { byHand } : {}), moved: { verdict: line.verdict, ...(line.why ? { why: line.why } : {}) } };
+  if (stopVerdict === 'not shown' && line.verdict === 'shown') {
+    out.verdict = 'not shown';
+    out.why = [line.why, `a collision stops a control: ${stopsJudged.filter((s) => s.judged !== 'stands').map((s) => `${s.control}: ${s.why}`).join('; ')}${byHand ? ` (${byHand.why}${byHand.page ? `, ${byHand.page}` : ''})` : ''}`].filter(Boolean).join('; ');
+  }
+  if (stopVerdict === 'not decided' && line.verdict === 'shown') out.verdict = 'not decided';
+  if (stopVerdict === 'not decided') out.why = [out.why, `not decided: ${stopsJudged.filter((s) => s.judged === 'to compare with the booklet').map((s) => `${s.control}: ${s.why}`).join('; ')}`].filter(Boolean).join('; ');
+  return out;
 }
