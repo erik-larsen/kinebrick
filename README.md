@@ -243,10 +243,74 @@ A car with two fixed axles can't turn without its tyres sliding sideways, which 
 
 ## Getting started
 
-You need [Node.js](https://nodejs.org) (which comes with `npm`).
+To only look at Kinebrick, nothing needs installing: each of its three branches is published as a site (the links are in the table below). The sites open the models packed into this repository. A local build is for changing the code, and for opening any real set's file from the [LDraw Official Model Repository](https://library.ldraw.org/omr) (OMR), which this repository doesn't hold.
 
-1. Install the dependencies: `npm install`
-2. Start the viewer: `npm run dev`, then open the address it prints. Pick a test model from the menu at the top left, or [open your own](#your-own-model).
+### Running a local build
+
+| Branch | What it is | Published at | Port below |
+|---|---|---|---|
+| `main` | The released viewer. | [erik-larsen.github.io/kinebrick/](https://erik-larsen.github.io/kinebrick/) | 5173 |
+| `preview` | Work on the Technic sets that has not reached `main` yet. | [/preview/](https://erik-larsen.github.io/kinebrick/preview/) | 5174 |
+| `preview-train` | Work on the train sets, on top of `preview`. | [/preview-train/](https://erik-larsen.github.io/kinebrick/preview-train/) | 5183 |
+
+You need [git](https://git-scm.com) and [Node.js](https://nodejs.org) 22 or newer (which comes with `npm`). Each branch gets a folder of its own, side by side, so all three can run at once; `preview` and `preview-train` are added to the clone made for `main`, so do `main`'s first step even if you only want one of the others. Run every command from the folder that holds those folders, and leave each viewer running in a terminal window of its own.
+
+#### main
+
+```bash
+git clone https://github.com/erik-larsen/kinebrick.git
+npm --prefix kinebrick install
+npm --prefix kinebrick run dev -- --port 5173 --strictPort
+```
+
+Then open [http://localhost:5173/](http://localhost:5173/). Pick a test model from the menu at the top left, or [open your own](#your-own-model).
+
+#### preview
+
+```bash
+git -C kinebrick worktree add ../kinebrick-preview preview
+npm --prefix kinebrick-preview install
+npm --prefix kinebrick-preview run dev -- --port 5174 --strictPort
+```
+
+Then open [http://localhost:5174/](http://localhost:5174/).
+
+#### preview-train
+
+```bash
+git -C kinebrick worktree add ../kinebrick-train preview-train
+npm --prefix kinebrick-train install
+npm --prefix kinebrick-train run dev -- --port 5183 --strictPort
+```
+
+Then open [http://localhost:5183/](http://localhost:5183/).
+
+With `--strictPort` a viewer stops with an error if its port is taken, rather than starting on another one. Any free port will do.
+
+#### The real sets
+
+This repository holds only the models in the viewer's menu. The OMR's own files of real LEGO sets are downloaded, once for each folder, into its `omr/` folder:
+
+```bash
+npm --prefix kinebrick run omr
+npm --prefix kinebrick-preview run omr
+npm --prefix kinebrick-train run omr -- --trains
+```
+
+The first two download every Technic set the OMR has; the third downloads the train sets into `omr/trains/`. A running viewer then opens a set by its file's name, with `+` for each space:
+
+- `http://localhost:5173/?file=omr/9397-1+Logging+Truck.mpd` (the same on port 5174)
+- `http://localhost:5183/?file=omr/trains/10277-1+Crocodile+Locomotive.mpd`
+
+#### Newer work
+
+```bash
+git -C kinebrick pull
+git -C kinebrick-preview pull
+git -C kinebrick-train pull
+```
+
+A running viewer reloads by itself when its files change. Run `npm install` in a folder again if its `package.json` changed.
 
 The viewer doesn't need the LDraw parts library: each test model is packed, with every part it uses, into one file in `packed/`. A model you open yourself is packed the same way in your browser, its parts fetched from [Kinebrick's copy of the library](https://github.com/erik-larsen/ldraw). The libraries are only needed to rebuild the data after changing a test model (see below).
 
