@@ -1,0 +1,258 @@
+{
+  "set": "8856-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:36:17.514Z",
+  "part": "A",
+  "parts": 480,
+  "seconds": 25,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The small crank low on the right side retracts and lowers the landing gear: a worm turns the long shaft under the floor, which swings the nose wheel's leg through a bevel pair at the front and the two main wheels' legs through a crown gear on the rear axle.",
+      "verdict": "shown",
+      "msOneCall": 38,
+      "msPerStep": 5,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p390 8856 - 4185a",
+          "way": 1,
+          "asked": 0.47,
+          "went": 0.47,
+          "ms": 70,
+          "msOneCall": 38,
+          "stops": [],
+          "moved": {
+            "p17 3708": [
+              0,
+              1.12
+            ],
+            "p79 4263": [
+              0.41,
+              0.79
+            ],
+            "p82 4263": [
+              0.41,
+              0.79
+            ],
+            "p87 3482": [
+              0.83,
+              1.33
+            ],
+            "p103 4519": [
+              0.39,
+              1.12
+            ],
+            "p109 4519": [
+              0.39,
+              1.12
+            ],
+            "p129 3482": [
+              1.17,
+              0.85
+            ],
+            "p131 3482": [
+              1.17,
+              0.85
+            ],
+            "p193 3706": [
+              0,
+              0
+            ],
+            "p408 2738": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p390 8856 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 162,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p17 3708": [
+              0,
+              3.58
+            ],
+            "p79 4263": [
+              1.33,
+              2.54
+            ],
+            "p82 4263": [
+              1.33,
+              2.54
+            ],
+            "p87 3482": [
+              2.66,
+              4.29
+            ],
+            "p103 4519": [
+              1.25,
+              3.58
+            ],
+            "p109 4519": [
+              1.25,
+              3.58
+            ],
+            "p129 3482": [
+              3.75,
+              2.71
+            ],
+            "p131 3482": [
+              3.75,
+              2.71
+            ],
+            "p193 3706": [
+              0,
+              0
+            ],
+            "p408 2738": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    },
+    {
+      "function": 8,
+      "does": "The three landing gear wheels roll freely.",
+      "verdict": "not shown",
+      "msOneCall": 13,
+      "msPerStep": 4,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": {
+        "control": "p131 3482",
+        "way": 1,
+        "went": 0.558,
+        "asked": 1.5,
+        "by": [
+          "43/79"
+        ]
+      },
+      "stops": [
+        "43/79"
+      ],
+      "A": [
+        {
+          "control": "p87 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 131,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p87 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 137,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p89 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 146,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p89 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 135,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p129 3482",
+          "way": 1,
+          "asked": 0.57,
+          "went": 0.57,
+          "ms": 58,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p129 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 128,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p131 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.558,
+          "ms": 57,
+          "msOneCall": 10,
+          "stops": [
+            "43/79"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p131 3482",
+          "way": -1,
+          "asked": 0.57,
+          "went": -0.57,
+          "ms": 57,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p131 3482",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p131 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.558 rad (43/79)",
+      "seconds": 12
+    }
+  ]
+}

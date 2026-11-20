@@ -1,0 +1,151 @@
+{
+  "set": "8022-1",
+  "commit": "c2d618a4",
+  "date": "2026-11-20T11:12:12.079Z",
+  "seconds": 111,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Rolling the plane on its wheels spins the propeller: an 8 tooth gear on the wheels' axle turns a 24 tooth crown gear, which turns an 8 tooth gear on a lengthwise shaft; a second crown gear on that shaft turns the 8 tooth gear on the propeller's shaft, so the propeller turns three times as fast as the wheels.",
+      "verdict": "shown",
+      "msPerStep": 0,
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p82 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 20,
+          "stops": [],
+          "moved": {
+            "p8 3650a": [
+              0,
+              28.65
+            ],
+            "p14 3650a": [
+              0,
+              85.94
+            ],
+            "p46 2825": [
+              0,
+              102.17
+            ],
+            "p76 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p82 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 11,
+          "stops": [],
+          "moved": {
+            "p8 3650a": [
+              0,
+              28.65
+            ],
+            "p14 3650a": [
+              0,
+              85.94
+            ],
+            "p46 2825": [
+              0,
+              102.17
+            ],
+            "p76 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p84 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 10,
+          "stops": [],
+          "moved": {
+            "p8 3650a": [
+              0,
+              28.65
+            ],
+            "p14 3650a": [
+              0,
+              85.94
+            ],
+            "p46 2825": [
+              0,
+              102.17
+            ],
+            "p76 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p84 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 11,
+          "stops": [],
+          "moved": {
+            "p8 3650a": [
+              0,
+              28.65
+            ],
+            "p14 3650a": [
+              0,
+              85.94
+            ],
+            "p46 2825": [
+              0,
+              102.17
+            ],
+            "p76 3706": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [
+        {
+          "control": "p82 3482",
+          "seen": true,
+          "cameraTurns": 0,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p8 3650a",
+            "p14 3650a",
+            "p46 2825"
+          ],
+          "stops": []
+        },
+        {
+          "control": "p84 3482",
+          "seen": true,
+          "cameraTurns": 2,
+          "motor": false,
+          "shift": [],
+          "moved": [
+            "p8 3650a",
+            "p14 3650a",
+            "p46 2825"
+          ],
+          "stops": []
+        }
+      ],
+      "seconds": 111
+    }
+  ]
+}

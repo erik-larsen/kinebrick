@@ -1,0 +1,286 @@
+{
+  "set": "8840-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:34:54.931Z",
+  "part": "A",
+  "parts": 206,
+  "seconds": 14,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The left rear wheel runs the V2 engine: on the left rear half-shaft a 14 tooth bevel gear drives a bevel gear on a short shaft running back, whose 24 tooth gear drives the 8 tooth gear on the crankshaft, so the two pistons pump up and down in their cylinders behind the seat as the buggy rolls.",
+      "verdict": "shown",
+      "msOneCall": 26,
+      "msPerStep": 13,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p210 4266",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 25,
+          "msOneCall": 26,
+          "stops": [],
+          "moved": {
+            "p101 3648a against p86 3701": [
+              0,
+              4.01
+            ],
+            "p116 2853 against p86 3701": [
+              0,
+              12.04
+            ],
+            "p117 2852 against p86 3701": [
+              2.1,
+              1.68
+            ],
+            "p120 2851 against p86 3701": [
+              1.79,
+              0
+            ],
+            "p121 2851 against p86 3701": [
+              2.02,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p210 4266",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 13,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p101 3648a against p86 3701": [
+              0,
+              1.72
+            ],
+            "p116 2853 against p86 3701": [
+              0,
+              5.16
+            ],
+            "p117 2852 against p86 3701": [
+              0.9,
+              0.87
+            ],
+            "p120 2851 against p86 3701": [
+              0.85,
+              0
+            ],
+            "p121 2851 against p86 3701": [
+              0.8,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 3,
+      "does": "The rear suspension: the whole rear frame, carrying the rear wheels and the engine, swings up and down on the cross axle under the seat, held by two shock absorbers from the body down to the rear half-shafts.",
+      "verdict": "not shown",
+      "why": "A: p210 4266 against p0 3703, p213 4266 against p0 3703, p200 4255 against p0 3703, p202 4255 against p0 3703 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p86 3701",
+          "way": 1,
+          "asked": 0.24,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p210 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p213 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p200 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p202 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p206 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p208 4266 against p0 3703": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p86 3701",
+          "way": -1,
+          "asked": 0.35,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p210 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p213 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p200 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p202 4255 against p0 3703": [
+              0,
+              0
+            ],
+            "p206 4266 against p0 3703": [
+              0,
+              0
+            ],
+            "p208 4266 against p0 3703": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 5,
+      "does": "Pushed along, the four wheels roll freely; the right rear wheel turns on its own half-shaft, free of the engine.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 9,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p206 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p206 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p208 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 35,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p208 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p210 4266",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 15,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p210 4266",
+          "way": -1,
+          "asked": 0.03,
+          "went": -0.03,
+          "ms": 9,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p213 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 43,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p213 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 47,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

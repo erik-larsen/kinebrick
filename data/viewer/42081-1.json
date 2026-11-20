@@ -1,0 +1,630 @@
+{
+  "set": "42081-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:30:45.451Z",
+  "part": "A",
+  "parts": 1155,
+  "seconds": 235,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Either of the middle pair of knobs low on the chassis sides, just behind the front wheels, raises and lowers the loader arm: the knob turns the screw of a linear actuator lying along the chassis, which pushes the arm up about its pivot, carrying the bucket with it.",
+      "verdict": "shown",
+      "msOneCall": 381,
+      "msPerStep": 190,
+      "time": {
+        "open": 17,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 49,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p460 32270",
+          "way": 1,
+          "asked": 1.7,
+          "went": 1.7,
+          "ms": 9222,
+          "msOneCall": 357,
+          "stops": [],
+          "moved": {
+            "p464 32271 against p0 64179": [
+              3.4,
+              0.67
+            ],
+            "p442 62274c01 against p441 62271c01": [
+              1.01,
+              0
+            ],
+            "p1136 15265 against p0 64179": [
+              6.81,
+              0.67
+            ],
+            "p621 18940 against p0 64179": [
+              0,
+              0
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p460 32270",
+          "way": -1,
+          "asked": 1.7,
+          "went": -1.7,
+          "ms": 8681,
+          "msOneCall": 381,
+          "stops": [],
+          "moved": {
+            "p464 32271 against p0 64179": [
+              3.38,
+              0.67
+            ],
+            "p442 62274c01 against p441 62271c01": [
+              1.01,
+              0
+            ],
+            "p1136 15265 against p0 64179": [
+              6.78,
+              0.67
+            ],
+            "p621 18940 against p0 64179": [
+              0,
+              0
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p463 32270",
+          "way": 1,
+          "asked": 1.7,
+          "went": 1.7,
+          "ms": 8517,
+          "msOneCall": 285,
+          "stops": [],
+          "moved": {
+            "p464 32271 against p0 64179": [
+              3.4,
+              0.67
+            ],
+            "p442 62274c01 against p441 62271c01": [
+              1.01,
+              0
+            ],
+            "p1136 15265 against p0 64179": [
+              6.81,
+              0.67
+            ],
+            "p621 18940 against p0 64179": [
+              0,
+              0
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p463 32270",
+          "way": -1,
+          "asked": 1.7,
+          "went": -1.7,
+          "ms": 8101,
+          "msOneCall": 238,
+          "stops": [],
+          "moved": {
+            "p464 32271 against p0 64179": [
+              3.38,
+              0.67
+            ],
+            "p442 62274c01 against p441 62271c01": [
+              1.01,
+              0
+            ],
+            "p1136 15265 against p0 64179": [
+              6.78,
+              0.67
+            ],
+            "p621 18940 against p0 64179": [
+              0,
+              0
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 68
+    },
+    {
+      "function": 3,
+      "does": "Either of the upper pair of knobs, high on the sides by the arm's pivot, tilts the bucket: a shaft with universal joints runs up the arm to a second linear actuator, which works the bucket through a pair of links at the arm's tip.",
+      "verdict": "shown",
+      "msOneCall": 262,
+      "msPerStep": 169,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 43,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p553 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 7050,
+          "msOneCall": 262,
+          "stops": [],
+          "moved": {
+            "p1136 15265 against p464 32271": [
+              2.23,
+              3.19
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              1.48,
+              0
+            ],
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p553 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 7240,
+          "msOneCall": 237,
+          "stops": [],
+          "moved": {
+            "p1136 15265 against p464 32271": [
+              2.12,
+              3.04
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              1.49,
+              0
+            ],
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p554 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 7128,
+          "msOneCall": 237,
+          "stops": [],
+          "moved": {
+            "p1136 15265 against p464 32271": [
+              2.23,
+              3.19
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              1.48,
+              0
+            ],
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p554 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 7074,
+          "msOneCall": 236,
+          "stops": [],
+          "moved": {
+            "p1136 15265 against p464 32271": [
+              2.12,
+              3.04
+            ],
+            "p506 62274c01 against p505 62271c01": [
+              1.49,
+              0
+            ],
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 48
+    },
+    {
+      "function": 5,
+      "does": "The knob at the very back slides the whole rear body (the battery pack with the drone pad on top) fore and aft as a counterweight: it turns a worm gear in the body, which walks along a toothed rack on the chassis.",
+      "verdict": "shown",
+      "msOneCall": 188,
+      "msPerStep": 37,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p943 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1606,
+          "msOneCall": 188,
+          "stops": [],
+          "moved": {
+            "p621 18940 against p0 64179": [
+              1.87,
+              0
+            ],
+            "p610 18942 against p0 64179": [
+              0,
+              0
+            ],
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p943 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1448,
+          "msOneCall": 150,
+          "stops": [],
+          "moved": {
+            "p621 18940 against p0 64179": [
+              1.87,
+              0
+            ],
+            "p610 18942 against p0 64179": [
+              0,
+              0
+            ],
+            "p464 32271 against p0 64179": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    },
+    {
+      "function": 6,
+      "does": "The four wheels roll freely; there's no drive to them.",
+      "verdict": "shown",
+      "msOneCall": 144,
+      "msPerStep": 30,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 37,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1098 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1231,
+          "msOneCall": 144,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1098 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1236,
+          "msOneCall": 117,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1064 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1220,
+          "msOneCall": 120,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1064 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1210,
+          "msOneCall": 116,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1081 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1287,
+          "msOneCall": 122,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1081 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1307,
+          "msOneCall": 127,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1115 15038",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1229,
+          "msOneCall": 134,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1115 15038",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1215,
+          "msOneCall": 116,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 42
+    },
+    {
+      "function": 7,
+      "does": "The drone's four three-bladed propellers spin, and the drone lifts off its pad on top of the rear body to be played with on its own.",
+      "verdict": "shown",
+      "msOneCall": 153,
+      "msPerStep": 28,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 36,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1160 92842",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1203,
+          "msOneCall": 153,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1160 92842",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1172,
+          "msOneCall": 145,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1161 92842",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1133,
+          "msOneCall": 140,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1161 92842",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1175,
+          "msOneCall": 140,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1163 92842",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1170,
+          "msOneCall": 141,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1163 92842",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1221,
+          "msOneCall": 128,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1165 92842",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 1170,
+          "msOneCall": 151,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1165 92842",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 1149,
+          "msOneCall": 136,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 42
+    },
+    {
+      "function": 8,
+      "does": "The two seven-bladed fans set into the top of the rear body spin.",
+      "verdict": "not decided",
+      "msOneCall": 118,
+      "msPerStep": 64,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 15,
+        "B": 0
+      },
+      "stop": {
+        "control": "p695 87751",
+        "way": -1,
+        "went": -0.133,
+        "asked": 0.3,
+        "by": [
+          "694/695"
+        ]
+      },
+      "stops": [
+        "694/720",
+        "694/695"
+      ],
+      "A": [
+        {
+          "control": "p694 87751",
+          "way": 1,
+          "asked": 0.73,
+          "went": 0.07,
+          "ms": 128,
+          "msOneCall": 118,
+          "stops": [
+            "694/720"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p694 87751",
+          "way": -1,
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 118,
+          "msOneCall": 104,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p695 87751",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 160,
+          "msOneCall": 113,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p695 87751",
+          "way": -1,
+          "asked": 0.3,
+          "went": -0.133,
+          "ms": 159,
+          "msOneCall": 99,
+          "stops": [
+            "694/695"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p694 87751",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (694/720)"
+        },
+        {
+          "control": "p695 87751",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.133 rad (694/695)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p694 87751: a travel of 0.2 rad or less each way, stopped at +0.07 rad (694/720); p695 87751: a travel of 0.2 rad or less each way, stopped at -0.133 rad (694/695)",
+      "seconds": 20
+    }
+  ]
+}

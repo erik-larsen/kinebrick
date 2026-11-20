@@ -1,0 +1,128 @@
+{
+  "set": "8032-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:28:53.222Z",
+  "part": "A",
+  "parts": 61,
+  "seconds": 5,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel works the saw: a pin in the 24 tooth gear on the handwheel's axle is a crank that pushes the toothed blade back and forth, and a link from the blade's far end rocks the tilted frame with the crown gear on top.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p28 3736",
+          "way": 1,
+          "asked": 0.67,
+          "went": 0.67,
+          "ms": 13,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p37 3743": [
+              5.8,
+              3.81
+            ],
+            "p42 3709b": [
+              12.46,
+              8.8
+            ],
+            "p0 3795": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p28 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 21,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p37 3743": [
+              19.64,
+              1.09
+            ],
+            "p42 3709b": [
+              12.15,
+              8.58
+            ],
+            "p0 3795": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    },
+    {
+      "function": 2,
+      "does": "The crown gear on top of the tilted frame turns freely on its axle, like a saw blade.",
+      "verdict": "shown",
+      "msOneCall": 1,
+      "msPerStep": 0,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 0,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p59 3650c",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 9,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p42 3709b": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p59 3650c",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 8,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p42 3709b": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 0
+    }
+  ]
+}
