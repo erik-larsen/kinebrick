@@ -36,6 +36,17 @@ describe('a loose part rides with what it touches as built', () => {
     expect(anchorOf(new Map([[0, []]]))).toBe(1);
     expect(anchorOf(null)).toBe(1);
   });
+  // Narrowed (decision 259, second form): only where all it touches is of one body. A fourth part
+  // at x 60, with a connection point, touched too.
+  const four = [...parts, placed(60)];
+  const fourCyls = [...cyls, point(3, 60)];
+  const anchorAmong = (bodyOf: number[]) => rideAlong(four, fourCyls, [], [0], undefined, [], new Map([[0, [2, 3]]]), bodyOf)[0].female;
+  it('touching parts of one body, with the nearest of them', () => {
+    expect(anchorAmong([0, 1, 2, 2])).toBe(2);
+  });
+  it('touching parts of two bodies, as before: the nearest connection point over all parts', () => {
+    expect(anchorAmong([0, 1, 2, 3])).toBe(1);
+  });
   it('touching only a part with no connection point, with that part', () => {
     expect(rideAlong([...parts, placed(80)], cyls, [], [0], undefined, [], new Map([[0, [3]]]))[0].female).toBe(3);
   });

@@ -50,8 +50,12 @@ export function decorations(parts: PlacedPart[], roles: string[], cyls: WorldCyl
 // touchingFrom in collisions.ts) rides on one of those, the one whose connection point is nearest,
 // or, if none of them has one, whose origin is (decision 259 of 2026-11-20: the 9397's battery
 // box lid touches only the box, but rode on the steering shaft, whose axle passes 23 LDU from the
-// lid's origin). Only a group that touches none of them rides as above.
-export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>, carried: number[][] = [], touches: Map<number, number[]> | null = null): Connection[] {
+// lid's origin). That holds only where the parts it touches are all of one body (`bodyOf`, the
+// bodies as the connections found before the welds make them): it rides with that body. A group
+// that touches parts of several bodies, or none, rides as above (the 42084's carried model touched
+// a gear of its hook arm's drive as well as the bed, and rode on the gear; the 42069's hoses lie
+// between door and frame).
+export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connections: Connection[], loose: number[], among?: Set<number>, carried: number[][] = [], touches: Map<number, number[]> | null = null, bodyOf: number[] | null = null): Connection[] {
   if (loose.length === 0) return [];
   const isLoose = new Set(loose);
   const leader = new Map(loose.map((i) => [i, i]));
@@ -67,12 +71,12 @@ export function rideAlong(parts: PlacedPart[], cyls: WorldCylinder[], connection
   // anchors at first: scenery rides with a train track's rails.
   type Best = { part: number; anchor: number; distance: number };
   const best = new Map<number, Best>();
-  // Each group's parts that aren't loose it touches, if any: it rides on one of them alone.
+  // Each group's parts that aren't loose it touches, if any and all of one body: it rides on one of them alone.
   const touchedOf = new Map<number, Set<number>>();
   if (touches) {
     for (const [g, members] of groups) {
       const touched = new Set(members.flatMap((i) => (touches.get(i) ?? []).filter((p) => !isLoose.has(p) && (!among || among.has(p)))));
-      if (touched.size) touchedOf.set(g, touched);
+      if (touched.size && (!bodyOf || new Set([...touched].map((p) => bodyOf[p])).size === 1)) touchedOf.set(g, touched);
     }
   }
   // A point an anchor offers: a connection point's start, or (`own`) the origin of a touched part

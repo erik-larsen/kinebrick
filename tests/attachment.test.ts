@@ -2,7 +2,9 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { parseModel } from '../src/ldr.ts';
+import type { Touching } from '../src/collisions.ts';
 import { inferMechanism } from '../src/mechanism.ts';
+import { touchingOf } from './touching.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -13,10 +15,10 @@ const packed: Record<string, { primitives: string[]; pieces: Record<string, stri
 
 // The names of a model's loose parts, read as the viewer reads it (`name` is its file's, without
 // .ldr or .mpd, if it's in models/).
-function looseParts(text: string, name = ''): string[] {
+function looseParts(text: string, name = '', touching: Touching | null = null): string[] {
   const model = packed[name];
   const { parts, paths } = parseModel(text, (n) => model?.primitives.includes(n) ?? false, (n) => model?.pieces[n] ?? null);
-  return inferMechanism(parts, table, roles, paths).loose.map((i) => parts[i].name);
+  return inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), touching).loose.map((i) => parts[i].name);
 }
 
 // Real models Kinebrick can't fully read yet, and what they need (M7 works through them).
@@ -43,10 +45,15 @@ const NOT_YET = [
   '10001-Metroliner.mpd',
 ];
 
+// The real models (a set's file, .mpd; the .ldr are built by hand) are read with what their loose
+// parts touch, as the viewer reads them.
+const tested = readdirSync('models').filter((f) => /\.(ldr|mpd)$/.test(f) && !NOT_YET.includes(f));
+const touchings = new Map(await Promise.all(tested.filter((f) => f.endsWith('.mpd')).map(async (f) => [f, await touchingOf(`models/${f}`)] as const)));
+
 describe('every test model is fully attached', () => {
-  for (const file of readdirSync('models').filter((f) => /\.(ldr|mpd)$/.test(f) && !NOT_YET.includes(f))) {
+  for (const file of tested) {
     it(file, () => {
-      expect(looseParts(readFileSync(`models/${file}`, 'utf-8'), file.replace(/\.(ldr|mpd)$/, ''))).toEqual([]);
+      expect(looseParts(readFileSync(`models/${file}`, 'utf-8'), file.replace(/\.(ldr|mpd)$/, ''), touchings.get(file) ?? null)).toEqual([]);
     });
   }
 });

@@ -6,8 +6,10 @@ import { Kinematics } from '../src/kinematics.ts';
 import { parseModel } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
 import { load, readShapes } from './sets/load.ts';
+import { touchingOf } from './touching.ts';
 
 await readShapes('models/ackermann-car.ldr');
+const testCarTouching = await touchingOf('models/8865-Test Car.mpd');
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
@@ -19,7 +21,7 @@ const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json',
 describe('a model lifted off the ground', () => {
   const packed = JSON.parse(readFileSync('packed/models.json', 'utf-8'))['8865-Test Car'];
   const { parts, paths } = parseModel(readFileSync('models/8865-Test Car.mpd', 'utf-8'), (n) => packed.primitives.includes(n), (n) => packed.pieces[n] ?? null);
-  const mech = inferMechanism(parts, table, roles, paths);
+  const mech = inferMechanism(parts, table, roles, paths, new Set(), false, null, new Set(), testCarTouching);
 
   it('has no ground and keeps its frame still', () => {
     const kin = new Kinematics(mech, { lifted: true });

@@ -4,14 +4,17 @@ import { ConnectionTable, libraryConnections } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { parseLdr } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
+import { touchingOf } from './touching.ts';
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
 const TURN = 2 * Math.PI;
+// The newer heads (2850b) stand where the older (2850a) do: what the loose parts touch is read once.
+const touching = await touchingOf('models/8448-Super Car-V8 engine.mpd');
 
 describe('V8 engine from LEGO 8448', () => {
   const parts = parseLdr(readFileSync('models/8448-Super Car-V8 engine.mpd', 'utf-8'));
-  const mech = inferMechanism(parts, table, roles);
+  const mech = inferMechanism(parts, table, roles, [], new Set(), false, null, new Set(), touching);
   const kin = new Kinematics(mech);
   const bodyOf = (name: string) => mech.bodyOf[parts.findIndex((p) => p.name === name)];
   const crank = bodyOf('2854.dat');
@@ -61,7 +64,7 @@ describe('V8 engine from LEGO 8448', () => {
 describe('the same V8 with the newer cylinder heads, with bottom slots (2850b), read with the whole library\'s table', () => {
   const library = libraryConnections(JSON.parse(readFileSync('data/library-connections.json', 'utf-8')));
   const parts = parseLdr(readFileSync('models/8448-Super Car-V8 engine.mpd', 'utf-8').replaceAll('2850a.dat', '2850b.dat'));
-  const mech = inferMechanism(parts, library, roles);
+  const mech = inferMechanism(parts, library, roles, [], new Set(), false, null, new Set(), touching);
   const kin = new Kinematics(mech);
   const crank = mech.bodyOf[parts.findIndex((p) => p.name === '2854.dat')];
   const crankJoint = kin.parentLink(crank)!.joint;

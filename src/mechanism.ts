@@ -563,7 +563,9 @@ function buildMechanism(parts: PlacedPart[], table: ConnectionTable, roleList: R
   const scenery = new Set(riding.filter((i) => !loose.includes(i)));
   // What the loose parts touch as built (decision 259): asked here, where they are known.
   const touches = touching && loose.length ? touching(parts.map((p) => p.matrix), loose) : null;
-  const welds = rideAlong(parts, cyls, connections, loose, undefined, carriedGroups, touches);
+  // The bodies so far, to tell whether what a loose group touches is all of one body.
+  const bodiesSoFar = touches ? groupIntoBodies(parts.length, frameRoles, connections) : null;
+  const welds = rideAlong(parts, cyls, connections, loose, undefined, carriedGroups, touches, bodiesSoFar);
   connections.push(...welds);
   // A carried model rides along as loose parts do, but isn't loose: where it is welded.
   const carried = carriedGroups.map((group) => {
