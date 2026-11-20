@@ -22,7 +22,7 @@ import { railLift } from '../src/constraints/tyres.ts';
 import { trainsOf } from '../src/inference/trains.ts';
 import type { Mechanism } from '../src/mechanism.ts';
 import type { Track } from '../src/track.ts';
-import { loadModel } from './load-model.ts';
+import { loadModel, readParts } from './load-model.ts';
 import { partShapes } from './part-shapes.ts';
 
 // How far the control is turned at a time (radians).
@@ -125,8 +125,10 @@ export function trainFunctions(file: string): TrainFunction[] {
 
 export async function checkTrainSet(set: { curated: { model: string; functions: TrainFunction[] } }) {
   const { model, functions } = set.curated;
-  // The parts' shapes, for collisions, as the viewer makes them.
-  const shapes = await partShapes(model);
+  // The parts' shapes, for collisions, as the viewer makes them: one for each part, matched by
+  // name, as the Technic check reads them (decision 242).
+  const read = readParts(model, true);
+  const shapes = await partShapes(model, read.text, read.parts.map((p) => p.name));
   const checked: TrainChecked[] = [];
   let loose: string[] = [];
   for (const fn of functions) {
