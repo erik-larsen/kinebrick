@@ -181,11 +181,14 @@ export class Pool {
 }
 
 // The memory a child is expected to take where no peak of its own is stored, from the model's
-// part count: 1000 MB and 2.5 MB for each part. Chosen above what was seen, so as to wait rather
-// than run out: the 42100 (4,079 parts) took 5.5 to 8.1 GB for one function (estimate 11.2 GB);
-// the 42082 (4,113) 7.6 GB at its peak for function 9 (estimate 11.3 GB).
+// part count: 1000 MB and 0.75 MB for each part. Chosen above what was seen since the shapes are
+// shared per part type (decision 235), so as to wait rather than run out: one function of the
+// 42100 (4,079 parts) peaks at 1,268 MB (estimate 4,059), of the 8110 (2,048) at 1,813 MB at most
+// over its 16 (estimate 2,536), of the 9397 (1,308) at 1,237 MB (estimate 1,981), a small set at
+// about 300 MB. Before that decision a function of the 42100 took 5.5 to 8.1 GB and the estimate
+// was 1000 + 2.5 a part; kept at that, the pool ran one such child at a time on an idle machine.
 export function estimateMb(parts: number): number {
-  return Math.round(1000 + 2.5 * parts);
+  return Math.round(1000 + 0.75 * parts);
 }
 
 // Each set's part count in its OMR model, from models/technic-sets.csv (0 where unknown).
