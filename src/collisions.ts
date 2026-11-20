@@ -68,8 +68,15 @@ export function connectedPairs(mech: Mechanism): Set<string> {
   return connected;
 }
 
-// Pulls a part's meshes in towards the middle of their box, by INSET at each face.
+// The lists of meshes shrunk already (see shrink): a list several parts share (every copy of one
+// part, see part-shapes.ts), or one a second Collisions is given, is shrunk once only.
+const shrunk = new WeakSet<PartMesh[]>();
+
+// Pulls a part's meshes in towards the middle of their box, by INSET at each face. It depends on
+// the part's own meshes alone, not on where the part is, so copies of a part may share one list.
 function shrink(list: PartMesh[]) {
+  if (shrunk.has(list)) return;
+  shrunk.add(list);
   const box = new Box3();
   for (const m of list) {
     m.geometry.computeBoundingBox();
@@ -224,17 +231,24 @@ export class Collisions {
   // found here: `nearPairs` then says which they are (see setNear), and the page goes on
   // meanwhile.
   constructor(meshes: PartMesh[][], bodyOf: number[], connected: Set<string>, partMatrices: Matrix4[], later = false) {
+    // A list several parts share (see part-shapes.ts) makes one shape, its tree built once.
+    const made = new Map<PartMesh[], Shape>();
     this.shapes = meshes.map((list) => {
+      const known = made.get(list);
+      if (known) return known;
       shrink(list);
       const box = new Box3();
       const built = list.map((m) => {
-        const bvh = new MeshBVH(m.geometry);
+        // A tree built before (by a Collisions given this list earlier) is kept.
+        const bvh = m.geometry.boundsTree instanceof MeshBVH ? m.geometry.boundsTree : new MeshBVH(m.geometry);
         m.geometry.boundsTree = bvh;
         m.geometry.computeBoundingBox();
         box.union(m.geometry.boundingBox!.clone().applyMatrix4(m.matrix));
         return { geometry: m.geometry, bvh, matrix: m.matrix };
       });
-      return { meshes: built, box };
+      const shape = { meshes: built, box };
+      made.set(list, shape);
+      return shape;
     });
     this.waiting = later;
     this.watch(bodyOf, connected, partMatrices);
