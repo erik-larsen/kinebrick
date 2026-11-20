@@ -28,9 +28,18 @@
 //   npx tsx scripts/drags/sweep.ts http://localhost:5208 [set …] [--force] [--jobs 3]
 //   npx tsx scripts/drags/sweep.ts http://localhost:5208 --one 9397-1      (one set, in this process)
 //   npx tsx scripts/drags/sweep.ts --judge      (the records judged again, with no browser)
+//   npx tsx scripts/drags/sweep.ts --table      (data/viewer/table.csv from the records: every
+//      function swept, slowest one call first; decision 258)
+//   … --a      part A alone (decision 257: every working function timed first). The model is opened
+//      once for the set, and the viewer's state set back (kin.restore) before each function; a
+//      function after which a restore can't be trusted (the mechanism rebuilt by a shift, a new
+//      Kinematics, the tyres' scrub raised) has the model opened afresh for the next, and its
+//      record says why ("reopened"). Its records say part "A".
+// Each set's browser claims 1,000 MB and 0.85 MB a part from the pool (decision 255), as open-all.ts.
 import { execSync, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { chromium } from 'playwright';
+import { partCounts } from '../check-pool.ts';
 import { open, type Viewer } from './drag.ts';
 
 const MOVED = 1; // LDU or degrees, as the check's MOVED
@@ -59,6 +68,9 @@ const refOf = (ref: string): Ref => {
 const args = process.argv.slice(2);
 const base = args[0];
 const force = args.includes('--force');
+const aOnly = args.includes('--a');
+const part = aOnly ? 'A' : 'A and B';
+const browserMb = (parts: number | undefined) => (parts ? Math.round(1000 + 0.85 * parts) : 3000);
 const commit = execSync('git rev-parse --short HEAD').toString().trim();
 const setFile = (set: string) => `data/sets/${set}.json`;
 const outFile = (set: string) => `data/viewer/${set}.json`;
@@ -79,6 +91,24 @@ if (args[0] === '--judge') {
     });
     writeFileSync(`data/viewer/${f}`, JSON.stringify(rec, null, 2) + '\n');
   }
+} else if (args[0] === '--table') {
+  // Every function swept, with its control's time for one call of one step (the slowest of its
+  // controls and ways) and for a step of the long turn, slowest one call first.
+  const counts = partCounts();
+  const rows: (string | number | null)[][] = [];
+  for (const f of readdirSync('data/viewer').filter((f) => /^\d.*\.json$/.test(f))) {
+    const rec = JSON.parse(readFileSync(`data/viewer/${f}`, 'utf-8'));
+    for (const line of rec.functions) {
+      const slowest = (line.A ?? []).filter((a: any) => a.msOneCall != null).sort((a: any, b: any) => b.msOneCall - a.msOneCall)[0];
+      const stop = line.stop ? `${line.stop.control} way ${line.stop.way > 0 ? '+' : '-'}: went ${line.stop.went} of ${line.stop.asked}, ${line.stop.by.join(' ')}` : '';
+      rows.push([rec.set, line.function, slowest?.control ?? [...new Set((line.A ?? []).map((a: any) => a.control))].join(' / '), rec.parts ?? counts.get(rec.set) ?? null, line.msOneCall ?? null, line.msPerStep ?? null, line.verdict, line.why ?? '', stop, rec.part ?? 'A and B', rec.commit]);
+    }
+  }
+  rows.sort((a, b) => Number(b[4] ?? -1) - Number(a[4] ?? -1) || Number(b[5] ?? -1) - Number(a[5] ?? -1));
+  const cell = (x: string | number | null) => (x === null ? '' : /[",\n]/.test(String(x)) ? `"${String(x).replace(/"/g, '""')}"` : String(x));
+  const head = ['set', 'function', 'control', 'parts', 'msOneCall', 'msPerStep', 'verdict', 'why', 'collision stop', 'part', 'commit'];
+  writeFileSync('data/viewer/table.csv', [head, ...rows].map((r) => r.map(cell).join(',')).join('\n') + '\n');
+  console.log(`${rows.length} functions in data/viewer/table.csv`);
 } else if (oneAt >= 0) {
   await sweepSet(args[oneAt + 1]);
 } else {
@@ -91,17 +121,23 @@ if (args[0] === '--judge') {
     const g = (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((x: { result?: string } | null) => x && x.result !== 'skipped' && x.result !== 'not checked');
     return g.length > 0 && g.every((x: { result: string }) => x.result === 'works');
   };
-  const sets = (named.length ? named.filter((s) => all.includes(s)) : all)
+  const counts = partCounts();
+  // Sets named go in the order named; else those where every checked function works first, then
+  // the rest, each smallest first.
+  const sets = (named.length ? named.filter((s) => all.includes(s)) : all.sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)))
     .filter((s) => worksIn(s) > 0)
-    .filter((s) => force || !existsSync(outFile(s)) || JSON.parse(readFileSync(outFile(s), 'utf-8')).commit !== commit)
-    .sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || a.localeCompare(b));
+    .filter((s) => {
+      if (force || !existsSync(outFile(s))) return true;
+      const rec = JSON.parse(readFileSync(outFile(s), 'utf-8'));
+      return rec.commit !== commit || (rec.part ?? 'A and B') !== part;
+    });
   console.log(`${sets.length} sets to sweep, ${jobs} at a time`);
   const queue = [...sets];
   await Promise.all(Array.from({ length: jobs }, async () => {
     for (let set = queue.shift(); set; set = queue.shift()) {
       const started = Date.now();
       const code = await new Promise<number>((done) => {
-        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', '3000', '--what', `sweep ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set], { stdio: ['ignore', 'inherit', 'inherit'] });
+        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', String(browserMb(counts.get(set))), '--what', `sweep ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set, ...(aOnly ? ['--a'] : [])], { stdio: ['ignore', 'inherit', 'inherit'] });
         child.on('close', (c) => done(c ?? 1));
       });
       console.log(`${set}: ${code === 0 ? 'done' : `failed (${code})`} in ${Math.round((Date.now() - started) / 1000)} s`);
@@ -112,7 +148,46 @@ if (args[0] === '--judge') {
 async function sweepSet(set: string) {
   const data = JSON.parse(readFileSync(setFile(set), 'utf-8'));
   const model: string = data.curated.model;
-  const out: { set: string; commit: string; date: string; seconds: number; functions: unknown[] } = { set, commit, date: new Date().toISOString(), seconds: 0, functions: [] };
+  const out: { set: string; commit: string; date: string; part: string; parts: number | null; seconds: number; functions: unknown[] } = { set, commit, date: new Date().toISOString(), part, parts: partCounts().get(set) ?? null, seconds: 0, functions: [] };
+  // Part A alone: one viewer per model file, kept open between functions (see --a).
+  const viewers = new Map<string, Viewer>();
+  const viewerFor = async (file: string) => {
+    let v = viewers.get(file);
+    if (!v) {
+      v = await open(file);
+      await collisionsReady(v);
+      await v.page.evaluate(() => {
+        const k = (window as any).kinebrick;
+        (window as any).sweepHome = { snap: k.kin.snapshot(), mech: k.mech, kin: k.kin, scrub: k.kin.scrub };
+      });
+      viewers.set(file, v);
+    } else {
+      await v.page.evaluate(() => {
+        const k = (window as any).kinebrick;
+        k.kin.restore((window as any).sweepHome.snap);
+      });
+      await v.stops();
+    }
+    return v;
+  };
+  // Why the viewer's state can't be set back after a function, or null.
+  const untrusted = async (file: string): Promise<string | null> => {
+    const v = viewers.get(file);
+    if (!v) return null;
+    const why = await v.page.evaluate(() => {
+      const k = (window as any).kinebrick;
+      const home = (window as any).sweepHome;
+      if (k.mech !== home.mech) return 'the mechanism was rebuilt (a ring shifted)';
+      if (k.kin !== home.kin) return 'the kinematics was made anew';
+      if (k.kin.scrub !== home.scrub) return `the tyres' scrub was raised (${home.scrub} to ${k.kin.scrub})`;
+      return null;
+    }).catch((e) => `the page failed: ${String(e).slice(0, 100)}`);
+    if (why) {
+      await v.close();
+      viewers.delete(file);
+    }
+    return why;
+  };
   const started = Date.now();
   // A model that the viewer can't open: every working function recorded so, and the sweep goes on.
   // (Asked only once a function's sweep fails, since a load costs as much as a function.)
@@ -125,23 +200,33 @@ async function sweepSet(set: string) {
     const file: string = fn.model ?? model;
     try {
       if (fails.get(file)) throw new Error('known');
-      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g));
+      line = judge(`${set} ${i + 1}`, fn, await sweepFunction(file, fn, g, aOnly ? viewerFor : null));
+      if (aOnly) {
+        const why = await untrusted(file);
+        if (why) line.reopened = why;
+      }
     } catch (e) {
+      if (viewers.has(file)) {
+        await viewers.get(file)!.close().catch(() => {});
+        viewers.delete(file);
+      }
       if (!fails.has(file)) fails.set(file, await opens(file));
       const fail = fails.get(file);
       line = fail ? { verdict: 'does not open', why: fail } : { verdict: 'not shown', why: `the sweep failed: ${String(e).slice(0, 200)}` };
     }
     const record: Record<string, any> = { function: i + 1, does: fn.does, ...line, seconds: Math.round((Date.now() - fnStarted) / 1000) };
     out.functions.push(record);
-    console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msPerStep as number | undefined) ?? '-'} ms a step${line.time ? `; s: ${Object.entries(line.time as Record<string, number>).map(([k, n]) => `${k} ${n}`).join(', ')}` : ''}`);
+    console.log(`${set} fn${i + 1}: ${record.verdict}${record.why ? ` (${record.why})` : ''}; ${(line.msOneCall as number | undefined) ?? '-'} ms one call, ${(line.msPerStep as number | undefined) ?? '-'} ms a step${line.time ? `; s: ${Object.entries(line.time as Record<string, number>).map(([k, n]) => `${k} ${n}`).join(', ')}` : ''}`);
   }
+  for (const v of viewers.values()) await v.close();
   out.seconds = Math.round((Date.now() - started) / 1000);
   mkdirSync('data/viewer', { recursive: true });
   writeFileSync(outFile(set), JSON.stringify(out, null, 2) + '\n');
 }
 
 // One function, A and B. `fn` is the list's entry, `g` the check's record of it.
-async function sweepFunction(file: string, fn: any, g: any): Promise<Record<string, any>> {
+// With `viewerFor`, part A alone, on a viewer kept open for the set (see --a).
+async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: string) => Promise<Viewer>) | null = null): Promise<Record<string, any>> {
   const controls: string[] = [fn.control].flat();
   const moves = (fn.moves ?? []).map(refOf);
   const stays = (fn.stays ?? []).map(refOf);
@@ -160,9 +245,10 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
   const staysMovedByA = new Set<string>();
   const stopsA = new Set<string>();
   const msA: number[] = [];
+  const oneCalls: number[] = [];
   {
-    const v = await timed('open', open(file));
-    await timed('collisions', collisionsReady(v));
+    const v = viewerFor ? await timed('open', viewerFor(file)) : await timed('open', open(file));
+    if (!viewerFor) await timed('collisions', collisionsReady(v));
     limits.push(...(await timed('first', firstSteps(v, fn.first ?? []))));
     const tA = Date.now();
     for (const [ci, ref] of controls.entries()) {
@@ -170,14 +256,23 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
       for (const [wi, way] of [1, -1].entries()) {
         const asked = Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
         const r = (await v.page.evaluate(
-          ({ control, asked, way, parts }) => {
+          ({ control, asked, way, step, parts }) => {
             const k = (window as any).kinebrick;
             const snap = k.kin.snapshot();
             const frame = k.mech.bodyOf.indexOf(0);
             const before = k.matrices().map((m: any) => m.clone());
-            const t0 = performance.now();
             let went = 0;
             let how = 'turned';
+            // One call of one step from the start pose, as a drag makes them (decision 258): what
+            // the user waits for each time the pointer moves.
+            let oneCall: number | null = null;
+            if (k.mech.roles[control] !== 'motor') {
+              const t1 = performance.now();
+              k.interaction.turnPart(control, way * step, k.setup.camera.position);
+              oneCall = performance.now() - t1;
+              k.kin.restore(snap);
+            }
+            const t0 = performance.now();
             if (k.mech.roles[control] === 'motor') how = 'motor';
             else went = k.interaction.turnPart(control, way * asked, k.setup.camera.position);
             const ms = performance.now() - t0;
@@ -193,10 +288,11 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
             };
             const moved = parts.map(moveOf);
             k.kin.restore(snap);
-            return { went, ms, how, moved };
+            return { went, ms, how, moved, oneCall };
           },
-          { control, asked, way, parts: [...moves, ...stays].map((m: Ref) => [m.part, m.against]) },
-        )) as { went: number; ms: number; how: string; moved: [number, number][] };
+          { control, asked, way, step: MAX_STEP, parts: [...moves, ...stays].map((m: Ref) => [m.part, m.against]) },
+        )) as { went: number; ms: number; how: string; moved: [number, number][]; oneCall: number | null };
+        if (r.oneCall !== null) oneCalls.push(r.oneCall);
         let { went, ms } = r;
         let moved = r.moved;
         if (r.how === 'motor') ({ went, ms, moved } = await runMotor(v, control, way, asked, [...moves, ...stays]));
@@ -206,17 +302,17 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
         stops.forEach((s) => stopsA.add(s));
         moves.forEach((m: Ref, k: number) => { if (moved[k][0] >= MOVED || moved[k][1] >= MOVED) movedByA.add(m.ref); });
         stays.forEach((m: Ref, k: number) => { const x = moved[moves.length + k]; if (x[0] >= MOVED || x[1] >= MOVED) staysMovedByA.add(m.ref); });
-        A.push({ control: ref, way, asked: round(asked), went: round(went), ms: Math.round(ms), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
+        A.push({ control: ref, way, asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
     }
     time.A += (Date.now() - tA) / 1000;
-    await v.close();
+    if (!viewerFor) await v.close();
   }
 
   // B, the hand.
   const B: unknown[] = [];
   const movedByB = new Set<string>();
-  for (const ref of controls) {
+  for (const ref of viewerFor ? [] : controls) {
     const control = refOf(ref).part;
     const v = await timed('open', open(file));
     await timed('collisions', collisionsReady(v));
@@ -260,7 +356,7 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
   }
 
   const aShows = moves.every((m: Ref) => movedByA.has(m.ref)) && staysMovedByA.size === 0;
-  const bShows = movedByB.size > 0 || moves.length === 0;
+  const bShows = !!viewerFor || movedByB.size > 0 || moves.length === 0;
   const why = [
     ...(aShows ? [] : [`A: ${moves.filter((m: Ref) => !movedByA.has(m.ref)).map((m: Ref) => m.ref).join(', ') || 'none'} not moved${staysMovedByA.size ? `; ${[...staysMovedByA].join(', ')} listed to stay moved` : ''}`]),
     ...(bShows ? [] : [`B: ${B.some((b: any) => !b.seen) ? 'the control could not be seen' : 'no listed part moved by hand'}`]),
@@ -269,7 +365,7 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
   // The farthest the control turned in a way that a collision stopped, and the pair that stopped it.
   const stopped = (A as any[]).filter((a) => a.stops.length).sort((a, b) => Math.abs(b.went) - Math.abs(a.went))[0];
   const stop = stopped ? { control: stopped.control, way: stopped.way, went: stopped.went, asked: stopped.asked, by: stopped.stops } : null;
-  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, time: Object.fromEntries(Object.entries(time).map(([k, s]) => [k, Math.round(s)])), stop, stops: [...stopsA], A, B };
+  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), msOneCall: oneCalls.length ? Math.round(Math.max(...oneCalls)) : null, msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, time: Object.fromEntries(Object.entries(time).map(([k, s]) => [k, Math.round(s)])), stop, stops: [...stopsA], A, B };
 }
 
 // The list's first steps, as a user does them: a catch or lever turned by its joint's angle (turned
