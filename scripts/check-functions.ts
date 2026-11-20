@@ -399,9 +399,20 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     if (hit && !stoppedBy) stoppedBy = hit;
     return hit === null;
   };
-  const collisionsNow = () => {
+  // The parts' shapes, read with the model (see partShapes), one for each part: if they don't
+  // match the parts one for one, by name, the function fails rather than going on without its
+  // collision stop, or with another part's shape (decision 242 of 2026-11-20: the 4558 Metroliner's
+  // shapes, shifted by one from its part 200 on).
+  const shapesHere = () => {
     const known = shapesOf.get(model);
-    if (!known || known.length < parts.length || !parts.every((p, i) => p.removed || known[i].name === p.name)) return null;
+    if (!known) return null;
+    const wrong = parts.findIndex((p, i) => !p.removed && (!known[i] || known[i].name !== p.name));
+    if (wrong >= 0) throw new Error(`the parts' shapes don't match the model's parts: part ${wrong} is ${parts[wrong].name}, its shape ${known[wrong]?.name ?? 'missing'}`);
+    return known;
+  };
+  const collisionsNow = () => {
+    const known = shapesHere();
+    if (!known) return null;
     const matrices = placedNow().map((p) => p.matrix);
     // As the viewer: parts connected aren't tested, nor a changeover catch and the driving ring its
     // fork sits in (see main.ts).
@@ -1362,9 +1373,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             kin.restore(start);
             // The parts' shapes, if they match the model's parts (but a path's, a chain's links,
             // which only show where it runs, as in the viewer).
-            const known = shapesOf.get(model);
-            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => p.removed || known[i].name === p.name);
-            const collisions = matches ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            const known = shapesHere();
+            const collisions = known ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
             // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
             if (collisions) collisions.ignored = new Set(mech.loose);
             let met = false;

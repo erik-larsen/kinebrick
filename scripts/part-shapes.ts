@@ -69,16 +69,40 @@ export async function partShapes(file: string, modelText?: string): Promise<{ na
   loader.setConditionalLineMaterial(LDrawConditionalLineMaterial);
   const model = await new Promise<Object3D>((resolve, reject) => loader.parse([...placed, ...rest].join('\n'), resolve, reject));
   model.updateMatrixWorld(true);
+  // Each child the loader made, matched to its line by what it is (its file and its colour),
+  // never by where it falls in the list: a line the loader makes no child for (a subpart or
+  // primitive the model places itself, which the loader draws into the model's own mesh; a file
+  // that failed to load) must not shift every shape after it onto the next part (the 4558
+  // Metroliner's two subparts s/4865p01b and s/4865p01c: from its part 200 on, every part had the
+  // next one's shape; decision 242). The model's own mesh, of what it draws itself, is no line's.
+  const lineChildren = model.children.filter((obj) => (obj as Object3D & { isGroup?: boolean }).isGroup && obj.userData.colorCode !== undefined);
   const byKey = new Map<string, { name: string; shape: PartMesh[] }>();
-  model.children.forEach((obj, i) => {
+  const nameOf = (key: string) => normalizePartName(key.slice(key.indexOf(' ') + 1));
+  let next = 0;
+  for (const key of firsts) {
+    const obj = lineChildren[next];
+    if (!obj || normalizePartName(obj.name) !== nameOf(key) || String(obj.userData.colorCode) !== key.slice(0, key.indexOf(' '))) continue;
+    next++;
     const toPart = obj.matrixWorld.clone().invert();
     const shape: PartMesh[] = [];
     obj.traverse((child) => {
       const mesh = child as Mesh;
       if (mesh.isMesh) shape.push({ geometry: collisionGeometry(mesh.geometry), matrix: toPart.clone().multiply(mesh.matrixWorld) });
     });
-    byKey.set(firsts[i], { name: normalizePartName(obj.name), shape });
+    byKey.set(key, { name: normalizePartName(obj.name), shape });
+  }
+  if (next !== lineChildren.length) throw new Error(`${file}: the loader made ${lineChildren.length} parts and shapes, of which ${next} match the model's lines; from ${lineChildren[next].name} on, none do`);
+  // Each line's shape, in order: the model's parts as parseModel reads them, then the shapes its
+  // submodels draw. A line the loader made no child for has no shape, and is named: the check
+  // gets no collision for that part, rather than the next part's.
+  const missing = new Set<string>();
+  const out = keyOf.map((key) => {
+    const found = byKey.get(key);
+    if (found) return found;
+    missing.add(nameOf(key));
+    return { name: nameOf(key), shape: [] as PartMesh[] };
   });
+  if (missing.size) console.error(`${base}: no shape for ${[...missing].join(', ')}: the loader makes no part of ${missing.size === 1 ? 'it' : 'them'} (drawn into the model, or not loaded)`);
   // Every copy shares its colour and part's list (see Collisions, which shrinks a list once).
-  return keyOf.map((key) => byKey.get(key)!);
+  return out;
 }
