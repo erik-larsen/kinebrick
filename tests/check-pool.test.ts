@@ -1,5 +1,5 @@
-import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { spawn, spawnSync } from 'node:child_process';
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -126,6 +126,51 @@ describe('the check pool', () => {
     expect(readdirSync(dir).filter((f) => f.endsWith('.json'))).toEqual([]);
     expect(wrapper.stderr).toContain('a failing command: exit 3');
   });
+
+  // A command whose child starts a grandchild in a process group of its own, as Playwright starts
+  // a browser (decision 255), that takes about 100 MB; the child writes its id, waits `ms`, and ends.
+  const withGrandchild = (dir: string, ms: number) => {
+    const kid = join(dir, 'kid.mjs');
+    writeFileSync(
+      kid,
+      [
+        "import { spawn } from 'node:child_process';",
+        "import { writeFileSync } from 'node:fs';",
+        "const g = spawn(process.execPath, ['-e', 'const b = Buffer.alloc(100 * 2 ** 20, 1); setInterval(() => b[0]++, 1000)'], { detached: true, stdio: 'ignore' });",
+        'g.unref();',
+        `writeFileSync(${JSON.stringify(join(dir, 'grandchild'))}, String(g.pid));`,
+        `setTimeout(() => {}, ${ms});`,
+      ].join('\n'),
+    );
+    return [process.execPath, '--import', 'tsx', 'scripts/check-pool.ts', 'run', '--mb', '50', '--what', 'a browser', '--', process.execPath, kid];
+  };
+  const grandchild = (dir: string) => Number(readFileSync(join(dir, 'grandchild'), 'utf-8'));
+
+  it('counts a process the command made in another process group, and stops it when the command ends', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'check-pool-'));
+    dirs.push(dir);
+    const [node, ...args] = withGrandchild(dir, 2500);
+    const wrapper = spawnSync(node, args, { env: { ...process.env, KINEBRICK_POOL_DIR: dir }, encoding: 'utf-8' });
+    expect(wrapper.status).toBe(0);
+    expect(Number(/peak (\d+) MB/.exec(wrapper.stderr)![1])).toBeGreaterThan(100);
+    expect(wrapper.stderr).toContain('1 of its processes outlived it and were stopped');
+    expect(alive(grandchild(dir))).toBe(false);
+  });
+
+  it('stops a process the command made in another process group when the wrapper is stopped', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'check-pool-'));
+    dirs.push(dir);
+    const [node, ...args] = withGrandchild(dir, 60_000);
+    const wrapper = spawn(node, args, { env: { ...process.env, KINEBRICK_POOL_DIR: dir }, stdio: 'ignore' });
+    for (let i = 0; i < 100 && !existsSync(join(dir, 'grandchild')); i++) await new Promise((r) => setTimeout(r, 100));
+    // Measured once at least, as a browser is long before anyone stops its sweep.
+    await new Promise((r) => setTimeout(r, 1500));
+    wrapper.kill('SIGTERM');
+    const code = await new Promise((resolve) => wrapper.on('exit', resolve));
+    expect(code).toBe(143);
+    expect(alive(grandchild(dir))).toBe(false);
+    expect(readdirSync(dir).filter((f) => f.endsWith('.json'))).toEqual([]);
+  }, 20_000);
 
   it('estimates from the part count, and reads part counts past quoted commas', () => {
     expect(estimateMb(4079)).toBe(4059);

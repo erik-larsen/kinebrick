@@ -4,19 +4,25 @@
 // many the model has, with the reason for each part the loader drew into the model instead (see
 // loadedLines in src/main.ts). Every change to how the viewer loads a model is gated with it
 // (decision 250 of 2026-11-20: the 42120 had never opened). Each model is opened in a process of
-// its own, through the machine's pool (scripts/check-pool.ts), at most 3 at a time.
+// its own, through the machine's pool (scripts/check-pool.ts), at most 3 at a time, each asking
+// for what its browser takes (see browserMb).
 //   npx tsx scripts/drags/open-all.ts http://localhost:5191 [model …]
 //   npx tsx scripts/drags/open-all.ts http://localhost:5191 --one "omr/42120-1 Rescue Hovercraft.mpd"
 // It exits with 1 if any model fails to open.
 import { spawn } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { partCounts } from '../check-pool.ts';
 import { chromium } from 'playwright';
 
 const args = process.argv.slice(2);
 const base = args[0];
 if (!base?.startsWith('http')) throw new Error('give the viewer\'s address first, e.g. http://localhost:5191');
 const LOAD_MS = 600_000;
+// What a model's browser is expected to take, in MB: 1,000 and 0.85 for each part of its set, the
+// worker's figure of 2026-11-20 (decision 255; its sampler measured chromium at 2,752 MB for the
+// 8110, 1,558 for the 9397 and 1,427 for the 42078); 3,000 where the part count is unknown.
+const browserMb = (parts: number | undefined) => (parts ? Math.round(1000 + 0.85 * parts) : 3000);
 
 const oneAt = args.indexOf('--one');
 if (oneAt >= 0) {
@@ -53,20 +59,26 @@ if (oneAt >= 0) {
   // Every model the sets use, as scripts/scan-part-shapes.ts lists them; or those named.
   const named = args.slice(1).filter((a) => !a.startsWith('--'));
   const models = new Set<string>();
+  // Each model's set, for its part count.
+  const setOf = new Map<string, string>();
   for (const file of readdirSync(join('data', 'sets')).filter((f) => f.endsWith('.json'))) {
     const set = JSON.parse(readFileSync(join('data', 'sets', file), 'utf-8'));
-    if (set.curated?.model) models.add(set.curated.model);
-    for (const fn of set.curated?.functions ?? []) if (fn.model) models.add(fn.model);
+    for (const m of [set.curated?.model, ...(set.curated?.functions ?? []).map((fn: { model?: string }) => fn.model)]) {
+      if (!m) continue;
+      models.add(m);
+      if (!setOf.has(m)) setOf.set(m, set.set);
+    }
   }
   const queue = [...models].filter((m) => !named.length || named.some((n) => m.includes(n))).sort();
   const total = queue.length;
+  const parts = partCounts();
   let failed = 0;
   const lines: string[] = [];
   const worker = async () => {
     for (let model = queue.shift(); model; model = queue.shift()) {
       const m = model;
       const out = await new Promise<{ code: number | null; text: string }>((resolve) => {
-        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', '3000', '--what', `open ${m}`, '--', 'npx', 'tsx', 'scripts/drags/open-all.ts', base, '--one', m], { stdio: ['ignore', 'pipe', 'pipe'] });
+        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', String(browserMb(parts.get(setOf.get(m) ?? ''))), '--what', `open ${m}`, '--', 'npx', 'tsx', 'scripts/drags/open-all.ts', base, '--one', m], { stdio: ['ignore', 'pipe', 'pipe'] });
         let text = '';
         child.stdout.on('data', (d) => (text += d));
         child.stderr.on('data', (d) => (text += d));
