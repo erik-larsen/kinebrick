@@ -74,7 +74,7 @@
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { availableParallelism, totalmem } from 'node:os';
+import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
@@ -91,6 +91,7 @@ import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { applyHolds, foundOf, readHolds } from './holds.ts';
+import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
 import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
 import { partShapes } from './part-shapes.ts';
@@ -232,6 +233,7 @@ type Result = 'works' | 'partly' | 'no' | 'skipped' | 'not checked' | 'error';
 interface Checked {
   result: Result;
   seconds?: number; // how long the function took to check
+  peak?: number; // for a set checked a function to a process: the most memory its process took, in MB (see check-pool.ts)
   turned?: [number, number][]; // each control's turn against what its shaft turns in (or push), each way
   still?: string[];
   moved?: string[];
@@ -1603,8 +1605,9 @@ if (one >= 0) {
   }
   const onlyAt = args.indexOf('--only'); // (internal) only this function, by its place in the list
   const found = check(set, onlyAt >= 0 ? Number(args[onlyAt + 1]) : null);
-  // Let the output drain before the process ends: a pipe takes it in pieces.
-  process.stdout.write(JSON.stringify(found), () => process.exit(0));
+  // With the most memory it took (see check-pool.ts), for the next run to expect. Let the output
+  // drain before the process ends: a pipe takes it in pieces.
+  process.stdout.write(JSON.stringify({ ...found, peak: peakMb() }), () => process.exit(0));
 } else {
   await main();
 }
@@ -1666,17 +1669,33 @@ async function main() {
   type Found = ReturnType<typeof check> | { timedOut: number } | { failed: string };
   // The sets whose process failed: their files are left as they were.
   const failedSets: string[] = [];
-  // Each process may take as much memory as the machine has. V8's own limit is about 4 GB on a
-  // 32 GB machine, less than the 42082's function 9 takes with the collision stop on (7.6 GB at
-  // its peak; 0.5 GB with it off): run with no limit of its own, it died 11 seconds in. Given
-  // here, every run has the same limit, by name or whole, whatever NODE_OPTIONS says.
-  const heap = `--max-old-space-size=${Math.floor(totalmem() / 2 ** 20)}`;
+  // Each process may take as much memory as the pool's whole budget (see check-pool.ts), half the
+  // machine's, so that one that runs away fails alone. V8's own limit is about 4 GB on a 32 GB
+  // machine, less than the 42082's function 9 takes with the collision stop on (7.6 GB at its
+  // peak; 0.5 GB with it off): run with no limit of its own, it died 11 seconds in. Given here,
+  // every run has the same limit, by name or whole, whatever NODE_OPTIONS says.
+  const heap = `--max-old-space-size=${BUDGET_MB}`;
+  // Every child of every check on the machine is entered in the pool with the memory it is
+  // expected to take, and starts only when it fits (decision 229 of 2026-11-19): the most it took
+  // the last time (`peak` in the set's record, or the function's for a set checked a function to
+  // a process), else an estimate from the set's part count.
+  const pool = new Pool(poolDir());
+  const parts = partCounts();
+  const expectedMb = (s: (typeof files)[number], only: number | null) => {
+    const g = s.data.generated;
+    const fns: Checked[] = (g?.functions ?? []).map(foundOf);
+    const peak = only !== null ? (fns[only]?.peak ?? g?.peak) : (g?.peak ?? (fns.some((c) => c?.peak) ? Math.max(...fns.map((c) => c?.peak ?? 0)) : undefined));
+    return peak ?? estimateMb(parts.get(s.data.set) ?? 0);
+  };
   // Checks a set in a process of its own, or with `only`, one of its functions: what it found,
-  // and how long it took.
-  const inProcess = (s: (typeof files)[number], only: number | null, way: number | null = null) =>
-    new Promise<{ found: Found; seconds: number }>((resolve) => {
+  // and how long it took (not counting the wait for room in the pool).
+  const inProcess = async (s: (typeof files)[number], only: number | null, way: number | null = null) => {
+    const entry = await pool.reserve(expectedMb(s, only), `${s.data.set}${only === null ? '' : ` function ${only + 1}`}${way === null ? '' : ` control ${way + 1}`}`);
+    return new Promise<{ found: Found; seconds: number }>((resolve) => {
       const started = Date.now();
       const child = spawn(process.execPath, [...process.execArgv, heap, process.argv[1], '--one', s.file, ...(only === null ? [] : ['--only', String(only)]), ...(way === null ? [] : ['--way', String(way)])], { stdio: ['ignore', 'pipe', 'inherit'] });
+      if (child.pid) pool.started(entry, child.pid);
+      else pool.release(entry);
       let out = '';
       let timedOut = false;
       const timer = setTimeout(() => {
@@ -1686,6 +1705,7 @@ async function main() {
       child.stdout.on('data', (d) => (out += d));
       child.on('close', (code) => {
         clearTimeout(timer);
+        pool.release(entry);
         const seconds = Math.round((Date.now() - started) / 1000);
         let found: Found;
         if (timedOut) found = { timedOut: limit };
@@ -1700,6 +1720,7 @@ async function main() {
         resolve({ found, seconds });
       });
     });
+  };
   // Writes what a set's check found into its file, and says it.
   const finish = (s: (typeof files)[number], found: Found, seconds: number) => {
     if ('failed' in found) {
@@ -1794,7 +1815,8 @@ async function main() {
       }
       loose.set(modelOf(functions[i]), found.loose);
       if (found.errata) errata.set(modelOf(functions[i]), found.errata);
-      return found.functions[i];
+      const peak = (found as { peak?: number }).peak;
+      return { ...found.functions[i], ...(peak ? { peak } : {}) };
     };
     for (const i of todo) {
       const fn = functions[i];
@@ -1821,7 +1843,8 @@ async function main() {
             const pivoted = shares.reduce<Checked['pivoted']>((most, c) => (c!.pivoted && (!most || Math.max(c!.pivoted.slide, c!.pivoted.rise) > Math.max(most.slide, most.rise)) ? c!.pivoted : most), undefined);
             const seconds = Math.round(shares.reduce((sum, c) => sum + (c!.seconds ?? 0), 0) * 10) / 10;
             const collisionStops = shares.flatMap((c) => c!.collisionStops ?? []);
-            checked[i] = combined ? { ...combined, ...(pivoted ? { pivoted } : {}), ...(collisionStops.length ? { collisionStops } : {}), seconds } : ((await run(i)) ?? checked[i]);
+            const peak = Math.max(0, ...shares.map((c) => c!.peak ?? 0));
+            checked[i] = combined ? { ...combined, ...(pivoted ? { pivoted } : {}), ...(collisionStops.length ? { collisionStops } : {}), seconds, ...(peak ? { peak } : {}) } : ((await run(i)) ?? checked[i]);
           } else {
             // A control that failed as one process would have failed the function there too.
             const error = shares.find((c) => c && !c.way);
