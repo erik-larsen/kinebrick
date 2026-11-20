@@ -91,6 +91,7 @@ import { turnOffAxis } from './back.ts';
 import { loadModel, readParts } from './load-model.ts';
 import { modelsOf, unreadTracks } from './unread-tracks.ts';
 import { applyHolds, foundOf, readHolds } from './holds.ts';
+import { normalizePartName } from '../src/connections.ts';
 import { BUDGET_MB, estimateMb, partCounts, peakMb, Pool, poolDir } from './check-pool.ts';
 import { combine, solveSymmetric } from '../src/linalg.ts';
 import { FREE_PINS, freeWithEveryPin, heldPins, pinsByTrial, pinsToFree } from '../src/inference/friction.ts';
@@ -192,7 +193,7 @@ const controlMovedRule = process.env.KINEBRICK_CONTROL_MOVED !== '0';
 const slowPartsRule = process.env.KINEBRICK_SLOW_PARTS !== '0';
 const SLOW_RATE = 1e-6;
 // With --lock, each model's part shapes (see partShapes), read before it's checked.
-const shapesOf = new Map<string, { name: string; shape: PartMesh[] }[]>();
+const shapesOf = new Map<string, { name: string; shape: PartMesh[]; empty?: string }[]>();
 // With --stops, the pairs of each model's parts that touch as built, from its kept file (see
 // collision-pairs.ts), as the viewer takes them; null where the kept file's key doesn't match.
 const keptNearOf = new Map<string, [number, number][] | null>();
@@ -399,9 +400,24 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     if (hit && !stoppedBy) stoppedBy = hit;
     return hit === null;
   };
-  const collisionsNow = () => {
+  // The parts' shapes, read with the model (see partShapes), one for each part: if they don't
+  // match the parts one for one, by name, the function fails rather than going on without its
+  // collision stop, or with another part's shape (decision 242 of 2026-11-20: the 4558 Metroliner's
+  // shapes, shifted by one from its part 200 on). Nor does it go on where a part has no shape but
+  // the reading gives no reason (see partShapes' `empty`): that part would have no collision test
+  // (decision 248: the 42093's 569 parts of 576).
+  const shapesHere = () => {
     const known = shapesOf.get(model);
-    if (!known || known.length < parts.length || !parts.every((p, i) => p.removed || known[i].name === p.name)) return null;
+    if (!known) return null;
+    const wrong = parts.findIndex((p, i) => !known[i] || known[i].name !== normalizePartName(p.name));
+    if (wrong >= 0) throw new Error(`the parts' shapes don't match the model's parts: part ${wrong} is ${parts[wrong].name}, its shape ${known[wrong]?.name ?? 'missing'}`);
+    const bare = parts.findIndex((p, i) => !known[i].shape.length && !known[i].empty);
+    if (bare >= 0) throw new Error(`part ${bare} (${parts[bare].name}) has no shape, and no reason is given`);
+    return known;
+  };
+  const collisionsNow = () => {
+    const known = shapesHere();
+    if (!known) return null;
     const matrices = placedNow().map((p) => p.matrix);
     // As the viewer: parts connected aren't tested, nor a changeover catch and the driving ring its
     // fork sits in (see main.ts).
@@ -1362,9 +1378,8 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
             kin.restore(start);
             // The parts' shapes, if they match the model's parts (but a path's, a chain's links,
             // which only show where it runs, as in the viewer).
-            const known = shapesOf.get(model);
-            const matches = known !== undefined && known.length >= parts.length && parts.every((p, i) => p.removed || known[i].name === p.name);
-            const collisions = matches ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
+            const known = shapesHere();
+            const collisions = known ? new Collisions(parts.map((p, i) => (p.path ? [] : known[i].shape)), mech.bodyOf, connectedPairs(mech), placedNow().map((p) => p.matrix)) : null;
             // A loose part never stops a motion, here as in the viewer (see Collisions.ignored).
             if (collisions) collisions.ignored = new Set(mech.loose);
             let met = false;
@@ -1595,7 +1610,11 @@ if (one >= 0) {
   // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
   if (locks || stopsReport || collide) for (const m of new Set<string>([set.curated.model, ...set.curated.functions.flatMap((fn: Fn) => (fn.model ? [fn.model] : []))])) {
     const read = readParts(m, m.startsWith('omr/'));
-    shapesOf.set(m, await partShapes(m, read.text));
+    const shapes = await partShapes(m, read.text, read.parts);
+    shapesOf.set(m, shapes);
+    // The parts with no shape, each with its reason, so none goes without its collision test unseen.
+    const empty = read.parts.flatMap((p, i) => (shapes[i]?.empty ? [`${i} ${p.name} (${shapes[i].empty})`] : []));
+    if (empty.length) console.error(`${m}: ${empty.length} parts with no shape: ${empty.join(', ')}`);
     if (stopsReport || collide) {
       const file = `data/collisions/${keptFileName(m)}.json`;
       const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;

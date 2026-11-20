@@ -250,9 +250,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 634,
+    "commit": "335ef375",
+    "date": "2026-11-20",
+    "seconds": 430,
     "counts": {
       "works": 7,
       "partly": 2,
@@ -399,7 +399,8 @@
             "p732 2851"
           ]
         ],
-        "seconds": 87.3
+        "seconds": 93.1,
+        "peak": 1014
       },
       {
         "result": "works",
@@ -491,7 +492,8 @@
           [],
           []
         ],
-        "seconds": 130.5
+        "seconds": 136.1,
+        "peak": 995
       },
       {
         "result": "works",
@@ -549,7 +551,8 @@
             ]
           ]
         ],
-        "seconds": 13.6
+        "seconds": 14.2,
+        "peak": 994
       },
       {
         "result": "works",
@@ -591,7 +594,8 @@
             ]
           ]
         ],
-        "seconds": 14.9
+        "seconds": 13.7,
+        "peak": 1005
       },
       {
         "result": "works",
@@ -664,7 +668,8 @@
             0
           ]
         ],
-        "seconds": 5.5
+        "seconds": 5.3,
+        "peak": 1013
       },
       {
         "result": "partly",
@@ -733,7 +738,8 @@
         ],
         "cause": "not-driven",
         "detail": "p611 3648b",
-        "seconds": 13.7
+        "seconds": 14.5,
+        "peak": 991
       },
       {
         "result": "partly",
@@ -795,7 +801,8 @@
         ],
         "cause": "loose-part",
         "detail": "p1877 70496",
-        "seconds": 13.9
+        "seconds": 14.4,
+        "peak": 994
       },
       {
         "result": "skipped"
@@ -857,7 +864,8 @@
           ]
         ],
         "freed": 1,
-        "seconds": 27
+        "seconds": 28.4,
+        "peak": 1007
       },
       {
         "result": "works",
@@ -907,7 +915,8 @@
             ]
           ]
         ],
-        "seconds": 13.6
+        "seconds": 14,
+        "peak": 998
       },
       {
         "result": "skipped"
@@ -973,7 +982,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 10
+        "seconds": 10.3,
+        "peak": 1005
       },
       {
         "result": "no",
@@ -1032,7 +1042,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1993 32183c02 against p1992 32181c05",
-        "seconds": 9.6
+        "seconds": 9.3,
+        "peak": 1007
       },
       {
         "result": "no",
@@ -1117,7 +1128,8 @@
           0
         ],
         "cause": "stopped-early",
-        "seconds": 18.9
+        "seconds": 19.6,
+        "peak": 991
       }
     ]
   }
