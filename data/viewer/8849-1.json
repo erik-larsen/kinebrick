@@ -1,0 +1,503 @@
+{
+  "set": "8849-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:35:54.514Z",
+  "part": "A",
+  "parts": 329,
+  "seconds": 28,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: the column drives a shaft under the bonnet through a universal joint, and two 8-tooth gears at the front of that shaft slide the rack on the tie rod, which swings both steering arms.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 2,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p66 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 74,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p118 3707": [
+              0,
+              85.94
+            ],
+            "p114 3743": [
+              15.27,
+              0
+            ],
+            "p100 4261": [
+              0,
+              22
+            ],
+            "p101 4261": [
+              0,
+              22
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p261 3739": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p66 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 64,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p118 3707": [
+              0,
+              85.94
+            ],
+            "p114 3743": [
+              15.27,
+              0
+            ],
+            "p100 4261": [
+              0,
+              22
+            ],
+            "p101 4261": [
+              0,
+              22
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p261 3739": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 2,
+      "does": "The exhaust stack on the bonnet turns as the steering wheel turns: a bevel gear on the steering shaft drives a bevel gear at the foot of the stack's long upright axle.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p66 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p150 3708": [
+              0,
+              85.94
+            ],
+            "p152 6143": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p66 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 61,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p150 3708": [
+              0,
+              85.94
+            ],
+            "p152 6143": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 3,
+      "does": "The front axle rocks side to side on the steering shaft, so the front wheels can follow uneven ground.",
+      "verdict": "not shown",
+      "why": "A: p100 4261, p101 4261, p114 3743 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p97 4442",
+          "way": 1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p97 4442",
+          "way": -1,
+          "asked": 0.56,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p100 4261": [
+              0,
+              0
+            ],
+            "p101 4261": [
+              0,
+              0
+            ],
+            "p114 3743": [
+              0,
+              0
+            ],
+            "p118 3707": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 4,
+      "does": "Rolling the tractor turns the power take-off shaft sticking out at the back: a 24-tooth gear on the left rear half-axle drives an 8-tooth gear on a cross shaft, whose 24-tooth gear turns a crown gear on the short shaft out the back, three times as fast as the wheels.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p261 3739",
+          "way": 1,
+          "asked": 0.77,
+          "went": 0.77,
+          "ms": 31,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p52 3707": [
+              0,
+              132.35
+            ],
+            "p44 3705": [
+              0,
+              138.47
+            ]
+          }
+        },
+        {
+          "control": "p261 3739",
+          "way": -1,
+          "asked": 0.77,
+          "went": -0.77,
+          "ms": 32,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p52 3707": [
+              0,
+              132.35
+            ],
+            "p44 3705": [
+              0,
+              126
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 5,
+      "does": "The handwheel on the cab's right side raises and lowers the three-point hitch and the sprayer on it: bevel gears turn an upright shaft whose 8-tooth gear drives a crown gear on the worm's cross shaft; the worm turns a 24-tooth gear on the long shaft under the tractor, and bevel gears at its back end turn the rear cross axle, which swings the two lower hitch links up.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p200 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 48,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p55 4716": [
+              0,
+              28.64
+            ],
+            "p77 3708": [
+              0,
+              1.19
+            ],
+            "p81 3737": [
+              0,
+              1.19
+            ],
+            "p90 3705": [
+              1.04,
+              1.19
+            ],
+            "p93 3705": [
+              1.04,
+              1.19
+            ],
+            "p269 3894": [
+              2.08,
+              0
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p66 3736": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p200 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 48,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p55 4716": [
+              0,
+              28.64
+            ],
+            "p77 3708": [
+              0,
+              1.19
+            ],
+            "p81 3737": [
+              0,
+              1.19
+            ],
+            "p90 3705": [
+              1.04,
+              1.19
+            ],
+            "p93 3705": [
+              1.04,
+              1.19
+            ],
+            "p269 3894": [
+              2.08,
+              0
+            ],
+            "p259 3739": [
+              0,
+              0
+            ],
+            "p66 3736": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 7,
+      "does": "The four wheels roll; the front wheels turn freely on their own axles.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p259 3739",
+          "way": 1,
+          "asked": 0.77,
+          "went": 0.77,
+          "ms": 33,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p259 3739",
+          "way": -1,
+          "asked": 0.77,
+          "went": -0.77,
+          "ms": 32,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p261 3739",
+          "way": 1,
+          "asked": 0.77,
+          "went": 0.77,
+          "ms": 32,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p261 3739",
+          "way": -1,
+          "asked": 0.77,
+          "went": -0.77,
+          "ms": 30,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p263 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 42,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p263 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 42,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p265 4266",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 45,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p265 4266",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 42,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    }
+  ]
+}

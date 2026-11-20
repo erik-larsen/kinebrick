@@ -1,0 +1,351 @@
+{
+  "set": "8844-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:35:10.584Z",
+  "part": "A",
+  "parts": 300,
+  "seconds": 18,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The crank low on the left side beside the seats retracts and lowers the landing gear: its 24 tooth gear turns the 8 tooth gear on the end of the front axle, which swings the two front legs fixed on its ends, and a chain from a 16 tooth gear on that axle turns the rear leg's 24 tooth gear, so all three legs swing up or down together.",
+      "verdict": "not shown",
+      "why": "A: none not moved; p14 3895 against p0 3034, p65 3673 against p0 3034 listed to stay moved",
+      "msOneCall": 21,
+      "msPerStep": 10,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p69 3705",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 14,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p270 3482 against p0 3034": [
+              12.38,
+              11.21
+            ],
+            "p279 3482 against p0 3034": [
+              12.41,
+              11.22
+            ],
+            "p284 3482 against p0 3034": [
+              18.7,
+              8.82
+            ],
+            "p14 3895 against p0 3034": [
+              0,
+              0
+            ],
+            "p65 3673 against p0 3034": [
+              0,
+              0
+            ],
+            "p172 3648a against p65 3673": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p69 3705",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.17,
+          "ms": 49,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p270 3482 against p0 3034": [
+              27.83,
+              14.66
+            ],
+            "p279 3482 against p0 3034": [
+              27.9,
+              14.66
+            ],
+            "p284 3482 against p0 3034": [
+              37.35,
+              18.63
+            ],
+            "p14 3895 against p0 3034": [
+              3.36,
+              1.92
+            ],
+            "p65 3673 against p0 3034": [
+              6.71,
+              1.15
+            ],
+            "p172 3648a against p65 3673": [
+              0,
+              0.05
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 2,
+      "does": "The handwheel high on the left side turns the main rotor: a crown gear on its axle drives the 24 tooth gear at the foot of the rotor mast.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 3,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p128 3736",
+          "way": 1,
+          "asked": 0.37,
+          "went": 0.37,
+          "ms": 32,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p172 3648a against p65 3673": [
+              0,
+              21.2
+            ],
+            "p206 4262 against p65 3673": [
+              7.36,
+              0
+            ],
+            "p207 4262 against p65 3673": [
+              7.36,
+              0
+            ],
+            "p270 3482": [
+              0,
+              0
+            ],
+            "p69 3705": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p128 3736",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.37,
+          "ms": 31,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p172 3648a against p65 3673": [
+              0,
+              21.2
+            ],
+            "p206 4262 against p65 3673": [
+              7.36,
+              0
+            ],
+            "p207 4262 against p65 3673": [
+              7.36,
+              0
+            ],
+            "p270 3482": [
+              0,
+              0
+            ],
+            "p69 3705": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 4,
+      "does": "Pushed along, the three wheels roll freely on their axle pins.",
+      "verdict": "not shown",
+      "msOneCall": 21,
+      "msPerStep": 16,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": {
+        "control": "p284 3482",
+        "way": 1,
+        "went": 0.197,
+        "asked": 0.23,
+        "by": [
+          "36/215"
+        ]
+      },
+      "stops": [
+        "36/215"
+      ],
+      "A": [
+        {
+          "control": "p270 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 115,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p270 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 110,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p279 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 105,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p279 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 105,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p284 3482",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.197,
+          "ms": 89,
+          "msOneCall": 20,
+          "stops": [
+            "36/215"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p284 3482",
+          "way": -1,
+          "asked": 0.2,
+          "went": -0.2,
+          "ms": 84,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p284 3482",
+          "judged": "not shown",
+          "why": "turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.197 rad (36/215)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p284 3482: turns without end (kinds free-wheels; the text says: wheels, roll), but a collision stops it at +0.197 rad (36/215)",
+      "seconds": 5
+    },
+    {
+      "function": 5,
+      "does": "The two yellow engines either side of the rotor housing turn freely on their axles.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p179 3707",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 94,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p179 3707",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 95,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p184 3707",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 90,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p184 3707",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 91,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

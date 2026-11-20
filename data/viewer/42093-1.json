@@ -1,0 +1,112 @@
+{
+  "set": "42093-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:31:00.185Z",
+  "part": "A",
+  "parts": 565,
+  "seconds": 20,
+  "functions": [
+    {
+      "function": 3,
+      "does": "The front wheels roll freely and turn with the steering.",
+      "verdict": "shown",
+      "msOneCall": 43,
+      "msPerStep": 11,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p567 56904",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 22,
+          "msOneCall": 43,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p567 56904",
+          "way": -1,
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 20,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p574 56904",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 22,
+          "msOneCall": 19,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p574 56904",
+          "way": -1,
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 19,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 15
+    },
+    {
+      "function": 4,
+      "does": "The steering wheel in the cockpit turns on its pin; it isn't linked to the steering.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 4,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p293 2819",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 152,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p293 2819",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 146,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 5
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "set": "42123-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:34:00.075Z",
+  "part": "A",
+  "parts": 819,
+  "seconds": 54,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The 12 tooth gear on top of the roof steers the front wheels: its upright shaft drives a pair of 12 tooth bevel gears under the cockpit, and a long shaft forward to a 12 tooth gear at the front slides the steering rack across, turning both front hubs.",
+      "verdict": "shown",
+      "msOneCall": 44,
+      "msPerStep": 6,
+      "time": {
+        "open": 21,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p49 87083",
+          "way": 1,
+          "asked": 0.7,
+          "went": 0.7,
+          "ms": 113,
+          "msOneCall": 44,
+          "stops": [],
+          "moved": {
+            "p110 87761": [
+              10.58,
+              0
+            ],
+            "p94 42123 - 65489": [
+              5.29,
+              15.2
+            ],
+            "p97 42123 - 65489": [
+              5.29,
+              15.2
+            ],
+            "p162 55013": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p49 87083",
+          "way": -1,
+          "asked": 0.7,
+          "went": -0.7,
+          "ms": 108,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p110 87761": [
+              10.58,
+              0
+            ],
+            "p94 42123 - 65489": [
+              5.29,
+              15.2
+            ],
+            "p97 42123 - 65489": [
+              5.29,
+              15.2
+            ],
+            "p162 55013": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 27
+    },
+    {
+      "function": 3,
+      "does": "The two doors swing up and forward on hinges at their front corners (dihedral doors).",
+      "verdict": "shown",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p896 32524",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p896 32524",
+          "way": -1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p918 32524",
+          "way": 1,
+          "asked": 0.03,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p918 32524",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    },
+    {
+      "function": 4,
+      "does": "The front wheels and the left rear wheel roll freely.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 9,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 12,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1071 30699",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 168,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1071 30699",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 153,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1074 30699",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 154,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1074 30699",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 150,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1075 42123 - 56145",
+          "way": 1,
+          "asked": 0.1,
+          "went": 0.1,
+          "ms": 24,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1075 42123 - 56145",
+          "way": -1,
+          "asked": 0.1,
+          "went": -0.1,
+          "ms": 26,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 15
+    }
+  ]
+}
