@@ -22,28 +22,11 @@
       }
     ]
   },
-  "waiting": [
-    {
-      "id": "speed-line",
-      "kind": "Try in the viewer and answer",
-      "title": "Is the 9397's steering fast enough to judge now?",
-      "since": "2026-11-20",
-      "what": "On 20 November you set a rule (decision 257): a function too slow in the viewer to tell whether it works is not a working function. Claude needs the line from you, by feel. On 19 November the 9397 Logging Truck's steering took about 520 ms for each solver step and you could not tell that it worked. Since the mend of 20 November it takes about 285 ms. Turn the knob on top of the cab and say whether you can now tell that the wheels steer. If yes, Claude sets the line between the two figures; if no, the line is below 285 ms. No function is marked down before you answer.",
-      "effect": "Your answer sets the line of decision 257. Working functions slower than the line are held at partly until they are fast enough, so the count of 740 falls. No function is marked down before you answer.",
-      "confidence": "Claude measured both figures in the viewer on port 5174 with the same turns of the knob, before and after the mend.",
-      "links": [
-        {
-          "label": "9397 in the viewer, the steering knob on the cab marked",
-          "url": "http://localhost:5174/?file=omr/9397-1+Logging+Truck.mpd&show=1000"
-        }
-      ],
-      "reply": "9397 steering: fast enough"
-    }
-  ],
+  "waiting": [],
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. Claude measured it: the steering does steer, but each solver step takes about half a second in that 1,460-part model, on main as on preview. So works in the check does not yet mean a user can do it. The worker builds a sweep that tries every working function in the viewer, by turning its control and by taking it with the pointer, and records shown or not shown and the time per step. The 57 sets where every checked function works go first. The solver owner measures and mends the time per step: its first mend, merged on 20 November, takes the 9397's steering from about 520 ms a step to about 285 ms, which is still only three to four pictures a second, so the solver is also to move off the page's own thread. On 20 November the stored records showed a second kind: of the 740 working functions, 24 have parts that should turn without end (wheels, tracks, engines, rotors) but are stopped by a collision after a small turn, and 33 more have every control stopped within 0.2 radian. Example: on the 42123 McLaren Senna the rear wheel that turns the V8 stops after 6 degrees, because Kinebrick does not yet let the crank push the pistons. The sweep takes these 57 first and judges each in the viewer; those the viewer does not show are marked down to partly. Claude expects the 740 to lose 20 to 40 by this. On 20 November you set the rule that a function too slow to tell is not a working function (257). So the sweep first times every working function, the halting ones are held at partly until they are fast enough, and the solver owner mends speed before anything else, slowest first. Claude's rough guess from the check's records: 30 to 85 of the 740 are that slow, most of them on the 42078, the 42082, the 8110, the 42100 and the 9397."
+      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. Functions as slow as the 9397's steering or slower are held at partly until they are fast enough; when the 9397 is faster, Claude asks you again where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all."
     },
     {
       "title": "The next offer of main",
@@ -298,6 +281,10 @@
     {
       "date": "2026-11-20",
       "what": "Claude merged the first mend for the slow viewer (256): a solver step on the 9397 Logging Truck's steering takes about 285 ms in the viewer, where it took about 520 ms. No result changes: 740 functions work, and the 42020 Twin-rotor Helicopter's wheels now come back. The 9395 Pick-Up Tow Truck's selector lever, which stuck after 4 degrees, now goes its whole way. The memory pool now counts a browser's memory (255)."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "9397 steering (\"still too slow, about 2 seconds\"): you could not judge it. Claude's figure of 285 ms was the wrong measure: each small turn of a drag costs about 1,400 ms. Working functions that slow are held at partly (258). The part you marked, a battery box lid joined to the steering shaft, goes to the worker."
     }
   ]
 }
