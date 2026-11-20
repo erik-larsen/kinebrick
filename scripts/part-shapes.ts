@@ -77,7 +77,10 @@ export async function partShapes(file: string, modelText?: string, partNames?: s
   // that failed to load) must not shift every shape after it onto the next part (the 4558
   // Metroliner's two subparts s/4865p01b and s/4865p01c: from its part 200 on, every part had the
   // next one's shape; decision 242). The model's own mesh, of what it draws itself, is no line's.
-  const lineChildren = model.children.filter((obj) => (obj as Object3D & { isGroup?: boolean }).isGroup && obj.userData.colorCode !== undefined);
+  // Nor is a child with no name, wherever it stands: a subpart the model places itself that holds
+  // a part, which the loader makes a group of but doesn't name (the 6990's s\2684s01, the monorail
+  // motor's gear; decision 247). Its line gets no shape, as one the loader made nothing of.
+  const lineChildren = model.children.filter((obj) => (obj as Object3D & { isGroup?: boolean }).isGroup && obj.userData.colorCode !== undefined && obj.name !== '');
   const byKey = new Map<string, { name: string; shape: PartMesh[] }>();
   const nameOf = (key: string) => normalizePartName(key.slice(key.indexOf(' ') + 1));
   // A file the model carries itself, the loader names as if in the library (parts/s/…).
