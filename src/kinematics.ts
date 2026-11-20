@@ -36,7 +36,7 @@ import { screws } from './constraints/screws.ts';
 import { hungFrom, strings } from './constraints/strings.ts';
 import { tyres } from './constraints/tyres.ts';
 import { TRACE, trace, traceJam } from './trace.ts';
-import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
+import { combine, dampedSolution, dot, EPSILON, fromBasis, gramOf, inBasis, leastTurning, mixes, nullSpace, orthonormalize, RANK_TOLERANCE, Row, smallestTurning, solveSymmetric, supportOf, symmetricEigen, Tier, without } from './linalg.ts';
 // The inference (src/inference/racks.ts and rests.ts) imports these from here.
 export { acrossDirections, nullSpace };
 
@@ -2132,7 +2132,13 @@ export class Kinematics {
             return sum;
           };
           const coordinates = this.closingStill.flatMap((b) => [0, 1, 2, 3, 4, 5].map((k) => 6 * b + k));
-          const still = (list: number[], z: number[]) => list.map((i) => moving(i, z) - moving(i % 6, z));
+          // The frame's six worked out once for each z, not again for each coordinate (the same sums:
+          // the frame's rows reach every coordinate, and this was most of a step of the 9397 Logging
+          // Truck rolled, 2026-11-20).
+          const still = (list: number[], z: number[]) => {
+            const frame = [0, 1, 2, 3, 4, 5].map((k) => moving(k, z));
+            return list.map((i) => moving(i, z) - frame[i % 6]);
+          };
           const moved = motions.map((m) => still(coordinates, m));
           const most = moved.reduce((max, v) => v.reduce((m, x) => Math.max(m, Math.abs(x)), max), 0);
           const touched = coordinates.filter((_, r) => moved.some((v) => Math.abs(v[r]) > 1e-9 * most));
@@ -2280,7 +2286,7 @@ export class Kinematics {
     const frame = this.frameOf[body];
     if (frame === body || motions.length === 0) return [];
     const rows = [0, 1, 2, 3, 4, 5].map((k) => motions.map((m) => m[6 * frame + k]));
-    const own = nullSpace(rows, motions.length).map((amounts) => combine(motions, amounts));
+    const own = mixes(motions, nullSpace(rows, motions.length));
     return own.some((m) => this.pointVelocity(m, body, point).length() > 1e-9) ? own : [];
   }
 
@@ -3232,7 +3238,7 @@ export class Kinematics {
     const smallest = (motions: number[][]) => (tiers ? leastTurning(motions, rate, tiers) : smallestTurning(motions, rate, size));
     // The motions that leave the frame (body 0) where it is: the mixes with no frame part.
     const frameRows = [0, 1, 2, 3, 4, 5].map((k) => all.map((z) => z.reduce((sum, x, c) => sum + x * basis[k][c], 0)));
-    const still = all.length ? orthonormalize(nullSpace(frameRows, all.length).map((a) => combine(all, a))) : [];
+    const still = all.length ? orthonormalize(mixes(all, nullSpace(frameRows, all.length))) : [];
     // Least motion: of those, the ones in which no tyre on the ground scrubs or lifts, if any
     // turns the joint, as the frame is kept still if it can be: all or nothing. A motion that
     // leaves the frame still may still drag the tyres across the ground, and nothing in the
@@ -3241,7 +3247,7 @@ export class Kinematics {
     let gripped: number[] | null = null;
     if (tiers && this.drag.grip && this.slipRows.length && still.length) {
       const slips = this.slipRows.map((row) => still.map((z) => z.reduce((sum, x, c) => sum + x * row[c], 0)));
-      const grip = orthonormalize(nullSpace(slips, still.length).map((a) => combine(still, a)));
+      const grip = orthonormalize(mixes(still, nullSpace(slips, still.length)));
       if (grip.length) gripped = smallest(grip);
     }
     if (gripped) this.gripped = true;
@@ -3722,6 +3728,6 @@ function leastScrub(motions: number[][], slip: Slip, limit: number, usual = limi
     }
   }
 
-  return orthonormalize(kept.map((a) => combine(motions, a)));
+  return orthonormalize(mixes(motions, kept));
 }
 

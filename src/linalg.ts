@@ -325,15 +325,63 @@ export function withoutDirections(basis: number[][], taken: number[][]): number[
   return rows.slice(t.length);
 }
 
-// The mix of `vectors` with these amounts.
+// What a test may watch: each call of the kernels below, with what it was given, so that a test
+// can run an old kernel and the new one on the same real inputs (tests/kernels.test.ts).
+export const kernelSpy: { on: ((kernel: string, args: unknown[]) => void) | null } = { on: null };
+
+// The mix of `vectors` with these amounts. A product with an exact 0 is passed over, an amount of
+// 0 or an entry of 0: each sum starts at +0, and adding ±0 (0 times a finite number) to +0 or to
+// any other number leaves it as it was, so the sums are the same to the last bit (see sparseDot).
+// Not where the amount or the vector holds something not finite (0 times it is not 0): every
+// product is made then, as before. A motion's vector is mostly 0 (98% on the 9397 Logging Truck).
 export function combine(vectors: number[][], amounts: number[]): number[] {
+  kernelSpy.on?.('combine', [vectors, amounts]);
   const out = new Array(vectors[0]?.length ?? 0).fill(0);
   for (let i = 0; i < vectors.length; i++) {
     const v = vectors[i];
     const a = amounts[i];
-    for (let j = 0; j < v.length; j++) out[j] += a * v[j];
+    if (!Number.isFinite(a)) {
+      for (let j = 0; j < v.length; j++) out[j] += a * v[j];
+      continue;
+    }
+    if (a === 0 && allFinite(v)) continue;
+    for (let j = 0; j < v.length; j++) {
+      const x = v[j];
+      // x of ±0, times a finite a, adds ±0: no change (see above). Not so if x is not finite.
+      if (x !== 0) out[j] += a * x;
+    }
   }
   return out;
+}
+
+// Each list of amounts' mix of the same `vectors`: what combine gives for each, to the last bit,
+// with the vectors checked once for anything not finite and their places that are not 0 found once
+// (see nonzeros), rather than for each mix. A null space's vectors mixing a list of motions are
+// mostly 0, and so are the motions (chooseMotion's, 1,700 mixes a step of the 9397 Logging Truck).
+export function mixes(vectors: number[][], amountsList: number[][]): number[][] {
+  kernelSpy.on?.('mixes', [vectors, amountsList]);
+  const places = vectors.map(nonzeros);
+  if (places.some((p) => p === null)) return amountsList.map((amounts) => combine(vectors, amounts));
+  const n = vectors[0]?.length ?? 0;
+  return amountsList.map((amounts) => {
+    const out = new Array(n).fill(0);
+    for (let i = 0; i < vectors.length; i++) {
+      const v = vectors[i];
+      const a = amounts[i];
+      if (!Number.isFinite(a)) {
+        for (let j = 0; j < v.length; j++) out[j] += a * v[j];
+        continue;
+      }
+      if (a === 0) continue;
+      for (const j of places[i]!) out[j] += a * v[j];
+    }
+    return out;
+  });
+}
+
+function allFinite(v: number[]): boolean {
+  for (let j = 0; j < v.length; j++) if (!Number.isFinite(v[j])) return false;
+  return true;
 }
 
 // The x with  a · x = b  for a small symmetric a, ignoring directions with eigenvalues below
@@ -350,10 +398,55 @@ export function solveSymmetric(a: number[][], b: number[], tiny: number): number
   return x;
 }
 
-// The dot products of each of `rows` with each of `columns`, x · z, summed in order: plain loops,
-// as on a big model these take much of a step.
+// The dot products of each of `rows` with each of `columns`, x · z, summed in order: the same
+// numbers as dot gives, to the last bit, but over only the places where both are not 0 (see
+// sparseDot), and for a Gram matrix of a list with itself, from one half (x · z and z · x are
+// the same sums of the same products, x_j z_j = z_j x_j). On a big model these take much of a
+// step: the costs of a tier of least motion, three for each body a motion turns, are mostly 0
+// (the 9397 Logging Truck's 426 bodies, 2026-11-20). A vector holding something not finite (0
+// times it is not 0) has its products made as before, every one.
 export function gramOf(rows: number[][], columns: number[][]): number[][] {
-  return rows.map((x) => columns.map((z) => dot(x, z)));
+  kernelSpy.on?.('gramOf', [rows, columns]);
+  const same = columns === rows;
+  const ofRows = rows.map(nonzeros);
+  const ofColumns = same ? ofRows : columns.map(nonzeros);
+  const out = rows.map(() => new Array<number>(columns.length));
+  for (let i = 0; i < rows.length; i++) {
+    for (let j = same ? i : 0; j < columns.length; j++) {
+      const [a, b] = [ofRows[i], ofColumns[j]];
+      out[i][j] = a && b ? sparseDot(rows[i], a, columns[j], b) : dot(rows[i], columns[j]);
+      if (same) out[j][i] = out[i][j];
+    }
+  }
+  return out;
+}
+
+// The places where a vector is not 0, in order; null if it holds something not finite.
+function nonzeros(x: number[]): Int32Array | null {
+  let n = 0;
+  for (let j = 0; j < x.length; j++) {
+    if (!Number.isFinite(x[j])) return null;
+    if (x[j] !== 0) n++;
+  }
+  const out = new Int32Array(n);
+  for (let j = 0, k = 0; j < x.length; j++) if (x[j] !== 0) out[k++] = j;
+  return out;
+}
+
+// x · z over the places where one of them is not 0 (`a` and `b`, from nonzeros: the shorter is
+// gone over), in order: the same sum as dot's. dot adds x_j z_j at every place; where either is 0
+// (and both are finite) that product is ±0, and adding ±0 changes no sum: dot's sum starts at +0,
+// adding ±0 to +0 gives +0 (to nearest, +0 + −0 = +0), and adding it to any other number gives that
+// number. So the sum is never −0 to begin with, and the products left out never change it. A
+// product at a place in the list may still be ±0 (the other is 0 there): it changes nothing either.
+function sparseDot(x: number[], a: Int32Array, z: number[], b: Int32Array): number {
+  const at = a.length <= b.length ? a : b;
+  let sum = 0;
+  for (let i = 0; i < at.length; i++) {
+    const p = at[i];
+    sum += x[p] * z[p];
+  }
+  return sum;
 }
 
 export function dot(x: number[], z: number[]): number {
@@ -668,15 +761,45 @@ export function supportOf(basis: number[][]): Int32Array[] {
 
 // The same vectors made orthonormal (unit length, at right angles to each other), by
 // Gram-Schmidt. Plain loops: this runs many times a step.
+//
+// Each vector found is kept with its places that are not 0, and each new one is taken against it
+// over those places only: the same numbers to the last bit. Its dot product with the new one (a
+// sum from +0) leaves out only products with a 0 (see sparseDot); the new one's entries less d times
+// it leave out only subtractions of ±0, which change nothing but a −0 (−0 − −0 = +0), and the new
+// one has none: it is checked for −0 and anything not finite first, and made as before if it has
+// either; and x − x is +0, so none comes. Its length is summed over every place, as before.
 export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] {
+  kernelSpy.on?.('orthonormalize', [vectors, tiny]);
   const result: number[][] = [];
+  const places: (Int32Array | null)[] = [];
   for (const v of vectors) {
+    const n = v.length;
+    let plain = false;
+    for (let i = 0; i < n; i++) {
+      const x = v[i];
+      if (!Number.isFinite(x) || (x === 0 && 1 / x < 0)) {
+        plain = true;
+        break;
+      }
+    }
     const u = v.slice();
-    const n = u.length;
-    for (const b of result) {
+    for (let r = 0; r < result.length; r++) {
+      const b = result[r];
+      const at = places[r];
+      if (plain || !at) {
+        let d = 0;
+        for (let i = 0; i < n; i++) d += u[i] * b[i];
+        for (let i = 0; i < n; i++) u[i] -= d * b[i];
+        continue;
+      }
       let d = 0;
-      for (let i = 0; i < n; i++) d += u[i] * b[i];
-      for (let i = 0; i < n; i++) u[i] -= d * b[i];
+      for (let p = 0; p < at.length; p++) d += u[at[p]] * b[at[p]];
+      if (!Number.isFinite(d)) {
+        // Not so for d: every subtraction is made, as before.
+        for (let i = 0; i < n; i++) u[i] -= d * b[i];
+        continue;
+      }
+      for (let p = 0; p < at.length; p++) u[at[p]] -= d * b[at[p]];
     }
     let len = 0;
     for (let i = 0; i < n; i++) len += u[i] * u[i];
@@ -684,6 +807,7 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
     if (len > tiny) {
       for (let i = 0; i < n; i++) u[i] /= len;
       result.push(u);
+      places.push(nonzeros(u));
     }
   }
   return result;
@@ -692,9 +816,13 @@ export function orthonormalize(vectors: number[][], tiny = EPSILON): number[][] 
 // The solutions x of  rows · x = 0,  as a list of independent vectors (Gauss-Jordan elimination).
 // Plain loops on typed arrays: this runs many times a step.
 export function nullSpace(rows: Row[], n: number): number[][] {
+  kernelSpy.on?.('nullSpace', [rows, n]);
   const a = rows.map((r) => Float64Array.from(r));
   const pivotColumns: number[] = [];
   const used = new Array(n).fill(false);
+  // The columns not used yet, in order: a row's largest is looked for among them only, in the order
+  // and with the comparisons it always was (going over every column and passing the used ones).
+  let unused = Int32Array.from({ length: n }, (_, k) => k);
   // Rows found to have nothing left above RANK_TOLERANCE (rows that depend on others), until
   // they next change: the search everywhere left (below) skips them, as they can't be chosen. A
   // row's entries left only get fewer, as columns are used, so it stays tiny until taking a
@@ -706,8 +834,12 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     // for accuracy: picking only down a column lets rounding errors grow until an equation
     // implied by the others looks independent. If that finds nothing, look everywhere left.
     const largestInRow = (i: number) => {
+      const x = a[i];
       let best = -1;
-      for (let k = 0; k < n; k++) if (!used[k] && (best < 0 || Math.abs(a[i][k]) > Math.abs(a[i][best]))) best = k;
+      for (let u = 0; u < unused.length; u++) {
+        const k = unused[u];
+        if (best < 0 || Math.abs(x[k]) > Math.abs(x[best])) best = k;
+      }
       return best;
     };
     const largestInColumn = (k: number) => {
@@ -736,6 +868,7 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       if (Math.abs(a[best][c]) < RANK_TOLERANCE) break;
     }
     used[c] = true;
+    unused = unused.filter((k) => k !== c);
     [a[r], a[best]] = [a[best], a[r]];
     const row = a[r];
     const pivot = row[c];
