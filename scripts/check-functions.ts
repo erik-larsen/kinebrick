@@ -73,8 +73,8 @@
 // but didn't move; "moved": in `stays` but did).
 
 import { execFileSync, execSync, spawn } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { availableParallelism } from 'node:os';
+import { closeSync, existsSync, mkdtempSync, openSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { availableParallelism, tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Matrix4, Quaternion, Vector3 } from 'three';
 import { experiments, Kinematics } from '../src/kinematics.ts';
@@ -1605,6 +1605,19 @@ const args = process.argv.slice(2);
 const one = args.indexOf('--one'); // (internal) check this one set's file and print what it found
 const wayAt = args.indexOf('--way'); // (internal) with --only, only this control, by its place in the list
 const onlyWay = wayAt >= 0 ? Number(args[wayAt + 1]) : null;
+// A folder the run's processes share (KINEBRICK_SHAPES_SHOWN, made by the run), where each model's
+// parts with no shape are marked once shown: the first process that reads a model says them, and
+// the others, checking the same set's other functions, don't. A process run by hand says them.
+const SHOWN = process.env.KINEBRICK_SHAPES_SHOWN;
+function firstToShow(model: string): boolean {
+  if (!SHOWN) return true;
+  try {
+    closeSync(openSync(join(SHOWN, encodeURIComponent(model)), 'wx'));
+    return true;
+  } catch {
+    return false;
+  }
+}
 if (one >= 0) {
   const set = JSON.parse(readFileSync(args[one + 1], 'utf-8'));
   // Read as the viewer reads the model: a set's file with its signed errata, which may add parts.
@@ -1612,9 +1625,10 @@ if (one >= 0) {
     const read = readParts(m, m.startsWith('omr/'));
     const shapes = await partShapes(m, read.text, read.parts);
     shapesOf.set(m, shapes);
-    // The parts with no shape, each with its reason, so none goes without its collision test unseen.
+    // The parts with no shape, each with its reason, so none goes without its collision test unseen;
+    // once a model in a run, not once for each process a set is checked in (see SHOWN).
     const empty = read.parts.flatMap((p, i) => (shapes[i]?.empty ? [`${i} ${p.name} (${shapes[i].empty})`] : []));
-    if (empty.length) console.error(`${m}: ${empty.length} parts with no shape: ${empty.join(', ')}`);
+    if (empty.length && firstToShow(m)) console.error(`${m}: ${empty.length} parts with no shape: ${empty.join(', ')}`);
     if (stopsReport || collide) {
       const file = `data/collisions/${keptFileName(m)}.json`;
       const kept = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : null;
@@ -1699,6 +1713,9 @@ async function main() {
   // the last time (`peak` in the set's record, or the function's for a set checked a function to
   // a process), else an estimate from the set's part count.
   const pool = new Pool(poolDir());
+  // Where the processes mark the models whose parts with no shape they have said (see firstToShow).
+  process.env.KINEBRICK_SHAPES_SHOWN = mkdtempSync(join(tmpdir(), 'kinebrick-shapes-shown-'));
+  process.on('exit', () => rmSync(process.env.KINEBRICK_SHAPES_SHOWN!, { recursive: true, force: true }));
   const parts = partCounts();
   const expectedMb = (s: (typeof files)[number], only: number | null) => {
     const g = s.data.generated;
