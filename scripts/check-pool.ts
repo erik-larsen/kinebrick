@@ -23,7 +23,9 @@
 //
 // It waits for room as a check's child does, runs the command, passes on its exit code, drops its
 // entry when the command ends (also when it fails or is stopped), and prints the most memory the
-// command and its own children took, so that the next caller can give a better figure.
+// command and every process it made took, so that the next caller can give a better figure. Those
+// processes are found by parent process, whatever their group, so a browser counts (decision 255);
+// they are stopped with the command, and any left when it ends are stopped then.
 
 import { execFileSync, spawn } from 'node:child_process';
 import { mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
@@ -284,19 +286,56 @@ export function peakMb(): number {
   return Math.round(process.resourceUsage().maxRSS / 1024);
 }
 
-// The memory a process group takes now, in MB: the sum over its processes.
-function groupMb(pgid: number): number {
+// The processes a command has made, by parent process, whatever their process group: a browser
+// Playwright starts makes a group of its own (decision 255 of 2026-11-20), so a measure of the
+// command's group alone printed 291 MB for a sweep whose browser took 2,752. `known` keeps those
+// seen before, so that one whose parent has ended (and which the system has taken as its own
+// child) is still counted and still stopped. The root and the members of its group count too.
+// What each now takes, by process id, in KB.
+export function processTree(root: number, known: Set<number>): Map<number, number> {
+  let out: string;
   try {
-    const out = execFileSync('ps', ['-axo', 'pgid=,rss='], { encoding: 'utf-8' });
-    let kb = 0;
-    for (const line of out.trim().split('\n')) {
-      const [g, rss] = line.trim().split(/\s+/).map(Number);
-      if (g === pgid) kb += rss;
-    }
-    return Math.round(kb / 1024);
+    out = execFileSync('ps', ['-axo', 'pid=,ppid=,pgid=,rss='], { encoding: 'utf-8' });
   } catch {
-    return 0;
+    return new Map();
   }
+  const rows = out
+    .trim()
+    .split('\n')
+    .map((line) => line.trim().split(/\s+/).map(Number));
+  const live = new Map(rows.map(([pid, , , rss]) => [pid, rss]));
+  for (const pid of known) if (!live.has(pid)) known.delete(pid);
+  if (live.has(root)) known.add(root);
+  for (const [pid, , pgid] of rows) if (pgid === root) known.add(pid);
+  const children = new Map<number, number[]>();
+  for (const [pid, ppid] of rows) children.set(ppid, [...(children.get(ppid) ?? []), pid]);
+  const todo = [...known];
+  while (todo.length) {
+    for (const child of children.get(todo.pop()!) ?? []) {
+      if (!known.has(child)) {
+        known.add(child);
+        todo.push(child);
+      }
+    }
+  }
+  return new Map([...known].map((pid) => [pid, live.get(pid)!]));
+}
+
+// Stops the processes of a command's tree (see processTree) with `signal`, and those still
+// running after `grace` ms with SIGKILL. The ones that were running.
+export async function stopTree(root: number, known: Set<number>, signal: NodeJS.Signals, grace = 3000): Promise<number[]> {
+  const pids = [...processTree(root, known).keys()];
+  const send = (pid: number, s: NodeJS.Signals) => {
+    try {
+      process.kill(pid, s);
+    } catch {
+      // Gone already.
+    }
+  };
+  for (const pid of pids) send(pid, signal);
+  for (const until = Date.now() + grace; pids.some(alive) && Date.now() < until; ) await new Promise((r) => setTimeout(r, 100));
+  for (const pid of pids) if (alive(pid)) send(pid, 'SIGKILL');
+  return pids;
 }
 
 // The wrapper (see the top of this file): the command's exit code, as the process's own.
@@ -316,16 +355,16 @@ async function run(args: string[]) {
   const pool = new Pool(poolDir());
   let entry: string | null = null;
   let child: ReturnType<typeof spawn> | null = null;
-  // Stopped while it waits or runs: the command is stopped too, and the entry dropped.
+  // The command's processes seen so far (see processTree).
+  const known = new Set<number>();
+  // Stopped while it waits or runs: the command is stopped too, with every process it made,
+  // whatever their group (a browser too), and the entry dropped.
+  let stopping = false;
   for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'] as const) {
-    process.on(signal, () => {
-      if (child?.pid) {
-        try {
-          process.kill(-child.pid, signal);
-        } catch {
-          // Gone already.
-        }
-      }
+    process.on(signal, async () => {
+      if (stopping) return;
+      stopping = true;
+      if (child?.pid) await stopTree(child.pid, known, signal);
       if (entry) pool.release(entry);
       pool.stop();
       process.exit(128 + ({ SIGINT: 2, SIGTERM: 15, SIGHUP: 1 } as const)[signal]);
@@ -340,12 +379,17 @@ async function run(args: string[]) {
     console.error(`check-pool: waiting for room: ${live.size >= pool.most ? `${live.size} of ${pool.most} processes running` : `${mb} MB asked, ${used} of ${pool.budget} MB in use`}${ahead ? `, ${ahead} waiting before it` : ''}`);
     entry = await pool.reserve(mb, what);
   }
-  // In a process group of its own, so that its own children are measured and stopped with it.
+  // In a process group of its own, so that a signal to the group reaches its own children. It is
+  // measured and stopped with every process it makes, whatever their group (see processTree).
   child = spawn(command[0], command.slice(1), { stdio: 'inherit', detached: true });
   let peak = 0;
   if (child.pid) pool.started(entry, child.pid);
-  const pgid = child.pid ?? 0;
-  const timer = setInterval(() => (peak = Math.max(peak, groupMb(pgid))), 1000);
+  const root = child.pid ?? 0;
+  const sample = () => {
+    const kb = [...processTree(root, known).values()].reduce((sum, rss) => sum + rss, 0);
+    peak = Math.max(peak, Math.round(kb / 1024));
+  };
+  const timer = setInterval(sample, 1000);
   const code = await new Promise<number>((resolve) => {
     child!.on('error', (err) => {
       console.error(`check-pool: ${err.message}`);
@@ -353,7 +397,17 @@ async function run(args: string[]) {
     });
     child!.on('exit', (c, signal) => resolve(c ?? (signal ? 128 + (({ SIGINT: 2, SIGKILL: 9, SIGTERM: 15 } as Record<string, number>)[signal] ?? 1) : 1)));
   });
+  sample();
   clearInterval(timer);
+  // Stopped: the signal's handler stops the rest, drops the entry and ends the process.
+  if (stopping) return;
+  // A process the command made that outlives it (a browser not closed) holds memory the pool no
+  // longer counts: it is stopped, and said.
+  const left = [...processTree(root, known).keys()];
+  if (left.length) {
+    await stopTree(root, known, 'SIGTERM');
+    console.error(`check-pool: ${what}: ${left.length} of its processes outlived it and were stopped (${left.join(', ')})`);
+  }
   pool.release(entry);
   console.error(`check-pool: ${what}: exit ${code}, peak ${peak} MB (expected ${mb})`);
   process.exit(code);
