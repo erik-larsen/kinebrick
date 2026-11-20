@@ -40,6 +40,11 @@
 //      part A's way. It adds msOneCallQuiet, msPerStepQuiet, loadQuiet (the load average as the
 //      set's timing starts) and commitQuiet to the function's line in the set's record, and changes
 //      nothing else there.
+//   … --shift  where the check freed friction pins for a function (its record's `freed`), part A
+//      presses Shift on the control first, as a user does (the viewer's pinsToShift and freePins),
+//      then turns it; what it freed is in the record (decision 267's sorting).
+//   KB_SWEEP_ONLY=<file.json>  only these functions: a list of "<set> <function>"; KB_SWEEP_OUT=<dir>
+//      writes the records there, not in data/viewer (a sorting run beside part A's records).
 // Each set's browser claims 1,000 MB and 0.85 MB a part from the pool (decision 255), as open-all.ts.
 import { execSync, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -75,14 +80,17 @@ const args = process.argv.slice(2);
 const base = args[0];
 const force = args.includes('--force');
 const aOnly = args.includes('--a');
-const part = aOnly ? 'A' : 'A and B';
+const shiftFirst = args.includes('--shift');
+const part = (aOnly ? 'A' : 'A and B') + (shiftFirst ? ', Shift where the check freed pins' : '');
+const only: Set<string> | null = process.env.KB_SWEEP_ONLY ? new Set(JSON.parse(readFileSync(process.env.KB_SWEEP_ONLY, 'utf-8'))) : null;
+const outDir = process.env.KB_SWEEP_OUT || 'data/viewer';
 const browserMb = (parts: number | undefined) => (parts ? Math.round(1000 + 0.85 * parts) : 3000);
 // The commit a run records, set once by the run that starts the sets (so the records can be
 // committed while it goes on).
 const commit = process.env.KB_SWEEP_COMMIT || execSync('git rev-parse --short HEAD').toString().trim();
 process.env.KB_SWEEP_COMMIT = commit;
 const setFile = (set: string) => `data/sets/${set}.json`;
-const outFile = (set: string) => `data/viewer/${set}.json`;
+const outFile = (set: string) => `${outDir}/${set}.json`;
 const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => g?.result === 'works').length;
 
 const oneAt = args.indexOf('--one');
@@ -157,6 +165,7 @@ if (args[0] === '--judge') {
   const thenAll = args.includes('--then-all');
   const sets = (named.length ? [...named.filter((s) => all.includes(s)), ...(thenAll ? all.filter((s) => !named.includes(s)).sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)) : [])] : all.sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)))
     .filter((s) => worksIn(s) > 0)
+    .filter((s) => !only || [...only].some((o) => o.startsWith(`${s} `)))
     .filter((s) => {
       if (force || !existsSync(outFile(s))) return true;
       const rec = JSON.parse(readFileSync(outFile(s), 'utf-8'));
@@ -168,7 +177,7 @@ if (args[0] === '--judge') {
     for (let set = queue.shift(); set; set = queue.shift()) {
       const started = Date.now();
       const code = await new Promise<number>((done) => {
-        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', String(browserMb(counts.get(set))), '--what', `sweep ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set, ...(aOnly ? ['--a'] : [])], { stdio: ['ignore', 'inherit', 'inherit'] });
+        const child = spawn('npx', ['tsx', 'scripts/check-pool.ts', 'run', '--mb', String(browserMb(counts.get(set))), '--what', `sweep ${set}`, '--', 'npx', 'tsx', 'scripts/drags/sweep.ts', base, '--one', set, ...(aOnly ? ['--a'] : []), ...(shiftFirst ? ['--shift'] : [])], { stdio: ['ignore', 'inherit', 'inherit'] });
         child.on('close', (c) => done(c ?? 1));
       });
       console.log(`${set}: ${code === 0 ? 'done' : `failed (${code})`} in ${Math.round((Date.now() - started) / 1000)} s`);
@@ -230,6 +239,7 @@ async function sweepSet(set: string) {
     const g = data.generated.functions[i];
     if (g?.result !== 'works') continue;
     if (onlyQuiet && !onlyQuiet.has(i + 1)) continue;
+    if (only && !only.has(`${set} ${i + 1}`)) continue;
     const fnStarted = Date.now();
     let line: Record<string, any>;
     const file: string = fn.model ?? model;
@@ -265,7 +275,7 @@ async function sweepSet(set: string) {
     return;
   }
   out.seconds = Math.round((Date.now() - started) / 1000);
-  mkdirSync('data/viewer', { recursive: true });
+  mkdirSync(outDir, { recursive: true });
   writeFileSync(outFile(set), JSON.stringify(out, null, 2) + '\n');
 }
 
@@ -298,6 +308,14 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
     const tA = Date.now();
     for (const [ci, ref] of controls.entries()) {
       const control = refOf(ref).part;
+      // As a user does where the check freed pins: Shift pressed on the control.
+      // The camera turned till the control is in view, the pointer on it, and Shift pressed and let
+      // go (no drag): what the viewer said, and the pins freed.
+      let shifted: { seen: boolean; said?: string[]; freed?: number[] } | null = null;
+      if (shiftFirst && g.freed) {
+        const seen = (await v.reach(control)) >= 0 && (await v.aim(control));
+        shifted = seen ? { seen, ...(await v.press({ shift: true, release: true })) } : { seen };
+      }
       for (const [wi, way] of [1, -1].entries()) {
         const asked = Math.abs(g.turned?.[ci]?.[wi] ?? 1.5) || 1.5;
         const r = (await v.page.evaluate(
@@ -347,7 +365,7 @@ async function sweepFunction(file: string, fn: any, g: any, viewerFor: ((file: s
         stops.forEach((s) => stopsA.add(s));
         moves.forEach((m: Ref, k: number) => { if (moved[k][0] >= MOVED || moved[k][1] >= MOVED) movedByA.add(m.ref); });
         stays.forEach((m: Ref, k: number) => { const x = moved[moves.length + k]; if (x[0] >= MOVED || x[1] >= MOVED) staysMovedByA.add(m.ref); });
-        A.push({ control: ref, way, asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
+        A.push({ control: ref, way, ...(shifted ? { shift: shifted } : {}), asked: round(asked), went: round(went), ms: Math.round(ms), msOneCall: r.oneCall === null ? null : Math.round(r.oneCall), stops, moved: Object.fromEntries([...moves, ...stays].map((m: Ref, k: number) => [m.ref, moved[k]])) });
       }
     }
     time.A += (Date.now() - tA) / 1000;
