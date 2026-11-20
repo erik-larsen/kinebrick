@@ -3,18 +3,24 @@
 // cause (see docs/plan.md, "What Erik sees"). It reads each
 // set's results from data/sets/ (written by npm run functions) and its name, year and piece count
 // from models/technic-sets.csv, and puts them into the page in scripts/status-page.html. The page's
-// graph of the sets in each colour over time comes from git (see status-history.ts).
+// graph of the sets in each colour over time comes from git (see status-history.ts). Its table of
+// times comes from the viewer sweep's records in data/viewer/ (scripts/drags/sweep.ts), for the
+// sets swept so far: what one small turn of each working function's control takes in the viewer.
 //
 //   npm run status                 writes dist/status.html
 //   npm run status -- some/file    writes it there instead
 
 import { execSync } from 'node:child_process';
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { CAUSES } from './causes.ts';
 import { history, setState } from './status-history.ts';
 
 const SETS_DIR = join('data', 'sets');
+const VIEWER_DIR = join('data', 'viewer');
+// The viewer sweep's record of a set, if it has been swept (decisions 257 and 258).
+type Swept = { date: string; commit: string; functions: { function: number; msOneCall?: number; msPerStep?: number; verdict?: string }[] };
+const swept = (set: string): Swept | null => (existsSync(join(VIEWER_DIR, `${set}.json`)) ? JSON.parse(readFileSync(join(VIEWER_DIR, `${set}.json`), 'utf-8')) : null);
 const out = process.argv[2] ?? join('dist', 'status.html');
 
 // The fields of a CSV line. Fields may be quoted, with commas inside.
@@ -41,6 +47,11 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
   if (results.length === 0) continue;
   const row: Record<string, string> = csv.get(set.set) ?? {};
   const curated = set.curated?.functions ?? [];
+  const sweep = swept(set.set);
+  // Each swept function's times in the viewer, in ms: one small turn of its control as a drag makes
+  // it (one call of one solver step), a step in one long turn, and whether the turn moved what the
+  // list says it moves. A record made before the sweep timed one call has no first figure.
+  const times = new Map((sweep?.functions ?? []).map((f) => [f.function, [f.msOneCall ?? null, f.msPerStep ?? null, f.verdict ?? '']]));
   sets.push({
     set: set.set,
     name: row.name ?? '',
@@ -55,7 +66,10 @@ for (const file of readdirSync(SETS_DIR).filter((f) => f.endsWith('.json'))) {
     file: set.curated?.model ?? '',
     omr: row.omr_url ?? '',
     // Each function: what it does (in full: a set's card wraps the text), its result, and if it doesn't work, why (see causes.ts) and the part that's about.
-    functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? ''), r.result, r.cause ?? '', r.detail ?? '']),
+    // Last, its times in the viewer if the sweep has them (see `times`), else null.
+    functions: results.map((r: { result: string; cause?: string; detail?: string }, i: number) => [String(curated[i]?.does ?? ''), r.result, r.cause ?? '', r.detail ?? '', times.get(i + 1) ?? null]),
+    // When the sweep timed it, and at which commit.
+    swept: sweep ? [sweep.date.slice(0, 10), sweep.commit] : null,
   });
 }
 

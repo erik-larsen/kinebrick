@@ -186,7 +186,7 @@ Everything happens in the 3D view: drag parts with the mouse or a finger. A part
 
 Parts a drag doesn't need stay put: pushing a car leaves its steering alone, and turning its steering wheel leaves the car where it is. Motion stops where two parts would run into each other, or at the end of a slide's travel or a rack's teeth, and with **Warnings** on those two parts flash red; it stops too where a part would go below the ground (a crane's hook let down too far), and with Warnings on that part flashes red. A part that can't move at all says why: the mechanism is jammed, a worm can't be driven from its gear, the model has no wheels to roll on, or its tyres would scrub sideways more than **Tyre scrub** allows. Scrub is forgiven first: a motion that needs more than **Tyre scrub** allows raises it to what it needs and 2 points over, up to 30%, and says so; only past that does the model stay put, saying by how much. A part kept turning that comes to such a stop says so too. Gears a drag brings together (a tractor's thresher lowered onto its power take-off) mesh from then on, and gears it draws apart stop meshing: when a drag ends, Kinebrick works out afresh how the model moves if its gears' meshes have changed. Let go, and the model stays where it is; momentum waits for forces in 2.0.
 
-The **Stats** card, at the top right under Options, opens when clicked. While it is open it is as wide as what it shows, and closed it is as narrow as Options. It has the model's counts (parts, bodies, joints, gear meshes), then Warnings if the model has any (a count of each kind, which opens to the list), and under them the readout, which shows how far the frame has moved and each body has turned or slid, so the motion can be checked by eye. A wheel on the ground also shows how far it rolled ÷ its radius, which its turn should match, and once it has scrubbed, how far sideways, and how much of its roll that is just now.
+The **Stats** card, at the top right under Options, opens when clicked. While it is open it is as wide as what it shows, and closed it is as narrow as Options. It has the model's counts (parts, bodies, joints, gear meshes), then Warnings if the model has any (a count of each kind, which opens to the list), and under them the readout, which shows how far the frame has moved and each body has turned or slid, so the motion can be checked by eye. A wheel on the ground also shows how far it rolled ÷ its radius, which its turn should match, and once it has scrubbed, how far sideways, and how much of its roll that is just now. The readout is worked out only while the card is open, and a car's turning circle once the model has stood still for 0.3 seconds: worked out on every move, it took as long as a step of the solver.
 
 Each kind of information has its own channel: fill colour shows the parts' LEGO colours, a yellow glow what the pointer is on, and an outline their status (cyan frozen, green kept turning, magenta pointed at by the address, and with **Warnings** on, red loose), with a ⚠ pinned to each loose part when **Warnings** is on, and with **Drivetrain focus** on, see-through what the last drag didn't move. Outlines show through other parts in a darker shade.
 
@@ -244,10 +244,74 @@ A car with two fixed axles can't turn without its tyres sliding sideways, which 
 
 ## Getting started
 
-You need [Node.js](https://nodejs.org) (which comes with `npm`).
+To only look at Kinebrick, nothing needs installing: each of its three branches is published as a site (the links are in the table below). The sites open the models packed into this repository. A local build is for changing the code, and for opening any real set's file from the [LDraw Official Model Repository](https://library.ldraw.org/omr) (OMR), which this repository doesn't hold.
 
-1. Install the dependencies: `npm install`
-2. Start the viewer: `npm run dev`, then open the address it prints. Pick a test model from the menu at the top left, or [open your own](#your-own-model).
+### Running a local build
+
+| Branch | What it is | Published at | Port below |
+|---|---|---|---|
+| `main` | The released viewer. | [erik-larsen.github.io/kinebrick/](https://erik-larsen.github.io/kinebrick/) | 5173 |
+| `preview` | Work on the Technic sets that has not reached `main` yet. | [/preview/](https://erik-larsen.github.io/kinebrick/preview/) | 5174 |
+| `preview-train` | Work on the train sets, on top of `preview`. | [/preview-train/](https://erik-larsen.github.io/kinebrick/preview-train/) | 5183 |
+
+You need [git](https://git-scm.com) and [Node.js](https://nodejs.org) 22 or newer (which comes with `npm`). Each branch gets a folder of its own, side by side, so all three can run at once; `preview` and `preview-train` are added to the clone made for `main`, so do `main`'s first step even if you only want one of the others. Run every command from the folder that holds those folders, and leave each viewer running in a terminal window of its own.
+
+#### main
+
+```bash
+git clone https://github.com/erik-larsen/kinebrick.git
+npm --prefix kinebrick install
+npm --prefix kinebrick run dev -- --port 5173 --strictPort
+```
+
+Then open [http://localhost:5173/](http://localhost:5173/). Pick a test model from the menu at the top left, or [open your own](#your-own-model).
+
+#### preview
+
+```bash
+git -C kinebrick worktree add ../kinebrick-preview preview
+npm --prefix kinebrick-preview install
+npm --prefix kinebrick-preview run dev -- --port 5174 --strictPort
+```
+
+Then open [http://localhost:5174/](http://localhost:5174/).
+
+#### preview-train
+
+```bash
+git -C kinebrick worktree add ../kinebrick-train preview-train
+npm --prefix kinebrick-train install
+npm --prefix kinebrick-train run dev -- --port 5183 --strictPort
+```
+
+Then open [http://localhost:5183/](http://localhost:5183/).
+
+With `--strictPort` a viewer stops with an error if its port is taken, rather than starting on another one. Any free port will do.
+
+#### The real sets
+
+This repository holds only the models in the viewer's menu. The OMR's own files of real LEGO sets are downloaded, once for each folder, into its `omr/` folder:
+
+```bash
+npm --prefix kinebrick run omr
+npm --prefix kinebrick-preview run omr
+npm --prefix kinebrick-train run omr -- --trains
+```
+
+The first two download every Technic set the OMR has; the third downloads the train sets into `omr/trains/`. A running viewer then opens a set by its file's name, with `+` for each space:
+
+- `http://localhost:5173/?file=omr/9397-1+Logging+Truck.mpd` (the same on port 5174)
+- `http://localhost:5183/?file=omr/trains/10277-1+Crocodile+Locomotive.mpd`
+
+#### Newer work
+
+```bash
+git -C kinebrick pull
+git -C kinebrick-preview pull
+git -C kinebrick-train pull
+```
+
+A running viewer reloads by itself when its files change. Run `npm install` in a folder again if its `package.json` changed.
 
 The viewer doesn't need the LDraw parts library: each test model is packed, with every part it uses, into one file in `packed/`. A model you open yourself is packed the same way in your browser, its parts fetched from [Kinebrick's copy of the library](https://github.com/erik-larsen/ldraw). The libraries are only needed to rebuild the data after changing a test model (see below).
 
