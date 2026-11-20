@@ -5,7 +5,9 @@ import { ConnectionTable } from '../src/connections.ts';
 import { Kinematics } from '../src/kinematics.ts';
 import { parseModel } from '../src/ldr.ts';
 import { inferMechanism } from '../src/mechanism.ts';
-import { load } from './sets/load.ts';
+import { load, readShapes } from './sets/load.ts';
+
+await readShapes('models/ackermann-car.ldr');
 
 const table: ConnectionTable = JSON.parse(readFileSync('data/connections.json', 'utf-8'));
 const roles: Record<string, string> = JSON.parse(readFileSync('data/roles.json', 'utf-8'));
