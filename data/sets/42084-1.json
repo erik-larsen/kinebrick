@@ -84,14 +84,15 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 6,
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "not back": 1,
       "moved whole": 1,
-      "works": 2,
+      "no": 1,
+      "works": 1,
       "not checked": 1
     },
     "loose": [],
@@ -131,29 +132,28 @@
         "back": [
           [
             [
-              23.38,
-              16.46
+              57.8,
+              25.92
             ],
             [
-              44.8,
-              16.38
+              30.69,
+              11.37
             ]
           ]
         ],
         "torn": [
           [
             [
-              0.31,
-              0.44
-            ],
-            [
               0.03,
               0.04
+            ],
+            [
+              0.02,
+              0.03
             ]
           ]
         ],
         "strayed": [
-          "p174 15100",
           "p175 15100"
         ],
         "stop": [
@@ -166,34 +166,40 @@
           1
         ],
         "cause": "one-link-too-many",
-        "onPlay": 0.79,
-        "seconds": 1
+        "onPlay": 0.73,
+        "seconds": 1.3
       },
       {
-        "result": "works",
+        "result": "no",
         "turned": [
           [
             0,
-            -1.5
+            0
           ]
+        ],
+        "still": [
+          "p81 32014",
+          "p96 10928",
+          "p99 10928",
+          "p169 62531"
         ],
         "rates": [
           {
             "p81 32014": [
-              1,
-              100
+              0,
+              0
             ],
             "p96 10928": [
-              1,
+              0,
               0
             ],
             "p99 10928": [
-              1,
+              0,
               0
             ],
             "p169 62531": [
               0,
-              134
+              0
             ],
             "p108 32270": [
               0,
@@ -239,20 +245,32 @@
         "stop": [
           [
             "limit",
-            null
+            "limit"
           ]
         ],
+        "judged": [
+          0
+        ],
+        "cause": "stopped-early",
         "collisionStops": [
           [
             0,
             1,
-            19,
+            75,
             158,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            75,
+            157,
             0,
             0
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0
       },
       {
         "result": "works",
@@ -370,13 +388,13 @@
           [],
           []
         ],
-        "seconds": 3.3
+        "seconds": 1.9
       },
       {
         "result": "not checked",
         "seconds": 0
       }
     ],
-    "peak": 447
+    "peak": 327
   }
 }

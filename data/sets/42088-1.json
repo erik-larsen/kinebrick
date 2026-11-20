@@ -87,9 +87,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 7,
+    "seconds": 4,
     "counts": {
       "partly": 1,
       "works": 3,
@@ -159,7 +159,7 @@
         ],
         "cause": "not-driven",
         "detail": "p124 11478",
-        "seconds": 0.8
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -213,7 +213,7 @@
             ]
           ]
         ],
-        "seconds": 0.5
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -259,7 +259,7 @@
             ]
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.2
       },
       {
         "result": "skipped",
@@ -381,9 +381,9 @@
           [],
           []
         ],
-        "seconds": 2.9
+        "seconds": 1.6
       }
     ],
-    "peak": 308
+    "peak": 323
   }
 }

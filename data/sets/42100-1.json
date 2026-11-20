@@ -176,9 +176,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 3800,
+    "seconds": 3640,
     "counts": {
       "partly": 5,
       "works": 4,
@@ -374,8 +374,8 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 41.6,
-        "peak": 1008
+        "seconds": 41.1,
+        "peak": 1215
       },
       {
         "result": "partly",
@@ -438,8 +438,8 @@
         ],
         "cause": "not-driven",
         "detail": "p1099 42100 - 42529",
-        "seconds": 41.8,
-        "peak": 969
+        "seconds": 41.7,
+        "peak": 1297
       },
       {
         "result": "partly",
@@ -533,8 +533,8 @@
         ],
         "cause": "not-driven",
         "detail": "p313 42100 - 42529",
-        "seconds": 82.2,
-        "peak": 1191
+        "seconds": 81.4,
+        "peak": 1246
       },
       {
         "result": "works",
@@ -584,8 +584,8 @@
             ]
           ]
         ],
-        "seconds": 42.8,
-        "peak": 975
+        "seconds": 43,
+        "peak": 1297
       },
       {
         "result": "works",
@@ -639,8 +639,8 @@
             ]
           ]
         ],
-        "seconds": 1631.6,
-        "peak": 1320
+        "seconds": 1535.8,
+        "peak": 1418
       },
       {
         "result": "works",
@@ -748,8 +748,8 @@
             "p3851 42100 - 62274c02 against p3850 42100 - u9487c01"
           ]
         ],
-        "seconds": 852,
-        "peak": 1261
+        "seconds": 831.8,
+        "peak": 1361
       },
       {
         "result": "partly",
@@ -822,8 +822,8 @@
         "cause": "too-little",
         "detail": "p3600 15458 against p3322 42003",
         "onPlay": 20.66,
-        "seconds": 992.5,
-        "peak": 1188
+        "seconds": 938.8,
+        "peak": 1261
       },
       {
         "result": "partly",
@@ -882,8 +882,8 @@
         ],
         "cause": "stopped-early",
         "onPlay": 0.33,
-        "seconds": 29.9,
-        "peak": 1221
+        "seconds": 27.6,
+        "peak": 1172
       },
       {
         "result": "works",
@@ -950,8 +950,8 @@
             0
           ]
         ],
-        "seconds": 21.5,
-        "peak": 1005
+        "seconds": 23.8,
+        "peak": 1112
       }
     ]
   }

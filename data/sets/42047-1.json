@@ -60,9 +60,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "works": 2,
       "skipped": 1
@@ -175,7 +175,7 @@
             "p176 44309"
           ]
         ],
-        "seconds": 0.9
+        "seconds": 0.5
       },
       {
         "result": "works",
@@ -255,7 +255,7 @@
             "p165 3708"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",

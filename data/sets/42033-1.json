@@ -84,9 +84,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "works": 3,
       "skipped": 1,
@@ -190,7 +190,7 @@
             "p120 56145 against p12 12799"
           ]
         ],
-        "seconds": 0.7
+        "seconds": 0.5
       },
       {
         "result": "skipped",
@@ -386,6 +386,6 @@
         "seconds": 0.3
       }
     ],
-    "peak": 326
+    "peak": 327
   }
 }

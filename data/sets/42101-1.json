@@ -97,9 +97,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 4,
+    "seconds": 3,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -201,7 +201,7 @@
           "rise": 1.81,
           "tyre": "p69 42101 - 92402"
         },
-        "seconds": 0.6
+        "seconds": 0.4
       },
       {
         "result": "works",
@@ -399,7 +399,7 @@
           [],
           []
         ],
-        "seconds": 1.4
+        "seconds": 0.8
       },
       {
         "result": "works",
@@ -445,9 +445,9 @@
             ]
           ]
         ],
-        "seconds": 0.3
+        "seconds": 0.2
       }
     ],
-    "peak": 292
+    "peak": 296
   }
 }

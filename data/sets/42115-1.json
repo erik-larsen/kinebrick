@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 1887,
+    "seconds": 2126,
     "counts": {
       "partly": 4,
       "works": 4,
@@ -316,8 +316,8 @@
         ],
         "cause": "not-driven",
         "detail": "p681 2854",
-        "seconds": 288.7,
-        "peak": 1396
+        "seconds": 271.4,
+        "peak": 1511
       },
       {
         "result": "partly",
@@ -411,8 +411,8 @@
             0.03
           ]
         ],
-        "seconds": 11.7,
-        "peak": 925
+        "seconds": 15.4,
+        "peak": 977
       },
       {
         "result": "works",
@@ -482,8 +482,8 @@
             0.5
           ]
         ],
-        "seconds": 24.8,
-        "peak": 1030
+        "seconds": 24,
+        "peak": 1214
       },
       {
         "result": "works",
@@ -565,8 +565,8 @@
             0.6
           ]
         ],
-        "seconds": 136,
-        "peak": 1374
+        "seconds": 129.3,
+        "peak": 1466
       },
       {
         "result": "works",
@@ -684,8 +684,8 @@
           [],
           []
         ],
-        "seconds": 1091.4,
-        "peak": 1347
+        "seconds": 1197.2,
+        "peak": 1472
       },
       {
         "result": "skipped"
@@ -771,8 +771,8 @@
             0.13
           ]
         ],
-        "seconds": 17,
-        "peak": 1018
+        "seconds": 20.5,
+        "peak": 1143
       },
       {
         "result": "partly",
@@ -894,8 +894,8 @@
           ]
         ],
         "onPlay": 0.13,
-        "seconds": 37.1,
-        "peak": 1256
+        "seconds": 40.9,
+        "peak": 1260
       },
       {
         "result": "works",
@@ -954,8 +954,8 @@
             0
           ]
         ],
-        "seconds": 84.9,
-        "peak": 1331
+        "seconds": 91.8,
+        "peak": 1569
       },
       {
         "result": "no",
@@ -1014,8 +1014,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 27.5,
-        "peak": 973
+        "seconds": 60.3,
+        "peak": 970
       },
       {
         "result": "no",
@@ -1096,8 +1096,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 79.2,
-        "peak": 1122
+        "seconds": 144.4,
+        "peak": 1185
       }
     ]
   }

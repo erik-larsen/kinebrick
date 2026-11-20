@@ -133,9 +133,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 49,
+    "seconds": 73,
     "counts": {
       "partly": 2,
       "works": 3,
@@ -241,7 +241,7 @@
         ],
         "cause": "loose-part",
         "detail": "p467 3736",
-        "seconds": 1.7
+        "seconds": 2.7
       },
       {
         "result": "works",
@@ -309,7 +309,7 @@
             ]
           ]
         ],
-        "seconds": 8.7
+        "seconds": 12
       },
       {
         "result": "works",
@@ -375,7 +375,7 @@
           [],
           []
         ],
-        "seconds": 16.6
+        "seconds": 28.5
       },
       {
         "result": "partly",
@@ -491,7 +491,7 @@
           ]
         ],
         "onPlay": 1.47,
-        "seconds": 2.2
+        "seconds": 3.9
       },
       {
         "result": "works",
@@ -557,7 +557,7 @@
           [],
           []
         ],
-        "seconds": 17.4
+        "seconds": 23.2
       },
       {
         "result": "skipped",
@@ -568,6 +568,6 @@
         "seconds": 0
       }
     ],
-    "peak": 474
+    "peak": 480
   }
 }

@@ -160,9 +160,9 @@
     ]
   },
   "generated": {
-    "commit": "bef93a60",
+    "commit": "47824343",
     "date": "2026-11-20",
-    "seconds": 46,
+    "seconds": 84,
     "counts": {
       "partly": 1,
       "works": 5,
@@ -453,7 +453,7 @@
             0.3
           ]
         ],
-        "seconds": 16.6
+        "seconds": 24.7
       },
       {
         "result": "works",
@@ -526,7 +526,7 @@
             1.33
           ]
         ],
-        "seconds": 5.8
+        "seconds": 8.1
       },
       {
         "result": "no",
@@ -580,6 +580,9 @@
             ]
           ]
         ],
+        "why": [
+          "p620 2698 against p550 32018 is held by friction pins the control doesn't reach"
+        ],
         "stop": [
           [
             "limit",
@@ -601,7 +604,7 @@
             0
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -671,7 +674,7 @@
             0.1
           ]
         ],
-        "seconds": 1.9
+        "seconds": 2.5
       },
       {
         "result": "works",
@@ -763,7 +766,7 @@
           [],
           []
         ],
-        "seconds": 10.5
+        "seconds": 12.3
       },
       {
         "result": "works",
@@ -785,11 +788,11 @@
             ],
             "p156 6629 against p112 32018": [
               0,
-              2.13e-14
+              5.33e-15
             ],
             "p166 32065 against p112 32018": [
               0,
-              0
+              9.53e-14
             ]
           }
         ],
@@ -836,7 +839,7 @@
             1.33
           ]
         ],
-        "seconds": 5.8
+        "seconds": 6.2
       },
       {
         "result": "no",
@@ -892,26 +895,20 @@
         ],
         "stop": [
           [
-            "limit",
-            "limit"
+            "no motion",
+            "no motion"
           ]
         ],
+        "pushed": [
+          true
+        ],
+        "freed": 3,
         "judged": [
           0
         ],
         "cause": "loose-part",
         "detail": "p184 2698",
-        "collisionStops": [
-          [
-            0,
-            -1,
-            87,
-            100,
-            0,
-            0
-          ]
-        ],
-        "seconds": 0.5
+        "seconds": 22.3
       },
       {
         "result": "works",
@@ -973,7 +970,7 @@
             0.1
           ]
         ],
-        "seconds": 1.7
+        "seconds": 2.4
       },
       {
         "result": "skipped",
@@ -984,6 +981,6 @@
         "seconds": 0
       }
     ],
-    "peak": 671
+    "peak": 670
   }
 }
