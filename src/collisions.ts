@@ -111,11 +111,14 @@ interface Shape {
   box: Box3; // in the part's own coordinates
 }
 
-// The watched pairs of parts on two bodies.
+// The watched pairs of parts on two bodies: every part in `onA` with every part in `onB` that comes
+// after it, but those near at the start or connected (see Collisions.skip). They aren't listed one
+// by one: on the 42100, with 7,283 parts, 22 million pairs are watched, and as a list they took
+// 1.6 GB, made afresh each time the mechanism was (decision 235 of 2026-11-19).
 interface Group {
-  pairs: [number, number][];
-  onA: number[]; // the parts in those pairs on each body
+  onA: number[]; // the parts in those pairs on each body, each in order
   onB: number[];
+  count: number; // how many pairs
   // A part on each body, and how the second sat relative to the first when the group was last
   // found clear. If that hasn't changed, no pair in the group can have started to overlap.
   a: number;
@@ -209,6 +212,9 @@ export function nearPairsOf(meshes: PartMesh[][], partMatrices: Matrix4[]): { te
 export class Collisions {
   private shapes: Shape[];
   private groups: Group[] = [];
+  // The pairs, by number (see pairNumber), not watched though on two bodies: near at the start, or
+  // connected (see watch).
+  private skip = new Set<number>();
   // For each pair tested for nearness, whether it was near, and how the second part sat relative
   // to the first when tested: a pair that hasn't moved against itself needn't be tested again
   // (after a shift, only the parts the shift moved are).
@@ -320,27 +326,26 @@ export class Collisions {
     const n = this.shapes.length;
     const joined = new Set([...connected].map((key) => key.split(',').map(Number)).map(([a, b]) => pairNumber(a, b, n)));
     const near = new Set(this.candidates(bodyOf, connected, partMatrices).filter(([a, b]) => this.isNear(a, b, partMatrices)).map(([a, b]) => pairNumber(a, b, n)));
-    const groups = new Map<number, Group>();
+    this.skip = new Set([...near, ...joined]);
+    const groups = new Map<number, Group & { inA: Set<number>; inB: Set<number> }>();
     const bodies = Math.max(0, ...bodyOf) + 1;
     for (let a = 0; a < n; a++) {
       for (let b = a + 1; b < n; b++) {
-        if (bodyOf[a] === bodyOf[b] || near.has(a * n + b) || joined.has(a * n + b)) continue;
+        if (bodyOf[a] === bodyOf[b] || this.skip.has(a * n + b)) continue;
         const key = bodyOf[a] * bodies + bodyOf[b];
         let group = groups.get(key);
-        if (!group) groups.set(key, (group = { pairs: [], onA: [], onB: [], a, b, lastClear: null }));
-        group.pairs.push([a, b]);
+        if (!group) groups.set(key, (group = { onA: [], onB: [], count: 0, a, b, lastClear: null, inA: new Set(), inB: new Set() }));
+        group.count++;
+        group.inA.add(a);
+        group.inB.add(b);
       }
     }
-    this.groups = [...groups.values()];
-    for (const g of this.groups) {
-      g.onA = [...new Set(g.pairs.map(([a]) => a))];
-      g.onB = [...new Set(g.pairs.map(([, b]) => b))];
-    }
+    this.groups = [...groups.values()].map(({ inA, inB, ...g }) => ({ ...g, onA: [...inA].sort((x, y) => x - y), onB: [...inB].sort((x, y) => x - y) }));
   }
 
   // How many pairs of parts are being watched.
   get watchedPairs(): number {
-    return this.groups.reduce((sum, g) => sum + g.pairs.length, 0);
+    return this.groups.reduce((sum, g) => sum + g.count, 0);
   }
 
   // A part that has gone below the ground (LDraw y `ground`, which points down), as a pair of
@@ -395,9 +400,14 @@ export class Collisions {
       for (const a of group.onA) sideA.union(boxOf(a));
       for (const b of group.onB) sideB.union(boxOf(b));
       if (sideA.intersectsBox(sideB)) {
-        for (const [a, b] of group.pairs) {
-          if (this.ignored.has(a) || this.ignored.has(b)) continue;
-          if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
+        // Its pairs in the order they were made: by the first part, then the second.
+        const n = this.shapes.length;
+        for (const a of group.onA) {
+          if (this.ignored.has(a)) continue;
+          for (const b of group.onB) {
+            if (b <= a || this.skip.has(a * n + b) || this.ignored.has(b)) continue;
+            if (boxOf(a).intersectsBox(boxOf(b)) && this.overlap(a, b, partMatrices)) return [a, b];
+          }
         }
       }
       group.lastClear = relative;
