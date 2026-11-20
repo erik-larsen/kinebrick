@@ -260,8 +260,14 @@ async function run(args: string[]) {
       process.exit(128 + ({ SIGINT: 2, SIGTERM: 15, SIGHUP: 1 } as const)[signal]);
     });
   }
-  if (pool.used() > 0) console.error(`check-pool: waiting for ${mb} MB (${pool.used()} of ${pool.budget} MB in use)`);
-  entry = await pool.reserve(mb, what);
+  // Said only when it has to wait, with what it waits for.
+  entry = pool.tryReserve(mb, what);
+  if (!entry) {
+    const live = pool.entries();
+    const used = [...live.values()].reduce((sum, e) => sum + e.mb, 0);
+    console.error(`check-pool: waiting for room: ${live.size >= pool.most ? `${live.size} of ${pool.most} processes running` : `${mb} MB asked, ${used} of ${pool.budget} MB in use`}`);
+    entry = await pool.reserve(mb, what);
+  }
   // In a process group of its own, so that its own children are measured and stopped with it.
   child = spawn(command[0], command.slice(1), { stdio: 'inherit', detached: true });
   let peak = 0;
