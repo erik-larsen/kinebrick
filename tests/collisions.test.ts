@@ -1,7 +1,9 @@
+import { existsSync } from 'node:fs';
 import { BoxGeometry, BufferGeometry, Matrix4 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { Box3, Vector3 } from 'three';
 import { Collisions, meetingPairs, pairNumber, PartMesh } from '../src/collisions.ts';
+import { partShapes } from '../scripts/part-shapes.ts';
 
 // A 20 LDU cube, as a part with one mesh.
 function cube(): PartMesh[] {
@@ -15,6 +17,28 @@ function cube(): PartMesh[] {
 const at = (x: number) => new Matrix4().makeTranslation(x, 0, 0);
 
 describe('collisions', () => {
+  it('shares one shape and one tree between parts given one list, shrinks it once, and still finds them meeting', () => {
+    const shared = cube();
+    const size = () => {
+      shared[0].geometry.computeBoundingBox();
+      return shared[0].geometry.boundingBox!.max.x;
+    };
+    const c = new Collisions([shared, shared], [0, 1], new Set(), [at(0), at(50)]);
+    const [a, b] = c.shapeBoxes();
+    expect(a).toBe(b);
+    const tree = shared[0].geometry.boundsTree;
+    expect(tree).toBeDefined();
+    const shrunkOnce = size();
+    expect(shrunkOnce).toBeCloseTo(10 - 0.25, 6);
+    expect(c.check([at(0), at(30)])).toBeNull();
+    expect(c.check([at(0), at(15)])).toEqual([0, 1]);
+    // A second Collisions given the same list neither shrinks it again nor builds another tree.
+    const again = new Collisions([shared, shared], [0, 1], new Set(), [at(0), at(50)]);
+    expect(size()).toBe(shrunkOnce);
+    expect(shared[0].geometry.boundsTree).toBe(tree);
+    expect(again.check([at(0), at(15)])).toEqual([0, 1]);
+  });
+
   it('lets apart parts move freely, and catches them when they start to overlap', () => {
     const c = new Collisions([cube(), cube()], [0, 1], new Set(), [at(0), at(50)]);
     expect(c.watchedPairs).toBe(1);
@@ -61,5 +85,18 @@ describe('collisions', () => {
     later.setNear(tested, new Set(), placed, dragged);
     expect(later.check(dragged)).toBeNull(); // not stuck where it is
     expect(later.check([at(0), at(40)])).toBeNull(); // and free to come back out
+  });
+});
+
+// A model's shapes for the check (scripts/part-shapes.ts): every copy of a part in one colour
+// shares one list of meshes.
+describe('part shapes', () => {
+  it.skipIf(!existsSync('ldraw/LDConfig.ldr') && !existsSync('packed/8020-Building Set.mpd'))('gives the copies of one part in one colour one list', async () => {
+    const shapes = await partShapes('models/8020-Building Set.mpd');
+    const byName = new Map<string, PartMesh[][]>();
+    for (const s of shapes) byName.set(s.name, [...(byName.get(s.name) ?? []), s.shape]);
+    const repeated = [...byName.values()].filter((lists) => lists.length > 1);
+    expect(repeated.length).toBeGreaterThan(0);
+    expect(repeated.some((lists) => lists.every((l) => l === lists[0]))).toBe(true);
   });
 });
