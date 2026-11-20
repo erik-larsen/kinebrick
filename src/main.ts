@@ -268,18 +268,28 @@ const fpsFrames: number[] = []; // how long each frame of the last 10 seconds to
 let fpsFramesMs = 0; // their sum
 let fpsNow = { frames: 0, ms: 0 }; // the half second being counted
 let fpsFrame = performance.now();
+// Whether the page was hidden at some time since the last frame: a frame across that is the tab
+// coming back, not a slow frame, and is left out. Every other frame counts, however long: left out
+// when it took a second or more, as it was, a drag taking seconds a step left only the fast frames
+// in, and the card read 60 (decision 239 of 2026-11-19, Erik's 9397).
+let hiddenSinceFrame = document.hidden;
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) hiddenSinceFrame = true;
+});
 
 renderer.setAnimationLoop(() => {
   const now = performance.now();
   const frame = now - fpsFrame;
   fpsFrame = now;
-  if (frame < 1000) {
-    // A frame of a second or more is a hidden tab coming back, not a slow frame: left out.
+  const wasHidden = hiddenSinceFrame;
+  hiddenSinceFrame = document.hidden;
+  if (!wasHidden) {
     fpsNow.frames++;
     fpsNow.ms += frame;
     fpsFrames.push(frame);
     fpsFramesMs += frame;
-    while (fpsFramesMs > FPS_SECONDS * 1000) fpsFramesMs -= fpsFrames.shift()!;
+    // The last 10 seconds, but never less than the latest frame (one frame may be longer).
+    while (fpsFrames.length > 1 && fpsFramesMs - fpsFrames[0] >= FPS_SECONDS * 1000) fpsFramesMs -= fpsFrames.shift()!;
   }
   if (fpsNow.ms >= 500) {
     // The slowest hundredth of the frames (one frame at least), and the rate they run at.
