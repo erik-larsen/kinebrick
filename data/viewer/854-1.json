@@ -1,0 +1,300 @@
+{
+  "set": "854-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:24:47.788Z",
+  "load": 22.4,
+  "part": "A",
+  "parts": 201,
+  "seconds": 16,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column, held at an angle on a frame of rods, turns through a universal joint an axle whose 8-tooth gear slides the rack on the tie rod between the two wheel turntables.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p155 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 45,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p142 3706": [
+              0,
+              85.94
+            ],
+            "p125 3743": [
+              15.27,
+              0
+            ],
+            "p21 3679": [
+              0,
+              22
+            ],
+            "p23 3679": [
+              0,
+              22
+            ],
+            "p136 3700": [
+              0,
+              0
+            ],
+            "p88 3651": [
+              0,
+              0
+            ],
+            "p100 3652 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p155 3736",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 38,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p142 3706": [
+              0,
+              85.94
+            ],
+            "p125 3743": [
+              15.27,
+              0
+            ],
+            "p21 3679": [
+              0,
+              22
+            ],
+            "p23 3679": [
+              0,
+              22
+            ],
+            "p136 3700": [
+              0,
+              0
+            ],
+            "p88 3651": [
+              0,
+              0
+            ],
+            "p100 3652 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    },
+    {
+      "function": 2,
+      "does": "The rear wheels work the engine as the kart rolls: the 24-tooth gear on the right rear axle drives an 8-tooth gear on a short axle, and two 24-tooth gears face to face with an axle 4 through their outer holes make a crankshaft, whose connecting rod pumps the piston up and down in the engine block behind the seat.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p326 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 70,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p46 3647 against p0 3702": [
+              0,
+              102.17
+            ],
+            "p47 3705 against p0 3702": [
+              22.01,
+              102.17
+            ],
+            "p100 3652 against p0 3702": [
+              21.52,
+              0
+            ],
+            "p155 3736 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p326 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 68,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p46 3647 against p0 3702": [
+              0,
+              102.17
+            ],
+            "p47 3705 against p0 3702": [
+              22.01,
+              102.17
+            ],
+            "p100 3652 against p0 3702": [
+              2.52,
+              0
+            ],
+            "p155 3736 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p322 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p46 3647 against p0 3702": [
+              0,
+              102.17
+            ],
+            "p47 3705 against p0 3702": [
+              22.01,
+              102.17
+            ],
+            "p100 3652 against p0 3702": [
+              21.52,
+              0
+            ],
+            "p155 3736 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p322 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 61,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p46 3647 against p0 3702": [
+              0,
+              102.17
+            ],
+            "p47 3705 against p0 3702": [
+              22.01,
+              102.17
+            ],
+            "p100 3652 against p0 3702": [
+              2.52,
+              0
+            ],
+            "p155 3736 against p0 3702": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 3,
+      "does": "The front wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p318 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 63,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p318 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 61,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p320 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p320 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 59,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

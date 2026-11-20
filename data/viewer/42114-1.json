@@ -1,0 +1,240 @@
+{
+  "set": "42114-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T18:29:24.910Z",
+  "load": 18.2,
+  "part": "A",
+  "parts": 2135,
+  "seconds": 408,
+  "functions": [
+    {
+      "function": 2,
+      "does": "The L motor beside the XL motor shifts the gearbox: it turns a changeover rotary catch, which slides the gearbox's driving rings to give three forward speeds and reverse (1, 2, 3, R), and a further position that sends the XL motor's drive to the dump body's actuators instead of the wheels.",
+      "verdict": "shown",
+      "msOneCall": null,
+      "msPerStep": 2791,
+      "time": {
+        "open": 72,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 193,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p602 22169",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.785,
+          "ms": 62623,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p129 35188": [
+              0,
+              54
+            ],
+            "p120 18947": [
+              2.36,
+              0
+            ],
+            "p121 18947": [
+              2.36,
+              0
+            ],
+            "p122 18947": [
+              2.36,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p602 22169",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.942,
+          "ms": 70561,
+          "msOneCall": null,
+          "stops": [],
+          "moved": {
+            "p129 35188": [
+              0,
+              63
+            ],
+            "p120 18947": [
+              0,
+              0
+            ],
+            "p121 18947": [
+              0,
+              0
+            ],
+            "p122 18947": [
+              4.71,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 274
+    },
+    {
+      "function": 5,
+      "does": "The rear half can roll against the front half on a turntable lying on its side in the hitch, so all six wheels stay on uneven ground.",
+      "verdict": "shown",
+      "msOneCall": 359,
+      "msPerStep": 155,
+      "time": {
+        "open": 54,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 27,
+        "B": 0
+      },
+      "stop": {
+        "control": "p995 99009",
+        "way": -1,
+        "went": -0.1,
+        "asked": 0.2,
+        "by": [
+          "4621/4621"
+        ]
+      },
+      "stops": [
+        "4621/4621"
+      ],
+      "A": [
+        {
+          "control": "p995 99009",
+          "way": 1,
+          "asked": 0.2,
+          "went": 0.2,
+          "ms": 636,
+          "msOneCall": 359,
+          "stops": [],
+          "moved": {
+            "p0 64179": [
+              3.99,
+              11.46
+            ]
+          }
+        },
+        {
+          "control": "p995 99009",
+          "way": -1,
+          "asked": 0.2,
+          "went": -0.1,
+          "ms": 444,
+          "msOneCall": 238,
+          "stops": [
+            "4621/4621"
+          ],
+          "moved": {
+            "p0 64179": [
+              2,
+              5.73
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p995 99009",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.1 rad (4621/4621)"
+        }
+      ],
+      "stopVerdict": "shown",
+      "byHand": {
+        "stop": "shown",
+        "why": "the rear half rolls a few degrees against the front: 0.2 rad each way is true",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6332383.pdf#page=218"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 87
+    },
+    {
+      "function": 6,
+      "does": "The orange beacon on the cab roof switches the hub on and off: turning it turns an upright axle down through the roof to a lever that presses the hub's button.",
+      "verdict": "shown",
+      "msOneCall": 210,
+      "msPerStep": 75,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 27,
+        "B": 0
+      },
+      "stop": {
+        "control": "p2535 3941",
+        "way": -1,
+        "went": -0.336,
+        "asked": 0.37,
+        "by": [
+          "2405/2466"
+        ]
+      },
+      "stops": [
+        "2405/2466"
+      ],
+      "A": [
+        {
+          "control": "p2535 3941",
+          "way": 1,
+          "asked": 0.13,
+          "went": 0.13,
+          "ms": 280,
+          "msOneCall": 210,
+          "stops": [],
+          "moved": {
+            "p2471 41677": [
+              2.59,
+              7.45
+            ]
+          }
+        },
+        {
+          "control": "p2535 3941",
+          "way": -1,
+          "asked": 0.37,
+          "went": -0.336,
+          "ms": 570,
+          "msOneCall": 171,
+          "stops": [
+            "2405/2466"
+          ],
+          "moved": {
+            "p2471 41677": [
+              6.61,
+              19.27
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p2535 3941",
+          "judged": "stands",
+          "why": "stopped at -0.336 rad (2405/2466); kinds crank-and-link: hub switch"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 47
+    }
+  ]
+}

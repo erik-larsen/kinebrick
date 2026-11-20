@@ -1,0 +1,311 @@
+{
+  "set": "8218-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:06:35.852Z",
+  "load": 14.8,
+  "part": "A",
+  "parts": 66,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Rolling the trike turns the right rear wheel, whose axle turns the crank under the engine and pumps the yellow piston up and down in the cylinder; the cylinder stays put on the frame.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 48,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              13.63,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 44,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              13.63,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p0 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 39,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              13.63,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p0 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p4 2853 against p8 32009": [
+              0,
+              85.94
+            ],
+            "p22 2852 against p8 32009": [
+              13.63,
+              14.44
+            ],
+            "p46 2851 against p8 32009": [
+              10.56,
+              0
+            ],
+            "p44 2850 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 3,
+      "does": "The front wheel rolls freely on its axle between the fork's tips.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 0,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p66 2994",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 9,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p66 2994",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 8,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 1
+    },
+    {
+      "function": 4,
+      "does": "The handlebars steer the front fork, which swivels on a single friction pin at the front of the frame, turning the front wheel left and right.",
+      "verdict": "not shown",
+      "why": "A: p49 4519 against p8 32009, p66 2994 against p8 32009 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p60 32062",
+          "way": 1,
+          "asked": 1.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              0,
+              0
+            ],
+            "p66 2994 against p8 32009": [
+              0,
+              0
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p60 32062",
+          "way": -1,
+          "asked": 1.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              0,
+              0
+            ],
+            "p66 2994 against p8 32009": [
+              0,
+              0
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p61 32062",
+          "way": 1,
+          "asked": 1.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              0,
+              0
+            ],
+            "p66 2994 against p8 32009": [
+              0,
+              0
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p61 32062",
+          "way": -1,
+          "asked": 1.3,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p49 4519 against p8 32009": [
+              0,
+              0
+            ],
+            "p66 2994 against p8 32009": [
+              0,
+              0
+            ],
+            "p29 32056 against p8 32009": [
+              0,
+              0
+            ],
+            "p1 2994 against p8 32009": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

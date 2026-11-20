@@ -1,0 +1,383 @@
+{
+  "set": "8820-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:14:48.738Z",
+  "load": 25.9,
+  "part": "A",
+  "parts": 134,
+  "seconds": 36,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column runs down at a slant to an 8-tooth gear that slides the steering rack across, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 14,
+      "msPerStep": 2,
+      "time": {
+        "open": 10,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p56 8820 - 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 78,
+          "msOneCall": 14,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p58 3647": [
+              0.01,
+              85.94
+            ],
+            "p25 2790a": [
+              15.26,
+              0
+            ],
+            "p10 4261": [
+              0,
+              22
+            ],
+            "p11 4261": [
+              0,
+              22
+            ],
+            "p129 3482": [
+              7.63,
+              26.87
+            ],
+            "p131 3482": [
+              7.63,
+              26.87
+            ],
+            "p46 3709b": [
+              0,
+              0
+            ],
+            "p17 2791a": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p56 8820 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 72,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p55 3706": [
+              0,
+              85.94
+            ],
+            "p58 3647": [
+              0.01,
+              85.94
+            ],
+            "p25 2790a": [
+              15.26,
+              0
+            ],
+            "p10 4261": [
+              0,
+              22
+            ],
+            "p11 4261": [
+              0,
+              22
+            ],
+            "p129 3482": [
+              7.63,
+              26.87
+            ],
+            "p131 3482": [
+              7.63,
+              26.87
+            ],
+            "p46 3709b": [
+              0,
+              0
+            ],
+            "p17 2791a": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    },
+    {
+      "function": 2,
+      "does": "The rear wheels ride on a swinging arm: two 1x6 bricks, one each side, pivot on a 10-long axle under the seat and carry the rear wheels on axle pins, joined at the back by an 8-long axle that the shock absorber pushes down, so the rear wheels rise and fall together.",
+      "verdict": "not shown",
+      "why": "A: p105 3894, p32 3707, p30 4254, p125 3482, p127 3482 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p102 3894",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p105 3894": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ],
+            "p30 4254": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ],
+            "p47 2717": [
+              0,
+              0
+            ],
+            "p129 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p102 3894",
+          "way": -1,
+          "asked": 0.35,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p105 3894": [
+              0,
+              0
+            ],
+            "p32 3707": [
+              0,
+              0
+            ],
+            "p30 4254": [
+              0,
+              0
+            ],
+            "p125 3482": [
+              0,
+              0
+            ],
+            "p127 3482": [
+              0,
+              0
+            ],
+            "p47 2717": [
+              0,
+              0
+            ],
+            "p129 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 4,
+      "does": "The four wheels roll freely, each on its own axle pin; there's no drive.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 13,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p129 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 39,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p129 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p131 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 36,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p131 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p125 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 33,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p125 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 34,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p127 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 36,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p127 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 33,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p102 3894": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 16
+    }
+  ]
+}

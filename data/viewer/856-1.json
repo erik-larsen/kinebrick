@@ -1,0 +1,326 @@
+{
+  "set": "856-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:33:31.229Z",
+  "load": 29.8,
+  "part": "A",
+  "parts": 373,
+  "seconds": 45,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The handwheel at the back on the left raises and lowers the loader arms, slowly: its 8-tooth gear turns a crown gear, which turns a 24-tooth gear on a cross axle; that axle's 8-tooth gear drives a 24-tooth gear on a second cross axle, whose two 8-tooth gears slide a sled of racks under the cab, and two rods from the sled push the arms up about their pivot at the front of the cab. The bucket stays about level as the arms rise.",
+      "verdict": "shown",
+      "msOneCall": 16,
+      "msPerStep": 2,
+      "time": {
+        "open": 11,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p50 3736",
+          "way": 1,
+          "asked": 8.3,
+          "went": 8.3,
+          "ms": 560,
+          "msOneCall": 16,
+          "stops": [],
+          "moved": {
+            "p56 3706": [
+              0,
+              52.84
+            ],
+            "p60 3034": [
+              9.22,
+              0
+            ],
+            "p189 3895": [
+              1.03,
+              0.73
+            ],
+            "p190 3895": [
+              1.03,
+              0.73
+            ],
+            "p202 3700": [
+              2.31,
+              0.03
+            ],
+            "p51 3736": [
+              0,
+              0.06
+            ],
+            "p115 3737": [
+              0,
+              0.02
+            ],
+            "p140 3460": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p50 3736",
+          "way": -1,
+          "asked": 4.6,
+          "went": -4.6,
+          "ms": 282,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p56 3706": [
+              0,
+              29.28
+            ],
+            "p60 3034": [
+              5.11,
+              0
+            ],
+            "p189 3895": [
+              1.02,
+              0.73
+            ],
+            "p190 3895": [
+              1.02,
+              0.73
+            ],
+            "p202 3700": [
+              2.29,
+              0.03
+            ],
+            "p51 3736": [
+              0,
+              0.06
+            ],
+            "p115 3737": [
+              0,
+              0.02
+            ],
+            "p140 3460": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 15
+    },
+    {
+      "function": 2,
+      "does": "The handwheel at the back on the right tips the bucket: its 8-tooth gear turns a crown gear, which turns the 24-tooth gear on the axle across the top of the cab; that axle's two 8-tooth gears slide two racks along the cab sides, which work a pair of levers on the arms' pivot axle, and rods from there through levers on the arms tip the bucket at the arm tips.",
+      "verdict": "shown",
+      "msOneCall": 7,
+      "msPerStep": 4,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p51 3736",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 123,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p115 3737": [
+              0,
+              28.65
+            ],
+            "p140 3460": [
+              5.04,
+              0
+            ],
+            "p145 3460": [
+              5.04,
+              0
+            ],
+            "p206 3894": [
+              10.08,
+              26.07
+            ],
+            "p202 3700 against p189 3895": [
+              4.39,
+              25.34
+            ],
+            "p50 3736": [
+              0,
+              0.01
+            ],
+            "p60 3034": [
+              0,
+              0
+            ],
+            "p189 3895": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p51 3736",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.17,
+          "ms": 21,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {
+            "p115 3737": [
+              0,
+              3.25
+            ],
+            "p140 3460": [
+              0.56,
+              0
+            ],
+            "p145 3460": [
+              0.56,
+              0
+            ],
+            "p206 3894": [
+              1.78,
+              4.57
+            ],
+            "p202 3700 against p189 3895": [
+              0.74,
+              4.23
+            ],
+            "p50 3736": [
+              0,
+              0
+            ],
+            "p60 3034": [
+              0,
+              0
+            ],
+            "p189 3895": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 3,
+      "does": "The two tracks run freely, each on a 40-tooth gear at the front and back of its side, so the loader can be pushed along.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 2,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 19,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p11 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 85,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p11 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 71,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p12 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 77,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p12 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 73,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p13 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 65,
+          "msOneCall": 7,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p13 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 73,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p14 3649",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 68,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p14 3649",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 67,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 23
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "set": "42116-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:17:54.522Z",
+  "load": 20.9,
+  "part": "A",
+  "parts": 138,
+  "seconds": 22,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black 12 tooth gear on top of the cage, at its back, raises and lowers the loader arm: its upright shaft turns a 20 tooth gear whose shaft carries a worm, the worm turns a 20 tooth gear on a cross shaft at the back, and a crank on that shaft pushes the arm's lower white beam up through a short link.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p98 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 50,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p63 18575": [
+              0,
+              2.58
+            ],
+            "p65 41239": [
+              5.4,
+              2.58
+            ],
+            "p139 18943": [
+              10.8,
+              0
+            ],
+            "p17 24116": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p98 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 42,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p63 18575": [
+              0,
+              2.58
+            ],
+            "p65 41239": [
+              5.4,
+              2.58
+            ],
+            "p139 18943": [
+              10.8,
+              0
+            ],
+            "p17 24116": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 2,
+      "does": "The black 12 tooth gear on the right side at the back tilts the bucket: its shaft carries a crank at the arm's pivot, which slides the arm's upper white beam along the lower one, and the upper beam tips the bucket at the front.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p87 32270",
+        "way": 1,
+        "went": 0.584,
+        "asked": 1.1,
+        "by": [
+          "70/94"
+        ]
+      },
+      "stops": [
+        "70/94"
+      ],
+      "A": [
+        {
+          "control": "p87 32270",
+          "way": 1,
+          "asked": 1.1,
+          "went": 0.584,
+          "ms": 16,
+          "msOneCall": 3,
+          "stops": [
+            "70/94"
+          ],
+          "moved": {
+            "p73 41239 against p65 41239": [
+              23.04,
+              0
+            ],
+            "p139 18943 against p65 41239": [
+              11.52,
+              33.48
+            ],
+            "p65 41239": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p87 32270",
+          "way": -1,
+          "asked": 0.6,
+          "went": -0.6,
+          "ms": 15,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p73 41239 against p65 41239": [
+              23.64,
+              0
+            ],
+            "p139 18943 against p65 41239": [
+              11.82,
+              34.38
+            ],
+            "p65 41239": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p87 32270",
+          "judged": "stands",
+          "why": "stopped at +0.584 rad (70/94); kinds crank-and-link: bucket"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 3
+    },
+    {
+      "function": 3,
+      "does": "The four wheels roll freely; there's no steering and no drive to them.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 7,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p121 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 52,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p121 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 56,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p124 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 47,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p124 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p127 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 46,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p127 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 51,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p130 55981",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 53,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p130 55981",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 43,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 8
+    }
+  ]
+}
