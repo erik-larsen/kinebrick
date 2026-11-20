@@ -1091,7 +1091,13 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       const tracks = mech.loops.filter((l) => TRACK_SKIN.test(l.path.skin));
       const wheelsHere = new Set([...controls.map((r) => mech.bodyOf[part(r)]), ...moves.map((m) => mech.bodyOf[m.part])]);
       const trackRead = !runsTrack || (tracks.some((l) => l.wheels.some((w) => wheelsHere.has(w.body))) && tracks.every((l) => l.wheels.length > 0));
-      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : why.length > whyBefore ? { cause: 'first-failed' } : !trackRead ? { cause: 'track-not-read' } : null;
+      // A control worked first that didn't go its distance: turned less than 0.9 of `by`, slid
+      // less than 0.9 of it, or a driving ring left at its click-in place (each says why above).
+      // The function can't work then, whatever the drag does: before, the 9395 Pick-Up Tow Truck's
+      // winch passed with its selector lever turned 0.07 rad of 0.3, the winch's parts moving
+      // without it (2026-11-20).
+      const firstShort = why.length > whyBefore;
+      const early: Explained | null = loosePart !== undefined ? { cause: 'loose-part', detail: name(loosePart) } : firstShort ? { cause: 'first-failed' } : !trackRead ? { cause: 'track-not-read' } : null;
       if (!trackRead) why.push(tracks.length && tracks.every((l) => l.wheels.length > 0) ? 'no track is read round a control or a part the function lists' : tracks.length ? `${tracks.filter((l) => !l.wheels.length).length} of the ${tracks.length} tracks run round no wheel` : 'no track is read');
       const nothing = (explained: Explained) => ({ works: false, pushed: false, judged: 0, turned: [0, 0] as [number, number], still: moves.map((m) => m.ref), moved: [] as string[], something: false, rates: {}, expected: {}, off: [] as string[], back: [] as [number, number][], torn: [] as [number, number][], free: [] as boolean[], strayed: [] as string[], lock: null as [number, number, Stop][] | null, stop: [null, null] as (Halt | null)[], explained: explained as Explained | null, movedParts: [] as string[], explainStill: (() => explained) as (still: string[]) => Explained | null });
       if (kin.frames.includes(b) || !link) {
@@ -1346,8 +1352,9 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
       together = [];
       const something = each.some((w) => (!controlMovedRule || w.controlMoved) && (Math.abs(w.turned) >= 0.01 || w.still.length < moves.length));
       // A function that names a loose part can't work, whatever the drag did (see loosePart), nor
-      // one that runs a track not read round its wheel (see trackRead).
-      const works = best.works && loosePart === undefined && trackRead;
+      // one that runs a track not read round its wheel (see trackRead), nor one whose control worked
+      // first didn't go its distance (see firstShort).
+      const works = best.works && loosePart === undefined && trackRead && !firstShort;
       if (best.works && !works) explained = explain(best.still, best.moved, best.turned);
       // Steering's stops (see LOCK): each way from where it started, turned until it stops.
       // A wheel's axle against the frame, seen from above (LDraw's y is down), in the given poses.
