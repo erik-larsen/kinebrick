@@ -1499,6 +1499,13 @@ function checkModel(model: string, functions: Fn[], priors: (Checked | undefined
     }
     const seconds = Math.round((Date.now() - started) / 100) / 10;
     if (process.env.KINEBRICK_TIMES === '1') console.error(`function ${i + 1}: ${found.result}, ${seconds} s`);
+    // The working set's counts for this function (KINEBRICK_WORKING_SET, decision 266), then reset.
+    if (process.env.KINEBRICK_WORKING_SET === '1') {
+      const st = Kinematics.wsShared;
+      const beyond = st.compared.filter((c) => c.pose > 1e-6 || c.angle2 > 1e-6);
+      console.error(`ws-stats function ${i + 1}: ${JSON.stringify({ small: st.small, made: st.made, excluded: st.excluded, fallback: st.fallback, compared: st.compared.length, beyond: beyond.length, worstPose: Math.max(0, ...st.compared.map((c) => c.pose)), worstAngle: Math.max(0, ...st.compared.map((c) => c.angle2)), turnedApart: st.compared.filter((c) => Math.abs(c.small - c.full) > 1e-12).length, worst: beyond.sort((x, y) => y.pose - x.pose)[0] ?? null })}`);
+      Object.assign(st, { small: 0, made: 0, excluded: 0, fallback: { short: 0, ring: 0, played: 0, holds: 0, audit: 0 }, compared: [] });
+    }
     return { ...found, seconds };
   });
   return { checked, loose: mech.loose.map(name), errata: loaded.errata };
