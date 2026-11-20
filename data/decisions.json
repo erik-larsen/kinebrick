@@ -29,6 +29,10 @@
       "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. On 20 November you set the rule (257): a function too slow in the viewer to tell whether it works is not a working function. You then tried the 9397's steering after a first mend and found it still too slow, about 2 seconds for each small turn. Claude measured why: each small turn of a drag costs about 900 ms before the solver takes its first step, so one turn takes about 1,400 ms. The solver owner mends that first. The worker's sweep tries every working function in the viewer and writes a table of every function with its time for one step, which Claude puts on the Technic status page. Functions as slow as the 9397's steering or slower are held at partly until they are fast enough; when the 9397 is faster, Claude asks you again where the line lies. The sweep also judges the working functions that a collision stops after a small turn (24 that should turn without end, 33 more stopped within 0.2 radian; example: the 42123 McLaren Senna's V8). Claude expects the 740 to fall by 50 to 120 in all."
     },
     {
+      "title": "A blind trial on ten models the check has never seen",
+      "what": "You asked whether the progress on the 186 sets carries to other models, and said yes to a trial (260). All 186 have been in the check from the start, so nothing measures it yet. The OMR's 183 Technic sets are all in the check, so the unseen models come from other themes: Model Team, Creator Expert and Icons vehicles, the larger Racers. The worker lists the candidates, Claude draws ten at random, and then asks you for a yes to download those ten files and their booklets. The function lists are written before any model is opened, the check runs once, and nothing is mended. The result is the share of functions that work at the first pass, beside 42% (the 186 on 24 October) and 70% (the 186 now). It comes after the sweep's table and the mend for parts that ride along."
+    },
+    {
       "title": "The next offer of main",
       "what": "preview has 740 working functions and main 701. Claude does not offer main until the viewer sweep has been run on the sets where every function works, and what it finds is mended or marked. Also needed then: a full check of preview and a slow check of the 8110 at the commit offered (the 8110's slow check last ran on 20 November, with the mend for the slow viewer)."
     },
@@ -285,6 +289,10 @@
     {
       "date": "2026-11-20",
       "what": "9397 steering (\"still too slow, about 2 seconds\"): you could not judge it. Claude's figure of 285 ms was the wrong measure: each small turn of a drag costs about 1,400 ms. Working functions that slow are held at partly (258). The part you marked, a battery box lid joined to the steering shaft, goes to the worker."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Your priorities (260): per-set corrections and lists are worthwhile as a better OMR database, but the long tail must not hold up speed, the true state of the green sets, or models not tried yet. Claude ordered the work so: speed first, then the sweep, then general rules and the blind trial, then single-set faults."
     }
   ]
 }
