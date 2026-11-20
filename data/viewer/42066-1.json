@@ -1,0 +1,242 @@
+{
+  "set": "42066-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T21:00:51.602Z",
+  "load": 33.7,
+  "part": "A",
+  "parts": 1140,
+  "seconds": 143,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The M motor, switched on at the battery box, runs a gearbox with two outputs; the two red levers on top of the fuselage, behind the cockpit, each connect one output forwards, backwards or not at all. Inside, the motor's 8 tooth gear drives a 24 tooth clutch gear, whose 12 tooth gear turns a 20 tooth gear on a long shaft down to two 16 tooth gears on each output axle, one turning each way; a driving ring on each output axle, slid by its lever, picks one.",
+      "verdict": "shown",
+      "msOneCall": 127,
+      "msPerStep": 20,
+      "time": {
+        "open": 27,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 19,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p136 10928",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 876,
+          "msOneCall": 127,
+          "stops": [],
+          "moved": {
+            "p135 76019": [
+              0,
+              28.65
+            ],
+            "p140 32269": [
+              0,
+              17.19
+            ],
+            "p804 10928": [
+              0,
+              17.19
+            ],
+            "p800 94925": [
+              0,
+              17.19
+            ]
+          }
+        },
+        {
+          "control": "p136 10928",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 872,
+          "msOneCall": 120,
+          "stops": [],
+          "moved": {
+            "p135 76019": [
+              0,
+              28.65
+            ],
+            "p140 32269": [
+              0,
+              17.19
+            ],
+            "p804 10928": [
+              0,
+              17.19
+            ],
+            "p800 94925": [
+              0,
+              17.19
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 50
+    },
+    {
+      "function": 4,
+      "does": "The black knob on top of the fuselage between the tail fins turns both red rudders together: it turns a cross block whose two steering links push the rudders' arms.",
+      "verdict": "shown",
+      "msOneCall": 137,
+      "msPerStep": 73,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 18,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1164 32269",
+          "way": 1,
+          "asked": 0.23,
+          "went": 0.23,
+          "ms": 478,
+          "msOneCall": 137,
+          "stops": [],
+          "moved": {
+            "p1157 2739a": [
+              16.71,
+              6.07
+            ],
+            "p1193 40490": [
+              9,
+              25.99
+            ],
+            "p1227 40490": [
+              8.41,
+              24.27
+            ],
+            "p1166 32524": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1164 32269",
+          "way": -1,
+          "asked": 0.23,
+          "went": -0.23,
+          "ms": 471,
+          "msOneCall": 133,
+          "stops": [],
+          "moved": {
+            "p1157 2739a": [
+              16.71,
+              1.03
+            ],
+            "p1193 40490": [
+              8.41,
+              24.27
+            ],
+            "p1227 40490": [
+              9,
+              25.99
+            ],
+            "p1166 32524": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 29
+    },
+    {
+      "function": 6,
+      "does": "The two main wheels and the twin nose wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 91,
+      "msPerStep": 20,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 51,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p401 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 866,
+          "msOneCall": 91,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p401 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 855,
+          "msOneCall": 80,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p412 55982",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 843,
+          "msOneCall": 79,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p412 55982",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 839,
+          "msOneCall": 79,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p526 42066 - 18976",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 844,
+          "msOneCall": 78,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p526 42066 - 18976",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 818,
+          "msOneCall": 77,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 64
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "set": "9396-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T20:42:46.168Z",
+  "load": 19.4,
+  "part": "A",
+  "parts": 956,
+  "seconds": 290,
+  "functions": [
+    {
+      "function": 3,
+      "does": "With the other lever toward the hoist symbol, the knob winds the rescue winch above the side door, raising or lowering the hook on its string.",
+      "verdict": "shown",
+      "why": "first step not done by the sweep: p1428 6553 by -0.3 (it has no joint to turn, or didn't turn)",
+      "msOneCall": 942,
+      "msPerStep": 408,
+      "time": {
+        "open": 17,
+        "collisions": 0,
+        "first": 7,
+        "reach": 0,
+        "A": 29,
+        "B": 0
+      },
+      "stop": {
+        "control": "p367 32269",
+        "way": 1,
+        "went": 0.907,
+        "asked": 1.5,
+        "by": [
+          "347/1039"
+        ]
+      },
+      "stops": [
+        "347/1039"
+      ],
+      "A": [
+        {
+          "control": "p367 32269",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.907,
+          "ms": 10581,
+          "msOneCall": 942,
+          "stops": [
+            "347/1039"
+          ],
+          "moved": {
+            "p570 32073": [
+              0,
+              86.61
+            ],
+            "p575 30395": [
+              17.32,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p367 32269",
+          "way": -1,
+          "asked": 0.93,
+          "went": -0.93,
+          "ms": 8906,
+          "msOneCall": 882,
+          "stops": [],
+          "moved": {
+            "p570 32073": [
+              0,
+              88.81
+            ],
+            "p575 30395": [
+              17.76,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p367 32269",
+          "judged": "stands",
+          "why": "stopped at +0.907 rad (347/1039); kinds function-selector, winch: hook"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown",
+        "why": "first step not done by the sweep: p1428 6553 by -0.3 (it has no joint to turn, or didn't turn)"
+      },
+      "reopened": "the mechanism was rebuilt (a ring shifted)",
+      "seconds": 54
+    },
+    {
+      "function": 6,
+      "does": "The wheels roll freely when the landing gear is down.",
+      "verdict": "shown",
+      "msOneCall": 2031,
+      "msPerStep": 943,
+      "time": {
+        "open": 22,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 211,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p36 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40429,
+          "msOneCall": 1770,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p36 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32513,
+          "msOneCall": 2031,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p37 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 28726,
+          "msOneCall": 1607,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p37 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 28784,
+          "msOneCall": 1698,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1198 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 8531,
+          "msOneCall": 851,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1198 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 8294,
+          "msOneCall": 826,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1224 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 8283,
+          "msOneCall": 801,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p1224 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 8286,
+          "msOneCall": 803,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 236
+    }
+  ]
+}
