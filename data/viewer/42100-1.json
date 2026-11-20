@@ -1,0 +1,334 @@
+{
+  "set": "42100-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T18:18:16.120Z",
+  "load": 14.7,
+  "part": "A",
+  "parts": 4079,
+  "seconds": 650,
+  "functions": [
+    {
+      "function": 4,
+      "does": "The L motor in the undercarriage slews the whole superstructure on the big turntable: a 12 tooth bevel gear on its axle turns a vertical shaft, and spur gears and a slipping clutch take the drive to a 20 tooth gear that runs round the turntable's teeth.",
+      "verdict": "shown",
+      "msOneCall": 521,
+      "msPerStep": 117,
+      "time": {
+        "open": 39,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 26,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p707 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 5016,
+          "msOneCall": 521,
+          "stops": [],
+          "moved": {
+            "p1927 42003 against p87 42003": [
+              4.32,
+              1.06
+            ],
+            "p516 18938 against p515 18939": [
+              0,
+              1.06
+            ],
+            "p313 42100 - 42529 against p87 42003": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p707 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 4925,
+          "msOneCall": 205,
+          "stops": [],
+          "moved": {
+            "p1927 42003 against p87 42003": [
+              4.32,
+              1.06
+            ],
+            "p516 18938 against p515 18939": [
+              0,
+              1.06
+            ],
+            "p313 42100 - 42529 against p87 42003": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 68
+    },
+    {
+      "function": 5,
+      "does": "The XL motor in the superstructure raises and lowers the boom: a 12 tooth gear on its axle drives two 20 tooth gears, one each side, and through 16 tooth gears and 12 tooth bevel gears the two big linear actuators under the boom, which push it up about its pivot.",
+      "verdict": "shown",
+      "msOneCall": 1140,
+      "msPerStep": 1007,
+      "time": {
+        "open": 9,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 365,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p1718 32270",
+          "way": 1,
+          "asked": 6,
+          "went": 6,
+          "ms": 172616,
+          "msOneCall": 1140,
+          "stops": [],
+          "moved": {
+            "p2971 42003 against p1927 42003": [
+              1,
+              0.64
+            ],
+            "p1481 42100 - 62274c02 against p1480 42100 - u9487c01": [
+              2.09,
+              0.05
+            ],
+            "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
+              2.09,
+              0
+            ],
+            "p3322 42003 against p2971 42003": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1718 32270",
+          "way": -1,
+          "asked": 6.1,
+          "went": -6.1,
+          "ms": 175309,
+          "msOneCall": 1110,
+          "stops": [],
+          "moved": {
+            "p2971 42003 against p1927 42003": [
+              1.02,
+              0.65
+            ],
+            "p1481 42100 - 62274c02 against p1480 42100 - u9487c01": [
+              2.12,
+              0.05
+            ],
+            "p1502 42100 - 62274c02 against p1501 42100 - u9487c01": [
+              2.12,
+              0
+            ],
+            "p3322 42003 against p2971 42003": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 378
+    },
+    {
+      "function": 6,
+      "does": "Two L motors on the boom swing the stick in and out together: each turns a 16 tooth gear whose axle drives, through a universal joint, one of the two big linear actuators between the boom and the stick; a 16 tooth gear between them keeps the two drives in step.",
+      "verdict": "shown",
+      "msOneCall": 638,
+      "msPerStep": 750,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 161,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p2982 94925",
+          "way": 1,
+          "asked": 1.9,
+          "went": 1.9,
+          "ms": 36930,
+          "msOneCall": 638,
+          "stops": [],
+          "moved": {
+            "p3322 42003 against p2971 42003": [
+              1.04,
+              0.33
+            ],
+            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p2971 42003 against p1927 42003": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2982 94925",
+          "way": -1,
+          "asked": 1.9,
+          "went": -1.9,
+          "ms": 24259,
+          "msOneCall": 495,
+          "stops": [],
+          "moved": {
+            "p3322 42003 against p2971 42003": [
+              1.04,
+              0.33
+            ],
+            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p2971 42003 against p1927 42003": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2983 94925",
+          "way": 1,
+          "asked": 1.9,
+          "went": 1.9,
+          "ms": 40723,
+          "msOneCall": 470,
+          "stops": [],
+          "moved": {
+            "p3322 42003 against p2971 42003": [
+              1.04,
+              0.33
+            ],
+            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p2971 42003 against p1927 42003": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2983 94925",
+          "way": -1,
+          "asked": 1.9,
+          "went": -1.9,
+          "ms": 23718,
+          "msOneCall": 473,
+          "stops": [],
+          "moved": {
+            "p3322 42003 against p2971 42003": [
+              1.04,
+              0.33
+            ],
+            "p3845 42100 - 62274c02 against p3844 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p3851 42100 - 62274c02 against p3850 42100 - u9487c01": [
+              1.11,
+              0
+            ],
+            "p2971 42003 against p1927 42003": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 173
+    },
+    {
+      "function": 9,
+      "does": "The access ladder at the back left of the superstructure swings up out of the way and down to the ground.",
+      "verdict": "not shown",
+      "why": "A: p4686 40490 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p4660 40490",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p4686 40490": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p4660 40490",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p4686 40490": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 31
+    }
+  ]
+}

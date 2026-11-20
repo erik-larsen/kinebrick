@@ -1,0 +1,343 @@
+{
+  "set": "42083-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T18:10:51.308Z",
+  "load": 16.8,
+  "part": "A",
+  "parts": 3512,
+  "seconds": 403,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: its column runs forward along the cockpit's left side to bevel gears under the nose, and a shaft down the middle turns the pinion on the steering rack.",
+      "verdict": "shown",
+      "msOneCall": 1878,
+      "msPerStep": 546,
+      "time": {
+        "open": 45,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 72,
+        "B": 0
+      },
+      "stop": {
+        "control": "p2742 2741",
+        "way": 1,
+        "went": 1.465,
+        "asked": 1.5,
+        "by": [
+          "1105/1121"
+        ]
+      },
+      "stops": [
+        "1105/1121"
+      ],
+      "A": [
+        {
+          "control": "p2742 2741",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.465,
+          "ms": 22508,
+          "msOneCall": 1621,
+          "stops": [
+            "1105/1121"
+          ],
+          "moved": {
+            "p1039 42083 - 23801": [
+              0,
+              19.21
+            ],
+            "p1046 42083 - 23801": [
+              0,
+              19.29
+            ],
+            "p1119 64781": [
+              13.19,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p2742 2741",
+          "way": -1,
+          "asked": 1.47,
+          "went": -1.47,
+          "ms": 22924,
+          "msOneCall": 1878,
+          "stops": [],
+          "moved": {
+            "p1039 42083 - 23801": [
+              0,
+              19.35
+            ],
+            "p1046 42083 - 23801": [
+              0,
+              19.28
+            ],
+            "p1119 64781": [
+              13.23,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p2742 2741",
+          "judged": "stands",
+          "why": "stopped at +1.465 rad (1105/1121); kinds rack-steering"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      },
+      "seconds": 126
+    },
+    {
+      "function": 5,
+      "does": "Each axle's differential lets its two wheels turn at different speeds, as in a corner.",
+      "verdict": "shown",
+      "msOneCall": 1506,
+      "msPerStep": 769,
+      "time": {
+        "open": 15,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 184,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p3522 42083 - 37383p01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32965,
+          "msOneCall": 1506,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p3522 42083 - 37383p01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 31506,
+          "msOneCall": 1233,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p3519 42083 - 37383p01",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32151,
+          "msOneCall": 1435,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p3519 42083 - 37383p01",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32326,
+          "msOneCall": 1481,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 202
+    },
+    {
+      "function": 6,
+      "does": "The speed key raises and lowers the rear wing: its long axle goes into a hole behind the left rear wheel, into the shaft under the wing, and turning the key swings the wing up on its arms or folds it down flat.",
+      "verdict": "not decided",
+      "msOneCall": 702,
+      "msPerStep": 227,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 17,
+        "B": 0
+      },
+      "stop": {
+        "control": "p1938 59443",
+        "way": 1,
+        "went": 0,
+        "asked": 1.5,
+        "by": [
+          "1928/2024"
+        ]
+      },
+      "stops": [
+        "1928/2024"
+      ],
+      "A": [
+        {
+          "control": "p1938 59443",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 563,
+          "msOneCall": 665,
+          "stops": [
+            "1928/2024"
+          ],
+          "moved": {
+            "p1939 15458": [
+              0,
+              0
+            ],
+            "p1910 32073": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1938 59443",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.17,
+          "ms": 1101,
+          "msOneCall": 702,
+          "stops": [],
+          "moved": {
+            "p1939 15458": [
+              26.2,
+              9.74
+            ],
+            "p1910 32073": [
+              6.79,
+              9.74
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p1938 59443",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "byHand": {
+        "stop": "not decided",
+        "why": "the key turns to raise the wing; how far the key turns is not given by the picture",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6257444.pdf#page=310"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p1938 59443: a travel of 0.2 rad or less each way, stopped at +0 rad (1928/2024)",
+      "seconds": 27
+    },
+    {
+      "function": 7,
+      "does": "The two doors swing open on hinges at their front edges.",
+      "verdict": "not decided",
+      "msOneCall": 757,
+      "msPerStep": 409,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 37,
+        "B": 0
+      },
+      "stop": {
+        "control": "p2924 62531",
+        "way": 1,
+        "went": 0.07,
+        "asked": 1.5,
+        "by": [
+          "2786/2943"
+        ]
+      },
+      "stops": [
+        "2786/2943",
+        "2837/2883"
+      ],
+      "A": [
+        {
+          "control": "p2924 62531",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0.07,
+          "ms": 814,
+          "msOneCall": 681,
+          "stops": [
+            "2786/2943"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p2924 62531",
+          "way": -1,
+          "asked": 0.07,
+          "went": -0.07,
+          "ms": 780,
+          "msOneCall": 705,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2876 62531",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 733,
+          "msOneCall": 683,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p2876 62531",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.07,
+          "ms": 800,
+          "msOneCall": 757,
+          "stops": [
+            "2837/2883"
+          ],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p2924 62531",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.07 rad (2786/2943)"
+        },
+        {
+          "control": "p2876 62531",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.07 rad (2837/2883)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p2924 62531: a travel of 0.2 rad or less each way, stopped at +0.07 rad (2786/2943); p2876 62531: a travel of 0.2 rad or less each way, stopped at -0.07 rad (2837/2883)",
+      "seconds": 48
+    }
+  ]
+}

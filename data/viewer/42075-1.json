@@ -1,0 +1,556 @@
+{
+  "set": "42075-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T17:46:46.579Z",
+  "part": "A",
+  "parts": 507,
+  "seconds": 77,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The black gear on the cab roof steers the front wheels: its upright shaft turns a long shaft forward through bevel gears, and two 16 tooth gears, by way of an idler that rides loose on the drive shaft, turn the pinion on the front steering rack.",
+      "verdict": "shown",
+      "msOneCall": 52,
+      "msPerStep": 6,
+      "time": {
+        "open": 13,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p50 32270",
+          "way": 1,
+          "asked": 0.7,
+          "went": 0.7,
+          "ms": 114,
+          "msOneCall": 52,
+          "stops": [],
+          "moved": {
+            "p95 87761": [
+              10.58,
+              0
+            ],
+            "p508 56145": [
+              13.24,
+              15.21
+            ],
+            "p504 56145": [
+              13.24,
+              15.21
+            ],
+            "p174 18575": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p50 32270",
+          "way": -1,
+          "asked": 0.7,
+          "went": -0.7,
+          "ms": 92,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p95 87761": [
+              10.58,
+              0
+            ],
+            "p508 56145": [
+              13.24,
+              15.21
+            ],
+            "p504 56145": [
+              13.24,
+              15.21
+            ],
+            "p174 18575": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 20
+    },
+    {
+      "function": 2,
+      "does": "Pushed along, the rear wheels drive the two cylinder engine under the bonnet: a differential on the rear axle turns a drive shaft with a universal joint forward to the front, where a 20 tooth gear turns the crankshaft and the two pistons slide in and out of their cylinders.",
+      "verdict": "not shown",
+      "why": "A: p352 2851 not moved",
+      "msOneCall": 34,
+      "msPerStep": 13,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 11,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p506 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 565,
+          "msOneCall": 34,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              25.77
+            ],
+            "p352 2851": [
+              0.76,
+              0
+            ],
+            "p353 2851": [
+              1.23,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p506 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 550,
+          "msOneCall": 24,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              25.77
+            ],
+            "p352 2851": [
+              0.76,
+              0
+            ],
+            "p353 2851": [
+              1.23,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p510 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 491,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              25.77
+            ],
+            "p352 2851": [
+              0.76,
+              0
+            ],
+            "p353 2851": [
+              1.23,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p510 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 511,
+          "msOneCall": 21,
+          "stops": [],
+          "moved": {
+            "p116 62821": [
+              0,
+              85.94
+            ],
+            "p349 2853": [
+              0,
+              25.77
+            ],
+            "p352 2851": [
+              0.76,
+              0
+            ],
+            "p353 2851": [
+              1.23,
+              0
+            ],
+            "p50 32270": [
+              0,
+              0
+            ],
+            "p95 87761": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 16
+    },
+    {
+      "function": 3,
+      "does": "The front wheels roll freely; only the rear ones are driven.",
+      "verdict": "shown",
+      "msOneCall": 17,
+      "msPerStep": 4,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 10,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p504 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 162,
+          "msOneCall": 17,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p504 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 147,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p508 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 143,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p508 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 140,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p349 2853": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 13
+    },
+    {
+      "function": 4,
+      "does": "The gear on the front bumper winds the winch, reeling the hook's string in or out.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 4,
+      "time": {
+        "open": 3,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 5,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p329 32270",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 152,
+          "msOneCall": 13,
+          "stops": [],
+          "moved": {
+            "p324 61510": [
+              0,
+              85.94
+            ]
+          }
+        },
+        {
+          "control": "p329 32270",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 161,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {
+            "p324 61510": [
+              0,
+              85.94
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 6,
+      "does": "The light mast, lying along the roof, swings up at the back of the truck to stand upright with its lamp on top.",
+      "verdict": "not shown",
+      "msOneCall": 15,
+      "msPerStep": 8,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": {
+        "control": "p186 3737",
+        "way": 1,
+        "went": 0.136,
+        "asked": 0.17,
+        "by": [
+          "175/187"
+        ]
+      },
+      "stops": [
+        "175/187"
+      ],
+      "A": [
+        {
+          "control": "p186 3737",
+          "way": 1,
+          "asked": 0.17,
+          "went": 0.136,
+          "ms": 26,
+          "msOneCall": 15,
+          "stops": [
+            "175/187"
+          ],
+          "moved": {
+            "p190 2654": [
+              3.53,
+              7.79
+            ]
+          }
+        },
+        {
+          "control": "p186 3737",
+          "way": -1,
+          "asked": 0.17,
+          "went": -0.136,
+          "ms": 29,
+          "msOneCall": 12,
+          "stops": [
+            "175/187"
+          ],
+          "moved": {
+            "p190 2654": [
+              3.53,
+              7.79
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 7,
+      "stopsJudged": [
+        {
+          "control": "p186 3737",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at +0.136 rad (175/187); -0.136 rad (175/187)"
+        }
+      ],
+      "stopVerdict": "not shown",
+      "byHand": {
+        "stop": "not shown",
+        "why": "the mast swings up from lying along the roof to stand upright, far past 0.17 rad",
+        "page": "https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6279792.pdf#page=112"
+      },
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "a collision stops a control: p186 3737: a travel of 0.2 rad or less each way, stopped at +0.136 rad (175/187); -0.136 rad (175/187) (the mast swings up from lying along the roof to stand upright, far past 0.17 rad, https://www.lego.com/cdn/product-assets/product.bi.core.pdf/6279792.pdf#page=112)"
+    },
+    {
+      "function": 8,
+      "does": "The two seats tip forward.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 4,
+      "time": {
+        "open": 2,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 9,
+        "B": 0
+      },
+      "stop": {
+        "control": "p239 24116",
+        "way": -1,
+        "went": -0.279,
+        "asked": 1.5,
+        "by": [
+          "239/308"
+        ]
+      },
+      "stops": [
+        "0/239",
+        "239/308",
+        "0/240"
+      ],
+      "A": [
+        {
+          "control": "p239 24116",
+          "way": 1,
+          "asked": 0.3,
+          "went": 0,
+          "ms": 9,
+          "msOneCall": 10,
+          "stops": [
+            "0/239"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p239 24116",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.279,
+          "ms": 36,
+          "msOneCall": 12,
+          "stops": [
+            "239/308"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p240 24116",
+          "way": 1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 10,
+          "msOneCall": 12,
+          "stops": [
+            "0/240"
+          ],
+          "moved": {}
+        },
+        {
+          "control": "p240 24116",
+          "way": -1,
+          "asked": 1.47,
+          "went": -1.47,
+          "ms": 144,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 13,
+      "stopsJudged": [
+        {
+          "control": "p239 24116",
+          "judged": "stands",
+          "why": "stopped at +0 rad (0/239); -0.279 rad (239/308); kinds hinge: seats"
+        },
+        {
+          "control": "p240 24116",
+          "judged": "stands",
+          "why": "stopped at +0 rad (0/240); kinds hinge: seats"
+        }
+      ],
+      "stopVerdict": "shown",
+      "moved": {
+        "verdict": "shown"
+      }
+    }
+  ]
+}

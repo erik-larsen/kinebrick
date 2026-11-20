@@ -38,6 +38,7 @@
 // Each set's browser claims 1,000 MB and 0.85 MB a part from the pool (decision 255), as open-all.ts.
 import { execSync, spawn } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { loadavg } from 'node:os';
 import { chromium } from 'playwright';
 import { partCounts } from '../check-pool.ts';
 import { open, type Viewer } from './drag.ts';
@@ -153,7 +154,9 @@ if (args[0] === '--judge') {
 async function sweepSet(set: string) {
   const data = JSON.parse(readFileSync(setFile(set), 'utf-8'));
   const model: string = data.curated.model;
-  const out: { set: string; commit: string; date: string; part: string; parts: number | null; seconds: number; functions: unknown[] } = { set, commit, date: new Date().toISOString(), part, parts: partCounts().get(set) ?? null, seconds: 0, functions: [] };
+  // `load`: the machine's load average when the set's timing starts (decision 261): the times
+  // hold as ratios on a loaded machine, not as times.
+  const out: { set: string; commit: string; date: string; load: number; part: string; parts: number | null; seconds: number; functions: unknown[] } = { set, commit, date: new Date().toISOString(), load: Math.round(loadavg()[0] * 10) / 10, part, parts: partCounts().get(set) ?? null, seconds: 0, functions: [] };
   // Part A alone: one viewer per model file, kept open between functions (see --a).
   const viewers = new Map<string, Viewer>();
   const viewerFor = async (file: string) => {
