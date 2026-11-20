@@ -215,7 +215,10 @@ async function sweepFunction(file: string, fn: any, g: any): Promise<Record<stri
     ...(bShows ? [] : [`B: ${B.some((b: any) => !b.seen) ? 'the control could not be seen' : 'no listed part moved by hand'}`]),
     ...limits,
   ].join('; ');
-  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, stops: [...stopsA], A, B };
+  // The farthest the control turned in a way that a collision stopped, and the pair that stopped it.
+  const stopped = (A as any[]).filter((a) => a.stops.length).sort((a, b) => Math.abs(b.went) - Math.abs(a.went))[0];
+  const stop = stopped ? { control: stopped.control, way: stopped.way, went: stopped.went, asked: stopped.asked, by: stopped.stops } : null;
+  return { verdict: aShows && bShows ? 'shown' : 'not shown', ...(why ? { why } : {}), msPerStep: msA.length ? Math.round(Math.max(...msA)) : null, stop, stops: [...stopsA], A, B };
 }
 
 // The list's first steps, as a user does them: a catch or lever turned by its joint's angle (turned
@@ -292,8 +295,11 @@ async function runMotor(v: Viewer, control: number, way: number, asked: number, 
 }
 
 // The collision stop is ready once the parts that touch as built are known.
+// Before that the viewer tests nothing, and a turn goes through parts. Also gives the page the
+// helper that tsx names functions with, so the functions passed to evaluate run there.
 async function collisionsReady(v: Viewer) {
-  await v.page.waitForFunction(`(document.getElementById('collision-note')?.textContent ?? '') === ''`, null, { timeout: 600_000 });
+  await v.page.evaluate('window.__name = window.__name || ((f) => f)');
+  await v.page.waitForFunction(`(document.getElementById('collision-note')?.textContent ?? '') === '' && !!window.kinebrick.collisions() && !window.kinebrick.collisions().waiting`, null, { timeout: 600_000 });
 }
 
 // The rows of `before` (from where(parts)) for the parts `want`, then the frame's, as moved() takes them.
