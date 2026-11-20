@@ -57,9 +57,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 1,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 3,
     "counts": {
       "no": 1,
       "works": 1
@@ -176,7 +176,7 @@
         ],
         "cause": "not-driven",
         "detail": "p53 3705",
-        "seconds": 0.1
+        "seconds": 0.2
       },
       {
         "result": "works",
@@ -314,8 +314,9 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.8
       }
-    ]
+    ],
+    "peak": 262
   }
 }

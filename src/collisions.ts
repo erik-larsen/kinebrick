@@ -98,7 +98,52 @@ function shrink(list: PartMesh[]) {
     }
   }
 }
-import { MeshBVH } from 'three-mesh-bvh';
+import { ExtendedTriangle, MeshBVH } from 'three-mesh-bvh';
+
+// Two triangles that lie in one plane do not cross (decision 246 of 2026-11-20). three-mesh-bvh's
+// triangle test (ExtendedTriangle.intersectsTriangle, which MeshBVH.intersectsGeometry and the
+// distance routines use) takes two triangles as lying in one plane only where each corner is off
+// the other's plane by less than 1e-15, whatever the size of the coordinates. Two faces in one
+// plane of a model a few hundred LDU across are off it by the rounding of those coordinates, a
+// few 1e-15; the test then works out where two planes cross from two parallel normals, and may
+// answer that the faces meet: the 42075 First Responder's crankshaft against its engine, faces in
+// one plane 11 LDU apart in it, a hit or not by rounding (decision 245). So where the library
+// says two triangles meet, and they lie in one plane within the rounding their own coordinates
+// carry (see inOnePlane), they don't: apart in the plane, they don't meet; lying on each other,
+// they touch, and nothing passes through anything there (a crossing of the parts shows in their
+// other faces). Set once here, so the check, the viewer and the collision worker all have it.
+export const libraryIntersects = ExtendedTriangle.prototype.intersectsTriangle;
+ExtendedTriangle.prototype.intersectsTriangle = function (this: ExtendedTriangle, other: ExtendedTriangle, target?: unknown, suppressLog?: boolean) {
+  const hit = (libraryIntersects as (this: ExtendedTriangle, o: ExtendedTriangle, t?: unknown, s?: boolean) => boolean).call(this, other, target, suppressLog);
+  return hit && !inOnePlane(this, other);
+} as typeof ExtendedTriangle.prototype.intersectsTriangle;
+
+// How many rounded operations the distance of a corner from a triangle's plane takes, at most: the
+// two edges (3 subtractions each) and their cross product (2 products and a subtraction a
+// component), the corner's offset from the triangle (a subtraction), and the dot product (3
+// products and 2 additions). Each rounds by at most half an ulp of a number no bigger than the
+// coordinates' size squared or so; counted generously, the distance is good to PLANE_OPS ulps of
+// the coordinates' size.
+const PLANE_OPS = 16;
+
+// Whether two triangles lie in one plane: every corner of each is off the other's plane by no
+// more than the rounding its coordinates carry, PLANE_OPS ulps of their size (the largest of their
+// coordinates). A triangle with no area has no plane: not in one.
+export function inOnePlane(t1: { a: Vector3; b: Vector3; c: Vector3 }, t2: { a: Vector3; b: Vector3; c: Vector3 }): boolean {
+  const corners = [t1.a, t1.b, t1.c, t2.a, t2.b, t2.c];
+  const size = Math.max(...corners.map((p) => Math.max(Math.abs(p.x), Math.abs(p.y), Math.abs(p.z))));
+  const tolerance = PLANE_OPS * Number.EPSILON * Math.max(size, Number.MIN_VALUE);
+  const off = (t: { a: Vector3; b: Vector3; c: Vector3 }, points: Vector3[]) => {
+    const normal = new Vector3().subVectors(t.b, t.a).cross(new Vector3().subVectors(t.c, t.a));
+    const length = normal.length();
+    if (!(length > 0)) return null;
+    normal.multiplyScalar(1 / length);
+    return Math.max(...points.map((p) => Math.abs(normal.dot(new Vector3().subVectors(p, t.a)))));
+  };
+  const one = off(t1, [t2.a, t2.b, t2.c]);
+  const two = off(t2, [t1.a, t1.b, t1.c]);
+  return one !== null && two !== null && one <= tolerance && two <= tolerance;
+}
 
 // One mesh of a part, in the part's own coordinates.
 export interface PartMesh {

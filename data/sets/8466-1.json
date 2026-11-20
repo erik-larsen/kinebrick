@@ -210,9 +210,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 95,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 94,
     "counts": {
       "partly": 7,
       "not checked": 1,
@@ -324,7 +324,7 @@
         ],
         "cause": "not-driven",
         "detail": "p718 3647",
-        "seconds": 8.4
+        "seconds": 9.1
       },
       {
         "result": "partly",
@@ -402,7 +402,7 @@
         ],
         "cause": "not-driven",
         "detail": "p705 6592",
-        "seconds": 7.5
+        "seconds": 8.4
       },
       {
         "result": "partly",
@@ -494,7 +494,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 8
+        "seconds": 8.9
       },
       {
         "result": "not checked",
@@ -565,7 +565,7 @@
         ],
         "cause": "loose-part",
         "detail": "p676 22969",
-        "seconds": 5.4
+        "seconds": 6.2
       },
       {
         "result": "partly",
@@ -633,7 +633,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1067 22969",
-        "seconds": 5.8
+        "seconds": 6.7
       },
       {
         "result": "partly",
@@ -696,7 +696,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1017 6573",
-        "seconds": 5.9
+        "seconds": 6.6
       },
       {
         "result": "partly",
@@ -900,7 +900,7 @@
             0
           ]
         ],
-        "seconds": 6.2
+        "seconds": 6.5
       },
       {
         "result": "skipped",
@@ -926,13 +926,13 @@
             ],
             "p274 32189": [
               0,
-              3.15e-11
+              1.82e-11
             ]
           },
           {
             "p257 32188": [
               0,
-              2.28e-10
+              1.57e-10
             ],
             "p274 32189": [
               1,
@@ -1020,7 +1020,7 @@
             0
           ]
         ],
-        "seconds": 23.1
+        "seconds": 25.1
       },
       {
         "result": "skipped",
@@ -1105,8 +1105,9 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 9.9
+        "seconds": 8.9
       }
-    ]
+    ],
+    "peak": 1004
   }
 }

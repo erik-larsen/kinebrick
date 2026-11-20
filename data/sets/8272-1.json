@@ -121,9 +121,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 7,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 5,
     "counts": {
       "partly": 1,
       "works": 4,
@@ -244,7 +244,7 @@
             0
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -322,7 +322,7 @@
         ],
         "freed": 1,
         "onPlay": 0.6,
-        "seconds": 1.2
+        "seconds": 1.1
       },
       {
         "result": "works",
@@ -580,6 +580,7 @@
         ],
         "seconds": 0.3
       }
-    ]
+    ],
+    "peak": 354
   }
 }

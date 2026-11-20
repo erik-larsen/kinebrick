@@ -87,9 +87,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 4,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 5,
     "counts": {
       "works": 3,
       "skipped": 1
@@ -110,7 +110,7 @@
           {
             "p33 6589": [
               1,
-              9.69e-15
+              1.45e-14
             ],
             "p18 32269": [
               0.6,
@@ -204,7 +204,7 @@
             1.47
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -402,8 +402,9 @@
           [],
           []
         ],
-        "seconds": 0.8
+        "seconds": 1.8
       }
-    ]
+    ],
+    "peak": 333
   }
 }

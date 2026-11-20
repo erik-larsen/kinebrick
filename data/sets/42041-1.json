@@ -104,14 +104,12 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 23,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 18,
     "counts": {
       "works": 4,
       "pivoted": 1,
-      "not back": 1,
-      "torn": 1,
       "no": 1
     },
     "loose": [],
@@ -120,7 +118,7 @@
         "result": "works",
         "turned": [
           [
-            0.63,
+            1.5,
             -1.5
           ],
           [
@@ -263,7 +261,7 @@
         "back": [
           [
             [
-              0,
+              0.01,
               0
             ],
             [
@@ -304,16 +302,6 @@
             ]
           ]
         ],
-        "stop": [
-          [
-            "limit",
-            null
-          ],
-          [
-            null,
-            null
-          ]
-        ],
         "movedBy": [
           [
             "p153 62821",
@@ -346,17 +334,7 @@
             "p112 2851"
           ]
         ],
-        "collisionStops": [
-          [
-            0,
-            1,
-            91,
-            116,
-            0.63,
-            0.63
-          ]
-        ],
-        "seconds": 6.4
+        "seconds": 6.8
       },
       {
         "result": "works",
@@ -402,7 +380,7 @@
             ]
           ]
         ],
-        "seconds": 1.1
+        "seconds": 1
       },
       {
         "result": "works",
@@ -495,7 +473,7 @@
           "rise": 0.75,
           "tyre": "p646 41897"
         },
-        "seconds": 1.2
+        "seconds": 0.9
       },
       {
         "result": "works",
@@ -520,8 +498,8 @@
               0.01
             ],
             [
-              66.57,
-              121.1
+              0,
+              0.01
             ]
           ],
           [
@@ -542,8 +520,8 @@
               0.01
             ],
             [
-              17.7,
-              121.1
+              0,
+              0.01
             ]
           ],
           [
@@ -557,14 +535,11 @@
             ]
           ]
         ],
-        "strayed": [
-          "p91 2853"
-        ],
         "movedBy": [
           [],
           []
         ],
-        "seconds": 7.5
+        "seconds": 6.1
       },
       {
         "result": "no",
@@ -592,6 +567,7 @@
         "cause": "control-fixed",
         "seconds": 0.1
       }
-    ]
+    ],
+    "peak": 858
   }
 }

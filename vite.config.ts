@@ -17,15 +17,16 @@ export default defineConfig({
   appType: 'mpa',
   plugins: [
     {
-      // The dev server serves a file whose name has a # in it (the 42125 Ferrari 488 GTE AF
-      // CORSE #51's): the viewer asks for it with the # written %23, and Vite, decoding the
-      // address, would cut the name at the #.
+      // The dev server serves a file whose name has a # or an & in it (the 42125 Ferrari 488 GTE AF
+      // CORSE #51's; the 42106 Stunt Show Truck & Bike's): the viewer asks for it with the # written
+      // %23 and the & %26, and Vite, decoding the address, would cut the name at the # and answers
+      // 404 for the & (decision 250 of 2026-11-20: the 42106 never opened).
       name: 'files-named-with-a-hash',
       configureServer(server) {
         server.middlewares.use((req, res, next) => {
           const path = decodeURIComponent((req.url ?? '').split('?')[0]);
           const file = join(server.config.root, path);
-          if (!path.includes('#') || !file.startsWith(server.config.root + '/') || !existsSync(file) || !statSync(file).isFile()) return next();
+          if (!/[#&]/.test(path) || !file.startsWith(server.config.root + '/') || !existsSync(file) || !statSync(file).isFile()) return next();
           res.setHeader('Content-Type', 'text/plain; charset=utf-8');
           createReadStream(file).pipe(res);
         });

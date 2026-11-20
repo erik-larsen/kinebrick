@@ -109,9 +109,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 2,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 3,
     "counts": {
       "works": 4,
       "skipped": 1
@@ -222,7 +222,7 @@
             0.67
           ]
         ],
-        "seconds": 0.2
+        "seconds": 0.3
       },
       {
         "result": "works",
@@ -256,7 +256,7 @@
             ],
             "p5 2904": [
               0,
-              9.51e-58
+              8.94e-57
             ],
             "p24 3894": [
               0,
@@ -375,7 +375,7 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -434,8 +434,9 @@
           ]
         ],
         "freed": 4,
-        "seconds": 0.2
+        "seconds": 0.4
       }
-    ]
+    ],
+    "peak": 303
   }
 }

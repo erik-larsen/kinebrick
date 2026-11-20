@@ -57,9 +57,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 3,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 4,
     "counts": {
       "works": 2,
       "skipped": 1,
@@ -157,7 +157,7 @@
             "p30 3708"
           ]
         ],
-        "seconds": 0.4
+        "seconds": 0.7
       },
       {
         "result": "skipped",
@@ -227,12 +227,13 @@
           [],
           []
         ],
-        "seconds": 0.3
+        "seconds": 0.5
       },
       {
         "result": "not checked",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 334
   }
 }

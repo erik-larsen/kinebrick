@@ -166,9 +166,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 496,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 257,
     "counts": {
       "works": 6,
       "skipped": 2,
@@ -377,11 +377,11 @@
           {
             "p4 32270": [
               1,
-              9.62e-14
+              9.19e-14
             ],
             "p1894 32270": [
               1,
-              4.68e-13
+              3.87e-13
             ],
             "p1879 64781": [
               0.0239,
@@ -397,7 +397,7 @@
             ],
             "p1490 57519": [
               0,
-              4.43e-13
+              6.23e-13
             ]
           }
         ],
@@ -425,7 +425,7 @@
             ]
           ]
         ],
-        "seconds": 51.6
+        "seconds": 54.4
       },
       {
         "result": "works",
@@ -483,10 +483,11 @@
             ]
           ]
         ],
-        "seconds": 19
+        "seconds": 17.3
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       },
       {
         "result": "partly",
@@ -515,7 +516,7 @@
             ],
             "p566 92696": [
               0,
-              1.52e-13
+              9.47e-14
             ],
             "p1214 18945": [
               0,
@@ -569,7 +570,7 @@
         ],
         "cause": "not-driven",
         "detail": "p567 6589",
-        "seconds": 23
+        "seconds": 20.4
       },
       {
         "result": "works",
@@ -583,11 +584,11 @@
           {
             "p1333 62821": [
               1,
-              4.69e-13
+              4.17e-13
             ],
             "p146 2853": [
               2.33,
-              7.58e-14
+              0
             ],
             "p162 2851": [
               0,
@@ -625,7 +626,7 @@
             ]
           ]
         ],
-        "seconds": 58.3
+        "seconds": 56.7
       },
       {
         "result": "works",
@@ -811,7 +812,7 @@
             0.73
           ]
         ],
-        "seconds": 53.9
+        "seconds": 50.6
       },
       {
         "result": "works",
@@ -943,7 +944,7 @@
             0
           ]
         ],
-        "seconds": 9.8
+        "seconds": 7.4
       },
       {
         "result": "partly",
@@ -1020,7 +1021,7 @@
             0
           ]
         ],
-        "seconds": 21.2
+        "seconds": 17.7
       },
       {
         "result": "works",
@@ -1115,11 +1116,13 @@
             0.07
           ]
         ],
-        "seconds": 29.4
+        "seconds": 26.6
       },
       {
-        "result": "skipped"
+        "result": "skipped",
+        "seconds": 0
       }
-    ]
+    ],
+    "peak": 1017
   }
 }

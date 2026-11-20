@@ -177,9 +177,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 2786,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 1887,
     "counts": {
       "partly": 4,
       "works": 4,
@@ -259,23 +259,23 @@
           {
             "p38 62821": [
               1,
-              8.09e-14
+              9.31e-14
             ],
             "p797 62821": [
               1,
-              9.31e-13
+              1.03e-12
             ],
             "p681 2854": [
               0,
-              4.02e-27
+              3.1e-27
             ],
             "p702 2851": [
               0,
-              3.35e-13
+              1.11e-13
             ],
             "p708 2851": [
               0,
-              2.42e-13
+              2.71e-13
             ]
           }
         ],
@@ -316,7 +316,8 @@
         ],
         "cause": "not-driven",
         "detail": "p681 2854",
-        "seconds": 317.5
+        "seconds": 288.7,
+        "peak": 1396
       },
       {
         "result": "partly",
@@ -410,7 +411,8 @@
             0.03
           ]
         ],
-        "seconds": 16.6
+        "seconds": 11.7,
+        "peak": 925
       },
       {
         "result": "works",
@@ -480,7 +482,8 @@
             0.5
           ]
         ],
-        "seconds": 26.9
+        "seconds": 24.8,
+        "peak": 1030
       },
       {
         "result": "works",
@@ -498,11 +501,11 @@
             ],
             "p886 35189": [
               0.389,
-              11.4
+              11.3
             ],
             "p894 35189": [
               0.389,
-              11.3
+              11.4
             ],
             "p97 35189": [
               0.0000652,
@@ -562,7 +565,8 @@
             0.6
           ]
         ],
-        "seconds": 140.9
+        "seconds": 136,
+        "peak": 1374
       },
       {
         "result": "works",
@@ -680,7 +684,8 @@
           [],
           []
         ],
-        "seconds": 1366.6
+        "seconds": 1091.4,
+        "peak": 1347
       },
       {
         "result": "skipped"
@@ -766,7 +771,8 @@
             0.13
           ]
         ],
-        "seconds": 24.6
+        "seconds": 17,
+        "peak": 1018
       },
       {
         "result": "partly",
@@ -888,7 +894,8 @@
           ]
         ],
         "onPlay": 0.13,
-        "seconds": 44.1
+        "seconds": 37.1,
+        "peak": 1256
       },
       {
         "result": "works",
@@ -947,7 +954,8 @@
             0
           ]
         ],
-        "seconds": 98.8
+        "seconds": 84.9,
+        "peak": 1331
       },
       {
         "result": "no",
@@ -1006,7 +1014,8 @@
         ],
         "cause": "part-fixed",
         "detail": "p2772 32140",
-        "seconds": 49.4
+        "seconds": 27.5,
+        "peak": 973
       },
       {
         "result": "no",
@@ -1087,7 +1096,8 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 97
+        "seconds": 79.2,
+        "peak": 1122
       }
     ]
   }

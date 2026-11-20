@@ -62,9 +62,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 7,
+    "commit": "bef93a60",
+    "date": "2026-11-20",
+    "seconds": 6,
     "counts": {
       "partly": 1,
       "not back": 1,
@@ -164,7 +164,7 @@
         ],
         "cause": "too-little",
         "detail": "p39 3647 against p0 32523",
-        "seconds": 4.9
+        "seconds": 5
       },
       {
         "result": "works",
@@ -236,6 +236,7 @@
         "result": "skipped",
         "seconds": 0
       }
-    ]
+    ],
+    "peak": 289
   }
 }
