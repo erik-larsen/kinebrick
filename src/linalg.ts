@@ -914,16 +914,38 @@ export function nullSpace(rows: Row[], n: number): number[][] {
   // pivot row from it changes it. Without this, a big model's search went over its dependent rows
   // again for every pivot, and took most of a step.
   const tiny = new Set<Float64Array>();
+  // Each row's places that may not be 0 (all those that aren't, and some that came to 0), with a
+  // mark for each place: the search for a row's largest goes over these only. Taking a pivot row
+  // from a row changes only the pivot row's places, which are added. Kept with the row itself, as
+  // rows change places.
+  const places = new Map<Float64Array, { list: number[]; mark: Uint8Array }>();
+  for (const x of a) {
+    const list: number[] = [];
+    const mark = new Uint8Array(n);
+    for (let k = 0; k < n; k++) {
+      if (x[k] === 0) continue;
+      list.push(k);
+      mark[k] = 1;
+    }
+    places.set(x, { list, mark });
+  }
   for (let r = 0; r < a.length; r++) {
     // Pivot on an entry that's the largest in both its row and its column ("rook pivoting"),
     // for accuracy: picking only down a column lets rounding errors grow until an equation
     // implied by the others looks independent. If that finds nothing, look everywhere left.
+    // The first column left, unless a later one is larger (strictly): of the largest, the first. The
+    // same as going over every column left in order: a 0 is never larger than anything, and NaN
+    // neither, so only the row's places that may not be 0 can take over from the first column left,
+    // and of two as large the earlier wins whichever order they come in.
     const largestInRow = (i: number) => {
+      if (unused.length === 0) return -1;
       const x = a[i];
-      let best = -1;
-      for (let u = 0; u < unused.length; u++) {
-        const k = unused[u];
-        if (best < 0 || Math.abs(x[k]) > Math.abs(x[best])) best = k;
+      let best = unused[0];
+      for (const k of places.get(x)!.list) {
+        if (used[k] || k === best) continue;
+        const v = Math.abs(x[k]);
+        const w = Math.abs(x[best]);
+        if (v > w || (v === w && k < best)) best = k;
       }
       return best;
     };
@@ -958,8 +980,9 @@ export function nullSpace(rows: Row[], n: number): number[][] {
     const row = a[r];
     const pivot = row[c];
     // The pivot row's nonzero entries: the only columns taking it from another row changes.
+    // (Found among its places that may not be 0, the order of no matter: each is worked on its own.)
     const nonzero: number[] = [];
-    for (let k = 0; k < n; k++) {
+    for (const k of places.get(row)!.list) {
       if (row[k] === 0) continue;
       row[k] /= pivot;
       nonzero.push(k);
@@ -969,6 +992,12 @@ export function nullSpace(rows: Row[], n: number): number[][] {
       if (i === r || other[c] === 0) continue;
       const factor = other[c];
       for (const k of nonzero) other[k] -= factor * row[k];
+      const own = places.get(other)!;
+      for (const k of nonzero) {
+        if (own.mark[k]) continue;
+        own.mark[k] = 1;
+        own.list.push(k);
+      }
       tiny.delete(other);
     }
     pivotColumns.push(c);
