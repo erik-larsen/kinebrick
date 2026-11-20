@@ -1081,7 +1081,10 @@ async function start() {
   statsCard.domElement.classList.add('stats'); // as wide as what's in it while it's open (see index.html)
   statsCard.$children.append(document.getElementById('stats')!);
   statsCard.close();
-  statsCard.onOpenClose(showReadoutFade);
+  statsCard.onOpenClose((card) => {
+    showReadoutFade();
+    showReadout(!card._closed);
+  });
   const settings = {
     bodyColours: appearance.showBodyColours,
     axes: axes.visible,
@@ -1590,16 +1593,39 @@ function showReadoutFade() {
 }
 document.getElementById('readout')!.addEventListener('scroll', showReadoutFade);
 
-function updateReadout(mech: Mechanism, kin: Kinematics) {
+// The readout is worked out only while the Stats card shows it (it starts closed), and a car's
+// turning circle only once the model has stood still for READOUT_STILL ms: the turning circle
+// takes the free motions worked out afresh, as long as a solver step on a car (300 ms on the 9397
+// Logging Truck, 2026-11-20), and a drag or Auto spin paid it on every move.
+const READOUT_STILL = 300;
+let readoutShown = false;
+let readoutOf: { mech: Mechanism; kin: Kinematics } | null = null;
+const turningCircle: { at: ReturnType<typeof setTimeout> | null; line: string } = { at: null, line: '' };
+function showReadout(shown: boolean) {
+  readoutShown = shown;
+  if (shown && readoutOf) updateReadout(readoutOf.mech, readoutOf.kin);
+}
+
+// `still`: true when the turning circle has just been worked out, so it isn't asked for again.
+function updateReadout(mech: Mechanism, kin: Kinematics, still = false) {
+  if (readoutOf?.kin !== kin) turningCircle.line = '';
+  readoutOf = { mech, kin };
+  if (!readoutShown) return;
   const readout = document.getElementById('readout')!;
   const lines: string[] = [];
   if (kin.groundY !== null) {
     const moved = new Vector3(0, 0, 0).applyMatrix4(kin.poses[0]).length();
-    const radius = kin.frameTurningRadius();
-    let line = `frame moved ${moved.toFixed(1)} LDU`;
-    if (radius === Infinity) line += ', driving straight';
-    else if (radius !== null) line += `, turning circle radius ${radius.toFixed(0)} LDU`;
-    lines.push(line);
+    lines.push(`frame moved ${moved.toFixed(1)} LDU${turningCircle.line}`);
+    if (turningCircle.at !== null) clearTimeout(turningCircle.at);
+    turningCircle.at = still ? null : setTimeout(() => {
+      turningCircle.at = null;
+      if (!readoutShown || readoutOf?.kin !== kin) return;
+      const radius = kin.frameTurningRadius();
+      const line = radius === Infinity ? ', driving straight' : radius !== null ? `, turning circle radius ${radius.toFixed(0)} LDU` : '';
+      if (line === turningCircle.line) return;
+      turningCircle.line = line;
+      updateReadout(mech, kin, true);
+    }, READOUT_STILL);
   }
   // One line per body that turns on a joint like a knob: how far it has turned relative to
   // what it's mounted on (the frame, unless it says otherwise). Parts that turn and travel at

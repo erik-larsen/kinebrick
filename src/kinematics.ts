@@ -3422,9 +3422,16 @@ export class Kinematics {
 
   // The radius of the circle the frame's origin is driving round right now, Infinity when
   // it's driving straight, or null if the frame can't move. (Only steering and rolling move a
-  // car's frame, so this takes the free motion that moves the frame, if there's one.)
+  // car's frame, so this takes the free motion that moves the frame, if there's one.) It leaves
+  // what working out the free motions sets as it was: the viewer's readout asks this between a
+  // drag's steps, and the next step, or what the drag says when stuck, must not hear of it.
   frameTurningRadius(): number | null {
-    return this.nearOrigin(() => this.frameTurningRadiusNearOrigin());
+    const [scrubNeeded, leastScrub, slipRows] = [this.scrubNeeded, this.leastScrub, this.slipRows];
+    try {
+      return this.nearOrigin(() => this.frameTurningRadiusNearOrigin());
+    } finally {
+      [this.scrubNeeded, this.leastScrub, this.slipRows] = [scrubNeeded, leastScrub, slipRows];
+    }
   }
 
   private frameTurningRadiusNearOrigin(): number | null {
