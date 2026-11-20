@@ -22,7 +22,8 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { totalmem } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // Half the machine's memory, in MB.
 export const BUDGET_MB = Math.floor(totalmem() / 2 ** 20 / 2);
@@ -37,8 +38,11 @@ const LOCK_STALE = 10_000;
 export function poolDir(): string {
   // A pool of its own, for tests.
   if (process.env.KINEBRICK_POOL_DIR) return process.env.KINEBRICK_POOL_DIR;
-  const common = execFileSync('git', ['rev-parse', '--git-common-dir'], { encoding: 'utf-8' }).trim();
-  return join(resolve(common), 'check-pool');
+  // Found from this file's own folder, so that a command run from anywhere (a scratch folder)
+  // uses the same pool.
+  const here = dirname(fileURLToPath(import.meta.url));
+  const common = execFileSync('git', ['-C', here, 'rev-parse', '--git-common-dir'], { encoding: 'utf-8' }).trim();
+  return join(resolve(here, common), 'check-pool');
 }
 
 // Whether a process is running (one of another user's counts too).
