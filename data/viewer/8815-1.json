@@ -1,0 +1,378 @@
+{
+  "set": "8815-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:06:48.709Z",
+  "load": 15.1,
+  "part": "A",
+  "parts": 73,
+  "seconds": 14,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The steering wheel steers the front wheels: an 8-tooth gear at the foot of the steering column slides the steering rack across, and the rack's ends swing the two steering arms.",
+      "verdict": "shown",
+      "msOneCall": 8,
+      "msPerStep": 1,
+      "time": {
+        "open": 5,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p59 8815 - 4185a",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 53,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {
+            "p53 3705": [
+              0,
+              85.94
+            ],
+            "p48 2790a": [
+              15.27,
+              0
+            ],
+            "p18 4261": [
+              0,
+              22
+            ],
+            "p24 4261": [
+              0,
+              22
+            ],
+            "p66 3482": [
+              15.27,
+              30.53
+            ],
+            "p62 3482": [
+              7.63,
+              30.53
+            ],
+            "p70 3482": [
+              0,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ],
+            "p40 2851": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p59 8815 - 4185a",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 45,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p53 3705": [
+              0,
+              85.94
+            ],
+            "p48 2790a": [
+              15.27,
+              0
+            ],
+            "p18 4261": [
+              0,
+              22
+            ],
+            "p24 4261": [
+              0,
+              22
+            ],
+            "p66 3482": [
+              15.27,
+              30.53
+            ],
+            "p62 3482": [
+              7.63,
+              30.53
+            ],
+            "p70 3482": [
+              0,
+              0
+            ],
+            "p74 3482": [
+              0,
+              0
+            ],
+            "p40 2851": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 2,
+      "does": "Pushing the kart along works its engine: the crank on the rear axle on the engine's side drives a connecting rod that pumps the piston up and down in the cylinder behind the seat.",
+      "verdict": "shown",
+      "msOneCall": 6,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p70 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 67,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {
+            "p8 3705": [
+              0,
+              85.94
+            ],
+            "p9 2853": [
+              0,
+              85.94
+            ],
+            "p10 2852": [
+              13.63,
+              19.82
+            ],
+            "p40 2851": [
+              1.47,
+              0
+            ],
+            "p22 2850a": [
+              0,
+              0
+            ],
+            "p38 3706": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p70 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 62,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p8 3705": [
+              0,
+              85.94
+            ],
+            "p9 2853": [
+              0,
+              85.94
+            ],
+            "p10 2852": [
+              13.63,
+              0.69
+            ],
+            "p40 2851": [
+              13.64,
+              0
+            ],
+            "p22 2850a": [
+              0,
+              0
+            ],
+            "p38 3706": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 3,
+      "does": "The four wheels roll freely: each rear wheel on its own 4-long axle, each front wheel on its steering arm's axle.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p70 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 58,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p70 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 55,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p74 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 55,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p74 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 57,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p66 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 64,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p66 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 62,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p62 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 56,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p62 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 54,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    },
+    {
+      "function": 4,
+      "does": "The number board at the front tilts on its hinge.",
+      "verdict": "not shown",
+      "why": "A: p61 3068bp81 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p43 3938",
+          "way": 1,
+          "asked": 0.93,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p61 3068bp81": [
+              0,
+              0
+            ],
+            "p42 3937": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p43 3938",
+          "way": -1,
+          "asked": 0.07,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p61 3068bp81": [
+              0,
+              0
+            ],
+            "p42 3937": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}

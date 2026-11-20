@@ -1,0 +1,274 @@
+{
+  "set": "8845-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:52:58.671Z",
+  "load": 15.9,
+  "part": "A",
+  "parts": 163,
+  "seconds": 9,
+  "functions": [
+    {
+      "function": 2,
+      "does": "Each rear wheel rides on its own trailing arm, which pivots on the cross axle ahead of it: pushed up, the arm swings up and the shock absorber between it and the frame shortens.",
+      "verdict": "not shown",
+      "why": "A: p172 3482, p170 3482, p105 4255 against p106 4254, p103 4255 against p104 4254 not moved",
+      "msOneCall": 0,
+      "msPerStep": null,
+      "time": {
+        "open": 4,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p0 3702",
+          "way": 1,
+          "asked": 0.18,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p0 3702",
+          "way": -1,
+          "asked": 0.52,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1 3702",
+          "way": 1,
+          "asked": 0.18,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p1 3702",
+          "way": -1,
+          "asked": 0.52,
+          "went": 0,
+          "ms": 0,
+          "msOneCall": 0,
+          "stops": [],
+          "moved": {
+            "p172 3482": [
+              0,
+              0
+            ],
+            "p170 3482": [
+              0,
+              0
+            ],
+            "p105 4255 against p106 4254": [
+              0,
+              0
+            ],
+            "p103 4255 against p104 4254": [
+              0,
+              0
+            ],
+            "p168 3482": [
+              0,
+              0
+            ],
+            "p174 3482": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 6
+    },
+    {
+      "function": 4,
+      "does": "Pushed along, all four wheels roll freely: the front ones on axle pins in the steering arms, the rear ones on axles in the trailing arms.",
+      "verdict": "shown",
+      "msOneCall": 15,
+      "msPerStep": 2,
+      "time": {
+        "open": 0,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p168 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 87,
+          "msOneCall": 15,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p168 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 62,
+          "msOneCall": 8,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p174 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 66,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p174 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 57,
+          "msOneCall": 6,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p170 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 40,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p170 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 41,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p172 3482",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 37,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p172 3482",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 41,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 4
+    }
+  ]
+}

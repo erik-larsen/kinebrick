@@ -1,0 +1,172 @@
+{
+  "set": "42045-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:58:10.614Z",
+  "load": 6.9,
+  "part": "A",
+  "parts": 170,
+  "seconds": 10,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Pushing the hydroplane along on the two small wheels under its nose runs the inline four-cylinder engine: the wheels' axle carries a 20-tooth bevel gear that turns a 12-tooth bevel gear on the front of the crankshaft, so the four pistons go up and down.",
+      "verdict": "shown",
+      "msOneCall": 12,
+      "msPerStep": 3,
+      "time": {
+        "open": 6,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 3,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p93 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 123,
+          "msOneCall": 12,
+          "stops": [],
+          "moved": {
+            "p55 32270": [
+              0.22,
+              142.28
+            ],
+            "p27 2854": [
+              0.06,
+              142.28
+            ],
+            "p26 2851": [
+              17.48,
+              0
+            ],
+            "p34 2851": [
+              18.3,
+              0
+            ],
+            "p36 2851": [
+              17.48,
+              0
+            ],
+            "p38 2851": [
+              18.3,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p93 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 103,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p55 32270": [
+              0.22,
+              144.21
+            ],
+            "p27 2854": [
+              0.06,
+              144.21
+            ],
+            "p26 2851": [
+              17.72,
+              0
+            ],
+            "p34 2851": [
+              18.46,
+              0
+            ],
+            "p36 2851": [
+              17.72,
+              0
+            ],
+            "p38 2851": [
+              18.46,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p98 4185",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 95,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p55 32270": [
+              0.22,
+              142.28
+            ],
+            "p27 2854": [
+              0.06,
+              142.28
+            ],
+            "p26 2851": [
+              17.48,
+              0
+            ],
+            "p34 2851": [
+              18.3,
+              0
+            ],
+            "p36 2851": [
+              17.48,
+              0
+            ],
+            "p38 2851": [
+              18.3,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p98 4185",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 104,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {
+            "p55 32270": [
+              0.22,
+              144.21
+            ],
+            "p27 2854": [
+              0.06,
+              144.21
+            ],
+            "p26 2851": [
+              17.72,
+              0
+            ],
+            "p34 2851": [
+              18.46,
+              0
+            ],
+            "p36 2851": [
+              17.72,
+              0
+            ],
+            "p38 2851": [
+              18.46,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    }
+  ]
+}

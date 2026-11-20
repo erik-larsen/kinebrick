@@ -1,0 +1,258 @@
+{
+  "set": "42033-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:51:34.806Z",
+  "load": 21.4,
+  "part": "A",
+  "parts": 122,
+  "seconds": 21,
+  "functions": [
+    {
+      "function": 1,
+      "does": "The two big rear wheels turn together on their axle, which runs through the pull-back motor in the tail.",
+      "verdict": "shown",
+      "msOneCall": 11,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p118 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 25,
+          "msOneCall": 11,
+          "stops": [],
+          "moved": {
+            "p118 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p120 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p12 12799 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p118 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 20,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p118 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p120 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p12 12799 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 56145",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 24,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p118 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p120 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p12 12799 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p120 56145",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 25,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p118 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p120 56145 against p12 12799": [
+              0,
+              85.94
+            ],
+            "p12 12799 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 14
+    },
+    {
+      "function": 4,
+      "does": "The clear canopy over the cockpit swings up to open.",
+      "verdict": "not decided",
+      "msOneCall": 2,
+      "msPerStep": 2,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": {
+        "control": "p110 92279",
+        "way": -1,
+        "went": -0.035,
+        "asked": 1.5,
+        "by": [
+          "89/110"
+        ]
+      },
+      "stops": [
+        "89/110"
+      ],
+      "A": [
+        {
+          "control": "p110 92279",
+          "way": 1,
+          "asked": 0.07,
+          "went": 0.07,
+          "ms": 1,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p110 92279 against p0 32278": [
+              2.82,
+              4.01
+            ],
+            "p93 40001 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p110 92279",
+          "way": -1,
+          "asked": 1.5,
+          "went": -0.035,
+          "ms": 2,
+          "msOneCall": 2,
+          "stops": [
+            "89/110"
+          ],
+          "moved": {
+            "p110 92279 against p0 32278": [
+              1.41,
+              2
+            ],
+            "p93 40001 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "stopsJudged": [
+        {
+          "control": "p110 92279",
+          "judged": "to compare with the booklet",
+          "why": "a travel of 0.2 rad or less each way, stopped at -0.035 rad (89/110)"
+        }
+      ],
+      "stopVerdict": "not decided",
+      "moved": {
+        "verdict": "shown"
+      },
+      "why": "not decided: p110 92279: a travel of 0.2 rad or less each way, stopped at -0.035 rad (89/110)",
+      "seconds": 4
+    },
+    {
+      "function": 5,
+      "does": "The steering wheel in the cockpit turns, but steers nothing: the front wheels are on a fixed axle.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p93 40001",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 32,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p111 3706 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p93 40001",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 26,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p111 3706 against p0 32278": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

@@ -1,0 +1,373 @@
+{
+  "set": "42020-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:17:55.293Z",
+  "load": 20.9,
+  "part": "A",
+  "parts": 140,
+  "seconds": 28,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning either rotor turns the other: a long shaft under the roof joins the two rotor heads through bevel gears, so the front and rear rotors spin together.",
+      "verdict": "shown",
+      "msOneCall": 10,
+      "msPerStep": 1,
+      "time": {
+        "open": 8,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 4,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p100 57585",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 41,
+          "msOneCall": 10,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p100 57585",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 35,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p137 57585",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 33,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p137 57585",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 32,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p100 57585": [
+              0,
+              85.94
+            ],
+            "p137 57585": [
+              0,
+              85.94
+            ],
+            "p89 32270": [
+              0,
+              85.94
+            ],
+            "p53 42610": [
+              0,
+              0
+            ],
+            "p52 42610": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 12
+    },
+    {
+      "function": 2,
+      "does": "The four wheels roll freely.",
+      "verdict": "shown",
+      "msOneCall": 4,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 8,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p52 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 62,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p52 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 64,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p55 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 61,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p55 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 62,
+          "msOneCall": 4,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p53 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 56,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p53 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 55,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p54 42610",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 54,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p54 42610",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 61,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 10
+    },
+    {
+      "function": 3,
+      "does": "The nose wheels' strut turns on a vertical axle, so the front wheels castor.",
+      "verdict": "shown",
+      "msOneCall": 5,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p83 87083",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 38,
+          "msOneCall": 5,
+          "stops": [],
+          "moved": {
+            "p53 42610": [
+              38.56,
+              117.97
+            ],
+            "p54 42610": [
+              38.56,
+              117.97
+            ],
+            "p52 42610": [
+              0,
+              0
+            ],
+            "p55 42610": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p83 87083",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 40,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p53 42610": [
+              38.56,
+              117.97
+            ],
+            "p54 42610": [
+              38.56,
+              117.97
+            ],
+            "p52 42610": [
+              0,
+              0
+            ],
+            "p55 42610": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    },
+    {
+      "function": 4,
+      "does": "The small bent liftarm with two half-beams under the tail hangs on a pin and swings.",
+      "verdict": "shown",
+      "msOneCall": 3,
+      "msPerStep": 1,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p60 32140",
+          "way": 1,
+          "asked": 0.67,
+          "went": 0.67,
+          "ms": 13,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p60 32140",
+          "way": -1,
+          "asked": 0.5,
+          "went": -0.5,
+          "ms": 8,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 3
+    }
+  ]
+}

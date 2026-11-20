@@ -1,0 +1,338 @@
+{
+  "set": "8260-1",
+  "commit": "7023ada7",
+  "date": "2026-11-20T19:13:04.499Z",
+  "load": 18.4,
+  "part": "A",
+  "parts": 104,
+  "seconds": 20,
+  "functions": [
+    {
+      "function": 1,
+      "does": "Turning the red knob at the back turns the worm under the tractor, which turns the 8 tooth gear on the loader arms' axle: the arms and the bucket on them rise and lower.",
+      "verdict": "shown",
+      "msOneCall": 9,
+      "msPerStep": 1,
+      "time": {
+        "open": 7,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 2,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p10 3713",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 58,
+          "msOneCall": 9,
+          "stops": [],
+          "moved": {
+            "p19 4716": [
+              0,
+              85.94
+            ],
+            "p52 3647": [
+              0,
+              10.74
+            ],
+            "p86 32348": [
+              20.1,
+              10.74
+            ],
+            "p93 32348": [
+              20.1,
+              10.74
+            ],
+            "p92 47508": [
+              28.47,
+              10.74
+            ],
+            "p0 32524": [
+              0,
+              0
+            ],
+            "p98 56904": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p10 3713",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 39,
+          "msOneCall": 3,
+          "stops": [],
+          "moved": {
+            "p19 4716": [
+              0,
+              85.94
+            ],
+            "p52 3647": [
+              0,
+              10.74
+            ],
+            "p86 32348": [
+              20.1,
+              10.74
+            ],
+            "p93 32348": [
+              20.1,
+              10.74
+            ],
+            "p92 47508": [
+              28.47,
+              10.74
+            ],
+            "p0 32524": [
+              0,
+              0
+            ],
+            "p98 56904": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 9
+    },
+    {
+      "function": 2,
+      "does": "The bucket tips forward and back by hand on its click hinge at the arms' ends, holding where it's left.",
+      "verdict": "not shown",
+      "why": "A: p92 47508 against p86 32348 not moved",
+      "msOneCall": 2,
+      "msPerStep": null,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p92 47508",
+          "way": 1,
+          "asked": 1.4,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p92 47508 against p86 32348": [
+              0,
+              0
+            ],
+            "p86 32348": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p92 47508",
+          "way": -1,
+          "asked": 1.5,
+          "went": 0,
+          "ms": 1,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p92 47508 against p86 32348": [
+              0,
+              0
+            ],
+            "p86 32348": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    },
+    {
+      "function": 3,
+      "does": "The wheels roll freely: the two big rear wheels together on their 8-long axle, the two small front wheels each on its own pin. There's no steering.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 0,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 6,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p98 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p98 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 15,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p100 56904",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 16,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p100 56904",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 14,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p96 56902",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 18,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p96 56902",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 16,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p97 56902",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 17,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {}
+        },
+        {
+          "control": "p97 56902",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 16,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {}
+        }
+      ],
+      "B": [],
+      "seconds": 7
+    },
+    {
+      "function": 4,
+      "does": "The steering wheel turns on its axle in the cab, but steers nothing: the front wheels sit on fixed pins.",
+      "verdict": "shown",
+      "msOneCall": 2,
+      "msPerStep": 0,
+      "time": {
+        "open": 1,
+        "collisions": 0,
+        "first": 0,
+        "reach": 0,
+        "A": 1,
+        "B": 0
+      },
+      "stop": null,
+      "stops": [],
+      "A": [
+        {
+          "control": "p63 30663",
+          "way": 1,
+          "asked": 1.5,
+          "went": 1.5,
+          "ms": 9,
+          "msOneCall": 1,
+          "stops": [],
+          "moved": {
+            "p63 30663": [
+              0,
+              85.94
+            ],
+            "p96 56902": [
+              0,
+              0
+            ],
+            "p97 56902": [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "control": "p63 30663",
+          "way": -1,
+          "asked": 1.5,
+          "went": -1.5,
+          "ms": 9,
+          "msOneCall": 2,
+          "stops": [],
+          "moved": {
+            "p63 30663": [
+              0,
+              85.94
+            ],
+            "p96 56902": [
+              0,
+              0
+            ],
+            "p97 56902": [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "B": [],
+      "seconds": 2
+    }
+  ]
+}
