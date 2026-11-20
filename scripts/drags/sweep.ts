@@ -25,7 +25,7 @@
 // at this commit is skipped unless --force. Each set runs in a process of its own, through the
 // machine's pool (scripts/check-pool.ts), at most 3 at a time (--jobs), on the viewer whose address
 // is given (your own server, not 5174's).
-//   npx tsx scripts/drags/sweep.ts http://localhost:5208 [set …] [--force] [--jobs 3]
+//   npx tsx scripts/drags/sweep.ts http://localhost:5208 [set …] [--then-all] [--force] [--jobs 3]
 //   npx tsx scripts/drags/sweep.ts http://localhost:5208 --one 9397-1      (one set, in this process)
 //   npx tsx scripts/drags/sweep.ts --judge      (the records judged again, with no browser)
 //   npx tsx scripts/drags/sweep.ts --table      (data/viewer/table.csv from the records: every
@@ -71,7 +71,10 @@ const force = args.includes('--force');
 const aOnly = args.includes('--a');
 const part = aOnly ? 'A' : 'A and B';
 const browserMb = (parts: number | undefined) => (parts ? Math.round(1000 + 0.85 * parts) : 3000);
-const commit = execSync('git rev-parse --short HEAD').toString().trim();
+// The commit a run records, set once by the run that starts the sets (so the records can be
+// committed while it goes on).
+const commit = process.env.KB_SWEEP_COMMIT || execSync('git rev-parse --short HEAD').toString().trim();
+process.env.KB_SWEEP_COMMIT = commit;
 const setFile = (set: string) => `data/sets/${set}.json`;
 const outFile = (set: string) => `data/viewer/${set}.json`;
 const worksIn = (set: string) => (JSON.parse(readFileSync(setFile(set), 'utf-8')).generated?.functions ?? []).filter((g: { result?: string } | null) => g?.result === 'works').length;
@@ -124,7 +127,9 @@ if (args[0] === '--judge') {
   const counts = partCounts();
   // Sets named go in the order named; else those where every checked function works first, then
   // the rest, each smallest first.
-  const sets = (named.length ? named.filter((s) => all.includes(s)) : all.sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)))
+  // --then-all: the sets named first, in that order, then every other, as with none named.
+  const thenAll = args.includes('--then-all');
+  const sets = (named.length ? [...named.filter((s) => all.includes(s)), ...(thenAll ? all.filter((s) => !named.includes(s)).sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)) : [])] : all.sort((a, b) => Number(allWork(b)) - Number(allWork(a)) || (counts.get(a) ?? 1e9) - (counts.get(b) ?? 1e9) || a.localeCompare(b)))
     .filter((s) => worksIn(s) > 0)
     .filter((s) => {
       if (force || !existsSync(outFile(s))) return true;
