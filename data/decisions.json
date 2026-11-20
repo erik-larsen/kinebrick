@@ -26,7 +26,7 @@
   "coming": [
     {
       "title": "A sanity check of every working function in the viewer",
-      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. Claude measured it: the steering does steer, but each solver step takes about half a second in that 1,460-part model, on main as on preview. So works in the check does not yet mean a user can do it. The worker builds a sweep that tries every working function in the viewer, by turning its control and by taking it with the pointer, and records shown or not shown and the time per step. The 57 sets where every checked function works go first. The solver owner measures and mends the time per step."
+      "what": "You opened the 9397 on 19 November: the steering did nothing under your hand, and with a motor running the page took seconds per frame. Claude measured it: the steering does steer, but each solver step takes about half a second in that 1,460-part model, on main as on preview. So works in the check does not yet mean a user can do it. The worker builds a sweep that tries every working function in the viewer, by turning its control and by taking it with the pointer, and records shown or not shown and the time per step. The 57 sets where every checked function works go first. The solver owner measures and mends the time per step. On 20 November a second kind showed up: the 42123 McLaren Senna's function 2 (rolling turns the V8) is stored as works, but its wheel stops after 0.1 radian (6 degrees) in the viewer, one engine part against another. The sweep now also records how far each control goes before a stop. The solver owner traces whether the model or the collision test is wrong there."
     },
     {
       "title": "The next offer of main",
@@ -269,6 +269,10 @@
     {
       "date": "2026-11-19",
       "what": "The Mac ran out of memory twice (16 check processes, 82 GB on 32 GB). Claude set a machine-wide limit: 16 GB and, in your words, \"10 max\" processes. You approved sharing shapes per part type, which takes most of a check's memory away."
+    },
+    {
+      "date": "2026-11-20",
+      "what": "Claude merged three mends to how the check reads parts' shapes (242, 247, 248) and a guard against a fault in the collision library, which took two faces lying in one plane for a crossing (249). Five false collision stops are gone; no result changes: 740 working functions. Every such change is now gated with a scan of all 190 models."
     }
   ]
 }

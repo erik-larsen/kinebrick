@@ -86,8 +86,8 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
+    "commit": "335ef375",
+    "date": "2026-11-20",
     "seconds": 3,
     "counts": {
       "works": 3,
@@ -183,7 +183,7 @@
           "rise": 0.92,
           "tyre": "p130 2346"
         },
-        "seconds": 0.5
+        "seconds": 0.7
       },
       {
         "result": "works",
@@ -400,8 +400,9 @@
           [],
           []
         ],
-        "seconds": 1
+        "seconds": 1.1
       }
-    ]
+    ],
+    "peak": 294
   }
 }

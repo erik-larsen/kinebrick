@@ -224,9 +224,9 @@
     ]
   },
   "generated": {
-    "commit": "38c70beb",
-    "date": "2026-11-19",
-    "seconds": 193,
+    "commit": "335ef375",
+    "date": "2026-11-20",
+    "seconds": 239,
     "counts": {
       "works": 7,
       "no": 4,
@@ -450,7 +450,7 @@
             "p320 6573"
           ]
         ],
-        "seconds": 45.1
+        "seconds": 59.2
       },
       {
         "result": "works",
@@ -674,7 +674,7 @@
             "p771 2851"
           ]
         ],
-        "seconds": 59.1
+        "seconds": 84.4
       },
       {
         "result": "no",
@@ -730,7 +730,7 @@
         ],
         "cause": "not-driven",
         "detail": "p240 6539",
-        "seconds": 3.1
+        "seconds": 4.3
       },
       {
         "result": "works",
@@ -796,7 +796,7 @@
             ]
           ]
         ],
-        "seconds": 14.7
+        "seconds": 17.7
       },
       {
         "result": "works",
@@ -855,7 +855,7 @@
             ]
           ]
         ],
-        "seconds": 15
+        "seconds": 17.4
       },
       {
         "result": "works",
@@ -934,7 +934,7 @@
             1.2
           ]
         ],
-        "seconds": 4.5
+        "seconds": 4.9
       },
       {
         "result": "no",
@@ -1049,7 +1049,7 @@
             0
           ]
         ],
-        "seconds": 1.7
+        "seconds": 1.9
       },
       {
         "result": "no",
@@ -1164,7 +1164,7 @@
             0
           ]
         ],
-        "seconds": 2.3
+        "seconds": 2.5
       },
       {
         "result": "skipped",
@@ -1233,7 +1233,7 @@
           0
         ],
         "cause": "control-jammed",
-        "seconds": 19.5
+        "seconds": 22.8
       },
       {
         "result": "skipped",
@@ -1348,7 +1348,7 @@
             0.1
           ]
         ],
-        "seconds": 6.2
+        "seconds": 6.4
       },
       {
         "result": "works",
@@ -1408,8 +1408,9 @@
             ]
           ]
         ],
-        "seconds": 10.7
+        "seconds": 11
       }
-    ]
+    ],
+    "peak": 484
   }
 }
