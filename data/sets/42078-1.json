@@ -176,12 +176,31 @@
         "note": "unsure whether the legs telescope by hand or are driven"
       },
       {
-        "does": "The container's two end doors swing open.",
+        "does": "The container's two end doors swing open, each once its lock bar is lifted.",
         "mechanisms": [
           "hinge: container doors"
         ],
         "source": "inferred: container steps 52-53 and 69 (pages 412-418) build the doors on their own hinge axles",
-        "control": "p2631 64782"
+        "first": [
+          {
+            "control": "p2641 99008",
+            "by": -25,
+            "slide": true
+          },
+          {
+            "control": "p2675 99008",
+            "by": -25,
+            "slide": true
+          }
+        ],
+        "control": [
+          "p2631 64782",
+          "p2665 64782"
+        ],
+        "moves": [
+          "p2631 64782 against p2619 32184",
+          "p2665 64782 against p2620 32184"
+        ]
       },
       {
         "does": "The trailer's four wheels roll freely.",
@@ -204,15 +223,15 @@
     ]
   },
   "generated": {
-    "commit": "4fa15e08",
+    "commit": "e9c41a88",
+    "uncommitted": true,
     "date": "2026-11-20",
-    "seconds": 1224,
+    "seconds": 1953,
     "counts": {
-      "works": 8,
+      "works": 9,
       "partly": 4,
       "not back": 3,
-      "moved whole": 3,
-      "no": 1
+      "moved whole": 3
     },
     "loose": [
       "p1258 3710",
@@ -246,7 +265,11 @@
     ],
     "errata": {
       "applied": [
-        "rear-crane-actuator-axle-to-its-connectors"
+        "rear-crane-actuator-axle-to-its-connectors",
+        "door-2-has-no-13L-beam",
+        "door-2-has-no-blue-pin-at-y-minus-280",
+        "door-2-has-no-blue-pin-at-y-minus-400",
+        "door-2-black-pins-for-its-11L-beam"
       ],
       "refused": []
     },
@@ -325,8 +348,7 @@
             1.27
           ]
         ],
-        "seconds": 47.9,
-        "peak": 1835
+        "seconds": 44.3
       },
       {
         "result": "partly",
@@ -408,8 +430,7 @@
         ],
         "cause": "not-driven",
         "detail": "p324 3708",
-        "seconds": 91.9,
-        "peak": 1783
+        "seconds": 79.7
       },
       {
         "result": "works",
@@ -479,8 +500,7 @@
           [],
           []
         ],
-        "seconds": 224.1,
-        "peak": 2319
+        "seconds": 203.3
       },
       {
         "result": "works",
@@ -557,8 +577,7 @@
             0.03
           ]
         ],
-        "seconds": 7,
-        "peak": 1600
+        "seconds": 8.5
       },
       {
         "result": "works",
@@ -669,8 +688,7 @@
             0
           ]
         ],
-        "seconds": 35.3,
-        "peak": 1993
+        "seconds": 34
       },
       {
         "result": "partly",
@@ -718,8 +736,7 @@
         ],
         "cause": "control-jammed",
         "onPlay": 0.13,
-        "seconds": 7.5,
-        "peak": 1668
+        "seconds": 9
       },
       {
         "result": "works",
@@ -789,8 +806,7 @@
             0.6
           ]
         ],
-        "seconds": 22,
-        "peak": 1787
+        "seconds": 21.6
       },
       {
         "result": "works",
@@ -860,8 +876,7 @@
             0.6
           ]
         ],
-        "seconds": 21.7,
-        "peak": 1759
+        "seconds": 21.6
       },
       {
         "result": "partly",
@@ -934,8 +949,7 @@
         ],
         "cause": "not-driven",
         "detail": "p2048 18940",
-        "seconds": 18.2,
-        "peak": 1775
+        "seconds": 17.8
       },
       {
         "result": "partly",
@@ -1008,8 +1022,7 @@
         ],
         "cause": "not-driven",
         "detail": "p1980 92696",
-        "seconds": 17.8,
-        "peak": 1624
+        "seconds": 18.1
       },
       {
         "result": "works",
@@ -1108,77 +1121,150 @@
             0.01
           ]
         ],
-        "seconds": 231.3,
-        "peak": 1840
+        "seconds": 199.2
       },
       {
-        "result": "no",
-        "hold": {
-          "reason": "The container's end doors open only with the erratum signed and the lift step in the function's list; both wait for Erik's sign-off.",
-          "date": "2026-11-19"
-        },
-        "found": {
-          "result": "works",
-          "turned": [
-            [
-              0.6,
-              -0.6
+        "result": "works",
+        "turned": [
+          [
+            0,
+            -0.2
+          ],
+          [
+            0.2,
+            0
+          ]
+        ],
+        "rates": [
+          {
+            "p2631 64782 against p2619 32184": [
+              1,
+              60
+            ],
+            "p2665 64782 against p2620 32184": [
+              0,
+              1.55e-14
             ]
-          ],
-          "rates": [
-            {}
-          ],
-          "back": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
+          },
+          {
+            "p2631 64782 against p2619 32184": [
+              0,
+              0
+            ],
+            "p2665 64782 against p2620 32184": [
+              1,
+              60
             ]
-          ],
-          "torn": [
-            [
-              [
-                0,
-                0
-              ],
-              [
-                0,
-                0
-              ]
-            ]
-          ],
-          "stop": [
-            [
-              "limit",
-              "limit"
-            ]
-          ],
-          "collisionStops": [
+          }
+        ],
+        "back": [
+          [
             [
               0,
-              1,
-              186,
-              1680,
-              0.6,
-              0.6
+              0
             ],
             [
               0,
-              -1,
-              185,
-              1685,
-              0.6,
-              0.6
+              0
             ]
           ],
-          "seconds": 22.4,
-          "peak": 1771
-        }
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "torn": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        ],
+        "why": [
+          "p2631 64782 against p2619 32184 is held by friction pins the control doesn't reach",
+          "p2665 64782 against p2620 32184 is held by friction pins the control doesn't reach"
+        ],
+        "stop": [
+          [
+            "limit",
+            "limit"
+          ],
+          [
+            "limit",
+            "limit"
+          ]
+        ],
+        "freed": 4,
+        "movedBy": [
+          [
+            "p2631 64782 against p2619 32184"
+          ],
+          [
+            "p2665 64782 against p2620 32184"
+          ]
+        ],
+        "shiftPressed": [
+          2626,
+          2627,
+          2660,
+          2661
+        ],
+        "collisionStops": [
+          [
+            0,
+            1,
+            2588,
+            2651,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            2126,
+            2645,
+            0.2,
+            0.2
+          ],
+          [
+            1,
+            1,
+            2126,
+            2673,
+            0.2,
+            0.2
+          ],
+          [
+            1,
+            -1,
+            2588,
+            2685,
+            0,
+            0
+          ]
+        ],
+        "seconds": 656.8
       },
       {
         "result": "works",
@@ -1300,8 +1386,7 @@
           [],
           []
         ],
-        "seconds": 425,
-        "peak": 2419
+        "seconds": 372.9
       }
     ]
   }
