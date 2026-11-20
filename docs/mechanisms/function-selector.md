@@ -48,9 +48,9 @@ Each detail by the set it first appears in.
 
 - *4 functions:* The Power Functions motor under the bed drives a gearbox with two driving rings; the yellow and red levers behind the cab set them so the motor works one of three outputs: the front winch, the crane’s slewing, or the compressor. (works)
 - With the yellow lever up and the red lever down, the motor winds the winch at the front: a shaft runs forward to a worm that turns the 24-tooth gear on the winch drum, raising or lowering the hook. (works)
-- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (partly)
+- With both levers up, the motor slews the crane: a shaft runs back to the crane base, where a worm turns the gear under the turntable, turning the crane round. (works)
 - With the yellow lever down and the red knob on the side pushed out, the motor runs the compressor, a crank pumping the pneumatic pump that fills the crane's air system. (partly)
-- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (works)
+- With the yellow lever down and the red knob pushed in, the motor runs the compressor as in function 9; the knob, pushed in, is the valve’s other setting. (partly)
 
 **2012, [9395 Pick-Up Tow Truck](https://www.bricklink.com/v2/catalog/catalogitem.page?S=9395-1)**
 

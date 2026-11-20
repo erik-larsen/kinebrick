@@ -132,7 +132,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Belt drive](belt-drive.md) | 7 | 1980 |  | 3 | 3 |  | 1 |  | 9 works, 3 partly |
 | [Crawler tracks](crawler-tracks.md) | 22 | 1979 | 1 | 1 | 1 | 4 | 13 | 2 | 20 works, 9 partly |
 | [Track tensioner](track-tensioner.md) | 1 | 2021 |  |  |  |  |  | 1 | 1 skipped |
-| [Worm drive](worm-drive.md) | 53 | 1986 |  | 4 | 4 | 13 | 29 | 3 | 50 works, 31 partly, 2 skipped |
+| [Worm drive](worm-drive.md) | 53 | 1986 |  | 4 | 4 | 13 | 29 | 3 | 51 works, 30 partly, 2 skipped |
 | [Slip clutch](slip-clutch.md) | 10 | 1989 |  | 1 |  | 1 | 7 | 1 | 6 works, 4 partly, 4 skipped |
 | [Swinging idler clutch](swinging-idler-clutch.md) | 1 | 1998 |  |  | 1 |  |  |  | 1 skipped |
 | [Power take-off](power-take-off.md) | 11 | 1977 | 2 | 2 | 1 | 3 | 1 | 2 | 11 works, 3 partly |
@@ -157,7 +157,7 @@ How many sets use each kind, by decade (with how many sets of that decade are su
 | [Scissor linkage](scissor-linkage.md) | 2 | 1998 |  |  | 2 |  |  |  | 2 works, 1 partly |
 | [Push-pull cable](push-pull-cable.md) | 1 | 1991 |  |  | 1 |  |  |  | 2 partly |
 | [Winch](winch.md) | 26 | 1978 | 1 | 1 | 2 | 3 | 17 | 2 | 21 works, 8 partly |
-| [Turntable](turntable.md) | 35 | 1978 | 1 | 3 | 4 | 5 | 19 | 3 | 20 works, 13 partly, 5 no, 1 not checked |
+| [Turntable](turntable.md) | 35 | 1978 | 1 | 3 | 4 | 5 | 19 | 3 | 21 works, 12 partly, 5 no, 1 not checked |
 | [Three-point hitch](three-point-hitch.md) | 7 | 1977 | 2 | 2 |  | 1 | 2 |  | 5 works, 2 partly, 1 not checked |
 | [Telescopic mast](telescopic-mast.md) | 2 | 2005 |  |  |  | 1 | 1 |  | 2 partly |
 | [Hook lift](hook-lift.md) | 1 | 2018 |  |  |  |  | 1 |  | 1 works |
