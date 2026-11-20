@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -65,6 +65,18 @@ describe('the check pool', () => {
   it('tells a live process from one that is gone', () => {
     expect(alive(process.pid)).toBe(true);
     expect(alive(dead())).toBe(false);
+  });
+
+  it("runs a heavy command through the pool, entered while it runs, and drops it when the command fails", () => {
+    const dir = mkdtempSync(join(tmpdir(), 'check-pool-'));
+    dirs.push(dir);
+    const seen = join(dir, 'seen.txt');
+    // The command lists the pool while it runs, then fails.
+    const wrapper = spawnSync(process.execPath, ['--import', 'tsx', 'scripts/check-pool.ts', 'run', '--mb', '50', '--what', 'a failing command', '--', 'sh', '-c', `ls ${dir} > ${seen}; exit 3`], { env: { ...process.env, KINEBRICK_POOL_DIR: dir }, encoding: 'utf-8' });
+    expect(wrapper.status).toBe(3);
+    expect(readFileSync(seen, 'utf-8').split('\n').filter((f) => f.endsWith('.json'))).toHaveLength(1);
+    expect(readdirSync(dir).filter((f) => f.endsWith('.json'))).toEqual([]);
+    expect(wrapper.stderr).toContain('a failing command: exit 3');
   });
 
   it('estimates from the part count, and reads part counts past quoted commas', () => {

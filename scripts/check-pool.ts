@@ -9,8 +9,17 @@
 // every worktree shares it: one file for each entry, and a lock folder taken while entries are
 // counted and one is added. An entry belongs to a child process once it has started, and before
 // that to the check that reserved it; an entry whose process is gone is dropped.
+//
+// Any other heavy command (reading all the models, `npm run collisions`, `npm run pivots`, a probe
+// that loads a large model) goes through the pool too, by this file's wrapper (decision 231):
+//
+//   npx tsx scripts/check-pool.ts run --mb <expected MB> --what <words> -- <command …>
+//
+// It waits for room as a check's child does, runs the command, passes on its exit code, drops its
+// entry when the command ends (also when it fails or is stopped), and prints the most memory the
+// command and its own children took, so that the next caller can give a better figure.
 
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import { mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { totalmem } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -26,6 +35,8 @@ const LOCK_WAIT = 20;
 const LOCK_STALE = 10_000;
 
 export function poolDir(): string {
+  // A pool of its own, for tests.
+  if (process.env.KINEBRICK_POOL_DIR) return process.env.KINEBRICK_POOL_DIR;
   const common = execFileSync('git', ['rev-parse', '--git-common-dir'], { encoding: 'utf-8' }).trim();
   return join(resolve(common), 'check-pool');
 }
@@ -191,3 +202,72 @@ export function partCounts(file = 'models/technic-sets.csv'): Map<string, number
 export function peakMb(): number {
   return Math.round(process.resourceUsage().maxRSS / 1024);
 }
+
+// The memory a process group takes now, in MB: the sum over its processes.
+function groupMb(pgid: number): number {
+  try {
+    const out = execFileSync('ps', ['-axo', 'pgid=,rss='], { encoding: 'utf-8' });
+    let kb = 0;
+    for (const line of out.trim().split('\n')) {
+      const [g, rss] = line.trim().split(/\s+/).map(Number);
+      if (g === pgid) kb += rss;
+    }
+    return Math.round(kb / 1024);
+  } catch {
+    return 0;
+  }
+}
+
+// The wrapper (see the top of this file): the command's exit code, as the process's own.
+async function run(args: string[]) {
+  const dash = args.indexOf('--');
+  const opt = (name: string) => {
+    const i = args.indexOf(name);
+    return i >= 0 && (dash < 0 || i < dash) ? args[i + 1] : undefined;
+  };
+  const mb = Number(opt('--mb'));
+  const command = dash >= 0 ? args.slice(dash + 1) : [];
+  if (!(mb > 0) || command.length === 0) {
+    console.error('usage: npx tsx scripts/check-pool.ts run --mb <expected MB> --what <words> -- <command …>');
+    process.exit(2);
+  }
+  const what = opt('--what') ?? command.join(' ');
+  const pool = new Pool(poolDir());
+  let entry: string | null = null;
+  let child: ReturnType<typeof spawn> | null = null;
+  // Stopped while it waits or runs: the command is stopped too, and the entry dropped.
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'] as const) {
+    process.on(signal, () => {
+      if (child?.pid) {
+        try {
+          process.kill(-child.pid, signal);
+        } catch {
+          // Gone already.
+        }
+      }
+      if (entry) pool.release(entry);
+      process.exit(128 + ({ SIGINT: 2, SIGTERM: 15, SIGHUP: 1 } as const)[signal]);
+    });
+  }
+  if (pool.used() > 0) console.error(`check-pool: waiting for ${mb} MB (${pool.used()} of ${pool.budget} MB in use)`);
+  entry = await pool.reserve(mb, what);
+  // In a process group of its own, so that its own children are measured and stopped with it.
+  child = spawn(command[0], command.slice(1), { stdio: 'inherit', detached: true });
+  let peak = 0;
+  if (child.pid) pool.started(entry, child.pid);
+  const pgid = child.pid ?? 0;
+  const timer = setInterval(() => (peak = Math.max(peak, groupMb(pgid))), 1000);
+  const code = await new Promise<number>((resolve) => {
+    child!.on('error', (err) => {
+      console.error(`check-pool: ${err.message}`);
+      resolve(127);
+    });
+    child!.on('exit', (c, signal) => resolve(c ?? (signal ? 128 + (({ SIGINT: 2, SIGKILL: 9, SIGTERM: 15 } as Record<string, number>)[signal] ?? 1) : 1)));
+  });
+  clearInterval(timer);
+  pool.release(entry);
+  console.error(`check-pool: ${what}: exit ${code}, peak ${peak} MB (expected ${mb})`);
+  process.exit(code);
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname) && process.argv[2] === 'run') await run(process.argv.slice(3));
